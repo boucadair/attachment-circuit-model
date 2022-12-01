@@ -68,6 +68,7 @@ Table of Contents
    2.  Conventions and Definitions
    3.  Terminology
    4.  Sample Uses of the Attachment Circuit Data Model
+     4.1.  Separate AC Provisioning vs. Actual Service Provisioning
    5.  Description of the Attachment Circuit YANG Module
      5.1.  Overall Structure of the Module
      5.2.  AC Grouping
@@ -111,22 +112,37 @@ Table of Contents
 
    This document uses the following terms:
 
-   Network controller  Denotes a functional entity responsible for the
+   Network controller:  Denotes a functional entity responsible for the
       management of the service provider network.
 
-   Service orchestrator  Refers to a functional entity that interacts
+   Service orchestrator:  Refers to a functional entity that interacts
       with the customer of a network service.  The service orchestrator
       is typically responsible for the attachment circuits, the Provider
       Edge (PE) selection, and requesting the activation of the
       requested service to a network controller.
 
-   Service provider network  A network that is able to provide network
+   Service provider network:  A network that is able to provide network
       services (e.g., Network Slice Services).
 
-   Service provider  A service provider that offers network services
+   Service provider:  A service provider that offers network services
       (e.g., Network Slice Services).
 
 4.  Sample Uses of the Attachment Circuit Data Model
+
+4.1.  Separate AC Provisioning vs. Actual Service Provisioning
+
+   The procedure to provision a service in a service provider network
+   may depend on the practices adopted by a service provider, including
+   the flow put in place for the provisioning of advanced network
+   services and how they are bound to an attachment circuit.  For
+   example, the same attachment circuit may be used to host multiple
+   services.  In order to avoid service interference and redundant
+   information in various locations, a service provider may expose an
+   interface to manage ACs network-wide.  Customers can the request a
+   base attachment circuit to be put in place, and then refer to that
+   base AC when requesting services that are bound to that AC.
+
+   TBC.
 
 5.  Description of the Attachment Circuit YANG Module
 
