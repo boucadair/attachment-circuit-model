@@ -142,7 +142,40 @@ Table of Contents
    base attachment circuit to be put in place, and then refer to that
    base AC when requesting services that are bound to that AC.
 
-   TBC.
+                             +---------------+
+                             |   Customer    |
+                             +-------+-------+
+             Customer Service Model  |
+           e.g., slice-svc, ac-svc   |
+                             +-------+-------+
+                             |    Service    |
+                             | Orchestration |
+                             +-------+-------+
+              Network Model          |
+        e.g., l3vpn-ntw, ac-ntw      |
+                             +-------+-------+
+                             |   Network     |
+                             | Orchestration |
+                             +-------+-------+
+       Network Configuration Model   |
+                         +-----------+-----------+
+                         |                       |
+                +--------+------+       +--------+------+
+                |    Domain     |       |     Domain    |
+                | Orchestration |       | Orchestration |
+                +---+-----------+       +--------+------+
+     Device         |        |                   |
+     Configuration  |        |                   |
+     Model          |        |                   |
+               +----+----+   |                   |
+               | Config  |   |                   |
+               | Manager |   |                   |
+               +----+----+   |                   |
+                    |        |                   |
+                    | NETCONF/CLI..................
+                    |        |                   |
+
+                      Figure 1: An Example of AC Usage
 
 5.  Description of the Attachment Circuit YANG Module
 
@@ -167,7 +200,7 @@ Table of Contents
         +--rw security
            ...
 
-                      Figure 1: Overall Tree Structure
+                      Figure 2: Overall Tree Structure
 
 5.2.  AC Grouping
 
@@ -184,7 +217,7 @@ Table of Contents
        +-- security
           ...
 
-                           Figure 2: AC Grouping
+                           Figure 3: AC Grouping
 
 5.3.  AC per Node Grouping
 
@@ -204,7 +237,7 @@ Table of Contents
        +-- security
           ...
 
-                       Figure 3: AC per Node Grouping
+                       Figure 4: AC per Node Grouping
 
 5.4.  Layer 2 Connection Structure
 
@@ -265,7 +298,7 @@ Table of Contents
        +-- bearer-reference?          string
                {vpn-common:bearer-reference}?
 
-                Figure 4: Layer 2 Connection Tree Structure
+                Figure 5: Layer 2 Connection Tree Structure
 
 5.5.  Layer 3 Connection Tree Structure
 
@@ -336,7 +369,7 @@ Table of Contents
                    +-- address-id?         string
                    +-- customer-address?   inet:ipv6-address
 
-                Figure 5: Layer 3 Connection Tree Structure
+                Figure 6: Layer 3 Connection Tree Structure
 
 5.6.  Routing Tree Structure
 
@@ -511,7 +544,7 @@ Table of Contents
                    +--ro status?        identityref
                    +--ro last-change?   yang:date-and-time
 
-                Figure 6: Routing Connection Tree Structure
+                Figure 7: Routing Connection Tree Structure
 
 6.  Attachment Circuit YANG Module
 
