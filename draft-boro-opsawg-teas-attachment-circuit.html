@@ -1160,21 +1160,32 @@ svg :is([stroke="fill"], [fill^="#fff"]) {
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.1">
                 <p id="section-toc.1-1.5.2.1.1"><a href="#section-5.1" class="auto internal xref">5.1</a>.  <a href="#name-service-module" class="internal xref">Service Module</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.1.2.1">
+                    <p id="section-toc.1-1.5.2.1.2.1.1"><a href="#section-5.1.1" class="auto internal xref">5.1.1</a>.  <a href="#name-overall-structure-of-the-mo" class="internal xref">Overall Structure of the Module</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.1.2.2">
+                    <p id="section-toc.1-1.5.2.1.2.2.1"><a href="#section-5.1.2" class="auto internal xref">5.1.2</a>.  <a href="#name-layer-2-connection-structur" class="internal xref">Layer 2 Connection Structure</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.1.2.3">
+                    <p id="section-toc.1-1.5.2.1.2.3.1"><a href="#section-5.1.3" class="auto internal xref">5.1.3</a>.  <a href="#name-layer-3-connection-structur" class="internal xref">Layer 3 Connection Structure</a></p>
+</li>
+                </ul>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.2">
                 <p id="section-toc.1-1.5.2.2.1"><a href="#section-5.2" class="auto internal xref">5.2</a>.  <a href="#name-network-module" class="internal xref">Network Module</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.2.2.1">
-                    <p id="section-toc.1-1.5.2.2.2.1.1"><a href="#section-5.2.1" class="auto internal xref">5.2.1</a>.  <a href="#name-overall-structure-of-the-mo" class="internal xref">Overall Structure of the Module</a></p>
+                    <p id="section-toc.1-1.5.2.2.2.1.1"><a href="#section-5.2.1" class="auto internal xref">5.2.1</a>.  <a href="#name-overall-structure-of-the-mod" class="internal xref">Overall Structure of the Module</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.2.2.2">
                     <p id="section-toc.1-1.5.2.2.2.2.1"><a href="#section-5.2.2" class="auto internal xref">5.2.2</a>.  <a href="#name-ac-grouping" class="internal xref">AC Grouping</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.2.2.3">
-                    <p id="section-toc.1-1.5.2.2.2.3.1"><a href="#section-5.2.3" class="auto internal xref">5.2.3</a>.  <a href="#name-ac-per-node-grouping" class="internal xref">AC per Node Grouping</a></p>
+                    <p id="section-toc.1-1.5.2.2.2.3.1"><a href="#section-5.2.3" class="auto internal xref">5.2.3</a>.  <a href="#name-grouping-to-binding-acs-to-" class="internal xref">Grouping to Binding ACs to Nodes</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.2.2.4">
-                    <p id="section-toc.1-1.5.2.2.2.4.1"><a href="#section-5.2.4" class="auto internal xref">5.2.4</a>.  <a href="#name-layer-2-connection-structur" class="internal xref">Layer 2 Connection Structure</a></p>
+                    <p id="section-toc.1-1.5.2.2.2.4.1"><a href="#section-5.2.4" class="auto internal xref">5.2.4</a>.  <a href="#name-layer-2-connection-structure" class="internal xref">Layer 2 Connection Structure</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.2.2.5">
                     <p id="section-toc.1-1.5.2.2.2.5.1"><a href="#section-5.2.5" class="auto internal xref">5.2.5</a>.  <a href="#name-layer-3-connection-tree-str" class="internal xref">Layer 3 Connection Tree Structure</a></p>
@@ -1342,7 +1353,51 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 <section id="section-5.1">
         <h3 id="name-service-module">
 <a href="#section-5.1" class="section-number selfRef">5.1. </a><a href="#name-service-module" class="section-name selfRef">Service Module</a>
-      </h3>
+        </h3>
+<div id="overall-structure-of-the-module">
+<section id="section-5.1.1">
+          <h4 id="name-overall-structure-of-the-mo">
+<a href="#section-5.1.1" class="section-number selfRef">5.1.1. </a><a href="#name-overall-structure-of-the-mo" class="section-name selfRef">Overall Structure of the Module</a>
+          </h4>
+<span id="name-overall-ac-service-tree-str"></span><div id="o-svc-tree">
+<figure id="figure-2">
+            <div class="alignLeft art-text artwork" id="section-5.1.1-1.1">
+<pre>
+module: ietf-ac-svc
+  +--rw ac* [id]
+     +--rw id                          string
+     +--rw l2-connection
+     |  ...
+     +--rw ip-connection
+     |  ...
+     +--rw routing-protocols
+     |  ...
+     +--rw oam
+     |  ...
+     +--rw security
+        ...
+</pre>
+</div>
+<figcaption><a href="#figure-2" class="selfRef">Figure 2</a>:
+<a href="#name-overall-ac-service-tree-str" class="selfRef">Overall AC Service Tree Structure</a>
+            </figcaption></figure>
+</div>
+</section>
+</div>
+<div id="layer-2-connection-structure">
+<section id="section-5.1.2">
+          <h4 id="name-layer-2-connection-structur">
+<a href="#section-5.1.2" class="section-number selfRef">5.1.2. </a><a href="#name-layer-2-connection-structur" class="section-name selfRef">Layer 2 Connection Structure</a>
+        </h4>
+</section>
+</div>
+<div id="layer-3-connection-structure">
+<section id="section-5.1.3">
+          <h4 id="name-layer-3-connection-structur">
+<a href="#section-5.1.3" class="section-number selfRef">5.1.3. </a><a href="#name-layer-3-connection-structur" class="section-name selfRef">Layer 3 Connection Structure</a>
+        </h4>
+</section>
+</div>
 </section>
 </div>
 <div id="network-module">
@@ -1350,17 +1405,17 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
         <h3 id="name-network-module">
 <a href="#section-5.2" class="section-number selfRef">5.2. </a><a href="#name-network-module" class="section-name selfRef">Network Module</a>
         </h3>
-<div id="overall-structure-of-the-module">
+<div id="overall-structure-of-the-module-1">
 <section id="section-5.2.1">
-          <h4 id="name-overall-structure-of-the-mo">
-<a href="#section-5.2.1" class="section-number selfRef">5.2.1. </a><a href="#name-overall-structure-of-the-mo" class="section-name selfRef">Overall Structure of the Module</a>
+          <h4 id="name-overall-structure-of-the-mod">
+<a href="#section-5.2.1" class="section-number selfRef">5.2.1. </a><a href="#name-overall-structure-of-the-mod" class="section-name selfRef">Overall Structure of the Module</a>
           </h4>
 <p id="section-5.2.1-1">TBC TBC<a href="#section-5.2.1-1" class="pilcrow">¶</a></p>
-<span id="name-overall-tree-structure"></span><div id="otree">
-<figure id="figure-2">
+<span id="name-overall-tree-structure"></span><div id="o-ntw-tree">
+<figure id="figure-3">
             <div class="alignLeft art-text artwork" id="section-5.2.1-2.1">
 <pre>
-module: ietf-ac
+module: ietf-ac-ntw
   +--rw ac* [id]
      +--rw node-id?                    string
      +--rw local-ac-id?                string
@@ -1378,7 +1433,7 @@ module: ietf-ac
         ...
 </pre>
 </div>
-<figcaption><a href="#figure-2" class="selfRef">Figure 2</a>:
+<figcaption><a href="#figure-3" class="selfRef">Figure 3</a>:
 <a href="#name-overall-tree-structure" class="selfRef">Overall Tree Structure</a>
             </figcaption></figure>
 </div>
@@ -1390,7 +1445,7 @@ module: ietf-ac
 <a href="#section-5.2.2" class="section-number selfRef">5.2.2. </a><a href="#name-ac-grouping" class="section-name selfRef">AC Grouping</a>
           </h4>
 <span id="name-ac-grouping-2"></span><div id="ac-gp">
-<figure id="figure-3">
+<figure id="figure-4">
             <div class="alignLeft art-text artwork" id="section-5.2.2-1.1">
 <pre>
   grouping ac-nw
@@ -1407,19 +1462,19 @@ module: ietf-ac
        ...
 </pre>
 </div>
-<figcaption><a href="#figure-3" class="selfRef">Figure 3</a>:
+<figcaption><a href="#figure-4" class="selfRef">Figure 4</a>:
 <a href="#name-ac-grouping-2" class="selfRef">AC Grouping</a>
             </figcaption></figure>
 </div>
 </section>
 </div>
-<div id="ac-per-node-grouping">
+<div id="grouping-to-binding-acs-to-nodes">
 <section id="section-5.2.3">
-          <h4 id="name-ac-per-node-grouping">
-<a href="#section-5.2.3" class="section-number selfRef">5.2.3. </a><a href="#name-ac-per-node-grouping" class="section-name selfRef">AC per Node Grouping</a>
+          <h4 id="name-grouping-to-binding-acs-to-">
+<a href="#section-5.2.3" class="section-number selfRef">5.2.3. </a><a href="#name-grouping-to-binding-acs-to-" class="section-name selfRef">Grouping to Binding ACs to Nodes</a>
           </h4>
-<span id="name-ac-per-node-grouping-2"></span><div id="acn-gp">
-<figure id="figure-4">
+<span id="name-ac-per-node-grouping"></span><div id="acn-gp">
+<figure id="figure-5">
             <div class="alignLeft art-text artwork" id="section-5.2.3-1.1">
 <pre>
   grouping ac-node
@@ -1439,19 +1494,19 @@ module: ietf-ac
        ...
 </pre>
 </div>
-<figcaption><a href="#figure-4" class="selfRef">Figure 4</a>:
-<a href="#name-ac-per-node-grouping-2" class="selfRef">AC per Node Grouping</a>
+<figcaption><a href="#figure-5" class="selfRef">Figure 5</a>:
+<a href="#name-ac-per-node-grouping" class="selfRef">AC per Node Grouping</a>
             </figcaption></figure>
 </div>
 </section>
 </div>
-<div id="layer-2-connection-structure">
+<div id="layer-2-connection-structure-1">
 <section id="section-5.2.4">
-          <h4 id="name-layer-2-connection-structur">
-<a href="#section-5.2.4" class="section-number selfRef">5.2.4. </a><a href="#name-layer-2-connection-structur" class="section-name selfRef">Layer 2 Connection Structure</a>
+          <h4 id="name-layer-2-connection-structure">
+<a href="#section-5.2.4" class="section-number selfRef">5.2.4. </a><a href="#name-layer-2-connection-structure" class="section-name selfRef">Layer 2 Connection Structure</a>
           </h4>
 <span id="name-layer-2-connection-tree-str"></span><div id="l2-tree">
-<figure id="figure-5">
+<figure id="figure-6">
             <div class="alignLeft art-text artwork" id="section-5.2.4-1.1">
 <pre>
   grouping l2-connection
@@ -1512,7 +1567,7 @@ module: ietf-ac
             {vpn-common:bearer-reference}?
 </pre>
 </div>
-<figcaption><a href="#figure-5" class="selfRef">Figure 5</a>:
+<figcaption><a href="#figure-6" class="selfRef">Figure 6</a>:
 <a href="#name-layer-2-connection-tree-str" class="selfRef">Layer 2 Connection Tree Structure</a>
             </figcaption></figure>
 </div>
@@ -1524,7 +1579,7 @@ module: ietf-ac
 <a href="#section-5.2.5" class="section-number selfRef">5.2.5. </a><a href="#name-layer-3-connection-tree-str" class="section-name selfRef">Layer 3 Connection Tree Structure</a>
           </h4>
 <span id="name-layer-3-connection-tree-stru"></span><div id="l3-tree">
-<figure id="figure-6">
+<figure id="figure-7">
             <div class="alignLeft art-text artwork" id="section-5.2.5-1.1">
 <pre>
   grouping ip-connection
@@ -1595,7 +1650,7 @@ module: ietf-ac
                 +-- customer-address?   inet:ipv6-address
 </pre>
 </div>
-<figcaption><a href="#figure-6" class="selfRef">Figure 6</a>:
+<figcaption><a href="#figure-7" class="selfRef">Figure 7</a>:
 <a href="#name-layer-3-connection-tree-stru" class="selfRef">Layer 3 Connection Tree Structure</a>
             </figcaption></figure>
 </div>
@@ -1607,7 +1662,7 @@ module: ietf-ac
 <a href="#section-5.2.6" class="section-number selfRef">5.2.6. </a><a href="#name-routing-tree-structure" class="section-name selfRef">Routing Tree Structure</a>
           </h4>
 <span id="name-routing-connection-tree-str"></span><div id="rtg-tree">
-<figure id="figure-7">
+<figure id="figure-8">
             <div class="alignLeft art-text artwork" id="section-5.2.6-1.1">
 <pre>
   grouping routing
@@ -1782,7 +1837,7 @@ module: ietf-ac
                 +--ro last-change?   yang:date-and-time
 </pre>
 </div>
-<figcaption><a href="#figure-7" class="selfRef">Figure 7</a>:
+<figcaption><a href="#figure-8" class="selfRef">Figure 8</a>:
 <a href="#name-routing-connection-tree-str" class="selfRef">Routing Connection Tree Structure</a>
             </figcaption></figure>
 </div>

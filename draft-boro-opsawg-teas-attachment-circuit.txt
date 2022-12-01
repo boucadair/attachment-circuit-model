@@ -71,10 +71,13 @@ Table of Contents
      4.1.  Separate AC Provisioning vs. Actual Service Provisioning
    5.  Description of the Attachment Circuit YANG Modules
      5.1.  Service Module
+       5.1.1.  Overall Structure of the Module
+       5.1.2.  Layer 2 Connection Structure
+       5.1.3.  Layer 3 Connection Structure
      5.2.  Network Module
        5.2.1.  Overall Structure of the Module
        5.2.2.  AC Grouping
-       5.2.3.  AC per Node Grouping
+       5.2.3.  Grouping to Binding ACs to Nodes
        5.2.4.  Layer 2 Connection Structure
        5.2.5.  Layer 3 Connection Tree Structure
        5.2.6.  Routing Tree Structure
@@ -185,13 +188,35 @@ Table of Contents
 
 5.1.  Service Module
 
+5.1.1.  Overall Structure of the Module
+
+   module: ietf-ac-svc
+     +--rw ac* [id]
+        +--rw id                          string
+        +--rw l2-connection
+        |  ...
+        +--rw ip-connection
+        |  ...
+        +--rw routing-protocols
+        |  ...
+        +--rw oam
+        |  ...
+        +--rw security
+           ...
+
+                Figure 2: Overall AC Service Tree Structure
+
+5.1.2.  Layer 2 Connection Structure
+
+5.1.3.  Layer 3 Connection Structure
+
 5.2.  Network Module
 
 5.2.1.  Overall Structure of the Module
 
    TBC TBC
 
-   module: ietf-ac
+   module: ietf-ac-ntw
      +--rw ac* [id]
         +--rw node-id?                    string
         +--rw local-ac-id?                string
@@ -208,7 +233,7 @@ Table of Contents
         +--rw security
            ...
 
-                      Figure 2: Overall Tree Structure
+                      Figure 3: Overall Tree Structure
 
 5.2.2.  AC Grouping
 
@@ -225,9 +250,9 @@ Table of Contents
        +-- security
           ...
 
-                           Figure 3: AC Grouping
+                           Figure 4: AC Grouping
 
-5.2.3.  AC per Node Grouping
+5.2.3.  Grouping to Binding ACs to Nodes
 
      grouping ac-node
        +-- node-id?                    string
@@ -245,7 +270,7 @@ Table of Contents
        +-- security
           ...
 
-                       Figure 4: AC per Node Grouping
+                       Figure 5: AC per Node Grouping
 
 5.2.4.  Layer 2 Connection Structure
 
@@ -306,7 +331,7 @@ Table of Contents
        +-- bearer-reference?          string
                {vpn-common:bearer-reference}?
 
-                Figure 5: Layer 2 Connection Tree Structure
+                Figure 6: Layer 2 Connection Tree Structure
 
 5.2.5.  Layer 3 Connection Tree Structure
 
@@ -377,7 +402,7 @@ Table of Contents
                    +-- address-id?         string
                    +-- customer-address?   inet:ipv6-address
 
-                Figure 6: Layer 3 Connection Tree Structure
+                Figure 7: Layer 3 Connection Tree Structure
 
 5.2.6.  Routing Tree Structure
 
@@ -552,7 +577,7 @@ Table of Contents
                    +--ro status?        identityref
                    +--ro last-change?   yang:date-and-time
 
-                Figure 7: Routing Connection Tree Structure
+                Figure 8: Routing Connection Tree Structure
 
 6.  YANG Modules
 
