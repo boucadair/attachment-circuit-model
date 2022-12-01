@@ -1154,10 +1154,19 @@ svg :is([stroke="fill"], [fill^="#fff"]) {
                 <p id="section-toc.1-1.4.2.1.1"><a href="#section-4.1" class="auto internal xref">4.1</a>.  <a href="#name-overall-structure-of-the-mo" class="internal xref">Overall Structure of the Module</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.2">
-                <p id="section-toc.1-1.4.2.2.1"><a href="#section-4.2" class="auto internal xref">4.2</a>.  <a href="#name-xxxx" class="internal xref">XXXX</a></p>
+                <p id="section-toc.1-1.4.2.2.1"><a href="#section-4.2" class="auto internal xref">4.2</a>.  <a href="#name-ac-grouping" class="internal xref">AC Grouping</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.3">
-                <p id="section-toc.1-1.4.2.3.1"><a href="#section-4.3" class="auto internal xref">4.3</a>.  <a href="#name-xxxx-2" class="internal xref">XXXX</a></p>
+                <p id="section-toc.1-1.4.2.3.1"><a href="#section-4.3" class="auto internal xref">4.3</a>.  <a href="#name-ac-per-node-grouping" class="internal xref">AC per Node Grouping</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.4">
+                <p id="section-toc.1-1.4.2.4.1"><a href="#section-4.4" class="auto internal xref">4.4</a>.  <a href="#name-layer-2-connection-structur" class="internal xref">Layer 2 Connection Structure</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.5">
+                <p id="section-toc.1-1.4.2.5.1"><a href="#section-4.5" class="auto internal xref">4.5</a>.  <a href="#name-layer-3-connection-tree-str" class="internal xref">Layer 3 Connection Tree Structure</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.6">
+                <p id="section-toc.1-1.4.2.6.1"><a href="#section-4.6" class="auto internal xref">4.6</a>.  <a href="#name-routing-tree-structure" class="internal xref">Routing Tree Structure</a></p>
 </li>
             </ul>
 </li>
@@ -1222,11 +1231,26 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 <a href="#section-4.1" class="section-number selfRef">4.1. </a><a href="#name-overall-structure-of-the-mo" class="section-name selfRef">Overall Structure of the Module</a>
         </h3>
 <p id="section-4.1-1">TBC TBC<a href="#section-4.1-1" class="pilcrow">¶</a></p>
-<span id="name-overall-tree-structure"></span><div id="tree">
+<span id="name-overall-tree-structure"></span><div id="otree">
 <figure id="figure-1">
           <div class="alignLeft art-text artwork" id="section-4.1-2.1">
 <pre>
-xxxx
+module: ietf-ac
+  +--rw ac* [id]
+     +--rw node-id?                    string
+     +--rw local-ac-id?                string
+     +--rw parent-termination-point?   nt:tp-id
+     +--rw id                          string
+     +--rw l2-connection
+     |  ...
+     +--rw ip-connection
+     |  ...
+     +--rw routing-protocols
+     |  ...
+     +--rw oam
+     |  ...
+     +--rw security
+        ...
 </pre>
 </div>
 <figcaption><a href="#figure-1" class="selfRef">Figure 1</a>:
@@ -1235,18 +1259,408 @@ xxxx
 </div>
 </section>
 </div>
-<div id="xxxx">
+<div id="ac-grouping">
 <section id="section-4.2">
-        <h3 id="name-xxxx">
-<a href="#section-4.2" class="section-number selfRef">4.2. </a><a href="#name-xxxx" class="section-name selfRef">XXXX</a>
-      </h3>
+        <h3 id="name-ac-grouping">
+<a href="#section-4.2" class="section-number selfRef">4.2. </a><a href="#name-ac-grouping" class="section-name selfRef">AC Grouping</a>
+        </h3>
+<span id="name-ac-grouping-2"></span><div id="ac-gp">
+<figure id="figure-2">
+          <div class="alignLeft art-text artwork" id="section-4.2-1.1">
+<pre>
+  grouping ac-nw
+    +-- id?                  string
+    +-- l2-connection
+    |  ...
+    +-- ip-connection
+    |  ...
+    +-- routing-protocols
+    |  ...
+    +-- oam
+    |  ...
+    +-- security
+       ...
+</pre>
+</div>
+<figcaption><a href="#figure-2" class="selfRef">Figure 2</a>:
+<a href="#name-ac-grouping-2" class="selfRef">AC Grouping</a>
+          </figcaption></figure>
+</div>
 </section>
 </div>
-<div id="xxxx-1">
+<div id="ac-per-node-grouping">
 <section id="section-4.3">
-        <h3 id="name-xxxx-2">
-<a href="#section-4.3" class="section-number selfRef">4.3. </a><a href="#name-xxxx-2" class="section-name selfRef">XXXX</a>
-      </h3>
+        <h3 id="name-ac-per-node-grouping">
+<a href="#section-4.3" class="section-number selfRef">4.3. </a><a href="#name-ac-per-node-grouping" class="section-name selfRef">AC per Node Grouping</a>
+        </h3>
+<span id="name-ac-per-node-grouping-2"></span><div id="acn-gp">
+<figure id="figure-3">
+          <div class="alignLeft art-text artwork" id="section-4.3-1.1">
+<pre>
+  grouping ac-node
+    +-- node-id?                    string
+    +-- local-ac-id?                string
+    +-- parent-termination-point?   nt:tp-id
+    +-- id?                  string
+    +-- l2-connection
+    |  ...
+    +-- ip-connection
+    |  ...
+    +-- routing-protocols
+    |  ...
+    +-- oam
+    |  ...
+    +-- security
+       ...
+</pre>
+</div>
+<figcaption><a href="#figure-3" class="selfRef">Figure 3</a>:
+<a href="#name-ac-per-node-grouping-2" class="selfRef">AC per Node Grouping</a>
+          </figcaption></figure>
+</div>
+</section>
+</div>
+<div id="layer-2-connection-structure">
+<section id="section-4.4">
+        <h3 id="name-layer-2-connection-structur">
+<a href="#section-4.4" class="section-number selfRef">4.4. </a><a href="#name-layer-2-connection-structur" class="section-name selfRef">Layer 2 Connection Structure</a>
+        </h3>
+<span id="name-layer-2-connection-tree-str"></span><div id="l2-tree">
+<figure id="figure-4">
+          <div class="alignLeft art-text artwork" id="section-4.4-1.1">
+<pre>
+  grouping l2-connection
+    +-- encapsulation
+    |  +-- encap-type?        identityref
+    |  +-- dot1q
+    |  |  +-- tag-type?         identityref
+    |  |  +-- cvlan-id?         dot1q-types:vlanid
+    |  |  +-- tag-operations
+    |  |     +-- (op-choice)?
+    |  |     |  +--:(pop)
+    |  |     |  |  +-- pop?         empty
+    |  |     |  +--:(push)
+    |  |     |  |  +-- push?        empty
+    |  |     |  +--:(translate)
+    |  |     |     +-- translate?   empty
+    |  |     +-- tag-1?             dot1q-types:vlanid
+    |  |     +-- tag-1-type?        dot1q-types:dot1q-tag-type
+    |  |     +-- tag-2?             dot1q-types:vlanid
+    |  |     +-- tag-2-type?        dot1q-types:dot1q-tag-type
+    |  +-- priority-tagged
+    |  |  +-- tag-type?   identityref
+    |  +-- qinq
+    |     +-- tag-type?         identityref
+    |     +-- svlan-id          dot1q-types:vlanid
+    |     +-- cvlan-id          dot1q-types:vlanid
+    |     +-- tag-operations
+    |        +-- (op-choice)?
+    |        |  +--:(pop)
+    |        |  |  +-- pop?         uint8
+    |        |  +--:(push)
+    |        |  |  +-- push?        empty
+    |        |  +--:(translate)
+    |        |     +-- translate?   uint8
+    |        +-- tag-1?             dot1q-types:vlanid
+    |        +-- tag-1-type?        dot1q-types:dot1q-tag-type
+    |        +-- tag-2?             dot1q-types:vlanid
+    |        +-- tag-2-type?        dot1q-types:dot1q-tag-type
+    +-- (l2-service)?
+    |  +--:(l2-tunnel-service)
+    |  |  +-- l2-tunnel-service
+    |  |     +-- type?         identityref
+    |  |     +-- pseudowire
+    |  |     |  +-- vcid?      uint32
+    |  |     |  +-- far-end?   union
+    |  |     +-- vpls
+    |  |     |  +-- vcid?      uint32
+    |  |     |  +-- far-end*   union
+    |  |     +-- vxlan
+    |  |        +-- vni-id             uint32
+    |  |        +-- peer-mode?         identityref
+    |  |        +-- peer-ip-address*   inet:ip-address
+    |  +--:(l2vpn)
+    |     +-- l2vpn-id?            vpn-common:vpn-id
+    +-- l2-termination-point?      string
+    +-- local-bridge-reference?    string
+    +-- bearer-reference?          string
+            {vpn-common:bearer-reference}?
+</pre>
+</div>
+<figcaption><a href="#figure-4" class="selfRef">Figure 4</a>:
+<a href="#name-layer-2-connection-tree-str" class="selfRef">Layer 2 Connection Tree Structure</a>
+          </figcaption></figure>
+</div>
+</section>
+</div>
+<div id="layer-3-connection-tree-structure">
+<section id="section-4.5">
+        <h3 id="name-layer-3-connection-tree-str">
+<a href="#section-4.5" class="section-number selfRef">4.5. </a><a href="#name-layer-3-connection-tree-str" class="section-name selfRef">Layer 3 Connection Tree Structure</a>
+        </h3>
+<span id="name-layer-3-connection-tree-stru"></span><div id="l3-tree">
+<figure id="figure-5">
+          <div class="alignLeft art-text artwork" id="section-4.5-1.1">
+<pre>
+  grouping ip-connection
+    +-- l3-termination-point?   string
+    +-- ipv4 {vpn-common:ipv4}?
+    |  +-- local-address?
+    |  |       inet:ipv4-address
+    |  +-- prefix-length?                                 uint8
+    |  +-- address-allocation-type?                       identityref
+    |  +-- (allocation-type)?
+    |     +--:(provider-dhcp)
+    |     |  +-- dhcp-service-type?                       enumeration
+    |     |  +-- (service-type)?
+    |     |     +--:(relay)
+    |     |     |  +-- server-ip-address*
+    |     |     |          inet:ipv4-address
+    |     |     +--:(server)
+    |     |        +-- (address-assign)?
+    |     |           +--:(number)
+    |     |           |  +-- number-of-dynamic-address?   uint16
+    |     |           +--:(explicit)
+    |     |              +-- customer-addresses
+    |     |                 +-- address-pool* [pool-id]
+    |     |                    +-- pool-id?         string
+    |     |                    +-- start-address    inet:ipv4-address
+    |     |                    +-- end-address?     inet:ipv4-address
+    |     +--:(dhcp-relay)
+    |     |  +-- customer-dhcp-servers
+    |     |     +-- server-ip-address*   inet:ipv4-address
+    |     +--:(static-addresses)
+    |        +-- primary-address?
+    |        |       -&gt; ../address/address-id
+    |        +-- address* [address-id]
+    |           +-- address-id?         string
+    |           +-- customer-address?   inet:ipv4-address
+    +-- ipv6 {vpn-common:ipv6}?
+       +-- local-address?                 inet:ipv6-address
+       +-- prefix-length?                 uint8
+       +-- address-allocation-type?       identityref
+       +-- (allocation-type)?
+          +--:(provider-dhcp)
+          |  +-- provider-dhcp
+          |     +-- dhcp-service-type?
+          |     |       enumeration
+          |     +-- (service-type)?
+          |        +--:(relay)
+          |        |  +-- server-ip-address*
+          |        |          inet:ipv6-address
+          |        +--:(server)
+          |           +-- (address-assign)?
+          |              +--:(number)
+          |              |  +-- number-of-dynamic-address?   uint16
+          |              +--:(explicit)
+          |                 +-- customer-addresses
+          |                    +-- address-pool* [pool-id]
+          |                       +-- pool-id?         string
+          |                       +-- start-address
+          |                       |       inet:ipv6-address
+          |                       +-- end-address?
+          |                               inet:ipv6-address
+          +--:(dhcp-relay)
+          |  +-- customer-dhcp-servers
+          |     +-- server-ip-address*   inet:ipv6-address
+          +--:(static-addresses)
+             +-- primary-address?         -&gt; ../address/address-id
+             +-- address* [address-id]
+                +-- address-id?         string
+                +-- customer-address?   inet:ipv6-address
+</pre>
+</div>
+<figcaption><a href="#figure-5" class="selfRef">Figure 5</a>:
+<a href="#name-layer-3-connection-tree-stru" class="selfRef">Layer 3 Connection Tree Structure</a>
+          </figcaption></figure>
+</div>
+</section>
+</div>
+<div id="routing-tree-structure">
+<section id="section-4.6">
+        <h3 id="name-routing-tree-structure">
+<a href="#section-4.6" class="section-number selfRef">4.6. </a><a href="#name-routing-tree-structure" class="section-name selfRef">Routing Tree Structure</a>
+        </h3>
+<span id="name-routing-connection-tree-str"></span><div id="rtg-tree">
+<figure id="figure-6">
+          <div class="alignLeft art-text artwork" id="section-4.6-1.1">
+<pre>
+  grouping routing
+    +-- routing-protocol* [id]
+       +-- id?       string
+       +-- type?     identityref
+       +-- static
+       |  +-- cascaded-lan-prefixes
+       |     +-- ipv4-lan-prefixes* [lan next-hop] {vpn-common:ipv4}?
+       |     |  +-- lan?          inet:ipv4-prefix
+       |     |  +-- lan-tag?      string
+       |     |  +-- next-hop?     union
+       |     |  +-- bfd-enable?   boolean {vpn-common:bfd}?
+       |     |  +-- metric?       uint32
+       |     |  +-- preference?   uint32
+       |     |  +-- status
+       |     |     +-- admin-status
+       |     |     |  +-- status?        identityref
+       |     |     |  +-- last-change?   yang:date-and-time
+       |     |     +--ro oper-status
+       |     |        +--ro status?        identityref
+       |     |        +--ro last-change?   yang:date-and-time
+       |     +-- ipv6-lan-prefixes* [lan next-hop] {vpn-common:ipv6}?
+       |        +-- lan?          inet:ipv6-prefix
+       |        +-- lan-tag?      string
+       |        +-- next-hop?     union
+       |        +-- bfd-enable?   boolean {vpn-common:bfd}?
+       |        +-- metric?       uint32
+       |        +-- preference?   uint32
+       |        +-- status
+       |           +-- admin-status
+       |           |  +-- status?        identityref
+       |           |  +-- last-change?   yang:date-and-time
+       |           +--ro oper-status
+       |              +--ro status?        identityref
+       |              +--ro last-change?   yang:date-and-time
+       +-- bgp
+       |  +-- description?              string
+       |  +-- local-as?                 inet:as-number
+       |  +-- peer-as                   inet:as-number
+       |  +-- address-family?           identityref
+       |  +-- local-address?            union
+       |  +-- neighbor*                 inet:ip-address
+       |  +-- multihop?                 uint8
+       |  +-- as-override?              boolean
+       |  +-- allow-own-as?             uint8
+       |  +-- prepend-global-as?        boolean
+       |  +-- send-default-route?       boolean
+       |  +-- site-of-origin?           rt-types:route-origin
+       |  +-- ipv6-site-of-origin?      rt-types:ipv6-route-origin
+       |  +-- redistribute-connected* [address-family]
+       |  |  +-- address-family?   identityref
+       |  |  +-- enable?           boolean
+       |  +-- bgp-max-prefix
+       |  |  +-- max-prefix?          uint32
+       |  |  +-- warning-threshold?   decimal64
+       |  |  +-- violate-action?      enumeration
+       |  |  +-- restart-timer?       uint32
+       |  +-- bgp-timers
+       |  |  +-- keepalive?   uint16
+       |  |  +-- hold-time?   uint16
+       |  +-- authentication
+       |  |  +-- enable?            boolean
+       |  |  +-- keying-material
+       |  |     +-- (option)?
+       |  |        +--:(ao)
+       |  |        |  +-- enable-ao?          boolean
+       |  |        |  +-- ao-keychain?        key-chain:key-chain-ref
+       |  |        +--:(md5)
+       |  |        |  +-- md5-keychain?       key-chain:key-chain-ref
+       |  |        +--:(explicit)
+       |  |        |  +-- key-id?             uint32
+       |  |        |  +-- key?                string
+       |  |        |  +-- crypto-algorithm?   identityref
+       |  |        +--:(ipsec)
+       |  |           +-- sa?                 string
+       |  +-- status
+       |     +-- admin-status
+       |     |  +-- status?        identityref
+       |     |  +-- last-change?   yang:date-and-time
+       |     +--ro oper-status
+       |        +--ro status?        identityref
+       |        +--ro last-change?   yang:date-and-time
+       +-- ospf
+       |  +-- address-family?   identityref
+       |  +-- area-id           yang:dotted-quad
+       |  +-- metric?           uint16
+       |  +-- sham-links {vpn-common:rtg-ospf-sham-link}?
+       |  |  +-- sham-link* [target-site]
+       |  |     +-- target-site?   string
+       |  |     +-- metric?        uint16
+       |  +-- max-lsa?          uint32
+       |  +-- authentication
+       |  |  +-- enable?            boolean
+       |  |  +-- keying-material
+       |  |     +-- (option)?
+       |  |        +--:(auth-key-chain)
+       |  |        |  +-- key-chain?          key-chain:key-chain-ref
+       |  |        +--:(auth-key-explicit)
+       |  |        |  +-- key-id?             uint32
+       |  |        |  +-- key?                string
+       |  |        |  +-- crypto-algorithm?   identityref
+       |  |        +--:(ipsec)
+       |  |           +-- sa?                 string
+       |  +-- status
+       |     +-- admin-status
+       |     |  +-- status?        identityref
+       |     |  +-- last-change?   yang:date-and-time
+       |     +--ro oper-status
+       |        +--ro status?        identityref
+       |        +--ro last-change?   yang:date-and-time
+       +-- isis
+       |  +-- address-family?   identityref
+       |  +-- area-address      l3nm:area-address
+       |  +-- level?            identityref
+       |  +-- metric?           uint16
+       |  +-- mode?             enumeration
+       |  +-- authentication
+       |  |  +-- enable?            boolean
+       |  |  +-- keying-material
+       |  |     +-- (option)?
+       |  |        +--:(auth-key-chain)
+       |  |        |  +-- key-chain?          key-chain:key-chain-ref
+       |  |        +--:(auth-key-explicit)
+       |  |           +-- key-id?             uint32
+       |  |           +-- key?                string
+       |  |           +-- crypto-algorithm?   identityref
+       |  +-- status
+       |     +-- admin-status
+       |     |  +-- status?        identityref
+       |     |  +-- last-change?   yang:date-and-time
+       |     +--ro oper-status
+       |        +--ro status?        identityref
+       |        +--ro last-change?   yang:date-and-time
+       +-- rip
+       |  +-- address-family?   identityref
+       |  +-- timers
+       |  |  +-- update-interval?     uint16
+       |  |  +-- invalid-interval?    uint16
+       |  |  +-- holddown-interval?   uint16
+       |  |  +-- flush-interval?      uint16
+       |  +-- default-metric?   uint8
+       |  +-- authentication
+       |  |  +-- enable?            boolean
+       |  |  +-- keying-material
+       |  |     +-- (option)?
+       |  |        +--:(auth-key-chain)
+       |  |        |  +-- key-chain?          key-chain:key-chain-ref
+       |  |        +--:(auth-key-explicit)
+       |  |           +-- key?                string
+       |  |           +-- crypto-algorithm?   identityref
+       |  +-- status
+       |     +-- admin-status
+       |     |  +-- status?        identityref
+       |     |  +-- last-change?   yang:date-and-time
+       |     +--ro oper-status
+       |        +--ro status?        identityref
+       |        +--ro last-change?   yang:date-and-time
+       +-- vrrp
+          +-- address-family?       identityref
+          +-- vrrp-group?           uint8
+          +-- backup-peer?          inet:ip-address
+          +-- virtual-ip-address*   inet:ip-address
+          +-- priority?             uint8
+          +-- ping-reply?           boolean
+          +-- status
+             +-- admin-status
+             |  +-- status?        identityref
+             |  +-- last-change?   yang:date-and-time
+             +--ro oper-status
+                +--ro status?        identityref
+                +--ro last-change?   yang:date-and-time
+</pre>
+</div>
+<figcaption><a href="#figure-6" class="selfRef">Figure 6</a>:
+<a href="#name-routing-connection-tree-str" class="selfRef">Routing Connection Tree Structure</a>
+          </figcaption></figure>
+</div>
 </section>
 </div>
 </section>
