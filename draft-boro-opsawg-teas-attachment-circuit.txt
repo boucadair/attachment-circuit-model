@@ -5,8 +5,8 @@
 Operations and Management Area Working Group                M. Boucadair
 Internet-Draft                                                    Orange
 Intended status: Standards Track                              R. Roberts
-Expires: 3 June 2023                                             Juniper
-                                                        30 November 2022
+Expires: 4 June 2023                                             Juniper
+                                                         1 December 2022
 
 
                A YANG Data Model for Attachment Circuits
@@ -46,7 +46,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 3 June 2023.
+   This Internet-Draft will expire on 4 June 2023.
 
 Copyright Notice
 
