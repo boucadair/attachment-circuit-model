@@ -8,7 +8,7 @@
 <meta content="Mohamed Boucadair" name="author">
 <meta content="Richard Roberts" name="author">
 <meta content="
-       This document specifies a YANG data model for attachment circuits. The model can be used for the provisioning attachment circuits prior or during service provisioning (e.g., L3VPN, L2VPN, Network Slice Service). 
+       This document specifies YANG data models for attachment circuits. The models can be used for the provisioning attachment circuits prior or during service provisioning (e.g., L3VPN, L2VPN, Network Slice Service). 
     " name="description">
 <meta content="xml2rfc 3.15.2" name="generator">
 <meta content="Slice Service" name="keyword">
@@ -1077,7 +1077,7 @@ svg :is([stroke="fill"], [fill^="#fff"]) {
 <h1 id="title">A YANG Data Model for Attachment Circuits</h1>
 <section id="section-abstract">
       <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
-<p id="section-abstract-1">This document specifies a YANG data model for attachment circuits. The model can be used for the provisioning attachment circuits prior or during service provisioning (e.g., L3VPN, L2VPN, Network Slice Service).<a href="#section-abstract-1" class="pilcrow">¶</a></p>
+<p id="section-abstract-1">This document specifies YANG data models for attachment circuits. The models can be used for the provisioning attachment circuits prior or during service provisioning (e.g., L3VPN, L2VPN, Network Slice Service).<a href="#section-abstract-1" class="pilcrow">¶</a></p>
 </section>
 <section class="note rfcEditorRemove" id="section-note.1">
       <h2 id="name-discussion-venues">
@@ -1148,7 +1148,7 @@ svg :is([stroke="fill"], [fill^="#fff"]) {
             <p id="section-toc.1-1.3.1" class="keepWithNext"><a href="#section-3" class="auto internal xref">3</a>.  <a href="#name-terminology" class="internal xref">Terminology</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4">
-            <p id="section-toc.1-1.4.1"><a href="#section-4" class="auto internal xref">4</a>.  <a href="#name-sample-uses-of-the-attachme" class="internal xref">Sample Uses of the Attachment Circuit Data Model</a></p>
+            <p id="section-toc.1-1.4.1"><a href="#section-4" class="auto internal xref">4</a>.  <a href="#name-sample-uses-of-the-attachme" class="internal xref">Sample Uses of the Attachment Circuit Data Models</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.1">
                 <p id="section-toc.1-1.4.2.1.1"><a href="#section-4.1" class="auto internal xref">4.1</a>.  <a href="#name-separate-ac-provisioning-vs" class="internal xref">Separate AC Provisioning vs. Actual Service Provisioning</a></p>
@@ -1156,30 +1156,46 @@ svg :is([stroke="fill"], [fill^="#fff"]) {
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5">
-            <p id="section-toc.1-1.5.1"><a href="#section-5" class="auto internal xref">5</a>.  <a href="#name-description-of-the-attachme" class="internal xref">Description of the Attachment Circuit YANG Module</a></p>
+            <p id="section-toc.1-1.5.1"><a href="#section-5" class="auto internal xref">5</a>.  <a href="#name-description-of-the-attachme" class="internal xref">Description of the Attachment Circuit YANG Modules</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.1">
-                <p id="section-toc.1-1.5.2.1.1"><a href="#section-5.1" class="auto internal xref">5.1</a>.  <a href="#name-overall-structure-of-the-mo" class="internal xref">Overall Structure of the Module</a></p>
+                <p id="section-toc.1-1.5.2.1.1"><a href="#section-5.1" class="auto internal xref">5.1</a>.  <a href="#name-service-module" class="internal xref">Service Module</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.2">
-                <p id="section-toc.1-1.5.2.2.1"><a href="#section-5.2" class="auto internal xref">5.2</a>.  <a href="#name-ac-grouping" class="internal xref">AC Grouping</a></p>
+                <p id="section-toc.1-1.5.2.2.1"><a href="#section-5.2" class="auto internal xref">5.2</a>.  <a href="#name-network-module" class="internal xref">Network Module</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.2.2.1">
+                    <p id="section-toc.1-1.5.2.2.2.1.1"><a href="#section-5.2.1" class="auto internal xref">5.2.1</a>.  <a href="#name-overall-structure-of-the-mo" class="internal xref">Overall Structure of the Module</a></p>
 </li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.3">
-                <p id="section-toc.1-1.5.2.3.1"><a href="#section-5.3" class="auto internal xref">5.3</a>.  <a href="#name-ac-per-node-grouping" class="internal xref">AC per Node Grouping</a></p>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.2.2.2">
+                    <p id="section-toc.1-1.5.2.2.2.2.1"><a href="#section-5.2.2" class="auto internal xref">5.2.2</a>.  <a href="#name-ac-grouping" class="internal xref">AC Grouping</a></p>
 </li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.4">
-                <p id="section-toc.1-1.5.2.4.1"><a href="#section-5.4" class="auto internal xref">5.4</a>.  <a href="#name-layer-2-connection-structur" class="internal xref">Layer 2 Connection Structure</a></p>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.2.2.3">
+                    <p id="section-toc.1-1.5.2.2.2.3.1"><a href="#section-5.2.3" class="auto internal xref">5.2.3</a>.  <a href="#name-ac-per-node-grouping" class="internal xref">AC per Node Grouping</a></p>
 </li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.5">
-                <p id="section-toc.1-1.5.2.5.1"><a href="#section-5.5" class="auto internal xref">5.5</a>.  <a href="#name-layer-3-connection-tree-str" class="internal xref">Layer 3 Connection Tree Structure</a></p>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.2.2.4">
+                    <p id="section-toc.1-1.5.2.2.2.4.1"><a href="#section-5.2.4" class="auto internal xref">5.2.4</a>.  <a href="#name-layer-2-connection-structur" class="internal xref">Layer 2 Connection Structure</a></p>
 </li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.6">
-                <p id="section-toc.1-1.5.2.6.1"><a href="#section-5.6" class="auto internal xref">5.6</a>.  <a href="#name-routing-tree-structure" class="internal xref">Routing Tree Structure</a></p>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.2.2.5">
+                    <p id="section-toc.1-1.5.2.2.2.5.1"><a href="#section-5.2.5" class="auto internal xref">5.2.5</a>.  <a href="#name-layer-3-connection-tree-str" class="internal xref">Layer 3 Connection Tree Structure</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.2.2.6">
+                    <p id="section-toc.1-1.5.2.2.2.6.1"><a href="#section-5.2.6" class="auto internal xref">5.2.6</a>.  <a href="#name-routing-tree-structure" class="internal xref">Routing Tree Structure</a></p>
+</li>
+                </ul>
 </li>
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6">
-            <p id="section-toc.1-1.6.1"><a href="#section-6" class="auto internal xref">6</a>.  <a href="#name-attachment-circuit-yang-mod" class="internal xref">Attachment Circuit YANG Module</a></p>
+            <p id="section-toc.1-1.6.1"><a href="#section-6" class="auto internal xref">6</a>.  <a href="#name-yang-modules" class="internal xref">YANG Modules</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.1">
+                <p id="section-toc.1-1.6.2.1.1"><a href="#section-6.1" class="auto internal xref">6.1</a>.  <a href="#name-attachment-circuit-service-" class="internal xref">Attachment Circuit Service Model</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.2">
+                <p id="section-toc.1-1.6.2.2.1"><a href="#section-6.2" class="auto internal xref">6.2</a>.  <a href="#name-attachment-circuit-network-" class="internal xref">Attachment Circuit Network Model</a></p>
+</li>
+            </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7">
             <p id="section-toc.1-1.7.1"><a href="#section-7" class="auto internal xref">7</a>.  <a href="#name-security-considerations" class="internal xref">Security Considerations</a></p>
@@ -1213,9 +1229,9 @@ svg :is([stroke="fill"], [fill^="#fff"]) {
       <h2 id="name-introduction">
 <a href="#section-1" class="section-number selfRef">1. </a><a href="#name-introduction" class="section-name selfRef">Introduction</a>
       </h2>
-<p id="section-1-1">This document specifies a YANG data model for attachment circuits. The model can be used for the provisioning attachment circuits prior or during service provisioning (e.g., L3VPN, L2VPN, Network Slice Service).<a href="#section-1-1" class="pilcrow">¶</a></p>
+<p id="section-1-1">This document specifies two YANG data models for attachment circuits. The models can be used for the provisioning attachment circuits prior or during service provisioning (e.g., L3VPN, L2VPN, Network Slice Service).<a href="#section-1-1" class="pilcrow">¶</a></p>
 <p id="section-1-2">TBC<a href="#section-1-2" class="pilcrow">¶</a></p>
-<p id="section-1-3">The YANG data model in this document conforms to the Network Management Datastore Architecture (NMDA) defined in <span>[<a href="#RFC8342" class="cite xref">RFC8342</a>]</span>.<a href="#section-1-3" class="pilcrow">¶</a></p>
+<p id="section-1-3">The YANG data models in this document conform to the Network Management Datastore Architecture (NMDA) defined in <span>[<a href="#RFC8342" class="cite xref">RFC8342</a>]</span>.<a href="#section-1-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="conventions-and-definitions">
@@ -1260,10 +1276,10 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 </dl>
 </section>
 </div>
-<div id="sample-uses-of-the-attachment-circuit-data-model">
+<div id="sample-uses-of-the-attachment-circuit-data-models">
 <section id="section-4">
       <h2 id="name-sample-uses-of-the-attachme">
-<a href="#section-4" class="section-number selfRef">4. </a><a href="#name-sample-uses-of-the-attachme" class="section-name selfRef">Sample Uses of the Attachment Circuit Data Model</a>
+<a href="#section-4" class="section-number selfRef">4. </a><a href="#name-sample-uses-of-the-attachme" class="section-name selfRef">Sample Uses of the Attachment Circuit Data Models</a>
       </h2>
 <div id="separate-ac-provisioning-vs-actual-service-provisioning">
 <section id="section-4.1">
@@ -1317,20 +1333,32 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 </div>
 </section>
 </div>
-<div id="description-of-the-attachment-circuit-yang-module">
+<div id="description-of-the-attachment-circuit-yang-modules">
 <section id="section-5">
       <h2 id="name-description-of-the-attachme">
-<a href="#section-5" class="section-number selfRef">5. </a><a href="#name-description-of-the-attachme" class="section-name selfRef">Description of the Attachment Circuit YANG Module</a>
+<a href="#section-5" class="section-number selfRef">5. </a><a href="#name-description-of-the-attachme" class="section-name selfRef">Description of the Attachment Circuit YANG Modules</a>
       </h2>
-<div id="overall-structure-of-the-module">
+<div id="service-module">
 <section id="section-5.1">
-        <h3 id="name-overall-structure-of-the-mo">
-<a href="#section-5.1" class="section-number selfRef">5.1. </a><a href="#name-overall-structure-of-the-mo" class="section-name selfRef">Overall Structure of the Module</a>
+        <h3 id="name-service-module">
+<a href="#section-5.1" class="section-number selfRef">5.1. </a><a href="#name-service-module" class="section-name selfRef">Service Module</a>
+      </h3>
+</section>
+</div>
+<div id="network-module">
+<section id="section-5.2">
+        <h3 id="name-network-module">
+<a href="#section-5.2" class="section-number selfRef">5.2. </a><a href="#name-network-module" class="section-name selfRef">Network Module</a>
         </h3>
-<p id="section-5.1-1">TBC TBC<a href="#section-5.1-1" class="pilcrow">¶</a></p>
+<div id="overall-structure-of-the-module">
+<section id="section-5.2.1">
+          <h4 id="name-overall-structure-of-the-mo">
+<a href="#section-5.2.1" class="section-number selfRef">5.2.1. </a><a href="#name-overall-structure-of-the-mo" class="section-name selfRef">Overall Structure of the Module</a>
+          </h4>
+<p id="section-5.2.1-1">TBC TBC<a href="#section-5.2.1-1" class="pilcrow">¶</a></p>
 <span id="name-overall-tree-structure"></span><div id="otree">
 <figure id="figure-2">
-          <div class="alignLeft art-text artwork" id="section-5.1-2.1">
+            <div class="alignLeft art-text artwork" id="section-5.2.1-2.1">
 <pre>
 module: ietf-ac
   +--rw ac* [id]
@@ -1352,18 +1380,18 @@ module: ietf-ac
 </div>
 <figcaption><a href="#figure-2" class="selfRef">Figure 2</a>:
 <a href="#name-overall-tree-structure" class="selfRef">Overall Tree Structure</a>
-          </figcaption></figure>
+            </figcaption></figure>
 </div>
 </section>
 </div>
 <div id="ac-grouping">
-<section id="section-5.2">
-        <h3 id="name-ac-grouping">
-<a href="#section-5.2" class="section-number selfRef">5.2. </a><a href="#name-ac-grouping" class="section-name selfRef">AC Grouping</a>
-        </h3>
+<section id="section-5.2.2">
+          <h4 id="name-ac-grouping">
+<a href="#section-5.2.2" class="section-number selfRef">5.2.2. </a><a href="#name-ac-grouping" class="section-name selfRef">AC Grouping</a>
+          </h4>
 <span id="name-ac-grouping-2"></span><div id="ac-gp">
 <figure id="figure-3">
-          <div class="alignLeft art-text artwork" id="section-5.2-1.1">
+            <div class="alignLeft art-text artwork" id="section-5.2.2-1.1">
 <pre>
   grouping ac-nw
     +-- id?                  string
@@ -1381,18 +1409,18 @@ module: ietf-ac
 </div>
 <figcaption><a href="#figure-3" class="selfRef">Figure 3</a>:
 <a href="#name-ac-grouping-2" class="selfRef">AC Grouping</a>
-          </figcaption></figure>
+            </figcaption></figure>
 </div>
 </section>
 </div>
 <div id="ac-per-node-grouping">
-<section id="section-5.3">
-        <h3 id="name-ac-per-node-grouping">
-<a href="#section-5.3" class="section-number selfRef">5.3. </a><a href="#name-ac-per-node-grouping" class="section-name selfRef">AC per Node Grouping</a>
-        </h3>
+<section id="section-5.2.3">
+          <h4 id="name-ac-per-node-grouping">
+<a href="#section-5.2.3" class="section-number selfRef">5.2.3. </a><a href="#name-ac-per-node-grouping" class="section-name selfRef">AC per Node Grouping</a>
+          </h4>
 <span id="name-ac-per-node-grouping-2"></span><div id="acn-gp">
 <figure id="figure-4">
-          <div class="alignLeft art-text artwork" id="section-5.3-1.1">
+            <div class="alignLeft art-text artwork" id="section-5.2.3-1.1">
 <pre>
   grouping ac-node
     +-- node-id?                    string
@@ -1413,18 +1441,18 @@ module: ietf-ac
 </div>
 <figcaption><a href="#figure-4" class="selfRef">Figure 4</a>:
 <a href="#name-ac-per-node-grouping-2" class="selfRef">AC per Node Grouping</a>
-          </figcaption></figure>
+            </figcaption></figure>
 </div>
 </section>
 </div>
 <div id="layer-2-connection-structure">
-<section id="section-5.4">
-        <h3 id="name-layer-2-connection-structur">
-<a href="#section-5.4" class="section-number selfRef">5.4. </a><a href="#name-layer-2-connection-structur" class="section-name selfRef">Layer 2 Connection Structure</a>
-        </h3>
+<section id="section-5.2.4">
+          <h4 id="name-layer-2-connection-structur">
+<a href="#section-5.2.4" class="section-number selfRef">5.2.4. </a><a href="#name-layer-2-connection-structur" class="section-name selfRef">Layer 2 Connection Structure</a>
+          </h4>
 <span id="name-layer-2-connection-tree-str"></span><div id="l2-tree">
 <figure id="figure-5">
-          <div class="alignLeft art-text artwork" id="section-5.4-1.1">
+            <div class="alignLeft art-text artwork" id="section-5.2.4-1.1">
 <pre>
   grouping l2-connection
     +-- encapsulation
@@ -1486,18 +1514,18 @@ module: ietf-ac
 </div>
 <figcaption><a href="#figure-5" class="selfRef">Figure 5</a>:
 <a href="#name-layer-2-connection-tree-str" class="selfRef">Layer 2 Connection Tree Structure</a>
-          </figcaption></figure>
+            </figcaption></figure>
 </div>
 </section>
 </div>
 <div id="layer-3-connection-tree-structure">
-<section id="section-5.5">
-        <h3 id="name-layer-3-connection-tree-str">
-<a href="#section-5.5" class="section-number selfRef">5.5. </a><a href="#name-layer-3-connection-tree-str" class="section-name selfRef">Layer 3 Connection Tree Structure</a>
-        </h3>
+<section id="section-5.2.5">
+          <h4 id="name-layer-3-connection-tree-str">
+<a href="#section-5.2.5" class="section-number selfRef">5.2.5. </a><a href="#name-layer-3-connection-tree-str" class="section-name selfRef">Layer 3 Connection Tree Structure</a>
+          </h4>
 <span id="name-layer-3-connection-tree-stru"></span><div id="l3-tree">
 <figure id="figure-6">
-          <div class="alignLeft art-text artwork" id="section-5.5-1.1">
+            <div class="alignLeft art-text artwork" id="section-5.2.5-1.1">
 <pre>
   grouping ip-connection
     +-- l3-termination-point?   string
@@ -1569,18 +1597,18 @@ module: ietf-ac
 </div>
 <figcaption><a href="#figure-6" class="selfRef">Figure 6</a>:
 <a href="#name-layer-3-connection-tree-stru" class="selfRef">Layer 3 Connection Tree Structure</a>
-          </figcaption></figure>
+            </figcaption></figure>
 </div>
 </section>
 </div>
 <div id="routing-tree-structure">
-<section id="section-5.6">
-        <h3 id="name-routing-tree-structure">
-<a href="#section-5.6" class="section-number selfRef">5.6. </a><a href="#name-routing-tree-structure" class="section-name selfRef">Routing Tree Structure</a>
-        </h3>
+<section id="section-5.2.6">
+          <h4 id="name-routing-tree-structure">
+<a href="#section-5.2.6" class="section-number selfRef">5.2.6. </a><a href="#name-routing-tree-structure" class="section-name selfRef">Routing Tree Structure</a>
+          </h4>
 <span id="name-routing-connection-tree-str"></span><div id="rtg-tree">
 <figure id="figure-7">
-          <div class="alignLeft art-text artwork" id="section-5.6-1.1">
+            <div class="alignLeft art-text artwork" id="section-5.2.6-1.1">
 <pre>
   grouping routing
     +-- routing-protocol* [id]
@@ -1756,22 +1784,46 @@ module: ietf-ac
 </div>
 <figcaption><a href="#figure-7" class="selfRef">Figure 7</a>:
 <a href="#name-routing-connection-tree-str" class="selfRef">Routing Connection Tree Structure</a>
-          </figcaption></figure>
+            </figcaption></figure>
 </div>
 </section>
 </div>
 </section>
 </div>
-<div id="attachment-circuit-yang-module">
+</section>
+</div>
+<div id="yang-modules">
 <section id="section-6">
-      <h2 id="name-attachment-circuit-yang-mod">
-<a href="#section-6" class="section-number selfRef">6. </a><a href="#name-attachment-circuit-yang-mod" class="section-name selfRef">Attachment Circuit YANG Module</a>
+      <h2 id="name-yang-modules">
+<a href="#section-6" class="section-number selfRef">6. </a><a href="#name-yang-modules" class="section-name selfRef">YANG Modules</a>
       </h2>
-<p id="section-6-1">This module uses types defined in XXX.<a href="#section-6-1" class="pilcrow">¶</a></p>
-<div id="section-6-2">
+<div id="attachment-circuit-service-model">
+<section id="section-6.1">
+        <h3 id="name-attachment-circuit-service-">
+<a href="#section-6.1" class="section-number selfRef">6.1. </a><a href="#name-attachment-circuit-service-" class="section-name selfRef">Attachment Circuit Service Model</a>
+        </h3>
+<p id="section-6.1-1">This module uses types defined in XXX.<a href="#section-6.1-1" class="pilcrow">¶</a></p>
+<div id="section-6.1-2">
+<pre class="sourcecode">&lt;CODE BEGINS&gt; file "ietf-ac-svc@2022-11-30.yang"
+
+module ietf-ac-svc {
+
+INSERT HER
+}
+&lt;CODE ENDS&gt;</pre><a href="#section-6.1-2" class="pilcrow">¶</a>
+</div>
+</section>
+</div>
+<div id="attachment-circuit-network-model">
+<section id="section-6.2">
+        <h3 id="name-attachment-circuit-network-">
+<a href="#section-6.2" class="section-number selfRef">6.2. </a><a href="#name-attachment-circuit-network-" class="section-name selfRef">Attachment Circuit Network Model</a>
+        </h3>
+<p id="section-6.2-1">This module uses types defined in XXX.<a href="#section-6.2-1" class="pilcrow">¶</a></p>
+<div id="section-6.2-2">
 <pre class="breakable sourcecode">&lt;CODE BEGINS&gt; file "ietf-ac@2022-11-30.yang"
 
-module ietf-ac {
+module ietf-ac-ntw {
   yang-version 1.1;
   namespace "urn:ietf:params:xml:ns:yang:ietf-ac";
   prefix ac;
@@ -2102,7 +2154,9 @@ module ietf-ac {
     }
   }
 }
-&lt;CODE ENDS&gt;</pre><a href="#section-6-2" class="pilcrow">¶</a>
+&lt;CODE ENDS&gt;</pre><a href="#section-6.2-2" class="pilcrow">¶</a>
+</div>
+</section>
 </div>
 </section>
 </div>
@@ -2111,8 +2165,8 @@ module ietf-ac {
       <h2 id="name-security-considerations">
 <a href="#section-7" class="section-number selfRef">7. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
       </h2>
-<p id="section-7-1">The YANG module specified in this document defines a schema for data
-   that is designed to be accessed via network management protocols such
+<p id="section-7-1">The YANG modules specified in this document define schemas for data
+   that are designed to be accessed via network management protocols such
    as NETCONF <span>[<a href="#RFC6241" class="cite xref">RFC6241</a>]</span> or RESTCONF <span>[<a href="#RFC8040" class="cite xref">RFC8040</a>]</span>.  The lowest NETCONF layer
    is the secure transport layer, and the mandatory-to-implement secure
    transport is Secure Shell (SSH) <span>[<a href="#RFC6242" class="cite xref">RFC6242</a>]</span>.  The lowest RESTCONF layer
@@ -2122,29 +2176,45 @@ module ietf-ac {
    provides the means to restrict access for particular NETCONF or
    RESTCONF users to a preconfigured subset of all available NETCONF or
    RESTCONF protocol operations and content.<a href="#section-7-2" class="pilcrow">¶</a></p>
-<p id="section-7-3">There are a number of data nodes defined in this YANG module that are
+<p id="section-7-3">There are a number of data nodes defined in these YANG modules that are
    writable/creatable/deletable (i.e., config true, which is the
    default).  These data nodes may be considered sensitive or vulnerable
    in some network environments.  Write operations (e.g., edit-config)
    and delete operations to these data nodes without proper protection
    or authentication can have a negative effect on network operations.
    These are the subtrees and data nodes and their sensitivity/
-   vulnerability in the "ietf-ac" module:<a href="#section-7-3" class="pilcrow">¶</a></p>
+   vulnerability in the "ietf-ac-svc" module:<a href="#section-7-3" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-7-4.1">TBC<a href="#section-7-4.1" class="pilcrow">¶</a>
 </li>
         <li class="normal" id="section-7-4.2">TBC<a href="#section-7-4.2" class="pilcrow">¶</a>
 </li>
       </ul>
-<p id="section-7-5">Some of the readable data nodes in this YANG module may be considered
-   sensitive or vulnerable in some network environments.  It is thus
-   important to control read access (e.g., via get, get-config, or
-   notification) to these data nodes.  These are the subtrees and data
-   nodes and their sensitivity/vulnerability:<a href="#section-7-5" class="pilcrow">¶</a></p>
+<p id="section-7-5">These are the subtrees and data nodes and their sensitivity/
+   vulnerability in the "ietf-ac-ntw" module:<a href="#section-7-5" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-7-6.1">TBC<a href="#section-7-6.1" class="pilcrow">¶</a>
 </li>
         <li class="normal" id="section-7-6.2">TBC<a href="#section-7-6.2" class="pilcrow">¶</a>
+</li>
+      </ul>
+<p id="section-7-7">Some of the readable data nodes in these YANG modules may be considered
+   sensitive or vulnerable in some network environments.  It is thus
+   important to control read access (e.g., via get, get-config, or
+   notification) to these data nodes.  These are the subtrees and data
+   nodes and their sensitivity/vulnerability in the "ietf-ac-svc" module:<a href="#section-7-7" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-7-8.1">TBC<a href="#section-7-8.1" class="pilcrow">¶</a>
+</li>
+        <li class="normal" id="section-7-8.2">TBC<a href="#section-7-8.2" class="pilcrow">¶</a>
+</li>
+      </ul>
+<p id="section-7-9">These are the subtrees and data
+   nodes and their sensitivity/vulnerability in the "ietf-ac-ntw" module:<a href="#section-7-9" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-7-10.1">TBC<a href="#section-7-10.1" class="pilcrow">¶</a>
+</li>
+        <li class="normal" id="section-7-10.2">TBC<a href="#section-7-10.2" class="pilcrow">¶</a>
 </li>
       </ul>
 </section>
@@ -2154,18 +2224,36 @@ module ietf-ac {
       <h2 id="name-iana-considerations">
 <a href="#section-8" class="section-number selfRef">8. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
       </h2>
-<p id="section-8-1">IANA has registered the following URI in the "ns" subregistry within
+<p id="section-8-1">IANA is requested to register the following URIs in the "ns" subregistry within
    the "IETF XML Registry" <span>[<a href="#RFC3688" class="cite xref">RFC3688</a>]</span>:<a href="#section-8-1" class="pilcrow">¶</a></p>
-<p id="section-8-2">URI:  urn:ietf:params:xml:ns:yang:ietf-ac
+<div class="alignLeft art-text artwork" id="section-8-2">
+<pre>
+   URI:  urn:ietf:params:xml:ns:yang:ietf-ac-svc
    Registrant Contact:  The IESG.
-   XML:  N/A; the requested URI is an XML namespace.<a href="#section-8-2" class="pilcrow">¶</a></p>
-<p id="section-8-3">IANA has registered the following YANG module in the "YANG Module
+   XML:  N/A; the requested URI is an XML namespace.
+
+   URI:  urn:ietf:params:xml:ns:yang:ietf-ac-ntw
+   Registrant Contact:  The IESG.
+   XML:  N/A; the requested URI is an XML namespace.
+</pre><a href="#section-8-2" class="pilcrow">¶</a>
+</div>
+<p id="section-8-3">IANA is requested to register the following YANG modules in the "YANG Module
    Names" subregistry <span>[<a href="#RFC6020" class="cite xref">RFC6020</a>]</span> within the "YANG Parameters" registry.<a href="#section-8-3" class="pilcrow">¶</a></p>
-<p id="section-8-4">Name:  ietf-ac
+<div class="alignLeft art-text artwork" id="section-8-4">
+<pre>
+   Name:  ietf-ac-svc
    Maintained by IANA?  N
-   Namespace:  urn:ietf:params:xml:ns:yang:ietf-ac
+   Namespace:  urn:ietf:params:xml:ns:yang:ietf-ac-svc
    Prefix:  ac
-   Reference:  RFC xxxx<a href="#section-8-4" class="pilcrow">¶</a></p>
+   Reference:  RFC xxxx
+
+   Name:  ietf-ac-ntw
+   Maintained by IANA?  N
+   Namespace:  urn:ietf:params:xml:ns:yang:ietf-ac-ntw
+   Prefix:  ac
+   Reference:  RFC xxxx
+</pre><a href="#section-8-4" class="pilcrow">¶</a>
+</div>
 </section>
 </div>
 <section id="section-9">
