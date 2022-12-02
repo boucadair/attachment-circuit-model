@@ -5,8 +5,8 @@
 Operations and Management Area Working Group                M. Boucadair
 Internet-Draft                                                    Orange
 Intended status: Standards Track                              R. Roberts
-Expires: 4 June 2023                                             Juniper
-                                                         1 December 2022
+Expires: 5 June 2023                                             Juniper
+                                                         2 December 2022
 
 
                A YANG Data Model for Attachment Circuits
@@ -46,7 +46,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 4 June 2023.
+   This Internet-Draft will expire on 5 June 2023.
 
 Copyright Notice
 
@@ -100,6 +100,9 @@ Table of Contents
    Service).
 
    TBC
+
+   An AC can be bound to a single or multiple SAPs
+   [I-D.ietf-opsawg-sap].
 
    The YANG data models in this document conform to the Network
    Management Datastore Architecture (NMDA) defined in [RFC8342].
@@ -159,7 +162,7 @@ Table of Contents
                              | Orchestration |
                              +-------+-------+
               Network Model          |
-        e.g., l3vpn-ntw, ac-ntw      |
+        e.g., l3vpn-ntw, sap-ac      |
                              +-------+-------+
                              |   Network     |
                              | Orchestration |
@@ -182,7 +185,7 @@ Table of Contents
                     | NETCONF/CLI..................
                     |        |                   |
 
-                      Figure 1: An Example of AC Usage
+                   Figure 1: An Example of AC Model Usage
 
 5.  Description of the Attachment Circuit YANG Modules
 
@@ -1015,6 +1018,14 @@ Table of Contents
 9.  References
 
 9.1.  Normative References
+
+   [I-D.ietf-opsawg-sap]
+              Boucadair, M., de Dios, O. G., Barguil, S., Wu, Q., and V.
+              Lopez, "A YANG Network Model for Service Attachment Points
+              (SAPs)", Work in Progress, Internet-Draft, draft-ietf-
+              opsawg-sap-10, 4 October 2022,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
+              sap-10>.
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
