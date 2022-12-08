@@ -129,6 +129,26 @@ Table of Contents
 
 4.  Sample Uses of the Attachment Circuit Data Models
 
+   ┌───────┐                      ┌──────────────────────┐
+   │       ├────────┐             │                      │
+   │  CE1  │        │             │                      │
+   └───────┘        │             │                      │
+                    ├─────────────┤        PE            │
+   ┌───────┐        │             │                      │
+   │       │        │             │                      │
+   │  CE2  ├────────┘             │                      │
+   └───────┘                      └──────────────────────┘
+
+   ┌───────┐                      ┌──────────────────────┐
+   │       │                      │                      │
+   │  CE1  ├──────────────────────┤                      │
+   └───────┘                      │                      │
+                                  │        PE            │
+   ┌───────┐                      │                      │
+   │       ├──────────────────────┤                      │
+   │  CE2  │                      │                      │
+   └───────┘                      └──────────────────────┘
+
 4.1.  Separate AC Provisioning vs. Actual Service Provisioning
 
    The procedure to provision a service in a service provider network
