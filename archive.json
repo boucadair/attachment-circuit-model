@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2022-12-06T00:39:12.700224+00:00",
+  "timestamp": "2022-12-08T00:39:22.310893+00:00",
   "repo": "boucadair/attachment-circuit-model",
   "labels": [
     {
@@ -50,5 +50,34 @@
     }
   ],
   "issues": [],
-  "pulls": []
+  "pulls": [
+    {
+      "number": 1,
+      "id": "PR_kwDOIiAkrc5EnE3J",
+      "title": "dd rr mod in branch",
+      "url": "https://github.com/boucadair/attachment-circuit-model/pull/1",
+      "state": "MERGED",
+      "author": "robric",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2022-12-07T09:14:04Z",
+      "updatedAt": "2022-12-07T09:14:31Z",
+      "baseRepository": "boucadair/attachment-circuit-model",
+      "baseRefName": "main",
+      "baseRefOid": "de39fa04b2853f064d8a5eb3cc694fc8c4a77e06",
+      "headRepository": "robric/attachment-circuit-model",
+      "headRefName": "rr-branch",
+      "headRefOid": "d12249b126118a43cd65bc1ca1cce396e0b96f5e",
+      "closedAt": "2022-12-07T09:14:31Z",
+      "mergedAt": "2022-12-07T09:14:31Z",
+      "mergedBy": "boucadair",
+      "mergeCommit": {
+        "oid": "768dd438bfb4139bea38e8c18588a3642851614f"
+      },
+      "comments": [],
+      "reviews": []
+    }
+  ]
 }
