@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2022-12-08T00:39:22.310893+00:00",
+  "timestamp": "2022-12-11T00:44:32.002833+00:00",
   "repo": "boucadair/attachment-circuit-model",
   "labels": [
     {
@@ -75,6 +75,34 @@
       "mergedBy": "boucadair",
       "mergeCommit": {
         "oid": "768dd438bfb4139bea38e8c18588a3642851614f"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 2,
+      "id": "PR_kwDOIiAkrc5Eyv-c",
+      "title": "PR for ac tree - meeting 08-12-2022",
+      "url": "https://github.com/boucadair/attachment-circuit-model/pull/2",
+      "state": "MERGED",
+      "author": "robric",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2022-12-08T13:53:08Z",
+      "updatedAt": "2022-12-08T13:59:41Z",
+      "baseRepository": "boucadair/attachment-circuit-model",
+      "baseRefName": "main",
+      "baseRefOid": "d90bba44a9756976a61e361354aced831e1edef8",
+      "headRepository": "robric/attachment-circuit-model",
+      "headRefName": "main",
+      "headRefOid": "7689242c0d7ddba29876c1313e97bcb8747d6773",
+      "closedAt": "2022-12-08T13:59:41Z",
+      "mergedAt": "2022-12-08T13:59:41Z",
+      "mergedBy": "boucadair",
+      "mergeCommit": {
+        "oid": "72dedbbd2ce3efe88d68fda3401e6c4b6968aebf"
       },
       "comments": [],
       "reviews": []
