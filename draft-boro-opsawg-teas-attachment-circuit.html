@@ -1172,10 +1172,33 @@ svg :is([stroke="fill"], [fill^="#fff"]) {
                 <p id="section-toc.1-1.5.2.1.1"><a href="#section-5.1" class="auto internal xref">5.1</a>.  <a href="#name-overall-structure-of-the-mo" class="internal xref">Overall Structure of the Module</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.2">
-                <p id="section-toc.1-1.5.2.2.1"><a href="#section-5.2" class="auto internal xref">5.2</a>.  <a href="#name-layer-2-connection-structur" class="internal xref">Layer 2 Connection Structure</a></p>
+                <p id="section-toc.1-1.5.2.2.1"><a href="#section-5.2" class="auto internal xref">5.2</a>.  <a href="#name-service-profiles" class="internal xref">Service Profiles</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.3">
-                <p id="section-toc.1-1.5.2.3.1"><a href="#section-5.3" class="auto internal xref">5.3</a>.  <a href="#name-layer-3-connection-structur" class="internal xref">Layer 3 Connection Structure</a></p>
+                <p id="section-toc.1-1.5.2.3.1"><a href="#section-5.3" class="auto internal xref">5.3</a>.  <a href="#name-attachment-circuits-profile" class="internal xref">Attachment Circuits Profiles</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.4">
+                <p id="section-toc.1-1.5.2.4.1"><a href="#section-5.4" class="auto internal xref">5.4</a>.  <a href="#name-node-specific-profiles" class="internal xref">Node-Specific Profiles</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.5">
+                <p id="section-toc.1-1.5.2.5.1"><a href="#section-5.5" class="auto internal xref">5.5</a>.  <a href="#name-attachment-circuits" class="internal xref">Attachment Circuits</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.5.2.1">
+                    <p id="section-toc.1-1.5.2.5.2.1.1"><a href="#section-5.5.1" class="auto internal xref">5.5.1</a>.  <a href="#name-layer-2-connection-structur" class="internal xref">Layer 2 Connection Structure</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.5.2.2">
+                    <p id="section-toc.1-1.5.2.5.2.2.1"><a href="#section-5.5.2" class="auto internal xref">5.5.2</a>.  <a href="#name-layer-3-connection-structur" class="internal xref">Layer 3 Connection Structure</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.5.2.3">
+                    <p id="section-toc.1-1.5.2.5.2.3.1"><a href="#section-5.5.3" class="auto internal xref">5.5.3</a>.  <a href="#name-routing" class="internal xref">Routing</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.5.2.4">
+                    <p id="section-toc.1-1.5.2.5.2.4.1"><a href="#section-5.5.4" class="auto internal xref">5.5.4</a>.  <a href="#name-oam" class="internal xref">OAM</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.5.2.5">
+                    <p id="section-toc.1-1.5.2.5.2.5.1"><a href="#section-5.5.5" class="auto internal xref">5.5.5</a>.  <a href="#name-security" class="internal xref">Security</a></p>
+</li>
+                </ul>
 </li>
             </ul>
 </li>
@@ -1362,6 +1385,48 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 <pre>
 module: ietf-ac-svc
   +--rw specific-provisioning-profiles
+  |  ...
+  +--rw service-provisioning-profiles
+  |  ...
+  +--rw attachment-circuits
+     +--rw ac-global-profile* [id]
+     |  ...
+     +--rw ac-node-group* [id]
+     |  ...
+     +--rw ac* [id]
+        +--rw peer-sap-id*         string
+        +--rw profile-id*
+        |       -&gt; /attachment-circuits/ac-global-profile/id
+        +--rw id                   string
+        +--rw l2-connection
+        |  ...
+        +--rw ip-connection
+        |  ...
+        +--rw routing-protocols
+        |  ...
+        +--rw oam
+        |  ...
+        +--rw security
+           ...
+</pre>
+</div>
+<figcaption><a href="#figure-2" class="selfRef">Figure 2</a>:
+<a href="#name-overall-ac-service-tree-str" class="selfRef">Overall AC Service Tree Structure</a>
+          </figcaption></figure>
+</div>
+</section>
+</div>
+<div id="service-profiles">
+<section id="section-5.2">
+        <h3 id="name-service-profiles">
+<a href="#section-5.2" class="section-number selfRef">5.2. </a><a href="#name-service-profiles" class="section-name selfRef">Service Profiles</a>
+        </h3>
+<span id="name-service-proviles"></span><div id="gp-svc-tree">
+<figure id="figure-3">
+          <div class="alignLeft art-text artwork" id="section-5.2-1.1">
+<pre>
+module: ietf-ac-svc
+  +--rw specific-provisioning-profiles
   |  +--rw valid-provider-identifiers
   |     +--rw external-connectivity-identifier* [id]
   |     |       {external-connectivity}?
@@ -1379,6 +1444,84 @@ module: ietf-ac-svc
   +--rw service-provisioning-profiles
   |  +--rw service-profile-identifier* [id]
   |     +--rw id    string
+  +--rw attachment-circuits
+     +--rw ac-global-profile* [id]
+     |  ...
+     +--rw ac-node-group* [id]
+     |  ...
+     +--rw ac* [id]
+        ...
+</pre>
+</div>
+<figcaption><a href="#figure-3" class="selfRef">Figure 3</a>:
+<a href="#name-service-proviles" class="selfRef">Service Proviles</a>
+          </figcaption></figure>
+</div>
+</section>
+</div>
+<div id="attachment-circuits-profiles">
+<section id="section-5.3">
+        <h3 id="name-attachment-circuits-profile">
+<a href="#section-5.3" class="section-number selfRef">5.3. </a><a href="#name-attachment-circuits-profile" class="section-name selfRef">Attachment Circuits Profiles</a>
+      </h3>
+</section>
+</div>
+<div id="node-specific-profiles">
+<section id="section-5.4">
+        <h3 id="name-node-specific-profiles">
+<a href="#section-5.4" class="section-number selfRef">5.4. </a><a href="#name-node-specific-profiles" class="section-name selfRef">Node-Specific Profiles</a>
+      </h3>
+</section>
+</div>
+<div id="attachment-circuits">
+<section id="section-5.5">
+        <h3 id="name-attachment-circuits">
+<a href="#section-5.5" class="section-number selfRef">5.5. </a><a href="#name-attachment-circuits" class="section-name selfRef">Attachment Circuits</a>
+        </h3>
+<span id="name-cccc-tree-structure"></span><div id="ac-svc-tree">
+<figure id="figure-4">
+          <div class="alignLeft art-text artwork" id="section-5.5-1.1">
+<pre>
+module: ietf-ac-svc
+  +--rw specific-provisioning-profiles
+  |  ...
+  +--rw service-provisioning-profiles
+  |  ...
+  +--rw attachment-circuits
+     +--rw ac-global-profile* [id]
+     |  ...f
+     +--rw ac-node-group* [id]
+     |  ...
+     +--rw ac* [id]
+        +--rw peer-sap-id*         string
+        +--rw profile-id*
+        |       -&gt; /attachment-circuits/ac-global-profile/id
+        +--rw id                   string
+        +--rw l2-connection
+        |  ...
+        +--rw ip-connection
+        |  ...
+        +--rw routing-protocols
+        |  ...
+        +--rw oam
+        |  ...
+        +--rw security
+           ...
+</pre>
+</div>
+<figcaption><a href="#figure-4" class="selfRef">Figure 4</a>:
+<a href="#name-cccc-tree-structure" class="selfRef">cccc Tree Structure</a>
+          </figcaption></figure>
+</div>
+<span id="name-overall-ac-service-tree-stru"></span><div id="d-svc-tree">
+<figure id="figure-5">
+          <div class="alignLeft art-text artwork" id="section-5.5-2.1">
+<pre>
+module: ietf-ac-svc
+  +--rw specific-provisioning-profiles
+  |  ...
+  +--rw service-provisioning-profiles
+  |  ...
   +--rw attachment-circuits
      +--rw ac-global-profile* [id]
      |  +--rw id                   string
@@ -1649,24 +1792,45 @@ module: ietf-ac-svc
                             key-chain:key-chain-ref
 </pre>
 </div>
-<figcaption><a href="#figure-2" class="selfRef">Figure 2</a>:
-<a href="#name-overall-ac-service-tree-str" class="selfRef">Overall AC Service Tree Structure</a>
+<figcaption><a href="#figure-5" class="selfRef">Figure 5</a>:
+<a href="#name-overall-ac-service-tree-stru" class="selfRef">Overall AC Service Tree Structure</a>
           </figcaption></figure>
 </div>
-</section>
-</div>
 <div id="layer-2-connection-structure">
-<section id="section-5.2">
-        <h3 id="name-layer-2-connection-structur">
-<a href="#section-5.2" class="section-number selfRef">5.2. </a><a href="#name-layer-2-connection-structur" class="section-name selfRef">Layer 2 Connection Structure</a>
-      </h3>
+<section id="section-5.5.1">
+          <h4 id="name-layer-2-connection-structur">
+<a href="#section-5.5.1" class="section-number selfRef">5.5.1. </a><a href="#name-layer-2-connection-structur" class="section-name selfRef">Layer 2 Connection Structure</a>
+        </h4>
 </section>
 </div>
 <div id="layer-3-connection-structure">
-<section id="section-5.3">
-        <h3 id="name-layer-3-connection-structur">
-<a href="#section-5.3" class="section-number selfRef">5.3. </a><a href="#name-layer-3-connection-structur" class="section-name selfRef">Layer 3 Connection Structure</a>
-      </h3>
+<section id="section-5.5.2">
+          <h4 id="name-layer-3-connection-structur">
+<a href="#section-5.5.2" class="section-number selfRef">5.5.2. </a><a href="#name-layer-3-connection-structur" class="section-name selfRef">Layer 3 Connection Structure</a>
+        </h4>
+</section>
+</div>
+<div id="routing">
+<section id="section-5.5.3">
+          <h4 id="name-routing">
+<a href="#section-5.5.3" class="section-number selfRef">5.5.3. </a><a href="#name-routing" class="section-name selfRef">Routing</a>
+        </h4>
+</section>
+</div>
+<div id="oam">
+<section id="section-5.5.4">
+          <h4 id="name-oam">
+<a href="#section-5.5.4" class="section-number selfRef">5.5.4. </a><a href="#name-oam" class="section-name selfRef">OAM</a>
+        </h4>
+</section>
+</div>
+<div id="security">
+<section id="section-5.5.5">
+          <h4 id="name-security">
+<a href="#section-5.5.5" class="section-number selfRef">5.5.5. </a><a href="#name-security" class="section-name selfRef">Security</a>
+        </h4>
+</section>
+</div>
 </section>
 </div>
 </section>

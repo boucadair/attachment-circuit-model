@@ -75,8 +75,15 @@ Table of Contents
      4.1.  Separate AC Provisioning vs. Actual Service Provisioning
    5.  Description of the Attachment Circuit YANG Module
      5.1.  Overall Structure of the Module
-     5.2.  Layer 2 Connection Structure
-     5.3.  Layer 3 Connection Structure
+     5.2.  Service Profiles
+     5.3.  Attachment Circuits Profiles
+     5.4.  Node-Specific Profiles
+     5.5.  Attachment Circuits
+       5.5.1.  Layer 2 Connection Structure
+       5.5.2.  Layer 3 Connection Structure
+       5.5.3.  Routing
+       5.5.4.  OAM
+       5.5.5.  Security
    6.  YANG Module
    7.  Security Considerations
    8.  IANA Considerations
@@ -208,6 +215,36 @@ Table of Contents
 
    module: ietf-ac-svc
      +--rw specific-provisioning-profiles
+     |  ...
+     +--rw service-provisioning-profiles
+     |  ...
+     +--rw attachment-circuits
+        +--rw ac-global-profile* [id]
+        |  ...
+        +--rw ac-node-group* [id]
+        |  ...
+        +--rw ac* [id]
+           +--rw peer-sap-id*         string
+           +--rw profile-id*
+           |       -> /attachment-circuits/ac-global-profile/id
+           +--rw id                   string
+           +--rw l2-connection
+           |  ...
+           +--rw ip-connection
+           |  ...
+           +--rw routing-protocols
+           |  ...
+           +--rw oam
+           |  ...
+           +--rw security
+              ...
+
+                Figure 2: Overall AC Service Tree Structure
+
+5.2.  Service Profiles
+
+   module: ietf-ac-svc
+     +--rw specific-provisioning-profiles
      |  +--rw valid-provider-identifiers
      |     +--rw external-connectivity-identifier* [id]
      |     |       {external-connectivity}?
@@ -225,6 +262,55 @@ Table of Contents
      +--rw service-provisioning-profiles
      |  +--rw service-profile-identifier* [id]
      |     +--rw id    string
+     +--rw attachment-circuits
+        +--rw ac-global-profile* [id]
+        |  ...
+        +--rw ac-node-group* [id]
+        |  ...
+        +--rw ac* [id]
+           ...
+
+                         Figure 3: Service Proviles
+
+5.3.  Attachment Circuits Profiles
+
+5.4.  Node-Specific Profiles
+
+5.5.  Attachment Circuits
+
+   module: ietf-ac-svc
+     +--rw specific-provisioning-profiles
+     |  ...
+     +--rw service-provisioning-profiles
+     |  ...
+     +--rw attachment-circuits
+        +--rw ac-global-profile* [id]
+        |  ...f
+        +--rw ac-node-group* [id]
+        |  ...
+        +--rw ac* [id]
+           +--rw peer-sap-id*         string
+           +--rw profile-id*
+           |       -> /attachment-circuits/ac-global-profile/id
+           +--rw id                   string
+           +--rw l2-connection
+           |  ...
+           +--rw ip-connection
+           |  ...
+           +--rw routing-protocols
+           |  ...
+           +--rw oam
+           |  ...
+           +--rw security
+              ...
+
+                       Figure 4: cccc Tree Structure
+
+   module: ietf-ac-svc
+     +--rw specific-provisioning-profiles
+     |  ...
+     +--rw service-provisioning-profiles
+     |  ...
      +--rw attachment-circuits
         +--rw ac-global-profile* [id]
         |  +--rw id                   string
@@ -494,11 +580,17 @@ Table of Contents
                        +--rw customer-key-chain?
                                key-chain:key-chain-ref
 
-                Figure 2: Overall AC Service Tree Structure
+                Figure 5: Overall AC Service Tree Structure
 
-5.2.  Layer 2 Connection Structure
+5.5.1.  Layer 2 Connection Structure
 
-5.3.  Layer 3 Connection Structure
+5.5.2.  Layer 3 Connection Structure
+
+5.5.3.  Routing
+
+5.5.4.  OAM
+
+5.5.5.  Security
 
 6.  YANG Module
 
