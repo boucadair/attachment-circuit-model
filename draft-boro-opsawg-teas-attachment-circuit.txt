@@ -2142,6 +2142,32 @@ Table of Contents
          key "id";
          description
            "Global provisioning of attachment circuits.";
+         leaf requested-ac-start {
+           type yang:date-and-time;
+           description
+             "Indicates the requested date and
+              time when the AC is expected to be active.";
+         }
+         leaf requested-ac-stop {
+           type yang:date-and-time;
+           description
+             "Indicates the requested date and
+              time when the AC is expected to be disabled.";
+         }
+         leaf actual-ac-start {
+           type yang:date-and-time;
+           config false;
+           description
+             "Indciates the actual date and time when the
+              AC actually was enabled.";
+         }
+         leaf actual-ac-stop {
+           type yang:date-and-time;
+           config false;
+           description
+             "Indciates the actual date and time when the
+              AC actually was disabled.";
+         }
          leaf-list peer-sap-id {
            type string;
            description
