@@ -3389,6 +3389,17 @@ module ietf-ac-svc {
       key "id";
       description
         "Global provisioning of attachment circuits.";
+      leaf customer-name {
+        type string;
+        description
+          "Indicates the name of the customer that requested this
+           AC.";
+      }
+      leaf description {
+        type string;
+        description
+          "Associates a description with an AC.";
+      }
       leaf requested-ac-start {
         type yang:date-and-time;
         description
