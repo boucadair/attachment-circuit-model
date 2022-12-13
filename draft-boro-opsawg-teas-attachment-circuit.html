@@ -1520,9 +1520,22 @@ module: ietf-ac-svc
 <pre>
 module: ietf-ac-svc
   +--rw specific-provisioning-profiles
-  |  ...
+  |  +--rw valid-provider-identifiers
+  |     +--rw external-connectivity-identifier* [id] {external-connectivity}?
+  |     |  +--rw id    string
+  |     +--rw encryption-profile-identifier* [id]
+  |     |  +--rw id    string
+  |     +--rw qos-profile-identifier* [id]
+  |     |  +--rw id    string
+  |     +--rw bfd-profile-identifier* [id]
+  |     |  +--rw id    string
+  |     +--rw forwarding-profile-identifier* [id]
+  |     |  +--rw id    string
+  |     +--rw routing-profile-identifier* [id]
+  |        +--rw id    string
   +--rw service-provisioning-profiles
-  |  ...
+  |  +--rw service-profile-identifier* [id]
+  |     +--rw id    string
   +--rw attachment-circuits
      +--rw ac-global-profile* [id]
      |  +--rw id                   string
@@ -1544,7 +1557,7 @@ module: ietf-ac-svc
      |  |     +--rw id                  string
      |  |     +--rw type?               identityref
      |  |     +--rw routing-profiles* [id]
-     |  |     |  +--rw id      leafref
+     |  |     |  +--rw id      -&gt; /specific-provisioning-profiles/valid-provider-identifiers/routing-profile-identifier/id
      |  |     |  +--rw type?   identityref
      |  |     +--rw bgp
      |  |     |  +--rw peer-groups
@@ -1573,15 +1586,20 @@ module: ietf-ac-svc
      |     +--rw encryption-profile
      |        +--rw (profile)?
      |           +--:(customer-profile)
-     |              +--rw customer-key-chain?
-     |                      key-chain:key-chain-ref
+     |              +--rw customer-key-chain?   key-chain:key-chain-ref
      +--rw ac-node-group* [id]
      |  +--rw id    string
-     +--rw ac* [id]
-        +--rw peer-sap-id*         string
-        +--rw profile-id*
-        |       -&gt; /attachment-circuits/ac-global-profile/id
-        +--rw id                   string
+     +--rw ac* [attachment-circuit-id]
+        +--rw customer-name?           string
+        +--rw description?             string
+        +--rw requested-ac-start?      yang:date-and-time
+        +--rw requested-ac-stop?       yang:date-and-time
+        +--ro actual-ac-start?         yang:date-and-time
+        +--ro actual-ac-stop?          yang:date-and-time
+        +--rw peer-sap-id*             string
+        +--rw ac-global-profile*       -&gt; /attachment-circuits/ac-global-profile/id
+        +--rw ac-node-profile*         -&gt; /attachment-circuits/ac-node-group/id
+        +--rw attachment-circuit-id    string
         +--rw l2-connection
         |  +--rw encapsulation
         |  |  +--rw type?              identityref
@@ -1610,15 +1628,12 @@ module: ietf-ac-svc
         |  |  |        +--rw peer-ip-address*   inet:ip-address
         |  |  +--:(l2vpn)
         |  |     +--rw l2vpn-id?            vpn-common:vpn-id
-        |  +--rw bearer-reference?          string
-        |          {vpn-common:bearer-reference}?
+        |  +--rw bearer-reference?          string {vpn-common:bearer-reference}?
         +--rw ip-connection
         |  +--rw ipv4 {vpn-common:ipv4}?
-        |  |  +--rw local-address?
-        |  |  |       inet:ipv4-address
+        |  |  +--rw local-address?                           inet:ipv4-address
         |  |  +--rw prefix-length?                           uint8
-        |  |  +--rw address-allocation-type?
-        |  |  |       identityref
+        |  |  +--rw address-allocation-type?                 identityref
         |  |  +--rw (allocation-type)?
         |  |     +--:(dynamic)
         |  |     |  +--rw (address-assign)?
@@ -1628,31 +1643,24 @@ module: ietf-ac-svc
         |  |     |  |     +--rw customer-addresses
         |  |     |  |        +--rw address-pool* [pool-id]
         |  |     |  |           +--rw pool-id          string
-        |  |     |  |           +--rw start-address
-        |  |     |  |           |       inet:ipv4-address
-        |  |     |  |           +--rw end-address?
-        |  |     |  |                   inet:ipv4-address
+        |  |     |  |           +--rw start-address    inet:ipv4-address
+        |  |     |  |           +--rw end-address?     inet:ipv4-address
         |  |     |  +--rw (provider-dhcp)?
         |  |     |  |  +--:(dhcp-service-type)
-        |  |     |  |     +--rw dhcp-service-type?
-        |  |     |  |             enumeration
+        |  |     |  |     +--rw dhcp-service-type?           enumeration
         |  |     |  +--rw (dhcp-relay)?
         |  |     |     +--:(customer-dhcp-servers)
         |  |     |        +--rw customer-dhcp-servers
-        |  |     |           +--rw server-ip-address*
-        |  |     |                   inet:ipv4-address
+        |  |     |           +--rw server-ip-address*   inet:ipv4-address
         |  |     +--:(static-addresses)
-        |  |        +--rw primary-address?
-        |  |        |       -&gt; ../address/address-id
+        |  |        +--rw primary-address?                   -&gt; ../address/address-id
         |  |        +--rw address* [address-id]
         |  |           +--rw address-id          string
         |  |           +--rw customer-address?   inet:ipv4-address
         |  +--rw ipv6 {vpn-common:ipv6}?
-        |     +--rw local-address?
-        |     |       inet:ipv6-address
+        |     +--rw local-address?                           inet:ipv6-address
         |     +--rw prefix-length?                           uint8
-        |     +--rw address-allocation-type?
-        |     |       identityref
+        |     +--rw address-allocation-type?                 identityref
         |     +--rw (allocation-type)?
         |        +--:(dynamic)
         |        |  +--rw (address-assign)?
@@ -1662,22 +1670,17 @@ module: ietf-ac-svc
         |        |  |     +--rw customer-addresses
         |        |  |        +--rw address-pool* [pool-id]
         |        |  |           +--rw pool-id          string
-        |        |  |           +--rw start-address
-        |        |  |           |       inet:ipv6-address
-        |        |  |           +--rw end-address?
-        |        |  |                   inet:ipv6-address
+        |        |  |           +--rw start-address    inet:ipv6-address
+        |        |  |           +--rw end-address?     inet:ipv6-address
         |        |  +--rw (provider-dhcp)?
         |        |  |  +--:(dhcp-service-type)
-        |        |  |     +--rw dhcp-service-type?
-        |        |  |             enumeration
+        |        |  |     +--rw dhcp-service-type?           enumeration
         |        |  +--rw (dhcp-relay)?
         |        |     +--:(customer-dhcp-servers)
         |        |        +--rw customer-dhcp-servers
-        |        |           +--rw server-ip-address*
-        |        |                   inet:ipv6-address
+        |        |           +--rw server-ip-address*   inet:ipv6-address
         |        +--:(static-addresses)
-        |           +--rw primary-address?
-        |           |       -&gt; ../address/address-id
+        |           +--rw primary-address?                   -&gt; ../address/address-id
         |           +--rw address* [address-id]
         |              +--rw address-id          string
         |              +--rw customer-address?   inet:ipv6-address
@@ -1686,12 +1689,11 @@ module: ietf-ac-svc
         |     +--rw id                  string
         |     +--rw type?               identityref
         |     +--rw routing-profiles* [id]
-        |     |  +--rw id      leafref
+        |     |  +--rw id      -&gt; /specific-provisioning-profiles/valid-provider-identifiers/routing-profile-identifier/id
         |     |  +--rw type?   identityref
         |     +--rw static
         |     |  +--rw cascaded-lan-prefixes
-        |     |     +--rw ipv4-lan-prefixes* [lan next-hop]
-        |     |     |       {vpn-common:ipv4}?
+        |     |     +--rw ipv4-lan-prefixes* [lan next-hop] {vpn-common:ipv4}?
         |     |     |  +--rw lan         inet:ipv4-prefix
         |     |     |  +--rw lan-tag?    string
         |     |     |  +--rw next-hop    union
@@ -1702,8 +1704,7 @@ module: ietf-ac-svc
         |     |     |     +--ro oper-status
         |     |     |        +--ro status?        identityref
         |     |     |        +--ro last-change?   yang:date-and-time
-        |     |     +--rw ipv6-lan-prefixes* [lan next-hop]
-        |     |             {vpn-common:ipv6}?
+        |     |     +--rw ipv6-lan-prefixes* [lan next-hop] {vpn-common:ipv6}?
         |     |        +--rw lan         inet:ipv6-prefix
         |     |        +--rw lan-tag?    string
         |     |        +--rw next-hop    union
@@ -1722,8 +1723,7 @@ module: ietf-ac-svc
         |     |  |     +--rw address-family?   identityref
         |     |  +--rw neighbor* [remote-address]
         |     |     +--rw remote-address    inet:ip-address
-        |     |     +--rw peer-group?
-        |     |     |       -&gt; ../../peer-groups/peer-group/name
+        |     |     +--rw peer-group?       -&gt; ../../peer-groups/peer-group/name
         |     |     +--rw peer-as           inet:as-number
         |     |     +--rw address-family?   identityref
         |     |     +--rw status
@@ -1789,8 +1789,7 @@ module: ietf-ac-svc
            +--rw encryption-profile
               +--rw (profile)?
                  +--:(customer-profile)
-                    +--rw customer-key-chain?
-                            key-chain:key-chain-ref
+                    +--rw customer-key-chain?   key-chain:key-chain-ref
 </pre>
 </div>
 <figcaption><a href="#figure-5" class="selfRef">Figure 5</a>:
