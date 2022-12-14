@@ -5,12 +5,12 @@
 Operations and Management Area Working Group                M. Boucadair
 Internet-Draft                                                    Orange
 Intended status: Standards Track                              R. Roberts
-Expires: 16 June 2023                                            Juniper
+Expires: 17 June 2023                                            Juniper
                                                            O. G. D. Dios
                                                               Telefonica
                                                            S. B. Giraldo
                                                                    Nokia
-                                                        13 December 2022
+                                                        14 December 2022
 
 
                A YANG Data Model for Attachment Circuits
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 16 June 2023.
+   This Internet-Draft will expire on 17 June 2023.
 
 Copyright Notice
 
@@ -676,6 +676,71 @@ module: ietf-ac-svc
        description
          "The IP address is dynamically allocated by the hosting
           infrastrcture.";
+     }
+
+     typedef attachment-circuit-reference {
+       type leafref {
+         path "/ac-svc:attachment-circuits/ac-svc:ac"
+            + "/ac-svc:name";
+       }
+       description
+         "Defines a reference to an attachment circuit by other
+          modules.";
+     }
+
+     typedef encryption-profile-reference {
+       type leafref {
+         path "/specific-provisioning-profiles"
+            + "/valid-provider-identifiers"
+            + "/encryption-profile-identifier/id";
+       }
+       description
+         "Defines a reference to an encryption profile for
+          referencing purposes.";
+     }
+
+     typedef qos-profile-reference {
+       type leafref {
+         path "/specific-provisioning-profiles"
+            + "/valid-provider-identifiers"
+            + "/qos-profile-identifier/id";
+       }
+       description
+         "Defines a reference to a QoS profile for
+          referencing purposes.";
+     }
+
+     typedef bfd-profile-reference {
+       type leafref {
+         path "/specific-provisioning-profiles"
+            + "/valid-provider-identifiers"
+            + "/bfd-profile-identifier/id";
+       }
+       description
+         "Defines a reference to a BFD profile for
+          referencing purposes.";
+     }
+
+     typedef forwarding-profile-reference {
+       type leafref {
+         path "/specific-provisioning-profiles"
+            + "/valid-provider-identifiers"
+            + "/forwarding-profile-identifier/id";
+       }
+       description
+         "Defines a reference to a forwarding profile for
+          referencing purposes.";
+     }
+
+     typedef routing-profile-reference {
+       type leafref {
+         path "/specific-provisioning-profiles"
+            + "/valid-provider-identifiers"
+            + "/routing-profile-identifier/id";
+       }
+       description
+         "Defines a reference to a routing profile for
+          referencing purposes.";
      }
 
      // L2 conenction
@@ -1318,8 +1383,7 @@ module: ietf-ac-svc
        list routing-protocol {
          key "id";
          description
-           "List of routing protocols used on the
-            CE-PE link.  This list can be augmented.";
+           "List of routing protocols used on the AC.";
          leaf id {
            type string;
            description
@@ -1337,13 +1401,9 @@ module: ietf-ac-svc
            description
              "Routing profiles.";
            leaf id {
-             type leafref {
-               path "/specific-provisioning-profiles"
-                  + "/valid-provider-identifiers"
-                  + "/routing-profile-identifier/id";
-             }
+             type routing-profile-reference;
              description
-               "Routing profile to be used.";
+               "Reference to the routing profile to be used.";
            }
            leaf type {
              type identityref {
@@ -1427,7 +1487,7 @@ module: ietf-ac-svc
              type uint16;
              default "1";
              description
-               "Metric of the PE-CE link.  It is used
+               "Metric of the AC.  It is used
                 in the routing state calculation and
                 path selection.";
            }
@@ -1505,8 +1565,7 @@ module: ietf-ac-svc
        list routing-protocol {
          key "id";
          description
-           "List of routing protocols used on the
-            CE-PE link.  This list can be augmented.";
+           "List of routing protocols used on the AC.";
          leaf id {
            type string;
            description
@@ -1524,13 +1583,9 @@ module: ietf-ac-svc
            description
              "Routing profiles.";
            leaf id {
-             type leafref {
-               path "/specific-provisioning-profiles"
-                  + "/valid-provider-identifiers"
-                  + "/routing-profile-identifier/id";
-             }
+             type routing-profile-reference;
              description
-               "Routing profile to be used.";
+               "Reference to the routing profile to be used.";
            }
            leaf type {
              type identityref {
@@ -1802,10 +1857,12 @@ module: ietf-ac-svc
      grouping ac {
        description
          "Grouping for an attachment circuit.";
-       leaf attachment-circuit-id {
+       leaf name {
          type string;
          description
-           "An identifier of the AC.";
+           "A name of the AC. Data models that need to
+            reference an attachment circuits should use
+            attachment-circuit-reference.";
        }
        // Layer 2
        container l2-connection {
@@ -2006,8 +2063,7 @@ module: ietf-ac-svc
                  description
                    "Encryption occurs at Layer 3.
                     For example, IPsec may be used when
-                    a customer requests Layer 3
-                    encryption.";
+                    a customer requests Layer 3 encryption.";
                }
              }
              description
@@ -2081,7 +2137,7 @@ module: ietf-ac-svc
          }
        }
        list ac {
-         key "attachment-circuit-id";
+         key "name";
          description
            "Global provisioning of attachment circuits.";
          leaf customer-name {
