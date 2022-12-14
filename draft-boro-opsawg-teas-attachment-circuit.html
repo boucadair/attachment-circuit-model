@@ -1520,7 +1520,7 @@ module: ietf-ac-svc
 <a href="#name-cccc-tree-structure" class="selfRef">cccc Tree Structure</a>
           </figcaption></figure>
 </div>
-<span id="name-overall-ac-service-tree-stru"></span><div id="d-svc-tree">
+<span id="name-ac-service-tree-structure"></span><div id="d-svc-tree">
 <figure id="figure-5">
           <div class="alignLeft art-text artwork" id="section-5.5-2.1">
 <pre>
@@ -1547,12 +1547,10 @@ module: ietf-ac-svc
      |  +--rw id                   string
      |  +--rw l2-connection
      |  |  +--rw encapsulation
-     |  |     +--rw type?              identityref
+     |  |     +--rw type?    identityref
      |  |     +--rw dot1q
      |  |     |  +--rw tag-type?   identityref
      |  |     |  +--rw cvlan-id?   uint16
-     |  |     +--rw priority-tagged
-     |  |     |  +--rw tag-type?   identityref
      |  |     +--rw qinq
      |  |        +--rw tag-type?   identityref
      |  |        +--rw svlan-id    uint16
@@ -1563,7 +1561,7 @@ module: ietf-ac-svc
      |  |     +--rw id                  string
      |  |     +--rw type?               identityref
      |  |     +--rw routing-profiles* [id]
-     |  |     |  +--rw id      -&gt; /specific-provisioning-profiles/valid-provider-identifiers/routing-profile-identifier/id
+     |  |     |  +--rw id      routing-profile-reference
      |  |     |  +--rw type?   identityref
      |  |     +--rw bgp
      |  |     |  +--rw peer-groups
@@ -1595,17 +1593,17 @@ module: ietf-ac-svc
      |              +--rw customer-key-chain?   key-chain:key-chain-ref
      +--rw ac-node-group* [id]
      |  +--rw id    string
-     +--rw ac* [attachment-circuit-id]
-        +--rw customer-name?           string
-        +--rw description?             string
-        +--rw requested-ac-start?      yang:date-and-time
-        +--rw requested-ac-stop?       yang:date-and-time
-        +--ro actual-ac-start?         yang:date-and-time
-        +--ro actual-ac-stop?          yang:date-and-time
-        +--rw peer-sap-id*             string
-        +--rw ac-global-profile*       -&gt; /attachment-circuits/ac-global-profile/id
-        +--rw ac-node-profile*         -&gt; /attachment-circuits/ac-node-group/id
-        +--rw attachment-circuit-id    string
+     +--rw ac* [name]
+        +--rw customer-name?        string
+        +--rw description?          string
+        +--rw requested-ac-start?   yang:date-and-time
+        +--rw requested-ac-stop?    yang:date-and-time
+        +--ro actual-ac-start?      yang:date-and-time
+        +--ro actual-ac-stop?       yang:date-and-time
+        +--rw peer-sap-id*          string
+        +--rw ac-global-profile*    -&gt; /attachment-circuits/ac-global-profile/id
+        +--rw ac-node-profile*      -&gt; /attachment-circuits/ac-node-group/id
+        +--rw name                  string
         +--rw l2-connection
         |  +--rw encapsulation
         |  |  +--rw type?              identityref
@@ -1695,7 +1693,7 @@ module: ietf-ac-svc
         |     +--rw id                  string
         |     +--rw type?               identityref
         |     +--rw routing-profiles* [id]
-        |     |  +--rw id      -&gt; /specific-provisioning-profiles/valid-provider-identifiers/routing-profile-identifier/id
+        |     |  +--rw id      routing-profile-reference
         |     |  +--rw type?   identityref
         |     +--rw static
         |     |  +--rw cascaded-lan-prefixes
@@ -1725,10 +1723,12 @@ module: ietf-ac-svc
         |     |  +--rw peer-groups
         |     |  |  +--rw peer-group* [name]
         |     |  |     +--rw name              string
+        |     |  |     +--ro local-address?    inet:ip-address
         |     |  |     +--rw peer-as           inet:as-number
         |     |  |     +--rw address-family?   identityref
         |     |  +--rw neighbor* [remote-address]
         |     |     +--rw remote-address    inet:ip-address
+        |     |     +--ro local-address?    inet:ip-address
         |     |     +--rw peer-group?       -&gt; ../../peer-groups/peer-group/name
         |     |     +--rw peer-as           inet:as-number
         |     |     +--rw address-family?   identityref
@@ -1799,7 +1799,7 @@ module: ietf-ac-svc
 </pre>
 </div>
 <figcaption><a href="#figure-5" class="selfRef">Figure 5</a>:
-<a href="#name-overall-ac-service-tree-stru" class="selfRef">Overall AC Service Tree Structure</a>
+<a href="#name-ac-service-tree-structure" class="selfRef">AC Service Tree Structure</a>
           </figcaption></figure>
 </div>
 <div id="layer-2-connection-structure">
