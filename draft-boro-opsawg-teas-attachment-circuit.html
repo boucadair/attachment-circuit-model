@@ -1927,8 +1927,7 @@ module ietf-ac-svc {
 
   typedef attachment-circuit-reference {
     type leafref {
-      path "/ac-svc:attachment-circuits/ac-svc:ac"
-         + "/ac-svc:name";
+      path "/ac-svc:attachment-circuits/ac-svc:ac/ac-svc:name";
     }
     description
       "Defines a reference to an attachment circuit by other
@@ -1937,66 +1936,60 @@ module ietf-ac-svc {
 
   typedef encryption-profile-reference {
     type leafref {
-      path "/specific-provisioning-profiles"
-         + "/valid-provider-identifiers"
+      path "/specific-provisioning-profiles/valid-provider-identifiers"
          + "/encryption-profile-identifier/id";
     }
     description
-      "Defines a reference to an encryption profile for
-       referencing purposes.";
+      "Defines a reference to an encryption profile for referencing
+       purposes.";
   }
 
   typedef qos-profile-reference {
     type leafref {
-      path "/specific-provisioning-profiles"
-         + "/valid-provider-identifiers"
+      path "/specific-provisioning-profiles/valid-provider-identifiers"
          + "/qos-profile-identifier/id";
     }
     description
-      "Defines a reference to a QoS profile for
-       referencing purposes.";
+      "Defines a reference to a QoS profile for referencing
+       purposes.";
   }
 
   typedef bfd-profile-reference {
     type leafref {
-      path "/specific-provisioning-profiles"
-         + "/valid-provider-identifiers"
+      path "/specific-provisioning-profiles/valid-provider-identifiers"
          + "/bfd-profile-identifier/id";
     }
     description
-      "Defines a reference to a BFD profile for
-       referencing purposes.";
+      "Defines a reference to a BFD profile for referencing
+       purposes.";
   }
 
   typedef forwarding-profile-reference {
     type leafref {
-      path "/specific-provisioning-profiles"
-         + "/valid-provider-identifiers"
+      path "/specific-provisioning-profiles/valid-provider-identifiers"
          + "/forwarding-profile-identifier/id";
     }
     description
-      "Defines a reference to a forwarding profile for
-       referencing purposes.";
+      "Defines a reference to a forwarding profile for referencing
+       purposes.";
   }
 
   typedef routing-profile-reference {
     type leafref {
-      path "/specific-provisioning-profiles"
-         + "/valid-provider-identifiers"
+      path "/specific-provisioning-profiles/valid-provider-identifiers"
          + "/routing-profile-identifier/id";
     }
     description
-      "Defines a reference to a routing profile for
-       referencing purposes.";
+      "Defines a reference to a routing profile for referencing
+       purposes.";
   }
 
-  // L2 conenction
+  // L2 connection
 
   grouping l2-connection-profile {
     description
-      "Defines Layer 2 protocols and parameters that
-       can be factorized when provisioning Layer 2
-       connectivity.";
+      "Defines Layer 2 protocols and parameters that can be
+       factorized when provisioning Layer 2 connectivity.";
     container encapsulation {
       description
         "Container for Layer 2 encapsulation.";
@@ -2007,15 +2000,13 @@ module ietf-ac-svc {
         default "vpn-common:priority-tagged";
         description
           "Encapsulation type.  By default, the type
-           of the tagged interface is
-           'priority-tagged'.";
+           of the tagged interface is 'priority-tagged'.";
       }
       container dot1q {
-        when "derived-from-or-self(../type, "
-           + "'vpn-common:dot1q')" {
+        when "derived-from-or-self(../type, 'vpn-common:dot1q')" {
           description
-            "Only applies when the type of the
-             tagged interface is 'dot1q'.";
+            "Only applies when the type of the tagged interface
+             is 'dot1q'.";
         }
         description
           "Tagged interface.";
@@ -2025,8 +2016,7 @@ module ietf-ac-svc {
           }
           default "vpn-common:c-vlan";
           description
-            "Tag type.  By default, the tag type is
-             'c-vlan'.";
+            "Tag type.  By default, the tag type is 'c-vlan'.";
         }
         leaf cvlan-id {
           type uint16 {
@@ -2036,32 +2026,11 @@ module ietf-ac-svc {
             "VLAN identifier.";
         }
       }
-      /*container priority-tagged {
-        when "derived-from-or-self(../type, "
-           + "'vpn-common:priority-tagged')" {
-          description
-            "Only applies when the type of
-             the tagged interface is
-             'priority-tagged'.";
-        }
-        description
-          "Priority tagged.";
-        leaf tag-type {
-          type identityref {
-            base vpn-common:tag-type;
-          }
-          default "vpn-common:c-vlan";
-          description
-            "Tag type.  By default, the tag type is
-             'c-vlan'.";
-        }
-      }*/
       container qinq {
-        when "derived-from-or-self(../type, "
-           + "'vpn-common:qinq')" {
+        when "derived-from-or-self(../type, 'vpn-common:qinq')" {
           description
-            "Only applies when the type of the
-             tagged interface is 'qinq'.";
+            "Only applies when the type of the tagged interface
+             is 'qinq'.";
         }
         description
           "Includes QinQ parameters.";
@@ -2091,8 +2060,8 @@ module ietf-ac-svc {
 
   grouping l2-connection {
     description
-      "Defines Layer 2 protocols and parameters that
-       are used to enable AC connectivity.";
+      "Defines Layer 2 protocols and parameters that are used to enable
+       AC connectivity.";
     container encapsulation {
       description
         "Container for Layer 2 encapsulation.";
@@ -2102,16 +2071,14 @@ module ietf-ac-svc {
         }
         default "vpn-common:priority-tagged";
         description
-          "Encapsulation type.  By default, the type
-           of the tagged interface is
-           'priority-tagged'.";
+          "Encapsulation type.  By default, the type of the tagged
+           interface is 'priority-tagged'.";
       }
       container dot1q {
-        when "derived-from-or-self(../type, "
-           + "'vpn-common:dot1q')" {
+        when "derived-from-or-self(../type, 'vpn-common:dot1q')" {
           description
-            "Only applies when the type of the
-             tagged interface is 'dot1q'.";
+            "Only applies when the type of the tagged interface
+             is 'dot1q'.";
         }
         description
           "Tagged interface.";
@@ -2121,8 +2088,7 @@ module ietf-ac-svc {
           }
           default "vpn-common:c-vlan";
           description
-            "Tag type.  By default, the tag type is
-             'c-vlan'.";
+            "Tag type.  By default, the tag type is 'c-vlan'.";
         }
         leaf cvlan-id {
           type uint16 {
@@ -2148,16 +2114,14 @@ module ietf-ac-svc {
           }
           default "vpn-common:c-vlan";
           description
-            "Tag type.  By default, the tag type is
-             'c-vlan'.";
+            "Tag type.  By default, the tag type is 'c-vlan'.";
         }
       }
       container qinq {
-        when "derived-from-or-self(../type, "
-           + "'vpn-common:qinq')" {
+        when "derived-from-or-self(../type, 'vpn-common:qinq')" {
           description
-            "Only applies when the type of the
-             tagged interface is 'qinq'.";
+            "Only applies when the type of the tagged interface
+             is 'qinq'.";
         }
         description
           "Includes QinQ parameters.";
@@ -2185,40 +2149,37 @@ module ietf-ac-svc {
     }
     choice l2-service {
       description
-        "The Layer 2 connectivity service can be
-         provided by indicating a pointer to an
-         L2VPN or by specifying a Layer 2 tunnel
+        "The Layer 2 connectivity service can be provided by indicating
+         a pointer to an L2VPN or by specifying a Layer 2 tunnel
          service.";
       container l2-tunnel-service {
         description
           "Defines a Layer 2 tunnel termination.
-           It is only applicable when a tunnel is
-           required.  The supported values are
-           'pseudowire', 'vpls', and 'vxlan'.  Other
-           values may be defined, if needed.";
+           It is only applicable when a tunnel is required.
+           The supported values are 'pseudowire', 'vpls', and 'vxlan'.
+           Other values may be defined, if needed.";
         leaf type {
           type identityref {
             base l3nm:l2-tunnel-type;
           }
+
           description
-            "Selects the tunnel termination option
-             for each AC Endpoint.";
+            "Selects the tunnel termination option for each AC
+             Endpoint.";
         }
         container pseudowire {
-          when "derived-from-or-self(../type, "
-             + "'pseudowire')" {
+          when "derived-from-or-self(../type, 'pseudowire')" {
             description
-              "Only applies when the Layer 2 service
-               type is 'pseudowire'.";
+              "Only applies when the Layer 2 service type is
+               'pseudowire'.";
           }
           description
-            "Includes pseudowire termination
-             parameters.";
+            "Includes pseudowire termination parameters.";
           leaf vcid {
             type uint32;
             description
-              "Indicates a pseudowire (PW) or
-               virtual circuit (VC) identifier.";
+              "Indicates a pseudowire (PW) or virtual circuit (VC)
+               identifier.";
           }
           leaf far-end {
             type union {
@@ -2234,11 +2195,10 @@ module ietf-ac-svc {
           }
         }
         container vpls {
-          when "derived-from-or-self(../type, "
-             + "'vpls')" {
+          when "derived-from-or-self(../type, 'vpls')" {
             description
-              "Only applies when the Layer 2 service
-               type is 'vpls'.";
+              "Only applies when the Layer 2 service type is
+               'vpls'.";
           }
           description
             "VPLS termination parameters.";
@@ -2257,11 +2217,10 @@ module ietf-ac-svc {
           }
         }
         container vxlan {
-          when "derived-from-or-self(../type, "
-             + "'vxlan')" {
+          when "derived-from-or-self(../type, 'vxlan')" {
             description
-              "Only applies when the Layer 2 service
-               type is 'vxlan'.";
+              "Only applies when the Layer 2 service type is
+               'vxlan'.";
           }
           description
             "VXLAN termination parameters.";
@@ -2277,8 +2236,8 @@ module ietf-ac-svc {
             }
             default "vpn-common:static-mode";
             description
-              "Specifies the VXLAN access mode.  By
-               default, the peer mode is set to 'static-mode'.";
+              "Specifies the VXLAN access mode.  By default,
+               the peer mode is set to 'static-mode'.";
           }
           leaf-list peer-ip-address {
             type inet:ip-address;
@@ -2291,9 +2250,8 @@ module ietf-ac-svc {
         leaf l2vpn-id {
           type vpn-common:vpn-id;
           description
-            "Indicates the L2VPN service associated
-             with an Integrated Routing and Bridging
-             (IRB) interface.";
+            "Indicates the L2VPN service associated with an Integrated
+             Routing and Bridging (IRB) interface.";
         }
       }
     }
@@ -2301,9 +2259,8 @@ module ietf-ac-svc {
       if-feature "vpn-common:bearer-reference";
       type string;
       description
-        "This is an internal reference for the
-         service provider to identify the bearer
-         associated with this AC.";
+        "This is an internal reference for the service provider
+         to identify the bearer associated with this AC.";
     }
   }
 
@@ -2325,27 +2282,22 @@ module ietf-ac-svc {
         }
         description
           "Subnet prefix length expressed in bits.
-           It is applied to both local and customer
-           addresses.";
+           It is applied to both local and customer addresses.";
       }
       leaf address-allocation-type {
         type identityref {
           base l3nm:address-allocation-type;
         }
-        must "not(derived-from-or-self(current(), "
-           + "'slaac') or "
+        must "not(derived-from-or-self(current(), 'slaac') or "
            + "derived-from-or-self(current(), "
            + "'provider-dhcp-slaac'))" {
-          error-message "SLAAC is only applicable "
-                      + "to IPv6.";
+          error-message "SLAAC is only applicable to IPv6.";
         }
         description
-          "Defines how addresses are allocated to
-           the peer site.
+          "Defines how addresses are allocated to the peer site.
 
-           If there is no value for the address
-           allocation type, then IPv4 addressing
-           is not enabled.";
+           If there is no value for the address allocation type,
+           then IPv4 addressing is not enabled.";
       }
       choice allocation-type {
         description
@@ -2357,8 +2309,7 @@ module ietf-ac-svc {
           choice address-assign {
             default "number";
             description
-              "A choice for how IPv4 addresses
-               are assigned.";
+              "A choice for how IPv4 addresses are assigned.";
             case number {
               leaf number-of-dynamic-address {
                 type uint16;
@@ -2407,10 +2358,9 @@ module ietf-ac-svc {
           }
           choice provider-dhcp {
             description
-              "Parameters related to DHCP-allocated
-               addresses. IP addresses are allocated
-               by DHCP, which is provided by the
-               operator.";
+              "Parameters related to DHCP-allocated addresses. IP
+               addresses are allocated by DHCP, which is provided by
+               the operator.";
             leaf dhcp-service-type {
               type enumeration {
                 enum server {
@@ -2419,13 +2369,13 @@ module ietf-ac-svc {
                 }
                 enum relay {
                   description
-                    "Local DHCP relay.  DHCP requests
-                     are relayed to a provider's server.";
+                    "Local DHCP relay.  DHCP requests are relayed to
+                     a provider's server.";
                 }
               }
               description
-                "Indicates the type of DHCP service to
-                 be enabled on this access.";
+                "Indicates the type of DHCP service to be enabled on
+                 this AC.";
             }
           }
           choice dhcp-relay {
@@ -2444,8 +2394,7 @@ module ietf-ac-svc {
         }
         case static-addresses {
           description
-            "Lists the IPv4 addresses that are
-             used.";
+            "Lists the IPv4 addresses that are used.";
           leaf primary-address {
             type leafref {
               path "../address/address-id";
@@ -2486,8 +2435,7 @@ module ietf-ac-svc {
         }
         description
           "Subnet prefix length expressed in bits.
-           It is applied to both local and customer
-           addresses.";
+           It is applied to both local and customer addresses.";
       }
       leaf address-allocation-type {
         type identityref {
@@ -2495,9 +2443,8 @@ module ietf-ac-svc {
         }
         description
           "Defines how addresses are allocated.
-           If there is no value for the address
-           allocation type, then IPv6 addressing is
-           disabled.";
+           If there is no value for the address allocation type,
+           then IPv6 addressing is disabled.";
       }
       choice allocation-type {
         description
@@ -2569,8 +2516,8 @@ module ietf-ac-svc {
                 }
                 enum relay {
                   description
-                    "Local DHCP relay.  DHCP requests
-                     are relayed to a provider's server.";
+                    "Local DHCP relay.  DHCP requests are relayed
+                     to a provider's server.";
                 }
               }
               description
@@ -2661,8 +2608,7 @@ module ietf-ac-svc {
         }
       }
       container bgp {
-        when "derived-from-or-self(../type, "
-           + "'vpn-common:bgp-routing')" {
+        when "derived-from-or-self(../type, 'vpn-common:bgp-routing')" {
           description
             "Only applies when the protocol is BGP.";
         }
@@ -2685,17 +2631,17 @@ module ietf-ac-svc {
               type inet:as-number;
               mandatory true;
               description
-                "Indicates the customer's ASN when
-                 the customer requests BGP routing.";
+                "Indicates the customer's ASN when the customer
+                 requests BGP routing.";
             }
             leaf address-family {
               type identityref {
                 base vpn-common:address-family;
               }
               description
-                "This node contains the address families
-                 to be activated.  'dual-stack' means
-                 that both IPv4 and IPv6 will be activated.";
+                "This node contains the address families to be
+                 activated. 'dual-stack' means that both IPv4 and IPv6e
+                 will b activated.";
             }
           }
         }
@@ -2713,8 +2659,8 @@ module ietf-ac-svc {
             base vpn-common:address-family;
           }
           description
-            "Indicates whether IPv4, IPv6, or
-             both are to be activated.";
+            "Indicates whether IPv4, IPv6, or both are to be
+             activated.";
         }
         leaf area-id {
           type yang:dotted-quad;
@@ -2722,21 +2668,18 @@ module ietf-ac-svc {
           description
             "Area ID.";
           reference
-            "RFC 4577: OSPF as the Provider/Customer
-                       Edge Protocol for BGP/MPLS IP
-                       Virtual Private Networks
+            "RFC 4577: OSPF as the Provider/Customer Edge Protocol
+                       for BGP/MPLS IP Virtual Private Networks
                        (VPNs), Section 4.2.3
-             RFC 6565: OSPFv3 as a Provider Edge to
-                       Customer Edge (PE-CE) Routing
-                       Protocol, Section 4.2";
+             RFC 6565: OSPFv3 as a Provider Edge to Customer Edge
+                       (PE-CE) Routing Protocol, Section 4.2";
         }
         leaf metric {
           type uint16;
           default "1";
           description
-            "Metric of the AC.  It is used
-             in the routing state calculation and
-             path selection.";
+            "Metric of the AC.  It is used in the routing state
+             calculation and path selection.";
         }
       }
       container isis {
@@ -2752,8 +2695,8 @@ module ietf-ac-svc {
             base vpn-common:address-family;
           }
           description
-            "Indicates whether IPv4, IPv6, or both
-             are to be activated.";
+            "Indicates whether IPv4, IPv6, or both are to
+             be activated.";
         }
         leaf area-address {
           type l3nm:area-address;
@@ -2791,9 +2734,9 @@ module ietf-ac-svc {
         description
           "Configuration specific to VRRP.";
         reference
-          "RFC 5798: Virtual Router Redundancy
-                     Protocol (VRRP) Version 3 for
-                     IPv4 and IPv6";
+          "RFC 5798: Virtual Router Redundancy Protocol (VRRP)
+                     Version 3 for IPv4 and IPv6";
+
         leaf address-family {
           type identityref {
             base vpn-common:address-family;
@@ -2868,8 +2811,7 @@ module ietf-ac-svc {
             leaf lan-tag {
               type string;
               description
-                "Internal tag to be used in VPN
-                 policies.";
+                "Internal tag to be used in VPN policies.";
             }
             leaf next-hop {
               type union {
@@ -2877,11 +2819,10 @@ module ietf-ac-svc {
                 type l3nm:predefined-next-hop;
               }
               description
-                "The next hop that is to be used
-                 for the static route.  This may be
-                 specified as an IP address or a
-                 predefined next-hop type (e.g.,
-                 'discard' or 'local-link').";
+                "The next hop that is to be used for the static route.
+                 This may be specified as an IP address or a
+                 predefined next-hop type (e.g., 'discard' or
+                 'local-link').";
             }
             uses vpn-common:service-status;
           }
@@ -2898,8 +2839,7 @@ module ietf-ac-svc {
             leaf lan-tag {
               type string;
               description
-                "Internal tag to be used in VPN
-                 policies.";
+                "Internal tag to be used in VPN policies.";
             }
             leaf next-hop {
               type union {
@@ -2907,11 +2847,9 @@ module ietf-ac-svc {
                 type l3nm:predefined-next-hop;
               }
               description
-                "The next hop that is to be used for
-                 the static route.  This may be
-                 specified as an IP address or a
-                 predefined next-hop type (e.g.,
-                 'discard' or 'local-link').";
+                "The next hop that is to be used for the static route.
+                 This may be specified as an IP address or a predefined
+                 next-hop type (e.g., 'discard' or 'local-link').";
             }
             uses vpn-common:service-status;
           }
@@ -2949,8 +2887,8 @@ module ietf-ac-svc {
               type inet:as-number;
               mandatory true;
               description
-                "Indicates the customer's ASN when
-                 the customer requests BGP routing.";
+                "Indicates the customer's ASN when the customer
+                 requests BGP routing.";
             }
             leaf address-family {
               type identityref {
@@ -3028,21 +2966,18 @@ module ietf-ac-svc {
           description
             "Area ID.";
           reference
-            "RFC 4577: OSPF as the Provider/Customer
-                       Edge Protocol for BGP/MPLS IP
-                       Virtual Private Networks
+            "RFC 4577: OSPF as the Provider/Customer Edge Protocol
+                       for BGP/MPLS IP Virtual Private Networks
                        (VPNs), Section 4.2.3
-             RFC 6565: OSPFv3 as a Provider Edge to
-                       Customer Edge (PE-CE) Routing
-                       Protocol, Section 4.2";
+             RFC 6565: OSPFv3 as a Provider Edge to Customer Edge
+                       (PE-CE) Routing Protocol, Section 4.2";
         }
         leaf metric {
           type uint16;
           default "1";
           description
-            "Metric of the PE-CE link.  It is used
-             in the routing state calculation and
-             path selection.";
+            "Metric of the ACE.  It is used in the routing state
+             calculation and path selection.";
         }
         uses vpn-common:service-status;
       }
@@ -3075,8 +3010,7 @@ module ietf-ac-svc {
            + "'vpn-common:rip-routing')" {
           description
             "Only applies when the protocol is RIP.
-             For IPv4, the model assumes that RIP
-             version 2 is used.";
+             For IPv4, the model assumes that RIP version 2 is used.";
         }
         description
           "Configuration specific to RIP routing.";
@@ -3085,8 +3019,8 @@ module ietf-ac-svc {
             base vpn-common:address-family;
           }
           description
-            "Indicates whether IPv4, IPv6, or both
-             address families are to be activated.";
+            "Indicates whether IPv4, IPv6, or both address families
+             are to be activated.";
         }
         uses vpn-common:service-status;
       }
@@ -3147,12 +3081,11 @@ module ietf-ac-svc {
     // OAM
     container oam {
       description
-        "Defines the Operations, Administration,
-         and Maintenance (OAM) mechanisms used.
+        "Defines the Operations, Administration, and Maintenance
+         (OAM) mechanisms used.
 
          BFD is set as a fault detection mechanism,
-         but other mechanisms can be defined in the
-         future.";
+         but other mechanisms can be defined in the future.";
       container bfd {
         if-feature "vpn-common:bfd";
         description
@@ -3188,9 +3121,8 @@ module ietf-ac-svc {
           type boolean;
           default "false";
           description
-            "If set to 'true', traffic encryption on
-             the connection is required.  Otherwise,
-             it is disabled.";
+            "If set to 'true', traffic encryption on the connection is
+             required.  Otherwise, it is disabled.";
         }
         leaf layer {
           when "../enabled = 'true'" {
@@ -3205,20 +3137,20 @@ module ietf-ac-svc {
             enum layer3 {
               description
                 "Encryption occurs at Layer 3.
-                 For example, IPsec may be used when
-                 a customer requests Layer 3 encryption.";
+                 For example, IPsec may be used when a customer
+                 requests Layer 3 encryption.";
             }
           }
           description
-            "Indicates the layer on which encryption
-             is applied.";
+            "Indicates the layer on which encryption is
+             applied.";
         }
       }
       container encryption-profile {
         when "../encryption/enabled = 'true'" {
           description
-            "Indicates the layer on which encryption
-             is enabled.";
+            "Indicates the layer on which encryption is
+             enabled.";
         }
         description
           "Container for the encryption profile.";
@@ -3266,12 +3198,10 @@ module ietf-ac-svc {
     // OAM
     container oam {
       description
-        "Defines the Operations, Administration,
-         and Maintenance (OAM) mechanisms used.
+        "Defines the OAM mechanisms used.
 
-         BFD is set as a fault detection mechanism,
-         but other mechanisms can be defined in the
-         future.";
+         BFD is set as a fault detection mechanism, but
+         other mechanisms can be defined in the future.";
       container bfd {
         if-feature "vpn-common:bfd";
         description
@@ -3306,9 +3236,8 @@ module ietf-ac-svc {
           type boolean;
           default "false";
           description
-            "If set to 'true', traffic encryption on
-             the connection is required.  Otherwise,
-             it is disabled.";
+            "If set to 'true', traffic encryption on the connection
+             is required.  Otherwise, it is disabled.";
         }
         leaf layer {
           when "../enabled = 'true'" {
@@ -3328,15 +3257,13 @@ module ietf-ac-svc {
             }
           }
           description
-            "Indicates the layer on which encryption
-             is applied.";
+            "Indicates the layer on which encryption is applied.";
         }
       }
       container encryption-profile {
         when "../encryption/enabled = 'true'" {
           description
-            "Indicates the layer on which encryption
-             is enabled.";
+            "Indicates the layer on which encryption is enabled.";
         }
         description
           "Container for the encryption profile.";
@@ -3357,14 +3284,12 @@ module ietf-ac-svc {
 
   container specific-provisioning-profiles {
     description
-      "Contains a set of valid profiles to reference
-       fro an AC.";
+      "Contains a set of valid profiles to reference for an AC.";
     uses vpn-common:vpn-profile-cfg;
   }
   container service-provisioning-profiles {
     description
-      "Contains a set of valid profiles to reference
-       fro an AC.";
+      "Contains a set of valid profiles to reference for an AC.";
     list service-profile-identifier {
       key "id";
       description
@@ -3415,28 +3340,28 @@ module ietf-ac-svc {
       leaf requested-ac-start {
         type yang:date-and-time;
         description
-          "Indicates the requested date and
-           time when the AC is expected to be active.";
+          "Indicates the requested date and time when the AC is
+           expected to be active.";
       }
       leaf requested-ac-stop {
         type yang:date-and-time;
         description
-          "Indicates the requested date and
-           time when the AC is expected to be disabled.";
+          "Indicates the requested date and time when the AC is
+           expected to be disabled.";
       }
       leaf actual-ac-start {
         type yang:date-and-time;
         config false;
         description
-          "Indciates the actual date and time when the
-           AC actually was enabled.";
+          "Indciates the actual date and time when the AC
+           actually was enabled.";
       }
       leaf actual-ac-stop {
         type yang:date-and-time;
         config false;
         description
-          "Indciates the actual date and time when the
-           AC actually was disabled.";
+          "Indciates the actual date and time when the AC
+           actually was disabled.";
       }
       leaf-list peer-sap-id {
         type string;
