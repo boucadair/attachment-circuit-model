@@ -799,7 +799,7 @@ module: ietf-ac-svc
                "VLAN identifier.";
            }
          }
-         container priority-tagged {
+         /*container priority-tagged {
            when "derived-from-or-self(../type, "
               + "'vpn-common:priority-tagged')" {
              description
@@ -818,7 +818,7 @@ module: ietf-ac-svc
                "Tag type.  By default, the tag type is
                 'c-vlan'.";
            }
-         }
+         }*/
          container qinq {
            when "derived-from-or-self(../type, "
               + "'vpn-common:qinq')" {
@@ -1701,6 +1701,13 @@ module: ietf-ac-svc
                  description
                    "Name of the BGP peer-group.";
                }
+               leaf local-address {
+                 type inet:ip-address;
+                 config false;
+                 description
+                   "The local IP address that will be used to establish
+                    the BGP session.";
+               }
                leaf peer-as {
                  type inet:as-number;
                  mandatory true;
@@ -1727,6 +1734,13 @@ module: ietf-ac-svc
                type inet:ip-address;
                description
                  "The remote IP address of this entry's BGP peer.";
+             }
+             leaf local-address {
+               type inet:ip-address;
+               config false;
+               description
+                 "The local IP address that will be used to establish
+                  the BGP session.";
              }
              leaf peer-group {
                type leafref {
