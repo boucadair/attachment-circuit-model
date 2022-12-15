@@ -2345,8 +2345,8 @@ module: ietf-ac-svc
         +--ro actual-ac-start?      yang:date-and-time
         +--ro actual-ac-stop?       yang:date-and-time
         +--rw peer-sap-id*          string
-        +--rw ac-global-profile*    -&gt; /attachment-circuits/ac-global-profile/id
-        +--rw ac-node-profile*      -&gt; /attachment-circuits/ac-node-group/id
+        +--rw ac-global-profile*    ac-global-profile-reference
+        +--rw ac-node-profile*      ac-node-group-reference
         +--rw name                  string
         +--rw l2-connection
         |  +--rw encapsulation
@@ -2674,8 +2674,29 @@ module ietf-ac-svc {
       path "/ac-svc:attachment-circuits/ac-svc:ac/ac-svc:name";
     }
     description
-      "Defines a reference to an attachment circuit by other
-       modules.";
+      "Defines a reference to an attachment circuit that can be used
+       by other modules.";
+  }
+
+  typedef ac-global-profile-reference {
+    type leafref {
+      path "/ac-svc:attachment-circuits/ac-svc:ac-global-profile"
+          + "/ac-svc:id";
+    }
+    description
+      "Defines a reference to a gloabl attachment circuit that can be used
+       by other modules.";
+  }
+
+
+  typedef ac-node-group-reference {
+    type leafref {
+      path "/ac-svc:attachment-circuits/ac-svc:ac-node-group"
+          + "/ac-svc:id";
+    }
+    description
+      "Defines a reference to a per-node attachment circuit that can be used
+       by other modules.";
   }
 
   typedef encryption-profile-reference {
@@ -4159,7 +4180,7 @@ module ietf-ac-svc {
           description
             "Choice for the encryption profile.";
           case customer-profile {
-            leaf customer-key-chain {
+           leaf customer-key-chain {
               type key-chain:key-chain-ref;
               description
                 "Customer-supplied key chain.";
@@ -4181,7 +4202,7 @@ module ietf-ac-svc {
     list service-profile-identifier {
       key "id";
       description
-        "List of generci service profile identifiers.";
+        "List of generic service profile identifiers.";
       leaf id {
         type string;
         description
@@ -4258,16 +4279,18 @@ module ietf-ac-svc {
           "One or more peer SAPs can be indicated.";
       }
       leaf-list ac-global-profile {
-        type leafref {
+        /*type leafref {
           path "/attachment-circuits/ac-global-profile/id";
-        }
+        }*/
+        type ac-global-profile-reference;
         description
           "A reference to an AC profile.";
       }
       leaf-list ac-node-profile {
-        type leafref {
+        /*type leafref {
           path "/attachment-circuits/ac-node-group/id";
-        }
+        }*/
+        type ac-node-group-reference;
         description
           "A reference to a per-node AC profile.";
       }
