@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2022-12-13T00:44:01.844548+00:00",
+  "timestamp": "2022-12-15T00:42:39.011483+00:00",
   "repo": "boucadair/attachment-circuit-model",
   "labels": [
     {
@@ -106,6 +106,119 @@
       },
       "comments": [],
       "reviews": []
+    },
+    {
+      "number": 3,
+      "id": "PR_kwDOIiAkrc5FVFeh",
+      "title": "changed bgp configuration with examples",
+      "url": "https://github.com/boucadair/attachment-circuit-model/pull/3",
+      "state": "MERGED",
+      "author": "robric",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "peer-group vs profiles ?",
+      "createdAt": "2022-12-13T14:56:38Z",
+      "updatedAt": "2022-12-14T14:23:30Z",
+      "baseRepository": "boucadair/attachment-circuit-model",
+      "baseRefName": "main",
+      "baseRefOid": "b0e96b23d185ca3db22ad76adc27fce390ab7274",
+      "headRepository": "robric/attachment-circuit-model",
+      "headRefName": "patch-1",
+      "headRefOid": "6f590e41b910e7c62521420452f56076040a6e9d",
+      "closedAt": "2022-12-13T15:22:09Z",
+      "mergedAt": "2022-12-13T15:22:09Z",
+      "mergedBy": "boucadair",
+      "mergeCommit": {
+        "oid": "1850c8d343c85f9c16439e9fe63b90f4fe9c44fa"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIiAkrc5Ide4Y",
+          "commit": {
+            "abbreviatedOid": "6f590e4"
+          },
+          "author": "boucadair",
+          "authorAssociation": "OWNER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2022-12-13T15:14:34Z",
+          "updatedAt": "2022-12-13T15:21:55Z",
+          "comments": [
+            {
+              "originalPosition": 4,
+              "body": "Good point. The address should be a read-only then. ",
+              "createdAt": "2022-12-13T15:14:34Z",
+              "updatedAt": "2022-12-13T15:21:55Z"
+            },
+            {
+              "originalPosition": 9,
+              "body": "FWIW, the current version we have include the following at profile level\r\n\r\n```\r\n`     |  |     +--rw bgp\r\n     |  |     |  +--rw peer-groups\r\n     |  |     |     +--rw peer-group* [name]\r\n     |  |     |        +--rw name              string\r\n     |  |     |        +--rw peer-as           inet:as-number\r\n     |  |     |        +--rw address-family?   identityref`\r\n```",
+              "createdAt": "2022-12-13T15:17:22Z",
+              "updatedAt": "2022-12-13T15:21:55Z"
+            },
+            {
+              "originalPosition": 13,
+              "body": "How to reference a peer-group instance?",
+              "createdAt": "2022-12-13T15:19:43Z",
+              "updatedAt": "2022-12-13T15:21:55Z"
+            },
+            {
+              "originalPosition": 17,
+              "body": "I'm afraid the neighbor-profile needs to be further defined",
+              "createdAt": "2022-12-13T15:20:12Z",
+              "updatedAt": "2022-12-13T15:21:55Z"
+            },
+            {
+              "originalPosition": 51,
+              "body": "To ease identifying required changes, the structure we currently have in the yang file is provided below: \r\n\r\n```\r\n        |     +--rw bgp\r\n        |     |  +--rw peer-groups\r\n        |     |  |  +--rw peer-group* [name]\r\n        |     |  |     +--rw name              string\r\n        |     |  |     +--rw peer-as           inet:as-number\r\n        |     |  |     +--rw address-family?   identityref\r\n        |     |  +--rw neighbor* [remote-address]\r\n        |     |     +--rw remote-address    inet:ip-address\r\n        |     |     +--rw peer-group?       -> ../../peer-groups/peer-group/name\r\n        |     |     +--rw peer-as           inet:as-number\r\n        |     |     +--rw address-family?   identityref\r\n        |     |     +--rw status\r\n        |     |        +--rw admin-status\r\n        |     |        |  +--rw status?        identityref\r\n        |     |        |  +--rw last-change?   yang:date-and-time\r\n        |     |        +--ro oper-status\r\n        |     |           +--ro status?        identityref\r\n        |     |           +--ro last-change?   yang:date-and-time\r\n```",
+              "createdAt": "2022-12-13T15:21:51Z",
+              "updatedAt": "2022-12-13T15:21:55Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIiAkrc5IiuTm",
+          "commit": {
+            "abbreviatedOid": "6f590e4"
+          },
+          "author": "robric",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-12-14T09:15:38Z",
+          "updatedAt": "2022-12-14T09:15:39Z",
+          "comments": [
+            {
+              "originalPosition": 4,
+              "body": "100% agree !",
+              "createdAt": "2022-12-14T09:15:38Z",
+              "updatedAt": "2022-12-14T09:15:39Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIiAkrc5Ikm2e",
+          "commit": {
+            "abbreviatedOid": "6f590e4"
+          },
+          "author": "boucadair",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-12-14T14:23:29Z",
+          "updatedAt": "2022-12-14T14:23:30Z",
+          "comments": [
+            {
+              "originalPosition": 4,
+              "body": "This is now reflected in the YANG module. ",
+              "createdAt": "2022-12-14T14:23:29Z",
+              "updatedAt": "2022-12-14T14:23:30Z"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
