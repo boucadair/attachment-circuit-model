@@ -1180,6 +1180,15 @@ svg :is([stroke="fill"], [fill^="#fff"]) {
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.4">
                 <p id="section-toc.1-1.4.2.4.1"><a href="#section-4.4" class="auto internal xref">4.4</a>.  <a href="#name-request-an-ac-for-a-knwon-p" class="internal xref">Request An AC for a Knwon Peer SAP</a></p>
 </li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.5">
+                <p id="section-toc.1-1.4.2.5.1"><a href="#section-4.5" class="auto internal xref">4.5</a>.  <a href="#name-one-ce-two-acs" class="internal xref">One CE, Two ACs</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.6">
+                <p id="section-toc.1-1.4.2.6.1"><a href="#section-4.6" class="auto internal xref">4.6</a>.  <a href="#name-illustrate-the-use-of-globa" class="internal xref">Illustrate the Use of Global Profiles</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.7">
+                <p id="section-toc.1-1.4.2.7.1"><a href="#section-4.7" class="auto internal xref">4.7</a>.  <a href="#name-illustrate-the-use-of-per-n" class="internal xref">Illustrate the Use of Per-Node Profiles</a></p>
+</li>
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5">
@@ -1443,7 +1452,7 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
         <h3 id="name-request-an-ac-for-a-knwon-p">
 <a href="#section-4.4" class="section-number selfRef">4.4. </a><a href="#name-request-an-ac-for-a-knwon-p" class="section-name selfRef">Request An AC for a Knwon Peer SAP</a>
         </h3>
-<p id="section-4.4-1">An example of a request to create a simple AC, when the peer SAP is known, is shown in {ac-known-ps}}.<a href="#section-4.4-1" class="pilcrow">¶</a></p>
+<p id="section-4.4-1">An example of a request to create a simple AC, when the peer SAP is known, is shown in <a href="#ac-known-ps" class="auto internal xref">Figure 3</a>.<a href="#section-4.4-1" class="pilcrow">¶</a></p>
 <span id="name-example-of-a-message-body-to"></span><div id="ac-known-ps">
 <figure id="figure-3">
           <div class="alignLeft art-text artwork" id="section-4.4-2.1">
@@ -1474,7 +1483,337 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 </pre>
 </div>
 <figcaption><a href="#figure-3" class="selfRef">Figure 3</a>:
-<a href="#name-example-of-a-message-body-to" class="selfRef">Example of a Message Body to Request an AC for a Knwon Peer SAP</a>
+<a href="#name-example-of-a-message-body-to" class="selfRef">Example of a Message Body to Request an AC with a Peer SAP</a>
+          </figcaption></figure>
+</div>
+</section>
+</div>
+<div id="one-ce-two-acs">
+<section id="section-4.5">
+        <h3 id="name-one-ce-two-acs">
+<a href="#section-4.5" class="section-number selfRef">4.5. </a><a href="#name-one-ce-two-acs" class="section-name selfRef">One CE, Two ACs</a>
+        </h3>
+<p id="section-4.5-1">An example of a request to create two ACs to service the same CE on the same link is shown in <a href="#two-acs-same-ce" class="auto internal xref">Figure 4</a>.<a href="#section-4.5-1" class="pilcrow">¶</a></p>
+<span id="name-example-of-a-message-body-to-"></span><div id="two-acs-same-ce">
+<figure id="figure-4">
+          <div class="alignLeft art-text artwork" id="section-4.5-2.1">
+<pre>
+{
+  "ietf-ac-svc:attachment-circuits": {
+    "ac": [
+      {
+        "name": "ac1",
+        "description": "a first ac with a same peer node",
+        "l2-connection": {
+          "encapsulation": {
+            "type": "ietf-vpn-common:dot1q",
+            "dot1q": {
+              "cvlan-id": 1
+            }
+          }
+        },
+        "ip-connection": {
+          "ipv4": {
+            "local-address": "192.0.2.1",
+            "prefix-length": 30,
+            "address-allocation-type": "ietf-l3vpn-ntw:static-address",
+            "primary-address": "1",
+            "address": [
+              {
+                "address-id": "1",
+                "customer-address": "192.0.2.2"
+              }
+            ]
+          },
+          "ipv6": {
+            "local-address": "2001:db8::1",
+            "prefix-length": 64,
+            "address-allocation-type": "ietf-l3vpn-ntw:static-address",
+            "primary-address": "1",
+            "address": [
+              {
+                "address-id": "1",
+                "customer-address": "2001:db8::2"
+              }
+            ]
+          }
+        },
+        "routing-protocols": {
+          "routing-protocol": [
+            {
+              "id": "1",
+              "type": "ietf-vpn-common:direct"
+            }
+          ]
+        }
+      },
+      {
+        "name": "ac2",
+        "description": "a second ac with a same peer node",
+        "l2-connection": {
+          "encapsulation": {
+            "type": "ietf-vpn-common:dot1q",
+            "dot1q": {
+              "cvlan-id": 2
+            }
+          }
+        },
+        "ip-connection": {
+          "ipv4": {
+            "local-address": "192.0.2.1",
+            "prefix-length": 30,
+            "address-allocation-type": "ietf-l3vpn-ntw:static-address",
+            "primary-address": "1",
+            "address": [
+              {
+                "address-id": "1",
+                "customer-address": "192.0.2.2"
+              }
+            ]
+          },
+          "ipv6": {
+            "local-address": "2001:db8::1",
+            "prefix-length": 64,
+            "address-allocation-type": "ietf-l3vpn-ntw:static-address",
+            "primary-address": "1",
+            "address": [
+              {
+                "address-id": "1",
+                "customer-address": "2001:db8::2"
+              }
+            ]
+          }
+        },
+        "routing-protocols": {
+          "routing-protocol": [
+            {
+              "id": "1",
+              "type": "ietf-vpn-common:direct"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
+</pre>
+</div>
+<figcaption><a href="#figure-4" class="selfRef">Figure 4</a>:
+<a href="#name-example-of-a-message-body-to-" class="selfRef">Example of a Message Body to Request Two ACes on The Same Link</a>
+          </figcaption></figure>
+</div>
+</section>
+</div>
+<div id="illustrate-the-use-of-global-profiles">
+<section id="section-4.6">
+        <h3 id="name-illustrate-the-use-of-globa">
+<a href="#section-4.6" class="section-number selfRef">4.6. </a><a href="#name-illustrate-the-use-of-globa" class="section-name selfRef">Illustrate the Use of Global Profiles</a>
+        </h3>
+<p id="section-4.6-1">An example of a request to create two ACs to service the same CE on the same link is shown in <a href="#two-acs-same-ce-profile" class="auto internal xref">Figure 5</a>. Unlike <a href="#two-acs-same-ce" class="auto internal xref">Figure 4</a>, this example factorizes some of the redundant data.<a href="#section-4.6-1" class="pilcrow">¶</a></p>
+<span id="name-example-of-a-message-body-to-r"></span><div id="two-acs-same-ce-profile">
+<figure id="figure-5">
+          <div class="alignLeft art-text artwork" id="section-4.6-2.1">
+<pre>
+{
+  "ietf-ac-svc:attachment-circuits": {
+    "ac-global-profile": [
+      {
+        "id": "simple-profile",
+        "l2-connection": {
+          "encapsulation": {
+            "type": "ietf-vpn-common:dot1q"
+          }
+        },
+        "ip-connection": {
+          "ipv4": {
+            "address-allocation-type": "ietf-l3vpn-ntw:static-address"
+          },
+          "ipv6": {
+            "address-allocation-type": "ietf-l3vpn-ntw:static-address"
+          }
+        },
+        "routing-protocols": {
+          "routing-protocol": [
+            {
+              "id": "1",
+              "type": "ietf-vpn-common:direct"
+            }
+          ]
+        }
+      }
+    ],
+    "ac": [
+      {
+        "name": "ac1",
+        "description": "a first ac with a same peer node",
+        "ac-global-profile": ["simple-profile"],
+        "l2-connection": {
+          "encapsulation": {
+            "dot1q": {
+              "cvlan-id": 1
+            }
+          }
+        },
+        "ip-connection": {
+          "ipv4": {
+            "local-address": "192.0.2.1",
+            "prefix-length": 30,
+            "primary-address": "1",
+            "address": [
+              {
+                "address-id": "1",
+                "customer-address": "192.0.2.2"
+              }
+            ]
+          },
+          "ipv6": {
+            "local-address": "2001:db8::1",
+            "prefix-length": 64,
+            "primary-address": "1",
+            "address": [
+              {
+                "address-id": "1",
+                "customer-address": "2001:db8::2"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "name": "ac2",
+        "description": "a second ac with a same peer node",
+        "ac-global-profile": ["simple-profile"],
+        "l2-connection": {
+          "encapsulation": {
+            "dot1q": {
+              "cvlan-id": 2
+            }
+          }
+        },
+        "ip-connection": {
+          "ipv4": {
+            "local-address": "192.0.2.1",
+            "prefix-length": 30,
+            "primary-address": "1",
+            "address": [
+              {
+                "address-id": "1",
+                "customer-address": "192.0.2.2"
+              }
+            ]
+          },
+          "ipv6": {
+            "local-address": "2001:db8::1",
+            "prefix-length": 64,
+            "primary-address": "1",
+            "address": [
+              {
+                "address-id": "1",
+                "customer-address": "2001:db8::2"
+              }
+            ]
+          }
+        }
+      }
+    ]
+  }
+}
+</pre>
+</div>
+<figcaption><a href="#figure-5" class="selfRef">Figure 5</a>:
+<a href="#name-example-of-a-message-body-to-r" class="selfRef">Example of a Message Body to Request Two ACes on The Same Link (Global Profile</a>
+          </figcaption></figure>
+</div>
+</section>
+</div>
+<div id="illustrate-the-use-of-per-node-profiles">
+<section id="section-4.7">
+        <h3 id="name-illustrate-the-use-of-per-n">
+<a href="#section-4.7" class="section-number selfRef">4.7. </a><a href="#name-illustrate-the-use-of-per-n" class="section-name selfRef">Illustrate the Use of Per-Node Profiles</a>
+        </h3>
+<p id="section-4.7-1">An example of a request to create two ACs to service the same CE on the same link is shown in <a href="#two-acs-same-ce-node-profile" class="auto internal xref">Figure 6</a>. Unlike <a href="#two-acs-same-ce" class="auto internal xref">Figure 4</a>, this example factorizes all redundant data.<a href="#section-4.7-1" class="pilcrow">¶</a></p>
+<span id="name-example-of-a-message-body-to-re"></span><div id="two-acs-same-ce-node-profile">
+<figure id="figure-6">
+          <div class="alignLeft art-text artwork" id="section-4.7-2.1">
+<pre>
+{
+  "ietf-ac-svc:attachment-circuits": {
+    "ac-node-group": [
+      {
+        "id": "simple-node-profile",
+        "l2-connection": {
+          "encapsulation": {
+            "type": "ietf-vpn-common:dot1q"
+          }
+        },
+        "ip-connection": {
+          "ipv4": {
+            "address-allocation-type": "ietf-l3vpn-ntw:static-address",
+            "local-address": "192.0.2.1",
+            "prefix-length": 30,
+            "primary-address": "1",
+            "address": [
+              {
+                "address-id": "1",
+                "customer-address": "192.0.2.2"
+              }
+            ]
+          },
+          "ipv6": {
+            "address-allocation-type": "ietf-l3vpn-ntw:static-address",
+            "local-address": "2001:db8::1",
+            "prefix-length": 64,
+            "primary-address": "1",
+            "address": [
+              {
+                "address-id": "1",
+                "customer-address": "2001:db8::2"
+              }
+            ]
+          }
+        },
+        "routing-protocols": {
+          "routing-protocol": [
+            {
+              "id": "1",
+              "type": "ietf-vpn-common:direct"
+            }
+          ]
+        }
+      }
+    ],
+    "ac": [
+      {
+        "name": "ac1",
+        "description": "a first ac with a same peer node",
+        "ac-node-profile": ["simple-node-profile"],
+        "l2-connection": {
+          "encapsulation": {
+            "dot1q": {
+              "cvlan-id": 1
+            }
+          }
+        }
+      },
+      {
+        "name": "ac2",
+        "description": "a second ac with a same peer node",
+        "ac-node-profile": ["simple-node-profile"],
+        "l2-connection": {
+          "encapsulation": {
+            "dot1q": {
+              "cvlan-id": 2
+            }
+          }
+        }
+     }
+    ]
+  }
+}
+</pre>
+</div>
+<figcaption><a href="#figure-6" class="selfRef">Figure 6</a>:
+<a href="#name-example-of-a-message-body-to-re" class="selfRef">Example of a Message Body to Request Two ACes on The Same Link (Node Profile</a>
           </figcaption></figure>
 </div>
 </section>
@@ -1492,7 +1831,7 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 <a href="#section-5.1" class="section-number selfRef">5.1. </a><a href="#name-overall-structure-of-the-mo" class="section-name selfRef">Overall Structure of the Module</a>
         </h3>
 <span id="name-overall-ac-service-tree-str"></span><div id="o-svc-tree">
-<figure id="figure-4">
+<figure id="figure-7">
           <div class="alignLeft art-text artwork" id="section-5.1-1.1">
 <pre>
 module: ietf-ac-svc
@@ -1522,7 +1861,7 @@ module: ietf-ac-svc
            ...
 </pre>
 </div>
-<figcaption><a href="#figure-4" class="selfRef">Figure 4</a>:
+<figcaption><a href="#figure-7" class="selfRef">Figure 7</a>:
 <a href="#name-overall-ac-service-tree-str" class="selfRef">Overall AC Service Tree Structure</a>
           </figcaption></figure>
 </div>
@@ -1539,9 +1878,9 @@ module: ietf-ac-svc
           <h4 id="name-description">
 <a href="#section-5.2.1" class="section-number selfRef">5.2.1. </a><a href="#name-description" class="section-name selfRef">Description</a>
           </h4>
-<p id="section-5.2.1-1">The 'specific-provisioning-profiles' container (<a href="#gp-svc-tree" class="auto internal xref">Figure 5</a>) can be used by a service provider to maintain a set of specific profiles that are similar to those defined in <span>[<a href="#RFC9181" class="cite xref">RFC9181</a>]</span>. The exact definition of the profiles is local to each service provider. The model only includes an identifier for these profiles in order to facilitate identifying and binding local policies when building an AC.<a href="#section-5.2.1-1" class="pilcrow">¶</a></p>
+<p id="section-5.2.1-1">The 'specific-provisioning-profiles' container (<a href="#gp-svc-tree" class="auto internal xref">Figure 8</a>) can be used by a service provider to maintain a set of specific profiles that are similar to those defined in <span>[<a href="#RFC9181" class="cite xref">RFC9181</a>]</span>. The exact definition of the profiles is local to each service provider. The model only includes an identifier for these profiles in order to facilitate identifying and binding local policies when building an AC.<a href="#section-5.2.1-1" class="pilcrow">¶</a></p>
 <span id="name-service-proviles"></span><div id="gp-svc-tree">
-<figure id="figure-5">
+<figure id="figure-8">
             <div class="alignLeft art-text artwork" id="section-5.2.1-2.1">
 <pre>
 module: ietf-ac-svc
@@ -1572,11 +1911,11 @@ module: ietf-ac-svc
         ...
 </pre>
 </div>
-<figcaption><a href="#figure-5" class="selfRef">Figure 5</a>:
+<figcaption><a href="#figure-8" class="selfRef">Figure 8</a>:
 <a href="#name-service-proviles" class="selfRef">Service Proviles</a>
             </figcaption></figure>
 </div>
-<p id="section-5.2.1-3">As shown in <a href="#gp-svc-tree" class="auto internal xref">Figure 5</a>, two profile types can be defined: 'specific-provisioning-profiles' and 'service-provisioning-profiles'. Whether only specific profiles, service profiles, or a combination thereff are used is local to each service provider.<a href="#section-5.2.1-3" class="pilcrow">¶</a></p>
+<p id="section-5.2.1-3">As shown in <a href="#gp-svc-tree" class="auto internal xref">Figure 8</a>, two profile types can be defined: 'specific-provisioning-profiles' and 'service-provisioning-profiles'. Whether only specific profiles, service profiles, or a combination thereff are used is local to each service provider.<a href="#section-5.2.1-3" class="pilcrow">¶</a></p>
 <p id="section-5.2.1-4">The following specific rovisioning profiles can be defined:<a href="#section-5.2.1-4" class="pilcrow">¶</a></p>
 <span class="break"></span><dl class="dlParallel" id="section-5.2.1-5">
             <dt id="section-5.2.1-5.1">'external-connectivity-identifier':</dt>
@@ -1642,7 +1981,7 @@ module: ietf-ac-svc
 <a href="#section-5.5" class="section-number selfRef">5.5. </a><a href="#name-attachment-circuits" class="section-name selfRef">Attachment Circuits</a>
         </h3>
 <span id="name-cccc-tree-structure"></span><div id="ac-svc-tree">
-<figure id="figure-6">
+<figure id="figure-9">
           <div class="alignLeft art-text artwork" id="section-5.5-1.1">
 <pre>
 module: ietf-ac-svc
@@ -1672,12 +2011,12 @@ module: ietf-ac-svc
            ...
 </pre>
 </div>
-<figcaption><a href="#figure-6" class="selfRef">Figure 6</a>:
+<figcaption><a href="#figure-9" class="selfRef">Figure 9</a>:
 <a href="#name-cccc-tree-structure" class="selfRef">cccc Tree Structure</a>
           </figcaption></figure>
 </div>
 <span id="name-ac-service-tree-structure"></span><div id="d-svc-tree">
-<figure id="figure-7">
+<figure id="figure-10">
           <div class="alignLeft art-text artwork" id="section-5.5-2.1">
 <pre>
 module: ietf-ac-svc
@@ -1954,7 +2293,7 @@ module: ietf-ac-svc
                     +--rw customer-key-chain?   key-chain:key-chain-ref
 </pre>
 </div>
-<figcaption><a href="#figure-7" class="selfRef">Figure 7</a>:
+<figcaption><a href="#figure-10" class="selfRef">Figure 10</a>:
 <a href="#name-ac-service-tree-structure" class="selfRef">AC Service Tree Structure</a>
           </figcaption></figure>
 </div>

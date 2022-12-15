@@ -78,6 +78,9 @@ Table of Contents
      4.2.  Examples
      4.3.  Request An AC over An Existing Bearer
      4.4.  Request An AC for a Knwon Peer SAP
+     4.5.  One CE, Two ACs
+     4.6.  Illustrate the Use of Global Profiles
+     4.7.  Illustrate the Use of Per-Node Profiles
    5.  Description of the Attachment Circuit YANG Module
      5.1.  Overall Structure of the Module
      5.2.  Service Profiles
@@ -251,7 +254,7 @@ Table of Contents
 4.4.  Request An AC for a Knwon Peer SAP
 
    An example of a request to create a simple AC, when the peer SAP is
-   known, is shown in {ac-known-ps}}.
+   known, is shown in Figure 3.
 
    {
      "ietf-ac-svc:attachment-circuits": {
@@ -277,8 +280,312 @@ Table of Contents
      }
    }
 
-      Figure 3: Example of a Message Body to Request an AC for a Knwon
-                                  Peer SAP
+    Figure 3: Example of a Message Body to Request an AC with a Peer SAP
+
+4.5.  One CE, Two ACs
+
+   An example of a request to create two ACs to service the same CE on
+   the same link is shown in Figure 4.
+
+ {
+   "ietf-ac-svc:attachment-circuits": {
+     "ac": [
+       {
+         "name": "ac1",
+         "description": "a first ac with a same peer node",
+         "l2-connection": {
+           "encapsulation": {
+             "type": "ietf-vpn-common:dot1q",
+             "dot1q": {
+               "cvlan-id": 1
+             }
+           }
+         },
+         "ip-connection": {
+           "ipv4": {
+             "local-address": "192.0.2.1",
+             "prefix-length": 30,
+             "address-allocation-type": "ietf-l3vpn-ntw:static-address",
+             "primary-address": "1",
+             "address": [
+               {
+                 "address-id": "1",
+                 "customer-address": "192.0.2.2"
+               }
+             ]
+           },
+           "ipv6": {
+             "local-address": "2001:db8::1",
+             "prefix-length": 64,
+             "address-allocation-type": "ietf-l3vpn-ntw:static-address",
+             "primary-address": "1",
+             "address": [
+               {
+                 "address-id": "1",
+                 "customer-address": "2001:db8::2"
+               }
+             ]
+           }
+         },
+         "routing-protocols": {
+           "routing-protocol": [
+             {
+               "id": "1",
+               "type": "ietf-vpn-common:direct"
+             }
+           ]
+         }
+       },
+       {
+         "name": "ac2",
+         "description": "a second ac with a same peer node",
+         "l2-connection": {
+           "encapsulation": {
+             "type": "ietf-vpn-common:dot1q",
+             "dot1q": {
+               "cvlan-id": 2
+             }
+           }
+         },
+         "ip-connection": {
+           "ipv4": {
+             "local-address": "192.0.2.1",
+             "prefix-length": 30,
+             "address-allocation-type": "ietf-l3vpn-ntw:static-address",
+             "primary-address": "1",
+             "address": [
+               {
+                 "address-id": "1",
+                 "customer-address": "192.0.2.2"
+               }
+             ]
+           },
+           "ipv6": {
+             "local-address": "2001:db8::1",
+             "prefix-length": 64,
+             "address-allocation-type": "ietf-l3vpn-ntw:static-address",
+             "primary-address": "1",
+             "address": [
+               {
+                 "address-id": "1",
+                 "customer-address": "2001:db8::2"
+               }
+             ]
+           }
+         },
+         "routing-protocols": {
+           "routing-protocol": [
+             {
+               "id": "1",
+               "type": "ietf-vpn-common:direct"
+             }
+           ]
+         }
+       }
+     ]
+   }
+ }
+
+     Figure 4: Example of a Message Body to Request Two ACes on The
+                               Same Link
+
+4.6.  Illustrate the Use of Global Profiles
+
+   An example of a request to create two ACs to service the same CE on
+   the same link is shown in Figure 5.  Unlike Figure 4, this example
+   factorizes some of the redundant data.
+
+  {
+    "ietf-ac-svc:attachment-circuits": {
+      "ac-global-profile": [
+        {
+          "id": "simple-profile",
+          "l2-connection": {
+            "encapsulation": {
+              "type": "ietf-vpn-common:dot1q"
+            }
+          },
+          "ip-connection": {
+            "ipv4": {
+              "address-allocation-type": "ietf-l3vpn-ntw:static-address"
+            },
+            "ipv6": {
+              "address-allocation-type": "ietf-l3vpn-ntw:static-address"
+            }
+          },
+          "routing-protocols": {
+            "routing-protocol": [
+              {
+                "id": "1",
+                "type": "ietf-vpn-common:direct"
+              }
+            ]
+          }
+        }
+      ],
+      "ac": [
+        {
+          "name": "ac1",
+          "description": "a first ac with a same peer node",
+          "ac-global-profile": ["simple-profile"],
+          "l2-connection": {
+            "encapsulation": {
+              "dot1q": {
+                "cvlan-id": 1
+              }
+            }
+          },
+          "ip-connection": {
+            "ipv4": {
+              "local-address": "192.0.2.1",
+              "prefix-length": 30,
+              "primary-address": "1",
+              "address": [
+                {
+                  "address-id": "1",
+                  "customer-address": "192.0.2.2"
+                }
+              ]
+            },
+            "ipv6": {
+              "local-address": "2001:db8::1",
+              "prefix-length": 64,
+              "primary-address": "1",
+              "address": [
+                {
+                  "address-id": "1",
+                  "customer-address": "2001:db8::2"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "ac2",
+          "description": "a second ac with a same peer node",
+          "ac-global-profile": ["simple-profile"],
+          "l2-connection": {
+            "encapsulation": {
+              "dot1q": {
+                "cvlan-id": 2
+              }
+            }
+          },
+          "ip-connection": {
+            "ipv4": {
+              "local-address": "192.0.2.1",
+              "prefix-length": 30,
+              "primary-address": "1",
+              "address": [
+                {
+                  "address-id": "1",
+                  "customer-address": "192.0.2.2"
+                }
+              ]
+            },
+            "ipv6": {
+              "local-address": "2001:db8::1",
+              "prefix-length": 64,
+              "primary-address": "1",
+              "address": [
+                {
+                  "address-id": "1",
+                  "customer-address": "2001:db8::2"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  }
+
+      Figure 5: Example of a Message Body to Request Two ACes on The
+                        Same Link (Global Profile
+
+4.7.  Illustrate the Use of Per-Node Profiles
+
+   An example of a request to create two ACs to service the same CE on
+   the same link is shown in Figure 6.  Unlike Figure 4, this example
+   factorizes all redundant data.
+
+ {
+   "ietf-ac-svc:attachment-circuits": {
+     "ac-node-group": [
+       {
+         "id": "simple-node-profile",
+         "l2-connection": {
+           "encapsulation": {
+             "type": "ietf-vpn-common:dot1q"
+           }
+         },
+         "ip-connection": {
+           "ipv4": {
+             "address-allocation-type": "ietf-l3vpn-ntw:static-address",
+             "local-address": "192.0.2.1",
+             "prefix-length": 30,
+             "primary-address": "1",
+             "address": [
+               {
+                 "address-id": "1",
+                 "customer-address": "192.0.2.2"
+               }
+             ]
+           },
+           "ipv6": {
+             "address-allocation-type": "ietf-l3vpn-ntw:static-address",
+             "local-address": "2001:db8::1",
+             "prefix-length": 64,
+             "primary-address": "1",
+             "address": [
+               {
+                 "address-id": "1",
+                 "customer-address": "2001:db8::2"
+               }
+             ]
+           }
+         },
+         "routing-protocols": {
+           "routing-protocol": [
+             {
+               "id": "1",
+               "type": "ietf-vpn-common:direct"
+             }
+           ]
+         }
+       }
+     ],
+     "ac": [
+       {
+         "name": "ac1",
+         "description": "a first ac with a same peer node",
+         "ac-node-profile": ["simple-node-profile"],
+         "l2-connection": {
+           "encapsulation": {
+             "dot1q": {
+               "cvlan-id": 1
+             }
+           }
+         }
+       },
+       {
+         "name": "ac2",
+         "description": "a second ac with a same peer node",
+         "ac-node-profile": ["simple-node-profile"],
+         "l2-connection": {
+           "encapsulation": {
+             "dot1q": {
+               "cvlan-id": 2
+             }
+           }
+         }
+      }
+     ]
+   }
+ }
+
+     Figure 6: Example of a Message Body to Request Two ACes on The
+                        Same Link (Node Profile
 
 5.  Description of the Attachment Circuit YANG Module
 
@@ -310,7 +617,7 @@ Table of Contents
            +--rw security
               ...
 
-                Figure 4: Overall AC Service Tree Structure
+                Figure 7: Overall AC Service Tree Structure
 
    Each AC is identified with a unique identifier within a domain.  The
    mapping between this AC and a local PE that terminates the AC is
@@ -323,7 +630,7 @@ Table of Contents
 
 5.2.1.  Description
 
-   The 'specific-provisioning-profiles' container (Figure 5) can be used
+   The 'specific-provisioning-profiles' container (Figure 8) can be used
    by a service provider to maintain a set of specific profiles that are
    similar to those defined in [RFC9181].  The exact definition of the
    profiles is local to each service provider.  The model only includes
@@ -357,9 +664,9 @@ Table of Contents
         +--rw ac* [id]
            ...
 
-                         Figure 5: Service Proviles
+                         Figure 8: Service Proviles
 
-   As shown in Figure 5, two profile types can be defined: 'specific-
+   As shown in Figure 8, two profile types can be defined: 'specific-
    provisioning-profiles' and 'service-provisioning-profiles'.  Whether
    only specific profiles, service profiles, or a combination thereff
    are used is local to each service provider.
@@ -431,7 +738,7 @@ Table of Contents
            +--rw security
               ...
 
-                       Figure 6: cccc Tree Structure
+                       Figure 9: cccc Tree Structure
 
 module: ietf-ac-svc
   +--rw specific-provisioning-profiles
@@ -706,7 +1013,7 @@ module: ietf-ac-svc
                  +--:(customer-profile)
                     +--rw customer-key-chain?   key-chain:key-chain-ref
 
-                 Figure 7: AC Service Tree Structure
+                 Figure 10: AC Service Tree Structure
 
 5.5.1.  Layer 2 Connection Structure
 
