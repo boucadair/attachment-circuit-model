@@ -75,6 +75,9 @@ Table of Contents
    3.  Terminology
    4.  Sample Uses of the Attachment Circuit Data Models
      4.1.  Separate AC Provisioning vs. Actual Service Provisioning
+     4.2.  Examples
+     4.3.  Request An AC over An Existing Bearer
+     4.4.  Request An AC for a Knwon Peer SAP
    5.  Description of the Attachment Circuit YANG Module
      5.1.  Overall Structure of the Module
      5.2.  Service Profiles
@@ -213,6 +216,70 @@ Table of Contents
 
                    Figure 1: An Example of AC Model Usage
 
+4.2.  Examples
+
+4.3.  Request An AC over An Existing Bearer
+
+   An example of a request to create a simple AC over an existing bearer
+   is shown in Figure 2.
+
+   {
+     "ietf-ac-svc:attachment-circuits": {
+       "ac": [
+         {
+           "name": "ac4585",
+           "description": "An AC on an existing bearer",
+           "requested-ac-start": "2023-12-12T05:00:00.00Z",
+           "l2-connection": {
+             "encapsulation": {
+               "type": "ietf-vpn-common:dot1q",
+               "dot1q": {
+                 "tag-type": "ietf-vpn-common:c-vlan",
+                 "cvlan-id": 550
+               }
+             },
+             "bearer-reference": "line-156"
+           }
+         }
+       ]
+     }
+   }
+
+        Figure 2: Example of a Message Body to Request an AC over an
+                              Existing Bearer
+
+4.4.  Request An AC for a Knwon Peer SAP
+
+   An example of a request to create a simple AC, when the peer SAP is
+   known, is shown in {ac-known-ps}}.
+
+   {
+     "ietf-ac-svc:attachment-circuits": {
+       "ac": [
+         {
+           "name": "ac4585",
+           "description": "An AC on an existing bearer",
+           "requested-ac-start": "2023-12-12T05:00:00.00Z",
+           "peer-sap-id": [
+             "nf-termination-ip"
+           ],
+           "l2-connection": {
+             "encapsulation": {
+               "type": "ietf-vpn-common:dot1q",
+               "dot1q": {
+                 "tag-type": "ietf-vpn-common:c-vlan",
+                 "cvlan-id": 550
+               }
+             }
+           }
+         }
+       ]
+     }
+   }
+
+      Figure 3: Example of a Message Body to Request an AC for a Knwon
+                                  Peer SAP
+
 5.  Description of the Attachment Circuit YANG Module
 
 5.1.  Overall Structure of the Module
@@ -243,7 +310,7 @@ Table of Contents
            +--rw security
               ...
 
-                Figure 2: Overall AC Service Tree Structure
+                Figure 4: Overall AC Service Tree Structure
 
    Each AC is identified with a unique identifier within a domain.  The
    mapping between this AC and a local PE that terminates the AC is
@@ -256,7 +323,7 @@ Table of Contents
 
 5.2.1.  Description
 
-   The 'specific-provisioning-profiles' container (Figure 3) can be used
+   The 'specific-provisioning-profiles' container (Figure 5) can be used
    by a service provider to maintain a set of specific profiles that are
    similar to those defined in [RFC9181].  The exact definition of the
    profiles is local to each service provider.  The model only includes
@@ -290,9 +357,9 @@ Table of Contents
         +--rw ac* [id]
            ...
 
-                         Figure 3: Service Proviles
+                         Figure 5: Service Proviles
 
-   As shown in Figure 3, two profile types can be defined: 'specific-
+   As shown in Figure 5, two profile types can be defined: 'specific-
    provisioning-profiles' and 'service-provisioning-profiles'.  Whether
    only specific profiles, service profiles, or a combination thereff
    are used is local to each service provider.
@@ -364,7 +431,7 @@ Table of Contents
            +--rw security
               ...
 
-                       Figure 4: cccc Tree Structure
+                       Figure 6: cccc Tree Structure
 
 module: ietf-ac-svc
   +--rw specific-provisioning-profiles
@@ -639,7 +706,7 @@ module: ietf-ac-svc
                  +--:(customer-profile)
                     +--rw customer-key-chain?   key-chain:key-chain-ref
 
-                 Figure 5: AC Service Tree Structure
+                 Figure 7: AC Service Tree Structure
 
 5.5.1.  Layer 2 Connection Structure
 
