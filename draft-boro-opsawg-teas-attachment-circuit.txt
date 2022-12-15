@@ -81,6 +81,7 @@ Table of Contents
      4.5.  One CE, Two ACs
      4.6.  Illustrate the Use of Global Profiles
      4.7.  Illustrate the Use of Per-Node Profiles
+     4.8.  Multiple CEs
    5.  Description of the Attachment Circuit YANG Module
      5.1.  Overall Structure of the Module
      5.2.  Service Profiles
@@ -501,7 +502,7 @@ Table of Contents
   }
 
       Figure 5: Example of a Message Body to Request Two ACes on The
-                        Same Link (Global Profile
+                        Same Link (Global Profile)
 
 4.7.  Illustrate the Use of Per-Node Profiles
 
@@ -585,7 +586,7 @@ Table of Contents
  }
 
      Figure 6: Example of a Message Body to Request Two ACes on The
-                        Same Link (Node Profile
+                        Same Link (Node Profile)
 
    A customer may request adding a new AC by simply referring to an
    existing per-node AC profile as shown in Figure 7.  This AC inherites
@@ -615,7 +616,90 @@ Table of Contents
    }
 
         Figure 7: Example of a Message Body to Add a new AC over an
-                        existing link (Node Profile
+                        existing link (Node Profile)
+
+4.8.  Multiple CEs
+
+   Figure 8 shows an example of CEs that are interconnected by a service
+   provider network.
+
+                      +-----+   +--------------+   +-----+
+         +----+       | PE1 |===|              |===| PE3 |       +----+
+         | CE1+-------+     |   |              |   |     +-------+ CE3|
+         +----+       +-----+   |              |   +-----+       +----+
+                                |     Core     |
+         +----+       +-----+   |              |   +-----+       +----+
+         |CE2 +-------+     |   |              |   |     +-------+ CE4|
+         +----+       | PE2 |===|              |===| PE4 |       +----+
+                      +-----+   +--------------+   +-----+
+
+                     Figure 8: Network Topology Example
+
+   Figure 9 depicts an example of the message body of a request to
+   instantiate these the various ACs that are shown in Figure 8.
+
+   {
+     "ietf-ac-svc:attachment-circuits": {
+       "ac-global-profile": [
+         {
+           "id": "simple-profile",
+           "l2-connection": {
+             "encapsulation": {
+               "type": "ietf-vpn-common:dot1q",
+               "dot1q": {
+                 "cvlan-id": 1
+               }
+             }
+           }
+         }
+       ],
+       "ac": [
+         {
+           "name": "ac1",
+           "description": "First site",
+           "ac-global-profile": [
+             "simple-node-profile"
+           ],
+           "l2-connection": {
+             "bearer-reference": "ce1-network"
+           }
+         },
+         {
+           "name": "ac2",
+           "description": "Second Site",
+           "ac-global-profile": [
+             "simple-node-profile"
+           ],
+           "l2-connection": {
+             "bearer-reference": "ce1-network"
+           }
+         },
+         {
+           "name": "ac3",
+           "description": "Third site",
+           "ac-global-profile": [
+             "simple-node-profile"
+           ],
+           "l2-connection": {
+             "bearer-reference": "ce3-network"
+           }
+         },
+         {
+           "name": "ac4",
+           "description": "Another site",
+           "ac-global-profile": [
+             "simple-node-profile"
+           ],
+           "l2-connection": {
+             "bearer-reference": "ce4-network"
+           }
+         }
+       ]
+     }
+   }
+
+      Figure 9: Example of a Message Body to of Creating Multiple ACs
+                           bound to Multiple CEs
 
 5.  Description of the Attachment Circuit YANG Module
 
@@ -647,7 +731,7 @@ Table of Contents
            +--rw security
               ...
 
-                Figure 8: Overall AC Service Tree Structure
+                Figure 10: Overall AC Service Tree Structure
 
    Each AC is identified with a unique identifier within a domain.  The
    mapping between this AC and a local PE that terminates the AC is
@@ -660,12 +744,12 @@ Table of Contents
 
 5.2.1.  Description
 
-   The 'specific-provisioning-profiles' container (Figure 9) can be used
-   by a service provider to maintain a set of specific profiles that are
-   similar to those defined in [RFC9181].  The exact definition of the
-   profiles is local to each service provider.  The model only includes
-   an identifier for these profiles in order to facilitate identifying
-   and binding local policies when building an AC.
+   The 'specific-provisioning-profiles' container (Figure 11) can be
+   used by a service provider to maintain a set of specific profiles
+   that are similar to those defined in [RFC9181].  The exact definition
+   of the profiles is local to each service provider.  The model only
+   includes an identifier for these profiles in order to facilitate
+   identifying and binding local policies when building an AC.
 
    module: ietf-ac-svc
      +--rw specific-provisioning-profiles
@@ -694,9 +778,9 @@ Table of Contents
         +--rw ac* [id]
            ...
 
-                         Figure 9: Service Proviles
+                        Figure 11: Service Proviles
 
-   As shown in Figure 9, two profile types can be defined: 'specific-
+   As shown in Figure 11, two profile types can be defined: 'specific-
    provisioning-profiles' and 'service-provisioning-profiles'.  Whether
    only specific profiles, service profiles, or a combination thereff
    are used is local to each service provider.
@@ -768,7 +852,7 @@ Table of Contents
            +--rw security
               ...
 
-                       Figure 10: cccc Tree Structure
+                       Figure 12: cccc Tree Structure
 
 module: ietf-ac-svc
   +--rw specific-provisioning-profiles
@@ -1260,7 +1344,7 @@ module: ietf-ac-svc
                  +--:(customer-profile)
                     +--rw customer-key-chain?   key-chain:key-chain-ref
 
-                 Figure 11: AC Service Tree Structure
+                 Figure 13: AC Service Tree Structure
 
 5.5.1.  Layer 2 Connection Structure
 
