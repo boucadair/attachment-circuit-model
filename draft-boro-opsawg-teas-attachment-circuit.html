@@ -2051,6 +2051,30 @@ module: ietf-ac-svc
      |  |        +--rw svlan-id    uint16
      |  |        +--rw cvlan-id    uint16
      |  +--rw ip-connection
+     |  |  +--rw ipv4 {vpn-common:ipv4}?
+     |  |  |  +--rw prefix-length?                       uint8
+     |  |  |  +--rw address-allocation-type?             identityref
+     |  |  |  +--rw (allocation-type)?
+     |  |  |     +--:(dynamic)
+     |  |  |        +--rw (provider-dhcp)?
+     |  |  |        |  +--:(dhcp-service-type)
+     |  |  |        |     +--rw dhcp-service-type?       enumeration
+     |  |  |        +--rw (dhcp-relay)?
+     |  |  |           +--:(customer-dhcp-servers)
+     |  |  |              +--rw customer-dhcp-servers
+     |  |  |                 +--rw server-ip-address*   inet:ipv4-address
+     |  |  +--rw ipv6 {vpn-common:ipv6}?
+     |  |     +--rw prefix-length?                       uint8
+     |  |     +--rw address-allocation-type?             identityref
+     |  |     +--rw (allocation-type)?
+     |  |        +--:(dynamic)
+     |  |           +--rw (provider-dhcp)?
+     |  |           |  +--:(dhcp-service-type)
+     |  |           |     +--rw dhcp-service-type?       enumeration
+     |  |           +--rw (dhcp-relay)?
+     |  |              +--:(customer-dhcp-servers)
+     |  |                 +--rw customer-dhcp-servers
+     |  |                    +--rw server-ip-address*   inet:ipv6-address
      |  +--rw routing-protocols
      |  |  +--rw routing-protocol* [id]
      |  |     +--rw id                  string
@@ -2087,7 +2111,200 @@ module: ietf-ac-svc
      |           +--:(customer-profile)
      |              +--rw customer-key-chain?   key-chain:key-chain-ref
      +--rw ac-node-group* [id]
-     |  +--rw id    string
+     |  +--rw id                   string
+     |  +--rw name?                string
+     |  +--rw l2-connection
+     |  |  +--rw encapsulation
+     |  |  |  +--rw type?              identityref
+     |  |  |  +--rw dot1q
+     |  |  |  |  +--rw tag-type?   identityref
+     |  |  |  |  +--rw cvlan-id?   uint16
+     |  |  |  +--rw priority-tagged
+     |  |  |  |  +--rw tag-type?   identityref
+     |  |  |  +--rw qinq
+     |  |  |     +--rw tag-type?   identityref
+     |  |  |     +--rw svlan-id    uint16
+     |  |  |     +--rw cvlan-id    uint16
+     |  |  +--rw (l2-service)?
+     |  |  |  +--:(l2-tunnel-service)
+     |  |  |  |  +--rw l2-tunnel-service
+     |  |  |  |     +--rw type?         identityref
+     |  |  |  |     +--rw pseudowire
+     |  |  |  |     |  +--rw vcid?      uint32
+     |  |  |  |     |  +--rw far-end?   union
+     |  |  |  |     +--rw vpls
+     |  |  |  |     |  +--rw vcid?      uint32
+     |  |  |  |     |  +--rw far-end*   union
+     |  |  |  |     +--rw vxlan
+     |  |  |  |        +--rw vni-id             uint32
+     |  |  |  |        +--rw peer-mode?         identityref
+     |  |  |  |        +--rw peer-ip-address*   inet:ip-address
+     |  |  |  +--:(l2vpn)
+     |  |  |     +--rw l2vpn-id?            vpn-common:vpn-id
+     |  |  +--rw bearer-reference?          string {vpn-common:bearer-reference}?
+     |  +--rw ip-connection
+     |  |  +--rw ipv4 {vpn-common:ipv4}?
+     |  |  |  +--rw local-address?                           inet:ipv4-address
+     |  |  |  +--rw prefix-length?                           uint8
+     |  |  |  +--rw address-allocation-type?                 identityref
+     |  |  |  +--rw (allocation-type)?
+     |  |  |     +--:(dynamic)
+     |  |  |     |  +--rw (address-assign)?
+     |  |  |     |  |  +--:(number)
+     |  |  |     |  |  |  +--rw number-of-dynamic-address?   uint16
+     |  |  |     |  |  +--:(explicit)
+     |  |  |     |  |     +--rw customer-addresses
+     |  |  |     |  |        +--rw address-pool* [pool-id]
+     |  |  |     |  |           +--rw pool-id          string
+     |  |  |     |  |           +--rw start-address    inet:ipv4-address
+     |  |  |     |  |           +--rw end-address?     inet:ipv4-address
+     |  |  |     |  +--rw (provider-dhcp)?
+     |  |  |     |  |  +--:(dhcp-service-type)
+     |  |  |     |  |     +--rw dhcp-service-type?           enumeration
+     |  |  |     |  +--rw (dhcp-relay)?
+     |  |  |     |     +--:(customer-dhcp-servers)
+     |  |  |     |        +--rw customer-dhcp-servers
+     |  |  |     |           +--rw server-ip-address*   inet:ipv4-address
+     |  |  |     +--:(static-addresses)
+     |  |  |        +--rw primary-address?                   -&gt; ../address/address-id
+     |  |  |        +--rw address* [address-id]
+     |  |  |           +--rw address-id          string
+     |  |  |           +--rw customer-address?   inet:ipv4-address
+     |  |  +--rw ipv6 {vpn-common:ipv6}?
+     |  |     +--rw local-address?                           inet:ipv6-address
+     |  |     +--rw prefix-length?                           uint8
+     |  |     +--rw address-allocation-type?                 identityref
+     |  |     +--rw (allocation-type)?
+     |  |        +--:(dynamic)
+     |  |        |  +--rw (address-assign)?
+     |  |        |  |  +--:(number)
+     |  |        |  |  |  +--rw number-of-dynamic-address?   uint16
+     |  |        |  |  +--:(explicit)
+     |  |        |  |     +--rw customer-addresses
+     |  |        |  |        +--rw address-pool* [pool-id]
+     |  |        |  |           +--rw pool-id          string
+     |  |        |  |           +--rw start-address    inet:ipv6-address
+     |  |        |  |           +--rw end-address?     inet:ipv6-address
+     |  |        |  +--rw (provider-dhcp)?
+     |  |        |  |  +--:(dhcp-service-type)
+     |  |        |  |     +--rw dhcp-service-type?           enumeration
+     |  |        |  +--rw (dhcp-relay)?
+     |  |        |     +--:(customer-dhcp-servers)
+     |  |        |        +--rw customer-dhcp-servers
+     |  |        |           +--rw server-ip-address*   inet:ipv6-address
+     |  |        +--:(static-addresses)
+     |  |           +--rw primary-address?                   -&gt; ../address/address-id
+     |  |           +--rw address* [address-id]
+     |  |              +--rw address-id          string
+     |  |              +--rw customer-address?   inet:ipv6-address
+     |  +--rw routing-protocols
+     |  |  +--rw routing-protocol* [id]
+     |  |     +--rw id                  string
+     |  |     +--rw type?               identityref
+     |  |     +--rw routing-profiles* [id]
+     |  |     |  +--rw id      routing-profile-reference
+     |  |     |  +--rw type?   identityref
+     |  |     +--rw static
+     |  |     |  +--rw cascaded-lan-prefixes
+     |  |     |     +--rw ipv4-lan-prefixes* [lan next-hop] {vpn-common:ipv4}?
+     |  |     |     |  +--rw lan         inet:ipv4-prefix
+     |  |     |     |  +--rw lan-tag?    string
+     |  |     |     |  +--rw next-hop    union
+     |  |     |     |  +--rw status
+     |  |     |     |     +--rw admin-status
+     |  |     |     |     |  +--rw status?        identityref
+     |  |     |     |     |  +--rw last-change?   yang:date-and-time
+     |  |     |     |     +--ro oper-status
+     |  |     |     |        +--ro status?        identityref
+     |  |     |     |        +--ro last-change?   yang:date-and-time
+     |  |     |     +--rw ipv6-lan-prefixes* [lan next-hop] {vpn-common:ipv6}?
+     |  |     |        +--rw lan         inet:ipv6-prefix
+     |  |     |        +--rw lan-tag?    string
+     |  |     |        +--rw next-hop    union
+     |  |     |        +--rw status
+     |  |     |           +--rw admin-status
+     |  |     |           |  +--rw status?        identityref
+     |  |     |           |  +--rw last-change?   yang:date-and-time
+     |  |     |           +--ro oper-status
+     |  |     |              +--ro status?        identityref
+     |  |     |              +--ro last-change?   yang:date-and-time
+     |  |     +--rw bgp
+     |  |     |  +--rw peer-groups
+     |  |     |  |  +--rw peer-group* [name]
+     |  |     |  |     +--rw name              string
+     |  |     |  |     +--ro local-address?    inet:ip-address
+     |  |     |  |     +--rw peer-as           inet:as-number
+     |  |     |  |     +--rw address-family?   identityref
+     |  |     |  +--rw neighbor* [remote-address]
+     |  |     |     +--rw remote-address    inet:ip-address
+     |  |     |     +--ro local-address?    inet:ip-address
+     |  |     |     +--rw peer-group?       -&gt; ../../peer-groups/peer-group/name
+     |  |     |     +--rw peer-as           inet:as-number
+     |  |     |     +--rw address-family?   identityref
+     |  |     |     +--rw status
+     |  |     |        +--rw admin-status
+     |  |     |        |  +--rw status?        identityref
+     |  |     |        |  +--rw last-change?   yang:date-and-time
+     |  |     |        +--ro oper-status
+     |  |     |           +--ro status?        identityref
+     |  |     |           +--ro last-change?   yang:date-and-time
+     |  |     +--rw ospf
+     |  |     |  +--rw address-family?   identityref
+     |  |     |  +--rw area-id           yang:dotted-quad
+     |  |     |  +--rw metric?           uint16
+     |  |     |  +--rw status
+     |  |     |     +--rw admin-status
+     |  |     |     |  +--rw status?        identityref
+     |  |     |     |  +--rw last-change?   yang:date-and-time
+     |  |     |     +--ro oper-status
+     |  |     |        +--ro status?        identityref
+     |  |     |        +--ro last-change?   yang:date-and-time
+     |  |     +--rw isis
+     |  |     |  +--rw address-family?   identityref
+     |  |     |  +--rw area-address      l3nm:area-address
+     |  |     |  +--rw status
+     |  |     |     +--rw admin-status
+     |  |     |     |  +--rw status?        identityref
+     |  |     |     |  +--rw last-change?   yang:date-and-time
+     |  |     |     +--ro oper-status
+     |  |     |        +--ro status?        identityref
+     |  |     |        +--ro last-change?   yang:date-and-time
+     |  |     +--rw rip
+     |  |     |  +--rw address-family?   identityref
+     |  |     |  +--rw status
+     |  |     |     +--rw admin-status
+     |  |     |     |  +--rw status?        identityref
+     |  |     |     |  +--rw last-change?   yang:date-and-time
+     |  |     |     +--ro oper-status
+     |  |     |        +--ro status?        identityref
+     |  |     |        +--ro last-change?   yang:date-and-time
+     |  |     +--rw vrrp
+     |  |        +--rw address-family?   identityref
+     |  |        +--rw status
+     |  |           +--rw admin-status
+     |  |           |  +--rw status?        identityref
+     |  |           |  +--rw last-change?   yang:date-and-time
+     |  |           +--ro oper-status
+     |  |              +--ro status?        identityref
+     |  |              +--ro last-change?   yang:date-and-time
+     |  +--rw oam
+     |  |  +--rw bfd {vpn-common:bfd}?
+     |  |     +--rw holdtime?   uint32
+     |  |     +--rw status
+     |  |        +--rw admin-status
+     |  |        |  +--rw status?        identityref
+     |  |        |  +--rw last-change?   yang:date-and-time
+     |  |        +--ro oper-status
+     |  |           +--ro status?        identityref
+     |  |           +--ro last-change?   yang:date-and-time
+     |  +--rw security
+     |     +--rw encryption {vpn-common:encryption}?
+     |     |  +--rw enabled?   boolean
+     |     |  +--rw layer?     enumeration
+     |     +--rw encryption-profile
+     |        +--rw (profile)?
+     |           +--:(customer-profile)
+     |              +--rw customer-key-chain?   key-chain:key-chain-ref
      +--rw ac* [name]
         +--rw customer-name?        string
         +--rw description?          string
@@ -2756,6 +2973,149 @@ module ietf-ac-svc {
       description
         "This is an internal reference for the service provider
          to identify the bearer associated with this AC.";
+    }
+  }
+
+  grouping ip-connection-global-profile {
+    description
+      "Defines IP connection parameters.";
+    container ipv4 {
+      if-feature "vpn-common:ipv4";
+      description
+        "IPv4-specific parameters.";
+      leaf prefix-length {
+        type uint8 {
+          range "0..32";
+        }
+        description
+          "Subnet prefix length expressed in bits.
+           It is applied to both local and customer addresses.";
+      }
+      leaf address-allocation-type {
+        type identityref {
+          base l3nm:address-allocation-type;
+        }
+        must "not(derived-from-or-self(current(), 'slaac') or "
+           + "derived-from-or-self(current(), "
+           + "'provider-dhcp-slaac'))" {
+          error-message "SLAAC is only applicable to IPv6.";
+        }
+        description
+          "Defines how addresses are allocated to the peer site.
+
+           If there is no value for the address allocation type,
+           then IPv4 addressing is not enabled.";
+      }
+      choice allocation-type {
+        description
+          "Choice of the IPv4 address allocation.";
+        case dynamic {
+          description
+            "When the addresses are allocated by DHCP or other
+             dynamic means local to the infrastructure.";
+          choice provider-dhcp {
+            description
+              "Parameters related to DHCP-allocated addresses. IP
+               addresses are allocated by DHCP, which is provided by
+               the operator.";
+            leaf dhcp-service-type {
+              type enumeration {
+                enum server {
+                  description
+                    "Local DHCP server.";
+                }
+                enum relay {
+                  description
+                    "Local DHCP relay.  DHCP requests are relayed to
+                     a provider's server.";
+                }
+              }
+              description
+                "Indicates the type of DHCP service to be enabled on
+                 this AC.";
+            }
+          }
+          choice dhcp-relay {
+            description
+              "The DHCP relay is provided by the operator.";
+            container customer-dhcp-servers {
+              description
+                "Container for a list of the customer's DHCP servers.";
+              leaf-list server-ip-address {
+                type inet:ipv4-address;
+                description
+                  "IPv4 addresses of the customer's DHCP server.";
+              }
+            }
+          }
+        }
+      }
+    }
+    container ipv6 {
+      if-feature "vpn-common:ipv6";
+      description
+        "IPv6-specific parameters.";
+      leaf prefix-length {
+        type uint8 {
+          range "0..128";
+        }
+        description
+          "Subnet prefix length expressed in bits.
+           It is applied to both local and customer addresses.";
+      }
+      leaf address-allocation-type {
+        type identityref {
+          base l3nm:address-allocation-type;
+        }
+        description
+          "Defines how addresses are allocated.
+           If there is no value for the address allocation type,
+           then IPv6 addressing is disabled.";
+      }
+      choice allocation-type {
+        description
+          "Choice of the IPv6 address allocation.";
+        case dynamic {
+          description
+            "When the addresses are allocated by DHCP or other
+             dynamic means local to the infrastructure.";
+          choice provider-dhcp {
+            description
+              "Parameters related to DHCP-allocated addresses.
+               IP addresses are allocated by DHCP, which is provided
+               by the operator.";
+            leaf dhcp-service-type {
+              type enumeration {
+                enum server {
+                  description
+                    "Local DHCP server.";
+                }
+                enum relay {
+                  description
+                    "Local DHCP relay.  DHCP requests are relayed
+                     to a provider's server.";
+                }
+              }
+              description
+                "Indicates the type of DHCP service to
+                 be enabled on this access.";
+            }
+          }
+          choice dhcp-relay {
+            description
+              "The DHCP relay is provided by the operator.";
+            container customer-dhcp-servers {
+              description
+                "Container for a list of the customer's DHCP servers.";
+              leaf-list server-ip-address {
+                type inet:ipv6-address;
+                description
+                  "IPv6 addresses of the customer's DHCP server.";
+              }
+            }
+          }
+        }
+      }
     }
   }
 
@@ -3683,6 +4043,7 @@ module ietf-ac-svc {
     container ip-connection {
       description
         "Defines IP connection parameters.";
+     uses ip-connection-global-profile;
     }
     // Routing
     container routing-protocols {
@@ -3816,6 +4177,7 @@ module ietf-ac-svc {
         description
           "An identifier of the AC group.";
       }
+      uses ac;
     }
     list ac {
       key "name";
