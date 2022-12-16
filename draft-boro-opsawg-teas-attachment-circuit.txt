@@ -5,14 +5,14 @@
 Operations and Management Area Working Group           M. Boucadair, Ed.
 Internet-Draft                                                    Orange
 Intended status: Standards Track                              R. Roberts
-Expires: 18 June 2023                                            Juniper
+Expires: 19 June 2023                                            Juniper
                                                            O. G. D. Dios
                                                               Telefonica
                                                            S. B. Giraldo
                                                                    Nokia
                                                                    B. Wu
                                                      Huawei Technologies
-                                                        15 December 2022
+                                                        16 December 2022
 
 
            A YANG Service Data Model for Attachment Circuits
@@ -52,7 +52,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 18 June 2023.
+   This Internet-Draft will expire on 19 June 2023.
 
 Copyright Notice
 
@@ -1529,7 +1529,7 @@ module: ietf-ac-svc
            type identityref {
              base vpn-common:encapsulation-type;
            }
-           default "vpn-common:priority-tagged";
+           //default "vpn-common:priority-tagged";
            description
              "Encapsulation type.  By default, the type
               of the tagged interface is 'priority-tagged'.";
@@ -1601,7 +1601,7 @@ module: ietf-ac-svc
            type identityref {
              base vpn-common:encapsulation-type;
            }
-           default "vpn-common:priority-tagged";
+           //default "vpn-common:priority-tagged";
            description
              "Encapsulation type.  By default, the type of the tagged
               interface is 'priority-tagged'.";
@@ -1634,8 +1634,7 @@ module: ietf-ac-svc
            when "derived-from-or-self(../type, "
               + "'vpn-common:priority-tagged')" {
              description
-               "Only applies when the type of
-                the tagged interface is
+               "Only applies when the type of the tagged interface is
                 'priority-tagged'.";
            }
            description
@@ -1700,7 +1699,7 @@ module: ietf-ac-svc
                 Endpoint.";
            }
            container pseudowire {
-             when "derived-from-or-self(../type, 'pseudowire')" {
+             when "derived-from-or-self(../type, 'l3nm:pseudowire')" {
                description
                  "Only applies when the Layer 2 service type is
                   'pseudowire'.";
@@ -1727,7 +1726,7 @@ module: ietf-ac-svc
              }
            }
            container vpls {
-             when "derived-from-or-self(../type, 'vpls')" {
+             when "derived-from-or-self(../type, 'l3nm:vpls')" {
                description
                  "Only applies when the Layer 2 service type is
                   'vpls'.";
@@ -1749,7 +1748,7 @@ module: ietf-ac-svc
              }
            }
            container vxlan {
-             when "derived-from-or-self(../type, 'vxlan')" {
+             when "derived-from-or-self(../type, 'l3nm:vxlan')" {
                description
                  "Only applies when the Layer 2 service type is
                   'vxlan'.";
@@ -1815,11 +1814,12 @@ module: ietf-ac-svc
            type identityref {
              base l3nm:address-allocation-type;
            }
-           must "not(derived-from-or-self(current(), 'slaac') or "
+           must "not(derived-from-or-self(current(), 'l3nm:slaac') or "
               + "derived-from-or-self(current(), "
-              + "'provider-dhcp-slaac'))" {
+              + "'l3nm:provider-dhcp-slaac'))" {
              error-message "SLAAC is only applicable to IPv6.";
            }
+           default "l3nm:static-address";
            description
              "Defines how addresses are allocated to the peer site.
 
@@ -1887,6 +1887,7 @@ module: ietf-ac-svc
            type identityref {
              base l3nm:address-allocation-type;
            }
+           default "l3nm:static-address";
            description
              "Defines how addresses are allocated.
               If there is no value for the address allocation type,
@@ -1963,11 +1964,12 @@ module: ietf-ac-svc
            type identityref {
              base l3nm:address-allocation-type;
            }
-           must "not(derived-from-or-self(current(), 'slaac') or "
+           must "not(derived-from-or-self(current(), 'l3nm:slaac') or "
               + "derived-from-or-self(current(), "
-              + "'provider-dhcp-slaac'))" {
+              + "'l3nm:provider-dhcp-slaac'))" {
              error-message "SLAAC is only applicable to IPv6.";
            }
+           default "l3nm:static-address";
            description
              "Defines how addresses are allocated to the peer site.
 
@@ -2116,6 +2118,7 @@ module: ietf-ac-svc
            type identityref {
              base l3nm:address-allocation-type;
            }
+           default "l3nm:static-address";
            description
              "Defines how addresses are allocated.
               If there is no value for the address allocation type,
@@ -2947,7 +2950,7 @@ module: ietf-ac-svc
              description
                "Choice for the encryption profile.";
              case customer-profile {
-              leaf customer-key-chain {
+             leaf customer-key-chain {
                  type key-chain:key-chain-ref;
                  description
                    "Customer-supplied key chain.";
