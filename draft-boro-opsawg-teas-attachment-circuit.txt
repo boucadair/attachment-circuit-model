@@ -307,7 +307,6 @@ Table of Contents
              "ipv4": {
                "local-address": "192.0.2.1",
                "prefix-length": 30,
-               "primary-address": "1",
                "address": [
                  {
                    "address-id": "1",
@@ -318,7 +317,6 @@ Table of Contents
              "ipv6": {
                "local-address": "2001:db8::1",
                "prefix-length": 64,
-               "primary-address": "1",
                "address": [
                  {
                    "address-id": "1",
@@ -351,7 +349,6 @@ Table of Contents
              "ipv4": {
                "local-address": "192.0.2.1",
                "prefix-length": 30,
-               "primary-address": "1",
                "address": [
                  {
                    "address-id": "1",
@@ -362,7 +359,6 @@ Table of Contents
              "ipv6": {
                "local-address": "2001:db8::1",
                "prefix-length": 64,
-               "primary-address": "1",
                "address": [
                  {
                    "address-id": "1",
@@ -429,7 +425,6 @@ Table of Contents
              "ipv4": {
                "local-address": "192.0.2.1",
                "prefix-length": 30,
-               "primary-address": "1",
                "address": [
                  {
                    "address-id": "1",
@@ -440,7 +435,6 @@ Table of Contents
              "ipv6": {
                "local-address": "2001:db8::1",
                "prefix-length": 64,
-               "primary-address": "1",
                "address": [
                  {
                    "address-id": "1",
@@ -465,7 +459,6 @@ Table of Contents
              "ipv4": {
                "local-address": "192.0.2.1",
                "prefix-length": 30,
-               "primary-address": "1",
                "address": [
                  {
                    "address-id": "1",
@@ -476,7 +469,6 @@ Table of Contents
              "ipv6": {
                "local-address": "2001:db8::1",
                "prefix-length": 64,
-               "primary-address": "1",
                "address": [
                  {
                    "address-id": "1",
@@ -513,7 +505,6 @@ Table of Contents
              "ipv4": {
                "local-address": "192.0.2.1",
                "prefix-length": 30,
-               "primary-address": "1",
                "address": [
                  {
                    "address-id": "1",
@@ -524,7 +515,6 @@ Table of Contents
              "ipv6": {
                "local-address": "2001:db8::1",
                "prefix-length": 64,
-               "primary-address": "1",
                "address": [
                  {
                    "address-id": "1",
