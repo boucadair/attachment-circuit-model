@@ -988,7 +988,6 @@ module: ietf-ac-svc
      |  |  |     |        +--rw customer-dhcp-servers
      |  |  |     |           +--rw server-ip-address*   inet:ipv4-address
      |  |  |     +--:(static-addresses)
-     |  |  |        +--rw primary-address?                   -> ../address/address-id
      |  |  |        +--rw address* [address-id]
      |  |  |           +--rw address-id          string
      |  |  |           +--rw customer-address?   inet:ipv4-address
@@ -1015,7 +1014,6 @@ module: ietf-ac-svc
      |  |        |        +--rw customer-dhcp-servers
      |  |        |           +--rw server-ip-address*   inet:ipv6-address
      |  |        +--:(static-addresses)
-     |  |           +--rw primary-address?                   -> ../address/address-id
      |  |           +--rw address* [address-id]
      |  |              +--rw address-id          string
      |  |              +--rw customer-address?   inet:ipv6-address
@@ -1191,7 +1189,6 @@ module: ietf-ac-svc
         |  |     |        +--rw customer-dhcp-servers
         |  |     |           +--rw server-ip-address*   inet:ipv4-address
         |  |     +--:(static-addresses)
-        |  |        +--rw primary-address?                   -> ../address/address-id
         |  |        +--rw address* [address-id]
         |  |           +--rw address-id          string
         |  |           +--rw customer-address?   inet:ipv4-address
@@ -1218,7 +1215,6 @@ module: ietf-ac-svc
         |        |        +--rw customer-dhcp-servers
         |        |           +--rw server-ip-address*   inet:ipv6-address
         |        +--:(static-addresses)
-        |           +--rw primary-address?                   -> ../address/address-id
         |           +--rw address* [address-id]
         |              +--rw address-id          string
         |              +--rw customer-address?   inet:ipv6-address
@@ -2059,17 +2055,19 @@ module: ietf-ac-svc
            case static-addresses {
              description
                "Lists the IPv4 addresses that are used.";
-             leaf primary-address {
+             /*leaf primary-address {
                type leafref {
                  path "../address/address-id";
                }
                description
                  "Primary IP address of the connection.";
-             }
+             }*/
              list address {
                key "address-id";
+               ordered-by user;
                description
-                 "Lists the IPv4 addresses that are used.";
+                 "Lists the IPv4 addresses that are used. The first address of
+                  the list is the primary address of the connection.";
                leaf address-id {
                  type string;
                  description
@@ -2207,17 +2205,19 @@ module: ietf-ac-svc
            case static-addresses {
              description
                "Lists the IPv6 addresses that are used.";
-             leaf primary-address {
+             /*leaf primary-address {
                type leafref {
                  path "../address/address-id";
                }
                description
                  "Primary IP address of the connection.";
-             }
+             }*/
              list address {
                key "address-id";
+               ordered-by user;
                description
-                 "Lists the IPv6 addresses that are used.";
+                 "Lists the IPv6 addresses that are used. The first address
+                  of the list is the primary IP address of the connection.";
                leaf address-id {
                  type string;
                  description
