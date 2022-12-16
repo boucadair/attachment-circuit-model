@@ -1519,7 +1519,6 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
           "ipv4": {
             "local-address": "192.0.2.1",
             "prefix-length": 30,
-            "address-allocation-type": "ietf-l3vpn-ntw:static-address",
             "primary-address": "1",
             "address": [
               {
@@ -1531,7 +1530,6 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
           "ipv6": {
             "local-address": "2001:db8::1",
             "prefix-length": 64,
-            "address-allocation-type": "ietf-l3vpn-ntw:static-address",
             "primary-address": "1",
             "address": [
               {
@@ -1545,7 +1543,7 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
           "routing-protocol": [
             {
               "id": "1",
-              "type": "ietf-vpn-common:direct"
+              "type": "ietf-vpn-common:direct-routing"
             }
           ]
         }
@@ -1565,7 +1563,6 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
           "ipv4": {
             "local-address": "192.0.2.1",
             "prefix-length": 30,
-            "address-allocation-type": "ietf-l3vpn-ntw:static-address",
             "primary-address": "1",
             "address": [
               {
@@ -1577,7 +1574,6 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
           "ipv6": {
             "local-address": "2001:db8::1",
             "prefix-length": 64,
-            "address-allocation-type": "ietf-l3vpn-ntw:static-address",
             "primary-address": "1",
             "address": [
               {
@@ -1591,7 +1587,7 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
           "routing-protocol": [
             {
               "id": "1",
-              "type": "ietf-vpn-common:direct"
+              "type": "ietf-vpn-common:direct-routing"
             }
           ]
         }
@@ -1627,19 +1623,11 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
             "type": "ietf-vpn-common:dot1q"
           }
         },
-        "ip-connection": {
-          "ipv4": {
-            "address-allocation-type": "ietf-l3vpn-ntw:static-address"
-          },
-          "ipv6": {
-            "address-allocation-type": "ietf-l3vpn-ntw:static-address"
-          }
-        },
         "routing-protocols": {
           "routing-protocol": [
             {
               "id": "1",
-              "type": "ietf-vpn-common:direct"
+              "type": "ietf-vpn-common:direct-routing"
             }
           ]
         }
@@ -1751,7 +1739,6 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
         },
         "ip-connection": {
           "ipv4": {
-            "address-allocation-type": "ietf-l3vpn-ntw:static-address",
             "local-address": "192.0.2.1",
             "prefix-length": 30,
             "primary-address": "1",
@@ -1763,7 +1750,6 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
             ]
           },
           "ipv6": {
-            "address-allocation-type": "ietf-l3vpn-ntw:static-address",
             "local-address": "2001:db8::1",
             "prefix-length": 64,
             "primary-address": "1",
@@ -1779,7 +1765,7 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
           "routing-protocol": [
             {
               "id": "1",
-              "type": "ietf-vpn-common:direct"
+              "type": "ietf-vpn-common:direct-routing"
             }
           ]
         }
