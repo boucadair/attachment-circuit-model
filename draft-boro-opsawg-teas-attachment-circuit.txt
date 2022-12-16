@@ -286,7 +286,8 @@ Table of Contents
 4.5.  One CE, Two ACs
 
    An example of a request to create two ACs to service the same CE on
-   the same link is shown in Figure 4.
+   the same link is shown in Figure 4.  This example assumes that static
+   addressing is used for the ACs.
 
    {
      "ietf-ac-svc:attachment-circuits": {
