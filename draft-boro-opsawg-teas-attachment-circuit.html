@@ -20,14 +20,14 @@
 <meta content="draft-boro-opsawg-teas-attachment-circuit-latest" name="ietf.draft">
 <!-- Generator version information:
   xml2rfc 3.15.3
-    Python 3.10.8
+    Python 3.10.9
     appdirs 1.4.4
     ConfigArgParse 1.5.3
     google-i18n-address 2.5.2
     html5lib 1.1
     intervaltree 3.1.0
     Jinja2 3.1.2
-    lxml 4.9.1
+    lxml 4.9.2
     MarkupSafe 2.1.1
     pycountry 22.3.5
     PyYAML 6.0
@@ -1032,7 +1032,7 @@ svg :is([stroke="white"], [stroke^="#fff"]) {
 svg :is([fill="black"], [fill^="#000"], :not([fill])) {
   fill: var(--text-color);
 }
-svg :is([stroke="fill"], [fill^="#fff"]) {
+svg :is([fill="white"], [fill^="#fff"]) {
   fill: var(--background-color);
 }
 </style>
@@ -1043,11 +1043,11 @@ svg :is([stroke="fill"], [fill^="#fff"]) {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">ACSM</td>
-<td class="right">December 2022</td>
+<td class="right">January 2023</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Boucadair, et al.</td>
-<td class="center">Expires 19 June 2023</td>
+<td class="center">Expires 10 July 2023</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1060,12 +1060,12 @@ svg :is([stroke="fill"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-boro-opsawg-teas-attachment-circuit-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2022-12-16" class="published">16 December 2022</time>
+<time datetime="2023-01-06" class="published">6 January 2023</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2023-06-19">19 June 2023</time></dd>
+<dd class="expires"><time datetime="2023-07-10">10 July 2023</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1127,7 +1127,7 @@ svg :is([stroke="fill"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 19 June 2023.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 10 July 2023.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1136,7 +1136,7 @@ svg :is([stroke="fill"], [fill^="#fff"]) {
 <a href="#name-copyright-notice" class="section-name selfRef">Copyright Notice</a>
         </h2>
 <p id="section-boilerplate.2-1">
-            Copyright (c) 2022 IETF Trust and the persons identified as the
+            Copyright (c) 2023 IETF Trust and the persons identified as the
             document authors. All rights reserved.<a href="#section-boilerplate.2-1" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.2-2">
             This document is subject to BCP 78 and the IETF Trust's Legal
@@ -1330,29 +1330,83 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
       <h2 id="name-sample-uses-of-the-attachme">
 <a href="#section-4" class="section-number selfRef">4. </a><a href="#name-sample-uses-of-the-attachme" class="section-name selfRef">Sample Uses of the Attachment Circuit Data Models</a>
       </h2>
-<div class="alignLeft art-text artwork" id="section-4-1">
-<pre>
-┌───────┐                      ┌──────────────────────┐
-│       ├────────┐             │                      │
-│  CE1  │        │             │                      │
-└───────┘        │             │                      │
-                 ├─────────────┤        PE            │
-┌───────┐        │             │                      │
-│       │        │             │                      │
-│  CE2  ├────────┘             │                      │
-└───────┘                      └──────────────────────┘
-
-┌───────┐                      ┌──────────────────────┐
-│       │                      │                      │
-│  CE1  ├──────────────────────┤                      │
-└───────┘                      │                      │
-                               │        PE            │
-┌───────┐                      │                      │
-│       ├──────────────────────┤                      │
-│  CE2  │                      │                      │
-└───────┘                      └──────────────────────┘
-
-</pre><a href="#section-4-1" class="pilcrow">¶</a>
+<span id="name-examples-of-acs"></span><div id="uc">
+<figure id="figure-1">
+        <div id="section-4-1.1">
+          <div class="alignCenter art-svg artwork" id="section-4-1.1.1">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="352" width="448" viewBox="0 0 448 352" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px">
+              <g class="text">
+                <text x="40" y="36">┌───────┐</text>
+                <text x="348" y="36">┌──────────────────────┐</text>
+                <text x="8" y="52">│</text>
+                <text x="108" y="52">├────────┐</text>
+                <text x="256" y="52">│</text>
+                <text x="440" y="52">│</text>
+                <text x="8" y="68">│</text>
+                <text x="40" y="68">CE1</text>
+                <text x="72" y="68">│</text>
+                <text x="144" y="68">│</text>
+                <text x="256" y="68">│</text>
+                <text x="440" y="68">│</text>
+                <text x="40" y="84">└───────┘</text>
+                <text x="144" y="84">│</text>
+                <text x="256" y="84">│</text>
+                <text x="440" y="84">│</text>
+                <text x="200" y="100">├─────────────┤</text>
+                <text x="332" y="100">PE</text>
+                <text x="440" y="100">│</text>
+                <text x="40" y="116">┌───────┐</text>
+                <text x="144" y="116">│</text>
+                <text x="256" y="116">│</text>
+                <text x="440" y="116">│</text>
+                <text x="8" y="132">│</text>
+                <text x="72" y="132">│</text>
+                <text x="144" y="132">│</text>
+                <text x="256" y="132">│</text>
+                <text x="440" y="132">│</text>
+                <text x="8" y="148">│</text>
+                <text x="40" y="148">CE2</text>
+                <text x="108" y="148">├────────┘</text>
+                <text x="256" y="148">│</text>
+                <text x="440" y="148">│</text>
+                <text x="40" y="164">└───────┘</text>
+                <text x="348" y="164">└──────────────────────┘</text>
+                <text x="40" y="196">┌───────┐</text>
+                <text x="348" y="196">┌──────────────────────┐</text>
+                <text x="8" y="212">│</text>
+                <text x="72" y="212">│</text>
+                <text x="256" y="212">│</text>
+                <text x="440" y="212">│</text>
+                <text x="8" y="228">│</text>
+                <text x="40" y="228">CE1</text>
+                <text x="164" y="228">├──────────────────────┤</text>
+                <text x="440" y="228">│</text>
+                <text x="40" y="244">└───────┘</text>
+                <text x="256" y="244">│</text>
+                <text x="440" y="244">│</text>
+                <text x="256" y="260">│</text>
+                <text x="332" y="260">PE</text>
+                <text x="440" y="260">│</text>
+                <text x="40" y="276">┌───────┐</text>
+                <text x="256" y="276">│</text>
+                <text x="440" y="276">│</text>
+                <text x="8" y="292">│</text>
+                <text x="164" y="292">├──────────────────────┤</text>
+                <text x="440" y="292">│</text>
+                <text x="8" y="308">│</text>
+                <text x="40" y="308">CE2</text>
+                <text x="72" y="308">│</text>
+                <text x="256" y="308">│</text>
+                <text x="440" y="308">│</text>
+                <text x="40" y="324">└───────┘</text>
+                <text x="348" y="324">└──────────────────────┘</text>
+              </g>
+            </svg><a href="#section-4-1.1.1" class="pilcrow">¶</a>
+</div>
+</div>
+<figcaption><a href="#figure-1" class="selfRef">Figure 1</a>:
+<a href="#name-examples-of-acs" class="selfRef">Examples of ACs</a>
+        </figcaption></figure>
 </div>
 <div id="separate-ac-provisioning-vs-actual-service-provisioning">
 <section id="section-4.1">
@@ -1361,8 +1415,8 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
         </h3>
 <p id="section-4.1-1">The procedure to provision a service in a service provider network may depend on the practices adopted by a service provider, including the flow put in place for the provisioning of advanced network services and how they are bound to an attachment circuit. For example, the same attachment circuit may be used to host multiple services. In order to avoid service interference and redundant information in various locations, a service provider may expose an interface to manage ACs network-wide. Customers can the request a base attachment circuit to be put in place, and then refer to that base AC when requesting services that are bound to that AC.<a href="#section-4.1-1" class="pilcrow">¶</a></p>
 <span id="name-an-example-of-ac-model-usag"></span><div id="_u-ex">
-<figure id="figure-1">
-          <div class="alignLeft art-text artwork" id="section-4.1-2.1">
+<figure id="figure-2">
+          <div class="alignCenter art-text artwork" id="section-4.1-2.1">
 <pre>
                           +---------------+
                           |   Customer    |
@@ -1398,7 +1452,7 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
                  |        |                   |
 </pre>
 </div>
-<figcaption><a href="#figure-1" class="selfRef">Figure 1</a>:
+<figcaption><a href="#figure-2" class="selfRef">Figure 2</a>:
 <a href="#name-an-example-of-ac-model-usag" class="selfRef">An Example of AC Model Usage</a>
           </figcaption></figure>
 </div>
@@ -1416,10 +1470,10 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
         <h3 id="name-request-an-ac-over-an-exist">
 <a href="#section-4.3" class="section-number selfRef">4.3. </a><a href="#name-request-an-ac-over-an-exist" class="section-name selfRef">Request An AC over An Existing Bearer</a>
         </h3>
-<p id="section-4.3-1">An example of a request to create a simple AC over an existing bearer is shown in <a href="#ac-b" class="auto internal xref">Figure 2</a>.<a href="#section-4.3-1" class="pilcrow">¶</a></p>
+<p id="section-4.3-1">An example of a request to create a simple AC over an existing bearer is shown in <a href="#ac-b" class="auto internal xref">Figure 3</a>.<a href="#section-4.3-1" class="pilcrow">¶</a></p>
 <span id="name-example-of-a-message-body-t"></span><div id="ac-b">
-<figure id="figure-2">
-          <div class="alignLeft art-text artwork" id="section-4.3-2.1">
+<figure id="figure-3">
+          <div class="alignCenter art-text artwork" id="section-4.3-2.1">
 <pre>
 {
   "ietf-ac-svc:attachment-circuits": {
@@ -1444,7 +1498,7 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 }
 </pre>
 </div>
-<figcaption><a href="#figure-2" class="selfRef">Figure 2</a>:
+<figcaption><a href="#figure-3" class="selfRef">Figure 3</a>:
 <a href="#name-example-of-a-message-body-t" class="selfRef">Example of a Message Body to Request an AC over an Existing Bearer</a>
           </figcaption></figure>
 </div>
@@ -1455,10 +1509,10 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
         <h3 id="name-request-an-ac-for-a-knwon-p">
 <a href="#section-4.4" class="section-number selfRef">4.4. </a><a href="#name-request-an-ac-for-a-knwon-p" class="section-name selfRef">Request An AC for a Knwon Peer SAP</a>
         </h3>
-<p id="section-4.4-1">An example of a request to create a simple AC, when the peer SAP is known, is shown in <a href="#ac-known-ps" class="auto internal xref">Figure 3</a>.<a href="#section-4.4-1" class="pilcrow">¶</a></p>
+<p id="section-4.4-1">An example of a request to create a simple AC, when the peer SAP is known, is shown in <a href="#ac-known-ps" class="auto internal xref">Figure 4</a>.<a href="#section-4.4-1" class="pilcrow">¶</a></p>
 <span id="name-example-of-a-message-body-to"></span><div id="ac-known-ps">
-<figure id="figure-3">
-          <div class="alignLeft art-text artwork" id="section-4.4-2.1">
+<figure id="figure-4">
+          <div class="alignCenter art-text artwork" id="section-4.4-2.1">
 <pre>
 {
   "ietf-ac-svc:attachment-circuits": {
@@ -1485,7 +1539,7 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 }
 </pre>
 </div>
-<figcaption><a href="#figure-3" class="selfRef">Figure 3</a>:
+<figcaption><a href="#figure-4" class="selfRef">Figure 4</a>:
 <a href="#name-example-of-a-message-body-to" class="selfRef">Example of a Message Body to Request an AC with a Peer SAP</a>
           </figcaption></figure>
 </div>
@@ -1496,10 +1550,10 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
         <h3 id="name-one-ce-two-acs">
 <a href="#section-4.5" class="section-number selfRef">4.5. </a><a href="#name-one-ce-two-acs" class="section-name selfRef">One CE, Two ACs</a>
         </h3>
-<p id="section-4.5-1">An example of a request to create two ACs to service the same CE on the same link is shown in <a href="#two-acs-same-ce" class="auto internal xref">Figure 4</a>. This example assumes that static addressing is used for the ACs.<a href="#section-4.5-1" class="pilcrow">¶</a></p>
+<p id="section-4.5-1">An example of a request to create two ACs to service the same CE on the same link is shown in <a href="#two-acs-same-ce" class="auto internal xref">Figure 5</a>. This example assumes that static addressing is used for the ACs.<a href="#section-4.5-1" class="pilcrow">¶</a></p>
 <span id="name-example-of-a-message-body-to-"></span><div id="two-acs-same-ce">
-<figure id="figure-4">
-          <div class="alignLeft art-text artwork" id="section-4.5-2.1">
+<figure id="figure-5">
+          <div class="alignCenter art-text artwork" id="section-4.5-2.1">
 <pre>
 {
   "ietf-ac-svc:attachment-circuits": {
@@ -1593,7 +1647,7 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 }
 </pre>
 </div>
-<figcaption><a href="#figure-4" class="selfRef">Figure 4</a>:
+<figcaption><a href="#figure-5" class="selfRef">Figure 5</a>:
 <a href="#name-example-of-a-message-body-to-" class="selfRef">Example of a Message Body to Request Two ACes on The Same Link</a>
           </figcaption></figure>
 </div>
@@ -1604,10 +1658,10 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
         <h3 id="name-illustrate-the-use-of-globa">
 <a href="#section-4.6" class="section-number selfRef">4.6. </a><a href="#name-illustrate-the-use-of-globa" class="section-name selfRef">Illustrate the Use of Global Profiles</a>
         </h3>
-<p id="section-4.6-1">An example of a request to create two ACs to service the same CE on the same link is shown in <a href="#two-acs-same-ce-profile" class="auto internal xref">Figure 5</a>. Unlike <a href="#two-acs-same-ce" class="auto internal xref">Figure 4</a>, this example factorizes some of the redundant data.<a href="#section-4.6-1" class="pilcrow">¶</a></p>
+<p id="section-4.6-1">An example of a request to create two ACs to service the same CE on the same link is shown in <a href="#two-acs-same-ce-profile" class="auto internal xref">Figure 6</a>. Unlike <a href="#two-acs-same-ce" class="auto internal xref">Figure 5</a>, this example factorizes some of the redundant data.<a href="#section-4.6-1" class="pilcrow">¶</a></p>
 <span id="name-example-of-a-message-body-to-r"></span><div id="two-acs-same-ce-profile">
-<figure id="figure-5">
-          <div class="alignLeft art-text artwork" id="section-4.6-2.1">
+<figure id="figure-6">
+          <div class="alignCenter art-text artwork" id="section-4.6-2.1">
 <pre>
 {
   "ietf-ac-svc:attachment-circuits": {
@@ -1703,7 +1757,7 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 }
 </pre>
 </div>
-<figcaption><a href="#figure-5" class="selfRef">Figure 5</a>:
+<figcaption><a href="#figure-6" class="selfRef">Figure 6</a>:
 <a href="#name-example-of-a-message-body-to-r" class="selfRef">Example of a Message Body to Request Two ACes on The Same Link (Global Profile)</a>
           </figcaption></figure>
 </div>
@@ -1714,10 +1768,10 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
         <h3 id="name-illustrate-the-use-of-per-n">
 <a href="#section-4.7" class="section-number selfRef">4.7. </a><a href="#name-illustrate-the-use-of-per-n" class="section-name selfRef">Illustrate the Use of Per-Node Profiles</a>
         </h3>
-<p id="section-4.7-1">An example of a request to create two ACs to service the same CE on the same link is shown in <a href="#two-acs-same-ce-node-profile" class="auto internal xref">Figure 6</a>. Unlike <a href="#two-acs-same-ce" class="auto internal xref">Figure 4</a>, this example factorizes all redundant data.<a href="#section-4.7-1" class="pilcrow">¶</a></p>
+<p id="section-4.7-1">An example of a request to create two ACs to service the same CE on the same link is shown in <a href="#two-acs-same-ce-node-profile" class="auto internal xref">Figure 7</a>. Unlike <a href="#two-acs-same-ce" class="auto internal xref">Figure 5</a>, this example factorizes all redundant data.<a href="#section-4.7-1" class="pilcrow">¶</a></p>
 <span id="name-example-of-a-message-body-to-re"></span><div id="two-acs-same-ce-node-profile">
-<figure id="figure-6">
-          <div class="alignLeft art-text artwork" id="section-4.7-2.1">
+<figure id="figure-7">
+          <div class="alignCenter art-text artwork" id="section-4.7-2.1">
 <pre>
 {
   "ietf-ac-svc:attachment-circuits": {
@@ -1791,14 +1845,14 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 }
 </pre>
 </div>
-<figcaption><a href="#figure-6" class="selfRef">Figure 6</a>:
+<figcaption><a href="#figure-7" class="selfRef">Figure 7</a>:
 <a href="#name-example-of-a-message-body-to-re" class="selfRef">Example of a Message Body to Request Two ACes on The Same Link (Node Profile)</a>
           </figcaption></figure>
 </div>
-<p id="section-4.7-3">A customer may request adding a new AC by simply referring to an existing per-node AC profile as shown in <a href="#add-ac-same-ce-node-profile" class="auto internal xref">Figure 7</a>. This AC inherites all the data that was enclosed in the indicated per-node AC profile (IP addressing, routing, etc.).<a href="#section-4.7-3" class="pilcrow">¶</a></p>
+<p id="section-4.7-3">A customer may request adding a new AC by simply referring to an existing per-node AC profile as shown in <a href="#add-ac-same-ce-node-profile" class="auto internal xref">Figure 8</a>. This AC inherites all the data that was enclosed in the indicated per-node AC profile (IP addressing, routing, etc.).<a href="#section-4.7-3" class="pilcrow">¶</a></p>
 <span id="name-example-of-a-message-body-to-a"></span><div id="add-ac-same-ce-node-profile">
-<figure id="figure-7">
-          <div class="alignLeft art-text artwork" id="section-4.7-4.1">
+<figure id="figure-8">
+          <div class="alignCenter art-text artwork" id="section-4.7-4.1">
 <pre>
 {
   "ietf-ac-svc:attachment-circuits": {
@@ -1823,7 +1877,7 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 }
 </pre>
 </div>
-<figcaption><a href="#figure-7" class="selfRef">Figure 7</a>:
+<figcaption><a href="#figure-8" class="selfRef">Figure 8</a>:
 <a href="#name-example-of-a-message-body-to-a" class="selfRef">Example of a Message Body to Add a new AC over an existing link (Node Profile)</a>
           </figcaption></figure>
 </div>
@@ -1834,30 +1888,82 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
         <h3 id="name-multiple-ces">
 <a href="#section-4.8" class="section-number selfRef">4.8. </a><a href="#name-multiple-ces" class="section-name selfRef">Multiple CEs</a>
         </h3>
-<p id="section-4.8-1"><a href="#network-example" class="auto internal xref">Figure 8</a> shows an example of CEs that are interconnected by a service provider network.<a href="#section-4.8-1" class="pilcrow">¶</a></p>
+<p id="section-4.8-1"><a href="#network-example" class="auto internal xref">Figure 9</a> shows an example of CEs that are interconnected by a service provider network.<a href="#section-4.8-1" class="pilcrow">¶</a></p>
 <span id="name-network-topology-example"></span><div id="network-example">
-<figure id="figure-8">
-          <div class="alignLeft art-text artwork" id="section-4.8-2.1">
-<pre>
-                   +-----+   +--------------+   +-----+
-      +----+       | PE1 |===|              |===| PE3 |       +----+
-      | CE1+-------+     |   |              |   |     +-------+ CE3|
-      +----+       +-----+   |              |   +-----+       +----+
-                             |     Core     |
-      +----+       +-----+   |              |   +-----+       +----+
-      |CE2 +-------+     |   |              |   |     +-------+ CE4|
-      +----+       | PE2 |===|              |===| PE4 |       +----+
-                   +-----+   +--------------+   +-----+
-</pre>
+<figure id="figure-9">
+          <div id="section-4.8-2.1">
+            <div class="alignCenter art-svg artwork" id="section-4.8-2.1.1">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="192" width="504" viewBox="0 0 504 192" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px">
+                <path d="M 8,48 L 8,80" fill="none" stroke="black"></path>
+                <path d="M 8,112 L 8,144" fill="none" stroke="black"></path>
+                <path d="M 48,48 L 48,80" fill="none" stroke="black"></path>
+                <path d="M 48,112 L 48,144" fill="none" stroke="black"></path>
+                <path d="M 112,32 L 112,80" fill="none" stroke="black"></path>
+                <path d="M 112,112 L 112,160" fill="none" stroke="black"></path>
+                <path d="M 160,32 L 160,80" fill="none" stroke="black"></path>
+                <path d="M 160,112 L 160,160" fill="none" stroke="black"></path>
+                <path d="M 192,32 L 192,160" fill="none" stroke="black"></path>
+                <path d="M 312,32 L 312,160" fill="none" stroke="black"></path>
+                <path d="M 344,32 L 344,80" fill="none" stroke="black"></path>
+                <path d="M 344,112 L 344,160" fill="none" stroke="black"></path>
+                <path d="M 392,32 L 392,80" fill="none" stroke="black"></path>
+                <path d="M 392,112 L 392,160" fill="none" stroke="black"></path>
+                <path d="M 456,48 L 456,80" fill="none" stroke="black"></path>
+                <path d="M 456,112 L 456,144" fill="none" stroke="black"></path>
+                <path d="M 496,48 L 496,80" fill="none" stroke="black"></path>
+                <path d="M 496,112 L 496,144" fill="none" stroke="black"></path>
+                <path d="M 112,32 L 160,32" fill="none" stroke="black"></path>
+                <path d="M 192,32 L 312,32" fill="none" stroke="black"></path>
+                <path d="M 344,32 L 392,32" fill="none" stroke="black"></path>
+                <path d="M 8,48 L 48,48" fill="none" stroke="black"></path>
+                <path d="M 168,46 L 184,46" fill="none" stroke="black"></path>
+                <path d="M 168,50 L 184,50" fill="none" stroke="black"></path>
+                <path d="M 320,46 L 336,46" fill="none" stroke="black"></path>
+                <path d="M 320,50 L 336,50" fill="none" stroke="black"></path>
+                <path d="M 456,48 L 496,48" fill="none" stroke="black"></path>
+                <path d="M 48,64 L 112,64" fill="none" stroke="black"></path>
+                <path d="M 392,64 L 456,64" fill="none" stroke="black"></path>
+                <path d="M 8,80 L 48,80" fill="none" stroke="black"></path>
+                <path d="M 112,80 L 160,80" fill="none" stroke="black"></path>
+                <path d="M 344,80 L 392,80" fill="none" stroke="black"></path>
+                <path d="M 456,80 L 496,80" fill="none" stroke="black"></path>
+                <path d="M 8,112 L 48,112" fill="none" stroke="black"></path>
+                <path d="M 112,112 L 160,112" fill="none" stroke="black"></path>
+                <path d="M 344,112 L 392,112" fill="none" stroke="black"></path>
+                <path d="M 456,112 L 496,112" fill="none" stroke="black"></path>
+                <path d="M 48,128 L 112,128" fill="none" stroke="black"></path>
+                <path d="M 392,128 L 456,128" fill="none" stroke="black"></path>
+                <path d="M 8,144 L 48,144" fill="none" stroke="black"></path>
+                <path d="M 168,142 L 184,142" fill="none" stroke="black"></path>
+                <path d="M 168,146 L 184,146" fill="none" stroke="black"></path>
+                <path d="M 320,142 L 336,142" fill="none" stroke="black"></path>
+                <path d="M 320,146 L 336,146" fill="none" stroke="black"></path>
+                <path d="M 456,144 L 496,144" fill="none" stroke="black"></path>
+                <path d="M 112,160 L 160,160" fill="none" stroke="black"></path>
+                <path d="M 192,160 L 312,160" fill="none" stroke="black"></path>
+                <path d="M 344,160 L 392,160" fill="none" stroke="black"></path>
+                <g class="text">
+                  <text x="136" y="52">PE1</text>
+                  <text x="368" y="52">PE3</text>
+                  <text x="32" y="68">CE1</text>
+                  <text x="480" y="68">CE3</text>
+                  <text x="252" y="100">Core</text>
+                  <text x="24" y="132">CE2</text>
+                  <text x="480" y="132">CE4</text>
+                  <text x="136" y="148">PE2</text>
+                  <text x="368" y="148">PE4</text>
+                </g>
+              </svg><a href="#section-4.8-2.1.1" class="pilcrow">¶</a>
 </div>
-<figcaption><a href="#figure-8" class="selfRef">Figure 8</a>:
+</div>
+<figcaption><a href="#figure-9" class="selfRef">Figure 9</a>:
 <a href="#name-network-topology-example" class="selfRef">Network Topology Example</a>
           </figcaption></figure>
 </div>
-<p id="section-4.8-3"><a href="#multiple-sites" class="auto internal xref">Figure 9</a> depicts an example of the message body of a request to instantiate these the various ACs that are shown in  <a href="#network-example" class="auto internal xref">Figure 8</a>.<a href="#section-4.8-3" class="pilcrow">¶</a></p>
+<p id="section-4.8-3"><a href="#multiple-sites" class="auto internal xref">Figure 10</a> depicts an example of the message body of a request to instantiate these the various ACs that are shown in  <a href="#network-example" class="auto internal xref">Figure 9</a>.<a href="#section-4.8-3" class="pilcrow">¶</a></p>
 <span id="name-example-of-a-message-body-to-o"></span><div id="multiple-sites">
-<figure id="figure-9">
-          <div class="alignLeft art-text artwork" id="section-4.8-4.1">
+<figure id="figure-10">
+          <div class="alignCenter art-text artwork" id="section-4.8-4.1">
 <pre>
 {
   "ietf-ac-svc:attachment-circuits": {
@@ -1920,7 +2026,7 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 }
 </pre>
 </div>
-<figcaption><a href="#figure-9" class="selfRef">Figure 9</a>:
+<figcaption><a href="#figure-10" class="selfRef">Figure 10</a>:
 <a href="#name-example-of-a-message-body-to-o" class="selfRef">Example of a Message Body to of Creating Multiple ACs bound to Multiple CEs</a>
           </figcaption></figure>
 </div>
@@ -1939,8 +2045,8 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 <a href="#section-5.1" class="section-number selfRef">5.1. </a><a href="#name-overall-structure-of-the-mo" class="section-name selfRef">Overall Structure of the Module</a>
         </h3>
 <span id="name-overall-ac-service-tree-str"></span><div id="o-svc-tree">
-<figure id="figure-10">
-          <div class="alignLeft art-text artwork" id="section-5.1-1.1">
+<figure id="figure-11">
+          <div class="alignCenter art-text artwork" id="section-5.1-1.1">
 <pre>
 module: ietf-ac-svc
   +--rw specific-provisioning-profiles
@@ -1969,7 +2075,7 @@ module: ietf-ac-svc
            ...
 </pre>
 </div>
-<figcaption><a href="#figure-10" class="selfRef">Figure 10</a>:
+<figcaption><a href="#figure-11" class="selfRef">Figure 11</a>:
 <a href="#name-overall-ac-service-tree-str" class="selfRef">Overall AC Service Tree Structure</a>
           </figcaption></figure>
 </div>
@@ -1986,10 +2092,10 @@ module: ietf-ac-svc
           <h4 id="name-description">
 <a href="#section-5.2.1" class="section-number selfRef">5.2.1. </a><a href="#name-description" class="section-name selfRef">Description</a>
           </h4>
-<p id="section-5.2.1-1">The 'specific-provisioning-profiles' container (<a href="#gp-svc-tree" class="auto internal xref">Figure 11</a>) can be used by a service provider to maintain a set of specific profiles that are similar to those defined in <span>[<a href="#RFC9181" class="cite xref">RFC9181</a>]</span>. The exact definition of the profiles is local to each service provider. The model only includes an identifier for these profiles in order to facilitate identifying and binding local policies when building an AC.<a href="#section-5.2.1-1" class="pilcrow">¶</a></p>
+<p id="section-5.2.1-1">The 'specific-provisioning-profiles' container (<a href="#gp-svc-tree" class="auto internal xref">Figure 12</a>) can be used by a service provider to maintain a set of specific profiles that are similar to those defined in <span>[<a href="#RFC9181" class="cite xref">RFC9181</a>]</span>. The exact definition of the profiles is local to each service provider. The model only includes an identifier for these profiles in order to facilitate identifying and binding local policies when building an AC.<a href="#section-5.2.1-1" class="pilcrow">¶</a></p>
 <span id="name-service-proviles"></span><div id="gp-svc-tree">
-<figure id="figure-11">
-            <div class="alignLeft art-text artwork" id="section-5.2.1-2.1">
+<figure id="figure-12">
+            <div class="alignCenter art-text artwork" id="section-5.2.1-2.1">
 <pre>
 module: ietf-ac-svc
   +--rw specific-provisioning-profiles
@@ -2019,11 +2125,11 @@ module: ietf-ac-svc
         ...
 </pre>
 </div>
-<figcaption><a href="#figure-11" class="selfRef">Figure 11</a>:
+<figcaption><a href="#figure-12" class="selfRef">Figure 12</a>:
 <a href="#name-service-proviles" class="selfRef">Service Proviles</a>
             </figcaption></figure>
 </div>
-<p id="section-5.2.1-3">As shown in <a href="#gp-svc-tree" class="auto internal xref">Figure 11</a>, two profile types can be defined: 'specific-provisioning-profiles' and 'service-provisioning-profiles'. Whether only specific profiles, service profiles, or a combination thereff are used is local to each service provider.<a href="#section-5.2.1-3" class="pilcrow">¶</a></p>
+<p id="section-5.2.1-3">As shown in <a href="#gp-svc-tree" class="auto internal xref">Figure 12</a>, two profile types can be defined: 'specific-provisioning-profiles' and 'service-provisioning-profiles'. Whether only specific profiles, service profiles, or a combination thereff are used is local to each service provider.<a href="#section-5.2.1-3" class="pilcrow">¶</a></p>
 <p id="section-5.2.1-4">The following specific rovisioning profiles can be defined:<a href="#section-5.2.1-4" class="pilcrow">¶</a></p>
 <span class="break"></span><dl class="dlParallel" id="section-5.2.1-5">
             <dt id="section-5.2.1-5.1">'external-connectivity-identifier':</dt>
@@ -2089,8 +2195,8 @@ module: ietf-ac-svc
 <a href="#section-5.5" class="section-number selfRef">5.5. </a><a href="#name-attachment-circuits" class="section-name selfRef">Attachment Circuits</a>
         </h3>
 <span id="name-cccc-tree-structure"></span><div id="ac-svc-tree">
-<figure id="figure-12">
-          <div class="alignLeft art-text artwork" id="section-5.5-1.1">
+<figure id="figure-13">
+          <div class="alignCenter art-text artwork" id="section-5.5-1.1">
 <pre>
 module: ietf-ac-svc
   +--rw specific-provisioning-profiles
@@ -2119,13 +2225,13 @@ module: ietf-ac-svc
            ...
 </pre>
 </div>
-<figcaption><a href="#figure-12" class="selfRef">Figure 12</a>:
+<figcaption><a href="#figure-13" class="selfRef">Figure 13</a>:
 <a href="#name-cccc-tree-structure" class="selfRef">cccc Tree Structure</a>
           </figcaption></figure>
 </div>
 <span id="name-ac-service-tree-structure"></span><div id="d-svc-tree">
-<figure id="figure-13">
-          <div class="alignLeft art-text artwork" id="section-5.5-2.1">
+<figure id="figure-14">
+          <div class="alignCenter art-text artwork" id="section-5.5-2.1">
 <pre>
 module: ietf-ac-svc
   +--rw specific-provisioning-profiles
@@ -2614,7 +2720,7 @@ module: ietf-ac-svc
                     +--rw customer-key-chain?   key-chain:key-chain-ref
 </pre>
 </div>
-<figcaption><a href="#figure-13" class="selfRef">Figure 13</a>:
+<figcaption><a href="#figure-14" class="selfRef">Figure 14</a>:
 <a href="#name-ac-service-tree-structure" class="selfRef">AC Service Tree Structure</a>
           </figcaption></figure>
 </div>
