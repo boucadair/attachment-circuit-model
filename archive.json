@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2023-01-05T00:40:55.605734+00:00",
+  "timestamp": "2023-01-08T00:42:17.951329+00:00",
   "repo": "boucadair/attachment-circuit-model",
   "labels": [
     {
@@ -49,7 +49,24 @@
       "color": "ffffff"
     }
   ],
-  "issues": [],
+  "issues": [
+    {
+      "number": 4,
+      "id": "I_kwDOIiAkrc5awmh5",
+      "title": "Specify an AC Anchor when no bearer is in place",
+      "url": "https://github.com/boucadair/attachment-circuit-model/issues/4",
+      "state": "OPEN",
+      "author": "boucadair",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2023-01-06T14:41:07Z",
+      "updatedAt": "2023-01-06T14:41:07Z",
+      "closedAt": null,
+      "comments": []
+    }
+  ],
   "pulls": [
     {
       "number": 1,
