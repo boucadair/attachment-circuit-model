@@ -2,7 +2,7 @@
 
 
 
-OPSAW                                                  M. Boucadair, Ed.
+OPSAWG                                                 M. Boucadair, Ed.
 Internet-Draft                                                    Orange
 Intended status: Standards Track                              R. Roberts
 Expires: 13 July 2023                                            Juniper
@@ -21,23 +21,23 @@ Expires: 13 July 2023                                            Juniper
 Abstract
 
    This document specifies a YANG service data model for Attachment
-   Circuits (ACs).  The model can be used for the provisioning ACs prior
-   or during service provisioning (e.g., Network Slice Service).  The
-   model is designed with the intent to be reusable.  Whether a service
-   model reuses structures defined in the AC service model or simply
-   include an AC reference is a design choice of these service models.
-   Relying on the AC model to manage ACs over which a service is
-   delivered has the merit to decorrelate the management of a service
+   Circuits (ACs).  The model can be used for the provisioning of ACs
+   prior or during service provisioning (e.g., Network Slice Service).
+
+   The model is designed with the intent to be reusable.  Whether a
+   service model reuses structures defined in the AC service model or
+   simply include an AC reference is a design choice of these service
+   models.  Relying upon the AC model to manage ACs over which a service
+   is delivered has the merit to decorrelate the management of a service
    vs. upgrade the AC components to reflect recent AC technologies or
    features.
 
    Each AC is identified with a unique identifier within a domain.  The
-   mapping between this AC and a PE that terminates the AC (on the
-   network provide side) is hidden to the application/customer that
-   makes use of the AC service model.  This information is internal to
-   the network controller.  As such, the details about the (node-
-   specific network) attachment interfaces are not exposed in this
-   service model.
+   mapping between this AC and a PE that terminates the AC is hidden to
+   the application/customer that makes use of the AC service model.
+   Such an information is internal to the network controller.  Thus, the
+   details about the (network node-specific) attachment interfaces are
+   not exposed in this service model.
 
 Discussion Venues
 
@@ -123,18 +123,20 @@ Table of Contents
 
    This document specifies a YANG service data model for managing
    attachment circuits (ACs) that are exposed by a network to its
-   customers (e.g., enterprise site, network function, hosting
-   infrastructure, peer network provider) . The model can be used for
-   the provisioning AC prior or during service provisioning (e.g.,
-   Network Slice Service).  Also, the model is designed with the intent
-   to be reusable.  Whether a service model reuses structures defined in
-   the AC service model or simply include an AC reference is a design
-   choice of these service models.
+   customers (e.g., an enterprise site, a network function, a hosting
+   infrastructure, a peer network provider) . The model can be used for
+   the provisioning of ACs prior or during advanced service provisioning
+   (e.g., Network Slice Service).
 
-   Relying on the AC model to manage ACs over which a service is
+   Also, the model is designed with the intent to be reusable.  Whether
+   a service model reuses structures defined in the AC service model or
+   simply includes an AC reference (that was communicated during AC
+   instantiation) is a design choice of these service models.  Relying
+   upon the AC service model to manage ACs over which services are
    delivered has the merit to decorrelate the management of a service
    vs. upgrade the AC components to reflect recent AC technologies or
-   features (e.g., new encryption scheme, additional routing protocol).
+   new features (e.g., new encryption scheme, additional routing
+   protocol).
 
    Each AC is identified with a unique identifier within a domain.  From
    a network provider standpoint, an AC can be bound to a single or
@@ -180,7 +182,10 @@ Table of Contents
 3.  Sample Uses of the Attachment Circuit Data Models
 
    Figure 1 depictes two target topology flavors that may host ACs.  A
-   CE may be a physical node or a logical entity.
+   CE may be a physical node or a logical entity.  The same request may
+   include one or multiple ACs that may belong to one or both of these
+   flavors.  For the sake of illustration, only one a subset of these
+   ACs are shown in Figure 1.
 
    CEs may be dedicated to one single service or host multiple service
    instances (e.g., service functions [RFC7665].  A single AC (as seen
