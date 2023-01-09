@@ -2377,9 +2377,21 @@ module: ietf-ac-svc
 <a href="#section-4.5.3" class="section-number selfRef">4.5.3. </a><a href="#name-routing" class="section-name selfRef">Routing</a>
           </h4>
 <p id="section-4.5.3-1">As shown in the tree depicted in <a href="#rtg-svc-tree" class="auto internal xref">Figure 16</a>, the 'routing-protocols' container defines th erequired parameters to enable the required routing features for an AC. One or more routing protocols can be associated with an AC.  Such routing protocols are then enabled between a PE and the CE. Each routing instance is uniquely identified to accommodate scenarios where multiple instances of the same routing protocol have to be configured on the same link.<a href="#section-4.5.3-1" class="pilcrow">¶</a></p>
+<p id="section-4.5.3-2">In addition to static routing, the module supports the following routing protocols:<a href="#section-4.5.3-2" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-4.5.3-3.1">BGP <span>[<a href="#RFC4271" class="cite xref">RFC4271</a>]</span><a href="#section-4.5.3-3.1" class="pilcrow">¶</a>
+</li>
+            <li class="normal" id="section-4.5.3-3.2">OSPF <span>[<a href="#RFC4577" class="cite xref">RFC4577</a>]</span> or <span>[<a href="#RFC6565" class="cite xref">RFC6565</a>]</span><a href="#section-4.5.3-3.2" class="pilcrow">¶</a>
+</li>
+            <li class="normal" id="section-4.5.3-3.3">IS-IS <span>[<a href="#ISO10589" class="cite xref">ISO10589</a>]</span><span>[<a href="#RFC1195" class="cite xref">RFC1195</a>]</span><span>[<a href="#RFC5308" class="cite xref">RFC5308</a>]</span><a href="#section-4.5.3-3.3" class="pilcrow">¶</a>
+</li>
+            <li class="normal" id="section-4.5.3-3.4">RIP <span>[<a href="#RFC2453" class="cite xref">RFC2453</a>]</span><a href="#section-4.5.3-3.4" class="pilcrow">¶</a>
+</li>
+          </ul>
+<p id="section-4.5.3-4">The model also supports the Virtual Router Redundancy Protocol (VRRP) <span>[<a href="#RFC5798" class="cite xref">RFC5798</a>]</span> on an AC.<a href="#section-4.5.3-4" class="pilcrow">¶</a></p>
 <span id="name-routing-tree-structure"></span><div id="rtg-svc-tree">
 <figure id="figure-16">
-            <div class="alignCenter art-text artwork" id="section-4.5.3-2.1">
+            <div class="alignCenter art-text artwork" id="section-4.5.3-5.1">
 <pre>
 module: ietf-ac-svc
   +--rw specific-provisioning-profiles
@@ -2498,6 +2510,7 @@ module: ietf-ac-svc
 <a href="#name-routing-tree-structure" class="selfRef">Routing Tree Structure</a>
             </figcaption></figure>
 </div>
+<p id="section-4.5.3-6">For all supported routing protocols, 'address-family' indicates whether IPv4, IPv6, or both address families are to be activated. For example, this parameter is used to determine whether RIPv2 <span>[<a href="#RFC2453" class="cite xref">RFC2453</a>]</span>, RIP Next Generation (RIPng), or both are to be enabled <span>[<a href="#RFC2080" class="cite xref">RFC2080</a>]</span>.<a href="#section-4.5.3-6" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="oam">
@@ -4517,13 +4530,45 @@ module ietf-ac-svc {
         <dd>
 <span class="refAuthor">Boucadair, M.</span>, <span class="refAuthor">de Dios, O. G.</span>, <span class="refAuthor">Barguil, S.</span>, <span class="refAuthor">Wu, Q.</span>, and <span class="refAuthor">V. Lopez</span>, <span class="refTitle">"A YANG Network Model for Service Attachment Points (SAPs)"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-opsawg-sap-13</span>, <time datetime="2023-01-09" class="refDate">9 January 2023</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-sap-13">https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-sap-13</a>&gt;</span>. </dd>
 <dd class="break"></dd>
+<dt id="ISO10589">[ISO10589]</dt>
+        <dd>
+<span class="refAuthor">ISO</span>, <span class="refTitle">"Information technology - Telecommunications and information exchange between systems - Intermediate System to Intermediate System intra-domain routeing information exchange protocol for use in conjunction with the protocol for providing the connectionless-mode network service (ISO8473)"</span>, <time datetime="2002" class="refDate">2002</time>, <span>&lt;<a href="https://www.iso.org/standard/30932.html">https://www.iso.org/standard/30932.html</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC1195">[RFC1195]</dt>
+        <dd>
+<span class="refAuthor">Callon, R.</span>, <span class="refTitle">"Use of OSI IS-IS for routing in TCP/IP and dual environments"</span>, <span class="seriesInfo">RFC 1195</span>, <span class="seriesInfo">DOI 10.17487/RFC1195</span>, <time datetime="1990-12" class="refDate">December 1990</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc1195">https://www.rfc-editor.org/rfc/rfc1195</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC2080">[RFC2080]</dt>
+        <dd>
+<span class="refAuthor">Malkin, G.</span> and <span class="refAuthor">R. Minnear</span>, <span class="refTitle">"RIPng for IPv6"</span>, <span class="seriesInfo">RFC 2080</span>, <span class="seriesInfo">DOI 10.17487/RFC2080</span>, <time datetime="1997-01" class="refDate">January 1997</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc2080">https://www.rfc-editor.org/rfc/rfc2080</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="RFC2119">[RFC2119]</dt>
         <dd>
 <span class="refAuthor">Bradner, S.</span>, <span class="refTitle">"Key words for use in RFCs to Indicate Requirement Levels"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 2119</span>, <span class="seriesInfo">DOI 10.17487/RFC2119</span>, <time datetime="1997-03" class="refDate">March 1997</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc2119">https://www.rfc-editor.org/rfc/rfc2119</a>&gt;</span>. </dd>
 <dd class="break"></dd>
+<dt id="RFC2453">[RFC2453]</dt>
+        <dd>
+<span class="refAuthor">Malkin, G.</span>, <span class="refTitle">"RIP Version 2"</span>, <span class="seriesInfo">STD 56</span>, <span class="seriesInfo">RFC 2453</span>, <span class="seriesInfo">DOI 10.17487/RFC2453</span>, <time datetime="1998-11" class="refDate">November 1998</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc2453">https://www.rfc-editor.org/rfc/rfc2453</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="RFC3688">[RFC3688]</dt>
         <dd>
 <span class="refAuthor">Mealling, M.</span>, <span class="refTitle">"The IETF XML Registry"</span>, <span class="seriesInfo">BCP 81</span>, <span class="seriesInfo">RFC 3688</span>, <span class="seriesInfo">DOI 10.17487/RFC3688</span>, <time datetime="2004-01" class="refDate">January 2004</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc3688">https://www.rfc-editor.org/rfc/rfc3688</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC4271">[RFC4271]</dt>
+        <dd>
+<span class="refAuthor">Rekhter, Y., Ed.</span>, <span class="refAuthor">Li, T., Ed.</span>, and <span class="refAuthor">S. Hares, Ed.</span>, <span class="refTitle">"A Border Gateway Protocol 4 (BGP-4)"</span>, <span class="seriesInfo">RFC 4271</span>, <span class="seriesInfo">DOI 10.17487/RFC4271</span>, <time datetime="2006-01" class="refDate">January 2006</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc4271">https://www.rfc-editor.org/rfc/rfc4271</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC4577">[RFC4577]</dt>
+        <dd>
+<span class="refAuthor">Rosen, E.</span>, <span class="refAuthor">Psenak, P.</span>, and <span class="refAuthor">P. Pillay-Esnault</span>, <span class="refTitle">"OSPF as the Provider/Customer Edge Protocol for BGP/MPLS IP Virtual Private Networks (VPNs)"</span>, <span class="seriesInfo">RFC 4577</span>, <span class="seriesInfo">DOI 10.17487/RFC4577</span>, <time datetime="2006-06" class="refDate">June 2006</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc4577">https://www.rfc-editor.org/rfc/rfc4577</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC5308">[RFC5308]</dt>
+        <dd>
+<span class="refAuthor">Hopps, C.</span>, <span class="refTitle">"Routing IPv6 with IS-IS"</span>, <span class="seriesInfo">RFC 5308</span>, <span class="seriesInfo">DOI 10.17487/RFC5308</span>, <time datetime="2008-10" class="refDate">October 2008</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc5308">https://www.rfc-editor.org/rfc/rfc5308</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC5798">[RFC5798]</dt>
+        <dd>
+<span class="refAuthor">Nadas, S., Ed.</span>, <span class="refTitle">"Virtual Router Redundancy Protocol (VRRP) Version 3 for IPv4 and IPv6"</span>, <span class="seriesInfo">RFC 5798</span>, <span class="seriesInfo">DOI 10.17487/RFC5798</span>, <time datetime="2010-03" class="refDate">March 2010</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc5798">https://www.rfc-editor.org/rfc/rfc5798</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC5880">[RFC5880]</dt>
         <dd>
@@ -4540,6 +4585,10 @@ module ietf-ac-svc {
 <dt id="RFC6242">[RFC6242]</dt>
         <dd>
 <span class="refAuthor">Wasserman, M.</span>, <span class="refTitle">"Using the NETCONF Protocol over Secure Shell (SSH)"</span>, <span class="seriesInfo">RFC 6242</span>, <span class="seriesInfo">DOI 10.17487/RFC6242</span>, <time datetime="2011-06" class="refDate">June 2011</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc6242">https://www.rfc-editor.org/rfc/rfc6242</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC6565">[RFC6565]</dt>
+        <dd>
+<span class="refAuthor">Pillay-Esnault, P.</span>, <span class="refAuthor">Moyer, P.</span>, <span class="refAuthor">Doyle, J.</span>, <span class="refAuthor">Ertekin, E.</span>, and <span class="refAuthor">M. Lundberg</span>, <span class="refTitle">"OSPFv3 as a Provider Edge to Customer Edge (PE-CE) Routing Protocol"</span>, <span class="seriesInfo">RFC 6565</span>, <span class="seriesInfo">DOI 10.17487/RFC6565</span>, <time datetime="2012-06" class="refDate">June 2012</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc6565">https://www.rfc-editor.org/rfc/rfc6565</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC6991">[RFC6991]</dt>
         <dd>

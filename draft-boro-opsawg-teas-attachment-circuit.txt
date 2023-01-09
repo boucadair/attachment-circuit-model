@@ -1050,6 +1050,20 @@ module: ietf-ac-svc
    identified to accommodate scenarios where multiple instances of the
    same routing protocol have to be configured on the same link.
 
+   In addition to static routing, the module supports the following
+   routing protocols:
+
+   *  BGP [RFC4271]
+
+   *  OSPF [RFC4577] or [RFC6565]
+
+   *  IS-IS [ISO10589][RFC1195][RFC5308]
+
+   *  RIP [RFC2453]
+
+   The model also supports the Virtual Router Redundancy Protocol (VRRP)
+   [RFC5798] on an AC.
+
 module: ietf-ac-svc
   +--rw specific-provisioning-profiles
   |  ...
@@ -1163,6 +1177,12 @@ module: ietf-ac-svc
            ...
 
                   Figure 16: Routing Tree Structure
+
+   For all supported routing protocols, 'address-family' indicates
+   whether IPv4, IPv6, or both address families are to be activated.
+   For example, this parameter is used to determine whether RIPv2
+   [RFC2453], RIP Next Generation (RIPng), or both are to be enabled
+   [RFC2080].
 
 4.5.4.  OAM
 
@@ -3138,14 +3158,53 @@ module: ietf-ac-svc
               <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
               sap-13>.
 
+   [ISO10589] ISO, "Information technology - Telecommunications and
+              information exchange between systems - Intermediate System
+              to Intermediate System intra-domain routeing information
+              exchange protocol for use in conjunction with the protocol
+              for providing the connectionless-mode network service
+              (ISO8473)", 2002,
+              <https://www.iso.org/standard/30932.html>.
+
+   [RFC1195]  Callon, R., "Use of OSI IS-IS for routing in TCP/IP and
+              dual environments", RFC 1195, DOI 10.17487/RFC1195,
+              December 1990, <https://www.rfc-editor.org/rfc/rfc1195>.
+
+   [RFC2080]  Malkin, G. and R. Minnear, "RIPng for IPv6", RFC 2080,
+              DOI 10.17487/RFC2080, January 1997,
+              <https://www.rfc-editor.org/rfc/rfc2080>.
+
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
               DOI 10.17487/RFC2119, March 1997,
               <https://www.rfc-editor.org/rfc/rfc2119>.
 
+   [RFC2453]  Malkin, G., "RIP Version 2", STD 56, RFC 2453,
+              DOI 10.17487/RFC2453, November 1998,
+              <https://www.rfc-editor.org/rfc/rfc2453>.
+
    [RFC3688]  Mealling, M., "The IETF XML Registry", BCP 81, RFC 3688,
               DOI 10.17487/RFC3688, January 2004,
               <https://www.rfc-editor.org/rfc/rfc3688>.
+
+   [RFC4271]  Rekhter, Y., Ed., Li, T., Ed., and S. Hares, Ed., "A
+              Border Gateway Protocol 4 (BGP-4)", RFC 4271,
+              DOI 10.17487/RFC4271, January 2006,
+              <https://www.rfc-editor.org/rfc/rfc4271>.
+
+   [RFC4577]  Rosen, E., Psenak, P., and P. Pillay-Esnault, "OSPF as the
+              Provider/Customer Edge Protocol for BGP/MPLS IP Virtual
+              Private Networks (VPNs)", RFC 4577, DOI 10.17487/RFC4577,
+              June 2006, <https://www.rfc-editor.org/rfc/rfc4577>.
+
+   [RFC5308]  Hopps, C., "Routing IPv6 with IS-IS", RFC 5308,
+              DOI 10.17487/RFC5308, October 2008,
+              <https://www.rfc-editor.org/rfc/rfc5308>.
+
+   [RFC5798]  Nadas, S., Ed., "Virtual Router Redundancy Protocol (VRRP)
+              Version 3 for IPv4 and IPv6", RFC 5798,
+              DOI 10.17487/RFC5798, March 2010,
+              <https://www.rfc-editor.org/rfc/rfc5798>.
 
    [RFC5880]  Katz, D. and D. Ward, "Bidirectional Forwarding Detection
               (BFD)", RFC 5880, DOI 10.17487/RFC5880, June 2010,
@@ -3164,6 +3223,11 @@ module: ietf-ac-svc
    [RFC6242]  Wasserman, M., "Using the NETCONF Protocol over Secure
               Shell (SSH)", RFC 6242, DOI 10.17487/RFC6242, June 2011,
               <https://www.rfc-editor.org/rfc/rfc6242>.
+
+   [RFC6565]  Pillay-Esnault, P., Moyer, P., Doyle, J., Ertekin, E., and
+              M. Lundberg, "OSPFv3 as a Provider Edge to Customer Edge
+              (PE-CE) Routing Protocol", RFC 6565, DOI 10.17487/RFC6565,
+              June 2012, <https://www.rfc-editor.org/rfc/rfc6565>.
 
    [RFC6991]  Schoenwaelder, J., Ed., "Common YANG Data Types",
               RFC 6991, DOI 10.17487/RFC6991, July 2013,
