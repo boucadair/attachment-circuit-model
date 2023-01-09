@@ -182,14 +182,14 @@ Table of Contents
 3.  Sample Uses of the Attachment Circuit Data Models
 
    Figure 1 depictes two target topology flavors that may host ACs.  A
-   CE may be a physical node or a logical entity.  The same request may
-   include one or multiple ACs that may belong to one or both of these
-   flavors.  For the sake of illustration, only one a subset of these
-   ACs are shown in Figure 1.
+   CE may be a physical node or a logical entity.  The same AC request
+   may include one or multiple ACs that may belong to one or both of
+   these flavors.  For the sake of simplfying the illustration, only a
+   subset of these ACs is shown in Figure 1.
 
-   CEs may be dedicated to one single service or host multiple service
-   instances (e.g., service functions [RFC7665].  A single AC (as seen
-   by a network provider) may have one or multiple peer SAPs.
+   CEs may be dedicated to one single service or host multiple services
+   (e.g., service functions [RFC7665]).  A single AC (as seen by a
+   network provider) may be bound to one or multiple peer SAPs.
 
           ┌───────┐                      ┌──────────────────────┐
           │       ├────────┐             │                      │
@@ -309,7 +309,8 @@ Table of Contents
    (topological) location of that service function is assumed to be
    known to the network controller.  For example, this can be determined
    as part of an on-demand procedure to instantiate a service function
-   in a cloud.
+   in a cloud.  That instantiated service function can be granted a
+   connectivity service via the provider network.
 
    {
      "ietf-ac-svc:attachment-circuits": {

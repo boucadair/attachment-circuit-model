@@ -1327,8 +1327,8 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
       <h2 id="name-sample-uses-of-the-attachme">
 <a href="#section-3" class="section-number selfRef">3. </a><a href="#name-sample-uses-of-the-attachme" class="section-name selfRef">Sample Uses of the Attachment Circuit Data Models</a>
       </h2>
-<p id="section-3-1"><a href="#uc" class="auto internal xref">Figure 1</a> depictes two target topology flavors that may host ACs. A CE may be a physical node or a logical entity. The same request may include one or multiple ACs that may belong to one or both of these flavors. For the sake of illustration, only one a subset of these ACs are shown in <a href="#uc" class="auto internal xref">Figure 1</a>.<a href="#section-3-1" class="pilcrow">¶</a></p>
-<p id="section-3-2">CEs may be dedicated to one single service or host multiple service instances (e.g., service functions <span>[<a href="#RFC7665" class="cite xref">RFC7665</a>]</span>. A single AC (as seen by a network provider) may have one or multiple peer SAPs.<a href="#section-3-2" class="pilcrow">¶</a></p>
+<p id="section-3-1"><a href="#uc" class="auto internal xref">Figure 1</a> depictes two target topology flavors that may host ACs. A CE may be a physical node or a logical entity. The same AC request may include one or multiple ACs that may belong to one or both of these flavors. For the sake of simplfying the illustration, only a subset of these ACs is shown in <a href="#uc" class="auto internal xref">Figure 1</a>.<a href="#section-3-1" class="pilcrow">¶</a></p>
+<p id="section-3-2">CEs may be dedicated to one single service or host multiple services (e.g., service functions <span>[<a href="#RFC7665" class="cite xref">RFC7665</a>]</span>). A single AC (as seen by a network provider) may be bound to one or multiple peer SAPs.<a href="#section-3-2" class="pilcrow">¶</a></p>
 <span id="name-examples-of-acs"></span><div id="uc">
 <figure id="figure-1">
         <div id="section-3-3.1">
@@ -1510,7 +1510,7 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
         <h3 id="name-request-an-ac-for-a-knwon-p">
 <a href="#section-3.4" class="section-number selfRef">3.4. </a><a href="#name-request-an-ac-for-a-knwon-p" class="section-name selfRef">Request An AC for a Knwon Peer SAP</a>
         </h3>
-<p id="section-3.4-1">An example of a request to create a simple AC, when the peer SAP is known, is shown in <a href="#ac-known-ps" class="auto internal xref">Figure 4</a>. In this example, the peer SAP identifier points to an identifier of a service function. The (topological) location of that service function is assumed to be known to the network controller. For example, this can be determined as part of an on-demand procedure to instantiate a service function in a cloud.<a href="#section-3.4-1" class="pilcrow">¶</a></p>
+<p id="section-3.4-1">An example of a request to create a simple AC, when the peer SAP is known, is shown in <a href="#ac-known-ps" class="auto internal xref">Figure 4</a>. In this example, the peer SAP identifier points to an identifier of a service function. The (topological) location of that service function is assumed to be known to the network controller. For example, this can be determined as part of an on-demand procedure to instantiate a service function in a cloud. That instantiated service function can be granted a connectivity service via the provider network.<a href="#section-3.4-1" class="pilcrow">¶</a></p>
 <span id="name-example-of-a-message-body-to"></span><div id="ac-known-ps">
 <figure id="figure-4">
           <div class="alignLeft art-text artwork" id="section-3.4-2.1">
