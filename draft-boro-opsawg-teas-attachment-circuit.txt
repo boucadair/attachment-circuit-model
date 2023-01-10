@@ -5,14 +5,14 @@
 OPSAWG                                                 M. Boucadair, Ed.
 Internet-Draft                                                    Orange
 Intended status: Standards Track                              R. Roberts
-Expires: 13 July 2023                                            Juniper
+Expires: 14 July 2023                                            Juniper
                                                            O. G. D. Dios
                                                               Telefonica
                                                            S. B. Giraldo
                                                                    Nokia
                                                                    B. Wu
                                                      Huawei Technologies
-                                                          9 January 2023
+                                                         10 January 2023
 
 
            A YANG Service Data Model for Attachment Circuits
@@ -66,7 +66,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 13 July 2023.
+   This Internet-Draft will expire on 14 July 2023.
 
 Copyright Notice
 
@@ -89,12 +89,12 @@ Table of Contents
    3.  Sample Uses of the Attachment Circuit Data Models
      3.1.  Separate AC Provisioning vs. Actual Service Provisioning
      3.2.  Examples
-     3.3.  Request An AC over An Existing Bearer
-     3.4.  Request An AC for a Knwon Peer SAP
-     3.5.  One CE, Two ACs
-     3.6.  Illustrate the Use of Global Profiles
-     3.7.  Illustrate the Use of Per-Node Profiles
-     3.8.  Multiple CEs
+       3.2.1.  Request An AC over An Existing Bearer
+       3.2.2.  Request An AC for a Knwon Peer SAP
+       3.2.3.  One CE, Two ACs
+       3.2.4.  Illustrate the Use of Global Profiles
+       3.2.5.  Illustrate the Use of Per-Node Profiles
+       3.2.6.  Multiple CEs
    4.  Description of the Attachment Circuit YANG Module
      4.1.  Overall Structure of the Module
      4.2.  Service Profiles
@@ -269,39 +269,39 @@ Table of Contents
    This section includes a non-exhaustive list of examples to illustrate
    the use of the AC service model.
 
-3.3.  Request An AC over An Existing Bearer
+3.2.1.  Request An AC over An Existing Bearer
 
    An example of of a request message body to create a simple AC over an
    existing bearer is shown in Figure 3.  The bearer reference is
    assumed to be known to both the customer and the network provider.
    How such reference is shared is out of scope.
 
+   {
+     "ietf-ac-svc:attachment-circuits": {
+       "ac": [
          {
-           "ietf-ac-svc:attachment-circuits": {
-             "ac": [
-               {
-                 "name": "ac4585",
-                 "description": "An AC on an existing bearer",
-                 "requested-ac-start": "2023-12-12T05:00:00.00Z",
-                 "l2-connection": {
-                   "encapsulation": {
-                     "type": "ietf-vpn-common:dot1q",
-                     "dot1q": {
-                       "tag-type": "ietf-vpn-common:c-vlan",
-                       "cvlan-id": 550
-                     }
-                   },
-                   "bearer-reference": "line-156"
-                 }
+           "name": "ac4585",
+           "description": "An AC on an existing bearer",
+           "requested-ac-start": "2023-12-12T05:00:00.00Z",
+           "l2-connection": {
+             "encapsulation": {
+               "type": "ietf-vpn-common:dot1q",
+               "dot1q": {
+                 "tag-type": "ietf-vpn-common:c-vlan",
+                 "cvlan-id": 550
                }
-             ]
+             },
+             "bearer-reference": "line-156"
            }
          }
+       ]
+     }
+   }
 
         Figure 3: Example of a Message Body to Request an AC over an
                               Existing Bearer
 
-3.4.  Request An AC for a Knwon Peer SAP
+3.2.2.  Request An AC for a Knwon Peer SAP
 
    An example of a request to create a simple AC, when the peer SAP is
    known, is shown in Figure 4.  In this example, the peer SAP
@@ -338,7 +338,7 @@ Table of Contents
 
     Figure 4: Example of a Message Body to Request an AC with a Peer SAP
 
-3.5.  One CE, Two ACs
+3.2.3.  One CE, Two ACs
 
    An example of a request to create two ACs to service the same CE on
    the same link is shown in Figure 5.  This example assumes that static
@@ -438,7 +438,7 @@ Table of Contents
        Figure 5: Example of a Message Body to Request Two ACes on The
                                  Same Link
 
-3.6.  Illustrate the Use of Global Profiles
+3.2.4.  Illustrate the Use of Global Profiles
 
    An example of a request to create two ACs to service the same CE on
    the same link is shown in Figure 6.  Unlike Figure 5, this example
@@ -540,7 +540,7 @@ Table of Contents
        Figure 6: Example of a Message Body to Request Two ACes on The
                          Same Link (Global Profile)
 
-3.7.  Illustrate the Use of Per-Node Profiles
+3.2.5.  Illustrate the Use of Per-Node Profiles
 
    An example of a request to create two ACs to service the same CE on
    the same link is shown in Figure 7.  Unlike Figure 5, this example
@@ -650,7 +650,7 @@ Table of Contents
         Figure 8: Example of a Message Body to Add a new AC over an
                         existing link (Node Profile)
 
-3.8.  Multiple CEs
+3.2.6.  Multiple CEs
 
    Figure 9 shows an example of CEs that are interconnected by a service
    provider network.
@@ -872,7 +872,7 @@ Table of Contents
         |  ...
         +--rw attachment-circuits
            +--rw ac-global-profile* [id]
-           |  ...f
+           |  ...
            +--rw ac-node-group* [id]
            |  ...
            +--rw ac* [name]
@@ -912,7 +912,7 @@ module: ietf-ac-svc
   |  ...
   +--rw attachment-circuits
      +--rw ac-global-profile* [id]
-     |  ...f
+     |  ...
      +--rw ac-node-group* [id]
      |  ...
      +--rw ac* [name]
@@ -971,7 +971,7 @@ module: ietf-ac-svc
   |  ...
   +--rw attachment-circuits
      +--rw ac-global-profile* [id]
-     |  ...f
+     |  ...
      +--rw ac-node-group* [id]
      |  ...
      +--rw ac* [name]
@@ -1072,7 +1072,7 @@ module: ietf-ac-svc
   |  ...
   +--rw attachment-circuits
      +--rw ac-global-profile* [id]
-     |  ...f
+     |  ...
      +--rw ac-node-group* [id]
      |  ...
      +--rw ac* [name]
@@ -1197,7 +1197,7 @@ module: ietf-ac-svc
           |  ...
           +--rw attachment-circuits
              +--rw ac-global-profile* [id]
-             |  ...f
+             |  ...
              +--rw ac-node-group* [id]
              |  ...
              +--rw ac* [name]
@@ -1236,7 +1236,7 @@ module: ietf-ac-svc
    |  ...
    +--rw attachment-circuits
       +--rw ac-global-profile* [id]
-      |  ...f
+      |  ...
       +--rw ac-node-group* [id]
       |  ...
       +--rw ac* [name]
