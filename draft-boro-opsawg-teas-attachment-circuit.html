@@ -1049,7 +1049,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Boucadair, et al.</td>
-<td class="center">Expires 14 July 2023</td>
+<td class="center">Expires 15 July 2023</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1062,12 +1062,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-boro-opsawg-teas-attachment-circuit-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2023-01-10" class="published">10 January 2023</time>
+<time datetime="2023-01-11" class="published">11 January 2023</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2023-07-14">14 July 2023</time></dd>
+<dd class="expires"><time datetime="2023-07-15">15 July 2023</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1131,7 +1131,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 14 July 2023.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 15 July 2023.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -2657,7 +2657,7 @@ module ietf-ac-svc {
     "WG Web:   &lt;https://datatracker.ietf.org/wg/opsawg/&gt;
      WG List:  &lt;mailto:opsawg@ietf.org&gt;
 
-     Author:   Mohamed Boucadair
+     Editor:   Mohamed Boucadair
                &lt;mailto:mohamed.boucadair@orange.com&gt;
      Author:   Richard Roberts
                &lt;mailto:rroberts@juniper.net&gt;";
@@ -2665,7 +2665,7 @@ module ietf-ac-svc {
     "This YANG module defines a generic YANG model for
      the attachment circuits exposed outside a network.
 
-     Copyright (c) 2022 IETF Trust and the persons identified as
+     Copyright (c) 2023 IETF Trust and the persons identified as
      authors of the code.  All rights reserved.
 
      Redistribution and use in source and binary forms, with or
@@ -2687,10 +2687,26 @@ module ietf-ac-svc {
 
   // Identities
 
+  identity bearer-type {
+    description
+      "Base identity for bearers type.";
+  }
+
+  identity ethernet {
+    base bearer-type;
+    description
+      "Ethernet.";
+  }
+
+  identity wireless {
+    base bearer-type;
+    description
+      "Wireless.";
+  }
+
   identity address-allocation-type {
     description
-      "Base identity for address allocation type in the
-       Provider Edge to Customer Edge (PE-CE) link.";
+      "Base identity for address allocation type in the AC.";
   }
 
   identity provider-dhcp {
@@ -2820,18 +2836,17 @@ module ietf-ac-svc {
   typedef ac-global-profile-reference {
     type leafref {
       path "/ac-svc:attachment-circuits/ac-svc:ac-global-profile"
-          + "/ac-svc:id";
+         + "/ac-svc:id";
     }
     description
       "Defines a reference to a gloabl attachment circuit that can be used
        by other modules.";
   }
 
-
   typedef ac-node-group-reference {
     type leafref {
       path "/ac-svc:attachment-circuits/ac-svc:ac-node-group"
-          + "/ac-svc:id";
+         + "/ac-svc:id";
     }
     description
       "Defines a reference to a per-node attachment circuit that can be used
@@ -2840,52 +2855,56 @@ module ietf-ac-svc {
 
   typedef encryption-profile-reference {
     type leafref {
-      path "/specific-provisioning-profiles/valid-provider-identifiers"
-         + "/encryption-profile-identifier/id";
+      path "/ac-svc:specific-provisioning-profiles/ac-svc:valid-provider-identifiers"
+         + "/ac-svc:encryption-profile-identifier/ac-svc:id";
     }
     description
-      "Defines a reference to an encryption profile for referencing
+      "Defines a type to an encryption profile for referencing
        purposes.";
   }
 
   typedef qos-profile-reference {
     type leafref {
-      path "/specific-provisioning-profiles/valid-provider-identifiers"
-         + "/qos-profile-identifier/id";
+      path "/ac-svc:specific-provisioning-profiles/ac-svc:valid-provider-identifiers"
+         + "/ac-svc:qos-profile-identifier/ac-svc:id";
     }
     description
-      "Defines a reference to a QoS profile for referencing
-       purposes.";
+      "Defines a type to a QoS profile for referencing purposes.";
   }
 
   typedef bfd-profile-reference {
     type leafref {
-      path "/specific-provisioning-profiles/valid-provider-identifiers"
-         + "/bfd-profile-identifier/id";
+      path "/ac-svc:specific-provisioning-profiles/ac-svc:valid-provider-identifiers"
+         + "/ac-svc:bfd-profile-identifier/ac-svc:id";
     }
     description
-      "Defines a reference to a BFD profile for referencing
-       purposes.";
+      "Defines a type to a BFD profile for referencing purposes.";
   }
 
   typedef forwarding-profile-reference {
     type leafref {
-      path "/specific-provisioning-profiles/valid-provider-identifiers"
-         + "/forwarding-profile-identifier/id";
+      path "/ac-svc:specific-provisioning-profiles/ac-svc:valid-provider-identifiers"
+         + "/ac-svc:forwarding-profile-identifier/ac-svc:id";
     }
     description
-      "Defines a reference to a forwarding profile for referencing
-       purposes.";
+      "Defines a type to a forwarding profile for referencing purposes.";
   }
 
   typedef routing-profile-reference {
     type leafref {
-      path "/specific-provisioning-profiles/valid-provider-identifiers"
-         + "/routing-profile-identifier/id";
+      path "/ac-svc:specific-provisioning-profiles/ac-svc:valid-provider-identifiers"
+         + "/ac-svc:routing-profile-identifier/id";
     }
     description
-      "Defines a reference to a routing profile for referencing
-       purposes.";
+      "Defines a type to a routing profile for referencing purposes.";
+  }
+
+  typedef bearer-reference {
+    type leafref {
+      path "/ac-svc:bearers/ac-svc:bearer/ac-svc:id";
+    }
+    description
+      "Defines a reference to a routing profile for referencing purposes.";
   }
 
   // L2 connection
@@ -3065,7 +3084,6 @@ module ietf-ac-svc {
           type identityref {
             base l2-tunnel-type;
           }
-
           description
             "Selects the tunnel termination option for each AC
              Endpoint.";
@@ -3160,7 +3178,7 @@ module ietf-ac-svc {
     }
     leaf bearer-reference {
       if-feature "vpn-common:bearer-reference";
-      type string;
+      type bearer-reference;
       description
         "This is an internal reference for the service provider
          to identify the bearer associated with this AC.";
@@ -3790,7 +3808,6 @@ module ietf-ac-svc {
         reference
           "RFC 5798: Virtual Router Redundancy Protocol (VRRP)
                      Version 3 for IPv4 and IPv6";
-
         leaf address-family {
           type identityref {
             base vpn-common:address-family;
@@ -4242,7 +4259,7 @@ module ietf-ac-svc {
     container ip-connection {
       description
         "Defines IP connection parameters.";
-     uses ip-connection-global-profile;
+      uses ip-connection-global-profile;
     }
     // Routing
     container routing-protocols {
@@ -4326,7 +4343,7 @@ module ietf-ac-svc {
           description
             "Choice for the encryption profile.";
           case customer-profile {
-          leaf customer-key-chain {
+            leaf customer-key-chain {
               type key-chain:key-chain-ref;
               description
                 "Customer-supplied key chain.";
@@ -4355,6 +4372,71 @@ module ietf-ac-svc {
           "Identification of the service profile to be used.
            the profile only has significance within the service
            provider's administrative domain.";
+      }
+    }
+  }
+  container bearers {
+    description
+      "Main container for the bearers.";
+    list bearer {
+      key "id";
+      description
+        "Maintains a list of bearers.";
+      leaf id {
+        type string;
+        description
+          "An identifier of the bearer.";
+      }
+      container customer-device {
+        description
+          "Identification of the customer device that terminates the
+           bearer.";
+        leaf device-id {
+          type string;
+          description
+            "Identifier for the device.";
+        }
+        container location {
+          description
+            "Location of the node.";
+          leaf address {
+            type string;
+            description
+              "Address (number and street) of the site.";
+          }
+          leaf postal-code {
+            type string;
+            description
+              "Postal code of the site.";
+          }
+          leaf state {
+            type string;
+            description
+              "State of the site.  This leaf can also be
+               used to describe a region for a country that
+               does not have states.";
+          }
+          leaf city {
+            type string;
+            description
+              "City of the site.";
+          }
+          leaf country-code {
+            type string {
+              pattern '[A-Z]{2}';
+            }
+            description
+              "Country of the site.
+               Expressed as ISO ALPHA-2 code.";
+          }
+        }
+      }
+      leaf requested-type {
+        type identityref {
+          base bearer-type;
+        }
+        description
+          "Type of the requested bearer (e.g., Ethernet, or wireless)";
       }
     }
   }
@@ -4673,6 +4755,18 @@ module: ietf-ac-svc
   +--rw service-provisioning-profiles
   |  +--rw service-profile-identifier* [id]
   |     +--rw id    string
+  +--rw bearers
+  |  +--rw bearer* [id]
+  |     +--rw id                 string
+  |     +--rw customer-device
+  |     |  +--rw device-id?   string
+  |     |  +--rw location
+  |     |     +--rw address?        string
+  |     |     +--rw postal-code?    string
+  |     |     +--rw state?          string
+  |     |     +--rw city?           string
+  |     |     +--rw country-code?   string
+  |     +--rw requested-type?    identityref
   +--rw attachment-circuits
      +--rw ac-global-profile* [id]
      |  +--rw id                   string
@@ -4777,7 +4871,7 @@ module: ietf-ac-svc
      |  |  |  |        +--rw peer-ip-address*   inet:ip-address
      |  |  |  +--:(l2vpn)
      |  |  |     +--rw l2vpn-id?            vpn-common:vpn-id
-     |  |  +--rw bearer-reference?          string {vpn-common:bearer-reference}?
+     |  |  +--rw bearer-reference?          bearer-reference {vpn-common:bearer-reference}?
      |  +--rw ip-connection
      |  |  +--rw ipv4 {vpn-common:ipv4}?
      |  |  |  +--rw local-address?                           inet:ipv4-address
@@ -4978,7 +5072,7 @@ module: ietf-ac-svc
         |  |  |        +--rw peer-ip-address*   inet:ip-address
         |  |  +--:(l2vpn)
         |  |     +--rw l2vpn-id?            vpn-common:vpn-id
-        |  +--rw bearer-reference?          string {vpn-common:bearer-reference}?
+        |  +--rw bearer-reference?          bearer-reference {vpn-common:bearer-reference}?
         +--rw ip-connection
         |  +--rw ipv4 {vpn-common:ipv4}?
         |  |  +--rw local-address?                           inet:ipv4-address
