@@ -3453,7 +3453,8 @@ module: ietf-ac-svc
   |     +--rw id    string
   +--rw bearers
   |  +--rw bearer* [id]
-  |     +--rw id                 string
+  |     +--rw id                  string
+  |     +--rw description?        string
   |     +--rw customer-device
   |     |  +--rw device-id?   string
   |     |  +--rw location
@@ -3462,7 +3463,12 @@ module: ietf-ac-svc
   |     |     +--rw state?          string
   |     |     +--rw city?           string
   |     |     +--rw country-code?   string
-  |     +--rw requested-type?    identityref
+  |     +--rw requested-type?     identityref
+  |     +--ro bearer-reference?   string {vpn-common:bearer-reference}?
+  |     +--rw requested-start?    yang:date-and-time
+  |     +--rw requested-stop?     yang:date-and-time
+  |     +--ro actual-start?       yang:date-and-time
+  |     +--ro actual-stop?        yang:date-and-time
   +--rw attachment-circuits
      +--rw ac-global-profile* [id]
      |  +--rw id                   string
@@ -3567,7 +3573,7 @@ module: ietf-ac-svc
      |  |  |  |        +--rw peer-ip-address*   inet:ip-address
      |  |  |  +--:(l2vpn)
      |  |  |     +--rw l2vpn-id?            vpn-common:vpn-id
-     |  |  +--rw bearer-reference?          bearer-reference {vpn-common:bearer-reference}?
+     |  |  +--rw bearer-reference?          string {vpn-common:bearer-reference}?
      |  +--rw ip-connection
      |  |  +--rw ipv4 {vpn-common:ipv4}?
      |  |  |  +--rw local-address?                           inet:ipv4-address
@@ -3730,16 +3736,16 @@ module: ietf-ac-svc
      |           +--:(customer-profile)
      |              +--rw customer-key-chain?   key-chain:key-chain-ref
      +--rw ac* [name]
-        +--rw customer-name?        string
-        +--rw description?          string
-        +--rw requested-ac-start?   yang:date-and-time
-        +--rw requested-ac-stop?    yang:date-and-time
-        +--ro actual-ac-start?      yang:date-and-time
-        +--ro actual-ac-stop?       yang:date-and-time
-        +--rw peer-sap-id*          string
-        +--rw ac-global-profile*    ac-global-profile-reference
-        +--rw ac-node-profile*      ac-node-group-reference
-        +--rw name                  string
+        +--rw customer-name?       string
+        +--rw description?         string
+        +--rw requested-start?     yang:date-and-time
+        +--rw requested-stop?      yang:date-and-time
+        +--ro actual-start?        yang:date-and-time
+        +--ro actual-stop?         yang:date-and-time
+        +--rw peer-sap-id*         string
+        +--rw ac-global-profile*   ac-global-profile-reference
+        +--rw ac-node-profile*     ac-node-group-reference
+        +--rw name                 string
         +--rw l2-connection
         |  +--rw encapsulation
         |  |  +--rw type?              identityref
@@ -3768,7 +3774,7 @@ module: ietf-ac-svc
         |  |  |        +--rw peer-ip-address*   inet:ip-address
         |  |  +--:(l2vpn)
         |  |     +--rw l2vpn-id?            vpn-common:vpn-id
-        |  +--rw bearer-reference?          bearer-reference {vpn-common:bearer-reference}?
+        |  +--rw bearer-reference?          string {vpn-common:bearer-reference}?
         +--rw ip-connection
         |  +--rw ipv4 {vpn-common:ipv4}?
         |  |  +--rw local-address?                           inet:ipv4-address
