@@ -4905,7 +4905,8 @@ module ietf-ac-svc {
 module: ietf-ac-svc
   +--rw specific-provisioning-profiles
   |  +--rw valid-provider-identifiers
-  |     +--rw external-connectivity-identifier* [id] {external-connectivity}?
+  |     +--rw external-connectivity-identifier* [id]
+  |     |       {external-connectivity}?
   |     |  +--rw id    string
   |     +--rw encryption-profile-identifier* [id]
   |     |  +--rw id    string
@@ -4933,7 +4934,8 @@ module: ietf-ac-svc
   |     |     +--rw city?           string
   |     |     +--rw country-code?   string
   |     +--rw requested-type?     identityref
-  |     +--ro bearer-reference?   string {vpn-common:bearer-reference}?
+  |     +--ro bearer-reference?   string
+  |     |       {vpn-common:bearer-reference}?
   |     +--rw requested-start?    yang:date-and-time
   |     +--rw requested-stop?     yang:date-and-time
   |     +--ro actual-start?       yang:date-and-time
@@ -4963,7 +4965,8 @@ module: ietf-ac-svc
      |  |  |        +--rw (dhcp-relay)?
      |  |  |           +--:(customer-dhcp-servers)
      |  |  |              +--rw customer-dhcp-servers
-     |  |  |                 +--rw server-ip-address*   inet:ipv4-address
+     |  |  |                 +--rw server-ip-address*
+     |  |  |                         inet:ipv4-address
      |  |  +--rw ipv6 {vpn-common:ipv6}?
      |  |     +--rw prefix-length?                       uint8
      |  |     +--rw address-allocation-type?             identityref
@@ -4975,7 +4978,8 @@ module: ietf-ac-svc
      |  |           +--rw (dhcp-relay)?
      |  |              +--:(customer-dhcp-servers)
      |  |                 +--rw customer-dhcp-servers
-     |  |                    +--rw server-ip-address*   inet:ipv6-address
+     |  |                    +--rw server-ip-address*
+     |  |                            inet:ipv6-address
      |  +--rw routing-protocols
      |  |  +--rw routing-protocol* [id]
      |  |     +--rw id                  string
@@ -5010,7 +5014,8 @@ module: ietf-ac-svc
      |     +--rw encryption-profile
      |        +--rw (profile)?
      |           +--:(customer-profile)
-     |              +--rw customer-key-chain?   key-chain:key-chain-ref
+     |              +--rw customer-key-chain?
+     |                      key-chain:key-chain-ref
      +--rw ac-node-group* [id]
      |  +--rw id                   string
      |  +--rw name?                string
@@ -5042,12 +5047,15 @@ module: ietf-ac-svc
      |  |  |  |        +--rw peer-ip-address*   inet:ip-address
      |  |  |  +--:(l2vpn)
      |  |  |     +--rw l2vpn-id?            vpn-common:vpn-id
-     |  |  +--rw bearer-reference?          string {vpn-common:bearer-reference}?
+     |  |  +--rw bearer-reference?          string
+     |  |          {vpn-common:bearer-reference}?
      |  +--rw ip-connection
      |  |  +--rw ipv4 {vpn-common:ipv4}?
-     |  |  |  +--rw local-address?                           inet:ipv4-address
+     |  |  |  +--rw local-address?
+     |  |  |  |       inet:ipv4-address
      |  |  |  +--rw prefix-length?                           uint8
-     |  |  |  +--rw address-allocation-type?                 identityref
+     |  |  |  +--rw address-allocation-type?
+     |  |  |  |       identityref
      |  |  |  +--rw (allocation-type)?
      |  |  |     +--:(dynamic)
      |  |  |     |  +--rw (address-assign)?
@@ -5057,23 +5065,29 @@ module: ietf-ac-svc
      |  |  |     |  |     +--rw customer-addresses
      |  |  |     |  |        +--rw address-pool* [pool-id]
      |  |  |     |  |           +--rw pool-id          string
-     |  |  |     |  |           +--rw start-address    inet:ipv4-address
-     |  |  |     |  |           +--rw end-address?     inet:ipv4-address
+     |  |  |     |  |           +--rw start-address
+     |  |  |     |  |           |       inet:ipv4-address
+     |  |  |     |  |           +--rw end-address?
+     |  |  |     |  |                   inet:ipv4-address
      |  |  |     |  +--rw (provider-dhcp)?
      |  |  |     |  |  +--:(dhcp-service-type)
-     |  |  |     |  |     +--rw dhcp-service-type?           enumeration
+     |  |  |     |  |     +--rw dhcp-service-type?
+     |  |  |     |  |             enumeration
      |  |  |     |  +--rw (dhcp-relay)?
      |  |  |     |     +--:(customer-dhcp-servers)
      |  |  |     |        +--rw customer-dhcp-servers
-     |  |  |     |           +--rw server-ip-address*   inet:ipv4-address
+     |  |  |     |           +--rw server-ip-address*
+     |  |  |     |                   inet:ipv4-address
      |  |  |     +--:(static-addresses)
      |  |  |        +--rw address* [address-id]
      |  |  |           +--rw address-id          string
      |  |  |           +--rw customer-address?   inet:ipv4-address
      |  |  +--rw ipv6 {vpn-common:ipv6}?
-     |  |     +--rw local-address?                           inet:ipv6-address
+     |  |     +--rw local-address?
+     |  |     |       inet:ipv6-address
      |  |     +--rw prefix-length?                           uint8
-     |  |     +--rw address-allocation-type?                 identityref
+     |  |     +--rw address-allocation-type?
+     |  |     |       identityref
      |  |     +--rw (allocation-type)?
      |  |        +--:(dynamic)
      |  |        |  +--rw (address-assign)?
@@ -5083,15 +5097,19 @@ module: ietf-ac-svc
      |  |        |  |     +--rw customer-addresses
      |  |        |  |        +--rw address-pool* [pool-id]
      |  |        |  |           +--rw pool-id          string
-     |  |        |  |           +--rw start-address    inet:ipv6-address
-     |  |        |  |           +--rw end-address?     inet:ipv6-address
+     |  |        |  |           +--rw start-address
+     |  |        |  |           |       inet:ipv6-address
+     |  |        |  |           +--rw end-address?
+     |  |        |  |                   inet:ipv6-address
      |  |        |  +--rw (provider-dhcp)?
      |  |        |  |  +--:(dhcp-service-type)
-     |  |        |  |     +--rw dhcp-service-type?           enumeration
+     |  |        |  |     +--rw dhcp-service-type?
+     |  |        |  |             enumeration
      |  |        |  +--rw (dhcp-relay)?
      |  |        |     +--:(customer-dhcp-servers)
      |  |        |        +--rw customer-dhcp-servers
-     |  |        |           +--rw server-ip-address*   inet:ipv6-address
+     |  |        |           +--rw server-ip-address*
+     |  |        |                   inet:ipv6-address
      |  |        +--:(static-addresses)
      |  |           +--rw address* [address-id]
      |  |              +--rw address-id          string
@@ -5105,7 +5123,8 @@ module: ietf-ac-svc
      |  |     |  +--rw type?   identityref
      |  |     +--rw static
      |  |     |  +--rw cascaded-lan-prefixes
-     |  |     |     +--rw ipv4-lan-prefixes* [lan next-hop] {vpn-common:ipv4}?
+     |  |     |     +--rw ipv4-lan-prefixes* [lan next-hop]
+     |  |     |     |       {vpn-common:ipv4}?
      |  |     |     |  +--rw lan         inet:ipv4-prefix
      |  |     |     |  +--rw lan-tag?    string
      |  |     |     |  +--rw next-hop    union
@@ -5116,7 +5135,8 @@ module: ietf-ac-svc
      |  |     |     |     +--ro oper-status
      |  |     |     |        +--ro status?        identityref
      |  |     |     |        +--ro last-change?   yang:date-and-time
-     |  |     |     +--rw ipv6-lan-prefixes* [lan next-hop] {vpn-common:ipv6}?
+     |  |     |     +--rw ipv6-lan-prefixes* [lan next-hop]
+     |  |     |             {vpn-common:ipv6}?
      |  |     |        +--rw lan         inet:ipv6-prefix
      |  |     |        +--rw lan-tag?    string
      |  |     |        +--rw next-hop    union
@@ -5137,7 +5157,8 @@ module: ietf-ac-svc
      |  |     |  +--rw neighbor* [remote-address]
      |  |     |     +--rw remote-address    inet:ip-address
      |  |     |     +--ro local-address?    inet:ip-address
-     |  |     |     +--rw peer-group?       -&gt; ../../peer-groups/peer-group/name
+     |  |     |     +--rw peer-group?
+     |  |     |     |       -&gt; ../../peer-groups/peer-group/name
      |  |     |     +--rw peer-as           inet:as-number
      |  |     |     +--rw address-family?   identityref
      |  |     |     +--rw status
@@ -5203,7 +5224,8 @@ module: ietf-ac-svc
      |     +--rw encryption-profile
      |        +--rw (profile)?
      |           +--:(customer-profile)
-     |              +--rw customer-key-chain?   key-chain:key-chain-ref
+     |              +--rw customer-key-chain?
+     |                      key-chain:key-chain-ref
      +--rw ac* [name]
         +--rw customer-name?       string
         +--rw description?         string
@@ -5243,12 +5265,15 @@ module: ietf-ac-svc
         |  |  |        +--rw peer-ip-address*   inet:ip-address
         |  |  +--:(l2vpn)
         |  |     +--rw l2vpn-id?            vpn-common:vpn-id
-        |  +--rw bearer-reference?          string {vpn-common:bearer-reference}?
+        |  +--rw bearer-reference?          string
+        |          {vpn-common:bearer-reference}?
         +--rw ip-connection
         |  +--rw ipv4 {vpn-common:ipv4}?
-        |  |  +--rw local-address?                           inet:ipv4-address
+        |  |  +--rw local-address?
+        |  |  |       inet:ipv4-address
         |  |  +--rw prefix-length?                           uint8
-        |  |  +--rw address-allocation-type?                 identityref
+        |  |  +--rw address-allocation-type?
+        |  |  |       identityref
         |  |  +--rw (allocation-type)?
         |  |     +--:(dynamic)
         |  |     |  +--rw (address-assign)?
@@ -5258,23 +5283,29 @@ module: ietf-ac-svc
         |  |     |  |     +--rw customer-addresses
         |  |     |  |        +--rw address-pool* [pool-id]
         |  |     |  |           +--rw pool-id          string
-        |  |     |  |           +--rw start-address    inet:ipv4-address
-        |  |     |  |           +--rw end-address?     inet:ipv4-address
+        |  |     |  |           +--rw start-address
+        |  |     |  |           |       inet:ipv4-address
+        |  |     |  |           +--rw end-address?
+        |  |     |  |                   inet:ipv4-address
         |  |     |  +--rw (provider-dhcp)?
         |  |     |  |  +--:(dhcp-service-type)
-        |  |     |  |     +--rw dhcp-service-type?           enumeration
+        |  |     |  |     +--rw dhcp-service-type?
+        |  |     |  |             enumeration
         |  |     |  +--rw (dhcp-relay)?
         |  |     |     +--:(customer-dhcp-servers)
         |  |     |        +--rw customer-dhcp-servers
-        |  |     |           +--rw server-ip-address*   inet:ipv4-address
+        |  |     |           +--rw server-ip-address*
+        |  |     |                   inet:ipv4-address
         |  |     +--:(static-addresses)
         |  |        +--rw address* [address-id]
         |  |           +--rw address-id          string
         |  |           +--rw customer-address?   inet:ipv4-address
         |  +--rw ipv6 {vpn-common:ipv6}?
-        |     +--rw local-address?                           inet:ipv6-address
+        |     +--rw local-address?
+        |     |       inet:ipv6-address
         |     +--rw prefix-length?                           uint8
-        |     +--rw address-allocation-type?                 identityref
+        |     +--rw address-allocation-type?
+        |     |       identityref
         |     +--rw (allocation-type)?
         |        +--:(dynamic)
         |        |  +--rw (address-assign)?
@@ -5284,15 +5315,19 @@ module: ietf-ac-svc
         |        |  |     +--rw customer-addresses
         |        |  |        +--rw address-pool* [pool-id]
         |        |  |           +--rw pool-id          string
-        |        |  |           +--rw start-address    inet:ipv6-address
-        |        |  |           +--rw end-address?     inet:ipv6-address
+        |        |  |           +--rw start-address
+        |        |  |           |       inet:ipv6-address
+        |        |  |           +--rw end-address?
+        |        |  |                   inet:ipv6-address
         |        |  +--rw (provider-dhcp)?
         |        |  |  +--:(dhcp-service-type)
-        |        |  |     +--rw dhcp-service-type?           enumeration
+        |        |  |     +--rw dhcp-service-type?
+        |        |  |             enumeration
         |        |  +--rw (dhcp-relay)?
         |        |     +--:(customer-dhcp-servers)
         |        |        +--rw customer-dhcp-servers
-        |        |           +--rw server-ip-address*   inet:ipv6-address
+        |        |           +--rw server-ip-address*
+        |        |                   inet:ipv6-address
         |        +--:(static-addresses)
         |           +--rw address* [address-id]
         |              +--rw address-id          string
@@ -5306,7 +5341,8 @@ module: ietf-ac-svc
         |     |  +--rw type?   identityref
         |     +--rw static
         |     |  +--rw cascaded-lan-prefixes
-        |     |     +--rw ipv4-lan-prefixes* [lan next-hop] {vpn-common:ipv4}?
+        |     |     +--rw ipv4-lan-prefixes* [lan next-hop]
+        |     |     |       {vpn-common:ipv4}?
         |     |     |  +--rw lan         inet:ipv4-prefix
         |     |     |  +--rw lan-tag?    string
         |     |     |  +--rw next-hop    union
@@ -5317,7 +5353,8 @@ module: ietf-ac-svc
         |     |     |     +--ro oper-status
         |     |     |        +--ro status?        identityref
         |     |     |        +--ro last-change?   yang:date-and-time
-        |     |     +--rw ipv6-lan-prefixes* [lan next-hop] {vpn-common:ipv6}?
+        |     |     +--rw ipv6-lan-prefixes* [lan next-hop]
+        |     |             {vpn-common:ipv6}?
         |     |        +--rw lan         inet:ipv6-prefix
         |     |        +--rw lan-tag?    string
         |     |        +--rw next-hop    union
@@ -5338,7 +5375,8 @@ module: ietf-ac-svc
         |     |  +--rw neighbor* [remote-address]
         |     |     +--rw remote-address    inet:ip-address
         |     |     +--ro local-address?    inet:ip-address
-        |     |     +--rw peer-group?       -&gt; ../../peer-groups/peer-group/name
+        |     |     +--rw peer-group?
+        |     |     |       -&gt; ../../peer-groups/peer-group/name
         |     |     +--rw peer-as           inet:as-number
         |     |     +--rw address-family?   identityref
         |     |     +--rw status
@@ -5404,7 +5442,8 @@ module: ietf-ac-svc
            +--rw encryption-profile
               +--rw (profile)?
                  +--:(customer-profile)
-                    +--rw customer-key-chain?   key-chain:key-chain-ref
+                    +--rw customer-key-chain?
+                            key-chain:key-chain-ref
 </pre>
 </div>
 <figcaption><a href="#figure-22" class="selfRef">Figure 22</a>:
