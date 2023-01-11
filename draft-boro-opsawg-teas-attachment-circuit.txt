@@ -388,9 +388,30 @@ Table of Contents
 
 3.2.4.  One CE, Two ACs
 
-   An example of a request to create two ACs to service the same CE on
-   the same link is shown in Figure 7.  This example assumes that static
-   addressing is used for both ACs.
+   Lets consider the example of an eNodeB (CE) that is directly
+   connected to the access routers of the mobile backhaul (see
+   Figure 7).  In this example, two ACs are needed to service the
+   eNodeB.
+
+   +-------------+                  +------------------+
+   |             |                  | PE               |
+   |             |                  |  192.0.2.1       |
+   |   eNodeB    |==================|  2001:db8::1     |
+   |             |          vlan 1  |                  |
+   |             |==================|                  |
+   |             |          vlan 2  |                  |
+   |             | Direct           |                  |
+   +-------------+ Routing          |                  |
+                                    |                  |
+                                    |                  |
+                                    |                  |
+                                    +------------------+
+
+                      Figure 7: Example of a CE-PE ACs
+
+   An example of a request to create the ACs to service the eNodeB is
+   shown in Figure 8.  This example assumes that static addressing is
+   used for both ACs.
 
    {
      "ietf-ac-svc:attachment-circuits": {
@@ -485,13 +506,13 @@ Table of Contents
      }
    }
 
-       Figure 7: Example of a Message Body to Request Two ACes on The
+       Figure 8: Example of a Message Body to Request Two ACes on The
                                  Same Link
 
 3.2.5.  Illustrate the Use of Global Profiles
 
    An example of a request to create two ACs to service the same CE on
-   the same link is shown in Figure 8.  Unlike Figure 7, this example
+   the same link is shown in Figure 9.  Unlike Figure 8, this example
    factorizes some of the redundant data.
 
    {
@@ -589,13 +610,13 @@ Table of Contents
      }
    }
 
-       Figure 8: Example of a Message Body to Request Two ACes on The
+       Figure 9: Example of a Message Body to Request Two ACes on The
                          Same Link (Global Profile)
 
 3.2.6.  Illustrate the Use of Per-Node Profiles
 
    An example of a request to create two ACs to service the same CE on
-   the same link is shown in Figure 9.  Unlike Figure 7, this example
+   the same link is shown in Figure 10.  Unlike Figure 8, this example
    factorizes all redundant data.
 
    {
@@ -670,11 +691,11 @@ Table of Contents
      }
    }
 
-       Figure 9: Example of a Message Body to Request Two ACes on The
+      Figure 10: Example of a Message Body to Request Two ACes on The
                           Same Link (Node Profile)
 
    A customer may request adding a new AC by simply referring to an
-   existing per-node AC profile as shown in Figure 10.  This AC
+   existing per-node AC profile as shown in Figure 11.  This AC
    inherites all the data that was enclosed in the indicated per-node AC
    profile (IP addressing, routing, etc.).
 
@@ -699,12 +720,12 @@ Table of Contents
      }
    }
 
-        Figure 10: Example of a Message Body to Add a new AC over an
+        Figure 11: Example of a Message Body to Add a new AC over an
                         existing link (Node Profile)
 
 3.2.7.  Multiple CEs
 
-   Figure 11 shows an example of CEs that are interconnected by a
+   Figure 12 shows an example of CEs that are interconnected by a
    service provider network.
 
                       +----------------------------------+
@@ -717,10 +738,10 @@ Table of Contents
          +----+       |                                  |       +----+
                       +----------------------------------+
 
-                    Figure 11: Network Topology Example
+                    Figure 12: Network Topology Example
 
-   Figure 12 depicts an example of the message body of a request to
-   instantiate the various ACs that are shown in Figure 11.
+   Figure 13 depicts an example of the message body of a request to
+   instantiate the various ACs that are shown in Figure 12.
 
    {
      "ietf-ac-svc:attachment-circuits": {
@@ -782,7 +803,7 @@ Table of Contents
      }
    }
 
-      Figure 12: Example of a Message Body to of Creating Multiple ACs
+      Figure 13: Example of a Message Body to of Creating Multiple ACs
                            bound to Multiple CEs
 
 4.  Description of the Attachment Circuit YANG Module
@@ -790,7 +811,7 @@ Table of Contents
 4.1.  Overall Structure of the Module
 
    The overall tree structure of the AC service module is shown in
-   Figure 13.
+   Figure 14.
 
        module: ietf-ac-svc
          +--rw specific-provisioning-profiles
@@ -820,7 +841,7 @@ Table of Contents
                +--rw security
                   ...
 
-                Figure 13: Overall AC Service Tree Structure
+                Figure 14: Overall AC Service Tree Structure
 
    The full tree structure is provided in Appendix A.
 
@@ -835,7 +856,7 @@ Table of Contents
 
 4.2.1.  Description
 
-   The 'specific-provisioning-profiles' container (Figure 14) can be
+   The 'specific-provisioning-profiles' container (Figure 15) can be
    used by a service provider to maintain a set of specific profiles
    that are similar to those defined in [RFC9181].  The exact definition
    of the profiles is local to each service provider.  The model only
@@ -871,9 +892,9 @@ Table of Contents
                 +--rw ac* [name]
                    ...
 
-                        Figure 14: Service Proviles
+                        Figure 15: Service Proviles
 
-   As shown in Figure 14, two profile types can be defined: 'specific-
+   As shown in Figure 15, two profile types can be defined: 'specific-
    provisioning-profiles' and 'service-provisioning-profiles'.  Whether
    only specific profiles, service profiles, or a combination thereff
    are used is local to each service provider.
@@ -963,11 +984,11 @@ Table of Contents
          +--rw security
             ...
 
-                   Figure 15: Bearers Tree Structure
+                   Figure 16: Bearers Tree Structure
 
 4.6.  Attachment Circuits
 
-   The structure of 'attachment-circuits' is shown in Figure 16.
+   The structure of 'attachment-circuits' is shown in Figure 17.
 
       module: ietf-ac-svc
         +--rw specific-provisioning-profiles
@@ -1003,11 +1024,11 @@ Table of Contents
               +--rw security
                  ...
 
-           Figure 16: Overall Attachment Circuits Tree Structure
+           Figure 17: Overall Attachment Circuits Tree Structure
 
 4.6.1.  Layer 2 Connection Structure
 
-   As shown in the tree depicted in Figure 17, the 'l2-connection'
+   As shown in the tree depicted in Figure 18, the 'l2-connection'
    container defines service parameters to enable such connectivity at
    Layer 2.
 
@@ -1064,11 +1085,11 @@ module: ietf-ac-svc
         +--rw security
            ...
 
-             Figure 17: Layer 2 Connection Tree Structure
+             Figure 18: Layer 2 Connection Tree Structure
 
 4.6.2.  Layer 3 Connection Structure
 
-   As shown in the tree depicted in Figure 18, the 'l3-connection'
+   As shown in the tree depicted in Figure 19, the 'l3-connection'
    container defines service parameters to enable Layer 3 connectivity
    for an AC.
 
@@ -1149,11 +1170,11 @@ module: ietf-ac-svc
         +--rw security
            ...
 
-             Figure 18: Layer 3 Connection Tree Structure
+             Figure 19: Layer 3 Connection Tree Structure
 
 4.6.3.  Routing
 
-   As shown in the tree depicted in Figure 19, the 'routing-protocols'
+   As shown in the tree depicted in Figure 20, the 'routing-protocols'
    container defines th erequired parameters to enable the required
    routing features for an AC.  One or more routing protocols can be
    associated with an AC.  Such routing protocols are then enabled
@@ -1289,7 +1310,7 @@ module: ietf-ac-svc
         +--rw security
            ...
 
-                  Figure 19: Routing Tree Structure
+                  Figure 20: Routing Tree Structure
 
    For all supported routing protocols, 'address-family' indicates
    whether IPv4, IPv6, or both address families are to be activated.
@@ -1299,7 +1320,7 @@ module: ietf-ac-svc
 
 4.6.4.  OAM
 
-   As shown in the tree depicted in Figure 20, the 'oam' container
+   As shown in the tree depicted in Figure 21, the 'oam' container
    defines OAM-related parameters of an AC.
 
         module: ietf-ac-svc
@@ -1336,11 +1357,11 @@ module: ietf-ac-svc
                 +--rw security
                    ...
 
-                       Figure 20: OAM Tree Structure
+                       Figure 21: OAM Tree Structure
 
 4.6.5.  Security
 
-   As shown in the tree depicted in Figure 21, the 'security' container
+   As shown in the tree depicted in Figure 22, the 'security' container
    defines sercurity parameters of an AC.
 
  module: ietf-ac-svc
@@ -1375,7 +1396,7 @@ module: ietf-ac-svc
                   +--:(customer-profile)
                      +--rw customer-key-chain?   key-chain:key-chain-ref
 
-                   Figure 21: Security Tree Structure
+                   Figure 22: Security Tree Structure
 
 5.  YANG Module
 
@@ -4045,7 +4066,7 @@ Appendix A.  Full Tree
                        +--rw customer-key-chain?
                                key-chain:key-chain-ref
 
-                    Figure 22: AC Service Tree Structure
+                    Figure 23: AC Service Tree Structure
 
 Acknowledgments
 
