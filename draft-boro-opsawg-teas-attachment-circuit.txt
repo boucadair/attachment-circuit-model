@@ -984,10 +984,10 @@ Table of Contents
            +--rw ac* [name]
               +--rw customer-name?        string
               +--rw description?          string
-              +--rw requested-ac-start?   yang:date-and-time
-              +--rw requested-ac-stop?    yang:date-and-time
-              +--ro actual-ac-start?      yang:date-and-time
-              +--ro actual-ac-stop?       yang:date-and-time
+              +--rw requested-start?   yang:date-and-time
+              +--rw requested-stop?    yang:date-and-time
+              +--ro actual-start?      yang:date-and-time
+              +--ro actual-stop?       yang:date-and-time
               +--rw peer-sap-id*          string
               +--rw ac-global-profile*    ac-global-profile-reference
               +--rw ac-node-profile*      ac-node-group-reference
