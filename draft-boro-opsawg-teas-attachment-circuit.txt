@@ -283,7 +283,7 @@ Table of Contents
            "description": "A bearer example",
            "customer-device": {
              "device-id": "CE_X_SITE_Y",
-             "requested-type": "ietf-ac-svc:ethernet";
+             "requested-type": "ietf-ac-svc:ethernet"
            }
          }
        ]
