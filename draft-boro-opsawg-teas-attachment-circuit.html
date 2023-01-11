@@ -4415,6 +4415,37 @@ module ietf-ac-svc {
     }
   }
 
+  grouping op-instructions {
+    description
+      "Scheduling instructions.";
+    leaf requested-start {
+      type yang:date-and-time;
+      description
+        "Indicates the requested date and time when the AC is
+         expected to be active.";
+    }
+    leaf requested-stop {
+      type yang:date-and-time;
+      description
+        "Indicates the requested date and time when the AC is
+         expected to be disabled.";
+    }
+    leaf actual-start {
+      type yang:date-and-time;
+      config false;
+      description
+        "Indciates the actual date and time when the AC
+         actually was enabled.";
+    }
+    leaf actual-stop {
+      type yang:date-and-time;
+      config false;
+      description
+        "Indciates the actual date and time when the AC
+         actually was disabled.";
+    }
+  }
+
   container specific-provisioning-profiles {
     description
       "Contains a set of valid profiles to reference for an AC.";
@@ -4512,6 +4543,7 @@ module ietf-ac-svc {
           "This is an internal reference for the service provider
            to identify the bearer associated with this AC.";
       }
+      uses op-instructions;
     }
   }
   container attachment-circuits {
@@ -4549,32 +4581,7 @@ module ietf-ac-svc {
         description
           "Associates a description with an AC.";
       }
-      leaf requested-ac-start {
-        type yang:date-and-time;
-        description
-          "Indicates the requested date and time when the AC is
-           expected to be active.";
-      }
-      leaf requested-ac-stop {
-        type yang:date-and-time;
-        description
-          "Indicates the requested date and time when the AC is
-           expected to be disabled.";
-      }
-      leaf actual-ac-start {
-        type yang:date-and-time;
-        config false;
-        description
-          "Indciates the actual date and time when the AC
-           actually was enabled.";
-      }
-      leaf actual-ac-stop {
-        type yang:date-and-time;
-        config false;
-        description
-          "Indciates the actual date and time when the AC
-           actually was disabled.";
-      }
+      uses op-instructions;
       leaf-list peer-sap-id {
         type string;
         description
