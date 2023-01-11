@@ -103,12 +103,13 @@ Table of Contents
        4.2.2.  Referencing Service/Specific Profiles
      4.3.  Attachment Circuits Profiles
      4.4.  Node-Specific Profiles
-     4.5.  Attachment Circuits
-       4.5.1.  Layer 2 Connection Structure
-       4.5.2.  Layer 3 Connection Structure
-       4.5.3.  Routing
-       4.5.4.  OAM
-       4.5.5.  Security
+     4.5.  Bearers
+     4.6.  Attachment Circuits
+       4.6.1.  Layer 2 Connection Structure
+       4.6.2.  Layer 3 Connection Structure
+       4.6.3.  Routing
+       4.6.4.  OAM
+       4.6.5.  Security
    5.  YANG Module
    6.  Security Considerations
    7.  IANA Considerations
@@ -403,7 +404,8 @@ Table of Contents
                "dot1q": {
                  "cvlan-id": 1
                }
-             }
+             },
+             "bearer-reference": "line-156"
            },
            "ip-connection": {
              "ipv4": {
@@ -445,7 +447,8 @@ Table of Contents
                "dot1q": {
                  "cvlan-id": 2
                }
-             }
+             },
+             "bearer-reference": "line-156"
            },
            "ip-connection": {
              "ipv4": {
@@ -521,7 +524,8 @@ Table of Contents
                "dot1q": {
                  "cvlan-id": 1
                }
-             }
+             },
+             "bearer-reference": "line-156"
            },
            "ip-connection": {
              "ipv4": {
@@ -555,7 +559,8 @@ Table of Contents
                "dot1q": {
                  "cvlan-id": 2
                }
-             }
+             },
+             "bearer-reference": "line-156"
            },
            "ip-connection": {
              "ipv4": {
@@ -601,7 +606,8 @@ Table of Contents
            "l2-connection": {
              "encapsulation": {
                "type": "ietf-vpn-common:dot1q"
-             }
+             },
+             "bearer-reference": "line-156"
            },
            "ip-connection": {
              "ipv4": {
@@ -792,16 +798,18 @@ Table of Contents
          |  ...
          +--rw service-provisioning-profiles
          |  ...
+         +--rw bearers
+         |  ...
          +--rw attachment-circuits
             +--rw ac-global-profile* [id]
             |  ...
             +--rw ac-node-group* [id]
             |  ...
-            +--rw ac* [id]
+            +--rw ac* [name]
                +--rw peer-sap-id*         string
                +--rw profile-id*
                |       -> /attachment-circuits/ac-global-profile/id
-               +--rw id                   string
+               +--rw name                   string
                +--rw l2-connection
                |  ...
                +--rw ip-connection
@@ -854,6 +862,8 @@ Table of Contents
              +--rw service-provisioning-profiles
              |  +--rw service-profile-identifier* [id]
              |     +--rw id    string
+             +--rw bearers
+             |  ...
              +--rw attachment-circuits
                 +--rw ac-global-profile* [id]
                 |  ...
@@ -908,14 +918,64 @@ Table of Contents
 
 4.4.  Node-Specific Profiles
 
-4.5.  Attachment Circuits
+4.5.  Bearers
 
-   The structure of 'attachment-circuits' is shown in Figure 15.
+ module: ietf-ac-svc
+   +--rw specific-provisioning-profiles
+   |  ...
+   +--rw service-provisioning-profiles
+   |  ...
+   +--rw bearers
+   |  +--rw bearer* [id]
+   |     +--rw id                  string
+   |     +--rw description?        string
+   |     +--rw customer-device
+   |     |  +--rw device-id?   string
+   |     |  +--rw location
+   |     |     +--rw address?        string
+   |     |     +--rw postal-code?    string
+   |     |     +--rw state?          string
+   |     |     +--rw city?           string
+   |     |     +--rw country-code?   string
+   |     +--rw requested-type?     identityref
+   |     +--ro bearer-reference?   string {vpn-common:bearer-reference}?
+   |     +--rw requested-start?    yang:date-and-time
+   |     +--rw requested-stop?     yang:date-and-time
+   |     +--ro actual-start?       yang:date-and-time
+   |     +--ro actual-stop?        yang:date-and-time
+   +--rw attachment-circuits
+      +--rw ac-global-profile* [id]
+      |  ...
+      +--rw ac-node-group* [id]
+      |  ...
+      +--rw ac* [name]
+         +--rw peer-sap-id*         string
+         +--rw profile-id*
+         |       -> /attachment-circuits/ac-global-profile/id
+         +--rw name                   string
+         +--rw l2-connection
+         |  ...
+         +--rw ip-connection
+         |  ...
+         +--rw routing-protocols
+         |  ...
+         +--rw oam
+         |  ...
+         +--rw security
+            ...
+
+                   Figure 15: Bearers Tree Structure
+
+4.6.  Attachment Circuits
+
+   The structure of 'attachment-circuits' is shown in Figure 16.
 
       module: ietf-ac-svc
         +--rw specific-provisioning-profiles
         |  ...
         +--rw service-provisioning-profiles
+        |  ...
+        +--rw bearers
         |  ...
         +--rw attachment-circuits
            +--rw ac-global-profile* [id]
@@ -944,11 +1004,11 @@ Table of Contents
               +--rw security
                  ...
 
-           Figure 15: Overall Attachment Circuits Tree Structure
+           Figure 16: Overall Attachment Circuits Tree Structure
 
-4.5.1.  Layer 2 Connection Structure
+4.6.1.  Layer 2 Connection Structure
 
-   As shown in the tree depicted in Figure 16, the 'l2-connection'
+   As shown in the tree depicted in Figure 17, the 'l2-connection'
    container defines service parameters to enable such connectivity at
    Layer 2.
 
@@ -956,6 +1016,8 @@ module: ietf-ac-svc
   +--rw specific-provisioning-profiles
   |  ...
   +--rw service-provisioning-profiles
+  |  ...
+  +--rw bearers
   |  ...
   +--rw attachment-circuits
      +--rw ac-global-profile* [id]
@@ -1003,11 +1065,11 @@ module: ietf-ac-svc
         +--rw security
            ...
 
-             Figure 16: Layer 2 Connection Tree Structure
+             Figure 17: Layer 2 Connection Tree Structure
 
-4.5.2.  Layer 3 Connection Structure
+4.6.2.  Layer 3 Connection Structure
 
-   As shown in the tree depicted in Figure 17, the 'l3-connection'
+   As shown in the tree depicted in Figure 18, the 'l3-connection'
    container defines service parameters to enable Layer 3 connectivity
    for an AC.
 
@@ -1015,6 +1077,8 @@ module: ietf-ac-svc
   +--rw specific-provisioning-profiles
   |  ...
   +--rw service-provisioning-profiles
+  |  ...
+  +--rw bearers
   |  ...
   +--rw attachment-circuits
      +--rw ac-global-profile* [id]
@@ -1086,11 +1150,11 @@ module: ietf-ac-svc
         +--rw security
            ...
 
-             Figure 17: Layer 3 Connection Tree Structure
+             Figure 18: Layer 3 Connection Tree Structure
 
-4.5.3.  Routing
+4.6.3.  Routing
 
-   As shown in the tree depicted in Figure 18, the 'routing-protocols'
+   As shown in the tree depicted in Figure 19, the 'routing-protocols'
    container defines th erequired parameters to enable the required
    routing features for an AC.  One or more routing protocols can be
    associated with an AC.  Such routing protocols are then enabled
@@ -1116,6 +1180,8 @@ module: ietf-ac-svc
   +--rw specific-provisioning-profiles
   |  ...
   +--rw service-provisioning-profiles
+  |  ...
+  +--rw bearers
   |  ...
   +--rw attachment-circuits
      +--rw ac-global-profile* [id]
@@ -1224,7 +1290,7 @@ module: ietf-ac-svc
         +--rw security
            ...
 
-                  Figure 18: Routing Tree Structure
+                  Figure 19: Routing Tree Structure
 
    For all supported routing protocols, 'address-family' indicates
    whether IPv4, IPv6, or both address families are to be activated.
@@ -1232,15 +1298,17 @@ module: ietf-ac-svc
    [RFC2453], RIP Next Generation (RIPng), or both are to be enabled
    [RFC2080].
 
-4.5.4.  OAM
+4.6.4.  OAM
 
-   As shown in the tree depicted in Figure 19, the 'oam' container
+   As shown in the tree depicted in Figure 20, the 'oam' container
    defines OAM-related parameters of an AC.
 
         module: ietf-ac-svc
           +--rw specific-provisioning-profiles
           |  ...
           +--rw service-provisioning-profiles
+          |  ...
+          +--rw bearers
           |  ...
           +--rw attachment-circuits
              +--rw ac-global-profile* [id]
@@ -1269,17 +1337,19 @@ module: ietf-ac-svc
                 +--rw security
                    ...
 
-                       Figure 19: OAM Tree Structure
+                       Figure 20: OAM Tree Structure
 
-4.5.5.  Security
+4.6.5.  Security
 
-   As shown in the tree depicted in Figure 20, the 'security' container
+   As shown in the tree depicted in Figure 21, the 'security' container
    defines sercurity parameters of an AC.
 
  module: ietf-ac-svc
    +--rw specific-provisioning-profiles
    |  ...
    +--rw service-provisioning-profiles
+   |  ...
+   +--rw bearers
    |  ...
    +--rw attachment-circuits
       +--rw ac-global-profile* [id]
@@ -1306,7 +1376,7 @@ module: ietf-ac-svc
                   +--:(customer-profile)
                      +--rw customer-key-chain?   key-chain:key-chain-ref
 
-                   Figure 20: Security Tree Structure
+                   Figure 21: Security Tree Structure
 
 5.  YANG Module
 
@@ -3937,7 +4007,7 @@ module: ietf-ac-svc
                  +--:(customer-profile)
                     +--rw customer-key-chain?   key-chain:key-chain-ref
 
-                 Figure 21: AC Service Tree Structure
+                 Figure 22: AC Service Tree Structure
 
 Acknowledgments
 
