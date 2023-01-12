@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2023-01-10T00:43:04.314641+00:00",
+  "timestamp": "2023-01-12T00:41:35.351391+00:00",
   "repo": "boucadair/attachment-circuit-model",
   "labels": [
     {
@@ -71,14 +71,38 @@
       "id": "I_kwDOIiAkrc5a8-KE",
       "title": "Add a structure to create the bearer",
       "url": "https://github.com/boucadair/attachment-circuit-model/issues/5",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "boucadair",
       "authorAssociation": "OWNER",
       "assignees": [],
       "labels": [],
       "body": "The following structure was defined in RFC8299:\r\n\r\n```\r\n                   +--rw bearer\r\n                   |  +--rw requested-type {requested-type}?\r\n                   |  |  +--rw requested-type?   string\r\n                   |  |  +--rw strict?           boolean\r\n                   |  +--rw always-on?          boolean {always-on}?\r\n                   |  +--rw bearer-reference?   string\r\n\r\n```",
       "createdAt": "2023-01-09T16:36:05Z",
-      "updatedAt": "2023-01-09T16:36:05Z",
+      "updatedAt": "2023-01-11T15:20:10Z",
+      "closedAt": "2023-01-11T15:20:10Z",
+      "comments": [
+        {
+          "author": "boucadair",
+          "authorAssociation": "OWNER",
+          "body": "Here is the updated structures\r\n\r\n```\r\n  +--rw bearers\r\n  |  +--rw bearer* [id]\r\n  |     +--rw id                  string\r\n  |     +--rw description?        string\r\n  |     +--rw customer-device\r\n  |     |  +--rw device-id?   string\r\n  |     |  +--rw location\r\n  |     |     +--rw address?        string\r\n  |     |     +--rw postal-code?    string\r\n  |     |     +--rw state?          string\r\n  |     |     +--rw city?           string\r\n  |     |     +--rw country-code?   string\r\n  |     +--rw requested-type?     identityref\r\n  |     +--ro bearer-reference?   string\r\n  |     |       {vpn-common:bearer-reference}?\r\n  |     +--rw requested-start?    yang:date-and-time\r\n  |     +--rw requested-stop?     yang:date-and-time\r\n  |     +--ro actual-start?       yang:date-and-time\r\n  |     +--ro actual-stop?        yang:date-and-time\r\n```",
+          "createdAt": "2023-01-11T15:20:10Z",
+          "updatedAt": "2023-01-11T15:20:10Z"
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "id": "I_kwDOIiAkrc5bH2zX",
+      "title": "deal with multiple local subnets (local-address) - ip-connection list ?",
+      "url": "https://github.com/boucadair/attachment-circuit-model/issues/6",
+      "state": "OPEN",
+      "author": "robric",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "This case is an exception since most deployment rely on a single subnet per ac/logical link (best practice). However, it mandated by some deployments (example migration or legacy design).",
+      "createdAt": "2023-01-11T10:24:19Z",
+      "updatedAt": "2023-01-11T10:24:19Z",
       "closedAt": null,
       "comments": []
     }
