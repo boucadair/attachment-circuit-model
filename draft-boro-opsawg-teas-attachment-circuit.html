@@ -1272,13 +1272,24 @@ svg :is([fill="white"], [fill^="#fff"]) {
             <p id="section-toc.1-1.9.1"><a href="#appendix-A" class="auto internal xref">Appendix A</a>.  <a href="#name-full-tree" class="internal xref">Full Tree</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10">
-            <p id="section-toc.1-1.10.1"><a href="#appendix-B" class="auto internal xref"></a><a href="#name-acknowledgments" class="internal xref">Acknowledgments</a></p>
+            <p id="section-toc.1-1.10.1"><a href="#appendix-B" class="auto internal xref">Appendix B</a>.  <a href="#name-augmentation-to-other-servi" class="internal xref">Augmentation to Other Service-Specific Models to Bind a Service to an AC</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.1">
+                <p id="section-toc.1-1.10.2.1.1"><a href="#appendix-B.1" class="auto internal xref">B.1</a>.  <a href="#name-tree" class="internal xref">Tree</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.2">
+                <p id="section-toc.1-1.10.2.2.1"><a href="#appendix-B.2" class="auto internal xref">B.2</a>.  <a href="#name-module" class="internal xref">Module</a></p>
+</li>
+            </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11">
-            <p id="section-toc.1-1.11.1"><a href="#appendix-C" class="auto internal xref"></a><a href="#name-contributors" class="internal xref">Contributors</a></p>
+            <p id="section-toc.1-1.11.1"><a href="#appendix-C" class="auto internal xref"></a><a href="#name-acknowledgments" class="internal xref">Acknowledgments</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.12">
-            <p id="section-toc.1-1.12.1"><a href="#appendix-D" class="auto internal xref"></a><a href="#name-authors-addresses" class="internal xref">Authors' Addresses</a></p>
+            <p id="section-toc.1-1.12.1"><a href="#appendix-D" class="auto internal xref"></a><a href="#name-contributors" class="internal xref">Contributors</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.13">
+            <p id="section-toc.1-1.13.1"><a href="#appendix-E" class="auto internal xref"></a><a href="#name-authors-addresses" class="internal xref">Authors' Addresses</a></p>
 </li>
         </ul>
 </nav>
@@ -5529,24 +5540,208 @@ module: ietf-ac-svc
 </div>
 </section>
 </div>
-<div id="acknowledgments">
+<div id="augmentation-to-other-service-specific-models-to-bind-a-service-to-an-ac">
 <section id="appendix-B">
+      <h2 id="name-augmentation-to-other-servi">
+<a href="#appendix-B" class="section-number selfRef">Appendix B. </a><a href="#name-augmentation-to-other-servi" class="section-name selfRef">Augmentation to Other Service-Specific Models to Bind a Service to an AC</a>
+      </h2>
+<div id="tree">
+<section id="appendix-B.1">
+        <h3 id="name-tree">
+<a href="#appendix-B.1" class="section-number selfRef">B.1. </a><a href="#name-tree" class="section-name selfRef">Tree</a>
+        </h3>
+<p id="appendix-B.1-1">ACs creates using the ietf-ac-svc module can be references in other modules (L2SM, L3SM, L2NM, L3NM, and Slicing). The tree structure of the augmentation is shown in <a href="#ac-glue-tree" class="auto internal xref">Figure 24</a><a href="#appendix-B.1-1" class="pilcrow">¶</a></p>
+<span id="name-augmenting-other-service-sp"></span><div id="ac-glue-tree">
+<figure id="figure-24">
+          <div class="alignCenter art-text artwork" id="appendix-B.1-2.1">
+<pre>
+module: ietf-ac-glue
+  augment /l3vpn-svc:l3vpn-svc/l3vpn-svc:sites/l3vpn-svc:site
+            /l3vpn-svc:site-network-accesses
+            /l3vpn-svc:site-network-access:
+    +--rw ac-ref*   ac-svc:attachment-circuit-reference
+  augment /l2vpn-svc:l2vpn-svc/l2vpn-svc:sites/l2vpn-svc:site
+            /l2vpn-svc:site-network-accesses
+            /l2vpn-svc:site-network-access:
+    +--rw ac-ref*   ac-svc:attachment-circuit-reference
+  augment /l3nm:l3vpn-ntw/l3nm:vpn-services/l3nm:vpn-service
+            /l3nm:vpn-nodes/l3nm:vpn-node/l3nm:vpn-network-accesses
+            /l3nm:vpn-network-access:
+    +--rw ac-ref*   ac-svc:attachment-circuit-reference
+  augment /l2nm:l2vpn-ntw/l2nm:vpn-services/l2nm:vpn-service
+            /l2nm:vpn-nodes/l2nm:vpn-node/l2nm:vpn-network-accesses
+            /l2nm:vpn-network-access:
+    +--rw ac-ref*   ac-svc:attachment-circuit-reference
+  augment /ietf-nss:network-slice-services/ietf-nss:slice-service
+            /ietf-nss:sdps/ietf-nss:sdp:
+    +--rw ac-ref*   ac-svc:attachment-circuit-reference
+</pre>
+</div>
+<figcaption><a href="#figure-24" class="selfRef">Figure 24</a>:
+<a href="#name-augmenting-other-service-sp" class="selfRef">Augmenting Other Service-Specific Modules</a>
+          </figcaption></figure>
+</div>
+</section>
+</div>
+<div id="module">
+<section id="appendix-B.2">
+        <h3 id="name-module">
+<a href="#appendix-B.2" class="section-number selfRef">B.2. </a><a href="#name-module" class="section-name selfRef">Module</a>
+        </h3>
+<div class="breakable sourcecode" id="appendix-B.2-1">
+<pre>&lt;CODE BEGINS&gt; file "ietf-ac-glue@2022-11-30.yang"
+
+module ietf-ac-glue {
+  yang-version 1.1;
+  namespace "urn:ietf:params:xml:ns:yang:ietf-ac-glue";
+  prefix ac-glue;
+
+  import ietf-l3vpn-svc {
+    prefix l3vpn-svc;
+    reference
+      "RFC 8299: xxxx";
+  }
+  import ietf-l2vpn-svc {
+    prefix l2vpn-svc;
+    reference
+      "RFC 8466: xxxx";
+  }
+  import ietf-l3vpn-ntw {
+    prefix l3nm;
+    reference
+      "RFC 9182: xxxx";
+  }
+  import ietf-l2vpn-ntw {
+    prefix l2nm;
+    reference
+      "RFC 9291: xxxx";
+  }
+  import ietf-network-slice-service {
+    prefix ietf-nss;
+    reference
+      "RFC XXXX: xxxx";
+  }
+  import ietf-ac-svc {
+    prefix ac-svc;
+    reference
+      "RFC xxx: XXXX";
+  }
+
+  organization
+    "IETF OPSAWG (Operations and Management Area Working Group)";
+  contact
+    "WG Web:   &lt;https://datatracker.ietf.org/wg/opsawg/&gt;
+     WG List:  &lt;mailto:opsawg@ietf.org&gt;
+
+     Editor:   Mohamed Boucadair
+               &lt;mailto:mohamed.boucadair@orange.com&gt;
+     Author:   Richard Roberts
+               &lt;mailto:rroberts@juniper.net&gt;";
+  description
+    "This YANG module defines a generic YANG model for
+     the configuration of attachment circuits.
+
+     Copyright (c) 2023 IETF Trust and the persons identified as
+     authors of the code.  All rights reserved.
+
+     Redistribution and use in source and binary forms, with or
+     without modification, is permitted pursuant to, and subject
+     to the license terms contained in, the Revised BSD License
+     set forth in Section 4.c of the IETF Trust's Legal Provisions
+     Relating to IETF Documents
+     (https://trustee.ietf.org/license-info).
+
+     This version of this YANG module is part of RFC xxx; see the
+     RFC itself for full legal notices.";
+
+  revision 2022-11-30 {
+    description
+      "Initial revision.";
+    reference
+      "RFC xxxx: A YANG Network Data Model for Attachment Circuits";
+  }
+
+grouping ac-glue {
+    description
+      "A set of AC-related data.";
+    leaf-list ac-ref {
+      type ac-svc:attachment-circuit-reference;
+      description
+        "A reference to the AC as exposed at the service that
+         was provisionned using the AC module.";
+    }
+}
+
+
+  augment "/l3vpn-svc:l3vpn-svc"
+        + "/l3vpn-svc:sites/l3vpn-svc:site"
+        + "/l3vpn-svc:site-network-accesses/l3vpn-svc:site-network-access" {
+    description
+      "Augments VPN network access with AC provisioning details.";
+
+    uses ac-glue;
+  }
+
+  augment "/l2vpn-svc:l2vpn-svc"
+        + "/l2vpn-svc:sites/l2vpn-svc:site"
+        + "/l2vpn-svc:site-network-accesses/l2vpn-svc:site-network-access" {
+    description
+      "Augments VPN network access with AC provisioning details.";
+
+    uses ac-glue;
+  }
+
+  augment "/l3nm:l3vpn-ntw/l3nm:vpn-services/l3nm:vpn-service"
+        + "/l3nm:vpn-nodes/l3nm:vpn-node"
+        + "/l3nm:vpn-network-accesses/l3nm:vpn-network-access" {
+    description
+      "Augments VPN network access with AC provisioning details.";
+
+    uses ac-glue;
+  }
+
+  augment "/l2nm:l2vpn-ntw/l2nm:vpn-services/l2nm:vpn-service"
+        + "/l2nm:vpn-nodes/l2nm:vpn-node"
+        + "/l2nm:vpn-network-accesses/l2nm:vpn-network-access" {
+    description
+      "Augments VPN network access with AC provisioning details.";
+
+    uses ac-glue;
+  }
+
+  augment "/ietf-nss:network-slice-services/ietf-nss:slice-service"
+        + "/ietf-nss:sdps/ietf-nss:sdp" {
+    description
+      "Augments VPN network access with AC provisioning details.";
+
+    uses ac-glue;
+  }
+}
+
+&lt;CODE ENDS&gt;</pre><a href="#appendix-B.2-1" class="pilcrow">¶</a>
+</div>
+</section>
+</div>
+</section>
+</div>
+<div id="acknowledgments">
+<section id="appendix-C">
       <h2 id="name-acknowledgments">
 <a href="#name-acknowledgments" class="section-name selfRef">Acknowledgments</a>
       </h2>
-<p id="appendix-B-1">TODO acknowledge.<a href="#appendix-B-1" class="pilcrow">¶</a></p>
+<p id="appendix-C-1">TODO acknowledge.<a href="#appendix-C-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="contributors">
-<section id="appendix-C">
+<section id="appendix-D">
       <h2 id="name-contributors">
 <a href="#name-contributors" class="section-name selfRef">Contributors</a>
       </h2>
-<p id="appendix-C-1">TODO contribute.<a href="#appendix-C-1" class="pilcrow">¶</a></p>
+<p id="appendix-D-1">TODO contribute.<a href="#appendix-D-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="authors-addresses">
-<section id="appendix-D">
+<section id="appendix-E">
       <h2 id="name-authors-addresses">
 <a href="#name-authors-addresses" class="section-name selfRef">Authors' Addresses</a>
       </h2>
