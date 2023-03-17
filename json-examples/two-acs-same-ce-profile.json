@@ -28,7 +28,8 @@
             "dot1q": {
               "cvlan-id": 1
             }
-          }
+          },
+          "bearer-reference": "line-156"
         },
         "ip-connection": {
           "ipv4": {
@@ -62,7 +63,8 @@
             "dot1q": {
               "cvlan-id": 2
             }
-          }
+          },
+          "bearer-reference": "line-156"
         },
         "ip-connection": {
           "ipv4": {
