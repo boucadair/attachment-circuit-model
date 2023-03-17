@@ -671,7 +671,7 @@ An example of a request to create a simple AC, when the peer SAP is known, is sh
 
 ## One CE, Two ACs {#sec-ex-one-ce-multi-acs}
 
-Let’s consider the example of an eNodeB (CTP) that is directly connected to the access routers of the mobile backhaul (see {{enodeb}}). In this example, two ACs are needed to service the eNodeB (e.g. distinct vlans for Control Plane and User Plane).
+Let’s consider the example of an eNodeB (CTP) that is directly connected to the access routers of the mobile backhaul (see {{enodeb}}). In this example, two ACs are needed to service the eNodeB (e.g., distinct VLANs for Control and User Planes).
 
 ~~~~ aasvg
 +-------------+                  +------------------+
