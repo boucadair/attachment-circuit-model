@@ -12,9 +12,14 @@ module ietf-bearer-svc {
   import ietf-ac-common {
     prefix ac-common;
     reference
-      "RFC CCCC: A YANG Service Data Model for Attachment Circuits";
+      "RFC CCCC: A Common YANG Data Model for Attachment Circuits";
   }
-
+  import ietf-ac-svc {
+    prefix ac-svc;
+    reference
+      "RFC XXXX: YANG Service Data Models for Attachment Circuits";
+  }
+  
   organization
     "IETF OPSAWG (Operations and Management Area Working Group)";
   contact
@@ -234,6 +239,12 @@ module ietf-bearer-svc {
         description
           "This is an internal reference for the service provider
            to identify the bearers.";
+      }
+      leaf-list ac-refs {
+        type ac-svc:attachment-circuit-reference;
+        config false;
+        description
+          "Specifies the set of ACes that are bound to the bearer.";
       }
       uses ac-common:op-instructions;
       uses vpn-common:service-status;
