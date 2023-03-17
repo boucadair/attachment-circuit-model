@@ -671,7 +671,7 @@ An example of a request to create a simple AC, when the peer SAP is known, is sh
 
 ## One CE, Two ACs {#sec-ex-one-ce-multi-acs}
 
-Let’s consider the example of an eNodeB (CTP) that is directly connected to the access routers of the mobile backhaul (see {{enodeb}}). In this example, two ACs are needed to service the eNodeB.
+Let’s consider the example of an eNodeB (CTP) that is directly connected to the access routers of the mobile backhaul (see {{enodeb}}). In this example, two ACs are needed to service the eNodeB (e.g. distinct vlans for Control Plane and User Plane).
 
 ~~~~ aasvg
 +-------------+                  +------------------+
@@ -699,12 +699,26 @@ An example of a request to create the ACs to service the eNodeB is shown in {{tw
 
 ## Control Precedence over Multiple ACs {#sec-ex-prec}
 
-When multiple ACs are requested by the same customer (for the same site), the request can tag one of these ACes as "primary" and the other ones as "secondary". An example of such a request is shown in {{ac-precedence}}. In this example, both ACes are bound to the same "group-id", and the "precedence" data node is set as a function of the intended role of each AC (primary or secondary).
+When multiple ACs are requested by the same customer for the same site, the request can tag one of these ACs as "primary" and the other ones as "secondary". An example of such a request is shown in {{ac-precedence}}. In this example, both ACs are bound to the same "group-id", and the "precedence" data node is set as a function of the intended role of each AC (primary or secondary).
 
+~~~~ aasvg
+                                 ┌───┐
+                 ac1: primary    │   │
+            ┌────────────────────┤PE1│
+┌───┐       │    bearerX@site1   │   │
+│   ├───────┘                    └───┘
+│CPE│
+│   ├───────┐                    ┌───┐
+└───┘       │    ac2: secondary  │   │
+            └────────────────────┤PE2│
+                 bearerY@site1   │   │
+                                 └───┘
+~~~~
+{: #multipleac title="Example of topology for AC precedence enforcement"}
 ~~~~
 {::include ./json-examples/ac-precedence.json}
 ~~~~
-{: #ac-precedence title="Example of a Message Body to Associate a Precedence Level with ACes"}
+{: #ac-precedence title="Example of a Message Body to Associate a Precedence Level with ACs"}
 
 
 ## Illustrate the Use of Global Profiles
