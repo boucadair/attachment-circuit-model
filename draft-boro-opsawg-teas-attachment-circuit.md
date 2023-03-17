@@ -714,7 +714,7 @@ When multiple ACs are requested by the same customer for the same site, the requ
                  bearerY@site1   │   │
                                  └───┘
 ~~~~
-{: #multipleac title="Example of topology for AC precedence enforcement"}
+{: #multipleac title="An Example Topology for AC Precedence Enforcement"}
 ~~~~
 {::include ./json-examples/ac-precedence.json}
 ~~~~
