@@ -6,7 +6,8 @@
         "l2-connection": {
           "encapsulation": {
             "type": "ietf-vpn-common:dot1q"
-          }
+          },
+          "bearer-reference": "line-156"
         },
         "ip-connection": {
           "ipv4": {
