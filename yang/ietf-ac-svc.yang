@@ -135,6 +135,15 @@ module ietf-ac-svc {
       "Defines a type to a routing profile for referencing purposes.";
   }
 
+  typedef service-profile-reference {
+    type leafref {
+      path "/ac-svc:service-provisioning-profiles/service-profile-identifier"
+         + "/id";
+    }
+    description
+      "Defines a type to a service profile for referencing purposes.";
+  }
+
   /******************** Reusable groupings ********************/
   // Basic Layer 2 connection
 
@@ -749,6 +758,11 @@ module ietf-ac-svc {
       description
         "A name of the AC. Data models that need to reference an attachment
          circuits should use attachment-circuit-reference.";
+    }
+    leaf-list service-profile {
+      type service-profile-reference;
+      description
+        "A reference to a service profile.";
     }
     container l2-connection {
       description
