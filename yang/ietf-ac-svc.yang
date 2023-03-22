@@ -92,8 +92,8 @@ module ietf-ac-svc {
   typedef encryption-profile-reference {
     type leafref {
       path
-        "/ac-svc:specific-provisioning-profiles/valid-provider-identifiers"
-      + "/encryption-profile-identifier/id";
+        "/ac-svc:specific-provisioning-profiles/ac-svc:valid-provider-identifiers"
+      + "/ac-svc:encryption-profile-identifier/ac-svc:id";
     }
     description
       "Defines a type to an encryption profile for referencing
@@ -103,8 +103,8 @@ module ietf-ac-svc {
   typedef qos-profile-reference {
     type leafref {
       path
-        "/ac-svc:specific-provisioning-profiles/valid-provider-identifiers"
-      + "/qos-profile-identifier/ac-svc:id";
+        "/ac-svc:specific-provisioning-profiles/ac-svc:valid-provider-identifiers"
+      + "/ac-svc:qos-profile-identifier/ac-svc:id";
     }
     description
       "Defines a type to a QoS profile for referencing purposes.";
@@ -113,8 +113,8 @@ module ietf-ac-svc {
   typedef bfd-profile-reference {
     type leafref {
       path
-        "/ac-svc:specific-provisioning-profiles/valid-provider-identifiers"
-      + "/bfd-profile-identifier/ac-svc:id";
+        "/ac-svc:specific-provisioning-profiles/ac-svc:valid-provider-identifiers"
+      + "/ac-svc:bfd-profile-identifier/ac-svc:id";
     }
     description
       "Defines a type to a BFD profile for referencing purposes.";
@@ -123,8 +123,8 @@ module ietf-ac-svc {
   typedef forwarding-profile-reference {
     type leafref {
       path
-        "/ac-svc:specific-provisioning-profiles/valid-provider-identifiers"
-      + "/forwarding-profile-identifier/ac-svc:id";
+        "/ac-svc:specific-provisioning-profiles/ac-svc:valid-provider-identifiers"
+      + "/ac-svc:forwarding-profile-identifier/ac-svc:id";
     }
     description
       "Defines a type to a forwarding profile for referencing purposes.";
@@ -133,8 +133,8 @@ module ietf-ac-svc {
   typedef routing-profile-reference {
     type leafref {
       path
-        "/ac-svc:specific-provisioning-profiles/valid-provider-identifiers"
-      + "/routing-profile-identifier/id";
+        "/ac-svc:specific-provisioning-profiles/ac-svc:valid-provider-identifiers"
+      + "/ac-svc:routing-profile-identifier/ac-svc:id";
     }
     description
       "Defines a type to a routing profile for referencing purposes.";
@@ -143,8 +143,8 @@ module ietf-ac-svc {
   typedef service-profile-reference {
     type leafref {
       path
-        "/ac-svc:service-provisioning-profiles/service-profile-identifier"
-      + "/id";
+        "/ac-svc:service-provisioning-profiles/ac-svc:service-profile-identifier"
+      + "/ac-svc:id";
     }
     description
       "Defines a type to a service profile for referencing purposes.";
