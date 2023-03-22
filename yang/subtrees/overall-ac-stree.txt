@@ -20,6 +20,7 @@
         |  +--rw group-id      string
         |  +--rw precedence?   identityref
         +--rw name                 string
+        +--rw service-profile*     service-profile-reference        
         +--rw l2-connection
         |  ...
         +--rw ip-connection

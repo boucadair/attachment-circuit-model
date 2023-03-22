@@ -17,6 +17,7 @@ module: ietf-ac-svc
   +--rw attachment-circuits
      +--rw ac-group-profile* [name]
      |  +--rw name                 string
+     |  +--rw service-profile*     service-profile-reference
      |  +--rw l2-connection
      |  |  +--rw encapsulation
      |  |  |  +--rw type?              identityref
@@ -324,6 +325,7 @@ module: ietf-ac-svc
         |  +--rw group-id      string
         |  +--rw precedence?   identityref
         +--rw name                 string
+        +--rw service-profile*     service-profile-reference
         +--rw l2-connection
         |  +--rw encapsulation
         |  |  +--rw type?              identityref
