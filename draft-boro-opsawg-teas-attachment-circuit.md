@@ -695,7 +695,22 @@ An example of a request to create the ACs to service the eNodeB is shown in {{tw
 ~~~~
 {::include ./json-examples/two-acs-same-ce.json}
 ~~~~
-{: #two-acs-same-ce title="Example of a Message Body to Request Two ACes on The Same Link"}
+{: #two-acs-same-ce title="Example of a Message Body to Request Two ACes on The Same Link (Not Recommended)"}
+
+The example shown {{two-acs-same-ce}} is not optimal as it includes many redundant data. {{two-acs-same-ce-node-profile}} shows a more compact request that factorizes all the redundant data.
+
+~~~~
+{::include ./json-examples/two-acs-same-ce-node-profile.json}
+~~~~
+{: #two-acs-same-ce-node-profile title="Example of a Message Body to Request Two ACes on The Same Link (Node Profile)"}
+
+A customer may request adding a new AC by simply referring to an existing per-node AC profile as shown in {{add-ac-same-ce-node-profile}}. This AC inherits all the data that was enclosed in the indicated per-node AC profile (IP addressing, routing, etc.).
+
+~~~~
+{::include ./json-examples/add-ac-same-ce-node-profile.json}
+~~~~
+{: #add-ac-same-ce-node-profile title="Example of a Message Body to Add a new AC over an existing link (Node Profile)"}
+
 
 ## Control Precedence over Multiple ACs {#sec-ex-prec}
 
@@ -719,32 +734,6 @@ When multiple ACs are requested by the same customer for the same site, the requ
 {::include ./json-examples/ac-precedence.json}
 ~~~~
 {: #ac-precedence title="Example of a Message Body to Associate a Precedence Level with ACs"}
-
-
-## Illustrate the Use of Global Profiles
-
-An example of a request to create two ACs to service the same CE on the same link is shown in {{two-acs-same-ce-profile}}. Unlike {{two-acs-same-ce}}, this example factorizes some of the redundant data.
-
-~~~~
-{::include ./json-examples/two-acs-same-ce-profile.json}
-~~~~
-{: #two-acs-same-ce-profile title="Example of a Message Body to Request Two ACes on The Same Link (Global Profile)"}
-
-## Illustrate the Use of Per-Node Profiles
-
-An example of a request to create two ACs to service the same CE on the same link is shown in {{two-acs-same-ce-node-profile}}. Unlike {{two-acs-same-ce}}, this example factorizes all redundant data.
-
-~~~~
-{::include ./json-examples/two-acs-same-ce-node-profile.json}
-~~~~
-{: #two-acs-same-ce-node-profile title="Example of a Message Body to Request Two ACes on The Same Link (Node Profile)"}
-
-A customer may request adding a new AC by simply referring to an existing per-node AC profile as shown in {{add-ac-same-ce-node-profile}}. This AC inherits all the data that was enclosed in the indicated per-node AC profile (IP addressing, routing, etc.).
-
-~~~~
-{::include ./json-examples/add-ac-same-ce-node-profile.json}
-~~~~
-{: #add-ac-same-ce-node-profile title="Example of a Message Body to Add a new AC over an existing link (Node Profile)"}
 
 ## Multiple CEs
 
