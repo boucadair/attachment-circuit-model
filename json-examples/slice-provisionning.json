@@ -18,11 +18,11 @@
           "sdp": [
             {
               "sdp-id": "sdp1",
-              "ac-svc-name": "ac1"
+              "ac-svc-name": ["ac1"]
             },
             {
               "sdp-id": "sdp2",
-              "ac-svc-name": "ac2"
+              "ac-svc-name": ["ac2"]
             }
           ]
         }
