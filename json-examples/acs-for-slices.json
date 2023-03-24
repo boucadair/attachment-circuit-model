@@ -4,7 +4,7 @@
       {
         "name": "ac1",
         "description": "Connection to site1 on vlan 100 for slice EMBB_UP",
-        "requested-ac-start": "2023-12-12T05:00:00.00Z",
+        "requested-start": "2023-12-12T05:00:00.00Z",
         "l2-connection": {
           "encapsulation": {
             "type": "ietf-vpn-common:dot1q",
@@ -50,7 +50,7 @@
       {
         "name": "ac2",
         "description": "Connection to site2 on vlan 200 for slice EMBB_UP",
-        "requested-ac-start": "2023-12-12T05:00:00.00Z",
+        "requested-start": "2023-12-12T05:00:00.00Z",
         "l2-connection": {
           "encapsulation": {
             "type": "ietf-vpn-common:dot1q",
@@ -82,8 +82,7 @@
                 "neighbor": [
                   {
                     "id": "1",
-                    "local-as": "65536",
-                    "peer-as": "65550"
+                    "peer-as": 65550
                   }
                 ]
               }
