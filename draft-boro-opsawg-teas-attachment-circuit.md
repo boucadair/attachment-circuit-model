@@ -392,7 +392,7 @@ The description of the data nodes is as follows:
 'l2-connection':
 : See {{sec-l2}}.
 
-'l3-connection':
+'ip-connection':
 : See {{sec-l3}}.
 
 'routing':
@@ -415,9 +415,9 @@ The 'l2-connection' container ({{l2-svc-tree}}) is used to configure the relevan
 
 
 
-#### Layer 3 Connection Structure {#sec-l3}
+#### IP Connection Structure {#sec-l3}
 
-The 'l3-connection' container is used to configure the relevant Layer 3 properties of an AC. The model supports the usage of dynamic and static addressing. This structure relies upon the common groupings defined in {{!I-D.boro-opsawg-teas-common-ac}}. Both IPv4 and IPv6 parameters are supported.
+The 'ip-connection' container is used to configure the relevant IP properties of an AC. The model supports the usage of dynamic and static addressing. This structure relies upon the common groupings defined in {{!I-D.boro-opsawg-teas-common-ac}}. Both IPv4 and IPv6 parameters are supported.
 
 {{ipv4-svc-tree}} shows the structure of the IPv4 connection.
 
