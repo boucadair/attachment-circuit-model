@@ -65,6 +65,11 @@ contributor:
     org: KDDI
     email: ke-oogaki@kddi.com
 
+  -
+    name: Luis Angel Munoz
+    org: Vodafone
+    email: luis-angel.munoz@vodafone.com
+
 normative:
 
 informative:
