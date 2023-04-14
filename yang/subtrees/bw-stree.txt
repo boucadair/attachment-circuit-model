@@ -1,0 +1,62 @@
+  +--rw specific-provisioning-profiles
+  |  ...
+  +--rw service-provisioning-profiles
+  |  ...
+  +--rw attachment-circuits
+     +--rw ac-group-profile* [name]
+     |  ...
+     +--rw placement-constraints
+     |  ...
+     +--rw ac* [name]
+        ...
+        +--rw l2-connection
+        |  ...
+        +--rw ip-connection
+        |  ...
+        +--rw routing-protocols
+        |  ...
+        +--rw oam
+        |  ...
+        +--rw security
+        |  ...
+        +--rw service
+           +--rw svc-pe-to-ce-bandwidth {vpn-common:inbound-bw}?
+           |  +--rw bandwidth* [bw-type]
+           |     +--rw bw-type      identityref
+           |     +--rw (type)?
+           |        +--:(per-cos)
+           |        |  +--rw cos* [cos-id]
+           |        |     +--rw cos-id    uint8
+           |        |     +--rw cir?      uint64
+           |        |     +--rw cbs?      uint64
+           |        |     +--rw eir?      uint64
+           |        |     +--rw ebs?      uint64
+           |        |     +--rw pir?      uint64
+           |        |     +--rw pbs?      uint64
+           |        +--:(other)
+           |           +--rw cir?   uint64
+           |           +--rw cbs?   uint64
+           |           +--rw eir?   uint64
+           |           +--rw ebs?   uint64
+           |           +--rw pir?   uint64
+           |           +--rw pbs?   uint64
+           +--rw svc-ce-to-pe-bandwidth {vpn-common:outbound-bw}?
+              +--rw bandwidth* [bw-type]
+                 +--rw bw-type      identityref
+                 +--rw (type)?
+                    +--:(per-cos)
+                    |  +--rw cos* [cos-id]
+                    |     +--rw cos-id    uint8
+                    |     +--rw cir?      uint64
+                    |     +--rw cbs?      uint64
+                    |     +--rw eir?      uint64
+                    |     +--rw ebs?      uint64
+                    |     +--rw pir?      uint64
+                    |     +--rw pbs?      uint64
+                    +--:(other)
+                       +--rw cir?   uint64
+                       +--rw cbs?   uint64
+                       +--rw eir?   uint64
+                       +--rw ebs?   uint64
+                       +--rw pir?   uint64
+                       +--rw pbs?   uint64
