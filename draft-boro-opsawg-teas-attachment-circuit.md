@@ -410,7 +410,7 @@ The description of the data nodes is as follows:
 : See {{sec-sec}}.
 
 'service':
-: See {{sec-svc}}.
+: See {{sec-bw}}.
 
 #### Layer 2 Connection Structure {#sec-l2}
 
@@ -528,7 +528,7 @@ As shown in the tree depicted in {{sec-svc-tree}}, the 'security' container defi
 ~~~~
 {: #sec-svc-tree title="Security Tree Structure" artwork-align="center"}
 
-#### Bandwidth {#sec-sec}
+#### Bandwidth {#sec-bw}
 
 As shown in the tree depicted in {{bw-tree}}, the 'service' container defines a set of AC bandwidth parameters:
 
