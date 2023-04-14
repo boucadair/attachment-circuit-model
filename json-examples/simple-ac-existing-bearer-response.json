@@ -1,0 +1,21 @@
+{
+  "ietf-ac-svc:attachment-circuits": {
+    "ac": [
+      {
+        "name": "ac4585",
+        "description": "An AC on an existing bearer",
+        "requested-ac-start": "2023-12-12T05:00:00.00Z",
+        "l2-connection": {
+          "encapsulation": {
+            "type": "ietf-vpn-common:dot1q",
+            "dot1q": {
+              "tag-type": "ietf-vpn-common:c-vlan",
+              "cvlan-id": 550
+            }
+          },
+          "bearer-reference": "line-156"
+        }
+      }
+    ]
+  }
+}
