@@ -534,7 +534,7 @@ As shown in the tree depicted in {{bw-tree}}, the 'service' container defines a 
 
 'svc-pe-to-ce-bandwidth':
 : Indicates the inbound bandwidth of the AC (i.e., download bandwidth from the service provider to
-  the customer site). 
+  the customer site).
 
 'svc-ce-to-pe-bandwidth':
 : Indicates the outbound bandwidth of the AC (i.e., upload bandwidth from the customer site to the service
