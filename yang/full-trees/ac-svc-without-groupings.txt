@@ -16,8 +16,8 @@ module: ietf-ac-svc
   |     +--rw id    string
   +--rw attachment-circuits
      +--rw ac-group-profile* [name]
-     |  +--rw name                 string
-     |  +--rw service-profile*     service-profile-reference
+     |  +--rw name                      string
+     |  +--rw service-profile*          service-profile-reference
      |  +--rw l2-connection
      |  |  +--rw encapsulation
      |  |  |  +--rw type?              identityref
@@ -289,17 +289,57 @@ module: ietf-ac-svc
      |  |           +--ro status?        identityref
      |  |           +--ro last-change?   yang:date-and-time
      |  +--rw security
-     |     +--rw encryption {vpn-common:encryption}?
-     |     |  +--rw enabled?   boolean
-     |     |  +--rw layer?     enumeration
-     |     +--rw encryption-profile
-     |        +--rw (profile)?
-     |           +--:(provider-profile)
-     |           |  +--rw provider-profile?
-     |           |          encryption-profile-reference
-     |           +--:(customer-profile)
-     |              +--rw customer-key-chain?
-     |                      key-chain:key-chain-ref
+     |  |  +--rw encryption {vpn-common:encryption}?
+     |  |  |  +--rw enabled?   boolean
+     |  |  |  +--rw layer?     enumeration
+     |  |  +--rw encryption-profile
+     |  |     +--rw (profile)?
+     |  |        +--:(provider-profile)
+     |  |        |  +--rw provider-profile?
+     |  |        |          encryption-profile-reference
+     |  |        +--:(customer-profile)
+     |  |           +--rw customer-key-chain?
+     |  |                   key-chain:key-chain-ref
+     |  +--rw svc-pe-to-ce-bandwidth {vpn-common:inbound-bw}?
+     |  |  +--rw bandwidth* [bw-type]
+     |  |     +--rw bw-type      identityref
+     |  |     +--rw (type)?
+     |  |        +--:(per-cos)
+     |  |        |  +--rw cos* [cos-id]
+     |  |        |     +--rw cos-id    uint8
+     |  |        |     +--rw cir?      uint64
+     |  |        |     +--rw cbs?      uint64
+     |  |        |     +--rw eir?      uint64
+     |  |        |     +--rw ebs?      uint64
+     |  |        |     +--rw pir?      uint64
+     |  |        |     +--rw pbs?      uint64
+     |  |        +--:(other)
+     |  |           +--rw cir?   uint64
+     |  |           +--rw cbs?   uint64
+     |  |           +--rw eir?   uint64
+     |  |           +--rw ebs?   uint64
+     |  |           +--rw pir?   uint64
+     |  |           +--rw pbs?   uint64
+     |  +--rw svc-ce-to-pe-bandwidth {vpn-common:outbound-bw}?
+     |     +--rw bandwidth* [bw-type]
+     |        +--rw bw-type      identityref
+     |        +--rw (type)?
+     |           +--:(per-cos)
+     |           |  +--rw cos* [cos-id]
+     |           |     +--rw cos-id    uint8
+     |           |     +--rw cir?      uint64
+     |           |     +--rw cbs?      uint64
+     |           |     +--rw eir?      uint64
+     |           |     +--rw ebs?      uint64
+     |           |     +--rw pir?      uint64
+     |           |     +--rw pbs?      uint64
+     |           +--:(other)
+     |              +--rw cir?   uint64
+     |              +--rw cbs?   uint64
+     |              +--rw eir?   uint64
+     |              +--rw ebs?   uint64
+     |              +--rw pir?   uint64
+     |              +--rw pbs?   uint64
      +--rw placement-constraints
      |  +--rw constraint* [constraint-type]
      |     +--rw constraint-type    identityref
@@ -313,19 +353,19 @@ module: ietf-ac-svc
      |           +--:(all-groups)
      |              +--rw all-other-groups?     empty
      +--rw ac* [name]
-        +--rw customer-name?       string
-        +--rw description?         string
-        +--rw requested-start?     yang:date-and-time
-        +--rw requested-stop?      yang:date-and-time
-        +--ro actual-start?        yang:date-and-time
-        +--ro actual-stop?         yang:date-and-time
-        +--rw peer-sap-id*         string
-        +--rw ac-group-profile*    ac-group-reference
+        +--rw customer-name?            string
+        +--rw description?              string
+        +--rw requested-start?          yang:date-and-time
+        +--rw requested-stop?           yang:date-and-time
+        +--ro actual-start?             yang:date-and-time
+        +--ro actual-stop?              yang:date-and-time
+        +--rw peer-sap-id*              string
+        +--rw ac-group-profile*         ac-group-reference
         +--rw group* [group-id]
         |  +--rw group-id      string
         |  +--rw precedence?   identityref
-        +--rw name                 string
-        +--rw service-profile*     service-profile-reference
+        +--rw name                      string
+        +--rw service-profile*          service-profile-reference
         +--rw l2-connection
         |  +--rw encapsulation
         |  |  +--rw type?              identityref
@@ -597,14 +637,54 @@ module: ietf-ac-svc
         |           +--ro status?        identityref
         |           +--ro last-change?   yang:date-and-time
         +--rw security
-           +--rw encryption {vpn-common:encryption}?
-           |  +--rw enabled?   boolean
-           |  +--rw layer?     enumeration
-           +--rw encryption-profile
-              +--rw (profile)?
-                 +--:(provider-profile)
-                 |  +--rw provider-profile?
-                 |          encryption-profile-reference
-                 +--:(customer-profile)
-                    +--rw customer-key-chain?
-                            key-chain:key-chain-ref
+        |  +--rw encryption {vpn-common:encryption}?
+        |  |  +--rw enabled?   boolean
+        |  |  +--rw layer?     enumeration
+        |  +--rw encryption-profile
+        |     +--rw (profile)?
+        |        +--:(provider-profile)
+        |        |  +--rw provider-profile?
+        |        |          encryption-profile-reference
+        |        +--:(customer-profile)
+        |           +--rw customer-key-chain?
+        |                   key-chain:key-chain-ref
+        +--rw svc-pe-to-ce-bandwidth {vpn-common:inbound-bw}?
+        |  +--rw bandwidth* [bw-type]
+        |     +--rw bw-type      identityref
+        |     +--rw (type)?
+        |        +--:(per-cos)
+        |        |  +--rw cos* [cos-id]
+        |        |     +--rw cos-id    uint8
+        |        |     +--rw cir?      uint64
+        |        |     +--rw cbs?      uint64
+        |        |     +--rw eir?      uint64
+        |        |     +--rw ebs?      uint64
+        |        |     +--rw pir?      uint64
+        |        |     +--rw pbs?      uint64
+        |        +--:(other)
+        |           +--rw cir?   uint64
+        |           +--rw cbs?   uint64
+        |           +--rw eir?   uint64
+        |           +--rw ebs?   uint64
+        |           +--rw pir?   uint64
+        |           +--rw pbs?   uint64
+        +--rw svc-ce-to-pe-bandwidth {vpn-common:outbound-bw}?
+           +--rw bandwidth* [bw-type]
+              +--rw bw-type      identityref
+              +--rw (type)?
+                 +--:(per-cos)
+                 |  +--rw cos* [cos-id]
+                 |     +--rw cos-id    uint8
+                 |     +--rw cir?      uint64
+                 |     +--rw cbs?      uint64
+                 |     +--rw eir?      uint64
+                 |     +--rw ebs?      uint64
+                 |     +--rw pir?      uint64
+                 |     +--rw pbs?      uint64
+                 +--:(other)
+                    +--rw cir?   uint64
+                    +--rw cbs?   uint64
+                    +--rw eir?   uint64
+                    +--rw ebs?   uint64
+                    +--rw pir?   uint64
+                    +--rw pbs?   uint64
