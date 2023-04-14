@@ -15,8 +15,10 @@
         +--ro actual-start?        yang:date-and-time
         +--ro actual-stop?         yang:date-and-time
         +--rw peer-sap-id*         string
-        +--rw ac-global-profile*   ac-global-profile-reference
-        +--rw ac-node-profile*     ac-node-group-reference
+        +--rw ac-group-profile*    ac-group-reference
+        +--rw group* [group-id]
+        |  +--rw group-id      string
+        |  +--rw precedence?   identityref
         +--rw name                 string
         +--rw l2-connection
         |  +--rw encapsulation

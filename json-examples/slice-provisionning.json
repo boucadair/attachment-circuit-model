@@ -10,23 +10,19 @@
     },
     "slice-service": [
       {
-        "service-id": "Slice EMBB_UP",
-        "service-description": "Dedicate TN Slice for EMBB-UP",
+        "service-id": "Slice URLLC_UP",
+        "service-description": "Dedicate TN Slice for URLLC-UP",
         "slo-sle-template": "low-latency-template",
         "status": {},
         "sdps": {
           "sdp": [
             {
               "sdp-id": "sdp1",
-              "ietf-ac-glue:ac-ref": [
-                "ac1"
-              ]
+              "ac-svc-name": ["ac1"]
             },
             {
               "sdp-id": "sdp2",
-              "ietf-ac-glue:ac-ref": [
-                "ac2"
-              ]
+              "ac-svc-name": ["ac2"]
             }
           ]
         }

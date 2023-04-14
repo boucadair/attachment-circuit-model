@@ -60,6 +60,16 @@ contributor:
     org: Huawei
     email: bill.wu@huawei.com
 
+  -
+    name: Ogaki Kenichi
+    org: KDDI
+    email: ke-oogaki@kddi.com
+
+  -
+    name: Luis Angel Munoz
+    org: Vodafone
+    email: luis-angel.munoz@vodafone.com
+
 normative:
   ISO10589:
     title: Information technology - Telecommunications and information exchange between systems - Intermediate System to Intermediate System intra-domain routeing information exchange protocol for use in conjunction with the protocol for providing the connectionless-mode network service (ISO8473)

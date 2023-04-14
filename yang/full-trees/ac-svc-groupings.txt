@@ -125,6 +125,123 @@ module: ietf-ac-svc
     +-- routing-profiles* [id]
        +-- id?     routing-profile-reference
        +-- type?   identityref
+  grouping bgp-svc
+    +-- peer-groups
+    |  +-- peer-group* [name]
+    |     +-- name?             string
+    |     +--ro local-as?         inet:as-number
+    |     +-- peer-as?          inet:as-number
+    |     +-- address-family?   identityref
+    |     +-- local-address?    inet:ip-address
+    |     +-- authentication
+    |        +-- enable?            boolean
+    |        +-- keying-material
+    |           +-- (option)?
+    |              +--:(ao)
+    |              |  +-- enable-ao?          boolean
+    |              |  +-- ao-keychain?        key-chain:key-chain-ref
+    |              +--:(md5)
+    |              |  +-- md5-keychain?       key-chain:key-chain-ref
+    |              +--:(explicit)
+    |                 +-- key-id?             uint32
+    |                 +-- key?                string
+    |                 +-- crypto-algorithm?   identityref
+    +-- neighbor* [id]
+       +-- id?               string
+       +-- remote-address?   inet:ip-address
+       +-- local-address?    inet:ip-address
+       +-- peer-group?       -> ../../peer-groups/peer-group/name
+       +--ro local-as?         inet:as-number
+       +-- peer-as?          inet:as-number
+       +-- address-family?   identityref
+       +-- authentication
+       |  +-- enable?            boolean
+       |  +-- keying-material
+       |     +-- (option)?
+       |        +--:(ao)
+       |        |  +-- enable-ao?          boolean
+       |        |  +-- ao-keychain?        key-chain:key-chain-ref
+       |        +--:(md5)
+       |        |  +-- md5-keychain?       key-chain:key-chain-ref
+       |        +--:(explicit)
+       |           +-- key-id?             uint32
+       |           +-- key?                string
+       |           +-- crypto-algorithm?   identityref
+       +-- status
+          +-- admin-status
+          |  +-- status?        identityref
+          |  +-- last-change?   yang:date-and-time
+          +--ro oper-status
+             +--ro status?        identityref
+             +--ro last-change?   yang:date-and-time
+  grouping ospf-svc
+    +-- address-family?   identityref
+    +-- area-id           yang:dotted-quad
+    +-- metric?           uint16
+    +-- authentication
+    |  +-- enable?            boolean
+    |  +-- keying-material
+    |     +-- (option)?
+    |        +--:(auth-key-chain)
+    |        |  +-- key-chain?          key-chain:key-chain-ref
+    |        +--:(auth-key-explicit)
+    |           +-- key-id?             uint32
+    |           +-- key?                string
+    |           +-- crypto-algorithm?   identityref
+    +-- status
+       +-- admin-status
+       |  +-- status?        identityref
+       |  +-- last-change?   yang:date-and-time
+       +--ro oper-status
+          +--ro status?        identityref
+          +--ro last-change?   yang:date-and-time
+  grouping isis-svc
+    +-- address-family?   identityref
+    +-- area-address      area-address
+    +-- authentication
+    |  +-- enable?            boolean
+    |  +-- keying-material
+    |     +-- (option)?
+    |        +--:(auth-key-chain)
+    |        |  +-- key-chain?          key-chain:key-chain-ref
+    |        +--:(auth-key-explicit)
+    |           +-- key-id?             uint32
+    |           +-- key?                string
+    |           +-- crypto-algorithm?   identityref
+    +-- status
+       +-- admin-status
+       |  +-- status?        identityref
+       |  +-- last-change?   yang:date-and-time
+       +--ro oper-status
+          +--ro status?        identityref
+          +--ro last-change?   yang:date-and-time
+  grouping rip-svc
+    +-- address-family?   identityref
+    +-- authentication
+    |  +-- enable?            boolean
+    |  +-- keying-material
+    |     +-- (option)?
+    |        +--:(auth-key-chain)
+    |        |  +-- key-chain?          key-chain:key-chain-ref
+    |        +--:(auth-key-explicit)
+    |           +-- key?                string
+    |           +-- crypto-algorithm?   identityref
+    +-- status
+       +-- admin-status
+       |  +-- status?        identityref
+       |  +-- last-change?   yang:date-and-time
+       +--ro oper-status
+          +--ro status?        identityref
+          +--ro last-change?   yang:date-and-time
+  grouping vrrp-svc
+    +-- address-family?   identityref
+    +-- status
+       +-- admin-status
+       |  +-- status?        identityref
+       |  +-- last-change?   yang:date-and-time
+       +--ro oper-status
+          +--ro status?        identityref
+          +--ro last-change?   yang:date-and-time
   grouping routing-basic
     +-- routing-protocol* [id]
        +-- id?                 string

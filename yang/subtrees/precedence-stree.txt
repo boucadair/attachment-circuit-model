@@ -2,20 +2,32 @@
   |  ...
   +--rw service-provisioning-profiles
   |  ...
+  +--rw placement-constraints
+  |  +--rw constraint* [constraint-type]
+  |     +--rw constraint-type    identityref
+  |     +--rw target
+  |        +--rw (target-flavor)?
+  |           +--:(id)
+  |           |  +--rw group* [group-id]
+  |           |     +--rw group-id    string
+  |           +--:(all-accesses)
+  |           |  +--rw all-other-accesses?   empty
+  |           +--:(all-groups)
+  |              +--rw all-other-groups?     empty
   +--rw attachment-circuits
-     +--rw ac-group-profile* [name]
+     +--rw ac-global-profile* [id]
      |  ...
-     +--rw placement-constraints
-     |  +--rw constraint* [constraint-type]
-     |     +--rw constraint-type    identityref
-     |     +--rw target
-     |        +--rw (target-flavor)?
-     |           +--:(id)
-     |           |  +--rw group* [group-id]
-     |           |     +--rw group-id    string
-     |           +--:(all-accesses)
-     |           |  +--rw all-other-accesses?   empty
-     |           +--:(all-groups)
-     |              +--rw all-other-groups?     empty
+     +--rw ac-node-group* [id]
+     |  ...
      +--rw ac* [name]
         ...
+        +--rw l2-connection
+        |  ...
+        +--rw ip-connection
+        |  ...
+        +--rw routing-protocols
+        |  ...
+        +--rw oam
+        |  ...
+        +--rw security
+           ...

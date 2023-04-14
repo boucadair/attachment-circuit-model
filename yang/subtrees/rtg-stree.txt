@@ -15,8 +15,10 @@
         +--ro actual-start?        yang:date-and-time
         +--ro actual-stop?         yang:date-and-time
         +--rw peer-sap-id*         string
-        +--rw ac-global-profile*   ac-global-profile-reference
-        +--rw ac-node-profile*     ac-node-group-reference
+        +--rw ac-group-profile*    ac-group-reference
+        +--rw group* [group-id]
+        |  +--rw group-id      string
+        |  +--rw precedence?   identityref
         +--rw name                 string
         +--rw l2-connection
         | ...
@@ -30,159 +32,16 @@
         |     |  +--rw id      routing-profile-reference
         |     |  +--rw type?   identityref
         |     +--rw static
-        |     |  +--rw cascaded-lan-prefixes
-        |     |     +--rw ipv4-lan-prefixes* [lan next-hop]
-        |     |     |       {vpn-common:ipv4}?
-        |     |     |  +--rw lan         inet:ipv4-prefix
-        |     |     |  +--rw lan-tag?    string
-        |     |     |  +--rw next-hop    union
-        |     |     |  +--rw metric?     uint32
-        |     |     |  +--rw status
-        |     |     |     +--rw admin-status
-        |     |     |     |  +--rw status?        identityref
-        |     |     |     |  +--rw last-change?   yang:date-and-time
-        |     |     |     +--ro oper-status
-        |     |     |        +--ro status?        identityref
-        |     |     |        +--ro last-change?   yang:date-and-time
-        |     |     +--rw ipv6-lan-prefixes* [lan next-hop]
-        |     |             {vpn-common:ipv6}?
-        |     |        +--rw lan         inet:ipv6-prefix
-        |     |        +--rw lan-tag?    string
-        |     |        +--rw next-hop    union
-        |     |        +--rw metric?     uint32
-        |     |        +--rw status
-        |     |           +--rw admin-status
-        |     |           |  +--rw status?        identityref
-        |     |           |  +--rw last-change?   yang:date-and-time
-        |     |           +--ro oper-status
-        |     |              +--ro status?        identityref
-        |     |              +--ro last-change?   yang:date-and-time
+        |     |  ...
         |     +--rw bgp
-        |     |  +--rw peer-groups
-        |     |  |  +--rw peer-group* [name]
-        |     |  |     +--rw name              string
-        |     |  |     +--ro local-address?    inet:ip-address
-        |     |  |     +--ro local-as?         inet:as-number
-        |     |  |     +--rw peer-as?          inet:as-number
-        |     |  |     +--rw address-family?   identityref
-        |     |  |     +--rw authentication
-        |     |  |        +--rw enable?            boolean
-        |     |  |        +--rw keying-material
-        |     |  |           +--rw (option)?
-        |     |  |              +--:(ao)
-        |     |  |              |  +--rw enable-ao?          boolean
-        |     |  |              |  +--rw ao-keychain?
-        |     |  |              |          key-chain:key-chain-ref
-        |     |  |              +--:(md5)
-        |     |  |              |  +--rw md5-keychain?
-        |     |  |              |          key-chain:key-chain-ref
-        |     |  |              +--:(explicit)
-        |     |  |                 +--rw key-id?             uint32
-        |     |  |                 +--rw key?                string
-        |     |  |                 +--rw crypto-algorithm?
-        |     |  |                         identityref
-        |     |  +--rw neighbor* [id]
-        |     |     +--rw id                string
-        |     |     +--rw remote-address?   inet:ip-address
-        |     |     +--ro local-address?    inet:ip-address
-        |     |     +--rw peer-group?
-        |     |     |       -> ../../peer-groups/peer-group/name
-        |     |     +--ro local-as?         inet:as-number
-        |     |     +--rw peer-as?          inet:as-number
-        |     |     +--rw address-family?   identityref
-        |     |     +--rw authentication
-        |     |     |  +--rw enable?            boolean
-        |     |     |  +--rw keying-material
-        |     |     |     +--rw (option)?
-        |     |     |        +--:(ao)
-        |     |     |        |  +--rw enable-ao?          boolean
-        |     |     |        |  +--rw ao-keychain?
-        |     |     |        |          key-chain:key-chain-ref
-        |     |     |        +--:(md5)
-        |     |     |        |  +--rw md5-keychain?
-        |     |     |        |          key-chain:key-chain-ref
-        |     |     |        +--:(explicit)
-        |     |     |           +--rw key-id?             uint32
-        |     |     |           +--rw key?                string
-        |     |     |           +--rw crypto-algorithm?   identityref
-        |     |     +--rw status
-        |     |        +--rw admin-status
-        |     |        |  +--rw status?        identityref
-        |     |        |  +--rw last-change?   yang:date-and-time
-        |     |        +--ro oper-status
-        |     |           +--ro status?        identityref
-        |     |           +--ro last-change?   yang:date-and-time
-        |     +--rw ospf
-        |     |  +--rw address-family?   identityref
-        |     |  +--rw area-id           yang:dotted-quad
-        |     |  +--rw metric?           uint16
-        |     |  +--rw authentication
-        |     |  |  +--rw enable?            boolean
-        |     |  |  +--rw keying-material
-        |     |  |     +--rw (option)?
-        |     |  |        +--:(auth-key-chain)
-        |     |  |        |  +--rw key-chain?
-        |     |  |        |          key-chain:key-chain-ref
-        |     |  |        +--:(auth-key-explicit)
-        |     |  |           +--rw key-id?             uint32
-        |     |  |           +--rw key?                string
-        |     |  |           +--rw crypto-algorithm?   identityref
-        |     |  +--rw status
-        |     |     +--rw admin-status
-        |     |     |  +--rw status?        identityref
-        |     |     |  +--rw last-change?   yang:date-and-time
-        |     |     +--ro oper-status
-        |     |        +--ro status?        identityref
-        |     |        +--ro last-change?   yang:date-and-time
+        |     |  ...
+        |     |  ...
         |     +--rw isis
-        |     |  +--rw address-family?   identityref
-        |     |  +--rw area-address      area-address
-        |     |  +--rw authentication
-        |     |  |  +--rw enable?            boolean
-        |     |  |  +--rw keying-material
-        |     |  |     +--rw (option)?
-        |     |  |        +--:(auth-key-chain)
-        |     |  |        |  +--rw key-chain?
-        |     |  |        |          key-chain:key-chain-ref
-        |     |  |        +--:(auth-key-explicit)
-        |     |  |           +--rw key-id?             uint32
-        |     |  |           +--rw key?                string
-        |     |  |           +--rw crypto-algorithm?   identityref
-        |     |  +--rw status
-        |     |     +--rw admin-status
-        |     |     |  +--rw status?        identityref
-        |     |     |  +--rw last-change?   yang:date-and-time
-        |     |     +--ro oper-status
-        |     |        +--ro status?        identityref
-        |     |        +--ro last-change?   yang:date-and-time
+        |     |  ...
         |     +--rw rip
-        |     |  +--rw address-family?   identityref
-        |     |  +--rw authentication
-        |     |  |  +--rw enable?            boolean
-        |     |  |  +--rw keying-material
-        |     |  |     +--rw (option)?
-        |     |  |        +--:(auth-key-chain)
-        |     |  |        |  +--rw key-chain?
-        |     |  |        |          key-chain:key-chain-ref
-        |     |  |        +--:(auth-key-explicit)
-        |     |  |           +--rw key?                string
-        |     |  |           +--rw crypto-algorithm?   identityref
-        |     |  +--rw status
-        |     |     +--rw admin-status
-        |     |     |  +--rw status?        identityref
-        |     |     |  +--rw last-change?   yang:date-and-time
-        |     |     +--ro oper-status
-        |     |        +--ro status?        identityref
-        |     |        +--ro last-change?   yang:date-and-time
+        |     |  ...
         |     +--rw vrrp
-        |        +--rw address-family?   identityref
-        |        +--rw status
-        |           +--rw admin-status
-        |           |  +--rw status?        identityref
-        |           |  +--rw last-change?   yang:date-and-time
-        |           +--ro oper-status
-        |              +--ro status?        identityref
-        |              +--ro last-change?   yang:date-and-time
+        |        ...
         +--rw oam
         |  ...
         +--rw security

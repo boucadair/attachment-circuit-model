@@ -31,7 +31,7 @@
           "simple-profile"
         ],
         "l2-connection": {
-          "bearer-reference": "ce1-network"
+          "bearer-reference": "ce2-network"
         }
       },
       {

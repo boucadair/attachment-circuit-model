@@ -1,0 +1,25 @@
+  +--rw specific-provisioning-profiles
+  |  ...
+  +--rw service-provisioning-profiles
+  |  ...
+  +--rw bearers
+  |  +--rw bearer* [id]
+  |     +--rw id                  string
+  |     +--rw description?        string
+  |     +--rw customer-device
+  |     |  +--rw device-id?   string
+  |     |  +--rw location
+  |     |     +--rw address?        string
+  |     |     +--rw postal-code?    string
+  |     |     +--rw state?          string
+  |     |     +--rw city?           string
+  |     |     +--rw country-code?   string
+  |     +--rw requested-type?     identityref
+  |     +--ro bearer-reference?   string
+  |     |       {vpn-common:bearer-reference}?
+  |     +--rw requested-start?    yang:date-and-time
+  |     +--rw requested-stop?     yang:date-and-time
+  |     +--ro actual-start?       yang:date-and-time
+  |     +--ro actual-stop?        yang:date-and-time
+  +--rw attachment-circuits
+     ...

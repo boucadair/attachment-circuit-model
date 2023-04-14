@@ -1,24 +1,3 @@
-  +--rw specific-provisioning-profiles
-  |  ...
-  +--rw service-provisioning-profiles
-  |  ...
-  +--rw attachment-circuits
-     +--rw ac-group-profile* [name]
-     |  ...
-     +--rw placement-constraints
-     |  ...
-     +--rw ac* [name]
-        +--rw customer-name?       string
-        +--rw description?         string
-        +--rw requested-start?     yang:date-and-time
-        +--rw requested-stop?      yang:date-and-time
-        +--ro actual-start?        yang:date-and-time
-        +--ro actual-stop?         yang:date-and-time
-        +--rw peer-sap-id*         string
-        +--rw ac-global-profile*   ac-global-profile-reference
-        +--rw ac-node-profile*     ac-node-group-reference
-        +--rw name                 string
-        +--rw l2-connection
         | ...
         +--rw ip-connection
         |  +--rw ipv4 {vpn-common:ipv4}?
@@ -57,9 +36,4 @@
         |           +--rw address* [address-id]
         |              +--rw address-id          string
         |              +--rw customer-address?   inet:ipv6-address
-        +--rw routing-protocols
-        |  ...
-        +--rw oam
-        |  ...
-        +--rw security
            ...

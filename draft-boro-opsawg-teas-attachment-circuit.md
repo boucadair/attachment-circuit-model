@@ -60,6 +60,16 @@ contributor:
     org: Huawei
     email: bill.wu@huawei.com
 
+  -
+    name: Ogaki Kenichi
+    org: KDDI
+    email: ke-oogaki@kddi.com
+
+  -
+    name: Luis Angel Munoz
+    org: Vodafone
+    email: luis-angel.munoz@vodafone.com
+
 normative:
 
 informative:
@@ -170,21 +180,21 @@ Service provider:
 
 # Sample Uses of the Data Models
 
-## ACs Terminated by One or Multiple Customer Devices
+## ACs Terminated by One or Multiple Customer Terminating Points
 
 {{uc}} depicts two target topology flavors that involve ACs. These topologies are characterized as follows:
 
-* A Customer Terminating Point (CTP) may be a physical node or a logical entity. A CTP is seen by the network as a peer SAP.
+* A Customer Terminating Point (CTP) may be a physical device or a logical entity. Such a logical entity is typically a software component (e.g., a virtual service function that is hosted within the provider's network or a third-party infrastscruture). A CTP is seen by the network as a peer SAP.
 
-* The same AC request may include one or multiple ACs that may belong to one or both of these flavors. For the sake of simplifying the illustration, only a subset of these ACs is shown in {{uc}}.
+* The same AC service request may include one or multiple ACs that are bound to a single CTP or a plurality of CTPs.
 
-* CTPs may be dedicated to one single service or host multiple services (e.g., service functions {{?RFC7665}}).
+* CTPs may be dedicated to one single connectivity service or host multiple connectivity services (e.g., CTPs as role of service functions {{?RFC7665}}).
 
-* A single AC (as seen by a network provider) may be bound to one or multiple peer SAPs (e.g., CTP#1 and CTP#2). For example, and as discussed in {{!RFC4364}}, multiple CTPs (CEs) can be attached to a PE over the same attachment circuit. This is typically implemented if the layer 2 infrastructure between the CTP and the network provides a multipoint service.
+* A single AC (as seen by a network provider) may be bound to one or multiple peer SAPs (e.g., CTP#1 and CTP#2 are tagged as peer SAPs for the same AC). For example, and as discussed in {{!RFC4364}}, multiple CTPs (CEs) can be attached to a PE over the same attachment circuit. This is typically implemented if the layer 2 infrastructure between the CTP and the network provides a multipoint service.
 
-* The same CTP may terminate multiple ACs. These ACes may be over the same or distinct bearers.
+* The same CTP may terminate multiple ACs. These ACs may be over the same or distinct bearers.
 
-* The customer may request protection schemes where the ACs bound to a customer endpoints are terminated by the same PE (e.g., CTP#3), distinct PEs (e.g., CTP#34), etc.
+* The customer may request protection schemes where the ACs bound to a customer endpoints are terminated by the same PE (e.g., CTP#3), distinct PEs (e.g., CTP#34), etc. The network provider uses this request to decide where to terminate the AC in the network provider network and also whether to enable specific capabilities (e.g., Virtual Router Redundancy Protocol (VRRP)).
 
 ~~~~ aasvg
 ┌───────┐                ┌────────────────────┐           ┌───────┐
@@ -204,7 +214,7 @@ Service provider:
 
 ## Separate AC Provisioning vs. Actual Service Provisioning
 
-The procedure to provision a service in a service provider network may depend on the practices adopted by a service provider, including the flow put in place for the provisioning of advanced network services and how they are bound to an attachment circuit. For example, the same attachment circuit may be used to host multiple services. In order to avoid service interference and redundant information in various locations, a service provider may expose an interface to manage ACs network-wide. Customers can the request a base attachment circuit to be put in place, and then refer to that base AC when requesting services that are bound to that AC.
+The procedure to provision a service in a service provider network may depend on the practices adopted by a service provider, including the flow put in place for the provisioning of advanced network services and how they are bound to an attachment circuit. For example, the same attachment circuit may be used to host multiple connectivity services. In order to avoid service interference and redundant information in various locations, a service provider may expose an interface to manage ACs network-wide. Customers can then request a bearer or an attachment circuit to be put in place, and then refer to that bearer or AC when requesting services that are bound to the bearer or AC.
 
 {{u-ex}} shows the positioning of the AC service model is the overall service delivery process.
 
@@ -301,15 +311,15 @@ The overall tree structure of the AC service module is shown in {{o-svc-tree}}.
 
 The full ACaaS tree is available at {{AC-SVC-Tree}}. The full reusable groupings defined in the ACaaS module are shown in {{AC-SVC-GRP}}.
 
-Each AC is identified with a unique identifier within a domain. The mapping between this AC and a local PE that terminates the AC is hidden to the application that makes use of the AC service model. This information is internal to the Network controller. As such, the details about the (node-specific) attachment interfaces are not exposed in this service model.
+Each AC is identified with a unique name ('../ac/name') within a domain. The mapping between this AC and a local PE that terminates the AC is hidden to the application that makes use of the AC service model. This information is internal to the Network controller. As such, the details about the (node-specific) attachment interfaces are not exposed in this service model.
 
 The AC service model uses groupings and types defined in the AC common model {{!I-D.boro-opsawg-teas-common-ac}}. Therefore, the description of these nodes are not reiterated in the following subsections.
 
-### Service Profiles
+### Service Profiles {#sec-profiles}
 
 #### Description
 
-The 'specific-provisioning-profiles' container ({{gp-svc-tree}}) can be used by a service provider to maintain a set of specific profiles that are similar to those defined in {{!RFC9181}}. The exact definition of the profiles is local to each service provider. The model only includes an identifier for these profiles in order to facilitate identifying and binding local policies when building an AC.
+The 'specific-provisioning-profiles' container ({{gp-svc-tree}}) can be used by a service provider to maintain a set of reusable profiles. The profiles definition are similar to those defined in {{!RFC9181}}, including: Quality of Service (QoS),  Bidirectional Forwarding Detection (BFD), forwarding, and routing profiles. The exact definition of the profiles is local to each service provider. The model only includes an identifier for these profiles in order to facilitate identifying and binding local policies when building an AC.
 
 ~~~~
 {::include ./yang/subtrees/sp-svc-profiles-stree.txt}
@@ -319,9 +329,6 @@ The 'specific-provisioning-profiles' container ({{gp-svc-tree}}) can be used by 
 As shown in {{gp-svc-tree}}, two profile types can be defined: 'specific-provisioning-profiles' and 'service-provisioning-profiles'. Whether only specific profiles, service profiles, or a combination thereof are used is local to each service provider.
 
 The following specific provisioning profiles can be defined:
-
-'external-connectivity-identifier':
-: Refers to a profile that defines the external connectivity provided to a site that is connected via an AC. External connectivity may be access to the Internet or restricted connectivity, such as access to a public/private cloud.
 
 'encryption-profile-identifier':
 : Refers to a set of policies related to the encryption setup that can be applied when provisioning an AC.
@@ -390,7 +397,7 @@ The description of the data nodes is as follows:
 'l2-connection':
 : See {{sec-l2}}.
 
-'l3-connection':
+'ip-connection':
 : See {{sec-l3}}.
 
 'routing':
@@ -404,7 +411,7 @@ The description of the data nodes is as follows:
 
 #### Layer 2 Connection Structure {#sec-l2}
 
-The 'l2-connection' container ({{l2-svc-tree}}) is used to configure the relevant Layer 2 properties of an AC. This structure relies upon the common groupings defined in {{!I-D.boro-opsawg-teas-common-ac}}.
+The 'l2-connection' container ({{l2-svc-tree}}) is used to configure the relevant Layer 2 properties of an AC including: encapsulation details and tunnel terminations. For the encapsulation details, the model supports the definition of the type as well as the Identifiers (e.g., VLAN-IDs) of each of the encapsulation-type defined. For the second case, attributes for pseudowire, Virtual Private LAN Service (VPLS), and  Virtual eXtensible Local Area Network (VXLAN) tunnel terminations are included. This structure relies upon the common groupings defined in {{!I-D.boro-opsawg-teas-common-ac}}.
 
 ~~~~
 {::include ./yang/subtrees/l2-stree.txt}
@@ -413,9 +420,9 @@ The 'l2-connection' container ({{l2-svc-tree}}) is used to configure the relevan
 
 
 
-#### Layer 3 Connection Structure {#sec-l3}
+#### IP Connection Structure {#sec-l3}
 
-The 'l3-connection' container is used to configure the relevant Layer 3 properties of an AC. This structure relies upon the common groupings defined in {{!I-D.boro-opsawg-teas-common-ac}}. Both IPv4 and IPv6 parameters are supported.
+The 'ip-connection' container is used to configure the relevant IP properties of an AC. The model supports the usage of dynamic and static addressing. This structure relies upon the common groupings defined in {{!I-D.boro-opsawg-teas-common-ac}}. Both IPv4 and IPv6 parameters are supported.
 
 {{ipv4-svc-tree}} shows the structure of the IPv4 connection.
 
@@ -433,20 +440,72 @@ The 'l3-connection' container is used to configure the relevant Layer 3 properti
 
 #### Routing {#sec-rtg}
 
-As shown in the tree depicted in {{rtg-svc-tree}}, the 'routing-protocols' container defines the required parameters to enable the required routing features for an AC. One or more routing protocols can be associated with an AC.  Such routing protocols are then enabled between a PE and the CE. Each routing instance is uniquely identified to accommodate scenarios where multiple instances of the same routing protocol have to be configured on the same link.
+As shown in the tree depicted in {{rtg-svc-tree}}, the 'routing-protocols' container defines the required parameters to enable the desired routing features for an AC. One or more routing protocols can be associated with an AC.  Such routing protocols will be then enabled between a PE and the customer terminating points. Each routing instance is uniquely identified by the combination of the 'id' and 'type' to accommodate scenarios where multiple instances of the same routing protocol have to be configured on the same link.
 
-In addition to static routing, the module supports BGP, OSPF, IS-IS, and RIP.
-
-The model also supports the Virtual Router Redundancy Protocol (VRRP) {{?RFC5798}} on an AC.
+In addition to static routing, the module supports BGP, OSPF, IS-IS, and RIP. It also includes a reference to the 'routing-profile-identifier' defined in {{sec-profiles}}, so that additional constraints can be applied to a specific instance of each routing protocol.
 
 ~~~~
 {::include ./yang/subtrees/rtg-stree.txt}
 ~~~~
 {: #rtg-svc-tree title="Routing Tree Structure" artwork-align="center"}
 
-For all supported routing protocols, 'address-family' indicates whether IPv4, IPv6, or both address families are to be activated. For example, this parameter is used to determine whether RIPv2 {{?RFC2453}}, RIP Next Generation (RIPng), or both are to be enabled {{?RFC2080}}.
+##### Static Routing
+
+The static tree structure is shown in {{static-rtg-svc-tree}}.
+
+~~~~
+{::include ./yang/subtrees/static-rtg-stree.txt}
+~~~~
+{: #static-rtg-svc-tree title="Static Routing Tree Structure" artwork-align="center"}
+
+##### BGP
+
+The BGP tree structure is shown in {{bgp-rtg-svc-tree}}.
+
+~~~~
+{::include ./yang/subtrees/bgp-rtg-stree.txt}
+~~~~
+{: #bgp-rtg-svc-tree title="BGP Tree Structure" artwork-align="center"}
 
 Similar to {{?RFC9182}}, this version of the ACaaS assumes that parameters specific to the TCP-AO are preconfigured as part of the key chain that is referenced in the ACaaS. No assumption is made about how such a key chain is preconfigured. However, the structure of the key chain should cover data nodes beyond those in {{!RFC8177}}, mainly SendID and RecvID (Section 3.1 of {{?RFC5925}}).
+
+##### OSPF
+
+The OSPF tree structure is shown in {{ospf-rtg-svc-tree}}.
+
+~~~~
+{::include ./yang/subtrees/ospf-rtg-stree.txt}
+~~~~
+{: #ospf-rtg-svc-tree title="OSPF Tree Structure" artwork-align="center"}
+
+#### IS-IS
+
+The IS-IS tree structure is shown in {{isis-rtg-svc-tree}}.
+
+~~~~
+{::include ./yang/subtrees/isis-rtg-stree.txt}
+~~~~
+{: #isis-rtg-svc-tree title="IS-IS Tree Structure" artwork-align="center"}
+
+#### RIP
+
+The RIP tree structure is shown in {{rip-rtg-svc-tree}}.
+
+~~~~
+{::include ./yang/subtrees/rip-rtg-stree.txt}
+~~~~
+{: #rip-rtg-svc-tree title="RIP Tree Structure" artwork-align="center"}
+
+'address-family' indicates whether IPv4, IPv6, or both address families are to be activated. For example, this parameter is used to determine whether RIPv2 {{?RFC2453}}, RIP Next Generation (RIPng), or both are to be enabled {{?RFC2080}}.
+
+#### VRRP
+
+The model also supports the Virtual Router Redundancy Protocol (VRRP) {{?RFC5798}} on an AC ({{vrrp-rtg-svc-tree}}).
+
+~~~~
+{::include ./yang/subtrees/vrrp-rtg-stree.txt}
+~~~~
+{: #vrrp-rtg-svc-tree title="VRRP Tree Structure" artwork-align="center"}
 
 #### OAM {#sec-oam}
 
@@ -617,7 +676,7 @@ An example of a request to create a simple AC, when the peer SAP is known, is sh
 
 ## One CE, Two ACs {#sec-ex-one-ce-multi-acs}
 
-Let’s consider the example of an eNodeB (CTP) that is directly connected to the access routers of the mobile backhaul (see {{enodeb}}). In this example, two ACs are needed to service the eNodeB.
+Let’s consider the example of an eNodeB (CTP) that is directly connected to the access routers of the mobile backhaul (see {{enodeb}}). In this example, two ACs are needed to service the eNodeB (e.g., distinct VLANs for Control and User Planes).
 
 ~~~~ aasvg
 +-------------+                  +------------------+
@@ -641,30 +700,9 @@ An example of a request to create the ACs to service the eNodeB is shown in {{tw
 ~~~~
 {::include ./json-examples/two-acs-same-ce.json}
 ~~~~
-{: #two-acs-same-ce title="Example of a Message Body to Request Two ACes on The Same Link"}
+{: #two-acs-same-ce title="Example of a Message Body to Request Two ACes on The Same Link (Not Recommended)"}
 
-## Control Precedence over Multiple ACs {#sec-ex-prec}
-
-When multiple ACs are requested by the same customer (for the same site), the request can tag one of these ACes as "primary" and the other ones as "secondary". An example of such a request is shown in {{ac-precedence}}. In this example, both ACes are bound to the same "group-id", and the "precedence" data node is set as a function of the intended role of each AC (primary or secondary).
-
-~~~~
-{::include ./json-examples/ac-precedence.json}
-~~~~
-{: #ac-precedence title="Example of a Message Body to Associate a Precedence Level with ACes"}
-
-
-## Illustrate the Use of Global Profiles
-
-An example of a request to create two ACs to service the same CE on the same link is shown in {{two-acs-same-ce-profile}}. Unlike {{two-acs-same-ce}}, this example factorizes some of the redundant data.
-
-~~~~
-{::include ./json-examples/two-acs-same-ce-profile.json}
-~~~~
-{: #two-acs-same-ce-profile title="Example of a Message Body to Request Two ACes on The Same Link (Global Profile)"}
-
-## Illustrate the Use of Per-Node Profiles
-
-An example of a request to create two ACs to service the same CE on the same link is shown in {{two-acs-same-ce-node-profile}}. Unlike {{two-acs-same-ce}}, this example factorizes all redundant data.
+The example shown {{two-acs-same-ce}} is not optimal as it includes many redundant data. {{two-acs-same-ce-node-profile}} shows a more compact request that factorizes all the redundant data.
 
 ~~~~
 {::include ./json-examples/two-acs-same-ce-node-profile.json}
@@ -677,6 +715,30 @@ A customer may request adding a new AC by simply referring to an existing per-no
 {::include ./json-examples/add-ac-same-ce-node-profile.json}
 ~~~~
 {: #add-ac-same-ce-node-profile title="Example of a Message Body to Add a new AC over an existing link (Node Profile)"}
+
+
+## Control Precedence over Multiple ACs {#sec-ex-prec}
+
+When multiple ACs are requested by the same customer for the same site, the request can tag one of these ACs as "primary" and the other ones as "secondary". An example of such a request is shown in {{ac-precedence}}. In this example, both ACs are bound to the same "group-id", and the "precedence" data node is set as a function of the intended role of each AC (primary or secondary).
+
+~~~~ aasvg
+                                 ┌───┐
+                 ac1: primary    │   │
+            ┌────────────────────┤PE1│
+┌───┐       │    bearerX@site1   │   │
+│   ├───────┘                    └───┘
+│CPE│
+│   ├───────┐                    ┌───┐
+└───┘       │    ac2: secondary  │   │
+            └────────────────────┤PE2│
+                 bearerY@site1   │   │
+                                 └───┘
+~~~~
+{: #multipleac title="An Example Topology for AC Precedence Enforcement"}
+~~~~
+{::include ./json-examples/ac-precedence.json}
+~~~~
+{: #ac-precedence title="Example of a Message Body to Associate a Precedence Level with ACs"}
 
 ## Multiple CEs
 
@@ -796,4 +858,4 @@ Next, API workflows can be initiated:
 # Acknowledgments
 {:numbered="false"}
 
-TBC.
+Thanks to Kenichi Ogaki for the comments.

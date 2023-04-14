@@ -1,0 +1,27 @@
+        |  ...
+        +--rw routing-protocols
+        |  +--rw routing-protocol* [id]
+        |     +--rw id                  string
+        |     +--rw type?               identityref
+        |     +--rw routing-profiles* [id]
+        |     |  +--rw id      routing-profile-reference
+        |     |  +--rw type?   identityref
+        |     +--rw static
+        |     |  ...
+        |     +--rw bgp
+        |     |  ...
+        |     +--rw ospf
+        |     |  ...
+        |     +--rw isis
+        |     |  ...
+        |     +--rw rip
+        |     |  ...
+        |     +--rw vrrp
+        |        +--rw address-family?   identityref
+        |        +--rw status
+        |           +--rw admin-status
+        |           |  +--rw status?        identityref
+        |           |  +--rw last-change?   yang:date-and-time
+        |           +--ro oper-status
+        |              +--ro status?        identityref
+        |              +--ro last-change?   yang:date-and-time

@@ -3,11 +3,6 @@
     "ac-group-profile": [
       {
         "id": "simple-profile",
-        "l2-connection": {
-          "encapsulation": {
-            "type": "ietf-vpn-common:dot1q"
-          }
-        },
         "routing-protocols": {
           "routing-protocol": [
             {
@@ -25,10 +20,12 @@
         "ac-group-profile": ["simple-profile"],
         "l2-connection": {
           "encapsulation": {
+            "type": "ietf-vpn-common:dot1q",
             "dot1q": {
               "cvlan-id": 1
             }
-          }
+          },
+          "bearer-reference": "line-156"
         },
         "ip-connection": {
           "ipv4": {
@@ -59,10 +56,12 @@
         "ac-group-profile": ["simple-profile"],
         "l2-connection": {
           "encapsulation": {
+            "type": "ietf-vpn-common:dot1q",
             "dot1q": {
               "cvlan-id": 2
             }
-          }
+          },
+          "bearer-reference": "line-156"
         },
         "ip-connection": {
           "ipv4": {

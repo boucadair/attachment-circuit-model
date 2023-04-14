@@ -9,6 +9,11 @@ module ietf-ac-common {
       "RFC 9181: A Common YANG Data Model for Layer 2 and Layer 3
                  VPNs";
   }
+  import ietf-netconf-acm {
+    prefix nacm;
+    reference
+      "RFC 8341: Network Configuration Access Control Model";
+  }
   import ietf-inet-types {
     prefix inet;
     reference
@@ -209,6 +214,72 @@ module ietf-ac-common {
   }
 
   /************************Reusable groupings********************/
+  
+  /**** A set of profiles ****/
+  
+  grouping ac-profile-cfg {
+    description
+      "Grouping for AC profile configuration.";
+   container valid-provider-identifiers {
+    description
+      "Container for valid provider profile identifiers. 
+       The profiles only have significance within the service
+       provider's administrative domain.";
+     list encryption-profile-identifier {
+      key "id";
+      description
+        "List of encryption profile identifiers.";
+      leaf id {
+        type string;
+        description
+          "Identification of the encryption profile to be used.";
+      }
+    }
+    list qos-profile-identifier {
+      key "id";
+        description
+          "List of QoS profile identifiers.";
+        leaf id {
+          type string;
+          description
+            "Identification of the QoS profile to be used.";
+        }
+      }
+      list bfd-profile-identifier {
+        key "id";
+        description
+          "List of BFD profile identifiers.";
+        leaf id {
+          type string;
+          description
+            "Identification of the BFD profile to be used.";
+        }
+      }
+      list forwarding-profile-identifier {
+        key "id";
+        description
+          "List of forwarding profile identifiers.";
+        leaf id {
+          type string;
+          description
+            "Identification of the forwarding profile to be used.";
+        }
+      }
+      list routing-profile-identifier {
+        key "id";
+        description
+          "List of routing profile identifiers.";
+        leaf id {
+          type string;
+          description
+            "Identification of the routing profile to be used by
+             the routing protocols over an AC.";
+        }
+      }
+      nacm:default-deny-write;
+    }
+  }
+
   /**** Operational instructions ****/
 
   grouping op-instructions {

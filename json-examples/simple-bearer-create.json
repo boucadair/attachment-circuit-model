@@ -4,10 +4,12 @@
       {
         "id": "an-identifier",
         "description": "A bearer example",
-        "customer-device": {
-          "device-id": "CE_X_SITE_Y",
-          "requested-type": "ietf-bearer-svc:ethernet";
-        }
+        "customer-point": {
+          "device": {
+            "device-id": "CE_X_SITE_Y"
+          }
+        },
+        "requested-type": "ietf-bearer-svc:ethernet"
       }
     ]
   }

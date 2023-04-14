@@ -1,9 +1,6 @@
 module: ietf-ac-svc
   +--rw specific-provisioning-profiles
   |  +--rw valid-provider-identifiers
-  |     +--rw external-connectivity-identifier* [id]
-  |     |       {external-connectivity}?
-  |     |  +--rw id    string
   |     +--rw encryption-profile-identifier* [id]
   |     |  +--rw id    string
   |     +--rw qos-profile-identifier* [id]
@@ -20,6 +17,7 @@ module: ietf-ac-svc
   +--rw attachment-circuits
      +--rw ac-group-profile* [name]
      |  +--rw name                 string
+     |  +--rw service-profile*     service-profile-reference
      |  +--rw l2-connection
      |  |  +--rw encapsulation
      |  |  |  +--rw type?              identityref
@@ -327,6 +325,7 @@ module: ietf-ac-svc
         |  +--rw group-id      string
         |  +--rw precedence?   identityref
         +--rw name                 string
+        +--rw service-profile*     service-profile-reference
         +--rw l2-connection
         |  +--rw encapsulation
         |  |  +--rw type?              identityref
