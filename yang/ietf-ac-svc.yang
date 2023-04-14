@@ -713,9 +713,9 @@ module ietf-ac-svc {
 
   // Bandwith
 
-  grouping service {
+  grouping bandwidth {
     description
-      "Container for service";
+      "Container for bandwidth.";
     container svc-pe-to-ce-bandwidth {
       if-feature "vpn-common:inbound-bw";
       description
@@ -776,7 +776,11 @@ module ietf-ac-svc {
         "AC-specific security parameters.";
       uses ac-security-basic;
     }
-    uses service;
+    container service {
+      description
+        "AC-specific bandwith parameters.";
+      uses bandwidth;
+    }
   }
 
   // Full AC parameters
@@ -827,7 +831,11 @@ module ietf-ac-svc {
         "AC-specific security parameters.";
       uses ac-security-basic;
     }
-    uses service;
+    container service {
+      description
+        "AC-specific bandwith parameters.";
+      uses bandwidth;
+    }
   }
 
   /******************** Main AC containers ********************/
