@@ -9,13 +9,23 @@
           "encapsulation": {
             "type": "ietf-vpn-common:dot1q",
             "dot1q": {
-              "tag-type": "ietf-vpn-common:c-vlan"
+              "tag-type": "ietf-vpn-common:c-vlan",
+              "cvlan-id": 100
+            }
           },
           "bearer-reference": "bearerX@site1"
         },
         "ip-connection": {
           "ipv4": {
-            "address-allocation-type": "ietf-ac-common:static-address"
+            "local-address": "192.0.2.2",
+            "prefix-length": 30,
+            "address": [
+              {
+                "address-id": "1",
+                "customer-address": "192.0.2.1"
+              }
+            ]
+          }
         },
         "routing-protocols": {
           "routing-protocol": [
@@ -45,14 +55,23 @@
           "encapsulation": {
             "type": "ietf-vpn-common:dot1q",
             "dot1q": {
-              "tag-type": "ietf-vpn-common:c-vlan"
+              "tag-type": "ietf-vpn-common:c-vlan",
+              "cvlan-id": 200
             }
           },
           "bearer-reference": "bearerY@site2"
         },
         "ip-connection": {
           "ipv4": {
-            "address-allocation-type": "ietf-ac-common:static-address"
+            "local-address": "192.0.2.6",
+            "prefix-length": 30,
+            "address": [
+              {
+                "address-id": "1",
+                "customer-address": "192.0.2.5"
+              }
+            ]
+          }
         },
         "routing-protocols": {
           "routing-protocol": [
@@ -63,7 +82,8 @@
                 "neighbor": [
                   {
                     "id": "1",
-                    "peer-as": 65550
+                    "peer-as": 65550,
+                    "local-as": 65536 
                   }
                 ]
               }

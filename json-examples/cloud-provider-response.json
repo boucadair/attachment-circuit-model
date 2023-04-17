@@ -7,13 +7,25 @@
         "requested-start": "2023-12-12T05:00:00.00Z",
         "l2-connection": {
           "encapsulation": {
-            "type": "ietf-vpn-common:dot1q"
+            "type": "ietf-vpn-common:dot1q",
+            "dot1q": {
+              "tag-type": "ietf-vpn-common:c-vlan",
+              "cvlan-id": 50
+            }
           },
           "bearer-reference": "1243-56789"
         },
         "ip-connection": {
           "ipv4": {
-            "address-allocation-type": "ietf-ac-common:static-address"
+            "local-address": "192.0.2.1",
+            "prefix-length": 24,
+            "address": [
+              {
+                "address-id": "1",
+                "customer-address": "192.0.2.2"
+              }
+            ]
+          }
         },
         "routing-protocols": {
           "routing-protocol": [
@@ -24,7 +36,13 @@
                 "neighbor": [
                   {
                     "id": "1",
-                    "peer-as": 65536
+                    "peer-as": 65536,
+                    "local-as": 65550,
+                    "authentication": {
+                      "keying-material": {
+                        "md5-keychain": "nyxNER_c5sdn608fFQl3331d"
+                      }
+                    }
                   }
                 ]
               }
