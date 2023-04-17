@@ -779,6 +779,12 @@ module ietf-ac-svc {
     container service {
       description
         "AC-specific bandwith parameters.";
+      leaf mtu {
+        type uint32;
+        units "bytes";
+        description
+          "Layer 2 MTU.";
+      }
       uses bandwidth;
     }
   }
