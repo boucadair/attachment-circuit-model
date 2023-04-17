@@ -409,6 +409,9 @@ The description of the data nodes is as follows:
 'security':
 : See {{sec-sec}}.
 
+'service':
+: See {{sec-bw}}.
+
 #### Layer 2 Connection Structure {#sec-l2}
 
 The 'l2-connection' container ({{l2-svc-tree}}) is used to configure the relevant Layer 2 properties of an AC including: encapsulation details and tunnel terminations. For the encapsulation details, the model supports the definition of the type as well as the Identifiers (e.g., VLAN-IDs) of each of the encapsulation-type defined. For the second case, attributes for pseudowire, Virtual Private LAN Service (VPLS), and  Virtual eXtensible Local Area Network (VXLAN) tunnel terminations are included. This structure relies upon the common groupings defined in {{!I-D.boro-opsawg-teas-common-ac}}.
@@ -524,6 +527,26 @@ As shown in the tree depicted in {{sec-svc-tree}}, the 'security' container defi
 {::include ./yang/subtrees/security-stree.txt}
 ~~~~
 {: #sec-svc-tree title="Security Tree Structure" artwork-align="center"}
+
+#### Bandwidth {#sec-bw}
+
+As shown in the tree depicted in {{bw-tree}}, the 'service' container defines a set of AC bandwidth parameters:
+
+'svc-pe-to-ce-bandwidth':
+: Indicates the inbound bandwidth of the AC (i.e., download bandwidth from the service provider to
+  the customer site).
+
+'svc-ce-to-pe-bandwidth':
+: Indicates the outbound bandwidth of the AC (i.e., upload bandwidth from the customer site to the service
+  provider).
+
+Both 'svc-pe-to-ce-bandwidth' and 'svc-ce-to-pe-bandwidth' can be represented using the Committed Information Rate (CIR), the Excess
+Information Rate (EIR), or the Peak Information Rate (PIR). Both reuse the 'bandwidth-per-type' grouping defined in {{!I-D.boro-opsawg-teas-common-ac}}.
+
+~~~~
+{::include ./yang/subtrees/bw-stree.txt}
+~~~~
+{: #bw-tree title="Bandwidth Tree Structure" artwork-align="center"}
 
 # YANG Modules
 

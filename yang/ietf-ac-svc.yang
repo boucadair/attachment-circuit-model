@@ -711,6 +711,29 @@ module ietf-ac-svc {
     }
   }
 
+  // Bandwith
+
+  grouping bandwidth {
+    description
+      "Container for bandwidth.";
+    container svc-pe-to-ce-bandwidth {
+      if-feature "vpn-common:inbound-bw";
+      description
+        "From the customer site's perspective, the inbound
+         bandwidth of the AC or download bandwidth from the
+         service provider to the site.";
+      uses ac-common:bandwidth-per-type;
+    }
+    container svc-ce-to-pe-bandwidth {
+      if-feature "vpn-common:outbound-bw";
+      description
+        "From the customer site's perspective, the outbound
+         bandwidth of the AC or upload bandwidth from
+         the CE to the PE.";
+      uses ac-common:bandwidth-per-type;
+    }
+  }
+
   // Basic AC parameter
 
   grouping ac-basic {
@@ -752,6 +775,11 @@ module ietf-ac-svc {
       description
         "AC-specific security parameters.";
       uses ac-security-basic;
+    }
+    container service {
+      description
+        "AC-specific bandwith parameters.";
+      uses bandwidth;
     }
   }
 
@@ -802,6 +830,11 @@ module ietf-ac-svc {
       description
         "AC-specific security parameters.";
       uses ac-security-basic;
+    }
+    container service {
+      description
+        "AC-specific bandwith parameters.";
+      uses bandwidth;
     }
   }
 

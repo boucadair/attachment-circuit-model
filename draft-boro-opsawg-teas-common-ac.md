@@ -227,6 +227,23 @@ Routing parameters ({{rtg-full-tree}}):
 ~~~~
 {: #rtg-full-tree title="Layer 3 Connection Groupings" artwork-align="center"}
 
+Bandwidth parameters ({{bw-full-tree}}):
+: Bandwidth parameters can be represented using the Committed
+  Information Rate (CIR), the Excess Information Rate (EIR), or the Peak
+  Information Rate (PIR).
+
+: These parameters can be provided per bandwidth type. The following types,
+  defined in {{!RFC9181}}, can be used to indicate the bandwidth type:
+
+      'bw-per-cos':  The bandwidth is per Class of Service (CoS).
+      'bw-per-port':  The bandwidth is per AC.
+      'bw-per-site':  The bandwidth is to all ACs that belong to the same site.
+
+~~~~
+{::include ./yang/subtrees/ac-common/ac-common-bw.txt}
+~~~~
+{: #bw-full-tree title="Bandwidth Groupings" artwork-align="center"}
+
 # Common Attachment Circuit YANG Module
 
 This module uses types defined in {{!RFC6991}}, {{!RFC8177}}, and  {{!RFC9181}}.
