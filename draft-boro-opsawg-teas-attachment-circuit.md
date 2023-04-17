@@ -311,6 +311,11 @@ The overall tree structure of the AC service module is shown in {{o-svc-tree}}.
 
 The full ACaaS tree is available at {{AC-SVC-Tree}}. The full reusable groupings defined in the ACaaS module are shown in {{AC-SVC-GRP}}.
 
+> The rationale for deciding whether a reusable grouping should be maintained in this document or be moved into the AC common module {{!I-D.boro-opsawg-teas-common-ac}} is as follows:
+>
+> * Groupings that are reusable among the AC service module, AC network module, other service models, and network models are included in the AC common module.
+> * Groupings that are reusable only by other service models are maintained in the "ietf-ac-svc" module.
+
 Each AC is identified with a unique name ('../ac/name') within a domain. The mapping between this AC and a local PE that terminates the AC is hidden to the application that makes use of the AC service model. This information is internal to the Network controller. As such, the details about the (node-specific) attachment interfaces are not exposed in this service model.
 
 The AC service model uses groupings and types defined in the AC common model {{!I-D.boro-opsawg-teas-common-ac}}. Therefore, the description of these nodes are not reiterated in the following subsections.
