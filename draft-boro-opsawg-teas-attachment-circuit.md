@@ -688,6 +688,13 @@ An example of  a request message body to create a simple AC over an existing bea
 ~~~~
 {: #ac-b title="Example of a Message Body to Request an AC over an Existing Bearer"}
 
+{{ac-br}} shows the message body of a reponse received from the controller and which indicates the "cvlan-id" that was assigned for the requested AC:
+
+~~~~
+{::include ./json-examples/simple-ac-existing-bearer-response.json}
+~~~~
+{: #ac-br title="Example of a Message Body of a Response to Assign a CVLAN ID"}
+
 ## Request An AC for a Known Peer SAP {#ac-no-bearer-peer-sap}
 
 An example of a request to create a simple AC, when the peer SAP is known, is shown in {{ac-known-ps}}. In this example, the peer SAP identifier points to an identifier of a service function. The (topological) location of that service function is assumed to be known to the network controller. For example, this can be determined as part of an on-demand procedure to instantiate a service function in a cloud. That instantiated service function can be granted a connectivity service via the provider network.
