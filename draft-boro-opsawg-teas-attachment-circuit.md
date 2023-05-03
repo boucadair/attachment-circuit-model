@@ -196,7 +196,7 @@ Service provider:
 
 * The customer may request protection schemes where the ACs bound to a customer endpoints are terminated by the same PE (e.g., CTP#3), distinct PEs (e.g., CTP#34), etc. The network provider uses this request to decide where to terminate the AC in the network provider network and also whether to enable specific capabilities (e.g., Virtual Router Redundancy Protocol (VRRP)).
 
-~~~~ aasvg
+~~~~
 ┌───────┐                ┌────────────────────┐           ┌───────┐
 │       ├──────┐         │                    ├────AC─────┤       │
 │ CTP#1 │      │         │                    ├────AC─────┤ CTP#3 |
@@ -259,6 +259,9 @@ The procedure to provision a service in a service provider network may depend on
   Site A                                                  Site B
 ~~~~
 {: #u-ex title="An Example of AC Model Usage" artwork-align="center"}
+
+
+In order to ease the mapping between the service model and underlying network models (e.g., L3NM, SAP), the name conventions used in existing network data models are reused as much as possible. For example, "local-address" is used rather than "provider-address" (or similar) to refer to an IP address used in the provider network. This approach is consistent with the automation framework defined in {{?RFC8969}}.
 
 # Description of the Data Models
 
@@ -917,4 +920,4 @@ Next, API workflows can be initiated:
 # Acknowledgments
 {:numbered="false"}
 
-Thanks to Kenichi Ogaki for the comments.
+Thanks to TBC for the comments.
