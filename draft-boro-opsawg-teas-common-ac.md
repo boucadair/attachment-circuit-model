@@ -92,7 +92,7 @@ The document specifies a common Attachment Circuits (ACs) YANG module, which is 
 
 # Introduction
 
-Connectivity services are provided by networks to customers via dedicated terminating points (e.g., service functions, customer edges (CEs), Autonomous System Border Routers (ASBRs), data centers gateways, Internet Exchange Points). A connectivity service is basically about ensuring data transfer received from (or destined to) a given terminating point to (or from) other terminating points that belong to the same customer/service, an interconnection node, or an ancillary node. A set of objectives for the connectivity service may eventually be negotiated and agreed upon between a customer a network provider. For that data transfer to take place within the provider network, it is assumed that adequate setup is provisioned over the links that connect customer terminating points and a provider network so that data can be successfully exchanged over these links. The required setup is referred to in this document as Attachment Circuits (ACs), while the underlying link is referred to as "bearers".
+Connectivity services are provided by networks to customers via dedicated terminating points (e.g., service functions, Customer Premises Equipment (CPEs), Autonomous System Border Routers (ASBRs), data centers gateways, Internet Exchange Points). A connectivity service is basically about ensuring data transfer received from (or destined to) a given terminating point to (or from) other terminating points that belong to the same customer/service, an interconnection node, or an ancillary node. A set of objectives for the connectivity service may eventually be negotiated and agreed upon between a customer a network provider. For that data transfer to take place within the provider network, it is assumed that adequate setup is provisioned over the links that connect customer terminating points and a provider network so that data can be successfully exchanged over these links. The required setup is referred to in this document as Attachment Circuits (ACs), while the underlying link is referred to as "bearers".
 
 This document adheres to the definition of an Attachment Circuit as provided in Section 1.2 of {{?RFC4364}}, especially:
 
@@ -109,17 +109,17 @@ This document adheres to the definition of an Attachment Circuit as provided in 
 
 When a customer requests a new value-added service, the service can be bound to existing attachment circuits or trigger the instantiation of new attachment circuits. Whether these AC are specific to a given service or be used to deliver a variety of services is deployment specific.
 
-An example of ACs is depicted in {{uc}}. A Customer Terminating Point (CTP) may be a physical node or a logical entity. A CTP is seen by the network as a peer Service Attachment Point (SAP) {{?I-D.ietf-opsawg-sap}}. CTPs may be dedicated to one single service (e.g., Layer 3 VPN, Layer 2 VPN) or host multiple services (e.g., service functions {{?RFC7665}}). A single AC (as seen by a network provider) may be bound to one or multiple peer SAPs (e.g., CTP#1 and CTP#2). For example, and as discussed in {{?RFC4364}}, multiple CTPs (CEs) can be attached to a PE over the same attachment circuit. This is typically implemented if the layer 2 infrastructure between the CTP and the network provides a multipoint service. The same CTP may terminate multiple ACs. These ACes may be over the same or distinct bearers.
+An example of ACs is depicted in {{uc}}. A Customer Edge (CE) may be a physical node or a logical entity. A CE is seen by the network as a peer Service Attachment Point (SAP) {{?I-D.ietf-opsawg-sap}}. CEs may be dedicated to one single service (e.g., Layer 3 VPN, Layer 2 VPN) or host multiple services (e.g., Service Functions {{?RFC7665}}). A single AC (as seen by a network provider) may be bound to one or multiple peer SAPs (e.g., CE#1 and CE#2). For example, and as discussed in {{?RFC4364}}, multiple CEs can be attached to a PE over the same attachment circuit. This is typically implemented if the layer 2 infrastructure between the CE and the network provides a multipoint service. The same CE may terminate multiple ACs. These ACes may be over the same or distinct bearers.
 
 ~~~~ aasvg
 ┌───────┐                ┌────────────────────┐           ┌───────┐
 │       ├──────┐         │                    ├────AC─────┤       │
-│ CTP#1 │      │         │                    ├────AC─────┤ CTP#3 |
+│ CE#1  │      │         │                    ├────AC─────┤ CE#3  |
 └───────┘      │         │                    │           └───────┘
                ├───AC────┤     Network        │
 ┌───────┐      │         │                    │
 │       │      │         │                    │           ┌───────┐
-│ CTP#2 ├──────┘         │                    │─────AC────┤ CTP#4 │
+│ CE#2  ├──────┘         │                    │─────AC────┤ CE#4  │
 └───────┘                │                    │           └────+──┘
                          └───────────+────────┘                |
                                      |                         |
@@ -195,7 +195,7 @@ Layer 2 encapsulations ({{l2-full-tree}}):
 
 Layer 2 tunnel services  ({{l2-full-tree}}):
 :  These grouping are used to define layer 2 tunnel services that may be needed for the activation of an AC. Examples of supported Layer 2 servers are the pseudowire
-   (Section 6.1 of {{!RFC8077}}),  a Virtual Private LAN Service (VPLS), or a Virtual eXtensible Local Area Networks (VXLANs) {{!RFC7348}}.
+   ({{Section 6.1 of !RFC8077}}), VPLS, or VXLAN {{!RFC7348}}.
 
 ~~~~
 {::include ./yang/subtrees/ac-common/ac-common-l2-encap.txt}
@@ -249,7 +249,7 @@ Bandwidth parameters ({{bw-full-tree}}):
 This module uses types defined in {{!RFC6991}}, {{!RFC8177}}, and  {{!RFC9181}}.
 
 ~~~~~~~~~~
-<CODE BEGINS> file "ietf-ac-common@2022-11-30.yang"
+<CODE BEGINS> file ietf-ac-common@2022-11-30.yang
 {::include ./yang/ietf-ac-common.yang}
 <CODE ENDS>
 ~~~~~~~~~~
