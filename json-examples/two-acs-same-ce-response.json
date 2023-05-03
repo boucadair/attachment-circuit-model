@@ -1,0 +1,92 @@
+{
+  "ietf-ac-svc:attachment-circuits": {
+    "ac": [
+      {
+        "name": "ac1",
+        "description": "a first ac with a same peer node",
+        "l2-connection": {
+          "encapsulation": {
+            "type": "ietf-vpn-common:dot1q",
+            "dot1q": {
+              "cvlan-id": 1
+            }
+          },
+          "bearer-reference": "line-156"
+        },
+        "ip-connection": {
+          "ipv4": {
+            "local-address": "192.0.2.1",
+            "prefix-length": 30,
+            "address": [
+              {
+                "address-id": "1",
+                "customer-address": "192.0.2.2"
+              }
+            ]
+          },
+          "ipv6": {
+            "local-address": "2001:db8::1",
+            "prefix-length": 64,
+            "address": [
+              {
+                "address-id": "1",
+                "customer-address": "2001:db8::2"
+              }
+            ]
+          }
+        },
+        "routing-protocols": {
+          "routing-protocol": [
+            {
+              "id": "1",
+              "type": "ietf-vpn-common:direct-routing"
+            }
+          ]
+        }
+      },
+      {
+        "name": "ac2",
+        "description": "a second ac with a same peer node",
+        "l2-connection": {
+          "encapsulation": {
+            "type": "ietf-vpn-common:dot1q",
+            "dot1q": {
+              "cvlan-id": 2
+            }
+          },
+          "bearer-reference": "line-156"
+        },
+        "ip-connection": {
+          "ipv4": {
+            "local-address": "192.0.2.1",
+            "prefix-length": 30,
+            "address": [
+              {
+                "address-id": "1",
+                "customer-address": "192.0.2.2"
+              }
+            ]
+          },
+          "ipv6": {
+            "local-address": "2001:db8::1",
+            "prefix-length": 64,
+            "address": [
+              {
+                "address-id": "1",
+                "customer-address": "2001:db8::2"
+              }
+            ]
+          }
+        },
+        "routing-protocols": {
+          "routing-protocol": [
+            {
+              "id": "1",
+              "type": "ietf-vpn-common:direct-routing"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
