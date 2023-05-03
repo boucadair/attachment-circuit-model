@@ -180,31 +180,31 @@ Service provider:
 
 # Sample Uses of the Data Models
 
-## ACs Terminated by One or Multiple Customer Terminating Points
+## ACs Terminated by One or Multiple Customer Equipment (CEs)
 
 {{uc}} depicts two target topology flavors that involve ACs. These topologies are characterized as follows:
 
-* A Customer Terminating Point (CTP) may be a physical device or a logical entity. Such a logical entity is typically a software component (e.g., a virtual service function that is hosted within the provider's network or a third-party infrastructure). A CTP is seen by the network as a peer SAP.
+* A Customer Equipment (CEs) may be a physical device or a logical entity. Such a logical entity is typically a software component (e.g., a virtual service function that is hosted within the provider's network or a third-party infrastructure). A CE is seen by the network as a peer SAP.
 
-* The same AC service request may include one or multiple ACs that are bound to a single CTP or a plurality of CTPs.
+* The same AC service request may include one or multiple ACs that are bound to a single CE or a plurality of CEs.
 
-* CTPs may be dedicated to one single connectivity service or host multiple connectivity services (e.g., CTPs as role of service functions {{?RFC7665}}).
+* CEs may be dedicated to one single connectivity service or host multiple connectivity services (e.g., CEs as role of service functions {{?RFC7665}}).
 
-* A single AC (as seen by a network provider) may be bound to one or multiple peer SAPs (e.g., CTP#1 and CTP#2 are tagged as peer SAPs for the same AC). For example, and as discussed in {{!RFC4364}}, multiple CTPs (CEs) can be attached to a PE over the same attachment circuit. This is typically implemented if the layer 2 infrastructure between the CTP and the network provides a multipoint service.
+* A single AC (as seen by a network provider) may be bound to one or multiple peer SAPs (e.g., CE#1 and CE#2 are tagged as peer SAPs for the same AC). For example, and as discussed in {{!RFC4364}}, multiple CEs can be attached to a PE over the same attachment circuit. This is typically implemented if the layer 2 infrastructure between the CE and the network provides a multipoint service.
 
-* The same CTP may terminate multiple ACs. These ACs may be over the same or distinct bearers.
+* The same CE may terminate multiple ACs. These ACs may be over the same or distinct bearers.
 
-* The customer may request protection schemes where the ACs bound to a customer endpoints are terminated by the same PE (e.g., CTP#3), distinct PEs (e.g., CTP#34), etc. The network provider uses this request to decide where to terminate the AC in the network provider network and also whether to enable specific capabilities (e.g., Virtual Router Redundancy Protocol (VRRP)).
+* The customer may request protection schemes where the ACs bound to a customer endpoints are terminated by the same PE (e.g., CE#3), distinct PEs (e.g., CE#34), etc. The network provider uses this request to decide where to terminate the AC in the network provider network and also whether to enable specific capabilities (e.g., Virtual Router Redundancy Protocol (VRRP)).
 
 ~~~~
 ┌───────┐                ┌────────────────────┐           ┌───────┐
 │       ├──────┐         │                    ├────AC─────┤       │
-│ CTP#1 │      │         │                    ├────AC─────┤ CTP#3 |
+│ CE#1  │      │         │                    ├────AC─────┤ CE#3  |
 └───────┘      │         │                    │           └───────┘
                ├───AC────┤     Network        │
 ┌───────┐      │         │                    │
 │       │      │         │                    │           ┌───────┐
-│ CTP#2 ├──────┘         │                    │─────AC────┤ CTP#4 │
+│ CE#2  ├──────┘         │                    │─────AC────┤ CE#4  │
 └───────┘                │                    │           └────+──┘
                          └───────────+────────┘                |
                                      |                         |
@@ -223,13 +223,13 @@ The procedure to provision a service in a service provider network may depend on
                           |   Customer    |
                           +-------+-------+
           Customer Service Model  |
-          e.g., slice-svc, ac-svc,|bearer-svc
+          e.g., slice-svc, ac-svc,| and bearer-svc
                           +-------+-------+
                           |    Service    |
                           | Orchestration |
                           +-------+-------+
            Network Model          |
-     e.g., l3vpn-ntw, sap, ac-ntw |
+  e.g., l3vpn-ntw, sap, and ac-ntw|
                           +-------+-------+
                           |   Network     |
                           | Orchestration |
@@ -253,7 +253,7 @@ The procedure to provision a service in a service provider network may depend on
                  |        |                   |
                +--------------------------------+
  +----+ Bearer |                                | Bearer +----+
- |CTP +--------+            Network             +--------+ CTP|
+ |CE#1+--------+            Network             +--------+CE#2|
  +----+        |                                |        +----+
                +--------------------------------+
   Site A                                                  Site B
@@ -273,7 +273,7 @@ Such a reference can be used, e.g., in a subsequent service request to create an
 ~~~~
 {::include ./yang/full-trees/bearers-stree.txt}
 ~~~~
-{: #bearer-st title="Bearers Tree Structure" artwork-align="center"}
+{: #bearer-st title="Bearer Service Tree Structure" artwork-align="center"}
 
 The same customer site (CE, NF, etc.) can terminate one or multiple bearers; each of them uniquely identified by a reference that is assigned by the network provider. These bearers can terminate on the same or distinct network nodes. CEs that terminate multiple bearers are called multi-homed CEs.
 
@@ -362,7 +362,7 @@ All the abovementioned profiles are uniquely identified by the NETCONF/RESTCONF 
 The 'ac-group-profile' defines reusable parameters for a set of ACes. Each profile is identified by 'name'. Some of the data nodes can be adjusted at the 'ac'.
 These adjusted values take precedence over the global values.  The structure of 'ac-group-profile' is similar to the one used to model each 'ac' ({{ac-svc-tree}}).
 
-### AC Placement Constraints {#sec-pc}
+### AC Placement Contraints {#sec-pc}
 
 The 'placement-constraints' specifies the placement constraints of an AC. For example, this container can be used to request avoiding to connecting two ACes to the same PE. The full set of supported constraints is defined in {{!RFC9181}} (see 'placement-diversity', in particular).
 
@@ -380,7 +380,7 @@ The structure of 'attachment-circuits' is shown in {{ac-svc-tree}}.
 ~~~~
 {::include ./yang/subtrees/overall-ac-stree.txt}
 ~~~~
-{: #ac-svc-tree title="Overall Attachment Circuits Tree Structure" artwork-align="center"}
+{: #ac-svc-tree title="Attachment Circuits Tree Structure" artwork-align="center"}
 
 The description of the data nodes is as follows:
 
@@ -394,7 +394,7 @@ The description of the data nodes is as follows:
 : Includes references to the remote endpoints of an attachment circuit {{?I-D.ietf-opsawg-sap}}.
 
 'ac-group-profile':
-: Indicates references to one or more profils that are defined in {{sec-acp}}.
+: Indicates references to one or more profiles that are defined in {{sec-acp}}.
 
 'group':
 : Lists the groups to which an AC belongs {{!RFC9181}}. For example, the 'group-id' is used to associate redundancy or protection constraints of ACes. An example is provided in {{sec-ex-prec}}.
@@ -699,7 +699,7 @@ An example of  a request message body to create a simple AC over an existing bea
 ~~~~
 {: #ac-b title="Example of a Message Body to Request an AC over an Existing Bearer"}
 
-{{ac-br}} shows the message body of a reponse received from the controller and which indicates the "cvlan-id" that was assigned for the requested AC.
+{{ac-br}} shows the message body of a response received from the controller and which indicates the "cvlan-id" that was assigned for the requested AC.
 
 ~~~~
 {::include ./json-examples/simple-ac-existing-bearer-response.json}
@@ -717,7 +717,7 @@ An example of a request to create a simple AC, when the peer SAP is known, is sh
 
 ## One CE, Two ACs {#sec-ex-one-ce-multi-acs}
 
-Let’s consider the example of an eNodeB (CTP) that is directly connected to the access routers of the mobile backhaul (see {{enodeb}}). In this example, two ACs are needed to service the eNodeB (e.g., distinct VLANs for Control and User Planes).
+Let’s consider the example of an eNodeB (CE) that is directly connected to the access routers of the mobile backhaul (see {{enodeb}}). In this example, two ACs are needed to service the eNodeB (e.g., distinct VLANs for Control and User Planes).
 
 ~~~~ aasvg
 +-------------+                  +------------------+
@@ -743,7 +743,7 @@ An example of a request to create the ACs to service the eNodeB is shown in {{tw
 ~~~~
 {: #two-acs-same-ce title="Example of a Message Body to Request Two ACes on The Same Link (Not Recommended)"}
 
-{{two-acs-same-ce-res}} shows the message body of a reponse received from the controller.
+{{two-acs-same-ce-res}} shows the message body of a response received from the controller.
 
 ~~~~
 {::include ./json-examples/two-acs-same-ce-response.json}
@@ -775,7 +775,7 @@ When multiple ACs are requested by the same customer for the same site, the requ
             ┌────────────────────┤PE1│
 ┌───┐       │    bearerX@site1   │   │
 │   ├───────┘                    └───┘
-│CPE│
+│CE │
 │   ├───────┐                    ┌───┐
 └───┘       │    ac2: secondary  │   │
             └────────────────────┤PE2│
@@ -783,6 +783,7 @@ When multiple ACs are requested by the same customer for the same site, the requ
                                  └───┘
 ~~~~
 {: #multipleac title="An Example Topology for AC Precedence Enforcement"}
+
 ~~~~
 {::include ./json-examples/ac-precedence.json}
 ~~~~
@@ -892,7 +893,7 @@ Orchestration  DIRECT INTERCONNECTION ORDERING (API)            Provider
        Physical Connection 1234-56789 is delivered and
                          connected to PE1
 
-       Network  Inventory Upated with:
+       Network  Inventory Updated with:
          bearer-reference: 1234-56789 for PE1/Interface If-A
 ~~~~
 {: #cloud-provider-2 title="Illustration of Pre-provisioning"}
