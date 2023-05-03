@@ -61,7 +61,7 @@ contributor:
     email: bill.wu@huawei.com
 
   -
-    name: Ogaki Kenichi
+    name: Kenichi Ogaki
     org: KDDI
     email: ke-oogaki@kddi.com
 
