@@ -533,9 +533,12 @@ As shown in the tree depicted in {{sec-svc-tree}}, the 'security' container defi
 ~~~~
 {: #sec-svc-tree title="Security Tree Structure" artwork-align="center"}
 
-#### Bandwidth {#sec-bw}
+#### Service {#sec-bw}
 
-As shown in the tree depicted in {{bw-tree}}, the 'service' container defines a set of AC bandwidth parameters:
+As shown in the tree depicted in {{bw-tree}}, the 'service' container defines the following data nodes:
+
+'mtu':
+: Specifies the Layer 2 MTU, in bytes, for the AC.
 
 'svc-pe-to-ce-bandwidth':
 : Indicates the inbound bandwidth of the AC (i.e., download bandwidth from the service provider to
