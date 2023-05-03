@@ -14,22 +14,23 @@
         "ip-connection": {
           "ipv4": {
             "address-allocation-type": "ietf-ac-common:static-address"
-        },
-        "routing-protocols": {
-          "routing-protocol": [
-            {
-              "id": "1",
-              "type": "ietf-vpn-common:bgp-routing",
-              "bgp": {
-                "neighbor": [
-                  {
-                    "id": "1",
-                    "peer-as": 65536
-                  }
-                ]
+          },
+          "routing-protocols": {
+            "routing-protocol": [
+              {
+                "id": "1",
+                "type": "ietf-vpn-common:bgp-routing",
+                "bgp": {
+                  "neighbor": [
+                    {
+                      "id": "1",
+                      "peer-as": 65536
+                    }
+                  ]
+                }
               }
-            }
-          ]
+            ]
+          }
         }
       }
     ]
