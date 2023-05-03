@@ -180,11 +180,11 @@ Service provider:
 
 # Sample Uses of the Data Models
 
-## ACs Terminated by One or Multiple Customer Equipment (CEs)
+## ACs Terminated by One or Multiple Customer Edges (CEs)
 
 {{uc}} depicts two target topology flavors that involve ACs. These topologies are characterized as follows:
 
-* A Customer Equipment (CEs) may be a physical device or a logical entity. Such a logical entity is typically a software component (e.g., a virtual service function that is hosted within the provider's network or a third-party infrastructure). A CE is seen by the network as a peer SAP.
+* A Customer Edges (CEs) may be a physical device or a logical entity. Such a logical entity is typically a software component (e.g., a virtual service function that is hosted within the provider's network or a third-party infrastructure). A CE is seen by the network as a peer SAP.
 
 * The same AC service request may include one or multiple ACs that are bound to a single CE or a plurality of CEs.
 
@@ -848,7 +848,7 @@ Network Functions are deployed within each site.
 {{slice-acs-res}} shows the message body of a reponse received from the controller.
 
 ~~~~
-{::include ./json-examples/two-acs-same-ce-response.json}
+{::include ./json-examples/acs-for-slices-response.json}
 ~~~~
 {: #slice-acs-res title=Example of a Message Body of a Response Indicating the Creation of the ACs"}
 
@@ -903,19 +903,21 @@ Next, API workflows can be initiated:
 * Cloud Provider for the configuration as per (3) above.
 * Service provider network via the Attachment Circuit model. This request can be used in conjunction with additional requests based on L3SM (VPN provisioning) or Network Slice Service model (5G hybrid Cloud deployment).
 
-{{cloud-provider-ac}} shows the message body of the request to create the required ACs to connect the Cloud Provider Virtualized (VM) using the Attachment Circuit module. {{cloud-provider-ac-res}} shows the message body of the response received from the provider. Note that this Cloud Provider mandates the use of MD5 authentication for establishing BGP connections.
-
-> The module supports MD5 to basically accommodate the installed BGP base (including by some Cloud Providers). Note that MD5 suffers from the security weaknesses discussed in Section 2 of {{?RFC6151}} and Section 2.1 of {{?RFC6952}}.
+{{cloud-provider-ac}} shows the message body of the request to create the required ACs to connect the Cloud Provider Virtualized (VM) using the Attachment Circuit module.
 
 ~~~~
 {::include-fold ./json-examples/cloud-provider.json}
 ~~~~
 {: #cloud-provider-ac title="Message Body of a Request to Create the ACs for Connecting to the Cloud Provider"}
 
+{{cloud-provider-ac-res}} shows the message body of the response received from the provider. Note that this Cloud Provider mandates the use of MD5 authentication for establishing BGP connections.
+
+> The module supports MD5 to basically accommodate the installed BGP base (including by some Cloud Providers). Note that MD5 suffers from the security weaknesses discussed in {{Section 2 of ?RFC6151}} and {{Section 2.1 of ?RFC6952}}.
+
 ~~~~
 {::include-fold ./json-examples/cloud-provider-response.json}
 ~~~~
-{: #cloud-provider-ac-res title="Message Body of a Response to the Request to Create the ACs for Connecting to the Cloud Provider"}
+{: #cloud-provider-ac-res title="Message Body of a Response to the Request to Create ACs for Connecting to the Cloud Provider"}
 
 
 # Acknowledgments
