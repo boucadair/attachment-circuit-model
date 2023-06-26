@@ -183,19 +183,20 @@ Service provider:
 
 ## ACs Terminated by One or Multiple Customer Edges (CEs)
 
-{{uc}} depicts two target topology flavors that involve ACs. These topologies are characterized as follows:
+{{uc}} depicts two target topology flavors that involve ACs. These topologies are have the following characteristics:
 
-* A Customer Edges (CEs) may be a physical device or a logical entity. Such a logical entity is typically a software component (e.g., a virtual service function that is hosted within the provider's network or a third-party infrastructure). A CE is seen by the network as a peer SAP.
+* A Customer Edges (CEs) can be either a physical device or a logical entity. Such logical entity is typically a software component (e.g., a virtual service function that is hosted within the provider's network or a third-party infrastructure). A CE is seen by the network as a peer SAP.
 
-* The same AC service request may include one or multiple ACs that are bound to a single CE or a plurality of CEs.
+* An AC service request may include one or multiple ACs, which may be associated to a single CE or multiple CEs.
 
-* CEs may be dedicated to one single connectivity service or host multiple connectivity services (e.g., CEs as role of service functions {{?RFC7665}}).
+* CEs may be either dedicated to one single connectivity service or host multiple connectivity services (e.g., CEs with roles of service functions {{?RFC7665}}).
 
-* A single AC (as seen by a network provider) may be bound to one or multiple peer SAPs (e.g., CE#1 and CE#2 are tagged as peer SAPs for the same AC). For example, and as discussed in {{!RFC4364}}, multiple CEs can be attached to a PE over the same attachment circuit. This is typically implemented if the layer 2 infrastructure between the CE and the network provides a multipoint service.
+* A network provider may bind a single AC to one or multiple peer SAPs (e.g., CE#1 and CE#2 are tagged as peer SAPs for the same AC). For example, and as discussed in {{!RFC4364}}, multiple CEs can be attached to a PE over the same attachment circuit. This scenario is typically implemented when the layer 2 infrastructure between the CE and the network is a multipoint service.
 
-* The same CE may terminate multiple ACs. These ACs may be over the same or distinct bearers.
+* A single CE may terminate multiple ACs, which can be associated with the same bearer or distinct bearers.
 
-* The customer may request protection schemes where the ACs bound to a customer endpoints are terminated by the same PE (e.g., CE#3), distinct PEs (e.g., CE#34), etc. The network provider uses this request to decide where to terminate the AC in the network provider network and also whether to enable specific capabilities (e.g., Virtual Router Redundancy Protocol (VRRP)).
+* Customers may request protection schemes in which the ACs associated with their endpoints are terminated by the same PE (e.g., CE#3), distinct PEs (e.g., CE#34), etc. The network provider uses this request to decide where to terminate the AC in the network provider network and also whether to enable specific capabilities (e.g., Virtual Router Redundancy Protocol (VRRP)).
+
 
 ~~~~
 ┌───────┐                ┌────────────────────┐           ┌───────┐
@@ -215,7 +216,7 @@ Service provider:
 
 ## Separate AC Provisioning vs. Actual Service Provisioning
 
-The procedure to provision a service in a service provider network may depend on the practices adopted by a service provider, including the flow put in place for the provisioning of advanced network services and how they are bound to an attachment circuit. For example, the same attachment circuit may be used to host multiple connectivity services. In order to avoid service interference and redundant information in various locations, a service provider may expose an interface to manage ACs network-wide. Customers can then request a bearer or an attachment circuit to be put in place, and then refer to that bearer or AC when requesting services that are bound to the bearer or AC.
+The procedure to provision a service in a service provider network may depend on the practices adopted by a service provider. This includes the flow put in place for the provisioning of advanced network services and how they are bound to an attachment circuit. For example, a single attachment circuit may be used to host multiple connectivity services. In order to avoid service interference and redundant information in various locations, a service provider may expose an interface to manage ACs network-wide. Customers can then request a bearer or an attachment circuit to be put in place, and then refer to that bearer or AC when requesting services that are bound to the bearer or AC.
 
 {{u-ex}} shows the positioning of the AC service model is the overall service delivery process.
 
