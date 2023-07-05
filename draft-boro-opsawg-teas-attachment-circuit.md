@@ -791,7 +791,7 @@ When multiple ACs are requested by the same customer for the same site, the requ
 ~~~~
 {: #ac-precedence title="Example of a Message Body to Associate a Precedence Level with ACs"}
 
-## Create Multiple ACs bound to Multiple CEs {#sec-multiple-ces}
+## Create Multiple ACs Bound to Multiple CEs {#sec-multiple-ces}
 
 {{network-example}} shows an example of CEs that are interconnected by a service provider network.
 
