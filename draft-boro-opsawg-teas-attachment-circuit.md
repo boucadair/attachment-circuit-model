@@ -123,9 +123,9 @@ Since the provisioning of an AC requires a bearer to be in place, this document 
 
 An AC service request can provide a reference to a bearer or a set of peer SAPs. Both schemes are supported in the AC service model.
 
-Each AC is identified with a unique identifier within a (provider) domain. From a network provider standpoint, an AC can be bound to a single or multiple Service Attachment Points (SAPs) {{?I-D.ietf-opsawg-sap}}. Likewise, the same SAP can be bound to one or multiple ACs. However, the mapping between an AC and a PE in the provider network that terminates that AC is hidden to the application that makes use of the AC service model. Such mapping information is internal to the network controllers. As such, the details about the (node-specific) attachment interfaces are not exposed in the AC service model.
+Each AC is identified with a unique identifier within a (provider) domain. From a network provider standpoint, an AC can be bound to a single or multiple Service Attachment Points (SAPs) {{?RFC9408}}. Likewise, the same SAP can be bound to one or multiple ACs. However, the mapping between an AC and a PE in the provider network that terminates that AC is hidden to the application that makes use of the AC service model. Such mapping information is internal to the network controllers. As such, the details about the (node-specific) attachment interfaces are not exposed in the AC service model.
 
-The AC service model **does not make any assumptions about the internal structure or even the nature or the services that will be delivered over an attachment circuit**. Customers do not have access to that network view other than the ACes that the ordered. For example, the AC service model can be used to provision a set of ACes to connect multiple sites (Site1, Site2, ..., SiteX) for customer who also requested VPN services. If these provisioning of these services require specific configuration on ASBR nodes, such configuration is handled at the network level and is not exposed to the customer at the service level. However, the network controller will have access to such a view as the service points in these ASBRs will be exposed as SAPs with "role" set to "ietf-sap-ntw:nni" {{?I-D.ietf-opsawg-sap}}.
+The AC service model **does not make any assumptions about the internal structure or even the nature or the services that will be delivered over an attachment circuit**. Customers do not have access to that network view other than the ACes that the ordered. For example, the AC service model can be used to provision a set of ACes to connect multiple sites (Site1, Site2, ..., SiteX) for customer who also requested VPN services. If these provisioning of these services require specific configuration on ASBR nodes, such configuration is handled at the network level and is not exposed to the customer at the service level. However, the network controller will have access to such a view as the service points in these ASBRs will be exposed as SAPs with "role" set to "ietf-sap-ntw:nni" {{?RFC9408}}.
 
 The AC service model can be used in a variety of contexts, such as (but not limited to) those provided in {{examples}}:
 
@@ -183,7 +183,7 @@ Service provider:
 
 ## ACs Terminated by One or Multiple Customer Edges (CEs)
 
-{{uc}} depicts two target topology flavors that involve ACs. These topologies are have the following characteristics:
+{{uc}} depicts two target topology flavors that involve ACs. These topologies have the following characteristics:
 
 * A Customer Edges (CEs) can be either a physical device or a logical entity. Such logical entity is typically a software component (e.g., a virtual service function that is hosted within the provider's network or a third-party infrastructure). A CE is seen by the network as a peer SAP.
 
@@ -393,7 +393,7 @@ The description of the data nodes is as follows:
 : Includes a textual description of the AC.
 
 'peer-sap-id':
-: Includes references to the remote endpoints of an attachment circuit {{?I-D.ietf-opsawg-sap}}.
+: Includes references to the remote endpoints of an attachment circuit {{?RFC9408}}.
 
 'ac-group-profile':
 : Indicates references to one or more profiles that are defined in {{sec-acp}}.
