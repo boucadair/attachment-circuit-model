@@ -114,7 +114,8 @@ module ietf-bearer-svc {
     leaf locationName {
         type string;
         description
-          "Refers to 3GPP NRM {{TS-28.623}} Clause A 2.2.2 IOC ManagedElement. The physical location (e.g., an address) of an (3GPP) entity. It may contain no information to support the case where the derivative of ManagedElement needs to represent a distributed multi-location NE.";
+          "Provides a location name. This data node can be mapped, e.g., to the 3GPP
+           NRM IOC ManagedElement.";
       } 
     container location {
       description
