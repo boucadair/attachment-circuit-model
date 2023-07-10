@@ -48,7 +48,7 @@ module ietf-ac-svc {
                <mailto:lana.wubo@huawei.com>";
   description
     "This YANG module defines a YANG model for exposing
-     attachment circuits (ACs) as a service.
+     attachment circuits as a service (ACaaS).
 
      Copyright (c) 2023 IETF Trust and the persons identified as
      authors of the code.  All rights reserved.
