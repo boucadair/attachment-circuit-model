@@ -24,6 +24,7 @@ module: ietf-bearer-svc
         |  +--rw device
         |  |  +--rw device-id?   string
         |  |  +--rw location
+        |  |     +--rw location-name?  string
         |  |     +--rw address?        string
         |  |     +--rw postal-code?    string
         |  |     +--rw state?          string
@@ -32,6 +33,7 @@ module: ietf-bearer-svc
         |  +--rw site
         |  |  +--rw site-id?    string
         |  |  +--rw location
+        |  |     +--rw location-name?  string
         |  |     +--rw address?        string
         |  |     +--rw postal-code?    string
         |  |     +--rw state?          string
