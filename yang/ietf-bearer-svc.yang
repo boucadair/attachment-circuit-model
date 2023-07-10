@@ -111,7 +111,7 @@ module ietf-bearer-svc {
   grouping location-information {
     description
       "Basic location information";
-    leaf locationName {
+    leaf location-name {
         type string;
         description
           "Provides a location name. This data node can be mapped, e.g., to the 3GPP
