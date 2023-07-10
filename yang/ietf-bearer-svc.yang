@@ -121,6 +121,12 @@ module ietf-bearer-svc {
     container location {
       description
         "Location of the node.";
+      leaf location-name {
+        type string;
+        description
+          "Provides a location name. This data node can be mapped, e.g., to the 3GPP
+           NRM IOC ManagedElement.";
+      } 
       leaf address {
         type string;
         description
