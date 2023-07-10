@@ -146,11 +146,11 @@ The AC model specified in this document **is not a network model** {{?RFC8969}}.
 
 The AC service model **is not a device model**. A network provider may use a variety of device models (e.g., Routing management {{?RFC8349}} or BGP {{?I-D.ietf-idr-bgp-model}}) to provision an AC service.
 
-### Why Not Using L2SM as Reference Data Model for ACaaS?
+### Why Not Using the L2SM as Reference Data Model for ACaaS?
 
 The L2SM {{?RFC8466}} covers some AC-related considerations. Nevertheless, the L2SM structure is primarily focused on Layer 2 aspects. For example, the L2SM part does not cover Layer 3 provisioning, which is required for the typical AC instantiation.
 
-### Why Not Using L3SM as Reference Data Model for ACaaS?
+### Why Not Using the L3SM as Reference Data Model for ACaaS?
 
 Like the L2SM, the L3SM {{?RFC8299}} addresses certain AC-related aspects. However, the L3SM structure does not sufficiently address layer 2 provisioning requirements. Additionally, the L3SM is primarily designed for conventional L3VPN deployments and, as such, has some limitations for instantiating ACs in other deployment contexts (e.g., cloud environments). For example, the L3SM does not provide the capability to provision multiple BGP sessions over the same AC.
 
@@ -279,6 +279,8 @@ Such a reference can be used, e.g., in a subsequent service request to create an
 
 The same customer site (CE, NF, etc.) can terminate one or multiple bearers; each of them uniquely identified by a reference that is assigned by the network provider. These bearers can terminate on the same or distinct network nodes. CEs that terminate multiple bearers are called multi-homed CEs.
 
+A bearer request may indicate some hints about the placement constraints ('placement-constraints'). These constraints are used by a provider to determine how/where to terminate a bearer in the network side (e.g., PoP/PE selection).
+
 The descriptions of the bearer data nodes are as follows:
 
 'id':
@@ -290,17 +292,22 @@ The descriptions of the bearer data nodes are as follows:
 'op-comment':
 : Includes operational comments that may be useful for managing the bearer (building, level, etc.). No structure is associated with this data node to accommodate all deployments.
 
+'group':
+: Tags a bearer with one ore more identifiers that are used to group a set of bearers.
+
 'customer-point':
-: Specifies the customer terminating point for the bearer. A bearer request can indicate a site, a device, a combination thereof, or a custom information when requesting a bearer. All these schemes are supported in the model.
+: Specifies the customer terminating point for the bearer. A bearer request can indicate a device, a site, a combination thereof, or a custom information when requesting a bearer. All these schemes are supported in the model.
 
 'requested-type':
 : Specifies the requested bearer type (Ethernet, wireless, etc.).
 
 'bearer-reference':
-: Returns an internal reference for the service provider to identify the bearer. This reference can be used when requesting services. {{ex-create-bearer}} provides an example about how this reference can be retrieved by a customer. Whether the 'bearer-reference' mirrors the content of the 'id' is deployment specific. The module does not assume nor preclude such schemes.
+: Returns an internal reference for the service provider to identify the bearer. This reference can be used when requesting services. {{ex-create-bearer}} provides an example about how this reference can be retrieved by a customer.
+: Whether the 'bearer-reference' mirrors the content of the 'id' is deployment specific. The module does not assume nor preclude such schemes.
 
 'status':
-: Used to track the overall status of a given bearer. Both operational and administrative status are maintained together with a timestamp. See {{!RFC9181}} for more details.
+: Used to track the overall status of a given bearer. Both operational and administrative status are maintained together with a timestamp.
+: See {{!RFC9181}} for more details.
 
 
 ## The Attachment Circuit Service ("ietf-ac-svc") YANG Module
