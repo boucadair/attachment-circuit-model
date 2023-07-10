@@ -1,8 +1,23 @@
 module: ietf-bearer-svc
   +--rw bearers
+     +--rw placement-constraints
+     |  +--rw constraint* [constraint-type]
+     |     +--rw constraint-type    identityref
+     |     +--rw target
+     |        +--rw (target-flavor)?
+     |           +--:(id)
+     |           |  +--rw group* [group-id]
+     |           |     +--rw group-id    string
+     |           +--:(all-bearers)
+     |           |  +--rw all-other-bearers?   empty
+     |           +--:(all-groups)
+     |              +--rw all-other-groups?     empty
      +--rw bearer* [id]
         +--rw id                  string
         +--rw description?        string
+        +--rw group* [group-id]
+        |  +--rw group-id      string
+        |  +--rw precedence?   identityref
         +--rw op-comment?         string
         +--rw customer-point
         |  +--rw identified-by?   identityref
