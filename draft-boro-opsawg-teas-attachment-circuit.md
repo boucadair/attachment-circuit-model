@@ -757,7 +757,7 @@ An example of a request to create the ACs to service the eNodeB is shown in {{tw
 ~~~~
 {::include ./json-examples/two-acs-same-ce-response.json}
 ~~~~
-{: #two-acs-same-ce-res title=Example of a Message Body of a Response to Create Two ACes on The Same Link (Not Recommended)"}
+{: #two-acs-same-ce-res title="Example of a Message Body of a Response to Create Two ACes on The Same Link (Not Recommended)"}
 
 The example shown {{two-acs-same-ce-res}} is not optimal as it includes many redundant data. {{two-acs-same-ce-node-profile}} shows a more compact request that factorizes all the redundant data.
 
@@ -859,7 +859,7 @@ Network Functions are deployed within each site.
 ~~~~
 {::include ./json-examples/acs-for-slices-response.json}
 ~~~~
-{: #slice-acs-res title=Example of a Message Body of a Response Indicating the Creation of the ACs"}
+{: #slice-acs-res title="Example of a Message Body of a Response Indicating the Creation of the ACs"}
 
 
 {{slice-prov}} shows the message body of the request to create the a slice service bound to the ACs created using {{slice-acs}}. Only references to these ACs are included in the Slice Service request. This example assumes that the module that "glues" the service/AC is also supported by the NSC.
