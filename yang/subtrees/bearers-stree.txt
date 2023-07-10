@@ -8,7 +8,7 @@
   |     +--rw description?        string
   |     +--rw customer-device
   |     |  +--rw device-id?       string
-  |     |  +--rw locationName?    string
+  |     |  +--rw location-name?    string
   |     |  +--rw location
   |     |     +--rw address?        string
   |     |     +--rw postal-code?    string
