@@ -111,15 +111,15 @@ module ietf-bearer-svc {
   grouping location-information {
     description
       "Basic location information";
-    leaf location-name {
+    container location {
+      description
+        "Location of the node.";
+      leaf location-name {
         type string;
         description
           "Provides a location name. This data node can be mapped, e.g., to the 3GPP
            NRM IOC ManagedElement.";
       } 
-    container location {
-      description
-        "Location of the node.";
       leaf address {
         type string;
         description
