@@ -132,7 +132,7 @@ The AC service model can be used in a variety of contexts, such as (but not limi
 * Request an attachment circuit for a known peer SAP ({{ac-no-bearer-peer-sap}}).
 * Instantiate multiple attachment circuits over the same bearer ({{sec-ex-one-ce-multi-acs}}).
 * Control the precedence over multiple attachment circuits ({{sec-ex-prec}}).
-* Create Multiple ACs bound to Multiple CEs ({#sec-multiple-ces}).
+* Create Multiple ACs bound to Multiple CEs ({{sec-multiple-ces}}).
 * Bind a slice service to a set of pre-provisioned attachment circuits ({{sec-ex-slice}}).
 * Connect a Cloud Infrastructure to a service provider network ({{sec-ex-cloud}}).
 
