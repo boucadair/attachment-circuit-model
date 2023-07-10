@@ -874,7 +874,8 @@ module ietf-ac-svc {
     list ac-group-profile {
       key "name";
       description
-        "Maintains a list of per-node AC profiles.";
+        "Maintains a list of profiles that are shared among
+         a set of ACs.";
       uses ac;
     }
     container placement-constraints {
@@ -905,7 +906,7 @@ module ietf-ac-svc {
       leaf-list ac-group-profile {
         type ac-group-reference;
         description
-          "A reference to a per-node AC profile.";
+          "A reference to an AC profile.";
       }
       list group {
         key "group-id";
