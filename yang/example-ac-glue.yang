@@ -23,9 +23,6 @@ module example-ac-glue {
     reference
       "RFC 9291";
   }
-  import ietf-network-slice-service {
-    prefix ietf-nss;
-  }
   import ietf-ac-svc {
     prefix ac-svc;
   }
@@ -87,14 +84,6 @@ grouping ac-glue {
   augment "/l2nm:l2vpn-ntw/l2nm:vpn-services/l2nm:vpn-service"
         + "/l2nm:vpn-nodes/l2nm:vpn-node"
         + "/l2nm:vpn-network-accesses/l2nm:vpn-network-access" {
-    description
-      "Augments VPN network access with AC provisioning details.";
-
-    uses ac-glue;
-  }
-
-  augment "/ietf-nss:network-slice-services/ietf-nss:slice-service"
-        + "/ietf-nss:sdps/ietf-nss:sdp" {
     description
       "Augments VPN network access with AC provisioning details.";
 
