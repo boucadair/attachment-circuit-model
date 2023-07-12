@@ -16,6 +16,3 @@ module: ietf-ac-glue
             /l2nm:vpn-nodes/l2nm:vpn-node/l2nm:vpn-network-accesses
             /l2nm:vpn-network-access:
     +--rw ac-ref*   ac-svc:attachment-circuit-reference
-  augment /ietf-nss:network-slice-services/ietf-nss:slice-service
-            /ietf-nss:sdps/ietf-nss:sdp:
-    +--rw ac-ref*   ac-svc:attachment-circuit-reference
