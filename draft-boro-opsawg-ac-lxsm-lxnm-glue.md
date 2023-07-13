@@ -3,7 +3,7 @@ title: "A YANG Data Model for Augmenting VPN Service and Network Models with Att
 abbrev: "AC Glue for VPN Models"
 category: std
 
-docname: draft-boro-opsawg-ac-vpn-glue-latest
+docname: draft-boro-opsawg-ac-lxsm-lxnm-glue-latest
 submissiontype: IETF
 number:
 date:
@@ -73,7 +73,7 @@ DIVE MORE INTO the use of ac-ref, sap, etc.
 
 The meanings of the symbols in the YANG tree diagrams are defined in {{?RFC8340}}.
 
-This document uses terms defined in {{!I-D.boro-opsawg-teas-attachment-circuit}}
+This document uses terms defined in {{!I-D.boro-opsawg-teas-attachment-circuit}}.
 
 
 # Sample Uses of the Data Models
