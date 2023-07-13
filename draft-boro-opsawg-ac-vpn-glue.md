@@ -167,7 +167,7 @@ ACs created using the "ietf-ac-svc" module can be referenced in other
    augmentations are required to that aim as shown in {{tree}}.
 
 ~~~~~~~~~~
-{::include .yang/full-trees/ac-glue-tree.txt}
+{::include ./yang/full-trees/ac-glue-tree.txt}
 ~~~~~~~~~~
 {: #tree title="AC Glue Tree Structure" artwork-align="center"}
 
