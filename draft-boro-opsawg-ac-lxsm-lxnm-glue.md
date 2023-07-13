@@ -176,8 +176,8 @@ ACs created using the "ietf-ac-svc" module can be referenced in other
 This module uses types defined in xxxx.
 
 ~~~~~~~~~~
-<CODE BEGINS> file ietf-ac-svc@2022-11-30.yang
-{::include ./yang/example-ac-glue.yang}
+<CODE BEGINS> file ietf-ac-glue@2023-07-13.yang
+{::include ./yang/ietf-ac-glue.yang}
 <CODE ENDS>
 ~~~~~~~~~~
 
