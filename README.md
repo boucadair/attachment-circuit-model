@@ -21,10 +21,10 @@ This is the working area for the individual Internet-Draft, "YANG Data Models fo
 
 This is the working area for the individual Internet-Draft, "AC Glue for VPN Models".:
 
-* [Editor's Copy](https://boucadair.github.io/attachment-circuit-model/#go.draft-boro-opsawg-ac-vpn-glue.html)
-* [Datatracker Page](https://datatracker.ietf.org/doc/draft-boro-opsawg-ac-vpn-glue)
-* [Individual Draft](https://datatracker.ietf.org/doc/html/draft-boro-opsawg-ac-vpn-glue)
-* [Compare Editor's Copy to Individual Draft](https://boucadair.github.io/attachment-circuit-model/#go.draft-boro-opsawg-ac-vpn-glue.diff)
+* [Editor's Copy](https://boucadair.github.io/attachment-circuit-model/#go.draft-boro-opsawg-ac-lxsm-lxnm-glue.html)
+* [Datatracker Page](https://datatracker.ietf.org/doc/draft-boro-opsawg-ac-lxsm-lxnm-glue)
+* [Individual Draft](https://datatracker.ietf.org/doc/html/draft-boro-opsawg-ac-lxsm-lxnm-glue)
+* [Compare Editor's Copy to Individual Draft](https://boucadair.github.io/attachment-circuit-model/#go.draft-boro-opsawg-ac-lxsm-lxnm-glue.diff)
 
 
 
