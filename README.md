@@ -16,3 +16,15 @@ This is the working area for the individual Internet-Draft, "YANG Data Models fo
 * [Individual Draft](https://datatracker.ietf.org/doc/html/draft-boro-opsawg-teas-attachment-circuit)
 * [Compare Editor's Copy to Individual Draft](https://boucadair.github.io/attachment-circuit-model/#go.draft-boro-opsawg-teas-attachment-circuit.diff)
 
+
+# YANG Data Model for Gluing ACs with VPN Models (AC Glue)
+
+This is the working area for the individual Internet-Draft, "AC Glue for VPN Models".:
+
+* [Editor's Copy](https://boucadair.github.io/attachment-circuit-model/#go.draft-boro-opsawg-ac-vpn-glue.html)
+* [Datatracker Page](https://datatracker.ietf.org/doc/draft-boro-opsawg-ac-vpn-glue)
+* [Individual Draft](https://datatracker.ietf.org/doc/html/draft-boro-opsawg-ac-vpn-glue)
+* [Compare Editor's Copy to Individual Draft](https://boucadair.github.io/attachment-circuit-model/#go.draft-boro-opsawg-ac-vpn-glue.diff)
+
+
+
