@@ -20,24 +20,22 @@ author:
  -
     fullname: Mohamed Boucadair
     organization: Orange
-    role: editor
     email: mohamed.boucadair@orange.com
 
  -
     fullname: Richard Roberts
     organization: Juniper
-    role: editor
     email: rroberts@juniper.net
-
- -
-    fullname: Oscar Gonzalez de Dios
-    organization: Telefonica
-    email: oscar.gonzalezdedios@telefonica.com
 
  -
     fullname: Samier Barguil Giraldo
     organization: Nokia
     email: samier.barguil_giraldo@nokia.com
+
+ -
+    fullname: Oscar Gonzalez de Dios
+    organization: Telefonica
+    email: oscar.gonzalezdedios@telefonica.com
 
 
 contributor:
@@ -59,7 +57,7 @@ informative:
 
    The document specifies a module that updates existing service and
    network VPN modules with the required information to bind specific
-   services to ACs that are created using the AC service model, specifically the following modules are augmented: 
+   services to ACs that are created using the AC service model, specifically the following modules are augmented:
 
 * The Layer 2 Service Model (L2SM) {{!RFC8466}}
 * The Layer 3 Service Model (L3SM) {{!RFC8299}}
@@ -67,7 +65,7 @@ informative:
 * The Layer 3 Network Model (L3NM) {{!RFC9182}}
 
 DIVE MORE INTO the use of ac-ref, sap, etc.
-  
+
 
 # Conventions and Definitions
 
