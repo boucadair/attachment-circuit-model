@@ -49,23 +49,20 @@ informative:
 
    The document specifies a module that updates existing service and
    network VPN modules with the required information to bind specific
-   services to ACs that are created using the AC service model.
+   services to ACs that are created using the Attachment Circuit (AC) service model.
 
 --- middle
 
 # Introduction
 
-   The document specifies a module that updates existing service and
+   The document specifies a YANG module that updates existing service and
    network VPN modules with the required information to bind specific
-   services to ACs that are created using the AC service model, specifically the following modules are augmented:
+   services to Attachment Circuits (ACs) that are created using the AC service model {{!I-D.boro-opsawg-teas-attachment-circuit}}, specifically the following modules are augmented:
 
 * The Layer 2 Service Model (L2SM) {{!RFC8466}}
 * The Layer 3 Service Model (L3SM) {{!RFC8299}}
 * The Layer 2 Network Model (L2NM) {{!RFC9291}}
 * The Layer 3 Network Model (L3NM) {{!RFC9182}}
-
-DIVE MORE INTO the use of ac-ref, sap, etc.
-
 
 # Conventions and Definitions
 
@@ -75,6 +72,9 @@ The meanings of the symbols in the YANG tree diagrams are defined in {{?RFC8340}
 
 This document uses terms defined in {{!I-D.boro-opsawg-teas-attachment-circuit}}.
 
+LxSM refers to both the L2SM and the L3SM.
+
+LxNM refers to both the L2NM and the L3NM.
 
 # Sample Uses of the Data Models
 
@@ -160,9 +160,9 @@ The procedure to provision a service in a service provider network may depend on
 {: #u-ex title="An Example of AC Model Usage" artwork-align="center"}
 
 
-## Tree Structure
+# Module Tree Structure
 
-ACs created using the "ietf-ac-svc" module can be referenced in other
+ACs created using the "ietf-ac-svc" module {{!I-D.boro-opsawg-teas-attachment-circuit}} can be referenced in other
    modules (e.g., L2SM, L3SM, L2NM, L3NM, and Slicing).  Some
    augmentations are required to that aim as shown in {{tree}}.
 
@@ -172,8 +172,6 @@ ACs created using the "ietf-ac-svc" module can be referenced in other
 {: #tree title="AC Glue Tree Structure" artwork-align="center"}
 
 # The AC Glue ("ietf-ac-glue") YANG Module
-
-This module uses types defined in xxxx.
 
 ~~~~~~~~~~
 <CODE BEGINS> file ietf-ac-glue@2023-07-13.yang
@@ -214,27 +212,8 @@ This module uses types defined in xxxx.
    notification) to these data nodes.  These are the subtrees and data
    nodes and their sensitivity/vulnerability in the "ietf-ac-svc" module:
 
-   'customer-name', 'l2-connection', and 'ip-connection':
-   : An attacker can retrieve privacy-related information, which can be used to track a
-      customer.  Disclosing such information may be considered a
-      violation of the customer-provider trust relationship.
-
-   'keying-material':
-   : An attacker can retrieve the cryptographic keys
-      protecting the underlying connectivity services (routing, in
-      particular).  These keys could be used to inject spoofed routing
-      advertisements.
-
-   Several data nodes ('bgp', 'ospf', 'isis', and 'rip') rely
-   upon {{!RFC8177}} for authentication purposes.  As such, the AC service module
-   inherits the security considerations discussed in Section 5 of
-   {{!RFC8177}}.  Also, these data nodes support supplying explicit keys as
-   strings in ASCII format.  The use of keys in hexadecimal string
-   format would afford greater key entropy with the same number of key-
-   string octets.  However, such a format is not included in this
-   version of the AC service model, because it is not supported by the underlying
-   device modules (e.g., {{?RFC8695}}).
-
+   * TBC
+   * TBC
 
 # IANA Considerations
 
@@ -248,7 +227,7 @@ This module uses types defined in xxxx.
 ~~~~
 
    IANA is requested to register the following YANG module in the "YANG Module
-   Names" subregistry {{!RFC6020}} within the "YANG Parameters" registry.
+   Names" registry {{!RFC6020}} within the "YANG Parameters" registry group.
 
 ~~~~
    Name:  ietf-ac-glue
@@ -262,8 +241,7 @@ This module uses types defined in xxxx.
 
 # Examples {#examples}
 
-This section includes a xx
-
+Add some examples.
 
 # Acknowledgments
 {:numbered="false"}
