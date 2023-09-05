@@ -16,6 +16,14 @@ This is the working area for the individual Internet-Draft, "YANG Data Models fo
 * [Individual Draft](https://datatracker.ietf.org/doc/html/draft-boro-opsawg-teas-attachment-circuit)
 * [Compare Editor's Copy to Individual Draft](https://boucadair.github.io/attachment-circuit-model/#go.draft-boro-opsawg-teas-attachment-circuit.diff)
 
+# A Network YANG Data Model for Attachment Circuits
+
+This is the working area for the individual Internet-Draft, "A Network YANG Data Model for Attachment Circuits".
+
+* [Editor's Copy](https://boucadair.github.io/attachment-circuit-model/#go.draft-boro-opsawg-ntw-attachment-circuit.html)
+* [Datatracker Page](https://datatracker.ietf.org/doc/draft-boro-opsawg-ntw-attachment-circuit)
+* [Individual Draft](https://datatracker.ietf.org/doc/html/draft-boro-opsawg-ntw-attachment-circuit)
+* [Compare Editor's Copy to Individual Draft](https://boucadair.github.io/attachment-circuit-model/#go.draft-boro-opsawg-ntw-attachment-circuit.diff)
 
 # YANG Data Model for Gluing ACs with VPN Models (AC Glue)
 
