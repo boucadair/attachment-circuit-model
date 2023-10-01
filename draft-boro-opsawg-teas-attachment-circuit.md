@@ -309,7 +309,7 @@ The descriptions of the bearer data nodes are as follows:
 : Used to track the overall status of a given bearer. Both operational and administrative status are maintained together with a timestamp.
 
 'adnmin-status':
-: The "admin-status" attribute is typically configured by a network administrator or operator to determine whether the network element or service is enabled, disabled, or subjected to additional testing or pre-deployment checks. These additional options, such as 'admin-testing' and 'admin-pre-deployment', provide operators with the flexibility to conduct additional validations on the bearer before deploying services over that connection.
+: The "admin-status" attribute is typically configured by a network administrator or operator to determine whether the network element or service is enabled, disabled, or subjected to additional testing or pre-deployment checks. These additional options, such as 'admin-testing' and 'admin-pre-deployment', provide the operators the flexibility to conduct additional validations on the bearer before deploying services over that connection.
 : It's important to note that the "admin-status" attribute should remain independent of the "oper-status". In other words, the intended administrative state, whether "admin-up" or "admin-testing", should not be influenced by the current operational state. If the bearer is administratively set to 'admin-down', it is expected that the bearer will also be operationally 'op-down' as a result of this administrative decision.
 
 'oper-status':
