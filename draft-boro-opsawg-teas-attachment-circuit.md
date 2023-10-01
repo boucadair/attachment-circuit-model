@@ -279,7 +279,15 @@ Such a reference can be used, e.g., in a subsequent service request to create an
 
 The same customer site (CE, NF, etc.) can terminate one or multiple bearers; each of them uniquely identified by a reference that is assigned by the network provider. These bearers can terminate on the same or distinct network nodes. CEs that terminate multiple bearers are called multi-homed CEs.
 
-A bearer request may indicate some hints about the placement constraints ('placement-constraints'). These constraints are used by a provider to determine how/where to terminate a bearer in the network side (e.g., PoP/PE selection).
+A bearer can be created, modified or discovereed from the network. each case offer serverl possibilities:
+
+'Greenfield Creation':
+
+: In this scenario, bearers are created from scratch based on specific requests made to the network controller or management system. This method offers fine-grained control over bearer attributes and placement constraints ('placement-constraints'). Allows providers to tailor bearer creation to meet customer-specific needs and offers fine-grained control for tailoring bearer provisioning to meet customer-specific needs.
+
+'Auto-Discovery using Network Protocols':
+
+: Bearers can also be established using network protocols, such as Link Layer Discovery Protocol (LLDP), which enables devices to automatically discover and connect to available network resources. This method simplifies the provisioning process by allowing devices to discover and establish bearers autonomously, reducing manual configuration efforts. Well-suited for dynamic environments with changing network topologies.
 
 The descriptions of the bearer data nodes are as follows:
 
@@ -322,6 +330,8 @@ The descriptions of the bearer data nodes are as follows:
 : For instance, when a beraer is administratively enabled but the "operational-status" of that bearer is reported as "down" it should be expected that the services's transported for thar bearer "oper-status" is also "down." If these statuses differ, it serves as a trigger to detect an anomaly.
 
 : See {{!RFC9181}} for more details.
+
+
 
 
 ## The Attachment Circuit Service ("ietf-ac-svc") YANG Module
