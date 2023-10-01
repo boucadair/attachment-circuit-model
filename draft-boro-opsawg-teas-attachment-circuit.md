@@ -307,6 +307,20 @@ The descriptions of the bearer data nodes are as follows:
 
 'status':
 : Used to track the overall status of a given bearer. Both operational and administrative status are maintained together with a timestamp.
+
+'adnmin-status':
+:The "administrative-status" attribute is typically set by a network administrator or operator to control whether the element or service is enabled, disabled, or placed into a specific operational mode.
+:This information is especially valuable in scenarios where multiple services are provisioned for the same bearer, but only a subset of these services is activated. Importantly, the "administrative-status" should remain independent of the "operational-status".
+
+'oper-status':
+:The "oper-status" of a service reflects its operational state as observed at a particular bearer. As a berer can contain multiple services the operational status should only reflect the status of the bearer connection. To obtain network-level service status, specific network models, such as those outlined in {{!RFC9182}} Section 7.3 or {{!RFC9291}} Section 7.3, should be consulted.
+
+'Assessing Bearer Delivery Status':
+:To assess the service delivery status for a given bearer comprehensively, it's recommended to consider both administrative and operational service statuses in conjunction. This holistic approach allows a network controller or operator to identify anomalies effectively. 
+
+'Anomaly Detection':
+:For instance, when a beraer is administratively enabled but the "operational-status" of that bearer is reported as "down," it should be expected that the services's transported for thar bearer "oper-status" is also "down." If these statuses differ, it serves as a trigger to detect an anomaly. 
+
 : See {{!RFC9181}} for more details.
 
 
