@@ -281,7 +281,7 @@ The same customer site (CE, NF, etc.) can terminate one or multiple bearers; eac
 
 A bearer can be created, modified, or discovered from the network. For example, the following deployment options can be considered:
 
-'Greenfield Creation':
+'Greenfield creation':
 
 : In this scenario, bearers are created from scratch using specific requests made to a network controller. This method  allows providers to tailor bearer creation to meet customer-specific needs. For example, a bearer request may indicate some hints about the placement constraints ('placement-constraints'). These constraints are used by a provider to determine how/where to terminate a bearer in the network side (e.g., PoP/PE selection).
 
