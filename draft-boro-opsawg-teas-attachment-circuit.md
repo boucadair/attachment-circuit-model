@@ -279,7 +279,7 @@ Such a reference can be used, e.g., in a subsequent service request to create an
 
 The same customer site (CE, NF, etc.) can terminate one or multiple bearers; each of them uniquely identified by a reference that is assigned by the network provider. These bearers can terminate on the same or distinct network nodes. CEs that terminate multiple bearers are called multi-homed CEs.
 
-A bearer can be created, modified or discovereed from the network. each case offer serverl possibilities:
+A bearer can be created, modified, or discovered from the network. For example, the following deployment options can be considered:
 
 'Greenfield Creation':
 
