@@ -285,7 +285,7 @@ A bearer can be created, modified, or discovered from the network. For example, 
 
 : In this scenario, bearers are created from scratch using specific requests made to a network controller. This method  allows providers to tailor bearer creation to meet customer-specific needs. For example, a bearer request may indicate some hints about the placement constraints ('placement-constraints'). These constraints are used by a provider to determine how/where to terminate a bearer in the network side (e.g., PoP/PE selection).
 
-'Auto-Discovery using Network Protocols':
+'Auto-discovery using network protocols':
 
 : Bearers can also be established using network protocols, such as Link Layer Discovery Protocol (LLDP), which enables devices to automatically discover and connect to available network resources. This method simplifies the provisioning process by allowing devices to discover and establish bearers autonomously, reducing manual configuration efforts. Well-suited for dynamic environments with changing network topologies.
 
