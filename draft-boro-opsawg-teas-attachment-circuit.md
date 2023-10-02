@@ -283,7 +283,7 @@ A bearer can be created, modified, or discovered from the network. For example, 
 
 'Greenfield Creation':
 
-: In this scenario, bearers are created from scratch based on specific requests made to the network controller or management system. This method offers fine-grained control over bearer attributes and placement constraints ('placement-constraints'). Allows providers to tailor bearer creation to meet customer-specific needs and offers fine-grained control for tailoring bearer provisioning to meet customer-specific needs.
+: In this scenario, bearers are created from scratch using specific requests made to a network controller. This method  allows providers to tailor bearer creation to meet customer-specific needs. For example, a bearer request may indicate some hints about the placement constraints ('placement-constraints'). These constraints are used by a provider to determine how/where to terminate a bearer in the network side (e.g., PoP/PE selection).
 
 'Auto-Discovery using Network Protocols':
 
