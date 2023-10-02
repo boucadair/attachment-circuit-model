@@ -287,7 +287,7 @@ A bearer can be created, modified, or discovered from the network. For example, 
 
 'Auto-discovery using network protocols':
 
-: Bearers can also be established using network protocols, such as Link Layer Discovery Protocol (LLDP), which enables devices to automatically discover and connect to available network resources. This method simplifies the provisioning process by allowing devices to discover and establish bearers autonomously, reducing manual configuration efforts. Well-suited for dynamic environments with changing network topologies.
+: Devices can use specific protocols (e.g., Link Layer Discovery Protocol (LLDP)) to automatically discover and connect to available network resources. A network controller can use such reported information to expose discovered bearers from the network using the same bearer structure.
 
 The descriptions of the bearer data nodes are as follows:
 
