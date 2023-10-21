@@ -312,7 +312,7 @@ The descriptions of the bearer data nodes are as follows:
 
 : It is important to note that the "admin-status" attribute should remain independent of the "oper-status". In other words, the setting of the intended administrative state (e.g., whether "admin-up" or "admin-testing") MUST NOT be influenced by the current operational state. If the bearer is administratively set to 'admin-down', it is expected that the bearer will also be operationally 'op-down' as a result of this administrative decision.
 
-: The "oper-status" of a service reflects its operational state as observed at a particular bearer. As a bearer can be used fir multiple services, the operational status should only reflect the status of the bearer connection. The network-level service status can be retrieved using specific   network models, e.g., those listed in {{ Section 7.3 of !RFC9182}} or
+: The "oper-status" of a service reflects its operational state as observed at a particular bearer. As a bearer can be used fir multiple services, the operational status should only reflect the status of the bearer connection. The network-level service status can be retrieved using specific   network models, e.g., those listed in {{Section 7.3 of !RFC9182}} or
 {{Section 7.3 of !RFC9291}}.
 
 : To assess the service delivery status for a given bearer comprehensively, it is recommended to consider both administrative and operational service status values in conjunction. This holistic approach  allows a network controller or operator to identify anomalies effectively.
