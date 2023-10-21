@@ -279,7 +279,15 @@ Such a reference can be used, e.g., in a subsequent service request to create an
 
 The same customer site (CE, NF, etc.) can terminate one or multiple bearers; each of them uniquely identified by a reference that is assigned by the network provider. These bearers can terminate on the same or distinct network nodes. CEs that terminate multiple bearers are called multi-homed CEs.
 
-A bearer request may indicate some hints about the placement constraints ('placement-constraints'). These constraints are used by a provider to determine how/where to terminate a bearer in the network side (e.g., PoP/PE selection).
+A bearer can be created, modified, or discovered from the network. For example, the following deployment options can be considered:
+
+'Greenfield creation':
+
+: In this scenario, bearers are created from scratch using specific requests made to a network controller. This method  allows providers to tailor bearer creation to meet customer-specific needs. For example, a bearer request may indicate some hints about the placement constraints ('placement-constraints'). These constraints are used by a provider to determine how/where to terminate a bearer in the network side (e.g., PoP/PE selection).
+
+'Auto-discovery using network protocols':
+
+: Devices can use specific protocols (e.g., Link Layer Discovery Protocol (LLDP)) to automatically discover and connect to available network resources. A network controller can use such reported information to expose discovered bearers from the network using the same bearer structure.
 
 The descriptions of the bearer data nodes are as follows:
 
@@ -310,16 +318,20 @@ The descriptions of the bearer data nodes are as follows:
 
 : The "admin-status" attribute is typically configured by a network or operator to indicate whether the network element or service is enabled, disabled, or subjected to additional testing or pre-deployment checks. These additional options, such as 'admin-testing' and 'admin-pre-deployment', provide the operators the flexibility to conduct additional validations on the bearer before deploying services over that connection.
 
+
+'oper-status':
+: The "oper-status" of a service reflects its operational state as observed at a particular bearer. As a bearer can contain multiple services, the operational status should only reflect the status of the bearer connection. To obtain network-level service status, specific network models such as those in {{Section 7.3 of !RFC9182}}  or {{Section 7.3 of !RFC9291}} should be consulted.
 : It is important to note that the "admin-status" attribute should remain independent of the "oper-status". In other words, the setting of the intended administrative state (e.g., whether "admin-up" or "admin-testing") MUST NOT be influenced by the current operational state. If the bearer is administratively set to 'admin-down', it is expected that the bearer will also be operationally 'op-down' as a result of this administrative decision.
 
-: The "oper-status" of a service reflects its operational state as observed at a particular bearer. As a bearer can be used fir multiple services, the operational status should only reflect the status of the bearer connection. The network-level service status can be retrieved using specific   network models, e.g., those listed in {{Section 7.3 of !RFC9182}} or
-{{Section 7.3 of !RFC9291}}.
+
+
+'Anomaly Detection':
 
 : To assess the service delivery status for a given bearer comprehensively, it is recommended to consider both administrative and operational service status values in conjunction. This holistic approach  allows a network controller or operator to identify anomalies effectively.
-
 : For instance, when a bearer is administratively enabled but the "operational-status" of that bearer is reported as "op-down", it should be expected that the "oper-status" of services transported over that bearer is also down. If these status values differ, a trigger to detect an anomaly.
-
 : See {{!RFC9181}} for more details.
+
+
 
 
 ## The Attachment Circuit Service ("ietf-ac-svc") YANG Module
