@@ -317,7 +317,7 @@ The descriptions of the bearer data nodes are as follows:
 
 : To assess the service delivery status for a given bearer comprehensively, it's recommended to consider both administrative and operational service statuses in conjunction. This holistic approach  allows a network controller or operator to identify anomalies effectively.
 
-: For instance, when a beraer is administratively enabled but the "operational-status" of that bearer is reported as "op-down" it should be expected that the services's transported for thar bearer "oper-status" is also "down." If these statuses differ, it serves as a trigger to detect an anomaly.
+: For instance, when a bearer is administratively enabled but the "operational-status" of that bearer is reported as "op-down", it should be expected that the "oper-status" of services transported over that bearer is also down. If these status values differ, a trigger to detect an anomaly.
 
 : See {{!RFC9181}} for more details.
 
