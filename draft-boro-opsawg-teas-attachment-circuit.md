@@ -310,7 +310,7 @@ The descriptions of the bearer data nodes are as follows:
 
 : The "admin-status" attribute is typically configured by a network or operator to indicate whether the network element or service is enabled, disabled, or subjected to additional testing or pre-deployment checks. These additional options, such as 'admin-testing' and 'admin-pre-deployment', provide the operators the flexibility to conduct additional validations on the bearer before deploying services over that connection.
 
-: It's important to note that the "admin-status" attribute should remain independent of the "oper-status". In other words, the intended administrative state, whether "admin-up" or "admin-testing", should not be influenced by the current operational state. If the bearer is administratively set to 'admin-down', it is expected that the bearer will also be operationally 'op-down' as a result of this administrative decision.
+: It is important to note that the "admin-status" attribute should remain independent of the "oper-status". In other words, the setting of the intended administrative state (e.g., whether "admin-up" or "admin-testing") MUST NOT be influenced by the current operational state. If the bearer is administratively set to 'admin-down', it is expected that the bearer will also be operationally 'op-down' as a result of this administrative decision.
 
 : The "oper-status" of a service reflects its operational state as observed at a particular bearer. As a bearer can be used fir multiple services, the operational status should only reflect the status of the bearer connection. The network-level service status can be retrieved using specific   network models, e.g., those listed in {{ Section 7.3 of !RFC9182}} or
 {{Section 7.3 of !RFC9291}}.
