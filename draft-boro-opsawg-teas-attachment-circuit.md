@@ -316,19 +316,19 @@ The descriptions of the bearer data nodes are as follows:
 'status':
 : Used to track the overall status of a given bearer. Both operational and administrative status are maintained together with a timestamp.
 
-'adnmin-status':
-: The "admin-status" attribute is typically configured by a network administrator or operator to determine whether the network element or service is enabled, disabled, or subjected to additional testing or pre-deployment checks. These additional options, such as 'admin-testing' and 'admin-pre-deployment', provide the operators the flexibility to conduct additional validations on the bearer before deploying services over that connection.
-: It's important to note that the "admin-status" attribute should remain independent of the "oper-status". In other words, the intended administrative state, whether "admin-up" or "admin-testing", should not be influenced by the current operational state. If the bearer is administratively set to 'admin-down', it is expected that the bearer will also be operationally 'op-down' as a result of this administrative decision.
+: The "admin-status" attribute is typically configured by a network or operator to indicate whether the network element or service is enabled, disabled, or subjected to additional testing or pre-deployment checks. These additional options, such as 'admin-testing' and 'admin-pre-deployment', provide the operators the flexibility to conduct additional validations on the bearer before deploying services over that connection.
+
 
 'oper-status':
 : The "oper-status" of a service reflects its operational state as observed at a particular bearer. As a bearer can contain multiple services, the operational status should only reflect the status of the bearer connection. To obtain network-level service status, specific network models such as those in {{Section 7.3 of !RFC9182}}  or {{Section 7.3 of !RFC9291}} should be consulted.
+: It is important to note that the "admin-status" attribute should remain independent of the "oper-status". In other words, the setting of the intended administrative state (e.g., whether "admin-up" or "admin-testing") MUST NOT be influenced by the current operational state. If the bearer is administratively set to 'admin-down', it is expected that the bearer will also be operationally 'op-down' as a result of this administrative decision.
 
-'Assessing Bearer Delivery Status':
-: To assess the service delivery status for a given bearer comprehensively, it's recommended to consider both administrative and operational service statuses in conjunction. This holistic approach  allows a network controller or operator to identify anomalies effectively.
+
 
 'Anomaly Detection':
-: For instance, when a bearer is administratively enabled but the "operational-status" of that bearer is reported as "down" it should be expected that the "oper-status" of the services transported for that bearer is also "down." If these statuses differ, it serves as a trigger to detect an anomaly.
 
+: To assess the service delivery status for a given bearer comprehensively, it is recommended to consider both administrative and operational service status values in conjunction. This holistic approach  allows a network controller or operator to identify anomalies effectively.
+: For instance, when a bearer is administratively enabled but the "operational-status" of that bearer is reported as "op-down", it should be expected that the "oper-status" of services transported over that bearer is also down. If these status values differ, a trigger to detect an anomaly.
 : See {{!RFC9181}} for more details.
 
 
