@@ -3,7 +3,7 @@ title: "A Network YANG Data Model for Attachment Circuits"
 abbrev: "A YANG Network Model for ACs"
 category: std
 
-docname: draft-boro-opsawg-ntw-attachment-circuit-latest
+docname: draft-ietf-opsawg-ntw-attachment-circuit-latest
 submissiontype: IETF
 number:
 date:
