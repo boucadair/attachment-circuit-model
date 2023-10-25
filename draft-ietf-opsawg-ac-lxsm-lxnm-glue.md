@@ -3,7 +3,7 @@ title: "A YANG Data Model for Augmenting VPN Service and Network Models with Att
 abbrev: "AC Glue for VPN Models"
 category: std
 
-docname: draft-boro-opsawg-ac-lxsm-lxnm-glue-latest
+docname: draft-ietf-opsawg-ac-lxsm-lxnm-glue-latest
 submissiontype: IETF
 number:
 date:
@@ -20,6 +20,7 @@ author:
  -
     fullname: Mohamed Boucadair
     organization: Orange
+    role: editor
     email: mohamed.boucadair@orange.com
 
  -
