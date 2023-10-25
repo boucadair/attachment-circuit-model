@@ -3,7 +3,7 @@ title: "A Common YANG Data Model for Attachment Circuits"
 abbrev: "Common Attachment Circuit YANG"
 category: std
 
-docname: draft-boro-opsawg-teas-common-ac-latest
+docname: draft-ietf-opsawg-teas-common-ac-latest
 submissiontype: IETF
 number:
 date:
