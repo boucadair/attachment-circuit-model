@@ -3,7 +3,7 @@ title: "YANG Data Models for 'Attachment Circuits'-as-a-Service (ACaaS)"
 abbrev: "ACaaS"
 category: std
 
-docname: draft-boro-opsawg-teas-attachment-circuit-latest
+docname: draft-ietf-opsawg-teas-attachment-circuit-latest
 submissiontype: IETF
 number:
 date:
