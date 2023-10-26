@@ -123,7 +123,7 @@ An example of ACs is depicted in {{uc}}. A Customer Edge (CE) may be a physical 
 '-------'                |                    |         '----+--'
                          '-----------+--------'              |
                                      |                       |
-                                     \-----------AC----------/ 
+                                     \-----------AC----------/
 ~~~~
 {: #uc title='Examples of ACs' artwork-align="center"}
 
