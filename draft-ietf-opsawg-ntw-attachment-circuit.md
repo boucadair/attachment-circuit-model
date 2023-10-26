@@ -100,7 +100,7 @@ The document leverages {{!RFC9182}} and {{!RFC9291}} by adopting an AC provision
 
 The AC network model is designed as an augmnetation to the Service Attachment Point (SAP) model {{!RFC9408}}. An AC can be bound to a single or multiple SAPs. Likewise, the model is designed to accomdate deployments where a SAP can be bound to one or multiple ACs.
 
-~~~~
+~~~~ aasvg
                     .---.
                     |CE6|
                     '-+-'
@@ -168,7 +168,7 @@ Service provider:
 
 {{u-ex}} shows the positioning of the AC network model in the overall service delivery process.
 
-~~~~
+~~~~ aasvg
                           +---------------+
                           |   Customer    |
                           +-------+-------+
@@ -305,7 +305,7 @@ The security tree structure is shown in {{sec-tree}}.
 
 This module uses types defined in {{!RFC6991}}, {{!RFC8177}}, {{!RFC8294}}, {{!RFC8343}}, {{!RFC9181}}, {{!I-D.boro-opsawg-teas-common-ac}}, and IEEE Std 802.1Qcp.
 
-~~~~
+~~~~ yang
 <CODE BEGINS> file "ietf-ac-ntw@2022-11-30.yang"
 {::include ./yang/ietf-ac-ntw.yang}
 <CODE ENDS>
