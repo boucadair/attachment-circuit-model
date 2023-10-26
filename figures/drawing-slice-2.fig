@@ -1,23 +1,19 @@
-                             AS 65536  ◄────BGP───► AS 65550
-
- ┌───┐                     ┌────────┐                    ┌───┐
- │NF1│       192.0.2.0/30  │        │   192.0.2.4/30     │NF2│
- └─┬─┘   ┌───┐          ┌──┴┐      ┌┴──┐          ┌───┐  └─┬─┘
-   │     │   │.1      .2│   │      │   │.6      .5│   │    │
- ──┴─────┤GW1│----------│PE1│      │PE2│----------│GW2├────┴──
-         │   │ vlan-id  │   │      │   │ vlan-id  │   │
-         └───┘   100    └──┬┘      └┬──┘   200    └───┘
-198.51.100.0/24            │        │             203.0.113.0/24
-                           └────────┘
+                             AS 65536  <----BGP--> AS 65550
+ .---.                     .--------.                    .---.
+ │NF1│       192.0.2.0/30  |        |   192.0.2.4/30     │NF2│
+ '-+-'   .---.          .--+.      .+--.          .---.  '-+-'
+   |     |   |.1      .2|   |      |   |.6      .5|   |    |
+ --+-----+GW1+----------+PE1|      |PE2+----------+GW2+----+----
+         |   | vlan-id  |   |      |   | vlan-id  |   |
+         '---'   100    '--+'      '+--'   200    '---'
+198.51.100.0/24            |        |             203.0.113.0/24
+                           '--------+'
                          sdp1      sdp2
-             ◄─────────► ◄────────────► ◄─────────►
-             Attachment   Ietf Network   Attachment
-              Circuit         Slice       Circuit
-                ac1         EMBB_UP        ac2
+             <----------> <------------> <------->
+             Attachment   Network Slice   Attachment
+             Circuit "ac1"    EMBB_UP     Circuit "ac2"                
 
-
-
- ac1 properties:
+ * "ac1" properties:
  - bearer-reference: bearerX@site1
  - vlan-id: 100
  - CE address (GW1): 192.0.2.1/30
@@ -25,11 +21,11 @@
  - Routing: static 198.51.100.0/24 via
             192.0.2.1 tag primary_UP_slice
 
- ac2 properties:
+ * "ac2" properties:
  - bearer-reference: bearerY@site2
  - vlan-id: 200
  - CE address (GW2): 192.0.2.5/30
  - PE address: 192.0.2.6/30
- - Routing: BGP local-as:65536
-                customer-as:65550
+ - Routing: BGP local-as: 65536
+                customer-as: 65550
                 customer-address: 192.0.2.5
