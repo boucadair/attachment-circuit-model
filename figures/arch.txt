@@ -1,0 +1,38 @@
+                          .---------------.
+                          |   Customer    |
+                          '-------+-------'
+          Customer Service Model  |
+          e.g., slice-svc, ac-svc,| and bearer-svc
+                          .-------+-------.
+                          |    Service    |
+                          | Orchestration |
+                          '-------+-------'
+           Network Model          |
+  e.g., l3vpn-ntw, sap, and ac-ntw|
+                          .-------+-------.
+                          |   Network     |
+                          | Orchestration |
+                          '-------+-------'
+    Network Configuration Model   |
+                      .-----------+-----------.
+                      |                       |
+             .--------+------.       .--------+------.
+             |    Domain     |       |     Domain    |
+             | Orchestration |       | Orchestration |
+             '---+-----------'       '--------+------'
+  Device         |        |                   |
+  Configuration  |        |                   |
+  Model          |        |                   |
+            .----+----.   |                   |
+            | Config  |   |                   |
+            | Manager |   |                   |
+            '----+----'   |                   |
+                 |        |                   |
+                 | NETCONF/CLI..................
+                 |        |                   |
+               .--------------------------------.
+ .----. Bearer |                                | Bearer .----.
+ |CE#1+--------+            Network             +--------+CE#2|
+ '----'        |                                |        '----'
+               '--------------------------------'
+  Site A                                                  Site B
