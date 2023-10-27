@@ -169,44 +169,7 @@ Service provider:
 {{u-ex}} shows the positioning of the AC network model in the overall service delivery process.
 
 ~~~~ aasvg
-                          +---------------+
-                          |   Customer    |
-                          +-------+-------+
-          Customer Service Model  |
-        e.g., slice-svc, ac-svc   |
-                          +-------+-------+
-                          |    Service    |
-                          | Orchestration |
-                          +-------+-------+
-           Network Model          |
-     e.g., l3vpn-ntw, sap, ac-ntw |
-                          +-------+-------+
-                          |   Network     |
-                          | Orchestration |
-                          +-------+-------+
-    Network Configuration Model   |
-                      +-----------+-----------+
-                      |                       |
-             +--------+------+       +--------+------+
-             |    Domain     |       |     Domain    |
-             | Orchestration |       | Orchestration |
-             +---+-----------+       +--------+------+
-  Device         |        |                   |
-  Configuration  |        |                   |
-  Model          |        |                   |
-            +----+----+   |                   |
-            | Config  |   |                   |
-            | Manager |   |                   |
-            +----+----+   |                   |
-                 |        |                   |
-                 | NETCONF/CLI..................
-                 |        |                   |
-                 +--------------------------------+
-   +----+ Bearer |                                | Bearer +----+
-   |CE#1+--------+            Network             +--------+CE#2|
-   +----+        |                                |        +----+
-                 +--------------------------------+
-   Site A                                                  Site B
+{::include ./figures/arch.txt}
 ~~~~
 {: #u-ex title="An Example of the Network AC Model Usage" artwork-align="center"}
 
