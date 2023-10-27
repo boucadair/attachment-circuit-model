@@ -112,18 +112,7 @@ When a customer requests a new value-added service, the service can be bound to 
 An example of ACs is depicted in {{uc}}. A Customer Edge (CE) may be a physical node or a logical entity. A CE is seen by the network as a peer Service Attachment Point (SAP) {{?RFC9408}}. CEs may be dedicated to one single service (e.g., Layer 3 VPN, Layer 2 VPN) or host multiple services (e.g., Service Functions {{?RFC7665}}). A single AC (as seen by a network provider) may be bound to one or multiple peer SAPs (e.g., CE#1 and CE#2). For example, and as discussed in {{?RFC4364}}, multiple CEs can be attached to a PE over the same attachment circuit. This is typically implemented if the layer 2 infrastructure between the CE and the network provides a multipoint service. The same CE may terminate multiple ACs. These ACes may be over the same or distinct bearers.
 
 ~~~~ aasvg
-.-------.                .--------------------.         .-------.
-│       +------.         |                    +---AC----+       |
-│ CE#1  │      |         |                    +---AC----+ CE#3  |
-'-------'      |         |                    |         '-------'
-               +---AC----+     Network        |
-.-------.      |         |                    |
-|       |      |         |                    |         .-------.
-| CE#2  +------/         |                    +---AC----+ CE#4  |
-'-------'                |                    |         '----+--'
-                         '-----------+--------'              |
-                                     |                       |
-                                     \-----------AC----------/
+{::include ./figures/acs-examples.txt}
 ~~~~
 {: #uc title='Examples of ACs' artwork-align="center"}
 
@@ -308,9 +297,9 @@ This module uses types defined in {{!RFC6991}}, {{!RFC8177}}, and  {{!RFC9181}}.
 
 ~~~~
    Name:  ietf-ac-common
-   Maintained by IANA?  N
    Namespace:  urn:ietf:params:xml:ns:yang:ietf-ac-common
    Prefix:  ac-common
+   Maintained by IANA?  N
    Reference:  RFC xxxx
 ~~~~
 
