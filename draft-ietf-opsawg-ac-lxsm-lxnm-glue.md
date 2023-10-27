@@ -96,19 +96,8 @@ LxNM refers to both the L2NM and the L3NM.
 * Customers may request protection schemes in which the ACs associated with their endpoints are terminated by the same PE (e.g., CE#3), distinct PEs (e.g., CE#34), etc. The network provider uses this request to decide where to terminate the AC in the network provider network and also whether to enable specific capabilities (e.g., Virtual Router Redundancy Protocol (VRRP)).
 
 
-~~~~
-┌───────┐                ┌────────────────────┐           ┌───────┐
-│       ├──────┐         │                    ├────AC─────┤       │
-│ CE#1  │      │         │                    ├────AC─────┤ CE#3  |
-└───────┘      │         │                    │           └───────┘
-               ├───AC────┤     Network        │
-┌───────┐      │         │                    │
-│       │      │         │                    │           ┌───────┐
-│ CE#2  ├──────┘         │                    │─────AC────┤ CE#4  │
-└───────┘                │                    │           └────+──┘
-                         └───────────+────────┘                |
-                                     |                         |
-                                     └────────────AC───────────┘
+~~~~ aasvg
+{::include ./figures/acs-examples.txt}
 ~~~~
 {: #uc title='Examples of ACs' artwork-align="center"}
 
@@ -118,45 +107,8 @@ The procedure to provision a service in a service provider network may depend on
 
 {{u-ex}} shows the positioning of the AC service model is the overall service delivery process.
 
-~~~~
-                          +---------------+
-                          |   Customer    |
-                          +-------+-------+
-          Customer Service Model  |
-          e.g., slice-svc, ac-svc,| and bearer-svc
-                          +-------+-------+
-                          |    Service    |
-                          | Orchestration |
-                          +-------+-------+
-           Network Model          |
-  e.g., l3vpn-ntw, sap, and ac-ntw|
-                          +-------+-------+
-                          |   Network     |
-                          | Orchestration |
-                          +-------+-------+
-    Network Configuration Model   |
-                      +-----------+-----------+
-                      |                       |
-             +--------+------+       +--------+------+
-             |    Domain     |       |     Domain    |
-             | Orchestration |       | Orchestration |
-             +---+-----------+       +--------+------+
-  Device         |        |                   |
-  Configuration  |        |                   |
-  Model          |        |                   |
-            +----+----+   |                   |
-            | Config  |   |                   |
-            | Manager |   |                   |
-            +----+----+   |                   |
-                 |        |                   |
-                 | NETCONF/CLI..................
-                 |        |                   |
-               +--------------------------------+
- +----+ Bearer |                                | Bearer +----+
- |CE#1+--------+            Network             +--------+CE#2|
- +----+        |                                |        +----+
-               +--------------------------------+
-  Site A                                                  Site B
+~~~~ aasvg
+{::include ./figures/arch.txt}
 ~~~~
 {: #u-ex title="An Example of AC Model Usage" artwork-align="center"}
 
@@ -232,9 +184,9 @@ ACs created using the "ietf-ac-svc" module {{!I-D.boro-opsawg-teas-attachment-ci
 
 ~~~~
    Name:  ietf-ac-glue
-   Maintained by IANA?  N
    Namespace:  urn:ietf:params:xml:ns:yang:ietf-ac-glue
    Prefix:  ac-glue
+   Maintained by IANA?  N
    Reference:  RFC xxxx
 ~~~~
 
