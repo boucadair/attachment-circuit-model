@@ -198,19 +198,19 @@ Service provider:
 * Customers may request protection schemes in which the ACs associated with their endpoints are terminated by the same PE (e.g., CE#3), distinct PEs (e.g., CE#34), etc. The network provider uses this request to decide where to terminate the AC in the network provider network and also whether to enable specific capabilities (e.g., Virtual Router Redundancy Protocol (VRRP)).
 
 
-~~~~
-┌───────┐                ┌────────────────────┐           ┌───────┐
-│       ├──────┐         │                    ├────AC─────┤       │
-│ CE#1  │      │         │                    ├────AC─────┤ CE#3  |
-└───────┘      │         │                    │           └───────┘
-               ├───AC────┤     Network        │
-┌───────┐      │         │                    │
-│       │      │         │                    │           ┌───────┐
-│ CE#2  ├──────┘         │                    │─────AC────┤ CE#4  │
-└───────┘                │                    │           └────+──┘
-                         └───────────+────────┘                |
-                                     |                         |
-                                     └────────────AC───────────┘
+~~~~ aasvg
+.-------.                .--------------------.         .-------.
+│       +------.         |                    +---AC----+       |
+│ CE#1  │      |         |                    +---AC----+ CE#3  |
+'-------'      |         |                    |         '-------'
+               +---AC----+     Network        |
+.-------.      |         |                    |
+|       |      |         |                    |         .-------.
+| CE#2  +------/         |                    +---AC----+ CE#4  |
+'-------'                |                    |         '----+--'
+                         '-----------+--------'              |
+                                     |                       |
+                                     \-----------AC----------/
 ~~~~
 {: #uc title='Examples of ACs' artwork-align="center"}
 
@@ -221,43 +221,43 @@ The procedure to provision a service in a service provider network may depend on
 {{u-ex}} shows the positioning of the AC service model is the overall service delivery process.
 
 ~~~~ aasvg
-                          +---------------+
+                          .---------------.
                           |   Customer    |
-                          +-------+-------+
+                          '-------+-------'
           Customer Service Model  |
           e.g., slice-svc, ac-svc,| and bearer-svc
-                          +-------+-------+
+                          .-------+-------.
                           |    Service    |
                           | Orchestration |
-                          +-------+-------+
+                          '-------+-------'
            Network Model          |
   e.g., l3vpn-ntw, sap, and ac-ntw|
-                          +-------+-------+
+                          .-------+-------.
                           |   Network     |
                           | Orchestration |
-                          +-------+-------+
+                          '-------+-------'
     Network Configuration Model   |
-                      +-----------+-----------+
+                      .-----------+-----------.
                       |                       |
-             +--------+------+       +--------+------+
+             .--------+------.       .--------+------.
              |    Domain     |       |     Domain    |
              | Orchestration |       | Orchestration |
-             +---+-----------+       +--------+------+
+             '---+-----------'       '--------+------'
   Device         |        |                   |
   Configuration  |        |                   |
   Model          |        |                   |
-            +----+----+   |                   |
+            .----+----.   |                   |
             | Config  |   |                   |
             | Manager |   |                   |
-            +----+----+   |                   |
+            '----+----'   |                   |
                  |        |                   |
                  | NETCONF/CLI..................
                  |        |                   |
-               +--------------------------------+
- +----+ Bearer |                                | Bearer +----+
+               .--------------------------------.
+ .----. Bearer |                                | Bearer .----.
  |CE#1+--------+            Network             +--------+CE#2|
- +----+        |                                |        +----+
-               +--------------------------------+
+ '----'        |                                |        '----'
+               '--------------------------------'
   Site A                                                  Site B
 ~~~~
 {: #u-ex title="An Example of AC Model Usage" artwork-align="center"}
@@ -753,19 +753,19 @@ An example of a request to create a simple AC, when the peer SAP is known, is sh
 Let’s consider the example of an eNodeB (CE) that is directly connected to the access routers of the mobile backhaul (see {{enodeb}}). In this example, two ACs are needed to service the eNodeB (e.g., distinct VLANs for Control and User Planes).
 
 ~~~~ aasvg
-+-------------+                  +------------------+
+.-------------.                  .------------------.
 |             |                  | PE               |
 |             |                  |  192.0.2.1       |
 |   eNodeB    |==================|  2001:db8::1     |
-|             |          vlan 1  |                  |
+|             |          VLAN 1  |                  |
 |             |==================|                  |
-|             |          vlan 2  |                  |
+|             |          VLAN 2  |                  |
 |             | Direct           |                  |
-+-------------+ Routing          |                  |
+'-------------' Routing          |                  |
                                  |                  |
                                  |                  |
                                  |                  |
-                                 +------------------+
+                                 '------------------'
 ~~~~
 {: #enodeb title="Example of a CE-PE ACs"}
 
@@ -805,13 +805,13 @@ When multiple ACs are requested by the same customer for the same site, the requ
 ~~~~ aasvg
                                  .---.
                  ac1: primary    |   |
-            +--------------------+PE1|
+            .--------------------+PE1|
 .---.       |    bearerX@site1   |   |
-|   +-------+                    '---'
+|   +-------'                    '---'
 |CE |
-|   +-------+                    .---.
+|   +-------.                    .---.
 '---'       |    ac2: secondary  |   |
-            +--------------------+PE2|
+            '--------------------+PE2|
                  bearerY@site1   |   |
                                  '---'
 ~~~~
