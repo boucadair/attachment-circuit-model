@@ -199,18 +199,7 @@ Service provider:
 
 
 ~~~~ aasvg
-.-------.                .--------------------.         .-------.
-│       +------.         |                    +---AC----+       |
-│ CE#1  │      |         |                    +---AC----+ CE#3  |
-'-------'      |         |                    |         '-------'
-               +---AC----+     Network        |
-.-------.      |         |                    |
-|       |      |         |                    |         .-------.
-| CE#2  +------/         |                    +---AC----+ CE#4  |
-'-------'                |                    |         '----+--'
-                         '-----------+--------'              |
-                                     |                       |
-                                     \-----------AC----------/
+{::include ./figures/acs-examples.txt}
 ~~~~
 {: #uc title='Examples of ACs' artwork-align="center"}
 
@@ -221,44 +210,7 @@ The procedure to provision a service in a service provider network may depend on
 {{u-ex}} shows the positioning of the AC service model is the overall service delivery process.
 
 ~~~~ aasvg
-                          .---------------.
-                          |   Customer    |
-                          '-------+-------'
-          Customer Service Model  |
-          e.g., slice-svc, ac-svc,| and bearer-svc
-                          .-------+-------.
-                          |    Service    |
-                          | Orchestration |
-                          '-------+-------'
-           Network Model          |
-  e.g., l3vpn-ntw, sap, and ac-ntw|
-                          .-------+-------.
-                          |   Network     |
-                          | Orchestration |
-                          '-------+-------'
-    Network Configuration Model   |
-                      .-----------+-----------.
-                      |                       |
-             .--------+------.       .--------+------.
-             |    Domain     |       |     Domain    |
-             | Orchestration |       | Orchestration |
-             '---+-----------'       '--------+------'
-  Device         |        |                   |
-  Configuration  |        |                   |
-  Model          |        |                   |
-            .----+----.   |                   |
-            | Config  |   |                   |
-            | Manager |   |                   |
-            '----+----'   |                   |
-                 |        |                   |
-                 | NETCONF/CLI..................
-                 |        |                   |
-               .--------------------------------.
- .----. Bearer |                                | Bearer .----.
- |CE#1+--------+            Network             +--------+CE#2|
- '----'        |                                |        '----'
-               '--------------------------------'
-  Site A                                                  Site B
+{::include ./figures/arch.txt}
 ~~~~
 {: #u-ex title="An Example of AC Model Usage" artwork-align="center"}
 
