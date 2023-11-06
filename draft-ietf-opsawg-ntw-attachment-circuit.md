@@ -79,7 +79,7 @@ informative:
 
 --- abstract
 
-This document specifies a network model for attachment circuits. The model can be used for the provisioning of attachment circuits prior or during service provisioning (e.g., Network Slice Service). A companion service model is specified in {{!I-D.boro-opsawg-teas-attachment-circuit}}.
+This document specifies a network model for attachment circuits. The model can be used for the provisioning of attachment circuits prior or during service provisioning (e.g., Network Slice Service). A companion service model is specified in {{!I-D.ietf-opsawg-teas-attachment-circuit}}.
 
 The module augments the Service Attachment Point (SAP) model with the detailed information for the provisioning of attachment circuits in Provider Edges (PEs).
 
@@ -92,7 +92,7 @@ Connectivity services are provided by networks to customers via
    customer edges (CEs), peer Autonomous System Border Routers (ASBRs),
    data centers gateways, or Internet Exchange Points.
 
-The procedure to provision a service in a service provider network may depend on the practices adopted by a service provider, including the flow put in place for the provisioning of advanced network services and how they are bound to an Attachment Circuit (AC). For example, the same AC may host multiple services (e.g., Layer 2 VPN, Slice Service, or Layer 3 VPN). In order to avoid service interference and redundant information in various locations, a service provider may expose an interface to manage ACs network-wide. Customers can then request a base AC to be put in place, and then refer to that AC when requesting services to be bound to that AC. {{!I-D.boro-opsawg-teas-attachment-circuit}} specifies a data model for managing attachment circuits as a service.
+The procedure to provision a service in a service provider network may depend on the practices adopted by a service provider, including the flow put in place for the provisioning of advanced network services and how they are bound to an Attachment Circuit (AC). For example, the same AC may host multiple services (e.g., Layer 2 VPN, Slice Service, or Layer 3 VPN). In order to avoid service interference and redundant information in various locations, a service provider may expose an interface to manage ACs network-wide. Customers can then request a base AC to be put in place, and then refer to that AC when requesting services to be bound to that AC. {{!I-D.ietf-opsawg-teas-attachment-circuit}} specifies a data model for managing attachment circuits as a service.
 
 This document specifies a network model for ACs ("ietf-ac-ntw"). The model can be used for the provisioning of ACs prior or during service provisioning.
 
@@ -105,7 +105,7 @@ The AC network model is designed as an augmnetation to the Service Attachment Po
 ~~~~
 {: #sap-ac-ntw title="Attachment Circuits Examples" artwork-align="center"}
 
-The AC network model uses the AC common model defined in {{!I-D.boro-opsawg-teas-common-ac}}.
+The AC network model uses the AC common model defined in {{!I-D.ietf-opsawg-teas-common-ac}}.
 
  The YANG data model in this document conforms to the Network Management Datastore Architecture (NMDA) defined in {{!RFC8342}}.
 
@@ -240,7 +240,7 @@ The security tree structure is shown in {{sec-tree}}.
 
 #  YANG Module
 
-This module uses types defined in {{!RFC6991}}, {{!RFC8177}}, {{!RFC8294}}, {{!RFC8343}}, {{!RFC9181}}, {{!I-D.boro-opsawg-teas-common-ac}}, and IEEE Std 802.1Qcp.
+This module uses types defined in {{!RFC6991}}, {{!RFC8177}}, {{!RFC8294}}, {{!RFC8343}}, {{!RFC9181}}, {{!I-D.ietf-opsawg-teas-common-ac}}, and IEEE Std 802.1Qcp.
 
 ~~~~ yang
 <CODE BEGINS> file "ietf-ac-ntw@2022-11-30.yang"
