@@ -116,7 +116,7 @@ An example of ACs is depicted in {{uc}}. A Customer Edge (CE) may be a physical 
 ~~~~
 {: #uc title='Examples of ACs' artwork-align="center"}
 
-This document specifies a common module ("ietf-ac-common") for ACS. The model is designed with the intent to be reusable by other models and, therefore, ensure consistent AC structures among modules that manipulate ACs. For example, the common model can be reused by service models to expose AC as a service (e.g., {{?I-D.boro-opsawg-teas-attachment-circuit}}), service models that require binding a service to a set of ACs (e.g., {{?I-D.ietf-teas-ietf-network-slice-nbi-yang}})), network models to provision ACs (e.g., {{?I-D.boro-opsawg-ntw-attachment-circuit}}), device models, etc.
+This document specifies a common module ("ietf-ac-common") for ACS. The model is designed with the intent to be reusable by other models and, therefore, ensure consistent AC structures among modules that manipulate ACs. For example, the common model can be reused by service models to expose AC as a service (e.g., {{?I-D.ietf-opsawg-teas-attachment-circuit}}), service models that require binding a service to a set of ACs (e.g., {{?I-D.ietf-teas-ietf-network-slice-nbi-yang}})), network models to provision ACs (e.g., {{?I-D.ietf-opsawg-ntw-attachment-circuit}}), device models, etc.
 
 The common AC module eases data inheritance between modules (e.g., from service to network models as per {{?RFC8969}}).
 
