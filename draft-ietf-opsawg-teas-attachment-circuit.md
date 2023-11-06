@@ -142,7 +142,7 @@ The YANG data models in this document conform to the Network Management Datastor
 
 ## Position ACaaS vs. Other Data Models
 
-The AC model specified in this document **is not a network model** {{?RFC8969}}. As such, the model does not expose details related to specific nodes in the provider's network that terminate an AC. The mapping between an AC as seen by a customer and the network implementation of an AC is maintained by the network controllers and is not exposed to the customer. This mapping can be maintained using a variety of network models, such as augmented SAP AC network model {{?I-D.boro-opsawg-ntw-attachment-circuit}}.
+The AC model specified in this document **is not a network model** {{?RFC8969}}. As such, the model does not expose details related to specific nodes in the provider's network that terminate an AC. The mapping between an AC as seen by a customer and the network implementation of an AC is maintained by the network controllers and is not exposed to the customer. This mapping can be maintained using a variety of network models, such as augmented SAP AC network model {{?I-D.ietf-opsawg-ntw-attachment-circuit}}.
 
 The AC service model **is not a device model**. A network provider may use a variety of device models (e.g., Routing management {{?RFC8349}} or BGP {{?I-D.ietf-idr-bgp-model}}) to provision an AC service.
 
@@ -299,14 +299,14 @@ The overall tree structure of the AC service module is shown in {{o-svc-tree}}.
 
 The full ACaaS tree is available at {{AC-SVC-Tree}}. The full reusable groupings defined in the ACaaS module are shown in {{AC-SVC-GRP}}.
 
-> The rationale for deciding whether a reusable grouping should be maintained in this document or be moved into the AC common module {{!I-D.boro-opsawg-teas-common-ac}} is as follows:
+> The rationale for deciding whether a reusable grouping should be maintained in this document or be moved into the AC common module {{!I-D.ietf-opsawg-teas-common-ac}} is as follows:
 >
 > * Groupings that are reusable among the AC service module, AC network module, other service models, and network models are included in the AC common module.
 > * Groupings that are reusable only by other service models are maintained in the "ietf-ac-svc" module.
 
 Each AC is identified with a unique name ('../ac/name') within a domain. The mapping between this AC and a local PE that terminates the AC is hidden to the application that makes use of the AC service model. This information is internal to the Network controller. As such, the details about the (node-specific) attachment interfaces are not exposed in this service model.
 
-The AC service model uses groupings and types defined in the AC common model {{!I-D.boro-opsawg-teas-common-ac}}. Therefore, the description of these nodes are not reiterated in the following subsections.
+The AC service model uses groupings and types defined in the AC common model {{!I-D.ietf-opsawg-teas-common-ac}}. Therefore, the description of these nodes are not reiterated in the following subsections.
 
 ### Service Profiles {#sec-profiles}
 
@@ -407,7 +407,7 @@ The description of the data nodes is as follows:
 
 #### Layer 2 Connection Structure {#sec-l2}
 
-The 'l2-connection' container ({{l2-svc-tree}}) is used to configure the relevant Layer 2 properties of an AC including: encapsulation details and tunnel terminations. For the encapsulation details, the model supports the definition of the type as well as the Identifiers (e.g., VLAN-IDs) of each of the encapsulation-type defined. For the second case, attributes for pseudowire, Virtual Private LAN Service (VPLS), and  Virtual eXtensible Local Area Network (VXLAN) tunnel terminations are included. This structure relies upon the common groupings defined in {{!I-D.boro-opsawg-teas-common-ac}}.
+The 'l2-connection' container ({{l2-svc-tree}}) is used to configure the relevant Layer 2 properties of an AC including: encapsulation details and tunnel terminations. For the encapsulation details, the model supports the definition of the type as well as the Identifiers (e.g., VLAN-IDs) of each of the encapsulation-type defined. For the second case, attributes for pseudowire, Virtual Private LAN Service (VPLS), and  Virtual eXtensible Local Area Network (VXLAN) tunnel terminations are included. This structure relies upon the common groupings defined in {{!I-D.ietf-opsawg-teas-common-ac}}.
 
 ~~~~
 {::include ./yang/subtrees/l2-stree.txt}
@@ -418,7 +418,7 @@ The 'l2-connection' container ({{l2-svc-tree}}) is used to configure the relevan
 
 #### IP Connection Structure {#sec-l3}
 
-The 'ip-connection' container is used to configure the relevant IP properties of an AC. The model supports the usage of dynamic and static addressing. This structure relies upon the common groupings defined in {{!I-D.boro-opsawg-teas-common-ac}}. Both IPv4 and IPv6 parameters are supported.
+The 'ip-connection' container is used to configure the relevant IP properties of an AC. The model supports the usage of dynamic and static addressing. This structure relies upon the common groupings defined in {{!I-D.ietf-opsawg-teas-common-ac}}. Both IPv4 and IPv6 parameters are supported.
 
 {{ipv4-svc-tree}} shows the structure of the IPv4 connection.
 
@@ -537,7 +537,7 @@ As shown in the tree depicted in {{bw-tree}}, the 'service' container defines th
   provider).
 
 Both 'svc-pe-to-ce-bandwidth' and 'svc-ce-to-pe-bandwidth' can be represented using the Committed Information Rate (CIR), the Excess
-Information Rate (EIR), or the Peak Information Rate (PIR). Both reuse the 'bandwidth-per-type' grouping defined in {{!I-D.boro-opsawg-teas-common-ac}}.
+Information Rate (EIR), or the Peak Information Rate (PIR). Both reuse the 'bandwidth-per-type' grouping defined in {{!I-D.ietf-opsawg-teas-common-ac}}.
 
 ~~~~
 {::include ./yang/subtrees/bw-stree.txt}
@@ -558,7 +558,7 @@ This module uses types defined in {{!RFC6991}} and {{!RFC9181}}.
 
 ## The AC Service ("ietf-ac-svc") YANG Module
 
-This module uses types defined in {{!RFC6991}}, {{!RFC9181}}, {{!RFC8177}}, and {{!I-D.boro-opsawg-teas-common-ac}}.
+This module uses types defined in {{!RFC6991}}, {{!RFC9181}}, {{!RFC8177}}, and {{!I-D.ietf-opsawg-teas-common-ac}}.
 
 ~~~~~~~~~~ yang
 <CODE BEGINS> file ietf-ac-svc@2022-11-30.yang
