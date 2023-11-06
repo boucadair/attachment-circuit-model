@@ -58,7 +58,7 @@ informative:
 
    The document specifies a YANG module that updates existing service and
    network VPN modules with the required information to bind specific
-   services to Attachment Circuits (ACs) that are created using the AC service model {{!I-D.boro-opsawg-teas-attachment-circuit}}, specifically the following modules are augmented:
+   services to Attachment Circuits (ACs) that are created using the AC service model {{!I-D.ietf-opsawg-teas-attachment-circuit}}, specifically the following modules are augmented:
 
 * The Layer 2 Service Model (L2SM) {{!RFC8466}}
 * The Layer 3 Service Model (L3SM) {{!RFC8299}}
@@ -71,7 +71,7 @@ informative:
 
 The meanings of the symbols in the YANG tree diagrams are defined in {{?RFC8340}}.
 
-This document uses terms defined in {{!I-D.boro-opsawg-teas-attachment-circuit}}.
+This document uses terms defined in {{!I-D.ietf-opsawg-teas-attachment-circuit}}.
 
 LxSM refers to both the L2SM and the L3SM.
 
@@ -115,7 +115,7 @@ The procedure to provision a service in a service provider network may depend on
 
 # Module Tree Structure
 
-ACs created using the "ietf-ac-svc" module {{!I-D.boro-opsawg-teas-attachment-circuit}} can be referenced in other
+ACs created using the "ietf-ac-svc" module {{!I-D.ietf-opsawg-teas-attachment-circuit}} can be referenced in other
    modules (e.g., L2SM, L3SM, L2NM, L3NM, and Slicing).  Some
    augmentations are required to that aim as shown in {{tree}}.
 
