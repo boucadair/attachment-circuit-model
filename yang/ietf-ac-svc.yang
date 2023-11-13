@@ -711,7 +711,7 @@ module ietf-ac-svc {
     }
   }
 
-  // Bandwith
+  // Bandwith parameters
 
   grouping bandwidth {
     description
@@ -734,7 +734,7 @@ module ietf-ac-svc {
     }
   }
 
-  // Basic AC parameter
+  // Basic AC parameters
 
   grouping ac-basic {
     description
@@ -940,7 +940,7 @@ module ietf-ac-svc {
              Service).";
           reference
             "RFC 9408: A YANG Network Data Model for Service 
-                       Attachment Points (SAPs), Section 5"
+                       Attachment Points (SAPs), Section 5";
         }
         leaf service-id {
           type string;
