@@ -85,14 +85,14 @@ module ietf-ac-ntw {
      This version of this YANG module is part of RFC xxx; see the
      RFC itself for full legal notices.";
 
-  revision 2022-11-30 {
+  revision 2023-11-13 {
     description
       "Initial revision.";
     reference
-      "RFC xxxx: A YANG Network Data Model for Attachment Circuits";
+      "RFC XXXX: A YANG Network Data Model for Attachment Circuits";
   }
 
-  // L2 conenction
+  // L2 connection groupings
 
   grouping l2-connection {
     description
@@ -350,7 +350,7 @@ module ietf-ac-ntw {
     }
   }
 
-  // IPv4 connection
+  // IPv4 connection groupings
 
   grouping ipv4-connection {
     description
