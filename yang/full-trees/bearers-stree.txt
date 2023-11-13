@@ -41,6 +41,7 @@ module: ietf-bearer-svc
         |  |     +--rw country-code?   string
         |  +--rw custom-id?       string
         +--rw requested-type?     identityref
+        +--rw test-only?          empty
         +--ro bearer-reference?   string {vpn-common:bearer-reference}?
         +--rw requested-start?    yang:date-and-time
         +--rw requested-stop?     yang:date-and-time
