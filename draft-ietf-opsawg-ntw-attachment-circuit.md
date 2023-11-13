@@ -243,7 +243,7 @@ The security tree structure is shown in {{sec-tree}}.
 This module uses types defined in {{!RFC6991}}, {{!RFC8177}}, {{!RFC8294}}, {{!RFC8343}}, {{!RFC9181}}, {{!I-D.ietf-opsawg-teas-common-ac}}, and IEEE Std 802.1Qcp.
 
 ~~~~ yang
-<CODE BEGINS> file "ietf-ac-ntw@2022-11-30.yang"
+<CODE BEGINS> file "ietf-ac-ntw@2023-11-13.yang"
 {::include ./yang/ietf-ac-ntw.yang}
 <CODE ENDS>
 ~~~~
