@@ -367,6 +367,7 @@ module: ietf-ac-svc
         |  +--rw precedence?   identityref
         +--rw name                 string
         +--rw service-profile*     service-profile-reference
+        +--rw ac-bundle-ref?       ac-svc:attachment-circuit-reference
         +--rw l2-connection
         |  +--rw encapsulation
         |  |  +--rw type?              identityref
