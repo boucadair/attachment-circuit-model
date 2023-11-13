@@ -19,6 +19,9 @@
         +--rw group* [group-id]
         |  +--rw group-id      string
         |  +--rw precedence?   identityref
+        +--ro service-refs* [service-type service-id]
+        |  +--ro service-type    identityref
+        |  +--ro service-id      string
         +--rw name                 string
         +--rw service-profile*     service-profile-reference        
         +--rw l2-connection
