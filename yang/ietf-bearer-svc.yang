@@ -318,6 +318,13 @@ module ietf-bearer-svc {
         description
           "Type of the requested bearer (e.g., Ethernet or wireless)";
       }
+      leaf test-only {
+        type empty;
+        description
+         "When present, this indicates that this is a feasibility
+          check request. No resources are commited for such bearer 
+          requests.";
+      }
       leaf bearer-reference {
         if-feature "vpn-common:bearer-reference";
         type string;
