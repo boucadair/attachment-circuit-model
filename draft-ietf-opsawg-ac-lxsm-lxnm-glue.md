@@ -127,7 +127,7 @@ ACs created using the "ietf-ac-svc" module {{!I-D.ietf-opsawg-teas-attachment-ci
 # The AC Glue ("ietf-ac-glue") YANG Module
 
 ~~~~~~~~~~
-<CODE BEGINS> file ietf-ac-glue@2023-07-13.yang
+<CODE BEGINS> file ietf-ac-glue@2023-11-13.yang
 {::include ./yang/ietf-ac-glue.yang}
 <CODE ENDS>
 ~~~~~~~~~~
