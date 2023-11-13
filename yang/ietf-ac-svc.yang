@@ -63,7 +63,7 @@ module ietf-ac-svc {
      This version of this YANG module is part of RFC XXXX; see the
      RFC itself for full legal notices.";
 
-  revision 2022-11-30 {
+  revision 2023-11-13 {
     description
       "Initial revision.";
     reference
@@ -204,7 +204,7 @@ module ietf-ac-svc {
           base vpn-common:encapsulation-type;
         }
         description
-          "Encapsulation type.";
+          "Indicates the encapsulation type.";
       }
       container dot1q {
         when "derived-from-or-self(../type, 'vpn-common:dot1q')" {
