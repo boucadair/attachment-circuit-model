@@ -238,7 +238,7 @@ Bandwidth parameters ({{bw-full-tree}}):
 This module uses types defined in {{!RFC6991}}, {{!RFC8177}}, and  {{!RFC9181}}.
 
 ~~~~~~~~~~
-<CODE BEGINS> file ietf-ac-common@2022-11-30.yang
+<CODE BEGINS> file ietf-ac-common@2023-11-13.yang
 {::include ./yang/ietf-ac-common.yang}
 <CODE ENDS>
 ~~~~~~~~~~
