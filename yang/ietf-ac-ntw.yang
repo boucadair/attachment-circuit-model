@@ -1791,7 +1791,7 @@ module ietf-ac-ntw {
             "A reference to an AC profile.";
         }
       }
-      leaf ac-bundle-ref {
+      leaf ac-parent-ref {
         type ac-ntw:attachment-circuit-reference;
         description
           "Specifies the AC bundle that is inherited by an AC.
