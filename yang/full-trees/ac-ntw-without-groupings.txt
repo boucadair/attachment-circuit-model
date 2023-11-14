@@ -78,6 +78,7 @@
        +--rw ac-ref?              ac-svc:attachment-circuit-reference
        +--rw ac-profile* [profile-id]
        |  +--rw profile-id    ac-profile-reference
+       +--rw ac-bundle-ref?       ac-ntw:attachment-circuit-reference
        +--rw peer-sap-id*         string
        +--rw group* [group-id]
        |  +--rw group-id      string
