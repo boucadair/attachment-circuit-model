@@ -158,6 +158,21 @@ Unlike the AC service model, an AC is uniquely identified within the scope of a 
 
 ~~~~
   augment /nw:networks/nw:network:
+    +--rw specific-provisioning-profiles
+    |  +--rw valid-provider-identifiers
+    |     +--rw external-connectivity-identifier* [id]
+    |     |       {external-connectivity}?
+    |     |  +--rw id    string
+    |     +--rw encryption-profile-identifier* [id]
+    |     |  +--rw id    string
+    |     +--rw qos-profile-identifier* [id]
+    |     |  +--rw id    string
+    |     +--rw bfd-profile-identifier* [id]
+    |     |  +--rw id    string
+    |     +--rw forwarding-profile-identifier* [id]
+    |     |  +--rw id    string
+    |     +--rw routing-profile-identifier* [id]
+    |        +--rw id    string
     +--rw ac-profile* [name]
        ...
   augment /nw:networks/nw:network/nw:node/sap:service/sap:sap:
@@ -303,10 +318,10 @@ Several data nodes ('bgp', 'ospf', 'isis', and 'rip') rely upon {{!RFC8177}} for
 
 ~~~~
    Name:  ietf-ac-ntw
-   Maintained by IANA?  N
    Namespace:  urn:ietf:params:xml:ns:yang:ietf-ac-ntw
    Prefix:  ac-ntw
-   Reference:  RFC xxxx
+   Maintained by IANA?  N
+   Reference:  RFC XXXX
 ~~~~
 
 --- back
