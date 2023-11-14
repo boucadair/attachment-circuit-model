@@ -160,9 +160,6 @@ Unlike the AC service model, an AC is uniquely identified within the scope of a 
   augment /nw:networks/nw:network:
     +--rw specific-provisioning-profiles
     |  +--rw valid-provider-identifiers
-    |     +--rw external-connectivity-identifier* [id]
-    |     |       {external-connectivity}?
-    |     |  +--rw id    string
     |     +--rw encryption-profile-identifier* [id]
     |     |  +--rw id    string
     |     +--rw qos-profile-identifier* [id]
