@@ -44,4 +44,6 @@
        |           +--ro status?        identityref
        |           +--ro last-change?   yang:date-and-time
        +--rw security
+       |  ...
+       +--rw service
           ...
