@@ -84,6 +84,11 @@ informative:
     date: 2023
     target: https://github.com/boucadair/attachment-circuit-model/blob/main/yang/full-trees/ac-common-with-groupings.txt
 
+  PYANG:
+    title: pyang
+    date: 2023
+    target: https://github.com/mbj4668/pyang
+
 --- abstract
 
 The document specifies a common Attachment Circuits (ACs) YANG module, which is designed with the intent to be reusable by other models. For example, this common model can be reused by service models to expose ACs as a service, service models that require binding a service to a set of ACs, network and device models to provision ACs, etc.
@@ -148,6 +153,11 @@ Service provider:
 : A service provider that offers network services (e.g., Layer 3 VPN, Layer 2 VPN, and Network Slice Services).
 
 # Description of the AC Common YANG Module
+
+The full tree diagram of the module can be generated using the
+"pyang" tool {{PYANG}}.  That tree is not included here because it is
+too long ({{Section 3.3 of ?RFC8340}}).  Instead, subtrees are provided
+for the reader's convenience.
 
 The full tree of the "ietf-ac-common" module is available at {{AC-Common-Tree}}.
 
