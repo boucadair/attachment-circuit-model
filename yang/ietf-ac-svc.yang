@@ -359,7 +359,7 @@ module ietf-ac-svc {
         description
           "List of BGP peer-groups configured on the local 
            system - uniquely identified by peer-group
-           name";
+           name.";
         uses ac-common:bgp-peer-group-with-name;
         leaf local-address {
           type inet:ip-address;
@@ -491,8 +491,9 @@ module ietf-ac-svc {
           list peer-group {
             key "name";
             description
-              "List of BGP peer-groups configured on the local system -
-               uniquely identified by peer-group name";
+              "List of BGP peer-groups configured on the local
+               system - uniquely identified by peer-group
+               name.";
             uses ac-common:bgp-peer-group-with-name;
           }
         }
