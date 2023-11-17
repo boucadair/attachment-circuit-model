@@ -109,7 +109,7 @@ This document adheres to the definition of an Attachment Circuit as provided in 
 
 When a customer requests a new value-added service, the service can be bound to existing attachment circuits or trigger the instantiation of new attachment circuits. Whether these AC are specific to a given service or be used to deliver a variety of services is deployment specific.
 
-An example of ACs is depicted in {{uc}}. A Customer Edge (CE) may be a physical node or a logical entity. A CE is seen by the network as a peer Service Attachment Point (SAP) {{?RFC9408}}. CEs may be dedicated to one single service (e.g., Layer 3 VPN, Layer 2 VPN) or host multiple services (e.g., Service Functions {{?RFC7665}}). A single AC (as seen by a network provider) may be bound to one or multiple peer SAPs (e.g., CE#1 and CE#2). For example, and as discussed in {{?RFC4364}}, multiple CEs can be attached to a PE over the same attachment circuit. This is typically implemented if the layer 2 infrastructure between the CE and the network provides a multipoint service. The same CE may terminate multiple ACs. These ACes may be over the same or distinct bearers.
+An example of ACs is depicted in {{uc}}. A Customer Edge (CE) may be a physical node or a logical entity. A CE is seen by the network as a peer Service Attachment Point (SAP) {{?RFC9408}}. CEs may be dedicated to one single service (e.g., Layer 3 VPN, Layer 2 VPN) or host multiple services (e.g., Service Functions {{?RFC7665}}). A single AC (as seen by a network provider) may be bound to one or multiple peer SAPs (e.g., CE#1 and CE#2). For example, and as discussed in {{?RFC4364}}, multiple CEs can be attached to a PE over the same attachment circuit. This is typically implemented if the Layer 2 infrastructure between the CE and the network provides a multipoint service. The same CE may terminate multiple ACs. These ACes may be over the same or distinct bearers.
 
 ~~~~ aasvg
 {::include ./figures/acs-examples.txt}
@@ -183,7 +183,7 @@ Layer 2 encapsulations ({{l2-full-tree}}):
 : Groupings for the following encapsulation schemes are supported: dot1Q, QinQ, and priority-tagged.
 
 Layer 2 tunnel services  ({{l2-full-tree}}):
-:  These grouping are used to define layer 2 tunnel services that may be needed for the activation of an AC. Examples of supported Layer 2 servers are the pseudowire
+:  These grouping are used to define Layer 2 tunnel services that may be needed for the activation of an AC. Examples of supported Layer 2 servers are the pseudowire
    ({{Section 6.1 of !RFC8077}}), VPLS, or VXLAN {{!RFC7348}}.
 
 ~~~~
@@ -195,7 +195,7 @@ Layer 3 address allocation ({{l3-full-tree}}):
 : Defines both IPv4 and IPv6 groupings to specify IP address allocation over an AC. Both dynamic and static address schemes are supported.
 
 IP connections ({{l3-full-tree}})::
-: Defines IPv4 and IPv6 grouping for managing layer 3 connectivity over an AC. Both basic and more elaborated IP connection groupings are supported.
+: Defines IPv4 and IPv6 grouping for managing Layer 3 connectivity over an AC. Both basic and more elaborated IP connection groupings are supported.
 
 ~~~~
 {::include ./yang/subtrees/ac-common/ac-common-ipc.txt}
