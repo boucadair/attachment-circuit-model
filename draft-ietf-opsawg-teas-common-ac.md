@@ -224,8 +224,8 @@ Bandwidth parameters ({{bw-full-tree}}):
 : These parameters can be provided per bandwidth type. The following types,
   defined in {{!RFC9181}}, can be used to indicate the bandwidth type:
 
-     'bw-per-cos':  The bandwidth is per Class of Service (CoS).
-     'bw-per-site':  The bandwidth is to all ACs that belong to the same site.
+      'bw-per-cos':  The bandwidth is per Class of Service (CoS).
+      'bw-per-site':  The bandwidth is to all ACs that belong to the same site.
 
 ~~~~
 {::include ./yang/subtrees/ac-common/ac-common-bw.txt}
