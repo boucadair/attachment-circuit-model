@@ -150,8 +150,8 @@ module ietf-ac-svc {
   typedef service-profile-reference {
     type leafref {
       path
-        "/ac-svc:specific-provisioning-profiles"
-      + "/ac-svc:valid-provider-identifiers"
+        "/ac-svc:service-provisioning-profiles"
+      + "/ac-svc:service-profile-identifier"
       + "/ac-svc:id";
     }
     description
