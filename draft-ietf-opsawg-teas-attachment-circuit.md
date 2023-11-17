@@ -152,7 +152,7 @@ The L2SM {{?RFC8466}} covers some AC-related considerations. Nevertheless, the L
 
 ### Why Not Using the L3SM as Reference Data Model for ACaaS?
 
-Like the L2SM, the L3SM {{?RFC8299}} addresses certain AC-related aspects. However, the L3SM structure does not sufficiently address layer 2 provisioning requirements. Additionally, the L3SM is primarily designed for conventional L3VPN deployments and, as such, has some limitations for instantiating ACs in other deployment contexts (e.g., cloud environments). For example, the L3SM does not provide the capability to provision multiple BGP sessions over the same AC.
+Like the L2SM, the L3SM {{?RFC8299}} addresses certain AC-related aspects. However, the L3SM structure does not sufficiently address Layer 2 provisioning requirements. Additionally, the L3SM is primarily designed for conventional L3VPN deployments and, as such, has some limitations for instantiating ACs in other deployment contexts (e.g., cloud environments). For example, the L3SM does not provide the capability to provision multiple BGP sessions over the same AC.
 
 # Conventions and Definitions
 
@@ -191,7 +191,7 @@ Service provider:
 
 * CEs may be either dedicated to one single connectivity service or host multiple connectivity services (e.g., CEs with roles of service functions {{?RFC7665}}).
 
-* A network provider may bind a single AC to one or multiple peer SAPs (e.g., CE#1 and CE#2 are tagged as peer SAPs for the same AC). For example, and as discussed in {{!RFC4364}}, multiple CEs can be attached to a PE over the same attachment circuit. This scenario is typically implemented when the layer 2 infrastructure between the CE and the network is a multipoint service.
+* A network provider may bind a single AC to one or multiple peer SAPs (e.g., CE#1 and CE#2 are tagged as peer SAPs for the same AC). For example, and as discussed in {{!RFC4364}}, multiple CEs can be attached to a PE over the same attachment circuit. This scenario is typically implemented when the Layer 2 infrastructure between the CE and the network is a multipoint service.
 
 * A single CE may terminate multiple ACs, which can be associated with the same bearer or distinct bearers.
 
@@ -588,15 +588,27 @@ This module uses types defined in {{!RFC6991}}, {{!RFC9181}}, {{!RFC8177}}, and 
    and delete operations to these data nodes without proper protection
    or authentication can have a negative effect on network operations.
    These are the subtrees and data nodes and their sensitivity/
+   vulnerability in the "ietf-bearer-svc" module:
+
+   * TBC
+   * TBC
+
+   These are the subtrees and data nodes and their sensitivity/
    vulnerability in the "ietf-ac-svc" module:
 
    * TBC
    * TBC
 
-   Some of the readable data nodes in these YANG module may be considered
+   Some of the readable data nodes in these YANG modules may be considered
    sensitive or vulnerable in some network environments.  It is thus
    important to control read access (e.g., via get, get-config, or
-   notification) to these data nodes.  These are the subtrees and data
+   notification) to these data nodes. These are the subtrees and data
+   nodes and their sensitivity/vulnerability in the "ietf-bearer-svc" module:
+
+   * TBC
+   * TBC
+
+   These are the subtrees and data
    nodes and their sensitivity/vulnerability in the "ietf-ac-svc" module:
 
    'customer-name', 'l2-connection', and 'ip-connection':
@@ -617,7 +629,7 @@ This module uses types defined in {{!RFC6991}}, {{!RFC9181}}, {{!RFC8177}}, and 
    strings in ASCII format.  The use of keys in hexadecimal string
    format would afford greater key entropy with the same number of key-
    string octets.  However, such a format is not included in this
-   version of the AC service model, because it is not supported by the underlying
+   version of the AC service model because it is not supported by the underlying
    device modules (e.g., {{?RFC8695}}).
 
 
