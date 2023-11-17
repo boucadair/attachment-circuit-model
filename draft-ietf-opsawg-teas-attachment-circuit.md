@@ -84,6 +84,11 @@ informative:
     date: 2023
     target: https://raw.githubusercontent.com/boucadair/attachment-circuit-model/main/yang/full-trees/ac-svc-groupings.txt
 
+  PYANG:
+    title: pyang
+    date: 2023
+    target: https://github.com/mbj4668/pyang
+
 --- abstract
 
 This document specifies a YANG service data model for Attachment Circuits (ACs). This model can be used for the provisioning of ACs before or during service provisioning (e.g., Network Slice Service). The document also specifies a service model for managing bearers over which ACs are established.
@@ -287,6 +292,11 @@ The descriptions of the bearer data nodes are as follows:
 
 
 ## The Attachment Circuit Service ("ietf-ac-svc") YANG Module
+
+The full tree diagram of the module can be generated using the
+"pyang" tool {{PYANG}}.  That tree is not included here because it is
+too long ({{Section 3.3 of ?RFC8340}}).  Instead, subtrees are provided
+for the reader's convenience.
 
 ### Overall Structure
 
@@ -552,7 +562,7 @@ This module uses types defined in {{!RFC6991}} and {{!RFC9181}}.
 
 ~~~~~~~~~~ yang
 <CODE BEGINS> file ietf-bearer-svc@2022-11-30.yang
-{::include ./yang/ietf-bearer-svc.yang}
+{::include-fold ./yang/ietf-bearer-svc.yang}
 <CODE ENDS>
 ~~~~~~~~~~
 
@@ -562,7 +572,7 @@ This module uses types defined in {{!RFC6991}}, {{!RFC9181}}, {{!RFC8177}}, and 
 
 ~~~~~~~~~~ yang
 <CODE BEGINS> file ietf-ac-svc@2022-11-30.yang
-{::include ./yang/ietf-ac-svc.yang}
+{::include-fold ./yang/ietf-ac-svc.yang}
 <CODE ENDS>
 ~~~~~~~~~~
 
