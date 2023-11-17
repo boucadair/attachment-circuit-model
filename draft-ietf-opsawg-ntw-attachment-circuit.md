@@ -159,17 +159,7 @@ Unlike the AC service model, an AC is uniquely identified within the scope of a 
 ~~~~
   augment /nw:networks/nw:network:
     +--rw specific-provisioning-profiles
-    |  +--rw valid-provider-identifiers
-    |     +--rw encryption-profile-identifier* [id]
-    |     |  +--rw id    string
-    |     +--rw qos-profile-identifier* [id]
-    |     |  +--rw id    string
-    |     +--rw bfd-profile-identifier* [id]
-    |     |  +--rw id    string
-    |     +--rw forwarding-profile-identifier* [id]
-    |     |  +--rw id    string
-    |     +--rw routing-profile-identifier* [id]
-    |        +--rw id    string
+    |  ...
     +--rw ac-profile* [name]
        ...
   augment /nw:networks/nw:network/nw:node/sap:service/sap:sap:
@@ -204,6 +194,33 @@ Unlike the AC service model, an AC is uniquely identified within the scope of a 
 {: #o-ntw-tree title="Overall Tree Structure"}
 
 The full tree of the 'ac-ntw' is provided in {{AC-Ntw-Tree}}.
+
+## Provisioning Profiles
+
+The specific provisioning profiles tree structure is shown in {{profiles-tree}}.
+
+~~~~
+{::include ./yang/subtrees/ac-ntw/profiles-tree.txt}
+~~~~
+{: #profiles-tree title="Profiles Tree Structure"}
+
+The exact definition of these profiles is local to each service provider. The model only includes an identifier for these profiles in order to ease identifying and binding local policies when building an AC. As shown in {{profiles-tree}}, the following identifiers can be included:
+
+'encryption-profile-identifier':
+: An encryption profile refers to a set of policies related to the encryption schemes and setup that can be applied on the AC.
+
+'qos-profile-identifier':
+: A Quality of Service (QoS) profile refers to a set of policies such as classification, marking, and actions (e.g., {{?RFC3644}}).
+
+'bfd-profile-identifier':
+: A Bidirectional Forwarding Detection (BFD) profile refers to a set of BFD policies {{!RFC5880}} that can be invoked when building an AC.
+
+'forwarding-profile-identifier':
+: A forwarding profile refers to the policies that apply to the forwarding of packets conveyed over an AC. Such policies may consist of, for example, applying Access Control Lists (ACLs).
+
+'routing-profile-identifier':
+: A routing profile refers to a set of routing policies that will be invoked (e.g., BGP policies) for an AC.
+
 
 ## L2 Connection
 
