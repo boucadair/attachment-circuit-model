@@ -159,7 +159,8 @@ module ietf-ac-ntw {
         + "/ac-ntw:forwarding-profile-identifier/ac-ntw:id";
     }
     description
-      "Defines a type to a forwarding profile for referencing purposes.";
+      "Defines a type to a forwarding profile for referencing
+       purposes.";
   }
 
   typedef routing-profile-reference {
