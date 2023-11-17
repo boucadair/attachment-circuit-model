@@ -109,14 +109,15 @@ module ietf-ac-ntw {
       path "/nw:networks/nw:network/ac-profile/name";
     }
     description
-      "Defines a reference to an attachment circuit profile that can be used
-       by other modules.";
+      "Defines a reference to an attachment circuit profile that
+       can be used by other modules.";
   }
 
   typedef encryption-profile-reference {
     type leafref {
       path
-         "/nw:networks/nw:network/ac-ntw:specific-provisioning-profiles"
+          "/nw:networks/nw:network"
+        + "/ac-ntw:specific-provisioning-profiles" 
         + "/ac-ntw:valid-provider-identifiers"
         + "/ac-ntw:encryption-profile-identifier/ac-ntw:id";
     }
@@ -128,7 +129,8 @@ module ietf-ac-ntw {
   typedef qos-profile-reference {
     type leafref {
       path
-          "/nw:networks/nw:network/ac-ntw:specific-provisioning-profiles"
+          "/nw:networks/nw:network"
+        + "/ac-ntw:specific-provisioning-profiles" 
         + "/ac-ntw:valid-provider-identifiers"
         + "/ac-ntw:qos-profile-identifier/ac-ntw:id";
     }
@@ -139,7 +141,8 @@ module ietf-ac-ntw {
   typedef bfd-profile-reference {
     type leafref {
       path
-          "/nw:networks/nw:network/ac-ntw:specific-provisioning-profiles"
+          "/nw:networks/nw:network"
+        + "/ac-ntw:specific-provisioning-profiles" 
         + "/ac-ntw:valid-provider-identifiers"
         + "/ac-ntw:bfd-profile-identifier/ac-ntw:id";
     }
@@ -150,23 +153,27 @@ module ietf-ac-ntw {
   typedef forwarding-profile-reference {
     type leafref {
       path
-          "/nw:networks/nw:network/ac-ntw:specific-provisioning-profiles"
+          "/nw:networks/nw:network"
+        + "/ac-ntw:specific-provisioning-profiles" 
         + "/ac-ntw:valid-provider-identifiers"
         + "/ac-ntw:forwarding-profile-identifier/ac-ntw:id";
     }
     description
-      "Defines a type to a forwarding profile for referencing purposes.";
+      "Defines a type to a forwarding profile for referencing
+       purposes.";
   }
 
   typedef routing-profile-reference {
     type leafref {
       path
-         "/nw:networks/nw:network/ac-ntw:specific-provisioning-profiles"
+          "/nw:networks/nw:network"
+        + "/ac-ntw:specific-provisioning-profiles" 
         + "/ac-ntw:valid-provider-identifiers"
         + "/ac-ntw:routing-profile-identifier/ac-ntw:id";
     }
     description
-      "Defines a type to a routing profile for referencing purposes.";
+      "Defines a type to a routing profile for referencing 
+       purposes.";
   }
 
   // L2 conenction
