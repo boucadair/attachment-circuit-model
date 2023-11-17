@@ -77,6 +77,11 @@ informative:
     date: 2023
     target: https://github.com/boucadair/attachment-circuit-model/blob/main/yang/full-trees/ac-ntw-without-groupings.txt
 
+  PYANG:
+    title: pyang
+    date: 2023
+    target: https://github.com/mbj4668/pyang
+
 --- abstract
 
 This document specifies a network model for attachment circuits. The model can be used for the provisioning of attachment circuits prior or during service provisioning (e.g., Network Slice Service). A companion service model is specified in {{!I-D.ietf-opsawg-teas-attachment-circuit}}.
@@ -148,6 +153,11 @@ Service provider:
 {: #u-ex title="An Example of the Network AC Model Usage" artwork-align="center"}
 
 # Description of the Attachment Circuit YANG Module
+
+The full tree diagram of the module can be generated using the
+"pyang" tool {{PYANG}}.  That tree is not included here because it is
+too long ({{Section 3.3 of ?RFC8340}}).  Instead, subtrees are provided
+for the reader's convenience.
 
 ## Overall Structure of the Module
 
@@ -273,7 +283,7 @@ This module uses types defined in {{!RFC6991}}, {{!RFC8177}}, {{!RFC8294}}, {{!R
 
 ~~~~ yang
 <CODE BEGINS> file "ietf-ac-ntw@2022-11-30.yang"
-{::include ./yang/ietf-ac-ntw.yang}
+{::include-fold ./yang/ietf-ac-ntw.yang}
 <CODE ENDS>
 ~~~~
 
