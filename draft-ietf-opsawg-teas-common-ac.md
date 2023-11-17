@@ -224,8 +224,8 @@ Bandwidth parameters ({{bw-full-tree}}):
 : These parameters can be provided per bandwidth type. The following types,
   defined in {{!RFC9181}}, can be used to indicate the bandwidth type:
 
-    'bw-per-cos':  The bandwidth is per Class of Service (CoS).
-    'bw-per-site':  The bandwidth is to all ACs that belong to the same site.
+     'bw-per-cos':  The bandwidth is per Class of Service (CoS).
+     'bw-per-site':  The bandwidth is to all ACs that belong to the same site.
 
 ~~~~
 {::include ./yang/subtrees/ac-common/ac-common-bw.txt}
@@ -238,7 +238,7 @@ This module uses types defined in {{!RFC6991}}, {{!RFC8177}}, and  {{!RFC9181}}.
 
 ~~~~~~~~~~
 <CODE BEGINS> file ietf-ac-common@2022-11-30.yang
-{::include ./yang/ietf-ac-common.yang}
+{::include-fold ./yang/ietf-ac-common.yang}
 <CODE ENDS>
 ~~~~~~~~~~
 
