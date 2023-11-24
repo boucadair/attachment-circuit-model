@@ -211,7 +211,7 @@ The  Layer 3 connection tree structure is shown in {{l3-tree}}.
 ~~~~
 {: #l3-tree title="IP Connection Tree Structure"}
 
-In some deployment contexts (e.g., network merging), multiple subnets may be used in a transition period. For such deployments, multiple ACs (typically, two) with overlapping information may be maintained during a transition period. The correlation between these ACs may rely upon the same "ac-ref".
+In some deployment contexts (e.g., network merging), multiple IP subnets may be used in a transition period. For such deployments, multiple ACs (typically, two) with overlapping information may be maintained during a transition period. The correlation between these ACs may rely upon the same "ac-ref".
 
 ## Routing
 
