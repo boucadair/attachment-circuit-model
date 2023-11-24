@@ -162,7 +162,7 @@ for the reader's convenience.
 ## Overall Structure of the Module
 
 The overall tree structure of the module is shown in {{o-ntw-tree}}. A node can host one or more SAPs. As per {{!RFC9408}}, a SAP is an abstraction of the network
-reference points (the PE side of an AC, in the context of this document) where network services can be delivered and/or are delivered to customers. Each SAP terminates one or multiple ACs. Each AC in turn may be terminated by one or more peer SAPs. In order to expose such AC/SAP binding information, the SAP model {{!RFC9408}} is augmented with required AC-related information. Also, in order to ease the correlation between the AC exposed at the service layer and the one that is actually provisioned in the network operation, a reference to the AC exposed to the customer ('ac-ref') is stored in the 'ac-ntw' module. A controller may, for example, indicate a filter based on the service type (e.g., Network Slice or L3VPN) to retrieve the list of available ACs for that service.
+reference points (the PE side of an AC, in the context of this document) where network services can be delivered and/or are delivered to customers. Each SAP terminates one or multiple ACs. Each AC in turn may be terminated by one or more peer SAPs. In order to expose such AC/SAP binding information, the SAP model {{!RFC9408}} is augmented with required AC-related information. Also, in order to ease the correlation between the AC exposed at the service layer and the one that is actually provisioned in the network operation, a reference to the AC exposed to the customer ('ac-svc-ref') is stored in the 'ac-ntw' module. A controller may, for example, indicate a filter based on the service type (e.g., Network Slice or L3VPN) to retrieve the list of available ACs for that service.
 
 Unlike the AC service model {{!I-D.ietf-opsawg-teas-attachment-circuit}}, an AC is uniquely identified within the scope of a node, not a network. An AC can be characterized using Layer 2 connectivity, Layer 3 connectivity, routing protocols, OAM, and security considerations. In order to factorize a set of data that is provisioned for a set of ACs, a set of profiles can be defined at the network level, and then called under the node level. The information contained in a profile is thus inherited, unless the corresponding data node is refined at the AC level. In such a case, the value provided at the AC level takes precedence over the global one.
 
@@ -182,7 +182,7 @@ In contexts where the same AC is terminated by multiple CEs but a subset of them
   augment /nw:networks/nw:network/nw:node/sap:service/sap:sap:
     +--rw ac* [name]
        +--rw name                 string
-       +--rw ac-ref?              ac-svc:attachment-circuit-reference
+       +--rw ac-svc-ref?              ac-svc:attachment-circuit-reference
        +--rw ac-profile* [profile-id]
        |  +--rw profile-id    -> /nw:networks/network/ac-profile/name
        +--rw ac-parent-ref?       ac-ntw:attachment-circuit-reference
@@ -258,7 +258,7 @@ The  Layer 3 connection tree structure is shown in {{l3-tree}}.
 ~~~~
 {: #l3-tree title="IP Connection Tree Structure"}
 
-In some deployment contexts (e.g., network merging), multiple IP subnets may be used in a transition period. For such deployments, multiple ACs (typically, two) with overlapping information may be maintained during a transition period. The correlation between these ACs may rely upon the same "ac-ref".
+In some deployment contexts (e.g., network merging), multiple IP subnets may be used in a transition period. For such deployments, multiple ACs (typically, two) with overlapping information may be maintained during a transition period. The correlation between these ACs may rely upon the same "ac-svc-ref".
 
 ## Routing
 

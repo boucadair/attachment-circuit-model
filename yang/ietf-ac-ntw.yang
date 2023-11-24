@@ -1802,7 +1802,7 @@ module ietf-ac-ntw {
         description
           "A name that identifies the AC locally.";
       }
-      leaf ac-ref {
+      leaf ac-svc-ref {
         type ac-svc:attachment-circuit-reference;
         description
           "A reference to the AC as exposed at the service level.";
