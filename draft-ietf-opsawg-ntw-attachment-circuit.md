@@ -269,6 +269,283 @@ The routing tree structure is shown in {{rtg-tree}}.
 ~~~~
 {: #rtg-tree title="Rotuing Tree Structure"}
 
+### Static Routing {#sec-static-rtg}
+
+The following data nodes can be defined for a given IP prefix:
+
+'lan-tag':
+: Indicates a local tag (e.g., "myfavorite-lan") that is used to enforce local policies.
+
+'next-hop':
+: Indicates the next hop to be used for the static route.
+: It can be identified by an IP address, a predefined next-hop type (e.g., 'discard' or 'local-link'), etc.
+
+'bfd-enable':
+: Indicates whether BFD is enabled or disabled for this static route entry.
+
+'metric':
+: Indicates the metric associated with the static route entry. This metric is used when the route is exported into an IGP.
+
+'preference':
+: Indicates the preference associated with the static route entry.
+: This preference is used to select a preferred route among routes to the same destination prefix.
+
+'status':
+: Used to convey the status of a static route entry. This data node can also be used to control the (de)activation of individual static route entries.
+
+### BGP {#sec-bgp-rtg}
+
+The following data nodes are supported for each 'peer-group':
+
+'name':
+: Defines a name for the peer group.
+
+'local-address':
+: Specifies an address or a reference to an interface to use when establishing the BGP transport session.
+
+'description':
+:  Includes a description of the peer group.
+
+'apply-policy':
+: Lists a set of import/export policies {{!RFC9067}} to apply for this group.
+
+'local-as':
+: Indicates a local AS Number (ASN).
+
+'peer-as':
+:  Indicates the peer's ASN.
+
+'address-family':
+:  Indicates the address family of the peer.  It can
+      be set to 'ipv4', 'ipv6', or 'dual-stack'.
+: This address family will be used together with the 'vpn-type' to
+      derive the appropriate Address Family Identifiers (AFIs) /
+      Subsequent Address Family Identifiers (SAFIs) that will be part of
+      the derived device configurations (e.g., unicast IPv4 MPLS L3VPN
+      (AFI,SAFI = 1,128) as defined in {{Section 4.3.4 of !RFC4364}}).
+
+'multihop':
+:  Indicates the number of allowed IP hops to reach a BGP peer.
+
+'as-override':
+:  If set, this parameter indicates whether ASN override
+      is enabled, i.e., replacing the ASN of the customer specified in
+      the AS_PATH BGP attribute with the ASN identified in the 'local-
+      as' attribute.
+
+'allow-own-as':
+:  Used in some topologies (e.g., hub-and-spoke) to
+      allow the provider's ASN to be included in the AS_PATH BGP
+      attribute received from a peer.  Loops are prevented by setting
+      'allow-own-as' to a maximum number of the provider's ASN
+      occurrences.  By default, this parameter is set to '0' (that is,
+      reject any AS_PATH attribute that includes the provider's ASN).
+
+'prepend-global-as':
+:  When distinct ASNs are configured at the 
+      node and AC levels, this parameter controls whether
+      the ASN provided at the node level is prepended to the AS_PATH
+      attribute.
+
+'send-default-route':
+:  Controls whether default routes can be advertised to the peer.
+
+'site-of-origin':
+:  Meant to uniquely identify the set of routes
+      learned from a site via a particular AC.  It is used
+      to prevent routing loops ({{Section 7 of !RFC4364}}).  The Site of
+      Origin attribute is encoded as a Route Origin Extended Community.
+
+'ipv6-site-of-origin':
+: Carries an IPv6 Address Specific BGP Extended
+      Community that is used to indicate the Site of Origin {{!RFC5701}}.  It is used to prevent routing loops.
+
+'redistribute-connected':
+:  Controls whether the AC is advertised to other PEs.
+
+'bgp-max-prefix':  Controls the behavior when a prefix maximum is
+      reached.
+
+  * 'max-prefix':
+  : Indicates the maximum number of BGP prefixes
+         allowed in a session for this group.  If the limit is reached, the
+         action indicated in 'violate-action' will be followed.
+
+  *'warning-threshold':
+  : A warning notification is triggered when this limit is reached.
+
+   * 'violate-action':
+   :  Indicates which action to execute when the
+         maximum number of BGP prefixes is reached.  Examples of such
+         actions include sending a warning message, discarding extra
+         paths from the peer, or restarting the session.
+
+   * 'restart-timer':
+   :  Indicates, in seconds, the time interval after
+     which the BGP session will be reestablished.
+
+'bgp-timers':
+:  Two timers can be captured in this container: (1)
+      'hold-time', which is the time interval that will be used for the
+      Hold Timer ({{Section 4.2 of !RFC4271}}) when establishing a BGP
+      session and (2) 'keepalive', which is the time interval for the
+      KeepaliveTimer between a PE and a BGP peer ({{Section 4.4 of !RFC4271}}).
+:  Both timers are expressed in seconds.
+
+'authentication':
+:  The module adheres to the recommendations in
+      {{Section 13.2 of !RFC4364}}, as it allows enabling the TCP
+      Authentication Option (TCP-AO) {{!RFC5925}} and accommodates the
+      installed base that makes use of MD5.  In addition, the module
+      includes a provision for using IPsec.
+: This version of the model assumes that parameters specific to the
+      TCP-AO are preconfigured as part of the key chain that is
+      referenced in the model.  No assumption is made about how such a
+      key chain is preconfigured.  However, the structure of the key
+      chain should cover data nodes beyond those in {{!RFC8177}}, mainly
+      SendID and RecvID ({{Section 3.1 of !RFC5925}}).
+
+For each neighbor, the following data nodes are supported in addition to similar parameters that are provided for a peer group:
+
+'remote-address':
+: Specifies the remote IP address of a BGP neighbor.
+
+'peer-group':
+: A name of a peer group.
+: Parameters that are provided at the 'neighbor' level takes precedence over the one provided in the peer group.
+
+
+### OSPF {#sec-ospf-rtg}
+
+ The following OSPF data nodes are supported:
+
+'address-family':
+:  Indicates whether IPv4, IPv6, or both address
+      families are to be activated.
+: When the IPv4 or dual-stack address family is requested, it is up
+      to the implementation (e.g., network orchestrator) to decide
+      whether OSPFv2 {{!RFC4577}} or OSPFv3 {{!RFC6565}} is used to announce
+      IPv4 routes.  Such a decision will typically be reflected in the
+      device configurations that will be derived to implement the L3VPN.
+
+'area-id':
+:  Indicates the OSPF Area ID.
+
+'metric':
+:  Associates a metric with OSPF routes.
+
+'sham-links':
+:  Used to create OSPF sham links between two ACs sharing the same area and having a backdoor link
+      ({{Section 4.2.7 of !RFC4577}} and {{Section 5 of !RFC6565}}).
+
+'max-lsa':
+:  Sets the maximum number of Link State Advertisements
+      (LSAs) that the OSPF instance will accept.
+
+'authentication':
+:  Controls the authentication schemes to be enabled
+      for the OSPF instance.  The following options are supported: IPsec
+      for OSPFv3 authentication {{!RFC4552}}, and the Authentication
+      Trailer for OSPFv2 {{!RFC5709}} {{!RFC7474}} and OSPFv3 {{!RFC7166}}.
+
+'status':
+:  Indicates the status of the OSPF routing instance.
+
+### IS-IS {#sec-isis-rtg}
+
+The following IS-IS data nodes are supported:
+
+'address-family':
+:  Indicates whether IPv4, IPv6, or both address families are to be activated.
+
+'area-address':
+: Indicates the IS-IS area address.
+
+'level':
+:  Indicates the IS-IS level: Level 1, Level 2, or both.
+
+'metric':
+:  Associates a metric with IS-IS routes.
+
+'mode':
+:  Indicates the IS-IS interface mode type.  It can be set to
+      'active' (that is, send or receive IS-IS protocol control packets)
+      or 'passive' (that is, suppress the sending of IS-IS updates
+      through the interface).
+
+: 'authentication':
+:  Controls the authentication schemes to be enabled
+      for the IS-IS instance.  Both the specification of a key chain
+      {{!RFC8177}} and the direct specification of key and authentication
+      algorithms are supported.
+
+'status':
+:  Indicates the status of the IS-IS routing instance.
+
+### RIP {#sec-rip-rtg}
+
+The following RIP data nodes are supported:
+
+'address-family':
+:  Indicates whether IPv4, IPv6, or both address
+      families are to be activated.  This parameter is used to determine
+      whether RIPv2 {{!RFC2453}}, RIP Next Generation (RIPng), or both are
+      to be enabled {{!RFC2080}}.
+
+'timers':
+:  Indicates the following timers (expressed in seconds):
+
+      * 'update-interval':
+      :  The interval at which RIP updates are sent.
+
+      * 'invalid-interval':
+      :  The interval before a RIP route is declared invalid.
+
+      * 'holddown-interval':
+      : The interval before better RIP routes are released.
+
+      * 'flush-interval':
+      :  The interval before a route is removed from the routing table.
+
+'default-metric':
+:  Sets the default RIP metric.
+
+'authentication':
+:  Controls the authentication schemes to be enabled for the RIP instance.
+
+'status':
+:  Indicates the status of the RIP routing instance.
+
+### VRRP {#sec-VRRP-rtg}
+
+The following VRRP data nodes are supported:
+
+'address-family':
+:  Indicates whether IPv4, IPv6, or both address
+      families are to be activated.  Note that VRRP version 3 {{!RFC5798}}
+      supports both IPv4 and IPv6.
+
+'vrrp-group':
+:  Used to identify the VRRP group.
+
+'backup-peer':
+:  Carries the IP address of the peer.
+
+'virtual-ip-address':
+:  Includes virtual IP addresses for a single VRRP group.
+
+'priority':
+:  Assigns the VRRP election priority for the backup virtual router.
+
+'ping-reply':
+:  Controls whether the VRRP speaker should reply to ping requests.
+
+'status':
+:  Indicates the status of the VRRP instance.
+
+Note that no authentication data node is included for VRRP, as there
+isn't any type of VRRP authentication at this time (see {{Section 9 of !RFC5798}}).
+
 ## OAM
 
 The OAM tree structure is shown in {{oam-tree}}.
