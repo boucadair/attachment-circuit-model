@@ -10,6 +10,11 @@ module: ietf-ac-ntw
        |     +--rw type?   identityref
        |     +--rw bgp
        |     |  +--rw description?              string
+       |     |  +--rw apply-policy
+       |     |  |  +--rw import-policy*           leafref
+       |     |  |  +--rw default-import-policy?   default-policy-type
+       |     |  |  +--rw export-policy*           leafref
+       |     |  |  +--rw default-export-policy?   default-policy-type
        |     |  +--rw local-as?                 inet:as-number
        |     |  +--rw peer-as                   inet:as-number
        |     |  +--rw address-family?           identityref
@@ -112,6 +117,13 @@ module: ietf-ac-ntw
        |     |  |     +--rw name                      string
        |     |  |     +--rw local-address?            union
        |     |  |     +--rw description?              string
+       |     |  |     +--rw apply-policy
+       |     |  |     |  +--rw import-policy*           leafref
+       |     |  |     |  +--rw default-import-policy?
+       |     |  |     |  |       default-policy-type
+       |     |  |     |  +--rw export-policy*           leafref
+       |     |  |     |  +--rw default-export-policy?
+       |     |  |     |          default-policy-type
        |     |  |     +--rw local-as?                 inet:as-number
        |     |  |     +--rw peer-as                   inet:as-number
        |     |  |     +--rw address-family?           identityref
@@ -157,6 +169,13 @@ module: ietf-ac-ntw
        |     |     +--rw peer-group?
        |     |     |       -> ../../peer-groups/peer-group/name
        |     |     +--rw description?              string
+       |     |     +--rw apply-policy
+       |     |     |  +--rw import-policy*           leafref
+       |     |     |  +--rw default-import-policy?
+       |     |     |  |       default-policy-type
+       |     |     |  +--rw export-policy*           leafref
+       |     |     |  +--rw default-export-policy?
+       |     |     |          default-policy-type
        |     |     +--rw local-as?                 inet:as-number
        |     |     +--rw peer-as                   inet:as-number
        |     |     +--rw address-family?           identityref
