@@ -366,23 +366,23 @@ The following data nodes are supported for each 'peer-group':
 'bgp-max-prefix':  Controls the behavior when a prefix maximum is
       reached.
 
-  * 'max-prefix':
-  : Indicates the maximum number of BGP prefixes
+   'max-prefix':
+   : Indicates the maximum number of BGP prefixes
          allowed in a session for this group.  If the limit is reached, the
          action indicated in 'violate-action' will be followed.
 
-  *'warning-threshold':
-  : A warning notification is triggered when this limit is reached.
+   'warning-threshold':
+   : A warning notification is triggered when this limit is reached.
 
-   * 'violate-action':
-   :  Indicates which action to execute when the
+    'violate-action':
+    :  Indicates which action to execute when the
          maximum number of BGP prefixes is reached.  Examples of such
          actions include sending a warning message, discarding extra
          paths from the peer, or restarting the session.
 
-   * 'restart-timer':
-   :  Indicates, in seconds, the time interval after
-     which the BGP session will be reestablished.
+    'restart-timer':
+    :  Indicates, in seconds, the time interval after
+      which the BGP session will be reestablished.
 
 'bgp-timers':
 :  Two timers can be captured in this container: (1)
