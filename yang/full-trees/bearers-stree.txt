@@ -1,7 +1,7 @@
-module: ietf-bearer-svc
   +--rw bearers
      +--rw placement-constraints
      |  +--rw constraint* [constraint-type]
+     |          {vpn-common:placement-diversity}?
      |     +--rw constraint-type    identityref
      |     +--rw target
      |        +--rw (target-flavor)?
@@ -11,38 +11,40 @@ module: ietf-bearer-svc
      |           +--:(all-bearers)
      |           |  +--rw all-other-bearers?   empty
      |           +--:(all-groups)
-     |              +--rw all-other-groups?     empty
+     |              +--rw all-other-groups?    empty
      +--rw bearer* [id]
         +--rw id                  string
         +--rw description?        string
         +--rw groups
-        |  +-- group* [group-id]
-        |     +-- group-id    string
+        |  +--rw group* [group-id]
+        |     +--rw group-id    string
         +--rw op-comment?         string
         +--rw customer-point
         |  +--rw identified-by?   identityref
         |  +--rw device
         |  |  +--rw device-id?   string
         |  |  +--rw location
-        |  |     +--rw location-name?  string
-        |  |     +--rw address?        string
-        |  |     +--rw postal-code?    string
-        |  |     +--rw state?          string
-        |  |     +--rw city?           string
-        |  |     +--rw country-code?   string
+        |  |     +--rw location-name?   string
+        |  |     +--rw address?         string
+        |  |     +--rw postal-code?     string
+        |  |     +--rw state?           string
+        |  |     +--rw city?            string
+        |  |     +--rw country-code?    string
         |  +--rw site
         |  |  +--rw site-id?    string
         |  |  +--rw location
-        |  |     +--rw location-name?  string
-        |  |     +--rw address?        string
-        |  |     +--rw postal-code?    string
-        |  |     +--rw state?          string
-        |  |     +--rw city?           string
-        |  |     +--rw country-code?   string
+        |  |     +--rw location-name?   string
+        |  |     +--rw address?         string
+        |  |     +--rw postal-code?     string
+        |  |     +--rw state?           string
+        |  |     +--rw city?            string
+        |  |     +--rw country-code?    string
         |  +--rw custom-id?       string
         +--rw requested-type?     identityref
         +--rw test-only?          empty
-        +--ro bearer-reference?   string {vpn-common:bearer-reference}?
+        +--ro bearer-reference?   string
+        |       {vpn-common:bearer-reference}?
+        +--ro ac-svc-ref*            ac-svc:attachment-circuit-reference
         +--rw requested-start?    yang:date-and-time
         +--rw requested-stop?     yang:date-and-time
         +--ro actual-start?       yang:date-and-time
