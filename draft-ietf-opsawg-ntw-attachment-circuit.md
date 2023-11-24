@@ -158,7 +158,7 @@ Unlike the AC service model, an AC is uniquely identified within the scope of a 
 
 In contexts where the same AC is terminated by multiple CEs but a subset of them have specific information, the module allows operators to define:
 
-* A parent AC that will list all these CEs as peer SAPs.
+* A parent AC that may list all these CEs as peer SAPs.
 * Individual ACs that are bound to the parent AC using "ac-parent-ref".
 * Individual ACs will list one or a subset of the CEs as peer SAP.
 
