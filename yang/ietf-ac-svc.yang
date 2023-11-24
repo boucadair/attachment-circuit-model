@@ -957,7 +957,7 @@ module ietf-ac-svc {
             "Defines redundancy of an AC.";
         }
       }
-      list service-refs {
+      list service-ref {
         key "service-type service-id";
         config false;
         description
