@@ -336,7 +336,7 @@ module ietf-bearer-svc {
           "This is an internal reference for the service provider
            to identify the bearers.";
       }
-      leaf-list ac-refs {
+      leaf-list ac-svc-ref {
         type ac-svc:attachment-circuit-reference;
         config false;
         description
