@@ -324,10 +324,10 @@ The overall tree structure of the AC service module is shown in {{o-svc-tree}}.
 
 The full ACaaS tree is available at {{AC-SVC-Tree}}. The full reusable groupings defined in the ACaaS module are shown in {{AC-SVC-GRP}}.
 
-> The rationale for deciding whether a reusable grouping should be maintained in this document or be moved into the AC common module {{!I-D.ietf-opsawg-teas-common-ac}} is as follows:
->
-> * Groupings that are reusable among the AC service module, AC network module, other service models, and network models are included in the AC common module.
-> * Groupings that are reusable only by other service models are maintained in the "ietf-ac-svc" module.
+The rationale for deciding whether a reusable grouping should be maintained in this document or be moved into the AC common module {{!I-D.ietf-opsawg-teas-common-ac}} is as follows:
+
+* Groupings that are reusable among the AC service module, AC network module, other service models, and network models are included in the AC common module.
+* Groupings that are reusable only by other service models are maintained in the "ietf-ac-svc" module.
 
 Each AC is identified with a unique name ('../ac/name') within a domain. The mapping between this AC and a local PE that terminates the AC is hidden to the application that makes use of the AC service model. This information is internal to the Network controller. As such, the details about the (node-specific) attachment interfaces are not exposed in this service model.
 
@@ -459,7 +459,11 @@ The description of the data nodes is as follows:
 
 #### Layer 2 Connection Structure {#sec-l2}
 
-The 'l2-connection' container ({{l2-svc-tree}}) is used to configure the relevant Layer 2 properties of an AC including: encapsulation details and tunnel terminations. For the encapsulation details, the model supports the definition of the type as well as the Identifiers (e.g., VLAN-IDs) of each of the encapsulation-type defined. For the second case, attributes for pseudowire, Virtual Private LAN Service (VPLS), and  Virtual eXtensible Local Area Network (VXLAN) tunnel terminations are included. This structure relies upon the common groupings defined in {{!I-D.ietf-opsawg-teas-common-ac}}.
+The 'l2-connection' container ({{l2-svc-tree}}) is used to configure the relevant Layer 2 properties of an AC including: encapsulation details and tunnel terminations. For the encapsulation details, the model supports the definition of the type as well as the Identifiers (e.g., VLAN-IDs) of each of the encapsulation-type defined. For the second case, attributes for pseudowire, Virtual Private LAN Service (VPLS), and  Virtual eXtensible Local Area Network (VXLAN) tunnel terminations are included.
+
+'bearer-reference' is used to link an AC with a bearer over which the AC is instantiated.
+
+This structure relies upon the common groupings defined in {{!I-D.ietf-opsawg-teas-common-ac}}.
 
 ~~~~
 {::include ./yang/subtrees/l2-stree.txt}
@@ -490,14 +494,14 @@ The 'ip-connection' container is used to configure the relevant IP properties of
 
 As shown in the tree depicted in {{rtg-svc-tree}}, the 'routing-protocols' container defines the required parameters to enable the desired routing features for an AC. One or more routing protocols can be associated with an AC.  Such routing protocols will be then enabled between a PE and the customer terminating points. Each routing instance is uniquely identified by the combination of the 'id' and 'type' to accommodate scenarios where multiple instances of the same routing protocol have to be configured on the same link.
 
-In addition to static routing, the module supports BGP, OSPF, IS-IS, and RIP. It also includes a reference to the 'routing-profile-identifier' defined in {{sec-profiles}}, so that additional constraints can be applied to a specific instance of each routing protocol.
+In addition to static routing ({{sec-static-rtg}}), the module supports BGP ({{sec-bgp-rtg}}), OSPF ({{sec-ospf-rtg}}), IS-IS ({{sec-isis-rtg}}), and RIP ({{sec-rip-rtg}}). It also includes a reference to the 'routing-profile-identifier' defined in {{sec-profiles}}, so that additional constraints can be applied to a specific instance of each routing protocol.
 
 ~~~~
 {::include ./yang/subtrees/rtg-stree.txt}
 ~~~~
 {: #rtg-svc-tree title="Routing Tree Structure" artwork-align="center"}
 
-##### Static Routing
+##### Static Routing {#sec-static-rtg}
 
 The static tree structure is shown in {{static-rtg-svc-tree}}.
 
@@ -506,7 +510,25 @@ The static tree structure is shown in {{static-rtg-svc-tree}}.
 ~~~~
 {: #static-rtg-svc-tree title="Static Routing Tree Structure" artwork-align="center"}
 
-##### BGP
+As depicted in {{static-rtg-svc-tree}}, the following data nodes can be defined for a given IP prefix:
+
+'lan-tag':
+: Indicates a local tag (e.g., "myfavorite-lan") that is used to enforce local policies.
+
+'next-hop':
+: Indicates the next hop to be used for the static route.
+: It can be identified by an IP address, a predefined next-hop type (e.g., 'discard' or 'local-link'), etc.
+
+'bfd-enable':
+: Indicates whether BFD is enabled or disabled for this static route entry.
+
+'metric':
+: Indicates the metric associated with the static route entry. This metric is used when the route is exported into an IGP.
+
+'status':
+: Used to convey the status of a static route entry. This data node can also be used to control the (de)activation of individual static route entries.
+
+##### BGP {#sec-bgp-rtg}
 
 The BGP tree structure is shown in {{bgp-rtg-svc-tree}}.
 
@@ -517,7 +539,7 @@ The BGP tree structure is shown in {{bgp-rtg-svc-tree}}.
 
 Similar to {{?RFC9182}}, this version of the ACaaS assumes that parameters specific to the TCP-AO are preconfigured as part of the key chain that is referenced in the ACaaS. No assumption is made about how such a key chain is preconfigured. However, the structure of the key chain should cover data nodes beyond those in {{!RFC8177}}, mainly SendID and RecvID (Section 3.1 of {{?RFC5925}}).
 
-##### OSPF
+##### OSPF {#sec-ospf-rtg}
 
 The OSPF tree structure is shown in {{ospf-rtg-svc-tree}}.
 
@@ -526,7 +548,7 @@ The OSPF tree structure is shown in {{ospf-rtg-svc-tree}}.
 ~~~~
 {: #ospf-rtg-svc-tree title="OSPF Tree Structure" artwork-align="center"}
 
-#### IS-IS
+#### IS-IS {#sec-isis-rtg}
 
 The IS-IS tree structure is shown in {{isis-rtg-svc-tree}}.
 
@@ -535,7 +557,7 @@ The IS-IS tree structure is shown in {{isis-rtg-svc-tree}}.
 ~~~~
 {: #isis-rtg-svc-tree title="IS-IS Tree Structure" artwork-align="center"}
 
-#### RIP
+#### RIP {#sec-rip-rtg}
 
 The RIP tree structure is shown in {{rip-rtg-svc-tree}}.
 
