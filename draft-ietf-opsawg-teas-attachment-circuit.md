@@ -276,6 +276,9 @@ The descriptions of the bearer data nodes are as follows:
 : Returns an internal reference for the service provider to uniquely identify the bearer. This reference can be used when requesting services. {{ex-create-bearer}} provides an example about how this reference can be retrieved by a customer.
 : Whether the 'bearer-reference' mirrors the content of the 'id' is deployment-specific. The module does not assume nor preclude such schemes.
 
+'ac-svc-ref':
+: Specifies the set of attachment circuits that are bound to the bearer.
+
 'requested-start':
 : Specifies the requested date and time when the bearer is expected to be active.
 
