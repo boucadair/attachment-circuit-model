@@ -912,6 +912,13 @@ module ietf-ac-svc {
         description
           "Associates a description with an AC.";
       }
+      leaf test-only {
+        type empty;
+        description
+         "When present, this indicates that this is a feasibility
+          check request. No resources are commited for such AC 
+          requests.";
+      }
       uses ac-common:op-instructions;
       leaf-list peer-sap-id {
         type string;
