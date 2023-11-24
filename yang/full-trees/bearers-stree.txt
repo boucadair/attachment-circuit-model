@@ -44,7 +44,7 @@
         +--rw test-only?          empty
         +--ro bearer-reference?   string
         |       {vpn-common:bearer-reference}?
-        +--ro ac-refs*            ac-svc:attachment-circuit-reference
+        +--ro ac-svc-ref*            ac-svc:attachment-circuit-reference
         +--rw requested-start?    yang:date-and-time
         +--rw requested-stop?     yang:date-and-time
         +--ro actual-start?       yang:date-and-time
