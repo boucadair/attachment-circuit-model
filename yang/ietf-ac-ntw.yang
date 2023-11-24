@@ -24,6 +24,11 @@ module ietf-ac-ntw {
     reference
       "RFC 8294: Common YANG Data Types for the Routing Area";
   }
+  import ietf-routing-policy {
+    prefix rt-pol;
+    reference
+      "RFC 9067: A YANG Data Model for Routing Policy";
+  }
   import ietf-interfaces {
     prefix if;
     reference
@@ -759,6 +764,7 @@ module ietf-ac-ntw {
          is meant to be used for diagnostic purposes. The semantic 
          of the description is local to an implementation.";
     }
+    uses rt-pol:apply-policy-group;
     leaf local-as {
       type inet:as-number;
       description
