@@ -94,6 +94,92 @@ module ietf-ac-ntw {
 
   // L2 connection groupings
 
+  /* A set of typedefs to ease referencing cross-modules */
+
+  typedef attachment-circuit-reference {
+    type leafref {
+      path "/nw:networks/nw:network/nw:node/sap:service/sap:sap"
+         + "/ac-ntw:ac/ac-ntw:name";
+    }
+    description
+      "Defines a reference to an attachment circuit that can be used
+       by other modules.";
+  }
+
+  typedef ac-profile-reference {
+    type leafref {
+      path "/nw:networks/nw:network/ac-profile/name";
+    }
+    description
+      "Defines a reference to an attachment circuit profile that
+       can be used by other modules.";
+  }
+
+  typedef encryption-profile-reference {
+    type leafref {
+      path
+          "/nw:networks/nw:network"
+        + "/ac-ntw:specific-provisioning-profiles" 
+        + "/ac-ntw:valid-provider-identifiers"
+        + "/ac-ntw:encryption-profile-identifier/ac-ntw:id";
+    }
+    description
+      "Defines a type to an encryption profile for referencing
+       purposes.";
+  }
+
+  typedef qos-profile-reference {
+    type leafref {
+      path
+          "/nw:networks/nw:network"
+        + "/ac-ntw:specific-provisioning-profiles" 
+        + "/ac-ntw:valid-provider-identifiers"
+        + "/ac-ntw:qos-profile-identifier/ac-ntw:id";
+    }
+    description
+      "Defines a type to a QoS profile for referencing purposes.";
+  }
+
+  typedef bfd-profile-reference {
+    type leafref {
+      path
+          "/nw:networks/nw:network"
+        + "/ac-ntw:specific-provisioning-profiles" 
+        + "/ac-ntw:valid-provider-identifiers"
+        + "/ac-ntw:bfd-profile-identifier/ac-ntw:id";
+    }
+    description
+      "Defines a type to a BFD profile for referencing purposes.";
+  }
+
+  typedef forwarding-profile-reference {
+    type leafref {
+      path
+          "/nw:networks/nw:network"
+        + "/ac-ntw:specific-provisioning-profiles" 
+        + "/ac-ntw:valid-provider-identifiers"
+        + "/ac-ntw:forwarding-profile-identifier/ac-ntw:id";
+    }
+    description
+      "Defines a type to a forwarding profile for referencing
+       purposes.";
+  }
+
+  typedef routing-profile-reference {
+    type leafref {
+      path
+          "/nw:networks/nw:network"
+        + "/ac-ntw:specific-provisioning-profiles" 
+        + "/ac-ntw:valid-provider-identifiers"
+        + "/ac-ntw:routing-profile-identifier/ac-ntw:id";
+    }
+    description
+      "Defines a type to a routing profile for referencing 
+       purposes.";
+  }
+
+  // L2 conenction
+
   grouping l2-connection {
     description
       "Defines Layer 2 protocols and parameters that are required to
@@ -1107,12 +1193,7 @@ module ietf-ac-ntw {
         description
           "Routing profiles.";
         leaf id {
-          type leafref {
-            path "/nw:networks/nw:network"
-               + "/ac-ntw:specific-provisioning-profiles"
-               + "/valid-provider-identifiers"
-               + "/routing-profile-identifier/id";
-          }
+          type routing-profile-reference;
           description
             "Routing profile to be used.";
         }
@@ -1502,12 +1583,7 @@ module ietf-ac-ntw {
       description
         "Container for BFD.";
       leaf profile {
-        type leafref {
-          path "/nw:networks/nw:network"
-             + "/ac-ntw:specific-provisioning-profiles"
-             + "/valid-provider-identifiers"
-             + "/bfd-profile-identifier/id";
-        }
+        type bfd-profile-reference;
         description
           "Well-known service provider profile name.";
       }
@@ -1583,12 +1659,7 @@ module ietf-ac-ntw {
           "Choice for the encryption profile.";
         case provider-profile {
           leaf profile-name {
-            type leafref {
-              path "/nw:networks/nw:network"
-                 + "/ac-ntw:specific-provisioning-profiles"
-                 + "/valid-provider-identifiers"
-                 + "/encryption-profile-identifier/id";
-            }
+            type encryption-profile-reference;
             description
               "Name of the provider's profile to be applied.";
           }
@@ -1682,7 +1753,7 @@ module ietf-ac-ntw {
       description
         "Contains a set of valid profiles to reference in the AC
          activation.";
-      uses vpn-common:vpn-profile-cfg;
+      uses ac-common:ac-profile-cfg;
     }
     list ac-profile {
       key "name";
@@ -1712,7 +1783,7 @@ module ietf-ac-ntw {
       leaf name {
         type string;
         description
-          "A local AC identifier.";
+          "A name that identifies the AC locally.";
       }
       leaf ac-ref {
         type ac-svc:attachment-circuit-reference;
@@ -1724,9 +1795,7 @@ module ietf-ac-ntw {
         description
           "List of AC profiles.";
         leaf profile-id {
-          type leafref {
-            path "/nw:networks/nw:network/ac-profile/name";
-          }
+          type ac-profile-reference;
           description
             "A reference to an AC profile.";
         }

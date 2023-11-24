@@ -202,7 +202,8 @@ module ietf-ac-common {
       base local-defined-next-hop;
     }
     description
-      "Predefined next-hop designation for locally generated routes.";
+      "Predefined next-hop designation for locally generated 
+       routes.";
   }
 
   typedef area-address {
@@ -498,8 +499,8 @@ module ietf-ac-common {
         range "0..32";
       }
       description
-        "Subnet prefix length expressed in bits. It is applied to both
-         local and customer addresses.";
+        "Subnet prefix length expressed in bits. It is applied to
+         both local and customer addresses.";
     }
     leaf address-allocation-type {
       type identityref {
@@ -525,8 +526,8 @@ module ietf-ac-common {
         range "0..128";
       }
       description
-        "Subnet prefix length expressed in bits. It is applied to both
-         local and customer addresses.";
+        "Subnet prefix length expressed in bits. It is applied to
+          both local and customer addresses.";
     }
     leaf address-allocation-type {
       type identityref {
@@ -684,10 +685,11 @@ module ietf-ac-common {
               list address-pool {
                 key "pool-id";
                 description
-                  "Describes IP addresses to be dyncamically allocated.
+                  "Describes IP addresses to be dyncamically
+                   allocated.
 
-                   When only 'start-address' is present, it represents a
-                   single address.
+                   When only 'start-address' is present, it 
+                   represents a single address.
 
                    When both 'start-address' and 'end-address' are
                    specified, it implies a range inclusive of both
@@ -756,8 +758,9 @@ module ietf-ac-common {
           key "address-id";
           ordered-by user;
           description
-            "Lists the IPv4 addresses that are used. The first address of
-             the list is the primary address of the connection.";
+            "Lists the IPv4 addresses that are used. The first
+             address of the list is the primary address of the
+             connection.";
           leaf address-id {
             type string;
             description
@@ -804,8 +807,8 @@ module ietf-ac-common {
             leaf number-of-dynamic-address {
               type uint16;
               description
-                "Specifies the number of IP addresses to be assigned to
-                 the customer on this access.";
+                "Specifies the number of IP addresses to be
+                 assigned to the customer on this access.";
             }
           }
           case explicit {
@@ -816,10 +819,11 @@ module ietf-ac-common {
               list address-pool {
                 key "pool-id";
                 description
-                  "Describes IP addresses to be dyncamically allocated.
+                  "Describes IP addresses to be dyncamically
+                   allocated.
 
-                   When only 'start-address' is present, it represents a
-                   single address.
+                   When only 'start-address' is present, it 
+                   represents a single address.
 
                    When both 'start-address' and 'end-address' are
                    specified, it implies a range inclusive of both
@@ -888,8 +892,9 @@ module ietf-ac-common {
           key "address-id";
           ordered-by user;
           description
-            "Lists the IPv6 addresses that are used. The first address
-             of the list is the primary IP address of the connection.";
+            "Lists the IPv6 addresses that are used. The first
+             address of the list is the primary IP address of
+             the connection.";
           leaf address-id {
             type string;
             description
@@ -1003,8 +1008,8 @@ module ietf-ac-common {
       container keying-material {
         when "../enable = 'true'";
         description
-          "Container for describing how an OSPF session is to be secured
-           for this AC.";
+          "Container for describing how an OSPF session is to be
+           secured for this AC.";
         choice option {
           description
             "Options for OSPF authentication.";
@@ -1034,8 +1039,8 @@ module ietf-ac-common {
                 base key-chain:crypto-algorithm;
               }
               description
-                "Indicates the cryptographic algorithm associated with
-                 the key.";
+                "Indicates the cryptographic algorithm associated
+                 with the key.";
             }
           }
         }
@@ -1089,8 +1094,8 @@ module ietf-ac-common {
                 base key-chain:crypto-algorithm;
               }
               description
-                "Indicates the cryptographic algorithm associated with
-                 the key.";
+                "Indicates the cryptographic algorithm associated
+                 with the key.";
             }
           }
         }
@@ -1113,8 +1118,8 @@ module ietf-ac-common {
       container keying-material {
         when "../enable = 'true'";
         description
-          "Container for describing how a RIP session is to be secured
-           on this AC.";
+          "Container for describing how a RIP session is to be 
+           secured on this AC.";
         choice option {
           description
             "Specifies the authentication
@@ -1140,8 +1145,8 @@ module ietf-ac-common {
                 base key-chain:crypto-algorithm;
               }
               description
-                "Indicates the cryptographic algorithm associated with
-                 the key.";
+                "Indicates the cryptographic algorithm associated
+                 with the key.";
             }
           }
         }
@@ -1174,7 +1179,8 @@ module ietf-ac-common {
       }
       description
         "This node contains the address families to be activated.
-         'dual-stack' means that both IPv4 and IPv6 will be activated.";
+         'dual-stack' means that both IPv4 and IPv6 will be 
+         activated.";
     }
   }
 
@@ -1366,10 +1372,10 @@ module ietf-ac-common {
       type uint64;
       units "bytes";
       description
-        "Committed Burst Size (CBS). CBS controls the bursty nature of
-         the traffic.  Traffic that does not use the configured CIR
-         accumulates credits until the credits reach the configured
-         CBS.";
+        "Committed Burst Size (CBS). CBS controls the bursty nature 
+         of the traffic.  Traffic that does not use the configured 
+         CIR accumulates credits until the credits reach the 
+         configured CBS.";
     }
     leaf eir {
       type uint64;

@@ -1,0 +1,169 @@
+{
+  "ietf-yang-library:modules-state": {
+    "module-set-id": "",
+    "module": [
+      {
+        "name": "ietf-inet-types",
+        "revision": "2019-11-04",
+        "namespace": "urn:ietf:params:xml:ns:yang:ietf-inet-types",
+        "conformance-type": "import"
+      },
+      {
+        "name": "ietf-yang-types",
+        "revision": "2023-01-23",
+        "namespace": "urn:ietf:params:xml:ns:yang:ietf-yang-types",
+        "conformance-type": "import"
+      },
+      {
+        "name": "ietf-netconf-acm",
+        "revision": "2018-02-14",
+        "namespace": "urn:ietf:params:xml:ns:yang:ietf-netconf-acm",
+        "conformance-type": "import"
+      },
+      {
+        "name": "ietf-key-chain",
+        "revision": "2017-06-15",
+        "namespace": "urn:ietf:params:xml:ns:yang:ietf-key-chain",
+        "conformance-type": "import"
+      },
+      {
+        "name": "ietf-interfaces",
+        "revision": "2018-02-20",
+        "namespace": "urn:ietf:params:xml:ns:yang:ietf-interfaces",
+        "conformance-type": "import"
+      },
+      {
+        "name": "ietf-ethertypes",
+        "revision": "2019-03-04",
+        "namespace": "urn:ietf:params:xml:ns:yang:ietf-ethertypes",
+        "conformance-type": "import"
+      },
+      {
+        "name": "ietf-l3vpn-ntw",
+        "revision": "2022-02-14",
+        "namespace": "urn:ietf:params:xml:ns:yang:ietf-l3vpn-ntw",
+        "feature": [
+          "msdp"
+        ],
+        "conformance-type": "import"
+      },
+      {
+        "name": "ietf-packet-fields",
+        "revision": "2018-11-06",
+        "namespace": "urn:ietf:params:xml:ns:yang:ietf-packet-fields",
+        "conformance-type": "import"
+      },
+      {
+        "name": "ietf-routing-types",
+        "revision": "2017-10-13",
+        "namespace": "urn:ietf:params:xml:ns:yang:ietf-routing-types",
+        "conformance-type": "import"
+      },
+      {
+        "name": "ietf-vpn-common",
+        "revision": "2021-09-10",
+        "namespace": "urn:ietf:params:xml:ns:yang:ietf-vpn-common",
+        "feature": [
+          "dot1q",
+          "qinq",
+          "vxlan",
+          "qinany",
+          "lag-interface",
+          "multicast",
+          "igmp",
+          "mld",
+          "pim",
+          "ipv4",
+          "ipv6",
+          "rtg-ospf",
+          "rtg-ospf-sham-link",
+          "rtg-bgp",
+          "rtg-rip",
+          "rtg-isis",
+          "rtg-vrrp",
+          "bfd",
+          "bearer-reference",
+          "placement-diversity",
+          "qos",
+          "inbound-bw",
+          "outbound-bw",
+          "encryption",
+          "fast-reroute",
+          "external-connectivity",
+          "extranet-vpn",
+          "carriers-carrier"
+        ],
+        "conformance-type": "implement"
+      },
+      {
+        "name": "ietf-ac-svc",
+        "revision": "2022-11-30",
+        "namespace": "urn:ietf:params:xml:ns:yang:ietf-ac-svc",
+        "conformance-type": "implement"
+      },
+      {
+        "name": "ietf-ac-common",
+        "revision": "2022-11-30",
+        "namespace": "urn:ietf:params:xml:ns:yang:ietf-ac-common",
+        "conformance-type": "implement"
+      },
+      {
+        "name": "ietf-bearer-svc",
+        "revision": "2022-11-30",
+        "namespace": "urn:ietf:params:xml:ns:yang:ietf-bearer-svc",
+        "conformance-type": "implement"
+      },
+      {
+        "name": "ietf-network",
+        "revision": "2018-02-26",
+        "namespace": "urn:ietf:params:xml:ns:yang:ietf-network",
+        "conformance-type": "implement"
+      },
+      {
+        "name": "ietf-network-topology",
+        "revision": "2018-02-26",
+        "namespace": "urn:ietf:params:xml:ns:yang:ietf-network-topology",
+        "conformance-type": "implement"
+      },
+            {
+                "name": "iana-ssh-encryption-algs",
+                "namespace": "urn:ietf:params:xml:ns:yang:iana-ssh-encryption-algs",
+                "revision": "2022-06-16",
+                "conformance-type": "import"
+            },
+            {
+                "name": "iana-ssh-key-exchange-algs",
+                "namespace": "urn:ietf:params:xml:ns:yang:iana-ssh-key-exchange-algs",
+                "revision": "2022-06-16",
+                "conformance-type": "import"
+            },
+            {
+                "name": "iana-ssh-mac-algs",
+                "namespace": "urn:ietf:params:xml:ns:yang:iana-ssh-mac-algs",
+                "revision": "2022-06-16",
+                "conformance-type": "import"
+            },
+            {
+                "name": "iana-ssh-public-key-algs",
+                "namespace": "urn:ietf:params:xml:ns:yang:iana-ssh-public-key-algs",
+                "revision": "2022-06-16",
+                "conformance-type": "import"
+            },
+            {
+                "name": "ietf-crypto-types",
+                "namespace": "urn:ietf:params:xml:ns:yang:ietf-crypto-types",
+                "revision": "2023-04-17",
+                "conformance-type": "import",
+                "feature": [
+                    "cleartext-passwords"
+                ]
+            },
+            {
+                "name": "iana-crypt-hash",
+                "namespace": "urn:ietf:params:xml:ns:yang:iana-crypt-hash",
+                "revision": "2014-08-06",
+                "conformance-type": "import"
+            }
+    ]
+  }
+}

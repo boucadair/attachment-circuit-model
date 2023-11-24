@@ -77,6 +77,11 @@ informative:
     date: 2023
     target: https://github.com/boucadair/attachment-circuit-model/blob/main/yang/full-trees/ac-ntw-without-groupings.txt
 
+  PYANG:
+    title: pyang
+    date: 2023
+    target: https://github.com/mbj4668/pyang
+
 --- abstract
 
 This document specifies a network model for attachment circuits. The model can be used for the provisioning of attachment circuits prior or during service provisioning (e.g., Network Slice Service). A companion service model is specified in {{!I-D.ietf-opsawg-teas-attachment-circuit}}.
@@ -149,6 +154,11 @@ Service provider:
 
 # Description of the Attachment Circuit YANG Module
 
+The full tree diagram of the module can be generated using the
+"pyang" tool {{PYANG}}.  That tree is not included here because it is
+too long ({{Section 3.3 of ?RFC8340}}).  Instead, subtrees are provided
+for the reader's convenience.
+
 ## Overall Structure of the Module
 
 The overall tree structure of the module is shown in {{o-ntw-tree}}. A node can host one or more SAPs. As per {{!RFC9408}}, a SAP is an abstraction of the network
@@ -158,6 +168,8 @@ Unlike the AC service model, an AC is uniquely identified within the scope of a 
 
 ~~~~
   augment /nw:networks/nw:network:
+    +--rw specific-provisioning-profiles
+    |  ...
     +--rw ac-profile* [name]
        ...
   augment /nw:networks/nw:network/nw:node/sap:service/sap:sap:
@@ -192,6 +204,33 @@ Unlike the AC service model, an AC is uniquely identified within the scope of a 
 {: #o-ntw-tree title="Overall Tree Structure"}
 
 The full tree of the 'ac-ntw' is provided in {{AC-Ntw-Tree}}.
+
+## Provisioning Profiles
+
+The specific provisioning profiles tree structure is shown in {{profiles-tree}}.
+
+~~~~
+{::include ./yang/subtrees/ac-ntw/profiles-tree.txt}
+~~~~
+{: #profiles-tree title="Profiles Tree Structure"}
+
+The exact definition of these profiles is local to each service provider. The model only includes an identifier for these profiles in order to ease identifying and binding local policies when building an AC. As shown in {{profiles-tree}}, the following identifiers can be included:
+
+'encryption-profile-identifier':
+: An encryption profile refers to a set of policies related to the encryption schemes and setup that can be applied on the AC.
+
+'qos-profile-identifier':
+: A Quality of Service (QoS) profile refers to a set of policies such as classification, marking, and actions (e.g., {{?RFC3644}}).
+
+'bfd-profile-identifier':
+: A Bidirectional Forwarding Detection (BFD) profile refers to a set of BFD policies {{!RFC5880}} that can be invoked when building an AC.
+
+'forwarding-profile-identifier':
+: A forwarding profile refers to the policies that apply to the forwarding of packets conveyed over an AC. Such policies may consist of, for example, applying Access Control Lists (ACLs).
+
+'routing-profile-identifier':
+: A routing profile refers to a set of routing policies that will be invoked (e.g., BGP policies) for an AC.
+
 
 ## L2 Connection
 
@@ -243,8 +282,8 @@ The security tree structure is shown in {{sec-tree}}.
 This module uses types defined in {{!RFC6991}}, {{!RFC8177}}, {{!RFC8294}}, {{!RFC8343}}, {{!RFC9181}}, {{!I-D.ietf-opsawg-teas-common-ac}}, and IEEE Std 802.1Qcp.
 
 ~~~~ yang
-<CODE BEGINS> file "ietf-ac-ntw@2023-11-13.yang"
-{::include ./yang/ietf-ac-ntw.yang}
+<CODE BEGINS> file "ietf-ac-ntw@2022-11-30.yang"
+{::include-fold ./yang/ietf-ac-ntw.yang}
 <CODE ENDS>
 ~~~~
 
@@ -303,10 +342,10 @@ Several data nodes ('bgp', 'ospf', 'isis', and 'rip') rely upon {{!RFC8177}} for
 
 ~~~~
    Name:  ietf-ac-ntw
-   Maintained by IANA?  N
    Namespace:  urn:ietf:params:xml:ns:yang:ietf-ac-ntw
    Prefix:  ac-ntw
-   Reference:  RFC xxxx
+   Maintained by IANA?  N
+   Reference:  RFC XXXX
 ~~~~
 
 --- back

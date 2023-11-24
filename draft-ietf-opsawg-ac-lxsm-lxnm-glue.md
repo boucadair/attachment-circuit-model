@@ -89,7 +89,7 @@ LxNM refers to both the L2NM and the L3NM.
 
 * CEs may be either dedicated to one single connectivity service or host multiple connectivity services (e.g., CEs with roles of service functions {{?RFC7665}}).
 
-* A network provider may bind a single AC to one or multiple peer SAPs (e.g., CE#1 and CE#2 are tagged as peer SAPs for the same AC). For example, and as discussed in {{!RFC4364}}, multiple CEs can be attached to a PE over the same attachment circuit. This scenario is typically implemented when the layer 2 infrastructure between the CE and the network is a multipoint service.
+* A network provider may bind a single AC to one or multiple peer SAPs (e.g., CE#1 and CE#2 are tagged as peer SAPs for the same AC). For example, and as discussed in {{!RFC4364}}, multiple CEs can be attached to a PE over the same attachment circuit. This scenario is typically implemented when the Layer 2 infrastructure between the CE and the network is a multipoint service.
 
 * A single CE may terminate multiple ACs, which can be associated with the same bearer or distinct bearers.
 
@@ -154,7 +154,7 @@ ACs created using the "ietf-ac-svc" module {{!I-D.ietf-opsawg-teas-attachment-ci
    and delete operations to these data nodes without proper protection
    or authentication can have a negative effect on network operations.
    These are the subtrees and data nodes and their sensitivity/
-   vulnerability in the "ietf-ac-svc" module:
+   vulnerability in the "ietf-ac-glue" module:
 
    * TBC
    * TBC
@@ -163,7 +163,7 @@ ACs created using the "ietf-ac-svc" module {{!I-D.ietf-opsawg-teas-attachment-ci
    sensitive or vulnerable in some network environments.  It is thus
    important to control read access (e.g., via get, get-config, or
    notification) to these data nodes.  These are the subtrees and data
-   nodes and their sensitivity/vulnerability in the "ietf-ac-svc" module:
+   nodes and their sensitivity/vulnerability in the "ietf-ac-glue" module:
 
    * TBC
    * TBC
