@@ -398,7 +398,7 @@ The description of the data nodes is as follows:
 : Includes a textual description of the AC.
 
 'test-only':
-: 
+: Indicates that a request is only for test and not for setting, even if there are no errors. This is used for feasibility checks. This data node is applicable only when the data model is used with protocols which do not natively support such option.
 
 'requested-start':
 : Specifies the requested date and time when the attachment circuit is expected to be active.
@@ -434,7 +434,7 @@ The description of the data nodes is as follows:
 : Associates a name that uniquely identifies an AC within a service provider network.
 
 'service-profile':
-: References a set of service-specific profiles. 
+: References a set of service-specific profiles.
 
 'l2-connection':
 : See {{sec-l2}}.
