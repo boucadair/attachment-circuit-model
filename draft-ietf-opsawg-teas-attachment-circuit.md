@@ -270,11 +270,23 @@ The descriptions of the bearer data nodes are as follows:
 : Specifies the requested bearer type (Ethernet, wireless, etc.).
 
 'test-only':
-: Indicates that a request is only for test and not for setting, even if there are no errors. This is used for feasibility checks. This data node is applicable only when the data model is used with protocols which do not natively support such option. For example, this data node is redundant with the "test-only" value of the <test-option> parameter in the NETCONF <edit-config> operation ({{Section 7.2 of !RFC6241}}).
+: Indicates that a request is only for test and not for setting, even if there are no errors. This is used for feasibility checks. This data node is applicable only when the data model is used with protocols which do not natively support such option. For example, this data node is redundant with the "test-only" value of the `<test-option>` parameter in the NETCONF `<edit-config>` operation ({{Section 7.2 of !RFC6241}}).
 
 'bearer-reference':
 : Returns an internal reference for the service provider to uniquely identify the bearer. This reference can be used when requesting services. {{ex-create-bearer}} provides an example about how this reference can be retrieved by a customer.
 : Whether the 'bearer-reference' mirrors the content of the 'id' is deployment-specific. The module does not assume nor preclude such schemes.
+
+'requested-start':
+: Specifies the requested date and time when the bearer is expected to be active.
+
+'requested-stop':
+: Specifies the requested date and time when the bearer is expected to be disabled.
+
+'actual-start':
+: Reports the actual date and time when the bearer actually was enabled.
+
+'actual-stop':
+: Reports the actual date and time when the bearer actually was disabled.
 
 'status':
 : Used to track the overall status of a given bearer. Both operational and administrative status are maintained together with a timestamp.
@@ -385,17 +397,44 @@ The description of the data nodes is as follows:
 'description':
 : Includes a textual description of the AC.
 
+'test-only':
+: 
+
+'requested-start':
+: Specifies the requested date and time when the attachment circuit is expected to be active.
+
+'requested-stop':
+: Specifies the requested date and time when the attachment circuit is expected to be disabled.
+
+'actual-start':
+: Reports the actual date and time when the attachment circuit actually was enabled.
+
+'actual-stop':
+: Reports the actual date and time when the attachment circuit actually was disabled.
+
 'peer-sap-id':
 : Includes references to the remote endpoints of an attachment circuit {{?RFC9408}}.
 
 'ac-group-profile':
 : Indicates references to one or more profiles that are defined in {{sec-acp}}.
 
+'ac-bundle-ref':
+: Specifies an AC that is inherited by this attachment circuit.
+: AC bundles are used, e.g., in contexts where dynamic	
+  terminating points are managed while stable AC reference	
+ 	are exposed to services that make use of these dynamic	ACs.
+
 'group':
 : Lists the groups to which an AC belongs {{!RFC9181}}. For example, the 'group-id' is used to associate redundancy or protection constraints of ACes. An example is provided in {{sec-ex-prec}}.
 
+'service-refs':
+: Reports the set of services that are bound to the attachment circuit. The services are indexed by their type.
+
 'name':
 : Associates a name that uniquely identifies an AC within a service provider network.
+
+'service-profile':
+: References a set of service-specific profiles. 
 
 'l2-connection':
 : See {{sec-l2}}.
