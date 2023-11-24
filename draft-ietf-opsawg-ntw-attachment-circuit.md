@@ -342,7 +342,7 @@ The following data nodes are supported for each 'peer-group':
       reject any AS_PATH attribute that includes the provider's ASN).
 
 'prepend-global-as':
-:  When distinct ASNs are configured at the 
+:  When distinct ASNs are configured at the
       node and AC levels, this parameter controls whether
       the ASN provided at the node level is prepended to the AS_PATH
       attribute.
