@@ -430,7 +430,7 @@ The description of the data nodes is as follows:
 'group':
 : Lists the groups to which an AC belongs {{!RFC9181}}. For example, the 'group-id' is used to associate redundancy or protection constraints of ACes. An example is provided in {{sec-ex-prec}}.
 
-'service-refs':
+'service-ref':
 : Reports the set of services that are bound to the attachment circuit. The services are indexed by their type.
 
 'name':
