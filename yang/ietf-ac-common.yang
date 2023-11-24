@@ -63,7 +63,7 @@ module ietf-ac-common {
      This version of this YANG module is part of RFC xxx; see the
      RFC itself for full legal notices.";
 
-  revision 2022-11-30 {
+  revision 2023-11-13 {
     description
       "Initial revision.";
     reference

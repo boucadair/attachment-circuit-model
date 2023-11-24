@@ -63,7 +63,7 @@ module ietf-ac-svc {
      This version of this YANG module is part of RFC XXXX; see the
      RFC itself for full legal notices.";
 
-  revision 2022-11-30 {
+  revision 2023-11-13 {
     description
       "Initial revision.";
     reference
@@ -214,7 +214,7 @@ module ietf-ac-svc {
           base vpn-common:encapsulation-type;
         }
         description
-          "Encapsulation type.";
+          "Indicates the encapsulation type.";
       }
       container dot1q {
         when "derived-from-or-self(../type, 'vpn-common:dot1q')" {
@@ -724,7 +724,7 @@ module ietf-ac-svc {
     }
   }
 
-  // Bandwith
+  // Bandwith parameters
 
   grouping bandwidth {
     description
@@ -747,7 +747,7 @@ module ietf-ac-svc {
     }
   }
 
-  // Basic AC parameter
+  // Basic AC parameters
 
   grouping ac-basic {
     description
@@ -955,6 +955,29 @@ module ietf-ac-svc {
           }
           description
             "Defines redundancy of an AC.";
+        }
+      }
+      list service-refs {
+        key "service-type service-id";
+        config false;
+        description
+          "Reports the set of services that are bound to the AC.";
+        leaf service-type {
+          type identityref {
+            base vpn-common:service-type;
+          }
+          description
+            "Indicates the service type (e.g., L3VPN, Network Slice
+             Service).";
+          reference
+            "RFC 9408: A YANG Network Data Model for Service 
+                       Attachment Points (SAPs), Section 5";
+        }
+        leaf service-id {
+          type string;
+          description
+            "Indicates an identifier of a service instance
+             of a given type that uses the AC.";
         }
       }
       uses ac;

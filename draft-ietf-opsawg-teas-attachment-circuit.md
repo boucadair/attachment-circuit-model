@@ -558,7 +558,7 @@ Information Rate (EIR), or the Peak Information Rate (PIR). Both reuse the 'band
 This module uses types defined in {{!RFC6991}} and {{!RFC9181}}.
 
 ~~~~~~~~~~ yang
-<CODE BEGINS> file ietf-bearer-svc@2022-11-30.yang
+<CODE BEGINS> file ietf-bearer-svc@2023-11-13.yang
 {::include-fold ./yang/ietf-bearer-svc.yang}
 <CODE ENDS>
 ~~~~~~~~~~
@@ -568,7 +568,7 @@ This module uses types defined in {{!RFC6991}} and {{!RFC9181}}.
 This module uses types defined in {{!RFC6991}}, {{!RFC9181}}, {{!RFC8177}}, and {{!I-D.ietf-opsawg-teas-common-ac}}.
 
 ~~~~~~~~~~ yang
-<CODE BEGINS> file ietf-ac-svc@2022-11-30.yang
+<CODE BEGINS> file ietf-ac-svc@2023-11-13.yang
 {::include-fold ./yang/ietf-ac-svc.yang}
 <CODE ENDS>
 ~~~~~~~~~~
