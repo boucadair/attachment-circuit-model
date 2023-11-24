@@ -166,6 +166,13 @@ reference points (the PE side of an AC, in the context of this document) where n
 
 Unlike the AC service model, an AC is uniquely identified within the scope of a node, not a network. An AC can be characterized using Layer 2 connectivity, Layer 3 connectivity, routing protocols, OAM, and security considerations. In order to factorize a set of data that is provisioned for a set of ACs, a set of profiles can be defined at the network level, and then called under the node level. The information contained in a profile is thus inherited, unless the corresponding data node is refined at the AC level. In such a case, the value provided at the AC level takes precedence over the global one.
 
+In contexts where the same AC is terminated by multiple CEs but a subset of them have specific information, the module allows operators to define:
+
+* A parent AC that may list all these CEs as peer SAPs.
+* Individual ACs that are bound to the parent AC using "ac-parent-ref".
+* Individual ACs will list one or a subset of the CEs as peer SAP.
+
+
 ~~~~
   augment /nw:networks/nw:network:
     +--rw specific-provisioning-profiles
@@ -178,6 +185,7 @@ Unlike the AC service model, an AC is uniquely identified within the scope of a 
        +--rw ac-ref?              ac-svc:attachment-circuit-reference
        +--rw ac-profile* [profile-id]
        |  +--rw profile-id    -> /nw:networks/network/ac-profile/name
+       +--rw ac-parent-ref?       ac-ntw:attachment-circuit-reference
        +--rw peer-sap-id*         string
        +--rw group* [group-id]
        |  +--rw group-id      string
