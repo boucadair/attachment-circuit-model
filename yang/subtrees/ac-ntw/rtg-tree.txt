@@ -59,7 +59,7 @@ module: ietf-ac-ntw
   augment /nw:networks/nw:network/nw:node/sap:service/sap:sap:
     +--rw ac* [name]
        +--rw name                 string
-       +--rw ac-ref?              ac-svc:attachment-circuit-reference
+       +--rw ac-svc-ref?          ac-svc:attachment-circuit-reference
        +--rw ac-profile* [profile-id]
        |  +--rw profile-id    -> /nw:networks/network/ac-profile/name
        +--rw description?         string
