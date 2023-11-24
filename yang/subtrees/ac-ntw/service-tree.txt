@@ -3,7 +3,19 @@
        +--rw name                 string
        +--rw ac-svc-ref?          ac-svc:attachment-circuit-reference
        +--rw ac-profile* [profile-id]
-       |  +--rw profile-id    -> /nw:networks/network/ac-profile/name
+       |  +--rw profile-id    ac-profile-reference
+       +--rw ac-parent-ref?       ac-ntw:attachment-circuit-reference
+       +--rw peer-sap-id*         string
+       +--rw group* [group-id]
+       |  +--rw group-id      string
+       |  +--rw precedence?   identityref
+       +--rw status
+       |  +--rw admin-status
+       |  |  +--rw status?        identityref
+       |  |  +--rw last-change?   yang:date-and-time
+       |  +--ro oper-status
+       |     +--ro status?        identityref
+       |     +--ro last-change?   yang:date-and-time
        +--rw description?         string
        +--rw l2-connection
        |  ...
