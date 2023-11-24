@@ -27,7 +27,12 @@ module ietf-ac-glue {
   import ietf-ac-svc {
     prefix ac-svc;
     reference
-      "RFC XXXX: YANG Service Data Models for Attachment Circuits";
+      "RFC SSSS: YANG Service Data Models for Attachment Circuits";
+  }
+  import ietf-ac-ntw {
+    prefix ac-ntw;
+    reference
+      "RFC NNNN: A Network YANG Data Model for Attachment Circuits";
   }
 
   organization
@@ -69,14 +74,31 @@ module ietf-ac-glue {
                  and Network Models with Attachment Circuits";
   }
 
-  grouping ac-glue {
+  grouping ac-svc-glue {
     description
-      "A set of AC-related data.";
-    leaf-list ac-ref {
+      "A set of service-specific AC-related data.";
+    leaf-list ac-svc-ref {
       type ac-svc:attachment-circuit-reference;
       description
         "A reference to the AC as exposed at the service that 
-         was provisionned using the AC module.";
+         was provisionned using the ACaaS module.";
+    }
+  }
+
+  grouping ac-glue {
+    description
+      "A set of AC-related data.";
+    leaf-list ac-svc-ref {
+      type ac-svc:attachment-circuit-reference;
+      description
+        "A reference to the AC as exposed at the service that 
+         was provisionned using the ACaaS module.";
+    }
+    leaf-list ac-ntw-ref {
+      type ac-ntw:attachment-circuit-reference;
+      description
+        "A reference to the AC that  was provisionned
+         using the AC network module.";
     }
   }
 
@@ -87,7 +109,7 @@ module ietf-ac-glue {
     description
       "Augments VPN network access with AC provisioning details.";
 
-    uses ac-glue;
+    uses ac-svc-glue;
   }
 
   augment "/l3vpn-svc:l3vpn-svc"
@@ -97,7 +119,7 @@ module ietf-ac-glue {
     description
       "Augments VPN network access with AC provisioning details.";
 
-    uses ac-glue;
+    uses ac-svc-glue;
   }
 
   augment "/l2nm:l2vpn-ntw/l2nm:vpn-services/l2nm:vpn-service"
