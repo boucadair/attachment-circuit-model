@@ -14,13 +14,15 @@
        +--rw oam
        |  ...
        +--rw security
-          +--rw encryption {vpn-common:encryption}?
-          |  +--rw enabled?   boolean
-          |  +--rw layer?     enumeration
-          +--rw encryption-profile
-             +--rw (profile)?
-                +--:(provider-profile)
-                |  +--rw profile-name?         leafref
-                +--:(customer-profile)
-                   +--rw customer-key-chain?
-                           key-chain:key-chain-ref
+       |  +--rw encryption {vpn-common:encryption}?
+       |  |  +--rw enabled?   boolean
+       |  |  +--rw layer?     enumeration
+       |  +--rw encryption-profile
+       |     +--rw (profile)?
+       |        +--:(provider-profile)
+       |        |  +--rw profile-name?
+       |        |          encryption-profile-reference
+       |        +--:(customer-profile)
+       |           +--rw customer-key-chain?   key-chain:key-chain-ref
+       +--rw service
+          ...

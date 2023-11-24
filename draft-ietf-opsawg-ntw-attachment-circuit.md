@@ -285,6 +285,43 @@ The security tree structure is shown in {{sec-tree}}.
 ~~~~
 {: #sec-tree title="Security Tree Structure"}
 
+## Service
+
+The service tree structure is shown in {{svc-tree}}.
+
+~~~~
+{::include ./yang/subtrees/ac-ntw/service-tree.txt}
+~~~~
+{: #svc-tree title="Service Tree Structure"}
+
+The description of the service data nodes is as follows:
+
+'mtu':
+: Specifies the Layer 2 MTU, in bytes, for the VPN network access.
+
+'svc-pe-to-ce-bandwidth' and 'svc-ce-to-pe-bandwidth':
+: Specify the service bandwidth for the L2VPN service.
+
+: 'svc-pe-to-ce-bandwidth' indicates the inbound bandwidth of the connection (i.e., download bandwidth from the service provider to the site).
+
+: 'svc-ce-to-pe-bandwidth' indicates the outbound bandwidth of the connection (i.e., upload bandwidth from the site to the service provider).
+
+: 'svc-pe-to-ce-bandwidth' and 'svc-ce-to-pe-bandwidth' can be represented using the Committed Information Rate (CIR), the Excess Information Rate (EIR), or the Peak Information Rate (PIR).
+
+: The following types, defined in {{!RFC9181}}, can be used to indicate the bandwidth type:
+
+  'bw-per-cos':
+  : The bandwidth is per CoS.
+
+  'bw-per-port':
+  : The bandwidth is per port.
+
+   'bw-per-site':
+   : The bandwidth is to all peer SAPs that belong to the same site.
+
+   'bw-per-service':
+   : The bandwidth is per service instance that is bound to an AC.
+
 #  YANG Module
 
 This module uses types defined in {{!RFC6991}}, {{!RFC8177}}, {{!RFC8294}}, {{!RFC8343}}, {{!RFC9181}}, {{!I-D.ietf-opsawg-teas-common-ac}}, and IEEE Std 802.1Qcp.

@@ -1744,6 +1744,17 @@ module ietf-ac-ntw {
         "AC-specific security parameters.";
       uses security;
     }
+    container service {
+      description
+        "AC-specific bandwith parameters.";
+      leaf mtu {
+        type uint32;
+        units "bytes";
+        description
+          "Layer 2 MTU.";
+      }
+      uses ac-svc:bandwidth;
+    }
   }
 
   augment "/nw:networks/nw:network" {
