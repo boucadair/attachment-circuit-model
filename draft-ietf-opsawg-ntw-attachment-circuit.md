@@ -281,7 +281,7 @@ The routing tree structure is shown in {{rtg-tree}}.
 
 ### Static Routing {#sec-static-rtg}
 
-The following data nodes can be defined for a given IP prefix:
+The following data nodes can be defined for a given IP prefix ({{rtg-tree}}):
 
 'lan-tag':
 : Indicates a local tag (e.g., "myfavorite-lan") that is used to enforce local policies.
@@ -305,7 +305,7 @@ The following data nodes can be defined for a given IP prefix:
 
 ### BGP {#sec-bgp-rtg}
 
-The following data nodes are supported for each 'peer-group':
+The following data nodes are supported for each 'peer-group' ({{rtg-tree}}):
 
 'name':
 : Defines a name for the peer group.
@@ -427,7 +427,7 @@ For each neighbor, the following data nodes are supported in addition to similar
 
 ### OSPF {#sec-ospf-rtg}
 
-The following OSPF data nodes are supported:
+The following OSPF data nodes are supported ({{rtg-tree}}):
 
 'address-family':
 :  Indicates whether IPv4, IPv6, or both address
@@ -463,7 +463,7 @@ The following OSPF data nodes are supported:
 
 ### IS-IS {#sec-isis-rtg}
 
-The following IS-IS data nodes are supported:
+The following IS-IS data nodes are supported ({{rtg-tree}}):
 
 'address-family':
 :  Indicates whether IPv4, IPv6, or both address families are to be activated.
@@ -494,7 +494,7 @@ The following IS-IS data nodes are supported:
 
 ### RIP {#sec-rip-rtg}
 
-The following RIP data nodes are supported:
+The following RIP data nodes are supported ({{rtg-tree}}):
 
 'address-family':
 :  Indicates whether IPv4, IPv6, or both address
@@ -528,7 +528,7 @@ The following RIP data nodes are supported:
 
 ### VRRP {#sec-VRRP-rtg}
 
-The following VRRP data nodes are supported:
+The following VRRP data nodes are supported ({{rtg-tree}}):
 
 'address-family':
 :  Indicates whether IPv4, IPv6, or both address
@@ -564,6 +564,33 @@ The OAM tree structure is shown in {{oam-tree}}.
 {::include ./yang/subtrees/ac-ntw/oam-tree.txt}
 ~~~~
 {: #oam-tree title="OAM Tree Structure"}
+
+The following OAM data nodes can be specified:
+
+'profile':
+: Refers to a BFD profile ({{sec-profiles}}).
+
+'session-type':
+: Indicates which BFD flavor is used to set up the session (e.g., classic BFD {{!RFC5880}}, Seamless BFD {{?RFC7880}}). By default, it is assumed that the BFD session will follow the behavior specified in {{!RFC5880}}.
+
+'desired-min-tx-interval':
+: The minimum interval, in microseconds, to use when transmitting BFD Control packets, less any jitter applied.
+
+'required-min-rx-interval':
+: The minimum interval, in microseconds, between received BFD Control packets less any jitter applied by the sender.
+
+'local-multiplier':
+: The negotiated transmit interval, multiplied by this value, provides the detection time for the peer.
+
+'holdtime':
+: Used to indicate the expected BFD holddown time, in milliseconds.
+
+'authentication':
+: Includes the required information to enable the BFD authentication modes discussed in {{Section 6.7 of !RFC5880}}. In particular, 'meticulous' controls the activation of meticulous mode as discussed in Sections 6.7.3 and 6.7.4 of {{!RFC5880}}.
+
+'status':
+: Indicates the status of BFD.
+
 
 ## Security {#sec-sec}
 
