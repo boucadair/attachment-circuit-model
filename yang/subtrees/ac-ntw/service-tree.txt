@@ -70,7 +70,11 @@
           |           +--rw pir?   uint64
           |           +--rw pbs?   uint64
           +--rw qos {vpn-common:qos}?
-             +--rw qos-profile
-                +--rw qos-profile* [profile]
-                   +--rw profile      qos-profile-reference
-                   +--rw direction?   identityref
+          |  +--rw qos-profiles
+          |     +--rw qos-profile* [profile]
+          |        +--rw profile      qos-profile-reference
+          |        +--rw direction?   identityref
+          +--rw access-control-list
+             +--rw acl-profiles
+                +--rw acl-profile* [profile]
+                   +--rw profile    forwarding-profile-reference
