@@ -65,8 +65,8 @@ informative:
 * The Layer 2 Network Model (L2NM) {{!RFC9291}}
 * The Layer 3 Network Model (L3NM) {{!RFC9182}}
 
-   The YANG data model in this document conforms to the Network
-   Management Datastore Architecture (NMDA) defined in {{!RFC8342}}.
+The YANG data model in this document conforms to the Network
+Management Datastore Architecture (NMDA) defined in {{!RFC8342}}.
 
 # Conventions and Definitions
 
