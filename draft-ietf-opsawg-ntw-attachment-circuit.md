@@ -12,33 +12,33 @@ v: 3
 area: "Operations and Management"
 workgroup: "Operations and Management Area Working Group"
 keyword:
- - Slice Service
- - L3VPN
- - L2VPN
+- Slice Service
+- L3VPN
+- L2VPN
 
 author:
- -
+-
     fullname: Mohamed Boucadair
     role: editor
     organization: Orange
     email: mohamed.boucadair@orange.com
 
- -
+-
     fullname: Richard Roberts
     organization: Juniper
     email: rroberts@juniper.net
 
- -
+-
     fullname: Oscar Gonzalez de Dios
     organization: Telefonica
     email: oscar.gonzalezdedios@telefonica.com
 
- -
+-
     fullname: Samier Barguil Giraldo
     organization: Nokia
     email: samier.barguil_giraldo@nokia.com
 
- -
+-
     fullname: Bo Wu
     organization: Huawei Technologies
     email: lana.wubo@huawei.com
@@ -112,7 +112,7 @@ The AC network model is designed as an augmnetation to the Service Attachment Po
 
 The AC network model uses the AC common model defined in {{!I-D.ietf-opsawg-teas-common-ac}}.
 
- The YANG data model in this document conforms to the Network Management Datastore Architecture (NMDA) defined in {{!RFC8342}}.
+The YANG data model in this document conforms to the Network Management Datastore Architecture (NMDA) defined in {{!RFC8342}}.
 
 # Conventions and Definitions
 
@@ -161,17 +161,7 @@ for the reader's convenience.
 
 ## Overall Structure of the Module
 
-The overall tree structure of the module is shown in {{o-ntw-tree}}. A node can host one or more SAPs. As per {{!RFC9408}}, a SAP is an abstraction of the network
-reference points (the PE side of an AC, in the context of this document) where network services can be delivered and/or are delivered to customers. Each SAP terminates one or multiple ACs. Each AC in turn may be terminated by one or more peer SAPs. In order to expose such AC/SAP binding information, the SAP model {{!RFC9408}} is augmented with required AC-related information. Also, in order to ease the correlation between the AC exposed at the service layer and the one that is actually provisioned in the network operation, a reference to the AC exposed to the customer ('ac-svc-ref') is stored in the 'ac-ntw' module. A controller may, for example, indicate a filter based on the service type (e.g., Network Slice or L3VPN) to retrieve the list of available ACs for that service.
-
-Unlike the AC service model {{!I-D.ietf-opsawg-teas-attachment-circuit}}, an AC is uniquely identified within the scope of a node, not a network. An AC can be characterized using Layer 2 connectivity, Layer 3 connectivity, routing protocols, OAM, and security considerations. In order to factorize a set of data that is provisioned for a set of ACs, a set of profiles can be defined at the network level, and then called under the node level. The information contained in a profile is thus inherited, unless the corresponding data node is refined at the AC level. In such a case, the value provided at the AC level takes precedence over the global one.
-
-In contexts where the same AC is terminated by multiple CEs but a subset of them have specific information, the module allows operators to define:
-
-* A parent AC that may list all these CEs as peer SAPs.
-* Individual ACs that are bound to the parent AC using "ac-parent-ref".
-* Individual ACs will list one or a subset of the CEs as peer SAP.
-
+The overall tree structure of the module is shown in {{o-ntw-tree}}. The full tree of the 'ac-ntw' is provided in {{AC-Ntw-Tree}}.
 
 ~~~~
   augment /nw:networks/nw:network:
@@ -211,9 +201,29 @@ In contexts where the same AC is terminated by multiple CEs but a subset of them
 ~~~~
 {: #o-ntw-tree title="Overall Tree Structure"}
 
-The full tree of the 'ac-ntw' is provided in {{AC-Ntw-Tree}}.
 
-## Provisioning Profiles
+A node can host one or more SAPs. As per {{!RFC9408}}, a SAP is an abstraction of the network
+reference points (the PE side of an AC, in the context of this document) where network services can be delivered and/or are delivered to customers. Each SAP terminates one or multiple ACs. Each AC in turn may be terminated by one or more peer SAPs. In order to expose such AC/SAP binding information, the SAP model {{!RFC9408}} is augmented with required AC-related information.
+
+Unlike the AC service model {{!I-D.ietf-opsawg-teas-attachment-circuit}}, an AC is uniquely identified by a name within the scope of a node, not a network. A textual description of the AC may be provided 'description'.
+
+Also, in order to ease the correlation between the AC exposed at the service layer and the one that is actually provisioned in the network operation, a reference to the AC exposed to the customer ('ac-svc-ref') is stored in the 'ietf-ac-ntw' module. A controller may, for example, indicate a filter based on the service type (e.g., Network Slice or L3VPN) to retrieve the list of available ACs for that service.
+
+In order to factorize a set of data that is provisioned for a set of ACs, a set of profiles ({{sec-profiles}}) can be defined at the network level, and then called under the node level. The information contained in a profile is thus inherited, unless the corresponding data node is refined at the AC level. In such a case, the value provided at the AC level takes precedence over the global one.
+
+In contexts where the same AC is terminated by multiple peer SAPs (e.g., An AC with multiple CEs) but a subset of them have specific information, the module allows operators to define:
+
+* A parent AC that may list all these CEs as peer SAPs.
+* Individual ACs that are bound to the parent AC using "ac-parent-ref".
+* Individual ACs will list one or a subset of the CEs as peer SAPs. All these individual ACs will inherit the properties of the parent AC.
+
+An AC may belong to one or multiple groups {{!RFC9181}}. For example, the 'group-id' is used to associate redundancy or protection constraints with ACs.
+
+The status of an AC can be tracked using 'status'. Both operational status and administrative status are maintained. A mismatch between the administrative status vs. the operational status can be used as a trigger to detect anomalies.
+
+An AC can be characterized using Layer 2 connectivity ({{sec-l2}}), Layer 3 connectivity ({{sec-l3}}), routing protocols ({{sec-rtg}}), OAM ({{sec-oam}}), security ({{sec-sec}}), and service ({{sec-svc}}) considerations.
+
+## Provisioning Profiles {#sec-profiles}
 
 The specific provisioning profiles tree structure is shown in {{profiles-tree}}.
 
@@ -240,7 +250,7 @@ The exact definition of these profiles is local to each service provider. The mo
 : A routing profile refers to a set of routing policies that will be invoked (e.g., BGP policies) for an AC.
 
 
-## L2 Connection
+## L2 Connection {#sec-l2}
 
 The  Layer 2 connection tree structure is shown in {{l2-tree}}.
 
@@ -249,7 +259,7 @@ The  Layer 2 connection tree structure is shown in {{l2-tree}}.
 ~~~~
 {: #l2-tree title="Layer 2 Connection Tree Structure"}
 
-## IP Connection
+## IP Connection {#sec-l3}
 
 The  Layer 3 connection tree structure is shown in {{l3-tree}}.
 
@@ -260,7 +270,7 @@ The  Layer 3 connection tree structure is shown in {{l3-tree}}.
 
 In some deployment contexts (e.g., network merging), multiple IP subnets may be used in a transition period. For such deployments, multiple ACs (typically, two) with overlapping information may be maintained during a transition period. The correlation between these ACs may rely upon the same "ac-svc-ref".
 
-## Routing
+## Routing {#sec-rtg}
 
 The routing tree structure is shown in {{rtg-tree}}.
 
@@ -321,7 +331,7 @@ The following data nodes are supported for each 'peer-group':
 : This address family will be used together with the 'vpn-type' to
       derive the appropriate Address Family Identifiers (AFIs) /
       Subsequent Address Family Identifiers (SAFIs) that will be part of
-      the derived device configurations (e.g., unicast IPv4 MPLS L3VPN
+     the derived device configurations (e.g., unicast IPv4 MPLS L3VPN
       (AFI,SAFI = 1,128) as defined in {{Section 4.3.4 of !RFC4364}}).
 
 'multihop':
@@ -412,12 +422,12 @@ For each neighbor, the following data nodes are supported in addition to similar
 
 'peer-group':
 : A name of a peer group.
-: Parameters that are provided at the 'neighbor' level takes precedence over the one provided in the peer group.
+: Parameters that are provided at the 'neighbor' level takes precedence over the ones provided in the peer group.
 
 
 ### OSPF {#sec-ospf-rtg}
 
- The following OSPF data nodes are supported:
+The following OSPF data nodes are supported:
 
 'address-family':
 :  Indicates whether IPv4, IPv6, or both address
@@ -546,7 +556,7 @@ The following VRRP data nodes are supported:
 Note that no authentication data node is included for VRRP, as there
 isn't any type of VRRP authentication at this time (see {{Section 9 of !RFC5798}}).
 
-## OAM
+## OAM {#sec-oam}
 
 The OAM tree structure is shown in {{oam-tree}}.
 
@@ -555,7 +565,7 @@ The OAM tree structure is shown in {{oam-tree}}.
 ~~~~
 {: #oam-tree title="OAM Tree Structure"}
 
-## Security
+## Security {#sec-sec}
 
 The security tree structure is shown in {{sec-tree}}. The 'security' container specifies the authentication and the encryption to be applied to traffic for a given AC. Tthe model can be used to directly control the encryption to be applied (e.g., Layer 2 or Layer 3 encryption) or invoke a local encryption profile.
 
@@ -564,7 +574,7 @@ The security tree structure is shown in {{sec-tree}}. The 'security' container s
 ~~~~
 {: #sec-tree title="Security Tree Structure"}
 
-## Service
+## Service {#sec-svc}
 
 The service tree structure is shown in {{svc-tree}}.
 
@@ -606,7 +616,7 @@ The description of the service data nodes is as follows:
 This module uses types defined in {{!RFC6991}}, {{!RFC8177}}, {{!RFC8294}}, {{!RFC8343}}, {{!RFC9067}}, {{!RFC9181}}, {{!I-D.ietf-opsawg-teas-common-ac}}, and IEEE Std 802.1Qcp.
 
 ~~~~ yang
-<CODE BEGINS> file "ietf-ac-ntw@2022-11-30.yang"
+<CODE BEGINS> file ietf-ac-ntw@2022-11-30.yang
 {::include-fold ./yang/ietf-ac-ntw.yang}
 <CODE ENDS>
 ~~~~
