@@ -657,10 +657,10 @@ The description of the service data nodes is as follows:
    : The bandwidth is per service instance that is bound to an AC.
 
 'qos':
-: Specify a list of QoS profiles to apply for this AC.
+: Specifies a list of QoS profiles to apply for this AC.
 
 'access-control-list':
-: Specify a list of ACL profiles to apply for this AC.
+: Specifies a list of ACL profiles to apply for this AC.
 
 #  YANG Module
 
