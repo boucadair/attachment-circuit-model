@@ -976,14 +976,14 @@ module ietf-ac-svc {
         description
           "A reference to an AC profile.";
       }
-      leaf ac-bundle-ref {
+      leaf ac-parent-ref {
         type ac-svc:attachment-circuit-reference;
         description
-          "Specifies the AC bundle that is inherited by an AC.
-           AC bundles are used, e.g., in contexts where dynamic
-           terminating points are managed while stable AC reference
-           are exposed to services that make use of these dynamic
-           ACs.";
+          "Specifies the parent AC that is inherited by an AC.
+           In contexts where dynamic terminating points are 
+           bound to the same AC, a parent AC with stable
+           inforamtion is created with a set of child AC
+           that trackes dynamic informaiton.";
       }
       list group {
         key "group-id";

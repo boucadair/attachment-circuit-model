@@ -421,11 +421,10 @@ The description of the data nodes is as follows:
 'ac-group-profile':
 : Indicates references to one or more profiles that are defined in {{sec-acp}}.
 
-'ac-bundle-ref':
+'ac-parent-ref':
 : Specifies an AC that is inherited by this attachment circuit.
-: AC bundles are used, e.g., in contexts where dynamic	
-  terminating points are managed while stable AC reference	
- 	are exposed to services that make use of these dynamic	ACs.
+: In contexts where dynamic	
+  terminating points are managed for a given AC, a parent AC can be defined with the stable and common information, while "child" ACs are defined to track dynamic information. These child ACs are bound to the parent AC, which is exposed to services.
 
 'group':
 : Lists the groups to which an AC belongs {{!RFC9181}}. For example, the 'group-id' is used to associate redundancy or protection constraints of ACes. An example is provided in {{sec-ex-prec}}.
