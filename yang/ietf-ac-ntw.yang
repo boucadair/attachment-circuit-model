@@ -1786,6 +1786,23 @@ module ietf-ac-ntw {
             }
           }
         }
+      container access-control-list {
+        description
+          "Container for the Access Control List (ACL).";
+        container acl-profile {
+          description
+            "ACL profile configuration.";
+          list acl-profile {
+            key "profile";
+            description
+              "Points to an ACL profile.";
+            leaf profile {
+              type forwarding-profile-reference;
+              description
+                "Forwarding profile to be used.";
+            }
+          }
+        }
       }
     }
   }
