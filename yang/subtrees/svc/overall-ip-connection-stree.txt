@@ -8,17 +8,7 @@
      +--rw placement-constraints
      |  ...
      +--rw ac* [name]
-        +--rw customer-name?       string
-        +--rw description?         string
-        +--rw requested-start?     yang:date-and-time
-        +--rw requested-stop?      yang:date-and-time
-        +--ro actual-start?        yang:date-and-time
-        +--ro actual-stop?         yang:date-and-time
-        +--rw peer-sap-id*         string
-        +--rw ac-group-profile*    ac-group-reference
-        +--rw group* [group-id]
-        |  +--rw group-id      string
-        |  +--rw precedence?   identityref
+        ...
         +--rw name                 string
         +--rw l2-connection
         | ...
