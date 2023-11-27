@@ -172,7 +172,7 @@ The overall tree structure of the module is shown in {{o-ntw-tree}}. The full tr
   augment /nw:networks/nw:network/nw:node/sap:service/sap:sap:
     +--rw ac* [name]
        +--rw name                 string
-       +--rw ac-svc-ref?              ac-svc:attachment-circuit-reference
+       +--rw ac-svc-ref?          ac-svc:attachment-circuit-reference
        +--rw ac-profile* [profile-id]
        |  +--rw profile-id    -> /nw:networks/network/ac-profile/name
        +--rw ac-parent-ref?       ac-ntw:attachment-circuit-reference
@@ -252,12 +252,20 @@ The exact definition of these profiles is local to each service provider. The mo
 
 ## L2 Connection {#sec-l2}
 
-The  Layer 2 connection tree structure is shown in {{l2-tree}}.
+The 'l2-connection' container is used to manage the Layer 2 properties of the AC. The  Layer 2 connection tree structure is shown in {{l2-tree}}.
 
 ~~~~
 {::include ./yang/subtrees/ac-ntw/l2-tree.txt}
 ~~~~
 {: #l2-tree title="Layer 2 Connection Tree Structure"}
+
+The 'encapsulation' container specifies the Layer 2 encapsulation to use (if any) and allows the configuration of the relevant tags. Also, the model supports tag manipulation operations (e.g., tag rewrite).
+
+The 'l2-tunnel-service' container is used to specify the required parameters to set a Layer tunneling service (e.g., a Virtual Private LAN Service (VPLS), a Virtual eXtensible Local Area Network (VXLAN), or a pseudowire ({{Section 6.1 of !RFC8077}})). 'l2vpn-id' is used to identify a L2VPN service that is associated with an Integrated Routing and Bridging (IRB) interface.
+
+To accommodate implementations that require internal bridging, a local bridge reference can be specified in 'local-bridge-reference'. Such a reference may be a local bridge domain.
+
+A reference to the bearer is maintained using 'bearer-reference'.
 
 ## IP Connection {#sec-l3}
 
