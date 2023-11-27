@@ -195,11 +195,31 @@ ACs created using the "ietf-ac-svc" module {{!I-D.ietf-opsawg-teas-attachment-ci
 
 --- back
 
-# Examples {#examples}
+# An Example {#example}
 
-Add some examples.
+Let's consider the example depicted in {{ex-topo}}:
+
+~~~~~~~~~~
+{::include ./json-examples/glue/ex-vpls-topo.txt}
+~~~~~~~~~~
+{: #ex-topo title="Topology Example" artwork-align="center"}
+
+ACaaS Model can be used to expose the ACs over existing bearers as shown in {{ex-ac}}.
+
+~~~~~~~~~~
+{::include-fold ./json-examples/glue/example-acsvc-vpls.json}
+~~~~~~~~~~
+{: #ex-ac title="ACs Created Using ACaaS" artwork-align="center"}
+
+These ACs will be then referenced during the creation of a VPLS instance using the L2NM as shown in {{ex-vpls}}.
+
+~~~~~~~~~~
+{::include-fold ./json-examples/glue/example-vpls.json}
+~~~~~~~~~~
+{: #ex-vpls title="VPLS Request Using L2NM (Message Body)" artwork-align="center"}
+
 
 # Acknowledgments
 {:numbered="false"}
 
-Thanks to TBC for the comments.
+Thanks to Bo Wu for the review and comments.
