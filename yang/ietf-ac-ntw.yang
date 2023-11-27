@@ -1786,6 +1786,7 @@ module ietf-ac-ntw {
             }
           }
         }
+      }
       container access-control-list {
         description
           "Container for the Access Control List (ACL).";
