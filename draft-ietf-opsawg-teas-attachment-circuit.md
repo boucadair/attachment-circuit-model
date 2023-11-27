@@ -318,7 +318,7 @@ for the reader's convenience.
 The overall tree structure of the AC service module is shown in {{o-svc-tree}}.
 
 ~~~~
-{::include ./yang/subtrees/overall-stree.txt}
+{::include ./yang/subtrees/svc/overall-stree.txt}
 ~~~~
 {: #o-svc-tree title="Overall AC Service Tree Structure" artwork-align="center"}
 
@@ -340,7 +340,7 @@ The AC service model uses groupings and types defined in the AC common model {{!
 The 'specific-provisioning-profiles' container ({{gp-svc-tree}}) can be used by a service provider to maintain a set of reusable profiles. The profiles definition are similar to those defined in {{!RFC9181}}, including: Quality of Service (QoS),  Bidirectional Forwarding Detection (BFD), forwarding, and routing profiles. The exact definition of the profiles is local to each service provider. The model only includes an identifier for these profiles in order to facilitate identifying and binding local policies when building an AC.
 
 ~~~~
-{::include ./yang/subtrees/sp-svc-profiles-stree.txt}
+{::include ./yang/subtrees/svc/sp-svc-profiles-stree.txt}
 ~~~~
 {: #gp-svc-tree title="Service Profiles" artwork-align="center"}
 
@@ -379,7 +379,7 @@ The 'placement-constraints' specifies the placement constraints of an AC. For ex
 The structure of 'placement-constraints' is shown in {{precedence-tree}}.
 
 ~~~~
-{::include ./yang/subtrees/precedence-stree.txt}
+{::include ./yang/subtrees/svc/precedence-stree.txt}
 ~~~~
 {: #precedence-tree title="Placement Constraints Subtree Structure" artwork-align="center"}
 
@@ -388,7 +388,7 @@ The structure of 'placement-constraints' is shown in {{precedence-tree}}.
 The structure of 'attachment-circuits' is shown in {{ac-svc-tree}}.
 
 ~~~~
-{::include ./yang/subtrees/overall-ac-stree.txt}
+{::include ./yang/subtrees/svc/overall-ac-stree.txt}
 ~~~~
 {: #ac-svc-tree title="Attachment Circuits Tree Structure" artwork-align="center"}
 
@@ -466,7 +466,7 @@ The 'l2-connection' container ({{l2-svc-tree}}) is used to configure the relevan
 This structure relies upon the common groupings defined in {{!I-D.ietf-opsawg-teas-common-ac}}.
 
 ~~~~
-{::include ./yang/subtrees/l2-stree.txt}
+{::include ./yang/subtrees/svc/l2-stree.txt}
 ~~~~
 {: #l2-svc-tree title="Layer 2 Connection Tree Structure" artwork-align="center"}
 
@@ -479,14 +479,14 @@ The 'ip-connection' container is used to configure the relevant IP properties of
 {{ipv4-svc-tree}} shows the structure of the IPv4 connection.
 
 ~~~~
-{::include ./yang/subtrees/ipv4-stree.txt}
+{::include ./yang/subtrees/svc/ipv4-stree.txt}
 ~~~~
 {: #ipv4-svc-tree title="Layer 3 Connection Tree Structure (IPv4)" artwork-align="center"}
 
 {{ipv6-svc-tree}} shows the structure of the IPv6 connection.
 
 ~~~~
-{::include ./yang/subtrees/ipv6-stree.txt}
+{::include ./yang/subtrees/svc/ipv6-stree.txt}
 ~~~~
 {: #ipv6-svc-tree title="Layer 3 Connection Tree Structure (IPv6)" artwork-align="center"}
 
@@ -497,7 +497,7 @@ As shown in the tree depicted in {{rtg-svc-tree}}, the 'routing-protocols' conta
 In addition to static routing ({{sec-static-rtg}}), the module supports BGP ({{sec-bgp-rtg}}), OSPF ({{sec-ospf-rtg}}), IS-IS ({{sec-isis-rtg}}), and RIP ({{sec-rip-rtg}}). It also includes a reference to the 'routing-profile-identifier' defined in {{sec-profiles}}, so that additional constraints can be applied to a specific instance of each routing protocol.
 
 ~~~~
-{::include ./yang/subtrees/rtg-stree.txt}
+{::include ./yang/subtrees/svc/rtg-stree.txt}
 ~~~~
 {: #rtg-svc-tree title="Routing Tree Structure" artwork-align="center"}
 
@@ -506,7 +506,7 @@ In addition to static routing ({{sec-static-rtg}}), the module supports BGP ({{s
 The static tree structure is shown in {{static-rtg-svc-tree}}.
 
 ~~~~
-{::include ./yang/subtrees/static-rtg-stree.txt}
+{::include ./yang/subtrees/svc/static-rtg-stree.txt}
 ~~~~
 {: #static-rtg-svc-tree title="Static Routing Tree Structure" artwork-align="center"}
 
@@ -533,7 +533,7 @@ As depicted in {{static-rtg-svc-tree}}, the following data nodes can be defined 
 The BGP tree structure is shown in {{bgp-rtg-svc-tree}}.
 
 ~~~~
-{::include ./yang/subtrees/bgp-rtg-stree.txt}
+{::include ./yang/subtrees/svc/bgp-rtg-stree.txt}
 ~~~~
 {: #bgp-rtg-svc-tree title="BGP Tree Structure" artwork-align="center"}
 
@@ -544,7 +544,7 @@ Similar to {{?RFC9182}}, this version of the ACaaS assumes that parameters speci
 The OSPF tree structure is shown in {{ospf-rtg-svc-tree}}.
 
 ~~~~
-{::include ./yang/subtrees/ospf-rtg-stree.txt}
+{::include ./yang/subtrees/svc/ospf-rtg-stree.txt}
 ~~~~
 {: #ospf-rtg-svc-tree title="OSPF Tree Structure" artwork-align="center"}
 
@@ -553,7 +553,7 @@ The OSPF tree structure is shown in {{ospf-rtg-svc-tree}}.
 The IS-IS tree structure is shown in {{isis-rtg-svc-tree}}.
 
 ~~~~
-{::include ./yang/subtrees/isis-rtg-stree.txt}
+{::include ./yang/subtrees/svc/isis-rtg-stree.txt}
 ~~~~
 {: #isis-rtg-svc-tree title="IS-IS Tree Structure" artwork-align="center"}
 
@@ -562,7 +562,7 @@ The IS-IS tree structure is shown in {{isis-rtg-svc-tree}}.
 The RIP tree structure is shown in {{rip-rtg-svc-tree}}.
 
 ~~~~
-{::include ./yang/subtrees/rip-rtg-stree.txt}
+{::include ./yang/subtrees/svc/rip-rtg-stree.txt}
 ~~~~
 {: #rip-rtg-svc-tree title="RIP Tree Structure" artwork-align="center"}
 
@@ -573,7 +573,7 @@ The RIP tree structure is shown in {{rip-rtg-svc-tree}}.
 The model also supports the Virtual Router Redundancy Protocol (VRRP) {{?RFC5798}} on an AC ({{vrrp-rtg-svc-tree}}).
 
 ~~~~
-{::include ./yang/subtrees/vrrp-rtg-stree.txt}
+{::include ./yang/subtrees/svc/vrrp-rtg-stree.txt}
 ~~~~
 {: #vrrp-rtg-svc-tree title="VRRP Tree Structure" artwork-align="center"}
 
@@ -582,7 +582,7 @@ The model also supports the Virtual Router Redundancy Protocol (VRRP) {{?RFC5798
 As shown in the tree depicted in {{oam-svc-tree}}, the 'oam' container defines OAM-related parameters of an AC.
 
 ~~~~
-{::include ./yang/subtrees/oam-stree.txt}
+{::include ./yang/subtrees/svc/oam-stree.txt}
 ~~~~
 {: #oam-svc-tree title="OAM Tree Structure" artwork-align="center"}
 
@@ -591,7 +591,7 @@ As shown in the tree depicted in {{oam-svc-tree}}, the 'oam' container defines O
 As shown in the tree depicted in {{sec-svc-tree}}, the 'security' container defines a set of AC security parameters.
 
 ~~~~
-{::include ./yang/subtrees/security-stree.txt}
+{::include ./yang/subtrees/svc/security-stree.txt}
 ~~~~
 {: #sec-svc-tree title="Security Tree Structure" artwork-align="center"}
 
@@ -614,7 +614,7 @@ Both 'svc-pe-to-ce-bandwidth' and 'svc-ce-to-pe-bandwidth' can be represented us
 Information Rate (EIR), or the Peak Information Rate (PIR). Both reuse the 'bandwidth-per-type' grouping defined in {{!I-D.ietf-opsawg-teas-common-ac}}.
 
 ~~~~
-{::include ./yang/subtrees/bw-stree.txt}
+{::include ./yang/subtrees/svc/bw-stree.txt}
 ~~~~
 {: #bw-tree title="Bandwidth Tree Structure" artwork-align="center"}
 
