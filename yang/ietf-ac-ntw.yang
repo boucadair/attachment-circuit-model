@@ -1770,9 +1770,7 @@ module ietf-ac-ntw {
           list qos-profile {
             key "profile";
             description
-              "QoS profile.
-               Can be a standard or customized
-               profile.";
+              "Points to a QoS profile.";
             leaf profile {
               type qos-profile-reference;
               description
@@ -1785,7 +1783,6 @@ module ietf-ac-ntw {
               description
                 "The direction to which the QoS profile
                  is applied.";
-              }
             }
           }
         }
