@@ -536,7 +536,40 @@ The BGP tree structure is shown in {{bgp-rtg-svc-tree}}.
 ~~~~
 {: #bgp-rtg-svc-tree title="BGP Tree Structure" artwork-align="center"}
 
-Similar to {{?RFC9182}}, this version of the ACaaS assumes that parameters specific to the TCP-AO are preconfigured as part of the key chain that is referenced in the ACaaS. No assumption is made about how such a key chain is preconfigured. However, the structure of the key chain should cover data nodes beyond those in {{!RFC8177}}, mainly SendID and RecvID (Section 3.1 of {{?RFC5925}}).
+The following data nodes are supported for each BGP 'peer-group':
+
+'name':
+: Defines a name for the peer group.
+
+'local-as':
+: Indicates a local AS Number (ASN).
+
+'peer-as':
+: Indicates the peer's ASN.
+
+'address-family':
+: Indicates the address family of the peer. It can be set to 'ipv4', 'ipv6', or 'dual-stack'.
+This address family will be used together with the 'vpn-type' to derive the appropriate Address Family Identifiers (AFIs) / Subsequent Address Family Identifiers (SAFIs) that will be part of the derived device configurations (e.g., unicast IPv4 MPLS L3VPN (AFI,SAFI = 1,128) as defined in {{Section 4.3.4 of !RFC4364}}).
+
+'local-address':
+: Specifies an address or a reference to an interface to use when establishing the BGP transport session.
+
+'authentication':
+: The module adheres to the recommendations in {{Section 13.2 of !RFC4364}}, as it allows enabling the TCP Authentication Option (TCP-AO) {{?RFC5925}} and accommodates the installed base that makes use of MD5. In addition, the module includes a provision for using IPsec.
+: Similar to {{?RFC9182}}, this version of the ACaaS assumes that parameters specific to the TCP-AO are preconfigured as part of the key chain that is referenced in the ACaaS. No assumption is made about how such a key chain is preconfigured. However, the structure of the key chain should cover data nodes beyond those in {{!RFC8177}}, mainly SendID and RecvID ({{Section 3.1 of ?RFC5925}}).
+
+For each neighbor, the following data nodes are supported in addition to similar parameters that are provided for a peer group:
+
+'remote-address':
+: Specifies the remote IP address of a BGP neighbor.
+
+'peer-group':
+: A name of a peer group.
+: Parameters that are provided at the 'neighbor' level takes precedence over the ones provided in the peer group.
+
+'status':
+: Indicates the status of the BGP routing instance.
+
 
 ##### OSPF {#sec-ospf-rtg}
 
@@ -547,6 +580,27 @@ The OSPF tree structure is shown in {{ospf-rtg-svc-tree}}.
 ~~~~
 {: #ospf-rtg-svc-tree title="OSPF Tree Structure" artwork-align="center"}
 
+The following OSPF data nodes are supported:
+
+'address-family':
+: Indicates whether IPv4, IPv6, or both address families are to be activated.
+
+'area-id':
+: Indicates the OSPF Area ID.
+
+'metric':
+: Associates a metric with OSPF routes.
+
+'sham-links':
+: Used to create OSPF sham links between two ACs sharing the same area and having a backdoor link ({{Section 4.2.7 of !RFC4577}} and {{Section 5 of !RFC6565}}).
+
+'authentication':
+: Controls the authentication schemes to be enabled for the OSPF instance. The following options are supported: IPsec for OSPFv3 authentication {{!RFC4552}}, and the Authentication Trailer for OSPFv2 {{!RFC5709}}{{!RFC7474}} and OSPFv3 {{!RFC7166}}.
+
+'status':
+: Indicates the status of the OSPF routing instance.
+
+
 #### IS-IS {#sec-isis-rtg}
 
 The IS-IS tree structure is shown in {{isis-rtg-svc-tree}}.
@@ -555,6 +609,23 @@ The IS-IS tree structure is shown in {{isis-rtg-svc-tree}}.
 {::include ./yang/subtrees/svc/isis-rtg-stree.txt}
 ~~~~
 {: #isis-rtg-svc-tree title="IS-IS Tree Structure" artwork-align="center"}
+
+The following IS-IS data nodes are supported:
+
+'address-family':
+: Indicates whether IPv4, IPv6, or both address families are to be activated.
+
+'area-address':
+: Indicates the IS-IS area address.
+
+'authentication':
+:  Controls the authentication schemes to be enabled
+      for the IS-IS instance.  Both the specification of a key chain
+      {{!RFC8177}} and the direct specification of key and authentication
+      algorithms are supported.
+
+'status':
+: Indicates the status of the IS-IS routing instance.
 
 #### RIP {#sec-rip-rtg}
 
@@ -569,12 +640,26 @@ The RIP tree structure is shown in {{rip-rtg-svc-tree}}.
 
 #### VRRP
 
-The model also supports the Virtual Router Redundancy Protocol (VRRP) {{?RFC5798}} on an AC ({{vrrp-rtg-svc-tree}}).
+The model supports the Virtual Router Redundancy Protocol (VRRP) {{?RFC5798}} on an AC ({{vrrp-rtg-svc-tree}}).
 
 ~~~~
 {::include ./yang/subtrees/svc/vrrp-rtg-stree.txt}
 ~~~~
 {: #vrrp-rtg-svc-tree title="VRRP Tree Structure" artwork-align="center"}
+
+The following data nodes are supported:
+
+'address-family':
+: Indicates whether IPv4, IPv6, or both address
+      families are to be activated.  Note that VRRP version 3 {{!RFC5798}}
+      supports both IPv4 and IPv6.
+
+'status':
+:  Indicates the status of the VRRP instance.
+
+Note that no authentication data node is included for VRRP, as there
+isn't any type of VRRP authentication at this time (see {{Section 9 of !RFC5798}}).
+
 
 #### OAM {#sec-oam}
 
@@ -585,6 +670,17 @@ As shown in the tree depicted in {{oam-svc-tree}}, the 'oam' container defines O
 ~~~~
 {: #oam-svc-tree title="OAM Tree Structure" artwork-align="center"}
 
+This version of the module supports BFD. The following BFD data nodes can be specified:
+
+'profile':
+: Refers to a BFD profile.
+
+'holdtime':
+:  Used to indicate the expected BFD holddown time, in milliseconds.
+
+'status':
+:  Indicates the status of the BFD over an AC.
+
 #### Security {#sec-sec}
 
 As shown in the tree depicted in {{sec-svc-tree}}, the 'security' container defines a set of AC security parameters.
@@ -593,6 +689,8 @@ As shown in the tree depicted in {{sec-svc-tree}}, the 'security' container defi
 {::include ./yang/subtrees/svc/security-stree.txt}
 ~~~~
 {: #sec-svc-tree title="Security Tree Structure" artwork-align="center"}
+
+The 'security' container specifies the authentication and the encryption to be applied to traffic for a given AC. Tthe model can be used to directly control the encryption to be applied (e.g., Layer 2 or Layer 3 encryption) or invoke a local encryption profile.
 
 #### Service {#sec-bw}
 
