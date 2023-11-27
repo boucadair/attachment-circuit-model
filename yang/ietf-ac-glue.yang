@@ -104,8 +104,7 @@ module ietf-ac-glue {
 
   augment "/l2vpn-svc:l2vpn-svc"
         + "/l2vpn-svc:sites/l2vpn-svc:site"
-        + "/l2vpn-svc:site-network-accesses"
-        + "/l2vpn-svc:site-network-access" {
+        + "/l2vpn-svc:site-network-accesses" {
     description
       "Augments VPN network access with AC provisioning details.";
 
@@ -114,8 +113,7 @@ module ietf-ac-glue {
 
   augment "/l3vpn-svc:l3vpn-svc"
         + "/l3vpn-svc:sites/l3vpn-svc:site"
-        + "/l3vpn-svc:site-network-accesses"
-        + "/l3vpn-svc:site-network-access" {
+        + "/l3vpn-svc:site-network-accesses" {
     description
       "Augments VPN network access with AC provisioning details.";
 
@@ -124,7 +122,7 @@ module ietf-ac-glue {
 
   augment "/l2nm:l2vpn-ntw/l2nm:vpn-services/l2nm:vpn-service"
         + "/l2nm:vpn-nodes/l2nm:vpn-node"
-        + "/l2nm:vpn-network-accesses/l2nm:vpn-network-access" {
+        + "/l2nm:vpn-network-accesses" {
     description
       "Augments VPN network access with AC provisioning details.";
 
@@ -133,7 +131,7 @@ module ietf-ac-glue {
 
   augment "/l3nm:l3vpn-ntw/l3nm:vpn-services/l3nm:vpn-service"
         + "/l3nm:vpn-nodes/l3nm:vpn-node"
-        + "/l3nm:vpn-network-accesses/l3nm:vpn-network-access" {
+        + "/l3nm:vpn-network-accesses" {
     description
       "Augments VPN network access with AC provisioning details.";
 
