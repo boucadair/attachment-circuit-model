@@ -843,6 +843,11 @@ module ietf-ac-svc {
         if-feature "vpn-common:bfd";
         description
           "Container for BFD.";
+        leaf profile {
+          type bfd-profile-reference;
+          description
+            "Points to a BFD profile.";
+        }
         uses ac-common:bfd;
         uses vpn-common:service-status;
       }
