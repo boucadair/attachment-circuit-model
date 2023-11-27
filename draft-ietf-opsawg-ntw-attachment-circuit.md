@@ -656,6 +656,12 @@ The description of the service data nodes is as follows:
    'bw-per-service':
    : The bandwidth is per service instance that is bound to an AC.
 
+'qos':
+: Specify a list of QoS profiles to apply for this AC.
+
+'access-control-list':
+: Specify a list of ACL profiles to apply for this AC.
+
 #  YANG Module
 
 This module uses types defined in {{!RFC6991}}, {{!RFC8177}}, {{!RFC8294}}, {{!RFC8343}}, {{!RFC9067}}, {{!RFC9181}}, {{!I-D.ietf-opsawg-teas-common-ac}}, and IEEE Std 802.1Qcp.
