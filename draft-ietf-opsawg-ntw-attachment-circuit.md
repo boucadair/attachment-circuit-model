@@ -557,7 +557,7 @@ The OAM tree structure is shown in {{oam-tree}}.
 
 ## Security
 
-The security tree structure is shown in {{sec-tree}}.
+The security tree structure is shown in {{sec-tree}}. The 'security' container specifies the authentication and the encryption to be applied to traffic for a given AC. Tthe model can be used to directly control the encryption to be applied (e.g., Layer 2 or Layer 3 encryption) or invoke a local encryption profile.
 
 ~~~~
 {::include ./yang/subtrees/ac-ntw/security-tree.txt}
