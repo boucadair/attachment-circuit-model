@@ -1760,6 +1760,36 @@ module ietf-ac-ntw {
           "Layer 2 MTU.";
       }
       uses ac-svc:bandwidth;
+      container qos {
+        if-feature "vpn-common:qos";
+        description
+          "QoS configuration.";
+        container qos-profile {
+          description
+            "QoS profile configuration.";
+          list qos-profile {
+            key "profile";
+            description
+              "QoS profile.
+               Can be a standard or customized
+               profile.";
+            leaf profile {
+              type qos-profile-reference;
+              description
+                "QoS profile to be used.";
+            }
+            leaf direction {
+              type identityref {
+                base vpn-common:qos-profile-direction;
+              }
+              description
+                "The direction to which the QoS profile
+                 is applied.";
+              }
+            }
+          }
+        }
+      }
     }
   }
 
