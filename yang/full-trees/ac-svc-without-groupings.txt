@@ -279,6 +279,7 @@
      |  |              +--ro last-change?   yang:date-and-time
      |  +--rw oam
      |  |  +--rw bfd {vpn-common:bfd}?
+     |  |     +--rw profile?    bfd-profile-reference
      |  |     +--rw holdtime?   uint32
      |  |     +--rw status
      |  |        +--rw admin-status
@@ -642,6 +643,7 @@
         |              +--ro last-change?   yang:date-and-time
         +--rw oam
         |  +--rw bfd {vpn-common:bfd}?
+        |     +--rw profile?    bfd-profile-reference
         |     +--rw holdtime?   uint32
         |     +--rw status
         |        +--rw admin-status
