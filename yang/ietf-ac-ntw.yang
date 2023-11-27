@@ -1764,7 +1764,7 @@ module ietf-ac-ntw {
         if-feature "vpn-common:qos";
         description
           "QoS configuration.";
-        container qos-profile {
+        container qos-profiles {
           description
             "QoS profile configuration.";
           list qos-profile {
@@ -1783,6 +1783,24 @@ module ietf-ac-ntw {
               description
                 "The direction to which the QoS profile
                  is applied.";
+            }
+          }
+        }
+      }
+      container access-control-list {
+        description
+          "Container for the Access Control List (ACL).";
+        container acl-profiles {
+          description
+            "ACL profile configuration.";
+          list acl-profile {
+            key "profile";
+            description
+              "Points to an ACL profile.";
+            leaf profile {
+              type forwarding-profile-reference;
+              description
+                "Forwarding profile to be used.";
             }
           }
         }
