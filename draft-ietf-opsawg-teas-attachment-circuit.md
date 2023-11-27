@@ -597,26 +597,36 @@ As shown in the tree depicted in {{sec-svc-tree}}, the 'security' container defi
 
 #### Service {#sec-bw}
 
-As shown in the tree depicted in {{bw-tree}}, the 'service' container defines the following data nodes:
-
-'mtu':
-: Specifies the Layer 2 MTU, in bytes, for the AC.
-
-'svc-pe-to-ce-bandwidth':
-: Indicates the inbound bandwidth of the AC (i.e., download bandwidth from the service provider to
-  the customer site).
-
-'svc-ce-to-pe-bandwidth':
-: Indicates the outbound bandwidth of the AC (i.e., upload bandwidth from the customer site to the service
-  provider).
-
-Both 'svc-pe-to-ce-bandwidth' and 'svc-ce-to-pe-bandwidth' can be represented using the Committed Information Rate (CIR), the Excess
-Information Rate (EIR), or the Peak Information Rate (PIR). Both reuse the 'bandwidth-per-type' grouping defined in {{!I-D.ietf-opsawg-teas-common-ac}}.
+The structure of the 'service' container is depicted in {{bw-tree}}.
 
 ~~~~
 {::include ./yang/subtrees/svc/bw-stree.txt}
 ~~~~
 {: #bw-tree title="Bandwidth Tree Structure" artwork-align="center"}
+
+The 'service' container defines the following data nodes:
+
+'mtu':
+: Specifies the Layer 2 MTU, in bytes, for the AC.
+
+'svc-pe-to-ce-bandwidth' and'svc-ce-to-pe-bandwidth':
+   'svc-pe-to-ce-bandwidth':
+   : Indicates the inbound bandwidth of the AC (i.e., download bandwidth from the service provider to
+     the customer site).
+
+   'svc-ce-to-pe-bandwidth':
+   : Indicates the outbound bandwidth of the AC (i.e., upload bandwidth from the customer site to the service
+     provider).
+
+   : Both 'svc-pe-to-ce-bandwidth' and 'svc-ce-to-pe-bandwidth' can be represented using the Committed Information Rate (CIR), the Excess
+Information Rate (EIR), or the Peak Information Rate (PIR). Both reuse the 'bandwidth-per-type' grouping defined in {{!I-D.ietf-opsawg-teas-common-ac}}.
+
+'qos':
+: Specifies a list of QoS profiles to apply for this AC.
+
+'access-control-list':
+: Specifies a list of ACL profiles to apply for this AC.
+
 
 # YANG Modules
 
