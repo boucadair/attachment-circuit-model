@@ -10,12 +10,12 @@
         |     |  ...
         |     +--rw bgp
         |     |  ...
-        |     |           +--ro last-change?   yang:date-and-time
         |     +--rw ospf
         |     |  ...
         |     +--rw isis
+        |     |  ...
+        |     +--rw rip
         |     |  +--rw address-family?   identityref
-        |     |  +--rw area-address      area-address
         |     |  +--rw authentication
         |     |  |  +--rw enable?            boolean
         |     |  |  +--rw keying-material
@@ -24,7 +24,6 @@
         |     |  |        |  +--rw key-chain?
         |     |  |        |          key-chain:key-chain-ref
         |     |  |        +--:(auth-key-explicit)
-        |     |  |           +--rw key-id?             uint32
         |     |  |           +--rw key?                string
         |     |  |           +--rw crypto-algorithm?   identityref
         |     |  +--rw status
@@ -34,7 +33,5 @@
         |     |     +--ro oper-status
         |     |        +--ro status?        identityref
         |     |        +--ro last-change?   yang:date-and-time
-        |     +--rw rip
-        |     |  ...
         |     +--rw vrrp
         |      ...
