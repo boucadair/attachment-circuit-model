@@ -201,7 +201,7 @@ ACs created using the "ietf-ac-svc" module {{!I-D.ietf-opsawg-teas-attachment-ci
 
 # An Example {#sec-example}
 
-Let's consider the example depicted in {{ex-topo}} with two customer terminating points (CE1 and CE2). Let's also assume that the bearers to attach these CEs to the provider network are already in place. References to the identify these bearers are shown in the figure. 
+Let's consider the example depicted in {{ex-topo}} with two customer terminating points (CE1 and CE2). Let's also assume that the bearers to attach these CEs to the provider network are already in place. References to the identify these bearers are shown in the figure.
 
 ~~~~~~~~~~
 {::include ./figures/glue/ex-vpls-topo.txt}
