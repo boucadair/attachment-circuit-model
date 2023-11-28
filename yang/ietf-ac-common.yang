@@ -436,7 +436,7 @@ module ietf-ac-common {
         base vpn-common:vxlan-peer-mode;
       }
       description
-        "Specifies the VXLAN access mode.  By default,
+        "Specifies the VXLAN access mode. By default,
          the peer mode is set to 'static-mode'.";
     }
     leaf-list peer-ip-address {
@@ -666,7 +666,6 @@ module ietf-ac-common {
           "When the addresses are allocated by DHCP or other
            dynamic means local to the infrastructure.";
         choice address-assign {
-          default "number";
           description
             "A choice for how IPv4 addresses are assigned.";
           case number {
@@ -800,7 +799,6 @@ module ietf-ac-common {
           "When the addresses are allocated by DHCP or other
            dynamic means local to the infrastructure.";
         choice address-assign {
-          default "number";
           description
             "A choice for how IPv6 addresses are assigned.";
           case number {
@@ -921,7 +919,6 @@ module ietf-ac-common {
         "Container for BGP authentication  parameters.";
       leaf enable {
         type boolean;
-        default "false";
         description
           "Enables or disables authentication.";
       }
@@ -1001,7 +998,6 @@ module ietf-ac-common {
         "Container for OSPF authentication  parameters.";
       leaf enable {
         type boolean;
-        default "false";
         description
           "Enables or disables authentication.";
       }
@@ -1056,7 +1052,6 @@ module ietf-ac-common {
         "Container for IS-IS authentication  parameters.";
       leaf enable {
         type boolean;
-        default "false";
         description
           "Enables or disables authentication.";
       }
@@ -1111,7 +1106,6 @@ module ietf-ac-common {
         "Container for RIP authentication  parameters.";
       leaf enable {
         type boolean;
-        default "false";
         description
           "Enables or disables authentication.";
       }
@@ -1220,7 +1214,6 @@ module ietf-ac-common {
     }
     leaf metric {
       type uint16;
-      default "1";
       description
         "Metric of the AC.  It is used in the routing state
          calculation and path selection.";
