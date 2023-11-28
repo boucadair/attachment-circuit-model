@@ -1,0 +1,81 @@
+module: ietf-ac-ntw
+  augment /nw:networks/nw:network:
+    +--rw ac-profile* [name]
+       +--rw name                 string
+       +--rw l2-connection
+       +--rw ip-connection
+       +--rw routing-protocols
+       |  +--rw routing-protocol* [id]
+       |     +--rw id      string
+       |     +--rw type?   identityref
+       |     +--rw bgp
+       |     |  ...
+       |     +--rw ospf
+       |     |  ...
+       |     +--rw isis
+       |     |  +--rw address-family?   identityref
+       |     |  +--rw area-address      area-address
+       |     |  +--rw level?            identityref
+       |     |  +--rw metric?           uint16
+       |     |  +--rw mode?             enumeration
+       |     +--rw rip
+       |     |  ...
+       |     +--rw vrrp
+       |        ...
+       +--rw oam
+          ...
+  augment /nw:networks/nw:network/nw:node/sap:service/sap:sap:
+    +--rw ac* [name]
+       +--rw name                 string
+       ...
+       +--rw l2-connection
+       |  ...
+       +--rw ip-connection
+       |  ...
+       +--rw routing-protocols
+       |  +--rw routing-protocol* [id]
+       |     +--rw id                  string
+       |     +--rw type?               identityref
+       |     +--rw routing-profiles* [id]
+       |     |  +--rw id      leafref
+       |     |  +--rw type?   identityref
+       |     +--rw static
+       |     |  ...
+       |     +--rw bgp
+       |     |  ...
+       |     +--rw ospf
+       |     |  ...
+       |     +--rw isis
+       |     |  +--rw address-family?   identityref
+       |     |  +--rw area-address      area-address
+       |     |  +--rw level?            identityref
+       |     |  +--rw metric?           uint16
+       |     |  +--rw mode?             enumeration
+       |     |  +--rw authentication
+       |     |  |  +--rw enable?            boolean
+       |     |  |  +--rw keying-material
+       |     |  |     +--rw (option)?
+       |     |  |        +--:(auth-key-chain)
+       |     |  |        |  +--rw key-chain?
+       |     |  |        |          key-chain:key-chain-ref
+       |     |  |        +--:(auth-key-explicit)
+       |     |  |           +--rw key-id?             uint32
+       |     |  |           +--rw key?                string
+       |     |  |           +--rw crypto-algorithm?   identityref
+       |     |  +--rw status
+       |     |     +--rw admin-status
+       |     |     |  +--rw status?        identityref
+       |     |     |  +--rw last-change?   yang:date-and-time
+       |     |     +--ro oper-status
+       |     |        +--ro status?        identityref
+       |     |        +--ro last-change?   yang:date-and-time
+       |     +--rw rip
+       |     |  ...
+       |     +--rw vrrp
+       |        ...
+       +--rw oam
+       |  ...
+       +--rw security
+       |  ...
+       +--rw service
+          ...
