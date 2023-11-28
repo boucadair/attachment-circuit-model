@@ -197,26 +197,33 @@ ACs created using the "ietf-ac-svc" module {{!I-D.ietf-opsawg-teas-attachment-ci
 
 # An Example {#example}
 
-Let's consider the example depicted in {{ex-topo}}:
+Let's consider the example depicted in {{ex-topo}} with two customer terminating points (CE1 and CE2). Let's also assume that the bearers to attach these CEs to the provider network are already in place. References to the identify these bearers are shown in the figure. 
 
 ~~~~~~~~~~
-{::include ./json-examples/glue/ex-vpls-topo.txt}
+{::include ./figures/glue/ex-vpls-topo.txt}
 ~~~~~~~~~~
 {: #ex-topo title="Topology Example" artwork-align="center"}
 
-ACaaS Model can be used to expose the ACs over existing bearers as shown in {{ex-ac}}.
+The AC service model {{!I-D.ietf-opsawg-teas-attachment-circuit}} can be used by the provider to manage and expose the ACs over existing bearers as shown in {{ex-ac}}.
 
 ~~~~~~~~~~
 {::include-fold ./json-examples/glue/example-acsvc-vpls.json}
 ~~~~~~~~~~
 {: #ex-ac title="ACs Created Using ACaaS" artwork-align="center"}
 
-These ACs will be then referenced during the creation of a VPLS instance using the L2NM as shown in {{ex-vpls}}.
+Let's now consider that the customer wants to request a VPLS service between the sites as shown in {{ex-vpls}}.
+
+~~~~~~~~~~
+{::include ./figures/glue/ex-vpls-topo.txt}
+~~~~~~~~~~
+{: #ex-vpls title="Example of VPLS" artwork-align="center"}
+
+To that aim, existing ACs are referenced during the creation of the VPLS instance using the L2NM and the "ietf-ac-glue" as shown in {{ex-vpls}}.
 
 ~~~~~~~~~~
 {::include-fold ./json-examples/glue/example-vpls.json}
 ~~~~~~~~~~
-{: #ex-vpls title="VPLS Request Using L2NM (Message Body)" artwork-align="center"}
+{: #ex-vpls title="VPLS Request Using L2NM and AC Glue (Message Body)" artwork-align="center"}
 
 
 # Acknowledgments
