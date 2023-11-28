@@ -97,13 +97,13 @@ Connectivity services are provided by networks to customers via
    customer edges (CEs), peer Autonomous System Border Routers (ASBRs),
    data centers gateways, or Internet Exchange Points.
 
-The procedure to provision a service in a service provider network may depend on the practices adopted by a service provider, including the flow put in place for the provisioning of advanced network services and how they are bound to an Attachment Circuit (AC). For example, the same AC may host multiple services (e.g., Layer 2 VPN, Slice Service, or Layer 3 VPN). In order to avoid service interference and redundant information in various locations, a service provider may expose an interface to manage ACs network-wide. Customers can then request a base AC to be put in place, and then refer to that AC when requesting services to be bound to that AC. {{!I-D.ietf-opsawg-teas-attachment-circuit}} specifies a data model for managing attachment circuits as a service.
+The procedure to provision a service in a service provider network may depend on the practices adopted by a service provider, including the flow put in place for the provisioning of advanced network services and how they are bound to an Attachment Circuit (AC). For example, the same attachment circuit may host multiple services (e.g., Layer 2 Virula Private Network (VPN), Slice Service, or Layer 3 VPN). In order to avoid service interference and redundant information in various locations, a service provider may expose an interface to manage ACs network-wide. Customers can then request a standalone attachment circuit to be put in place, and then refer to that attachment circuit when requesting services to be bound to that AC. {{!I-D.ietf-opsawg-teas-attachment-circuit}} specifies a data model for managing attachment circuits as a service.
 
-This document specifies a network model for ACs ("ietf-ac-ntw"). The model can be used for the provisioning of ACs prior or during service provisioning.
+{{sec-module}} specifies a network model for attachment circuits ("ietf-ac-ntw"). The model can be used for the provisioning of ACs prior or during service provisioning.
 
 The document leverages {{!RFC9182}} and {{!RFC9291}} by adopting an AC provisioning structure that uses data nodes that are defined in these RFCs. Some refinements were introduced to cover, not only conventional service provider networks, but also specifics of other target deployments (cloud, for example).
 
-The AC network model is designed as an augmnetation to the Service Attachment Point (SAP) model {{!RFC9408}}. An AC can be bound to a single or multiple SAPs. Likewise, the model is designed to accomdate deployments where a SAP can be bound to one or multiple ACs.
+The AC network model is designed as an augmnetation to the Service Attachment Point (SAP) model {{!RFC9408}}. An attachment circuit can be bound to a single or multiple SAPs. Likewise, the model is designed to accomdate deployments where a SAP can be bound to one or multiple ACs (e.g., a parent AC and its child ACs).
 
 ~~~~ aasvg
 {::include ./figures/ac-ntw-example.txt}
@@ -124,24 +124,28 @@ This document uses the term "network model" as defined in {{Section 2.1 of ?RFC8
 
 The meanings of the symbols in the YANG tree diagrams are defined in {{?RFC8340}}.
 
-This document uses the following terms:
+In addition, this document uses the following terms:
 
 Bearer:
-: A physical or logical link that connects a customer node (or site) to a provider network. A bearer can be a wireless or wired link. One or multiple technologies can be used to build a bearer. The bearer type can be specified by a customer.
-: The operator allocates a unique bearer reference to identify a bearer within its network (e.g., customer line identifier). Such a reference can be retrieved by a customer and used in subsequent service placement requests to unambiguously identify where a service is to be bound.
-: The concept of bearer can be generalized to refer to the required underlying connection for the provisioning of an attachment circuit. One or multiple attachment circuits may be hosted over the same bearer (e.g., multiple VLANs on the same bearer that is provided by a physical link).
+: A physical or logical link that connects a customer node (or site) to a provider network.
+: A bearer can be a wireless or wired link. One or multiple technologies can be used to build a bearer. The bearer type can be specified by a customer.
+: The operator allocates a unique bearer reference to identify a bearer within its network (e.g., customer line identifier). Such a reference can be retrieved by a customer and then used in subsequent service placement requests to unambiguously identify where a service is to be bound.
+: The concept of bearer can be generalized to refer to the required underlying connection for the provisioning of an attachment circuit.
+: One or multiple attachment circuits may be hosted over the same bearer (e.g., multiple Virtual Local Area Networks (VLANs) on the same bearer that is provided by a physical link).
 
 Network controller:
-: Denotes a functional entity responsible for the management of the service provider network.
+: Denotes a functional entity responsible for the management of the service provider network. One or multiple network controllers can be deployed in a service provider network.
 
 Service orchestrator:
-: Refers to a functional entity that interacts with the customer of a network service. The service orchestrator is typically responsible for the attachment circuits, the Provider Edge (PE) selection, and requesting the activation of the requested service to a network controller.
+: Refers to a functional entity that interacts with the customer of a network service.
+: A service orchestrator is typically responsible for the attachment circuits, the Provider Edge (PE) selection, and requesting the activation of the requested services to a network controller.
+: A service orchestrator may interact with one or more network controllers.
 
 Service provider network:
-: A network that is able to provide network services (e.g., Network Slice Services).
+: A network that is able to provide network services (e.g., L2VPN, L3VPN, or Network Slice Services).
 
 Service provider:
-: A service provider that offers network services (e.g., Network Slice Services).
+: A service provider that offers network services (e.g., L2VPN, L3VPN, or Network Slice Services).
 
 # Sample Uses of the Attachment Circuit Data Models
 
@@ -156,12 +160,12 @@ Service provider:
 
 The full tree diagram of the module can be generated using the
 "pyang" tool {{PYANG}}.  That tree is not included here because it is
-too long ({{Section 3.3 of ?RFC8340}}).  Instead, subtrees are provided
+too long ({{Section 3.3 of ?RFC8340}}).  Instead, subtrees are provided in the following subsections
 for the reader's convenience.
 
 ## Overall Structure of the Module
 
-The overall tree structure of the module is shown in {{o-ntw-tree}}. The full tree of the 'ac-ntw' is provided in {{AC-Ntw-Tree}}.
+The overall tree structure of the module is shown in {{o-ntw-tree}}.
 
 ~~~~
   augment /nw:networks/nw:network:
@@ -201,21 +205,24 @@ The overall tree structure of the module is shown in {{o-ntw-tree}}. The full tr
 ~~~~
 {: #o-ntw-tree title="Overall Tree Structure"}
 
+The full tree of the 'ac-ntw' is provided in {{AC-Ntw-Tree}}.
 
 A node can host one or more SAPs. As per {{!RFC9408}}, a SAP is an abstraction of the network
-reference points (the PE side of an AC, in the context of this document) where network services can be delivered and/or are delivered to customers. Each SAP terminates one or multiple ACs. Each AC in turn may be terminated by one or more peer SAPs. In order to expose such AC/SAP binding information, the SAP model {{!RFC9408}} is augmented with required AC-related information.
+reference points (the PE side of an AC, in the context of this document) where network services can be delivered and/or are delivered to customers. Each SAP terminates one or multiple ACs. Each AC in turn may be terminated by one or more peer SAPs ('peer-sap'). In order to expose such AC/SAP binding information, the SAP model {{!RFC9408}} is augmented with required AC-related information.
 
-Unlike the AC service model {{!I-D.ietf-opsawg-teas-attachment-circuit}}, an AC is uniquely identified by a name within the scope of a node, not a network. A textual description of the AC may be provided 'description'.
+Unlike the AC service model {{!I-D.ietf-opsawg-teas-attachment-circuit}}, an AC is uniquely identified by a name within the scope of a node, not a network. A textual description of the AC may be provided ('description').
 
-Also, in order to ease the correlation between the AC exposed at the service layer and the one that is actually provisioned in the network operation, a reference to the AC exposed to the customer ('ac-svc-ref') is stored in the 'ietf-ac-ntw' module. A controller may, for example, indicate a filter based on the service type (e.g., Network Slice or L3VPN) to retrieve the list of available ACs for that service.
+Also, in order to ease the correlation between the AC exposed at the service layer and the one that is actually provisioned in the network operation, a reference to the AC exposed to the customer ('ac-svc-ref') is stored in the 'ietf-ac-ntw' module.
 
-In order to factorize a set of data that is provisioned for a set of ACs, a set of profiles ({{sec-profiles}}) can be defined at the network level, and then called under the node level. The information contained in a profile is thus inherited, unless the corresponding data node is refined at the AC level. In such a case, the value provided at the AC level takes precedence over the global one.
+A controller may indicate a filter based on the service type (e.g., Network Slice or L3VPN) to retrieve the list of available ACs for that service.
 
-In contexts where the same AC is terminated by multiple peer SAPs (e.g., An AC with multiple CEs) but a subset of them have specific information, the module allows operators to define:
+In order to factorize common data that is provisioned for a group of ACs, a set of profiles ({{sec-profiles}}) can be defined at the network level, and then called under the node level. The information contained in a profile is thus inherited, unless the corresponding data node is refined at the AC level. In such a case, the value provided at the AC level takes precedence over the global one.
 
-* A parent AC that may list all these CEs as peer SAPs.
-* Individual ACs that are bound to the parent AC using "ac-parent-ref".
-* Individual ACs will list one or a subset of the CEs as peer SAPs. All these individual ACs will inherit the properties of the parent AC.
+In contexts where the same AC is terminated by multiple peer SAPs (e.g., an AC with multiple CEs) but a subset of them have specific information, the module allows operators to:
+
+* Define a parent AC that may list all these CEs as peer SAPs.
+* Create individual ACs that are bound to the parent AC using 'ac-parent-ref'.
+* Indicate for each individual ACs one or a subset of the CEs as peer SAPs. All these individual ACs will inherit the properties of the parent AC.
 
 An AC may belong to one or multiple groups {{!RFC9181}}. For example, the 'group-id' is used to associate redundancy or protection constraints with ACs.
 
@@ -252,7 +259,7 @@ The exact definition of these profiles is local to each service provider. The mo
 
 ## L2 Connection {#sec-l2}
 
-The 'l2-connection' container is used to manage the Layer 2 properties of the AC. The  Layer 2 connection tree structure is shown in {{l2-tree}}.
+The 'l2-connection' container is used to manage the Layer 2 properties of an AC. The  Layer 2 connection tree structure is shown in {{l2-tree}}.
 
 ~~~~
 {::include ./yang/subtrees/ac-ntw/l2-tree.txt}
@@ -290,16 +297,23 @@ In some deployment contexts (e.g., network merging), multiple IP subnets may be 
 
 ## Routing {#sec-rtg}
 
-The routing tree structure is shown in {{rtg-tree}}.
+The overall routing subtree structure is shown in {{rtg-tree}}.
 
 ~~~~
 {::include ./yang/subtrees/ac-ntw/rtg-tree.txt}
 ~~~~
-{: #rtg-tree title="Rotuing Tree Structure"}
+{: #rtg-tree title="Routing Tree Structure"}
 
 ### Static Routing {#sec-static-rtg}
 
-The following data nodes can be defined for a given IP prefix ({{rtg-tree}}):
+The static routing subtree structure is shown in {{static-tree}}.
+
+~~~~
+{::include ./yang/subtrees/ac-ntw/static-tree.txt}
+~~~~
+{: #static-tree title="Static Routing Tree Structure"}
+
+The following data nodes can be defined for a given IP prefix:
 
 'lan-tag':
 : Indicates a local tag (e.g., "myfavorite-lan") that is used to enforce local policies.
@@ -323,7 +337,14 @@ The following data nodes can be defined for a given IP prefix ({{rtg-tree}}):
 
 ### BGP {#sec-bgp-rtg}
 
-The following data nodes are supported for each 'peer-group' ({{rtg-tree}}):
+The BGP routing subtree structure is shown in {{bgp-tree}}.
+
+~~~~
+{::include ./yang/subtrees/ac-ntw/bgp-tree.txt}
+~~~~
+{: #bgp-tree title="BGP Routing Tree Structure"}
+
+The following data nodes are supported for each 'peer-group':
 
 'name':
 : Defines a name for the peer group.
@@ -445,7 +466,14 @@ For each neighbor, the following data nodes are supported in addition to similar
 
 ### OSPF {#sec-ospf-rtg}
 
-The following OSPF data nodes are supported ({{rtg-tree}}):
+The OSPF routing subtree structure is shown in {{ospf-tree}}.
+
+~~~~
+{::include ./yang/subtrees/ac-ntw/ospf-tree.txt}
+~~~~
+{: #ospf-tree title="OSPF Routing Tree Structure"}
+
+The following OSPF data nodes are supported:
 
 'address-family':
 :  Indicates whether IPv4, IPv6, or both address
@@ -480,7 +508,14 @@ The following OSPF data nodes are supported ({{rtg-tree}}):
 
 ### IS-IS {#sec-isis-rtg}
 
-The following IS-IS data nodes are supported ({{rtg-tree}}):
+The IS-IS routing subtree structure is shown in {{isis-tree}}.
+
+~~~~
+{::include ./yang/subtrees/ac-ntw/isis-tree.txt}
+~~~~
+{: #isis-tree title="IS-IS Routing Tree Structure"}
+
+The following IS-IS data nodes are supported:
 
 'address-family':
 :  Indicates whether IPv4, IPv6, or both address families are to be activated.
@@ -511,7 +546,14 @@ The following IS-IS data nodes are supported ({{rtg-tree}}):
 
 ### RIP {#sec-rip-rtg}
 
-The following RIP data nodes are supported ({{rtg-tree}}):
+The RIP routing subtree structure is shown in {{rip-tree}}.
+
+~~~~
+{::include ./yang/subtrees/ac-ntw/rip-tree.txt}
+~~~~
+{: #rip-tree title="RIP Routing Tree Structure"}
+
+The following RIP data nodes are supported:
 
 'address-family':
 :  Indicates whether IPv4, IPv6, or both address
@@ -545,7 +587,14 @@ The following RIP data nodes are supported ({{rtg-tree}}):
 
 ### VRRP {#sec-VRRP-rtg}
 
-The following VRRP data nodes are supported ({{rtg-tree}}):
+The VRRP subtree structure is shown in {{vrrp-tree}}.
+
+~~~~
+{::include ./yang/subtrees/ac-ntw/vrrp-tree.txt}
+~~~~
+{: #vrrp-tree title="VRRP Tree Structure"}
+
+The following VRRP data nodes are supported:
 
 'address-family':
 :  Indicates whether IPv4, IPv6, or both address
@@ -575,7 +624,7 @@ isn't any type of VRRP authentication at this time (see {{Section 9 of !RFC5798}
 
 ## OAM {#sec-oam}
 
-The OAM tree structure is shown in {{oam-tree}}.
+The OAM subtree structure is shown in {{oam-tree}}.
 
 ~~~~
 {::include ./yang/subtrees/ac-ntw/oam-tree.txt}
@@ -611,7 +660,7 @@ The following OAM data nodes can be specified:
 
 ## Security {#sec-sec}
 
-The security tree structure is shown in {{sec-tree}}. The 'security' container specifies the authentication and the encryption to be applied to traffic for a given AC. Tthe model can be used to directly control the encryption to be applied (e.g., Layer 2 or Layer 3 encryption) or invoke a local encryption profile.
+The security subtree structure is shown in {{sec-tree}}. The 'security' container specifies the authentication and the encryption to be applied to traffic for a given AC. Tthe model can be used to directly control the encryption to be applied (e.g., Layer 2 or Layer 3 encryption) or invoke a local encryption profile.
 
 ~~~~
 {::include ./yang/subtrees/ac-ntw/security-tree.txt}
@@ -620,7 +669,7 @@ The security tree structure is shown in {{sec-tree}}. The 'security' container s
 
 ## Service {#sec-svc}
 
-The service tree structure is shown in {{svc-tree}}.
+The service subtree structure is shown in {{svc-tree}}.
 
 ~~~~
 {::include ./yang/subtrees/ac-ntw/service-tree.txt}
@@ -661,7 +710,7 @@ The description of the service data nodes is as follows:
 'access-control-list':
 : Specifies a list of ACL profiles to apply for this AC.
 
-#  YANG Module
+#  YANG Module {#sec-module}
 
 This module uses types defined in {{!RFC6991}}, {{!RFC8177}}, {{!RFC8294}}, {{!RFC8343}}, {{!RFC9067}}, {{!RFC9181}}, {{!I-D.ietf-opsawg-teas-common-ac}}, and IEEE Std 802.1Qcp.
 
@@ -733,6 +782,9 @@ Several data nodes ('bgp', 'ospf', 'isis', and 'rip') rely upon {{!RFC8177}} for
 ~~~~
 
 --- back
+
+# Examples {#sec-examples}
+
 
 # Acknowledgments
 {:numbered="false"}
