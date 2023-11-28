@@ -311,7 +311,7 @@ The static routing subtree structure is shown in {{static-tree}}.
 ~~~~
 {::include ./yang/subtrees/ac-ntw/static-tree.txt}
 ~~~~
-{: #static-tree title="Static Rotuing Tree Structure"}
+{: #static-tree title="Static Routing Tree Structure"}
 
 The following data nodes can be defined for a given IP prefix:
 
