@@ -70,6 +70,14 @@ contributor:
     email: luis-angel.munoz@vodafone.com
 
 normative:
+  IEEE802.1Qcp:
+    title: "IEEE Standard for Local and metropolitan area networks--Bridges and Bridged Networks--Amendment 30: YANG Data Model"
+    author:
+     -
+      org: IEEE
+    date: September 2018
+    target: https://doi.org/10.1109/IEEESTD.2018.8467507
+
 
 informative:
   AC-Ntw-Tree:
@@ -714,7 +722,7 @@ The description of the service data nodes is as follows:
 
 #  YANG Module {#sec-module}
 
-This module uses types defined in {{!RFC6991}}, {{!RFC8177}}, {{!RFC8294}}, {{!RFC8343}}, {{!RFC9067}}, {{!RFC9181}}, {{!I-D.ietf-opsawg-teas-common-ac}}, and IEEE Std 802.1Qcp.
+This module uses types defined in {{!RFC6991}}, {{!RFC8177}}, {{!RFC8294}}, {{!RFC8343}}, {{!RFC9067}}, {{!RFC9181}}, {{!I-D.ietf-opsawg-teas-common-ac}}, and {{IEEE802.1Qcp}}.
 
 ~~~~ yang
 <CODE BEGINS> file ietf-ac-ntw@2022-11-30.yang
