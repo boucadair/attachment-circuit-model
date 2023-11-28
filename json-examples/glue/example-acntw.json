@@ -27,7 +27,7 @@
                "sap-status":{
                   "status":"ietf-vpn-common:op-up"
                },
-               "ac":[
+               "ietf-ac-ntw:ac":[
                   {
                      "name":"ac-11",
                      "ac-svc-ref":"ac-1",
