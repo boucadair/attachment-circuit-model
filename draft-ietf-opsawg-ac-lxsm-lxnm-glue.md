@@ -65,8 +65,12 @@ informative:
 * The Layer 2 Network Model (L2NM) {{!RFC9291}}
 * The Layer 3 Network Model (L3NM) {{!RFC9182}}
 
+The model
+
 The YANG data model in this document conforms to the Network
 Management Datastore Architecture (NMDA) defined in {{!RFC8342}}.
+
+An example to illustrate the use of the model is provided in {{sec-example}}.
 
 # Conventions and Definitions
 
@@ -127,7 +131,7 @@ ACs created using the "ietf-ac-svc" module {{!I-D.ietf-opsawg-teas-attachment-ci
 ~~~~~~~~~~
 {: #tree title="AC Glue Tree Structure" artwork-align="center"}
 
-# The AC Glue ("ietf-ac-glue") YANG Module
+# The AC Glue ("ietf-ac-glue") YANG Module {#sec-glue}
 
 ~~~~~~~~~~
 <CODE BEGINS> file ietf-ac-glue@2023-11-13.yang
@@ -195,11 +199,38 @@ ACs created using the "ietf-ac-svc" module {{!I-D.ietf-opsawg-teas-attachment-ci
 
 --- back
 
-# Examples {#examples}
+# An Example {#sec-example}
 
-Add some examples.
+Let's consider the example depicted in {{ex-topo}} with two customer terminating points (CE1 and CE2). Let's also assume that the bearers to attach these CEs to the provider network are already in place. References to the identify these bearers are shown in the figure.
+
+~~~~~~~~~~
+{::include ./figures/glue/ex-vpls-topo.txt}
+~~~~~~~~~~
+{: #ex-topo title="Topology Example" artwork-align="center"}
+
+The AC service model {{!I-D.ietf-opsawg-teas-attachment-circuit}} can be used by the provider to manage and expose the ACs over existing bearers as shown in {{ex-ac}}.
+
+~~~~~~~~~~
+{::include-fold ./json-examples/glue/example-acsvc-vpls.json}
+~~~~~~~~~~
+{: #ex-ac title="ACs Created Using ACaaS" artwork-align="center"}
+
+Let's now consider that the customer wants to request a VPLS service between the sites as shown in {{ex-vpls}}.
+
+~~~~~~~~~~
+{::include ./figures/glue/ex-vpls-topo.txt}
+~~~~~~~~~~
+{: #ex-vpls title="Example of VPLS" artwork-align="center"}
+
+To that aim, existing ACs are referenced during the creation of the VPLS instance using the L2NM and the "ietf-ac-glue" as shown in {{ex-vpls-req}}.
+
+~~~~~~~~~~
+{::include-fold ./json-examples/glue/example-vpls.json}
+~~~~~~~~~~
+{: #ex-vpls-req title="Example of a VPLS Request Using L2NM and AC Glue (Message Body)" artwork-align="center"}
+
 
 # Acknowledgments
 {:numbered="false"}
 
-Thanks to TBC for the comments.
+Thanks to Bo Wu for the review and comments.
