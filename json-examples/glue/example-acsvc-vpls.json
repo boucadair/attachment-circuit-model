@@ -47,7 +47,7 @@
          {
             "name":"ac-1",
             "description":"First attachment",
-            "ac-group-profile”:["an-ac-profile"],
+            "ac-group-profile":["an-ac-profile"],
             "l2-connection":{
                "bearer-reference":"1234"
             }
@@ -55,7 +55,7 @@
          {
             "name":"ac-2",
             "description":"Second attachment",
-            "ac-group-profile”: ["an-ac-profile"],
+            "ac-group-profile": ["an-ac-profile"],
             "l2-connection":{
                "bearer-reference":"5678"
             }
