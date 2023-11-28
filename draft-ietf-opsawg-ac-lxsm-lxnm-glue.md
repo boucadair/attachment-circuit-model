@@ -204,7 +204,7 @@ ACs created using the "ietf-ac-svc" module {{!I-D.ietf-opsawg-teas-attachment-ci
 Let's consider the example depicted in {{ex-topo}} with two customer terminating points (CE1 and CE2). Let's also assume that the bearers to attach these CEs to the provider network are already in place. References to the identify these bearers are shown in the figure.
 
 ~~~~~~~~~~
-{::include ./figures/glue/ex-vpls-topo.txt}
+{::include ./figures/glue/ex-topo.txt}
 ~~~~~~~~~~
 {: #ex-topo title="Topology Example" artwork-align="center"}
 
@@ -218,7 +218,7 @@ The AC service model {{!I-D.ietf-opsawg-teas-attachment-circuit}} can be used by
 Let's now consider that the customer wants to request a VPLS service between the sites as shown in {{ex-vpls}}.
 
 ~~~~~~~~~~
-{::include ./figures/glue/ex-vpls-topo.txt}
+{::include ./figures/glue/ex-vpls.txt}
 ~~~~~~~~~~
 {: #ex-vpls title="Example of VPLS" artwork-align="center"}
 
