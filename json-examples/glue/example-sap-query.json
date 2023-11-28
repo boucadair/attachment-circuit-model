@@ -1,0 +1,23 @@
+{
+   "ietf-sap-ntw:service":[
+      {
+         "service-type":"ietf-vpn-common:vpls",
+         "sap":[
+            {
+               "sap-id":"sap#1",
+               "peer-sap-id":[
+                  "ce-1"
+               ],
+               "description":"A parent SAP",
+               "attachment-interface":"GE0/6/1",
+               "interface-type":"ietf-sap-ntw:phy",
+               "role":"ietf-sap-ntw:uni",
+               "allows-child-saps":true,
+               "sap-status":{
+                  "status":"ietf-vpn-common:op-up"
+               }
+            }
+         ]
+      }
+   ]
+}

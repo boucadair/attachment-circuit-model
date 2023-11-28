@@ -453,8 +453,7 @@ The following OSPF data nodes are supported ({{rtg-tree}}):
 : When the IPv4 or dual-stack address family is requested, it is up
       to the implementation (e.g., network orchestrator) to decide
       whether OSPFv2 {{!RFC4577}} or OSPFv3 {{!RFC6565}} is used to announce
-      IPv4 routes.  Such a decision will typically be reflected in the
-      device configurations that will be derived to implement the L3VPN.
+      IPv4 routes.
 
 'area-id':
 :  Indicates the OSPF Area ID.
