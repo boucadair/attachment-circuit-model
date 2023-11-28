@@ -240,7 +240,7 @@ Bandwidth parameters ({{bw-full-tree}}):
 
     * 'bw-per-cos':
     :  The bandwidth is per Class of Service (CoS).
-    
+
     * 'bw-per-site':
     :  The bandwidth is to all ACs that belong to the same site.
 
