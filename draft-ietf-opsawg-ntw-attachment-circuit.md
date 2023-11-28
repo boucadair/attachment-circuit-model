@@ -71,7 +71,7 @@ contributor:
 
 normative:
   IEEE802.1Qcp:
-    title: IEEE Standard for Local and metropolitan area networks--Bridges and Bridged Networks--Amendment 30: YANG Data Model
+    title: "IEEE Standard for Local and metropolitan area networks--Bridges and Bridged Networks--Amendment 30: YANG Data Model"
     author:
      -
       org: IEEE
