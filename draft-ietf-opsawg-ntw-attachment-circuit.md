@@ -793,7 +793,28 @@ Several data nodes ('bgp', 'ospf', 'isis', and 'rip') rely upon {{!RFC8177}} for
 
 --- back
 
-# Examples {#sec-examples}
+# An Example {#sec-examples}
+
+Let's consider the example depicted in {{ex-topo}} with two customer terminating points (CE1 and CE2). Let's also assume that the bearers to attach these CEs to the provider network are already in place. References to the identify these bearers are shown in the figure.
+
+~~~~~~~~~~
+{::include ./figures/glue/ex-topo.txt}
+~~~~~~~~~~
+{: #ex-topo title="Topology Example" artwork-align="center"}
+
+The AC service model {{!I-D.ietf-opsawg-teas-attachment-circuit}} can be used by the provider to manage and expose the ACs over existing bearers as shown in {{ex-ac}}.
+
+~~~~~~~~~~
+{::include-fold ./json-examples/glue/example-acsvc-vpls.json}
+~~~~~~~~~~
+{: #ex-ac title="ACs Created Using ACaaS" artwork-align="center"}
+
+The provisionned AC at PE1 can be retrieved using the AC network model as depicted in {{ex-acntw-query}}. A similar query can be used for the AC at PE2.
+
+~~~~~~~~~~
+{::include-fold ./json-examples/glue/example-acntw.json}
+~~~~~~~~~~
+{: #ex-acntw-query title="Example of AC Network Response (Message Body)" artwork-align="center"}
 
 
 # Acknowledgments
