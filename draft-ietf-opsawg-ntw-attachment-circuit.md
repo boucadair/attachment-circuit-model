@@ -224,6 +224,8 @@ In contexts where the same AC is terminated by multiple peer SAPs (e.g., an AC w
 * Create individual ACs that are bound to the parent AC using 'ac-parent-ref'.
 * Indicate for each individual ACs one or a subset of the CEs as peer SAPs. All these individual ACs will inherit the properties of the parent AC.
 
+Whenever a parent AC is deleted, then all child ACs of that AC MUST be deleted.
+
 An AC may belong to one or multiple groups {{!RFC9181}}. For example, the 'group-id' is used to associate redundancy or protection constraints with ACs.
 
 The status of an AC can be tracked using 'status'. Both operational status and administrative status are maintained. A mismatch between the administrative status vs. the operational status can be used as a trigger to detect anomalies.
