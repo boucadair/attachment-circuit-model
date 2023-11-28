@@ -229,6 +229,20 @@ To that aim, existing ACs are referenced during the creation of the VPLS instanc
 ~~~~~~~~~~
 {: #ex-vpls-req title="Example of a VPLS Request Using L2NM and AC Glue (Message Body)" artwork-align="center"}
 
+Note that before implementing the VPLS creation request, the provider service orchestrator may first check if the VPLS service can be provided to the customer using the target delivery locations. The orchestrator will use the SAP model {{!RFC9408}} as exemplified in {{ex-sap-query}}. This example assumes that the query concerns only PE1. A similar query can be issued for PE2.
+
+~~~~~~~~~~
+{::include-fold ./json-examples/glue/example-sap-query.json}
+~~~~~~~~~~
+{: #ex-sap-query title="Example of SAP Response (Message Body)" artwork-align="center"}
+
+The response in {{ex-sap-query}} indicates that the VPLS service can be delivered to CE1. {{!I-D.ietf-opsawg-ntw-attachment-circuit}} can be also used to access AC-related details that are bound to the target SAP ({{ex-acntw-quer}}).
+
+~~~~~~~~~~
+{::include-fold ./json-examples/glue/example-acntw.json}
+~~~~~~~~~~
+{: #ex-acntw-query title="Example of AC Network Response (Message Body)" artwork-align="center"}
+
 
 # Acknowledgments
 {:numbered="false"}
