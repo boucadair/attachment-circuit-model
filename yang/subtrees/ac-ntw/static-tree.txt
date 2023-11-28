@@ -1,0 +1,65 @@
+module: ietf-ac-ntw
+          ...
+  augment /nw:networks/nw:network/nw:node/sap:service/sap:sap:
+    +--rw ac* [name]
+       +--rw name                 string
+       ...
+       +--rw l2-connection
+       |  ...
+       +--rw ip-connection
+       |  ...
+       +--rw routing-protocols
+       |  +--rw routing-protocol* [id]
+       |     +--rw id                  string
+       |     +--rw type?               identityref
+       |     +--rw routing-profiles* [id]
+       |     |  +--rw id      leafref
+       |     |  +--rw type?   identityref
+       |     +--rw static
+       |     |  +--rw cascaded-lan-prefixes
+       |     |     +--rw ipv4-lan-prefixes* [lan next-hop]
+       |     |     |       {vpn-common:ipv4}?
+       |     |     |  +--rw lan           inet:ipv4-prefix
+       |     |     |  +--rw lan-tag?      string
+       |     |     |  +--rw next-hop      union
+       |     |     |  +--rw metric?       uint32
+       |     |     |  +--rw bfd-enable?   boolean {vpn-common:bfd}?
+       |     |     |  +--rw preference?   uint32
+       |     |     |  +--rw status
+       |     |     |     +--rw admin-status
+       |     |     |     |  +--rw status?        identityref
+       |     |     |     |  +--rw last-change?   yang:date-and-time
+       |     |     |     +--ro oper-status
+       |     |     |        +--ro status?        identityref
+       |     |     |        +--ro last-change?   yang:date-and-time
+       |     |     +--rw ipv6-lan-prefixes* [lan next-hop]
+       |     |             {vpn-common:ipv6}?
+       |     |        +--rw lan           inet:ipv4-prefix
+       |     |        +--rw lan-tag?      string
+       |     |        +--rw next-hop      union
+       |     |        +--rw metric?       uint32
+       |     |        +--rw bfd-enable?   boolean {vpn-common:bfd}?
+       |     |        +--rw preference?   uint32
+       |     |        +--rw status
+       |     |           +--rw admin-status
+       |     |           |  +--rw status?        identityref
+       |     |           |  +--rw last-change?   yang:date-and-time
+       |     |           +--ro oper-status
+       |     |              +--ro status?        identityref
+       |     |              +--ro last-change?   yang:date-and-time
+       |     +--rw bgp
+       |     |  ...
+       |     +--rw ospf
+       |     |  ...
+       |     +--rw isis
+       |     |  ...
+       |     +--rw rip
+       |     |  ...
+       |     +--rw vrrp
+       |        ...
+       +--rw oam
+       |  ...
+       +--rw security
+       |  ...
+       +--rw service
+          ...
