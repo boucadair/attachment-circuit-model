@@ -74,7 +74,41 @@ module ietf-ac-glue {
                  and Network Models with Attachment Circuits";
   }
 
-  grouping ac-svc-glue {
+  feature ac-glue {
+    description
+      "The VPN implementation supports binding a specific VPN
+       network access or site access to an attachment circuit.";
+  }
+
+  grouping single-ac-svc-ref {
+    description
+      "A grouping with single reference to a service AC.";
+    leaf ac-svc-ref {
+      type ac-svc:attachment-circuit-reference;
+      description
+        "A reference to the AC as exposed at the service that 
+         was provisionned using the ACaaS module.";
+    }
+  }
+
+  grouping single-ac-svc-ntw-ref {
+    description
+      "A grouping with single AC references.";
+    leaf ac-svc-ref {
+      type ac-svc:attachment-circuit-reference;
+      description
+        "A reference to the AC as exposed at the service that 
+         was provisionned using the ACaaS module.";
+    }
+    leaf ac-ntw-ref {
+      type ac-ntw:attachment-circuit-reference;
+      description
+        "A reference to the AC that  was provisionned
+         using the AC network module.";
+    }
+  }
+
+  grouping ac-svc-ref {
     description
       "A set of service-specific AC-related data.";
     leaf-list ac-svc-ref {
@@ -85,7 +119,7 @@ module ietf-ac-glue {
     }
   }
 
-  grouping ac-glue {
+  grouping ac-svc-ntw-ref {
     description
       "A set of AC-related data.";
     leaf-list ac-svc-ref {
@@ -106,9 +140,22 @@ module ietf-ac-glue {
         + "/l2vpn-svc:sites/l2vpn-svc:site"
         + "/l2vpn-svc:site-network-accesses" {
     description
-      "Augments VPN network access with AC provisioning details.";
+      "Augments VPN site network access with AC provisioning
+       details.";
 
-    uses ac-svc-glue;
+    uses ac-svc-ref;
+  }
+
+  augment "/l2vpn-svc:l2vpn-svc"
+        + "/l2vpn-svc:sites/l2vpn-svc:site"
+        + "/l2vpn-svc:site-network-accesses"
+        + "/l2vpn-svc:site-network-access" {
+    if-feature "ac-glue";
+    description
+      "Augments VPN site network access with a reference to
+        a service AC.";
+
+    uses single-ac-svc-ref;
   }
 
   augment "/l3vpn-svc:l3vpn-svc"
@@ -117,7 +164,19 @@ module ietf-ac-glue {
     description
       "Augments VPN network access with AC provisioning details.";
 
-    uses ac-svc-glue;
+    uses ac-svc-ref;
+  }
+
+  augment "/l3vpn-svc:l3vpn-svc"
+        + "/l3vpn-svc:sites/l3vpn-svc:site"
+        + "/l3vpn-svc:site-network-accesses"
+        + "/l3vpn-svc:site-network-access" {
+    if-feature "ac-glue";
+    description
+      "Augments VPN site network access with a reference to
+       a service AC.";
+
+    uses single-ac-svc-ref;
   }
 
   augment "/l2nm:l2vpn-ntw/l2nm:vpn-services/l2nm:vpn-service"
@@ -126,7 +185,19 @@ module ietf-ac-glue {
     description
       "Augments VPN network access with AC provisioning details.";
 
-    uses ac-glue;
+    uses ac-svc-ntw-ref;
+  }
+
+  augment "/l2nm:l2vpn-ntw/l2nm:vpn-services/l2nm:vpn-service"
+        + "/l2nm:vpn-nodes/l2nm:vpn-node"
+        + "/l2nm:vpn-network-accesses"
+        + "/l2nm:vpn-network-access" {
+    if-feature "ac-glue";
+    description
+      "Augments VPN network access with service and network references
+       to an AC.";
+
+    uses single-ac-svc-ntw-ref;
   }
 
   augment "/l3nm:l3vpn-ntw/l3nm:vpn-services/l3nm:vpn-service"
@@ -135,6 +206,18 @@ module ietf-ac-glue {
     description
       "Augments VPN network access with AC provisioning details.";
 
-    uses ac-glue;
+    uses ac-svc-ntw-ref;
+  }
+
+  augment "/l3nm:l3vpn-ntw/l3nm:vpn-services/l3nm:vpn-service"
+        + "/l3nm:vpn-nodes/l3nm:vpn-node"
+        + "/l3nm:vpn-network-accesses"
+        + "/l3nm:vpn-network-access" {
+    if-feature "ac-glue";
+    description
+      "Augments VPN network access with service and network references
+       to an AC.";
+
+    uses single-ac-svc-ntw-ref;
   }
 }
