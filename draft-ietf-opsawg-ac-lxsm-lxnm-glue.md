@@ -134,6 +134,8 @@ VPN-related modules (e.g., L2SM, L3SM, L2NM, and L3NM). Also, ACs managed using 
 ~~~~~~~~~~
 {: #tree title="AC Glue Tree Structure" artwork-align="center"}
 
+When an AC is referenced for a specific network access, then that AC information takes precedence over any overlapping information that is also enclosed for this network access.
+
 # The AC Glue ("ietf-ac-glue") YANG Module {#sec-glue}
 
 ~~~~~~~~~~
