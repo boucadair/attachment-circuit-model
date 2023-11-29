@@ -136,6 +136,8 @@ VPN-related modules (e.g., L2SM, L3SM, L2NM, and L3NM). Also, ACs managed using 
 
 When an AC is referenced within a specific network access, then that AC information takes precedence over any overlapping information that is also enclosed for this network access.
 
+> This approach is consistent with the design in {{?I-D.ietf-teas-ietf-network-slice-nbi-yang}} where an AC service reference, called 'ac-svc-name', is used to indicate the names of AC services. As per {{?I-D.ietf-teas-ietf-network-slice-nbi-yang}}, when both 'ac-svc-name' and the attributes of 'attachment-circuits' are defined, the 'ac-svc-name' takes precedence.
+
 The module includes provisions to reference AC within or outside an VPN network access to accommodate deployment contexts where an AC reference may be created before or after a VPN instance is created. {{ref-within-access}} illustrates how an AC reference can be enclosed as part of a specific VPN network access, while {{ref-outside-access}} shows how AC references can be indicated outside individual VPN network access entries.
 
 # The AC Glue ("ietf-ac-glue") YANG Module {#sec-glue}
