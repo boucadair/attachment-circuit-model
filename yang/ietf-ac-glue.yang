@@ -194,8 +194,8 @@ module ietf-ac-glue {
         + "/l2nm:vpn-network-access" {
     if-feature "ac-glue";
     description
-      "Augments VPN network access with service and network references
-       to an AC.";
+      "Augments VPN network access with service and network
+       references to an AC.";
 
     uses single-ac-svc-ntw-ref;
   }
@@ -215,8 +215,8 @@ module ietf-ac-glue {
         + "/l3nm:vpn-network-access" {
     if-feature "ac-glue";
     description
-      "Augments VPN network access with service and network references
-       to an AC.";
+      "Augments VPN network access with service and network
+       references to an AC.";
 
     uses single-ac-svc-ntw-ref;
   }
