@@ -136,11 +136,13 @@ VPN-related modules (e.g., L2SM, L3SM, L2NM, and L3NM). Also, ACs managed using 
 
 When an AC is referenced for a specific network access, then that AC information takes precedence over any overlapping information that is also enclosed for this network access.
 
+The module include provision to reference AC within or outside an VPN network access to accommodate deployment contexts where an AC reference may be created before or after a VPN instance is created.
+
 # The AC Glue ("ietf-ac-glue") YANG Module {#sec-glue}
 
 ~~~~~~~~~~
 <CODE BEGINS> file ietf-ac-glue@2023-11-13.yang
-{::include ./yang/ietf-ac-glue.yang}
+{::include-fold ./yang/ietf-ac-glue.yang}
 <CODE ENDS>
 ~~~~~~~~~~
 
