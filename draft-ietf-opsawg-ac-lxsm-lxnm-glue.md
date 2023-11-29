@@ -134,9 +134,9 @@ VPN-related modules (e.g., L2SM, L3SM, L2NM, and L3NM). Also, ACs managed using 
 ~~~~~~~~~~
 {: #tree title="AC Glue Tree Structure" artwork-align="center"}
 
-When an AC is referenced for a specific network access, then that AC information takes precedence over any overlapping information that is also enclosed for this network access.
+When an AC is referenced within a specific network access, then that AC information takes precedence over any overlapping information that is also enclosed for this network access.
 
-The module include provision to reference AC within or outside an VPN network access to accommodate deployment contexts where an AC reference may be created before or after a VPN instance is created. {{ref-within-access}} illustrates how an AC reference can be enclosed as part of a specific VPN network access, while {{ref-outside-access}} shows how AC references can be indicated outside individual VPN network access entries.
+The module includes provisions to reference AC within or outside an VPN network access to accommodate deployment contexts where an AC reference may be created before or after a VPN instance is created. {{ref-within-access}} illustrates how an AC reference can be enclosed as part of a specific VPN network access, while {{ref-outside-access}} shows how AC references can be indicated outside individual VPN network access entries.
 
 # The AC Glue ("ietf-ac-glue") YANG Module {#sec-glue}
 
@@ -205,7 +205,7 @@ The module include provision to reference AC within or outside an VPN network ac
 ~~~~
 
    IANA is requested to register the following YANG module in the "YANG Module
-   Names" registry {{!RFC6020}} within the "YANG Parameters" registry group.
+   Names" registry {{!RFC6020}} within the "YANG Parameters" registry group:
 
 ~~~~
    Name:  ietf-ac-glue
@@ -228,7 +228,7 @@ Let's consider the example depicted in {{ex-vpws}} which is inspired from {{Sect
 ~~~~~~~~~~
 {: #ex-vpws title="VPWS Topology Example" artwork-align="center"}
 
-The service AC references can be explicitly indicated in the L2NM realization query as shown in {{ex-vpws-query}}.
+As shown in {{ex-vpws-query}}, the service AC references can be explicitly indicated in the L2NM query for the realization of the Virtual Private Wire Service (VPWS) {{Section 3.1.1 of ?RFC4664}}).
 
 ~~~~~~~~~~
 {::include-fold ./json-examples/glue/example-vpws.json}
