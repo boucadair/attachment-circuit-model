@@ -166,8 +166,15 @@ VPN-related modules (e.g., L2SM, L3SM, L2NM, and L3NM). Also, ACs managed using 
    These are the subtrees and data nodes and their sensitivity/
    vulnerability in the "ietf-ac-glue" module:
 
-   * TBC
-   * TBC
+   'ac-svc-ref' and 'ac-ntw-ref':
+   :  An attacker who is able to access network nodes can
+      undertake various attacks, such as deleting a running VPN
+      service, interrupting all the traffic of a client. Specifically,
+      an attacker may modify (including delete) the ACs that are bound to a running service, leading to
+      malfunctioning of the service and therefore to Service Level
+      Agreement (SLA) violations.
+    : Such activity can be detected by adequately monitoring and tracking
+      network configuration changes.
 
    Some of the readable data nodes in this YANG module may be considered
    sensitive or vulnerable in some network environments.  It is thus
@@ -175,8 +182,12 @@ VPN-related modules (e.g., L2SM, L3SM, L2NM, and L3NM). Also, ACs managed using 
    notification) to these data nodes.  These are the subtrees and data
    nodes and their sensitivity/vulnerability in the "ietf-ac-glue" module:
 
-   * TBC
-   * TBC
+   'ac-svc-ref' and 'ac-ntw-ref':
+   :  These references do not expose per se
+      privacy-related information, however 'ac-svc-ref' may be used to track
+      the set of VPN instances in which a given customer is involved.
+   : Note that, unlike 'ac-svc-ref', 'ac-ntw-ref' is unique within the scope of
+   a node and may multiplex many peer CEs.
 
 # IANA Considerations
 
