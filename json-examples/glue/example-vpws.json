@@ -1,0 +1,152 @@
+   {
+     "ietf-l2vpn-ntw:l2vpn-ntw": {
+       "vpn-services": {
+         "vpn-service": [
+           {
+             "vpn-id": "vpws12345",
+             "vpn-description": "Sample VPWS with AC service references",
+             "customer-name": "customer-12345",
+             "vpn-type": "ietf-vpn-common:vpws",
+             "bgp-ad-enabled": true,
+             "signaling-type": "ietf-vpn-common:ldp-signaling",
+             "global-parameters-profiles": {
+               "global-parameters-profile": [
+                 {
+                   "profile-id": "simple-profile",
+                   "local-autonomous-system": 65550,
+                   "rd-auto": {
+                     "auto": [
+                       null
+                     ]
+                   },
+                   "vpn-target": [
+                     {
+                       "id": 1,
+                       "route-targets": [
+                         {
+                           "route-target": "0:65535:1"
+                         }
+                       ],
+                       "route-target-type": "both"
+                     }
+                   ]
+                 }
+               ]
+             },
+             "vpn-nodes": {
+               "vpn-node": [
+                 {
+                   "vpn-node-id": "pe1",
+                   "ne-id": "2001:db8:100::1",
+                   "active-global-parameters-profiles": {
+                     "global-parameters-profile": [
+                       {
+                         "profile-id": "simple-profile"
+                       }
+                     ]
+                   },
+                   "bgp-auto-discovery": {
+                     "vpn-id": "587"
+                   },
+                   "signaling-option": {
+                     "advertise-mtu": true,
+                     "ldp-or-l2tp": {
+                       "saii": 1,
+                       "remote-targets": [
+                         {
+                           "taii": 2
+                         }
+                       ],
+                       "t-ldp-pw-type": "ethernet"
+                     }
+                   },
+                   "vpn-network-accesses": {
+                     "vpn-network-access": [
+                       {
+                         "id": "1/1/1.1",
+                         "interface-id": "1/1/1",
+                         "description": "Interface to CE1",
+                         "active-vpn-node-profile": "simple-profile",
+                         "status": {
+                           "admin-status": {
+                             "status": "ietf-vpn-common:admin-up"
+                           },
+                          "ietf-ac-glue:ac-svc-ref":"AC1" 
+                         }
+                       },
+                     {
+                         "id": "1/1/3.1",
+                         "interface-id": "1/1/3",
+                         "description": "Interface to CE3",
+                         "active-vpn-node-profile": "simple-profile",
+                         "status": {
+                           "admin-status": {
+                             "status": "ietf-vpn-common:admin-up"
+                           },
+                          "ietf-ac-glue:ac-svc-ref":"AC3" 
+                         }
+                       }                       
+                     ]
+                   }
+                 },
+                 {
+                   "vpn-node-id": "pe2",
+                   "ne-id": "2001:db8:200::1",
+                   "active-global-parameters-profiles": {
+                     "global-parameters-profile": [
+                       {
+                         "profile-id": "simple-profile"
+                       }
+                     ]
+                   },
+                   "bgp-auto-discovery": {
+                     "vpn-id": "587"
+                   },
+                   "signaling-option": {
+                     "advertise-mtu": true,
+                     "ldp-or-l2tp": {
+                       "saii": 2,
+                       "remote-targets": [
+                         {
+                           "taii": 1
+                         }
+                       ],
+                       "t-ldp-pw-type": "ethernet"
+                     }
+                   },
+                   "vpn-network-accesses": {
+                     "vpn-network-access": [
+                       {
+                         "id": "2/1/1.1",
+                         "interface-id": "2/1/1",
+                         "description": "Interface to CE2",
+                         "active-vpn-node-profile": "simple-profile",
+                         "status": {
+                           "admin-status": {
+                             "status": "ietf-vpn-common:admin-up"
+                           },
+                          "ietf-ac-glue:ac-svc-ref":"AC2" 
+                         }
+                       },
+                       {
+                         "id": "2/1/2.1",
+                         "interface-id": "2/1/1",
+                         "description": "Interface to CE4",
+                         "active-vpn-node-profile": "simple-profile",
+                         "status": {
+                           "admin-status": {
+                             "status": "ietf-vpn-common:admin-up"
+                           },
+                          "ietf-ac-glue:ac-svc-ref":"AC4" 
+                         }
+                       }
+                     ]
+                   }
+                 }
+               ]
+             }
+           }
+         ]
+       }
+     }
+   }
