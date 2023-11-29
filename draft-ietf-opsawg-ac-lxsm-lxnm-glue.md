@@ -202,7 +202,25 @@ VPN-related modules (e.g., L2SM, L3SM, L2NM, and L3NM). Also, ACs managed using 
 
 --- back
 
-# An Example {#sec-example}
+# Examples {#sec-example}
+
+## Service AC Reference within VPN Network Access {#ref-within-access}
+
+Let's consider the example depicted in {{ex-vpws}}, inspired from {{Section 2.1 of ?RFC4664}} with two PEs, each servicing two CEs. Let's also assume that service references to the identify attachment circuits with these CEs  are shown in the figure.
+
+~~~~~~~~~~
+{::include ./figures/glue/rfc4664-vpws-example}
+~~~~~~~~~~
+{: #ex-vpws title="VPWS Topology Example" artwork-align="center"}
+
+The service AC references can be explicitly indicated in the L2NM realization query as shown in {{ex-vpws-query}}.
+
+~~~~~~~~~~
+{::include-fold ./json-examples/glue/example-vpws.json}
+~~~~~~~~~~
+{: #ex-vpws-query title="Example of VPWS Creation with AC Service References" artwork-align="center"}
+
+## Network and Service AC References {#ref-outside-access}
 
 Let's consider the example depicted in {{ex-topo}} with two customer terminating points (CE1 and CE2). Let's also assume that the bearers to attach these CEs to the provider network are already in place. References to the identify these bearers are shown in the figure.
 
