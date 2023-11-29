@@ -91,7 +91,7 @@ LxNM refers to both the L2NM and the L3NM.
 
 {{uc}} depicts two target topology flavors that involve ACs. These topologies have the following characteristics:
 
-* A Customer Edges (CEs) can be either a physical device or a logical entity. Such logical entity is typically a software component (e.g., a virtual service function that is hosted within the provider's network or a third-party infrastructure). A CE is seen by the network as a peer Service Attachment Point (SAP) {{!RFC9408}}.
+* A Customer Edges (CEs) can be either a physical device or a logical entity. Such logical entity is typically a software component (e.g., a virtual service function that is hosted within the provider's network or a third-party infrastructure). A CE is seen by the network as a peer Service Attachment Point (SAP) {{?RFC9408}}.
 
 * An AC service request may include one or multiple ACs, which may be associated to a single CE or multiple CEs.
 
@@ -267,7 +267,7 @@ To that aim, existing ACs are referenced during the creation of the VPLS instanc
 ~~~~~~~~~~
 {: #ex-vpls-req title="Example of a VPLS Request Using L2NM and AC Glue (Message Body)" artwork-align="center"}
 
-Note that before implementing the VPLS creation request, the provider service orchestrator may first check if the VPLS service can be provided to the customer using the target delivery locations. The orchestrator will use the SAP model {{!RFC9408}} as exemplified in {{ex-sap-query}}. This example assumes that the query concerns only PE1. A similar query can be issued for PE2.
+Note that before implementing the VPLS creation request, the provider service orchestrator may first check if the VPLS service can be provided to the customer using the target delivery locations. The orchestrator will use the SAP model {{?RFC9408}} as exemplified in {{ex-sap-query}}. This example assumes that the query concerns only PE1. A similar query can be issued for PE2.
 
 ~~~~~~~~~~
 {::include-fold ./json-examples/glue/example-sap-query.json}
