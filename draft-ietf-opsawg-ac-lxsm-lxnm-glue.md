@@ -123,8 +123,8 @@ The procedure to provision a service in a service provider network may depend on
 
 # Module Tree Structure
 
-{{!RFC8299}} specifies that a "site-network-access" attachment is achieved through a
-"bearer" with an "ip-connection" on top. From that standpoint, a "site-network-access" is mapped to an attachment circuit with both Layer 2 and 3 properties as per {{!I-D.ietf-opsawg-teas-attachment-circuit}}. {{!RFC8466}} specifies that a "site-network-access" represents an logical layer 2 connection to a site. A "site-network-access" can thus be mapped to an attachment circuit with  Layer 2 properties {{!I-D.ietf-opsawg-teas-attachment-circuit}}. Similarly, "vpn-network-access" defined in both {{!RFC9182}} and {{!RFC9291}} is mapped to an attachment circuit as per {{!I-D.ietf-opsawg-teas-attachment-circuit}} or {{!I-D.ietf-opsawg-ntw-attachment-circuit}}.
+{{!RFC8299}} specifies that a 'site-network-access' attachment is achieved through a
+'bearer' with an 'ip-connection' on top. From that standpoint, a 'site-network-access' is mapped to an attachment circuit with both Layer 2 and 3 properties as per {{!I-D.ietf-opsawg-teas-attachment-circuit}}. {{!RFC8466}} specifies that a 'site-network-access' represents an logical layer 2 connection to a site. A 'site-network-access' can thus be mapped to an attachment circuit with  Layer 2 properties {{!I-D.ietf-opsawg-teas-attachment-circuit}}. Similarly, 'vpn-network-access' defined in both {{!RFC9182}} and {{!RFC9291}} is mapped to an attachment circuit as per {{!I-D.ietf-opsawg-teas-attachment-circuit}} or {{!I-D.ietf-opsawg-ntw-attachment-circuit}}.
 
 As such, ACs created using the "ietf-ac-svc" module {{!I-D.ietf-opsawg-teas-attachment-circuit}} can be referenced in other
 VPN-related modules (e.g., L2SM, L3SM, L2NM, and L3NM). Also, ACs managed using "ietf-ac-ntw" {{!I-D.ietf-opsawg-ntw-attachment-circuit}} can be referenced in VPN-related network modules (mainly, L2NM and L3NM). The required augmentations to that aim as shown in {{tree}}.
