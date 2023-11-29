@@ -136,7 +136,7 @@ VPN-related modules (e.g., L2SM, L3SM, L2NM, and L3NM). Also, ACs managed using 
 
 When an AC is referenced for a specific network access, then that AC information takes precedence over any overlapping information that is also enclosed for this network access.
 
-The module include provision to reference AC within or outside an VPN network access to accommodate deployment contexts where an AC reference may be created before or after a VPN instance is created.
+The module include provision to reference AC within or outside an VPN network access to accommodate deployment contexts where an AC reference may be created before or after a VPN instance is created. {{ref-within-access}} illustrates how an AC reference can be enclosed as part of a specific VPN network access, while {{ref-outside-access}} shows how AC references can be indicated outside individual VPN network access entries.
 
 # The AC Glue ("ietf-ac-glue") YANG Module {#sec-glue}
 
@@ -219,9 +219,9 @@ The module include provision to reference AC within or outside an VPN network ac
 
 # Examples {#sec-example}
 
-## Service AC Reference within VPN Network Access {#ref-within-access}
+## A Service AC Reference within The VPN Network Access {#ref-within-access}
 
-Let's consider the example depicted in {{ex-vpws}}, inspired from {{Section 2.1 of ?RFC4664}} with two PEs, each servicing two CEs. Let's also assume that service references to the identify attachment circuits with these CEs  are shown in the figure.
+Let's consider the example depicted in {{ex-vpws}} which is inspired from {{Section 2.1 of ?RFC4664}}. Each PE is servicing two CEs. Let's also assume that service references to the identify attachment circuits with these CEs are shown in the figure.
 
 ~~~~~~~~~~
 {::include ./figures/glue/rfc4664-vpws-example}
