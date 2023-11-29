@@ -757,8 +757,24 @@ This module uses types defined in {{!RFC6991}}, {{!RFC8177}}, {{!RFC8294}}, {{!R
    These are the subtrees and data nodes and their sensitivity/
    vulnerability in the "ietf-ac-ntw" module:
 
-   * TBC
-   * TBC
+   'specific-provisioning-profiles':
+   : This container includes a set of sensitive data that
+      influence how an AC is delivered.  For example, an
+      attacker who has access to these data nodes may be able to
+      manipulate routing policies, QoS policies, or encryption
+      properties. These data nodes are defined with "nacm:default-deny-
+      write" tagging {{I-D.ietf-opsawg-teas-common-ac}}.
+
+   'ac':
+   : An attacker who is able to access network nodes can
+      undertake various attacks, such as modify the attributes of an AC (e.g.,
+      QoS, bandwidth, routing protocols, keying material), leading to
+      malfunctioning of services that are delivered over that AC and therefore to Service Level
+      Agreement (SLA) violations.  In addition, an attacker could
+      attempt to add a new AC.
+    : In addition to using NACM to prevent unauthorized access, such
+      activity can be detected by adequately monitoring and tracking
+      network configuration changes.
 
    Some of the readable data nodes in this YANG module may be considered
    sensitive or vulnerable in some network environments.  It is thus
@@ -766,8 +782,20 @@ This module uses types defined in {{!RFC6991}}, {{!RFC8177}}, {{!RFC8294}}, {{!R
    notification) to these data nodes.  These are the subtrees and data
    nodes and their sensitivity/vulnerability in the "ietf-ac-svc" module:
 
-   * TBC
-   * TBC
+   'ac':
+    : Unauthorized access to this subtree can disclose the identity
+      of a customer 'peer-sap-id'.
+
+   'l2-connection' and 'ip-connection':
+   :  An attacker can retrieve
+      privacy-related information, which can be used to track a
+      customer.  Disclosing such information may be considered a
+      violation of the customer-provider trust relationship.
+
+   'keying-material':
+   :  An attacker can retrieve the cryptographic keys
+      protecting an AC (routing, in particular). These keys could
+      be used to inject spoofed routing  advertisements.
 
 Several data nodes ('bgp', 'ospf', 'isis', and 'rip') rely upon {{!RFC8177}} for authentication purposes. As such, the AC network module inherits the security considerations discussed in Section 5 of {{!RFC8177}}. Also, these data nodes support supplying explicit keys as strings in ASCII format. The use of keys in hexadecimal string format would afford greater key entropy with the same number of key-string octets. However, such a format is not included in this version of the AC network model, because it is not supported by the underlying device modules (e.g., {{?RFC8695}}).
 
