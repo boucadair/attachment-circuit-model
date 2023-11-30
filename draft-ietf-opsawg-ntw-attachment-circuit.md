@@ -157,7 +157,7 @@ Service provider:
 
 # Sample Uses of the Attachment Circuit Data Models
 
-{{u-ex}} shows the positioning of the AC network model in the overall service delivery process.
+{{u-ex}} shows the positioning of the AC network model in the overall service delivery process. The "ietf-ac-ntw" is a network model which augments the SAP with a comprehensive set of parameters to reflect the attachment circuits that are in place in a network. The model also maintains the mapping with the service references that are used to expose these ACs to customers. Whether the same naming conventions to reference an AC are used in the service and network layers is deployment-specific.
 
 ~~~~ aasvg
 {::include ./figures/arch.txt}
