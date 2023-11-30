@@ -122,6 +122,8 @@ The AC network model uses the AC common model defined in {{!I-D.ietf-opsawg-teas
 
 The YANG data model in this document conforms to the Network Management Datastore Architecture (NMDA) defined in {{!RFC8342}}.
 
+Sample examples are provided in {{sec-examples}}.
+
 # Conventions and Definitions
 
 {::boilerplate bcp14-tagged}
@@ -837,7 +839,9 @@ Several data nodes ('bgp', 'ospf', 'isis', and 'rip') rely upon {{!RFC8177}} for
 
 --- back
 
-# An Example {#sec-examples}
+# Examples {#sec-examples}
+
+## VPLS
 
 Let's consider the example depicted in {{ex-topo}} with two customer terminating points (CE1 and CE2). Let's also assume that the bearers to attach these CEs to the provider network are already in place. References to the identify these bearers are shown in the figure.
 
@@ -860,6 +864,14 @@ The provisionned AC at PE1 can be retrieved using the AC network model as depict
 ~~~~~~~~~~
 {: #ex-acntw-query title="Example of AC Network Response (Message Body)" artwork-align="center"}
 
+## Parent AC
+
+In reference to the topology depicted in {{sap-ac-ntw}}, PE2 has a SAP which terminates an AC with two peer SAPs (CE2 and CE5). In order to control data that is specific to each of these peer SAPs over the same AC, child ACs can be instantiated as depicted in {{ex-parent-ac}}.
+
+~~~~~~~~~~
+{::include-fold ./json-examples/ntw/multiple-acs-same-sap.json}
+~~~~~~~~~~
+{: #ex-parent-ac title="Example of Child ACs" artwork-align="center"}
 
 # Acknowledgments
 {:numbered="false"}
