@@ -460,7 +460,6 @@ module ietf-ac-ntw {
           "When the addresses are allocated by DHCP or other
            dynamic means local to the infrastructure.";
         choice address-assign {
-          default "number";
           description
             "A choice for how IPv4 addresses are assigned.";
           case number {
@@ -602,13 +601,11 @@ module ietf-ac-ntw {
           "When the addresses are allocated by DHCP or other
            dynamic means local to the infrastructure.";
         choice address-assign {
-          default "number";
           description
             "A choice for how IPv6 addresses are assigned.";
           case number {
             leaf number-of-dynamic-address {
               type uint16;
-              default "1";
               description
                 "Specifies the number of IP addresses to be 
                  assigned to the customer on this access.";
@@ -795,7 +792,6 @@ module ietf-ac-ntw {
     }
     leaf as-override {
       type boolean;
-      default "false";
       description
         "Defines whether ASN override is enabled, i.e., replacing the
          ASN of the customer specified in the AS_PATH attribute with
@@ -803,7 +799,6 @@ module ietf-ac-ntw {
     }
     leaf allow-own-as {
       type uint8;
-      default "0";
       description
         "If set, specifies the maximum number of occurrences of the
          provider's ASN that are permitted within the AS_PATH
@@ -811,7 +806,6 @@ module ietf-ac-ntw {
     }
     leaf prepend-global-as {
       type boolean;
-      default "false";
       description
         "In some situations, the ASN that is provided at the node
          level may be distinct from the ASN configured at the AC.
@@ -823,7 +817,6 @@ module ietf-ac-ntw {
     }
     leaf send-default-route {
       type boolean;
-      default "false";
       description
         "Defines whether default routes can be advertised to a peer.
          If set, the default routes are advertised to a peer.";
@@ -882,7 +875,6 @@ module ietf-ac-ntw {
         "Controls the behavior when a prefix maximum is reached.";
       leaf max-prefix {
         type uint32;
-        default "5000";
         description
           "Indicates the maximum number of BGP prefixes allowed in 
            the BGP session.
@@ -902,7 +894,6 @@ module ietf-ac-ntw {
           range "0..100";
         }
         units "percent";
-        default "75";
         description
           "When this value is reached, a warning notification will be
            triggered.";
@@ -944,7 +935,6 @@ module ietf-ac-ntw {
           range "0..21845";
         }
         units "seconds";
-        default "30";
         description
           "This timer indicates the KEEPALIVE messages' frequency
            between a PE and a BGP peer.
@@ -963,7 +953,6 @@ module ietf-ac-ntw {
           range "0 | 3..65535";
         }
         units "seconds";
-        default "90";
         description
           "Indicates the maximum number of seconds that may elapse
            between the receipt of successive KEEPALIVE and/or UPDATE
@@ -1365,7 +1354,6 @@ module ietf-ac-ntw {
             }
             leaf metric {
               type uint16;
-              default "1";
               description
                 "Metric of the sham link. It is used in the routing
                  state calculation and path selection.";
@@ -1411,7 +1399,6 @@ module ietf-ac-ntw {
         }
         leaf metric {
           type uint16;
-          default "1";
           description
             "Metric of the PE-CE link. It is used in the routing 
              state calculation and path selection.";
@@ -1430,7 +1417,6 @@ module ietf-ac-ntw {
                  interface.";
             }
           }
-          default "active";
           description
             "IS-IS interface mode type.";
         }
@@ -1496,13 +1482,11 @@ module ietf-ac-ntw {
           type uint8 {
             range "1..254";
           }
-          default "100";
           description
             "Sets the local priority of the VRRP speaker.";
         }
         leaf ping-reply {
           type boolean;
-          default "false";
           description
             "Controls whether the VRRP speaker should reply to ping
              requests.";
@@ -1521,14 +1505,12 @@ module ietf-ac-ntw {
       type identityref {
         base vpn-common:bfd-session-type;
       }
-      default "vpn-common:classic-bfd";
       description
         "Specifies the BFD session type.";
     }
     leaf desired-min-tx-interval {
       type uint32;
       units "microseconds";
-      default "1000000";
       description
         "The minimum interval between transmissions of BFD Control
          packets, as desired by the operator.";
@@ -1539,7 +1521,6 @@ module ietf-ac-ntw {
     leaf required-min-rx-interval {
       type uint32;
       units "microseconds";
-      default "1000000";
       description
         "The minimum interval between received BFD Control packets 
          that the PE should support.";
@@ -1551,7 +1532,6 @@ module ietf-ac-ntw {
       type uint8 {
         range "1..255";
       }
-      default "3";
       description
         "Specifies the detection multiplier that is transmitted to a
          BFD peer.
@@ -1627,7 +1607,6 @@ module ietf-ac-ntw {
         "Container for AC encryption.";
       leaf enabled {
         type boolean;
-        default "false";
         description
           "If set to 'true', traffic encryption on the connection is
            required. Otherwise, it is disabled.";
