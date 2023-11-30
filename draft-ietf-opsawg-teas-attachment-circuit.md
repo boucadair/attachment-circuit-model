@@ -787,8 +787,10 @@ This module uses types defined in {{!RFC6991}}, {{!RFC9181}}, {{!RFC8177}}, and 
    notification) to these data nodes. These are the subtrees and data
    nodes and their sensitivity/vulnerability in the "ietf-bearer-svc" module:
 
-   * TBC
-   * TBC
+   'customer-point':
+   : An attacker can retrieve privacy-related information about location from where
+   the customer is connected. Disclosing such information may be used to infer
+   the identity of the customer.
 
    These are the subtrees and data
    nodes and their sensitivity/vulnerability in the "ietf-ac-svc" module:
