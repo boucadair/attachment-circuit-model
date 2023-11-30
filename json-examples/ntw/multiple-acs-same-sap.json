@@ -17,8 +17,8 @@
                   {
                      "name":"ac-1",
                      "peer-sap-id":[
-                        "ce-2",
-                        "ce-5"
+                        "CE2",
+                        "CE5"
                      ],
                      "status":{
                         "admin-status":{
@@ -43,14 +43,14 @@
                      "name":"ac-1-to-ce2",
                      "ac-parent-ref":"ac-1",
                      "peer-sap-id":[
-                        "ce-2"
+                        "CE2"
                      ]
                   },
                   {
-                     "name":"ac-to-ce5",
+                     "name":"ac-1-to-ce5",
                      "ac-parent-ref":"ac-1",
                      "peer-sap-id":[
-                        "ce-5"
+                        "CE5"
                      ]
                   }
                ]
