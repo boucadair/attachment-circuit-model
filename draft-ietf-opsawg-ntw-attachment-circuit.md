@@ -783,7 +783,7 @@ This module uses types defined in {{!RFC6991}}, {{!RFC8177}}, {{!RFC8294}}, {{!R
    nodes and their sensitivity/vulnerability in the "ietf-ac-svc" module:
 
    'ac':
-    : Unauthorized access to this subtree can disclose the identity
+   : Unauthorized access to this subtree can disclose the identity
       of a customer 'peer-sap-id'.
 
    'l2-connection' and 'ip-connection':
