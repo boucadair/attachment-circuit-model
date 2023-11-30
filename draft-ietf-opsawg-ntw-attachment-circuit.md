@@ -114,7 +114,7 @@ The document leverages {{!RFC9182}} and {{!RFC9291}} by adopting an AC provision
 The AC network model is designed as an augmnetation to the Service Attachment Point (SAP) model {{!RFC9408}}. An attachment circuit can be bound to a single or multiple SAPs. Likewise, the model is designed to accomdate deployments where a SAP can be bound to one or multiple ACs (e.g., a parent AC and its child ACs).
 
 ~~~~ aasvg
-{::include ./figures/ac-ntw-example.txt}
+{::include-fold ./figures/ac-ntw-example.txt}
 ~~~~
 {: #sap-ac-ntw title="Attachment Circuits Examples" artwork-align="center"}
 
@@ -160,7 +160,7 @@ Service provider:
 {{u-ex}} shows the positioning of the AC network model in the overall service delivery process. The "ietf-ac-ntw" is a network model which augments the SAP with a comprehensive set of parameters to reflect the attachment circuits that are in place in a network. The model also maintains the mapping with the service references that are used to expose these ACs to customers. Whether the same naming conventions to reference an AC are used in the service and network layers is deployment-specific.
 
 ~~~~ aasvg
-{::include ./figures/arch.txt}
+{::include-fold ./figures/arch.txt}
 ~~~~
 {: #u-ex title="An Example of the Network AC Model Usage" artwork-align="center"}
 
@@ -176,42 +176,42 @@ for the reader's convenience.
 The overall tree structure of the module is shown in {{o-ntw-tree}}.
 
 ~~~~
-  augment /nw:networks/nw:network:
-    +--rw specific-provisioning-profiles
-    |  ...
-    +--rw ac-profile* [name]
-       ...
-  augment /nw:networks/nw:network/nw:node/sap:service/sap:sap:
-    +--rw ac* [name]
-       +--rw name                 string
-       +--rw ac-svc-ref?          ac-svc:attachment-circuit-reference
-       +--rw ac-profile* [profile-id]
-       |  +--rw profile-id    -> /nw:networks/network/ac-profile/name
-       +--rw ac-parent-ref?       ac-ntw:attachment-circuit-reference
-       +--rw peer-sap-id*         string
-       +--rw group* [group-id]
-       |  +--rw group-id      string
-       |  +--rw precedence?   identityref
-       +--rw status
-       |  +--rw admin-status
-       |  |  +--rw status?        identityref
-       |  |  +--rw last-change?   yang:date-and-time
-       |  +--ro oper-status
-       |     +--ro status?        identityref
-       |     +--ro last-change?   yang:date-and-time
-       +--rw description?         string
-       +--rw l2-connection
-       |  ...
-       +--rw ip-connection
-       |  ...
-       +--rw routing-protocols
-       |  ...
-       +--rw oam
-       |  ...
-       +--rw security
-       |  ...
-       +--rw service
-          ...
+augment /nw:networks/nw:network:
+  +--rw specific-provisioning-profiles
+  |  ...
+  +--rw ac-profile* [name]
+     ...
+augment /nw:networks/nw:network/nw:node/sap:service/sap:sap:
+  +--rw ac* [name]
+     +--rw name                 string
+     +--rw ac-svc-ref?          ac-svc:attachment-circuit-reference
+     +--rw ac-profile* [profile-id]
+     |  +--rw profile-id    -> /nw:networks/network/ac-profile/name
+     +--rw ac-parent-ref?       ac-ntw:attachment-circuit-reference
+     +--rw peer-sap-id*         string
+     +--rw group* [group-id]
+     |  +--rw group-id      string
+     |  +--rw precedence?   identityref
+     +--rw status
+     |  +--rw admin-status
+     |  |  +--rw status?        identityref
+     |  |  +--rw last-change?   yang:date-and-time
+     |  +--ro oper-status
+     |     +--ro status?        identityref
+     |     +--ro last-change?   yang:date-and-time
+     +--rw description?         string
+     +--rw l2-connection
+     |  ...
+     +--rw ip-connection
+     |  ...
+     +--rw routing-protocols
+     |  ...
+     +--rw oam
+     |  ...
+     +--rw security
+     |  ...
+     +--rw service
+        ...
 ~~~~
 {: #o-ntw-tree title="Overall Tree Structure"}
 
@@ -315,6 +315,18 @@ The overall routing subtree structure is shown in {{rtg-tree}}.
 {::include ./yang/subtrees/ac-ntw/rtg-tree.txt}
 ~~~~
 {: #rtg-tree title="Routing Tree Structure"}
+
+Multiple routing instances ('routing-protocol') can be defined, each uniquely identified
+by an 'id'. Specifically, each instance is uniquely identified to accommodate scenarios
+where multiple instances of the same routing protocol have to be configured on the same AC.
+
+The type of a routing instance is indicated in 'type'.
+The values of this attribute are those defined in {{!RFC9181}} (the
+'routing-protocol-type' identity). Specific data nodes are then provided
+as a function of the 'type'. See more details in the following subsections.
+
+One or multiple routing profiles ('routing-profiles') can be provided for
+a given routing instance.
 
 ### Static Routing {#sec-static-rtg}
 
@@ -475,6 +487,8 @@ For each neighbor, the following data nodes are supported in addition to similar
 : A name of a peer group.
 : Parameters that are provided at the 'neighbor' level takes precedence over the ones provided in the peer group.
 
+'status':
+: Indicates the status of the BGP session.
 
 ### OSPF {#sec-ospf-rtg}
 
