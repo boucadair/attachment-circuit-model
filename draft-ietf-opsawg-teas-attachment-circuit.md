@@ -238,13 +238,13 @@ The same customer site (CE, NF, etc.) can terminate one or multiple bearers; eac
 
 A bearer can be created, modified, or discovered from the network. For example, the following deployment options can be considered:
 
-'Greenfield creation':
+* Greenfield creation:
 
 : In this scenario, bearers are created from scratch using specific requests made to a network controller. This method  allows providers to tailor bearer creation to meet customer-specific needs. For example, a bearer request may indicate some hints about the placement constraints ('placement-constraints'). These constraints are used by a provider to determine how/where to terminate a bearer in the network side (e.g., PoP/PE selection).
 
-'Auto-discovery using network protocols':
+* Auto-discovery using network protocols:
 
-: Devices can use specific protocols (e.g., Link Layer Discovery Protocol (LLDP)) to automatically discover and connect to available network resources. A network controller can use such reported information to expose discovered bearers from the network using the same bearer structure.
+: Devices can use specific protocols (e.g., Link Layer Discovery Protocol (LLDP)) to automatically discover and connect to available network resources. A network controller can use such reported information to expose discovered bearers from the network using the same bearer data model structure.
 
 A request to create a bearer may include a set of constraints ("placement-constraints") that are used by a controller to decide the network terminating side of a bearer (e.g., PE selection, PE redundancy, or PoP selection). Future placement criteria ("constraint-type") may be defined in the future to accommodate specific deployment contexts.
 
@@ -772,14 +772,25 @@ This module uses types defined in {{!RFC6991}}, {{!RFC9181}}, {{!RFC8177}}, and 
    These are the subtrees and data nodes and their sensitivity/
    vulnerability in the "ietf-bearer-svc" module:
 
-   * TBC
-   * TBC
+   'placement-constraints':
+   : An attacker who is able to access this data node can modify the attributes to influence how a service is delivered to a customer, and this lead to Service Level Agreement (SLA) violations.
+
+    'bearer':
+    : An attacker who is able to access this data node can modify the attributes of bearer and, thus, hinder how ACs are built. In addition, an attacker could attempt to add a new bearer or delete existing ones. An attacker may also change the requested type or the activation scheduling.
 
    These are the subtrees and data nodes and their sensitivity/
    vulnerability in the "ietf-ac-svc" module:
 
-   * TBC
-   * TBC
+   'specific-provisioning-profiles':
+   : This container includes a set of sensitive data that influence how an AC will be delivered. For example, an attacker who has access to these data nodes may be able to manipulate routing policies, QoS policies, or encryption properties. These data nodes are defined with "nacm:default-deny- write" tagging
+     {{!I-D.ietf-opsawg-teas-common-ac}}.
+
+    'service-provisioning-profiles':
+    : An attacker who has access to these data nodes may be able
+     to manipulate service-specific policies to be applied for an AC. These data nodes are defined with "nacm:default-deny- write" tagging.
+
+    'ac':
+    : An attacker who is able to access this data node can modify the attributes of an AC (e.g., QoS, bandwidth, routing protocols, keying material), leading to malfunctioning of services that will be delivered over that AC and therefore to SLA violations. In addition, an attacker could attempt to add a new AC.
 
    Some of the readable data nodes in these YANG modules may be considered
    sensitive or vulnerable in some network environments.  It is thus
