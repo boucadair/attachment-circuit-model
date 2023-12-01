@@ -776,12 +776,12 @@ This module uses types defined in {{!RFC6991}}, {{!RFC9181}}, {{!RFC8177}}, and 
    attributes to influence how a service is delivered to a customer, and
    this lead to Service Level Agreement (SLA) violations.
 
-    'bearer':
-    : An attacker who is able to access this data node can modify
-    the attributes of bearer and, thus, hinder how ACs are built.
-    : In addition, an attacker could attempt to add a new bearer or
-    delete existing ones. An attacker may also change the requested
-    type or the activation scheduling.
+   'bearer':
+   : An attacker who is able to access this data node can modify
+   the attributes of bearer and, thus, hinder how ACs are built.
+   : In addition, an attacker could attempt to add a new bearer or
+   delete existing ones. An attacker may also change the requested
+   type or the activation scheduling.
 
    These are the subtrees and data nodes and their sensitivity/
    vulnerability in the "ietf-ac-svc" module:
@@ -794,17 +794,17 @@ This module uses types defined in {{!RFC6991}}, {{!RFC9181}}, {{!RFC8177}}, and 
    : These data nodes are defined with "nacm:default-deny-write"
       tagging {{!I-D.ietf-opsawg-teas-common-ac}}.
 
-    'service-provisioning-profiles':
-    : An attacker who has access to these data nodes may be able
-      to manipulate service-specific policies to be applied for an AC.
-    : These data nodes are defined with "nacm:default-deny- write" tagging.
+   'service-provisioning-profiles':
+   : An attacker who has access to these data nodes may be able
+   to manipulate service-specific policies to be applied for an AC.
+   : These data nodes are defined with "nacm:default-deny- write" tagging.
 
-    'ac':
-    : An attacker who is able to access this data node can modify
-      the attributes of an AC (e.g., QoS, bandwidth, routing protocols,
-      keying material), leading to malfunctioning of services that will
-      be delivered over that AC and therefore to SLA violations.
-      In addition, an attacker could attempt to add a new AC.
+   'ac':
+   : An attacker who is able to access this data node can modify
+   the attributes of an AC (e.g., QoS, bandwidth, routing protocols,
+   keying material), leading to malfunctioning of services that will
+   be delivered over that AC and therefore to SLA violations.
+   In addition, an attacker could attempt to add a new AC.
 
    Some of the readable data nodes in these YANG modules may be considered
    sensitive or vulnerable in some network environments.  It is thus
