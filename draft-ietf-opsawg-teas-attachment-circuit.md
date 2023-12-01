@@ -122,18 +122,19 @@ Also, because the instantiation of an attachment circuit requires coordinating t
 
 This document specifies a YANG service data model ("ietf-ac-svc") for managing attachment circuits that are exposed by a network to its customers, such as an enterprise site, a network function, a hosting infrastructure, or a peer network provider. The model can be used for the provisioning of ACs prior or during advanced service provisioning (e.g., Network Slice Service).
 
-The "ietf-ac-svc" includes a set of reusable groupings. Whether a service model reuses structures defined in the "ietf-ac-svc" or simply includes an AC reference (that was communicated during AC service instantiation) is a design choice of these service models. Relying upon the AC service model to manage ACes over which services are delivered has the merit to decorrelate the management of the (core) service vs. upgrade the AC components to reflect recent AC technologies or new features (e.g., new encryption scheme, additional routing protocol). **This document favors the approach of completely relying upon the AC service model instead of duplicating data nodes into specific modules of advanced services that are delivered over an Attachment Circuit.**
+The "ietf-ac-svc" module ({{sec-ac-module}}) includes a set of reusable groupings. Whether a service model reuses structures defined in the "ietf-ac-svc" or simply includes an AC reference (that was communicated during AC service instantiation) is a design choice of these service models. Relying upon the AC service model to manage ACs over which services are delivered has the merit to decorrelate the management of the (core) service vs. upgrade the AC components to reflect recent AC technologies or new features (e.g., new encryption scheme, additional routing protocol). **This document favors the approach of completely relying upon the AC service model instead of duplicating data nodes into specific modules of advanced services that are delivered over an Attachment Circuit.**
 
-Since the provisioning of an AC requires a bearer to be in place, this document introduces a new module called "ietf-bearer-svc" that enables customers to manage their bearer requests. The customers can then retrieve a provider-assigned bearer reference that they will include in their AC service requests.
+Since the provisioning of an AC requires a bearer to be in place, this document introduces a new module called "ietf-bearer-svc" that enables customers to manage their bearer requests ({{sec-bearer-module}}). The customers can then retrieve a provider-assigned bearer reference that they will include in their AC service requests. An example to retrieve a bearer reference is provided in {{ex-create-bearer}}.
 
 An AC service request can provide a reference to a bearer or a set of peer SAPs. Both schemes are supported in the AC service model.
 
-Each AC is identified with a unique identifier within a (provider) domain. From a network provider standpoint, an AC can be bound to a single or multiple Service Attachment Points (SAPs) {{?RFC9408}}. Likewise, the same SAP can be bound to one or multiple ACs. However, the mapping between an AC and a PE in the provider network that terminates that AC is hidden to the application that makes use of the AC service model. Such mapping information is internal to the network controllers. As such, the details about the (node-specific) attachment interfaces are not exposed in the AC service model.
+Each AC is identified with a unique identifier within a (provider) domain. From a network provider standpoint, an AC can be bound to a single or multiple Service Attachment Points (SAPs) {{!RFC9408}}. Likewise, the same SAP can be bound to one or multiple ACs. However, the mapping between an AC and a PE in the provider network that terminates that AC is hidden to the application that makes use of the AC service model. Such mapping information is internal to the network controllers. As such, the details about the (node-specific) attachment interfaces are not exposed in the AC service model.
 
-The AC service model **does not make any assumptions about the internal structure or even the nature or the services that will be delivered over an attachment circuit**. Customers do not have access to that network view other than the ACes that the ordered. For example, the AC service model can be used to provision a set of ACes to connect multiple sites (Site1, Site2, ..., SiteX) for customer who also requested VPN services. If these provisioning of these services require specific configuration on ASBR nodes, such configuration is handled at the network level and is not exposed to the customer at the service level. However, the network controller will have access to such a view as the service points in these ASBRs will be exposed as SAPs with "role" set to "ietf-sap-ntw:nni" {{?RFC9408}}.
+The AC service model **does not make any assumptions about the internal structure or even the nature or the services that will be delivered over an attachment circuit or a set of attachment circuits**. Customers do not have access to that network view other than the ACs that the ordered. For example, the AC service model can be used to provision a set of ACs to connect multiple sites (Site1, Site2, ..., SiteX) for customer who also requested VPN services. If these provisioning of these services require specific configuration on ASBR nodes, such configuration is handled at the network level and is not exposed to the customer at the service level. However, the network controller will have access to such a view as the service points in these ASBRs will be exposed as SAPs with "role" set to "ietf-sap-ntw:nni" {{!RFC9408}}.
 
 The AC service model can be used in a variety of contexts, such as (but not limited to) those provided in {{examples}}:
 
+* Create an AC over an existing bearer {{ac-bearer-exist}}.
 * Request an attachment circuit for a known peer SAP ({{ac-no-bearer-peer-sap}}).
 * Instantiate multiple attachment circuits over the same bearer ({{sec-ex-one-ce-multi-acs}}).
 * Control the precedence over multiple attachment circuits ({{sec-ex-prec}}).
@@ -141,23 +142,23 @@ The AC service model can be used in a variety of contexts, such as (but not limi
 * Bind a slice service to a set of pre-provisioned attachment circuits ({{sec-ex-slice}}).
 * Connect a Cloud Infrastructure to a service provider network ({{sec-ex-cloud}}).
 
-The examples use the IPv4 address blocks reserved for documentation {{?RFC5737}}, the IPv6 prefix reserved for documentation {{?RFC3849}}, and the Autonomous System (AS) numbers reserved for documentation {{?RFC5398}}.
+The examples provided in {{examples}} use the IPv4 address blocks reserved for documentation {{?RFC5737}}, the IPv6 prefix reserved for documentation {{?RFC3849}}, and the Autonomous System (AS) numbers reserved for documentation {{?RFC5398}}.
 
 The YANG data models in this document conform to the Network Management Datastore Architecture (NMDA) defined in {{!RFC8342}}.
 
 ## Position ACaaS vs. Other Data Models
 
-The AC model specified in this document **is not a network model** {{?RFC8969}}. As such, the model does not expose details related to specific nodes in the provider's network that terminate an AC. The mapping between an AC as seen by a customer and the network implementation of an AC is maintained by the network controllers and is not exposed to the customer. This mapping can be maintained using a variety of network models, such as augmented SAP AC network model {{?I-D.ietf-opsawg-ntw-attachment-circuit}}.
+The AC model specified in this document **is not a network model** {{?RFC8969}}. As such, the model does not expose details related to specific nodes in the provider's network that terminate an AC (e.g., network node identifiers). The mapping between an AC as seen by a customer and the network implementation of an AC is maintained by the network controllers and is not exposed to the customer. This mapping can be maintained using a variety of network models, such as augmented SAP AC network model {{?I-D.ietf-opsawg-ntw-attachment-circuit}}.
 
-The AC service model **is not a device model**. A network provider may use a variety of device models (e.g., Routing management {{?RFC8349}} or BGP {{?I-D.ietf-idr-bgp-model}}) to provision an AC service.
+The AC service model **is not a device model**. A network provider may use a variety of device models (e.g., Routing management {{?RFC8349}} or BGP {{?I-D.ietf-idr-bgp-model}}) to provision an AC service in relevant network nodes.
 
 ### Why Not Using the L2SM as Reference Data Model for ACaaS?
 
-The L2SM {{?RFC8466}} covers some AC-related considerations. Nevertheless, the L2SM structure is primarily focused on Layer 2 aspects. For example, the L2SM part does not cover Layer 3 provisioning, which is required for the typical AC instantiation.
+The L2SM {{?RFC8466}} covers some AC-related considerations. Nevertheless, the L2SM structure is primarily focused on Layer 2 aspects. For example, the L2SM does not cover Layer 3 provisioning, which is required for the typical AC instantiation.
 
 ### Why Not Using the L3SM as Reference Data Model for ACaaS?
 
-Like the L2SM, the L3SM {{?RFC8299}} addresses certain AC-related aspects. However, the L3SM structure does not sufficiently address Layer 2 provisioning requirements. Additionally, the L3SM is primarily designed for conventional L3VPN deployments and, as such, has some limitations for instantiating ACs in other deployment contexts (e.g., cloud environments). For example, the L3SM does not provide the capability to provision multiple BGP sessions over the same AC.
+Like the L2SM, the L3SM {{?RFC8299}} addresses certain AC-related aspects. However, the L3SM structure does not sufficiently address Layer 2 provisioning requirements. Additionally, the L3SM is primarily designed for conventional L3VPN deployments and, as such, has some limitations for instantiating ACs in other deployment contexts (e.g., cloud environments). For example, the L3SM does not provide the capability to provision multiple BGP peer groups over the same AC.
 
 # Conventions and Definitions
 
@@ -238,12 +239,10 @@ The same customer site (CE, NF, etc.) can terminate one or multiple bearers; eac
 
 A bearer can be created, modified, or discovered from the network. For example, the following deployment options can be considered:
 
-* Greenfield creation:
-
+Greenfield creation:
 : In this scenario, bearers are created from scratch using specific requests made to a network controller. This method  allows providers to tailor bearer creation to meet customer-specific needs. For example, a bearer request may indicate some hints about the placement constraints ('placement-constraints'). These constraints are used by a provider to determine how/where to terminate a bearer in the network side (e.g., PoP/PE selection).
 
-* Auto-discovery using network protocols:
-
+Auto-discovery using network protocols:
 : Devices can use specific protocols (e.g., Link Layer Discovery Protocol (LLDP)) to automatically discover and connect to available network resources. A network controller can use such reported information to expose discovered bearers from the network using the same bearer data model structure.
 
 A request to create a bearer may include a set of constraints ("placement-constraints") that are used by a controller to decide the network terminating side of a bearer (e.g., PE selection, PE redundancy, or PoP selection). Future placement criteria ("constraint-type") may be defined in the future to accommodate specific deployment contexts.
@@ -369,12 +368,12 @@ All the abovementioned profiles are uniquely identified by the NETCONF/RESTCONF 
 
 ### Attachment Circuits Profiles {#sec-acp}
 
-The 'ac-group-profile' defines reusable parameters for a set of ACes. Each profile is identified by 'name'. Some of the data nodes can be adjusted at the 'ac'.
+The 'ac-group-profile' defines reusable parameters for a set of ACs. Each profile is identified by 'name'. Some of the data nodes can be adjusted at the 'ac'.
 These adjusted values take precedence over the global values.  The structure of 'ac-group-profile' is similar to the one used to model each 'ac' ({{ac-svc-tree}}).
 
 ### AC Placement Contraints {#sec-pc}
 
-The 'placement-constraints' specifies the placement constraints of an AC. For example, this container can be used to request avoiding to connecting two ACes to the same PE. The full set of supported constraints is defined in {{!RFC9181}} (see 'placement-diversity', in particular).
+The 'placement-constraints' specifies the placement constraints of an AC. For example, this container can be used to request avoiding to connecting two ACs to the same PE. The full set of supported constraints is defined in {{!RFC9181}} (see 'placement-diversity', in particular).
 
 The structure of 'placement-constraints' is shown in {{precedence-tree}}.
 
@@ -416,7 +415,7 @@ The description of the data nodes is as follows:
 : Reports the actual date and time when the attachment circuit actually was disabled.
 
 'peer-sap-id':
-: Includes references to the remote endpoints of an attachment circuit {{?RFC9408}}.
+: Includes references to the remote endpoints of an attachment circuit {{!RFC9408}}.
 
 'ac-group-profile':
 : Indicates references to one or more profiles that are defined in {{sec-acp}}.
@@ -428,7 +427,7 @@ The description of the data nodes is as follows:
 : Whenever a parent AC is deleted, that all child ACs of that AC MUST be deleted.
 
 'group':
-: Lists the groups to which an AC belongs {{!RFC9181}}. For example, the 'group-id' is used to associate redundancy or protection constraints of ACes. An example is provided in {{sec-ex-prec}}.
+: Lists the groups to which an AC belongs {{!RFC9181}}. For example, the 'group-id' is used to associate redundancy or protection constraints of ACs. An example is provided in {{sec-ex-prec}}.
 
 'service-ref':
 : Reports the set of services that are bound to the attachment circuit. The services are indexed by their type.
@@ -728,7 +727,7 @@ Information Rate (EIR), or the Peak Information Rate (PIR). Both reuse the 'band
 
 # YANG Modules
 
-## The Bearer Service ("ietf-bearer-svc") YANG Module
+## The Bearer Service ("ietf-bearer-svc") YANG Module {#sec-bearer-module}
 
 This module uses types defined in {{!RFC6991}} and {{!RFC9181}}.
 
@@ -738,7 +737,7 @@ This module uses types defined in {{!RFC6991}} and {{!RFC9181}}.
 <CODE ENDS>
 ~~~~~~~~~~
 
-## The AC Service ("ietf-ac-svc") YANG Module
+## The AC Service ("ietf-ac-svc") YANG Module {#sec-ac-module}
 
 This module uses types defined in {{!RFC6991}}, {{!RFC9181}}, {{!RFC8177}}, and {{!I-D.ietf-opsawg-teas-common-ac}}.
 
@@ -933,21 +932,21 @@ An example of a request to create the ACs to service the eNodeB is shown in {{tw
 ~~~~ json
 {::include-fold ./json-examples/svc/two-acs-same-ce.json}
 ~~~~
-{: #two-acs-same-ce title="Example of a Message Body to Request Two ACes on The Same Link (Not Recommended)"}
+{: #two-acs-same-ce title="Example of a Message Body to Request Two ACs on The Same Link (Not Recommended)"}
 
 {{two-acs-same-ce-res}} shows the message body of a response received from the controller.
 
 ~~~~ json
 {::include-fold ./json-examples/svc/two-acs-same-ce-response.json}
 ~~~~
-{: #two-acs-same-ce-res title="Example of a Message Body of a Response to Create Two ACes on The Same Link (Not Recommended)"}
+{: #two-acs-same-ce-res title="Example of a Message Body of a Response to Create Two ACs on The Same Link (Not Recommended)"}
 
 The example shown {{two-acs-same-ce-res}} is not optimal as it includes many redundant data. {{two-acs-same-ce-node-profile}} shows a more compact request that factorizes all the redundant data.
 
 ~~~~ json
 {::include-fold ./json-examples/svc/two-acs-same-ce-node-profile.json}
 ~~~~
-{: #two-acs-same-ce-node-profile title="Example of a Message Body to Request Two ACes on The Same Link (Node Profile)"}
+{: #two-acs-same-ce-node-profile title="Example of a Message Body to Request Two ACs on The Same Link (Node Profile)"}
 
 A customer may request adding a new AC by simply referring to an existing per-node AC profile as shown in {{add-ac-same-ce-node-profile}}. This AC inherits all the data that was enclosed in the indicated per-node AC profile (IP addressing, routing, etc.).
 
