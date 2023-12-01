@@ -786,7 +786,7 @@ This module uses types defined in {{!RFC6991}}, {{!RFC9181}}, {{!RFC8177}}, and 
      {{!I-D.ietf-opsawg-teas-common-ac}}.
 
     'service-provisioning-profiles':
-    : An attacker who has access to these data nodes may be able 
+    : An attacker who has access to these data nodes may be able
      to manipulate service-specific policies to be applied for an AC. These data nodes are defined with "nacm:default-deny- write" tagging.
 
     'ac':
