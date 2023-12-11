@@ -449,14 +449,14 @@ The following data nodes are supported for each 'peer-group':
    'warning-threshold':
    : A warning notification is triggered when this limit is reached.
 
-    'violate-action':
-    :  Indicates which action to execute when the
+   'violate-action':
+   : Indicates which action to execute when the
          maximum number of BGP prefixes is reached.  Examples of such
          actions include sending a warning message, discarding extra
          paths from the peer, or restarting the session.
 
-    'restart-timer':
-    :  Indicates, in seconds, the time interval after
+   'restart-timer':
+   : Indicates, in seconds, the time interval after
       which the BGP session will be reestablished.
 
 'bgp-timers':
