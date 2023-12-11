@@ -140,7 +140,7 @@ The AC service model can be used in a variety of contexts, such as (but not limi
 * Control the precedence over multiple attachment circuits ({{sec-ex-prec}}).
 * Create Multiple ACs bound to Multiple CEs ({{sec-multiple-ces}}).
 * Bind a slice service to a set of pre-provisioned attachment circuits ({{sec-ex-slice}}).
-* Connect a Cloud Infrastructure to a service provider network ({{sec-ex-cloud}}).
+* Connect a Cloud Infrastructure to a service provider network ({{sec-ex-cloud}}). Note that the AC model can be used between service providers for interconnection purposes.
 
 The examples provided in {{examples}} use the IPv4 address blocks reserved for documentation {{?RFC5737}}, the IPv6 prefix reserved for documentation {{?RFC3849}}, and the Autonomous System (AS) numbers reserved for documentation {{?RFC5398}}.
 
