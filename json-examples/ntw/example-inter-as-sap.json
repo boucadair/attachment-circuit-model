@@ -27,7 +27,23 @@
                               ],
                               "sap-status":{
                                  "status":"ietf-vpn-common:op-up"
-                              }
+                              },
+                              "ietf-ac-ntw:ac":[
+                                 {
+                                    "name":"ac-11",
+                                    "status":{
+                                       "admin-status":{
+                                          "status":"ietf-vpn-common:admin-up"
+                                       },
+                                       "oper-status":{
+                                          "status":"ietf-vpn-common:op-up"
+                                       }
+                                    },
+                                    "l2-connection":{
+                                       "bearer-reference":"1234"
+                                    }
+                                 }
+                              ]
                            },
                            {
                               "sap-id":"sap#12",
@@ -39,7 +55,24 @@
                               ],
                               "sap-status":{
                                  "status":"ietf-vpn-common:op-up"
-                              }
+                              },
+                              ,
+                              "ietf-ac-ntw:ac":[
+                                 {
+                                    "name":"ac-12",
+                                    "status":{
+                                       "admin-status":{
+                                          "status":"ietf-vpn-common:admin-up"
+                                       },
+                                       "oper-status":{
+                                          "status":"ietf-vpn-common:op-up"
+                                       }
+                                    },
+                                    "l2-connection":{
+                                       "bearer-reference":"5689"
+                                    }
+                                 }
+                              ]
                            },
                            {
                               "sap-id":"sap#13",
@@ -99,7 +132,23 @@
                               ],
                               "sap-status":{
                                  "status":"ietf-vpn-common:op-up"
-                              }
+                              },
+                              "ietf-ac-ntw:ac":[
+                                 {
+                                    "name":"ac-11",
+                                    "status":{
+                                       "admin-status":{
+                                          "status":"ietf-vpn-common:admin-up"
+                                       },
+                                       "oper-status":{
+                                          "status":"ietf-vpn-common:op-up"
+                                       }
+                                    },
+                                    "l2-connection":{
+                                       "bearer-reference":"29654"
+                                    }
+                                 }
+                              ]
                            },
                            {
                               "sap-id":"sap#12",
@@ -111,7 +160,23 @@
                               ],
                               "sap-status":{
                                  "status":"ietf-vpn-common:op-up"
-                              }
+                              },
+                              "ietf-ac-ntw:ac":[
+                                 {
+                                    "name":"ac-12",
+                                    "status":{
+                                       "admin-status":{
+                                          "status":"ietf-vpn-common:admin-up"
+                                       },
+                                       "oper-status":{
+                                          "status":"ietf-vpn-common:op-up"
+                                       }
+                                    },
+                                    "l2-connection":{
+                                       "bearer-reference":"9869"
+                                    }
+                                 }
+                              ]
                            },
                            {
                               "sap-id":"sap#21",
