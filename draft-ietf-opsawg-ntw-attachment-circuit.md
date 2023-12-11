@@ -159,12 +159,23 @@ Service provider:
 
 # Sample Uses of the Attachment Circuit Data Models
 
-{{u-ex}} shows the positioning of the AC network model in the overall service delivery process. The "ietf-ac-ntw" is a network model which augments the SAP with a comprehensive set of parameters to reflect the attachment circuits that are in place in a network. The model also maintains the mapping with the service references that are used to expose these ACs to customers. Whether the same naming conventions to reference an AC are used in the service and network layers is deployment-specific.
+{{u-ex}} shows the positioning of the AC network model in the overall service delivery process. The "ietf-ac-ntw" module is a network model which augments the SAP with a comprehensive set of parameters to reflect the attachment circuits that are in place in a network. The model also maintains the mapping with the service references that are used to expose these ACs to customers. Whether the same naming conventions to reference an AC are used in the service and network layers is deployment-specific.
 
 ~~~~ aasvg
 {::include-fold ./figures/arch.txt}
 ~~~~
 {: #u-ex title="An Example of the Network AC Model Usage" artwork-align="center"}
+
+Similar to {{!RFC9408}}, the "ietf-ac-ntw" module can be used for both User-to-Network Interface (UNI) and
+Network-to-Network Interface (NNI). For example, all the ACs shown in {{fig-inter-pn}} have a 'role' set
+to "ietf-sap-ntw:nni". Typically, AS Border Routers (ASBRs) of each network is directly
+connected to an ASBR of a neighboring network via one or multiple links (bearers). ASBRs of "Network#1" behaves as a PE and treats the other adjacent ASBRs as if it were a CE.
+
+~~~~ aasvg
+{::include-fold ./figures//ntw/inter-pn.txt}
+~~~~
+{: #fig-inter-pn title="An Example of the Network AC Model Usage Between Provider Networks" artwork-align="center"}
+
 
 # Description of the Attachment Circuit YANG Module
 
