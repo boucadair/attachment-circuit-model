@@ -1,4 +1,4 @@
-  augment /nw:networks/nw:network/nw:node/sap:service/sap:sap:
+  augment /nw:networks/nw:network/nw:node:
     +--rw ac* [name]
        +--rw name                 string
        +--rw ac-svc-ref?          ac-svc:attachment-circuit-reference
