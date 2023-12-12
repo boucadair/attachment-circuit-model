@@ -4268,6 +4268,68 @@ A.1.  VPLS
    model as depicted in Figure 20.  A similar query can be used for the
    AC at PE2.
 
+        {
+           "ietf-ac-ntw:ac":[
+              {
+                 "name":"ac-11",
+                 "ac-svc-ref":"ac-1",
+                 "peer-sap-id":[
+                    "ce-1"
+                 ],
+                 "status":{
+                    "admin-status":{
+                       "status":"ietf-vpn-common:admin-up"
+                    },
+                    "oper-status":{
+                       "status":"ietf-vpn-common:op-up"
+                    }
+                 },
+                 "l2-connection":{
+                    "encapsulation":{
+                       "encap-type":"ietf-vpn-common:dot1q",
+                       "dot1q":{
+                          "tag-type":"ietf-vpn-common:c-vlan",
+                          "cvlan-id":550
+                       }
+                    },
+                    "bearer-reference":"1234"
+                 },
+                 "service":{
+                    "mtu":1550,
+                    "svc-pe-to-ce-bandwidth":{
+                       "pe-to-ce-bandwidth":[
+                          {
+                             "cir":"20480000"
+                          }
+                       ]
+                    },
+                    "svc-ce-to-pe-bandwidth":{
+                       "ce-to-pe-bandwidth":[
+                          {
+                             "cir":"20480000"
+                          }
+                       ]
+                    },
+                    "qos":{
+                       "qos-profile":{
+                          "qos-profile":[
+                             {
+                                "profile":"QoS_Profile_A",
+                                "direction":"ietf-vpn-common:both"
+                             }
+                          ]
+                       }
+                    }
+                 }
+              }
+           ]
+        }
+
+          Figure 20: Example of AC Network Response (Message Body)
+
+   Also, the AC network model can be used to retrieve the list of SAPs
+   to which the ACs are bound as shown in Figure 20.
+
      {
         "ietf-sap-ntw:service":[
            {
@@ -4306,14 +4368,15 @@ A.1.  VPLS
         ]
      }
 
-          Figure 20: Example of AC Network Response (Message Body)
+       Figure 21: Example of AC Network Response to Retrieve the SAP
+                               (Message Body)
 
 A.2.  Parent AC
 
    In reference to the topology depicted in Figure 1, PE2 has a SAP
    which terminates an AC with two peer SAPs (CE2 and CE5).  In order to
    control data that is specific to each of these peer SAPs over the
-   same AC, child ACs can be instantiated as depicted in Figure 21.
+   same AC, child ACs can be instantiated as depicted in Figure 22.
 
           {
              "ietf-ac-ntw:ac":[
@@ -4359,9 +4422,9 @@ A.2.  Parent AC
              ]
           }
 
-                      Figure 21: Example of Child ACs
+                      Figure 22: Example of Child ACs
 
-   Figure 22 shows how to bind the parent AC to a SAP.
+   Figure 23 shows how to bind the parent AC to a SAP.
 
      {
         "ietf-sap-ntw:service":[
@@ -4387,7 +4450,7 @@ A.2.  Parent AC
         ]
      }
 
-              Figure 22: Example of Binding Parent AC to SAPs
+              Figure 23: Example of Binding Parent AC to SAPs
 
 Acknowledgments
 

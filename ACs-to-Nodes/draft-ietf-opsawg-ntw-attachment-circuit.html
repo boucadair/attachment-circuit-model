@@ -5915,6 +5915,73 @@ be used to inject spoofed routing  advertisements.<a href="#section-6-6.6.1" cla
           <div class="alignCenter art-text artwork" id="appendix-A.1-6.1">
 <pre>
 {
+   "ietf-ac-ntw:ac":[
+      {
+         "name":"ac-11",
+         "ac-svc-ref":"ac-1",
+         "peer-sap-id":[
+            "ce-1"
+         ],
+         "status":{
+            "admin-status":{
+               "status":"ietf-vpn-common:admin-up"
+            },
+            "oper-status":{
+               "status":"ietf-vpn-common:op-up"
+            }
+         },
+         "l2-connection":{
+            "encapsulation":{
+               "encap-type":"ietf-vpn-common:dot1q",
+               "dot1q":{
+                  "tag-type":"ietf-vpn-common:c-vlan",
+                  "cvlan-id":550
+               }
+            },
+            "bearer-reference":"1234"
+         },
+         "service":{
+            "mtu":1550,
+            "svc-pe-to-ce-bandwidth":{
+               "pe-to-ce-bandwidth":[
+                  {
+                     "cir":"20480000"
+                  }
+               ]
+            },
+            "svc-ce-to-pe-bandwidth":{
+               "ce-to-pe-bandwidth":[
+                  {
+                     "cir":"20480000"
+                  }
+               ]
+            },
+            "qos":{
+               "qos-profile":{
+                  "qos-profile":[
+                     {
+                        "profile":"QoS_Profile_A",
+                        "direction":"ietf-vpn-common:both"
+                     }
+                  ]
+               }
+            }
+         }
+      }
+   ]
+}
+</pre>
+</div>
+<figcaption><a href="#figure-20" class="selfRef">Figure 20</a>:
+<a href="#name-example-of-ac-network-respo" class="selfRef">Example of AC Network Response (Message Body)</a>
+          </figcaption></figure>
+</div>
+<p id="appendix-A.1-7">Also, the AC network model can be used to retrieve the list of SAPs to which the ACs are bound as shown in <a href="#ex-acntw-query" class="auto internal xref">Figure 20</a>.<a href="#appendix-A.1-7" class="pilcrow">¶</a></p>
+<span id="name-example-of-ac-network-respon"></span><div id="ex-acntw-query-2">
+<figure id="figure-21">
+          <div class="alignCenter art-text artwork" id="appendix-A.1-8.1">
+<pre>
+{
    "ietf-sap-ntw:service":[
       {
          "service-type":"ietf-vpn-common:vpls",
@@ -5953,8 +6020,8 @@ be used to inject spoofed routing  advertisements.<a href="#section-6-6.6.1" cla
 }
 </pre>
 </div>
-<figcaption><a href="#figure-20" class="selfRef">Figure 20</a>:
-<a href="#name-example-of-ac-network-respo" class="selfRef">Example of AC Network Response (Message Body)</a>
+<figcaption><a href="#figure-21" class="selfRef">Figure 21</a>:
+<a href="#name-example-of-ac-network-respon" class="selfRef">Example of AC Network Response to Retrieve the SAP (Message Body)</a>
           </figcaption></figure>
 </div>
 </section>
@@ -5964,9 +6031,9 @@ be used to inject spoofed routing  advertisements.<a href="#section-6-6.6.1" cla
         <h3 id="name-parent-ac">
 <a href="#appendix-A.2" class="section-number selfRef">A.2. </a><a href="#name-parent-ac" class="section-name selfRef">Parent AC</a>
         </h3>
-<p id="appendix-A.2-1">In reference to the topology depicted in <a href="#sap-ac-ntw" class="auto internal xref">Figure 1</a>, PE2 has a SAP which terminates an AC with two peer SAPs (CE2 and CE5). In order to control data that is specific to each of these peer SAPs over the same AC, child ACs can be instantiated as depicted in <a href="#ex-parent-ac" class="auto internal xref">Figure 21</a>.<a href="#appendix-A.2-1" class="pilcrow">¶</a></p>
+<p id="appendix-A.2-1">In reference to the topology depicted in <a href="#sap-ac-ntw" class="auto internal xref">Figure 1</a>, PE2 has a SAP which terminates an AC with two peer SAPs (CE2 and CE5). In order to control data that is specific to each of these peer SAPs over the same AC, child ACs can be instantiated as depicted in <a href="#ex-parent-ac" class="auto internal xref">Figure 22</a>.<a href="#appendix-A.2-1" class="pilcrow">¶</a></p>
 <span id="name-example-of-child-acs"></span><div id="ex-parent-ac">
-<figure id="figure-21">
+<figure id="figure-22">
           <div class="alignCenter art-text artwork" id="appendix-A.2-2.1">
 <pre>
 {
@@ -6014,13 +6081,13 @@ be used to inject spoofed routing  advertisements.<a href="#section-6-6.6.1" cla
 }
 </pre>
 </div>
-<figcaption><a href="#figure-21" class="selfRef">Figure 21</a>:
+<figcaption><a href="#figure-22" class="selfRef">Figure 22</a>:
 <a href="#name-example-of-child-acs" class="selfRef">Example of Child ACs</a>
           </figcaption></figure>
 </div>
-<p id="appendix-A.2-3"><a href="#ex-parent-ac-sap" class="auto internal xref">Figure 22</a> shows how to bind the parent AC to a SAP.<a href="#appendix-A.2-3" class="pilcrow">¶</a></p>
+<p id="appendix-A.2-3"><a href="#ex-parent-ac-sap" class="auto internal xref">Figure 23</a> shows how to bind the parent AC to a SAP.<a href="#appendix-A.2-3" class="pilcrow">¶</a></p>
 <span id="name-example-of-binding-parent-a"></span><div id="ex-parent-ac-sap">
-<figure id="figure-22">
+<figure id="figure-23">
           <div class="alignCenter art-text artwork" id="appendix-A.2-4.1">
 <pre>
 {
@@ -6048,7 +6115,7 @@ be used to inject spoofed routing  advertisements.<a href="#section-6-6.6.1" cla
 }
 </pre>
 </div>
-<figcaption><a href="#figure-22" class="selfRef">Figure 22</a>:
+<figcaption><a href="#figure-23" class="selfRef">Figure 23</a>:
 <a href="#name-example-of-binding-parent-a" class="selfRef">Example of Binding Parent AC to SAPs</a>
           </figcaption></figure>
 </div>
