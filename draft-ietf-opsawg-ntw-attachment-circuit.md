@@ -877,7 +877,7 @@ The provisionned AC at PE1 can be retrieved using the AC network model as depict
 ~~~~~~~~~~
 {: #ex-acntw-query title="Example of AC Network Response (Message Body)" artwork-align="center"}
 
-Also, the AC network model can be used to retrieve the list of SAPs to which the ACs are bound as shown in {{ex-acntw-query}}. 
+Also, the AC network model can be used to retrieve the list of SAPs to which the ACs are bound as shown in {{ex-acntw-query}}.
 
 ~~~~~~~~~~
 {::include-fold ./json-examples/glue/example-acntw.json}
