@@ -194,7 +194,7 @@ augment /nw:networks/nw:network:
   |  ...
   +--rw ac-profile* [name]
      ...
-augment /nw:networks/nw:network/nw:node/sap:service/sap:sap:
+augment /nw:networks/nw:network/nw:node:
   +--rw ac* [name]
      +--rw name                 string
      +--rw ac-svc-ref?          ac-svc:attachment-circuit-reference
@@ -225,6 +225,8 @@ augment /nw:networks/nw:network/nw:node/sap:service/sap:sap:
      |  ...
      +--rw service
         ...
+  augment /nw:networks/nw:network/nw:node/sap:service/sap:sap:
+    +--rw ac*   ac-ntw:attachment-circuit-reference
 ~~~~
 {: #o-ntw-tree title="Overall Tree Structure"}
 
@@ -237,7 +239,7 @@ Unlike the AC service model {{!I-D.ietf-opsawg-teas-attachment-circuit}}, an AC 
 
 Also, in order to ease the correlation between the AC exposed at the service layer and the one that is actually provisioned in the network operation, a reference to the AC exposed to the customer ('ac-svc-ref') is stored in the 'ietf-ac-ntw' module.
 
-A controller may indicate a filter based on the service type (e.g., Network Slice or L3VPN) to retrieve the list of available ACs for that service.
+ACs that are terminated by a SAP are listed in 'ac' under '/nw:networks/nw:network/nw:node/sap:service/sap:sap'. A controller may indicate a filter based on the service type (e.g., Network Slice or L3VPN) to retrieve the list of available SAPs, and thus ACs, for that service.
 
 In order to factorize common data that is provisioned for a group of ACs, a set of profiles ({{sec-profiles}}) can be defined at the network level, and then called under the node level. The information contained in a profile is thus inherited, unless the corresponding data node is refined at the AC level. In such a case, the value provided at the AC level takes precedence over the global one.
 
