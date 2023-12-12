@@ -1878,6 +1878,7 @@ module ietf-ac-ntw {
       uses vpn-common:service-status;
       uses ac-ntw:ac;
     }
+  }
 
   augment "/nw:networks/nw:network/nw:node"
         + "/sap:service/sap:sap" {
