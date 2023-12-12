@@ -14,45 +14,7 @@
                   "status":"ietf-vpn-common:op-up"
                },
                "ietf-ac-ntw:ac":[
-                  {
-                     "name":"ac-1",
-                     "peer-sap-id":[
-                        "CE2",
-                        "CE5"
-                     ],
-                     "status":{
-                        "admin-status":{
-                           "status":"ietf-vpn-common:admin-up"
-                        },
-                        "oper-status":{
-                           "status":"ietf-vpn-common:op-up"
-                        }
-                     },
-                     "l2-connection":{
-                        "encapsulation":{
-                           "encap-type":"ietf-vpn-common:dot1q",
-                           "dot1q":{
-                              "tag-type":"ietf-vpn-common:c-vlan",
-                              "cvlan-id":550
-                           }
-                        },
-                        "bearer-reference":"1234"
-                     }
-                  },
-                  {
-                     "name":"ac-1-to-ce2",
-                     "ac-parent-ref":"ac-1",
-                     "peer-sap-id":[
-                        "CE2"
-                     ]
-                  },
-                  {
-                     "name":"ac-1-to-ce5",
-                     "ac-parent-ref":"ac-1",
-                     "peer-sap-id":[
-                        "CE5"
-                     ]
-                  }
+                  "ac-1"
                ]
             }
          ]
