@@ -331,7 +331,7 @@ Table of Contents
      |  ...
      +--rw ac-profile* [name]
         ...
-   augment /nw:networks/nw:network/nw:node/sap:service/sap:sap:
+   augment /nw:networks/nw:network/nw:node:
      +--rw ac* [name]
         +--rw name                 string
         +--rw ac-svc-ref?          ac-svc:attachment-circuit-reference
@@ -362,6 +362,8 @@ Table of Contents
         |  ...
         +--rw service
            ...
+     augment /nw:networks/nw:network/nw:node/sap:service/sap:sap:
+       +--rw ac*   ac-ntw:attachment-circuit-reference
 
                       Figure 4: Overall Tree Structure
 
@@ -386,8 +388,10 @@ Table of Contents
    operation, a reference to the AC exposed to the customer ('ac-svc-
    ref') is stored in the 'ietf-ac-ntw' module.
 
-   A controller may indicate a filter based on the service type (e.g.,
-   Network Slice or L3VPN) to retrieve the list of available ACs for
+   ACs that are terminated by a SAP are listed in 'ac' under
+   '/nw:networks/nw:network/nw:node/sap:service/sap:sap'.  A controller
+   may indicate a filter based on the service type (e.g., Network Slice
+   or L3VPN) to retrieve the list of available SAPs, and thus ACs, for
    that service.
 
    In order to factorize common data that is provisioned for a group of
