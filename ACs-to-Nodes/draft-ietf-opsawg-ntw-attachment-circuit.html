@@ -3366,7 +3366,7 @@ isn't any type of VRRP authentication at this time (see <span><a href="https://r
 <figure id="figure-16">
           <div class="alignLeft art-text artwork" id="section-4.7-2.1">
 <pre>
-  augment /nw:networks/nw:network/nw:node/sap:service/sap:sap:
+  augment /nw:networks/nw:network/nw:node:
     +--rw ac* [name]
        +--rw name                 string
        +--rw ac-svc-ref?          ac-svc:attachment-circuit-reference
@@ -3424,7 +3424,7 @@ isn't any type of VRRP authentication at this time (see <span><a href="https://r
 <figure id="figure-17">
           <div class="alignLeft art-text artwork" id="section-4.8-2.1">
 <pre>
-  augment /nw:networks/nw:network/nw:node/sap:service/sap:sap:
+  augment /nw:networks/nw:network/nw:node:
     +--rw ac* [name]
        +--rw name                 string
        +--rw ac-svc-ref?          ac-svc:attachment-circuit-reference

@@ -1782,7 +1782,7 @@ Table of Contents
    directly control the encryption to be applied (e.g., Layer 2 or Layer
    3 encryption) or invoke a local encryption profile.
 
-    augment /nw:networks/nw:network/nw:node/sap:service/sap:sap:
+    augment /nw:networks/nw:network/nw:node:
       +--rw ac* [name]
          +--rw name                 string
          +--rw ac-svc-ref?          ac-svc:attachment-circuit-reference
@@ -1829,7 +1829,7 @@ Table of Contents
 
    The service subtree structure is shown in Figure 17.
 
-     augment /nw:networks/nw:network/nw:node/sap:service/sap:sap:
+     augment /nw:networks/nw:network/nw:node:
        +--rw ac* [name]
           +--rw name                 string
           +--rw ac-svc-ref?          ac-svc:attachment-circuit-reference
