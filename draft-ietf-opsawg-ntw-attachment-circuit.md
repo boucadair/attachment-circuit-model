@@ -882,9 +882,16 @@ The provisionned AC at PE1 can be retrieved using the AC network model as depict
 In reference to the topology depicted in {{sap-ac-ntw}}, PE2 has a SAP which terminates an AC with two peer SAPs (CE2 and CE5). In order to control data that is specific to each of these peer SAPs over the same AC, child ACs can be instantiated as depicted in {{ex-parent-ac}}.
 
 ~~~~~~~~~~
-{::include-fold ./json-examples/ntw/multiple-acs-same-sap.json}
+{::include-fold ./json-examples/ntw/multiple-acs-same-sap-2.json}
 ~~~~~~~~~~
 {: #ex-parent-ac title="Example of Child ACs" artwork-align="center"}
+
+{{ex-parent-ac-sap}} shows how to bind the parent AC to a SAP.
+
+~~~~~~~~~~
+{::include-fold ./json-examples/ntw/multiple-acs-same-sap.json}
+~~~~~~~~~~
+{: #ex-parent-ac-sap title="Example of Binding Parent AC to SAPs" artwork-align="center"}
 
 # Acknowledgments
 {:numbered="false"}
