@@ -5,14 +5,14 @@
 OPSAWG                                                 M. Boucadair, Ed.
 Internet-Draft                                                    Orange
 Intended status: Standards Track                         R. Roberts, Ed.
-Expires: 13 June 2024                                            Juniper
+Expires: 14 June 2024                                            Juniper
                                                            O. G. D. Dios
                                                               Telefonica
                                                            S. B. Giraldo
                                                                    Nokia
                                                                    B. Wu
                                                      Huawei Technologies
-                                                        11 December 2023
+                                                        12 December 2023
 
 
     YANG Data Models for 'Attachment Circuits'-as-a-Service (ACaaS)
@@ -61,7 +61,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 13 June 2024.
+   This Internet-Draft will expire on 14 June 2024.
 
 Copyright Notice
 
@@ -246,7 +246,7 @@ Table of Contents
 
    *  Connect a Cloud Infrastructure to a service provider network
       (Appendix A.8).  Note that the AC model can be used between
-      service providers for interconnection purposes.
+      service providers for other interconnection purposes.
 
    The examples provided in Appendix A use the IPv4 address blocks
    reserved for documentation [RFC5737], the IPv6 prefix reserved for
