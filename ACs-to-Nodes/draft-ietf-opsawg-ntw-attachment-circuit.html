@@ -6024,6 +6024,60 @@ be used to inject spoofed routing  advertisements.<a href="#section-6-6.6.1" cla
           <div class="alignCenter art-text artwork" id="appendix-A.2-2.1">
 <pre>
 {
+   "ietf-ac-ntw:ac":[
+      {
+         "name":"ac-1",
+         "peer-sap-id":[
+            "CE2",
+            "CE5"
+         ],
+         "status":{
+            "admin-status":{
+               "status":"ietf-vpn-common:admin-up"
+            },
+            "oper-status":{
+               "status":"ietf-vpn-common:op-up"
+            }
+         },
+         "l2-connection":{
+            "encapsulation":{
+               "encap-type":"ietf-vpn-common:dot1q",
+               "dot1q":{
+                  "tag-type":"ietf-vpn-common:c-vlan",
+                  "cvlan-id":550
+               }
+            },
+            "bearer-reference":"1234"
+         }
+      },
+      {
+         "name":"ac-1-to-ce2",
+         "ac-parent-ref":"ac-1",
+         "peer-sap-id":[
+            "CE2"
+         ]
+      },
+      {
+         "name":"ac-1-to-ce5",
+         "ac-parent-ref":"ac-1",
+         "peer-sap-id":[
+            "CE5"
+         ]
+      }
+   ]
+}
+</pre>
+</div>
+<figcaption><a href="#figure-21" class="selfRef">Figure 21</a>:
+<a href="#name-example-of-child-acs" class="selfRef">Example of Child ACs</a>
+          </figcaption></figure>
+</div>
+<p id="appendix-A.2-3"><a href="#ex-parent-ac-sap" class="auto internal xref">Figure 22</a> shows how to bind the parent AC to a SAP.<a href="#appendix-A.2-3" class="pilcrow">¶</a></p>
+<span id="name-example-of-binding-parent-a"></span><div id="ex-parent-ac-sap">
+<figure id="figure-22">
+          <div class="alignCenter art-text artwork" id="appendix-A.2-4.1">
+<pre>
+{
    "ietf-sap-ntw:service":[
       {
          "service-type":"ietf-vpn-common:l3vpn",
@@ -6048,8 +6102,8 @@ be used to inject spoofed routing  advertisements.<a href="#section-6-6.6.1" cla
 }
 </pre>
 </div>
-<figcaption><a href="#figure-21" class="selfRef">Figure 21</a>:
-<a href="#name-example-of-child-acs" class="selfRef">Example of Child ACs</a>
+<figcaption><a href="#figure-22" class="selfRef">Figure 22</a>:
+<a href="#name-example-of-binding-parent-a" class="selfRef">Example of Binding Parent AC to SAPs</a>
           </figcaption></figure>
 </div>
 </section>
