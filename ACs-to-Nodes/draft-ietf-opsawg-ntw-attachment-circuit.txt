@@ -826,7 +826,7 @@ Table of Contents
 
    module: ietf-ac-ntw
              ...
-     augment /nw:networks/nw:network/nw:node/sap:service/sap:sap:
+     augment /nw:networks/nw:network/nw:node:
        +--rw ac* [name]
           +--rw name                 string
           ...
@@ -1603,7 +1603,7 @@ Table of Contents
           |        +--rw ping-reply?       boolean
           +--rw oam
              ...
-     augment /nw:networks/nw:network/nw:node/sap:service/sap:sap:
+     augment /nw:networks/nw:network/nw:node:
        +--rw ac* [name]
           +--rw name                 string
           ...

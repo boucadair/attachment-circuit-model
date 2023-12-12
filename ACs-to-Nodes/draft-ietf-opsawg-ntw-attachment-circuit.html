@@ -2121,7 +2121,7 @@ a given routing instance.<a href="#section-4.5-5" class="pilcrow">¶</a></p>
 <pre>
 module: ietf-ac-ntw
           ...
-  augment /nw:networks/nw:network/nw:node/sap:service/sap:sap:
+  augment /nw:networks/nw:network/nw:node:
     +--rw ac* [name]
        +--rw name                 string
        ...
@@ -3137,7 +3137,7 @@ module: ietf-ac-ntw
        |        +--rw ping-reply?       boolean
        +--rw oam
           ...
-  augment /nw:networks/nw:network/nw:node/sap:service/sap:sap:
+  augment /nw:networks/nw:network/nw:node:
     +--rw ac* [name]
        +--rw name                 string
        ...
