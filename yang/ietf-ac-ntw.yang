@@ -109,12 +109,11 @@ module ietf-ac-ntw {
 
   typedef attachment-circuit-reference {
     type leafref {
-      path "/nw:networks/nw:network/nw:node/sap:service/sap:sap"
-         + "/ac-ntw:ac/ac-ntw:name";
+      path "/nw:networks/nw:network/nw:node/ac-ntw:ac/ac-ntw:name";
     }
     description
-      "Defines a reference to an attachment circuit that can be used
-       by other modules.";
+      "Defines a reference to an attachment circuit. The reference 
+       be used also by other modules.";
   }
 
   typedef ac-profile-reference {
@@ -123,7 +122,7 @@ module ietf-ac-ntw {
     }
     description
       "Defines a reference to an attachment circuit profile that
-       can be used by other modules.";
+       can be used, including, by other modules.";
   }
 
   typedef encryption-profile-reference {
@@ -1815,14 +1814,13 @@ module ietf-ac-ntw {
     }
   }
 
-  augment "/nw:networks/nw:network/nw:node"
-        + "/sap:service/sap:sap" {
-    when '../../../nw:network-types/sap:sap-network' {
+  augment "/nw:networks/nw:network/nw:node" {
+    when '../nw:network-types/sap:sap-network' {
       description
         "Augmentation parameters apply only for SAP networks.";
     }
     description
-      "Augments SAPs with AC provisioning details.";
+      "Augments nodes with AC provisioning details.";
     list ac {
       key "name";
       description
@@ -1879,6 +1877,20 @@ module ietf-ac-ntw {
       }
       uses vpn-common:service-status;
       uses ac-ntw:ac;
+    }
+
+  augment "/nw:networks/nw:network/nw:node"
+        + "/sap:service/sap:sap" {
+    when '../../../nw:network-types/sap:sap-network' {
+      description
+        "Augmentation parameters apply only for SAP networks.";
+    }
+    description
+      "Augments SAPs with AC provisioning details.";
+    leaf-list ac {
+      type ac-ntw:attachment-circuit-reference;
+      description
+        "Specifies the ACs that are terminated by the SAP.";
     }
   }
 }
