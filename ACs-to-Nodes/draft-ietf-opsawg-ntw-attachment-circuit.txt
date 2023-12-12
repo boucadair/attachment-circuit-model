@@ -483,7 +483,7 @@ Table of Contents
    properties of an AC.  The Layer 2 connection tree structure is shown
    in Figure 6.
 
-     augment /nw:networks/nw:network/nw:node/sap:service/sap:sap:
+     augment /nw:networks/nw:network/nw:node:
        +--rw ac* [name]
           +--rw name                 string
           +--rw ac-svc-ref?          ac-svc:attachment-circuit-reference
@@ -1375,7 +1375,7 @@ Table of Contents
           |        ...
           +--rw oam
              ...
-     augment /nw:networks/nw:network/nw:node/sap:service/sap:sap:
+     augment /nw:networks/nw:network/nw:node:
        +--rw ac* [name]
           +--rw name                 string
           ...

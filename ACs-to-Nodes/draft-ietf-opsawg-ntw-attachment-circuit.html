@@ -1794,7 +1794,7 @@ reference points (the PE side of an AC, in the context of this document) where n
 <figure id="figure-6">
           <div class="alignLeft art-text artwork" id="section-4.3-2.1">
 <pre>
-  augment /nw:networks/nw:network/nw:node/sap:service/sap:sap:
+  augment /nw:networks/nw:network/nw:node:
     +--rw ac* [name]
        +--rw name                 string
        +--rw ac-svc-ref?          ac-svc:attachment-circuit-reference
@@ -2821,7 +2821,7 @@ module: ietf-ac-ntw
        |        ...
        +--rw oam
           ...
-  augment /nw:networks/nw:network/nw:node/sap:service/sap:sap:
+  augment /nw:networks/nw:network/nw:node:
     +--rw ac* [name]
        +--rw name                 string
        ...
