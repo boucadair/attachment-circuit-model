@@ -28,58 +28,7 @@
                   "status":"ietf-vpn-common:op-up"
                },
                "ietf-ac-ntw:ac":[
-                  {
-                     "name":"ac-11",
-                     "ac-svc-ref":"ac-1",
-                     "peer-sap-id":[
-                        "ce-1"
-                     ],
-                     "status":{
-                        "admin-status":{
-                           "status":"ietf-vpn-common:admin-up"
-                        },
-                        "oper-status":{
-                           "status":"ietf-vpn-common:op-up"
-                        }
-                     },
-                     "l2-connection":{
-                        "encapsulation":{
-                           "encap-type":"ietf-vpn-common:dot1q",
-                           "dot1q":{
-                              "tag-type":"ietf-vpn-common:c-vlan",
-                              "cvlan-id":550
-                           }
-                        },
-                        "bearer-reference":"1234"
-                     },
-                     "service":{
-                        "mtu":1550,
-                        "svc-pe-to-ce-bandwidth":{
-                           "pe-to-ce-bandwidth":[
-                              {
-                                 "cir":"20480000"
-                              }
-                           ]
-                        },
-                        "svc-ce-to-pe-bandwidth":{
-                           "ce-to-pe-bandwidth":[
-                              {
-                                 "cir":"20480000"
-                              }
-                           ]
-                        },
-                        "qos":{
-                           "qos-profile":{
-                              "qos-profile":[
-                                 {
-                                    "profile":"QoS_Profile_A",
-                                    "direction":"ietf-vpn-common:both"
-                                 }
-                              ]
-                           }
-                        }
-                     }
-                  }
+                  "ac-1"
                ]
             }
          ]
