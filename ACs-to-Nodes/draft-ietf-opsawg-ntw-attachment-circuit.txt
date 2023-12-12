@@ -4369,67 +4369,29 @@ A.2.  Parent AC
    control data that is specific to each of these peer SAPs over the
    same AC, child ACs can be instantiated as depicted in Figure 21.
 
-    {
-       "ietf-sap-ntw:service":[
-          {
-             "service-type":"ietf-vpn-common:l3vpn",
-             "sap":[
-                {
-                   "sap-id":"sap#14587",
-                   "description":"A SAP",
-                   "parent-termination-point":"GE0/6/4",
-                   "attachment-interface":"GE0/6/4.2",
-                   "interface-type":"ietf-sap-ntw:logical",
-                   "encapsulation-type":"ietf-vpn-common:vlan-type",
-                   "sap-status":{
-                      "status":"ietf-vpn-common:op-up"
-                   },
-                   "ietf-ac-ntw:ac":[
-                      {
-                         "name":"ac-1",
-                         "peer-sap-id":[
-                            "CE2",
-                            "CE5"
-                         ],
-                         "status":{
-                            "admin-status":{
-                               "status":"ietf-vpn-common:admin-up"
-                            },
-                            "oper-status":{
-                               "status":"ietf-vpn-common:op-up"
-                            }
-                         },
-                         "l2-connection":{
-                            "encapsulation":{
-                               "encap-type":"ietf-vpn-common:dot1q",
-                               "dot1q":{
-                                  "tag-type":"ietf-vpn-common:c-vlan",
-                                  "cvlan-id":550
-                               }
-                            },
-                            "bearer-reference":"1234"
-                         }
-                      },
-                      {
-                         "name":"ac-1-to-ce2",
-                         "ac-parent-ref":"ac-1",
-                         "peer-sap-id":[
-                            "CE2"
-                         ]
-                      },
-                      {
-                         "name":"ac-1-to-ce5",
-                         "ac-parent-ref":"ac-1",
-                         "peer-sap-id":[
-                            "CE5"
-                         ]
-                      }
-                   ]
-                }
-             ]
-          }
-       ]
-    }
+     {
+        "ietf-sap-ntw:service":[
+           {
+              "service-type":"ietf-vpn-common:l3vpn",
+              "sap":[
+                 {
+                    "sap-id":"sap#14587",
+                    "description":"A SAP",
+                    "parent-termination-point":"GE0/6/4",
+                    "attachment-interface":"GE0/6/4.2",
+                    "interface-type":"ietf-sap-ntw:logical",
+                    "encapsulation-type":"ietf-vpn-common:vlan-type",
+                    "sap-status":{
+                       "status":"ietf-vpn-common:op-up"
+                    },
+                    "ietf-ac-ntw:ac":[
+                       "ac-1"
+                    ]
+                 }
+              ]
+           }
+        ]
+     }
 
                       Figure 21: Example of Child ACs
 
