@@ -873,9 +873,16 @@ The AC service model {{!I-D.ietf-opsawg-teas-attachment-circuit}} can be used by
 The provisionned AC at PE1 can be retrieved using the AC network model as depicted in {{ex-acntw-query}}. A similar query can be used for the AC at PE2.
 
 ~~~~~~~~~~
-{::include-fold ./json-examples/glue/example-acntw.json}
+{::include-fold ./json-examples/glue/example-acntw-2.json}
 ~~~~~~~~~~
 {: #ex-acntw-query title="Example of AC Network Response (Message Body)" artwork-align="center"}
+
+Also, the AC network model can be used to retrieve the list of SAPs to which the ACs are bound as shown in {{ex-acntw-query}}. 
+
+~~~~~~~~~~
+{::include-fold ./json-examples/glue/example-acntw.json}
+~~~~~~~~~~
+{: #ex-acntw-query-2 title="Example of AC Network Response to Retrieve the SAP (Message Body)" artwork-align="center"}
 
 ## Parent AC
 
