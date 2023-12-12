@@ -605,7 +605,7 @@ Table of Contents
 
    The Layer 3 connection tree structure is shown in Figure 7.
 
-     augment /nw:networks/nw:network/nw:node/sap:service/sap:sap:
+     augment /nw:networks/nw:network/nw:node:
        +--rw ac* [name]
           +--rw name                 string
           +--rw ac-svc-ref?          ac-svc:attachment-circuit-reference
@@ -1256,7 +1256,7 @@ Table of Contents
           |        ...
           +--rw oam
              ...
-     augment /nw:networks/nw:network/nw:node/sap:service/sap:sap:
+     augment /nw:networks/nw:network/nw:node:
        +--rw ac* [name]
           +--rw name                 string
           ...
@@ -1694,7 +1694,7 @@ Table of Contents
              +--rw required-min-rx-interval?   uint32
              +--rw local-multiplier?           uint8
              +--rw holdtime?                   uint32
-  augment /nw:networks/nw:network/nw:node/sap:service/sap:sap:
+  augment /nw:networks/nw:network/nw:node:
     +--rw ac* [name]
        +--rw name                 string
        +--rw ac-svc-ref?          ac-svc:attachment-circuit-reference

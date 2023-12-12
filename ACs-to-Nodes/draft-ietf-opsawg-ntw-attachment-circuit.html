@@ -1911,7 +1911,7 @@ reference points (the PE side of an AC, in the context of this document) where n
 <figure id="figure-7">
           <div class="alignLeft art-text artwork" id="section-4.4-3.1">
 <pre>
-  augment /nw:networks/nw:network/nw:node/sap:service/sap:sap:
+  augment /nw:networks/nw:network/nw:node:
     +--rw ac* [name]
        +--rw name                 string
        +--rw ac-svc-ref?          ac-svc:attachment-circuit-reference
@@ -2667,7 +2667,7 @@ module: ietf-ac-ntw
        |        ...
        +--rw oam
           ...
-  augment /nw:networks/nw:network/nw:node/sap:service/sap:sap:
+  augment /nw:networks/nw:network/nw:node:
     +--rw ac* [name]
        +--rw name                 string
        ...
@@ -3258,7 +3258,7 @@ isn't any type of VRRP authentication at this time (see <span><a href="https://r
              +--rw required-min-rx-interval?   uint32
              +--rw local-multiplier?           uint8
              +--rw holdtime?                   uint32
-  augment /nw:networks/nw:network/nw:node/sap:service/sap:sap:
+  augment /nw:networks/nw:network/nw:node:
     +--rw ac* [name]
        +--rw name                 string
        +--rw ac-svc-ref?          ac-svc:attachment-circuit-reference
