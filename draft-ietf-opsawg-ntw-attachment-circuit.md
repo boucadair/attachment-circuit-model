@@ -194,7 +194,7 @@ augment /nw:networks/nw:network:
   |  ...
   +--rw ac-profile* [name]
      ...
-augment /nw:networks/nw:network/nw:node/sap:service/sap:sap:
+augment /nw:networks/nw:network/nw:node:
   +--rw ac* [name]
      +--rw name                 string
      +--rw ac-svc-ref?          ac-svc:attachment-circuit-reference
@@ -225,6 +225,8 @@ augment /nw:networks/nw:network/nw:node/sap:service/sap:sap:
      |  ...
      +--rw service
         ...
+  augment /nw:networks/nw:network/nw:node/sap:service/sap:sap:
+    +--rw ac*   ac-ntw:attachment-circuit-reference
 ~~~~
 {: #o-ntw-tree title="Overall Tree Structure"}
 
@@ -237,7 +239,7 @@ Unlike the AC service model {{!I-D.ietf-opsawg-teas-attachment-circuit}}, an AC 
 
 Also, in order to ease the correlation between the AC exposed at the service layer and the one that is actually provisioned in the network operation, a reference to the AC exposed to the customer ('ac-svc-ref') is stored in the 'ietf-ac-ntw' module.
 
-A controller may indicate a filter based on the service type (e.g., Network Slice or L3VPN) to retrieve the list of available ACs for that service.
+ACs that are terminated by a SAP are listed in 'ac' under '/nw:networks/nw:network/nw:node/sap:service/sap:sap'. A controller may indicate a filter based on the service type (e.g., Network Slice or L3VPN) to retrieve the list of available SAPs, and thus ACs, for that service.
 
 In order to factorize common data that is provisioned for a group of ACs, a set of profiles ({{sec-profiles}}) can be defined at the network level, and then called under the node level. The information contained in a profile is thus inherited, unless the corresponding data node is refined at the AC level. In such a case, the value provided at the AC level takes precedence over the global one.
 
@@ -871,18 +873,32 @@ The AC service model {{!I-D.ietf-opsawg-teas-attachment-circuit}} can be used by
 The provisionned AC at PE1 can be retrieved using the AC network model as depicted in {{ex-acntw-query}}. A similar query can be used for the AC at PE2.
 
 ~~~~~~~~~~
-{::include-fold ./json-examples/glue/example-acntw.json}
+{::include-fold ./json-examples/glue/example-acntw-2.json}
 ~~~~~~~~~~
 {: #ex-acntw-query title="Example of AC Network Response (Message Body)" artwork-align="center"}
+
+Also, the AC network model can be used to retrieve the list of SAPs to which the ACs are bound as shown in {{ex-acntw-query}}.
+
+~~~~~~~~~~
+{::include-fold ./json-examples/glue/example-acntw.json}
+~~~~~~~~~~
+{: #ex-acntw-query-2 title="Example of AC Network Response to Retrieve the SAP (Message Body)" artwork-align="center"}
 
 ## Parent AC
 
 In reference to the topology depicted in {{sap-ac-ntw}}, PE2 has a SAP which terminates an AC with two peer SAPs (CE2 and CE5). In order to control data that is specific to each of these peer SAPs over the same AC, child ACs can be instantiated as depicted in {{ex-parent-ac}}.
 
 ~~~~~~~~~~
-{::include-fold ./json-examples/ntw/multiple-acs-same-sap.json}
+{::include-fold ./json-examples/ntw/multiple-acs-same-sap-2.json}
 ~~~~~~~~~~
 {: #ex-parent-ac title="Example of Child ACs" artwork-align="center"}
+
+{{ex-parent-ac-sap}} shows how to bind the parent AC to a SAP.
+
+~~~~~~~~~~
+{::include-fold ./json-examples/ntw/multiple-acs-same-sap.json}
+~~~~~~~~~~
+{: #ex-parent-ac-sap title="Example of Binding Parent AC to SAPs" artwork-align="center"}
 
 # Acknowledgments
 {:numbered="false"}

@@ -274,13 +274,19 @@ Note that before implementing the VPLS creation request, the provider service or
 ~~~~~~~~~~
 {: #ex-sap-query title="Example of SAP Response (Message Body)" artwork-align="center"}
 
-The response in {{ex-sap-query}} indicates that the VPLS service can be delivered to CE1. {{!I-D.ietf-opsawg-ntw-attachment-circuit}} can be also used to access AC-related details that are bound to the target SAP ({{ex-acntw-query}}).
+The response in {{ex-sap-query}} indicates that the VPLS service can be delivered to CE1. {{!I-D.ietf-opsawg-ntw-attachment-circuit}} can be also used to access AC-related details that are bound to the target SAP ({{ex-acntw-query-2}}).
 
 ~~~~~~~~~~
 {::include-fold ./json-examples/glue/example-acntw.json}
 ~~~~~~~~~~
-{: #ex-acntw-query title="Example of AC Network Response (Message Body)" artwork-align="center"}
+{: #ex-acntw-query-2 title="Example of AC Network Response with SAP (Message Body)" artwork-align="center"}
 
+The provisionned AC at PE1 can be retrieved using the AC network model as depicted in {{ex-acntw-query}}.
+
+~~~~~~~~~~
+{::include-fold ./json-examples/glue/example-acntw-2.json}
+~~~~~~~~~~
+{: #ex-acntw-query title="Example of AC Network Response (Message Body)" artwork-align="center"}
 
 # Acknowledgments
 {:numbered="false"}
