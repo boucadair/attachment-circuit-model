@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2023-12-12T00:37:42.308928+00:00",
+  "timestamp": "2023-12-14T00:36:38.610056+00:00",
   "repo": "boucadair/attachment-circuit-model",
   "labels": [
     {
@@ -6254,6 +6254,36 @@
       "mergeCommit": {
         "oid": "4a8317700a76c63e717927b37914d54b204dcb7c"
       },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 161,
+      "id": "PR_kwDOIiAkrc5hypRm",
+      "title": "bind ACs to Nodes",
+      "url": "https://github.com/boucadair/attachment-circuit-model/pull/161",
+      "state": "OPEN",
+      "author": "boucadair",
+      "authorAssociation": "OWNER",
+      "assignees": [
+        "boucadair"
+      ],
+      "labels": [
+        "ac-ntw"
+      ],
+      "body": "",
+      "createdAt": "2023-12-12T13:09:44Z",
+      "updatedAt": "2023-12-12T13:46:00Z",
+      "baseRepository": "boucadair/attachment-circuit-model",
+      "baseRefName": "main",
+      "baseRefOid": "628822bfb97f1a0be5a0fec064619846c285b51d",
+      "headRepository": "boucadair/attachment-circuit-model",
+      "headRefName": "ACs-to-Nodes",
+      "headRefOid": "ac4f5d073a0a61bb7bb26c9fdf69142afc53534c",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
       "comments": [],
       "reviews": []
     }
