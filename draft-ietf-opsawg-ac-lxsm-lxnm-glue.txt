@@ -5,12 +5,12 @@
 OPSAWG                                                 M. Boucadair, Ed.
 Internet-Draft                                                    Orange
 Intended status: Standards Track                              R. Roberts
-Expires: 14 June 2024                                            Juniper
+Expires: 16 June 2024                                            Juniper
                                                            S. B. Giraldo
                                                                    Nokia
                                                            O. G. D. Dios
                                                               Telefonica
-                                                        12 December 2023
+                                                        14 December 2023
 
 
   A YANG Data Model for Augmenting VPN Service and Network Models with
@@ -51,7 +51,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 14 June 2024.
+   This Internet-Draft will expire on 16 June 2024.
 
 Copyright Notice
 
@@ -1171,99 +1171,107 @@ A.2.  Network and Service AC References
    also used to access AC-related details that are bound to the target
    SAP (Figure 11).
 
-   =============== NOTE: '\' line wrapping per RFC 8792 ================
+     {
+        "ietf-sap-ntw:service":[
+           {
+              "service-type":"ietf-vpn-common:vpls",
+              "sap":[
+                 {
+                    "sap-id":"sap#1",
+                    "peer-sap-id":[
+                       "ce-1"
+                    ],
+                    "description":"A parent SAP",
+                    "attachment-interface":"GE0/6/1",
+                    "interface-type":"ietf-sap-ntw:phy",
+                    "role":"ietf-sap-ntw:uni",
+                    "allows-child-saps":true,
+                    "sap-status":{
+                       "status":"ietf-vpn-common:op-up"
+                    }
+                 },
+                 {
+                    "sap-id":"sap#11",
+                    "description":"A child SAP",
+                    "parent-termination-point":"GE0/6/4",
+                    "attachment-interface":"GE0/6/4.2",
+                    "interface-type":"ietf-sap-ntw:logical",
+                    "encapsulation-type":"ietf-vpn-common:vlan-type",
+                    "sap-status":{
+                       "status":"ietf-vpn-common:op-up"
+                    },
+                    "ietf-ac-ntw:ac":[
+                       "ac-1"
+                    ]
+                 }
+              ]
+           }
+        ]
+     }
 
-   {
-      "ietf-sap-ntw:service":[
-         {
-            "service-type":"ietf-vpn-common:vpls",
-            "sap":[
-               {
-                  "sap-id":"sap#1",
-                  "peer-sap-id":[
-                     "ce-1"
-                  ],
-                  "description":"A parent SAP",
-                  "attachment-interface":"GE0/6/1",
-                  "interface-type":"ietf-sap-ntw:phy",
-                  "role":"ietf-sap-ntw:uni",
-                  "allows-child-saps":true,
-                  "sap-status":{
-                     "status":"ietf-vpn-common:op-up"
-                  }
-               },
-               {
-                  "sap-id":"sap#11",
-                  "description":"A child SAP",
-                  "parent-termination-point":"GE0/6/4",
-                  "attachment-interface":"GE0/6/4.2",
-                  "interface-type":"ietf-sap-ntw:logical",
-                  "encapsulation-type":"ietf-vpn-common:vlan-type",
-                  "sap-status":{
-                     "status":"ietf-vpn-common:op-up"
-                  },
-                  "ietf-ac-ntw:ac":[
-                     {
-                        "name":"ac-11",
-                        "ac-svc-ref":"ac-1",
-                        "peer-sap-id":[
-                           "ce-1"
-                        ],
-                        "status":{
-                           "admin-status":{
-                              "status":"ietf-vpn-common:admin-up"
-                           },
-                           "oper-status":{
-                              "status":"ietf-vpn-common:op-up"
-                           }
-                        },
-                        "l2-connection":{
-                           "encapsulation":{
-                              "encap-type":"ietf-vpn-common:dot1q",
-                              "dot1q":{
-                                 "tag-type":"ietf-vpn-common:c-vlan",
-                                 "cvlan-id":550
-                              }
-                           },
-                           "bearer-reference":"1234"
-                        },
-                        "service":{
-                           "mtu":1550,
-                           "svc-pe-to-ce-bandwidth":{
-                              "pe-to-ce-bandwidth":[
-                                 {
-                                    "cir":"20480000"
-                                 }
-                              ]
-                           },
-                           "svc-ce-to-pe-bandwidth":{
-                              "ce-to-pe-bandwidth":[
-                                 {
-                                    "cir":"20480000"
-                                 }
-                              ]
-                           },
-                           "qos":{
-                              "qos-profile":{
-                                 "qos-profile":[
-                                    {
-                                       "profile":"QoS_Profile_A",
-                                       "direction":"ietf-vpn-common:\
-                                                                   both"
-                                    }
-                                 ]
-                              }
-                           }
-                        }
-                     }
-                  ]
-               }
-            ]
-         }
-      ]
-   }
+     Figure 11: Example of AC Network Response with SAP (Message Body)
 
-          Figure 11: Example of AC Network Response (Message Body)
+   The provisionned AC at PE1 can be retrieved using the AC network
+   model as depicted in Figure 12.
+
+        {
+           "ietf-ac-ntw:ac":[
+              {
+                 "name":"ac-11",
+                 "ac-svc-ref":"ac-1",
+                 "peer-sap-id":[
+                    "ce-1"
+                 ],
+                 "status":{
+                    "admin-status":{
+                       "status":"ietf-vpn-common:admin-up"
+                    },
+                    "oper-status":{
+                       "status":"ietf-vpn-common:op-up"
+                    }
+                 },
+                 "l2-connection":{
+                    "encapsulation":{
+                       "encap-type":"ietf-vpn-common:dot1q",
+                       "dot1q":{
+                          "tag-type":"ietf-vpn-common:c-vlan",
+                          "cvlan-id":550
+                       }
+                    },
+                    "bearer-reference":"1234"
+                 },
+                 "service":{
+                    "mtu":1550,
+                    "svc-pe-to-ce-bandwidth":{
+                       "pe-to-ce-bandwidth":[
+                          {
+                             "cir":"20480000"
+                          }
+                       ]
+                    },
+                    "svc-ce-to-pe-bandwidth":{
+                       "ce-to-pe-bandwidth":[
+                          {
+                             "cir":"20480000"
+                          }
+                       ]
+                    },
+                    "qos":{
+                       "qos-profile":{
+                          "qos-profile":[
+                             {
+                                "profile":"QoS_Profile_A",
+                                "direction":"ietf-vpn-common:both"
+                             }
+                          ]
+                       }
+                    }
+                 }
+              }
+           ]
+        }
+
+          Figure 12: Example of AC Network Response (Message Body)
 
 Acknowledgments
 

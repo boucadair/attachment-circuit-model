@@ -5,14 +5,14 @@
 Operations and Management Area Working Group           M. Boucadair, Ed.
 Internet-Draft                                                    Orange
 Intended status: Standards Track                              R. Roberts
-Expires: 14 June 2024                                            Juniper
+Expires: 16 June 2024                                            Juniper
                                                            O. G. D. Dios
                                                               Telefonica
                                                            S. B. Giraldo
                                                                    Nokia
                                                                    B. Wu
                                                      Huawei Technologies
-                                                        12 December 2023
+                                                        14 December 2023
 
 
            A Network YANG Data Model for Attachment Circuits
@@ -57,7 +57,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 14 June 2024.
+   This Internet-Draft will expire on 16 June 2024.
 
 Copyright Notice
 
@@ -331,7 +331,7 @@ Table of Contents
      |  ...
      +--rw ac-profile* [name]
         ...
-   augment /nw:networks/nw:network/nw:node/sap:service/sap:sap:
+   augment /nw:networks/nw:network/nw:node:
      +--rw ac* [name]
         +--rw name                 string
         +--rw ac-svc-ref?          ac-svc:attachment-circuit-reference
@@ -362,6 +362,8 @@ Table of Contents
         |  ...
         +--rw service
            ...
+     augment /nw:networks/nw:network/nw:node/sap:service/sap:sap:
+       +--rw ac*   ac-ntw:attachment-circuit-reference
 
                       Figure 4: Overall Tree Structure
 
@@ -386,8 +388,10 @@ Table of Contents
    operation, a reference to the AC exposed to the customer ('ac-svc-
    ref') is stored in the 'ietf-ac-ntw' module.
 
-   A controller may indicate a filter based on the service type (e.g.,
-   Network Slice or L3VPN) to retrieve the list of available ACs for
+   ACs that are terminated by a SAP are listed in 'ac' under
+   '/nw:networks/nw:network/nw:node/sap:service/sap:sap'.  A controller
+   may indicate a filter based on the service type (e.g., Network Slice
+   or L3VPN) to retrieve the list of available SAPs, and thus ACs, for
    that service.
 
    In order to factorize common data that is provisioned for a group of
@@ -483,7 +487,7 @@ Table of Contents
    properties of an AC.  The Layer 2 connection tree structure is shown
    in Figure 6.
 
-     augment /nw:networks/nw:network/nw:node/sap:service/sap:sap:
+     augment /nw:networks/nw:network/nw:node:
        +--rw ac* [name]
           +--rw name                 string
           +--rw ac-svc-ref?          ac-svc:attachment-circuit-reference
@@ -605,7 +609,7 @@ Table of Contents
 
    The Layer 3 connection tree structure is shown in Figure 7.
 
-     augment /nw:networks/nw:network/nw:node/sap:service/sap:sap:
+     augment /nw:networks/nw:network/nw:node:
        +--rw ac* [name]
           +--rw name                 string
           +--rw ac-svc-ref?          ac-svc:attachment-circuit-reference
@@ -771,7 +775,7 @@ Table of Contents
           |        ...
           +--rw oam
              ...
-     augment /nw:networks/nw:network/nw:node/sap:service/sap:sap:
+     augment /nw:networks/nw:network/nw:node:
        +--rw ac* [name]
           +--rw name                 string
           ...
@@ -826,7 +830,7 @@ Table of Contents
 
    module: ietf-ac-ntw
              ...
-     augment /nw:networks/nw:network/nw:node/sap:service/sap:sap:
+     augment /nw:networks/nw:network/nw:node:
        +--rw ac* [name]
           +--rw name                 string
           ...
@@ -972,7 +976,7 @@ Table of Contents
           |        ...
           +--rw oam
              ...
-     augment /nw:networks/nw:network/nw:node/sap:service/sap:sap:
+     augment /nw:networks/nw:network/nw:node:
        +--rw ac* [name]
           +--rw name                 string
           ...
@@ -1256,7 +1260,7 @@ Table of Contents
           |        ...
           +--rw oam
              ...
-     augment /nw:networks/nw:network/nw:node/sap:service/sap:sap:
+     augment /nw:networks/nw:network/nw:node:
        +--rw ac* [name]
           +--rw name                 string
           ...
@@ -1375,7 +1379,7 @@ Table of Contents
           |        ...
           +--rw oam
              ...
-     augment /nw:networks/nw:network/nw:node/sap:service/sap:sap:
+     augment /nw:networks/nw:network/nw:node:
        +--rw ac* [name]
           +--rw name                 string
           ...
@@ -1490,7 +1494,7 @@ Table of Contents
           |        ...
           +--rw oam
              ...
-     augment /nw:networks/nw:network/nw:node/sap:service/sap:sap:
+     augment /nw:networks/nw:network/nw:node:
        +--rw ac* [name]
           +--rw name                 string
           ...
@@ -1603,7 +1607,7 @@ Table of Contents
           |        +--rw ping-reply?       boolean
           +--rw oam
              ...
-     augment /nw:networks/nw:network/nw:node/sap:service/sap:sap:
+     augment /nw:networks/nw:network/nw:node:
        +--rw ac* [name]
           +--rw name                 string
           ...
@@ -1694,7 +1698,7 @@ Table of Contents
              +--rw required-min-rx-interval?   uint32
              +--rw local-multiplier?           uint8
              +--rw holdtime?                   uint32
-  augment /nw:networks/nw:network/nw:node/sap:service/sap:sap:
+  augment /nw:networks/nw:network/nw:node:
     +--rw ac* [name]
        +--rw name                 string
        +--rw ac-svc-ref?          ac-svc:attachment-circuit-reference
@@ -1782,7 +1786,7 @@ Table of Contents
    directly control the encryption to be applied (e.g., Layer 2 or Layer
    3 encryption) or invoke a local encryption profile.
 
-    augment /nw:networks/nw:network/nw:node/sap:service/sap:sap:
+    augment /nw:networks/nw:network/nw:node:
       +--rw ac* [name]
          +--rw name                 string
          +--rw ac-svc-ref?          ac-svc:attachment-circuit-reference
@@ -1829,7 +1833,7 @@ Table of Contents
 
    The service subtree structure is shown in Figure 17.
 
-     augment /nw:networks/nw:network/nw:node/sap:service/sap:sap:
+     augment /nw:networks/nw:network/nw:node:
        +--rw ac* [name]
           +--rw name                 string
           +--rw ac-svc-ref?          ac-svc:attachment-circuit-reference
@@ -2068,12 +2072,11 @@ Table of Contents
 
      typedef attachment-circuit-reference {
        type leafref {
-         path "/nw:networks/nw:network/nw:node/sap:service/sap:sap"
-            + "/ac-ntw:ac/ac-ntw:name";
+         path "/nw:networks/nw:network/nw:node/ac-ntw:ac/ac-ntw:name";
        }
        description
-         "Defines a reference to an attachment circuit that can be used
-          by other modules.";
+         "Defines a reference to an attachment circuit. The reference
+          be used also by other modules.";
      }
 
      typedef ac-profile-reference {
@@ -2082,7 +2085,7 @@ Table of Contents
        }
        description
          "Defines a reference to an attachment circuit profile that
-          can be used by other modules.";
+          can be used, including, by other modules.";
      }
 
      typedef encryption-profile-reference {
@@ -3774,14 +3777,13 @@ Table of Contents
        }
      }
 
-     augment "/nw:networks/nw:network/nw:node"
-           + "/sap:service/sap:sap" {
-       when '../../../nw:network-types/sap:sap-network' {
+     augment "/nw:networks/nw:network/nw:node" {
+       when '../nw:network-types/sap:sap-network' {
          description
            "Augmentation parameters apply only for SAP networks.";
        }
        description
-         "Augments SAPs with AC provisioning details.";
+         "Augments nodes with AC provisioning details.";
        list ac {
          key "name";
          description
@@ -3838,6 +3840,21 @@ Table of Contents
          }
          uses vpn-common:service-status;
          uses ac-ntw:ac;
+       }
+     }
+
+     augment "/nw:networks/nw:network/nw:node"
+           + "/sap:service/sap:sap" {
+       when '../../../nw:network-types/sap:sap-network' {
+         description
+           "Augmentation parameters apply only for SAP networks.";
+       }
+       description
+         "Augments SAPs with AC provisioning details.";
+       leaf-list ac {
+         type ac-ntw:attachment-circuit-reference;
+         description
+           "Specifies the ACs that are terminated by the SAP.";
        }
      }
    }
@@ -4251,170 +4268,189 @@ A.1.  VPLS
    model as depicted in Figure 20.  A similar query can be used for the
    AC at PE2.
 
-   =============== NOTE: '\' line wrapping per RFC 8792 ================
-
-   {
-      "ietf-sap-ntw:service":[
-         {
-            "service-type":"ietf-vpn-common:vpls",
-            "sap":[
-               {
-                  "sap-id":"sap#1",
-                  "peer-sap-id":[
-                     "ce-1"
-                  ],
-                  "description":"A parent SAP",
-                  "attachment-interface":"GE0/6/1",
-                  "interface-type":"ietf-sap-ntw:phy",
-                  "role":"ietf-sap-ntw:uni",
-                  "allows-child-saps":true,
-                  "sap-status":{
-                     "status":"ietf-vpn-common:op-up"
-                  }
-               },
-               {
-                  "sap-id":"sap#11",
-                  "description":"A child SAP",
-                  "parent-termination-point":"GE0/6/4",
-                  "attachment-interface":"GE0/6/4.2",
-                  "interface-type":"ietf-sap-ntw:logical",
-                  "encapsulation-type":"ietf-vpn-common:vlan-type",
-                  "sap-status":{
-                     "status":"ietf-vpn-common:op-up"
-                  },
-                  "ietf-ac-ntw:ac":[
-                     {
-                        "name":"ac-11",
-                        "ac-svc-ref":"ac-1",
-                        "peer-sap-id":[
-                           "ce-1"
-                        ],
-                        "status":{
-                           "admin-status":{
-                              "status":"ietf-vpn-common:admin-up"
-                           },
-                           "oper-status":{
-                              "status":"ietf-vpn-common:op-up"
-                           }
-                        },
-                        "l2-connection":{
-                           "encapsulation":{
-                              "encap-type":"ietf-vpn-common:dot1q",
-                              "dot1q":{
-                                 "tag-type":"ietf-vpn-common:c-vlan",
-                                 "cvlan-id":550
-                              }
-                           },
-                           "bearer-reference":"1234"
-                        },
-                        "service":{
-                           "mtu":1550,
-                           "svc-pe-to-ce-bandwidth":{
-                              "pe-to-ce-bandwidth":[
-                                 {
-                                    "cir":"20480000"
-                                 }
-                              ]
-                           },
-                           "svc-ce-to-pe-bandwidth":{
-                              "ce-to-pe-bandwidth":[
-                                 {
-                                    "cir":"20480000"
-                                 }
-                              ]
-                           },
-                           "qos":{
-                              "qos-profile":{
-                                 "qos-profile":[
-                                    {
-                                       "profile":"QoS_Profile_A",
-                                       "direction":"ietf-vpn-common:\
-                                                                   both"
-                                    }
-                                 ]
-                              }
-                           }
-                        }
-                     }
-                  ]
-               }
-            ]
-         }
-      ]
-   }
+        {
+           "ietf-ac-ntw:ac":[
+              {
+                 "name":"ac-11",
+                 "ac-svc-ref":"ac-1",
+                 "peer-sap-id":[
+                    "ce-1"
+                 ],
+                 "status":{
+                    "admin-status":{
+                       "status":"ietf-vpn-common:admin-up"
+                    },
+                    "oper-status":{
+                       "status":"ietf-vpn-common:op-up"
+                    }
+                 },
+                 "l2-connection":{
+                    "encapsulation":{
+                       "encap-type":"ietf-vpn-common:dot1q",
+                       "dot1q":{
+                          "tag-type":"ietf-vpn-common:c-vlan",
+                          "cvlan-id":550
+                       }
+                    },
+                    "bearer-reference":"1234"
+                 },
+                 "service":{
+                    "mtu":1550,
+                    "svc-pe-to-ce-bandwidth":{
+                       "pe-to-ce-bandwidth":[
+                          {
+                             "cir":"20480000"
+                          }
+                       ]
+                    },
+                    "svc-ce-to-pe-bandwidth":{
+                       "ce-to-pe-bandwidth":[
+                          {
+                             "cir":"20480000"
+                          }
+                       ]
+                    },
+                    "qos":{
+                       "qos-profile":{
+                          "qos-profile":[
+                             {
+                                "profile":"QoS_Profile_A",
+                                "direction":"ietf-vpn-common:both"
+                             }
+                          ]
+                       }
+                    }
+                 }
+              }
+           ]
+        }
 
           Figure 20: Example of AC Network Response (Message Body)
+
+   Also, the AC network model can be used to retrieve the list of SAPs
+   to which the ACs are bound as shown in Figure 20.
+
+     {
+        "ietf-sap-ntw:service":[
+           {
+              "service-type":"ietf-vpn-common:vpls",
+              "sap":[
+                 {
+                    "sap-id":"sap#1",
+                    "peer-sap-id":[
+                       "ce-1"
+                    ],
+                    "description":"A parent SAP",
+                    "attachment-interface":"GE0/6/1",
+                    "interface-type":"ietf-sap-ntw:phy",
+                    "role":"ietf-sap-ntw:uni",
+                    "allows-child-saps":true,
+                    "sap-status":{
+                       "status":"ietf-vpn-common:op-up"
+                    }
+                 },
+                 {
+                    "sap-id":"sap#11",
+                    "description":"A child SAP",
+                    "parent-termination-point":"GE0/6/4",
+                    "attachment-interface":"GE0/6/4.2",
+                    "interface-type":"ietf-sap-ntw:logical",
+                    "encapsulation-type":"ietf-vpn-common:vlan-type",
+                    "sap-status":{
+                       "status":"ietf-vpn-common:op-up"
+                    },
+                    "ietf-ac-ntw:ac":[
+                       "ac-1"
+                    ]
+                 }
+              ]
+           }
+        ]
+     }
+
+       Figure 21: Example of AC Network Response to Retrieve the SAP
+                               (Message Body)
 
 A.2.  Parent AC
 
    In reference to the topology depicted in Figure 1, PE2 has a SAP
    which terminates an AC with two peer SAPs (CE2 and CE5).  In order to
    control data that is specific to each of these peer SAPs over the
-   same AC, child ACs can be instantiated as depicted in Figure 21.
+   same AC, child ACs can be instantiated as depicted in Figure 22.
 
-    {
-       "ietf-sap-ntw:service":[
           {
-             "service-type":"ietf-vpn-common:l3vpn",
-             "sap":[
+             "ietf-ac-ntw:ac":[
                 {
-                   "sap-id":"sap#14587",
-                   "description":"A SAP",
-                   "parent-termination-point":"GE0/6/4",
-                   "attachment-interface":"GE0/6/4.2",
-                   "interface-type":"ietf-sap-ntw:logical",
-                   "encapsulation-type":"ietf-vpn-common:vlan-type",
-                   "sap-status":{
-                      "status":"ietf-vpn-common:op-up"
+                   "name":"ac-1",
+                   "peer-sap-id":[
+                      "CE2",
+                      "CE5"
+                   ],
+                   "status":{
+                      "admin-status":{
+                         "status":"ietf-vpn-common:admin-up"
+                      },
+                      "oper-status":{
+                         "status":"ietf-vpn-common:op-up"
+                      }
                    },
-                   "ietf-ac-ntw:ac":[
-                      {
-                         "name":"ac-1",
-                         "peer-sap-id":[
-                            "CE2",
-                            "CE5"
-                         ],
-                         "status":{
-                            "admin-status":{
-                               "status":"ietf-vpn-common:admin-up"
-                            },
-                            "oper-status":{
-                               "status":"ietf-vpn-common:op-up"
-                            }
-                         },
-                         "l2-connection":{
-                            "encapsulation":{
-                               "encap-type":"ietf-vpn-common:dot1q",
-                               "dot1q":{
-                                  "tag-type":"ietf-vpn-common:c-vlan",
-                                  "cvlan-id":550
-                               }
-                            },
-                            "bearer-reference":"1234"
+                   "l2-connection":{
+                      "encapsulation":{
+                         "encap-type":"ietf-vpn-common:dot1q",
+                         "dot1q":{
+                            "tag-type":"ietf-vpn-common:c-vlan",
+                            "cvlan-id":550
                          }
                       },
-                      {
-                         "name":"ac-1-to-ce2",
-                         "ac-parent-ref":"ac-1",
-                         "peer-sap-id":[
-                            "CE2"
-                         ]
-                      },
-                      {
-                         "name":"ac-1-to-ce5",
-                         "ac-parent-ref":"ac-1",
-                         "peer-sap-id":[
-                            "CE5"
-                         ]
-                      }
+                      "bearer-reference":"1234"
+                   }
+                },
+                {
+                   "name":"ac-1-to-ce2",
+                   "ac-parent-ref":"ac-1",
+                   "peer-sap-id":[
+                      "CE2"
+                   ]
+                },
+                {
+                   "name":"ac-1-to-ce5",
+                   "ac-parent-ref":"ac-1",
+                   "peer-sap-id":[
+                      "CE5"
                    ]
                 }
              ]
           }
-       ]
-    }
 
-                      Figure 21: Example of Child ACs
+                      Figure 22: Example of Child ACs
+
+   Figure 23 shows how to bind the parent AC to a SAP.
+
+     {
+        "ietf-sap-ntw:service":[
+           {
+              "service-type":"ietf-vpn-common:l3vpn",
+              "sap":[
+                 {
+                    "sap-id":"sap#14587",
+                    "description":"A SAP",
+                    "parent-termination-point":"GE0/6/4",
+                    "attachment-interface":"GE0/6/4.2",
+                    "interface-type":"ietf-sap-ntw:logical",
+                    "encapsulation-type":"ietf-vpn-common:vlan-type",
+                    "sap-status":{
+                       "status":"ietf-vpn-common:op-up"
+                    },
+                    "ietf-ac-ntw:ac":[
+                       "ac-1"
+                    ]
+                 }
+              ]
+           }
+        ]
+     }
+
+              Figure 23: Example of Binding Parent AC to SAPs
 
 Acknowledgments
 
