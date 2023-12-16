@@ -23,7 +23,7 @@ pyang-lint: $(STDYANG) $(STDYANGDIR)
 
 yang-lint: $(STDYANG) $(STDYANGDIR)
 	yanglint --verbose -p $(YANGDIR) -p $(STDYANGDIR)/standard/ietf/RFC/ -p $(STDYANGDIR)/experimental/ietf-extracted-YANG-modules -p $(STDYANGDIR)/standard/ieee/published/802.1/ $(STDYANG) -i
-        yanglint  $(JSONSVC) $(YANG_PATH)
+        yanglint $(JSONSVC) -p $(YANG_PATH)
 
 yang-gen-diagram: yang-lint $(TXT)
 
