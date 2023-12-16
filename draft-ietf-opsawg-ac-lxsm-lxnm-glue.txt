@@ -5,12 +5,12 @@
 OPSAWG                                                 M. Boucadair, Ed.
 Internet-Draft                                                    Orange
 Intended status: Standards Track                              R. Roberts
-Expires: 16 June 2024                                            Juniper
+Expires: 18 June 2024                                            Juniper
                                                            S. B. Giraldo
                                                                    Nokia
                                                            O. G. D. Dios
                                                               Telefonica
-                                                        14 December 2023
+                                                        16 December 2023
 
 
   A YANG Data Model for Augmenting VPN Service and Network Models with
@@ -51,7 +51,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 16 June 2024.
+   This Internet-Draft will expire on 18 June 2024.
 
 Copyright Notice
 
@@ -626,9 +626,9 @@ Table of Contents
               Boucadair, M., Roberts, R., de Dios, O. G., Barguil, S.,
               and B. Wu, "A Network YANG Data Model for Attachment
               Circuits", Work in Progress, Internet-Draft, draft-ietf-
-              opsawg-ntw-attachment-circuit-03, 30 November 2023,
+              opsawg-ntw-attachment-circuit-04, 14 December 2023,
               <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
-              ntw-attachment-circuit-03>.
+              ntw-attachment-circuit-04>.
 
    [I-D.ietf-opsawg-teas-attachment-circuit]
               Boucadair, M., Roberts, R., de Dios, O. G., Barguil, S.,
