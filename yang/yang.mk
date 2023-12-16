@@ -1,5 +1,4 @@
 YANGDIR ?= yang
-JSONSVCDIR ?= json-examples/svc
 
 STDYANGDIR ?= tools/yang
 $(STDYANGDIR):
@@ -12,7 +11,6 @@ else
 YANG_PATH="$(YANGDIR):$(STDYANGDIR)/standard/ietf/RFC/:$(STDYANGDIR)/standard/ieee/published/802.1/:$(STDYANGDIR)/experimental/ietf-extracted-YANG-modules"
 endif
 YANG=$(wildcard $(YANGDIR)/*.yang)
-JSONSVC=$(wildcard $(JSONSVCDIR)/*.json)
 STDYANG=$(wildcard $(YANGDIR)/ietf-*.yang)
 TXT=$(patsubst $(YANGDIR)/%.yang,%-diagram.txt,$(YANG))
 
@@ -23,7 +21,6 @@ pyang-lint: $(STDYANG) $(STDYANGDIR)
 
 yang-lint: $(STDYANG) $(STDYANGDIR)
 	yanglint --verbose -p $(YANGDIR) -p $(STDYANGDIR)/standard/ietf/RFC/ -p $(STDYANGDIR)/experimental/ietf-extracted-YANG-modules -p $(STDYANGDIR)/standard/ieee/published/802.1/ $(STDYANG) -i
-        yanglint $(JSONSVC) -p $(YANG_PATH)
 
 yang-gen-diagram: yang-lint $(TXT)
 
