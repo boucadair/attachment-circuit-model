@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2023-12-14T00:36:38.610056+00:00",
+  "timestamp": "2023-12-17T00:40:10.079708+00:00",
   "repo": "boucadair/attachment-circuit-model",
   "labels": [
     {
@@ -2106,7 +2106,7 @@
       "id": "I_kwDOIiAkrc536TYa",
       "title": "For \u201cietf-ac-ntw\u201d, can 'Attachment Circuits'-as-a-Service be used as a service type?",
       "url": "https://github.com/boucadair/attachment-circuit-model/issues/130",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "lana-wu",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -2117,8 +2117,8 @@
       ],
       "body": "Can 'Attachment Circuits'-as-a-Service be a service type?\r\n\r\n```\r\n    augment /nw:networks/nw:network/nw:node:\r\n              +--rw service* [service-type]\r\n                 +--rw **service-type**                   identityref\r\n                 +--rw sap* [sap-id]\r\n```\r\n\r\nAs defined in RFC9408, 'service-type' are all connectivity services:\r\n\r\n   A SAP network topology can be used for one or multiple service types\r\n   ('service-type').  Examples of supported service types are as\r\n   follows:\r\n\r\n   *  L3VPN [RFC4364],\r\n\r\n   *  Virtual Private LAN Service (VPLS) [RFC4761][RFC4762],\r\n\r\n   *  Virtual Private Wire Service (VPWS) [RFC8214],\r\n\r\n   *  BGP MPLS-Based Ethernet VPN [RFC7432],\r\n\r\n   *  VPWS in Ethernet VPN [RFC8214],\r\n\r\n   *  Provider Backbone Bridging Combined with Ethernet VPN (PBB-EVPN)\r\n      [RFC7623],\r\n\r\n   *  VXLAN-based EVPN [RFC8365],\r\n\r\n   *  Virtual Networks [RFC8453],\r\n\r\n   *  Enhanced VPN (VPN+) [I-D.ietf-teas-enhanced-vpn],\r\n\r\n   *  Network slice [I-D.ietf-teas-ietf-network-slices],\r\n\r\n   *  SDWAN [I-D.ietf-bess-bgp-sdwan-usage], and\r\n\r\n   *  Basic IP connectivity.",
       "createdAt": "2023-11-27T08:39:05Z",
-      "updatedAt": "2023-12-11T09:25:57Z",
-      "closedAt": null,
+      "updatedAt": "2023-12-14T10:48:11Z",
+      "closedAt": "2023-12-14T10:48:11Z",
       "comments": [
         {
           "author": "boucadair",
@@ -2201,7 +2201,7 @@
       "id": "I_kwDOIiAkrc54dP9k",
       "title": "Request early yangdoctor reviews",
       "url": "https://github.com/boucadair/attachment-circuit-model/issues/157",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "boucadair",
       "authorAssociation": "OWNER",
       "assignees": [],
@@ -2214,9 +2214,17 @@
       ],
       "body": "A message sent to the OPSAWG Chairs",
       "createdAt": "2023-12-01T13:57:43Z",
-      "updatedAt": "2023-12-01T13:57:43Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2023-12-15T09:13:20Z",
+      "closedAt": "2023-12-15T09:13:19Z",
+      "comments": [
+        {
+          "author": "boucadair",
+          "authorAssociation": "OWNER",
+          "body": "Requests made by Tinaran (15/12/2023)",
+          "createdAt": "2023-12-15T09:13:19Z",
+          "updatedAt": "2023-12-15T09:13:19Z"
+        }
+      ]
     },
     {
       "number": 158,
@@ -2243,7 +2251,7 @@
       "id": "I_kwDOIiAkrc55TxaV",
       "title": "the use of AC for peering/interconnection use case: clarification",
       "url": "https://github.com/boucadair/attachment-circuit-model/issues/160",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "boucadair",
       "authorAssociation": "OWNER",
       "assignees": [
@@ -2257,8 +2265,8 @@
       ],
       "body": "",
       "createdAt": "2023-12-11T09:31:27Z",
-      "updatedAt": "2023-12-11T09:36:25Z",
-      "closedAt": null,
+      "updatedAt": "2023-12-15T09:13:34Z",
+      "closedAt": "2023-12-15T09:13:34Z",
       "comments": [
         {
           "author": "boucadair",
@@ -6262,7 +6270,7 @@
       "id": "PR_kwDOIiAkrc5hypRm",
       "title": "bind ACs to Nodes",
       "url": "https://github.com/boucadair/attachment-circuit-model/pull/161",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "boucadair",
       "authorAssociation": "OWNER",
       "assignees": [
@@ -6273,18 +6281,28 @@
       ],
       "body": "",
       "createdAt": "2023-12-12T13:09:44Z",
-      "updatedAt": "2023-12-12T13:46:00Z",
+      "updatedAt": "2023-12-15T10:07:34Z",
       "baseRepository": "boucadair/attachment-circuit-model",
       "baseRefName": "main",
       "baseRefOid": "628822bfb97f1a0be5a0fec064619846c285b51d",
       "headRepository": "boucadair/attachment-circuit-model",
       "headRefName": "ACs-to-Nodes",
       "headRefOid": "ac4f5d073a0a61bb7bb26c9fdf69142afc53534c",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
-      "comments": [],
+      "closedAt": "2023-12-14T10:48:10Z",
+      "mergedAt": "2023-12-14T10:48:09Z",
+      "mergedBy": "boucadair",
+      "mergeCommit": {
+        "oid": "03d09ce3a802fb744b8ae216894bbb96d7762d52"
+      },
+      "comments": [
+        {
+          "author": "lana-wu",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Thanks Med for the updates. All look good.",
+          "createdAt": "2023-12-15T10:07:34Z",
+          "updatedAt": "2023-12-15T10:07:34Z"
+        }
+      ],
       "reviews": []
     }
   ]
