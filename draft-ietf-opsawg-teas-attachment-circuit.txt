@@ -15,7 +15,8 @@ Expires: 20 June 2024                                            Juniper
                                                         18 December 2023
 
 
-    YANG Data Models for 'Attachment Circuits'-as-a-Service (ACaaS)
+  YANG Data Models for Bearers and 'Attachment Circuits'-as-a-Service
+                                (ACaaS)
             draft-ietf-opsawg-teas-attachment-circuit-latest
 
 Abstract
@@ -4722,7 +4723,7 @@ Orchestration  DIRECT INTERCONNECTION ORDERING (API)            Provider
 
 Acknowledgments
 
-   Thanks to TBC for the comments.
+   The document leverages [RFC9182] and [RFC9291].
 
 Contributors
 
