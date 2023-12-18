@@ -11,7 +11,7 @@
 <meta content="Oscar Gonzalez de Dios" name="author">
 <meta content="
        The document specifies a module that updates existing service and
-   network VPN modules with the required information to bind specific
+   network Virtual Private Network (VPN) modules with the required information to bind specific
    services to ACs that are created using the Attachment Circuit (AC) service and network models. 
     " name="description">
 <meta content="xml2rfc 3.18.2" name="generator">
@@ -1036,7 +1036,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Boucadair, et al.</td>
-<td class="center">Expires 18 June 2024</td>
+<td class="center">Expires 20 June 2024</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1049,12 +1049,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-opsawg-ac-lxsm-lxnm-glue-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2023-12-16" class="published">16 December 2023</time>
+<time datetime="2023-12-18" class="published">18 December 2023</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2024-06-18">18 June 2024</time></dd>
+<dd class="expires"><time datetime="2024-06-20">20 June 2024</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1081,7 +1081,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <section id="section-abstract">
       <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
 <p id="section-abstract-1">The document specifies a module that updates existing service and
-   network VPN modules with the required information to bind specific
+   network Virtual Private Network (VPN) modules with the required information to bind specific
    services to ACs that are created using the Attachment Circuit (AC) service and network models.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
 </section>
 <section class="note rfcEditorRemove" id="section-note.1">
@@ -1114,7 +1114,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 18 June 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 20 June 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1209,7 +1209,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
       <h2 id="name-introduction">
 <a href="#section-1" class="section-number selfRef">1. </a><a href="#name-introduction" class="section-name selfRef">Introduction</a>
       </h2>
-<p id="section-1-1">The document specifies a YANG module (<a href="#sec-glue" class="auto internal xref">Section 5</a>) that updates existing service and
+<p id="section-1-1">The document specifies a YANG module ("ietf-ac-glue", <a href="#sec-glue" class="auto internal xref">Section 5</a>) that updates existing service and
 network Virtual Private Network (VPN) modules with the required information to bind specific
 services to Attachment Circuits (ACs) that are created using the AC service model <span>[<a href="#I-D.ietf-opsawg-teas-attachment-circuit" class="cite xref">I-D.ietf-opsawg-teas-attachment-circuit</a>]</span>, specifically the following modules are augmented:<a href="#section-1-1" class="pilcrow">¶</a></p>
 <ul class="normal">
@@ -1229,7 +1229,7 @@ services to Attachment Circuits (ACs) that are created using the AC service mode
 <p id="section-1-3">Likewise, the document augments the L2NM and L3NM with references to the ACs that are managed using the AC network model <span>[<a href="#I-D.ietf-opsawg-ntw-attachment-circuit" class="cite xref">I-D.ietf-opsawg-ntw-attachment-circuit</a>]</span>.<a href="#section-1-3" class="pilcrow">¶</a></p>
 <p id="section-1-4">The YANG data model in this document conforms to the Network
 Management Datastore Architecture (NMDA) defined in <span>[<a href="#RFC8342" class="cite xref">RFC8342</a>]</span>.<a href="#section-1-4" class="pilcrow">¶</a></p>
-<p id="section-1-5">An example to illustrate the use of the model is provided in <a href="#sec-example" class="auto internal xref">Appendix A</a>.<a href="#section-1-5" class="pilcrow">¶</a></p>
+<p id="section-1-5">An example to illustrate the use of the "ietf-ac-glue" model is provided in <a href="#sec-example" class="auto internal xref">Appendix A</a>.<a href="#section-1-5" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="conventions-and-definitions">
@@ -1464,9 +1464,9 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 <a href="#section-4" class="section-number selfRef">4. </a><a href="#name-module-tree-structure" class="section-name selfRef">Module Tree Structure</a>
       </h2>
 <p id="section-4-1"><span>[<a href="#RFC8299" class="cite xref">RFC8299</a>]</span> specifies that a 'site-network-access' attachment is achieved through a
-'bearer' with an 'ip-connection' on top. From that standpoint, a 'site-network-access' is mapped to an attachment circuit with both Layer 2 and 3 properties as per <span>[<a href="#I-D.ietf-opsawg-teas-attachment-circuit" class="cite xref">I-D.ietf-opsawg-teas-attachment-circuit</a>]</span>. <span>[<a href="#RFC8466" class="cite xref">RFC8466</a>]</span> specifies that a 'site-network-access' represents an logical layer 2 connection to a site. A 'site-network-access' can thus be mapped to an attachment circuit with  Layer 2 properties <span>[<a href="#I-D.ietf-opsawg-teas-attachment-circuit" class="cite xref">I-D.ietf-opsawg-teas-attachment-circuit</a>]</span>. Similarly, 'vpn-network-access' defined in both <span>[<a href="#RFC9182" class="cite xref">RFC9182</a>]</span> and <span>[<a href="#RFC9291" class="cite xref">RFC9291</a>]</span> is mapped to an attachment circuit as per <span>[<a href="#I-D.ietf-opsawg-teas-attachment-circuit" class="cite xref">I-D.ietf-opsawg-teas-attachment-circuit</a>]</span> or <span>[<a href="#I-D.ietf-opsawg-ntw-attachment-circuit" class="cite xref">I-D.ietf-opsawg-ntw-attachment-circuit</a>]</span>.<a href="#section-4-1" class="pilcrow">¶</a></p>
+'bearer' with an 'ip-connection' on top. From that standpoint, a 'site-network-access' is mapped to an attachment circuit with both Layers 2 and 3 properties as per <span>[<a href="#I-D.ietf-opsawg-teas-attachment-circuit" class="cite xref">I-D.ietf-opsawg-teas-attachment-circuit</a>]</span>. <span>[<a href="#RFC8466" class="cite xref">RFC8466</a>]</span> specifies that a 'site-network-access' represents a logical Layer 2 connection to a site. A 'site-network-access' can thus be mapped to an attachment circuit with  Layer 2 properties <span>[<a href="#I-D.ietf-opsawg-teas-attachment-circuit" class="cite xref">I-D.ietf-opsawg-teas-attachment-circuit</a>]</span>. Similarly, 'vpn-network-access' defined in both <span>[<a href="#RFC9182" class="cite xref">RFC9182</a>]</span> and <span>[<a href="#RFC9291" class="cite xref">RFC9291</a>]</span> is mapped to an attachment circuit as per <span>[<a href="#I-D.ietf-opsawg-teas-attachment-circuit" class="cite xref">I-D.ietf-opsawg-teas-attachment-circuit</a>]</span> or <span>[<a href="#I-D.ietf-opsawg-ntw-attachment-circuit" class="cite xref">I-D.ietf-opsawg-ntw-attachment-circuit</a>]</span>.<a href="#section-4-1" class="pilcrow">¶</a></p>
 <p id="section-4-2">As such, ACs created using the "ietf-ac-svc" module <span>[<a href="#I-D.ietf-opsawg-teas-attachment-circuit" class="cite xref">I-D.ietf-opsawg-teas-attachment-circuit</a>]</span> can be referenced in other
-VPN-related modules (e.g., L2SM, L3SM, L2NM, and L3NM). Also, ACs managed using "ietf-ac-ntw" <span>[<a href="#I-D.ietf-opsawg-ntw-attachment-circuit" class="cite xref">I-D.ietf-opsawg-ntw-attachment-circuit</a>]</span> can be referenced in VPN-related network modules (mainly, L2NM and L3NM). The required augmentations to that aim as shown in <a href="#tree" class="auto internal xref">Figure 3</a>.<a href="#section-4-2" class="pilcrow">¶</a></p>
+VPN-related modules (e.g., L2SM, L3SM, L2NM, and L3NM). Also, ACs managed using the "ietf-ac-ntw" module <span>[<a href="#I-D.ietf-opsawg-ntw-attachment-circuit" class="cite xref">I-D.ietf-opsawg-ntw-attachment-circuit</a>]</span> can be referenced in VPN-related network modules (mainly, L2NM and L3NM). The required augmentations to that aim are shown in <a href="#tree" class="auto internal xref">Figure 3</a>.<a href="#section-4-2" class="pilcrow">¶</a></p>
 <span id="name-ac-glue-tree-structure"></span><div id="tree">
 <figure id="figure-3">
         <div class="alignCenter art-text artwork" id="section-4-3.1">
@@ -1517,7 +1517,7 @@ module: ietf-ac-glue
           <p id="section-4-5.1.1">This approach is consistent with the design in <span>[<a href="#I-D.ietf-teas-ietf-network-slice-nbi-yang" class="cite xref">I-D.ietf-teas-ietf-network-slice-nbi-yang</a>]</span> where an AC service reference, called 'ac-svc-name', is used to indicate the names of AC services. As per <span>[<a href="#I-D.ietf-teas-ietf-network-slice-nbi-yang" class="cite xref">I-D.ietf-teas-ietf-network-slice-nbi-yang</a>]</span>, when both 'ac-svc-name' and the attributes of 'attachment-circuits' are defined, the 'ac-svc-name' takes precedence.<a href="#section-4-5.1.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
-<p id="section-4-6">The module includes provisions to reference AC within or outside an VPN network access to accommodate deployment contexts where an AC reference may be created before or after a VPN instance is created. <a href="#ref-within-access" class="auto internal xref">Appendix A.1</a> illustrates how an AC reference can be enclosed as part of a specific VPN network access, while <a href="#ref-outside-access" class="auto internal xref">Appendix A.2</a> shows how AC references can be indicated outside individual VPN network access entries.<a href="#section-4-6" class="pilcrow">¶</a></p>
+<p id="section-4-6">The module includes provisions to reference ACs within or outside a VPN network access to accommodate deployment contexts where an AC reference may be created before or after a VPN instance is created. <a href="#ref-within-access" class="auto internal xref">Appendix A.1</a> illustrates how an AC reference can be included as part of a specific VPN network access, while <a href="#ref-outside-access" class="auto internal xref">Appendix A.2</a> shows how AC references can be indicated outside individual VPN network access entries.<a href="#section-4-6" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sec-glue">
@@ -1963,7 +1963,7 @@ the set of VPN instances in which a given customer is involved.<a href="#section
         <h3 id="name-a-service-ac-reference-with">
 <a href="#appendix-A.1" class="section-number selfRef">A.1. </a><a href="#name-a-service-ac-reference-with" class="section-name selfRef">A Service AC Reference within The VPN Network Access</a>
         </h3>
-<p id="appendix-A.1-1">Let's consider the example depicted in <a href="#ex-vpws" class="auto internal xref">Figure 4</a> which is inspired from <span><a href="https://rfc-editor.org/rfc/rfc4664#section-2.1" class="relref">Section 2.1</a> of [<a href="#RFC4664" class="cite xref">RFC4664</a>]</span>. Each PE is servicing two CEs. Let's also assume that service references to the identify attachment circuits with these CEs are shown in the figure.<a href="#appendix-A.1-1" class="pilcrow">¶</a></p>
+<p id="appendix-A.1-1">Let's consider the example depicted in <a href="#ex-vpws" class="auto internal xref">Figure 4</a> which is inspired from <span><a href="https://rfc-editor.org/rfc/rfc4664#section-2.1" class="relref">Section 2.1</a> of [<a href="#RFC4664" class="cite xref">RFC4664</a>]</span>. Each PE is servicing two CEs. Let's also assume that the service references to identify attachment circuits with these CEs are shown in the figure.<a href="#appendix-A.1-1" class="pilcrow">¶</a></p>
 <span id="name-vpws-topology-example"></span><div id="ex-vpws">
 <figure id="figure-4">
           <div class="alignCenter art-text artwork" id="appendix-A.1-2.1">
@@ -2261,7 +2261,7 @@ the set of VPN instances in which a given customer is involved.<a href="#section
 <a href="#name-acs-created-using-acaas" class="selfRef">ACs Created Using ACaaS</a>
           </figcaption></figure>
 </div>
-<p id="appendix-A.2-5">Let's now consider that the customer wants to request a VPLS service between the sites as shown in <a href="#ex-vpls" class="auto internal xref">Figure 8</a>.<a href="#appendix-A.2-5" class="pilcrow">¶</a></p>
+<p id="appendix-A.2-5">Let's now consider that the customer wants to request a VPLS instance between the sites as shown in <a href="#ex-vpls" class="auto internal xref">Figure 8</a>.<a href="#appendix-A.2-5" class="pilcrow">¶</a></p>
 <span id="name-example-of-vpls"></span><div id="ex-vpls">
 <figure id="figure-8">
           <div class="alignCenter art-text artwork" id="appendix-A.2-6.1">
@@ -2383,7 +2383,7 @@ the set of VPN instances in which a given customer is involved.<a href="#section
 <a href="#name-example-of-a-vpls-request-u" class="selfRef">Example of a VPLS Request Using L2NM and AC Glue (Message Body)</a>
           </figcaption></figure>
 </div>
-<p id="appendix-A.2-9">Note that before implementing the VPLS creation request, the provider service orchestrator may first check if the VPLS service can be provided to the customer using the target delivery locations. The orchestrator will use the SAP model <span>[<a href="#RFC9408" class="cite xref">RFC9408</a>]</span> as exemplified in <a href="#ex-sap-query" class="auto internal xref">Figure 10</a>. This example assumes that the query concerns only PE1. A similar query can be issued for PE2.<a href="#appendix-A.2-9" class="pilcrow">¶</a></p>
+<p id="appendix-A.2-9">Note that before implementing the VPLS instance creation request, the provider service orchestrator may first check if the VPLS service can be provided to the customer using the target delivery locations. The orchestrator uses the SAP model <span>[<a href="#RFC9408" class="cite xref">RFC9408</a>]</span> as exemplified in <a href="#ex-sap-query" class="auto internal xref">Figure 10</a>. This example assumes that the query concerns only PE1. A similar query can be issued for PE2.<a href="#appendix-A.2-9" class="pilcrow">¶</a></p>
 <span id="name-example-of-sap-response-mes"></span><div id="ex-sap-query">
 <figure id="figure-10">
           <div class="alignCenter art-text artwork" id="appendix-A.2-10.1">

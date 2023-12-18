@@ -5,12 +5,12 @@
 OPSAWG                                                 M. Boucadair, Ed.
 Internet-Draft                                                    Orange
 Intended status: Standards Track                              R. Roberts
-Expires: 18 June 2024                                            Juniper
+Expires: 20 June 2024                                            Juniper
                                                            S. B. Giraldo
                                                                    Nokia
                                                            O. G. D. Dios
                                                               Telefonica
-                                                        16 December 2023
+                                                        18 December 2023
 
 
   A YANG Data Model for Augmenting VPN Service and Network Models with
@@ -20,9 +20,9 @@ Expires: 18 June 2024                                            Juniper
 Abstract
 
    The document specifies a module that updates existing service and
-   network VPN modules with the required information to bind specific
-   services to ACs that are created using the Attachment Circuit (AC)
-   service and network models.
+   network Virtual Private Network (VPN) modules with the required
+   information to bind specific services to ACs that are created using
+   the Attachment Circuit (AC) service and network models.
 
 Discussion Venues
 
@@ -51,7 +51,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 18 June 2024.
+   This Internet-Draft will expire on 20 June 2024.
 
 Copyright Notice
 
@@ -90,10 +90,10 @@ Table of Contents
 
 1.  Introduction
 
-   The document specifies a YANG module (Section 5) that updates
-   existing service and network Virtual Private Network (VPN) modules
-   with the required information to bind specific services to Attachment
-   Circuits (ACs) that are created using the AC service model
+   The document specifies a YANG module ("ietf-ac-glue", Section 5) that
+   updates existing service and network Virtual Private Network (VPN)
+   modules with the required information to bind specific services to
+   Attachment Circuits (ACs) that are created using the AC service model
    [I-D.ietf-opsawg-teas-attachment-circuit], specifically the following
    modules are augmented:
 
@@ -112,8 +112,8 @@ Table of Contents
    The YANG data model in this document conforms to the Network
    Management Datastore Architecture (NMDA) defined in [RFC8342].
 
-   An example to illustrate the use of the model is provided in
-   Appendix A.
+   An example to illustrate the use of the "ietf-ac-glue" model is
+   provided in Appendix A.
 
 2.  Conventions and Definitions
 
@@ -249,9 +249,9 @@ Table of Contents
    [RFC8299] specifies that a 'site-network-access' attachment is
    achieved through a 'bearer' with an 'ip-connection' on top.  From
    that standpoint, a 'site-network-access' is mapped to an attachment
-   circuit with both Layer 2 and 3 properties as per
+   circuit with both Layers 2 and 3 properties as per
    [I-D.ietf-opsawg-teas-attachment-circuit].  [RFC8466] specifies that
-   a 'site-network-access' represents an logical layer 2 connection to a
+   a 'site-network-access' represents a logical Layer 2 connection to a
    site.  A 'site-network-access' can thus be mapped to an attachment
    circuit with Layer 2 properties
    [I-D.ietf-opsawg-teas-attachment-circuit].  Similarly, 'vpn-network-
@@ -262,9 +262,10 @@ Table of Contents
    As such, ACs created using the "ietf-ac-svc" module
    [I-D.ietf-opsawg-teas-attachment-circuit] can be referenced in other
    VPN-related modules (e.g., L2SM, L3SM, L2NM, and L3NM).  Also, ACs
-   managed using "ietf-ac-ntw" [I-D.ietf-opsawg-ntw-attachment-circuit]
-   can be referenced in VPN-related network modules (mainly, L2NM and
-   L3NM).  The required augmentations to that aim as shown in Figure 3.
+   managed using the "ietf-ac-ntw" module
+   [I-D.ietf-opsawg-ntw-attachment-circuit] can be referenced in VPN-
+   related network modules (mainly, L2NM and L3NM).  The required
+   augmentations to that aim are shown in Figure 3.
 
   module: ietf-ac-glue
 
@@ -314,10 +315,10 @@ Table of Contents
       when both 'ac-svc-name' and the attributes of 'attachment-
       circuits' are defined, the 'ac-svc-name' takes precedence.
 
-   The module includes provisions to reference AC within or outside an
+   The module includes provisions to reference ACs within or outside a
    VPN network access to accommodate deployment contexts where an AC
    reference may be created before or after a VPN instance is created.
-   Appendix A.1 illustrates how an AC reference can be enclosed as part
+   Appendix A.1 illustrates how an AC reference can be included as part
    of a specific VPN network access, while Appendix A.2 shows how AC
    references can be indicated outside individual VPN network access
    entries.
@@ -742,7 +743,7 @@ A.1.  A Service AC Reference within The VPN Network Access
 
    Let's consider the example depicted in Figure 4 which is inspired
    from Section 2.1 of [RFC4664].  Each PE is servicing two CEs.  Let's
-   also assume that service references to the identify attachment
+   also assume that the service references to identify attachment
    circuits with these CEs are shown in the figure.
 
          .-----.                                           .-----.
@@ -1019,7 +1020,7 @@ A.2.  Network and Service AC References
 
                      Figure 7: ACs Created Using ACaaS
 
-   Let's now consider that the customer wants to request a VPLS service
+   Let's now consider that the customer wants to request a VPLS instance
    between the sites as shown in Figure 8.
 
                    |----------  VPLS "1543" ----------|
@@ -1133,10 +1134,10 @@ A.2.  Network and Service AC References
          Figure 9: Example of a VPLS Request Using L2NM and AC Glue
                                (Message Body)
 
-   Note that before implementing the VPLS creation request, the provider
-   service orchestrator may first check if the VPLS service can be
-   provided to the customer using the target delivery locations.  The
-   orchestrator will use the SAP model [RFC9408] as exemplified in
+   Note that before implementing the VPLS instance creation request, the
+   provider service orchestrator may first check if the VPLS service can
+   be provided to the customer using the target delivery locations.  The
+   orchestrator uses the SAP model [RFC9408] as exemplified in
    Figure 10.  This example assumes that the query concerns only PE1.  A
    similar query can be issued for PE2.
 
