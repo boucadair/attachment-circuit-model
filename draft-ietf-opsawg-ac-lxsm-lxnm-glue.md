@@ -49,14 +49,14 @@ informative:
 --- abstract
 
    The document specifies a module that updates existing service and
-   network VPN modules with the required information to bind specific
+   network Virtual Private Network (VPN) modules with the required information to bind specific
    services to ACs that are created using the Attachment Circuit (AC) service and network models.
 
 --- middle
 
 # Introduction
 
-The document specifies a YANG module ({{sec-glue}}) that updates existing service and
+The document specifies a YANG module ("ietf-ac-glue", {{sec-glue}}) that updates existing service and
 network Virtual Private Network (VPN) modules with the required information to bind specific
 services to Attachment Circuits (ACs) that are created using the AC service model {{!I-D.ietf-opsawg-teas-attachment-circuit}}, specifically the following modules are augmented:
 
@@ -71,7 +71,7 @@ Likewise, the document augments the L2NM and L3NM with references to the ACs tha
 The YANG data model in this document conforms to the Network
 Management Datastore Architecture (NMDA) defined in {{!RFC8342}}.
 
-An example to illustrate the use of the model is provided in {{sec-example}}.
+An example to illustrate the use of the "ietf-ac-glue" model is provided in {{sec-example}}.
 
 # Conventions and Definitions
 
@@ -124,10 +124,10 @@ The procedure to provision a service in a service provider network may depend on
 # Module Tree Structure
 
 {{!RFC8299}} specifies that a 'site-network-access' attachment is achieved through a
-'bearer' with an 'ip-connection' on top. From that standpoint, a 'site-network-access' is mapped to an attachment circuit with both Layer 2 and 3 properties as per {{!I-D.ietf-opsawg-teas-attachment-circuit}}. {{!RFC8466}} specifies that a 'site-network-access' represents an logical layer 2 connection to a site. A 'site-network-access' can thus be mapped to an attachment circuit with  Layer 2 properties {{!I-D.ietf-opsawg-teas-attachment-circuit}}. Similarly, 'vpn-network-access' defined in both {{!RFC9182}} and {{!RFC9291}} is mapped to an attachment circuit as per {{!I-D.ietf-opsawg-teas-attachment-circuit}} or {{!I-D.ietf-opsawg-ntw-attachment-circuit}}.
+'bearer' with an 'ip-connection' on top. From that standpoint, a 'site-network-access' is mapped to an attachment circuit with both Layers 2 and 3 properties as per {{!I-D.ietf-opsawg-teas-attachment-circuit}}. {{!RFC8466}} specifies that a 'site-network-access' represents a logical Layer 2 connection to a site. A 'site-network-access' can thus be mapped to an attachment circuit with  Layer 2 properties {{!I-D.ietf-opsawg-teas-attachment-circuit}}. Similarly, 'vpn-network-access' defined in both {{!RFC9182}} and {{!RFC9291}} is mapped to an attachment circuit as per {{!I-D.ietf-opsawg-teas-attachment-circuit}} or {{!I-D.ietf-opsawg-ntw-attachment-circuit}}.
 
 As such, ACs created using the "ietf-ac-svc" module {{!I-D.ietf-opsawg-teas-attachment-circuit}} can be referenced in other
-VPN-related modules (e.g., L2SM, L3SM, L2NM, and L3NM). Also, ACs managed using "ietf-ac-ntw" {{!I-D.ietf-opsawg-ntw-attachment-circuit}} can be referenced in VPN-related network modules (mainly, L2NM and L3NM). The required augmentations to that aim as shown in {{tree}}.
+VPN-related modules (e.g., L2SM, L3SM, L2NM, and L3NM). Also, ACs managed using the "ietf-ac-ntw" module {{!I-D.ietf-opsawg-ntw-attachment-circuit}} can be referenced in VPN-related network modules (mainly, L2NM and L3NM). The required augmentations to that aim are shown in {{tree}}.
 
 ~~~~~~~~~~
 {::include ./yang/full-trees/ac-glue-tree.txt}
@@ -138,7 +138,7 @@ When an AC is referenced within a specific network access, then that AC informat
 
 > This approach is consistent with the design in {{?I-D.ietf-teas-ietf-network-slice-nbi-yang}} where an AC service reference, called 'ac-svc-name', is used to indicate the names of AC services. As per {{?I-D.ietf-teas-ietf-network-slice-nbi-yang}}, when both 'ac-svc-name' and the attributes of 'attachment-circuits' are defined, the 'ac-svc-name' takes precedence.
 
-The module includes provisions to reference AC within or outside an VPN network access to accommodate deployment contexts where an AC reference may be created before or after a VPN instance is created. {{ref-within-access}} illustrates how an AC reference can be enclosed as part of a specific VPN network access, while {{ref-outside-access}} shows how AC references can be indicated outside individual VPN network access entries.
+The module includes provisions to reference ACs within or outside a VPN network access to accommodate deployment contexts where an AC reference may be created before or after a VPN instance is created. {{ref-within-access}} illustrates how an AC reference can be included as part of a specific VPN network access, while {{ref-outside-access}} shows how AC references can be indicated outside individual VPN network access entries.
 
 # The AC Glue ("ietf-ac-glue") YANG Module {#sec-glue}
 
@@ -223,7 +223,7 @@ The module includes provisions to reference AC within or outside an VPN network 
 
 ## A Service AC Reference within The VPN Network Access {#ref-within-access}
 
-Let's consider the example depicted in {{ex-vpws}} which is inspired from {{Section 2.1 of ?RFC4664}}. Each PE is servicing two CEs. Let's also assume that service references to the identify attachment circuits with these CEs are shown in the figure.
+Let's consider the example depicted in {{ex-vpws}} which is inspired from {{Section 2.1 of ?RFC4664}}. Each PE is servicing two CEs. Let's also assume that the service references to identify attachment circuits with these CEs are shown in the figure.
 
 ~~~~~~~~~~
 {::include ./figures/glue/rfc4664-vpws-example}
@@ -253,7 +253,7 @@ The AC service model {{!I-D.ietf-opsawg-teas-attachment-circuit}} can be used by
 ~~~~~~~~~~
 {: #ex-ac title="ACs Created Using ACaaS" artwork-align="center"}
 
-Let's now consider that the customer wants to request a VPLS service between the sites as shown in {{ex-vpls}}.
+Let's now consider that the customer wants to request a VPLS instance between the sites as shown in {{ex-vpls}}.
 
 ~~~~~~~~~~
 {::include ./figures/glue/ex-vpls.txt}
@@ -267,7 +267,7 @@ To that aim, existing ACs are referenced during the creation of the VPLS instanc
 ~~~~~~~~~~
 {: #ex-vpls-req title="Example of a VPLS Request Using L2NM and AC Glue (Message Body)" artwork-align="center"}
 
-Note that before implementing the VPLS creation request, the provider service orchestrator may first check if the VPLS service can be provided to the customer using the target delivery locations. The orchestrator will use the SAP model {{?RFC9408}} as exemplified in {{ex-sap-query}}. This example assumes that the query concerns only PE1. A similar query can be issued for PE2.
+Note that before implementing the VPLS instance creation request, the provider service orchestrator may first check if the VPLS service can be provided to the customer using the target delivery locations. The orchestrator uses the SAP model {{?RFC9408}} as exemplified in {{ex-sap-query}}. This example assumes that the query concerns only PE1. A similar query can be issued for PE2.
 
 ~~~~~~~~~~
 {::include-fold ./json-examples/glue/example-sap-query.json}
