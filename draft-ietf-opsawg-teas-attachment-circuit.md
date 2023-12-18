@@ -1,5 +1,5 @@
 ---
-title: "YANG Data Models for 'Attachment Circuits'-as-a-Service (ACaaS)"
+title: "YANG Data Models for Bearers and 'Attachment Circuits'-as-a-Service (ACaaS)"
 abbrev: "ACaaS"
 category: std
 
@@ -1128,4 +1128,4 @@ Next, API workflows can be initiated:
 # Acknowledgments
 {:numbered="false"}
 
-Thanks to TBC for the comments.
+The document leverages {{!RFC9182}} and {{!RFC9291}}.
