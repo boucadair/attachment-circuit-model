@@ -159,7 +159,7 @@ Service provider:
 # Description of the AC Common YANG Module
 
 The full tree diagram of the module can be generated using the
-"pyang" tool {{PYANG}}.  That tree is not included here because it is
+"pyang" tool {{PYANG}} with "-f tree --tree-print-groupings" command-line parameters.  That tree is not included here because it is
 too long ({{Section 3.3 of ?RFC8340}}).  Instead, subtrees are provided
 for the reader's convenience.
 
