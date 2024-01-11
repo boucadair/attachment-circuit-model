@@ -326,3 +326,5 @@ This module uses types defined in {{!RFC6991}}, {{!RFC8177}}, and  {{!RFC9181}}.
 
 The document reuses many of the structures that were defined
 in {{RFC9181}} and {{RFC9182}}.
+
+Thanks to Ebben Aries for the YANG Doctors review.
