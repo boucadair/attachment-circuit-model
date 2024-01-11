@@ -2019,32 +2019,28 @@ module ietf-ac-common {
   }
 
   /************************Reusable groupings********************/
-
   /**** A set of profiles ****/
 
   grouping ac-profile-cfg {
     description
       "Grouping for AC profile configuration.";
-
-   container valid-provider-identifiers {
-    description
-      "Container for valid provider profile identifiers.
-       The profiles only have significance within the service
-       provider's administrative domain.";
-
-     list encryption-profile-identifier {
-      key "id";
+    container valid-provider-identifiers {
       description
-        "List of encryption profile identifiers.";
-      leaf id {
-        type string;
+        "Container for valid provider profile identifiers.
+         The profiles only have significance within the service
+         provider's administrative domain.";
+      list encryption-profile-identifier {
+        key "id";
         description
-          "Identification of the encryption profile to be used.";
+          "List of encryption profile identifiers.";
+        leaf id {
+          type string;
+          description
+            "Identification of the encryption profile to be used.";
+        }
       }
-    }
-
-    list qos-profile-identifier {
-      key "id";
+      list qos-profile-identifier {
+        key "id";
         description
           "List of QoS profile identifiers.";
         leaf id {
@@ -2053,7 +2049,6 @@ module ietf-ac-common {
             "Identification of the QoS profile to be used.";
         }
       }
-
       list bfd-profile-identifier {
         key "id";
         description
@@ -2064,7 +2059,6 @@ module ietf-ac-common {
             "Identification of the BFD profile to be used.";
         }
       }
-
       list forwarding-profile-identifier {
         key "id";
         description
@@ -2075,7 +2069,6 @@ module ietf-ac-common {
             "Identification of the forwarding profile to be used.";
         }
       }
-
       list routing-profile-identifier {
         key "id";
         description
@@ -2087,7 +2080,6 @@ module ietf-ac-common {
              the routing protocols over an AC.";
         }
       }
-
       nacm:default-deny-write;
     }
   }
@@ -2097,21 +2089,18 @@ module ietf-ac-common {
   grouping op-instructions {
     description
       "Scheduling instructions.";
-
     leaf requested-start {
       type yang:date-and-time;
       description
         "Indicates the requested date and time when the service is
          expected to be active.";
     }
-
     leaf requested-stop {
       type yang:date-and-time;
       description
         "Indicates the requested date and time when the service is
          expected to be disabled.";
     }
-
     leaf actual-start {
       type yang:date-and-time;
       config false;
@@ -2119,7 +2108,6 @@ module ietf-ac-common {
         "Indicates the actual date and time when the service
          actually was enabled.";
     }
-
     leaf actual-stop {
       type yang:date-and-time;
       config false;
@@ -2135,7 +2123,6 @@ module ietf-ac-common {
   grouping dot1q {
     description
       "Defines a grouping for tagged interfaces.";
-
     leaf tag-type {
       type identityref {
         base vpn-common:tag-type;
@@ -2143,7 +2130,6 @@ module ietf-ac-common {
       description
         "Tag type.";
     }
-
     leaf cvlan-id {
       type uint16 {
         range "1..4094";
@@ -2158,7 +2144,6 @@ module ietf-ac-common {
   grouping priority-tagged {
     description
       "Priority tagged.";
-
     leaf tag-type {
       type identityref {
         base vpn-common:tag-type;
@@ -2173,7 +2158,6 @@ module ietf-ac-common {
   grouping qinq {
     description
       "Includes QinQ parameters.";
-
     leaf tag-type {
       type identityref {
         base vpn-common:tag-type;
@@ -2181,7 +2165,6 @@ module ietf-ac-common {
       description
         "Tag type.";
     }
-
     leaf svlan-id {
       type uint16 {
         range "1..4094";
@@ -2190,7 +2173,6 @@ module ietf-ac-common {
       description
         "Service VLAN (S-VLAN) identifier.";
     }
-
     leaf cvlan-id {
       type uint16 {
         range "1..4094";
@@ -2207,13 +2189,11 @@ module ietf-ac-common {
   grouping pseudowire {
     description
       "Includes pseudowire termination parameters.";
-
     leaf vcid {
       type uint32;
       description
         "Indicates a PW or virtual circuit (VC) identifier.";
     }
-
     leaf far-end {
       type union {
         type uint32;
@@ -2232,13 +2212,11 @@ module ietf-ac-common {
   grouping vpls {
     description
       "VPLS termination parameters.";
-
     leaf vcid {
       type uint32;
       description
         "VC identifier.";
     }
-
     leaf-list far-end {
       type union {
         type uint32;
@@ -2254,14 +2232,12 @@ module ietf-ac-common {
   grouping vxlan {
     description
       "VXLAN termination parameters.";
-
     leaf vni-id {
       type uint32;
       mandatory true;
       description
         "VXLAN Network Identifier (VNI).";
     }
-
     leaf peer-mode {
       type identityref {
         base vpn-common:vxlan-peer-mode;
@@ -2270,7 +2246,6 @@ module ietf-ac-common {
         "Specifies the VXLAN access mode. By default,
          the peer mode is set to 'static-mode'.";
     }
-
     leaf-list peer-ip-address {
       type inet:ip-address;
       description
@@ -2283,7 +2258,6 @@ module ietf-ac-common {
   grouping l2-tunnel-service {
     description
       "Defines a Layer 2 tunnel termination.";
-
     leaf type {
       type identityref {
         base l2-tunnel-type;
@@ -2291,7 +2265,6 @@ module ietf-ac-common {
       description
         "Selects the tunnel termination type for an AC.";
     }
-
     container pseudowire {
       when "derived-from-or-self(../type, 'ac-common:pseudowire')" {
         description
@@ -2300,10 +2273,8 @@ module ietf-ac-common {
       }
       description
         "Includes pseudowire termination parameters.";
-
       uses pseudowire;
     }
-
     container vpls {
       when "derived-from-or-self(../type, 'ac-common:vpls')" {
         description
@@ -2311,10 +2282,8 @@ module ietf-ac-common {
       }
       description
         "VPLS termination parameters.";
-
       uses vpls;
     }
-
     container vxlan {
       when "derived-from-or-self(../type, 'ac-common:vxlan')" {
         description
@@ -2322,7 +2291,6 @@ module ietf-ac-common {
       }
       description
         "VXLAN termination parameters.";
-
       uses vxlan;
     }
   }
@@ -2333,7 +2301,6 @@ module ietf-ac-common {
   grouping ipv4-allocation-type {
     description
       "IPv4-specific parameters.";
-
     leaf prefix-length {
       type uint8 {
         range "0..32";
@@ -2342,7 +2309,6 @@ module ietf-ac-common {
         "Subnet prefix length expressed in bits. It is applied to
          both local and customer addresses.";
     }
-
     leaf address-allocation-type {
       type identityref {
         base address-allocation-type;
@@ -2362,7 +2328,6 @@ module ietf-ac-common {
   grouping ipv6-allocation-type {
     description
       "IPv6-specific parameters.";
-
     leaf prefix-length {
       type uint8 {
         range "0..128";
@@ -2371,7 +2336,6 @@ module ietf-ac-common {
         "Subnet prefix length expressed in bits. It is applied to
           both local and customer addresses.";
     }
-
     leaf address-allocation-type {
       type identityref {
         base address-allocation-type;
@@ -2386,9 +2350,7 @@ module ietf-ac-common {
   grouping ipv4-connection-basic {
     description
       "Basic set fof IPv4-specific parameters for the connection.";
-
     uses ipv4-allocation-type;
-
     choice allocation-type {
       description
         "Choice of the IPv4 address allocation.";
@@ -2440,9 +2402,7 @@ module ietf-ac-common {
   grouping ipv6-connection-basic {
     description
       "Basic set fof IPv6-specific parameters for the connection.";
-
     uses ipv6-allocation-type;
-
     choice allocation-type {
       description
         "Choice of the IPv6 address allocation.";
@@ -2494,21 +2454,17 @@ module ietf-ac-common {
   grouping ipv4-connection {
     description
       "IPv4-specific parameters.";
-
     leaf local-address {
       type inet:ipv4-address;
       description
         "The IP address used at the provider's interface.";
     }
-
     leaf virtual-address {
       type inet:ipv4-address;
       description
         "This addresss may be used for redundancy purposes.";
     }
-
     uses ipv4-allocation-type;
-
     choice allocation-type {
       description
         "Choice of the IPv4 address allocation.";
@@ -2631,21 +2587,17 @@ module ietf-ac-common {
   grouping ipv6-connection {
     description
       "IPv6-specific parameters.";
-
     leaf local-address {
       type inet:ipv6-address;
       description
         "IPv6 address of the provider side.";
     }
-
     leaf virtual-address {
       type inet:ipv6-address;
       description
         "This addresss may be used for redundancy purposes.";
     }
-
     uses ipv6-allocation-type;
-
     choice allocation-type {
       description
         "Choice of the IPv6 address allocation.";
@@ -2769,23 +2721,19 @@ module ietf-ac-common {
   grouping bgp-authentication {
     description
       "Grouping for BGP authentication parameters.";
-
     container authentication {
       description
         "Container for BGP authentication  parameters.";
-
       leaf enable {
         type boolean;
         description
           "Enables or disables authentication.";
       }
-
       container keying-material {
         when "../enable = 'true'";
         description
           "Container for describing how a BGP routing session is to
            be secured on an AC.";
-
         choice option {
           description
             "Choice of authentication options.";
@@ -2852,23 +2800,19 @@ module ietf-ac-common {
   grouping ospf-authentication {
     description
       "Authentication configuration.";
-
     container authentication {
       description
         "Container for OSPF authentication  parameters.";
-
       leaf enable {
         type boolean;
         description
           "Enables or disables authentication.";
       }
-
       container keying-material {
         when "../enable = 'true'";
         description
           "Container for describing how an OSPF session is to be
            secured for this AC.";
-
         choice option {
           description
             "Options for OSPF authentication.";
@@ -2910,23 +2854,19 @@ module ietf-ac-common {
   grouping isis-authentication {
     description
       "IS-IS authentication configuration.";
-
     container authentication {
       description
         "Container for IS-IS authentication  parameters.";
-
       leaf enable {
         type boolean;
         description
           "Enables or disables authentication.";
       }
-
       container keying-material {
         when "../enable = 'true'";
         description
           "Container for describing how an IS-IS session is secured
            over an AC.";
-
         choice option {
           description
             "Options for IS-IS authentication.";
@@ -2968,17 +2908,14 @@ module ietf-ac-common {
   grouping rip-authentication {
     description
       "RIP authentication configuration.";
-
     container authentication {
       description
         "Container for RIP authentication  parameters.";
-
       leaf enable {
         type boolean;
         description
           "Enables or disables authentication.";
       }
-
       container keying-material {
         when "../enable = 'true'";
         description
@@ -3023,7 +2960,6 @@ module ietf-ac-common {
   grouping bgp-peer-group-without-name {
     description
       "Identifies a BGP peer-group configured on the local system.";
-
     leaf local-as {
       type inet:as-number;
       config false;
@@ -3032,14 +2968,12 @@ module ietf-ac-common {
          to a customer so that it knows which ASN to use
          to set up a BGP session.";
     }
-
     leaf peer-as {
       type inet:as-number;
       description
         "Indicates the customer's ASN when the customer
          requests BGP routing.";
     }
-
     leaf address-family {
       type identityref {
         base vpn-common:address-family;
@@ -3054,21 +2988,18 @@ module ietf-ac-common {
   grouping bgp-peer-group-with-name {
     description
       "Identifies a BGP peer-group configured on the local system -
-       identified by a peer-group name";
-
+       identified by a peer-group name.";
     leaf name {
       type string;
       description
-        "Name of the BGP peer-group";
+        "Name of the BGP peer-group.";
     }
-
     uses bgp-peer-group-without-name;
   }
 
   grouping ospf-basic {
     description
       "Configuration specific to OSPF.";
-
     leaf address-family {
       type identityref {
         base vpn-common:address-family;
@@ -3076,7 +3007,6 @@ module ietf-ac-common {
       description
         "Indicates whether IPv4, IPv6, or both are to be activated.";
     }
-
     leaf area-id {
       type yang:dotted-quad;
       mandatory true;
@@ -3089,7 +3019,6 @@ module ietf-ac-common {
          RFC 6565: OSPFv3 as a Provider Edge to Customer Edge
                    (PE-CE) Routing Protocol, Section 4.2";
     }
-
     leaf metric {
       type uint16;
       description
@@ -3101,7 +3030,6 @@ module ietf-ac-common {
   grouping isis-basic {
     description
       "Basic configuration specific to IS-IS.";
-
     leaf address-family {
       type identityref {
         base vpn-common:address-family;
@@ -3109,7 +3037,6 @@ module ietf-ac-common {
       description
         "Indicates whether IPv4, IPv6, or both are to be activated.";
     }
-
     leaf area-address {
       type area-address;
       mandatory true;
@@ -3123,19 +3050,16 @@ module ietf-ac-common {
   grouping ipv4-static-rtg-entry {
     description
       "Paramters to configure a specific IPv4 static routing entry.";
-
     leaf lan {
       type inet:ipv4-prefix;
       description
-        "LAN prefixes.";
+        "LAN prefix.";
     }
-
     leaf lan-tag {
       type string;
       description
         "Internal tag to be used in service policies.";
     }
-
     leaf next-hop {
       type union {
         type inet:ip-address;
@@ -3147,7 +3071,6 @@ module ietf-ac-common {
          predefined next-hop type (e.g., 'discard' or
          'local-link').";
     }
-
     leaf metric {
       type uint32;
       description
@@ -3158,13 +3081,11 @@ module ietf-ac-common {
   grouping ipv4-static-rtg {
     description
       "Configuration specific to IPv4 static routing.";
-
     list ipv4-lan-prefixes {
       if-feature "vpn-common:ipv4";
       key "lan next-hop";
       description
         "List of LAN prefixes for the site.";
-
       uses ipv4-static-rtg-entry;
       uses vpn-common:service-status;
     }
@@ -3173,19 +3094,16 @@ module ietf-ac-common {
   grouping ipv6-static-rtg-entry {
     description
       "Paramters to configure a specific IPv6 static routing entry.";
-
     leaf lan {
       type inet:ipv6-prefix;
       description
         "LAN prefixes.";
     }
-
     leaf lan-tag {
       type string;
       description
         "Internal tag to be used in service (e.g., VPN) policies.";
     }
-
     leaf next-hop {
       type union {
         type inet:ip-address;
@@ -3196,7 +3114,6 @@ module ietf-ac-common {
          This may be specified as an IP address or a predefined
          next-hop type (e.g., 'discard' or 'local-link').";
     }
-
     leaf metric {
       type uint32;
       description
@@ -3207,7 +3124,6 @@ module ietf-ac-common {
   grouping ipv6-static-rtg {
     description
       "Configuration specific to IPv6 static routing.";
-
     list ipv6-lan-prefixes {
       if-feature "vpn-common:ipv6";
       key "lan next-hop";
@@ -3223,7 +3139,6 @@ module ietf-ac-common {
   grouping bfd {
     description
       "Container for BFD.";
-
     leaf holdtime {
       type uint32;
       units "milliseconds";
@@ -3245,7 +3160,6 @@ module ietf-ac-common {
   grouping bandwidth-parameters {
     description
       "A grouping for bandwidth parameters.";
-
     leaf cir {
       type uint64;
       units "bps";
@@ -3254,7 +3168,6 @@ module ietf-ac-common {
          that a port can receive or send during one second over
          an interface.";
     }
-
     leaf cbs {
       type uint64;
       units "bytes";
@@ -3264,7 +3177,6 @@ module ietf-ac-common {
          CIR accumulates credits until the credits reach the
          configured CBS.";
     }
-
     leaf eir {
       type uint64;
       units "bps";
@@ -3273,7 +3185,6 @@ module ietf-ac-common {
          allowed not subject to a Service Level Agreement (SLA).
          The traffic rate can be limited by EIR.";
     }
-
     leaf ebs {
       type uint64;
       units "bytes";
@@ -3283,7 +3194,6 @@ module ietf-ac-common {
          that is accumulated during periods when traffic allocated
          by the EIR policy is not used.";
     }
-
     leaf pir {
       type uint64;
       units "bps";
@@ -3291,7 +3201,6 @@ module ietf-ac-common {
         "Peak Information Rate (PIR), i.e., maximum frame delivery
          allowed. It is equal to or less than sum of CIR and EIR.";
     }
-
     leaf pbs {
       type uint64;
       units "bytes";
@@ -3303,12 +3212,10 @@ module ietf-ac-common {
   grouping bandwidth-per-type {
     description
       "Grouping for bandwidth per type.";
-
     list bandwidth {
       key "bw-type";
       description
         "List for bandwidth per type data nodes.";
-
       leaf bw-type {
         type identityref {
           base vpn-common:bw-type;
