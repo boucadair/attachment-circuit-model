@@ -733,7 +733,7 @@ This module uses types defined in {{!RFC6991}} and {{!RFC9181}}.
 
 ~~~~~~~~~~ yang
 <CODE BEGINS> file ietf-bearer-svc@2023-11-13.yang
-{::include-fold ./yang/ietf-bearer-svc.yang}
+{::include ./yang/ietf-bearer-svc.yang}
 <CODE ENDS>
 ~~~~~~~~~~
 
@@ -743,7 +743,7 @@ This module uses types defined in {{!RFC6991}}, {{!RFC9181}}, {{!RFC8177}}, and 
 
 ~~~~~~~~~~ yang
 <CODE BEGINS> file ietf-ac-svc@2023-11-13.yang
-{::include-fold ./yang/ietf-ac-svc.yang}
+{::include ./yang/ietf-ac-svc.yang}
 <CODE ENDS>
 ~~~~~~~~~~
 
