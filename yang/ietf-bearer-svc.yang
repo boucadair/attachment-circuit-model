@@ -40,7 +40,7 @@ module ietf-bearer-svc {
     "This YANG module defines a generic YANG model for exposing
      network bearers as a service.
 
-     Copyright (c) 2023 IETF Trust and the persons identified as
+     Copyright (c) 2024 IETF Trust and the persons identified as
      authors of the code.  All rights reserved.
 
      Redistribution and use in source and binary forms, with or
@@ -269,8 +269,9 @@ module ietf-bearer-svc {
         container device {
           when
             "derived-from-or-self(../identified-by, "
-          + "'device-id') or derived-from-or-self(../identified-by, "
-          + "'site-and-device-id')" {
+          + "'bearer-svc:device-id') or "
+          + "derived-from-or-self(../identified-by, "
+          + "'bearer-svc:site-and-device-id')" {
             description
               "Only applicable if identified-by is device.";
           }
@@ -286,8 +287,9 @@ module ietf-bearer-svc {
         container site {
           when
             "derived-from-or-self(../identified-by, "
-          + "'site-id') or derived-from-or-self(../identified-by, "
-          + "'site-and-device-id')" {
+          + "'bearer-svc:site-id') or "
+          + "derived-from-or-self(../identified-by, "
+          + "'bearer-svc:site-and-device-id')" {
             description
               "Only applicable if identified-by is site.";
           }
@@ -303,7 +305,7 @@ module ietf-bearer-svc {
         }
         leaf custom-id {
           when "derived-from-or-self(../identified-by, "
-             + "'custom')" {
+             + "'bearer-svc:custom')" {
             description
               "Only enabled id identified-by is custom.";
           }
