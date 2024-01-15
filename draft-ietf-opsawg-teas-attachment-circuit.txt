@@ -694,9 +694,6 @@ Table of Contents
 
                 Figure 4: Overall AC Service Tree Structure
 
-   The full ACaaS tree is available at [AC-SVC-Tree].  The full reusable
-   groupings defined in the ACaaS module are shown in [AC-SVC-GRP].
-
    The rationale for deciding whether a reusable grouping should be
    maintained in this document or be moved into the AC common module
    [I-D.ietf-opsawg-teas-common-ac] is as follows:
@@ -3486,17 +3483,6 @@ Table of Contents
 
 8.2.  Informative References
 
-   [AC-SVC-GRP]
-              "Reusable Groupings in Service Attachment Circuits", 2023,
-              <https://raw.githubusercontent.com/boucadair/attachment-
-              circuit-model/main/yang/full-trees/ac-svc-groupings.txt>.
-
-   [AC-SVC-Tree]
-              "Full Service Attachment Circuit Tree Structure", 2023,
-              <https://raw.githubusercontent.com/boucadair/attachment-
-              circuit-model/main/yang/full-trees/ac-svc-without-
-              groupings.txt>.
-
    [I-D.ietf-idr-bgp-model]
               Jethanandani, M., Patel, K., Hares, S., and J. Haas, "YANG
               Model for Border Gateway Protocol (BGP-4)", Work in
@@ -3519,6 +3505,11 @@ Table of Contents
               network-slice-nbi-yang-08, 23 October 2023,
               <https://datatracker.ietf.org/doc/html/draft-ietf-teas-
               ietf-network-slice-nbi-yang-08>.
+
+   [Instance-Data]
+              "Example of AC SVC Instance Data", 2024,
+              <https://github.com/boucadair/attachment-circuit-
+              model/blob/main/xml-examples/svc-full-instance.xml>.
 
    [PYANG]    "pyang", 2023, <https://github.com/mbj4668/pyang>.
 
@@ -3601,7 +3592,8 @@ Table of Contents
 Appendix A.  Examples
 
    This section includes a non-exhaustive list of examples to illustrate
-   the use of the service models defined in this document.
+   the use of the service models defined in this document.  An example
+   instance data can also be found at [Instance-Data].
 
 A.1.  Create A New Bearer
 
@@ -4728,7 +4720,8 @@ Acknowledgments
 
    The document leverages [RFC9182] and [RFC9291].
 
-   Thanks to Ebben Aries for the YANG Doctors review.
+   Thanks to Ebben Aries for the YANG Doctors review and for providing
+   [Instance-Data].
 
 Contributors
 
