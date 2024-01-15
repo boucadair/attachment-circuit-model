@@ -74,15 +74,10 @@ normative:
 
 informative:
 
-  AC-SVC-Tree:
-    title: Full Service Attachment Circuit Tree Structure
-    date: 2023
-    target: https://raw.githubusercontent.com/boucadair/attachment-circuit-model/main/yang/full-trees/ac-svc-without-groupings.txt
-
-  AC-SVC-GRP:
-    title: Reusable Groupings in Service Attachment Circuits
-    date: 2023
-    target: https://raw.githubusercontent.com/boucadair/attachment-circuit-model/main/yang/full-trees/ac-svc-groupings.txt
+  Instance-Data:
+    title: Example of AC SVC Instance Data
+    date: 2024
+    target: https://github.com/boucadair/attachment-circuit-model/blob/main/xml-examples/svc-full-instance.xml
 
   PYANG:
     title: pyang
@@ -320,8 +315,6 @@ The overall tree structure of the AC service module is shown in {{o-svc-tree}}.
 {::include ./yang/subtrees/svc/overall-stree.txt}
 ~~~~
 {: #o-svc-tree title="Overall AC Service Tree Structure" artwork-align="center"}
-
-The full ACaaS tree is available at {{AC-SVC-Tree}}. The full reusable groupings defined in the ACaaS module are shown in {{AC-SVC-GRP}}.
 
 The rationale for deciding whether a reusable grouping should be maintained in this document or be moved into the AC common module {{!I-D.ietf-opsawg-teas-common-ac}} is as follows:
 
@@ -878,7 +871,7 @@ This module uses types defined in {{!RFC6991}}, {{!RFC9181}}, {{!RFC8177}}, and 
 
 # Examples {#examples}
 
-This section includes a non-exhaustive list of examples to illustrate the use of the service models defined in this document.
+This section includes a non-exhaustive list of examples to illustrate the use of the service models defined in this document. An example instance data can also be found at {{Instance-Data}}.
 
 ## Create A New Bearer {#ex-create-bearer}
 
@@ -1130,4 +1123,4 @@ Next, API workflows can be initiated:
 
 The document leverages {{!RFC9182}} and {{!RFC9291}}.
 
-Thanks to Ebben Aries for the YANG Doctors review.
+Thanks to Ebben Aries for the YANG Doctors review and for providing {{Instance-Data}}.
