@@ -5,14 +5,14 @@
 OPSAWG                                                 M. Boucadair, Ed.
 Internet-Draft                                                    Orange
 Intended status: Standards Track                         R. Roberts, Ed.
-Expires: 18 July 2024                                            Juniper
+Expires: 20 July 2024                                            Juniper
                                                            O. G. D. Dios
                                                               Telefonica
                                                            S. B. Giraldo
                                                                    Nokia
                                                                    B. Wu
                                                      Huawei Technologies
-                                                         15 January 2024
+                                                         17 January 2024
 
 
             A Common YANG Data Model for Attachment Circuits
@@ -54,7 +54,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 18 July 2024.
+   This Internet-Draft will expire on 20 July 2024.
 
 Copyright Notice
 
@@ -2250,11 +2250,12 @@ Table of Contents
 
    [I-D.ietf-opsawg-teas-attachment-circuit]
               Boucadair, M., Roberts, R., de Dios, O. G., Barguil, S.,
-              and B. Wu, "YANG Data Models for 'Attachment Circuits'-as-
-              a-Service (ACaaS)", Work in Progress, Internet-Draft,
-              draft-ietf-opsawg-teas-attachment-circuit-03, 1 December
-              2023, <https://datatracker.ietf.org/doc/html/draft-ietf-
-              opsawg-teas-attachment-circuit-03>.
+              and B. Wu, "YANG Data Models for Bearers and 'Attachment
+              Circuits'-as-a-Service (ACaaS)", Work in Progress,
+              Internet-Draft, draft-ietf-opsawg-teas-attachment-circuit-
+              04, 14 January 2024,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
+              teas-attachment-circuit-04>.
 
    [I-D.ietf-teas-ietf-network-slice-nbi-yang]
               Wu, B., Dhody, D., Rokui, R., Saad, T., and J. Mullooly,
