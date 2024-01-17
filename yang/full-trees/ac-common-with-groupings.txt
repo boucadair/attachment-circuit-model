@@ -196,7 +196,7 @@ module: ietf-ac-common
        +-- status
           +-- admin-status
           |  +-- status?        identityref
-          |  +-- last-change?   yang:date-and-time
+          |  +--ro last-change?   yang:date-and-time
           +--ro oper-status
              +--ro status?        identityref
              +--ro last-change?   yang:date-and-time
@@ -214,7 +214,7 @@ module: ietf-ac-common
        +-- status
           +-- admin-status
           |  +-- status?        identityref
-          |  +-- last-change?   yang:date-and-time
+          |  +--ro last-change?   yang:date-and-time
           +--ro oper-status
              +--ro status?        identityref
              +--ro last-change?   yang:date-and-time
