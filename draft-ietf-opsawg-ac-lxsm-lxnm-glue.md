@@ -143,7 +143,7 @@ The module includes provisions to reference ACs within or outside a VPN network 
 # The AC Glue ("ietf-ac-glue") YANG Module {#sec-glue}
 
 ~~~~~~~~~~
-<CODE BEGINS> file ietf-ac-glue@2023-11-13.yang
+<CODE BEGINS> file "ietf-ac-glue@2023-11-13.yang"
 {::include-fold ./yang/ietf-ac-glue.yang}
 <CODE ENDS>
 ~~~~~~~~~~
