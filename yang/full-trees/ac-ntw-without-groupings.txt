@@ -91,7 +91,7 @@
        +--rw status
        |  +--rw admin-status
        |  |  +--rw status?        identityref
-       |  |  +--rw last-change?   yang:date-and-time
+       |  |  +--ro last-change?   yang:date-and-time
        |  +--ro oper-status
        |     +--ro status?        identityref
        |     +--ro last-change?   yang:date-and-time
@@ -253,7 +253,7 @@
        |     |     |  +--rw status
        |     |     |     +--rw admin-status
        |     |     |     |  +--rw status?        identityref
-       |     |     |     |  +--rw last-change?   yang:date-and-time
+       |     |     |     |  +--ro last-change?   yang:date-and-time
        |     |     |     +--ro oper-status
        |     |     |        +--ro status?        identityref
        |     |     |        +--ro last-change?   yang:date-and-time
@@ -268,7 +268,7 @@
        |     |        +--rw status
        |     |           +--rw admin-status
        |     |           |  +--rw status?        identityref
-       |     |           |  +--rw last-change?   yang:date-and-time
+       |     |           |  +--ro last-change?   yang:date-and-time
        |     |           +--ro oper-status
        |     |              +--ro status?        identityref
        |     |              +--ro last-change?   yang:date-and-time
@@ -378,7 +378,7 @@
        |     |     +--rw status
        |     |        +--rw admin-status
        |     |        |  +--rw status?        identityref
-       |     |        |  +--rw last-change?   yang:date-and-time
+       |     |        |  +--ro last-change?   yang:date-and-time
        |     |        +--ro oper-status
        |     |           +--ro status?        identityref
        |     |           +--ro last-change?   yang:date-and-time
@@ -405,7 +405,7 @@
        |     |  +--rw status
        |     |     +--rw admin-status
        |     |     |  +--rw status?        identityref
-       |     |     |  +--rw last-change?   yang:date-and-time
+       |     |     |  +--ro last-change?   yang:date-and-time
        |     |     +--ro oper-status
        |     |        +--ro status?        identityref
        |     |        +--ro last-change?   yang:date-and-time
@@ -429,7 +429,7 @@
        |     |  +--rw status
        |     |     +--rw admin-status
        |     |     |  +--rw status?        identityref
-       |     |     |  +--rw last-change?   yang:date-and-time
+       |     |     |  +--ro last-change?   yang:date-and-time
        |     |     +--ro oper-status
        |     |        +--ro status?        identityref
        |     |        +--ro last-change?   yang:date-and-time
@@ -454,7 +454,7 @@
        |     |  +--rw status
        |     |     +--rw admin-status
        |     |     |  +--rw status?        identityref
-       |     |     |  +--rw last-change?   yang:date-and-time
+       |     |     |  +--ro last-change?   yang:date-and-time
        |     |     +--ro oper-status
        |     |        +--ro status?        identityref
        |     |        +--ro last-change?   yang:date-and-time
@@ -468,7 +468,7 @@
        |        +--rw status
        |           +--rw admin-status
        |           |  +--rw status?        identityref
-       |           |  +--rw last-change?   yang:date-and-time
+       |           |  +--ro last-change?   yang:date-and-time
        |           +--ro oper-status
        |              +--ro status?        identityref
        |              +--ro last-change?   yang:date-and-time
@@ -486,7 +486,7 @@
        |     +--rw status
        |        +--rw admin-status
        |        |  +--rw status?        identityref
-       |        |  +--rw last-change?   yang:date-and-time
+       |        |  +--ro last-change?   yang:date-and-time
        |        +--ro oper-status
        |           +--ro status?        identityref
        |           +--ro last-change?   yang:date-and-time
