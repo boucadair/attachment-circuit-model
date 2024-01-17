@@ -756,7 +756,7 @@ The description of the service data nodes is as follows:
 This module uses types defined in {{!RFC6991}}, {{!RFC8177}}, {{!RFC8294}}, {{!RFC8343}}, {{!RFC9067}}, {{!RFC9181}}, {{!I-D.ietf-opsawg-teas-common-ac}}, and {{IEEE802.1Qcp}}.
 
 ~~~~ yang
-<CODE BEGINS> file ietf-ac-ntw@2022-11-30.yang
+<CODE BEGINS> file "ietf-ac-ntw@2022-11-30.yang"
 {::include ./yang/ietf-ac-ntw.yang}
 <CODE ENDS>
 ~~~~
