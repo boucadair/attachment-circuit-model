@@ -3198,7 +3198,7 @@ Table of Contents
                    "Indicates the preference associated with the static
                     route.";
                }
-               uses vpn-common:service-status;
+               uses ac-common:service-status;
              }
              list ipv6-lan-prefixes {
                if-feature "vpn-common:ipv6";
@@ -3218,7 +3218,7 @@ Table of Contents
                    "Indicates the preference associated with the static
                     route.";
                }
-               uses vpn-common:service-status;
+               uses ac-common:service-status;
              }
            }
          }
@@ -3287,7 +3287,7 @@ Table of Contents
              }
              uses bgp-base;
              uses ac-common:bgp-authentication;
-             uses vpn-common:service-status;
+             uses ac-common:service-status;
            }
          }
          container ospf {
@@ -3343,7 +3343,7 @@ Table of Contents
                 (LSAs) that the OSPF instance will accept.";
            }
            uses ac-common:ospf-authentication;
-           uses vpn-common:service-status;
+           uses ac-common:service-status;
          }
          container isis {
            when "derived-from-or-self(../type, "
@@ -3389,7 +3389,7 @@ Table of Contents
                "IS-IS interface mode type.";
            }
            uses ac-common:isis-authentication;
-           uses vpn-common:service-status;
+           uses ac-common:service-status;
          }
          container rip {
            when "derived-from-or-self(../type, "
@@ -3403,7 +3403,7 @@ Table of Contents
              "Configuration specific to RIP routing.";
            uses rip-base;
            uses ac-common:rip-authentication;
-           uses vpn-common:service-status;
+           uses ac-common:service-status;
          }
          container vrrp {
            when "derived-from-or-self(../type, "
@@ -3459,7 +3459,7 @@ Table of Contents
                "Controls whether the VRRP speaker should reply to ping
                 requests.";
            }
-           uses vpn-common:service-status;
+           uses ac-common:service-status;
          }
        }
      }
@@ -3560,7 +3560,7 @@ Table of Contents
                           Section 6.7";
            }
          }
-         uses vpn-common:service-status;
+         uses ac-common:service-status;
        }
      }
 
@@ -3838,7 +3838,7 @@ Table of Contents
                "Defines redundancy of an AC.";
            }
          }
-         uses vpn-common:service-status;
+         uses ac-common:service-status;
          uses ac-ntw:ac;
        }
      }
