@@ -1362,7 +1362,7 @@ module ietf-ac-common {
       description
         "List of LAN prefixes for the site.";
       uses ipv6-static-rtg-entry;
-      uses ac:service-status;
+      uses ac-common:service-status;
     }
   }
 
