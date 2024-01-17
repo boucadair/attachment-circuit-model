@@ -215,6 +215,42 @@ module ietf-ac-common {
   }
 
   /************************Reusable groupings********************/
+  /**** Service Status ****/
+
+  grouping service-status {
+    description
+      "Service status grouping.";
+    container status {
+      description
+        "Service status.";
+      container admin-status {
+        description
+          "Administrative service status.";
+        leaf status {
+          type identityref {
+            base vpn-common:administrative-status;
+          }
+          description
+            "Administrative service status.";
+        }
+        leaf last-change {
+          type yang:date-and-time;
+          config false;
+          description
+            "Indicates the actual date and time of the service
+             status change.";
+        }
+      }
+      container oper-status {
+        config false;
+        description
+          "Operational service status.";
+        uses vpn-common:oper-status-timestamp;
+      }
+    }
+  }
+
+
   /**** A set of profiles ****/
 
   grouping ac-profile-cfg {
@@ -1283,7 +1319,7 @@ module ietf-ac-common {
       description
         "List of LAN prefixes for the site.";
       uses ipv4-static-rtg-entry;
-      uses vpn-common:service-status;
+      uses ac-common:service-status;
     }
   }
 
@@ -1326,7 +1362,7 @@ module ietf-ac-common {
       description
         "List of LAN prefixes for the site.";
       uses ipv6-static-rtg-entry;
-      uses vpn-common:service-status;
+      uses ac:service-status;
     }
   }
 
