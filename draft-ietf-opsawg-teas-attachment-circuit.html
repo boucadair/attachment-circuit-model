@@ -4042,7 +4042,7 @@ module ietf-ac-svc {
       }
       uses ac-common:bgp-peer-group-without-name;
       uses ac-common:bgp-authentication;
-      uses vpn-common:service-status;
+      uses ac-common:service-status;
     }
   }
 
@@ -4053,7 +4053,7 @@ module ietf-ac-svc {
       "Service configuration specific to OSPF.";
     uses ac-common:ospf-basic;
     uses ac-common:ospf-authentication;
-    uses vpn-common:service-status;
+    uses ac-common:service-status;
   }
 
   //  IS-IS Service
@@ -4063,7 +4063,7 @@ module ietf-ac-svc {
       "Service configuration specific to IS-IS.";
     uses ac-common:isis-basic;
     uses ac-common:isis-authentication;
-    uses vpn-common:service-status;
+    uses ac-common:service-status;
   }
 
   //  RIP Service
@@ -4080,7 +4080,7 @@ module ietf-ac-svc {
          are to be activated.";
     }
     uses ac-common:rip-authentication;
-    uses vpn-common:service-status;
+    uses ac-common:service-status;
   }
 
   //  VRRP Service
@@ -4099,7 +4099,7 @@ module ietf-ac-svc {
         "Indicates whether IPv4, IPv6, or both
          address families are to be enabled.";
     }
-    uses vpn-common:service-status;
+    uses ac-common:service-status;
   }
 
   // Basic routing parameters
@@ -4489,7 +4489,7 @@ module ietf-ac-svc {
             "Points to a BFD profile.";
         }
         uses ac-common:bfd;
-        uses vpn-common:service-status;
+        uses ac-common:service-status;
       }
     }
     container security {
