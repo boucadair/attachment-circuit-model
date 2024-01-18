@@ -345,7 +345,7 @@ module ietf-bearer-svc {
           "Specifies the set of ACes that are bound to the bearer.";
       }
       uses ac-common:op-instructions;
-      uses vpn-common:service-status;
+      uses ac-common:service-status;
     }
   }
 }
