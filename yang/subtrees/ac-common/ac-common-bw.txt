@@ -1,11 +1,11 @@
-  grouping bandwidth-parameters
+  grouping bandwidth-parameters:
     +-- cir?   uint64
     +-- cbs?   uint64
     +-- eir?   uint64
     +-- ebs?   uint64
     +-- pir?   uint64
     +-- pbs?   uint64
-  grouping bandwidth-per-type
+  grouping bandwidth-per-type:
     +-- bandwidth* [bw-type]
        +-- bw-type?     identityref
        +-- (type)?
