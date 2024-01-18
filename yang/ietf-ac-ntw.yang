@@ -1670,17 +1670,6 @@ module ietf-ac-ntw {
   grouping ac-profile {
     description
       "Grouping for attachment circuit profiles.";
-    container l2-connection {
-      description
-        "Defines Layer 2 protocols and parameters that
-         are required to enable AC connectivity.";
-      //uses l2-connection;
-    }
-    container ip-connection {
-      description
-        "Defines IP connection parameters.";
-      //uses l3-connection;
-    }
     container routing-protocols {
       description
         "Defines routing protocols.";
@@ -1698,7 +1687,7 @@ module ietf-ac-ntw {
     }
   }
 
-  //AC network provisioning 
+  // AC network provisioning 
 
   grouping ac {
     description
