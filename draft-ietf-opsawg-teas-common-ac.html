@@ -1415,7 +1415,15 @@ for the reader's convenience.<a href="#section-3-1" class="pilcrow">¶</a></p>
 <figure id="figure-2">
           <div class="alignCenter art-text artwork" id="section-3.2-3.1">
 <pre>
-  grouping op-instructions
+  grouping service-status:
+    +-- status
+       +-- admin-status
+       |  +-- status?        identityref
+       |  +--ro last-change?   yang:date-and-time
+       +--ro oper-status
+          +--ro status?        identityref
+          +--ro last-change?   yang:date-and-time
+  grouping op-instructions:
     +-- requested-start?   yang:date-and-time
     +-- requested-stop?    yang:date-and-time
     +--ro actual-start?      yang:date-and-time

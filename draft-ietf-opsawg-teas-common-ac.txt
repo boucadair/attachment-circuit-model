@@ -272,11 +272,19 @@ Table of Contents
       scheduling instructions and report related events for a service
       request (e.g., AC or bearer).
 
-                grouping op-instructions
-                  +-- requested-start?   yang:date-and-time
-                  +-- requested-stop?    yang:date-and-time
-                  +--ro actual-start?      yang:date-and-time
-                  +--ro actual-stop?       yang:date-and-time
+               grouping service-status:
+                 +-- status
+                    +-- admin-status
+                    |  +-- status?        identityref
+                    |  +--ro last-change?   yang:date-and-time
+                    +--ro oper-status
+                       +--ro status?        identityref
+                       +--ro last-change?   yang:date-and-time
+               grouping op-instructions:
+                 +-- requested-start?   yang:date-and-time
+                 +-- requested-stop?    yang:date-and-time
+                 +--ro actual-start?      yang:date-and-time
+                 +--ro actual-stop?       yang:date-and-time
 
                 Figure 2: Operational Instructions Grouping
 
