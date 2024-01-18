@@ -1,30 +1,50 @@
 module: ietf-ac-common
 
-  grouping op-instructions
+  grouping service-status:
+    +-- status
+       +-- admin-status
+       |  +-- status?        identityref
+       |  +--ro last-change?   yang:date-and-time
+       +--ro oper-status
+          +--ro status?        identityref
+          +--ro last-change?   yang:date-and-time
+  grouping ac-profile-cfg:
+    +-- valid-provider-identifiers
+       +-- encryption-profile-identifier* [id]
+       |  +-- id?   string
+       +-- qos-profile-identifier* [id]
+       |  +-- id?   string
+       +-- bfd-profile-identifier* [id]
+       |  +-- id?   string
+       +-- forwarding-profile-identifier* [id]
+       |  +-- id?   string
+       +-- routing-profile-identifier* [id]
+          +-- id?   string
+  grouping op-instructions:
     +-- requested-start?   yang:date-and-time
     +-- requested-stop?    yang:date-and-time
     +--ro actual-start?      yang:date-and-time
     +--ro actual-stop?       yang:date-and-time
-  grouping dot1q
+  grouping dot1q:
     +-- tag-type?   identityref
     +-- cvlan-id?   uint16
-  grouping priority-tagged
+  grouping priority-tagged:
     +-- tag-type?   identityref
-  grouping qinq
+  grouping qinq:
     +-- tag-type?   identityref
     +-- svlan-id    uint16
     +-- cvlan-id    uint16
-  grouping pseudowire
+  grouping pseudowire:
     +-- vcid?      uint32
     +-- far-end?   union
-  grouping vpls
+  grouping vpls:
     +-- vcid?      uint32
     +-- far-end*   union
-  grouping vxlan
+  grouping vxlan:
     +-- vni-id             uint32
     +-- peer-mode?         identityref
     +-- peer-ip-address*   inet:ip-address
-  grouping l2-tunnel-service
+  grouping l2-tunnel-service:
     +-- type?         identityref
     +-- pseudowire
     |  +-- vcid?      uint32
@@ -36,13 +56,13 @@ module: ietf-ac-common
        +-- vni-id             uint32
        +-- peer-mode?         identityref
        +-- peer-ip-address*   inet:ip-address
-  grouping ipv4-allocation-type
+  grouping ipv4-allocation-type:
     +-- prefix-length?             uint8
     +-- address-allocation-type?   identityref
-  grouping ipv6-allocation-type
+  grouping ipv6-allocation-type:
     +-- prefix-length?             uint8
     +-- address-allocation-type?   identityref
-  grouping ipv4-connection-basic
+  grouping ipv4-connection-basic:
     +-- prefix-length?                       uint8
     +-- address-allocation-type?             identityref
     +-- (allocation-type)?
@@ -54,7 +74,7 @@ module: ietf-ac-common
              +--:(customer-dhcp-servers)
                 +-- customer-dhcp-servers
                    +-- server-ip-address*   inet:ipv4-address
-  grouping ipv6-connection-basic
+  grouping ipv6-connection-basic:
     +-- prefix-length?                       uint8
     +-- address-allocation-type?             identityref
     +-- (allocation-type)?
@@ -66,7 +86,7 @@ module: ietf-ac-common
              +--:(customer-dhcp-servers)
                 +-- customer-dhcp-servers
                    +-- server-ip-address*   inet:ipv6-address
-  grouping ipv4-connection
+  grouping ipv4-connection:
     +-- local-address?                           inet:ipv4-address
     +-- virtual-address?                         inet:ipv4-address
     +-- prefix-length?                           uint8
@@ -93,7 +113,7 @@ module: ietf-ac-common
           +-- address* [address-id]
              +-- address-id?         string
              +-- customer-address?   inet:ipv4-address
-  grouping ipv6-connection
+  grouping ipv6-connection:
     +-- local-address?                           inet:ipv6-address
     +-- virtual-address?                         inet:ipv6-address
     +-- prefix-length?                           uint8
@@ -120,7 +140,7 @@ module: ietf-ac-common
           +-- address* [address-id]
              +-- address-id?         string
              +-- customer-address?   inet:ipv6-address
-  grouping bgp-authentication
+  grouping bgp-authentication:
     +-- authentication
        +-- enable?            boolean
        +-- keying-material
@@ -134,7 +154,7 @@ module: ietf-ac-common
                 +-- key-id?             uint32
                 +-- key?                string
                 +-- crypto-algorithm?   identityref
-  grouping ospf-authentication
+  grouping ospf-authentication:
     +-- authentication
        +-- enable?            boolean
        +-- keying-material
@@ -145,7 +165,7 @@ module: ietf-ac-common
                 +-- key-id?             uint32
                 +-- key?                string
                 +-- crypto-algorithm?   identityref
-  grouping isis-authentication
+  grouping isis-authentication:
     +-- authentication
        +-- enable?            boolean
        +-- keying-material
@@ -156,7 +176,7 @@ module: ietf-ac-common
                 +-- key-id?             uint32
                 +-- key?                string
                 +-- crypto-algorithm?   identityref
-  grouping rip-authentication
+  grouping rip-authentication:
     +-- authentication
        +-- enable?            boolean
        +-- keying-material
@@ -166,28 +186,28 @@ module: ietf-ac-common
              +--:(auth-key-explicit)
                 +-- key?                string
                 +-- crypto-algorithm?   identityref
-  grouping bgp-peer-group-without-name
+  grouping bgp-peer-group-without-name:
     +--ro local-as?         inet:as-number
     +-- peer-as?          inet:as-number
     +-- address-family?   identityref
-  grouping bgp-peer-group-with-name
+  grouping bgp-peer-group-with-name:
     +-- name?             string
     +--ro local-as?         inet:as-number
     +-- peer-as?          inet:as-number
     +-- address-family?   identityref
-  grouping ospf-basic
+  grouping ospf-basic:
     +-- address-family?   identityref
     +-- area-id           yang:dotted-quad
     +-- metric?           uint16
-  grouping isis-basic
+  grouping isis-basic:
     +-- address-family?   identityref
     +-- area-address      area-address
-  grouping ipv4-static-rtg-entry
+  grouping ipv4-static-rtg-entry:
     +-- lan?        inet:ipv4-prefix
     +-- lan-tag?    string
     +-- next-hop?   union
     +-- metric?     uint32
-  grouping ipv4-static-rtg
+  grouping ipv4-static-rtg:
     +-- ipv4-lan-prefixes* [lan next-hop] {vpn-common:ipv4}?
        +-- lan?        inet:ipv4-prefix
        +-- lan-tag?    string
@@ -200,12 +220,12 @@ module: ietf-ac-common
           +--ro oper-status
              +--ro status?        identityref
              +--ro last-change?   yang:date-and-time
-  grouping ipv6-static-rtg-entry
+  grouping ipv6-static-rtg-entry:
     +-- lan?        inet:ipv6-prefix
     +-- lan-tag?    string
     +-- next-hop?   union
     +-- metric?     uint32
-  grouping ipv6-static-rtg
+  grouping ipv6-static-rtg:
     +-- ipv6-lan-prefixes* [lan next-hop] {vpn-common:ipv6}?
        +-- lan?        inet:ipv6-prefix
        +-- lan-tag?    string
@@ -218,16 +238,16 @@ module: ietf-ac-common
           +--ro oper-status
              +--ro status?        identityref
              +--ro last-change?   yang:date-and-time
-  grouping bfd
+  grouping bfd:
     +-- holdtime?   uint32
-  grouping bandwidth-parameters
+  grouping bandwidth-parameters:
     +-- cir?   uint64
     +-- cbs?   uint64
     +-- eir?   uint64
     +-- ebs?   uint64
     +-- pir?   uint64
     +-- pbs?   uint64
-  grouping bandwidth-per-type
+  grouping bandwidth-per-type:
     +-- bandwidth* [bw-type]
        +-- bw-type?     identityref
        +-- (type)?
