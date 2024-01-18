@@ -47,8 +47,8 @@ module ietf-ac-common {
      Author:   Bo Wu
                <mailto:lana.wubo@huawei.com>";
   description
-    "This YANG module defines a YANG model common to attachment
-     circuits.
+    "This YANG module defines a common attachment circuit (AC)
+     YANG model.
 
      Copyright (c) 2024 IETF Trust and the persons identified as
      authors of the code.  All rights reserved.
@@ -60,14 +60,14 @@ module ietf-ac-common {
      Relating to IETF Documents
      (https://trustee.ietf.org/license-info).
 
-     This version of this YANG module is part of RFC xxx; see the
+     This version of this YANG module is part of RFC XXXX; see the
      RFC itself for full legal notices.";
 
   revision 2023-11-13 {
     description
       "Initial revision.";
     reference
-      "RFC xxxx: A Common YANG Data Model for Attachment Circuits";
+      "RFC XXXX: A Common YANG Data Model for Attachment Circuits";
   }
 
   /****************************Identities************************/
