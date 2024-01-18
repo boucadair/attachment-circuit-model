@@ -1,4 +1,12 @@
-  grouping op-instructions
+  grouping service-status:
+    +-- status
+       +-- admin-status
+       |  +-- status?        identityref
+       |  +--ro last-change?   yang:date-and-time
+       +--ro oper-status
+          +--ro status?        identityref
+          +--ro last-change?   yang:date-and-time
+  grouping op-instructions:
     +-- requested-start?   yang:date-and-time
     +-- requested-stop?    yang:date-and-time
     +--ro actual-start?      yang:date-and-time
