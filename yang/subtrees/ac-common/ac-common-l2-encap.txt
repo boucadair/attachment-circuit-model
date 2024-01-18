@@ -1,23 +1,23 @@
-  grouping dot1q
+  grouping dot1q:
     +-- tag-type?   identityref
     +-- cvlan-id?   uint16
-  grouping priority-tagged
+  grouping priority-tagged:
     +-- tag-type?   identityref
-  grouping qinq
+  grouping qinq:
     +-- tag-type?   identityref
     +-- svlan-id    uint16
     +-- cvlan-id    uint16
-  grouping pseudowire
+  grouping pseudowire:
     +-- vcid?      uint32
     +-- far-end?   union
-  grouping vpls
+  grouping vpls:
     +-- vcid?      uint32
     +-- far-end*   union
-  grouping vxlan
+  grouping vxlan:
     +-- vni-id             uint32
     +-- peer-mode?         identityref
     +-- peer-ip-address*   inet:ip-address
-  grouping l2-tunnel-service
+  grouping l2-tunnel-service:
     +-- type?         identityref
     +-- pseudowire
     |  +-- vcid?      uint32
