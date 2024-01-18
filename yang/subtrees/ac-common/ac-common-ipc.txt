@@ -1,10 +1,10 @@
-  grouping ipv4-allocation-type
+  grouping ipv4-allocation-type:
     +-- prefix-length?             uint8
     +-- address-allocation-type?   identityref
-  grouping ipv6-allocation-type
+  grouping ipv6-allocation-type:
     +-- prefix-length?             uint8
     +-- address-allocation-type?   identityref
-  grouping ipv4-connection-basic
+  grouping ipv4-connection-basic:
     +-- prefix-length?                       uint8
     +-- address-allocation-type?             identityref
     +-- (allocation-type)?
@@ -16,7 +16,7 @@
              +--:(customer-dhcp-servers)
                 +-- customer-dhcp-servers
                    +-- server-ip-address*   inet:ipv4-address
-  grouping ipv6-connection-basic
+  grouping ipv6-connection-basic:
     +-- prefix-length?                       uint8
     +-- address-allocation-type?             identityref
     +-- (allocation-type)?
@@ -28,7 +28,7 @@
              +--:(customer-dhcp-servers)
                 +-- customer-dhcp-servers
                    +-- server-ip-address*   inet:ipv6-address
-  grouping ipv4-connection
+  grouping ipv4-connection:
     +-- local-address?                           inet:ipv4-address
     +-- virtual-address?                         inet:ipv4-address
     +-- prefix-length?                           uint8
@@ -55,7 +55,7 @@
           +-- address* [address-id]
              +-- address-id?         string
              +-- customer-address?   inet:ipv4-address
-  grouping ipv6-connection
+  grouping ipv6-connection:
     +-- local-address?                           inet:ipv6-address
     +-- virtual-address?                         inet:ipv6-address
     +-- prefix-length?                           uint8
