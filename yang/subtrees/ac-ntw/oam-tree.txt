@@ -1,8 +1,6 @@
   augment /nw:networks/nw:network:
     +--rw ac-profile* [name]
        +--rw name                 string
-       +--rw l2-connection
-       +--rw ip-connection
        +--rw routing-protocols
        |  ...
        +--rw oam
