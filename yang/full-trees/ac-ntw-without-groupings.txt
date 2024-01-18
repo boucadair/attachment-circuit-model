@@ -13,8 +13,6 @@
     |        +--rw id    string
     +--rw ac-profile* [name]
        +--rw name                 string
-       +--rw l2-connection
-       +--rw ip-connection
        +--rw routing-protocols
        |  +--rw routing-protocol* [id]
        |     +--rw id      string
