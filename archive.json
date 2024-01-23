@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-01-21T00:41:39.391611+00:00",
+  "timestamp": "2024-01-23T00:38:33.579984+00:00",
   "repo": "boucadair/attachment-circuit-model",
   "labels": [
     {
@@ -1856,9 +1856,31 @@
       "labels": [],
       "body": "1. There is a mismatch of 3GPP NRM TS-28.541 Clause  6.3.35 LogicalInterfaceInfo and bearer yang tree:\r\n3GPP NRM: \r\nLogicalInterfaceInfo.portName? string\r\nAC DM:\r\n        no port info \r\n\r\n2. A mismatch of 3GPP NRM TS-28.623 Clause A 2.2.2 IOC ManagedElement and bearer yang tree:\r\n3GPP NRM: \r\n        locationName? string \r\nAC DM:\r\n        |  |  +--rw location\r\n        |  |     +--rw location-name?  string\r\n\r\n3. Missing parameters in bearer DM:\r\n\r\n- crossing id and fiber parameters\r\n- microwave line id with port id\r\n- l2 or l3 leased service id\r\n- id of additional switch in the middle, not controlled by \"customer\" or \"provider\"\r\n- service may use more than one Bearer. It may be LAG, dual-homing, FHRP, EVPN - examples of L2/L3 services running on multiple bearers at the same time\r\n",
       "createdAt": "2023-09-26T08:50:02Z",
-      "updatedAt": "2023-11-30T14:43:32Z",
+      "updatedAt": "2024-01-22T09:38:16Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "boucadair",
+          "authorAssociation": "OWNER",
+          "body": "Point 3 is more related to the resources/network part of bearers. We don't have a network models for bearers. So, that's part is out of scope. ",
+          "createdAt": "2024-01-22T09:36:31Z",
+          "updatedAt": "2024-01-22T09:36:31Z"
+        },
+        {
+          "author": "boucadair",
+          "authorAssociation": "OWNER",
+          "body": "Point (1) can be discussed in the teas applicability draft.",
+          "createdAt": "2024-01-22T09:36:56Z",
+          "updatedAt": "2024-01-22T09:36:56Z"
+        },
+        {
+          "author": "boucadair",
+          "authorAssociation": "OWNER",
+          "body": "Point (2) name mismatch can be clarified in the teas applicability spec. ",
+          "createdAt": "2024-01-22T09:38:15Z",
+          "updatedAt": "2024-01-22T09:38:15Z"
+        }
+      ]
     },
     {
       "number": 95,
@@ -2234,7 +2256,9 @@
       "state": "OPEN",
       "author": "boucadair",
       "authorAssociation": "OWNER",
-      "assignees": [],
+      "assignees": [
+        "sbarguil"
+      ],
       "labels": [
         "AC-SVC",
         "bearer-svc",
@@ -2242,7 +2266,7 @@
       ],
       "body": "![image](https://github.com/boucadair/attachment-circuit-model/assets/15671127/d98a6c9e-346b-4542-a885-216cd485034b)\r\n",
       "createdAt": "2023-12-05T08:29:52Z",
-      "updatedAt": "2023-12-05T08:29:52Z",
+      "updatedAt": "2024-01-22T09:27:48Z",
       "closedAt": null,
       "comments": []
     },
