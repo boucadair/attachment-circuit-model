@@ -281,7 +281,7 @@ The response in {{ex-sap-query}} indicates that the VPLS service can be delivere
 ~~~~~~~~~~
 {: #ex-acntw-query-2 title="Example of AC Network Response with SAP (Message Body)" artwork-align="center"}
 
-The provisionned AC at PE1 can be retrieved using the AC network model as depicted in {{ex-acntw-query}}.
+The provisioned AC at PE1 can be retrieved using the AC network model as depicted in {{ex-acntw-query}}.
 
 ~~~~~~~~~~
 {::include-fold ./json-examples/glue/example-acntw-2.json}
@@ -292,3 +292,5 @@ The provisionned AC at PE1 can be retrieved using the AC network model as depict
 {:numbered="false"}
 
 Thanks to Bo Wu for the review and comments.
+
+Thansk to Martin Björklund for the yangdoctors review.
