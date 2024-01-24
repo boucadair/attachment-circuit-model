@@ -57,7 +57,7 @@ module: ietf-ac-ntw
        |  +--rw routing-protocol* [id]
        |     +--rw id                  string
        |     +--rw type?               identityref
-       |     +--rw routing-profiles* [id]
+       |     +--rw routing-profile* [id]
        |     |  +--rw id      leafref
        |     |  +--rw type?   identityref
        |     +--rw static
