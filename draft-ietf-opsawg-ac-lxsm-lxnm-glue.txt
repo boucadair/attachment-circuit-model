@@ -1278,7 +1278,7 @@ Acknowledgments
 
    Thanks to Bo Wu for the review and comments.
 
-   Thansk to Martin Björklund for the yangdoctors review.
+   Thanks to Martin Björklund for the yangdoctors review.
 
 Authors' Addresses
 
