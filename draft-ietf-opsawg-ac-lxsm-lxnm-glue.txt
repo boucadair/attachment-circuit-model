@@ -5,12 +5,12 @@
 OPSAWG                                                 M. Boucadair, Ed.
 Internet-Draft                                                    Orange
 Intended status: Standards Track                              R. Roberts
-Expires: 21 July 2024                                            Juniper
+Expires: 27 July 2024                                            Juniper
                                                            S. B. Giraldo
                                                                    Nokia
                                                            O. G. D. Dios
                                                               Telefonica
-                                                         18 January 2024
+                                                         24 January 2024
 
 
   A YANG Data Model for Augmenting VPN Service and Network Models with
@@ -51,7 +51,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 21 July 2024.
+   This Internet-Draft will expire on 27 July 2024.
 
 Copyright Notice
 
@@ -635,9 +635,9 @@ Table of Contents
               and B. Wu, "YANG Data Models for Bearers and 'Attachment
               Circuits'-as-a-Service (ACaaS)", Work in Progress,
               Internet-Draft, draft-ietf-opsawg-teas-attachment-circuit-
-              04, 14 January 2024,
+              05, 22 January 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
-              teas-attachment-circuit-04>.
+              teas-attachment-circuit-05>.
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
@@ -1212,8 +1212,8 @@ A.2.  Network and Service AC References
 
      Figure 11: Example of AC Network Response with SAP (Message Body)
 
-   The provisionned AC at PE1 can be retrieved using the AC network
-   model as depicted in Figure 12.
+   The provisioned AC at PE1 can be retrieved using the AC network model
+   as depicted in Figure 12.
 
         {
            "ietf-ac-ntw:ac":[
@@ -1277,6 +1277,8 @@ A.2.  Network and Service AC References
 Acknowledgments
 
    Thanks to Bo Wu for the review and comments.
+
+   Thansk to Martin Björklund for the yangdoctors review.
 
 Authors' Addresses
 
