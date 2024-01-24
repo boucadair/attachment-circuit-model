@@ -113,7 +113,7 @@ module ietf-ac-ntw {
     }
     description
       "Defines a reference to an attachment circuit. The reference 
-       be used also by other modules.";
+       is used also by other modules.";
   }
 
   typedef ac-profile-reference {
@@ -134,8 +134,7 @@ module ietf-ac-ntw {
         + "/ac-ntw:encryption-profile-identifier/ac-ntw:id";
     }
     description
-      "Defines a type to an encryption profile for referencing
-       purposes.";
+      "Defines a reference to an encryption profile.";
   }
 
   typedef qos-profile-reference {
@@ -147,7 +146,7 @@ module ietf-ac-ntw {
         + "/ac-ntw:qos-profile-identifier/ac-ntw:id";
     }
     description
-      "Defines a type to a QoS profile for referencing purposes.";
+      "Defines a reference to a QoS profile.";
   }
 
   typedef bfd-profile-reference {
@@ -159,7 +158,7 @@ module ietf-ac-ntw {
         + "/ac-ntw:bfd-profile-identifier/ac-ntw:id";
     }
     description
-      "Defines a type to a BFD profile for referencing purposes.";
+      "Defines a reference to a BFD profile.";
   }
 
   typedef forwarding-profile-reference {
@@ -171,8 +170,7 @@ module ietf-ac-ntw {
         + "/ac-ntw:forwarding-profile-identifier/ac-ntw:id";
     }
     description
-      "Defines a type to a forwarding profile for referencing
-       purposes.";
+      "Defines a reference to a forwarding profile.";
   }
 
   typedef routing-profile-reference {
@@ -184,8 +182,7 @@ module ietf-ac-ntw {
         + "/ac-ntw:routing-profile-identifier/ac-ntw:id";
     }
     description
-      "Defines a type to a routing profile for referencing 
-       purposes.";
+      "Defines a reference to a routing profile.";
   }
 
   // L2 conenction
@@ -827,8 +824,8 @@ module ietf-ac-ntw {
          If set, the default routes are advertised to a peer.";
     }
     leaf site-of-origin {
-      when "../address-family = 'vpn-common:ipv4' "
-         + "or 'vpn-common:dual-stack'" {
+      when "derived-from-or-self(../address-family, 'vpn-common:ipv4'"
+         + " or 'vpn-common:dual-stack')" {
         description
           "Only applies if IPv4 is activated.";
       }
@@ -843,8 +840,8 @@ module ietf-ac-ntw {
                    Section 7";
     }
     leaf ipv6-site-of-origin {
-      when "../address-family = 'vpn-common:ipv6' "
-         + "or 'vpn-common:dual-stack'" {
+      when "derived-from-or-self(../address-family, 'vpn-common:ipv6'"
+         + " or 'vpn-common:dual-stack')" {
         description
           "Only applies if IPv6 is activated.";
       }
@@ -1188,7 +1185,7 @@ module ietf-ac-ntw {
         description
           "Type of routing protocol.";
       }
-      list routing-profiles {
+      list routing-profile {
         key "id";
         description
           "Routing profiles.";
@@ -1217,7 +1214,7 @@ module ietf-ac-ntw {
         container cascaded-lan-prefixes {
           description
             "LAN prefixes from the customer.";
-          list ipv4-lan-prefixes {
+          list ipv4-lan-prefix {
             if-feature "vpn-common:ipv4";
             key "lan next-hop";
             description
@@ -1237,7 +1234,7 @@ module ietf-ac-ntw {
             }
             uses ac-common:service-status;
           }
-          list ipv6-lan-prefixes {
+          list ipv6-lan-prefix {
             if-feature "vpn-common:ipv6";
             key "lan next-hop";
             description
