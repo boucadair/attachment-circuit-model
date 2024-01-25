@@ -3732,6 +3732,7 @@ Table of Contents
      augment "/nw:networks/nw:network" {
        description
          "Add a list of profiles.";
+       uses nw:network-ref;
        container specific-provisioning-profiles {
          description
            "Contains a set of valid profiles to reference in the AC
@@ -3758,6 +3759,7 @@ Table of Contents
        }
        description
          "Augments nodes with AC provisioning details.";
+       uses nw:node-ref;
        list ac {
          key "name";
          description
