@@ -1,5 +1,3 @@
-module: ietf-ac-glue
-
   augment /l2vpn-svc:l2vpn-svc/l2vpn-svc:sites/l2vpn-svc:site
             /l2vpn-svc:site-network-accesses:
     +--rw ac-svc-ref*   ac-svc:attachment-circuit-reference
@@ -17,18 +15,30 @@ module: ietf-ac-glue
   augment /l2nm:l2vpn-ntw/l2nm:vpn-services/l2nm:vpn-service
             /l2nm:vpn-nodes/l2nm:vpn-node/l2nm:vpn-network-accesses:
     +--rw ac-svc-ref*   ac-svc:attachment-circuit-reference
-    +--rw ac-ntw-ref*   ac-ntw:attachment-circuit-reference
+    +--rw ac-ntw-ref* [ac-ref]
+       +--rw ac-ref         leafref
+       +--rw node-ref?      leafref
+       +--rw network-ref?   -> /nw:networks/network/network-id
   augment /l2nm:l2vpn-ntw/l2nm:vpn-services/l2nm:vpn-service
             /l2nm:vpn-nodes/l2nm:vpn-node/l2nm:vpn-network-accesses
             /l2nm:vpn-network-access:
     +--rw ac-svc-ref?   ac-svc:attachment-circuit-reference {ac-glue}?
-    +--rw ac-ntw-ref?   ac-ntw:attachment-circuit-reference {ac-glue}?
+    +--rw ac-ntw-ref {ac-glue}?
+       +--rw ac-ref?        leafref
+       +--rw node-ref?      leafref
+       +--rw network-ref?   -> /nw:networks/network/network-id
   augment /l3nm:l3vpn-ntw/l3nm:vpn-services/l3nm:vpn-service
             /l3nm:vpn-nodes/l3nm:vpn-node/l3nm:vpn-network-accesses:
     +--rw ac-svc-ref*   ac-svc:attachment-circuit-reference
-    +--rw ac-ntw-ref*   ac-ntw:attachment-circuit-reference
+    +--rw ac-ntw-ref* [ac-ref]
+       +--rw ac-ref         leafref
+       +--rw node-ref?      leafref
+       +--rw network-ref?   -> /nw:networks/network/network-id
   augment /l3nm:l3vpn-ntw/l3nm:vpn-services/l3nm:vpn-service
             /l3nm:vpn-nodes/l3nm:vpn-node/l3nm:vpn-network-accesses
             /l3nm:vpn-network-access:
     +--rw ac-svc-ref?   ac-svc:attachment-circuit-reference {ac-glue}?
-    +--rw ac-ntw-ref?   ac-ntw:attachment-circuit-reference {ac-glue}?
+    +--rw ac-ntw-ref {ac-glue}?
+       +--rw ac-ref?        leafref
+       +--rw node-ref?      leafref
+       +--rw network-ref?   -> /nw:networks/network/network-id
