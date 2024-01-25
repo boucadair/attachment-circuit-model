@@ -198,9 +198,13 @@ augment /nw:networks/nw:network/nw:node:
   +--rw ac* [name]
      +--rw name                 string
      +--rw ac-svc-ref?          ac-svc:attachment-circuit-reference
-     +--rw ac-profile* [profile-id]
-     |  +--rw profile-id    -> /nw:networks/network/ac-profile/name
-     +--rw ac-parent-ref?       ac-ntw:attachment-circuit-reference
+     +--rw ac-profile* [ac-profile-ref]
+     |  +--rw ac-profile-ref    leafref
+     |  +--rw network-ref?      -> /nw:networks/network/network-id
+     +--rw ac-parent-ref
+     |  +--rw ac-ref?        leafref
+     |  +--rw node-ref?      leafref
+     |  +--rw network-ref?   -> /nw:networks/network/network-id
      +--rw peer-sap-id*         string
      +--rw group* [group-id]
      |  +--rw group-id      string
@@ -208,7 +212,7 @@ augment /nw:networks/nw:network/nw:node:
      +--rw status
      |  +--rw admin-status
      |  |  +--rw status?        identityref
-     |  |  +--rw last-change?   yang:date-and-time
+     |  |  +--ro last-change?   yang:date-and-time
      |  +--ro oper-status
      |     +--ro status?        identityref
      |     +--ro last-change?   yang:date-and-time
