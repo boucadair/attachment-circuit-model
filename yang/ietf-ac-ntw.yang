@@ -109,7 +109,8 @@ module ietf-ac-ntw {
 
   typedef attachment-circuit-reference {
     type leafref {
-      path "/nw:networks/nw:network/nw:node/ac-ntw:ac/ac-ntw:name";
+      path "/nw:networks/nw:network[name=current()/../nw:network-id]"
+         + "/nw:node/ac-ntw:ac/ac-ntw:name";
     }
     description
       "Defines a reference to an attachment circuit. The reference 
