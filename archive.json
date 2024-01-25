@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-01-23T00:38:33.579984+00:00",
+  "timestamp": "2024-01-25T00:38:28.461095+00:00",
   "repo": "boucadair/attachment-circuit-model",
   "labels": [
     {
@@ -6328,6 +6328,99 @@
         }
       ],
       "reviews": []
+    },
+    {
+      "number": 162,
+      "id": "PR_kwDOIiAkrc5k-I7f",
+      "title": "Update ietf-ac-ntw.yang",
+      "url": "https://github.com/boucadair/attachment-circuit-model/pull/162",
+      "state": "CLOSED",
+      "author": "boucadair",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-01-24T16:12:45Z",
+      "updatedAt": "2024-01-24T16:14:13Z",
+      "baseRepository": "boucadair/attachment-circuit-model",
+      "baseRefName": "main",
+      "baseRefOid": "2e4295d2770623b0adb8fde838600c3b7d8d03f6",
+      "headRepository": "boucadair/attachment-circuit-model",
+      "headRefName": "boucadair-patch-1",
+      "headRefOid": "f3560acb692ab30bbdb9fabb7b323297753bd005",
+      "closedAt": "2024-01-24T16:14:13Z",
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 163,
+      "id": "PR_kwDOIiAkrc5k-N4K",
+      "title": "Update ietf-ac-ntw.yang",
+      "url": "https://github.com/boucadair/attachment-circuit-model/pull/163",
+      "state": "CLOSED",
+      "author": "boucadair",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-01-24T16:22:43Z",
+      "updatedAt": "2024-01-24T16:31:37Z",
+      "baseRepository": "boucadair/attachment-circuit-model",
+      "baseRefName": "main",
+      "baseRefOid": "ebf0d9c12c8f8ee29c7fae09fa232fce1f3f6585",
+      "headRepository": "boucadair/attachment-circuit-model",
+      "headRefName": "boucadair-patch-2",
+      "headRefOid": "040277cbe027201c91292f9d54fc219a9d124f61",
+      "closedAt": "2024-01-24T16:31:37Z",
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIiAkrc5tyB5B",
+          "commit": {
+            "abbreviatedOid": "c8430a4"
+          },
+          "author": "boucadair",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-24T16:26:15Z",
+          "updatedAt": "2024-01-24T16:26:16Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "```suggestion\r\n      path \"/nw:networks/nw:network[network-id=current()/../network-id]/nw:node/ac-ntw:ac/ac-ntw:name\";\r\n```",
+              "createdAt": "2024-01-24T16:26:16Z",
+              "updatedAt": "2024-01-24T16:26:16Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIiAkrc5tyE-m",
+          "commit": {
+            "abbreviatedOid": "ba8f7b7"
+          },
+          "author": "boucadair",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-24T16:28:41Z",
+          "updatedAt": "2024-01-24T16:28:41Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "```suggestion\r\n      path \"/nw:networks/nw:network[nw:network-id=current()/../nw:network-id]/nw:node/ac-ntw:ac/ac-ntw:name\";\r\n```",
+              "createdAt": "2024-01-24T16:28:41Z",
+              "updatedAt": "2024-01-24T16:28:41Z"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
