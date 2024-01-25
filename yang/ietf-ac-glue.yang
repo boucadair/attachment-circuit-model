@@ -100,8 +100,8 @@ module ietf-ac-glue {
         "A reference to the AC as exposed at the service that 
          was provisioned using the ACaaS module.";
     }
-    leaf ac-ntw-ref {
-      type ac-ntw:attachment-circuit-reference;
+    container ac-ntw-ref {
+      uses ac-ntw:attachment-circuit-reference;
       description
         "A reference to the AC that  was provisioned
          using the AC network module.";
@@ -128,11 +128,12 @@ module ietf-ac-glue {
         "A reference to the AC as exposed at the service that 
          was provisioned using the ACaaS module.";
     }
-    leaf-list ac-ntw-ref {
-      type ac-ntw:attachment-circuit-reference;
+    list ac-ntw-ref {
+      key "ac-ref";
       description
-        "A reference to the AC that  was provisioned
+        "A reference to the AC that was provisioned
          using the AC network module.";
+      uses ac-ntw:attachment-circuit-reference;
     }
   }
 
