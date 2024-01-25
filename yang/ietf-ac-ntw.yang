@@ -1855,7 +1855,6 @@ module ietf-ac-ntw {
         uses ac-profile-reference;
       }
       container ac-parent-ref {
-        //type ac-ntw:attachment-circuit-reference;
         description
           "Specifies the parent AC that is inherited by an AC.
            Parent ACs are used, e.g., in contexts where multiple
