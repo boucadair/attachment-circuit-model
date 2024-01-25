@@ -1213,7 +1213,11 @@ A.2.  Network and Service AC References
                        "status":"ietf-vpn-common:op-up"
                     },
                     "ietf-ac-ntw:ac":[
-                       "ac-1"
+                       {
+                          "ac-ref":"ac-1",
+                          "node-ref":"example:pe2",
+                          "network-ref":"example:an-id"
+                       }
                     ]
                  }
               ]
