@@ -4309,9 +4309,9 @@ A.1.  VPLS
 
                      Figure 19: ACs Created Using ACaaS
 
-   The provisionned AC at PE1 can be retrieved using the AC network
-   model as depicted in Figure 20.  A similar query can be used for the
-   AC at PE2.
+   The provisioned AC at PE1 can be retrieved using the AC network model
+   as depicted in Figure 20.  A similar query can be used for the AC at
+   PE2.
 
         {
            "ietf-ac-ntw:ac":[
@@ -4519,6 +4519,8 @@ Acknowledgments
    This document builds on [RFC9182] and [RFC9291].
 
    Thanks to Moti Morgenstern for the review and comments.
+
+   Thanks to Martin Björklund for the yangdoctors review.
 
 Contributors
 
