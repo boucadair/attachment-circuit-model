@@ -264,16 +264,31 @@ The status of an AC can be tracked using 'status'. Both operational status and a
 
 An AC can be characterized using Layer 2 connectivity ({{sec-l2}}), Layer 3 connectivity ({{sec-l3}}), routing protocols ({{sec-rtg}}), OAM ({{sec-oam}}), security ({{sec-sec}}), and service ({{sec-svc}}) considerations.
 
+## References
+
+The AC module defines a set of groupings depicted in {{references-tree}} for referencing purposes. These references are used within or outside the AC network module. The use of such groupings is consistent with the design in {{!RFC8345}}.
+
+~~~~
+{::include ./yang/subtrees/ac-ntw/references.txt}
+~~~~
+{: #references-tree title="References Grouping"}
+
+The groupings shown in {{references-tree}} contain the information necessary to reference:
+
+* an attachment circuit that is terminated by a specific node in a given network,
+* an attachment circuit profile of a specific network ({{sec-profiles}}), and
+* specific provisioning profiles that are bound to a specific network ({{sec-profiles}}).
+
 ## Provisioning Profiles {#sec-profiles}
 
-The specific provisioning profiles tree structure is shown in {{profiles-tree}}.
+The AC and specific provisioning profiles tree structure is shown in {{profiles-tree}}.
 
 ~~~~
 {::include ./yang/subtrees/ac-ntw/profiles-tree.txt}
 ~~~~
 {: #profiles-tree title="Profiles Tree Structure"}
 
-The exact definition of these profiles is local to each service provider. The model only includes an identifier for these profiles in order to ease identifying and binding local policies when building an AC. As shown in {{profiles-tree}}, the following identifiers can be included:
+The exact definition of the specific provisioning profiles profiles is local to each service provider. The model only includes an identifier for these profiles in order to ease identifying and binding local policies when building an AC. As shown in {{profiles-tree}}, the following identifiers can be included:
 
 'encryption-profile-identifier':
 : An encryption profile refers to a set of policies related to the encryption schemes and setup that can be applied on the AC.
@@ -289,7 +304,6 @@ The exact definition of these profiles is local to each service provider. The mo
 
 'routing-profile-identifier':
 : A routing profile refers to a set of routing policies that will be invoked (e.g., BGP policies) for an AC.
-
 
 ## L2 Connection {#sec-l2}
 
