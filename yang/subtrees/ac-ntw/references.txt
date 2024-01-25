@@ -1,0 +1,22 @@
+  grouping attachment-circuit-reference:
+    +-- ac-ref?        leafref
+    +-- node-ref?      leafref
+    +-- network-ref?   -> /nw:networks/network/network-id
+  grouping ac-profile-reference:
+    +-- ac-profile-ref?   leafref
+    +-- network-ref?      -> /nw:networks/network/network-id
+  grouping encryption-profile-reference:
+    +-- encryption-profile-ref?   leafref
+    +-- network-ref?              -> /nw:networks/network/network-id
+  grouping qos-profile-reference:
+    +-- qos-profile-ref?   leafref
+    +-- network-ref?       -> /nw:networks/network/network-id
+  grouping bfd-profile-reference:
+    +-- bfd-profile-ref?   leafref
+    +-- network-ref?       -> /nw:networks/network/network-id
+  grouping forwarding-profile-reference:
+    +-- forwarding-profile-ref?   leafref
+    +-- network-ref?              -> /nw:networks/network/network-id
+  grouping routing-profile-reference:
+    +-- routing-profile-ref?   leafref
+    +-- network-ref?           -> /nw:networks/network/network-id
