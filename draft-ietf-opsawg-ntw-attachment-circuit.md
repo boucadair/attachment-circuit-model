@@ -271,7 +271,7 @@ The AC module defines a set of groupings depicted in {{references-tree}} for ref
 ~~~~
 {::include ./yang/subtrees/ac-ntw/references.txt}
 ~~~~
-{: #references-tree title="References Grouping"}
+{: #references-tree title="References Groupings"}
 
 The groupings shown in {{references-tree}} contain the information necessary to reference:
 
