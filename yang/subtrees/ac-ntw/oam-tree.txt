@@ -14,9 +14,13 @@
     +--rw ac* [name]
        +--rw name                 string
        +--rw ac-svc-ref?          ac-svc:attachment-circuit-reference
-       +--rw ac-profile* [profile-id]
-       |  +--rw profile-id    ac-profile-reference
-       +--rw ac-parent-ref?       ac-ntw:attachment-circuit-reference
+       +--rw ac-profile* [ac-profile-ref]
+       |  +--rw ac-profile-ref    leafref
+       |  +--rw network-ref?      -> /nw:networks/network/network-id
+       +--rw ac-parent-ref
+       |  +--rw ac-ref?        leafref
+       |  +--rw node-ref?      leafref
+       |  +--rw network-ref?   -> /nw:networks/network/network-id
        +--rw peer-sap-id*         string
        +--rw group* [group-id]
        |  +--rw group-id      string
@@ -37,7 +41,9 @@
        |  ...
        +--rw oam
        |  +--rw bfd
-       |     +--rw profile?                    ac-svc:bfd-profile-reference
+       |     +--rw bfd-profile-ref?            leafref
+       |     +--rw network-ref?
+       |     |       -> /nw:networks/network/network-id
        |     +--rw session-type?               identityref
        |     +--rw desired-min-tx-interval?    uint32
        |     +--rw required-min-rx-interval?   uint32
