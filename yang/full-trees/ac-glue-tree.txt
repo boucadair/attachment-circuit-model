@@ -1,3 +1,5 @@
+module: ietf-ac-glue
+
   augment /l2vpn-svc:l2vpn-svc/l2vpn-svc:sites/l2vpn-svc:site
             /l2vpn-svc:site-network-accesses:
     +--rw ac-svc-ref*   ac-svc:attachment-circuit-reference
