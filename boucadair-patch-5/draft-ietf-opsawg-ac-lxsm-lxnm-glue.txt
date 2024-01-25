@@ -1276,7 +1276,8 @@ A.2.  Network and Service AC References
                        "qos-profile":{
                           "qos-profile":[
                              {
-                                "profile":"QoS_Profile_A",
+                                "qos-profile-ref":"QoS_Profile_A",
+                                "network-ref":"example:an-id",
                                 "direction":"ietf-vpn-common:both"
                              }
                           ]
