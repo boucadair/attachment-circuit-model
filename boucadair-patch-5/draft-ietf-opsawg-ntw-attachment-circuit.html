@@ -3386,9 +3386,13 @@ isn't any type of VRRP authentication at this time (see <span><a href="https://r
     +--rw ac* [name]
        +--rw name                 string
        +--rw ac-svc-ref?          ac-svc:attachment-circuit-reference
-       +--rw ac-profile* [profile-id]
-       |  +--rw profile-id    ac-profile-reference
-       +--rw ac-parent-ref?       ac-ntw:attachment-circuit-reference
+       +--rw ac-profile* [ac-profile-ref]
+       |  +--rw ac-profile-ref    leafref
+       |  +--rw network-ref?      -&gt; /nw:networks/network/network-id
+       +--rw ac-parent-ref
+       |  +--rw ac-ref?        leafref
+       |  +--rw node-ref?      leafref
+       |  +--rw network-ref?   -&gt; /nw:networks/network/network-id
        +--rw peer-sap-id*         string
        +--rw group* [group-id]
        |  +--rw group-id      string
@@ -3416,8 +3420,9 @@ isn't any type of VRRP authentication at this time (see <span><a href="https://r
        |  +--rw encryption-profile
        |     +--rw (profile)?
        |        +--:(provider-profile)
-       |        |  +--rw profile-name?
-       |        |          encryption-profile-reference
+       |        |  +--rw encryption-profile-ref?   leafref
+       |        |  +--rw network-ref?
+       |        |          -&gt; /nw:networks/network/network-id
        |        +--:(customer-profile)
        |           +--rw customer-key-chain?   key-chain:key-chain-ref
        +--rw service
