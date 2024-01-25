@@ -2059,8 +2059,8 @@ Table of Contents
      typedef attachment-circuit-reference {
        type leafref {
          path "/nw:networks/nw:network[nw:network-id=current()/"
-            + "../network-ref]/nw:node[nw:node-id=current()/../"
-            + "node-ref]/ac-ntw:ac/ac-ntw:name";
+            + "../ac-ntw:network-ref]/nw:node[nw:node-id=current()/../"
+            + "ac-ntw:node-ref]/ac-ntw:ac/ac-ntw:name";
        }
        description
          "Defines a reference to an attachment circuit. The reference
@@ -2070,7 +2070,7 @@ Table of Contents
      typedef ac-profile-reference {
        type leafref {
          path "/nw:networks/nw:network[nw:network-id=current()/"
-            + "../network-ref]/ac-ntw:ac-profile/ac-ntw:name";
+            + "../ac-ntw:network-ref]/ac-ntw:ac-profile/ac-ntw:name";
        }
        description
          "Defines a reference to an attachment circuit profile that
@@ -2080,7 +2080,7 @@ Table of Contents
      typedef encryption-profile-reference {
        type leafref {
          path "/nw:networks/nw:network[nw:network-id=current()/"
-           + "../network-ref]/ac-ntw:specific-provisioning-profiles"
+           + "../ac-ntw:network-ref]/ac-ntw:specific-provisioning-profiles"
            + "/ac-ntw:valid-provider-identifiers"
            + "/ac-ntw:encryption-profile-identifier/ac-ntw:id";
        }
@@ -2091,7 +2091,7 @@ Table of Contents
      typedef qos-profile-reference {
        type leafref {
          path "/nw:networks/nw:network[nw:network-id=current()/"
-            + "../network-ref]"
+            + "../ac-ntw:network-ref]"
             + "/ac-ntw:specific-provisioning-profiles"
             + "/ac-ntw:valid-provider-identifiers"
             + "/ac-ntw:qos-profile-identifier/ac-ntw:id";
