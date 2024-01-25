@@ -877,7 +877,7 @@ The AC service model {{!I-D.ietf-opsawg-teas-attachment-circuit}} can be used by
 ~~~~~~~~~~
 {: #ex-ac title="ACs Created Using ACaaS" artwork-align="center"}
 
-The provisionned AC at PE1 can be retrieved using the AC network model as depicted in {{ex-acntw-query}}. A similar query can be used for the AC at PE2.
+The provisioned AC at PE1 can be retrieved using the AC network model as depicted in {{ex-acntw-query}}. A similar query can be used for the AC at PE2.
 
 ~~~~~~~~~~
 {::include-fold ./json-examples/glue/example-acntw-2.json}
@@ -913,3 +913,5 @@ In reference to the topology depicted in {{sap-ac-ntw}}, PE2 has a SAP which ter
 This document builds on {{!RFC9182}} and {{!RFC9291}}.
 
 Thanks to Moti Morgenstern for the review and comments.
+
+Thanks to Martin Björklund for the yangdoctors review.
