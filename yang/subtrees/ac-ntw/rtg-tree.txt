@@ -30,9 +30,11 @@ module: ietf-ac-ntw
        |  +--rw routing-protocol* [id]
        |     +--rw id                  string
        |     +--rw type?               identityref
-       |     +--rw routing-profile* [id]
-       |     |  +--rw id      leafref
-       |     |  +--rw type?   identityref
+       |     +--rw routing-profile* [routing-profile-ref]
+       |     |  +--rw routing-profile-ref    leafref
+       |     |  +--rw network-ref?
+       |     |  |       -> /nw:networks/network/network-id
+       |     |  +--rw type?                  identityref
        |     +--rw static
        |     |  ...
        |     +--rw bgp
