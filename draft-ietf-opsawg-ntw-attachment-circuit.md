@@ -230,7 +230,10 @@ augment /nw:networks/nw:network/nw:node:
      +--rw service
         ...
   augment /nw:networks/nw:network/nw:node/sap:service/sap:sap:
-    +--rw ac*   ac-ntw:attachment-circuit-reference
+    +--rw ac* [ac-ref]
+       +--rw ac-ref         leafref
+       +--rw node-ref?      leafref
+       +--rw network-ref?   -> /nw:networks/network/network-id
 ~~~~
 {: #o-ntw-tree title="Overall Tree Structure"}
 
