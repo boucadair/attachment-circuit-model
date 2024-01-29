@@ -1333,6 +1333,10 @@ Table of Contents
 
       Both timers are expressed in seconds.
 
+   'capabilities':  Specifies a set of BGP capabilities (e.g., route
+      refresh capability [RFC2918]) to be enabled when establishing a
+      BGP session.
+
    'authentication':  The module adheres to the recommendations in
       Section 13.2 of [RFC4364], as it allows enabling the TCP
       Authentication Option (TCP-AO) [RFC5925] and accommodates the
@@ -4306,6 +4310,10 @@ Table of Contents
               groupings.txt>.
 
    [PYANG]    "pyang", 2023, <https://github.com/mbj4668/pyang>.
+
+   [RFC2918]  Chen, E., "Route Refresh Capability for BGP-4", RFC 2918,
+              DOI 10.17487/RFC2918, September 2000,
+              <https://www.rfc-editor.org/rfc/rfc2918>.
 
    [RFC3644]  Snir, Y., Ramberg, Y., Strassner, J., Cohen, R., and B.
               Moore, "Policy Quality of Service (QoS) Information
