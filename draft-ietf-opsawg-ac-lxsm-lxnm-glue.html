@@ -1036,7 +1036,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Boucadair, et al.</td>
-<td class="center">Expires 28 July 2024</td>
+<td class="center">Expires 1 August 2024</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1049,12 +1049,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-opsawg-ac-lxsm-lxnm-glue-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2024-01-25" class="published">25 January 2024</time>
+<time datetime="2024-01-29" class="published">29 January 2024</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2024-07-28">28 July 2024</time></dd>
+<dd class="expires"><time datetime="2024-08-01">1 August 2024</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1114,7 +1114,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 28 July 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 1 August 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1490,21 +1490,33 @@ module: ietf-ac-glue
   augment /l2nm:l2vpn-ntw/l2nm:vpn-services/l2nm:vpn-service
             /l2nm:vpn-nodes/l2nm:vpn-node/l2nm:vpn-network-accesses:
     +--rw ac-svc-ref*   ac-svc:attachment-circuit-reference
-    +--rw ac-ntw-ref*   ac-ntw:attachment-circuit-reference
+    +--rw ac-ntw-ref* [ac-ref]
+       +--rw ac-ref         leafref
+       +--rw node-ref?      leafref
+       +--rw network-ref?   -&gt; /nw:networks/network/network-id
   augment /l2nm:l2vpn-ntw/l2nm:vpn-services/l2nm:vpn-service
             /l2nm:vpn-nodes/l2nm:vpn-node/l2nm:vpn-network-accesses
             /l2nm:vpn-network-access:
     +--rw ac-svc-ref?   ac-svc:attachment-circuit-reference {ac-glue}?
-    +--rw ac-ntw-ref?   ac-ntw:attachment-circuit-reference {ac-glue}?
+    +--rw ac-ntw-ref {ac-glue}?
+       +--rw ac-ref?        leafref
+       +--rw node-ref?      leafref
+       +--rw network-ref?   -&gt; /nw:networks/network/network-id
   augment /l3nm:l3vpn-ntw/l3nm:vpn-services/l3nm:vpn-service
             /l3nm:vpn-nodes/l3nm:vpn-node/l3nm:vpn-network-accesses:
     +--rw ac-svc-ref*   ac-svc:attachment-circuit-reference
-    +--rw ac-ntw-ref*   ac-ntw:attachment-circuit-reference
+    +--rw ac-ntw-ref* [ac-ref]
+       +--rw ac-ref         leafref
+       +--rw node-ref?      leafref
+       +--rw network-ref?   -&gt; /nw:networks/network/network-id
   augment /l3nm:l3vpn-ntw/l3nm:vpn-services/l3nm:vpn-service
             /l3nm:vpn-nodes/l3nm:vpn-node/l3nm:vpn-network-accesses
             /l3nm:vpn-network-access:
     +--rw ac-svc-ref?   ac-svc:attachment-circuit-reference {ac-glue}?
-    +--rw ac-ntw-ref?   ac-ntw:attachment-circuit-reference {ac-glue}?
+    +--rw ac-ntw-ref {ac-glue}?
+       +--rw ac-ref?        leafref
+       +--rw node-ref?      leafref
+       +--rw network-ref?   -&gt; /nw:networks/network/network-id
 </pre>
 </div>
 <figcaption><a href="#figure-3" class="selfRef">Figure 3</a>:
@@ -1630,8 +1642,8 @@ module ietf-ac-glue {
         "A reference to the AC as exposed at the service that
          was provisioned using the ACaaS module.";
     }
-    leaf ac-ntw-ref {
-      type ac-ntw:attachment-circuit-reference;
+    container ac-ntw-ref {
+      uses ac-ntw:attachment-circuit-reference;
       description
         "A reference to the AC that  was provisioned
          using the AC network module.";
@@ -1658,11 +1670,12 @@ module ietf-ac-glue {
         "A reference to the AC as exposed at the service that
          was provisioned using the ACaaS module.";
     }
-    leaf-list ac-ntw-ref {
-      type ac-ntw:attachment-circuit-reference;
+    list ac-ntw-ref {
+      key "ac-ref";
       description
-        "A reference to the AC that  was provisioned
+        "A reference to the AC that was provisioned
          using the AC network module.";
+      uses ac-ntw:attachment-circuit-reference;
     }
   }
 
@@ -2453,7 +2466,11 @@ the set of VPN instances in which a given customer is involved.<a href="#section
                   "status":"ietf-vpn-common:op-up"
                },
                "ietf-ac-ntw:ac":[
-                  "ac-1"
+                  {
+                     "ac-ref":"ac-1",
+                     "node-ref":"example:pe2",
+                     "network-ref":"example:an-id"
+                  }
                ]
             }
          ]
@@ -2517,7 +2534,8 @@ the set of VPN instances in which a given customer is involved.<a href="#section
                "qos-profile":{
                   "qos-profile":[
                      {
-                        "profile":"QoS_Profile_A",
+                        "qos-profile-ref":"QoS_Profile_A",
+                        "network-ref":"example:an-id",
                         "direction":"ietf-vpn-common:both"
                      }
                   ]
