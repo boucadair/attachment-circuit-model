@@ -181,6 +181,9 @@ The module defines a set of identities, including the following:
 'precedence-type':
 : Used to indicate the redundancy type when requesting ACs. For example, this identity can be used to tag primary and secondary ACs.
 
+'bgp-capability':
+: Used to indicate a BGP capability (e.g., Multiprotocol extensions for BGP-4 {{?RFC4760}}, route refresh {{?RFC2918}}, graceful restart {{?RFC4724}}, or ADD-PATH {{?RFC7911}}).
+
 ## Reusable Groupings
 
 The module also defines a set of reusable groupings, including the following:
