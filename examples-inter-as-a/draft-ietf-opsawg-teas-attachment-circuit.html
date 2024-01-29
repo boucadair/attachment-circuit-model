@@ -1263,6 +1263,9 @@ svg :is([fill="white"], [fill^="#fff"]) {
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.8">
                 <p id="section-toc.1-1.9.2.8.1"><a href="#appendix-A.8" class="auto internal xref">A.8</a>.  <a href="#name-connecting-a-virtualized-en" class="internal xref">Connecting a Virtualized Environment Running in a Cloud Provider</a></p>
 </li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.9">
+                <p id="section-toc.1-1.9.2.9.1"><a href="#appendix-A.9" class="auto internal xref">A.9</a>.  <a href="#name-connect-customer-network-ce" class="internal xref">Connect Customer Network (CE) through BGP Peering</a></p>
+</li>
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10">
@@ -6604,6 +6607,112 @@ module ietf-ac-svc {
 </div>
 <figcaption><a href="#figure-43" class="selfRef">Figure 43</a>:
 <a href="#name-message-body-of-a-response-" class="selfRef">Message Body of a Response to the Request to Create ACs for Connecting to the Cloud Provider</a>
+          </figcaption></figure>
+</div>
+</section>
+</div>
+<div id="connect-customer-network-ce-through-bgp-peering">
+<section id="appendix-A.9">
+        <h3 id="name-connect-customer-network-ce">
+<a href="#appendix-A.9" class="section-number selfRef">A.9. </a><a href="#name-connect-customer-network-ce" class="section-name selfRef">Connect Customer Network (CE) through BGP Peering</a>
+        </h3>
+<span id="name-illustration-of-provider-ne"></span><div id="provider-network">
+<figure id="figure-44">
+          <div id="appendix-A.9-1.1">
+            <div class="alignLeft art-svg artwork" id="appendix-A.9-1.1.1">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="368" width="536" viewBox="0 0 536 368" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
+                <path d="M 8,32 L 8,352" fill="none" stroke="black"></path>
+                <path d="M 80,80 L 80,192" fill="none" stroke="black"></path>
+                <path d="M 80,224 L 80,256" fill="none" stroke="black"></path>
+                <path d="M 80,288 L 80,320" fill="none" stroke="black"></path>
+                <path d="M 184,32 L 184,352" fill="none" stroke="black"></path>
+                <path d="M 376,32 L 376,144" fill="none" stroke="black"></path>
+                <path d="M 440,80 L 440,112" fill="none" stroke="black"></path>
+                <path d="M 528,32 L 528,144" fill="none" stroke="black"></path>
+                <path d="M 8,32 L 184,32" fill="none" stroke="black"></path>
+                <path d="M 376,32 L 528,32" fill="none" stroke="black"></path>
+                <path d="M 80,80 L 184,80" fill="none" stroke="black"></path>
+                <path d="M 376,80 L 440,80" fill="none" stroke="black"></path>
+                <path d="M 184,96 L 376,96" fill="none" stroke="black"></path>
+                <path d="M 376,112 L 440,112" fill="none" stroke="black"></path>
+                <path d="M 376,144 L 528,144" fill="none" stroke="black"></path>
+                <path d="M 80,192 L 184,192" fill="none" stroke="black"></path>
+                <path d="M 80,224 L 184,224" fill="none" stroke="black"></path>
+                <path d="M 80,256 L 184,256" fill="none" stroke="black"></path>
+                <path d="M 80,288 L 184,288" fill="none" stroke="black"></path>
+                <path d="M 80,320 L 184,320" fill="none" stroke="black"></path>
+                <path d="M 8,352 L 184,352" fill="none" stroke="black"></path>
+                <g class="text">
+                  <text x="60" y="52">Provider</text>
+                  <text x="128" y="52">Network</text>
+                  <text x="420" y="52">Customer</text>
+                  <text x="488" y="52">Network</text>
+                  <text x="268" y="84">Attachment-Circuit</text>
+                  <text x="352" y="84">1</text>
+                  <text x="132" y="100">PE1(VRF11)</text>
+                  <text x="400" y="100">CE1</text>
+                  <text x="132" y="132">PE1(VRF12)</text>
+                  <text x="132" y="164">PE1(VRF1n)</text>
+                  <text x="132" y="244">PE2(VRF21)</text>
+                  <text x="132" y="308">PEm(VRFmn)</text>
+                </g>
+              </svg><a href="#appendix-A.9-1.1.1" class="pilcrow">¶</a>
+</div>
+</div>
+<figcaption><a href="#figure-44" class="selfRef">Figure 44</a>:
+<a href="#name-illustration-of-provider-ne" class="selfRef">Illustration of Provider Network Scenario</a>
+          </figcaption></figure>
+</div>
+<span id="name-message-body-of-a-request-to-c"></span><div id="add-attachment-circuit-bgp-routing">
+<figure id="figure-45">
+          <div class="lang-json sourcecode" id="appendix-A.9-2.1">
+<pre>
+{
+  "attachment-circuits": {
+    "ac": {
+      "name": "IPT-CUST-ABC",
+      "customer-name": "CUST-ABC",
+      "description": "CUST-ABC",
+      "peer-sap-id": "sap#113",
+      "ip-connection": {
+        "ipv4": {
+          "local-address": "100.1.1.1",
+          "prefix-length": 31,
+          "address-allocation-type": "ac-common:static-address"
+        }
+      },
+      "routing-protocols": {
+        "routing-protocol": {
+          "id": "BGP-Single-Access",
+          "type": "vpn-common:bgp-routing",
+          "bgp": {
+            "peer-groups": {
+              "peer-group": {
+                "name": "IPT-CUST-ABC",
+                "peer-as": 1234,
+                "address-family": "vpn-common:ipv4"
+              }
+            },
+            "neighbor": {
+              "id": "BGP-DIA-Single-1",
+              "remote-address": "100.1.1.2",
+              "peer-group": "IPT-CUST-ABC",
+              "status": {
+                "admin-status": {
+                  "status": "vpn-common:admin-up"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+</pre>
+</div>
+<figcaption><a href="#figure-45" class="selfRef">Figure 45</a>:
+<a href="#name-message-body-of-a-request-to-c" class="selfRef">Message Body of a Request to Create ACs for Connecting CEs to provider Network</a>
           </figcaption></figure>
 </div>
 </section>

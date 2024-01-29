@@ -117,6 +117,7 @@ Table of Contents
      A.7.  Binding Attachment Circuits to an IETF Network Slice
      A.8.  Connecting a Virtualized Environment Running in a Cloud
            Provider
+     A.9.  Connect Customer Network (CE) through BGP Peering
    Acknowledgments
    Contributors
    Authors' Addresses
@@ -4714,6 +4715,78 @@ Orchestration  DIRECT INTERCONNECTION ORDERING (API)            Provider
 
        Figure 43: Message Body of a Response to the Request to Create
                   ACs for Connecting to the Cloud Provider
+
+A.9.  Connect Customer Network (CE) through BGP Peering
+
+   +---------------------+                       +------------------+
+   |  Provider Network   |                       | Customer Network |
+   |                     |                       |                  |
+   |        +------------+ Attachment-Circuit 1  +-------+          |
+   |        | PE1(VRF11) +-----------------------+ CE1   |          |
+   |        |            |                       +-------+          |
+   |        | PE1(VRF12) |                       |                  |
+   |        |            |                       +------------------+
+   |        | PE1(VRF1n) |
+   |        |            |
+   |        +------------+
+   |                     |
+   |        +------------+
+   |        | PE2(VRF21) |
+   |        +------------+
+   |                     |
+   |        +------------+
+   |        | PEm(VRFmn) |
+   |        +------------+
+   |                     |
+   +---------------------+
+
+            Figure 44: Illustration of Provider Network Scenario
+
+   {
+     "attachment-circuits": {
+       "ac": {
+         "name": "IPT-CUST-ABC",
+         "customer-name": "CUST-ABC",
+         "description": "CUST-ABC",
+         "peer-sap-id": "sap#113",
+         "ip-connection": {
+           "ipv4": {
+             "local-address": "100.1.1.1",
+             "prefix-length": 31,
+             "address-allocation-type": "ac-common:static-address"
+           }
+         },
+         "routing-protocols": {
+           "routing-protocol": {
+             "id": "BGP-Single-Access",
+             "type": "vpn-common:bgp-routing",
+             "bgp": {
+               "peer-groups": {
+                 "peer-group": {
+                   "name": "IPT-CUST-ABC",
+                   "peer-as": 1234,
+                   "address-family": "vpn-common:ipv4"
+                 }
+               },
+               "neighbor": {
+                 "id": "BGP-DIA-Single-1",
+                 "remote-address": "100.1.1.2",
+                 "peer-group": "IPT-CUST-ABC",
+                 "status": {
+                   "admin-status": {
+                     "status": "vpn-common:admin-up"
+                   }
+                 }
+               }
+             }
+           }
+         }
+       }
+     }
+   }
+
+     Figure 45: Message Body of a Request to Create ACs for Connecting
+                          CEs to provider Network
 
 Acknowledgments
 
