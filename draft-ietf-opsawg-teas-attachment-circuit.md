@@ -1118,6 +1118,41 @@ Next, API workflows can be initiated:
 {: #cloud-provider-ac-res title="Message Body of a Response to the Request to Create ACs for Connecting to the Cloud Provider"}
 
 
+## Connect Customer Network (CE) through BGP Peering
+
+
+~~~~ aasvg
++---------------------+                       +------------------+
+|  Provider Network   |                       | Customer Network |
+|                     |                       |                  |
+|        +------------+ Attachment-Circuit 1  +-------+          |
+|        | PE1(VRF11) +-----------------------+ CE1   |          |
+|        |            |                       +-------+          |
+|        | PE1(VRF12) |                       |                  |
+|        |            |                       +------------------+
+|        | PE1(VRF1n) |
+|        |            |
+|        +------------+
+|                     |
+|        +------------+
+|        | PE2(VRF21) |
+|        +------------+
+|                     |
+|        +------------+
+|        | PEm(VRFmn) |
+|        +------------+
+|                     |
++---------------------+
+~~~~
+{: #provider-network title="Illustration of Provider Network Scenario"}
+
+
+~~~~ json
+{::include-fold ./json-examples/svc/provider-network-interas-option-a.json}
+~~~~
+{: #add-attachment-circuit-bgp-routing title="Message Body of a Request to Create ACs for Connecting CEs to provider Network"}
+
+
 # Acknowledgments
 {:numbered="false"}
 
