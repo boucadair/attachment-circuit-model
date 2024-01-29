@@ -195,6 +195,47 @@ module ietf-ac-common {
       "Identifies the secondary attachment circuit.";
   }
 
+ /* BGP Capability Identities. */
+
+  identity bgp-capability {
+    description
+      "Base identity for a BGP capability";
+  }
+
+  identity mp-bgp {
+    base bgp-capability;
+    description
+      "Multi-protocol extensions to BGP.";
+    reference
+      "RFC 4760: Multiprotocol Extentions for BGP-4";
+  }
+
+  identity route-refresh {
+    base bgp-capability;
+    description
+      "Route refresh capability.";
+    reference
+      "RFC 2918: Route Refresh Capability for BGP-4.";
+  }
+
+  identity graceful-restart {
+    base bgp-capability;
+    description
+      "Graceful restart capability.";
+    reference
+      "RFC 4724: Graceful Restart Mechanism for BGP";
+  }
+
+  identity add-paths {
+    base bgp-capability;
+    description
+      "A capability that allows the advertisement of multiple 
+       paths for the same address prefix without the new paths
+       implicitly replacing any previous ones.";
+    reference
+      "RFC 7911: Advertisement of Multiple Paths in BGP";
+  }
+
   /****************************Typedefs************************/
 
   typedef predefined-next-hop {
