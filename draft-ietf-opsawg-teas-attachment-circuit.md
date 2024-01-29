@@ -1151,6 +1151,7 @@ CE-PE routing using BGP (Border Gateway Protocol) is a common scenario in the co
 {: #provider-network title="Illustration of Provider Network Scenario"}
 
 
+The attachment circuit in this case will use a SAP identifier to refer to the physical interface used for the connection of the PE and the CE. Apart from that, it will include all the logical attributes to describe the connection between the two ends. The configuration details involve the usage of Peer-Group details instead of defining the entire configuration inside the Neighbor.
 
 
 ~~~~ json
