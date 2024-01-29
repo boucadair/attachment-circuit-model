@@ -1,0 +1,42 @@
+{
+  "attachment-circuits": {
+    "ac": {
+      "name": "IPT-CUST-ABC",
+      "customer-name": "CUST-ABC",
+      "description": "CUST-ABC",
+      "peer-sap-id": "sap#113",
+      "ip-connection": {
+        "ipv4": {
+          "local-address": "100.1.1.1",
+          "prefix-length": 31,
+          "address-allocation-type": "ac-common:static-address"
+        }
+      },
+      "routing-protocols": {
+        "routing-protocol": {
+          "id": "BGP-Single-Access",
+          "type": "vpn-common:bgp-routing",
+          "bgp": {
+            "peer-groups": {
+              "peer-group": {
+                "name": "IPT-CUST-ABC",
+                "peer-as": 1234,
+                "address-family": "vpn-common:ipv4"
+              }
+            },
+            "neighbor": {
+              "id": "BGP-DIA-Single-1",
+              "remote-address": "100.1.1.2",
+              "peer-group": "IPT-CUST-ABC",
+              "status": {
+                "admin-status": {
+                  "status": "vpn-common:admin-up"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
