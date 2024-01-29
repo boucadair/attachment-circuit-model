@@ -1120,6 +1120,8 @@ Next, API workflows can be initiated:
 
 ## Connect Customer Network (CE) through BGP Peering
 
+CE-PE routing using BGP (Border Gateway Protocol) is a common scenario in the context of MPLS (Multiprotocol Label Switching) VPNs and is widely employed in enterprise networks. In this example, the CE (Customer Edge) routers are customer-owned devices belonging to an autonomous system. CEs are located at the edge of the provider's network (PE, or Provider Edge) and will use point-to-point interfaces to establish the BGP session.
+
 
 ~~~~ aasvg
 +------------------------+                       +-------------------+
@@ -1147,6 +1149,8 @@ Next, API workflows can be initiated:
 +------------------------+
 ~~~~
 {: #provider-network title="Illustration of Provider Network Scenario"}
+
+
 
 
 ~~~~ json
