@@ -6616,56 +6616,69 @@ module ietf-ac-svc {
         <h3 id="name-connect-customer-network-ce">
 <a href="#appendix-A.9" class="section-number selfRef">A.9. </a><a href="#name-connect-customer-network-ce" class="section-name selfRef">Connect Customer Network (CE) through BGP Peering</a>
         </h3>
+<p id="appendix-A.9-1">CE-PE routing using BGP (Border Gateway Protocol) is a common scenario in the context of MPLS (Multiprotocol Label Switching) VPNs and is widely employed in enterprise networks. In this example, the CE (Customer Edge) routers are customer-owned devices belonging to an autonomous system. CEs are located at the edge of the provider's network (PE, or Provider Edge) and will use point-to-point interfaces to establish the BGP session.<a href="#appendix-A.9-1" class="pilcrow">¶</a></p>
 <span id="name-illustration-of-provider-ne"></span><div id="provider-network">
 <figure id="figure-44">
-          <div id="appendix-A.9-1.1">
-            <div class="alignLeft art-svg artwork" id="appendix-A.9-1.1.1">
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="368" width="536" viewBox="0 0 536 368" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
-                <path d="M 8,32 L 8,352" fill="none" stroke="black"></path>
+          <div id="appendix-A.9-2.1">
+            <div class="alignLeft art-svg artwork" id="appendix-A.9-2.1.1">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="400" width="568" viewBox="0 0 568 400" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
+                <path d="M 8,32 L 8,384" fill="none" stroke="black"></path>
                 <path d="M 80,80 L 80,192" fill="none" stroke="black"></path>
                 <path d="M 80,224 L 80,256" fill="none" stroke="black"></path>
-                <path d="M 80,288 L 80,320" fill="none" stroke="black"></path>
-                <path d="M 184,32 L 184,352" fill="none" stroke="black"></path>
-                <path d="M 376,32 L 376,144" fill="none" stroke="black"></path>
-                <path d="M 440,80 L 440,112" fill="none" stroke="black"></path>
-                <path d="M 528,32 L 528,144" fill="none" stroke="black"></path>
-                <path d="M 8,32 L 184,32" fill="none" stroke="black"></path>
-                <path d="M 376,32 L 528,32" fill="none" stroke="black"></path>
+                <path d="M 80,320 L 80,352" fill="none" stroke="black"></path>
+                <path d="M 184,80 L 184,192" fill="none" stroke="black"></path>
+                <path d="M 184,224 L 184,256" fill="none" stroke="black"></path>
+                <path d="M 184,320 L 184,352" fill="none" stroke="black"></path>
+                <path d="M 208,32 L 208,88" fill="none" stroke="black"></path>
+                <path d="M 208,104 L 208,384" fill="none" stroke="black"></path>
+                <path d="M 400,32 L 400,88" fill="none" stroke="black"></path>
+                <path d="M 400,104 L 400,144" fill="none" stroke="black"></path>
+                <path d="M 416,80 L 416,112" fill="none" stroke="black"></path>
+                <path d="M 480,80 L 480,112" fill="none" stroke="black"></path>
+                <path d="M 560,32 L 560,144" fill="none" stroke="black"></path>
+                <path d="M 8,32 L 208,32" fill="none" stroke="black"></path>
+                <path d="M 400,32 L 560,32" fill="none" stroke="black"></path>
                 <path d="M 80,80 L 184,80" fill="none" stroke="black"></path>
-                <path d="M 376,80 L 440,80" fill="none" stroke="black"></path>
-                <path d="M 184,96 L 376,96" fill="none" stroke="black"></path>
-                <path d="M 376,112 L 440,112" fill="none" stroke="black"></path>
-                <path d="M 376,144 L 528,144" fill="none" stroke="black"></path>
+                <path d="M 416,80 L 480,80" fill="none" stroke="black"></path>
+                <path d="M 184,96 L 416,96" fill="none" stroke="black"></path>
+                <path d="M 416,112 L 480,112" fill="none" stroke="black"></path>
+                <path d="M 400,144 L 560,144" fill="none" stroke="black"></path>
                 <path d="M 80,192 L 184,192" fill="none" stroke="black"></path>
                 <path d="M 80,224 L 184,224" fill="none" stroke="black"></path>
                 <path d="M 80,256 L 184,256" fill="none" stroke="black"></path>
-                <path d="M 80,288 L 184,288" fill="none" stroke="black"></path>
                 <path d="M 80,320 L 184,320" fill="none" stroke="black"></path>
-                <path d="M 8,352 L 184,352" fill="none" stroke="black"></path>
+                <path d="M 80,352 L 184,352" fill="none" stroke="black"></path>
+                <path d="M 8,384 L 208,384" fill="none" stroke="black"></path>
                 <g class="text">
                   <text x="60" y="52">Provider</text>
                   <text x="128" y="52">Network</text>
-                  <text x="420" y="52">Customer</text>
-                  <text x="488" y="52">Network</text>
-                  <text x="268" y="84">Attachment-Circuit</text>
-                  <text x="352" y="84">1</text>
+                  <text x="444" y="52">Customer</text>
+                  <text x="512" y="52">Network</text>
+                  <text x="300" y="84">Attachment-Circuit</text>
+                  <text x="384" y="84">1</text>
                   <text x="132" y="100">PE1(VRF11)</text>
-                  <text x="400" y="100">CE1</text>
+                  <text x="440" y="100">CE1</text>
+                  <text x="524" y="100">AS1234</text>
                   <text x="132" y="132">PE1(VRF12)</text>
                   <text x="132" y="164">PE1(VRF1n)</text>
+                  <text x="32" y="212">AS1</text>
                   <text x="132" y="244">PE2(VRF21)</text>
-                  <text x="132" y="308">PEm(VRFmn)</text>
+                  <text x="128" y="276">.</text>
+                  <text x="128" y="292">.</text>
+                  <text x="128" y="308">.</text>
+                  <text x="132" y="340">PEm(VRFmn)</text>
                 </g>
-              </svg><a href="#appendix-A.9-1.1.1" class="pilcrow">¶</a>
+              </svg><a href="#appendix-A.9-2.1.1" class="pilcrow">¶</a>
 </div>
 </div>
 <figcaption><a href="#figure-44" class="selfRef">Figure 44</a>:
 <a href="#name-illustration-of-provider-ne" class="selfRef">Illustration of Provider Network Scenario</a>
           </figcaption></figure>
 </div>
+<p id="appendix-A.9-3">The attachment circuit in this case will use a SAP identifier to refer to the physical interface used for the connection of the PE and the CE. Apart from that, it will include all the logical attributes to describe the connection between the two ends. The configuration details involve the usage of Peer-Group details instead of defining the entire configuration inside the Neighbor.<a href="#appendix-A.9-3" class="pilcrow">¶</a></p>
 <span id="name-message-body-of-a-request-to-c"></span><div id="add-attachment-circuit-bgp-routing">
 <figure id="figure-45">
-          <div class="lang-json sourcecode" id="appendix-A.9-2.1">
+          <div class="lang-json sourcecode" id="appendix-A.9-4.1">
 <pre>
 {
   "attachment-circuits": {
