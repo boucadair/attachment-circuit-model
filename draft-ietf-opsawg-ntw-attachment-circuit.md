@@ -198,9 +198,13 @@ augment /nw:networks/nw:network/nw:node:
   +--rw ac* [name]
      +--rw name                 string
      +--rw ac-svc-ref?          ac-svc:attachment-circuit-reference
-     +--rw ac-profile* [profile-id]
-     |  +--rw profile-id    -> /nw:networks/network/ac-profile/name
-     +--rw ac-parent-ref?       ac-ntw:attachment-circuit-reference
+     +--rw ac-profile* [ac-profile-ref]
+     |  +--rw ac-profile-ref    leafref
+     |  +--rw network-ref?      -> /nw:networks/network/network-id
+     +--rw ac-parent-ref
+     |  +--rw ac-ref?        leafref
+     |  +--rw node-ref?      leafref
+     |  +--rw network-ref?   -> /nw:networks/network/network-id
      +--rw peer-sap-id*         string
      +--rw group* [group-id]
      |  +--rw group-id      string
@@ -208,7 +212,7 @@ augment /nw:networks/nw:network/nw:node:
      +--rw status
      |  +--rw admin-status
      |  |  +--rw status?        identityref
-     |  |  +--rw last-change?   yang:date-and-time
+     |  |  +--ro last-change?   yang:date-and-time
      |  +--ro oper-status
      |     +--ro status?        identityref
      |     +--ro last-change?   yang:date-and-time
@@ -226,7 +230,10 @@ augment /nw:networks/nw:network/nw:node:
      +--rw service
         ...
   augment /nw:networks/nw:network/nw:node/sap:service/sap:sap:
-    +--rw ac*   ac-ntw:attachment-circuit-reference
+    +--rw ac* [ac-ref]
+       +--rw ac-ref         leafref
+       +--rw node-ref?      leafref
+       +--rw network-ref?   -> /nw:networks/network/network-id
 ~~~~
 {: #o-ntw-tree title="Overall Tree Structure"}
 
@@ -257,16 +264,31 @@ The status of an AC can be tracked using 'status'. Both operational status and a
 
 An AC can be characterized using Layer 2 connectivity ({{sec-l2}}), Layer 3 connectivity ({{sec-l3}}), routing protocols ({{sec-rtg}}), OAM ({{sec-oam}}), security ({{sec-sec}}), and service ({{sec-svc}}) considerations.
 
+## References
+
+The AC module defines a set of groupings depicted in {{references-tree}} for referencing purposes. These references are used within or outside the AC network module. The use of such groupings is consistent with the design in {{!RFC8345}}.
+
+~~~~
+{::include ./yang/subtrees/ac-ntw/references.txt}
+~~~~
+{: #references-tree title="References Groupings"}
+
+The groupings shown in {{references-tree}} contain the information necessary to reference:
+
+* an attachment circuit that is terminated by a specific node in a given network,
+* an attachment circuit profile of a specific network ({{sec-profiles}}), and
+* specific provisioning profiles that are bound to a specific network ({{sec-profiles}}).
+
 ## Provisioning Profiles {#sec-profiles}
 
-The specific provisioning profiles tree structure is shown in {{profiles-tree}}.
+The AC and specific provisioning profiles tree structure is shown in {{profiles-tree}}.
 
 ~~~~
 {::include ./yang/subtrees/ac-ntw/profiles-tree.txt}
 ~~~~
 {: #profiles-tree title="Profiles Tree Structure"}
 
-The exact definition of these profiles is local to each service provider. The model only includes an identifier for these profiles in order to ease identifying and binding local policies when building an AC. As shown in {{profiles-tree}}, the following identifiers can be included:
+The exact definition of the specific provisioning profiles profiles is local to each service provider. The model only includes an identifier for these profiles in order to ease identifying and binding local policies when building an AC. As shown in {{profiles-tree}}, the following identifiers can be included:
 
 'encryption-profile-identifier':
 : An encryption profile refers to a set of policies related to the encryption schemes and setup that can be applied on the AC.
@@ -282,7 +304,6 @@ The exact definition of these profiles is local to each service provider. The mo
 
 'routing-profile-identifier':
 : A routing profile refers to a set of routing policies that will be invoked (e.g., BGP policies) for an AC.
-
 
 ## L2 Connection {#sec-l2}
 
@@ -870,7 +891,7 @@ The AC service model {{!I-D.ietf-opsawg-teas-attachment-circuit}} can be used by
 ~~~~~~~~~~
 {: #ex-ac title="ACs Created Using ACaaS" artwork-align="center"}
 
-The provisionned AC at PE1 can be retrieved using the AC network model as depicted in {{ex-acntw-query}}. A similar query can be used for the AC at PE2.
+The provisioned AC at PE1 can be retrieved using the AC network model as depicted in {{ex-acntw-query}}. A similar query can be used for the AC at PE2.
 
 ~~~~~~~~~~
 {::include-fold ./json-examples/glue/example-acntw-2.json}
@@ -906,3 +927,5 @@ In reference to the topology depicted in {{sap-ac-ntw}}, PE2 has a SAP which ter
 This document builds on {{!RFC9182}} and {{!RFC9291}}.
 
 Thanks to Moti Morgenstern for the review and comments.
+
+Thanks to Martin Björklund for the yangdoctors review.

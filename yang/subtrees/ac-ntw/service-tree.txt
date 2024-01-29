@@ -2,9 +2,13 @@
     +--rw ac* [name]
        +--rw name                 string
        +--rw ac-svc-ref?          ac-svc:attachment-circuit-reference
-       +--rw ac-profile* [profile-id]
-       |  +--rw profile-id    ac-profile-reference
-       +--rw ac-parent-ref?       ac-ntw:attachment-circuit-reference
+       +--rw ac-profile* [ac-profile-ref]
+       |  +--rw ac-profile-ref    leafref
+       |  +--rw network-ref?      -> /nw:networks/network/network-id
+       +--rw ac-parent-ref
+       |  +--rw ac-ref?        leafref
+       |  +--rw node-ref?      leafref
+       |  +--rw network-ref?   -> /nw:networks/network/network-id
        +--rw peer-sap-id*         string
        +--rw group* [group-id]
        |  +--rw group-id      string
@@ -71,10 +75,14 @@
           |           +--rw pbs?   uint64
           +--rw qos {vpn-common:qos}?
           |  +--rw qos-profiles
-          |     +--rw qos-profile* [profile]
-          |        +--rw profile      qos-profile-reference
-          |        +--rw direction?   identityref
+          |     +--rw qos-profile* [qos-profile-ref]
+          |        +--rw qos-profile-ref    leafref
+          |        +--rw network-ref?
+          |        |       -> /nw:networks/network/network-id
+          |        +--rw direction?         identityref
           +--rw access-control-list
              +--rw acl-profiles
-                +--rw acl-profile* [profile]
-                   +--rw profile    forwarding-profile-reference
+                +--rw acl-profile* [forwarding-profile-ref]
+                   +--rw forwarding-profile-ref    leafref
+                   +--rw network-ref?
+                           -> /nw:networks/network/network-id

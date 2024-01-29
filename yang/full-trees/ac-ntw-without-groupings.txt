@@ -79,9 +79,13 @@
     +--rw ac* [name]
        +--rw name                 string
        +--rw ac-svc-ref?          ac-svc:attachment-circuit-reference
-       +--rw ac-profile* [profile-id]
-       |  +--rw profile-id    ac-profile-reference
-       +--rw ac-parent-ref?       ac-ntw:attachment-circuit-reference
+       +--rw ac-profile* [ac-profile-ref]
+       |  +--rw ac-profile-ref    leafref
+       |  +--rw network-ref?      -> /nw:networks/network/network-id
+       +--rw ac-parent-ref
+       |  +--rw ac-ref?        leafref
+       |  +--rw node-ref?      leafref
+       |  +--rw network-ref?   -> /nw:networks/network/network-id
        +--rw peer-sap-id*         string
        +--rw group* [group-id]
        |  +--rw group-id      string
@@ -233,11 +237,13 @@
        |              +--rw customer-address?   inet:ipv6-address
        +--rw routing-protocols
        |  +--rw routing-protocol* [id]
-       |     +--rw id                  string
-       |     +--rw type?               identityref
-       |     +--rw routing-profile* [id]
-       |     |  +--rw id      routing-profile-reference
-       |     |  +--rw type?   identityref
+       |     +--rw id                 string
+       |     +--rw type?              identityref
+       |     +--rw routing-profile* [routing-profile-ref]
+       |     |  +--rw routing-profile-ref    leafref
+       |     |  +--rw network-ref?
+       |     |  |       -> /nw:networks/network/network-id
+       |     |  +--rw type?                  identityref
        |     +--rw static
        |     |  +--rw cascaded-lan-prefixes
        |     |     +--rw ipv4-lan-prefix* [lan next-hop]
@@ -472,7 +478,9 @@
        |              +--ro last-change?   yang:date-and-time
        +--rw oam
        |  +--rw bfd
-       |     +--rw profile?                    bfd-profile-reference
+       |     +--rw bfd-profile-ref?            leafref
+       |     +--rw network-ref?
+       |     |       -> /nw:networks/network/network-id
        |     +--rw session-type?               identityref
        |     +--rw desired-min-tx-interval?    uint32
        |     +--rw required-min-rx-interval?   uint32
@@ -495,10 +503,12 @@
        |  +--rw encryption-profile
        |     +--rw (profile)?
        |        +--:(provider-profile)
-       |        |  +--rw profile-name?
-       |        |          encryption-profile-reference
+       |        |  +--rw encryption-profile-ref?   leafref
+       |        |  +--rw network-ref?
+       |        |          -> /nw:networks/network/network-id
        |        +--:(customer-profile)
-       |           +--rw customer-key-chain?   key-chain:key-chain-ref
+       |           +--rw customer-key-chain?
+       |                   key-chain:key-chain-ref
        +--rw service
           +--rw mtu?                      uint32
           +--rw svc-pe-to-ce-bandwidth {vpn-common:inbound-bw}?
@@ -543,12 +553,19 @@
           |           +--rw pbs?   uint64
           +--rw qos {vpn-common:qos}?
           |  +--rw qos-profiles
-          |     +--rw qos-profile* [profile]
-          |        +--rw profile      qos-profile-reference
-          |        +--rw direction?   identityref
+          |     +--rw qos-profile* [qos-profile-ref]
+          |        +--rw qos-profile-ref    leafref
+          |        +--rw network-ref?
+          |        |       -> /nw:networks/network/network-id
+          |        +--rw direction?         identityref
           +--rw access-control-list
              +--rw acl-profiles
-                +--rw acl-profile* [profile]
-                   +--rw profile    forwarding-profile-reference
+                +--rw acl-profile* [forwarding-profile-ref]
+                   +--rw forwarding-profile-ref    leafref
+                   +--rw network-ref?
+                           -> /nw:networks/network/network-id
   augment /nw:networks/nw:network/nw:node/sap:service/sap:sap:
-    +--rw ac*   ac-ntw:attachment-circuit-reference
+    +--rw ac* [ac-ref]
+       +--rw ac-ref         leafref
+       +--rw node-ref?      leafref
+       +--rw network-ref?   -> /nw:networks/network/network-id

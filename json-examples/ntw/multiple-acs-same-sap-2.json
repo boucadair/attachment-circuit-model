@@ -27,14 +27,22 @@
       },
       {
          "name":"ac-1-to-ce2",
-         "ac-parent-ref":"ac-1",
+         "ac-parent-ref":{
+            "ac-ref":"ac-1",
+            "node-ref":"example:pe2",
+            "network-ref":"example:an-id"
+         },
          "peer-sap-id":[
             "CE2"
          ]
       },
       {
          "name":"ac-1-to-ce5",
-         "ac-parent-ref":"ac-1",
+         "ac-parent-ref":{
+            "ac-ref":"ac-1",
+            "node-ref":"example:pe2",
+            "network-ref":"example:an-id"
+         },
          "peer-sap-id":[
             "CE5"
          ]
