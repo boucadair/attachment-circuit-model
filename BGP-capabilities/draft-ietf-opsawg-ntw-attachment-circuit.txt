@@ -1086,8 +1086,9 @@ Table of Contents
           |     |  |  +--rw violate-action?      enumeration
           |     |  |  +--rw restart-timer?       uint32
           |     |  +--rw bgp-timers
-          |     |     +--rw keepalive?   uint16
-          |     |     +--rw hold-time?   uint16
+          |     |  |  +--rw keepalive?   uint16
+          |     |  |  +--rw hold-time?   uint16
+          |     |  +--rw capabilities*             identityref
           |     +--rw ospf
           |     |  ...
           |     +--rw isis
@@ -1153,6 +1154,7 @@ Table of Contents
           |     |  |     +--rw bgp-timers
           |     |  |     |  +--rw keepalive?   uint16
           |     |  |     |  +--rw hold-time?   uint16
+          |     |  |     +--rw capabilities*             identityref
           |     |  |     +--rw authentication
           |     |  |        +--rw enable?            boolean
           |     |  |        +--rw keying-material
@@ -1205,6 +1207,7 @@ Table of Contents
           |     |     +--rw bgp-timers
           |     |     |  +--rw keepalive?   uint16
           |     |     |  +--rw hold-time?   uint16
+          |     |     +--rw capabilities*             identityref
           |     |     +--rw authentication
           |     |     |  +--rw enable?            boolean
           |     |     |  +--rw keying-material
