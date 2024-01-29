@@ -1141,7 +1141,7 @@ CE-PE routing using BGP (Border Gateway Protocol) is a common scenario in the co
 |        +------------+  |
 |              .         |
 |              .         |
-|              .         | 
+|              .         |
 |        +------------+  |
 |        | PEm(VRFmn) |  |
 |        +------------+  |
