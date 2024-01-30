@@ -5,14 +5,14 @@
 Operations and Management Area Working Group           M. Boucadair, Ed.
 Internet-Draft                                                    Orange
 Intended status: Standards Track                              R. Roberts
-Expires: 1 August 2024                                           Juniper
+Expires: 2 August 2024                                           Juniper
                                                            O. G. D. Dios
                                                               Telefonica
                                                            S. B. Giraldo
                                                                    Nokia
                                                                    B. Wu
                                                      Huawei Technologies
-                                                         29 January 2024
+                                                         30 January 2024
 
 
            A Network YANG Data Model for Attachment Circuits
@@ -57,7 +57,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 1 August 2024.
+   This Internet-Draft will expire on 2 August 2024.
 
 Copyright Notice
 
@@ -1086,8 +1086,9 @@ Table of Contents
           |     |  |  +--rw violate-action?      enumeration
           |     |  |  +--rw restart-timer?       uint32
           |     |  +--rw bgp-timers
-          |     |     +--rw keepalive?   uint16
-          |     |     +--rw hold-time?   uint16
+          |     |  |  +--rw keepalive?   uint16
+          |     |  |  +--rw hold-time?   uint16
+          |     |  +--rw capabilities*             identityref
           |     +--rw ospf
           |     |  ...
           |     +--rw isis
@@ -1153,6 +1154,7 @@ Table of Contents
           |     |  |     +--rw bgp-timers
           |     |  |     |  +--rw keepalive?   uint16
           |     |  |     |  +--rw hold-time?   uint16
+          |     |  |     +--rw capabilities*             identityref
           |     |  |     +--rw authentication
           |     |  |        +--rw enable?            boolean
           |     |  |        +--rw keying-material
@@ -1205,6 +1207,7 @@ Table of Contents
           |     |     +--rw bgp-timers
           |     |     |  +--rw keepalive?   uint16
           |     |     |  +--rw hold-time?   uint16
+          |     |     +--rw capabilities*             identityref
           |     |     +--rw authentication
           |     |     |  +--rw enable?            boolean
           |     |     |  +--rw keying-material
@@ -1329,6 +1332,10 @@ Table of Contents
       [RFC4271]).
 
       Both timers are expressed in seconds.
+
+   'capabilities':  Specifies a set of BGP capabilities (e.g., route
+      refresh capability [RFC2918]) to be enabled when establishing a
+      BGP session.
 
    'authentication':  The module adheres to the recommendations in
       Section 13.2 of [RFC4364], as it allows enabling the TCP
@@ -3118,6 +3125,13 @@ Table of Contents
                         Section 4.2";
          }
        }
+       leaf-list capabilities {
+         type identityref {
+           base ac-common:bgp-capability;
+         }
+         description
+           "Customized set of BGP capabilities.";
+       }
      }
 
      // RIP base parameters
@@ -4296,6 +4310,10 @@ Table of Contents
               groupings.txt>.
 
    [PYANG]    "pyang", 2023, <https://github.com/mbj4668/pyang>.
+
+   [RFC2918]  Chen, E., "Route Refresh Capability for BGP-4", RFC 2918,
+              DOI 10.17487/RFC2918, September 2000,
+              <https://www.rfc-editor.org/rfc/rfc2918>.
 
    [RFC3644]  Snir, Y., Ramberg, Y., Strassner, J., Cohen, R., and B.
               Moore, "Policy Quality of Service (QoS) Information
