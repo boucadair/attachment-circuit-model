@@ -3,11 +3,11 @@
       "ac":{
          "name":"IPT-CUST-ABC",
          "customer-name":"CUST-ABC",
-         "description":"CUST-ABC",
+         "description":"CUST-ABC-113",
          "peer-sap-id":"sap#113",
          "ip-connection":{
             "ipv4":{
-               "local-address":"100.1.1.1",
+               "local-address":"113.1.1.1",
                "prefix-length":31,
                "address-allocation-type":"ac-common:static-address"
             }
@@ -16,10 +16,10 @@
             "encapsulation":{
                "dot1q":{
                   "tag-type":"vpn-common:c-vlan",
-                  "cvlan-id":"100"
+                  "cvlan-id":"113"
                }
             },
-            "bearer-reference":"line-156"
+            "bearer-reference":"line-113"
          },
          "routing-protocols":{
             "routing-protocol":{
@@ -35,7 +35,7 @@
                   },
                   "neighbor":{
                      "id":"BGP-DIA-Single-1",
-                     "remote-address":"100.1.1.2",
+                     "remote-address":"113.1.1.2",
                      "peer-group":"IPT-CUST-ABC",
                      "status":{
                         "admin-status":{
