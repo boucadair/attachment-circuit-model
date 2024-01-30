@@ -199,7 +199,9 @@ module ietf-ac-common {
 
   identity bgp-capability {
     description
-      "Base identity for a BGP capability";
+      "Base identity for a BGP capability.";
+    reference
+      "RFC 5492: Capabilities Advertisement with BGP-4";
   }
 
   identity mp-bgp {
