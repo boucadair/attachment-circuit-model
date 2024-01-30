@@ -1120,7 +1120,7 @@ Next, API workflows can be initiated:
 
 ## Connect Customer Network (CE) through BGP Peering
 
-CE-PE routing using BGP (Border Gateway Protocol) is a common scenario in the context of MPLS (Multiprotocol Label Switching) VPNs and is widely employed in enterprise networks. In this example, the CE (Customer Edge) routers are customer-owned devices belonging to an autonomous system. CEs are located at the edge of the provider's network (PE, or Provider Edge) and will use point-to-point interfaces to establish the BGP session.
+CE-PE routing using BGP (Border Gateway Protocol) is a common scenario in the context of MPLS (Multiprotocol Label Switching) VPNs and is widely employed in enterprise networks. In this example, the CE (Customer Edge) routers are customer-owned devices belonging to an autonomous system (AS 1234). CEs are located at the edge of the provider's network (PE, or Provider Edge) and will use point-to-point interfaces to establish the BGP session. The Point to point interfaces uses a physical bearer (Line-156) to reach the provider network. 
 
 
 ~~~~ aasvg
@@ -1151,14 +1151,15 @@ CE-PE routing using BGP (Border Gateway Protocol) is a common scenario in the co
 {: #provider-network title="Illustration of Provider Network Scenario"}
 
 
-The attachment circuit in this case will use a SAP identifier to refer to the physical interface used for the connection of the PE and the CE. Apart from that, it will include all the logical attributes to describe the connection between the two ends. The configuration details involve the usage of Peer-Group details instead of defining the entire configuration inside the Neighbor.
-
+The attachment circuit in this case will use a SAP identifier to refer to the physical interface used for the connection between the PE and the CE. The attachment circuit will include all the additional logical attributes to describe the connection between the two ends, including VLAN information and IP addressing. Regarding the BGP session, the configuration details involve the usage of Peer-Group details instead of defining the entire configuration inside the Neighbor.
 
 ~~~~ json
 {::include-fold ./json-examples/svc/provider-network-interas-option-a.json}
 ~~~~
 {: #add-attachment-circuit-bgp-routing title="Message Body of a Request to Create ACs for Connecting CEs to provider Network"}
 
+
+This scenario allows the provider to maintain a list of Attachment Circuits belonging to the same customer without requiring the full service configuration.
 
 # Acknowledgments
 {:numbered="false"}
