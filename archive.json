@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-01-28T00:37:58.718125+00:00",
+  "timestamp": "2024-01-30T00:35:23.134686+00:00",
   "repo": "boucadair/attachment-circuit-model",
   "labels": [
     {
@@ -1582,7 +1582,7 @@
       ],
       "body": "Include soft-reconfiguration  (RFC 2918) in the bgp container. When doing BGP peering is it sometimes required to determine the type of behavior. ",
       "createdAt": "2023-06-26T08:50:54Z",
-      "updatedAt": "2023-11-14T12:17:30Z",
+      "updatedAt": "2024-01-29T07:50:26Z",
       "closedAt": null,
       "comments": [
         {
@@ -1591,6 +1591,13 @@
           "body": "@oscargdd, can you please propose a PR for this one?  ",
           "createdAt": "2023-11-14T12:17:30Z",
           "updatedAt": "2023-11-14T12:17:30Z"
+        },
+        {
+          "author": "boucadair",
+          "authorAssociation": "OWNER",
+          "body": "@oscargdd, please see #168 which I think addresses this issue in a more generic manner. ",
+          "createdAt": "2024-01-29T07:50:26Z",
+          "updatedAt": "2024-01-29T07:50:26Z"
         }
       ]
     },
@@ -6479,24 +6486,26 @@
       "id": "PR_kwDOIiAkrc5lDAs6",
       "title": "fix referencing",
       "url": "https://github.com/boucadair/attachment-circuit-model/pull/166",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "boucadair",
       "authorAssociation": "OWNER",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2024-01-25T10:19:57Z",
-      "updatedAt": "2024-01-25T16:23:12Z",
+      "updatedAt": "2024-01-29T08:40:01Z",
       "baseRepository": "boucadair/attachment-circuit-model",
       "baseRefName": "main",
       "baseRefOid": "9ec425c3c0d4b90e9101557fe627144ba6a5f71e",
       "headRepository": "boucadair/attachment-circuit-model",
       "headRefName": "boucadair-patch-5",
       "headRefOid": "0d6ab3749b3c12df94e1577c92d6b8ae55ff5424",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2024-01-29T08:40:00Z",
+      "mergedAt": "2024-01-29T08:40:00Z",
+      "mergedBy": "boucadair",
+      "mergeCommit": {
+        "oid": "e425facc337ea6a914c3539db8af567357cc544a"
+      },
       "comments": [],
       "reviews": []
     },
@@ -6524,6 +6533,60 @@
       "mergedBy": "boucadair",
       "mergeCommit": {
         "oid": "2c5fe6cf6958a9ff155b8a23a451e585b13100cd"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 168,
+      "id": "PR_kwDOIiAkrc5lSrOm",
+      "title": "BGP capabilities",
+      "url": "https://github.com/boucadair/attachment-circuit-model/pull/168",
+      "state": "OPEN",
+      "author": "boucadair",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-01-29T07:47:06Z",
+      "updatedAt": "2024-01-29T08:55:12Z",
+      "baseRepository": "boucadair/attachment-circuit-model",
+      "baseRefName": "main",
+      "baseRefOid": "e425facc337ea6a914c3539db8af567357cc544a",
+      "headRepository": "boucadair/attachment-circuit-model",
+      "headRefName": "BGP-capabilities",
+      "headRefOid": "18ef8edc6b15e4d02220bc44649713dcb1af58c8",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 169,
+      "id": "PR_kwDOIiAkrc5lS_J2",
+      "title": "rebase",
+      "url": "https://github.com/boucadair/attachment-circuit-model/pull/169",
+      "state": "MERGED",
+      "author": "boucadair",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-01-29T08:41:30Z",
+      "updatedAt": "2024-01-29T08:41:48Z",
+      "baseRepository": "boucadair/attachment-circuit-model",
+      "baseRefName": "BGP-capabilities",
+      "baseRefOid": "9a01e143de935f783fb447ec793dd4ce107cbdd1",
+      "headRepository": "boucadair/attachment-circuit-model",
+      "headRefName": "main",
+      "headRefOid": "e425facc337ea6a914c3539db8af567357cc544a",
+      "closedAt": "2024-01-29T08:41:48Z",
+      "mergedAt": "2024-01-29T08:41:48Z",
+      "mergedBy": "boucadair",
+      "mergeCommit": {
+        "oid": "c231dcbb436fa0ed3e687c628b6d45b70b4992dd"
       },
       "comments": [],
       "reviews": []
