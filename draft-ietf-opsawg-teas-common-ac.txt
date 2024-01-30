@@ -263,9 +263,10 @@ Table of Contents
       requesting ACs.  For example, this identity can be used to tag
       primary and secondary ACs.
 
-   'bgp-capability':  Used to indicate a BGP capability (e.g.,
-      Multiprotocol extensions for BGP-4 [RFC4760], route refresh
-      [RFC2918], graceful restart [RFC4724], or ADD-PATH [RFC7911]).
+   'bgp-capability':  Used to indicate a BGP capability [RFC5492].
+      Examples of BGP capabilities are Multiprotocol extensions for
+      BGP-4 [RFC4760], route refresh [RFC2918], graceful restart
+      [RFC4724], or ADD-PATH [RFC7911].
 
 3.2.  Reusable Groupings
 
@@ -2251,6 +2252,10 @@ Table of Contents
    [RFC5308]  Hopps, C., "Routing IPv6 with IS-IS", RFC 5308,
               DOI 10.17487/RFC5308, October 2008,
               <https://www.rfc-editor.org/rfc/rfc5308>.
+
+   [RFC5492]  Scudder, J. and R. Chandra, "Capabilities Advertisement
+              with BGP-4", RFC 5492, DOI 10.17487/RFC5492, February
+              2009, <https://www.rfc-editor.org/rfc/rfc5492>.
 
    [RFC5925]  Touch, J., Mankin, A., and R. Bonica, "The TCP
               Authentication Option", RFC 5925, DOI 10.17487/RFC5925,
