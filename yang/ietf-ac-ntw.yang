@@ -1014,6 +1014,13 @@ module ietf-ac-ntw {
                      Section 4.2";
       }
     }
+    leaf-list capabilities {
+      type identityref {
+        base ac-common:bgp-capability;
+      }
+      description
+        "Customized set of BGP capabilities.";
+    }
   }
 
   // RIP base parameters
