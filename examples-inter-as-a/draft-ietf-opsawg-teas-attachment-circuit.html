@@ -1036,7 +1036,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Boucadair, et al.</td>
-<td class="center">Expires 1 August 2024</td>
+<td class="center">Expires 2 August 2024</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1049,12 +1049,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-opsawg-teas-attachment-circuit-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2024-01-29" class="published">29 January 2024</time>
+<time datetime="2024-01-30" class="published">30 January 2024</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2024-08-01">1 August 2024</time></dd>
+<dd class="expires"><time datetime="2024-08-02">2 August 2024</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1118,7 +1118,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 1 August 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 2 August 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -6616,7 +6616,7 @@ module ietf-ac-svc {
         <h3 id="name-connect-customer-network-ce">
 <a href="#appendix-A.9" class="section-number selfRef">A.9. </a><a href="#name-connect-customer-network-ce" class="section-name selfRef">Connect Customer Network (CE) through BGP Peering</a>
         </h3>
-<p id="appendix-A.9-1">CE-PE routing using BGP (Border Gateway Protocol) is a common scenario in the context of MPLS (Multiprotocol Label Switching) VPNs and is widely employed in enterprise networks. In this example, the CE (Customer Edge) routers are customer-owned devices belonging to an autonomous system. CEs are located at the edge of the provider's network (PE, or Provider Edge) and will use point-to-point interfaces to establish the BGP session.<a href="#appendix-A.9-1" class="pilcrow">¶</a></p>
+<p id="appendix-A.9-1">CE-PE routing using BGP (Border Gateway Protocol) is a common scenario in the context of MPLS (Multiprotocol Label Switching) VPNs and is widely employed in enterprise networks. In this example, the CE (Customer Edge) routers are customer-owned devices belonging to an autonomous system (AS 1234). CEs are located at the edge of the provider's network (PE, or Provider Edge) and will use point-to-point interfaces to establish the BGP session. The Point to point interfaces uses a physical bearer (Line-113) to reach the provider network.<a href="#appendix-A.9-1" class="pilcrow">¶</a></p>
 <span id="name-illustration-of-provider-ne"></span><div id="provider-network">
 <figure id="figure-44">
           <div id="appendix-A.9-2.1">
@@ -6675,52 +6675,61 @@ module ietf-ac-svc {
 <a href="#name-illustration-of-provider-ne" class="selfRef">Illustration of Provider Network Scenario</a>
           </figcaption></figure>
 </div>
-<p id="appendix-A.9-3">The attachment circuit in this case will use a SAP identifier to refer to the physical interface used for the connection of the PE and the CE. Apart from that, it will include all the logical attributes to describe the connection between the two ends. The configuration details involve the usage of Peer-Group details instead of defining the entire configuration inside the Neighbor.<a href="#appendix-A.9-3" class="pilcrow">¶</a></p>
+<p id="appendix-A.9-3">The attachment circuit in this case will use a SAP identifier to refer to the physical interface used for the connection between the PE and the CE. The attachment circuit will include all the additional logical attributes to describe the connection between the two ends, including VLAN information and IP addressing. Regarding the BGP session, the configuration details involve the usage of Peer-Group details instead of defining the entire configuration inside the Neighbor.<a href="#appendix-A.9-3" class="pilcrow">¶</a></p>
 <span id="name-message-body-of-a-request-to-c"></span><div id="add-attachment-circuit-bgp-routing">
 <figure id="figure-45">
-          <div class="lang-json sourcecode" id="appendix-A.9-4.1">
+          <div class="breakable lang-json sourcecode" id="appendix-A.9-4.1">
 <pre>
 {
-  "attachment-circuits": {
-    "ac": {
-      "name": "IPT-CUST-ABC",
-      "customer-name": "CUST-ABC",
-      "description": "CUST-ABC",
-      "peer-sap-id": "sap#113",
-      "ip-connection": {
-        "ipv4": {
-          "local-address": "100.1.1.1",
-          "prefix-length": 31,
-          "address-allocation-type": "ac-common:static-address"
-        }
-      },
-      "routing-protocols": {
-        "routing-protocol": {
-          "id": "BGP-Single-Access",
-          "type": "vpn-common:bgp-routing",
-          "bgp": {
-            "peer-groups": {
-              "peer-group": {
-                "name": "IPT-CUST-ABC",
-                "peer-as": 1234,
-                "address-family": "vpn-common:ipv4"
-              }
-            },
-            "neighbor": {
-              "id": "BGP-DIA-Single-1",
-              "remote-address": "100.1.1.2",
-              "peer-group": "IPT-CUST-ABC",
-              "status": {
-                "admin-status": {
-                  "status": "vpn-common:admin-up"
-                }
-              }
+   "attachment-circuits":{
+      "ac":{
+         "name":"IPT-CUST-ABC",
+         "customer-name":"CUST-ABC",
+         "description":"CUST-ABC-113",
+         "peer-sap-id":"sap#113",
+         "ip-connection":{
+            "ipv4":{
+               "local-address":"113.1.1.1",
+               "prefix-length":31,
+               "address-allocation-type":"ac-common:static-address"
             }
-          }
-        }
+         },
+         "l2-connection":{
+            "encapsulation":{
+               "dot1q":{
+                  "tag-type":"vpn-common:c-vlan",
+                  "cvlan-id":"113"
+               }
+            },
+            "bearer-reference":"line-113"
+         },
+         "routing-protocols":{
+            "routing-protocol":{
+               "id":"BGP-Single-Access",
+               "type":"vpn-common:bgp-routing",
+               "bgp":{
+                  "peer-groups":{
+                     "peer-group":{
+                        "name":"IPT-CUST-ABC",
+                        "peer-as":1234,
+                        "address-family":"vpn-common:ipv4"
+                     }
+                  },
+                  "neighbor":{
+                     "id":"BGP-DIA-Single-1",
+                     "remote-address":"113.1.1.2",
+                     "peer-group":"IPT-CUST-ABC",
+                     "status":{
+                        "admin-status":{
+                           "status":"vpn-common:admin-up"
+                        }
+                     }
+                  }
+               }
+            }
+         }
       }
-    }
-  }
+   }
 }
 </pre>
 </div>
@@ -6728,6 +6737,7 @@ module ietf-ac-svc {
 <a href="#name-message-body-of-a-request-to-c" class="selfRef">Message Body of a Request to Create ACs for Connecting CEs to provider Network</a>
           </figcaption></figure>
 </div>
+<p id="appendix-A.9-5">This scenario allows the provider to maintain a list of Attachment Circuits belonging to the same customer without requiring the full service configuration.<a href="#appendix-A.9-5" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>

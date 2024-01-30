@@ -5,14 +5,14 @@
 OPSAWG                                                 M. Boucadair, Ed.
 Internet-Draft                                                    Orange
 Intended status: Standards Track                         R. Roberts, Ed.
-Expires: 1 August 2024                                           Juniper
+Expires: 2 August 2024                                           Juniper
                                                            O. G. D. Dios
                                                               Telefonica
                                                            S. B. Giraldo
                                                                    Nokia
                                                                    B. Wu
                                                      Huawei Technologies
-                                                         29 January 2024
+                                                         30 January 2024
 
 
   YANG Data Models for Bearers and 'Attachment Circuits'-as-a-Service
@@ -62,7 +62,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 1 August 2024.
+   This Internet-Draft will expire on 2 August 2024.
 
 Copyright Notice
 
@@ -4722,9 +4722,11 @@ A.9.  Connect Customer Network (CE) through BGP Peering
    scenario in the context of MPLS (Multiprotocol Label Switching) VPNs
    and is widely employed in enterprise networks.  In this example, the
    CE (Customer Edge) routers are customer-owned devices belonging to an
-   autonomous system.  CEs are located at the edge of the provider's
-   network (PE, or Provider Edge) and will use point-to-point interfaces
-   to establish the BGP session.
+   autonomous system (AS 1234).  CEs are located at the edge of the
+   provider's network (PE, or Provider Edge) and will use point-to-point
+   interfaces to establish the BGP session.  The Point to point
+   interfaces uses a physical bearer (Line-113) to reach the provider
+   network.
 
   +------------------------+                       +-------------------+
   |  Provider Network      |                       | Customer Network  |
@@ -4753,57 +4755,72 @@ A.9.  Connect Customer Network (CE) through BGP Peering
            Figure 44: Illustration of Provider Network Scenario
 
    The attachment circuit in this case will use a SAP identifier to
-   refer to the physical interface used for the connection of the PE and
-   the CE.  Apart from that, it will include all the logical attributes
-   to describe the connection between the two ends.  The configuration
-   details involve the usage of Peer-Group details instead of defining
-   the entire configuration inside the Neighbor.
+   refer to the physical interface used for the connection between the
+   PE and the CE.  The attachment circuit will include all the
+   additional logical attributes to describe the connection between the
+   two ends, including VLAN information and IP addressing.  Regarding
+   the BGP session, the configuration details involve the usage of Peer-
+   Group details instead of defining the entire configuration inside the
+   Neighbor.
 
    {
-     "attachment-circuits": {
-       "ac": {
-         "name": "IPT-CUST-ABC",
-         "customer-name": "CUST-ABC",
-         "description": "CUST-ABC",
-         "peer-sap-id": "sap#113",
-         "ip-connection": {
-           "ipv4": {
-             "local-address": "100.1.1.1",
-             "prefix-length": 31,
-             "address-allocation-type": "ac-common:static-address"
-           }
-         },
-         "routing-protocols": {
-           "routing-protocol": {
-             "id": "BGP-Single-Access",
-             "type": "vpn-common:bgp-routing",
-             "bgp": {
-               "peer-groups": {
-                 "peer-group": {
-                   "name": "IPT-CUST-ABC",
-                   "peer-as": 1234,
-                   "address-family": "vpn-common:ipv4"
-                 }
-               },
-               "neighbor": {
-                 "id": "BGP-DIA-Single-1",
-                 "remote-address": "100.1.1.2",
-                 "peer-group": "IPT-CUST-ABC",
-                 "status": {
-                   "admin-status": {
-                     "status": "vpn-common:admin-up"
-                   }
-                 }
+      "attachment-circuits":{
+         "ac":{
+            "name":"IPT-CUST-ABC",
+            "customer-name":"CUST-ABC",
+            "description":"CUST-ABC-113",
+            "peer-sap-id":"sap#113",
+            "ip-connection":{
+               "ipv4":{
+                  "local-address":"113.1.1.1",
+                  "prefix-length":31,
+                  "address-allocation-type":"ac-common:static-address"
                }
-             }
-           }
+            },
+            "l2-connection":{
+               "encapsulation":{
+                  "dot1q":{
+                     "tag-type":"vpn-common:c-vlan",
+                     "cvlan-id":"113"
+                  }
+               },
+               "bearer-reference":"line-113"
+            },
+            "routing-protocols":{
+               "routing-protocol":{
+                  "id":"BGP-Single-Access",
+                  "type":"vpn-common:bgp-routing",
+                  "bgp":{
+                     "peer-groups":{
+                        "peer-group":{
+                           "name":"IPT-CUST-ABC",
+                           "peer-as":1234,
+                           "address-family":"vpn-common:ipv4"
+                        }
+                     },
+                     "neighbor":{
+                        "id":"BGP-DIA-Single-1",
+                        "remote-address":"113.1.1.2",
+                        "peer-group":"IPT-CUST-ABC",
+                        "status":{
+                           "admin-status":{
+                              "status":"vpn-common:admin-up"
+                           }
+                        }
+                     }
+                  }
+               }
+            }
          }
-       }
-     }
+      }
    }
 
      Figure 45: Message Body of a Request to Create ACs for Connecting
                           CEs to provider Network
+
+   This scenario allows the provider to maintain a list of Attachment
+   Circuits belonging to the same customer without requiring the full
+   service configuration.
 
 Acknowledgments
 
