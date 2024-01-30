@@ -182,7 +182,7 @@ The module defines a set of identities, including the following:
 : Used to indicate the redundancy type when requesting ACs. For example, this identity can be used to tag primary and secondary ACs.
 
 'bgp-capability':
-: Used to indicate a BGP capability (e.g., Multiprotocol extensions for BGP-4 {{?RFC4760}}, route refresh {{?RFC2918}}, graceful restart {{?RFC4724}}, or ADD-PATH {{?RFC7911}}).
+: Used to indicate a BGP capability {{!RFC5492}}. Examples of BGP capabilities are Multiprotocol extensions for BGP-4 {{?RFC4760}}, route refresh {{?RFC2918}}, graceful restart {{?RFC4724}}, or ADD-PATH {{?RFC7911}}.
 
 ## Reusable Groupings
 
