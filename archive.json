@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-01-30T00:35:23.134686+00:00",
+  "timestamp": "2024-02-01T00:37:09.104228+00:00",
   "repo": "boucadair/attachment-circuit-model",
   "labels": [
     {
@@ -1570,7 +1570,7 @@
       "id": "I_kwDOIiAkrc5pwSA7",
       "title": "BGP container review: Add soft-reconfiguration to BGP",
       "url": "https://github.com/boucadair/attachment-circuit-model/issues/77",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "oscargdd",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -1582,8 +1582,8 @@
       ],
       "body": "Include soft-reconfiguration  (RFC 2918) in the bgp container. When doing BGP peering is it sometimes required to determine the type of behavior. ",
       "createdAt": "2023-06-26T08:50:54Z",
-      "updatedAt": "2024-01-29T07:50:26Z",
-      "closedAt": null,
+      "updatedAt": "2024-01-30T08:56:08Z",
+      "closedAt": "2024-01-30T08:56:08Z",
       "comments": [
         {
           "author": "boucadair",
@@ -6542,24 +6542,26 @@
       "id": "PR_kwDOIiAkrc5lSrOm",
       "title": "BGP capabilities",
       "url": "https://github.com/boucadair/attachment-circuit-model/pull/168",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "boucadair",
       "authorAssociation": "OWNER",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2024-01-29T07:47:06Z",
-      "updatedAt": "2024-01-29T08:55:12Z",
+      "updatedAt": "2024-01-30T08:56:08Z",
       "baseRepository": "boucadair/attachment-circuit-model",
       "baseRefName": "main",
       "baseRefOid": "e425facc337ea6a914c3539db8af567357cc544a",
       "headRepository": "boucadair/attachment-circuit-model",
       "headRefName": "BGP-capabilities",
       "headRefOid": "18ef8edc6b15e4d02220bc44649713dcb1af58c8",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2024-01-30T08:56:08Z",
+      "mergedAt": "2024-01-30T08:56:08Z",
+      "mergedBy": "boucadair",
+      "mergeCommit": {
+        "oid": "d3dd9723ba49792b524bd9dd077bcf7278048ec5"
+      },
       "comments": [],
       "reviews": []
     },
