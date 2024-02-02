@@ -60,6 +60,16 @@ module ietf-bearer-svc {
       "RFC xxxx: A YANG Service Data Model for Attachment Circuits";
   }
 
+  // Typedef to ease referencing cross-modules
+
+  typedef bearer-reference {
+    type leafref {
+      path "/bearer-svc:bearers/bearer-svc:bearer/bearer-svc:name";
+    }
+    description
+      "Defines a type to reference a bearer.";
+  }
+
   // Identities 
 
   identity identification-type {
@@ -70,7 +80,7 @@ module ietf-bearer-svc {
   identity device-id {
     base identification-type;
     description
-      "Identification of bearers based on device..";
+      "Identification of bearers based on device.";
   }
 
   identity site-id {
@@ -234,13 +244,13 @@ module ietf-bearer-svc {
     }
 
     list bearer {
-      key "id";
+      key "name";
       description
         "Maintains a list of bearers.";
       leaf id {
         type string;
         description
-          "An identifier of the bearer.";
+          "A name that uniquely identifies a bearer in a network.";
       }
       leaf description {
         type string;
@@ -255,6 +265,17 @@ module ietf-bearer-svc {
            teams and which may be useful for the activation of a
            bearer. This may include, for example, information
            about the building, level, etc.";
+      }
+      leaf bearer-parent-ref {
+        type bearer-svc:bearer-reference;
+        description
+          "Specifies the parent bearer. This can be used, e.g.,
+           for a Link Aggregation Group (LAG).";
+      }
+      leaf-list bearer-lag-member {
+        type bearer-svc:bearer-reference;
+        description
+          "Specifies a member of a LAG.";
       }
       container customer-point {
         description
