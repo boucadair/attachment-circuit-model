@@ -1901,7 +1901,7 @@ Table of Contents
 
      // Typedef to ease referencing cross-modules
 
-     typedef bearer-reference {
+     typedef bearer-ref {
        type leafref {
          path "/bearer-svc:bearers/bearer-svc:bearer/bearer-svc:name";
        }
@@ -2106,13 +2106,13 @@ Table of Contents
               about the building, level, etc.";
          }
          leaf bearer-parent-ref {
-           type bearer-svc:bearer-reference;
+           type bearer-svc:bearer-ref;
            description
              "Specifies the parent bearer. This can be used, e.g.,
               for a Link Aggregation Group (LAG).";
          }
          leaf-list bearer-lag-member {
-           type bearer-svc:bearer-reference;
+           type bearer-svc:bearer-ref;
            description
              "Specifies a member of a LAG.";
          }
