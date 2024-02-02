@@ -991,6 +991,11 @@ module ietf-ac-svc {
            information is created with a set of child ACs
            to track dynamic AC information.";
       }
+      leaf-list child-ac-ref {
+        type ac-svc:attachment-circuit-reference;
+        description
+          "Specifies a child AC that relies upon a parent AC.";
+      }
       list group {
         key "group-id";
         description

@@ -420,6 +420,9 @@ a parent AC can be defined with a set of stable and common information, while
 "child" ACs are defined to track dynamic information. These "child" ACs are bound to the parent AC, which is exposed to services (as a stable reference).
 : Whenever a parent AC is deleted, all its "child" ACs MUST be deleted.
 
+'child-ac-ref':
+: Lists one or more references of child ACs that rely upon this attachment circuit as a parent AC.
+
 'group':
 : Lists the groups to which an AC belongs {{!RFC9181}}. For example, the 'group-id' is used to associate redundancy or protection constraints of ACs. An example is provided in {{sec-ex-prec}}.
 
