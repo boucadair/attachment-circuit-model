@@ -1645,6 +1645,8 @@ Such a reference can be used, e.g., in a subsequent service request to create an
 <figure id="figure-3">
           <div class="alignCenter art-text artwork" id="section-4.1-2.1">
 <pre>
+module: ietf-bearer-svc
+
   +--rw bearers
      +--rw placement-constraints
      |  +--rw constraint* [constraint-type]
@@ -1659,13 +1661,15 @@ Such a reference can be used, e.g., in a subsequent service request to create an
      |           |  +--rw all-other-bearers?   empty
      |           +--:(all-groups)
      |              +--rw all-other-groups?    empty
-     +--rw bearer* [id]
-        +--rw id                  string
-        +--rw description?        string
+     +--rw bearer* [name]
+        +--rw name                 string
+        +--rw description?         string
         +--rw groups
         |  +--rw group* [group-id]
         |     +--rw group-id    string
-        +--rw op-comment?         string
+        +--rw op-comment?          string
+        +--rw bearer-parent-ref?   bearer-svc:bearer-ref
+        +--rw bearer-lag-member*   bearer-svc:bearer-ref
         +--rw customer-point
         |  +--rw identified-by?   identityref
         |  +--rw device
@@ -1687,15 +1691,15 @@ Such a reference can be used, e.g., in a subsequent service request to create an
         |  |     +--rw city?            string
         |  |     +--rw country-code?    string
         |  +--rw custom-id?       string
-        +--rw requested-type?     identityref
-        +--rw test-only?          empty
-        +--ro bearer-reference?   string
+        +--rw requested-type?      identityref
+        +--rw test-only?           empty
+        +--ro bearer-reference?    string
         |       {vpn-common:bearer-reference}?
-        +--ro ac-svc-ref*            ac-svc:attachment-circuit-reference
-        +--rw requested-start?    yang:date-and-time
-        +--rw requested-stop?     yang:date-and-time
-        +--ro actual-start?       yang:date-and-time
-        +--ro actual-stop?        yang:date-and-time
+        +--ro ac-svc-ref*          ac-svc:attachment-circuit-reference
+        +--rw requested-start?     yang:date-and-time
+        +--rw requested-stop?      yang:date-and-time
+        +--ro actual-start?        yang:date-and-time
+        +--ro actual-stop?         yang:date-and-time
         +--rw status
            +--rw admin-status
            |  +--rw status?        identityref
@@ -1726,9 +1730,9 @@ Such a reference can be used, e.g., in a subsequent service request to create an
 <p id="section-4.1-6">A request to create a bearer may include a set of constraints ("placement-constraints") that are used by a controller to decide the network terminating side of a bearer (e.g., PE selection, PE redundancy, or PoP selection). Future placement criteria ("constraint-type") may be defined in the future to accommodate specific deployment contexts.<a href="#section-4.1-6" class="pilcrow">¶</a></p>
 <p id="section-4.1-7">The descriptions of the bearer data nodes are as follows:<a href="#section-4.1-7" class="pilcrow">¶</a></p>
 <span class="break"></span><dl class="dlParallel" id="section-4.1-8">
-          <dt id="section-4.1-8.1">'id':</dt>
+          <dt id="section-4.1-8.1">'name':</dt>
           <dd style="margin-left: 1.5em" id="section-4.1-8.2">
-            <p id="section-4.1-8.2.1">Used to uniquely identify a bearer. This identifier is typically selected by the client when requesting a bearer.<a href="#section-4.1-8.2.1" class="pilcrow">¶</a></p>
+            <p id="section-4.1-8.2.1">Used to uniquely identify a bearer. This name is typically selected by the client when requesting a bearer.<a href="#section-4.1-8.2.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
 <dt id="section-4.1-8.3">'description':</dt>
@@ -1741,94 +1745,104 @@ Such a reference can be used, e.g., in a subsequent service request to create an
             <p id="section-4.1-8.6.1">Includes operational comments that may be useful for managing the bearer (building, level, etc.). No structure is associated with this data node to accommodate all deployments.<a href="#section-4.1-8.6.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-8.7">'group':</dt>
+<dt id="section-4.1-8.7">'bearer-parent-ref':</dt>
           <dd style="margin-left: 1.5em" id="section-4.1-8.8">
-            <p id="section-4.1-8.8.1">Tags a bearer with one ore more identifiers that are used to group a set of bearers.<a href="#section-4.1-8.8.1" class="pilcrow">¶</a></p>
+            <p id="section-4.1-8.8.1">Specifies the parent bearer. This data node can be used, e.g., if a bearer is a member of a Link Aggregation Group (LAG).<a href="#section-4.1-8.8.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-8.9">'customer-point':</dt>
+<dt id="section-4.1-8.9">'bearer-lag-member':</dt>
           <dd style="margin-left: 1.5em" id="section-4.1-8.10">
-            <p id="section-4.1-8.10.1">Specifies the customer terminating point for the bearer. A bearer request can indicate a device, a site, a combination thereof, or a custom information when requesting a bearer. All these schemes are supported in the model.<a href="#section-4.1-8.10.1" class="pilcrow">¶</a></p>
+            <p id="section-4.1-8.10.1">Lists the bearers that are member of a LAG.<a href="#section-4.1-8.10.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-8.11">'requested-type':</dt>
+<dt id="section-4.1-8.11">'group':</dt>
           <dd style="margin-left: 1.5em" id="section-4.1-8.12">
-            <p id="section-4.1-8.12.1">Specifies the requested bearer type (Ethernet, wireless, etc.).<a href="#section-4.1-8.12.1" class="pilcrow">¶</a></p>
+            <p id="section-4.1-8.12.1">Tags a bearer with one ore more identifiers that are used to group a set of bearers.<a href="#section-4.1-8.12.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-8.13">'test-only':</dt>
+<dt id="section-4.1-8.13">'customer-point':</dt>
           <dd style="margin-left: 1.5em" id="section-4.1-8.14">
-            <p id="section-4.1-8.14.1">Indicates that a request is only for test and not for setting, even if there are no errors. This is used for feasibility checks. This data node is applicable only when the data model is used with protocols which do not natively support such option. For example, this data node is redundant with the "test-only" value of the <code>&lt;test-option&gt;</code> parameter in the NETCONF <code>&lt;edit-config&gt;</code> operation (<span><a href="https://rfc-editor.org/rfc/rfc6241#section-7.2" class="relref">Section 7.2</a> of [<a href="#RFC6241" class="cite xref">RFC6241</a>]</span>).<a href="#section-4.1-8.14.1" class="pilcrow">¶</a></p>
+            <p id="section-4.1-8.14.1">Specifies the customer terminating point for the bearer. A bearer request can indicate a device, a site, a combination thereof, or a custom information when requesting a bearer. All these schemes are supported in the model.<a href="#section-4.1-8.14.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-8.15">'bearer-reference':</dt>
+<dt id="section-4.1-8.15">'requested-type':</dt>
           <dd style="margin-left: 1.5em" id="section-4.1-8.16">
-            <p id="section-4.1-8.16.1">Returns an internal reference for the service provider to uniquely identify the bearer. This reference can be used when requesting services. <a href="#ex-create-bearer" class="auto internal xref">Appendix A.1</a> provides an example about how this reference can be retrieved by a customer.<a href="#section-4.1-8.16.1" class="pilcrow">¶</a></p>
+            <p id="section-4.1-8.16.1">Specifies the requested bearer type (Ethernet, wireless, etc.).<a href="#section-4.1-8.16.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-8.17"></dt>
+<dt id="section-4.1-8.17">'test-only':</dt>
           <dd style="margin-left: 1.5em" id="section-4.1-8.18">
-            <p id="section-4.1-8.18.1">Whether the 'bearer-reference' mirrors the content of the 'id' is deployment-specific. The module does not assume nor preclude such schemes.<a href="#section-4.1-8.18.1" class="pilcrow">¶</a></p>
+            <p id="section-4.1-8.18.1">Indicates that a request is only for test and not for setting, even if there are no errors. This is used for feasibility checks. This data node is applicable only when the data model is used with protocols which do not natively support such option. For example, this data node is redundant with the "test-only" value of the <code>&lt;test-option&gt;</code> parameter in the NETCONF <code>&lt;edit-config&gt;</code> operation (<span><a href="https://rfc-editor.org/rfc/rfc6241#section-7.2" class="relref">Section 7.2</a> of [<a href="#RFC6241" class="cite xref">RFC6241</a>]</span>).<a href="#section-4.1-8.18.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-8.19">'ac-svc-ref':</dt>
+<dt id="section-4.1-8.19">'bearer-reference':</dt>
           <dd style="margin-left: 1.5em" id="section-4.1-8.20">
-            <p id="section-4.1-8.20.1">Specifies the set of attachment circuits that are bound to the bearer.<a href="#section-4.1-8.20.1" class="pilcrow">¶</a></p>
+            <p id="section-4.1-8.20.1">Returns an internal reference for the service provider to uniquely identify the bearer. This reference can be used when requesting services. <a href="#ex-create-bearer" class="auto internal xref">Appendix A.1</a> provides an example about how this reference can be retrieved by a customer.<a href="#section-4.1-8.20.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-8.21">'requested-start':</dt>
+<dt id="section-4.1-8.21"></dt>
           <dd style="margin-left: 1.5em" id="section-4.1-8.22">
-            <p id="section-4.1-8.22.1">Specifies the requested date and time when the bearer is expected to be active.<a href="#section-4.1-8.22.1" class="pilcrow">¶</a></p>
+            <p id="section-4.1-8.22.1">Whether the 'bearer-reference' mirrors the content of the 'name' is deployment-specific. The module does not assume nor preclude such schemes.<a href="#section-4.1-8.22.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-8.23">'requested-stop':</dt>
+<dt id="section-4.1-8.23">'ac-svc-ref':</dt>
           <dd style="margin-left: 1.5em" id="section-4.1-8.24">
-            <p id="section-4.1-8.24.1">Specifies the requested date and time when the bearer is expected to be disabled.<a href="#section-4.1-8.24.1" class="pilcrow">¶</a></p>
+            <p id="section-4.1-8.24.1">Specifies the set of attachment circuits that are bound to the bearer.<a href="#section-4.1-8.24.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-8.25">'actual-start':</dt>
+<dt id="section-4.1-8.25">'requested-start':</dt>
           <dd style="margin-left: 1.5em" id="section-4.1-8.26">
-            <p id="section-4.1-8.26.1">Reports the actual date and time when the bearer actually was enabled.<a href="#section-4.1-8.26.1" class="pilcrow">¶</a></p>
+            <p id="section-4.1-8.26.1">Specifies the requested date and time when the bearer is expected to be active.<a href="#section-4.1-8.26.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-8.27">'actual-stop':</dt>
+<dt id="section-4.1-8.27">'requested-stop':</dt>
           <dd style="margin-left: 1.5em" id="section-4.1-8.28">
-            <p id="section-4.1-8.28.1">Reports the actual date and time when the bearer actually was disabled.<a href="#section-4.1-8.28.1" class="pilcrow">¶</a></p>
+            <p id="section-4.1-8.28.1">Specifies the requested date and time when the bearer is expected to be disabled.<a href="#section-4.1-8.28.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-8.29">'status':</dt>
+<dt id="section-4.1-8.29">'actual-start':</dt>
           <dd style="margin-left: 1.5em" id="section-4.1-8.30">
-            <p id="section-4.1-8.30.1">Used to track the overall status of a given bearer. Both operational and administrative status are maintained together with a timestamp.<a href="#section-4.1-8.30.1" class="pilcrow">¶</a></p>
+            <p id="section-4.1-8.30.1">Reports the actual date and time when the bearer actually was enabled.<a href="#section-4.1-8.30.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-8.31"></dt>
+<dt id="section-4.1-8.31">'actual-stop':</dt>
           <dd style="margin-left: 1.5em" id="section-4.1-8.32">
-            <p id="section-4.1-8.32.1">The "admin-status" attribute is typically configured by a network operator to indicate whether the service is enabled, disabled, or subjected to additional testing or pre-deployment checks. These additional options, such as 'admin-testing' and 'admin-pre-deployment', provide the operators the flexibility to conduct additional validations on the bearer before deploying services over that connection.<a href="#section-4.1-8.32.1" class="pilcrow">¶</a></p>
+            <p id="section-4.1-8.32.1">Reports the actual date and time when the bearer actually was disabled.<a href="#section-4.1-8.32.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-8.33">'oper-status':</dt>
+<dt id="section-4.1-8.33">'status':</dt>
           <dd style="margin-left: 1.5em" id="section-4.1-8.34">
-            <p id="section-4.1-8.34.1">The "oper-status" of a bearer reflects its operational state as observed. As a bearer can contain multiple services, the operational status should only reflect the status of the bearer connection. To obtain network-level service status, specific network models such as those in <span><a href="https://rfc-editor.org/rfc/rfc9182#section-7.3" class="relref">Section 7.3</a> of [<a href="#RFC9182" class="cite xref">RFC9182</a>]</span>  or <span><a href="https://rfc-editor.org/rfc/rfc9291#section-7.3" class="relref">Section 7.3</a> of [<a href="#RFC9291" class="cite xref">RFC9291</a>]</span> should be consulted.<a href="#section-4.1-8.34.1" class="pilcrow">¶</a></p>
+            <p id="section-4.1-8.34.1">Used to track the overall status of a given bearer. Both operational and administrative status are maintained together with a timestamp.<a href="#section-4.1-8.34.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
 <dt id="section-4.1-8.35"></dt>
           <dd style="margin-left: 1.5em" id="section-4.1-8.36">
-            <p id="section-4.1-8.36.1">It is important to note that the "admin-status" attribute should remain independent of the "oper-status". In other words, the setting of the intended administrative state (e.g., whether "admin-up" or "admin-testing") <span class="bcp14">MUST NOT</span> be influenced by the current operational state. If the bearer is administratively set to 'admin-down', it is expected that the bearer will also be operationally 'op-down' as a result of this administrative decision.<a href="#section-4.1-8.36.1" class="pilcrow">¶</a></p>
+            <p id="section-4.1-8.36.1">The "admin-status" attribute is typically configured by a network operator to indicate whether the service is enabled, disabled, or subjected to additional testing or pre-deployment checks. These additional options, such as 'admin-testing' and 'admin-pre-deployment', provide the operators the flexibility to conduct additional validations on the bearer before deploying services over that connection.<a href="#section-4.1-8.36.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-8.37"></dt>
+<dt id="section-4.1-8.37">'oper-status':</dt>
           <dd style="margin-left: 1.5em" id="section-4.1-8.38">
-            <p id="section-4.1-8.38.1">To assess the service delivery status for a given bearer comprehensively, it is recommended to consider both administrative and operational service status values in conjunction. This holistic approach  allows a network controller or operator to identify anomalies effectively.<a href="#section-4.1-8.38.1" class="pilcrow">¶</a></p>
+            <p id="section-4.1-8.38.1">The "oper-status" of a bearer reflects its operational state as observed. As a bearer can contain multiple services, the operational status should only reflect the status of the bearer connection. To obtain network-level service status, specific network models such as those in <span><a href="https://rfc-editor.org/rfc/rfc9182#section-7.3" class="relref">Section 7.3</a> of [<a href="#RFC9182" class="cite xref">RFC9182</a>]</span>  or <span><a href="https://rfc-editor.org/rfc/rfc9291#section-7.3" class="relref">Section 7.3</a> of [<a href="#RFC9291" class="cite xref">RFC9291</a>]</span> should be consulted.<a href="#section-4.1-8.38.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
 <dt id="section-4.1-8.39"></dt>
           <dd style="margin-left: 1.5em" id="section-4.1-8.40">
-            <p id="section-4.1-8.40.1">For instance, when a bearer is administratively enabled but the "operational-status" of that bearer is reported as "op-down", it should be expected that the "oper-status" of services transported over that bearer is also down. If these status values differ, a trigger to detect an anomaly.<a href="#section-4.1-8.40.1" class="pilcrow">¶</a></p>
+            <p id="section-4.1-8.40.1">It is important to note that the "admin-status" attribute should remain independent of the "oper-status". In other words, the setting of the intended administrative state (e.g., whether "admin-up" or "admin-testing") <span class="bcp14">MUST NOT</span> be influenced by the current operational state. If the bearer is administratively set to 'admin-down', it is expected that the bearer will also be operationally 'op-down' as a result of this administrative decision.<a href="#section-4.1-8.40.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
 <dt id="section-4.1-8.41"></dt>
           <dd style="margin-left: 1.5em" id="section-4.1-8.42">
-            <p id="section-4.1-8.42.1">See <span>[<a href="#RFC9181" class="cite xref">RFC9181</a>]</span> for more details.<a href="#section-4.1-8.42.1" class="pilcrow">¶</a></p>
+            <p id="section-4.1-8.42.1">To assess the service delivery status for a given bearer comprehensively, it is recommended to consider both administrative and operational service status values in conjunction. This holistic approach  allows a network controller or operator to identify anomalies effectively.<a href="#section-4.1-8.42.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.1-8.43"></dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-8.44">
+            <p id="section-4.1-8.44.1">For instance, when a bearer is administratively enabled but the "operational-status" of that bearer is reported as "op-down", it should be expected that the "oper-status" of services transported over that bearer is also down. If these status values differ, a trigger to detect an anomaly.<a href="#section-4.1-8.44.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.1-8.45"></dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-8.46">
+            <p id="section-4.1-8.46.1">See <span>[<a href="#RFC9181" class="cite xref">RFC9181</a>]</span> for more details.<a href="#section-4.1-8.46.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 </dl>
@@ -3340,6 +3354,16 @@ module ietf-bearer-svc {
       "RFC xxxx: A YANG Service Data Model for Attachment Circuits";
   }
 
+  // Typedef to ease referencing cross-modules
+
+  typedef bearer-ref {
+    type leafref {
+      path "/bearer-svc:bearers/bearer-svc:bearer/bearer-svc:name";
+    }
+    description
+      "Defines a type to reference a bearer.";
+  }
+
   // Identities
 
   identity identification-type {
@@ -3350,7 +3374,7 @@ module ietf-bearer-svc {
   identity device-id {
     base identification-type;
     description
-      "Identification of bearers based on device..";
+      "Identification of bearers based on device.";
   }
 
   identity site-id {
@@ -3514,13 +3538,14 @@ module ietf-bearer-svc {
     }
 
     list bearer {
-      key "id";
+      key "name";
       description
         "Maintains a list of bearers.";
-      leaf id {
+      leaf name {
         type string;
         description
-          "An identifier of the bearer.";
+          "A name that uniquely identifies a bearer for
+           a given customer.";
       }
       leaf description {
         type string;
@@ -3535,6 +3560,17 @@ module ietf-bearer-svc {
            teams and which may be useful for the activation of a
            bearer. This may include, for example, information
            about the building, level, etc.";
+      }
+      leaf bearer-parent-ref {
+        type bearer-svc:bearer-ref;
+        description
+          "Specifies the parent bearer. This can be used, e.g.,
+           for a Link Aggregation Group (LAG).";
+      }
+      leaf-list bearer-lag-member {
+        type bearer-svc:bearer-ref;
+        description
+          "Specifies a member of a LAG.";
       }
       container customer-point {
         description
