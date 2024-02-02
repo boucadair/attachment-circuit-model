@@ -1,3 +1,5 @@
+module: ietf-bearer-svc
+
   +--rw bearers
      +--rw placement-constraints
      |  +--rw constraint* [constraint-type]
@@ -12,13 +14,15 @@
      |           |  +--rw all-other-bearers?   empty
      |           +--:(all-groups)
      |              +--rw all-other-groups?    empty
-     +--rw bearer* [id]
-        +--rw id                  string
-        +--rw description?        string
+     +--rw bearer* [name]
+        +--rw name                 string
+        +--rw description?         string
         +--rw groups
         |  +--rw group* [group-id]
         |     +--rw group-id    string
-        +--rw op-comment?         string
+        +--rw op-comment?          string
+        +--rw bearer-parent-ref?   bearer-svc:bearer-reference
+        +--rw bearer-lag-member*   bearer-svc:bearer-reference
         +--rw customer-point
         |  +--rw identified-by?   identityref
         |  +--rw device
@@ -40,15 +44,15 @@
         |  |     +--rw city?            string
         |  |     +--rw country-code?    string
         |  +--rw custom-id?       string
-        +--rw requested-type?     identityref
-        +--rw test-only?          empty
-        +--ro bearer-reference?   string
+        +--rw requested-type?      identityref
+        +--rw test-only?           empty
+        +--ro bearer-reference?    string
         |       {vpn-common:bearer-reference}?
-        +--ro ac-svc-ref*            ac-svc:attachment-circuit-reference
-        +--rw requested-start?    yang:date-and-time
-        +--rw requested-stop?     yang:date-and-time
-        +--ro actual-start?       yang:date-and-time
-        +--ro actual-stop?        yang:date-and-time
+        +--ro ac-svc-ref*          ac-svc:attachment-circuit-reference
+        +--rw requested-start?     yang:date-and-time
+        +--rw requested-stop?      yang:date-and-time
+        +--ro actual-start?        yang:date-and-time
+        +--ro actual-stop?         yang:date-and-time
         +--rw status
            +--rw admin-status
            |  +--rw status?        identityref
