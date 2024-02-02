@@ -250,7 +250,8 @@ module ietf-bearer-svc {
       leaf name {
         type string;
         description
-          "A name that uniquely identifies a bearer in a network.";
+          "A name that uniquely identifies a bearer for
+           a given customer.";
       }
       leaf description {
         type string;
