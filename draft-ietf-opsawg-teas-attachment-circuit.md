@@ -245,14 +245,20 @@ A request to create a bearer may include a set of constraints ("placement-constr
 
 The descriptions of the bearer data nodes are as follows:
 
-'id':
-: Used to uniquely identify a bearer. This identifier is typically selected by the client when requesting a bearer.
+'name':
+: Used to uniquely identify a bearer. This name is typically selected by the client when requesting a bearer.
 
 'description':
 : Includes a textual description of the bearer.
 
 'op-comment':
 : Includes operational comments that may be useful for managing the bearer (building, level, etc.). No structure is associated with this data node to accommodate all deployments.
+
+'bearer-parent-ref':
+: Specifies the parent bearer. This data node can be used, e.g., if a bearer is a member of a Link Aggregation Group (LAG).
+
+'bearer-lag-member':
+: Lists the bearers that are member of a LAG.
 
 'group':
 : Tags a bearer with one ore more identifiers that are used to group a set of bearers.
@@ -268,7 +274,7 @@ The descriptions of the bearer data nodes are as follows:
 
 'bearer-reference':
 : Returns an internal reference for the service provider to uniquely identify the bearer. This reference can be used when requesting services. {{ex-create-bearer}} provides an example about how this reference can be retrieved by a customer.
-: Whether the 'bearer-reference' mirrors the content of the 'id' is deployment-specific. The module does not assume nor preclude such schemes.
+: Whether the 'bearer-reference' mirrors the content of the 'name' is deployment-specific. The module does not assume nor preclude such schemes.
 
 'ac-svc-ref':
 : Specifies the set of attachment circuits that are bound to the bearer.
