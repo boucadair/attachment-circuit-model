@@ -5,14 +5,14 @@
 OPSAWG                                                 M. Boucadair, Ed.
 Internet-Draft                                                    Orange
 Intended status: Standards Track                         R. Roberts, Ed.
-Expires: 2 August 2024                                           Juniper
+Expires: 5 August 2024                                           Juniper
                                                            O. G. D. Dios
                                                               Telefonica
                                                            S. B. Giraldo
                                                                    Nokia
                                                                    B. Wu
                                                      Huawei Technologies
-                                                         30 January 2024
+                                                         2 February 2024
 
 
   YANG Data Models for Bearers and 'Attachment Circuits'-as-a-Service
@@ -62,7 +62,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 2 August 2024.
+   This Internet-Draft will expire on 5 August 2024.
 
 Copyright Notice
 
@@ -924,17 +924,17 @@ Table of Contents
    'ac-group-profile':  Indicates references to one or more profiles
       that are defined in Section 4.2.3.
 
-   'ac-parent-ref':  Specifies an AC that is inherited by this
-      attachment circuit.
+   'ac-parent-ref':  Specifies an AC that is inherited by an attachment
+      circuit.
 
-      In contexts where dynamic
-      terminating points are managed for a given AC, a parent AC can be
-      defined with the stable and common information, while "child" ACs
-      are defined to track dynamic information.  These child ACs are
-      bound to the parent AC, which is exposed to services.
+      In contexts where dynamic terminating points are managed for a
+      given AC, a parent AC can be defined with a set of stable and
+      common information, while "child" ACs are defined to track dynamic
+      information.  These "child" ACs are bound to the parent AC, which
+      is exposed to services (as a stable reference).
 
-      Whenever a parent AC is deleted, that all child ACs of that AC
-      MUST be deleted.
+      Whenever a parent AC is deleted, all its "child" ACs MUST be
+      deleted.
 
    'group':  Lists the groups to which an AC belongs [RFC9181].  For
       example, the 'group-id' is used to associate redundancy or
