@@ -988,8 +988,8 @@ module ietf-ac-svc {
           "Specifies the parent AC that is inherited by an AC.
            In contexts where dynamic terminating points are 
            bound to the same AC, a parent AC with stable
-           inforamtion is created with a set of child AC
-           that trackes dynamic informaiton.";
+           information is created with a set of child ACs
+           to track dynamic AC information.";
       }
       list group {
         key "group-id";
