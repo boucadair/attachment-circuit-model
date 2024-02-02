@@ -414,10 +414,11 @@ The description of the data nodes is as follows:
 : Indicates references to one or more profiles that are defined in {{sec-acp}}.
 
 'ac-parent-ref':
-: Specifies an AC that is inherited by this attachment circuit.
-: In contexts where dynamic	
-  terminating points are managed for a given AC, a parent AC can be defined with the stable and common information, while "child" ACs are defined to track dynamic information. These child ACs are bound to the parent AC, which is exposed to services.
-: Whenever a parent AC is deleted, that all child ACs of that AC MUST be deleted.
+: Specifies an AC that is inherited by an attachment circuit.
+: In contexts where dynamic terminating points are managed for a given AC,
+a parent AC can be defined with a set of stable and common information, while
+"child" ACs are defined to track dynamic information. These "child" ACs are bound to the parent AC, which is exposed to services (as a stable reference).
+: Whenever a parent AC is deleted, all its "child" ACs MUST be deleted.
 
 'group':
 : Lists the groups to which an AC belongs {{!RFC9181}}. For example, the 'group-id' is used to associate redundancy or protection constraints of ACs. An example is provided in {{sec-ex-prec}}.
