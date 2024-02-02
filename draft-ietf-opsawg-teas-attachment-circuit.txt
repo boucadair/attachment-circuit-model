@@ -870,6 +870,7 @@ Table of Contents
           +--rw peer-sap-id*         string
           +--rw ac-group-profile*    ac-group-reference
           +--rw ac-parent-ref?       ac-svc:attachment-circuit-reference
+          +--rw child-ac-ref*        ac-svc:attachment-circuit-reference
           +--rw group* [group-id]
           |  +--rw group-id      string
           |  +--rw precedence?   identityref
@@ -935,6 +936,9 @@ Table of Contents
 
       Whenever a parent AC is deleted, all its "child" ACs MUST be
       deleted.
+
+   'child-ac-ref':  Lists one or more references of child ACs that rely
+      upon this attachment circuit as a parent AC.
 
    'group':  Lists the groups to which an AC belongs [RFC9181].  For
       example, the 'group-id' is used to associate redundancy or
@@ -3178,6 +3182,11 @@ Table of Contents
               bound to the same AC, a parent AC with stable
               information is created with a set of child ACs
               to track dynamic AC information.";
+         }
+         leaf-list child-ac-ref {
+           type ac-svc:attachment-circuit-reference;
+           description
+             "Specifies a child AC that relies upon a parent AC.";
          }
          list group {
            key "group-id";
