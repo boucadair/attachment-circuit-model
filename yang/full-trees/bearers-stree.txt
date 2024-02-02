@@ -21,8 +21,8 @@ module: ietf-bearer-svc
         |  +--rw group* [group-id]
         |     +--rw group-id    string
         +--rw op-comment?          string
-        +--rw bearer-parent-ref?   bearer-svc:bearer-reference
-        +--rw bearer-lag-member*   bearer-svc:bearer-reference
+        +--rw bearer-parent-ref?   bearer-svc:bearer-ref
+        +--rw bearer-lag-member*   bearer-svc:bearer-ref
         +--rw customer-point
         |  +--rw identified-by?   identityref
         |  +--rw device
