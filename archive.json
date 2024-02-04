@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-02-01T00:37:09.104228+00:00",
+  "timestamp": "2024-02-04T00:38:23.732216+00:00",
   "repo": "boucadair/attachment-circuit-model",
   "labels": [
     {
@@ -2307,6 +2307,46 @@
           "updatedAt": "2023-12-11T09:36:24Z"
         }
       ]
+    },
+    {
+      "number": 170,
+      "id": "I_kwDOIiAkrc5-ClLj",
+      "title": "add child list to a parent-AC",
+      "url": "https://github.com/boucadair/attachment-circuit-model/issues/170",
+      "state": "CLOSED",
+      "author": "boucadair",
+      "authorAssociation": "OWNER",
+      "assignees": [
+        "boucadair"
+      ],
+      "labels": [
+        "AC-SVC"
+      ],
+      "body": "",
+      "createdAt": "2024-02-02T10:30:42Z",
+      "updatedAt": "2024-02-02T13:11:20Z",
+      "closedAt": "2024-02-02T13:11:20Z",
+      "comments": []
+    },
+    {
+      "number": 171,
+      "id": "I_kwDOIiAkrc5-C2H0",
+      "title": "model parent bearer to cover LAG",
+      "url": "https://github.com/boucadair/attachment-circuit-model/issues/171",
+      "state": "CLOSED",
+      "author": "boucadair",
+      "authorAssociation": "OWNER",
+      "assignees": [
+        "boucadair"
+      ],
+      "labels": [
+        "bearer-svc"
+      ],
+      "body": "",
+      "createdAt": "2024-02-02T11:05:58Z",
+      "updatedAt": "2024-02-02T13:12:11Z",
+      "closedAt": "2024-02-02T13:12:11Z",
+      "comments": []
     }
   ],
   "pulls": [
@@ -6589,6 +6629,155 @@
       "mergedBy": "boucadair",
       "mergeCommit": {
         "oid": "c231dcbb436fa0ed3e687c628b6d45b70b4992dd"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 172,
+      "id": "PR_kwDOIiAkrc5l0zY0",
+      "title": "ref child ACs",
+      "url": "https://github.com/boucadair/attachment-circuit-model/pull/172",
+      "state": "MERGED",
+      "author": "boucadair",
+      "authorAssociation": "OWNER",
+      "assignees": [
+        "boucadair"
+      ],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-02-02T12:19:09Z",
+      "updatedAt": "2024-02-02T13:11:20Z",
+      "baseRepository": "boucadair/attachment-circuit-model",
+      "baseRefName": "main",
+      "baseRefOid": "b77c6b1bd20073b6a8d3b9862f578cd01838488a",
+      "headRepository": "boucadair/attachment-circuit-model",
+      "headRefName": "child-ACs",
+      "headRefOid": "005e1b4e31a614ea394a53a6e88fe7405125b575",
+      "closedAt": "2024-02-02T13:11:20Z",
+      "mergedAt": "2024-02-02T13:11:19Z",
+      "mergedBy": "boucadair",
+      "mergeCommit": {
+        "oid": "571b9359dcc848898bfbe27ab369e126ca3fd1a9"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 173,
+      "id": "PR_kwDOIiAkrc5l023b",
+      "title": "Examples inter as a",
+      "url": "https://github.com/boucadair/attachment-circuit-model/pull/173",
+      "state": "OPEN",
+      "author": "sbarguil",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-02-02T12:29:22Z",
+      "updatedAt": "2024-02-02T13:08:21Z",
+      "baseRepository": "boucadair/attachment-circuit-model",
+      "baseRefName": "main",
+      "baseRefOid": "b77c6b1bd20073b6a8d3b9862f578cd01838488a",
+      "headRepository": "boucadair/attachment-circuit-model",
+      "headRefName": "examples-inter-as-a",
+      "headRefOid": "ccf2c62dbd62f7f1051be2ef3b17ebea9fd744d4",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIiAkrc5u0QAb",
+          "commit": {
+            "abbreviatedOid": "ccf2c62"
+          },
+          "author": "boucadair",
+          "authorAssociation": "OWNER",
+          "state": "CHANGES_REQUESTED",
+          "body": "Thanks, Samier",
+          "createdAt": "2024-02-02T13:01:39Z",
+          "updatedAt": "2024-02-02T13:08:21Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "```suggestion\r\nCE-PE routing using BGP is a common scenario in the context of MPLS VPNs and is widely used in enterprise networks. In the example depicted below, the CE routers are customer-owned devices belonging to an Autonomous System (ASN 65536). CEs are located at the edge of the provider's network (PE, or Provider Edge) and use point-to-point interfaces to establish BGP sessions. The point-to-point interfaces relies upon a physical bearer (Line-113) to reach the provider network.\r\n```",
+              "createdAt": "2024-02-02T13:01:39Z",
+              "updatedAt": "2024-02-02T13:08:21Z"
+            },
+            {
+              "originalPosition": 10,
+              "body": "```suggestion\r\n               \"local-address\":\"192.0.2.1\",\r\n```",
+              "createdAt": "2024-02-02T13:04:08Z",
+              "updatedAt": "2024-02-02T13:08:21Z"
+            },
+            {
+              "originalPosition": 10,
+              "body": "use documentation address block as defined in [RFC 5737](https://datatracker.ietf.org/doc/html/rfc5737)",
+              "createdAt": "2024-02-02T13:04:49Z",
+              "updatedAt": "2024-02-02T13:08:21Z"
+            },
+            {
+              "originalPosition": 11,
+              "body": "```suggestion\r\n               \"prefix-length\":30,\r\n```",
+              "createdAt": "2024-02-02T13:04:56Z",
+              "updatedAt": "2024-02-02T13:08:21Z"
+            },
+            {
+              "originalPosition": 32,
+              "body": "```suggestion\r\n                        \"peer-as\":65536,\r\n```",
+              "createdAt": "2024-02-02T13:05:56Z",
+              "updatedAt": "2024-02-02T13:08:21Z"
+            },
+            {
+              "originalPosition": 32,
+              "body": "Use ASN reserved for documentation defined in https://datatracker.ietf.org/doc/rfc5398/",
+              "createdAt": "2024-02-02T13:06:20Z",
+              "updatedAt": "2024-02-02T13:08:21Z"
+            },
+            {
+              "originalPosition": 38,
+              "body": "```suggestion\r\n                     \"remote-address\":\"192.0.2.2\",\r\n```",
+              "createdAt": "2024-02-02T13:06:58Z",
+              "updatedAt": "2024-02-02T13:08:21Z"
+            },
+            {
+              "originalPosition": 14,
+              "body": "```suggestion\r\n|        | PE1(VRF11) +----------------------------+ CE1   | AS65536 |\r\n```",
+              "createdAt": "2024-02-02T13:07:29Z",
+              "updatedAt": "2024-02-02T13:08:21Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 174,
+      "id": "PR_kwDOIiAkrc5l06vC",
+      "title": "parent bearer + LAG",
+      "url": "https://github.com/boucadair/attachment-circuit-model/pull/174",
+      "state": "MERGED",
+      "author": "boucadair",
+      "authorAssociation": "OWNER",
+      "assignees": [
+        "boucadair"
+      ],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-02-02T12:40:25Z",
+      "updatedAt": "2024-02-02T13:12:11Z",
+      "baseRepository": "boucadair/attachment-circuit-model",
+      "baseRefName": "main",
+      "baseRefOid": "b77c6b1bd20073b6a8d3b9862f578cd01838488a",
+      "headRepository": "boucadair/attachment-circuit-model",
+      "headRefName": "bearer-parent",
+      "headRefOid": "8bb70bc74f9de2cb81f8d5bbc3dd22bc98121333",
+      "closedAt": "2024-02-02T13:12:10Z",
+      "mergedAt": "2024-02-02T13:12:10Z",
+      "mergedBy": "boucadair",
+      "mergeCommit": {
+        "oid": "f4c6b926cded7f0479635111ff5cd0a10a1ce302"
       },
       "comments": [],
       "reviews": []
