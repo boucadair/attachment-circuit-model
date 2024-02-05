@@ -118,6 +118,12 @@ module ietf-bearer-svc {
       "Wireless.";
   }
 
+  identity lag {
+    base bearer-type;
+    description
+      "Link Aggregation Group (LAG).";
+  }
+
   identity network-termination-hint {
     base vpn-common:placement-diversity;
     description
@@ -337,13 +343,12 @@ module ietf-bearer-svc {
               customer/provider using out-of-band means.";
         }
       }
-      leaf requested-type {
+      leaf type {
         type identityref {
           base bearer-type;
         }
         description
-          "Type of the requested bearer (e.g., Ethernet or 
-           wireless)";
+          "Type of the bearer (e.g., Ethernet or wireless).";
       }
       leaf test-only {
         type empty;
