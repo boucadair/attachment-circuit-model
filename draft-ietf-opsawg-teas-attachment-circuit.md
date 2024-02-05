@@ -258,7 +258,7 @@ The descriptions of the bearer data nodes are as follows:
 : Specifies the parent bearer. This data node can be used, e.g., if a bearer is a member of a Link Aggregation Group (LAG).
 
 'bearer-lag-member':
-: Lists the bearers that are member of a LAG.
+: Lists the bearers that are members of a LAG. Members can be declared as part of a LAG using 'bearer-parent-ref'.
 
 'group':
 : Tags a bearer with one ore more identifiers that are used to group a set of bearers.
@@ -267,7 +267,7 @@ The descriptions of the bearer data nodes are as follows:
 : Specifies the customer terminating point for the bearer. A bearer request can indicate a device, a site, a combination thereof, or a custom information when requesting a bearer. All these schemes are supported in the model.
 
 'type':
-: Specifies the bearer type (Ethernet, wireless, etc.).
+: Specifies the bearer type (Ethernet, wireless, LAG, etc.).
 
 'test-only':
 : Indicates that a request is only for test and not for setting, even if there are no errors. This is used for feasibility checks. This data node is applicable only when the data model is used with protocols which do not natively support such option. For example, this data node is redundant with the "test-only" value of the `<test-option>` parameter in the NETCONF `<edit-config>` operation ({{Section 7.2 of !RFC6241}}).
