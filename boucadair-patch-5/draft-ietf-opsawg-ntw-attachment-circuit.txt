@@ -3150,6 +3150,7 @@ Table of Contents
            mandatory true;
            description
              "Indicates the name of BGP capability.";
+         }
        }
      }
 
