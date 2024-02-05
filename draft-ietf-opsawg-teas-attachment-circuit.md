@@ -266,8 +266,8 @@ The descriptions of the bearer data nodes are as follows:
 'customer-point':
 : Specifies the customer terminating point for the bearer. A bearer request can indicate a device, a site, a combination thereof, or a custom information when requesting a bearer. All these schemes are supported in the model.
 
-'requested-type':
-: Specifies the requested bearer type (Ethernet, wireless, etc.).
+'type':
+: Specifies the bearer type (Ethernet, wireless, etc.).
 
 'test-only':
 : Indicates that a request is only for test and not for setting, even if there are no errors. This is used for feasibility checks. This data node is applicable only when the data model is used with protocols which do not natively support such option. For example, this data node is redundant with the "test-only" value of the `<test-option>` parameter in the NETCONF `<edit-config>` operation ({{Section 7.2 of !RFC6241}}).
