@@ -14,20 +14,20 @@
        This document specifies a YANG service data model for Attachment Circuits (ACs). This model can be used for the provisioning of ACs before or during service provisioning (e.g., Network Slice Service). The document also specifies a service model for managing bearers over which ACs are established. 
        Also, the document specifies a set of reusable groupings. Whether other service models reuse structures defined in the AC models or simply include an AC reference is a design choice of these service models. Utilizing the AC service model to manage ACs over which a service is delivered has the advantage of decoupling service management from upgrading AC components to incorporate recent AC technologies or features. 
     " name="description">
-<meta content="xml2rfc 3.19.1" name="generator">
+<meta content="xml2rfc 3.19.2" name="generator">
 <meta content="Slice Service" name="keyword">
 <meta content="L3VPN" name="keyword">
 <meta content="L2VPN" name="keyword">
 <meta content="draft-ietf-opsawg-teas-attachment-circuit-latest" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.19.1
+  xml2rfc 3.19.2
     Python 3.11.6
     ConfigArgParse 1.7
     google-i18n-address 3.1.0
     intervaltree 3.1.0
     Jinja2 3.1.2
     lxml 4.9.3
-    platformdirs 4.1.0
+    platformdirs 4.2.0
     pycountry 22.3.5
     PyYAML 6.0.1
     requests 2.31.0
@@ -1032,11 +1032,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">ACaaS</td>
-<td class="right">January 2024</td>
+<td class="right">February 2024</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Boucadair, et al.</td>
-<td class="center">Expires 28 July 2024</td>
+<td class="center">Expires 8 August 2024</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1049,12 +1049,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-opsawg-teas-attachment-circuit-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2024-01-25" class="published">25 January 2024</time>
+<time datetime="2024-02-05" class="published">5 February 2024</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2024-07-28">28 July 2024</time></dd>
+<dd class="expires"><time datetime="2024-08-08">8 August 2024</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1118,7 +1118,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 28 July 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 8 August 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1262,6 +1262,9 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.8">
                 <p id="section-toc.1-1.9.2.8.1"><a href="#appendix-A.8" class="auto internal xref">A.8</a>.  <a href="#name-connecting-a-virtualized-en" class="internal xref">Connecting a Virtualized Environment Running in a Cloud Provider</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.9">
+                <p id="section-toc.1-1.9.2.9.1"><a href="#appendix-A.9" class="auto internal xref">A.9</a>.  <a href="#name-connect-customer-network-ce" class="internal xref">Connect Customer Network (CE) through BGP Peering</a></p>
 </li>
             </ul>
 </li>
@@ -1645,6 +1648,8 @@ Such a reference can be used, e.g., in a subsequent service request to create an
 <figure id="figure-3">
           <div class="alignCenter art-text artwork" id="section-4.1-2.1">
 <pre>
+module: ietf-bearer-svc
+
   +--rw bearers
      +--rw placement-constraints
      |  +--rw constraint* [constraint-type]
@@ -1659,13 +1664,15 @@ Such a reference can be used, e.g., in a subsequent service request to create an
      |           |  +--rw all-other-bearers?   empty
      |           +--:(all-groups)
      |              +--rw all-other-groups?    empty
-     +--rw bearer* [id]
-        +--rw id                  string
-        +--rw description?        string
+     +--rw bearer* [name]
+        +--rw name                 string
+        +--rw description?         string
         +--rw groups
         |  +--rw group* [group-id]
         |     +--rw group-id    string
-        +--rw op-comment?         string
+        +--rw op-comment?          string
+        +--rw bearer-parent-ref?   bearer-svc:bearer-ref
+        +--rw bearer-lag-member*   bearer-svc:bearer-ref
         +--rw customer-point
         |  +--rw identified-by?   identityref
         |  +--rw device
@@ -1687,15 +1694,15 @@ Such a reference can be used, e.g., in a subsequent service request to create an
         |  |     +--rw city?            string
         |  |     +--rw country-code?    string
         |  +--rw custom-id?       string
-        +--rw requested-type?     identityref
-        +--rw test-only?          empty
-        +--ro bearer-reference?   string
+        +--rw requested-type?      identityref
+        +--rw test-only?           empty
+        +--ro bearer-reference?    string
         |       {vpn-common:bearer-reference}?
-        +--ro ac-svc-ref*            ac-svc:attachment-circuit-reference
-        +--rw requested-start?    yang:date-and-time
-        +--rw requested-stop?     yang:date-and-time
-        +--ro actual-start?       yang:date-and-time
-        +--ro actual-stop?        yang:date-and-time
+        +--ro ac-svc-ref*          ac-svc:attachment-circuit-reference
+        +--rw requested-start?     yang:date-and-time
+        +--rw requested-stop?      yang:date-and-time
+        +--ro actual-start?        yang:date-and-time
+        +--ro actual-stop?         yang:date-and-time
         +--rw status
            +--rw admin-status
            |  +--rw status?        identityref
@@ -1726,9 +1733,9 @@ Such a reference can be used, e.g., in a subsequent service request to create an
 <p id="section-4.1-6">A request to create a bearer may include a set of constraints ("placement-constraints") that are used by a controller to decide the network terminating side of a bearer (e.g., PE selection, PE redundancy, or PoP selection). Future placement criteria ("constraint-type") may be defined in the future to accommodate specific deployment contexts.<a href="#section-4.1-6" class="pilcrow">¶</a></p>
 <p id="section-4.1-7">The descriptions of the bearer data nodes are as follows:<a href="#section-4.1-7" class="pilcrow">¶</a></p>
 <span class="break"></span><dl class="dlParallel" id="section-4.1-8">
-          <dt id="section-4.1-8.1">'id':</dt>
+          <dt id="section-4.1-8.1">'name':</dt>
           <dd style="margin-left: 1.5em" id="section-4.1-8.2">
-            <p id="section-4.1-8.2.1">Used to uniquely identify a bearer. This identifier is typically selected by the client when requesting a bearer.<a href="#section-4.1-8.2.1" class="pilcrow">¶</a></p>
+            <p id="section-4.1-8.2.1">Used to uniquely identify a bearer. This name is typically selected by the client when requesting a bearer.<a href="#section-4.1-8.2.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
 <dt id="section-4.1-8.3">'description':</dt>
@@ -1741,94 +1748,104 @@ Such a reference can be used, e.g., in a subsequent service request to create an
             <p id="section-4.1-8.6.1">Includes operational comments that may be useful for managing the bearer (building, level, etc.). No structure is associated with this data node to accommodate all deployments.<a href="#section-4.1-8.6.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-8.7">'group':</dt>
+<dt id="section-4.1-8.7">'bearer-parent-ref':</dt>
           <dd style="margin-left: 1.5em" id="section-4.1-8.8">
-            <p id="section-4.1-8.8.1">Tags a bearer with one ore more identifiers that are used to group a set of bearers.<a href="#section-4.1-8.8.1" class="pilcrow">¶</a></p>
+            <p id="section-4.1-8.8.1">Specifies the parent bearer. This data node can be used, e.g., if a bearer is a member of a Link Aggregation Group (LAG).<a href="#section-4.1-8.8.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-8.9">'customer-point':</dt>
+<dt id="section-4.1-8.9">'bearer-lag-member':</dt>
           <dd style="margin-left: 1.5em" id="section-4.1-8.10">
-            <p id="section-4.1-8.10.1">Specifies the customer terminating point for the bearer. A bearer request can indicate a device, a site, a combination thereof, or a custom information when requesting a bearer. All these schemes are supported in the model.<a href="#section-4.1-8.10.1" class="pilcrow">¶</a></p>
+            <p id="section-4.1-8.10.1">Lists the bearers that are member of a LAG.<a href="#section-4.1-8.10.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-8.11">'requested-type':</dt>
+<dt id="section-4.1-8.11">'group':</dt>
           <dd style="margin-left: 1.5em" id="section-4.1-8.12">
-            <p id="section-4.1-8.12.1">Specifies the requested bearer type (Ethernet, wireless, etc.).<a href="#section-4.1-8.12.1" class="pilcrow">¶</a></p>
+            <p id="section-4.1-8.12.1">Tags a bearer with one ore more identifiers that are used to group a set of bearers.<a href="#section-4.1-8.12.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-8.13">'test-only':</dt>
+<dt id="section-4.1-8.13">'customer-point':</dt>
           <dd style="margin-left: 1.5em" id="section-4.1-8.14">
-            <p id="section-4.1-8.14.1">Indicates that a request is only for test and not for setting, even if there are no errors. This is used for feasibility checks. This data node is applicable only when the data model is used with protocols which do not natively support such option. For example, this data node is redundant with the "test-only" value of the <code>&lt;test-option&gt;</code> parameter in the NETCONF <code>&lt;edit-config&gt;</code> operation (<span><a href="https://rfc-editor.org/rfc/rfc6241#section-7.2" class="relref">Section 7.2</a> of [<a href="#RFC6241" class="cite xref">RFC6241</a>]</span>).<a href="#section-4.1-8.14.1" class="pilcrow">¶</a></p>
+            <p id="section-4.1-8.14.1">Specifies the customer terminating point for the bearer. A bearer request can indicate a device, a site, a combination thereof, or a custom information when requesting a bearer. All these schemes are supported in the model.<a href="#section-4.1-8.14.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-8.15">'bearer-reference':</dt>
+<dt id="section-4.1-8.15">'requested-type':</dt>
           <dd style="margin-left: 1.5em" id="section-4.1-8.16">
-            <p id="section-4.1-8.16.1">Returns an internal reference for the service provider to uniquely identify the bearer. This reference can be used when requesting services. <a href="#ex-create-bearer" class="auto internal xref">Appendix A.1</a> provides an example about how this reference can be retrieved by a customer.<a href="#section-4.1-8.16.1" class="pilcrow">¶</a></p>
+            <p id="section-4.1-8.16.1">Specifies the requested bearer type (Ethernet, wireless, etc.).<a href="#section-4.1-8.16.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-8.17"></dt>
+<dt id="section-4.1-8.17">'test-only':</dt>
           <dd style="margin-left: 1.5em" id="section-4.1-8.18">
-            <p id="section-4.1-8.18.1">Whether the 'bearer-reference' mirrors the content of the 'id' is deployment-specific. The module does not assume nor preclude such schemes.<a href="#section-4.1-8.18.1" class="pilcrow">¶</a></p>
+            <p id="section-4.1-8.18.1">Indicates that a request is only for test and not for setting, even if there are no errors. This is used for feasibility checks. This data node is applicable only when the data model is used with protocols which do not natively support such option. For example, this data node is redundant with the "test-only" value of the <code>&lt;test-option&gt;</code> parameter in the NETCONF <code>&lt;edit-config&gt;</code> operation (<span><a href="https://rfc-editor.org/rfc/rfc6241#section-7.2" class="relref">Section 7.2</a> of [<a href="#RFC6241" class="cite xref">RFC6241</a>]</span>).<a href="#section-4.1-8.18.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-8.19">'ac-svc-ref':</dt>
+<dt id="section-4.1-8.19">'bearer-reference':</dt>
           <dd style="margin-left: 1.5em" id="section-4.1-8.20">
-            <p id="section-4.1-8.20.1">Specifies the set of attachment circuits that are bound to the bearer.<a href="#section-4.1-8.20.1" class="pilcrow">¶</a></p>
+            <p id="section-4.1-8.20.1">Returns an internal reference for the service provider to uniquely identify the bearer. This reference can be used when requesting services. <a href="#ex-create-bearer" class="auto internal xref">Appendix A.1</a> provides an example about how this reference can be retrieved by a customer.<a href="#section-4.1-8.20.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-8.21">'requested-start':</dt>
+<dt id="section-4.1-8.21"></dt>
           <dd style="margin-left: 1.5em" id="section-4.1-8.22">
-            <p id="section-4.1-8.22.1">Specifies the requested date and time when the bearer is expected to be active.<a href="#section-4.1-8.22.1" class="pilcrow">¶</a></p>
+            <p id="section-4.1-8.22.1">Whether the 'bearer-reference' mirrors the content of the 'name' is deployment-specific. The module does not assume nor preclude such schemes.<a href="#section-4.1-8.22.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-8.23">'requested-stop':</dt>
+<dt id="section-4.1-8.23">'ac-svc-ref':</dt>
           <dd style="margin-left: 1.5em" id="section-4.1-8.24">
-            <p id="section-4.1-8.24.1">Specifies the requested date and time when the bearer is expected to be disabled.<a href="#section-4.1-8.24.1" class="pilcrow">¶</a></p>
+            <p id="section-4.1-8.24.1">Specifies the set of attachment circuits that are bound to the bearer.<a href="#section-4.1-8.24.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-8.25">'actual-start':</dt>
+<dt id="section-4.1-8.25">'requested-start':</dt>
           <dd style="margin-left: 1.5em" id="section-4.1-8.26">
-            <p id="section-4.1-8.26.1">Reports the actual date and time when the bearer actually was enabled.<a href="#section-4.1-8.26.1" class="pilcrow">¶</a></p>
+            <p id="section-4.1-8.26.1">Specifies the requested date and time when the bearer is expected to be active.<a href="#section-4.1-8.26.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-8.27">'actual-stop':</dt>
+<dt id="section-4.1-8.27">'requested-stop':</dt>
           <dd style="margin-left: 1.5em" id="section-4.1-8.28">
-            <p id="section-4.1-8.28.1">Reports the actual date and time when the bearer actually was disabled.<a href="#section-4.1-8.28.1" class="pilcrow">¶</a></p>
+            <p id="section-4.1-8.28.1">Specifies the requested date and time when the bearer is expected to be disabled.<a href="#section-4.1-8.28.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-8.29">'status':</dt>
+<dt id="section-4.1-8.29">'actual-start':</dt>
           <dd style="margin-left: 1.5em" id="section-4.1-8.30">
-            <p id="section-4.1-8.30.1">Used to track the overall status of a given bearer. Both operational and administrative status are maintained together with a timestamp.<a href="#section-4.1-8.30.1" class="pilcrow">¶</a></p>
+            <p id="section-4.1-8.30.1">Reports the actual date and time when the bearer actually was enabled.<a href="#section-4.1-8.30.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-8.31"></dt>
+<dt id="section-4.1-8.31">'actual-stop':</dt>
           <dd style="margin-left: 1.5em" id="section-4.1-8.32">
-            <p id="section-4.1-8.32.1">The "admin-status" attribute is typically configured by a network operator to indicate whether the service is enabled, disabled, or subjected to additional testing or pre-deployment checks. These additional options, such as 'admin-testing' and 'admin-pre-deployment', provide the operators the flexibility to conduct additional validations on the bearer before deploying services over that connection.<a href="#section-4.1-8.32.1" class="pilcrow">¶</a></p>
+            <p id="section-4.1-8.32.1">Reports the actual date and time when the bearer actually was disabled.<a href="#section-4.1-8.32.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-8.33">'oper-status':</dt>
+<dt id="section-4.1-8.33">'status':</dt>
           <dd style="margin-left: 1.5em" id="section-4.1-8.34">
-            <p id="section-4.1-8.34.1">The "oper-status" of a bearer reflects its operational state as observed. As a bearer can contain multiple services, the operational status should only reflect the status of the bearer connection. To obtain network-level service status, specific network models such as those in <span><a href="https://rfc-editor.org/rfc/rfc9182#section-7.3" class="relref">Section 7.3</a> of [<a href="#RFC9182" class="cite xref">RFC9182</a>]</span>  or <span><a href="https://rfc-editor.org/rfc/rfc9291#section-7.3" class="relref">Section 7.3</a> of [<a href="#RFC9291" class="cite xref">RFC9291</a>]</span> should be consulted.<a href="#section-4.1-8.34.1" class="pilcrow">¶</a></p>
+            <p id="section-4.1-8.34.1">Used to track the overall status of a given bearer. Both operational and administrative status are maintained together with a timestamp.<a href="#section-4.1-8.34.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
 <dt id="section-4.1-8.35"></dt>
           <dd style="margin-left: 1.5em" id="section-4.1-8.36">
-            <p id="section-4.1-8.36.1">It is important to note that the "admin-status" attribute should remain independent of the "oper-status". In other words, the setting of the intended administrative state (e.g., whether "admin-up" or "admin-testing") <span class="bcp14">MUST NOT</span> be influenced by the current operational state. If the bearer is administratively set to 'admin-down', it is expected that the bearer will also be operationally 'op-down' as a result of this administrative decision.<a href="#section-4.1-8.36.1" class="pilcrow">¶</a></p>
+            <p id="section-4.1-8.36.1">The "admin-status" attribute is typically configured by a network operator to indicate whether the service is enabled, disabled, or subjected to additional testing or pre-deployment checks. These additional options, such as 'admin-testing' and 'admin-pre-deployment', provide the operators the flexibility to conduct additional validations on the bearer before deploying services over that connection.<a href="#section-4.1-8.36.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-8.37"></dt>
+<dt id="section-4.1-8.37">'oper-status':</dt>
           <dd style="margin-left: 1.5em" id="section-4.1-8.38">
-            <p id="section-4.1-8.38.1">To assess the service delivery status for a given bearer comprehensively, it is recommended to consider both administrative and operational service status values in conjunction. This holistic approach  allows a network controller or operator to identify anomalies effectively.<a href="#section-4.1-8.38.1" class="pilcrow">¶</a></p>
+            <p id="section-4.1-8.38.1">The "oper-status" of a bearer reflects its operational state as observed. As a bearer can contain multiple services, the operational status should only reflect the status of the bearer connection. To obtain network-level service status, specific network models such as those in <span><a href="https://rfc-editor.org/rfc/rfc9182#section-7.3" class="relref">Section 7.3</a> of [<a href="#RFC9182" class="cite xref">RFC9182</a>]</span>  or <span><a href="https://rfc-editor.org/rfc/rfc9291#section-7.3" class="relref">Section 7.3</a> of [<a href="#RFC9291" class="cite xref">RFC9291</a>]</span> should be consulted.<a href="#section-4.1-8.38.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
 <dt id="section-4.1-8.39"></dt>
           <dd style="margin-left: 1.5em" id="section-4.1-8.40">
-            <p id="section-4.1-8.40.1">For instance, when a bearer is administratively enabled but the "operational-status" of that bearer is reported as "op-down", it should be expected that the "oper-status" of services transported over that bearer is also down. If these status values differ, a trigger to detect an anomaly.<a href="#section-4.1-8.40.1" class="pilcrow">¶</a></p>
+            <p id="section-4.1-8.40.1">It is important to note that the "admin-status" attribute should remain independent of the "oper-status". In other words, the setting of the intended administrative state (e.g., whether "admin-up" or "admin-testing") <span class="bcp14">MUST NOT</span> be influenced by the current operational state. If the bearer is administratively set to 'admin-down', it is expected that the bearer will also be operationally 'op-down' as a result of this administrative decision.<a href="#section-4.1-8.40.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
 <dt id="section-4.1-8.41"></dt>
           <dd style="margin-left: 1.5em" id="section-4.1-8.42">
-            <p id="section-4.1-8.42.1">See <span>[<a href="#RFC9181" class="cite xref">RFC9181</a>]</span> for more details.<a href="#section-4.1-8.42.1" class="pilcrow">¶</a></p>
+            <p id="section-4.1-8.42.1">To assess the service delivery status for a given bearer comprehensively, it is recommended to consider both administrative and operational service status values in conjunction. This holistic approach  allows a network controller or operator to identify anomalies effectively.<a href="#section-4.1-8.42.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.1-8.43"></dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-8.44">
+            <p id="section-4.1-8.44.1">For instance, when a bearer is administratively enabled but the "operational-status" of that bearer is reported as "op-down", it should be expected that the "oper-status" of services transported over that bearer is also down. If these status values differ, a trigger to detect an anomaly.<a href="#section-4.1-8.44.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.1-8.45"></dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-8.46">
+            <p id="section-4.1-8.46.1">See <span>[<a href="#RFC9181" class="cite xref">RFC9181</a>]</span> for more details.<a href="#section-4.1-8.46.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 </dl>
@@ -2071,6 +2088,7 @@ These adjusted values take precedence over the global values.  The structure of 
         +--rw peer-sap-id*         string
         +--rw ac-group-profile*    ac-group-reference
         +--rw ac-parent-ref?       ac-svc:attachment-circuit-reference
+        +--rw child-ac-ref*        ac-svc:attachment-circuit-reference
         +--rw group* [group-id]
         |  +--rw group-id      string
         |  +--rw precedence?   identityref
@@ -2146,68 +2164,74 @@ These adjusted values take precedence over the global values.  The structure of 
             <dd class="break"></dd>
 <dt id="section-4.2.5-4.19">'ac-parent-ref':</dt>
             <dd style="margin-left: 1.5em" id="section-4.2.5-4.20">
-              <p id="section-4.2.5-4.20.1">Specifies an AC that is inherited by this attachment circuit.<a href="#section-4.2.5-4.20.1" class="pilcrow">¶</a></p>
+              <p id="section-4.2.5-4.20.1">Specifies an AC that is inherited by an attachment circuit.<a href="#section-4.2.5-4.20.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
 <dt id="section-4.2.5-4.21"></dt>
             <dd style="margin-left: 1.5em" id="section-4.2.5-4.22">
-              <p id="section-4.2.5-4.22.1">In contexts where dynamic   <br>
-terminating points are managed for a given AC, a parent AC can be defined with the stable and common information, while "child" ACs are defined to track dynamic information. These child ACs are bound to the parent AC, which is exposed to services.<a href="#section-4.2.5-4.22.1" class="pilcrow">¶</a></p>
+              <p id="section-4.2.5-4.22.1">In contexts where dynamic terminating points are managed for a given AC,
+a parent AC can be defined with a set of stable and common information, while
+"child" ACs are defined to track dynamic information. These "child" ACs are bound to the parent AC, which is exposed to services (as a stable reference).<a href="#section-4.2.5-4.22.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
 <dt id="section-4.2.5-4.23"></dt>
             <dd style="margin-left: 1.5em" id="section-4.2.5-4.24">
-              <p id="section-4.2.5-4.24.1">Whenever a parent AC is deleted, that all child ACs of that AC <span class="bcp14">MUST</span> be deleted.<a href="#section-4.2.5-4.24.1" class="pilcrow">¶</a></p>
+              <p id="section-4.2.5-4.24.1">Whenever a parent AC is deleted, all its "child" ACs <span class="bcp14">MUST</span> be deleted.<a href="#section-4.2.5-4.24.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
-<dt id="section-4.2.5-4.25">'group':</dt>
+<dt id="section-4.2.5-4.25">'child-ac-ref':</dt>
             <dd style="margin-left: 1.5em" id="section-4.2.5-4.26">
-              <p id="section-4.2.5-4.26.1">Lists the groups to which an AC belongs <span>[<a href="#RFC9181" class="cite xref">RFC9181</a>]</span>. For example, the 'group-id' is used to associate redundancy or protection constraints of ACs. An example is provided in <a href="#sec-ex-prec" class="auto internal xref">Appendix A.5</a>.<a href="#section-4.2.5-4.26.1" class="pilcrow">¶</a></p>
+              <p id="section-4.2.5-4.26.1">Lists one or more references of child ACs that rely upon this attachment circuit as a parent AC.<a href="#section-4.2.5-4.26.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
-<dt id="section-4.2.5-4.27">'service-ref':</dt>
+<dt id="section-4.2.5-4.27">'group':</dt>
             <dd style="margin-left: 1.5em" id="section-4.2.5-4.28">
-              <p id="section-4.2.5-4.28.1">Reports the set of services that are bound to the attachment circuit. The services are indexed by their type.<a href="#section-4.2.5-4.28.1" class="pilcrow">¶</a></p>
+              <p id="section-4.2.5-4.28.1">Lists the groups to which an AC belongs <span>[<a href="#RFC9181" class="cite xref">RFC9181</a>]</span>. For example, the 'group-id' is used to associate redundancy or protection constraints of ACs. An example is provided in <a href="#sec-ex-prec" class="auto internal xref">Appendix A.5</a>.<a href="#section-4.2.5-4.28.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
-<dt id="section-4.2.5-4.29">'name':</dt>
+<dt id="section-4.2.5-4.29">'service-ref':</dt>
             <dd style="margin-left: 1.5em" id="section-4.2.5-4.30">
-              <p id="section-4.2.5-4.30.1">Associates a name that uniquely identifies an AC within a service provider network.<a href="#section-4.2.5-4.30.1" class="pilcrow">¶</a></p>
+              <p id="section-4.2.5-4.30.1">Reports the set of services that are bound to the attachment circuit. The services are indexed by their type.<a href="#section-4.2.5-4.30.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
-<dt id="section-4.2.5-4.31">'service-profile':</dt>
+<dt id="section-4.2.5-4.31">'name':</dt>
             <dd style="margin-left: 1.5em" id="section-4.2.5-4.32">
-              <p id="section-4.2.5-4.32.1">References a set of service-specific profiles.<a href="#section-4.2.5-4.32.1" class="pilcrow">¶</a></p>
+              <p id="section-4.2.5-4.32.1">Associates a name that uniquely identifies an AC within a service provider network.<a href="#section-4.2.5-4.32.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
-<dt id="section-4.2.5-4.33">'l2-connection':</dt>
+<dt id="section-4.2.5-4.33">'service-profile':</dt>
             <dd style="margin-left: 1.5em" id="section-4.2.5-4.34">
-              <p id="section-4.2.5-4.34.1">See <a href="#sec-l2" class="auto internal xref">Section 4.2.5.1</a>.<a href="#section-4.2.5-4.34.1" class="pilcrow">¶</a></p>
+              <p id="section-4.2.5-4.34.1">References a set of service-specific profiles.<a href="#section-4.2.5-4.34.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
-<dt id="section-4.2.5-4.35">'ip-connection':</dt>
+<dt id="section-4.2.5-4.35">'l2-connection':</dt>
             <dd style="margin-left: 1.5em" id="section-4.2.5-4.36">
-              <p id="section-4.2.5-4.36.1">See <a href="#sec-l3" class="auto internal xref">Section 4.2.5.2</a>.<a href="#section-4.2.5-4.36.1" class="pilcrow">¶</a></p>
+              <p id="section-4.2.5-4.36.1">See <a href="#sec-l2" class="auto internal xref">Section 4.2.5.1</a>.<a href="#section-4.2.5-4.36.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
-<dt id="section-4.2.5-4.37">'routing':</dt>
+<dt id="section-4.2.5-4.37">'ip-connection':</dt>
             <dd style="margin-left: 1.5em" id="section-4.2.5-4.38">
-              <p id="section-4.2.5-4.38.1">See <a href="#sec-rtg" class="auto internal xref">Section 4.2.5.3</a>.<a href="#section-4.2.5-4.38.1" class="pilcrow">¶</a></p>
+              <p id="section-4.2.5-4.38.1">See <a href="#sec-l3" class="auto internal xref">Section 4.2.5.2</a>.<a href="#section-4.2.5-4.38.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
-<dt id="section-4.2.5-4.39">'oam':</dt>
+<dt id="section-4.2.5-4.39">'routing':</dt>
             <dd style="margin-left: 1.5em" id="section-4.2.5-4.40">
-              <p id="section-4.2.5-4.40.1">See <a href="#sec-oam" class="auto internal xref">Section 4.2.5.7</a>.<a href="#section-4.2.5-4.40.1" class="pilcrow">¶</a></p>
+              <p id="section-4.2.5-4.40.1">See <a href="#sec-rtg" class="auto internal xref">Section 4.2.5.3</a>.<a href="#section-4.2.5-4.40.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
-<dt id="section-4.2.5-4.41">'security':</dt>
+<dt id="section-4.2.5-4.41">'oam':</dt>
             <dd style="margin-left: 1.5em" id="section-4.2.5-4.42">
-              <p id="section-4.2.5-4.42.1">See <a href="#sec-sec" class="auto internal xref">Section 4.2.5.8</a>.<a href="#section-4.2.5-4.42.1" class="pilcrow">¶</a></p>
+              <p id="section-4.2.5-4.42.1">See <a href="#sec-oam" class="auto internal xref">Section 4.2.5.7</a>.<a href="#section-4.2.5-4.42.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
-<dt id="section-4.2.5-4.43">'service':</dt>
+<dt id="section-4.2.5-4.43">'security':</dt>
             <dd style="margin-left: 1.5em" id="section-4.2.5-4.44">
-              <p id="section-4.2.5-4.44.1">See <a href="#sec-bw" class="auto internal xref">Section 4.2.5.9</a>.<a href="#section-4.2.5-4.44.1" class="pilcrow">¶</a></p>
+              <p id="section-4.2.5-4.44.1">See <a href="#sec-sec" class="auto internal xref">Section 4.2.5.8</a>.<a href="#section-4.2.5-4.44.1" class="pilcrow">¶</a></p>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-4.2.5-4.45">'service':</dt>
+            <dd style="margin-left: 1.5em" id="section-4.2.5-4.46">
+              <p id="section-4.2.5-4.46.1">See <a href="#sec-bw" class="auto internal xref">Section 4.2.5.9</a>.<a href="#section-4.2.5-4.46.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
 </dl>
@@ -3333,6 +3357,16 @@ module ietf-bearer-svc {
       "RFC xxxx: A YANG Service Data Model for Attachment Circuits";
   }
 
+  // Typedef to ease referencing cross-modules
+
+  typedef bearer-ref {
+    type leafref {
+      path "/bearer-svc:bearers/bearer-svc:bearer/bearer-svc:name";
+    }
+    description
+      "Defines a type to reference a bearer.";
+  }
+
   // Identities
 
   identity identification-type {
@@ -3343,7 +3377,7 @@ module ietf-bearer-svc {
   identity device-id {
     base identification-type;
     description
-      "Identification of bearers based on device..";
+      "Identification of bearers based on device.";
   }
 
   identity site-id {
@@ -3379,6 +3413,12 @@ module ietf-bearer-svc {
     base bearer-type;
     description
       "Wireless.";
+  }
+
+  identity lag {
+    base bearer-type;
+    description
+      "Link Aggregation Group (LAG).";
   }
 
   identity network-termination-hint {
@@ -3507,13 +3547,14 @@ module ietf-bearer-svc {
     }
 
     list bearer {
-      key "id";
+      key "name";
       description
         "Maintains a list of bearers.";
-      leaf id {
+      leaf name {
         type string;
         description
-          "An identifier of the bearer.";
+          "A name that uniquely identifies a bearer for
+           a given customer.";
       }
       leaf description {
         type string;
@@ -3528,6 +3569,17 @@ module ietf-bearer-svc {
            teams and which may be useful for the activation of a
            bearer. This may include, for example, information
            about the building, level, etc.";
+      }
+      leaf bearer-parent-ref {
+        type bearer-svc:bearer-ref;
+        description
+          "Specifies the parent bearer. This can be used, e.g.,
+           for a Link Aggregation Group (LAG).";
+      }
+      leaf-list bearer-lag-member {
+        type bearer-svc:bearer-ref;
+        description
+          "Specifies a member of a LAG.";
       }
       container customer-point {
         description
@@ -3588,13 +3640,12 @@ module ietf-bearer-svc {
               customer/provider using out-of-band means.";
         }
       }
-      leaf requested-type {
+      leaf type {
         type identityref {
           base bearer-type;
         }
         description
-          "Type of the requested bearer (e.g., Ethernet or
-           wireless)";
+          "Type of the bearer (e.g., Ethernet or wireless).";
       }
       leaf test-only {
         type empty;
@@ -4626,8 +4677,13 @@ module ietf-ac-svc {
           "Specifies the parent AC that is inherited by an AC.
            In contexts where dynamic terminating points are
            bound to the same AC, a parent AC with stable
-           inforamtion is created with a set of child AC
-           that trackes dynamic informaiton.";
+           information is created with a set of child ACs
+           to track dynamic AC information.";
+      }
+      leaf-list child-ac-ref {
+        type ac-svc:attachment-circuit-reference;
+        description
+          "Specifies a child AC that relies upon a parent AC.";
       }
       list group {
         key "group-id";
@@ -6606,6 +6662,135 @@ module ietf-ac-svc {
 <a href="#name-message-body-of-a-response-" class="selfRef">Message Body of a Response to the Request to Create ACs for Connecting to the Cloud Provider</a>
           </figcaption></figure>
 </div>
+</section>
+</div>
+<div id="connect-customer-network-ce-through-bgp-peering">
+<section id="appendix-A.9">
+        <h3 id="name-connect-customer-network-ce">
+<a href="#appendix-A.9" class="section-number selfRef">A.9. </a><a href="#name-connect-customer-network-ce" class="section-name selfRef">Connect Customer Network (CE) through BGP Peering</a>
+        </h3>
+<p id="appendix-A.9-1">CE-PE routing using BGP is a common scenario in the context of MPLS VPNs and is widely used in enterprise networks. In the example depicted below, the CE routers are customer-owned devices belonging to an Autonomous System (ASN 65536). CEs are located at the edge of the provider's network (PE, or Provider Edge) and use point-to-point interfaces to establish BGP sessions. The point-to-point interfaces relies upon a physical bearer (Line-113) to reach the provider network.<a href="#appendix-A.9-1" class="pilcrow">¶</a></p>
+<span id="name-illustration-of-provider-ne"></span><div id="provider-network">
+<figure id="figure-44">
+          <div id="appendix-A.9-2.1">
+            <div class="alignLeft art-svg artwork" id="appendix-A.9-2.1.1">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="400" width="568" viewBox="0 0 568 400" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
+                <path d="M 8,32 L 8,384" fill="none" stroke="black"></path>
+                <path d="M 80,80 L 80,192" fill="none" stroke="black"></path>
+                <path d="M 80,224 L 80,256" fill="none" stroke="black"></path>
+                <path d="M 80,320 L 80,352" fill="none" stroke="black"></path>
+                <path d="M 184,80 L 184,192" fill="none" stroke="black"></path>
+                <path d="M 184,224 L 184,256" fill="none" stroke="black"></path>
+                <path d="M 184,320 L 184,352" fill="none" stroke="black"></path>
+                <path d="M 208,32 L 208,88" fill="none" stroke="black"></path>
+                <path d="M 208,104 L 208,384" fill="none" stroke="black"></path>
+                <path d="M 400,32 L 400,88" fill="none" stroke="black"></path>
+                <path d="M 400,104 L 400,144" fill="none" stroke="black"></path>
+                <path d="M 416,80 L 416,112" fill="none" stroke="black"></path>
+                <path d="M 480,80 L 480,112" fill="none" stroke="black"></path>
+                <path d="M 560,32 L 560,144" fill="none" stroke="black"></path>
+                <path d="M 8,32 L 208,32" fill="none" stroke="black"></path>
+                <path d="M 400,32 L 560,32" fill="none" stroke="black"></path>
+                <path d="M 80,80 L 184,80" fill="none" stroke="black"></path>
+                <path d="M 416,80 L 480,80" fill="none" stroke="black"></path>
+                <path d="M 184,96 L 416,96" fill="none" stroke="black"></path>
+                <path d="M 416,112 L 480,112" fill="none" stroke="black"></path>
+                <path d="M 400,144 L 560,144" fill="none" stroke="black"></path>
+                <path d="M 80,192 L 184,192" fill="none" stroke="black"></path>
+                <path d="M 80,224 L 184,224" fill="none" stroke="black"></path>
+                <path d="M 80,256 L 184,256" fill="none" stroke="black"></path>
+                <path d="M 80,320 L 184,320" fill="none" stroke="black"></path>
+                <path d="M 80,352 L 184,352" fill="none" stroke="black"></path>
+                <path d="M 8,384 L 208,384" fill="none" stroke="black"></path>
+                <g class="text">
+                  <text x="60" y="52">Provider</text>
+                  <text x="128" y="52">Network</text>
+                  <text x="444" y="52">Customer</text>
+                  <text x="512" y="52">Network</text>
+                  <text x="300" y="84">Attachment-Circuit</text>
+                  <text x="384" y="84">1</text>
+                  <text x="132" y="100">PE1(VRF11)</text>
+                  <text x="440" y="100">CE1</text>
+                  <text x="520" y="100">AS65536</text>
+                  <text x="132" y="132">PE1(VRF12)</text>
+                  <text x="132" y="164">PE1(VRF1n)</text>
+                  <text x="32" y="212">AS1</text>
+                  <text x="132" y="244">PE2(VRF21)</text>
+                  <text x="128" y="276">.</text>
+                  <text x="128" y="292">.</text>
+                  <text x="128" y="308">.</text>
+                  <text x="132" y="340">PEm(VRFmn)</text>
+                </g>
+              </svg><a href="#appendix-A.9-2.1.1" class="pilcrow">¶</a>
+</div>
+</div>
+<figcaption><a href="#figure-44" class="selfRef">Figure 44</a>:
+<a href="#name-illustration-of-provider-ne" class="selfRef">Illustration of Provider Network Scenario</a>
+          </figcaption></figure>
+</div>
+<p id="appendix-A.9-3">The attachment circuit in this case will use a SAP identifier to refer to the physical interface used for the connection between the PE and the CE. The attachment circuit will include all the additional logical attributes to describe the connection between the two ends, including VLAN information and IP addressing. Regarding the BGP session, the configuration details involve the usage of Peer-Group details instead of defining the entire configuration inside the Neighbor.<a href="#appendix-A.9-3" class="pilcrow">¶</a></p>
+<span id="name-message-body-of-a-request-to-c"></span><div id="add-attachment-circuit-bgp-routing">
+<figure id="figure-45">
+          <div class="breakable lang-json sourcecode" id="appendix-A.9-4.1">
+<pre>
+{
+   "attachment-circuits":{
+      "ac":{
+         "name":"IPT-CUST-ABC",
+         "customer-name":"CUST-ABC",
+         "description":"CUST-ABC-113",
+         "peer-sap-id":"sap#113",
+         "ip-connection":{
+            "ipv4":{
+               "local-address":"192.0.2.1",
+               "prefix-length":30,
+               "address-allocation-type":"ac-common:static-address"
+            }
+         },
+         "l2-connection":{
+            "encapsulation":{
+               "dot1q":{
+                  "tag-type":"vpn-common:c-vlan",
+                  "cvlan-id":"113"
+               }
+            },
+            "bearer-reference":"line-113"
+         },
+         "routing-protocols":{
+            "routing-protocol":{
+               "id":"BGP-Single-Access",
+               "type":"vpn-common:bgp-routing",
+               "bgp":{
+                  "peer-groups":{
+                     "peer-group":{
+                        "name":"IPT-CUST-ABC",
+                        "peer-as":65536,
+                        "address-family":"vpn-common:ipv4"
+                     }
+                  },
+                  "neighbor":{
+                     "id":"BGP-DIA-Single-1",
+                     "remote-address":"192.0.2.2",
+                     "peer-group":"IPT-CUST-ABC",
+                     "status":{
+                        "admin-status":{
+                           "status":"vpn-common:admin-up"
+                        }
+                     }
+                  }
+               }
+            }
+         }
+      }
+   }
+}
+</pre>
+</div>
+<figcaption><a href="#figure-45" class="selfRef">Figure 45</a>:
+<a href="#name-message-body-of-a-request-to-c" class="selfRef">Message Body of a Request to Create ACs for Connecting CEs to provider Network</a>
+          </figcaption></figure>
+</div>
+<p id="appendix-A.9-5">This scenario allows the provider to maintain a list of Attachment Circuits belonging to the same customer without requiring the full service configuration.<a href="#appendix-A.9-5" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>

@@ -5,14 +5,14 @@
 OPSAWG                                                 M. Boucadair, Ed.
 Internet-Draft                                                    Orange
 Intended status: Standards Track                         R. Roberts, Ed.
-Expires: 28 July 2024                                            Juniper
+Expires: 8 August 2024                                           Juniper
                                                            O. G. D. Dios
                                                               Telefonica
                                                            S. B. Giraldo
                                                                    Nokia
                                                                    B. Wu
                                                      Huawei Technologies
-                                                         25 January 2024
+                                                         5 February 2024
 
 
   YANG Data Models for Bearers and 'Attachment Circuits'-as-a-Service
@@ -62,7 +62,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 28 July 2024.
+   This Internet-Draft will expire on 8 August 2024.
 
 Copyright Notice
 
@@ -117,6 +117,7 @@ Table of Contents
      A.7.  Binding Attachment Circuits to an IETF Network Slice
      A.8.  Connecting a Virtualized Environment Running in a Cloud
            Provider
+     A.9.  Connect Customer Network (CE) through BGP Peering
    Acknowledgments
    Contributors
    Authors' Addresses
@@ -467,66 +468,70 @@ Table of Contents
    achieved by indicating (with or without a bearer reference), a peer
    SAP identifier (e.g., an identifier of a Service Function).
 
-  +--rw bearers
-     +--rw placement-constraints
-     |  +--rw constraint* [constraint-type]
-     |          {vpn-common:placement-diversity}?
-     |     +--rw constraint-type    identityref
-     |     +--rw target
-     |        +--rw (target-flavor)?
-     |           +--:(id)
-     |           |  +--rw group* [group-id]
-     |           |     +--rw group-id    string
-     |           +--:(all-bearers)
-     |           |  +--rw all-other-bearers?   empty
-     |           +--:(all-groups)
-     |              +--rw all-other-groups?    empty
-     +--rw bearer* [id]
-        +--rw id                  string
-        +--rw description?        string
-        +--rw groups
-        |  +--rw group* [group-id]
-        |     +--rw group-id    string
-        +--rw op-comment?         string
-        +--rw customer-point
-        |  +--rw identified-by?   identityref
-        |  +--rw device
-        |  |  +--rw device-id?   string
-        |  |  +--rw location
-        |  |     +--rw location-name?   string
-        |  |     +--rw address?         string
-        |  |     +--rw postal-code?     string
-        |  |     +--rw state?           string
-        |  |     +--rw city?            string
-        |  |     +--rw country-code?    string
-        |  +--rw site
-        |  |  +--rw site-id?    string
-        |  |  +--rw location
-        |  |     +--rw location-name?   string
-        |  |     +--rw address?         string
-        |  |     +--rw postal-code?     string
-        |  |     +--rw state?           string
-        |  |     +--rw city?            string
-        |  |     +--rw country-code?    string
-        |  +--rw custom-id?       string
-        +--rw requested-type?     identityref
-        +--rw test-only?          empty
-        +--ro bearer-reference?   string
-        |       {vpn-common:bearer-reference}?
-        +--ro ac-svc-ref*            ac-svc:attachment-circuit-reference
-        +--rw requested-start?    yang:date-and-time
-        +--rw requested-stop?     yang:date-and-time
-        +--ro actual-start?       yang:date-and-time
-        +--ro actual-stop?        yang:date-and-time
-        +--rw status
-           +--rw admin-status
-           |  +--rw status?        identityref
-           |  +--ro last-change?   yang:date-and-time
-           +--ro oper-status
-              +--ro status?        identityref
-              +--ro last-change?   yang:date-and-time
+  module: ietf-bearer-svc
 
-               Figure 3: Bearer Service Tree Structure
+    +--rw bearers
+       +--rw placement-constraints
+       |  +--rw constraint* [constraint-type]
+       |          {vpn-common:placement-diversity}?
+       |     +--rw constraint-type    identityref
+       |     +--rw target
+       |        +--rw (target-flavor)?
+       |           +--:(id)
+       |           |  +--rw group* [group-id]
+       |           |     +--rw group-id    string
+       |           +--:(all-bearers)
+       |           |  +--rw all-other-bearers?   empty
+       |           +--:(all-groups)
+       |              +--rw all-other-groups?    empty
+       +--rw bearer* [name]
+          +--rw name                 string
+          +--rw description?         string
+          +--rw groups
+          |  +--rw group* [group-id]
+          |     +--rw group-id    string
+          +--rw op-comment?          string
+          +--rw bearer-parent-ref?   bearer-svc:bearer-ref
+          +--rw bearer-lag-member*   bearer-svc:bearer-ref
+          +--rw customer-point
+          |  +--rw identified-by?   identityref
+          |  +--rw device
+          |  |  +--rw device-id?   string
+          |  |  +--rw location
+          |  |     +--rw location-name?   string
+          |  |     +--rw address?         string
+          |  |     +--rw postal-code?     string
+          |  |     +--rw state?           string
+          |  |     +--rw city?            string
+          |  |     +--rw country-code?    string
+          |  +--rw site
+          |  |  +--rw site-id?    string
+          |  |  +--rw location
+          |  |     +--rw location-name?   string
+          |  |     +--rw address?         string
+          |  |     +--rw postal-code?     string
+          |  |     +--rw state?           string
+          |  |     +--rw city?            string
+          |  |     +--rw country-code?    string
+          |  +--rw custom-id?       string
+          +--rw requested-type?      identityref
+          +--rw test-only?           empty
+          +--ro bearer-reference?    string
+          |       {vpn-common:bearer-reference}?
+          +--ro ac-svc-ref*          ac-svc:attachment-circuit-reference
+          +--rw requested-start?     yang:date-and-time
+          +--rw requested-stop?      yang:date-and-time
+          +--ro actual-start?        yang:date-and-time
+          +--ro actual-stop?         yang:date-and-time
+          +--rw status
+             +--rw admin-status
+             |  +--rw status?        identityref
+             |  +--ro last-change?   yang:date-and-time
+             +--ro oper-status
+                +--ro status?        identityref
+                +--ro last-change?   yang:date-and-time
+
+                 Figure 3: Bearer Service Tree Structure
 
    The same customer site (CE, NF, etc.) can terminate one or multiple
    bearers; each of them uniquely identified by a reference that is
@@ -562,14 +567,20 @@ Table of Contents
 
    The descriptions of the bearer data nodes are as follows:
 
-   'id':  Used to uniquely identify a bearer.  This identifier is
-      typically selected by the client when requesting a bearer.
+   'name':  Used to uniquely identify a bearer.  This name is typically
+      selected by the client when requesting a bearer.
 
    'description':  Includes a textual description of the bearer.
 
    'op-comment':  Includes operational comments that may be useful for
       managing the bearer (building, level, etc.).  No structure is
       associated with this data node to accommodate all deployments.
+
+   'bearer-parent-ref':  Specifies the parent bearer.  This data node
+      can be used, e.g., if a bearer is a member of a Link Aggregation
+      Group (LAG).
+
+   'bearer-lag-member':  Lists the bearers that are member of a LAG.
 
    'group':  Tags a bearer with one ore more identifiers that are used
       to group a set of bearers.
@@ -595,9 +606,9 @@ Table of Contents
       used when requesting services.  Appendix A.1 provides an example
       about how this reference can be retrieved by a customer.
 
-      Whether the 'bearer-reference' mirrors the content of the 'id' is
-      deployment-specific.  The module does not assume nor preclude such
-      schemes.
+      Whether the 'bearer-reference' mirrors the content of the 'name'
+      is deployment-specific.  The module does not assume nor preclude
+      such schemes.
 
    'ac-svc-ref':  Specifies the set of attachment circuits that are
       bound to the bearer.
@@ -870,6 +881,7 @@ Table of Contents
           +--rw peer-sap-id*         string
           +--rw ac-group-profile*    ac-group-reference
           +--rw ac-parent-ref?       ac-svc:attachment-circuit-reference
+          +--rw child-ac-ref*        ac-svc:attachment-circuit-reference
           +--rw group* [group-id]
           |  +--rw group-id      string
           |  +--rw precedence?   identityref
@@ -924,17 +936,20 @@ Table of Contents
    'ac-group-profile':  Indicates references to one or more profiles
       that are defined in Section 4.2.3.
 
-   'ac-parent-ref':  Specifies an AC that is inherited by this
-      attachment circuit.
+   'ac-parent-ref':  Specifies an AC that is inherited by an attachment
+      circuit.
 
-      In contexts where dynamic
-      terminating points are managed for a given AC, a parent AC can be
-      defined with the stable and common information, while "child" ACs
-      are defined to track dynamic information.  These child ACs are
-      bound to the parent AC, which is exposed to services.
+      In contexts where dynamic terminating points are managed for a
+      given AC, a parent AC can be defined with a set of stable and
+      common information, while "child" ACs are defined to track dynamic
+      information.  These "child" ACs are bound to the parent AC, which
+      is exposed to services (as a stable reference).
 
-      Whenever a parent AC is deleted, that all child ACs of that AC
-      MUST be deleted.
+      Whenever a parent AC is deleted, all its "child" ACs MUST be
+      deleted.
+
+   'child-ac-ref':  Lists one or more references of child ACs that rely
+      upon this attachment circuit as a parent AC.
 
    'group':  Lists the groups to which an AC belongs [RFC9181].  For
       example, the 'group-id' is used to associate redundancy or
@@ -1889,6 +1904,16 @@ Table of Contents
          "RFC xxxx: A YANG Service Data Model for Attachment Circuits";
      }
 
+     // Typedef to ease referencing cross-modules
+
+     typedef bearer-ref {
+       type leafref {
+         path "/bearer-svc:bearers/bearer-svc:bearer/bearer-svc:name";
+       }
+       description
+         "Defines a type to reference a bearer.";
+     }
+
      // Identities
 
      identity identification-type {
@@ -1899,7 +1924,7 @@ Table of Contents
      identity device-id {
        base identification-type;
        description
-         "Identification of bearers based on device..";
+         "Identification of bearers based on device.";
      }
 
      identity site-id {
@@ -1935,6 +1960,12 @@ Table of Contents
        base bearer-type;
        description
          "Wireless.";
+     }
+
+     identity lag {
+       base bearer-type;
+       description
+         "Link Aggregation Group (LAG).";
      }
 
      identity network-termination-hint {
@@ -2063,13 +2094,14 @@ Table of Contents
        }
 
        list bearer {
-         key "id";
+         key "name";
          description
            "Maintains a list of bearers.";
-         leaf id {
+         leaf name {
            type string;
            description
-             "An identifier of the bearer.";
+             "A name that uniquely identifies a bearer for
+              a given customer.";
          }
          leaf description {
            type string;
@@ -2084,6 +2116,17 @@ Table of Contents
               teams and which may be useful for the activation of a
               bearer. This may include, for example, information
               about the building, level, etc.";
+         }
+         leaf bearer-parent-ref {
+           type bearer-svc:bearer-ref;
+           description
+             "Specifies the parent bearer. This can be used, e.g.,
+              for a Link Aggregation Group (LAG).";
+         }
+         leaf-list bearer-lag-member {
+           type bearer-svc:bearer-ref;
+           description
+             "Specifies a member of a LAG.";
          }
          container customer-point {
            description
@@ -2144,13 +2187,12 @@ Table of Contents
                  customer/provider using out-of-band means.";
            }
          }
-         leaf requested-type {
+         leaf type {
            type identityref {
              base bearer-type;
            }
            description
-             "Type of the requested bearer (e.g., Ethernet or
-              wireless)";
+             "Type of the bearer (e.g., Ethernet or wireless).";
          }
          leaf test-only {
            type empty;
@@ -3176,8 +3218,13 @@ Table of Contents
              "Specifies the parent AC that is inherited by an AC.
               In contexts where dynamic terminating points are
               bound to the same AC, a parent AC with stable
-              inforamtion is created with a set of child AC
-              that trackes dynamic informaiton.";
+              information is created with a set of child ACs
+              to track dynamic AC information.";
+         }
+         leaf-list child-ac-ref {
+           type ac-svc:attachment-circuit-reference;
+           description
+             "Specifies a child AC that relies upon a parent AC.";
          }
          list group {
            key "group-id";
@@ -4714,6 +4761,111 @@ Orchestration  DIRECT INTERCONNECTION ORDERING (API)            Provider
 
        Figure 43: Message Body of a Response to the Request to Create
                   ACs for Connecting to the Cloud Provider
+
+A.9.  Connect Customer Network (CE) through BGP Peering
+
+   CE-PE routing using BGP is a common scenario in the context of MPLS
+   VPNs and is widely used in enterprise networks.  In the example
+   depicted below, the CE routers are customer-owned devices belonging
+   to an Autonomous System (ASN 65536).  CEs are located at the edge of
+   the provider's network (PE, or Provider Edge) and use point-to-point
+   interfaces to establish BGP sessions.  The point-to-point interfaces
+   relies upon a physical bearer (Line-113) to reach the provider
+   network.
+
+  +------------------------+                       +-------------------+
+  |  Provider Network      |                       | Customer Network  |
+  |                        |                       |                   |
+  |        +------------+  |  Attachment-Circuit 1 | +-------+         |
+  |        | PE1(VRF11) +----------------------------+ CE1   | AS65536 |
+  |        |            |  |                       | +-------+         |
+  |        | PE1(VRF12) |  |                       |                   |
+  |        |            |  |                       +-------------------+
+  |        | PE1(VRF1n) |  |
+  |        |            |  |
+  |        +------------+  |
+  | AS1                    |
+  |        +------------+  |
+  |        | PE2(VRF21) |  |
+  |        +------------+  |
+  |              .         |
+  |              .         |
+  |              .         |
+  |        +------------+  |
+  |        | PEm(VRFmn) |  |
+  |        +------------+  |
+  |                        |
+  +------------------------+
+
+           Figure 44: Illustration of Provider Network Scenario
+
+   The attachment circuit in this case will use a SAP identifier to
+   refer to the physical interface used for the connection between the
+   PE and the CE.  The attachment circuit will include all the
+   additional logical attributes to describe the connection between the
+   two ends, including VLAN information and IP addressing.  Regarding
+   the BGP session, the configuration details involve the usage of Peer-
+   Group details instead of defining the entire configuration inside the
+   Neighbor.
+
+   {
+      "attachment-circuits":{
+         "ac":{
+            "name":"IPT-CUST-ABC",
+            "customer-name":"CUST-ABC",
+            "description":"CUST-ABC-113",
+            "peer-sap-id":"sap#113",
+            "ip-connection":{
+               "ipv4":{
+                  "local-address":"192.0.2.1",
+                  "prefix-length":30,
+                  "address-allocation-type":"ac-common:static-address"
+               }
+            },
+            "l2-connection":{
+               "encapsulation":{
+                  "dot1q":{
+                     "tag-type":"vpn-common:c-vlan",
+                     "cvlan-id":"113"
+                  }
+               },
+               "bearer-reference":"line-113"
+            },
+            "routing-protocols":{
+               "routing-protocol":{
+                  "id":"BGP-Single-Access",
+                  "type":"vpn-common:bgp-routing",
+                  "bgp":{
+                     "peer-groups":{
+                        "peer-group":{
+                           "name":"IPT-CUST-ABC",
+                           "peer-as":65536,
+                           "address-family":"vpn-common:ipv4"
+                        }
+                     },
+                     "neighbor":{
+                        "id":"BGP-DIA-Single-1",
+                        "remote-address":"192.0.2.2",
+                        "peer-group":"IPT-CUST-ABC",
+                        "status":{
+                           "admin-status":{
+                              "status":"vpn-common:admin-up"
+                           }
+                        }
+                     }
+                  }
+               }
+            }
+         }
+      }
+   }
+
+     Figure 45: Message Body of a Request to Create ACs for Connecting
+                          CEs to provider Network
+
+   This scenario allows the provider to maintain a list of Attachment
+   Circuits belonging to the same customer without requiring the full
+   service configuration.
 
 Acknowledgments
 
