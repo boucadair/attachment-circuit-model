@@ -590,8 +590,7 @@ Table of Contents
       combination thereof, or a custom information when requesting a
       bearer.  All these schemes are supported in the model.
 
-   'requested-type':  Specifies the requested bearer type (Ethernet,
-      wireless, etc.).
+   'type':  Specifies the bearer type (Ethernet, wireless, etc.).
 
    'test-only':  Indicates that a request is only for test and not for
       setting, even if there are no errors.  This is used for
