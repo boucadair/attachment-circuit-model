@@ -35,7 +35,7 @@
                   },
                   "neighbor":{
                      "id":"BGP-DIA-Single-1",
-                     "remote-address":"113.1.1.2",
+                     "remote-address":"192.0.2.2",
                      "peer-group":"IPT-CUST-ABC",
                      "status":{
                         "admin-status":{
