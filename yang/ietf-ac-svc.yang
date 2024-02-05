@@ -993,6 +993,7 @@ module ietf-ac-svc {
       }
       leaf-list child-ac-ref {
         type ac-svc:attachment-circuit-reference;
+        config false;
         description
           "Specifies a child AC that relies upon a parent AC.";
       }
