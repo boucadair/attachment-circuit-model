@@ -6658,7 +6658,7 @@ module ietf-ac-svc {
                   <text x="384" y="84">1</text>
                   <text x="132" y="100">PE1(VRF11)</text>
                   <text x="440" y="100">CE1</text>
-                  <text x="524" y="100">AS1234</text>
+                  <text x="520" y="100">AS65536</text>
                   <text x="132" y="132">PE1(VRF12)</text>
                   <text x="132" y="164">PE1(VRF1n)</text>
                   <text x="32" y="212">AS1</text>
@@ -6690,7 +6690,7 @@ module ietf-ac-svc {
          "ip-connection":{
             "ipv4":{
                "local-address":"192.0.2.1",
-               "prefix-length":31,
+               "prefix-length":30,
                "address-allocation-type":"ac-common:static-address"
             }
          },
@@ -6717,7 +6717,7 @@ module ietf-ac-svc {
                   },
                   "neighbor":{
                      "id":"BGP-DIA-Single-1",
-                     "remote-address":"113.1.1.2",
+                     "remote-address":"192.0.2.2",
                      "peer-group":"IPT-CUST-ABC",
                      "status":{
                         "admin-status":{

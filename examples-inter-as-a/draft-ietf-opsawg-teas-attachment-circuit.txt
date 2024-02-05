@@ -4731,7 +4731,7 @@ A.9.  Connect Customer Network (CE) through BGP Peering
   |  Provider Network      |                       | Customer Network  |
   |                        |                       |                   |
   |        +------------+  |  Attachment-Circuit 1 | +-------+         |
-  |        | PE1(VRF11) +----------------------------+ CE1   |  AS1234 |
+  |        | PE1(VRF11) +----------------------------+ CE1   | AS65536 |
   |        |            |  |                       | +-------+         |
   |        | PE1(VRF12) |  |                       |                   |
   |        |            |  |                       +-------------------+
@@ -4772,7 +4772,7 @@ A.9.  Connect Customer Network (CE) through BGP Peering
             "ip-connection":{
                "ipv4":{
                   "local-address":"192.0.2.1",
-                  "prefix-length":31,
+                  "prefix-length":30,
                   "address-allocation-type":"ac-common:static-address"
                }
             },
@@ -4799,7 +4799,7 @@ A.9.  Connect Customer Network (CE) through BGP Peering
                      },
                      "neighbor":{
                         "id":"BGP-DIA-Single-1",
-                        "remote-address":"113.1.1.2",
+                        "remote-address":"192.0.2.2",
                         "peer-group":"IPT-CUST-ABC",
                         "status":{
                            "admin-status":{
