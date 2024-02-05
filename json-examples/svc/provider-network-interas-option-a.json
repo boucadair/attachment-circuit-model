@@ -7,7 +7,7 @@
          "peer-sap-id":"sap#113",
          "ip-connection":{
             "ipv4":{
-               "local-address":"113.1.1.1",
+               "local-address":"192.0.2.1",
                "prefix-length":31,
                "address-allocation-type":"ac-common:static-address"
             }
