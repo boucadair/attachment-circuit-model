@@ -1128,7 +1128,7 @@ CE-PE routing using BGP is a common scenario in the context of MPLS VPNs and is 
 |  Provider Network      |                       | Customer Network  |
 |                        |                       |                   |
 |        +------------+  |  Attachment-Circuit 1 | +-------+         |
-|        | PE1(VRF11) +----------------------------+ CE1   |  AS1234 |
+|        | PE1(VRF11) +----------------------------+ CE1   | AS65536 |
 |        |            |  |                       | +-------+         |
 |        | PE1(VRF12) |  |                       |                   |
 |        |            |  |                       +-------------------+
