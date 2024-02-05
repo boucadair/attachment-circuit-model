@@ -1340,9 +1340,8 @@ Table of Contents
 
       Both timers are expressed in seconds.
 
-   'capabilities':  Specifies a set of BGP capabilities (e.g., route
-      refresh capability [RFC2918]) to be enabled when establishing a
-      BGP session.
+   'capability':  Specifies a set of BGP capabilities (e.g., route
+      refresh capability [RFC2918]) to be enabled per address family.
 
    'authentication':  The module adheres to the recommendations in
       Section 13.2 of [RFC4364], as it allows enabling the TCP
