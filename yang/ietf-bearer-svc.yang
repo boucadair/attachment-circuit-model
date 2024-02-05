@@ -281,8 +281,9 @@ module ietf-bearer-svc {
       }
       leaf-list bearer-lag-member {
         type bearer-svc:bearer-ref;
+        config false;
         description
-          "Specifies a member of a LAG.";
+          "Reports LAG members.";
       }
       container customer-point {
         description
