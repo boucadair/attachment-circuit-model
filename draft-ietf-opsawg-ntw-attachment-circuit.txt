@@ -2166,7 +2166,7 @@ Table of Contents
      import ietf-sap-ntw {
        prefix sap;
        reference
-         "RFC SSSS: A YANG Network Model for Service Attachment
+         "RFC 9408: A YANG Network Model for Service Attachment
                     Points (SAPs)";
      }
      import ietf-ac-common {
