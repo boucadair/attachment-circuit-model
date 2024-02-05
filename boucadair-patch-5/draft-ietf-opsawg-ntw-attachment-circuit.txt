@@ -3147,6 +3147,7 @@ Table of Contents
            type identityref {
              base ac-common:bgp-capability;
            }
+           mandatory true;
            description
              "Indicates the name of BGP capability.";
        }
