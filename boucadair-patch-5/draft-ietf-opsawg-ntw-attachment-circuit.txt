@@ -1088,7 +1088,9 @@ Table of Contents
           |     |  +--rw bgp-timers
           |     |  |  +--rw keepalive?   uint16
           |     |  |  +--rw hold-time?   uint16
-          |     |  +--rw capabilities*             identityref
+          |     |  +--rw capability*        [address-family]
+          |     |     +--rw address-family    identityref
+          |     |     +--rw name              identityref
           |     +--rw ospf
           |     |  ...
           |     +--rw isis
@@ -1154,7 +1156,9 @@ Table of Contents
           |     |  |     +--rw bgp-timers
           |     |  |     |  +--rw keepalive?   uint16
           |     |  |     |  +--rw hold-time?   uint16
-          |     |  |     +--rw capabilities*             identityref
+          |     |  |     +--rw capability*        [address-family]
+          |     |  |     |   +--rw address-family    identityref
+          |     |  |     |   +--rw name              identityref
           |     |  |     +--rw authentication
           |     |  |        +--rw enable?            boolean
           |     |  |        +--rw keying-material
@@ -1207,7 +1211,9 @@ Table of Contents
           |     |     +--rw bgp-timers
           |     |     |  +--rw keepalive?   uint16
           |     |     |  +--rw hold-time?   uint16
-          |     |     +--rw capabilities*             identityref
+          |     |     +--rw capability*        [address-family]
+          |     |     |   +--rw address-family    identityref
+          |     |     |   +--rw name              identityref
           |     |     +--rw authentication
           |     |     |  +--rw enable?            boolean
           |     |     |  +--rw keying-material
