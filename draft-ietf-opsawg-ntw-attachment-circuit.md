@@ -427,11 +427,7 @@ The following data nodes are supported for each 'peer-group':
 'address-family':
 :  Indicates the address family of the peer.  It can
       be set to 'ipv4', 'ipv6', or 'dual-stack'.
-: This address family will be used together with the 'vpn-type' to
-      derive the appropriate Address Family Identifiers (AFIs) /
-      Subsequent Address Family Identifiers (SAFIs) that will be part of
-     the derived device configurations (e.g., unicast IPv4 MPLS L3VPN
-      (AFI,SAFI = 1,128) as defined in {{Section 4.3.4 of !RFC4364}}).
+: This address family might be used together with the service type that uses an AC (e.g., 'vpn-type' {{?RFC9182}}) to derive the appropriate Address Family Identifiers (AFIs) / Subsequent Address Family Identifiers (SAFIs) that will be part of the derived device configurations (e.g., unicast IPv4 MPLS L3VPN (AFI,SAFI = 1,128) as defined in {{Section 4.3.4 of !RFC4364}}).
 
 'multihop':
 :  Indicates the number of allowed IP hops to reach a BGP peer.
