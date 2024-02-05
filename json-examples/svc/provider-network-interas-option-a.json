@@ -29,7 +29,7 @@
                   "peer-groups":{
                      "peer-group":{
                         "name":"IPT-CUST-ABC",
-                        "peer-as":1234,
+                        "peer-as":65536,
                         "address-family":"vpn-common:ipv4"
                      }
                   },
