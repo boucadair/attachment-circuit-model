@@ -1694,7 +1694,7 @@ module: ietf-bearer-svc
         |  |     +--rw city?            string
         |  |     +--rw country-code?    string
         |  +--rw custom-id?       string
-        +--rw requested-type?      identityref
+        +--rw type?      identityref
         +--rw test-only?           empty
         +--ro bearer-reference?    string
         |       {vpn-common:bearer-reference}?
@@ -1768,9 +1768,9 @@ module: ietf-bearer-svc
             <p id="section-4.1-8.14.1">Specifies the customer terminating point for the bearer. A bearer request can indicate a device, a site, a combination thereof, or a custom information when requesting a bearer. All these schemes are supported in the model.<a href="#section-4.1-8.14.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-8.15">'requested-type':</dt>
+<dt id="section-4.1-8.15">'type':</dt>
           <dd style="margin-left: 1.5em" id="section-4.1-8.16">
-            <p id="section-4.1-8.16.1">Specifies the requested bearer type (Ethernet, wireless, etc.).<a href="#section-4.1-8.16.1" class="pilcrow">¶</a></p>
+            <p id="section-4.1-8.16.1">Specifies the bearer type (Ethernet, wireless, etc.).<a href="#section-4.1-8.16.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
 <dt id="section-4.1-8.17">'test-only':</dt>
@@ -3415,6 +3415,12 @@ module ietf-bearer-svc {
       "Wireless.";
   }
 
+  identity lag {
+    base bearer-type;
+    description
+      "Link Aggregation Group (LAG).";
+  }
+
   identity network-termination-hint {
     base vpn-common:placement-diversity;
     description
@@ -3634,13 +3640,12 @@ module ietf-bearer-svc {
               customer/provider using out-of-band means.";
         }
       }
-      leaf requested-type {
+      leaf type {
         type identityref {
           base bearer-type;
         }
         description
-          "Type of the requested bearer (e.g., Ethernet or
-           wireless)";
+          "Type of the bearer (e.g., Ethernet or wireless).";
       }
       leaf test-only {
         type empty;
@@ -5135,7 +5140,7 @@ module ietf-ac-svc {
             "device-id": "CE_X_SITE_Y"
           }
         },
-        "requested-type": "ietf-bearer-svc:ethernet"
+        "type": "ietf-bearer-svc:ethernet"
       }
     ]
   }
@@ -5162,7 +5167,7 @@ module ietf-ac-svc {
             "device-id": "CE_X_SITE_Y"
           }
         },
-        "requested-type": "ietf-bearer-svc:ethernet",
+        "type": "ietf-bearer-svc:ethernet",
         "bearer-reference": "line-156"
       }
     ]

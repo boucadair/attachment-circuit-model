@@ -514,7 +514,7 @@ Table of Contents
           |  |     +--rw city?            string
           |  |     +--rw country-code?    string
           |  +--rw custom-id?       string
-          +--rw requested-type?      identityref
+          +--rw type?      identityref
           +--rw test-only?           empty
           +--ro bearer-reference?    string
           |       {vpn-common:bearer-reference}?
@@ -590,8 +590,7 @@ Table of Contents
       combination thereof, or a custom information when requesting a
       bearer.  All these schemes are supported in the model.
 
-   'requested-type':  Specifies the requested bearer type (Ethernet,
-      wireless, etc.).
+   'type':  Specifies the bearer type (Ethernet, wireless, etc.).
 
    'test-only':  Indicates that a request is only for test and not for
       setting, even if there are no errors.  This is used for
@@ -1962,6 +1961,12 @@ Table of Contents
          "Wireless.";
      }
 
+     identity lag {
+       base bearer-type;
+       description
+         "Link Aggregation Group (LAG).";
+     }
+
      identity network-termination-hint {
        base vpn-common:placement-diversity;
        description
@@ -2181,13 +2186,12 @@ Table of Contents
                  customer/provider using out-of-band means.";
            }
          }
-         leaf requested-type {
+         leaf type {
            type identityref {
              base bearer-type;
            }
            description
-             "Type of the requested bearer (e.g., Ethernet or
-              wireless)";
+             "Type of the bearer (e.g., Ethernet or wireless).";
          }
          leaf test-only {
            type empty;
@@ -3652,7 +3656,7 @@ A.1.  Create A New Bearer
                "device-id": "CE_X_SITE_Y"
              }
            },
-           "requested-type": "ietf-bearer-svc:ethernet"
+           "type": "ietf-bearer-svc:ethernet"
          }
        ]
      }
@@ -3675,7 +3679,7 @@ A.1.  Create A New Bearer
                "device-id": "CE_X_SITE_Y"
              }
            },
-           "requested-type": "ietf-bearer-svc:ethernet",
+           "type": "ietf-bearer-svc:ethernet",
            "bearer-reference": "line-156"
          }
        ]
