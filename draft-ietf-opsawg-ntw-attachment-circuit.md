@@ -497,9 +497,9 @@ The following data nodes are supported for each 'peer-group':
       KeepaliveTimer between a PE and a BGP peer ({{Section 4.4 of !RFC4271}}).
 :  Both timers are expressed in seconds.
 
-'capabilities':
+'capability':
 : Specifies a set of BGP capabilities (e.g., route refresh capability {{?RFC2918}})
-to be enabled when establishing a BGP session.
+to be enabled per address family.
 
 'authentication':
 :  The module adheres to the recommendations in
