@@ -3657,7 +3657,7 @@ A.1.  Create A New Bearer
                "device-id": "CE_X_SITE_Y"
              }
            },
-           "requested-type": "ietf-bearer-svc:ethernet"
+           "type": "ietf-bearer-svc:ethernet"
          }
        ]
      }
