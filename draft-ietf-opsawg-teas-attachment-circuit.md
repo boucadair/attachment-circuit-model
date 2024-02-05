@@ -1120,7 +1120,7 @@ Next, API workflows can be initiated:
 
 ## Connect Customer Network (CE) through BGP Peering
 
-CE-PE routing using BGP (Border Gateway Protocol) is a common scenario in the context of MPLS (Multiprotocol Label Switching) VPNs and is widely employed in enterprise networks. In this example, the CE (Customer Edge) routers are customer-owned devices belonging to an autonomous system (AS 1234). CEs are located at the edge of the provider's network (PE, or Provider Edge) and will use point-to-point interfaces to establish the BGP session. The Point to point interfaces uses a physical bearer (Line-113) to reach the provider network.
+CE-PE routing using BGP is a common scenario in the context of MPLS VPNs and is widely used in enterprise networks. In the example depicted below, the CE routers are customer-owned devices belonging to an Autonomous System (ASN 65536). CEs are located at the edge of the provider's network (PE, or Provider Edge) and use point-to-point interfaces to establish BGP sessions. The point-to-point interfaces relies upon a physical bearer (Line-113) to reach the provider network.
 
 
 ~~~~ aasvg
