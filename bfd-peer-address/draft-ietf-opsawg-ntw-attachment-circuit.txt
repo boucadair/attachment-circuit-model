@@ -3471,6 +3471,7 @@ Table of Contents
                     an IP address or a reference to an interface.";
                }
                uses bgp-base;
+               uses bfd-profile-reference;
                uses ac-common:bgp-authentication;
              }
            }
@@ -3503,6 +3504,7 @@ Table of Contents
                   associated.";
              }
              uses bgp-base;
+             uses bfd-profile-reference;
              uses ac-common:bgp-authentication;
              uses ac-common:service-status;
            }
