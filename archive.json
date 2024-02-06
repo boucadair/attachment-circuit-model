@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-02-04T00:38:23.732216+00:00",
+  "timestamp": "2024-02-06T00:34:59.851004+00:00",
   "repo": "boucadair/attachment-circuit-model",
   "labels": [
     {
@@ -2260,7 +2260,7 @@
       "id": "I_kwDOIiAkrc54vBbI",
       "title": "Add a new example to illustrate how the models can be used between provider networks",
       "url": "https://github.com/boucadair/attachment-circuit-model/issues/158",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "boucadair",
       "authorAssociation": "OWNER",
       "assignees": [
@@ -2273,8 +2273,8 @@
       ],
       "body": "![image](https://github.com/boucadair/attachment-circuit-model/assets/15671127/d98a6c9e-346b-4542-a885-216cd485034b)\r\n",
       "createdAt": "2023-12-05T08:29:52Z",
-      "updatedAt": "2024-01-22T09:27:48Z",
-      "closedAt": null,
+      "updatedAt": "2024-02-05T09:51:14Z",
+      "closedAt": "2024-02-05T09:51:14Z",
       "comments": []
     },
     {
@@ -2346,6 +2346,125 @@
       "createdAt": "2024-02-02T11:05:58Z",
       "updatedAt": "2024-02-02T13:12:11Z",
       "closedAt": "2024-02-02T13:12:11Z",
+      "comments": []
+    },
+    {
+      "number": 175,
+      "id": "I_kwDOIiAkrc5-PtQm",
+      "title": "address family",
+      "url": "https://github.com/boucadair/attachment-circuit-model/issues/175",
+      "state": "CLOSED",
+      "author": "boucadair",
+      "authorAssociation": "OWNER",
+      "assignees": [
+        "boucadair"
+      ],
+      "labels": [
+        "AC-COMMON",
+        "AC-SVC",
+        "ac-ntw"
+      ],
+      "body": "This address family will be used together with the 'vpn-type' to derive the appropriate Address Family Identifiers (AFIs) / Subsequent Address Family Identifiers (SAFIs) that will be part of the derived device configurations (e.g., unicast IPv4 MPLS L3VPN (AFI,SAFI = 1,128) as defined in [Section 4.3.4](https://rfc-editor.org/rfc/rfc4364#section-4.3.4) of [[RFC4364](https://boucadair.github.io/attachment-circuit-model/draft-ietf-opsawg-ntw-attachment-circuit.html#RFC4364)]).",
+      "createdAt": "2024-02-05T09:20:29Z",
+      "updatedAt": "2024-02-05T12:12:57Z",
+      "closedAt": "2024-02-05T12:12:57Z",
+      "comments": []
+    },
+    {
+      "number": 176,
+      "id": "I_kwDOIiAkrc5-P2Yp",
+      "title": "put member as a ro instead of rw",
+      "url": "https://github.com/boucadair/attachment-circuit-model/issues/176",
+      "state": "CLOSED",
+      "author": "boucadair",
+      "authorAssociation": "OWNER",
+      "assignees": [
+        "boucadair"
+      ],
+      "labels": [
+        "AC-SVC",
+        "bearer-svc"
+      ],
+      "body": "",
+      "createdAt": "2024-02-05T09:39:10Z",
+      "updatedAt": "2024-02-05T11:52:07Z",
+      "closedAt": "2024-02-05T11:52:07Z",
+      "comments": []
+    },
+    {
+      "number": 177,
+      "id": "I_kwDOIiAkrc5-P4wG",
+      "title": "bearer description",
+      "url": "https://github.com/boucadair/attachment-circuit-model/issues/177",
+      "state": "OPEN",
+      "author": "boucadair",
+      "authorAssociation": "OWNER",
+      "assignees": [
+        "lana-wu"
+      ],
+      "labels": [
+        "bearer-svc"
+      ],
+      "body": "",
+      "createdAt": "2024-02-05T09:44:11Z",
+      "updatedAt": "2024-02-05T09:44:11Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 178,
+      "id": "I_kwDOIiAkrc5-P8fH",
+      "title": "add an example of interconnecting two networks (not vpn specific)",
+      "url": "https://github.com/boucadair/attachment-circuit-model/issues/178",
+      "state": "OPEN",
+      "author": "boucadair",
+      "authorAssociation": "OWNER",
+      "assignees": [
+        "oscargdd"
+      ],
+      "labels": [
+        "AC-SVC"
+      ],
+      "body": "",
+      "createdAt": "2024-02-05T09:52:00Z",
+      "updatedAt": "2024-02-05T09:52:00Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 180,
+      "id": "I_kwDOIiAkrc5-QwLU",
+      "title": "Add LAG as a bearer type",
+      "url": "https://github.com/boucadair/attachment-circuit-model/issues/180",
+      "state": "CLOSED",
+      "author": "boucadair",
+      "authorAssociation": "OWNER",
+      "assignees": [
+        "boucadair"
+      ],
+      "labels": [
+        "bearer-svc"
+      ],
+      "body": "",
+      "createdAt": "2024-02-05T11:41:32Z",
+      "updatedAt": "2024-02-05T11:44:08Z",
+      "closedAt": "2024-02-05T11:44:08Z",
+      "comments": []
+    },
+    {
+      "number": 184,
+      "id": "I_kwDOIiAkrc5-Thvo",
+      "title": "bfd - need more control on targets",
+      "url": "https://github.com/boucadair/attachment-circuit-model/issues/184",
+      "state": "OPEN",
+      "author": "robric",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "We can't specify the target destination for BFD sessions. this is problematic if multiple destination can be reached via BFD. Related question - how much should we link BFD with routing protocols (because that's ultimately where these are consumed)",
+      "createdAt": "2024-02-05T17:08:54Z",
+      "updatedAt": "2024-02-05T17:08:54Z",
+      "closedAt": null,
       "comments": []
     }
   ],
@@ -6668,24 +6787,26 @@
       "id": "PR_kwDOIiAkrc5l023b",
       "title": "Examples inter as a",
       "url": "https://github.com/boucadair/attachment-circuit-model/pull/173",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "sbarguil",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2024-02-02T12:29:22Z",
-      "updatedAt": "2024-02-02T13:08:21Z",
+      "updatedAt": "2024-02-05T09:51:14Z",
       "baseRepository": "boucadair/attachment-circuit-model",
       "baseRefName": "main",
       "baseRefOid": "b77c6b1bd20073b6a8d3b9862f578cd01838488a",
       "headRepository": "boucadair/attachment-circuit-model",
       "headRefName": "examples-inter-as-a",
-      "headRefOid": "ccf2c62dbd62f7f1051be2ef3b17ebea9fd744d4",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "3549c6b73ad4279dcc76bef54537ec710743810b",
+      "closedAt": "2024-02-05T09:51:13Z",
+      "mergedAt": "2024-02-05T09:51:13Z",
+      "mergedBy": "boucadair",
+      "mergeCommit": {
+        "oid": "3d6eba5c0d4e95baae7af0a9c4787d6d0845eaf0"
+      },
       "comments": [],
       "reviews": [
         {
@@ -6778,6 +6899,122 @@
       "mergedBy": "boucadair",
       "mergeCommit": {
         "oid": "f4c6b926cded7f0479635111ff5cd0a10a1ce302"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 179,
+      "id": "PR_kwDOIiAkrc5mARzz",
+      "title": "add lag as bearer type",
+      "url": "https://github.com/boucadair/attachment-circuit-model/pull/179",
+      "state": "MERGED",
+      "author": "boucadair",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-02-05T10:34:55Z",
+      "updatedAt": "2024-02-05T11:44:08Z",
+      "baseRepository": "boucadair/attachment-circuit-model",
+      "baseRefName": "main",
+      "baseRefOid": "3d6eba5c0d4e95baae7af0a9c4787d6d0845eaf0",
+      "headRepository": "boucadair/attachment-circuit-model",
+      "headRefName": "boucadair-patch-5",
+      "headRefOid": "e55d4c7e66d7fca6d54303276349260d0149c28c",
+      "closedAt": "2024-02-05T11:44:07Z",
+      "mergedAt": "2024-02-05T11:44:07Z",
+      "mergedBy": "boucadair",
+      "mergeCommit": {
+        "oid": "0659ead5dc48490c271736edbe8b8b0748c602eb"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 181,
+      "id": "PR_kwDOIiAkrc5mAvj7",
+      "title": "lag members as read-only",
+      "url": "https://github.com/boucadair/attachment-circuit-model/pull/181",
+      "state": "MERGED",
+      "author": "boucadair",
+      "authorAssociation": "OWNER",
+      "assignees": [
+        "boucadair"
+      ],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-02-05T11:46:04Z",
+      "updatedAt": "2024-02-05T11:52:06Z",
+      "baseRepository": "boucadair/attachment-circuit-model",
+      "baseRefName": "main",
+      "baseRefOid": "0659ead5dc48490c271736edbe8b8b0748c602eb",
+      "headRepository": "boucadair/attachment-circuit-model",
+      "headRefName": "lag-members-as-read-only",
+      "headRefOid": "4409632d5916db8016433fe72b1bb72638ba3fa0",
+      "closedAt": "2024-02-05T11:52:06Z",
+      "mergedAt": "2024-02-05T11:52:06Z",
+      "mergedBy": "boucadair",
+      "mergeCommit": {
+        "oid": "552701dfa486c03b6f8e8534f5c7b2c0471994a2"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 182,
+      "id": "PR_kwDOIiAkrc5mA2C4",
+      "title": "address-family clarification",
+      "url": "https://github.com/boucadair/attachment-circuit-model/pull/182",
+      "state": "MERGED",
+      "author": "boucadair",
+      "authorAssociation": "OWNER",
+      "assignees": [
+        "boucadair"
+      ],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-02-05T11:56:37Z",
+      "updatedAt": "2024-02-05T12:12:57Z",
+      "baseRepository": "boucadair/attachment-circuit-model",
+      "baseRefName": "main",
+      "baseRefOid": "552701dfa486c03b6f8e8534f5c7b2c0471994a2",
+      "headRepository": "boucadair/attachment-circuit-model",
+      "headRefName": "boucadair-patch-5",
+      "headRefOid": "c805db136256ff52387bfec019e98bd561e45f18",
+      "closedAt": "2024-02-05T12:12:56Z",
+      "mergedAt": "2024-02-05T12:12:56Z",
+      "mergedBy": "boucadair",
+      "mergeCommit": {
+        "oid": "c4bb5fb4e89ebb413ba030dc36b2653e7e3da91b"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 183,
+      "id": "PR_kwDOIiAkrc5mBaAq",
+      "title": "child-ac-ref as read-only",
+      "url": "https://github.com/boucadair/attachment-circuit-model/pull/183",
+      "state": "MERGED",
+      "author": "boucadair",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-02-05T13:11:25Z",
+      "updatedAt": "2024-02-05T13:12:50Z",
+      "baseRepository": "boucadair/attachment-circuit-model",
+      "baseRefName": "main",
+      "baseRefOid": "44b3ff8ded0d51d7f74b7c4a267faca323794733",
+      "headRepository": "boucadair/attachment-circuit-model",
+      "headRefName": "boucadair-patch-5",
+      "headRefOid": "ecf9cf13765abb532a304169a74a596d3889e60c",
+      "closedAt": "2024-02-05T13:12:50Z",
+      "mergedAt": "2024-02-05T13:12:50Z",
+      "mergedBy": "boucadair",
+      "mergeCommit": {
+        "oid": "c18aac32a830025198cf6a4d27aaf2c3edd43550"
       },
       "comments": [],
       "reviews": []
