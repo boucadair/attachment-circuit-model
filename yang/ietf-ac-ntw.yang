@@ -1351,7 +1351,6 @@ module ietf-ac-ntw {
                  an IP address or a reference to an interface.";
             }
             uses bgp-base;
-            uses bfd-profile-reference;
             uses ac-common:bgp-authentication;
           }
         }
@@ -1384,7 +1383,12 @@ module ietf-ac-ntw {
                associated.";
           }
           uses bgp-base;
-          uses bfd-profile-reference;
+          container bfd {
+            if-feature "vpn-common:bfd";
+            description
+              "BFD control for this nighbor.";
+            uses bfd-profile-reference;
+          }
           uses ac-common:bgp-authentication;
           uses ac-common:service-status;
         }
