@@ -161,6 +161,10 @@ module: ietf-ac-ntw
        |     |     +--rw capability*        [address-family]
        |     |     |   +--rw address-family    identityref
        |     |     |   +--rw name              identityref
+       |     |     +--rw bfd {vpn-common:bfd}?
+       |     |     |  +--rw bfd-profile-ref?   leafref
+       |     |     |  +--rw network-ref?
+       |     |     |          -> /nw:networks/network/network-id
        |     |     +--rw authentication
        |     |     |  +--rw enable?            boolean
        |     |     |  +--rw keying-material
