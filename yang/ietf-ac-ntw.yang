@@ -1633,27 +1633,47 @@ module ietf-ac-ntw {
     container bfd {
       description
         "Container for BFD.";
-      uses bfd-profile-reference;
-      uses bfd;
-      container authentication {
-        presence "Enables BFD authentication";
+      list session {
+        key "dest-addr";
         description
-          "Parameters for BFD authentication.";
-        leaf key-chain {
-          type key-chain:key-chain-ref;
-          description
-            "Name of the key chain.";
+          "List of IP sessions.";
+         leaf dest-addr {
+           type inet:ip-address;
+           description
+             "IP address of the peer.";
         }
-        leaf meticulous {
-          type boolean;
-          description
-            "Enables meticulous mode.";
-          reference
-            "RFC 5880: Bidirectional Forwarding Detection (BFD),
-                       Section 6.7";
+        leaf source-address {
+          type union {
+            type inet:ip-address;
+            type if:interface-ref;
+           }
+           description
+             "Sets the local IP address to use for the BFD
+              session. This may be expressed as either
+              an IP address or a reference to an interface.";
         }
+        uses bfd-profile-reference;
+        uses bfd;
+        container authentication {
+          presence "Enables BFD authentication";
+          description
+            "Parameters for BFD authentication.";
+          leaf key-chain {
+            type key-chain:key-chain-ref;
+            description
+              "Name of the key chain.";
+          }
+          leaf meticulous {
+            type boolean;
+            description
+              "Enables meticulous mode.";
+            reference
+              "RFC 5880: Bidirectional Forwarding Detection (BFD),
+                         Section 6.7";
+          }
+        }
+        uses ac-common:service-status;
       }
-      uses ac-common:service-status;
     }
   }
 
