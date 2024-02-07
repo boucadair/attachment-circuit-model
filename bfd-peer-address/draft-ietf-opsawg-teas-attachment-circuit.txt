@@ -1333,6 +1333,7 @@ Table of Contents
            |     |     +--ro local-address?    inet:ip-address
            |     |     +--rw peer-group?
            |     |     |       -> ../../peer-groups/peer-group/name
+           |     |     +--rw bfd-profile?      bfd-profile-reference
            |     |     +--ro local-as?         inet:as-number
            |     |     +--rw peer-as?          inet:as-number
            |     |     +--rw address-family?   identityref
