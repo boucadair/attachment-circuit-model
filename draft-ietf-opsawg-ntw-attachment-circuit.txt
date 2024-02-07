@@ -977,7 +977,11 @@ Table of Contents
           |     |     |  +--rw lan-tag?      string
           |     |     |  +--rw next-hop      union
           |     |     |  +--rw metric?       uint32
-          |     |     |  +--rw bfd-enable?   boolean {vpn-common:bfd}?
+          |     |     +--rw bfd
+          |     |     |  +--rw enable?            boolean
+          |     |     |  +--rw bfd-profile-ref?   leafref
+          |     |     |  +--rw network-ref?
+          |     |     |          -> /nw:networks/network/network-id
           |     |     |  +--rw preference?   uint32
           |     |     |  +--rw status
           |     |     |     +--rw admin-status
@@ -992,7 +996,11 @@ Table of Contents
           |     |        +--rw lan-tag?      string
           |     |        +--rw next-hop      union
           |     |        +--rw metric?       uint32
-          |     |        +--rw bfd-enable?   boolean {vpn-common:bfd}?
+          |     |        +--rw bfd
+          |     |        |  +--rw enable?            boolean
+          |     |        |  +--rw bfd-profile-ref?   leafref
+          |     |        |  +--rw network-ref?
+          |     |        |          -> /nw:networks/network/network-id
           |     |        +--rw preference?   uint32
           |     |        +--rw status
           |     |           +--rw admin-status
@@ -1030,8 +1038,8 @@ Table of Contents
       It can be identified by an IP address, a predefined next-hop type
       (e.g., 'discard' or 'local-link'), etc.
 
-   'bfd-enable':  Indicates whether BFD is enabled or disabled for this
-      static route entry.
+   'bfd':  Indicates whether BFD is enabled or disabled for this static
+      route entry.  A BFD profile may also be provided.
 
    'metric':  Indicates the metric associated with the static route
       entry.  This metric is used when the route is exported into an
@@ -1214,6 +1222,11 @@ Table of Contents
           |     |     +--rw capability*        [address-family]
           |     |     |   +--rw address-family    identityref
           |     |     |   +--rw name              identityref
+          |     |     +--rw bfd
+          |     |     |  +--rw enable?            boolean
+          |     |     |  +--rw bfd-profile-ref?   leafref
+          |     |     |  +--rw network-ref?
+          |     |     |          -> /nw:networks/network/network-id
           |     |     +--rw authentication
           |     |     |  +--rw enabled?            boolean
           |     |     |  +--rw keying-material
@@ -1342,6 +1355,9 @@ Table of Contents
 
    'capability':  Specifies a set of BGP capabilities (e.g., route
       refresh capability [RFC2918]) to be enabled per address family.
+
+   'bfd':  Indicates whether BFD is enabled or disabled for this
+      nighbor.  A BFD profile to apply may also be provided.
 
    'authentication':  The module adheres to the recommendations in
       Section 13.2 of [RFC4364], as it allows enabling the TCP
@@ -1864,24 +1880,27 @@ Table of Contents
           |  ...
           +--rw oam
           |  +--rw bfd
-          |     +--rw bfd-profile-ref?            leafref
-          |     +--rw network-ref?
-          |     |       -> /nw:networks/network/network-id
-          |     +--rw session-type?               identityref
-          |     +--rw desired-min-tx-interval?    uint32
-          |     +--rw required-min-rx-interval?   uint32
-          |     +--rw local-multiplier?           uint8
-          |     +--rw holdtime?                   uint32
-          |     +--rw authentication!
-          |     |  +--rw key-chain?    key-chain:key-chain-ref
-          |     |  +--rw meticulous?   boolean
-          |     +--rw status
-          |        +--rw admin-status
-          |        |  +--rw status?        identityref
-          |        |  +--ro last-change?   yang:date-and-time
-          |        +--ro oper-status
-          |           +--ro status?        identityref
-          |           +--ro last-change?   yang:date-and-time
+          |     +--rw session* [dest-addr]
+          |        +--rw dest-addr                   inet:ip-address
+          |        +--rw source-address?             union
+          |        +--rw bfd-profile-ref?            leafref
+          |        +--rw network-ref?
+          |        |       -> /nw:networks/network/network-id
+          |        +--rw session-type?               identityref
+          |        +--rw desired-min-tx-interval?    uint32
+          |        +--rw required-min-rx-interval?   uint32
+          |        +--rw local-multiplier?           uint8
+          |        +--rw holdtime?                   uint32
+          |        +--rw authentication!
+          |        |  +--rw key-chain?    key-chain:key-chain-ref
+          |        |  +--rw meticulous?   boolean
+          |        +--rw status
+          |           +--rw admin-status
+          |           |  +--rw status?        identityref
+          |           |  +--ro last-change?   yang:date-and-time
+          |           +--ro oper-status
+          |              +--ro status?        identityref
+          |              +--ro last-change?   yang:date-and-time
           +--rw security
           |  ...
           +--rw service
@@ -1889,9 +1908,17 @@ Table of Contents
 
                        Figure 16: OAM Tree Structure
 
-   The following OAM data nodes can be specified:
+   The following OAM data nodes can be specified for each BFD session:
 
-   'profile':  Refers to a BFD profile (Section 4.3).
+   'dest-addr':  Specifies the BFD peer address.
+
+   'source-address':  Specifies the local IP address or interface to use
+      for the session.
+
+   'bfd-profile-ref':  Refers to a BFD profile (Section 4.3).
+
+   'network-ref':  Includes a network reference to uniquely identify a
+      BFD profile.
 
    'session-type':  Indicates which BFD flavor is used to set up the
       session (e.g., classic BFD [RFC5880], Seamless BFD [RFC7880]).  By
@@ -3400,12 +3427,7 @@ Table of Contents
                description
                  "List of LAN prefixes for the site.";
                uses ac-common:ipv4-static-rtg-entry;
-               leaf bfd-enable {
-                 if-feature "vpn-common:bfd";
-                 type boolean;
-                 description
-                   "Enables BFD.";
-               }
+               uses bfd-routing;
                leaf preference {
                  type uint32;
                  description
@@ -3420,12 +3442,7 @@ Table of Contents
                description
                  "List of LAN prefixes for the site.";
                uses ac-common:ipv4-static-rtg-entry;
-               leaf bfd-enable {
-                 if-feature "vpn-common:bfd";
-                 type boolean;
-                 description
-                   "Enables BFD.";
-               }
+               uses bfd-routing;
                leaf preference {
                  type uint32;
                  description
@@ -3500,6 +3517,7 @@ Table of Contents
                   associated.";
              }
              uses bgp-base;
+             uses bfd-routing;
              uses ac-common:bgp-authentication;
              uses ac-common:service-status;
            }
@@ -3741,6 +3759,22 @@ Table of Contents
        }
      }
 
+     grouping bfd-routing {
+       description
+         "Defines a basic BFD grouping for routing configuration.";
+       container bfd {
+         description
+           "BFD control for this nighbor.";
+         leaf enable {
+           type boolean;
+           description
+             "Enables BFD if set to true. BFD is disabled of set to
+              false.";
+         }
+         uses bfd-profile-reference;
+       }
+     }
+
      // OAM
 
      grouping oam {
@@ -3750,27 +3784,47 @@ Table of Contents
        container bfd {
          description
            "Container for BFD.";
-         uses bfd-profile-reference;
-         uses bfd;
-         container authentication {
-           presence "Enables BFD authentication";
+         list session {
+           key "dest-addr";
            description
-             "Parameters for BFD authentication.";
-           leaf key-chain {
-             type key-chain:key-chain-ref;
-             description
-               "Name of the key chain.";
+             "List of IP sessions.";
+            leaf dest-addr {
+              type inet:ip-address;
+              description
+                "IP address of the peer.";
            }
-           leaf meticulous {
-             type boolean;
-             description
-               "Enables meticulous mode.";
-             reference
-               "RFC 5880: Bidirectional Forwarding Detection (BFD),
-                          Section 6.7";
+           leaf source-address {
+             type union {
+               type inet:ip-address;
+               type if:interface-ref;
+              }
+              description
+                "Sets the local IP address to use for the BFD
+                 session. This may be expressed as either
+                 an IP address or a reference to an interface.";
            }
+           uses bfd-profile-reference;
+           uses bfd;
+           container authentication {
+             presence "Enables BFD authentication";
+             description
+               "Parameters for BFD authentication.";
+             leaf key-chain {
+               type key-chain:key-chain-ref;
+               description
+                 "Name of the key chain.";
+             }
+             leaf meticulous {
+               type boolean;
+               description
+                 "Enables meticulous mode.";
+               reference
+                 "RFC 5880: Bidirectional Forwarding Detection (BFD),
+                            Section 6.7";
+             }
+           }
+           uses ac-common:service-status;
          }
-         uses ac-common:service-status;
        }
      }
 
