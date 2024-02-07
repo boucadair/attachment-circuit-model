@@ -1283,12 +1283,7 @@ module ietf-ac-ntw {
             description
               "List of LAN prefixes for the site.";
             uses ac-common:ipv4-static-rtg-entry;
-            leaf bfd-enable {
-              if-feature "vpn-common:bfd";
-              type boolean;
-              description
-                "Enables BFD.";
-            }
+            uses bfd-routing;
             leaf preference {
               type uint32;
               description
@@ -1303,12 +1298,7 @@ module ietf-ac-ntw {
             description
               "List of LAN prefixes for the site.";
             uses ac-common:ipv4-static-rtg-entry;
-            leaf bfd-enable {
-              if-feature "vpn-common:bfd";
-              type boolean;
-              description
-                "Enables BFD.";
-            }
+            uses bfd-routing;
             leaf preference {
               type uint32;
               description
@@ -1383,12 +1373,7 @@ module ietf-ac-ntw {
                associated.";
           }
           uses bgp-base;
-          container bfd {
-            if-feature "vpn-common:bfd";
-            description
-              "BFD control for this nighbor.";
-            uses bfd-profile-reference;
-          }
+          uses bfd-routing;
           uses ac-common:bgp-authentication;
           uses ac-common:service-status;
         }
@@ -1627,6 +1612,22 @@ module ietf-ac-ntw {
       reference
         "RFC 5880: Bidirectional Forwarding Detection (BFD),
                    Section 6.8.18";
+    }
+  }
+
+  grouping bfd-routing {
+    description
+      "Defines a basic BFD grouping for routing configuration.";
+    container bfd {
+      description
+        "BFD control for this nighbor.";
+      leaf enable {
+        type boolean;
+        description
+          "Enables BFD if set to true. BFD is disabled of set to
+           false.";
+      }
+      uses bfd-profile-reference;
     }
   }
 
