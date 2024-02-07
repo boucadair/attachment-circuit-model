@@ -1214,7 +1214,8 @@ Table of Contents
           |     |     +--rw capability*        [address-family]
           |     |     |   +--rw address-family    identityref
           |     |     |   +--rw name              identityref
-          |     |     +--rw bfd {vpn-common:bfd}?
+          |     |     +--rw bfd
+          |     |     |  +--rw enable?            boolean
           |     |     |  +--rw bfd-profile-ref?   leafref
           |     |     |  +--rw network-ref?
           |     |     |          -> /nw:networks/network/network-id
