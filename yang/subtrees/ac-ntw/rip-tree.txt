@@ -58,7 +58,7 @@ module: ietf-ac-ntw
        |     |  |  +--rw flush-interval?      uint16
        |     |  +--rw default-metric?   uint8
        |     |  +--rw authentication
-       |     |  |  +--rw enable?            boolean
+       |     |  |  +--rw enabled?            boolean
        |     |  |  +--rw keying-material
        |     |  |     +--rw (option)?
        |     |  |        +--:(auth-key-chain)
