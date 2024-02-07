@@ -52,7 +52,7 @@ module: ietf-ac-ntw
        |     |  |     +--rw metric?        uint16
        |     |  +--rw max-lsa?          uint32
        |     |  +--rw authentication
-       |     |  |  +--rw enable?            boolean
+       |     |  |  +--rw enabled?            boolean
        |     |  |  +--rw keying-material
        |     |  |     +--rw (option)?
        |     |  |        +--:(auth-key-chain)
