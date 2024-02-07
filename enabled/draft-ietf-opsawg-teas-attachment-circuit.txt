@@ -1434,7 +1434,7 @@ Table of Contents
             |     |  +--rw area-id           yang:dotted-quad
             |     |  +--rw metric?           uint16
             |     |  +--rw authentication
-            |     |  |  +--rw enable?            boolean
+            |     |  |  +--rw enabled?            boolean
             |     |  |  +--rw keying-material
             |     |  |     +--rw (option)?
             |     |  |        +--:(auth-key-chain)
