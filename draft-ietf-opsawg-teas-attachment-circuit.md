@@ -521,9 +521,6 @@ As depicted in {{static-rtg-svc-tree}}, the following data nodes can be defined 
 : Indicates the next hop to be used for the static route.
 : It can be identified by an IP address, a predefined next-hop type (e.g., 'discard' or 'local-link'), etc.
 
-'bfd-enable':
-: Indicates whether BFD is enabled or disabled for this static route entry.
-
 'metric':
 : Indicates the metric associated with the static route entry. This metric is used when the route is exported into an IGP.
 
