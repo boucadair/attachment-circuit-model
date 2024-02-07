@@ -382,8 +382,8 @@ The following data nodes can be defined for a given IP prefix:
 : Indicates the next hop to be used for the static route.
 : It can be identified by an IP address, a predefined next-hop type (e.g., 'discard' or 'local-link'), etc.
 
-'bfd-enable':
-: Indicates whether BFD is enabled or disabled for this static route entry.
+'bfd':
+: Indicates whether BFD is enabled or disabled for this static route entry. A BFD profile may also be provided.
 
 'metric':
 : Indicates the metric associated with the static route entry. This metric is used when the route is exported into an IGP.
@@ -502,7 +502,7 @@ The following data nodes are supported for each 'peer-group':
 to be enabled per address family.
 
 'bfd':
-: Indicates a BFD profile to apply for this nighbor.
+: Indicates whether BFD is enabled or disabled for this nighbor. A BFD profile to apply may also be provided.
 
 'authentication':
 :  The module adheres to the recommendations in
