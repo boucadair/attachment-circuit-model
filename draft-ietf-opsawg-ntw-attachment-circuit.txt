@@ -1079,7 +1079,7 @@ Table of Contents
           |     |  |       rt-types:ipv6-route-origin
           |     |  +--rw redistribute-connected* [address-family]
           |     |  |  +--rw address-family    identityref
-          |     |  |  +--rw enable?           boolean
+          |     |  |  +--rw enabled?           boolean
           |     |  +--rw bgp-max-prefix
           |     |  |  +--rw max-prefix?          uint32
           |     |  |  +--rw warning-threshold?   decimal64
@@ -1147,7 +1147,7 @@ Table of Contents
           |     |  |     |       rt-types:ipv6-route-origin
           |     |  |     +--rw redistribute-connected* [address-family]
           |     |  |     |  +--rw address-family    identityref
-          |     |  |     |  +--rw enable?           boolean
+          |     |  |     |  +--rw enabled?           boolean
           |     |  |     +--rw bgp-max-prefix
           |     |  |     |  +--rw max-prefix?          uint32
           |     |  |     |  +--rw warning-threshold?   decimal64
@@ -1160,7 +1160,7 @@ Table of Contents
           |     |  |     |   +--rw address-family    identityref
           |     |  |     |   +--rw name              identityref
           |     |  |     +--rw authentication
-          |     |  |        +--rw enable?            boolean
+          |     |  |        +--rw enabled?            boolean
           |     |  |        +--rw keying-material
           |     |  |           +--rw (option)?
           |     |  |              +--:(ao)
@@ -1202,7 +1202,7 @@ Table of Contents
           |     |     |       rt-types:ipv6-route-origin
           |     |     +--rw redistribute-connected* [address-family]
           |     |     |  +--rw address-family    identityref
-          |     |     |  +--rw enable?           boolean
+          |     |     |  +--rw enabled?           boolean
           |     |     +--rw bgp-max-prefix
           |     |     |  +--rw max-prefix?          uint32
           |     |     |  +--rw warning-threshold?   decimal64
@@ -1215,7 +1215,7 @@ Table of Contents
           |     |     |   +--rw address-family    identityref
           |     |     |   +--rw name              identityref
           |     |     +--rw authentication
-          |     |     |  +--rw enable?            boolean
+          |     |     |  +--rw enabled?            boolean
           |     |     |  +--rw keying-material
           |     |     |     +--rw (option)?
           |     |     |        +--:(ao)
@@ -1426,7 +1426,7 @@ Table of Contents
           |     |  |     +--rw metric?        uint16
           |     |  +--rw max-lsa?          uint32
           |     |  +--rw authentication
-          |     |  |  +--rw enable?            boolean
+          |     |  |  +--rw enabled?            boolean
           |     |  |  +--rw keying-material
           |     |  |     +--rw (option)?
           |     |  |        +--:(auth-key-chain)
@@ -1544,7 +1544,7 @@ Table of Contents
           |     |  +--rw metric?           uint16
           |     |  +--rw mode?             enumeration
           |     |  +--rw authentication
-          |     |  |  +--rw enable?            boolean
+          |     |  |  +--rw enabled?            boolean
           |     |  |  +--rw keying-material
           |     |  |     +--rw (option)?
           |     |  |        +--:(auth-key-chain)
@@ -1663,7 +1663,7 @@ Table of Contents
           |     |  |  +--rw flush-interval?      uint16
           |     |  +--rw default-metric?   uint8
           |     |  +--rw authentication
-          |     |  |  +--rw enable?            boolean
+          |     |  |  +--rw enabled?            boolean
           |     |  |  +--rw keying-material
           |     |  |     +--rw (option)?
           |     |  |        +--:(auth-key-chain)
@@ -3030,7 +3030,7 @@ Table of Contents
            description
              "Indicates the address family.";
          }
-         leaf enable {
+         leaf enabled {
            type boolean;
            description
              "Enables the redistribution of connected routes.";

@@ -1310,7 +1310,7 @@ Table of Contents
            |     |  |     +--rw address-family?   identityref
            |     |  |     +--ro local-address?    inet:ip-address
            |     |  |     +--rw authentication
-           |     |  |        +--rw enable?            boolean
+           |     |  |        +--rw enabled?            boolean
            |     |  |        +--rw keying-material
            |     |  |           +--rw (option)?
            |     |  |              +--:(ao)
@@ -1335,7 +1335,7 @@ Table of Contents
            |     |     +--rw peer-as?          inet:as-number
            |     |     +--rw address-family?   identityref
            |     |     +--rw authentication
-           |     |     |  +--rw enable?            boolean
+           |     |     |  +--rw enabled?            boolean
            |     |     |  +--rw keying-material
            |     |     |     +--rw (option)?
            |     |     |        +--:(ao)
@@ -1434,7 +1434,7 @@ Table of Contents
             |     |  +--rw area-id           yang:dotted-quad
             |     |  +--rw metric?           uint16
             |     |  +--rw authentication
-            |     |  |  +--rw enable?            boolean
+            |     |  |  +--rw enabled?            boolean
             |     |  |  +--rw keying-material
             |     |  |     +--rw (option)?
             |     |  |        +--:(auth-key-chain)
@@ -1502,7 +1502,7 @@ Table of Contents
             |     |  +--rw address-family?   identityref
             |     |  +--rw area-address      area-address
             |     |  +--rw authentication
-            |     |  |  +--rw enable?            boolean
+            |     |  |  +--rw enabled?            boolean
             |     |  |  +--rw keying-material
             |     |  |     +--rw (option)?
             |     |  |        +--:(auth-key-chain)
@@ -1563,7 +1563,7 @@ Table of Contents
             |     +--rw rip
             |     |  +--rw address-family?   identityref
             |     |  +--rw authentication
-            |     |  |  +--rw enable?            boolean
+            |     |  |  +--rw enabled?            boolean
             |     |  |  +--rw keying-material
             |     |  |     +--rw (option)?
             |     |  |        +--:(auth-key-chain)

@@ -1627,7 +1627,7 @@ for the reader's convenience.<a href="#section-3-1" class="pilcrow">¶</a></p>
 <pre>
   grouping bgp-authentication:
     +-- authentication
-       +-- enable?            boolean
+       +-- enabled?            boolean
        +-- keying-material
           +-- (option)?
              +--:(ao)
@@ -1641,7 +1641,7 @@ for the reader's convenience.<a href="#section-3-1" class="pilcrow">¶</a></p>
                 +-- crypto-algorithm?   identityref
   grouping ospf-authentication:
     +-- authentication
-       +-- enable?            boolean
+       +-- enabled?            boolean
        +-- keying-material
           +-- (option)?
              +--:(auth-key-chain)
@@ -1652,7 +1652,7 @@ for the reader's convenience.<a href="#section-3-1" class="pilcrow">¶</a></p>
                 +-- crypto-algorithm?   identityref
   grouping isis-authentication:
     +-- authentication
-       +-- enable?            boolean
+       +-- enabled?            boolean
        +-- keying-material
           +-- (option)?
              +--:(auth-key-chain)
@@ -1663,7 +1663,7 @@ for the reader's convenience.<a href="#section-3-1" class="pilcrow">¶</a></p>
                 +-- crypto-algorithm?   identityref
   grouping rip-authentication:
     +-- authentication
-       +-- enable?            boolean
+       +-- enabled?            boolean
        +-- keying-material
           +-- (option)?
              +--:(auth-key-chain)
@@ -2817,13 +2817,13 @@ module ietf-ac-common {
     container authentication {
       description
         "Container for BGP authentication  parameters.";
-      leaf enable {
+      leaf enabled {
         type boolean;
         description
           "Enables or disables authentication.";
       }
       container keying-material {
-        when "../enable = 'true'";
+        when "../enabled = 'true'";
         description
           "Container for describing how a BGP routing session is to
            be secured on an AC.";
@@ -2896,13 +2896,13 @@ module ietf-ac-common {
     container authentication {
       description
         "Container for OSPF authentication  parameters.";
-      leaf enable {
+      leaf enabled {
         type boolean;
         description
           "Enables or disables authentication.";
       }
       container keying-material {
-        when "../enable = 'true'";
+        when "../enabled = 'true'";
         description
           "Container for describing how an OSPF session is to be
            secured for this AC.";
@@ -2950,13 +2950,13 @@ module ietf-ac-common {
     container authentication {
       description
         "Container for IS-IS authentication  parameters.";
-      leaf enable {
+      leaf enabled {
         type boolean;
         description
           "Enables or disables authentication.";
       }
       container keying-material {
-        when "../enable = 'true'";
+        when "../enabled = 'true'";
         description
           "Container for describing how an IS-IS session is secured
            over an AC.";
@@ -3004,13 +3004,13 @@ module ietf-ac-common {
     container authentication {
       description
         "Container for RIP authentication  parameters.";
-      leaf enable {
+      leaf enabled {
         type boolean;
         description
           "Enables or disables authentication.";
       }
       container keying-material {
-        when "../enable = 'true'";
+        when "../enabled = 'true'";
         description
           "Container for describing how a RIP session is to be
            secured on this AC.";
