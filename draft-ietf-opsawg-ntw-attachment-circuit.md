@@ -501,6 +501,9 @@ The following data nodes are supported for each 'peer-group':
 : Specifies a set of BGP capabilities (e.g., route refresh capability {{?RFC2918}})
 to be enabled per address family.
 
+'bfd':
+: Indicates a BFD profile to apply for this nighbor.
+
 'authentication':
 :  The module adheres to the recommendations in
       {{Section 13.2 of !RFC4364}}, as it allows enabling the TCP
@@ -693,10 +696,19 @@ The OAM subtree structure is shown in {{oam-tree}}.
 ~~~~
 {: #oam-tree title="OAM Tree Structure"}
 
-The following OAM data nodes can be specified:
+The following OAM data nodes can be specified for each BFD session:
 
-'profile':
+'dest-addr':
+: Specifies the BFD peer address.
+
+'source-address':
+: Specifies the local IP address or interface to use for the session.
+
+'bfd-profile-ref':
 : Refers to a BFD profile ({{sec-profiles}}).
+
+'network-ref':
+: Includes a network reference to uniquely identify a BFD profile.
 
 'session-type':
 : Indicates which BFD flavor is used to set up the session (e.g., classic BFD {{!RFC5880}}, Seamless BFD {{?RFC7880}}). By default, it is assumed that the BFD session will follow the behavior specified in {{!RFC5880}}.
