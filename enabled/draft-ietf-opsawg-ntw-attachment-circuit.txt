@@ -1426,7 +1426,7 @@ Table of Contents
           |     |  |     +--rw metric?        uint16
           |     |  +--rw max-lsa?          uint32
           |     |  +--rw authentication
-          |     |  |  +--rw enable?            boolean
+          |     |  |  +--rw enabled?            boolean
           |     |  |  +--rw keying-material
           |     |  |     +--rw (option)?
           |     |  |        +--:(auth-key-chain)
@@ -1663,7 +1663,7 @@ Table of Contents
           |     |  |  +--rw flush-interval?      uint16
           |     |  +--rw default-metric?   uint8
           |     |  +--rw authentication
-          |     |  |  +--rw enable?            boolean
+          |     |  |  +--rw enabled?            boolean
           |     |  |  +--rw keying-material
           |     |  |     +--rw (option)?
           |     |  |        +--:(auth-key-chain)
