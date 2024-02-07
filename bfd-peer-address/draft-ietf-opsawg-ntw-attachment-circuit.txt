@@ -5,14 +5,14 @@
 Operations and Management Area Working Group           M. Boucadair, Ed.
 Internet-Draft                                                    Orange
 Intended status: Standards Track                              R. Roberts
-Expires: 9 August 2024                                           Juniper
+Expires: 10 August 2024                                          Juniper
                                                            O. G. D. Dios
                                                               Telefonica
                                                            S. B. Giraldo
                                                                    Nokia
                                                                    B. Wu
                                                      Huawei Technologies
-                                                         6 February 2024
+                                                         7 February 2024
 
 
            A Network YANG Data Model for Attachment Circuits
@@ -57,7 +57,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 9 August 2024.
+   This Internet-Draft will expire on 10 August 2024.
 
 Copyright Notice
 
@@ -1347,6 +1347,8 @@ Table of Contents
    'capability':  Specifies a set of BGP capabilities (e.g., route
       refresh capability [RFC2918]) to be enabled per address family.
 
+   'bfd':  Indicates a BFD profile to apply for this nighbor.
+
    'authentication':  The module adheres to the recommendations in
       Section 13.2 of [RFC4364], as it allows enabling the TCP
       Authentication Option (TCP-AO) [RFC5925] and accommodates the
@@ -1896,9 +1898,17 @@ Table of Contents
 
                        Figure 16: OAM Tree Structure
 
-   The following OAM data nodes can be specified:
+   The following OAM data nodes can be specified for each BFD session:
 
-   'profile':  Refers to a BFD profile (Section 4.3).
+   'dest-addr':  Specifies the BFD peer address.
+
+   'source-address':  Specifies the local IP address or interface to use
+      for the session.
+
+   'bfd-profile-ref':  Refers to a BFD profile (Section 4.3).
+
+   'network-ref':  Includes a network reference to uniquely identify a
+      BFD profile.
 
    'session-type':  Indicates which BFD flavor is used to set up the
       session (e.g., classic BFD [RFC5880], Seamless BFD [RFC7880]).  By
