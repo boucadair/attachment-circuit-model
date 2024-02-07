@@ -524,6 +524,9 @@ As depicted in {{static-rtg-svc-tree}}, the following data nodes can be defined 
 'metric':
 : Indicates the metric associated with the static route entry. This metric is used when the route is exported into an IGP.
 
+'bfd-profile':
+: Indicates a BFD profile that applies for this entry.
+
 'status':
 : Used to convey the status of a static route entry. This data node can also be used to control the (de)activation of individual static route entries.
 
@@ -566,6 +569,9 @@ For each neighbor, the following data nodes are supported in addition to similar
 'peer-group':
 : A name of a peer group.
 : Parameters that are provided at the 'neighbor' level takes precedence over the ones provided in the peer group.
+
+'bfd-profile':
+: Indicates a BFD profile that applies for a BGP neighbor.
 
 'status':
 : Indicates the status of the BGP routing instance.
