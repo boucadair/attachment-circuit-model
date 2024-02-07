@@ -17,7 +17,7 @@
         |     +--rw rip
         |     |  +--rw address-family?   identityref
         |     |  +--rw authentication
-        |     |  |  +--rw enable?            boolean
+        |     |  |  +--rw enabled?            boolean
         |     |  |  +--rw keying-material
         |     |  |     +--rw (option)?
         |     |  |        +--:(auth-key-chain)

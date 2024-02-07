@@ -26,7 +26,7 @@ module: ietf-ac-ntw
        |     |  |       rt-types:ipv6-route-origin
        |     |  +--rw redistribute-connected* [address-family]
        |     |  |  +--rw address-family    identityref
-       |     |  |  +--rw enable?           boolean
+       |     |  |  +--rw enabled?           boolean
        |     |  +--rw bgp-max-prefix
        |     |  |  +--rw max-prefix?          uint32
        |     |  |  +--rw warning-threshold?   decimal64
@@ -94,7 +94,7 @@ module: ietf-ac-ntw
        |     |  |     |       rt-types:ipv6-route-origin
        |     |  |     +--rw redistribute-connected* [address-family]
        |     |  |     |  +--rw address-family    identityref
-       |     |  |     |  +--rw enable?           boolean
+       |     |  |     |  +--rw enabled?           boolean
        |     |  |     +--rw bgp-max-prefix
        |     |  |     |  +--rw max-prefix?          uint32
        |     |  |     |  +--rw warning-threshold?   decimal64
@@ -107,7 +107,7 @@ module: ietf-ac-ntw
        |     |  |     |   +--rw address-family    identityref
        |     |  |     |   +--rw name              identityref
        |     |  |     +--rw authentication
-       |     |  |        +--rw enable?            boolean
+       |     |  |        +--rw enabled?            boolean
        |     |  |        +--rw keying-material
        |     |  |           +--rw (option)?
        |     |  |              +--:(ao)
@@ -149,7 +149,7 @@ module: ietf-ac-ntw
        |     |     |       rt-types:ipv6-route-origin
        |     |     +--rw redistribute-connected* [address-family]
        |     |     |  +--rw address-family    identityref
-       |     |     |  +--rw enable?           boolean
+       |     |     |  +--rw enabled?           boolean
        |     |     +--rw bgp-max-prefix
        |     |     |  +--rw max-prefix?          uint32
        |     |     |  +--rw warning-threshold?   decimal64
@@ -162,7 +162,7 @@ module: ietf-ac-ntw
        |     |     |   +--rw address-family    identityref
        |     |     |   +--rw name              identityref
        |     |     +--rw authentication
-       |     |     |  +--rw enable?            boolean
+       |     |     |  +--rw enabled?            boolean
        |     |     |  +--rw keying-material
        |     |     |     +--rw (option)?
        |     |     |        +--:(ao)
