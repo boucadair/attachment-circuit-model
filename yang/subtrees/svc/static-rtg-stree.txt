@@ -14,6 +14,7 @@
         |     |     |  +--rw lan-tag?    string
         |     |     |  +--rw next-hop    union
         |     |     |  +--rw metric?     uint32
+        |     |     |  +--rw bfd-profile?   bfd-profile-reference
         |     |     |  +--rw status
         |     |     |     +--rw admin-status
         |     |     |     |  +--rw status?        identityref
@@ -27,6 +28,7 @@
         |     |        +--rw lan-tag?    string
         |     |        +--rw next-hop    union
         |     |        +--rw metric?     uint32
+        |     |        +--rw bfd-profile?   bfd-profile-reference
         |     |        +--rw status
         |     |           +--rw admin-status
         |     |           |  +--rw status?        identityref
