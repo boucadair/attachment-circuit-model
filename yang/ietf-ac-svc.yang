@@ -347,6 +347,46 @@ module ietf-ac-svc {
     }
   }
 
+  // Static routing with BFD
+
+  grouping ipv4-static-rtg-with-bfd {
+    description
+      "Configuration specific to IPv4 static routing with
+       BFD.";
+    list ipv4-lan-prefixes {
+      if-feature "vpn-common:ipv4";
+      key "lan next-hop";
+      description
+        "List of LAN prefixes for the site.";
+      uses ac-common:ipv4-static-rtg-entry;
+      leaf bfd-profile {
+        type bfd-profile-reference;
+        description
+          "Points to a BFD profile.";
+      }
+      uses ac-common:service-status;
+    }
+  }
+
+  grouping ipv6-static-rtg-with-bfd {
+    description
+      "Configuration specific to IPv6 static routing with
+       BFD.";
+    list ipv6-lan-prefixes {
+      if-feature "vpn-common:ipv4";
+      key "lan next-hop";
+      description
+        "List of LAN prefixes for the site.";
+      uses ac-common:ipv4-static-rtg-entry;
+      leaf bfd-profile {
+        type bfd-profile-reference;
+        description
+          "Points to a BFD profile.";
+      }
+      uses ac-common:service-status;
+    }
+  }
+
   //  BGP Service 
 
   grouping bgp-svc {
@@ -400,6 +440,11 @@ module ietf-ac-svc {
         }
         description
           "The peer-group with which this neighbor is associated.";
+      }
+      leaf bfd-profile {
+        type bfd-profile-reference;
+        description
+          "Points to a BFD profile.";
       }
       uses ac-common:bgp-peer-group-without-name;
       uses ac-common:bgp-authentication;
@@ -586,8 +631,8 @@ module ietf-ac-svc {
         container cascaded-lan-prefixes {
           description
             "LAN prefixes from the customer.";
-          uses ac-common:ipv4-static-rtg;
-          uses ac-common:ipv6-static-rtg;
+          uses ipv4-static-rtg-with-bfd;
+          uses ipv6-static-rtg-with-bfd;
         }
       }
       container bgp {

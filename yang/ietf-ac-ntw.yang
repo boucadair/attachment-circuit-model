@@ -1283,12 +1283,7 @@ module ietf-ac-ntw {
             description
               "List of LAN prefixes for the site.";
             uses ac-common:ipv4-static-rtg-entry;
-            leaf bfd-enable {
-              if-feature "vpn-common:bfd";
-              type boolean;
-              description
-                "Enables BFD.";
-            }
+            uses bfd-routing;
             leaf preference {
               type uint32;
               description
@@ -1303,12 +1298,7 @@ module ietf-ac-ntw {
             description
               "List of LAN prefixes for the site.";
             uses ac-common:ipv4-static-rtg-entry;
-            leaf bfd-enable {
-              if-feature "vpn-common:bfd";
-              type boolean;
-              description
-                "Enables BFD.";
-            }
+            uses bfd-routing;
             leaf preference {
               type uint32;
               description
@@ -1383,6 +1373,7 @@ module ietf-ac-ntw {
                associated.";
           }
           uses bgp-base;
+          uses bfd-routing;
           uses ac-common:bgp-authentication;
           uses ac-common:service-status;
         }
@@ -1624,6 +1615,22 @@ module ietf-ac-ntw {
     }
   }
 
+  grouping bfd-routing {
+    description
+      "Defines a basic BFD grouping for routing configuration.";
+    container bfd {
+      description
+        "BFD control for this nighbor.";
+      leaf enable {
+        type boolean;
+        description
+          "Enables BFD if set to true. BFD is disabled of set to
+           false.";
+      }
+      uses bfd-profile-reference;
+    }
+  }
+
   // OAM
 
   grouping oam {
@@ -1633,27 +1640,47 @@ module ietf-ac-ntw {
     container bfd {
       description
         "Container for BFD.";
-      uses bfd-profile-reference;
-      uses bfd;
-      container authentication {
-        presence "Enables BFD authentication";
+      list session {
+        key "dest-addr";
         description
-          "Parameters for BFD authentication.";
-        leaf key-chain {
-          type key-chain:key-chain-ref;
-          description
-            "Name of the key chain.";
+          "List of IP sessions.";
+         leaf dest-addr {
+           type inet:ip-address;
+           description
+             "IP address of the peer.";
         }
-        leaf meticulous {
-          type boolean;
-          description
-            "Enables meticulous mode.";
-          reference
-            "RFC 5880: Bidirectional Forwarding Detection (BFD),
-                       Section 6.7";
+        leaf source-address {
+          type union {
+            type inet:ip-address;
+            type if:interface-ref;
+           }
+           description
+             "Sets the local IP address to use for the BFD
+              session. This may be expressed as either
+              an IP address or a reference to an interface.";
         }
+        uses bfd-profile-reference;
+        uses bfd;
+        container authentication {
+          presence "Enables BFD authentication";
+          description
+            "Parameters for BFD authentication.";
+          leaf key-chain {
+            type key-chain:key-chain-ref;
+            description
+              "Name of the key chain.";
+          }
+          leaf meticulous {
+            type boolean;
+            description
+              "Enables meticulous mode.";
+            reference
+              "RFC 5880: Bidirectional Forwarding Detection (BFD),
+                         Section 6.7";
+          }
+        }
+        uses ac-common:service-status;
       }
-      uses ac-common:service-status;
     }
   }
 

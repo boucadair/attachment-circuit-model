@@ -41,24 +41,27 @@
        |  ...
        +--rw oam
        |  +--rw bfd
-       |     +--rw bfd-profile-ref?            leafref
-       |     +--rw network-ref?
-       |     |       -> /nw:networks/network/network-id
-       |     +--rw session-type?               identityref
-       |     +--rw desired-min-tx-interval?    uint32
-       |     +--rw required-min-rx-interval?   uint32
-       |     +--rw local-multiplier?           uint8
-       |     +--rw holdtime?                   uint32
-       |     +--rw authentication!
-       |     |  +--rw key-chain?    key-chain:key-chain-ref
-       |     |  +--rw meticulous?   boolean
-       |     +--rw status
-       |        +--rw admin-status
-       |        |  +--rw status?        identityref
-       |        |  +--ro last-change?   yang:date-and-time
-       |        +--ro oper-status
-       |           +--ro status?        identityref
-       |           +--ro last-change?   yang:date-and-time
+       |     +--rw session* [dest-addr]
+       |        +--rw dest-addr                   inet:ip-address
+       |        +--rw source-address?             union
+       |        +--rw bfd-profile-ref?            leafref
+       |        +--rw network-ref?
+       |        |       -> /nw:networks/network/network-id
+       |        +--rw session-type?               identityref
+       |        +--rw desired-min-tx-interval?    uint32
+       |        +--rw required-min-rx-interval?   uint32
+       |        +--rw local-multiplier?           uint8
+       |        +--rw holdtime?                   uint32
+       |        +--rw authentication!
+       |        |  +--rw key-chain?    key-chain:key-chain-ref
+       |        |  +--rw meticulous?   boolean
+       |        +--rw status
+       |           +--rw admin-status
+       |           |  +--rw status?        identityref
+       |           |  +--ro last-change?   yang:date-and-time
+       |           +--ro oper-status
+       |              +--ro status?        identityref
+       |              +--ro last-change?   yang:date-and-time
        +--rw security
        |  ...
        +--rw service
