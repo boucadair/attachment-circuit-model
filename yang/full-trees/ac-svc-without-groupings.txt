@@ -127,10 +127,11 @@
      |  |     |  +--rw cascaded-lan-prefixes
      |  |     |     +--rw ipv4-lan-prefixes* [lan next-hop]
      |  |     |     |       {vpn-common:ipv4}?
-     |  |     |     |  +--rw lan         inet:ipv4-prefix
-     |  |     |     |  +--rw lan-tag?    string
-     |  |     |     |  +--rw next-hop    union
-     |  |     |     |  +--rw metric?     uint32
+     |  |     |     |  +--rw lan            inet:ipv4-prefix
+     |  |     |     |  +--rw lan-tag?       string
+     |  |     |     |  +--rw next-hop       union
+     |  |     |     |  +--rw metric?        uint32
+     |  |     |     |  +--rw bfd-profile?   bfd-profile-reference
      |  |     |     |  +--rw status
      |  |     |     |     +--rw admin-status
      |  |     |     |     |  +--rw status?        identityref
@@ -139,11 +140,12 @@
      |  |     |     |        +--ro status?        identityref
      |  |     |     |        +--ro last-change?   yang:date-and-time
      |  |     |     +--rw ipv6-lan-prefixes* [lan next-hop]
-     |  |     |             {vpn-common:ipv6}?
-     |  |     |        +--rw lan         inet:ipv6-prefix
-     |  |     |        +--rw lan-tag?    string
-     |  |     |        +--rw next-hop    union
-     |  |     |        +--rw metric?     uint32
+     |  |     |             {vpn-common:ipv4}?
+     |  |     |        +--rw lan            inet:ipv4-prefix
+     |  |     |        +--rw lan-tag?       string
+     |  |     |        +--rw next-hop       union
+     |  |     |        +--rw metric?        uint32
+     |  |     |        +--rw bfd-profile?   bfd-profile-reference
      |  |     |        +--rw status
      |  |     |           +--rw admin-status
      |  |     |           |  +--rw status?        identityref
@@ -160,7 +162,7 @@
      |  |     |  |     +--rw address-family?   identityref
      |  |     |  |     +--ro local-address?    inet:ip-address
      |  |     |  |     +--rw authentication
-     |  |     |  |        +--rw enable?            boolean
+     |  |     |  |        +--rw enabled?           boolean
      |  |     |  |        +--rw keying-material
      |  |     |  |           +--rw (option)?
      |  |     |  |              +--:(ao)
@@ -181,11 +183,12 @@
      |  |     |     +--ro local-address?    inet:ip-address
      |  |     |     +--rw peer-group?
      |  |     |     |       -> ../../peer-groups/peer-group/name
+     |  |     |     +--rw bfd-profile?      bfd-profile-reference
      |  |     |     +--ro local-as?         inet:as-number
      |  |     |     +--rw peer-as?          inet:as-number
      |  |     |     +--rw address-family?   identityref
      |  |     |     +--rw authentication
-     |  |     |     |  +--rw enable?            boolean
+     |  |     |     |  +--rw enabled?           boolean
      |  |     |     |  +--rw keying-material
      |  |     |     |     +--rw (option)?
      |  |     |     |        +--:(ao)
@@ -211,7 +214,7 @@
      |  |     |  +--rw area-id           yang:dotted-quad
      |  |     |  +--rw metric?           uint16
      |  |     |  +--rw authentication
-     |  |     |  |  +--rw enable?            boolean
+     |  |     |  |  +--rw enabled?           boolean
      |  |     |  |  +--rw keying-material
      |  |     |  |     +--rw (option)?
      |  |     |  |        +--:(auth-key-chain)
@@ -232,7 +235,7 @@
      |  |     |  +--rw address-family?   identityref
      |  |     |  +--rw area-address      area-address
      |  |     |  +--rw authentication
-     |  |     |  |  +--rw enable?            boolean
+     |  |     |  |  +--rw enabled?           boolean
      |  |     |  |  +--rw keying-material
      |  |     |  |     +--rw (option)?
      |  |     |  |        +--:(auth-key-chain)
@@ -252,7 +255,7 @@
      |  |     +--rw rip
      |  |     |  +--rw address-family?   identityref
      |  |     |  +--rw authentication
-     |  |     |  |  +--rw enable?            boolean
+     |  |     |  |  +--rw enabled?           boolean
      |  |     |  |  +--rw keying-material
      |  |     |  |     +--rw (option)?
      |  |     |  |        +--:(auth-key-chain)
@@ -492,10 +495,11 @@
         |     |  +--rw cascaded-lan-prefixes
         |     |     +--rw ipv4-lan-prefixes* [lan next-hop]
         |     |     |       {vpn-common:ipv4}?
-        |     |     |  +--rw lan         inet:ipv4-prefix
-        |     |     |  +--rw lan-tag?    string
-        |     |     |  +--rw next-hop    union
-        |     |     |  +--rw metric?     uint32
+        |     |     |  +--rw lan            inet:ipv4-prefix
+        |     |     |  +--rw lan-tag?       string
+        |     |     |  +--rw next-hop       union
+        |     |     |  +--rw metric?        uint32
+        |     |     |  +--rw bfd-profile?   bfd-profile-reference
         |     |     |  +--rw status
         |     |     |     +--rw admin-status
         |     |     |     |  +--rw status?        identityref
@@ -504,11 +508,12 @@
         |     |     |        +--ro status?        identityref
         |     |     |        +--ro last-change?   yang:date-and-time
         |     |     +--rw ipv6-lan-prefixes* [lan next-hop]
-        |     |             {vpn-common:ipv6}?
-        |     |        +--rw lan         inet:ipv6-prefix
-        |     |        +--rw lan-tag?    string
-        |     |        +--rw next-hop    union
-        |     |        +--rw metric?     uint32
+        |     |             {vpn-common:ipv4}?
+        |     |        +--rw lan            inet:ipv4-prefix
+        |     |        +--rw lan-tag?       string
+        |     |        +--rw next-hop       union
+        |     |        +--rw metric?        uint32
+        |     |        +--rw bfd-profile?   bfd-profile-reference
         |     |        +--rw status
         |     |           +--rw admin-status
         |     |           |  +--rw status?        identityref
@@ -525,7 +530,7 @@
         |     |  |     +--rw address-family?   identityref
         |     |  |     +--ro local-address?    inet:ip-address
         |     |  |     +--rw authentication
-        |     |  |        +--rw enable?            boolean
+        |     |  |        +--rw enabled?           boolean
         |     |  |        +--rw keying-material
         |     |  |           +--rw (option)?
         |     |  |              +--:(ao)
@@ -546,11 +551,12 @@
         |     |     +--ro local-address?    inet:ip-address
         |     |     +--rw peer-group?
         |     |     |       -> ../../peer-groups/peer-group/name
+        |     |     +--rw bfd-profile?      bfd-profile-reference
         |     |     +--ro local-as?         inet:as-number
         |     |     +--rw peer-as?          inet:as-number
         |     |     +--rw address-family?   identityref
         |     |     +--rw authentication
-        |     |     |  +--rw enable?            boolean
+        |     |     |  +--rw enabled?           boolean
         |     |     |  +--rw keying-material
         |     |     |     +--rw (option)?
         |     |     |        +--:(ao)
@@ -576,7 +582,7 @@
         |     |  +--rw area-id           yang:dotted-quad
         |     |  +--rw metric?           uint16
         |     |  +--rw authentication
-        |     |  |  +--rw enable?            boolean
+        |     |  |  +--rw enabled?           boolean
         |     |  |  +--rw keying-material
         |     |  |     +--rw (option)?
         |     |  |        +--:(auth-key-chain)
@@ -597,7 +603,7 @@
         |     |  +--rw address-family?   identityref
         |     |  +--rw area-address      area-address
         |     |  +--rw authentication
-        |     |  |  +--rw enable?            boolean
+        |     |  |  +--rw enabled?           boolean
         |     |  |  +--rw keying-material
         |     |  |     +--rw (option)?
         |     |  |        +--:(auth-key-chain)
@@ -617,7 +623,7 @@
         |     +--rw rip
         |     |  +--rw address-family?   identityref
         |     |  +--rw authentication
-        |     |  |  +--rw enable?            boolean
+        |     |  |  +--rw enabled?           boolean
         |     |  |  +--rw keying-material
         |     |  |     +--rw (option)?
         |     |  |        +--:(auth-key-chain)
@@ -638,7 +644,7 @@
         |        +--rw status
         |           +--rw admin-status
         |           |  +--rw status?        identityref
-        |           |  +--rw last-change?   yang:date-and-time
+        |           |  +--ro last-change?   yang:date-and-time
         |           +--ro oper-status
         |              +--ro status?        identityref
         |              +--ro last-change?   yang:date-and-time
