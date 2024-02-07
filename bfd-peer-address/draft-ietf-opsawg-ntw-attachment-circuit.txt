@@ -977,7 +977,11 @@ Table of Contents
           |     |     |  +--rw lan-tag?      string
           |     |     |  +--rw next-hop      union
           |     |     |  +--rw metric?       uint32
-          |     |     |  +--rw bfd-enable?   boolean {vpn-common:bfd}?
+          |     |     +--rw bfd
+          |     |     |  +--rw enable?            boolean
+          |     |     |  +--rw bfd-profile-ref?   leafref
+          |     |     |  +--rw network-ref?
+          |     |     |          -> /nw:networks/network/network-id
           |     |     |  +--rw preference?   uint32
           |     |     |  +--rw status
           |     |     |     +--rw admin-status
@@ -992,7 +996,11 @@ Table of Contents
           |     |        +--rw lan-tag?      string
           |     |        +--rw next-hop      union
           |     |        +--rw metric?       uint32
-          |     |        +--rw bfd-enable?   boolean {vpn-common:bfd}?
+          |     |        +--rw bfd
+          |     |        |  +--rw enable?            boolean
+          |     |        |  +--rw bfd-profile-ref?   leafref
+          |     |        |  +--rw network-ref?
+          |     |        |          -> /nw:networks/network/network-id
           |     |        +--rw preference?   uint32
           |     |        +--rw status
           |     |           +--rw admin-status
