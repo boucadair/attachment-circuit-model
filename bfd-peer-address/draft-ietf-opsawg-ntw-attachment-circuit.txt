@@ -1038,8 +1038,8 @@ Table of Contents
       It can be identified by an IP address, a predefined next-hop type
       (e.g., 'discard' or 'local-link'), etc.
 
-   'bfd-enable':  Indicates whether BFD is enabled or disabled for this
-      static route entry.
+   'bfd':  Indicates whether BFD is enabled or disabled for this static
+      route entry.  A BFD profile may also be provided.
 
    'metric':  Indicates the metric associated with the static route
       entry.  This metric is used when the route is exported into an
@@ -1356,7 +1356,8 @@ Table of Contents
    'capability':  Specifies a set of BGP capabilities (e.g., route
       refresh capability [RFC2918]) to be enabled per address family.
 
-   'bfd':  Indicates a BFD profile to apply for this nighbor.
+   'bfd':  Indicates whether BFD is enabled or disabled for this
+      nighbor.  A BFD profile to apply may also be provided.
 
    'authentication':  The module adheres to the recommendations in
       Section 13.2 of [RFC4364], as it allows enabling the TCP
