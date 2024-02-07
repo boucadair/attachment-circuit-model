@@ -3030,7 +3030,7 @@ Table of Contents
            description
              "Indicates the address family.";
          }
-         leaf enable {
+         leaf enabled {
            type boolean;
            description
              "Enables the redistribution of connected routes.";
