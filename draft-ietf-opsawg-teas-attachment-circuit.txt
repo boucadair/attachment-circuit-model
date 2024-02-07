@@ -5,14 +5,14 @@
 OPSAWG                                                 M. Boucadair, Ed.
 Internet-Draft                                                    Orange
 Intended status: Standards Track                         R. Roberts, Ed.
-Expires: 8 August 2024                                           Juniper
+Expires: 10 August 2024                                          Juniper
                                                            O. G. D. Dios
                                                               Telefonica
                                                            S. B. Giraldo
                                                                    Nokia
                                                                    B. Wu
                                                      Huawei Technologies
-                                                         5 February 2024
+                                                         7 February 2024
 
 
   YANG Data Models for Bearers and 'Attachment Circuits'-as-a-Service
@@ -62,7 +62,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 8 August 2024.
+   This Internet-Draft will expire on 10 August 2024.
 
 Copyright Notice
 
@@ -1278,9 +1278,6 @@ Table of Contents
 
       It can be identified by an IP address, a predefined next-hop type
       (e.g., 'discard' or 'local-link'), etc.
-
-   'bfd-enable':  Indicates whether BFD is enabled or disabled for this
-      static route entry.
 
    'metric':  Indicates the metric associated with the static route
       entry.  This metric is used when the route is exported into an
