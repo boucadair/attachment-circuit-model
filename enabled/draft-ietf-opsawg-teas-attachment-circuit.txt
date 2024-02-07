@@ -1502,7 +1502,7 @@ Table of Contents
             |     |  +--rw address-family?   identityref
             |     |  +--rw area-address      area-address
             |     |  +--rw authentication
-            |     |  |  +--rw enable?            boolean
+            |     |  |  +--rw enabled?            boolean
             |     |  |  +--rw keying-material
             |     |  |     +--rw (option)?
             |     |  |        +--:(auth-key-chain)
