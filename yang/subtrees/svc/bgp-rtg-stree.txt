@@ -17,7 +17,7 @@
         |     |  |     +--rw address-family?   identityref
         |     |  |     +--ro local-address?    inet:ip-address
         |     |  |     +--rw authentication
-        |     |  |        +--rw enable?            boolean
+        |     |  |        +--rw enabled?            boolean
         |     |  |        +--rw keying-material
         |     |  |           +--rw (option)?
         |     |  |              +--:(ao)
@@ -42,7 +42,7 @@
         |     |     +--rw peer-as?          inet:as-number
         |     |     +--rw address-family?   identityref
         |     |     +--rw authentication
-        |     |     |  +--rw enable?            boolean
+        |     |     |  +--rw enabled?            boolean
         |     |     |  +--rw keying-material
         |     |     |     +--rw (option)?
         |     |     |        +--:(ao)
