@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-02-06T00:34:59.851004+00:00",
+  "timestamp": "2024-02-08T00:35:12.622289+00:00",
   "repo": "boucadair/attachment-circuit-model",
   "labels": [
     {
@@ -2456,16 +2456,68 @@
       "id": "I_kwDOIiAkrc5-Thvo",
       "title": "bfd - need more control on targets",
       "url": "https://github.com/boucadair/attachment-circuit-model/issues/184",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "robric",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
-      "labels": [],
+      "labels": [
+        "ac-ntw"
+      ],
       "body": "We can't specify the target destination for BFD sessions. this is problematic if multiple destination can be reached via BFD. Related question - how much should we link BFD with routing protocols (because that's ultimately where these are consumed)",
       "createdAt": "2024-02-05T17:08:54Z",
-      "updatedAt": "2024-02-05T17:08:54Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2024-02-07T15:54:01Z",
+      "closedAt": "2024-02-07T15:54:01Z",
+      "comments": [
+        {
+          "author": "boucadair",
+          "authorAssociation": "OWNER",
+          "body": "I guess you are referring to the ac-ntw model. \r\n\r\nI suggest the following change: \r\n\r\nOLD:\r\n\r\n```\r\n       |  +--rw bfd\r\n       |     +--rw bfd-profile-ref?            leafref\r\n       |     +--rw network-ref?\r\n       |     |       -> /nw:networks/network/network-id\r\n       |     +--rw session-type?               identityref\r\n       |     +--rw desired-min-tx-interval?    uint32\r\n       |     +--rw required-min-rx-interval?   uint32\r\n       |     +--rw local-multiplier?           uint8\r\n       |     +--rw holdtime?                   uint32\r\n       |     +--rw authentication!\r\n       |     |  +--rw key-chain?    key-chain:key-chain-ref\r\n       |     |  +--rw meticulous?   boolean\r\n       |     +--rw status\r\n       |        +--rw admin-status\r\n       |        |  +--rw status?        identityref\r\n       |        |  +--ro last-change?   yang:date-and-time\r\n       |        +--ro oper-status\r\n       |           +--ro status?        identityref\r\n       |           +--ro last-change?   yang:date-and-time\r\n```\r\n\r\nNEW:\r\n\r\n```\r\n|  +--rw bfd\r\n          +--rw session* [dest-addr]\r\n          |     +--rw dest-addr                    inet:ip-address\r\n          |     +--rw source-address?          union\r\n          |     +--rw bfd-profile-ref?            leafref\r\n          |     +--rw network-ref?\r\n          |     |       -> /nw:networks/network/network-id\r\n          |     +--rw session-type?               identityref\r\n          |     +--rw desired-min-tx-interval?    uint32\r\n          |     +--rw required-min-rx-interval?   uint32\r\n          |     +--rw local-multiplier?           uint8\r\n          |     +--rw holdtime?                   uint32\r\n          |     +--rw authentication!\r\n          |     |  +--rw key-chain?    key-chain:key-chain-ref\r\n          |     |  +--rw meticulous?   boolean\r\n          |     +--rw status\r\n          |        +--rw admin-status\r\n          |        |  +--rw status?        identityref\r\n          |        |  +--ro last-change?   yang:date-and-time\r\n          |        +--ro oper-status\r\n          |           +--ro status?        identityref\r\n          |           +--ro last-change?   yang:date-and-time\r\n```\r\n",
+          "createdAt": "2024-02-06T14:23:51Z",
+          "updatedAt": "2024-02-06T14:23:51Z"
+        },
+        {
+          "author": "boucadair",
+          "authorAssociation": "OWNER",
+          "body": "See #185",
+          "createdAt": "2024-02-06T14:43:11Z",
+          "updatedAt": "2024-02-06T14:43:11Z"
+        },
+        {
+          "author": "robric",
+          "authorAssociation": "COLLABORATOR",
+          "body": "In general BFD is hooked on routing protocols.\r\nMaybe a simple hook is enough ? like\r\n\r\n  *   bgp\r\n\r\n    neighbor\r\n\r\n         bfd-profile-ref\r\n\r\n  *   static routing\r\n               next-hop XXX\r\n                      bfd-profile\r\n\r\nR",
+          "createdAt": "2024-02-06T15:30:55Z",
+          "updatedAt": "2024-02-07T14:14:33Z"
+        },
+        {
+          "author": "boucadair",
+          "authorAssociation": "OWNER",
+          "body": "> In general BFD is hooked on routing protocols. Maybe a simple hook is enough ?\r\n\r\nAdded the profile under BGP nighbor:\r\n\r\n       |     |     +--rw bfd {vpn-common:bfd}?\r\n       |     |     |  +--rw bfd-profile-ref?   leafref\r\n       |     |     |  +--rw network-ref?\r\n       |     |     |          -> /nw:networks/network/network-id\r\n\r\nPlease see the update PR. I maintained both changes.",
+          "createdAt": "2024-02-06T16:10:07Z",
+          "updatedAt": "2024-02-06T16:10:07Z"
+        },
+        {
+          "author": "robric",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I had a closer look \u2013 how can we hook something on svc model ?\r\nNo urgency, I will build a first iteration of my use case without BFD anyway, but that\u2019s a nice to have to demonstrate how powerful the model is.\r\nR",
+          "createdAt": "2024-02-07T13:06:59Z",
+          "updatedAt": "2024-02-07T14:13:43Z"
+        },
+        {
+          "author": "boucadair",
+          "authorAssociation": "OWNER",
+          "body": "For the service model, I think that \"bfd/profile\" we do already have is sufficient. When it comes to the actual configuration, an implementation may go for a \"centralized\" bfd configuration or under a routing proto, which we now better support with the new  changes in PR #185. \r\n",
+          "createdAt": "2024-02-07T13:41:25Z",
+          "updatedAt": "2024-02-07T13:41:25Z"
+        },
+        {
+          "author": "robric",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I need to specify the list of target Ips.\r\nIndeed, since I am using a range for IP addresses of apps in computes, I don\u2019t know which IP must be tracked by BFD.\r\n\r\n",
+          "createdAt": "2024-02-07T14:03:02Z",
+          "updatedAt": "2024-02-07T14:13:29Z"
+        }
+      ]
     }
   ],
   "pulls": [
@@ -7015,6 +7067,97 @@
       "mergedBy": "boucadair",
       "mergeCommit": {
         "oid": "c18aac32a830025198cf6a4d27aaf2c3edd43550"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 185,
+      "id": "PR_kwDOIiAkrc5mJwZc",
+      "title": "update BFD",
+      "url": "https://github.com/boucadair/attachment-circuit-model/pull/185",
+      "state": "MERGED",
+      "author": "boucadair",
+      "authorAssociation": "OWNER",
+      "assignees": [
+        "boucadair"
+      ],
+      "labels": [
+        "ac-ntw"
+      ],
+      "body": "",
+      "createdAt": "2024-02-06T14:38:13Z",
+      "updatedAt": "2024-02-07T15:54:01Z",
+      "baseRepository": "boucadair/attachment-circuit-model",
+      "baseRefName": "main",
+      "baseRefOid": "fe20ec4d8192c4addfb6f09b7279ac9a1fa18bb4",
+      "headRepository": "boucadair/attachment-circuit-model",
+      "headRefName": "bfd-peer-address",
+      "headRefOid": "1d680506208ccde91eef2d2aa24253ac72245111",
+      "closedAt": "2024-02-07T15:54:00Z",
+      "mergedAt": "2024-02-07T15:54:00Z",
+      "mergedBy": "boucadair",
+      "mergeCommit": {
+        "oid": "e316cbb83d0bcc2d82f79acc4a2ff76a3b43e0bb"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 186,
+      "id": "PR_kwDOIiAkrc5mQ2yE",
+      "title": "Update draft-ietf-opsawg-teas-attachment-circuit.md",
+      "url": "https://github.com/boucadair/attachment-circuit-model/pull/186",
+      "state": "MERGED",
+      "author": "boucadair",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-02-07T13:33:40Z",
+      "updatedAt": "2024-02-07T13:33:50Z",
+      "baseRepository": "boucadair/attachment-circuit-model",
+      "baseRefName": "bfd-peer-address",
+      "baseRefOid": "e259c53156956bab550fadad89b50294128e65e5",
+      "headRepository": "boucadair/attachment-circuit-model",
+      "headRefName": "main",
+      "headRefOid": "fe20ec4d8192c4addfb6f09b7279ac9a1fa18bb4",
+      "closedAt": "2024-02-07T13:33:50Z",
+      "mergedAt": "2024-02-07T13:33:50Z",
+      "mergedBy": "boucadair",
+      "mergeCommit": {
+        "oid": "821099d6775739dad31d1ace2ef1a872f70f5466"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 187,
+      "id": "PR_kwDOIiAkrc5mRK9F",
+      "title": "s/enable/enabled for consistency",
+      "url": "https://github.com/boucadair/attachment-circuit-model/pull/187",
+      "state": "MERGED",
+      "author": "boucadair",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [
+        "YANG",
+        "AC-COMMON"
+      ],
+      "body": "",
+      "createdAt": "2024-02-07T14:20:20Z",
+      "updatedAt": "2024-02-07T14:33:32Z",
+      "baseRepository": "boucadair/attachment-circuit-model",
+      "baseRefName": "main",
+      "baseRefOid": "fe20ec4d8192c4addfb6f09b7279ac9a1fa18bb4",
+      "headRepository": "boucadair/attachment-circuit-model",
+      "headRefName": "enabled",
+      "headRefOid": "d5bc6e1edd52fdf32a0f2f8d8b3e95ea42aad5d2",
+      "closedAt": "2024-02-07T14:33:32Z",
+      "mergedAt": "2024-02-07T14:33:32Z",
+      "mergedBy": "boucadair",
+      "mergeCommit": {
+        "oid": "09b4906703ec19b605b25f90500ce8ab1c141341"
       },
       "comments": [],
       "reviews": []
