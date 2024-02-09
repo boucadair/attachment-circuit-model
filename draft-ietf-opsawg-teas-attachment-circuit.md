@@ -1139,9 +1139,9 @@ Next, API workflows can be initiated:
 {: #cloud-provider-ac-res title="Message Body of a Response to the Request to Create ACs for Connecting to the Cloud Provider"}
 
 
-## Connect Customer Network (CE) through BGP Peering
+## Connect Customer Network (CE) Through BGP
 
-CE-PE routing using BGP is a common scenario in the context of MPLS VPNs and is widely used in enterprise networks. In the example depicted below, the CE routers are customer-owned devices belonging to an Autonomous System (ASN 65536). CEs are located at the edge of the provider's network (PE, or Provider Edge) and use point-to-point interfaces to establish BGP sessions. The point-to-point interfaces relies upon a physical bearer (Line-113) to reach the provider network.
+CE-PE routing using BGP is a common scenario in the context of MPLS VPNs and is widely used in enterprise networks. In the example depicted in {{provider-network}}, the CE routers are customer-owned devices belonging to an Autonomous System (ASN 65536). CEs are located at the edge of the provider's network (PE, or Provider Edge) and use point-to-point interfaces to establish BGP sessions. The point-to-point interfaces rely upon a physical bearer (Line-113) to reach the provider network.
 
 
 ~~~~ aasvg
@@ -1150,7 +1150,7 @@ CE-PE routing using BGP is a common scenario in the context of MPLS VPNs and is 
 |                        |                       |                   |
 |        +------------+  |  Attachment-Circuit 1 | +-------+         |
 |        | PE1(VRF11) +----------------------------+ CE1   | AS65536 |
-|        |            |  |                       | +-------+         |
+|        |            |  |    Bearer=Line-113    | +-------+         |
 |        | PE1(VRF12) |  |                       |                   |
 |        |            |  |                       +-------------------+
 |        | PE1(VRF1n) |  |
@@ -1172,15 +1172,14 @@ CE-PE routing using BGP is a common scenario in the context of MPLS VPNs and is 
 {: #provider-network title="Illustration of Provider Network Scenario"}
 
 
-The attachment circuit in this case will use a SAP identifier to refer to the physical interface used for the connection between the PE and the CE. The attachment circuit will include all the additional logical attributes to describe the connection between the two ends, including VLAN information and IP addressing. Regarding the BGP session, the configuration details involve the usage of Peer-Group details instead of defining the entire configuration inside the Neighbor.
+The attachment circuit in this case uses a SAP identifier to refer to the physical interface used for the connection between the PE and the CE. The attachment circuit includes all the additional logical attributes to describe the connection between the two ends, including VLAN information and IP addressing. Also, the configuration details of the BGP session makes use of peer group details instead of defining the entire configuration inside the 'neighbor' data node.
 
 ~~~~ json
 {::include-fold ./json-examples/svc/provider-network-interas-option-a.json}
 ~~~~
-{: #add-attachment-circuit-bgp-routing title="Message Body of a Request to Create ACs for Connecting CEs to provider Network"}
+{: #add-attachment-circuit-bgp-routing title="Message Body of a Request to Create ACs for Connecting CEs to a Provider Network"}
 
-
-This scenario allows the provider to maintain a list of Attachment Circuits belonging to the same customer without requiring the full service configuration.
+This scenario allows the provider to maintain a list of ACs belonging to the same customer without requiring the full service configuration.
 
 # Acknowledgments
 {:numbered="false"}
