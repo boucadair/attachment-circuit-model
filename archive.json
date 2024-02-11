@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-02-08T00:35:12.622289+00:00",
+  "timestamp": "2024-02-11T00:38:23.893364+00:00",
   "repo": "boucadair/attachment-circuit-model",
   "labels": [
     {
@@ -1854,7 +1854,7 @@
       "id": "I_kwDOIiAkrc5yBlVl",
       "title": "bearer issues ",
       "url": "https://github.com/boucadair/attachment-circuit-model/issues/92",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "Ivan-Bykov-RBBN",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -1863,8 +1863,8 @@
       "labels": [],
       "body": "1. There is a mismatch of 3GPP NRM TS-28.541 Clause  6.3.35 LogicalInterfaceInfo and bearer yang tree:\r\n3GPP NRM: \r\nLogicalInterfaceInfo.portName? string\r\nAC DM:\r\n        no port info \r\n\r\n2. A mismatch of 3GPP NRM TS-28.623 Clause A 2.2.2 IOC ManagedElement and bearer yang tree:\r\n3GPP NRM: \r\n        locationName? string \r\nAC DM:\r\n        |  |  +--rw location\r\n        |  |     +--rw location-name?  string\r\n\r\n3. Missing parameters in bearer DM:\r\n\r\n- crossing id and fiber parameters\r\n- microwave line id with port id\r\n- l2 or l3 leased service id\r\n- id of additional switch in the middle, not controlled by \"customer\" or \"provider\"\r\n- service may use more than one Bearer. It may be LAG, dual-homing, FHRP, EVPN - examples of L2/L3 services running on multiple bearers at the same time\r\n",
       "createdAt": "2023-09-26T08:50:02Z",
-      "updatedAt": "2024-01-22T09:38:16Z",
-      "closedAt": null,
+      "updatedAt": "2024-02-08T10:29:13Z",
+      "closedAt": "2024-02-08T10:29:12Z",
       "comments": [
         {
           "author": "boucadair",
@@ -1886,6 +1886,13 @@
           "body": "Point (2) name mismatch can be clarified in the teas applicability spec. ",
           "createdAt": "2024-01-22T09:38:15Z",
           "updatedAt": "2024-01-22T09:38:15Z"
+        },
+        {
+          "author": "boucadair",
+          "authorAssociation": "OWNER",
+          "body": "LAG is now covered in the new version",
+          "createdAt": "2024-02-08T10:29:12Z",
+          "updatedAt": "2024-02-08T10:29:12Z"
         }
       ]
     },
@@ -2396,7 +2403,7 @@
       "id": "I_kwDOIiAkrc5-P4wG",
       "title": "bearer description",
       "url": "https://github.com/boucadair/attachment-circuit-model/issues/177",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "boucadair",
       "authorAssociation": "OWNER",
       "assignees": [
@@ -2407,9 +2414,24 @@
       ],
       "body": "",
       "createdAt": "2024-02-05T09:44:11Z",
-      "updatedAt": "2024-02-05T09:44:11Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2024-02-08T10:28:42Z",
+      "closedAt": "2024-02-08T10:28:42Z",
+      "comments": [
+        {
+          "author": "lana-wu",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Perhaps we can improve the bearer description and LAG reference:\r\n\r\nIn section 4.1. The Bearer Service (\"ietf-bearer-svc\") YANG Module:\r\nOLD:\r\nA bearer can be a wireless or wired link. \r\nNew:\r\nThe bearer can be a wireless link, or a wired link or comprise multiple wired links (such as a LAG defined in [IEEE802.1AX](https://ieeexplore.ieee.org/document/9105034)]).",
+          "createdAt": "2024-02-08T09:38:17Z",
+          "updatedAt": "2024-02-08T09:38:17Z"
+        },
+        {
+          "author": "boucadair",
+          "authorAssociation": "OWNER",
+          "body": "Looks good to me. See #188 ",
+          "createdAt": "2024-02-08T09:58:20Z",
+          "updatedAt": "2024-02-08T09:58:20Z"
+        }
+      ]
     },
     {
       "number": 178,
@@ -7158,6 +7180,36 @@
       "mergedBy": "boucadair",
       "mergeCommit": {
         "oid": "09b4906703ec19b605b25f90500ce8ab1c141341"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 188,
+      "id": "PR_kwDOIiAkrc5mWoxo",
+      "title": "update bearer description",
+      "url": "https://github.com/boucadair/attachment-circuit-model/pull/188",
+      "state": "MERGED",
+      "author": "boucadair",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [
+        "bearer-svc"
+      ],
+      "body": "",
+      "createdAt": "2024-02-08T09:55:40Z",
+      "updatedAt": "2024-02-08T10:28:41Z",
+      "baseRepository": "boucadair/attachment-circuit-model",
+      "baseRefName": "main",
+      "baseRefOid": "e7482bee0b283fef518adf08a7797b29f3981b29",
+      "headRepository": "boucadair/attachment-circuit-model",
+      "headRefName": "boucadair-patch-5",
+      "headRefOid": "5a8e273208447c943f39f8adbca6bb46a8badead",
+      "closedAt": "2024-02-08T10:28:41Z",
+      "mergedAt": "2024-02-08T10:28:41Z",
+      "mergedBy": "boucadair",
+      "mergeCommit": {
+        "oid": "4cda95bfb099dfe0574fb7facd32ff50b404d4cd"
       },
       "comments": [],
       "reviews": []
