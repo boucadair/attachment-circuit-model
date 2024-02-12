@@ -5752,39 +5752,40 @@ module ietf-ac-ntw {
       <h2 id="name-security-considerations">
 <a href="#section-6" class="section-number selfRef">6. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
       </h2>
-<p id="section-6-1">The YANG module specified in this document defines a schema for data
+<p id="section-6-1">This section uses the template described in Section 3.7 of <span>[<a href="#I-D.ietf-netmod-rfc8407bis" class="cite xref">I-D.ietf-netmod-rfc8407bis</a>]</span>.<a href="#section-6-1" class="pilcrow">¶</a></p>
+<p id="section-6-2">The YANG module specified in this document defines a schema for data
    that is designed to be accessed via network management protocols such
    as NETCONF <span>[<a href="#RFC6241" class="cite xref">RFC6241</a>]</span> or RESTCONF <span>[<a href="#RFC8040" class="cite xref">RFC8040</a>]</span>.  The lowest NETCONF layer
    is the secure transport layer, and the mandatory-to-implement secure
    transport is Secure Shell (SSH) <span>[<a href="#RFC6242" class="cite xref">RFC6242</a>]</span>.  The lowest RESTCONF layer
    is HTTPS, and the mandatory-to-implement secure transport is TLS
-   <span>[<a href="#RFC8446" class="cite xref">RFC8446</a>]</span>.<a href="#section-6-1" class="pilcrow">¶</a></p>
-<p id="section-6-2">The Network Configuration Access Control Model (NACM) <span>[<a href="#RFC8341" class="cite xref">RFC8341</a>]</span>
+   <span>[<a href="#RFC8446" class="cite xref">RFC8446</a>]</span>.<a href="#section-6-2" class="pilcrow">¶</a></p>
+<p id="section-6-3">The Network Configuration Access Control Model (NACM) <span>[<a href="#RFC8341" class="cite xref">RFC8341</a>]</span>
    provides the means to restrict access for particular NETCONF or
    RESTCONF users to a preconfigured subset of all available NETCONF or
-   RESTCONF protocol operations and content.<a href="#section-6-2" class="pilcrow">¶</a></p>
-<p id="section-6-3">There are a number of data nodes defined in this YANG module that are
+   RESTCONF protocol operations and content.<a href="#section-6-3" class="pilcrow">¶</a></p>
+<p id="section-6-4">There are a number of data nodes defined in this YANG module that are
    writable/creatable/deletable (i.e., config true, which is the
    default).  These data nodes may be considered sensitive or vulnerable
    in some network environments.  Write operations (e.g., edit-config)
    and delete operations to these data nodes without proper protection
    or authentication can have a negative effect on network operations.
-   These are the subtrees and data nodes and their sensitivity/
-   vulnerability in the "ietf-ac-ntw" module:<a href="#section-6-3" class="pilcrow">¶</a></p>
-<span class="break"></span><dl class="dlParallel" id="section-6-4">
-        <dt id="section-6-4.1">'specific-provisioning-profiles':</dt>
-        <dd style="margin-left: 1.5em" id="section-6-4.2">
-          <p id="section-6-4.2.1">This container includes a set of sensitive data that
+   Specifically, the following
+subtrees and data nodes have particular sensitivities/vulnerabilities:<a href="#section-6-4" class="pilcrow">¶</a></p>
+<span class="break"></span><dl class="dlParallel" id="section-6-5">
+        <dt id="section-6-5.1">'specific-provisioning-profiles':</dt>
+        <dd style="margin-left: 1.5em" id="section-6-5.2">
+          <p id="section-6-5.2.1">This container includes a set of sensitive data that
  influence how an AC is delivered.  For example, an
  attacker who has access to these data nodes may be able to
  manipulate routing policies, QoS policies, or encryption
  properties. These data nodes are defined with "nacm:default-deny-
- write" tagging <span>[<a href="#I-D.ietf-opsawg-teas-common-ac" class="cite xref">I-D.ietf-opsawg-teas-common-ac</a>]</span>.<a href="#section-6-4.2.1" class="pilcrow">¶</a></p>
+ write" tagging <span>[<a href="#I-D.ietf-opsawg-teas-common-ac" class="cite xref">I-D.ietf-opsawg-teas-common-ac</a>]</span>.<a href="#section-6-5.2.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-6-4.3">'ac':</dt>
-        <dd style="margin-left: 1.5em" id="section-6-4.4">
-          <p id="section-6-4.4.1">An attacker who is able to access network nodes can
+<dt id="section-6-5.3">'ac':</dt>
+        <dd style="margin-left: 1.5em" id="section-6-5.4">
+          <p id="section-6-5.4.1">An attacker who is able to access network nodes can
  undertake various attacks, such as modify the attributes of an AC (e.g.,
  QoS, bandwidth, routing protocols, keying material), leading to
  malfunctioning of services that are delivered over that AC and therefore to Service Level
@@ -5792,39 +5793,39 @@ module ietf-ac-ntw {
  attempt to add a new AC.
     : In addition to using NACM to prevent unauthorized access, such
  activity can be detected by adequately monitoring and tracking
- network configuration changes.<a href="#section-6-4.4.1" class="pilcrow">¶</a></p>
+ network configuration changes.<a href="#section-6-5.4.1" class="pilcrow">¶</a></p>
 </dd>
       <dd class="break"></dd>
 </dl>
-<p id="section-6-5">Some of the readable data nodes in this YANG module may be considered
+<p id="section-6-6">Some of the readable data nodes in this YANG module may be considered
    sensitive or vulnerable in some network environments.  It is thus
    important to control read access (e.g., via get, get-config, or
-   notification) to these data nodes.  These are the subtrees and data
-   nodes and their sensitivity/vulnerability in the "ietf-ac-svc" module:<a href="#section-6-5" class="pilcrow">¶</a></p>
-<span class="break"></span><dl class="dlParallel" id="section-6-6">
-        <dt id="section-6-6.1">'ac':</dt>
-        <dd style="margin-left: 1.5em" id="section-6-6.2">
-          <p id="section-6-6.2.1">Unauthorized access to this subtree can disclose the identity
- of a customer 'peer-sap-id'.<a href="#section-6-6.2.1" class="pilcrow">¶</a></p>
+   notification) to these data nodes. Specifically, the following
+subtrees and data nodes have particular sensitivities/vulnerabilities:<a href="#section-6-6" class="pilcrow">¶</a></p>
+<span class="break"></span><dl class="dlParallel" id="section-6-7">
+        <dt id="section-6-7.1">'ac':</dt>
+        <dd style="margin-left: 1.5em" id="section-6-7.2">
+          <p id="section-6-7.2.1">Unauthorized access to this subtree can disclose the identity
+ of a customer 'peer-sap-id'.<a href="#section-6-7.2.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-6-6.3">'l2-connection' and 'ip-connection':</dt>
-        <dd style="margin-left: 1.5em" id="section-6-6.4">
-          <p id="section-6-6.4.1">An attacker can retrieve
+<dt id="section-6-7.3">'l2-connection' and 'ip-connection':</dt>
+        <dd style="margin-left: 1.5em" id="section-6-7.4">
+          <p id="section-6-7.4.1">An attacker can retrieve
 privacy-related information, which can be used to track a
 customer.  Disclosing such information may be considered a
-violation of the customer-provider trust relationship.<a href="#section-6-6.4.1" class="pilcrow">¶</a></p>
+violation of the customer-provider trust relationship.<a href="#section-6-7.4.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-6-6.5">'keying-material':</dt>
-        <dd style="margin-left: 1.5em" id="section-6-6.6">
-          <p id="section-6-6.6.1">An attacker can retrieve the cryptographic keys
+<dt id="section-6-7.5">'keying-material':</dt>
+        <dd style="margin-left: 1.5em" id="section-6-7.6">
+          <p id="section-6-7.6.1">An attacker can retrieve the cryptographic keys
 protecting an AC (routing, in particular). These keys could
-be used to inject spoofed routing  advertisements.<a href="#section-6-6.6.1" class="pilcrow">¶</a></p>
+be used to inject spoofed routing  advertisements.<a href="#section-6-7.6.1" class="pilcrow">¶</a></p>
 </dd>
       <dd class="break"></dd>
 </dl>
-<p id="section-6-7">Several data nodes ('bgp', 'ospf', 'isis', and 'rip') rely upon <span>[<a href="#RFC8177" class="cite xref">RFC8177</a>]</span> for authentication purposes. As such, the AC network module inherits the security considerations discussed in Section 5 of <span>[<a href="#RFC8177" class="cite xref">RFC8177</a>]</span>. Also, these data nodes support supplying explicit keys as strings in ASCII format. The use of keys in hexadecimal string format would afford greater key entropy with the same number of key-string octets. However, such a format is not included in this version of the AC network model, because it is not supported by the underlying device modules (e.g., <span>[<a href="#RFC8695" class="cite xref">RFC8695</a>]</span>).<a href="#section-6-7" class="pilcrow">¶</a></p>
+<p id="section-6-8">Several data nodes ('bgp', 'ospf', 'isis', and 'rip') rely upon <span>[<a href="#RFC8177" class="cite xref">RFC8177</a>]</span> for authentication purposes. As such, the AC network module inherits the security considerations discussed in Section 5 of <span>[<a href="#RFC8177" class="cite xref">RFC8177</a>]</span>. Also, these data nodes support supplying explicit keys as strings in ASCII format. The use of keys in hexadecimal string format would afford greater key entropy with the same number of key-string octets. However, such a format is not included in this version of the AC network model, because it is not supported by the underlying device modules (e.g., <span>[<a href="#RFC8695" class="cite xref">RFC8695</a>]</span>).<a href="#section-6-8" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="iana-considerations">
@@ -6028,6 +6029,10 @@ be used to inject spoofed routing  advertisements.<a href="#section-6-6.6.1" cla
 <dt id="AC-Ntw-Tree">[AC-Ntw-Tree]</dt>
         <dd>
 <span class="refTitle">"Full Network Attachment Circuit Tree Structure"</span>, <time datetime="2023" class="refDate">2023</time>, <span>&lt;<a href="https://github.com/boucadair/attachment-circuit-model/blob/main/yang/full-trees/ac-ntw-without-groupings.txt">https://github.com/boucadair/attachment-circuit-model/blob/main/yang/full-trees/ac-ntw-without-groupings.txt</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="I-D.ietf-netmod-rfc8407bis">[I-D.ietf-netmod-rfc8407bis]</dt>
+        <dd>
+<span class="refAuthor">Boucadair, M.</span> and <span class="refAuthor">Q. Wu</span>, <span class="refTitle">"Guidelines for Authors and Reviewers of Documents Containing YANG Data Models"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-netmod-rfc8407bis-07</span>, <time datetime="2024-02-09" class="refDate">9 February 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-netmod-rfc8407bis-07">https://datatracker.ietf.org/doc/html/draft-ietf-netmod-rfc8407bis-07</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="PYANG">[PYANG]</dt>
         <dd>
