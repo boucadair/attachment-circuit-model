@@ -264,6 +264,8 @@ This module uses types defined in {{!RFC6991}}, {{!RFC8177}}, and  {{!RFC9181}}.
 
 # Security Considerations
 
+This section uses the template described in Section 3.7 of {{?I-D.ietf-netmod-rfc8407bis}}.
+
    The YANG module specified in this document defines schema for data
    that is designed to be accessed via network management protocols such
    as NETCONF {{!RFC6241}} or RESTCONF {{!RFC8040}}.  The lowest NETCONF layer

@@ -150,6 +150,8 @@ The module includes provisions to reference ACs within or outside a VPN network 
 
 # Security Considerations
 
+This section uses the template described in Section 3.7 of {{?I-D.ietf-netmod-rfc8407bis}}.
+
    The YANG module specified in this document defines schema for data
    that is designed to be accessed via network management protocols such
    as NETCONF {{!RFC6241}} or RESTCONF {{!RFC8040}}.  The lowest NETCONF layer
@@ -169,8 +171,8 @@ The module includes provisions to reference ACs within or outside a VPN network 
    in some network environments.  Write operations (e.g., edit-config)
    and delete operations to these data nodes without proper protection
    or authentication can have a negative effect on network operations.
-   These are the subtrees and data nodes and their sensitivity/
-   vulnerability in the "ietf-ac-glue" module:
+   Specifically, the following subtrees and data nodes have particular
+   sensitivities/vulnerabilities:
 
    'ac-svc-ref' and 'ac-ntw-ref':
    :  An attacker who is able to access network nodes can
@@ -185,8 +187,8 @@ The module includes provisions to reference ACs within or outside a VPN network 
    Some of the readable data nodes in this YANG module may be considered
    sensitive or vulnerable in some network environments.  It is thus
    important to control read access (e.g., via get, get-config, or
-   notification) to these data nodes.  These are the subtrees and data
-   nodes and their sensitivity/vulnerability in the "ietf-ac-glue" module:
+   notification) to these data nodes.  Specifically, the following
+subtrees and data nodes have particular sensitivities/vulnerabilities:
 
    'ac-svc-ref' and 'ac-ntw-ref':
    :  These references do not expose per se

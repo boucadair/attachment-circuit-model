@@ -763,6 +763,8 @@ This module uses types defined in {{!RFC6991}}, {{!RFC9181}}, {{!RFC8177}}, and 
 
 # Security Considerations
 
+This section uses the template described in Section 3.7 of {{?I-D.ietf-netmod-rfc8407bis}}.
+
    The YANG modules specified in this document define schema for data
    that is designed to be accessed via network management protocols such
    as NETCONF {{!RFC6241}} or RESTCONF {{!RFC8040}}.  The lowest NETCONF layer
@@ -782,8 +784,8 @@ This module uses types defined in {{!RFC6991}}, {{!RFC9181}}, {{!RFC8177}}, and 
    in some network environments.  Write operations (e.g., edit-config)
    and delete operations to these data nodes without proper protection
    or authentication can have a negative effect on network operations.
-   These are the subtrees and data nodes and their sensitivity/
-   vulnerability in the "ietf-bearer-svc" module:
+   Specifically, the following subtrees and data nodes have particular
+sensitivities/vulnerabilities in the "ietf-bearer-svc" module:
 
    'placement-constraints':
    : An attacker who is able to access this data node can modify the
@@ -797,8 +799,8 @@ This module uses types defined in {{!RFC6991}}, {{!RFC9181}}, {{!RFC8177}}, and 
    delete existing ones. An attacker may also change the requested
    type or the activation scheduling.
 
-   These are the subtrees and data nodes and their sensitivity/
-   vulnerability in the "ietf-ac-svc" module:
+   The following subtrees and data nodes have particular
+sensitivities/vulnerabilities in the "ietf-ac-svc" module:
 
    'specific-provisioning-profiles':
    : This container includes a set of sensitive data that influence
@@ -823,16 +825,16 @@ This module uses types defined in {{!RFC6991}}, {{!RFC9181}}, {{!RFC8177}}, and 
    Some of the readable data nodes in these YANG modules may be considered
    sensitive or vulnerable in some network environments.  It is thus
    important to control read access (e.g., via get, get-config, or
-   notification) to these data nodes. These are the subtrees and data
-   nodes and their sensitivity/vulnerability in the "ietf-bearer-svc" module:
+   notification) to these data nodes. Specifically, the following subtrees and data nodes have particular
+sensitivities/vulnerabilities in the "ietf-bearer-svc" module:
 
    'customer-point':
    : An attacker can retrieve privacy-related information about location from where
       the customer is connected. Disclosing such information may be used to infer
       the identity of the customer.
 
-   These are the subtrees and data
-   nodes and their sensitivity/vulnerability in the "ietf-ac-svc" module:
+   The following subtrees and data nodes have particular
+sensitivities/vulnerabilities in the "ietf-ac-svc" module:
 
    'customer-name', 'l2-connection', and 'ip-connection':
    : An attacker can retrieve privacy-related information, which can be used to track a
