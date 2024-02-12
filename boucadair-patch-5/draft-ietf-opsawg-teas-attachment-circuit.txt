@@ -5,14 +5,14 @@
 OPSAWG                                                 M. Boucadair, Ed.
 Internet-Draft                                                    Orange
 Intended status: Standards Track                         R. Roberts, Ed.
-Expires: 11 August 2024                                          Juniper
+Expires: 15 August 2024                                          Juniper
                                                            O. G. D. Dios
                                                               Telefonica
                                                            S. B. Giraldo
                                                                    Nokia
                                                                    B. Wu
                                                      Huawei Technologies
-                                                         8 February 2024
+                                                        12 February 2024
 
 
   YANG Data Models for Bearers and 'Attachment Circuits'-as-a-Service
@@ -62,7 +62,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 11 August 2024.
+   This Internet-Draft will expire on 15 August 2024.
 
 Copyright Notice
 
@@ -117,7 +117,7 @@ Table of Contents
      A.7.  Binding Attachment Circuits to an IETF Network Slice
      A.8.  Connecting a Virtualized Environment Running in a Cloud
            Provider
-     A.9.  Connect Customer Network (CE) through BGP Peering
+     A.9.  Connect Customer Network (CE) Through BGP
    Acknowledgments
    Contributors
    Authors' Addresses
@@ -3463,9 +3463,9 @@ Table of Contents
               Boucadair, M., Roberts, R., de Dios, O. G., Barguil, S.,
               and B. Wu, "A Common YANG Data Model for Attachment
               Circuits", Work in Progress, Internet-Draft, draft-ietf-
-              opsawg-teas-common-ac-04, 22 January 2024,
+              opsawg-teas-common-ac-05, 9 February 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
-              teas-common-ac-04>.
+              teas-common-ac-05>.
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
@@ -3596,9 +3596,9 @@ Table of Contents
               Boucadair, M., Roberts, R., de Dios, O. G., Barguil, S.,
               and B. Wu, "A Network YANG Data Model for Attachment
               Circuits", Work in Progress, Internet-Draft, draft-ietf-
-              opsawg-ntw-attachment-circuit-04, 14 December 2023,
+              opsawg-ntw-attachment-circuit-05, 9 February 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
-              ntw-attachment-circuit-04>.
+              ntw-attachment-circuit-05>.
 
    [I-D.ietf-teas-ietf-network-slice-nbi-yang]
               Wu, B., Dhody, D., Rokui, R., Saad, T., and J. Mullooly,
@@ -4823,23 +4823,23 @@ Orchestration  DIRECT INTERCONNECTION ORDERING (API)            Provider
        Figure 43: Message Body of a Response to the Request to Create
                   ACs for Connecting to the Cloud Provider
 
-A.9.  Connect Customer Network (CE) through BGP Peering
+A.9.  Connect Customer Network (CE) Through BGP
 
    CE-PE routing using BGP is a common scenario in the context of MPLS
    VPNs and is widely used in enterprise networks.  In the example
-   depicted below, the CE routers are customer-owned devices belonging
-   to an Autonomous System (ASN 65536).  CEs are located at the edge of
-   the provider's network (PE, or Provider Edge) and use point-to-point
-   interfaces to establish BGP sessions.  The point-to-point interfaces
-   relies upon a physical bearer (Line-113) to reach the provider
-   network.
+   depicted in Figure 44, the CE routers are customer-owned devices
+   belonging to an Autonomous System (ASN 65536).  CEs are located at
+   the edge of the provider's network (PE, or Provider Edge) and use
+   point-to-point interfaces to establish BGP sessions.  The point-to-
+   point interfaces rely upon a physical bearer (Line-113) to reach the
+   provider network.
 
   +------------------------+                       +-------------------+
   |  Provider Network      |                       | Customer Network  |
   |                        |                       |                   |
   |        +------------+  |  Attachment-Circuit 1 | +-------+         |
   |        | PE1(VRF11) +----------------------------+ CE1   | AS65536 |
-  |        |            |  |                       | +-------+         |
+  |        |            |  |    Bearer=Line-113    | +-------+         |
   |        | PE1(VRF12) |  |                       |                   |
   |        |            |  |                       +-------------------+
   |        | PE1(VRF1n) |  |
@@ -4860,14 +4860,13 @@ A.9.  Connect Customer Network (CE) through BGP Peering
 
            Figure 44: Illustration of Provider Network Scenario
 
-   The attachment circuit in this case will use a SAP identifier to
-   refer to the physical interface used for the connection between the
-   PE and the CE.  The attachment circuit will include all the
-   additional logical attributes to describe the connection between the
-   two ends, including VLAN information and IP addressing.  Regarding
-   the BGP session, the configuration details involve the usage of Peer-
-   Group details instead of defining the entire configuration inside the
-   Neighbor.
+   The attachment circuit in this case uses a SAP identifier to refer to
+   the physical interface used for the connection between the PE and the
+   CE.  The attachment circuit includes all the additional logical
+   attributes to describe the connection between the two ends, including
+   VLAN information and IP addressing.  Also, the configuration details
+   of the BGP session makes use of peer group details instead of
+   defining the entire configuration inside the 'neighbor' data node.
 
    {
       "attachment-circuits":{
@@ -4922,11 +4921,11 @@ A.9.  Connect Customer Network (CE) through BGP Peering
    }
 
      Figure 45: Message Body of a Request to Create ACs for Connecting
-                          CEs to provider Network
+                         CEs to a Provider Network
 
-   This scenario allows the provider to maintain a list of Attachment
-   Circuits belonging to the same customer without requiring the full
-   service configuration.
+   This scenario allows the provider to maintain a list of ACs belonging
+   to the same customer without requiring the full service
+   configuration.
 
 Acknowledgments
 
