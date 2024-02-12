@@ -2151,6 +2151,9 @@ Table of Contents
 
 5.  Security Considerations
 
+   This section uses the template described in Section 3.7 of
+   [I-D.ietf-netmod-rfc8407bis].
+
    The YANG module specified in this document defines schema for data
    that is designed to be accessed via network management protocols such
    as NETCONF [RFC6241] or RESTCONF [RFC8040].  The lowest NETCONF layer
@@ -2335,6 +2338,14 @@ Table of Contents
               <https://github.com/boucadair/attachment-circuit-
               model/blob/main/yang/full-trees/ac-common-with-
               groupings.txt>.
+
+   [I-D.ietf-netmod-rfc8407bis]
+              Boucadair, M. and Q. Wu, "Guidelines for Authors and
+              Reviewers of Documents Containing YANG Data Models", Work
+              in Progress, Internet-Draft, draft-ietf-netmod-rfc8407bis-
+              07, 9 February 2024,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-netmod-
+              rfc8407bis-07>.
 
    [I-D.ietf-opsawg-ntw-attachment-circuit]
               Boucadair, M., Roberts, R., de Dios, O. G., Barguil, S.,
