@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-02-11T00:38:23.893364+00:00",
+  "timestamp": "2024-02-13T00:35:47.601044+00:00",
   "repo": "boucadair/attachment-circuit-model",
   "labels": [
     {
@@ -2540,6 +2540,30 @@
           "updatedAt": "2024-02-07T14:13:29Z"
         }
       ]
+    },
+    {
+      "number": 190,
+      "id": "I_kwDOIiAkrc5-7-Tg",
+      "title": "Align the security section with the template in draft-ietf-netmod-rfc8407bis",
+      "url": "https://github.com/boucadair/attachment-circuit-model/issues/190",
+      "state": "CLOSED",
+      "author": "boucadair",
+      "authorAssociation": "OWNER",
+      "assignees": [
+        "boucadair"
+      ],
+      "labels": [
+        "Editorial",
+        "AC-COMMON",
+        "AC-SVC",
+        "bearer-svc",
+        "ac-glue"
+      ],
+      "body": "",
+      "createdAt": "2024-02-12T08:41:43Z",
+      "updatedAt": "2024-02-12T08:42:52Z",
+      "closedAt": "2024-02-12T08:42:52Z",
+      "comments": []
     }
   ],
   "pulls": [
@@ -7210,6 +7234,34 @@
       "mergedBy": "boucadair",
       "mergeCommit": {
         "oid": "4cda95bfb099dfe0574fb7facd32ff50b404d4cd"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 189,
+      "id": "PR_kwDOIiAkrc5mm_U0",
+      "title": "update security template",
+      "url": "https://github.com/boucadair/attachment-circuit-model/pull/189",
+      "state": "MERGED",
+      "author": "boucadair",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-02-12T08:35:40Z",
+      "updatedAt": "2024-02-12T08:42:52Z",
+      "baseRepository": "boucadair/attachment-circuit-model",
+      "baseRefName": "main",
+      "baseRefOid": "3432ef72226982bb6740731c274faef2b70d7d8d",
+      "headRepository": "boucadair/attachment-circuit-model",
+      "headRefName": "boucadair-patch-5",
+      "headRefOid": "cc6d33561a6a369aa562b2b47d3a837e6995cabe",
+      "closedAt": "2024-02-12T08:42:51Z",
+      "mergedAt": "2024-02-12T08:42:51Z",
+      "mergedBy": "boucadair",
+      "mergeCommit": {
+        "oid": "4861d18408d20ad32524908d77170c07021a6cd0"
       },
       "comments": [],
       "reviews": []
