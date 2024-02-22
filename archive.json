@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-02-20T00:34:49.128667+00:00",
+  "timestamp": "2024-02-22T00:35:00.525179+00:00",
   "repo": "boucadair/attachment-circuit-model",
   "labels": [
     {
@@ -2563,6 +2563,24 @@
       "createdAt": "2024-02-12T08:41:43Z",
       "updatedAt": "2024-02-12T08:42:52Z",
       "closedAt": "2024-02-12T08:42:52Z",
+      "comments": []
+    },
+    {
+      "number": 191,
+      "id": "I_kwDOIiAkrc5_785d",
+      "title": "(from Richard) synch-E capable",
+      "url": "https://github.com/boucadair/attachment-circuit-model/issues/191",
+      "state": "OPEN",
+      "author": "boucadair",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [
+        "bearer-svc"
+      ],
+      "body": "Hi ac folks,\r\n\r\nI was just working on deck for O-RAN to integrate Fronthaul in 5G transport transport/cloud .\r\nThis lead me thinking that it can be interesting to have some \u201ccapability\u201d flag on bearer to indicate that synchE is supported (or maybe more largely Time Sensitive Networking is supported). \r\nWould that make sense that kind of flag in bearer-svc ? \r\n\r\nThe idea is to verify that we provision ac for Fronthaul (acaas) on synch-E capable links.\r\n\r\n",
+      "createdAt": "2024-02-21T10:39:32Z",
+      "updatedAt": "2024-02-21T10:40:11Z",
+      "closedAt": null,
       "comments": []
     }
   ],
