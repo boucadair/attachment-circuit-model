@@ -5,12 +5,12 @@
 OPSAWG                                                 M. Boucadair, Ed.
 Internet-Draft                                                    Orange
 Intended status: Standards Track                              R. Roberts
-Expires: 27 July 2024                                            Juniper
+Expires: 30 August 2024                                          Juniper
                                                            S. B. Giraldo
                                                                    Nokia
                                                            O. G. D. Dios
                                                               Telefonica
-                                                         24 January 2024
+                                                        27 February 2024
 
 
   A YANG Data Model for Augmenting VPN Service and Network Models with
@@ -51,7 +51,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 27 July 2024.
+   This Internet-Draft will expire on 30 August 2024.
 
 Copyright Notice
 
@@ -286,21 +286,33 @@ Table of Contents
     augment /l2nm:l2vpn-ntw/l2nm:vpn-services/l2nm:vpn-service
               /l2nm:vpn-nodes/l2nm:vpn-node/l2nm:vpn-network-accesses:
       +--rw ac-svc-ref*   ac-svc:attachment-circuit-reference
-      +--rw ac-ntw-ref*   ac-ntw:attachment-circuit-reference
+      +--rw ac-ntw-ref* [ac-ref]
+         +--rw ac-ref         leafref
+         +--rw node-ref?      leafref
+         +--rw network-ref?   -> /nw:networks/network/network-id
     augment /l2nm:l2vpn-ntw/l2nm:vpn-services/l2nm:vpn-service
               /l2nm:vpn-nodes/l2nm:vpn-node/l2nm:vpn-network-accesses
               /l2nm:vpn-network-access:
       +--rw ac-svc-ref?   ac-svc:attachment-circuit-reference {ac-glue}?
-      +--rw ac-ntw-ref?   ac-ntw:attachment-circuit-reference {ac-glue}?
+      +--rw ac-ntw-ref {ac-glue}?
+         +--rw ac-ref?        leafref
+         +--rw node-ref?      leafref
+         +--rw network-ref?   -> /nw:networks/network/network-id
     augment /l3nm:l3vpn-ntw/l3nm:vpn-services/l3nm:vpn-service
               /l3nm:vpn-nodes/l3nm:vpn-node/l3nm:vpn-network-accesses:
       +--rw ac-svc-ref*   ac-svc:attachment-circuit-reference
-      +--rw ac-ntw-ref*   ac-ntw:attachment-circuit-reference
+      +--rw ac-ntw-ref* [ac-ref]
+         +--rw ac-ref         leafref
+         +--rw node-ref?      leafref
+         +--rw network-ref?   -> /nw:networks/network/network-id
     augment /l3nm:l3vpn-ntw/l3nm:vpn-services/l3nm:vpn-service
               /l3nm:vpn-nodes/l3nm:vpn-node/l3nm:vpn-network-accesses
               /l3nm:vpn-network-access:
       +--rw ac-svc-ref?   ac-svc:attachment-circuit-reference {ac-glue}?
-      +--rw ac-ntw-ref?   ac-ntw:attachment-circuit-reference {ac-glue}?
+      +--rw ac-ntw-ref {ac-glue}?
+         +--rw ac-ref?        leafref
+         +--rw node-ref?      leafref
+         +--rw network-ref?   -> /nw:networks/network/network-id
 
                      Figure 3: AC Glue Tree Structure
 
@@ -428,8 +440,8 @@ Table of Contents
            "A reference to the AC as exposed at the service that
             was provisioned using the ACaaS module.";
        }
-       leaf ac-ntw-ref {
-         type ac-ntw:attachment-circuit-reference;
+       container ac-ntw-ref {
+         uses ac-ntw:attachment-circuit-reference;
          description
            "A reference to the AC that  was provisioned
             using the AC network module.";
@@ -456,11 +468,12 @@ Table of Contents
            "A reference to the AC as exposed at the service that
             was provisioned using the ACaaS module.";
        }
-       leaf-list ac-ntw-ref {
-         type ac-ntw:attachment-circuit-reference;
+       list ac-ntw-ref {
+         key "ac-ref";
          description
-           "A reference to the AC that  was provisioned
+           "A reference to the AC that was provisioned
             using the AC network module.";
+         uses ac-ntw:attachment-circuit-reference;
        }
      }
 
@@ -553,6 +566,9 @@ Table of Contents
 
 6.  Security Considerations
 
+   This section uses the template described in Section 3.7 of
+   [I-D.ietf-netmod-rfc8407bis].
+
    The YANG module specified in this document defines schema for data
    that is designed to be accessed via network management protocols such
    as NETCONF [RFC6241] or RESTCONF [RFC8040].  The lowest NETCONF layer
@@ -572,8 +588,8 @@ Table of Contents
    in some network environments.  Write operations (e.g., edit-config)
    and delete operations to these data nodes without proper protection
    or authentication can have a negative effect on network operations.
-   These are the subtrees and data nodes and their sensitivity/
-   vulnerability in the "ietf-ac-glue" module:
+   Specifically, the following subtrees and data nodes have particular
+   sensitivities/vulnerabilities:
 
    'ac-svc-ref' and 'ac-ntw-ref':  An attacker who is able to access
       network nodes can undertake various attacks, such as deleting a
@@ -587,9 +603,9 @@ Table of Contents
    Some of the readable data nodes in this YANG module may be considered
    sensitive or vulnerable in some network environments.  It is thus
    important to control read access (e.g., via get, get-config, or
-   notification) to these data nodes.  These are the subtrees and data
-   nodes and their sensitivity/vulnerability in the "ietf-ac-glue"
-   module:
+   notification) to these data nodes.  Specifically, the following
+   subtrees and data nodes have particular sensitivities/
+   vulnerabilities:
 
    'ac-svc-ref' and 'ac-ntw-ref':  These references do not expose per se
       privacy-related information, however 'ac-svc-ref' may be used to
@@ -626,18 +642,18 @@ Table of Contents
               Boucadair, M., Roberts, R., de Dios, O. G., Barguil, S.,
               and B. Wu, "A Network YANG Data Model for Attachment
               Circuits", Work in Progress, Internet-Draft, draft-ietf-
-              opsawg-ntw-attachment-circuit-04, 14 December 2023,
+              opsawg-ntw-attachment-circuit-05, 9 February 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
-              ntw-attachment-circuit-04>.
+              ntw-attachment-circuit-05>.
 
    [I-D.ietf-opsawg-teas-attachment-circuit]
               Boucadair, M., Roberts, R., de Dios, O. G., Barguil, S.,
               and B. Wu, "YANG Data Models for Bearers and 'Attachment
               Circuits'-as-a-Service (ACaaS)", Work in Progress,
               Internet-Draft, draft-ietf-opsawg-teas-attachment-circuit-
-              05, 22 January 2024,
+              06, 9 February 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
-              teas-attachment-circuit-05>.
+              teas-attachment-circuit-06>.
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
@@ -706,13 +722,21 @@ Table of Contents
 
 8.2.  Informative References
 
+   [I-D.ietf-netmod-rfc8407bis]
+              Boucadair, M. and Q. Wu, "Guidelines for Authors and
+              Reviewers of Documents Containing YANG Data Models", Work
+              in Progress, Internet-Draft, draft-ietf-netmod-rfc8407bis-
+              08, 16 February 2024,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-netmod-
+              rfc8407bis-08>.
+
    [I-D.ietf-teas-ietf-network-slice-nbi-yang]
               Wu, B., Dhody, D., Rokui, R., Saad, T., and J. Mullooly,
-              "A YANG Data Model for the IETF Network Slice Service",
-              Work in Progress, Internet-Draft, draft-ietf-teas-ietf-
-              network-slice-nbi-yang-08, 23 October 2023,
+              "A YANG Data Model for the RFC AAAA Network Slice
+              Service", Work in Progress, Internet-Draft, draft-ietf-
+              teas-ietf-network-slice-nbi-yang-09, 17 February 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-teas-
-              ietf-network-slice-nbi-yang-08>.
+              ietf-network-slice-nbi-yang-09>.
 
    [RFC4364]  Rosen, E. and Y. Rekhter, "BGP/MPLS IP Virtual Private
               Networks (VPNs)", RFC 4364, DOI 10.17487/RFC4364, February
@@ -1202,7 +1226,11 @@ A.2.  Network and Service AC References
                        "status":"ietf-vpn-common:op-up"
                     },
                     "ietf-ac-ntw:ac":[
-                       "ac-1"
+                       {
+                          "ac-ref":"ac-1",
+                          "node-ref":"example:pe2",
+                          "network-ref":"example:an-id"
+                       }
                     ]
                  }
               ]
@@ -1261,7 +1289,8 @@ A.2.  Network and Service AC References
                        "qos-profile":{
                           "qos-profile":[
                              {
-                                "profile":"QoS_Profile_A",
+                                "qos-profile-ref":"QoS_Profile_A",
+                                "network-ref":"example:an-id",
                                 "direction":"ietf-vpn-common:both"
                              }
                           ]
