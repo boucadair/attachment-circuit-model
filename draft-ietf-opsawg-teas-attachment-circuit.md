@@ -92,6 +92,14 @@ informative:
     target: https://doi.org/10.1109/IEEESTD.2020.9105034
     date: May 2020
 
+  ITU-T-G.781:
+    title: "Synchronization layer functions for frequency synchronization based on the physical layer"
+    author:
+     -
+      org: ITU-T
+    target: https://www.itu.int/rec/T-REC-G.781
+    date: January 2024
+
 --- abstract
 
 This document specifies a YANG service data model for Attachment Circuits (ACs). This model can be used for the provisioning of ACs before or during service provisioning (e.g., Network Slice Service). The document also specifies a service model for managing bearers over which ACs are established.
@@ -259,6 +267,9 @@ The descriptions of the bearer data nodes are as follows:
 'description':
 : Includes a textual description of the bearer.
 
+'group':
+: Tags a bearer with one ore more identifiers that are used to group a set of bearers.
+
 'op-comment':
 : Includes operational comments that may be useful for managing the bearer (building, level, etc.). No structure is associated with this data node to accommodate all deployments.
 
@@ -268,8 +279,14 @@ The descriptions of the bearer data nodes are as follows:
 'bearer-lag-member':
 : Lists the bearers that are members of a LAG. Members can be declared as part of a LAG using 'bearer-parent-ref'.
 
-'group':
-: Tags a bearer with one ore more identifiers that are used to group a set of bearers.
+'sync-phy-capable':
+: Reports whether a synchronization physical (Sync PHY) mechanism is supported for this bearer.
+
+'sync-phy-enabled':
+: Indicates whether a Sync PHY mechanism is enabled for a bearer. Only applies when 'sync-phy-capable' is set to 'true'.
+
+'sync-phy-type':
+: Specifies the Sync PHY mechanism (e.g., SynchE {{ITU-T-G781}}) enabled for the bearer.
 
 'customer-point':
 : Specifies the customer terminating point for the bearer. A bearer request can indicate a device, a site, a combination thereof, or a custom information when requesting a bearer. All these schemes are supported in the model.
