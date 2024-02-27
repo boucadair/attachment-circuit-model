@@ -301,6 +301,7 @@ module ietf-bearer-svc {
       }
       leaf sync-phy-capable {
         type boolean;
+        config false;
         description
          "Indicates when set to true that a mechanism for physical
           layer synchronization is supported for this bearer. No such
