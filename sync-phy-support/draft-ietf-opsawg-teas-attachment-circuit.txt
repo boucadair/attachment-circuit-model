@@ -3819,6 +3819,9 @@ A.1.  Create A New Bearer
        Figure 22: Example of a Response Message Body with the Bearer
                                  Reference
 
+   Note that the response also indicates that Sync Phy is supported for
+   this bearer.
+
 A.2.  Create An AC over An Existing Bearer
 
    An example of a request message body to create a simple AC over an
