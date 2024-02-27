@@ -198,11 +198,15 @@ Table of Contents
    this document introduces a new module called "ietf-bearer-svc" that
    enables customers to manage their bearer requests (Section 5.1).  The
    customers can then retrieve a provider-assigned bearer reference that
-   they will include in their AC service requests.  An example to
+   they will include in their AC service requests.  Likewise, the
+   customer may retrieve whether this bearer supports a synchronization
+   mechanism such as Sync Ethernet (SyncE) [ITU-T-G.781].  An example to
    retrieve a bearer reference is provided in Appendix A.1.
 
    An AC service request can provide a reference to a bearer or a set of
-   peer SAPs.  Both schemes are supported in the AC service model.
+   peer SAPs.  Both schemes are supported in the AC service model.  When
+   several bearers are available, the AC service request may filter them
+   based on the bearer type, synchronization support, etc.
 
    Each AC is identified with a unique identifier within a (provider)
    domain.  From a network provider standpoint, an AC can be bound to a
