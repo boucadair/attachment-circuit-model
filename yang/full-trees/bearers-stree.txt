@@ -23,7 +23,7 @@ module: ietf-bearer-svc
         +--rw op-comment?          string
         +--rw bearer-parent-ref?   bearer-svc:bearer-ref
         +--ro bearer-lag-member*   bearer-svc:bearer-ref
-        +--rw sync-phy-capable?    boolean
+        +--ro sync-phy-capable?    boolean
         +--rw sync-phy-enabled?    boolean
         +--rw sync-phy-type?       identityref
         +--rw customer-point
