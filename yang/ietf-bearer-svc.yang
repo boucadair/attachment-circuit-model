@@ -307,7 +307,7 @@ module ietf-bearer-svc {
           mechanism is supported if set to false.";
       }
       leaf sync-phy-enabled {
-        when "./sync-phy-capable"='true'";
+        when "./sync-phy-capable"='true';
         type boolean;
         description
          "Indicates when set to true that a mechanism for physical
@@ -315,7 +315,7 @@ module ietf-bearer-svc {
           mechanism is enabled if set to false.";
       }
       leaf sync-phy-type {
-        when "./sync-phy-enabled"='true'";
+        when "./sync-phy-enabled"='true';
         type identityref {
           base syncPHY-type;
         }
