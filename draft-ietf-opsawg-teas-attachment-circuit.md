@@ -137,7 +137,7 @@ The "ietf-ac-svc" module ({{sec-ac-module}}) includes a set of reusable grouping
 
 Since the provisioning of an AC requires a bearer to be in place, this document introduces a new module called "ietf-bearer-svc" that enables customers to manage their bearer requests ({{sec-bearer-module}}). The customers can then retrieve a provider-assigned bearer reference that they will include in their AC service requests. Likewise, the customer may retrieve whether this bearer supports a synchronization mechanism such as Sync Ethernet (SyncE) {{ITU-T-G.781}}. An example to retrieve a bearer reference is provided in {{ex-create-bearer}}.
 
-An AC service request can provide a reference to a bearer or a set of peer SAPs. Both schemes are supported in the AC service model. When several bearers are available, the AC service request may filter them based on the bearer type, synchronization support, etc. 
+An AC service request can provide a reference to a bearer or a set of peer SAPs. Both schemes are supported in the AC service model. When several bearers are available, the AC service request may filter them based on the bearer type, synchronization support, etc.
 
 Each AC is identified with a unique identifier within a (provider) domain. From a network provider standpoint, an AC can be bound to a single or multiple Service Attachment Points (SAPs) {{!RFC9408}}. Likewise, the same SAP can be bound to one or multiple ACs. However, the mapping between an AC and a PE in the provider network that terminates that AC is hidden to the application that makes use of the AC service model. Such mapping information is internal to the network controllers. As such, the details about the (node-specific) attachment interfaces are not exposed in the AC service model.
 
