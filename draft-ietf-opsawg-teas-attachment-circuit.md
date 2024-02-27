@@ -286,7 +286,7 @@ The descriptions of the bearer data nodes are as follows:
 : Indicates whether a Sync PHY mechanism is enabled for a bearer. Only applies when 'sync-phy-capable' is set to 'true'.
 
 'sync-phy-type':
-: Specifies the Sync PHY mechanism (e.g., SynchE {{ITU-T-G781}}) enabled for the bearer.
+: Specifies the Sync PHY mechanism (e.g., SynchE {{ITU-T-G.781}}) enabled for the bearer.
 
 'customer-point':
 : Specifies the customer terminating point for the bearer. A bearer request can indicate a device, a site, a combination thereof, or a custom information when requesting a bearer. All these schemes are supported in the model.
