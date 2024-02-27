@@ -2,7 +2,7 @@
   "ietf-bearer-svc:bearers": {
     "bearer": [
       {
-        "id": "an-identifier",
+        "name": "a-name-choosen-by-client",
         "description": "A bearer example",
         "customer-point": {
           "device": {
