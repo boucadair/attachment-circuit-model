@@ -141,7 +141,7 @@ module ietf-bearer-svc {
     description
       "Sync Ethernet (SyncE).";
     reference
-      "ITU-T G.783: Synchronization layer functions for frequency
+      "ITU-T G.781: Synchronization layer functions for frequency
                     synchronization based on the physical layer";
   }
 
