@@ -495,7 +495,7 @@ Table of Contents
           +--rw op-comment?          string
           +--rw bearer-parent-ref?   bearer-svc:bearer-ref
           +--ro bearer-lag-member*   bearer-svc:bearer-ref
-          +--rw sync-phy-capable?    boolean
+          +--ro sync-phy-capable?    boolean
           +--rw sync-phy-enabled?    boolean
           +--rw sync-phy-type?       identityref
           +--rw customer-point
@@ -577,6 +577,9 @@ Table of Contents
 
    'description':  Includes a textual description of the bearer.
 
+   'group':  Tags a bearer with one ore more identifiers that are used
+      to group a set of bearers.
+
    'op-comment':  Includes operational comments that may be useful for
       managing the bearer (building, level, etc.).  No structure is
       associated with this data node to accommodate all deployments.
@@ -588,8 +591,15 @@ Table of Contents
       Members can be declared as part of a LAG using 'bearer-parent-
       ref'.
 
-   'group':  Tags a bearer with one ore more identifiers that are used
-      to group a set of bearers.
+   'sync-phy-capable':  Reports whether a synchronization physical (Sync
+      PHY) mechanism is supported for this bearer.
+
+   'sync-phy-enabled':  Indicates whether a Sync PHY mechanism is
+      enabled for a bearer.  Only applies when 'sync-phy-capable' is set
+      to 'true'.
+
+   'sync-phy-type':  Specifies the Sync PHY mechanism (e.g., SynchE
+      [ITU-T-G.781]) enabled for the bearer.
 
    'customer-point':  Specifies the customer terminating point for the
       bearer.  A bearer request can indicate a device, a site, a
@@ -2157,6 +2167,7 @@ Table of Contents
          }
          leaf sync-phy-capable {
            type boolean;
+           config false;
            description
             "Indicates when set to true that a mechanism for physical
              layer synchronization is supported for this bearer. No such
@@ -3668,6 +3679,11 @@ Table of Contents
               "Example of AC SVC Instance Data", 2024,
               <https://github.com/boucadair/attachment-circuit-
               model/blob/main/xml-examples/svc-full-instance.xml>.
+
+   [ITU-T-G.781]
+              ITU-T, "Synchronization layer functions for frequency
+              synchronization based on the physical layer", January
+              2024, <https://www.itu.int/rec/T-REC-G.781>.
 
    [PYANG]    "pyang", 2023, <https://github.com/mbj4668/pyang>.
 
