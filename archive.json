@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-02-29T00:35:02.108115+00:00",
+  "timestamp": "2024-03-03T00:37:16.735013+00:00",
   "repo": "boucadair/attachment-circuit-model",
   "labels": [
     {
@@ -2580,6 +2580,22 @@
       "body": "Hi ac folks,\r\n\r\nI was just working on deck for O-RAN to integrate Fronthaul in 5G transport transport/cloud .\r\nThis lead me thinking that it can be interesting to have some \u201ccapability\u201d flag on bearer to indicate that synchE is supported (or maybe more largely Time Sensitive Networking is supported). \r\nWould that make sense that kind of flag in bearer-svc ? \r\n\r\nThe idea is to verify that we provision ac for Fronthaul (acaas) on synch-E capable links.\r\n\r\n",
       "createdAt": "2024-02-21T10:39:32Z",
       "updatedAt": "2024-02-21T10:40:11Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 193,
+      "id": "I_kwDOIiAkrc6Azllh",
+      "title": "For static routing, shouldn't we have bfd under next-hop as well ?",
+      "url": "https://github.com/boucadair/attachment-circuit-model/issues/193",
+      "state": "OPEN",
+      "author": "robric",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Today bfd-profile is attached to the ip prefix.\r\nUsually you want bfd to the nexthop(s), since an IP prefix is a range (not /32).\r\nShouldn't we add bfd-profile to the next-hop instead ?\r\n\r\n```\r\n     |  |     |     +--rw ipv4-lan-prefixes* [lan next-hop]\r\n     |  |     |     |       {vpn-common:ipv4}?\r\n     |  |     |     |  +--rw lan            inet:ipv4-prefix\r\n     |  |     |     |  +--rw lan-tag?       string\r\n     |  |     |     |  +--rw next-hop       union\r\n     |  |     |     |  +--rw metric?        uint32\r\n     |  |     |     |  +--rw bfd-profile?   bfd-profile-reference\r\n```\r\n",
+      "createdAt": "2024-02-29T11:12:17Z",
+      "updatedAt": "2024-02-29T11:12:17Z",
       "closedAt": null,
       "comments": []
     }
