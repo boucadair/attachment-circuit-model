@@ -109,7 +109,7 @@ LxNM refers to both the L2NM and the L3NM.
 ~~~~
 {: #uc title='Examples of ACs' artwork-align="center"}
 
-## Separate AC Provisioning vs. Actual VPN Service Provisioning
+## Separate AC Provisioning From Actual VPN Service Provisioning
 
 The procedure to provision a service in a service provider network may depend on the practices adopted by a service provider. This includes the flow put in place for the provisioning of advanced network services and how they are bound to an attachment circuit. For example, a single attachment circuit may be used to host multiple connectivity services. In order to avoid service interference and redundant information in various locations, a service provider may expose an interface to manage ACs network-wide. Customers can then request a bearer or an attachment circuit to be put in place, and then refer to that bearer or AC when requesting VPN services that are bound to the bearer or AC.
 
