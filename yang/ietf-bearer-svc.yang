@@ -131,6 +131,20 @@ module ietf-bearer-svc {
        is provided (e.g., geoproximity).";
   }
 
+  identity syncPHY-type {
+    description
+      "Base identity for physical layer synchronization.";
+  }
+
+  identity syncE {
+    base syncPHY-type;
+    description
+      "Sync Ethernet (SyncE).";
+    reference
+      "ITU-T G.781: Synchronization layer functions for frequency
+                    synchronization based on the physical layer";
+  }
+
   grouping location-information {
     description
       "Basic location information";
@@ -284,6 +298,30 @@ module ietf-bearer-svc {
         config false;
         description
           "Reports LAG members.";
+      }
+      leaf sync-phy-capable {
+        type boolean;
+        config false;
+        description
+         "Indicates when set to true that a mechanism for physical
+          layer synchronization is supported for this bearer. No such
+          mechanism is supported if set to false.";
+      }
+      leaf sync-phy-enabled {
+        when "../sync-phy-capable='true'";
+        type boolean;
+        description
+         "Indicates when set to true that a mechanism for physical
+          layer synchronization is enabled for this bearer. No such
+          mechanism is enabled if set to false.";
+      }
+      leaf sync-phy-type {
+        when "../sync-phy-enabled='true'";
+        type identityref {
+          base syncPHY-type;
+        }
+        description
+          "Type of the physical layer synchronization.";
       }
       container customer-point {
         description
