@@ -916,8 +916,8 @@ A.1.  A Service AC Reference within The VPN Network Access
                            "vpn-network-accesses":{
                               "vpn-network-access":[
                                  {
-                                    "id":"2/1/1.1",
-                                    "interface-id":"2/1/1",
+                                    "id":"2/1/2.1",
+                                    "interface-id":"2/1/2",
                                     "description":"Interface to CE2",
                                     "active-vpn-node-profile":"simple-\
                                                                profile",
@@ -930,8 +930,8 @@ A.1.  A Service AC Reference within The VPN Network Access
                                     }
                                  },
                                  {
-                                    "id":"2/1/2.1",
-                                    "interface-id":"2/1/1",
+                                    "id":"2/1/4.1",
+                                    "interface-id":"2/1/4",
                                     "description":"Interface to CE4",
                                     "active-vpn-node-profile":"simple-\
                                                                profile",
