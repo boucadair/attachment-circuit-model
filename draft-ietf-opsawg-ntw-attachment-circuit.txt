@@ -5,14 +5,14 @@
 Operations and Management Area Working Group           M. Boucadair, Ed.
 Internet-Draft                                                    Orange
 Intended status: Standards Track                              R. Roberts
-Expires: 15 August 2024                                          Juniper
+Expires: 5 September 2024                                        Juniper
                                                            O. G. D. Dios
                                                               Telefonica
                                                            S. B. Giraldo
                                                                    Nokia
                                                                    B. Wu
                                                      Huawei Technologies
-                                                        12 February 2024
+                                                            4 March 2024
 
 
            A Network YANG Data Model for Attachment Circuits
@@ -57,7 +57,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 15 August 2024.
+   This Internet-Draft will expire on 5 September 2024.
 
 Copyright Notice
 
@@ -4386,12 +4386,12 @@ Table of Contents
               groupings.txt>.
 
    [I-D.ietf-netmod-rfc8407bis]
-              Boucadair, M. and Q. Wu, "Guidelines for Authors and
-              Reviewers of Documents Containing YANG Data Models", Work
-              in Progress, Internet-Draft, draft-ietf-netmod-rfc8407bis-
-              07, 9 February 2024,
+              Bierman, A., Boucadair, M., and Q. Wu, "Guidelines for
+              Authors and Reviewers of Documents Containing YANG Data
+              Models", Work in Progress, Internet-Draft, draft-ietf-
+              netmod-rfc8407bis-09, 28 February 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-netmod-
-              rfc8407bis-07>.
+              rfc8407bis-09>.
 
    [PYANG]    "pyang", 2023, <https://github.com/mbj4668/pyang>.
 

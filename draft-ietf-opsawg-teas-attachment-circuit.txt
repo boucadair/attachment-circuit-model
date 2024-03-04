@@ -5,14 +5,14 @@
 OPSAWG                                                 M. Boucadair, Ed.
 Internet-Draft                                                    Orange
 Intended status: Standards Track                         R. Roberts, Ed.
-Expires: 15 August 2024                                          Juniper
+Expires: 5 September 2024                                        Juniper
                                                            O. G. D. Dios
                                                               Telefonica
                                                            S. B. Giraldo
                                                                    Nokia
                                                                    B. Wu
                                                      Huawei Technologies
-                                                        12 February 2024
+                                                            4 March 2024
 
 
   YANG Data Models for Bearers and 'Attachment Circuits'-as-a-Service
@@ -62,7 +62,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 15 August 2024.
+   This Internet-Draft will expire on 5 September 2024.
 
 Copyright Notice
 
@@ -198,11 +198,15 @@ Table of Contents
    this document introduces a new module called "ietf-bearer-svc" that
    enables customers to manage their bearer requests (Section 5.1).  The
    customers can then retrieve a provider-assigned bearer reference that
-   they will include in their AC service requests.  An example to
+   they will include in their AC service requests.  Likewise, the
+   customer may retrieve whether this bearer supports a synchronization
+   mechanism such as Sync Ethernet (SyncE) [ITU-T-G.781].  An example to
    retrieve a bearer reference is provided in Appendix A.1.
 
    An AC service request can provide a reference to a bearer or a set of
-   peer SAPs.  Both schemes are supported in the AC service model.
+   peer SAPs.  Both schemes are supported in the AC service model.  When
+   several bearers are available, the AC service request may filter them
+   based on the bearer type, synchronization support, etc.
 
    Each AC is identified with a unique identifier within a (provider)
    domain.  From a network provider standpoint, an AC can be bound to a
@@ -495,6 +499,9 @@ Table of Contents
           +--rw op-comment?          string
           +--rw bearer-parent-ref?   bearer-svc:bearer-ref
           +--ro bearer-lag-member*   bearer-svc:bearer-ref
+          +--ro sync-phy-capable?    boolean
+          +--rw sync-phy-enabled?    boolean
+          +--rw sync-phy-type?       identityref
           +--rw customer-point
           |  +--rw identified-by?   identityref
           |  +--rw device
@@ -574,6 +581,9 @@ Table of Contents
 
    'description':  Includes a textual description of the bearer.
 
+   'group':  Tags a bearer with one ore more identifiers that are used
+      to group a set of bearers.
+
    'op-comment':  Includes operational comments that may be useful for
       managing the bearer (building, level, etc.).  No structure is
       associated with this data node to accommodate all deployments.
@@ -585,8 +595,15 @@ Table of Contents
       Members can be declared as part of a LAG using 'bearer-parent-
       ref'.
 
-   'group':  Tags a bearer with one ore more identifiers that are used
-      to group a set of bearers.
+   'sync-phy-capable':  Reports whether a synchronization physical (Sync
+      PHY) mechanism is supported for this bearer.
+
+   'sync-phy-enabled':  Indicates whether a Sync PHY mechanism is
+      enabled for a bearer.  Only applies when 'sync-phy-capable' is set
+      to 'true'.
+
+   'sync-phy-type':  Specifies the Sync PHY mechanism (e.g., SynchE
+      [ITU-T-G.781]) enabled for the bearer.
 
    'customer-point':  Specifies the customer terminating point for the
       bearer.  A bearer request can indicate a device, a site, a
@@ -1984,6 +2001,20 @@ Table of Contents
           is provided (e.g., geoproximity).";
      }
 
+     identity syncPHY-type {
+       description
+         "Base identity for physical layer synchronization.";
+     }
+
+     identity syncE {
+       base syncPHY-type;
+       description
+         "Sync Ethernet (SyncE).";
+       reference
+         "ITU-T G.781: Synchronization layer functions for frequency
+                       synchronization based on the physical layer";
+     }
+
      grouping location-information {
        description
          "Basic location information";
@@ -2137,6 +2168,30 @@ Table of Contents
            config false;
            description
              "Reports LAG members.";
+         }
+         leaf sync-phy-capable {
+           type boolean;
+           config false;
+           description
+            "Indicates when set to true that a mechanism for physical
+             layer synchronization is supported for this bearer. No such
+             mechanism is supported if set to false.";
+         }
+         leaf sync-phy-enabled {
+           when "../sync-phy-capable='true'";
+           type boolean;
+           description
+            "Indicates when set to true that a mechanism for physical
+             layer synchronization is enabled for this bearer. No such
+             mechanism is enabled if set to false.";
+         }
+         leaf sync-phy-type {
+           when "../sync-phy-enabled='true'";
+           type identityref {
+             base syncPHY-type;
+           }
+           description
+             "Type of the physical layer synchronization.";
          }
          container customer-point {
            description
@@ -3596,12 +3651,12 @@ Table of Contents
               ietf-idr-bgp-model-17>.
 
    [I-D.ietf-netmod-rfc8407bis]
-              Boucadair, M. and Q. Wu, "Guidelines for Authors and
-              Reviewers of Documents Containing YANG Data Models", Work
-              in Progress, Internet-Draft, draft-ietf-netmod-rfc8407bis-
-              07, 9 February 2024,
+              Bierman, A., Boucadair, M., and Q. Wu, "Guidelines for
+              Authors and Reviewers of Documents Containing YANG Data
+              Models", Work in Progress, Internet-Draft, draft-ietf-
+              netmod-rfc8407bis-09, 28 February 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-netmod-
-              rfc8407bis-07>.
+              rfc8407bis-09>.
 
    [I-D.ietf-opsawg-ntw-attachment-circuit]
               Boucadair, M., Roberts, R., de Dios, O. G., Barguil, S.,
@@ -3613,11 +3668,11 @@ Table of Contents
 
    [I-D.ietf-teas-ietf-network-slice-nbi-yang]
               Wu, B., Dhody, D., Rokui, R., Saad, T., and J. Mullooly,
-              "A YANG Data Model for the IETF Network Slice Service",
-              Work in Progress, Internet-Draft, draft-ietf-teas-ietf-
-              network-slice-nbi-yang-08, 23 October 2023,
+              "A YANG Data Model for the RFC AAAA Network Slice
+              Service", Work in Progress, Internet-Draft, draft-ietf-
+              teas-ietf-network-slice-nbi-yang-09, 17 February 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-teas-
-              ietf-network-slice-nbi-yang-08>.
+              ietf-network-slice-nbi-yang-09>.
 
    [IEEE802.1AX]
               IEEE, "IEEE Standard for Local and Metropolitan Area
@@ -3628,6 +3683,11 @@ Table of Contents
               "Example of AC SVC Instance Data", 2024,
               <https://github.com/boucadair/attachment-circuit-
               model/blob/main/xml-examples/svc-full-instance.xml>.
+
+   [ITU-T-G.781]
+              ITU-T, "Synchronization layer functions for frequency
+              synchronization based on the physical layer", January
+              2024, <https://www.itu.int/rec/T-REC-G.781>.
 
    [PYANG]    "pyang", 2023, <https://github.com/mbj4668/pyang>.
 
@@ -3722,7 +3782,7 @@ A.1.  Create A New Bearer
      "ietf-bearer-svc:bearers": {
        "bearer": [
          {
-           "id": "an-identifier",
+           "name": "a-name-choosen-by-client",
            "description": "A bearer example",
            "customer-point": {
              "device": {
@@ -3745,8 +3805,9 @@ A.1.  Create A New Bearer
      "ietf-bearer-svc:bearers": {
        "bearer": [
          {
-           "id": "an-identifier",
+           "name": "a-name-choosen-by-client",
            "description": "A bearer example",
+           "sync-phy-capable": true,
            "customer-point": {
              "device": {
                "device-id": "CE_X_SITE_Y"
@@ -3761,6 +3822,9 @@ A.1.  Create A New Bearer
 
        Figure 22: Example of a Response Message Body with the Bearer
                                  Reference
+
+   Note that the response also indicates that Sync Phy is supported for
+   this bearer.
 
 A.2.  Create An AC over An Existing Bearer
 
