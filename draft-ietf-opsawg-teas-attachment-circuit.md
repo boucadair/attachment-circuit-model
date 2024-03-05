@@ -1231,9 +1231,7 @@ The attachment circuit in this case uses a SAP identifier to refer to the physic
 ~~~~ json
 {::include-fold ./json-examples/svc/network-to-network-static.json}
 ~~~~
-{: #add-attachment-circuit-bgp-routing title="Message Body of a Request to Create ACs for Connecting CEs to a Provider Network"}
-
-
+{: #add-attachment-circuit-static-routing title="Message Body of a Request to Create ACs for Connecting Two Provider Network"}
 
 # Acknowledgments
 {:numbered="false"}
