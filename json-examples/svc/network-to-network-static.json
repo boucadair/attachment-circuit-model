@@ -1,0 +1,78 @@
+{
+    "attachment-circuits": {
+        "ac": [
+            {
+                "name": "IPT-NET-ABC",
+                "customer-name": "CUST-ABC",
+                "description": "CUST-ABC-114",
+                "peer-sap-id": "sap#114",
+                "ip-connection": {
+                    "ipv4": {
+                        "local-address": "192.168.1.1",
+                        "prefix-length": 24,
+                        "address-allocation-type": "ac-common:static-address"
+                    }
+                },
+                "l2-connection": {
+                    "encapsulation": {
+                        "dot1q": {
+                            "tag-type": "vpn-common:c-vlan",
+                            "cvlan-id": "114"
+                        }
+                    },
+                    "bearer-reference": "line-114"
+                },
+                "routing-protocols": {
+                    "routing-protocol": {
+                        "id": "static",
+                        "type": "vpn-common:static-routing",
+                        "static": {
+                            "cascaded-lan-prefixes": {
+                                "ipv4-lan-prefixes": {
+                                    "lan": "10.0.0.0/24",
+                                    "next-hop": "192.168.1.1"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            {
+                "name": "IPT-NET-DCE",
+                "customer-name": "CUST-DCE",
+                "description": "CUST-ABC-114",
+                "peer-sap-id": "sap#114",
+                "ip-connection": {
+                    "ipv4": {
+                        "local-address": "10.0.0.1",
+                        "prefix-length": 24,
+                        "address-allocation-type": "ac-common:static-address"
+                    }
+                },
+                "l2-connection": {
+                    "encapsulation": {
+                        "dot1q": {
+                            "tag-type": "vpn-common:c-vlan",
+                            "cvlan-id": "114"
+                        }
+                    },
+                    "bearer-reference": "line-114"
+                },
+                "routing-protocols": {
+                    "routing-protocol": {
+                        "id": "static",
+                        "type": "vpn-common:static-routing",
+                        "static": {
+                            "cascaded-lan-prefixes": {
+                                "ipv4-lan-prefixes": {
+                                    "lan": "192.168.1.0/24",
+                                    "next-hop": "10.0.0.1"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        ]
+    }
+}
