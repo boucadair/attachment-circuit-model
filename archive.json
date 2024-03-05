@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-03-03T00:37:16.735013+00:00",
+  "timestamp": "2024-03-05T00:34:59.153125+00:00",
   "repo": "boucadair/attachment-circuit-model",
   "labels": [
     {
@@ -2442,7 +2442,8 @@
       "author": "boucadair",
       "authorAssociation": "OWNER",
       "assignees": [
-        "oscargdd"
+        "oscargdd",
+        "sbarguil"
       ],
       "labels": [
         "AC-SVC"
@@ -2570,7 +2571,7 @@
       "id": "I_kwDOIiAkrc5_785d",
       "title": "(from Richard) synch-E capable",
       "url": "https://github.com/boucadair/attachment-circuit-model/issues/191",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "boucadair",
       "authorAssociation": "OWNER",
       "assignees": [],
@@ -2579,8 +2580,8 @@
       ],
       "body": "Hi ac folks,\r\n\r\nI was just working on deck for O-RAN to integrate Fronthaul in 5G transport transport/cloud .\r\nThis lead me thinking that it can be interesting to have some \u201ccapability\u201d flag on bearer to indicate that synchE is supported (or maybe more largely Time Sensitive Networking is supported). \r\nWould that make sense that kind of flag in bearer-svc ? \r\n\r\nThe idea is to verify that we provision ac for Fronthaul (acaas) on synch-E capable links.\r\n\r\n",
       "createdAt": "2024-02-21T10:39:32Z",
-      "updatedAt": "2024-02-21T10:40:11Z",
-      "closedAt": null,
+      "updatedAt": "2024-03-04T09:09:21Z",
+      "closedAt": "2024-03-04T09:09:21Z",
       "comments": []
     },
     {
@@ -2595,9 +2596,17 @@
       "labels": [],
       "body": "Today bfd-profile is attached to the ip prefix.\r\nUsually you want bfd to the nexthop(s), since an IP prefix is a range (not /32).\r\nShouldn't we add bfd-profile to the next-hop instead ?\r\n\r\n```\r\n     |  |     |     +--rw ipv4-lan-prefixes* [lan next-hop]\r\n     |  |     |     |       {vpn-common:ipv4}?\r\n     |  |     |     |  +--rw lan            inet:ipv4-prefix\r\n     |  |     |     |  +--rw lan-tag?       string\r\n     |  |     |     |  +--rw next-hop       union\r\n     |  |     |     |  +--rw metric?        uint32\r\n     |  |     |     |  +--rw bfd-profile?   bfd-profile-reference\r\n```\r\n",
       "createdAt": "2024-02-29T11:12:17Z",
-      "updatedAt": "2024-02-29T11:12:17Z",
+      "updatedAt": "2024-03-04T16:20:31Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "boucadair",
+          "authorAssociation": "OWNER",
+          "body": "The list is indexed per next-hop as well\r\n\r\n+--rw ipv4-lan-prefixes* **[lan next-hop]**",
+          "createdAt": "2024-03-04T16:20:29Z",
+          "updatedAt": "2024-03-04T16:20:29Z"
+        }
+      ]
     }
   ],
   "pulls": [
@@ -7305,24 +7314,26 @@
       "id": "PR_kwDOIiAkrc5oAdoj",
       "title": "sync phy support",
       "url": "https://github.com/boucadair/attachment-circuit-model/pull/192",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "boucadair",
       "authorAssociation": "OWNER",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2024-02-27T07:43:27Z",
-      "updatedAt": "2024-02-27T08:28:37Z",
+      "updatedAt": "2024-03-04T09:09:21Z",
       "baseRepository": "boucadair/attachment-circuit-model",
       "baseRefName": "main",
       "baseRefOid": "4861d18408d20ad32524908d77170c07021a6cd0",
       "headRepository": "boucadair/attachment-circuit-model",
       "headRefName": "sync-phy-support",
       "headRefOid": "6d278503b92f3d45564ef57ba2ac4872ab3179b9",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2024-03-04T09:09:20Z",
+      "mergedAt": "2024-03-04T09:09:20Z",
+      "mergedBy": "boucadair",
+      "mergeCommit": {
+        "oid": "79b2830649247bb82f225683cc9f1451243cfc20"
+      },
       "comments": [],
       "reviews": []
     }
