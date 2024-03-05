@@ -1226,7 +1226,7 @@ Interconnecting two distinct networks is a fundamental requirement for enabling 
 {: #provider-network title="Illustration of Provider Network Scenario"}
 
 
-The attachment circuit in this case uses a SAP identifier to refer to the physical interface used for the connection between the PEs. The attachment circuit includes all the additional logical attributes to describe the connection between the two ends, including VLAN information, IP addressing and Static Route to connect two networks. 
+The attachment circuit in this case uses a SAP identifier to refer to the physical interface used for the connection between the PEs. The attachment circuit includes all the additional logical attributes to describe the connection between the two ends, including VLAN information, IP addressing and Static Route to connect two networks.
 
 ~~~~ json
 {::include-fold ./json-examples/svc/network-to-network-static.json}
