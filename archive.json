@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-03-05T00:34:59.153125+00:00",
+  "timestamp": "2024-03-07T00:28:46.035186+00:00",
   "repo": "boucadair/attachment-circuit-model",
   "labels": [
     {
@@ -7334,6 +7334,32 @@
       "mergeCommit": {
         "oid": "79b2830649247bb82f225683cc9f1451243cfc20"
       },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 194,
+      "id": "PR_kwDOIiAkrc5otX-j",
+      "title": "Add sample",
+      "url": "https://github.com/boucadair/attachment-circuit-model/pull/194",
+      "state": "OPEN",
+      "author": "sbarguil",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "#178",
+      "createdAt": "2024-03-05T12:22:59Z",
+      "updatedAt": "2024-03-05T12:28:23Z",
+      "baseRepository": "boucadair/attachment-circuit-model",
+      "baseRefName": "main",
+      "baseRefOid": "0987d75015d34697e6722d93240f54980eceea7b",
+      "headRepository": "boucadair/attachment-circuit-model",
+      "headRefName": "example-two-network-connected",
+      "headRefOid": "431f3468998cf87ac7e8d8a61ff2951568c9f650",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
       "comments": [],
       "reviews": []
     }
