@@ -2142,6 +2142,8 @@ Table of Contents
    and [IEEE802.1Qcp].
 
    <CODE BEGINS> file "ietf-ac-ntw@2022-11-30.yang"
+   =============== NOTE: '\' line wrapping per RFC 8792 ================
+
    module ietf-ac-ntw {
      yang-version 1.1;
      namespace "urn:ietf:params:xml:ns:yang:ietf-ac-ntw";
@@ -2204,7 +2206,8 @@ Table of Contents
      import ietf-ac-svc {
        prefix ac-svc;
        reference
-         "RFC SSSS: YANG Data Models for Bearers and 'Attachment Circuits'
+         "RFC SSSS: YANG Data Models for Bearers and 'Attachment \
+                                                               Circuits'
                     -as-a-Service (ACaaS)";
      }
 
@@ -3016,7 +3019,8 @@ Table of Contents
             If set, the default routes are advertised to a peer.";
        }
        leaf site-of-origin {
-         when "derived-from-or-self(../address-family, 'vpn-common:ipv4'"
+         when "derived-from-or-self(../address-family, 'vpn-common:ipv4\
+                                                                      '"
             + " or 'vpn-common:dual-stack')" {
            description
              "Only applies if IPv4 is activated.";
@@ -3032,7 +3036,8 @@ Table of Contents
                       Section 7";
        }
        leaf ipv6-site-of-origin {
-         when "derived-from-or-self(../address-family, 'vpn-common:ipv6'"
+         when "derived-from-or-self(../address-family, 'vpn-common:ipv6\
+                                                                      '"
             + " or 'vpn-common:dual-stack')" {
            description
              "Only applies if IPv6 is activated.";
