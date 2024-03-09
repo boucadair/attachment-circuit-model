@@ -172,8 +172,8 @@ Table of Contents
       capabilities (e.g., Virtual Router Redundancy Protocol (VRRP)).
 
      .-------.                .--------------------.         .-------.
-     │       +------.         |                    +---AC----+       |
-     │ CE#1  │      |         |                    +---AC----+ CE#3  |
+     |       +------.         |                    +---AC----+       |
+     | CE#1  |      |         |                    +---AC----+ CE#3  |
      '-------'      |         |                    |         '-------'
                     +---AC----+     Network        |
      .-------.      |         |                    |
