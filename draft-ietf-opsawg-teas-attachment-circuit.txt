@@ -1888,7 +1888,8 @@ Table of Contents
      import ietf-ac-svc {
        prefix ac-svc;
        reference
-         "RFC XXXX: YANG Service Data Models for Attachment Circuits";
+         "RFC XXXX: YANG Data Models for Bearers and 'Attachment Circuits'
+                    -as-a-Service (ACaaS)";
      }
 
      organization
@@ -1928,7 +1929,8 @@ Table of Contents
        description
          "Initial revision.";
        reference
-         "RFC xxxx: A YANG Service Data Model for Attachment Circuits";
+         "RFC XXXX: YANG Data Models for Bearers and 'Attachment Circuits'
+                    -as-a-Service (ACaaS)";
      }
 
      // Typedef to ease referencing cross-modules
