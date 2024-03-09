@@ -3652,7 +3652,7 @@ Table of Contents
 8.2.  Informative References
 
    [AC-svc-Tree]
-              "Full ACaaS Tree Structure", 2023,
+              "Full ACaaS Tree Structure", 2024,
               <https://github.com/boucadair/attachment-circuit-
               model/blob/main/yang/full-trees/ac-svc-without-
               groupings.txt>.
@@ -3727,7 +3727,7 @@ Table of Contents
               synchronization based on the physical layer", January
               2024, <https://www.itu.int/rec/T-REC-G.781>.
 
-   [PYANG]    "pyang", 2023, <https://github.com/mbj4668/pyang>.
+   [PYANG]    "pyang", 2024, <https://github.com/mbj4668/pyang>.
 
    [RFC2080]  Malkin, G. and R. Minnear, "RIPng for IPv6", RFC 2080,
               DOI 10.17487/RFC2080, January 1997,
