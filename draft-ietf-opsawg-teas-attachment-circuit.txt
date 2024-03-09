@@ -126,7 +126,7 @@ Table of Contents
 
    Connectivity services are provided by networks to customers via
    dedicated terminating points, such as Service Functions (SFs)
-   [RFC7665], customer edges (CEs), peer Autonomous System Border
+   [RFC7665], Customer Edges (CEs), peer Autonomous System Border
    Routers (ASBRs), data centers gateways, or Internet Exchange Points.
    A connectivity service is basically about ensuring data transfer
    received from or destined to a given terminating point to or from
@@ -353,11 +353,11 @@ Table of Contents
    Figure 1 depicts two target topology flavors that involve ACs.  These
    topologies have the following characteristics:
 
-   *  A Customer Edges (CEs) can be either a physical device or a
-      logical entity.  Such logical entity is typically a software
-      component (e.g., a virtual service function that is hosted within
-      the provider's network or a third-party infrastructure).  A CE is
-      seen by the network as a peer SAP.
+   *  A CE can be either a physical device or a logical entity.  Such
+      logical entity is typically a software component (e.g., a virtual
+      service function that is hosted within the provider's network or a
+      third-party infrastructure).  A CE is seen by the network as a
+      peer SAP.
 
    *  An AC service request may include one or multiple ACs, which may
       be associated to a single CE or multiple CEs.
@@ -381,7 +381,9 @@ Table of Contents
       (e.g., CE#3), distinct PEs (e.g., CE#34), etc.  The network
       provider uses this request to decide where to terminate the AC in
       the network provider network and also whether to enable specific
-      capabilities (e.g., Virtual Router Redundancy Protocol (VRRP)).
+      capabilities (e.g., Virtual Router Redundancy Protocol (VRRP)
+      [RFC5798]).  Note that placement constraints may also be requested
+      during the instantiation of the underlying bearers (Section 4.1).
 
      .-------.                .--------------------.         .-------.
      |       +------.         |                    +---AC----+       |
@@ -1185,8 +1187,7 @@ Table of Contents
    reference to the 'routing-profile-identifier' defined in
    Section 4.2.2, so that additional constraints can be applied to a
    specific instance of each routing protocol.  Moreover, the module
-   supports Virtual Router Redundancy Protocol (VRRP)
-   (Section 4.2.5.3.6).
+   supports VRRP (Section 4.2.5.3.6).
 
            +--rw specific-provisioning-profiles
            |  ...
