@@ -1305,7 +1305,7 @@ A.2.  Network and Service AC References
 
 Acknowledgments
 
-   Thanks to Bo Wu for the review and comments.
+   Thanks to Bo Wu and Qin Wu for the review and comments.
 
    Thanks to Martin Björklund for the yangdoctors review.
 
