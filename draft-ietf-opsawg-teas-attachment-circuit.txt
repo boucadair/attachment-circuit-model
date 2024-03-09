@@ -4930,24 +4930,14 @@ A.9.  Connect Customer Network (CE) Through BGP
    point interfaces rely upon a physical bearer (Line-113) to reach the
    provider network.
 
-   =============== NOTE: '\' line wrapping per RFC 8792 ================
-
-   +------------------------+                       +------------------\
-                                                                      -+
-   |  Provider Network      |                       | Customer \
-                                                              Network  |
-   |                        |                       \
-                                                   |                   |
-   |        +------------+  |  Attachment-Circuit 1 | +-------\
-                                                             +         |
-   |        | PE1(VRF11) +----------------------------+ CE1   | \
-                                                               AS65536 |
-   |        |            |  |    Bearer=Line-113    | +-------\
-                                                             +         |
-   |        | PE1(VRF12) |  |                       \
-                                                   |                   |
-   |        |            |  |                       +------------------\
-                                                                      -+
+   +------------------------+                      +------------------+
+   |  Provider Network      |                      | Customer Network |
+   |                        |                      |                  |
+   |        +------------+  | Attachment-Circuit 1 | +------+         |
+   |        | PE1(VRF11) +---------------------------+ CE1  | AS65536 |
+   |        |            |  |   Bearer=Line-113    | +------+         |
+   |        | PE1(VRF12) |  |                      |                  |
+   |        |            |  |                      +------------------+
    |        | PE1(VRF1n) |  |
    |        |            |  |
    |        +------------+  |
