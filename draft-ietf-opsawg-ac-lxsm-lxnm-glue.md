@@ -293,6 +293,6 @@ The provisioned AC at PE1 can be retrieved using the AC network model as depicte
 # Acknowledgments
 {:numbered="false"}
 
-Thanks to Bo Wu for the review and comments.
+Thanks to Bo Wu and Qin Wu for the review and comments.
 
 Thanks to Martin Björklund for the yangdoctors review.
