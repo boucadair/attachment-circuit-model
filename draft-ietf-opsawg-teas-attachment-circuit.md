@@ -196,7 +196,7 @@ Network controller:
 : Denotes a functional entity responsible for the management of the service provider network.
 
 Service orchestrator:
-: Refers to a functional entity that interacts with the customer of a network service. The service orchestrator is typically responsible for the attachment circuits, the Provider Edge (PE) selection, and requesting the activation of the requested service to a network controller.
+: Refers to a functional entity that interacts with the customer of a network service. The service orchestrator is typically responsible for the attachment circuits, the PE selection, and requesting the activation of the requested service to a network controller.
 
 Service provider network:
 : A network that is able to provide network services (e.g., Layer 2 VPN, Layer 3 VPN, or Network Slice Services).
