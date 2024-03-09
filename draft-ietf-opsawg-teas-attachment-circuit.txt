@@ -4751,8 +4751,8 @@ A.8.  Connecting a Virtualized Environment Running in a Cloud Provider
        |   -+-----+-----+---+-----------------------            |
        |                    |.1                                 |
        |                .---+----.                              |
-       |                | CLOUD  | BGP_ASN: 65536               |
-       |                |PROVIDER| BGP md5:                     |
+       |                | Cloud  | BGP_ASN: 65536               |
+       |                |Provider| BGP md5:                     |
        |                |   GW   |   "nyxNER_c5sdn608fFQl3331d" |
        |                '---+----'                              |
        |                    | ^ .2                              |
