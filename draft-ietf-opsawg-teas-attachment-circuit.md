@@ -76,7 +76,7 @@ informative:
 
   AC-svc-Tree:
     title: Full ACaaS Tree Structure
-    date: 2023
+    date: 2024
     target: https://github.com/boucadair/attachment-circuit-model/blob/main/yang/full-trees/ac-svc-without-groupings.txt
 
   Instance-Data:
@@ -86,7 +86,7 @@ informative:
 
   PYANG:
     title: pyang
-    date: 2023
+    date: 2024
     target: https://github.com/mbj4668/pyang
 
   IEEE802.1AB:
