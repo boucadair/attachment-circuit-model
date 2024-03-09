@@ -1538,6 +1538,8 @@ module: ietf-ac-glue
 <div class="breakable sourcecode" id="section-5-1">
 <pre>&lt;CODE BEGINS&gt; file "ietf-ac-glue@2023-11-13.yang"
 
+=============== NOTE: '\' line wrapping per RFC 8792 ================
+
 module ietf-ac-glue {
   yang-version 1.1;
   namespace "urn:ietf:params:xml:ns:yang:ietf-ac-glue";
@@ -1567,7 +1569,9 @@ module ietf-ac-glue {
   import ietf-ac-svc {
     prefix ac-svc;
     reference
-      "RFC SSSS: YANG Service Data Models for Attachment Circuits";
+      "RFC SSSS: YANG Data Models for Bearers and 'Attachment \
+                                                            Circuits'
+                 -as-a-Service (ACaaS)";
   }
   import ietf-ac-ntw {
     prefix ac-ntw;
