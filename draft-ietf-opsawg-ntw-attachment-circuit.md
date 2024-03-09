@@ -790,7 +790,7 @@ This module uses types defined in {{!RFC6991}}, {{!RFC8177}}, {{!RFC8294}}, {{!R
 
 ~~~~ yang
 <CODE BEGINS> file "ietf-ac-ntw@2022-11-30.yang"
-{::include ./yang/ietf-ac-ntw.yang}
+{::include-fold ./yang/ietf-ac-ntw.yang}
 <CODE ENDS>
 ~~~~
 
