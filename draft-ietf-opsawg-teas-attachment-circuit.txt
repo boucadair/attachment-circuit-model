@@ -410,7 +410,9 @@ Table of Contents
    expose an interface to manage ACs network-wide.  Customers can then
    request a bearer or an attachment circuit to be put in place, and
    then refer to that bearer or AC when requesting services that are
-   bound to the bearer or AC.
+   bound to the bearer or AC.  [I-D.ietf-opsawg-ac-lxsm-lxnm-glue]
+   specifies augmentations to the L2SM and the L3SM to bind LxVPN
+   services to ACs.
 
    Figure 2 shows the positioning of the AC service model is the overall
    service delivery process.
@@ -3664,6 +3666,15 @@ Table of Contents
               netmod-rfc8407bis-09, 28 February 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-netmod-
               rfc8407bis-09>.
+
+   [I-D.ietf-opsawg-ac-lxsm-lxnm-glue]
+              Boucadair, M., Roberts, R., Barguil, S., and O. G. de
+              Dios, "A YANG Data Model for Augmenting VPN Service and
+              Network Models with Attachment Circuits", Work in
+              Progress, Internet-Draft, draft-ietf-opsawg-ac-lxsm-lxnm-
+              glue-06, 9 February 2024,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
+              ac-lxsm-lxnm-glue-06>.
 
    [I-D.ietf-opsawg-ntw-attachment-circuit]
               Boucadair, M., Roberts, R., de Dios, O. G., Barguil, S.,
