@@ -4655,7 +4655,7 @@ A.7.  Binding Attachment Circuits to an IETF Network Slice
          "slo-sle-template": [
            {
              "id": "low-latency-template",
-             "template-description": "Lowest possible latencey \
+             "template-description": "Lowest possible latency \
                                                     forwarding behavior"
            }
          ]
