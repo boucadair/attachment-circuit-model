@@ -872,8 +872,8 @@ module ietf-ac-ntw {
          If set, the default routes are advertised to a peer.";
     }
     leaf site-of-origin {
-      when "derived-from-or-self(../address-family, 'vpn-common:ipv4'"
-         + " or 'vpn-common:dual-stack')" {
+      when "derived-from-or-self(../address-family, "
+         + "'vpn-common:ipv4' or 'vpn-common:dual-stack')" {
         description
           "Only applies if IPv4 is activated.";
       }
@@ -888,8 +888,8 @@ module ietf-ac-ntw {
                    Section 7";
     }
     leaf ipv6-site-of-origin {
-      when "derived-from-or-self(../address-family, 'vpn-common:ipv6'"
-         + " or 'vpn-common:dual-stack')" {
+      when "derived-from-or-self(../address-family, "
+         + "'vpn-common:ipv6' or 'vpn-common:dual-stack')" {
         description
           "Only applies if IPv6 is activated.";
       }
