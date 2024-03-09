@@ -67,8 +67,8 @@ module ietf-ac-svc {
     description
       "Initial revision.";
     reference
-      "RFC XXXX: YANG Data Models for Bearers and 'Attachment Circuits'
-                 -as-a-Service (ACaaS)";
+      "RFC XXXX: YANG Data Models for Bearers and 'Attachment
+                  Circuits'-as-a-Service (ACaaS)";
   }
 
   /* A set of typedefs to ease referencing cross-modules */
