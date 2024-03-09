@@ -17,8 +17,8 @@ module ietf-bearer-svc {
   import ietf-ac-svc {
     prefix ac-svc;
     reference
-      "RFC XXXX: YANG Data Models for Bearers and 'Attachment Circuits'
-                 -as-a-Service (ACaaS)";
+      "RFC XXXX: YANG Data Models for Bearers and 'Attachment
+                  Circuits'-as-a-Service (ACaaS)";
   }
 
   organization
@@ -58,8 +58,8 @@ module ietf-bearer-svc {
     description
       "Initial revision.";
     reference
-      "RFC XXXX: YANG Data Models for Bearers and 'Attachment Circuits'
-                 -as-a-Service (ACaaS)";
+      "RFC XXXX: YANG Data Models for Bearers and 'Attachment
+                  Circuits'-as-a-Service (ACaaS)";
   }
 
   // Typedef to ease referencing cross-modules
