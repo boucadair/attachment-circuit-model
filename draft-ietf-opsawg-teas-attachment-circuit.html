@@ -3825,7 +3825,8 @@ module ietf-ac-svc {
     description
       "Initial revision.";
     reference
-      "RFC XXXX: YANG Service Data Models for Attachment Circuits";
+      "RFC XXXX: YANG Data Models for Bearers and 'Attachment Circuits'
+                 -as-a-Service (ACaaS)";
   }
 
   /* A set of typedefs to ease referencing cross-modules */
@@ -3856,8 +3857,7 @@ module ietf-ac-svc {
       + "/ac-svc:encryption-profile-identifier/ac-svc:id";
     }
     description
-      "Defines a type to an encryption profile for referencing
-       purposes.";
+      "Defines a reference to an encryption profile.";
   }
 
   typedef qos-profile-reference {
@@ -3868,7 +3868,7 @@ module ietf-ac-svc {
       + "/ac-svc:qos-profile-identifier/ac-svc:id";
     }
     description
-      "Defines a type to a QoS profile for referencing purposes.";
+      "Defines a reference to a QoS profile.";
   }
 
   typedef bfd-profile-reference {
@@ -3879,7 +3879,7 @@ module ietf-ac-svc {
       + "/ac-svc:bfd-profile-identifier/ac-svc:id";
     }
     description
-      "Defines a type to a BFD profile for referencing purposes.";
+      "Defines a reference to a BFD profile.";
   }
 
   typedef forwarding-profile-reference {
@@ -3890,8 +3890,7 @@ module ietf-ac-svc {
       + "/ac-svc:forwarding-profile-identifier/ac-svc:id";
     }
     description
-      "Defines a type to a forwarding profile for referencing
-       purposes.";
+      "Defines a reference to a forwarding profile.";
   }
 
   typedef routing-profile-reference {
@@ -3902,8 +3901,7 @@ module ietf-ac-svc {
       + "/ac-svc:routing-profile-identifier/ac-svc:id";
     }
     description
-      "Defines a type to a routing profile for referencing
-       purposes.";
+      "Defines a reference to a routing profile.";
   }
 
   typedef service-profile-reference {
@@ -3914,8 +3912,7 @@ module ietf-ac-svc {
       + "/ac-svc:id";
     }
     description
-      "Defines a type to a service profile for referencing
-       purposes.";
+      "Defines a reference to a service profile.";
   }
 
   /******************** Reusable groupings ********************/
