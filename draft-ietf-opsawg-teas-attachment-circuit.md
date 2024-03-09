@@ -1172,36 +1172,12 @@ Next, API workflows can be initiated:
 
 CE-PE routing using BGP is a common scenario in the context of MPLS VPNs and is widely used in enterprise networks. In the example depicted in {{provider-network}}, the CE routers are customer-owned devices belonging to an Autonomous System (ASN 65536). CEs are located at the edge of the provider's network (PE, or Provider Edge) and use point-to-point interfaces to establish BGP sessions. The point-to-point interfaces rely upon a physical bearer (Line-113) to reach the provider network.
 
-
 ~~~~ aasvg
-+------------------------+                       +-------------------+
-|  Provider Network      |                       | Customer Network  |
-|                        |                       |                   |
-|        +------------+  |  Attachment-Circuit 1 | +-------+         |
-|        | PE1(VRF11) +----------------------------+ CE1   | AS65536 |
-|        |            |  |    Bearer=Line-113    | +-------+         |
-|        | PE1(VRF12) |  |                       |                   |
-|        |            |  |                       +-------------------+
-|        | PE1(VRF1n) |  |
-|        |            |  |
-|        +------------+  |
-| AS1                    |
-|        +------------+  |
-|        | PE2(VRF21) |  |
-|        +------------+  |
-|              .         |
-|              .         |
-|              .         |
-|        +------------+  |
-|        | PEm(VRFmn) |  |
-|        +------------+  |
-|                        |
-+------------------------+
+{::include-fold ./figures/ce-to-provider-bgp.txt}
 ~~~~
 {: #provider-network title="Illustration of Provider Network Scenario"}
 
-
-The attachment circuit in this case uses a SAP identifier to refer to the physical interface used for the connection between the PE and the CE. The attachment circuit includes all the additional logical attributes to describe the connection between the two ends, including VLAN information and IP addressing. Also, the configuration details of the BGP session makes use of peer group details instead of defining the entire configuration inside the 'neighbor' data node.
+The attachment circuit in this case use a SAP identifier to refer to the physical interface used for the connection between the PE and the CE. The attachment circuit includes all the additional logical attributes to describe the connection between the two ends, including VLAN information and IP addressing. Also, the configuration details of the BGP session makes use of peer group details instead of defining the entire configuration inside the 'neighbor' data node.
 
 ~~~~ json
 {::include-fold ./json-examples/svc/provider-network-interas-option-a.json}
