@@ -5,14 +5,14 @@
 OPSAWG                                                 M. Boucadair, Ed.
 Internet-Draft                                                    Orange
 Intended status: Standards Track                         R. Roberts, Ed.
-Expires: 10 September 2024                                       Juniper
+Expires: 12 September 2024                                       Juniper
                                                            O. G. D. Dios
                                                               Telefonica
                                                            S. B. Giraldo
                                                                    Nokia
                                                                    B. Wu
                                                      Huawei Technologies
-                                                            9 March 2024
+                                                           11 March 2024
 
 
   YANG Data Models for Bearers and 'Attachment Circuits'-as-a-Service
@@ -62,7 +62,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 10 September 2024.
+   This Internet-Draft will expire on 12 September 2024.
 
 Copyright Notice
 
@@ -3449,7 +3449,7 @@ Table of Contents
       data nodes may be able to manipulate service-specific policies to
       be applied for an AC.
 
-      This container defined with "nacm:default-deny- write" tagging.
+      This container is defined with "nacm:default-deny- write" tagging.
 
    'ac':  An attacker who is able to access this data node can modify
       the attributes of an AC (e.g., QoS, bandwidth, routing protocols,
@@ -4412,7 +4412,7 @@ A.7.  Binding Attachment Circuits to an IETF Network Slice
    First, Figure 35 describes the end-to-end network topology as well
    the orchestration scopes:
 
-   *  The topology is made up of two sites (site1 and site2),
+   *  The topology is made up of two sites ("site1" and "site2"),
       interconnected via a Transport Network (e.g.  IP/MPLS Network).
       An SF is deployed within each site in a dedicated IP Subnet.
 
@@ -4786,7 +4786,7 @@ A.8.  Connecting a Virtualized Environment Running in a Cloud Provider
    "bearer-reference" set to the value of the "Connection Identifier".
 
   Customer                                                       Cloud
-Orchestration  DIRECT INTERCONNECTION ORDERING (API)            Provider
+Orchestration       DIRECT INTERCONNECTION ORDERING (API)       Provider
                ------------------------------------------------>
 
                Connection Created with "Connection ID:1234-56789"
@@ -4810,7 +4810,7 @@ Orchestration  DIRECT INTERCONNECTION ORDERING (API)            Provider
 
    *  Service provider network via the Attachment Circuit model.  This
       request can be used in conjunction with additional requests based
-      on L3SM (VPN provisioning) or Network Slice Service model (5G
+      on the L3SM (VPN provisioning) or Network Slice Service model (5G
       hybrid Cloud deployment).
 
    Figure 42 shows the message body of the request to create the
@@ -4942,8 +4942,8 @@ A.9.  Connect Customer Network (CE) Through BGP
    belonging to an Autonomous System (ASN 65536).  CEs are located at
    the edge of the provider's network (PE, or Provider Edge) and use
    point-to-point interfaces to establish BGP sessions.  The point-to-
-   point interfaces rely upon a physical bearer (Line-113) to reach the
-   provider network.
+   point interfaces rely upon a physical bearer ("Line-113") to reach
+   the provider network.
 
    +------------------------+                      +------------------+
    |  Provider Network      |                      | Customer Network |
