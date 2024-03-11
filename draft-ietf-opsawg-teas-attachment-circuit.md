@@ -842,7 +842,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:
    'service-provisioning-profiles':
    : An attacker who has access to these data nodes may be able
    to manipulate service-specific policies to be applied for an AC.
-   : This container defined with "nacm:default-deny- write" tagging.
+   : This container is defined with "nacm:default-deny- write" tagging.
 
    'ac':
    : An attacker who is able to access this data node can modify
@@ -1072,7 +1072,7 @@ This example shows how the AC service model complements {{?I-D.ietf-teas-ietf-ne
 
 First, {{slice-vlan-1}} describes the end-to-end network topology as well the orchestration scopes:
 
-- The topology is made up of two sites (site1 and site2), interconnected via a Transport Network (e.g. IP/MPLS Network). An SF is deployed within each site in a dedicated IP Subnet.
+- The topology is made up of two sites ("site1" and "site2"), interconnected via a Transport Network (e.g. IP/MPLS Network). An SF is deployed within each site in a dedicated IP Subnet.
 - A 5G SMO is responsible for the deployment of SFs and the indirect management of a local Gateway (i.e., CE device).
 - An IETF Network Slice Controller is responsible for the deployment of IETF Network Slices across the TN.
 
@@ -1132,7 +1132,7 @@ This example ({{cloud-provider-1}}) shows how the AC service model can be used t
 
 ~~~~ aasvg
   Customer                                                       Cloud
-Orchestration  DIRECT INTERCONNECTION ORDERING (API)            Provider
+Orchestration       DIRECT INTERCONNECTION ORDERING (API)       Provider
                ------------------------------------------------>
 
                Connection Created with "Connection ID:1234-56789"
@@ -1153,7 +1153,7 @@ Orchestration  DIRECT INTERCONNECTION ORDERING (API)            Provider
 Next, API workflows can be initiated:
 
 * Cloud Provider for the configuration as per (3) above.
-* Service provider network via the Attachment Circuit model. This request can be used in conjunction with additional requests based on L3SM (VPN provisioning) or Network Slice Service model (5G hybrid Cloud deployment).
+* Service provider network via the Attachment Circuit model. This request can be used in conjunction with additional requests based on the L3SM (VPN provisioning) or Network Slice Service model (5G hybrid Cloud deployment).
 
 {{cloud-provider-ac}} shows the message body of the request to create the required ACs to connect the Cloud Provider Virtualized (VM) using the Attachment Circuit module.
 
@@ -1174,7 +1174,7 @@ Next, API workflows can be initiated:
 
 ## Connect Customer Network (CE) Through BGP
 
-CE-PE routing using BGP is a common scenario in the context of MPLS VPNs and is widely used in enterprise networks. In the example depicted in {{provider-network}}, the CE routers are customer-owned devices belonging to an Autonomous System (ASN 65536). CEs are located at the edge of the provider's network (PE, or Provider Edge) and use point-to-point interfaces to establish BGP sessions. The point-to-point interfaces rely upon a physical bearer (Line-113) to reach the provider network.
+CE-PE routing using BGP is a common scenario in the context of MPLS VPNs and is widely used in enterprise networks. In the example depicted in {{provider-network}}, the CE routers are customer-owned devices belonging to an Autonomous System (ASN 65536). CEs are located at the edge of the provider's network (PE, or Provider Edge) and use point-to-point interfaces to establish BGP sessions. The point-to-point interfaces rely upon a physical bearer ("Line-113") to reach the provider network.
 
 ~~~~ aasvg
 {::include-fold ./figures/ce-to-provider-bgp.txt}
