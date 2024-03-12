@@ -151,7 +151,7 @@ Service orchestrator:
 : A service orchestrator may interact with one or more network controllers.
 
 Service provider network:
-: A network that is able to provide network services (e.g., L2VPN, L3VPN, or Network Slice Services {{?RFC9545}}).
+: A network that is able to provide network services (e.g., L2VPN, L3VPN, or Network Slice Services {{?RFC9543}}).
 
 Service provider:
 : A service provider that offers network services (e.g., L2VPN, L3VPN, or Network Slice Services).
