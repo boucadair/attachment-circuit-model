@@ -1205,33 +1205,27 @@ This scenario allows the provider to maintain a list of ACs belonging to the sam
 
 ## Connect Networks Through Pure IP
 
-Interconnecting two distinct networks is a fundamental requirement for enabling communication between devices in different locations or segments. This connectivity can be achieved through various means, one of which is using IP connectivity without relying on specific VPN technologies. In this example, we illustrate how to interconnect two networks, labeled Provider Network A and Provider Network B, using IP connectivity. This method involves configuring a router to facilitate communication between devices in each network. By establishing IP connectivity between the networks and using the attachment circuit model to express this desire.
-
+Interconnecting two distinct networks is a fundamental requirement for enabling communication between devices in different locations or segments. This connectivity can be achieved through various means, one of which is using IP connectivity without relying on specific VPN technologies. In this example, we illustrate how to interconnect two networks, labeled "Provider Network A" and "Provider Network B", using IP connectivity. This method involves configuring adjacent routers to facilitate communication between devices in each network. By establishing IP connectivity between the networks and using the attachment circuit model to express this desire.
 
 ~~~~ aasvg
 +------------------------+                       +-------------------------+
 |  Provider Network A    |                       | Provider Network B      |
-|                        |                       |                         |
+|       AS65536          |                       |      AS65536            |
 |        +------------+  |  Attachment-Circuit 1 | +------------+          |
-|        | PE1        +----------------------------+ PE1        | AS65536  |
-|        |            |  |    Bearer=Line-114    | +------------+          |
-|        | PE1(VRF12) |  |                       |                         |
-|        |            |  |                       +-------------------------+
-|        | PE1(VRF1n) |  |
-|        |            |  |
-|        +------------+  |
-| AS1                    |
-+------------------------+
+|        | ASBR-A-1   +----------------------------+ ASBR-B-1   |          |
+|        +------------+  |    Bearer=Line-114    | +------------+          |
+|                        |                       |                         |
++------------------------+                       +-------------------------+
 ~~~~
 {: #provider-network2 title="Illustration of Provider-to-Provider Network Scenario"}
 
 
-The attachment circuit in this case uses a SAP identifier to refer to the physical interface used for the connection between the PEs. The attachment circuit includes all the additional logical attributes to describe the connection between the two ends, including VLAN information, IP addressing and Static Route to connect two networks.
+The attachment circuit in this case uses a SAP identifier to refer to the physical interface used for the connection between the PEs ("ASBR-A-1" and "ASBR-B-1"). The attachment circuit includes all the additional logical attributes to describe the connection between the two ends, including VLAN information, IP addressing, and static routes to connect two networks.
 
 ~~~~ json
 {::include-fold ./json-examples/svc/network-to-network-static.json}
 ~~~~
-{: #add-attachment-circuit-static-routing title="Message Body of a Request to Create ACs for Connecting Two Provider Network"}
+{: #add-attachment-circuit-static-routing title="Message Body of a Request to Create ACs for Connecting Two Provider Networks"}
 
 # Acknowledgments
 {:numbered="false"}
