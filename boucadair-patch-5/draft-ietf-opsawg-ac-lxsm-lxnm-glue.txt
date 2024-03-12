@@ -5,12 +5,12 @@
 OPSAWG                                                 M. Boucadair, Ed.
 Internet-Draft                                                    Orange
 Intended status: Standards Track                              R. Roberts
-Expires: 15 August 2024                                          Juniper
+Expires: 13 September 2024                                       Juniper
                                                            S. B. Giraldo
                                                                    Nokia
                                                            O. G. D. Dios
                                                               Telefonica
-                                                        12 February 2024
+                                                           12 March 2024
 
 
   A YANG Data Model for Augmenting VPN Service and Network Models with
@@ -51,7 +51,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 15 August 2024.
+   This Internet-Draft will expire on 13 September 2024.
 
 Copyright Notice
 
@@ -73,7 +73,7 @@ Table of Contents
    2.  Conventions and Definitions
    3.  Sample Uses of the Data Models
      3.1.  ACs Terminated by One or Multiple Customer Edges (CEs)
-     3.2.  Separate AC Provisioning vs. Actual VPN Service
+     3.2.  Separate AC Provisioning From Actual VPN Service
            Provisioning
    4.  Module Tree Structure
    5.  The AC Glue ("ietf-ac-glue") YANG Module
@@ -186,7 +186,7 @@ Table of Contents
 
                          Figure 1: Examples of ACs
 
-3.2.  Separate AC Provisioning vs. Actual VPN Service Provisioning
+3.2.  Separate AC Provisioning From Actual VPN Service Provisioning
 
    The procedure to provision a service in a service provider network
    may depend on the practices adopted by a service provider.  This
@@ -651,9 +651,8 @@ Table of Contents
               and B. Wu, "YANG Data Models for Bearers and 'Attachment
               Circuits'-as-a-Service (ACaaS)", Work in Progress,
               Internet-Draft, draft-ietf-opsawg-teas-attachment-circuit-
-              06, 9 February 2024,
-              <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
-              teas-attachment-circuit-06>.
+              07, 4 March 2024, <https://datatracker.ietf.org/doc/html/
+              draft-ietf-opsawg-teas-attachment-circuit-07>.
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
@@ -723,20 +722,20 @@ Table of Contents
 8.2.  Informative References
 
    [I-D.ietf-netmod-rfc8407bis]
-              Boucadair, M. and Q. Wu, "Guidelines for Authors and
-              Reviewers of Documents Containing YANG Data Models", Work
-              in Progress, Internet-Draft, draft-ietf-netmod-rfc8407bis-
-              07, 9 February 2024,
+              Bierman, A., Boucadair, M., and Q. Wu, "Guidelines for
+              Authors and Reviewers of Documents Containing YANG Data
+              Models", Work in Progress, Internet-Draft, draft-ietf-
+              netmod-rfc8407bis-09, 28 February 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-netmod-
-              rfc8407bis-07>.
+              rfc8407bis-09>.
 
    [I-D.ietf-teas-ietf-network-slice-nbi-yang]
               Wu, B., Dhody, D., Rokui, R., Saad, T., and J. Mullooly,
-              "A YANG Data Model for the IETF Network Slice Service",
-              Work in Progress, Internet-Draft, draft-ietf-teas-ietf-
-              network-slice-nbi-yang-08, 23 October 2023,
+              "A YANG Data Model for the RFC AAAA Network Slice
+              Service", Work in Progress, Internet-Draft, draft-ietf-
+              teas-ietf-network-slice-nbi-yang-09, 17 February 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-teas-
-              ietf-network-slice-nbi-yang-08>.
+              ietf-network-slice-nbi-yang-09>.
 
    [RFC4364]  Rosen, E. and Y. Rekhter, "BGP/MPLS IP Virtual Private
               Networks (VPNs)", RFC 4364, DOI 10.17487/RFC4364, February
@@ -772,7 +771,7 @@ A.1.  A Service AC Reference within The VPN Network Access
 
          .-----.                                           .-----.
          |     |  AC1                                AC2   |     |
-         | CE1 |--+                                     +--| CE2 |
+         | CE1 |--+ 2001:db8:100::1     2001:db8:200::1 +--| CE2 |
          |     |  |    .-----.   .-----.     .-----.    |  |     |
          '-----'  +----|---- |   |  P  |     | ----+----+  '-----'
                        |VPWS\----|-----|-----|/VPWS|
@@ -916,8 +915,8 @@ A.1.  A Service AC Reference within The VPN Network Access
                            "vpn-network-accesses":{
                               "vpn-network-access":[
                                  {
-                                    "id":"2/1/1.1",
-                                    "interface-id":"2/1/1",
+                                    "id":"2/1/2.1",
+                                    "interface-id":"2/1/2",
                                     "description":"Interface to CE2",
                                     "active-vpn-node-profile":"simple-\
                                                                profile",
@@ -930,8 +929,8 @@ A.1.  A Service AC Reference within The VPN Network Access
                                     }
                                  },
                                  {
-                                    "id":"2/1/2.1",
-                                    "interface-id":"2/1/1",
+                                    "id":"2/1/4.1",
+                                    "interface-id":"2/1/4",
                                     "description":"Interface to CE4",
                                     "active-vpn-node-profile":"simple-\
                                                                profile",
