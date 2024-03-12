@@ -223,7 +223,7 @@ Table of Contents
 
    Service provider network:  A network that is able to provide network
       services (e.g., L2VPN, L3VPN, or Network Slice Services
-      [RFC9545]).
+      [RFC9543]).
 
    Service provider:  A service provider that offers network services
       (e.g., L2VPN, L3VPN, or Network Slice Services).
@@ -2431,10 +2431,11 @@ Table of Contents
               Attachment Points (SAPs)", RFC 9408, DOI 10.17487/RFC9408,
               June 2023, <https://www.rfc-editor.org/rfc/rfc9408>.
 
-   [RFC9545]  Cheng, W., Ed., Li, H., Li, C., Ed., Gandhi, R., and R.
-              Zigler, "Path Segment Identifier in MPLS-Based Segment
-              Routing Networks", RFC 9545, DOI 10.17487/RFC9545,
-              February 2024, <https://www.rfc-editor.org/rfc/rfc9545>.
+   [RFC9543]  Farrel, A., Ed., Drake, J., Ed., Rokui, R., Homma, S.,
+              Makhijani, K., Contreras, L., and J. Tantsura, "A
+              Framework for Network Slices in Networks Built from IETF
+              Technologies", RFC 9543, DOI 10.17487/RFC9543, March 2024,
+              <https://www.rfc-editor.org/rfc/rfc9543>.
 
 Acknowledgments
 
