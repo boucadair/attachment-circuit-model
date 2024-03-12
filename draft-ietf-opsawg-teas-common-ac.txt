@@ -90,9 +90,9 @@ Table of Contents
 1.  Introduction
 
    Connectivity services are provided by networks to customers via
-   dedicated terminating points (e.g., service functions, Customer
+   dedicated terminating points (e.g., Service Functions (SFs), Customer
    Premises Equipment (CPEs), Autonomous System Border Routers (ASBRs),
-   data centers gateways, Internet Exchange Points).  A connectivity
+   data centers gateways, or Internet Exchange Points).  A connectivity
    service is basically about ensuring data transfer received from (or
    destined to) a given terminating point to (or from) other terminating
    points that belong to the same customer/service, an interconnection
@@ -101,10 +101,10 @@ Table of Contents
    customer a network provider.  For that data transfer to take place
    within the provider network, it is assumed that adequate setup is
    provisioned over the links that connect customer terminating points
-   and a provider network so that data can be successfully exchanged
-   over these links.  The required setup is referred to in this document
-   as Attachment Circuits (ACs), while the underlying link is referred
-   to as "bearer".
+   and a provider network (a Provider Edge (PE), typically) so that data
+   can be successfully exchanged over these links.  The required setup
+   is referred to in this document as Attachment Circuits (ACs), while
+   the underlying link is referred to as "bearer".
 
    This document adheres to the definition of an attachment circuit as
    provided in Section 1.2 of [RFC4364], especially:
@@ -131,15 +131,15 @@ Table of Contents
    Customer Edge (CE) may be a physical node or a logical entity.  A CE
    is seen by the network as a peer Service Attachment Point (SAP)
    [RFC9408].  CEs may be dedicated to one single service (e.g., Layer 3
-   Virtual Private Network (VPN), Layer 2 VPN) or host multiple services
-   (e.g., Service Functions [RFC7665]).  A single AC (as seen by a
-   network provider) may be bound to one or multiple peer SAPs (e.g.,
-   CE#1 and CE#2).  For example, and as discussed in [RFC4364], multiple
-   CEs can be attached to a PE over the same attachment circuit.  This
-   is typically implemented if the Layer 2 infrastructure between the CE
-   and the network provides a multipoint service.  The same CE may
-   terminate multiple ACs.  These ACs may be over the same or distinct
-   bearers.
+   Virtual Private Network (VPN) or Layer 2 VPN) or host multiple
+   services (e.g., Service Functions [RFC7665]).  A single AC (as seen
+   by a network provider) may be bound to one or multiple peer SAPs
+   (e.g., "CE#1" and "CE#2").  For example, and as discussed in
+   [RFC4364], multiple CEs can be attached to a PE over the same
+   attachment circuit.  This is typically implemented if the Layer 2
+   infrastructure between the CE and the network provides a multipoint
+   service.  The same CE may terminate multiple ACs.  These ACs may be
+   over the same or distinct bearers.
 
      .-------.                .--------------------.         .-------.
      |       +------.         |                    +---AC----+       |
@@ -222,7 +222,8 @@ Table of Contents
       controllers.
 
    Service provider network:  A network that is able to provide network
-      services (e.g., L2VPN, L3VPN, or Network Slice Services).
+      services (e.g., L2VPN, L3VPN, or Network Slice Services
+      [RFC9545]).
 
    Service provider:  A service provider that offers network services
       (e.g., L2VPN, L3VPN, or Network Slice Services).
@@ -297,9 +298,9 @@ Table of Contents
       encapsulation schemes are supported: dot1Q, QinQ, and priority-
       tagged.
 
-   Layer 2 tunnel services (Figure 3):  These grouping are used to
+   Layer 2 tunnel services (Figure 3):  These groupings are used to
       define Layer 2 tunnel services that may be needed for the
-      activation of an AC.  Examples of supported Layer 2 servers are
+      activation of an AC.  Examples of supported Layer 2 services are
       the pseudowire (Section 6.1 of [RFC8077]), VPLS, or VXLAN
       [RFC7348].
 
@@ -2429,6 +2430,11 @@ Table of Contents
               Q., and V. Lopez, "A YANG Network Data Model for Service
               Attachment Points (SAPs)", RFC 9408, DOI 10.17487/RFC9408,
               June 2023, <https://www.rfc-editor.org/rfc/rfc9408>.
+
+   [RFC9545]  Cheng, W., Ed., Li, H., Li, C., Ed., Gandhi, R., and R.
+              Zigler, "Path Segment Identifier in MPLS-Based Segment
+              Routing Networks", RFC 9545, DOI 10.17487/RFC9545,
+              February 2024, <https://www.rfc-editor.org/rfc/rfc9545>.
 
 Acknowledgments
 
