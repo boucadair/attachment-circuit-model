@@ -1200,7 +1200,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
       <h2 id="name-introduction">
 <a href="#section-1" class="section-number selfRef">1. </a><a href="#name-introduction" class="section-name selfRef">Introduction</a>
       </h2>
-<p id="section-1-1">Connectivity services are provided by networks to customers via dedicated terminating points (e.g., service functions, Customer Premises Equipment (CPEs), Autonomous System Border Routers (ASBRs), data centers gateways, Internet Exchange Points). A connectivity service is basically about ensuring data transfer received from (or destined to) a given terminating point to (or from) other terminating points that belong to the same customer/service, an interconnection node, or an ancillary node. A set of objectives for the connectivity service may eventually be negotiated and agreed upon between a customer a network provider. For that data transfer to take place within the provider network, it is assumed that adequate setup is provisioned over the links that connect customer terminating points and a provider network so that data can be successfully exchanged over these links. The required setup is referred to in this document as Attachment Circuits (ACs), while the underlying link is referred to as "bearer".<a href="#section-1-1" class="pilcrow">¶</a></p>
+<p id="section-1-1">Connectivity services are provided by networks to customers via dedicated terminating points (e.g., Service Functions (SFs), Customer Premises Equipment (CPEs), Autonomous System Border Routers (ASBRs), data centers gateways, or Internet Exchange Points). A connectivity service is basically about ensuring data transfer received from (or destined to) a given terminating point to (or from) other terminating points that belong to the same customer/service, an interconnection node, or an ancillary node. A set of objectives for the connectivity service may eventually be negotiated and agreed upon between a customer a network provider. For that data transfer to take place within the provider network, it is assumed that adequate setup is provisioned over the links that connect customer terminating points and a provider network (a Provider Edge (PE), typically) so that data can be successfully exchanged over these links. The required setup is referred to in this document as Attachment Circuits (ACs), while the underlying link is referred to as "bearer".<a href="#section-1-1" class="pilcrow">¶</a></p>
 <p id="section-1-2">This document adheres to the definition of an attachment circuit as provided in <span><a href="https://rfc-editor.org/rfc/rfc4364#section-1.2" class="relref">Section 1.2</a> of [<a href="#RFC4364" class="cite xref">RFC4364</a>]</span>, especially:<a href="#section-1-2" class="pilcrow">¶</a></p>
 <ul class="normal ulEmpty">
 <li class="normal ulEmpty" id="section-1-3.1">
@@ -1217,7 +1217,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </li>
       </ul>
 <p id="section-1-4">When a customer requests a new value-added service, the service can be bound to existing attachment circuits or trigger the instantiation of new attachment circuits. Whether these attachment circuits are specific to a given service or be shared to deliver a variety of services is deployment-specific.<a href="#section-1-4" class="pilcrow">¶</a></p>
-<p id="section-1-5">An example of attachment circuits is depicted in <a href="#uc" class="auto internal xref">Figure 1</a>. A Customer Edge (CE) may be a physical node or a logical entity. A CE is seen by the network as a peer Service Attachment Point (SAP) <span>[<a href="#RFC9408" class="cite xref">RFC9408</a>]</span>. CEs may be dedicated to one single service (e.g., Layer 3 Virtual Private Network (VPN), Layer 2 VPN) or host multiple services (e.g., Service Functions <span>[<a href="#RFC7665" class="cite xref">RFC7665</a>]</span>). A single AC (as seen by a network provider) may be bound to one or multiple peer SAPs (e.g., CE#1 and CE#2). For example, and as discussed in <span>[<a href="#RFC4364" class="cite xref">RFC4364</a>]</span>, multiple CEs can be attached to a PE over the same attachment circuit. This is typically implemented if the Layer 2 infrastructure between the CE and the network provides a multipoint service. The same CE may terminate multiple ACs. These ACs may be over the same or distinct bearers.<a href="#section-1-5" class="pilcrow">¶</a></p>
+<p id="section-1-5">An example of attachment circuits is depicted in <a href="#uc" class="auto internal xref">Figure 1</a>. A Customer Edge (CE) may be a physical node or a logical entity. A CE is seen by the network as a peer Service Attachment Point (SAP) <span>[<a href="#RFC9408" class="cite xref">RFC9408</a>]</span>. CEs may be dedicated to one single service (e.g., Layer 3 Virtual Private Network (VPN) or Layer 2 VPN) or host multiple services (e.g., Service Functions <span>[<a href="#RFC7665" class="cite xref">RFC7665</a>]</span>). A single AC (as seen by a network provider) may be bound to one or multiple peer SAPs (e.g., "CE#1" and "CE#2"). For example, and as discussed in <span>[<a href="#RFC4364" class="cite xref">RFC4364</a>]</span>, multiple CEs can be attached to a PE over the same attachment circuit. This is typically implemented if the Layer 2 infrastructure between the CE and the network provides a multipoint service. The same CE may terminate multiple ACs. These ACs may be over the same or distinct bearers.<a href="#section-1-5" class="pilcrow">¶</a></p>
 <span id="name-examples-of-acs"></span><div id="uc">
 <figure id="figure-1">
         <div id="section-1-6.1">
@@ -1341,7 +1341,7 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
         <dd class="break"></dd>
 <dt id="section-2-4.19">Service provider network:</dt>
         <dd style="margin-left: 1.5em" id="section-2-4.20">
-          <p id="section-2-4.20.1">A network that is able to provide network services (e.g., L2VPN, L3VPN, or Network Slice Services).<a href="#section-2-4.20.1" class="pilcrow">¶</a></p>
+          <p id="section-2-4.20.1">A network that is able to provide network services (e.g., L2VPN, L3VPN, or Network Slice Services <span>[<a href="#RFC9545" class="cite xref">RFC9545</a>]</span>).<a href="#section-2-4.20.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 <dt id="section-2-4.21">Service provider:</dt>
@@ -1446,7 +1446,7 @@ for the reader's convenience.<a href="#section-3-1" class="pilcrow">¶</a></p>
           <dd class="break"></dd>
 <dt id="section-3.2-4.3">Layer 2 tunnel services  (<a href="#l2-full-tree" class="auto internal xref">Figure 3</a>):</dt>
           <dd style="margin-left: 1.5em" id="section-3.2-4.4">
-            <p id="section-3.2-4.4.1">These grouping are used to define Layer 2 tunnel services that may be needed for the activation of an AC. Examples of supported Layer 2 servers are the pseudowire
+            <p id="section-3.2-4.4.1">These groupings are used to define Layer 2 tunnel services that may be needed for the activation of an AC. Examples of supported Layer 2 services are the pseudowire
 (<span><a href="https://rfc-editor.org/rfc/rfc8077#section-6.1" class="relref">Section 6.1</a> of [<a href="#RFC8077" class="cite xref">RFC8077</a>]</span>), VPLS, or VXLAN <span>[<a href="#RFC7348" class="cite xref">RFC7348</a>]</span>.<a href="#section-3.2-4.4.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
@@ -3603,8 +3603,12 @@ module ietf-ac-common {
 <span class="refAuthor">Barguil, S.</span>, <span class="refAuthor">Gonzalez de Dios, O., Ed.</span>, <span class="refAuthor">Boucadair, M., Ed.</span>, <span class="refAuthor">Munoz, L.</span>, and <span class="refAuthor">A. Aguado</span>, <span class="refTitle">"A YANG Network Data Model for Layer 3 VPNs"</span>, <span class="seriesInfo">RFC 9182</span>, <span class="seriesInfo">DOI 10.17487/RFC9182</span>, <time datetime="2022-02" class="refDate">February 2022</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9182">https://www.rfc-editor.org/rfc/rfc9182</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC9408">[RFC9408]</dt>
-      <dd>
+        <dd>
 <span class="refAuthor">Boucadair, M., Ed.</span>, <span class="refAuthor">Gonzalez de Dios, O.</span>, <span class="refAuthor">Barguil, S.</span>, <span class="refAuthor">Wu, Q.</span>, and <span class="refAuthor">V. Lopez</span>, <span class="refTitle">"A YANG Network Data Model for Service Attachment Points (SAPs)"</span>, <span class="seriesInfo">RFC 9408</span>, <span class="seriesInfo">DOI 10.17487/RFC9408</span>, <time datetime="2023-06" class="refDate">June 2023</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9408">https://www.rfc-editor.org/rfc/rfc9408</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC9545">[RFC9545]</dt>
+      <dd>
+<span class="refAuthor">Cheng, W., Ed.</span>, <span class="refAuthor">Li, H.</span>, <span class="refAuthor">Li, C., Ed.</span>, <span class="refAuthor">Gandhi, R.</span>, and <span class="refAuthor">R. Zigler</span>, <span class="refTitle">"Path Segment Identifier in MPLS-Based Segment Routing Networks"</span>, <span class="seriesInfo">RFC 9545</span>, <span class="seriesInfo">DOI 10.17487/RFC9545</span>, <time datetime="2024-02" class="refDate">February 2024</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9545">https://www.rfc-editor.org/rfc/rfc9545</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 </dl>
 </section>
