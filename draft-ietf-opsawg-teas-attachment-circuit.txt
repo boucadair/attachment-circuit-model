@@ -5,14 +5,14 @@
 OPSAWG                                                 M. Boucadair, Ed.
 Internet-Draft                                                    Orange
 Intended status: Standards Track                         R. Roberts, Ed.
-Expires: 12 September 2024                                       Juniper
+Expires: 13 September 2024                                       Juniper
                                                            O. G. D. Dios
                                                               Telefonica
                                                            S. B. Giraldo
                                                                    Nokia
                                                                    B. Wu
                                                      Huawei Technologies
-                                                           11 March 2024
+                                                           12 March 2024
 
 
   YANG Data Models for Bearers and 'Attachment Circuits'-as-a-Service
@@ -62,7 +62,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 12 September 2024.
+   This Internet-Draft will expire on 13 September 2024.
 
 Copyright Notice
 
@@ -178,8 +178,7 @@ Table of Contents
    customers, such as an enterprise site, an SF, a hosting
    infrastructure, or a peer network provider.  The model can be used
    for the provisioning of ACs prior or during advanced service
-   provisioning (e.g., Network Slice Service
-   [I-D.ietf-teas-ietf-network-slices]).
+   provisioning (e.g., Network Slice Service [RFC9543]).
 
    The "ietf-ac-svc" module (Section 5.2) includes a set of reusable
    groupings.  Whether a service model reuses structures defined in the
@@ -3697,15 +3696,6 @@ Table of Contents
               <https://datatracker.ietf.org/doc/html/draft-ietf-teas-
               ietf-network-slice-nbi-yang-09>.
 
-   [I-D.ietf-teas-ietf-network-slices]
-              Farrel, A., Drake, J., Rokui, R., Homma, S., Makhijani,
-              K., Contreras, L. M., and J. Tantsura, "A Framework for
-              Network Slices in Networks Built from IETF Technologies",
-              Work in Progress, Internet-Draft, draft-ietf-teas-ietf-
-              network-slices-25, 14 September 2023,
-              <https://datatracker.ietf.org/doc/html/draft-ietf-teas-
-              ietf-network-slices-25>.
-
    [IEEE802.1AB]
               IEEE, "IEEE Standard for Local and metropolitan area
               networks - Station and Media Access Control Connectivity
@@ -3804,6 +3794,12 @@ Table of Contents
               L. Geng, "A Framework for Automating Service and Network
               Management with YANG", RFC 8969, DOI 10.17487/RFC8969,
               January 2021, <https://www.rfc-editor.org/rfc/rfc8969>.
+
+   [RFC9543]  Farrel, A., Ed., Drake, J., Ed., Rokui, R., Homma, S.,
+              Makhijani, K., Contreras, L., and J. Tantsura, "A
+              Framework for Network Slices in Networks Built from IETF
+              Technologies", RFC 9543, DOI 10.17487/RFC9543, March 2024,
+              <https://www.rfc-editor.org/rfc/rfc9543>.
 
 Appendix A.  Examples
 
