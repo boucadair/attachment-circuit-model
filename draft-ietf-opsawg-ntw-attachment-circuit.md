@@ -92,9 +92,9 @@ informative:
 
 --- abstract
 
-This document specifies a network model for attachment circuits. The model can be used for the provisioning of attachment circuits prior or during service provisioning (e.g., Network Slice Service). A companion service model is specified in I-D.ietf-opsawg-teas-attachment-circuit.
+This document specifies a network model for attachment circuits. The model can be used for the provisioning of attachment circuits prior or during service provisioning (e.g., VPN, Network Slice Service). A companion service model is specified in I-D.ietf-opsawg-teas-attachment-circuit.
 
-The module augments the Service Attachment Point (SAP) model with the detailed information for the provisioning of attachment circuits in Provider Edges (PEs).
+The module augments the 'ietf-network' and the Service Attachment Point (SAP) models with the detailed information for the provisioning of attachment circuits in Provider Edges (PEs).
 
 --- middle
 
@@ -105,13 +105,13 @@ Connectivity services are provided by networks to customers via
    customer edges (CEs), peer Autonomous System Border Routers (ASBRs),
    data centers gateways, or Internet Exchange Points.
 
-The procedure to provision a service in a service provider network may depend on the practices adopted by a service provider, including the flow put in place for the provisioning of advanced network services and how they are bound to an Attachment Circuit (AC). For example, the same attachment circuit may host multiple services (e.g., Layer 2 Virtual Private Network (VPN), Slice Service, or Layer 3 VPN). In order to avoid service interference and redundant information in various locations, a service provider may expose an interface to manage ACs network-wide. Customers can then request a standalone attachment circuit to be put in place, and then refer to that attachment circuit when requesting services to be bound to that AC. {{!I-D.ietf-opsawg-teas-attachment-circuit}} specifies a data model for managing attachment circuits as a service.
+The procedure to provision a service in a service provider network may depend on the practices adopted by a service provider, including the flow put in place for the provisioning of advanced network services and how they are bound to an Attachment Circuit (AC). For example, the same attachment circuit may host multiple services (e.g., Layer 2 Virtual Private Network (VPN), or Layer 3 VPN, or Slice Service {{?RFC9543}}). In order to avoid service interference and redundant information in various locations, a service provider may expose an interface to manage ACs network-wide. Customers can then request a standalone attachment circuit to be put in place, and then refer to that attachment circuit when requesting services to be bound to that AC. {{!I-D.ietf-opsawg-teas-attachment-circuit}} specifies a data model for managing attachment circuits as a service. {{?I-D.ietf-opsawg-ac-lxsm-lxnm-glue}} specifies augmentations to the L2VPN Network Model (L2NM) {{!RFC9291}} and the L3VPN Network Model (L3NM) {{!RFC9182}} to bind LxVPNs to ACs.
 
-{{sec-module}} specifies a network model for attachment circuits ("ietf-ac-ntw"). The model can be used for the provisioning of ACs prior or during service provisioning.
+{{sec-module}} specifies a network model for attachment circuits ('ietf-ac-ntw'). The model can be used for the provisioning of ACs prior or during service provisioning.
 
 The document leverages {{!RFC9182}} and {{!RFC9291}} by adopting an AC provisioning structure that uses data nodes that are defined in these RFCs. Some refinements were introduced to cover, not only conventional service provider networks, but also specifics of other target deployments (cloud, for example).
 
-The AC network model is designed as an augmnetation to the Service Attachment Point (SAP) model {{!RFC9408}}. An attachment circuit can be bound to a single or multiple SAPs. Likewise, the model is designed to accomdate deployments where a SAP can be bound to one or multiple ACs (e.g., a parent AC and its child ACs).
+The AC network model is designed as augmentations to both the 'ietf-network' model {{!RFC8345}} and the Service Attachment Point (SAP) model {{!RFC9408}}. An attachment circuit can be bound to a single or multiple SAPs. Likewise, the model is designed to accommodate deployments where a SAP can be bound to one or multiple ACs (e.g., a parent AC and its child ACs).
 
 ~~~~ aasvg
 {::include-fold ./figures/ac-ntw-example.txt}
@@ -157,18 +157,18 @@ Service provider network:
 Service provider:
 : A service provider that offers network services (e.g., L2VPN, L3VPN, or Network Slice Services).
 
-# Sample Uses of the Attachment Circuit Data Models
+# Sample Uses of the Attachment Circuit Data Model
 
-{{u-ex}} shows the positioning of the AC network model in the overall service delivery process. The "ietf-ac-ntw" module is a network model which augments the SAP with a comprehensive set of parameters to reflect the attachment circuits that are in place in a network. The model also maintains the mapping with the service references that are used to expose these ACs to customers. Whether the same naming conventions to reference an AC are used in the service and network layers is deployment-specific.
+{{u-ex}} shows the positioning of the AC network model in the overall service delivery process. The 'ietf-ac-ntw' module is a network model which augments the SAP with a comprehensive set of parameters to reflect the attachment circuits that are in place in a network. The model also maintains the mapping with the service references that are used to expose these ACs to customers. Whether the same naming conventions to reference an AC are used in the service and network layers is deployment-specific.
 
 ~~~~ aasvg
 {::include-fold ./figures/arch.txt}
 ~~~~
 {: #u-ex title="An Example of the Network AC Model Usage" artwork-align="center"}
 
-Similar to {{!RFC9408}}, the "ietf-ac-ntw" module can be used for both User-to-Network Interface (UNI) and
+Similar to {{!RFC9408}}, the 'ietf-ac-ntw' module can be used for both User-to-Network Interface (UNI) and
 Network-to-Network Interface (NNI). For example, all the ACs shown in {{fig-inter-pn}} have a 'role' set
-to "ietf-sap-ntw:nni". Typically, AS Border Routers (ASBRs) of each network is directly
+to 'ietf-sap-ntw:nni'. Typically, AS Border Routers (ASBRs) of each network is directly
 connected to an ASBR of a neighboring network via one or multiple links (bearers). ASBRs of "Network#1" behaves as a PE and treats the other adjacent ASBRs as if it were a CE.
 
 ~~~~ aasvg
@@ -183,6 +183,8 @@ The full tree diagram of the module can be generated using the
 "pyang" tool {{PYANG}}.  That tree is not included here because it is
 too long ({{Section 3.3 of ?RFC8340}}).  Instead, subtrees are provided in the following subsections
 for the reader's convenience.
+
+The full tree of the 'ac-ntw' is provided in {{AC-Ntw-Tree}}.
 
 ## Overall Structure of the Module
 
@@ -237,8 +239,6 @@ augment /nw:networks/nw:network/nw:node:
 ~~~~
 {: #o-ntw-tree title="Overall Tree Structure"}
 
-The full tree of the 'ac-ntw' is provided in {{AC-Ntw-Tree}}.
-
 A node can host one or more SAPs. As per {{!RFC9408}}, a SAP is an abstraction of the network
 reference points (the PE side of an AC, in the context of this document) where network services can be delivered and/or are delivered to customers. Each SAP terminates one or multiple ACs. Each AC in turn may be terminated by one or more peer SAPs ('peer-sap'). In order to expose such AC/SAP binding information, the SAP model {{!RFC9408}} is augmented with required AC-related information.
 
@@ -262,7 +262,7 @@ An AC may belong to one or multiple groups {{!RFC9181}}. For example, the 'group
 
 The status of an AC can be tracked using 'status'. Both operational status and administrative status are maintained. A mismatch between the administrative status vs. the operational status can be used as a trigger to detect anomalies.
 
-An AC can be characterized using Layer 2 connectivity ({{sec-l2}}), Layer 3 connectivity ({{sec-l3}}), routing protocols ({{sec-rtg}}), OAM ({{sec-oam}}), security ({{sec-sec}}), and service ({{sec-svc}}) considerations.
+An AC can be characterized using Layer 2 connectivity ({{sec-l2}}), Layer 3 connectivity ({{sec-l3}}), routing protocols ({{sec-rtg}}), Operations, Administration, and Maintenance (OAM) ({{sec-oam}}), security ({{sec-sec}}), and service ({{sec-svc}}) considerations.
 
 ## References
 
@@ -341,7 +341,7 @@ For both IPv4 and IPv6, 'address-allocation-type' is used to indicate the IP add
 
 For IPv6, if 'address-allocation-type' is set to 'slaac', the Prefix Information option of Router Advertisements that will be issued for SLAAC purposes will carry the IPv6 prefix that is determined by 'local-address' and 'prefix-length'. For example, if 'local-address' is set to '2001:db8:0:1::1' and 'prefix-length' is set to '64', the IPv6 prefix that will be used is '2001:db8:0:1::/64'.
 
-In some deployment contexts (e.g., network merging), multiple IP subnets may be used in a transition period. For such deployments, multiple ACs (typically, two) with overlapping information may be maintained during a transition period. The correlation between these ACs may rely upon the same "ac-svc-ref".
+In some deployment contexts (e.g., network merging), multiple IP subnets may be used in a transition period. For such deployments, multiple ACs (typically, two) with overlapping information may be maintained during a transition period. The correlation between these ACs may rely upon the same 'ac-svc-ref'.
 
 ## Routing {#sec-rtg}
 
