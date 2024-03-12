@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-03-10T00:38:09.316512+00:00",
+  "timestamp": "2024-03-12T00:34:53.098320+00:00",
   "repo": "boucadair/attachment-circuit-model",
   "labels": [
     {
@@ -7349,7 +7349,7 @@
       "labels": [],
       "body": "#178",
       "createdAt": "2024-03-05T12:22:59Z",
-      "updatedAt": "2024-03-05T12:28:23Z",
+      "updatedAt": "2024-03-11T15:42:50Z",
       "baseRepository": "boucadair/attachment-circuit-model",
       "baseRefName": "main",
       "baseRefOid": "0987d75015d34697e6722d93240f54980eceea7b",
@@ -7360,7 +7360,22 @@
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
-      "comments": [],
+      "comments": [
+        {
+          "author": "boucadair",
+          "authorAssociation": "OWNER",
+          "body": "Thanks @sbarguil. \r\n\r\nHow this example is different from the one in https://boucadair.github.io/attachment-circuit-model/draft-ietf-opsawg-teas-attachment-circuit.html#name-connect-customer-network-ce?",
+          "createdAt": "2024-03-11T07:25:33Z",
+          "updatedAt": "2024-03-11T07:25:33Z"
+        },
+        {
+          "author": "sbarguil",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> Thanks @sbarguil.\r\n> \r\n> How this example is different from the one in https://boucadair.github.io/attachment-circuit-model/draft-ietf-opsawg-teas-attachment-circuit.html#name-connect-customer-network-ce?\r\n\r\nJust a minor difference: this new sample is pure IP connectivity, without dynamic protocols enabled. @oscargdd, do you foresee any other possible changes I could include?",
+          "createdAt": "2024-03-11T15:42:49Z",
+          "updatedAt": "2024-03-11T15:42:49Z"
+        }
+      ],
       "reviews": []
     }
   ]
