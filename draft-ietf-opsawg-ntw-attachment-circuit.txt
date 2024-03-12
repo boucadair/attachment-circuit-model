@@ -22,13 +22,13 @@ Abstract
 
    This document specifies a network model for attachment circuits.  The
    model can be used for the provisioning of attachment circuits prior
-   or during service provisioning (e.g., Network Slice Service).  A
+   or during service provisioning (e.g., VPN, Network Slice Service).  A
    companion service model is specified in I-D.ietf-opsawg-teas-
    attachment-circuit.
 
-   The module augments the Service Attachment Point (SAP) model with the
-   detailed information for the provisioning of attachment circuits in
-   Provider Edges (PEs).
+   The module augments the 'ietf-network' and the Service Attachment
+   Point (SAP) models with the detailed information for the provisioning
+   of attachment circuits in Provider Edges (PEs).
 
 Discussion Venues
 
@@ -77,7 +77,7 @@ Table of Contents
 
    1.  Introduction
    2.  Conventions and Definitions
-   3.  Sample Uses of the Attachment Circuit Data Models
+   3.  Sample Uses of the Attachment Circuit Data Model
    4.  Description of the Attachment Circuit YANG Module
      4.1.  Overall Structure of the Module
      4.2.  References
@@ -119,17 +119,20 @@ Table of Contents
    the flow put in place for the provisioning of advanced network
    services and how they are bound to an Attachment Circuit (AC).  For
    example, the same attachment circuit may host multiple services
-   (e.g., Layer 2 Virtual Private Network (VPN), Slice Service, or Layer
-   3 VPN).  In order to avoid service interference and redundant
-   information in various locations, a service provider may expose an
-   interface to manage ACs network-wide.  Customers can then request a
-   standalone attachment circuit to be put in place, and then refer to
-   that attachment circuit when requesting services to be bound to that
-   AC.  [I-D.ietf-opsawg-teas-attachment-circuit] specifies a data model
-   for managing attachment circuits as a service.
+   (e.g., Layer 2 Virtual Private Network (VPN), or Layer 3 VPN, or
+   Slice Service [RFC9543]).  In order to avoid service interference and
+   redundant information in various locations, a service provider may
+   expose an interface to manage ACs network-wide.  Customers can then
+   request a standalone attachment circuit to be put in place, and then
+   refer to that attachment circuit when requesting services to be bound
+   to that AC.  [I-D.ietf-opsawg-teas-attachment-circuit] specifies a
+   data model for managing attachment circuits as a service.
+   [I-D.ietf-opsawg-ac-lxsm-lxnm-glue] specifies augmentations to the
+   L2VPN Network Model (L2NM) [RFC9291] and the L3VPN Network Model
+   (L3NM) [RFC9182] to bind LxVPNs to ACs.
 
-   Section 5 specifies a network model for attachment circuits ("ietf-
-   ac-ntw").  The model can be used for the provisioning of ACs prior or
+   Section 5 specifies a network model for attachment circuits ('ietf-
+   ac-ntw').  The model can be used for the provisioning of ACs prior or
    during service provisioning.
 
    The document leverages [RFC9182] and [RFC9291] by adopting an AC
@@ -138,11 +141,12 @@ Table of Contents
    conventional service provider networks, but also specifics of other
    target deployments (cloud, for example).
 
-   The AC network model is designed as an augmnetation to the Service
-   Attachment Point (SAP) model [RFC9408].  An attachment circuit can be
-   bound to a single or multiple SAPs.  Likewise, the model is designed
-   to accomdate deployments where a SAP can be bound to one or multiple
-   ACs (e.g., a parent AC and its child ACs).
+   The AC network model is designed as augmentations to both the 'ietf-
+   network' model [RFC8345] and the Service Attachment Point (SAP) model
+   [RFC9408].  An attachment circuit can be bound to a single or
+   multiple SAPs.  Likewise, the model is designed to accommodate
+   deployments where a SAP can be bound to one or multiple ACs (e.g., a
+   parent AC and its child ACs).
 
                       .---.
                       |CE6|
@@ -242,10 +246,10 @@ Table of Contents
    Service provider:  A service provider that offers network services
       (e.g., L2VPN, L3VPN, or Network Slice Services).
 
-3.  Sample Uses of the Attachment Circuit Data Models
+3.  Sample Uses of the Attachment Circuit Data Model
 
    Figure 2 shows the positioning of the AC network model in the overall
-   service delivery process.  The "ietf-ac-ntw" module is a network
+   service delivery process.  The 'ietf-ac-ntw' module is a network
    model which augments the SAP with a comprehensive set of parameters
    to reflect the attachment circuits that are in place in a network.
    The model also maintains the mapping with the service references that
@@ -294,10 +298,10 @@ Table of Contents
 
              Figure 2: An Example of the Network AC Model Usage
 
-   Similar to [RFC9408], the "ietf-ac-ntw" module can be used for both
+   Similar to [RFC9408], the 'ietf-ac-ntw' module can be used for both
    User-to-Network Interface (UNI) and Network-to-Network Interface
    (NNI).  For example, all the ACs shown in Figure 3 have a 'role' set
-   to "ietf-sap-ntw:nni".  Typically, AS Border Routers (ASBRs) of each
+   to 'ietf-sap-ntw:nni'.  Typically, AS Border Routers (ASBRs) of each
    network is directly connected to an ASBR of a neighboring network via
    one or multiple links (bearers).  ASBRs of "Network#1" behaves as a
    PE and treats the other adjacent ASBRs as if it were a CE.
@@ -322,6 +326,8 @@ Table of Contents
    "pyang" tool [PYANG].  That tree is not included here because it is
    too long (Section 3.3 of [RFC8340]).  Instead, subtrees are provided
    in the following subsections for the reader's convenience.
+
+   The full tree of the 'ac-ntw' is provided in [AC-Ntw-Tree].
 
 4.1.  Overall Structure of the Module
 
@@ -374,8 +380,6 @@ Table of Contents
           +--rw network-ref?   -> /nw:networks/network/network-id
 
                       Figure 4: Overall Tree Structure
-
-   The full tree of the 'ac-ntw' is provided in [AC-Ntw-Tree].
 
    A node can host one or more SAPs.  As per [RFC9408], a SAP is an
    abstraction of the network reference points (the PE side of an AC, in
@@ -436,8 +440,8 @@ Table of Contents
 
    An AC can be characterized using Layer 2 connectivity (Section 4.4),
    Layer 3 connectivity (Section 4.5), routing protocols (Section 4.6),
-   OAM (Section 4.7), security (Section 4.8), and service (Section 4.9)
-   considerations.
+   Operations, Administration, and Maintenance (OAM) (Section 4.7),
+   security (Section 4.8), and service (Section 4.9) considerations.
 
 4.2.  References
 
@@ -869,7 +873,7 @@ Table of Contents
    subnets may be used in a transition period.  For such deployments,
    multiple ACs (typically, two) with overlapping information may be
    maintained during a transition period.  The correlation between these
-   ACs may rely upon the same "ac-svc-ref".
+   ACs may rely upon the same 'ac-svc-ref'.
 
 4.6.  Routing
 
@@ -4393,6 +4397,15 @@ Table of Contents
               <https://datatracker.ietf.org/doc/html/draft-ietf-netmod-
               rfc8407bis-09>.
 
+   [I-D.ietf-opsawg-ac-lxsm-lxnm-glue]
+              Boucadair, M., Roberts, R., Barguil, S., and O. G. de
+              Dios, "A YANG Data Model for Augmenting VPN Service and
+              Network Models with Attachment Circuits", Work in
+              Progress, Internet-Draft, draft-ietf-opsawg-ac-lxsm-lxnm-
+              glue-06, 9 February 2024,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
+              ac-lxsm-lxnm-glue-06>.
+
    [PYANG]    "pyang", 2023, <https://github.com/mbj4668/pyang>.
 
    [RFC2918]  Chen, E., "Route Refresh Capability for BGP-4", RFC 2918,
@@ -4432,6 +4445,12 @@ Table of Contents
               L. Geng, "A Framework for Automating Service and Network
               Management with YANG", RFC 8969, DOI 10.17487/RFC8969,
               January 2021, <https://www.rfc-editor.org/rfc/rfc8969>.
+
+   [RFC9543]  Farrel, A., Ed., Drake, J., Ed., Rokui, R., Homma, S.,
+              Makhijani, K., Contreras, L., and J. Tantsura, "A
+              Framework for Network Slices in Networks Built from IETF
+              Technologies", RFC 9543, DOI 10.17487/RFC9543, March 2024,
+              <https://www.rfc-editor.org/rfc/rfc9543>.
 
 Appendix A.  Examples
 
