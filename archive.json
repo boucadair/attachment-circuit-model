@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-03-12T00:34:53.098320+00:00",
+  "timestamp": "2024-03-14T00:34:41.463078+00:00",
   "repo": "boucadair/attachment-circuit-model",
   "labels": [
     {
@@ -7349,7 +7349,7 @@
       "labels": [],
       "body": "#178",
       "createdAt": "2024-03-05T12:22:59Z",
-      "updatedAt": "2024-03-11T15:42:50Z",
+      "updatedAt": "2024-03-12T05:24:22Z",
       "baseRepository": "boucadair/attachment-circuit-model",
       "baseRefName": "main",
       "baseRefOid": "0987d75015d34697e6722d93240f54980eceea7b",
@@ -7374,8 +7374,41 @@
           "body": "> Thanks @sbarguil.\r\n> \r\n> How this example is different from the one in https://boucadair.github.io/attachment-circuit-model/draft-ietf-opsawg-teas-attachment-circuit.html#name-connect-customer-network-ce?\r\n\r\nJust a minor difference: this new sample is pure IP connectivity, without dynamic protocols enabled. @oscargdd, do you foresee any other possible changes I could include?",
           "createdAt": "2024-03-11T15:42:49Z",
           "updatedAt": "2024-03-11T15:42:49Z"
+        },
+        {
+          "author": "boucadair",
+          "authorAssociation": "OWNER",
+          "body": "Thanks @sbarguil. Sent you right now a PR to clean up the example and remove VPN mentions in the figure, in particular",
+          "createdAt": "2024-03-12T05:24:20Z",
+          "updatedAt": "2024-03-12T05:24:20Z"
         }
       ],
+      "reviews": []
+    },
+    {
+      "number": 195,
+      "id": "PR_kwDOIiAkrc5pVNkq",
+      "title": "remove VPN mentions",
+      "url": "https://github.com/boucadair/attachment-circuit-model/pull/195",
+      "state": "OPEN",
+      "author": "boucadair",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-03-12T05:23:00Z",
+      "updatedAt": "2024-03-12T05:23:00Z",
+      "baseRepository": "boucadair/attachment-circuit-model",
+      "baseRefName": "example-two-network-connected",
+      "baseRefOid": "431f3468998cf87ac7e8d8a61ff2951568c9f650",
+      "headRepository": "boucadair/attachment-circuit-model",
+      "headRefName": "boucadair-patch-5",
+      "headRefOid": "a651386f9356ccb58335b8e3e29eddd00c3536d6",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
       "reviews": []
     }
   ]
