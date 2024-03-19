@@ -5,14 +5,14 @@
 OPSAWG                                                 M. Boucadair, Ed.
 Internet-Draft                                                    Orange
 Intended status: Standards Track                         R. Roberts, Ed.
-Expires: 6 September 2024                                        Juniper
+Expires: 20 September 2024                                       Juniper
                                                            O. G. D. Dios
                                                               Telefonica
                                                            S. B. Giraldo
                                                                    Nokia
                                                                    B. Wu
                                                      Huawei Technologies
-                                                            5 March 2024
+                                                           19 March 2024
 
 
   YANG Data Models for Bearers and 'Attachment Circuits'-as-a-Service
@@ -62,7 +62,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 6 September 2024.
+   This Internet-Draft will expire on 20 September 2024.
 
 Copyright Notice
 
@@ -3669,11 +3669,11 @@ Table of Contents
 
    [I-D.ietf-teas-ietf-network-slice-nbi-yang]
               Wu, B., Dhody, D., Rokui, R., Saad, T., and J. Mullooly,
-              "A YANG Data Model for the RFC AAAA Network Slice
+              "A YANG Data Model for the RFC 9543 Network Slice
               Service", Work in Progress, Internet-Draft, draft-ietf-
-              teas-ietf-network-slice-nbi-yang-09, 17 February 2024,
+              teas-ietf-network-slice-nbi-yang-10, 16 March 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-teas-
-              ietf-network-slice-nbi-yang-09>.
+              ietf-network-slice-nbi-yang-10>.
 
    [IEEE802.1AX]
               IEEE, "IEEE Standard for Local and Metropolitan Area
@@ -5010,33 +5010,29 @@ A.10.  Connect Networks Through Pure IP
    segments.  This connectivity can be achieved through various means,
    one of which is using IP connectivity without relying on specific VPN
    technologies.  In this example, we illustrate how to interconnect two
-   networks, labeled Provider Network A and Provider Network B, using IP
-   connectivity.  This method involves configuring a router to
-   facilitate communication between devices in each network.  By
-   establishing IP connectivity between the networks and using the
+   networks, labeled "Provider Network A" and "Provider Network B",
+   using IP connectivity.  This method involves configuring adjacent
+   routers to facilitate communication between devices in each network.
+   By establishing IP connectivity between the networks and using the
    attachment circuit model to express this desire.
 
 +------------------------+                       +-------------------------+
 |  Provider Network A    |                       | Provider Network B      |
-|                        |                       |                         |
+|       AS65536          |                       |      AS65536            |
 |        +------------+  |  Attachment-Circuit 1 | +------------+          |
-|        | PE1        +----------------------------+ PE1        | AS65536  |
-|        |            |  |    Bearer=Line-114    | +------------+          |
-|        | PE1(VRF12) |  |                       |                         |
-|        |            |  |                       +-------------------------+
-|        | PE1(VRF1n) |  |
-|        |            |  |
-|        +------------+  |
-| AS1                    |
-+------------------------+
+|        | ASBR-A-1   +----------------------------+ ASBR-B-1   |          |
+|        +------------+  |    Bearer=Line-114    | +------------+          |
+|                        |                       |                         |
++------------------------+                       +-------------------------+
 
    Figure 46: Illustration of Provider-to-Provider Network Scenario
 
    The attachment circuit in this case uses a SAP identifier to refer to
-   the physical interface used for the connection between the PEs.  The
-   attachment circuit includes all the additional logical attributes to
-   describe the connection between the two ends, including VLAN
-   information, IP addressing and Static Route to connect two networks.
+   the physical interface used for the connection between the PEs
+   ("ASBR-A-1" and "ASBR-B-1").  The attachment circuit includes all the
+   additional logical attributes to describe the connection between the
+   two ends, including VLAN information, IP addressing, and static
+   routes to connect two networks.
 
    =============== NOTE: '\' line wrapping per RFC 8792 ================
 
@@ -5122,7 +5118,7 @@ A.10.  Connect Networks Through Pure IP
    }
 
      Figure 47: Message Body of a Request to Create ACs for Connecting
-                            Two Provider Network
+                           Two Provider Networks
 
 Acknowledgments
 
