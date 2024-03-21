@@ -5,14 +5,14 @@
 Operations and Management Area Working Group           M. Boucadair, Ed.
 Internet-Draft                                                    Orange
 Intended status: Standards Track                              R. Roberts
-Expires: 13 September 2024                                       Juniper
+Expires: 22 September 2024                                       Juniper
                                                            O. G. D. Dios
                                                               Telefonica
                                                            S. B. Giraldo
                                                                    Nokia
                                                                    B. Wu
                                                      Huawei Technologies
-                                                           12 March 2024
+                                                           21 March 2024
 
 
            A Network YANG Data Model for Attachment Circuits
@@ -57,7 +57,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 13 September 2024.
+   This Internet-Draft will expire on 22 September 2024.
 
 Copyright Notice
 
@@ -4204,8 +4204,8 @@ Table of Contents
               and B. Wu, "YANG Data Models for Bearers and 'Attachment
               Circuits'-as-a-Service (ACaaS)", Work in Progress,
               Internet-Draft, draft-ietf-opsawg-teas-attachment-circuit-
-              07, 4 March 2024, <https://datatracker.ietf.org/doc/html/
-              draft-ietf-opsawg-teas-attachment-circuit-07>.
+              08, 16 March 2024, <https://datatracker.ietf.org/doc/html/
+              draft-ietf-opsawg-teas-attachment-circuit-08>.
 
    [I-D.ietf-opsawg-teas-common-ac]
               Boucadair, M., Roberts, R., de Dios, O. G., Barguil, S.,
