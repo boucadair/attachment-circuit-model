@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-03-24T00:40:00.574719+00:00",
+  "timestamp": "2024-03-26T00:35:33.559072+00:00",
   "repo": "boucadair/attachment-circuit-model",
   "labels": [
     {
@@ -2607,6 +2607,24 @@
           "updatedAt": "2024-03-04T16:20:29Z"
         }
       ]
+    },
+    {
+      "number": 196,
+      "id": "I_kwDOIiAkrc6DdXku",
+      "title": "check service tree (MTU)",
+      "url": "https://github.com/boucadair/attachment-circuit-model/issues/196",
+      "state": "OPEN",
+      "author": "boucadair",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [
+        "AC-SVC"
+      ],
+      "body": "",
+      "createdAt": "2024-03-25T11:23:07Z",
+      "updatedAt": "2024-03-25T11:23:07Z",
+      "closedAt": null,
+      "comments": []
     }
   ],
   "pulls": [
