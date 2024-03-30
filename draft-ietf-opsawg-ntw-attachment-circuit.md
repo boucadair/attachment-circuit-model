@@ -330,7 +330,9 @@ The 'l2-connection' container is used to manage the Layer 2 properties of an AC.
 
 The 'encapsulation' container specifies the Layer 2 encapsulation to use (if any) and allows the configuration of the relevant tags. Also, the model supports tag manipulation operations (e.g., tag rewrite).
 
-The 'l2-tunnel-service' container is used to specify the required parameters to set a Layer tunneling service (e.g., a Virtual Private LAN Service (VPLS), a Virtual eXtensible Local Area Network (VXLAN), or a pseudowire ({{Section 6.1 of !RFC8077}})). 'l2vpn-id' is used to identify a L2VPN service that is associated with an Integrated Routing and Bridging (IRB) interface.
+The 'l2-tunnel-service' container is used to specify the required parameters to set a Layer 2 tunneling service (e.g., a Virtual Private LAN Service (VPLS), a Virtual eXtensible Local Area Network (VXLAN), or a pseudowire ({{Section 6.1 of !RFC8077}})). 'l2vpn-id' is used to identify a L2VPN service that is associated with an Integrated Routing and Bridging (IRB) interface.
+
+Specific Layer 2 sub-interfaces may be required to be configured in some implementations/deployments. Such a Layer-2-specific interface can be included in 'l2-termination-point'.
 
 To accommodate implementations that require internal bridging, a local bridge reference can be specified in 'local-bridge-reference'. Such a reference may be a local bridge domain.
 
