@@ -770,7 +770,7 @@ The description of the service data nodes is as follows:
 : Specifies the Layer 2 MTU, in bytes, for the VPN network access.
 
 'svc-pe-to-ce-bandwidth' and 'svc-ce-to-pe-bandwidth':
-: Specify the service bandwidth for the L2VPN service.
+: Specify the service bandwidth for the AC.
 
 : 'svc-pe-to-ce-bandwidth' indicates the inbound bandwidth of the connection (i.e., download bandwidth from the service provider to the site).
 
