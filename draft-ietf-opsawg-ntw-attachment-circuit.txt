@@ -128,13 +128,14 @@ Table of Contents
    services to be bound to that AC.
    [I-D.ietf-opsawg-teas-attachment-circuit] specifies a data model for
    managing attachment circuits as a service.
-   [I-D.ietf-opsawg-ac-lxsm-lxnm-glue] specifies augmentations to the
-   L2VPN Network Model (L2NM) [RFC9291] and the L3VPN Network Model
-   (L3NM) [RFC9182] to bind LxVPNs to ACs.
 
    Section 5 specifies a network model for attachment circuits ('ietf-
    ac-ntw').  The model can be used for the provisioning of ACs prior or
-   during service provisioning.
+   during service provisioning.  For example,
+   [I-D.ietf-opsawg-ac-lxsm-lxnm-glue] specifies augmentations to the
+   L2VPN Network Model (L2NM) [RFC9291] and the L3VPN Network Model
+   (L3NM) [RFC9182] to bind LxVPNs to ACs that are provisioned using the
+   procedure defined in this document.
 
    The document leverages [RFC9182] and [RFC9291] by adopting an AC
    provisioning structure that uses data nodes that are defined in these
