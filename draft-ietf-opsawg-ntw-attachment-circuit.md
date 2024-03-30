@@ -767,7 +767,7 @@ The service subtree structure is shown in {{svc-tree}}.
 The description of the service data nodes is as follows:
 
 'mtu':
-: Specifies the Layer 2 MTU, in bytes, for the VPN network access.
+: Specifies the Layer 2 MTU, in bytes, for the AC.
 
 'svc-pe-to-ce-bandwidth' and 'svc-ce-to-pe-bandwidth':
 : Specify the service bandwidth for the AC.
