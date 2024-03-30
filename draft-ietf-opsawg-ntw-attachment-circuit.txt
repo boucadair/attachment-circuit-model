@@ -2118,7 +2118,7 @@ Table of Contents
       access.
 
    'svc-pe-to-ce-bandwidth' and 'svc-ce-to-pe-bandwidth':  Specify the
-      service bandwidth for the L2VPN service.
+      service bandwidth for the AC.
 
       'svc-pe-to-ce-bandwidth' indicates the inbound bandwidth of the
       connection (i.e., download bandwidth from the service provider to
