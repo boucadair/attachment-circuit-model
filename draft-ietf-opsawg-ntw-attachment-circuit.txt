@@ -77,7 +77,7 @@ Table of Contents
 
    1.  Introduction
    2.  Conventions and Definitions
-   3.  Sample Uses of the Attachment Circuit Data Model
+   3.  Sample Uses of the Attachment Circuit Data Models
    4.  Description of the Attachment Circuit YANG Module
      4.1.  Overall Structure of the Module
      4.2.  References
@@ -257,14 +257,15 @@ Table of Contents
    Service provider:  A service provider that offers network services
       (e.g., L2VPN, L3VPN, or Network Slice Services).
 
-3.  Sample Uses of the Attachment Circuit Data Model
+3.  Sample Uses of the Attachment Circuit Data Models
 
    Figure 2 shows the positioning of the AC network model in the overall
    service delivery process.  The 'ietf-ac-ntw' module is a network
    model which augments the SAP with a comprehensive set of parameters
    to reflect the attachment circuits that are in place in a network.
    The model also maintains the mapping with the service references that
-   are used to expose these ACs to customers.  Whether the same naming
+   are used to expose these ACs to customers
+   [I-D.ietf-opsawg-teas-attachment-circuit].  Whether the same naming
    conventions to reference an AC are used in the service and network
    layers is deployment-specific.
 
@@ -314,8 +315,8 @@ Table of Contents
    (NNI).  For example, all the ACs shown in Figure 3 have a 'role' set
    to 'ietf-sap-ntw:nni'.  Typically, AS Border Routers (ASBRs) of each
    network is directly connected to an ASBR of a neighboring network via
-   one or multiple links (bearers).  ASBRs of "Network#1" behaves as a
-   PE and treats the other adjacent ASBRs as if it were a CE.
+   one or multiple links (bearers).  ASBRs of "Network#1" behave as a PE
+   and treat the other adjacent ASBRs as if it were a CE.
 
               .--------------------.         .-------------.
               |                    +---AC----+             |

@@ -1153,7 +1153,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
             <p id="section-toc.1-1.2.1" class="keepWithNext"><a href="#section-2" class="auto internal xref">2</a>.  <a href="#name-conventions-and-definitions" class="internal xref">Conventions and Definitions</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3">
-            <p id="section-toc.1-1.3.1" class="keepWithNext"><a href="#section-3" class="auto internal xref">3</a>.  <a href="#name-sample-uses-of-the-attachme" class="internal xref">Sample Uses of the Attachment Circuit Data Model</a></p>
+            <p id="section-toc.1-1.3.1" class="keepWithNext"><a href="#section-3" class="auto internal xref">3</a>.  <a href="#name-sample-uses-of-the-attachme" class="internal xref">Sample Uses of the Attachment Circuit Data Models</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4">
             <p id="section-toc.1-1.4.1"><a href="#section-4" class="auto internal xref">4</a>.  <a href="#name-description-of-the-attachme" class="internal xref">Description of the Attachment Circuit YANG Module</a></p>
@@ -1509,12 +1509,12 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 </dl>
 </section>
 </div>
-<div id="sample-uses-of-the-attachment-circuit-data-model">
+<div id="sample-uses-of-the-attachment-circuit-data-models">
 <section id="section-3">
       <h2 id="name-sample-uses-of-the-attachme">
-<a href="#section-3" class="section-number selfRef">3. </a><a href="#name-sample-uses-of-the-attachme" class="section-name selfRef">Sample Uses of the Attachment Circuit Data Model</a>
+<a href="#section-3" class="section-number selfRef">3. </a><a href="#name-sample-uses-of-the-attachme" class="section-name selfRef">Sample Uses of the Attachment Circuit Data Models</a>
       </h2>
-<p id="section-3-1"><a href="#_u-ex" class="auto internal xref">Figure 2</a> shows the positioning of the AC network model in the overall service delivery process. The 'ietf-ac-ntw' module is a network model which augments the SAP with a comprehensive set of parameters to reflect the attachment circuits that are in place in a network. The model also maintains the mapping with the service references that are used to expose these ACs to customers. Whether the same naming conventions to reference an AC are used in the service and network layers is deployment-specific.<a href="#section-3-1" class="pilcrow">¶</a></p>
+<p id="section-3-1"><a href="#_u-ex" class="auto internal xref">Figure 2</a> shows the positioning of the AC network model in the overall service delivery process. The 'ietf-ac-ntw' module is a network model which augments the SAP with a comprehensive set of parameters to reflect the attachment circuits that are in place in a network. The model also maintains the mapping with the service references that are used to expose these ACs to customers <span>[<a href="#I-D.ietf-opsawg-teas-attachment-circuit" class="cite xref">I-D.ietf-opsawg-teas-attachment-circuit</a>]</span>. Whether the same naming conventions to reference an AC are used in the service and network layers is deployment-specific.<a href="#section-3-1" class="pilcrow">¶</a></p>
 <span id="name-an-example-of-the-network-a"></span><div id="_u-ex">
 <figure id="figure-2">
         <div id="section-3-2.1">
@@ -1624,7 +1624,7 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 <p id="section-3-3">Similar to <span>[<a href="#RFC9408" class="cite xref">RFC9408</a>]</span>, the 'ietf-ac-ntw' module can be used for both User-to-Network Interface (UNI) and
 Network-to-Network Interface (NNI). For example, all the ACs shown in <a href="#fig-inter-pn" class="auto internal xref">Figure 3</a> have a 'role' set
 to 'ietf-sap-ntw:nni'. Typically, AS Border Routers (ASBRs) of each network is directly
-connected to an ASBR of a neighboring network via one or multiple links (bearers). ASBRs of "Network#1" behaves as a PE and treats the other adjacent ASBRs as if it were a CE.<a href="#section-3-3" class="pilcrow">¶</a></p>
+connected to an ASBR of a neighboring network via one or multiple links (bearers). ASBRs of "Network#1" behave as a PE and treat the other adjacent ASBRs as if it were a CE.<a href="#section-3-3" class="pilcrow">¶</a></p>
 <span id="name-an-example-of-the-network-ac"></span><div id="fig-inter-pn">
 <figure id="figure-3">
         <div id="section-3-4.1">
