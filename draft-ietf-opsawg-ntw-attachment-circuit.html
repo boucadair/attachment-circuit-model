@@ -2029,9 +2029,10 @@ reference points (the PE side of an AC, in the context of this document) where n
           </figcaption></figure>
 </div>
 <p id="section-4.4-3">The 'encapsulation' container specifies the Layer 2 encapsulation to use (if any) and allows the configuration of the relevant tags. Also, the model supports tag manipulation operations (e.g., tag rewrite).<a href="#section-4.4-3" class="pilcrow">¶</a></p>
-<p id="section-4.4-4">The 'l2-tunnel-service' container is used to specify the required parameters to set a Layer tunneling service (e.g., a Virtual Private LAN Service (VPLS), a Virtual eXtensible Local Area Network (VXLAN), or a pseudowire (<span><a href="https://rfc-editor.org/rfc/rfc8077#section-6.1" class="relref">Section 6.1</a> of [<a href="#RFC8077" class="cite xref">RFC8077</a>]</span>)). 'l2vpn-id' is used to identify a L2VPN service that is associated with an Integrated Routing and Bridging (IRB) interface.<a href="#section-4.4-4" class="pilcrow">¶</a></p>
-<p id="section-4.4-5">To accommodate implementations that require internal bridging, a local bridge reference can be specified in 'local-bridge-reference'. Such a reference may be a local bridge domain.<a href="#section-4.4-5" class="pilcrow">¶</a></p>
-<p id="section-4.4-6">A reference to the bearer is maintained using 'bearer-reference'.<a href="#section-4.4-6" class="pilcrow">¶</a></p>
+<p id="section-4.4-4">The 'l2-tunnel-service' container is used to specify the required parameters to set a Layer 2 tunneling service (e.g., a Virtual Private LAN Service (VPLS), a Virtual eXtensible Local Area Network (VXLAN), or a pseudowire (<span><a href="https://rfc-editor.org/rfc/rfc8077#section-6.1" class="relref">Section 6.1</a> of [<a href="#RFC8077" class="cite xref">RFC8077</a>]</span>)). 'l2vpn-id' is used to identify a L2VPN service that is associated with an Integrated Routing and Bridging (IRB) interface.<a href="#section-4.4-4" class="pilcrow">¶</a></p>
+<p id="section-4.4-5">Specific Layer 2 sub-interfaces may be required to be configured in some implementations/deployments. Such a Layer-2-specific interface can be included in 'l2-termination-point'.<a href="#section-4.4-5" class="pilcrow">¶</a></p>
+<p id="section-4.4-6">To accommodate implementations that require internal bridging, a local bridge reference can be specified in 'local-bridge-reference'. Such a reference may be a local bridge domain.<a href="#section-4.4-6" class="pilcrow">¶</a></p>
+<p id="section-4.4-7">A reference to the bearer is maintained using 'bearer-reference'.<a href="#section-4.4-7" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sec-l3">
