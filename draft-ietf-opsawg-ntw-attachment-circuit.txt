@@ -5,14 +5,14 @@
 Operations and Management Area Working Group           M. Boucadair, Ed.
 Internet-Draft                                                    Orange
 Intended status: Standards Track                              R. Roberts
-Expires: 22 September 2024                                       Juniper
+Expires: 1 October 2024                                          Juniper
                                                            O. G. D. Dios
                                                               Telefonica
                                                            S. B. Giraldo
                                                                    Nokia
                                                                    B. Wu
                                                      Huawei Technologies
-                                                           21 March 2024
+                                                           30 March 2024
 
 
            A Network YANG Data Model for Attachment Circuits
@@ -57,7 +57,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 22 September 2024.
+   This Internet-Draft will expire on 1 October 2024.
 
 Copyright Notice
 
@@ -120,13 +120,14 @@ Table of Contents
    services and how they are bound to an Attachment Circuit (AC).  For
    example, the same attachment circuit may host multiple services
    (e.g., Layer 2 Virtual Private Network (VPN), or Layer 3 VPN, or
-   Slice Service [RFC9543]).  In order to avoid service interference and
-   redundant information in various locations, a service provider may
-   expose an interface to manage ACs network-wide.  Customers can then
-   request a standalone attachment circuit to be put in place, and then
-   refer to that attachment circuit when requesting services to be bound
-   to that AC.  [I-D.ietf-opsawg-teas-attachment-circuit] specifies a
-   data model for managing attachment circuits as a service.
+   Network Slice Service [RFC9543]).  In order to avoid service
+   interference and redundant information in various locations, a
+   service provider may expose an interface to manage ACs network-wide.
+   Customers can then request a standalone attachment circuit to be put
+   in place, and then refer to that attachment circuit when requesting
+   services to be bound to that AC.
+   [I-D.ietf-opsawg-teas-attachment-circuit] specifies a data model for
+   managing attachment circuits as a service.
    [I-D.ietf-opsawg-ac-lxsm-lxnm-glue] specifies augmentations to the
    L2VPN Network Model (L2NM) [RFC9291] and the L3VPN Network Model
    (L3NM) [RFC9182] to bind LxVPNs to ACs.
@@ -202,6 +203,16 @@ Table of Contents
 
    The meanings of the symbols in the YANG tree diagrams are defined in
    [RFC8340].
+
+   The following are used in the module prefixes:
+
+   ac:  Attachment circuit
+
+   ntw:  Network
+
+   sap:  Service Attchment Point
+
+   svc:  Service
 
    In addition, this document uses the following terms:
 
@@ -4211,9 +4222,9 @@ Table of Contents
               Boucadair, M., Roberts, R., de Dios, O. G., Barguil, S.,
               and B. Wu, "A Common YANG Data Model for Attachment
               Circuits", Work in Progress, Internet-Draft, draft-ietf-
-              opsawg-teas-common-ac-05, 9 February 2024,
+              opsawg-teas-common-ac-06, 21 March 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
-              teas-common-ac-05>.
+              teas-common-ac-06>.
 
    [IEEE802.1Qcp]
               IEEE, "IEEE Standard for Local and metropolitan area
