@@ -105,7 +105,7 @@ Connectivity services are provided by networks to customers via
    customer edges (CEs), peer Autonomous System Border Routers (ASBRs),
    data centers gateways, or Internet Exchange Points.
 
-The procedure to provision a service in a service provider network may depend on the practices adopted by a service provider, including the flow put in place for the provisioning of advanced network services and how they are bound to an Attachment Circuit (AC). For example, the same attachment circuit may host multiple services (e.g., Layer 2 Virtual Private Network (VPN), or Layer 3 VPN, or Slice Service {{?RFC9543}}). In order to avoid service interference and redundant information in various locations, a service provider may expose an interface to manage ACs network-wide. Customers can then request a standalone attachment circuit to be put in place, and then refer to that attachment circuit when requesting services to be bound to that AC. {{!I-D.ietf-opsawg-teas-attachment-circuit}} specifies a data model for managing attachment circuits as a service. {{?I-D.ietf-opsawg-ac-lxsm-lxnm-glue}} specifies augmentations to the L2VPN Network Model (L2NM) {{!RFC9291}} and the L3VPN Network Model (L3NM) {{!RFC9182}} to bind LxVPNs to ACs.
+The procedure to provision a service in a service provider network may depend on the practices adopted by a service provider, including the flow put in place for the provisioning of advanced network services and how they are bound to an Attachment Circuit (AC). For example, the same attachment circuit may host multiple services (e.g., Layer 2 Virtual Private Network (VPN), or Layer 3 VPN, or Network Slice Service {{?RFC9543}}). In order to avoid service interference and redundant information in various locations, a service provider may expose an interface to manage ACs network-wide. Customers can then request a standalone attachment circuit to be put in place, and then refer to that attachment circuit when requesting services to be bound to that AC. {{!I-D.ietf-opsawg-teas-attachment-circuit}} specifies a data model for managing attachment circuits as a service. {{?I-D.ietf-opsawg-ac-lxsm-lxnm-glue}} specifies augmentations to the L2VPN Network Model (L2NM) {{!RFC9291}} and the L3VPN Network Model (L3NM) {{!RFC9182}} to bind LxVPNs to ACs.
 
 {{sec-module}} specifies a network model for attachment circuits ('ietf-ac-ntw'). The model can be used for the provisioning of ACs prior or during service provisioning.
 
@@ -133,6 +133,20 @@ The reader should be familiar with the terms defined in {{Section 2 of !RFC9408}
 This document uses the term "network model" as defined in {{Section 2.1 of ?RFC8969}}.
 
 The meanings of the symbols in the YANG tree diagrams are defined in {{?RFC8340}}.
+
+The following are used in the module prefixes:
+
+ac:
+: Attachment circuit
+
+ntw:
+: Network
+
+sap:
+: Service Attchment Point
+
+svc:
+: Service
 
 In addition, this document uses the following terms:
 
