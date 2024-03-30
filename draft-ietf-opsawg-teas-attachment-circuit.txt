@@ -164,14 +164,14 @@ Table of Contents
    Also, because the instantiation of an attachment circuit requires
    coordinating the provisioning of endpoints that might not belong to
    the same administrative entity (customer vs. provider or distinct
-   operational teams within the same provider, etc.), *providing
+   operational teams within the same provider, etc.), providing
    programmatic means to expose 'attachment circuits'-as-a-service
-   greatly simplifies the provisioning of value-added services*
-   delivered over an attachment circuit.  For example, management
-   systems of adjacent domains that need to connect via an AC will use
-   such means to agree upon the resources that are required for the
-   activation of both sides of an AC (e.g., Layer 2 tags, IP address
-   family, or IP subnets).
+   greatly simplifies the provisioning of value-added services delivered
+   over an attachment circuit.  For example, management systems of
+   adjacent domains that need to connect via an AC will use such means
+   to agree upon the resources that are required for the activation of
+   both sides of an AC (e.g., Layer 2 tags, IP address family, or IP
+   subnets).
 
    This document specifies a YANG service data model ("ietf-ac-svc") for
    managing attachment circuits that are exposed by a network to its
@@ -188,10 +188,10 @@ Table of Contents
    ACs over which services are delivered has the merit of decorrelating
    the management of the (core) service vs. upgrade the AC components to
    reflect recent AC technologies or new features (e.g., new encryption
-   scheme, additional routing protocol). *This document favors the
+   scheme, additional routing protocol).  This document favors the
    approach of completely relying upon the AC service model instead of
    duplicating data nodes into specific modules of advanced services
-   that are delivered over an Attachment Circuit.*
+   that are delivered over an Attachment Circuit.
 
    Since the provisioning of an AC requires a bearer to be in place,
    this document introduces a new module called "ietf-bearer-svc" that
@@ -218,20 +218,23 @@ Table of Contents
    details about the (node-specific) attachment interfaces are not
    exposed in the AC service model.  However, these details are exposed
    at the network model per [I-D.ietf-opsawg-ntw-attachment-circuit].
+   [I-D.ietf-opsawg-ac-lxsm-lxnm-glue] specifies augmentations to the
+   L2VPN Service Model (L2SM) [RFC8466] and the L3VPN Service Model
+   (L3SM) [RFC8299] to bind LxVPN services to ACs.
 
-   The AC service model *does not make any assumptions about the
-   internal structure or even the nature or the services that will be
-   delivered over an attachment circuit or a set of attachment
-   circuits*. Customers do not have access to that network view other
-   than the ACs that they ordered.  For example, the AC service model
-   can be used to provision a set of ACs to connect multiple sites
-   (Site1, Site2, ..., SiteX) for customer who also requested VPN
-   services.  If the provisioning of these services requires specific
-   configuration on ASBR nodes, such configuration is handled at the
-   network level and is not exposed to the customer at the service
-   level.  However, the network controller will have access to such a
-   view as the service points in these ASBRs will be exposed as SAPs
-   with "role" set to "ietf-sap-ntw:nni" [RFC9408].
+   The AC service model does not make any assumptions about the internal
+   structure or even the nature or the services that will be delivered
+   over an attachment circuit or a set of attachment circuits.
+   Customers do not have access to that network view other than the ACs
+   that they ordered.  For example, the AC service model can be used to
+   provision a set of ACs to connect multiple sites (Site1, Site2, ...,
+   SiteX) for customer who also requested VPN services.  If the
+   provisioning of these services requires specific configuration on
+   ASBR nodes, such configuration is handled at the network level and is
+   not exposed to the customer at the service level.  However, the
+   network controller will have access to such a view as the service
+   points in these ASBRs will be exposed as SAPs with "role" set to
+   "ietf-sap-ntw:nni" [RFC9408].
 
    The AC service model can be used in a variety of contexts, such as
    (but not limited to) those provided in Appendix A:
@@ -265,7 +268,7 @@ Table of Contents
 
 1.2.  Positioning ACaaS vs. Other Data Models
 
-   The AC model specified in this document *is not a network model*
+   The AC model specified in this document is not a network model
    [RFC8969].  As such, the model does not expose details related to
    specific nodes in the provider's network that terminate an AC (e.g.,
    network node identifiers).  The mapping between an AC as seen by a
@@ -275,7 +278,7 @@ Table of Contents
    augmented SAP AC network model
    [I-D.ietf-opsawg-ntw-attachment-circuit].
 
-   The AC service model *is not a device model*. A network provider may
+   The AC service model is not a device model.  A network provider may
    use a variety of device models (e.g., Routing management [RFC8349] or
    BGP [I-D.ietf-idr-bgp-model]) to provision an AC service in relevant
    network nodes.
@@ -5036,7 +5039,8 @@ A.9.  Connect Customer Network (CE) Through BGP
 
 Acknowledgments
 
-   This document leverages [RFC9182] and [RFC9291].
+   This document leverages [RFC9182] and [RFC9291].  Thanks to Gyan
+   Mishra for the review.
 
    Thanks to Ebben Aries for the YANG Doctors review and for providing
    [Instance-Data].
