@@ -133,6 +133,10 @@ The YANG data model in this document conforms to the Network Management Datastor
 
 The meanings of the symbols in the YANG tree diagrams are defined in {{?RFC8340}}.
 
+LxSM refers to both the Layer 2 Service Model (L2SM) {{?RFC8466}} and the Layer 3 Service Model (L3SM) {{?RFC8299}}.
+
+LxNM refers to both the Layer 2 Network Model (L2NM) {{?RFC9291}} and the Layer 3 Network Model (L3NM) {{?RFC9182}}.
+
 This document uses the following terms:
 
 Bearer:
@@ -188,7 +192,7 @@ ietf-ac-svc <--> ietf-bearer-svc        |
 Bearers managed using "ietf-bearer-svc" may be referenced in the service ACs managed using "ietf-ac-svc".
 Similarly, a bearer managed using "ietf-bearer-svc" may list the set of ACs that use that bearer.
 In order to ease correlation between an AC service requests and the actual AC provisioned in the network, "ietf-ac-ntw" uses the AC references exposed by "ietf-ac-svc".
-To bind a Layer 2 VPN or Layer 3 VPN services with ACs, "ietf-ac-glue" augments the LxSM and LxNM with AC service references exposed by "ietf-ac-svc" and AC network references exposed bt "ietf-ac-ntw".
+To bind Layer 2 VPN or Layer 3 VPN services with ACs, "ietf-ac-glue" augments the LxSM and LxNM with AC service references exposed by "ietf-ac-svc" and AC network references exposed by "ietf-ac-ntw".
 
 # Description of the AC Common YANG Module
 
@@ -364,7 +368,7 @@ This section uses the template described in Section 3.7 of {{?I-D.ietf-netmod-rf
 {:numbered="false"}
 
 The document reuses many of the structures that were defined
-in {{RFC9181}} and {{RFC9182}}.
+in {{!RFC9181}} and {{?RFC9182}}.
 
 Thanks to Ebben Aries for the YANG Doctors review and Andy Smith for the
 rtg-dir review.
