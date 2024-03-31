@@ -48,9 +48,9 @@ informative:
 
 --- abstract
 
-   The document specifies a module that updates existing service and
-   network Virtual Private Network (VPN) modules with the required information to bind specific
-   services to ACs that are created using the Attachment Circuit (AC) service and network models.
+   The document specifies a module that updates existing service (i.e., the Layer 2 Service Model (L2SM) and the Layer 3 Service Model (L3SM)) and
+   network ((i.e., the Layer 2 Network Model (L2NM) and the Layer 3 Network Model (L3NM))) Virtual Private Network (VPN) modules with the required information to bind specific
+   VPN services to ACs that are created using the Attachment Circuit (AC) service ("ietf-ac-svc") and network ("ietf-ac-ntw") models.
 
 --- middle
 
@@ -84,6 +84,54 @@ This document uses terms defined in {{!I-D.ietf-opsawg-teas-attachment-circuit}}
 LxSM refers to both the L2SM and the L3SM.
 
 LxNM refers to both the L2NM and the L3NM.
+
+The following terms are used in the modules prefixes:
+
+ac:
+: Attachment circuit
+
+ntw:
+: Network
+
+ref:
+: Reference
+
+svc:
+: Service
+
+# Relationship to Other AC Data Models
+
+{{ac-overview}} depicts the relationship between the various AC data models:
+
+* "ietf-ac-common" ({{?I-D.ietf-opsawg-teas-common-ac}})
+* "ietf-bearer-svc" ({{Section 5.1 of !I-D.ietf-opsawg-teas-attachment-circuit}})
+* "ietf-ac-svc" ({{Section 5.2 of !I-D.ietf-opsawg-teas-attachment-circuit}})
+* "ietf-ac-ntw" ({{!I-D.ietf-opsawg-ntw-attachment-circuit}})
+* "ietf-ac-glue" ({{sec-glue}})
+
+~~~~ aasvg
+                ietf-ac-common
+                 ^     ^     ^
+                 |     |     |
+      +----------+     |     +----------+
+      |                |                |
+      |                |                |
+ietf-ac-svc <--> ietf-bearer-svc        |
+   ^    ^                               |
+   |    |                               |
+   |    +------------------------ ietf-ac-ntw
+   |                                    ^
+   |                                    |
+   |                                    |
+   +----------- ietf-ac-glue -----------+
+~~~~
+{: #ac-overview title="AC Data Models" artwork-align="center"}
+
+"ietf-ac-common" is imported  by "ietf-bearer-svc", "ietf-ac-svc", and "ietf-ac-ntw".
+Bearers managed using "ietf-bearer-svc" may be referenced in the service ACs managed using "ietf-ac-svc".
+Similarly, a bearer managed using "ietf-bearer-svc" may list the set of ACs that use that bearer.
+In order to ease correlation between an AC service requests and the actual AC provisioned in the network, "ietf-ac-ntw" uses the AC references exposed by "ietf-ac-svc".
+To bind a Layer 2 VPN or Layer 3 VPN services with ACs, "ietf-ac-glue" augments the LxSM and LxNM with AC service references exposed by "ietf-ac-svc" and AC network references exposed bt "ietf-ac-ntw".
 
 # Sample Uses of the Data Models
 
@@ -295,4 +343,4 @@ The provisioned AC at PE1 can be retrieved using the AC network model as depicte
 
 Thanks to Bo Wu and Qin Wu for the review and comments.
 
-Thanks to Martin Björklund for the yangdoctors review.
+Thanks to Martin Björklund for the yangdoctors review and Gyan Mishra for the rtg-dir review.
