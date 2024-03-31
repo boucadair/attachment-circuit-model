@@ -134,10 +134,10 @@ This document uses the term "network model" as defined in {{Section 2.1 of ?RFC8
 
 The meanings of the symbols in the YANG tree diagrams are defined in {{?RFC8340}}.
 
-LxSM refers to both the L2SM and the L3SM.
+LxSM refers to both the Layer 2 Service Model (L2SM) {{?RFC8466}} and the Layer 3 Service Model (L3SM) {{?RFC8299}}.
 
-LxNM refers to both the L2NM and the L3NM.
-   
+LxNM refers to both the L2VPN Network Model (L2NM) {{!RFC9291}} and the L3VPN Network Model (L3NM) {{!RFC9182}}.
+
 The following are used in the module prefixes:
 
 ac:
