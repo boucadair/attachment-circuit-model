@@ -187,7 +187,7 @@ Table of Contents
    of ACs that use that bearer.  In order to ease correlation between an
    AC service requests and the actual AC provisioned in the network,
    "ietf-ac-ntw" uses the AC references exposed by "ietf-ac-svc".  To
-   bind a Layer 2 VPN or Layer 3 VPN services with ACs, "ietf-ac-glue"
+   bind Layer 2 VPN or Layer 3 VPN services with ACs, "ietf-ac-glue"
    augments the LxSM and LxNM with AC service references exposed by
    "ietf-ac-svc" and AC network references exposed bt "ietf-ac-ntw".
 
