@@ -171,6 +171,40 @@ Service provider network:
 Service provider:
 : A service provider that offers network services (e.g., L2VPN, L3VPN, or Network Slice Services).
 
+# Relationship to Other AC Data Models
+
+{{ac-overview}} depicts the relationship between the various AC data models:
+
+* "ietf-ac-common" ({{?I-D.ietf-opsawg-teas-common-ac}})
+* "ietf-bearer-svc" ({{Section 5.1 of ?I-D.ietf-opsawg-teas-attachment-circuit}})
+* "ietf-ac-svc" ({{Section 5.2 of ?I-D.ietf-opsawg-teas-attachment-circuit}})
+* "ietf-ac-ntw" ({{sec-module}})
+* "ietf-ac-glue" ({{?I-D.ietf-opsawg-ac-lxsm-lxnm-glue}})
+
+~~~~ aasvg
+                ietf-ac-common
+                 ^     ^     ^
+                 |     |     |
+      +----------+     |     +----------+
+      |                |                |
+      |                |                |
+ietf-ac-svc <--> ietf-bearer-svc        |
+   ^    ^                               |
+   |    |                               |
+   |    +------------------------ ietf-ac-ntw
+   |                                    ^
+   |                                    |
+   |                                    |
+   +----------- ietf-ac-glue -----------+
+~~~~
+{: #ac-overview title="AC Data Models" artwork-align="center"}
+
+"ietf-ac-common" is imported  by "ietf-bearer-svc", "ietf-ac-svc", and "ietf-ac-ntw".
+Bearers managed using "ietf-bearer-svc" may be referenced in the service ACs managed using "ietf-ac-svc".
+Similarly, a bearer managed using "ietf-bearer-svc" may list the set of ACs that use that bearer.
+In order to ease correlation between an AC service requests and the actual AC provisioned in the network, "ietf-ac-ntw" uses the AC references exposed by "ietf-ac-svc".
+To bind a Layer 2 VPN or Layer 3 VPN services with ACs, "ietf-ac-glue" augments the LxSM and LxNM with AC service references exposed by "ietf-ac-svc" and AC network references exposed bt "ietf-ac-ntw".
+
 # Sample Uses of the Attachment Circuit Data Models
 
 {{u-ex}} shows the positioning of the AC network model in the overall service delivery process. The 'ietf-ac-ntw' module is a network model which augments the SAP with a comprehensive set of parameters to reflect the attachment circuits that are in place in a network. The model also maintains the mapping with the service references that are used to expose these ACs to customers {{!I-D.ietf-opsawg-teas-attachment-circuit}}. Whether the same naming conventions to reference an AC are used in the service and network layers is deployment-specific.
