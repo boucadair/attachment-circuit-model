@@ -131,7 +131,7 @@ ietf-ac-svc <--> ietf-bearer-svc        |
 Bearers managed using "ietf-bearer-svc" may be referenced in the service ACs managed using "ietf-ac-svc".
 Similarly, a bearer managed using "ietf-bearer-svc" may list the set of ACs that use that bearer.
 In order to ease correlation between an AC service requests and the actual AC provisioned in the network, "ietf-ac-ntw" uses the AC references exposed by "ietf-ac-svc".
-To bind a Layer 2 VPN or Layer 3 VPN services with ACs, "ietf-ac-glue" augments the LxSM and LxNM with AC service references exposed by "ietf-ac-svc" and AC network references exposed bt "ietf-ac-ntw".
+To bind Layer 2 VPN or Layer 3 VPN services with ACs, "ietf-ac-glue" augments the LxSM and LxNM with AC service references exposed by "ietf-ac-svc" and AC network references exposed bt "ietf-ac-ntw".
 
 # Sample Uses of the Data Models
 
