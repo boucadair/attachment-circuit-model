@@ -206,6 +206,12 @@ Table of Contents
    The meanings of the symbols in the YANG tree diagrams are defined in
    [RFC8340].
 
+   LxSM refers to both the Layer 2 Service Model (L2SM) [RFC8466] and
+   the Layer 3 Service Model (L3SM) [RFC8299].
+
+   LxNM refers to both the L2VPN Network Model (L2NM) [RFC9291] and the
+   L3VPN Network Model (L3NM) [RFC9182].
+
    The following are used in the module prefixes:
 
    ac:  Attachment circuit
@@ -299,9 +305,9 @@ Table of Contents
    of ACs that use that bearer.  In order to ease correlation between an
    AC service requests and the actual AC provisioned in the network,
    "ietf-ac-ntw" uses the AC references exposed by "ietf-ac-svc".  To
-   bind a Layer 2 VPN or Layer 3 VPN services with ACs, "ietf-ac-glue"
+   bind Layer 2 VPN or Layer 3 VPN services with ACs, "ietf-ac-glue"
    augments the LxSM and LxNM with AC service references exposed by
-   "ietf-ac-svc" and AC network references exposed bt "ietf-ac-ntw".
+   "ietf-ac-svc" and AC network references exposed by "ietf-ac-ntw".
 
 4.  Sample Uses of the Attachment Circuit Data Models
 
@@ -4398,9 +4404,19 @@ Table of Contents
               (S-BFD)", RFC 7880, DOI 10.17487/RFC7880, July 2016,
               <https://www.rfc-editor.org/rfc/rfc7880>.
 
+   [RFC8299]  Wu, Q., Ed., Litkowski, S., Tomotaki, L., and K. Ogaki,
+              "YANG Data Model for L3VPN Service Delivery", RFC 8299,
+              DOI 10.17487/RFC8299, January 2018,
+              <https://www.rfc-editor.org/rfc/rfc8299>.
+
    [RFC8340]  Bjorklund, M. and L. Berger, Ed., "YANG Tree Diagrams",
               BCP 215, RFC 8340, DOI 10.17487/RFC8340, March 2018,
               <https://www.rfc-editor.org/rfc/rfc8340>.
+
+   [RFC8466]  Wen, B., Fioccola, G., Ed., Xie, C., and L. Jalil, "A YANG
+              Data Model for Layer 2 Virtual Private Network (L2VPN)
+              Service Delivery", RFC 8466, DOI 10.17487/RFC8466, October
+              2018, <https://www.rfc-editor.org/rfc/rfc8466>.
 
    [RFC8695]  Liu, X., Sarda, P., and V. Choudhary, "A YANG Data Model
               for the Routing Information Protocol (RIP)", RFC 8695,

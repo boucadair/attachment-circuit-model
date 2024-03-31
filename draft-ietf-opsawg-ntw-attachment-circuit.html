@@ -1429,84 +1429,86 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 <p id="section-2-2">The reader should be familiar with the terms defined in <span><a href="https://rfc-editor.org/rfc/rfc9408#section-2" class="relref">Section 2</a> of [<a href="#RFC9408" class="cite xref">RFC9408</a>]</span>.<a href="#section-2-2" class="pilcrow">¶</a></p>
 <p id="section-2-3">This document uses the term "network model" as defined in <span><a href="https://rfc-editor.org/rfc/rfc8969#section-2.1" class="relref">Section 2.1</a> of [<a href="#RFC8969" class="cite xref">RFC8969</a>]</span>.<a href="#section-2-3" class="pilcrow">¶</a></p>
 <p id="section-2-4">The meanings of the symbols in the YANG tree diagrams are defined in <span>[<a href="#RFC8340" class="cite xref">RFC8340</a>]</span>.<a href="#section-2-4" class="pilcrow">¶</a></p>
-<p id="section-2-5">The following are used in the module prefixes:<a href="#section-2-5" class="pilcrow">¶</a></p>
-<span class="break"></span><dl class="dlParallel" id="section-2-6">
-        <dt id="section-2-6.1">ac:</dt>
-        <dd style="margin-left: 1.5em" id="section-2-6.2">
-          <p id="section-2-6.2.1">Attachment circuit<a href="#section-2-6.2.1" class="pilcrow">¶</a></p>
+<p id="section-2-5">LxSM refers to both the Layer 2 Service Model (L2SM) <span>[<a href="#RFC8466" class="cite xref">RFC8466</a>]</span> and the Layer 3 Service Model (L3SM) <span>[<a href="#RFC8299" class="cite xref">RFC8299</a>]</span>.<a href="#section-2-5" class="pilcrow">¶</a></p>
+<p id="section-2-6">LxNM refers to both the L2VPN Network Model (L2NM) <span>[<a href="#RFC9291" class="cite xref">RFC9291</a>]</span> and the L3VPN Network Model (L3NM) <span>[<a href="#RFC9182" class="cite xref">RFC9182</a>]</span>.<a href="#section-2-6" class="pilcrow">¶</a></p>
+<p id="section-2-7">The following are used in the module prefixes:<a href="#section-2-7" class="pilcrow">¶</a></p>
+<span class="break"></span><dl class="dlParallel" id="section-2-8">
+        <dt id="section-2-8.1">ac:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-8.2">
+          <p id="section-2-8.2.1">Attachment circuit<a href="#section-2-8.2.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-2-6.3">ntw:</dt>
-        <dd style="margin-left: 1.5em" id="section-2-6.4">
-          <p id="section-2-6.4.1">Network<a href="#section-2-6.4.1" class="pilcrow">¶</a></p>
+<dt id="section-2-8.3">ntw:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-8.4">
+          <p id="section-2-8.4.1">Network<a href="#section-2-8.4.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-2-6.5">sap:</dt>
-        <dd style="margin-left: 1.5em" id="section-2-6.6">
-          <p id="section-2-6.6.1">Service Attchment Point<a href="#section-2-6.6.1" class="pilcrow">¶</a></p>
+<dt id="section-2-8.5">sap:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-8.6">
+          <p id="section-2-8.6.1">Service Attchment Point<a href="#section-2-8.6.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-2-6.7">svc:</dt>
-        <dd style="margin-left: 1.5em" id="section-2-6.8">
-          <p id="section-2-6.8.1">Service<a href="#section-2-6.8.1" class="pilcrow">¶</a></p>
+<dt id="section-2-8.7">svc:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-8.8">
+          <p id="section-2-8.8.1">Service<a href="#section-2-8.8.1" class="pilcrow">¶</a></p>
 </dd>
       <dd class="break"></dd>
 </dl>
-<p id="section-2-7">In addition, this document uses the following terms:<a href="#section-2-7" class="pilcrow">¶</a></p>
-<span class="break"></span><dl class="dlParallel" id="section-2-8">
-        <dt id="section-2-8.1">Bearer:</dt>
-        <dd style="margin-left: 1.5em" id="section-2-8.2">
-          <p id="section-2-8.2.1">A physical or logical link that connects a customer node (or site) to a provider network.<a href="#section-2-8.2.1" class="pilcrow">¶</a></p>
+<p id="section-2-9">In addition, this document uses the following terms:<a href="#section-2-9" class="pilcrow">¶</a></p>
+<span class="break"></span><dl class="dlParallel" id="section-2-10">
+        <dt id="section-2-10.1">Bearer:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-10.2">
+          <p id="section-2-10.2.1">A physical or logical link that connects a customer node (or site) to a provider network.<a href="#section-2-10.2.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-2-8.3"></dt>
-        <dd style="margin-left: 1.5em" id="section-2-8.4">
-          <p id="section-2-8.4.1">A bearer can be a wireless or wired link. One or multiple technologies can be used to build a bearer. The bearer type can be specified by a customer.<a href="#section-2-8.4.1" class="pilcrow">¶</a></p>
+<dt id="section-2-10.3"></dt>
+        <dd style="margin-left: 1.5em" id="section-2-10.4">
+          <p id="section-2-10.4.1">A bearer can be a wireless or wired link. One or multiple technologies can be used to build a bearer. The bearer type can be specified by a customer.<a href="#section-2-10.4.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-2-8.5"></dt>
-        <dd style="margin-left: 1.5em" id="section-2-8.6">
-          <p id="section-2-8.6.1">The operator allocates a unique bearer reference to identify a bearer within its network (e.g., customer line identifier). Such a reference can be retrieved by a customer and then used in subsequent service placement requests to unambiguously identify where a service is to be bound.<a href="#section-2-8.6.1" class="pilcrow">¶</a></p>
+<dt id="section-2-10.5"></dt>
+        <dd style="margin-left: 1.5em" id="section-2-10.6">
+          <p id="section-2-10.6.1">The operator allocates a unique bearer reference to identify a bearer within its network (e.g., customer line identifier). Such a reference can be retrieved by a customer and then used in subsequent service placement requests to unambiguously identify where a service is to be bound.<a href="#section-2-10.6.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-2-8.7"></dt>
-        <dd style="margin-left: 1.5em" id="section-2-8.8">
-          <p id="section-2-8.8.1">The concept of bearer can be generalized to refer to the required underlying connection for the provisioning of an attachment circuit.<a href="#section-2-8.8.1" class="pilcrow">¶</a></p>
+<dt id="section-2-10.7"></dt>
+        <dd style="margin-left: 1.5em" id="section-2-10.8">
+          <p id="section-2-10.8.1">The concept of bearer can be generalized to refer to the required underlying connection for the provisioning of an attachment circuit.<a href="#section-2-10.8.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-2-8.9"></dt>
-        <dd style="margin-left: 1.5em" id="section-2-8.10">
-          <p id="section-2-8.10.1">One or multiple attachment circuits may be hosted over the same bearer (e.g., multiple Virtual Local Area Networks (VLANs) on the same bearer that is provided by a physical link).<a href="#section-2-8.10.1" class="pilcrow">¶</a></p>
+<dt id="section-2-10.9"></dt>
+        <dd style="margin-left: 1.5em" id="section-2-10.10">
+          <p id="section-2-10.10.1">One or multiple attachment circuits may be hosted over the same bearer (e.g., multiple Virtual Local Area Networks (VLANs) on the same bearer that is provided by a physical link).<a href="#section-2-10.10.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-2-8.11">Network controller:</dt>
-        <dd style="margin-left: 1.5em" id="section-2-8.12">
-          <p id="section-2-8.12.1">Denotes a functional entity responsible for the management of the service provider network. One or multiple network controllers can be deployed in a service provider network.<a href="#section-2-8.12.1" class="pilcrow">¶</a></p>
+<dt id="section-2-10.11">Network controller:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-10.12">
+          <p id="section-2-10.12.1">Denotes a functional entity responsible for the management of the service provider network. One or multiple network controllers can be deployed in a service provider network.<a href="#section-2-10.12.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-2-8.13">Service orchestrator:</dt>
-        <dd style="margin-left: 1.5em" id="section-2-8.14">
-          <p id="section-2-8.14.1">Refers to a functional entity that interacts with the customer of a network service.<a href="#section-2-8.14.1" class="pilcrow">¶</a></p>
+<dt id="section-2-10.13">Service orchestrator:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-10.14">
+          <p id="section-2-10.14.1">Refers to a functional entity that interacts with the customer of a network service.<a href="#section-2-10.14.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-2-8.15"></dt>
-        <dd style="margin-left: 1.5em" id="section-2-8.16">
-          <p id="section-2-8.16.1">A service orchestrator is typically responsible for the attachment circuits, the Provider Edge (PE) selection, and requesting the activation of the requested services to a network controller.<a href="#section-2-8.16.1" class="pilcrow">¶</a></p>
+<dt id="section-2-10.15"></dt>
+        <dd style="margin-left: 1.5em" id="section-2-10.16">
+          <p id="section-2-10.16.1">A service orchestrator is typically responsible for the attachment circuits, the Provider Edge (PE) selection, and requesting the activation of the requested services to a network controller.<a href="#section-2-10.16.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-2-8.17"></dt>
-        <dd style="margin-left: 1.5em" id="section-2-8.18">
-          <p id="section-2-8.18.1">A service orchestrator may interact with one or more network controllers.<a href="#section-2-8.18.1" class="pilcrow">¶</a></p>
+<dt id="section-2-10.17"></dt>
+        <dd style="margin-left: 1.5em" id="section-2-10.18">
+          <p id="section-2-10.18.1">A service orchestrator may interact with one or more network controllers.<a href="#section-2-10.18.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-2-8.19">Service provider network:</dt>
-        <dd style="margin-left: 1.5em" id="section-2-8.20">
-          <p id="section-2-8.20.1">A network that is able to provide network services (e.g., L2VPN, L3VPN, or Network Slice Services).<a href="#section-2-8.20.1" class="pilcrow">¶</a></p>
+<dt id="section-2-10.19">Service provider network:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-10.20">
+          <p id="section-2-10.20.1">A network that is able to provide network services (e.g., L2VPN, L3VPN, or Network Slice Services).<a href="#section-2-10.20.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-2-8.21">Service provider:</dt>
-        <dd style="margin-left: 1.5em" id="section-2-8.22">
-          <p id="section-2-8.22.1">A service provider that offers network services (e.g., L2VPN, L3VPN, or Network Slice Services).<a href="#section-2-8.22.1" class="pilcrow">¶</a></p>
+<dt id="section-2-10.21">Service provider:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-10.22">
+          <p id="section-2-10.22.1">A service provider that offers network services (e.g., L2VPN, L3VPN, or Network Slice Services).<a href="#section-2-10.22.1" class="pilcrow">¶</a></p>
 </dd>
       <dd class="break"></dd>
 </dl>
@@ -1580,7 +1582,7 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 Bearers managed using "ietf-bearer-svc" may be referenced in the service ACs managed using "ietf-ac-svc".
 Similarly, a bearer managed using "ietf-bearer-svc" may list the set of ACs that use that bearer.
 In order to ease correlation between an AC service requests and the actual AC provisioned in the network, "ietf-ac-ntw" uses the AC references exposed by "ietf-ac-svc".
-To bind a Layer 2 VPN or Layer 3 VPN services with ACs, "ietf-ac-glue" augments the LxSM and LxNM with AC service references exposed by "ietf-ac-svc" and AC network references exposed bt "ietf-ac-ntw".<a href="#section-3-4" class="pilcrow">¶</a></p>
+To bind Layer 2 VPN or Layer 3 VPN services with ACs, "ietf-ac-glue" augments the LxSM and LxNM with AC service references exposed by "ietf-ac-svc" and AC network references exposed by "ietf-ac-ntw".<a href="#section-3-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sample-uses-of-the-attachment-circuit-data-models">
@@ -6066,9 +6068,17 @@ be used to inject spoofed routing  advertisements.<a href="#section-7-7.6.1" cla
         <dd>
 <span class="refAuthor">Pignataro, C.</span>, <span class="refAuthor">Ward, D.</span>, <span class="refAuthor">Akiya, N.</span>, <span class="refAuthor">Bhatia, M.</span>, and <span class="refAuthor">S. Pallagatti</span>, <span class="refTitle">"Seamless Bidirectional Forwarding Detection (S-BFD)"</span>, <span class="seriesInfo">RFC 7880</span>, <span class="seriesInfo">DOI 10.17487/RFC7880</span>, <time datetime="2016-07" class="refDate">July 2016</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc7880">https://www.rfc-editor.org/rfc/rfc7880</a>&gt;</span>. </dd>
 <dd class="break"></dd>
+<dt id="RFC8299">[RFC8299]</dt>
+        <dd>
+<span class="refAuthor">Wu, Q., Ed.</span>, <span class="refAuthor">Litkowski, S.</span>, <span class="refAuthor">Tomotaki, L.</span>, and <span class="refAuthor">K. Ogaki</span>, <span class="refTitle">"YANG Data Model for L3VPN Service Delivery"</span>, <span class="seriesInfo">RFC 8299</span>, <span class="seriesInfo">DOI 10.17487/RFC8299</span>, <time datetime="2018-01" class="refDate">January 2018</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8299">https://www.rfc-editor.org/rfc/rfc8299</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="RFC8340">[RFC8340]</dt>
         <dd>
 <span class="refAuthor">Bjorklund, M.</span> and <span class="refAuthor">L. Berger, Ed.</span>, <span class="refTitle">"YANG Tree Diagrams"</span>, <span class="seriesInfo">BCP 215</span>, <span class="seriesInfo">RFC 8340</span>, <span class="seriesInfo">DOI 10.17487/RFC8340</span>, <time datetime="2018-03" class="refDate">March 2018</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8340">https://www.rfc-editor.org/rfc/rfc8340</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC8466">[RFC8466]</dt>
+        <dd>
+<span class="refAuthor">Wen, B.</span>, <span class="refAuthor">Fioccola, G., Ed.</span>, <span class="refAuthor">Xie, C.</span>, and <span class="refAuthor">L. Jalil</span>, <span class="refTitle">"A YANG Data Model for Layer 2 Virtual Private Network (L2VPN) Service Delivery"</span>, <span class="seriesInfo">RFC 8466</span>, <span class="seriesInfo">DOI 10.17487/RFC8466</span>, <time datetime="2018-10" class="refDate">October 2018</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8466">https://www.rfc-editor.org/rfc/rfc8466</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC8695">[RFC8695]</dt>
         <dd>
