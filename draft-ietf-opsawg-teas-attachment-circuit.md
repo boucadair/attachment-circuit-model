@@ -190,6 +190,10 @@ Like the L2SM, the L3VPN Service Model (L3SM) {{?RFC8299}} addresses certain AC-
 
 The meanings of the symbols in the YANG tree diagrams are defined in {{?RFC8340}}.
 
+LxSM refers to both the L2SM and the L3SM.
+
+LxNM refers to both the L2NM and the L3NM.
+
 This document uses the following terms:
 
 Bearer:
@@ -208,6 +212,40 @@ Service provider network:
 
 Service provider:
 : A service provider that offers network services (e.g., Layer 2 VPN, Layer 3 VPN, or Network Slice Services).
+
+# Relationship to Other AC Data Models
+
+{{ac-overview}} depicts the relationship between the various AC data models:
+
+* "ietf-ac-common" ({{!I-D.ietf-opsawg-teas-common-ac}})
+* "ietf-bearer-svc" ({{sec-ac-module}})
+* "ietf-ac-svc" ({{sec-bearer-module}})
+* "ietf-ac-ntw" ({{?I-D.ietf-opsawg-ntw-attachment-circuit}})
+* "ietf-ac-glue" ({{?I-D.ietf-opsawg-ac-lxsm-lxnm-glue}})
+
+~~~~ aasvg
+                ietf-ac-common
+                 ^     ^     ^
+                 |     |     |
+      +----------+     |     +----------+
+      |                |                |
+      |                |                |
+ietf-ac-svc <--> ietf-bearer-svc        |
+   ^    ^                               |
+   |    |                               |
+   |    +------------------------ ietf-ac-ntw
+   |                                    ^
+   |                                    |
+   |                                    |
+   +----------- ietf-ac-glue -----------+
+~~~~
+{: #ac-overview title="AC Data Models" artwork-align="center"}
+
+"ietf-ac-common" is imported  by "ietf-bearer-svc", "ietf-ac-svc", and "ietf-ac-ntw".
+Bearers managed using "ietf-bearer-svc" may be referenced in the service ACs managed using "ietf-ac-svc".
+Similarly, a bearer managed using "ietf-bearer-svc" may list the set of ACs that use that bearer.
+In order to ease correlation between an AC service requests and the actual AC provisioned in the network, "ietf-ac-ntw" uses the AC references exposed by "ietf-ac-svc".
+To bind Layer 2 VPN or Layer 3 VPN services with ACs, "ietf-ac-glue" augments the LxSM and LxNM with AC service references exposed by "ietf-ac-svc" and AC network references exposed bt "ietf-ac-ntw".
 
 # Sample Uses of the Data Models
 
