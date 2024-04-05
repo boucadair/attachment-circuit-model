@@ -2,9 +2,9 @@
     +--rw ac* [name]
        +--rw name                 string
        + ...
-       +--rw l2-connection
+       +--rw l2-connection  {ac-common:layer2-ac}?
        |  ...
-       +--rw ip-connection
+       +--rw ip-connection  {ac-common:layer3-ac}?
        |  +--rw l3-termination-point?   string
        |  +--rw ipv4 {vpn-common:ipv4}?
        |  |  +--rw local-address?
