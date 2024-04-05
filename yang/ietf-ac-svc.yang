@@ -357,6 +357,7 @@ module ietf-ac-svc {
         "List of LAN prefixes for the site.";
       uses ac-common:ipv4-static-rtg-entry;
       leaf bfd-profile {
+        if-feature "vpn-common:bfd";
         type bfd-profile-reference;
         description
           "Points to a BFD profile.";
@@ -370,12 +371,13 @@ module ietf-ac-svc {
       "Configuration specific to IPv6 static routing with
        BFD.";
     list ipv6-lan-prefixes {
-      if-feature "vpn-common:ipv4";
+      if-feature "vpn-common:ipv6";
       key "lan next-hop";
       description
         "List of LAN prefixes for the site.";
       uses ac-common:ipv4-static-rtg-entry;
       leaf bfd-profile {
+        if-feature "vpn-common:bfd";
         type bfd-profile-reference;
         description
           "Points to a BFD profile.";
@@ -521,12 +523,12 @@ module ietf-ac-svc {
       }
       uses routing-protocol-list;
       container bgp {
-        if-feature "vpn-common:rtg-bgp";
         when
           "derived-from-or-self(../type, 'vpn-common:bgp-routing')" {
           description
             "Only applies when the protocol is BGP.";
         }
+        if-feature "vpn-common:rtg-bgp";
         description
           "Configuration specific to BGP.";
         container peer-groups {
@@ -543,29 +545,28 @@ module ietf-ac-svc {
         }
       }
       container ospf {
-        if-feature "vpn-common:rtg-ospf";
         when "derived-from-or-self(../type, "
            + "'vpn-common:ospf-routing')" {
           description
             "Only applies when the protocol is OSPF.";
         }
+        if-feature "vpn-common:rtg-ospf";
         description
           "Configuration specific to OSPF.";
         uses ac-common:ospf-basic;
       }
       container isis {
-       if-feature "vpn-common:rtg-isis";
         when "derived-from-or-self(../type, "
            + "'vpn-common:isis-routing')" {
           description
             "Only applies when the protocol is IS-IS.";
         }
+       if-feature "vpn-common:rtg-isis";
         description
           "Configuration specific to IS-IS.";
         uses ac-common:isis-basic;
       }
       container rip {
-        if-feature "vpn-common:rtg-rip";
         when "derived-from-or-self(../type, "
            + "'vpn-common:rip-routing')" {
           description
@@ -573,6 +574,7 @@ module ietf-ac-svc {
              For IPv4, the model assumes that RIP
              version 2 is used.";
         }
+        if-feature "vpn-common:rtg-rip";
         description
           "Configuration specific to RIP routing.";
         leaf address-family {
@@ -585,13 +587,13 @@ module ietf-ac-svc {
         }
       }
       container vrrp {
-        if-feature "vpn-common:rtg-vrrp";
         when "derived-from-or-self(../type, "
            + "'vpn-common:vrrp-routing')" {
           description
             "Only applies when the protocol is the
              Virtual Router Redundancy Protocol (VRRP).";
         }
+        if-feature "vpn-common:rtg-vrrp";
         description
           "Configuration specific to VRRP.";
         leaf address-family {
@@ -638,12 +640,12 @@ module ietf-ac-svc {
         }
       }
       container bgp {
-        if-feature "vpn-common:rtg-bgp";
         when "derived-from-or-self(../type, "
            + "'vpn-common:bgp-routing')" {
           description
             "Only applies when the protocol is BGP.";
         }
+        if-feature "vpn-common:rtg-bgp";
         description
           "Configuration specific to BGP.";
         uses bgp-svc {
@@ -656,29 +658,28 @@ module ietf-ac-svc {
         }
       }
       container ospf {
-        if-feature "vpn-common:rtg-ospf";
         when "derived-from-or-self(../type, "
            + "'vpn-common:ospf-routing')" {
           description
             "Only applies when the protocol is OSPF.";
         }
+        if-feature "vpn-common:rtg-ospf";
         description
           "Configuration specific to OSPF.";
         uses ospf-svc;
       }
       container isis {
-        if-feature "vpn-common:rtg-isis";
         when "derived-from-or-self(../type, "
            + "'vpn-common:isis-routing')" {
           description
             "Only applies when the protocol is IS-IS.";
         }
+        if-feature "vpn-common:rtg-isis";
         description
           "Configuration specific to IS-IS.";
         uses isis-svc;
       }
       container rip {
-        if-feature "vpn-common:rtg-rip";
         when "derived-from-or-self(../type, "
            + "'vpn-common:rip-routing')" {
           description
@@ -686,18 +687,19 @@ module ietf-ac-svc {
              For IPv4, the model assumes that RIP version 2 is
              used.";
         }
+        if-feature "vpn-common:rtg-rip";
         description
           "Configuration specific to RIP routing.";
         uses rip-svc;
       }
       container vrrp {
-        if-feature "vpn-common:rtg-vrrp";
         when "derived-from-or-self(../type, "
            + "'vpn-common:vrrp-routing')" {
           description
             "Only applies when the protocol is the Virtual Router
              Redundancy Protocol (VRRP).";
         }
+        if-feature "vpn-common:rtg-vrrp";
         description
           "Configuration specific to VRRP.";
         uses vrrp-svc;
