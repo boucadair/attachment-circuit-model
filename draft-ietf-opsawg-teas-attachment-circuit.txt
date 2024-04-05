@@ -756,29 +756,29 @@ Table of Contents
    The overall tree structure of the AC service module is shown in
    Figure 5.
 
-                    +--rw specific-provisioning-profiles
+              +--rw specific-provisioning-profiles
+              |  ...
+              +--rw service-provisioning-profiles
+              |  ...
+              +--rw attachment-circuits
+                 +--rw ac-group-profile* [name]
+                 |  ...
+                 +--rw placement-constraints
+                 |  ...
+                 +--rw ac* [name]
+                    ...
+                    +--rw l2-connection  {ac-common:layer2-ac}?
                     |  ...
-                    +--rw service-provisioning-profiles
+                    +--rw ip-connection  {ac-common:layer3-ac}?
                     |  ...
-                    +--rw attachment-circuits
-                       +--rw ac-group-profile* [name]
-                       |  ...
-                       +--rw placement-constraints
-                       |  ...
-                       +--rw ac* [name]
-                          ...
-                          +--rw l2-connection
-                          |  ...
-                          +--rw ip-connection
-                          |  ...
-                          +--rw routing-protocols
-                          |  ...
-                          +--rw oam
-                          |  ...
-                          +--rw security
-                          |  ...
-                          +--rw service
-                             ...
+                    +--rw routing-protocols
+                    |  ...
+                    +--rw oam
+                    |  ...
+                    +--rw security
+                    |  ...
+                    +--rw service
+                       ...
 
                 Figure 5: Overall AC Service Tree Structure
 
@@ -967,9 +967,9 @@ Table of Contents
           |  +--ro service-id      string
           +--rw name                 string
           +--rw service-profile*     service-profile-reference
-          +--rw l2-connection
+          +--rw l2-connection  {ac-common:layer2-ac}?
           |  ...
-          +--rw ip-connection
+          +--rw ip-connection  {ac-common:layer3-ac}?
           |  ...
           +--rw routing-protocols
           |  ...
@@ -1082,7 +1082,7 @@ Table of Contents
            +--rw ac* [name]
               ...
               +--rw name                 string
-              +--rw l2-connection
+              +--rw l2-connection  {ac-common:layer2-ac}?
               |  +--rw encapsulation
               |  |  +--rw type?              identityref
               |  |  +--rw dot1q
@@ -1112,7 +1112,7 @@ Table of Contents
               |  |     +--rw l2vpn-id?            vpn-common:vpn-id
               |  +--rw bearer-reference?          string
               |          {vpn-common:bearer-reference}?
-              +--rw ip-connection
+              +--rw ip-connection  {ac-common:layer3-ac}?
               |  ...
               +--rw routing-protocols
               |  ...
@@ -3169,12 +3169,14 @@ Table of Contents
            "An identifier of the AC.";
        }
        container l2-connection {
+         if-feature "ac-common:layer2-ac";
          description
            "Defines Layer 2 protocols and parameters that are required
             to enable AC connectivity.";
          uses l2-connection-basic;
        }
        container ip-connection {
+         if-feature "ac-common:layer3-ac";
          description
            "Defines IP connection parameters.";
          uses ip-connection-basic;
@@ -3232,12 +3234,14 @@ Table of Contents
            "A reference to a service profile.";
        }
        container l2-connection {
+         if-feature "ac-common:layer2-ac";
          description
            "Defines Layer 2 protocols and parameters that are required
             to enable AC connectivity.";
          uses l2-connection;
        }
        container ip-connection {
+         if-feature "ac-common:layer3-ac";
          description
            "Defines IP connection parameters.";
          uses ip-connection;

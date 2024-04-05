@@ -1973,9 +1973,9 @@ for the reader's convenience. The full tree of the 'ac-svc' is provided in <span
      |  ...
      +--rw ac* [name]
         ...
-        +--rw l2-connection
+        +--rw l2-connection  {ac-common:layer2-ac}?
         |  ...
-        +--rw ip-connection
+        +--rw ip-connection  {ac-common:layer3-ac}?
         |  ...
         +--rw routing-protocols
         |  ...
@@ -2189,9 +2189,9 @@ These adjusted values take precedence over the global values.  The structure of 
         |  +--ro service-id      string
         +--rw name                 string
         +--rw service-profile*     service-profile-reference
-        +--rw l2-connection
+        +--rw l2-connection  {ac-common:layer2-ac}?
         |  ...
-        +--rw ip-connection
+        +--rw ip-connection  {ac-common:layer3-ac}?
         |  ...
         +--rw routing-protocols
         |  ...
@@ -2351,7 +2351,7 @@ a parent AC can be defined with a set of stable and common information, while
      +--rw ac* [name]
         ...
         +--rw name                 string
-        +--rw l2-connection
+        +--rw l2-connection  {ac-common:layer2-ac}?
         |  +--rw encapsulation
         |  |  +--rw type?              identityref
         |  |  +--rw dot1q
@@ -2381,7 +2381,7 @@ a parent AC can be defined with a set of stable and common information, while
         |  |     +--rw l2vpn-id?            vpn-common:vpn-id
         |  +--rw bearer-reference?          string
         |          {vpn-common:bearer-reference}?
-        +--rw ip-connection
+        +--rw ip-connection  {ac-common:layer3-ac}?
         |  ...
         +--rw routing-protocols
         |  ...
@@ -4647,12 +4647,14 @@ module ietf-ac-svc {
         "An identifier of the AC.";
     }
     container l2-connection {
+      if-feature "ac-common:layer2-ac";
       description
         "Defines Layer 2 protocols and parameters that are required
          to enable AC connectivity.";
       uses l2-connection-basic;
     }
     container ip-connection {
+      if-feature "ac-common:layer3-ac";
       description
         "Defines IP connection parameters.";
       uses ip-connection-basic;
@@ -4710,12 +4712,14 @@ module ietf-ac-svc {
         "A reference to a service profile.";
     }
     container l2-connection {
+      if-feature "ac-common:layer2-ac";
       description
         "Defines Layer 2 protocols and parameters that are required
          to enable AC connectivity.";
       uses l2-connection;
     }
     container ip-connection {
+      if-feature "ac-common:layer3-ac";
       description
         "Defines IP connection parameters.";
       uses ip-connection;

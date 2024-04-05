@@ -2023,7 +2023,7 @@ reference points (the PE side of an AC, in the context of this document) where n
     +--rw ac* [name]
        +--rw name                 string
        + ...
-       +--rw l2-connection
+       +--rw l2-connection  {ac-common:layer2-ac}?
        |  +--rw encapsulation
        |  |  +--rw encap-type?        identityref
        |  |  +--rw dot1q
@@ -2088,7 +2088,7 @@ reference points (the PE side of an AC, in the context of this document) where n
        |     +--rw member-link-list
        |        +--rw member-link* [name]
        |           +--rw name    string
-       +--rw ip-connection
+       +--rw ip-connection  {ac-common:layer3-ac}?
        |  ...
        +--rw routing-protocols
        |  ...
@@ -2126,9 +2126,9 @@ reference points (the PE side of an AC, in the context of this document) where n
     +--rw ac* [name]
        +--rw name                 string
        + ...
-       +--rw l2-connection
+       +--rw l2-connection  {ac-common:layer2-ac}?
        |  ...
-       +--rw ip-connection
+       +--rw ip-connection  {ac-common:layer3-ac}?
        |  +--rw l3-termination-point?   string
        |  +--rw ipv4 {vpn-common:ipv4}?
        |  |  +--rw local-address?
@@ -2259,9 +2259,9 @@ module: ietf-ac-ntw
     +--rw ac* [name]
        +--rw name                 string
        ...
-       +--rw l2-connection
+       +--rw l2-connection  {ac-common:layer2-ac}?
        |  ...
-       +--rw ip-connection
+       +--rw ip-connection  {ac-common:layer3-ac}?
        |  ...
        +--rw routing-protocols
        |  +--rw routing-protocol* [id]
@@ -2321,9 +2321,9 @@ module: ietf-ac-ntw
     +--rw ac* [name]
        +--rw name                 string
        ...
-       +--rw l2-connection
+       +--rw l2-connection  {ac-common:layer2-ac}?
        |  ...
-       +--rw ip-connection
+       +--rw ip-connection  {ac-common:layer3-ac}?
        |  ...
        +--rw routing-protocols
        |  +--rw routing-protocol* [id]
@@ -2505,9 +2505,9 @@ module: ietf-ac-ntw
     +--rw ac* [name]
        +--rw name                 string
        ...
-       +--rw l2-connection
+       +--rw l2-connection  {ac-common:layer2-ac}?
        |  ...
-       +--rw ip-connection
+       +--rw ip-connection  {ac-common:layer3-ac}?
        |  ...
        +--rw routing-protocols
        |  +--rw routing-protocol* [id]
@@ -2896,9 +2896,9 @@ module: ietf-ac-ntw
     +--rw ac* [name]
        +--rw name                 string
        ...
-       +--rw l2-connection
+       +--rw l2-connection  {ac-common:layer2-ac}?
        |  ...
-       +--rw ip-connection
+       +--rw ip-connection  {ac-common:layer3-ac}?
        |  ...
        +--rw routing-protocols
        |  +--rw routing-protocol* [id]
@@ -3200,9 +3200,9 @@ module: ietf-ac-ntw
     +--rw ac* [name]
        +--rw name                 string
        ...
-       +--rw l2-connection
+       +--rw l2-connection  {ac-common:layer2-ac}?
        |  ...
-       +--rw ip-connection
+       +--rw ip-connection  {ac-common:layer3-ac}?
        |  ...
        +--rw routing-protocols
        |  +--rw routing-protocol* [id]
@@ -3366,9 +3366,9 @@ module: ietf-ac-ntw
     +--rw ac* [name]
        +--rw name                 string
        ...
-       +--rw l2-connection
+       +--rw l2-connection  {ac-common:layer2-ac}?
        |  ...
-       +--rw ip-connection
+       +--rw ip-connection  {ac-common:layer3-ac}?
        |  ...
        +--rw routing-protocols
        |  +--rw routing-protocol* [id]
@@ -3487,9 +3487,9 @@ isn't any type of VRRP authentication at this time (see <span><a href="https://r
     +--rw ac* [name]
        +--rw name                 string
        + ...
-       +--rw l2-connection
+       +--rw l2-connection  {ac-common:layer2-ac}?
        |  ...
-       +--rw ip-connection
+       +--rw ip-connection  {ac-common:layer3-ac}?
        |  ...
        +--rw routing-protocols
        |  ...
@@ -3600,9 +3600,9 @@ isn't any type of VRRP authentication at this time (see <span><a href="https://r
     +--rw ac* [name]
        +--rw name                 string
        + ...
-       +--rw l2-connection
+       +--rw l2-connection  {ac-common:layer2-ac}?
        |  ...
-       +--rw ip-connection
+       +--rw ip-connection  {ac-common:layer3-ac}?
        |  ...
        +--rw routing-protocols
        |  ...
@@ -3644,9 +3644,9 @@ isn't any type of VRRP authentication at this time (see <span><a href="https://r
     +--rw ac* [name]
        +--rw name                 string
        + ...
-       +--rw l2-connection
+       +--rw l2-connection  {ac-common:layer2-ac}?
        |  ...
-       +--rw ip-connection
+       +--rw ip-connection  {ac-common:layer3-ac}?
        |  ...
        +--rw routing-protocols
        |  ...
@@ -5583,12 +5583,14 @@ module ietf-ac-ntw {
         "Associates a description with an AC.";
     }
     container l2-connection {
+      if-feature "ac-common:layer2-ac";
       description
         "Defines Layer 2 protocols and parameters that are required
          to enable AC connectivity.";
       uses l2-connection-if-ref;
     }
     container ip-connection {
+      if-feature "ac-common:layer3-ac";
       description
         "Defines IP connection parameters.";
       uses ip-connection;
