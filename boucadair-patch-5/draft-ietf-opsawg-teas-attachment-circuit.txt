@@ -1082,7 +1082,7 @@ Table of Contents
            +--rw ac* [name]
               ...
               +--rw name                 string
-              +--rw l2-connection
+              +--rw l2-connection  {ac-common:layer2-ac}?
               |  +--rw encapsulation
               |  |  +--rw type?              identityref
               |  |  +--rw dot1q
@@ -1112,7 +1112,7 @@ Table of Contents
               |  |     +--rw l2vpn-id?            vpn-common:vpn-id
               |  +--rw bearer-reference?          string
               |          {vpn-common:bearer-reference}?
-              +--rw ip-connection
+              +--rw ip-connection  {ac-common:layer3-ac}?
               |  ...
               +--rw routing-protocols
               |  ...

@@ -2351,7 +2351,7 @@ a parent AC can be defined with a set of stable and common information, while
      +--rw ac* [name]
         ...
         +--rw name                 string
-        +--rw l2-connection
+        +--rw l2-connection  {ac-common:layer2-ac}?
         |  +--rw encapsulation
         |  |  +--rw type?              identityref
         |  |  +--rw dot1q
@@ -2381,7 +2381,7 @@ a parent AC can be defined with a set of stable and common information, while
         |  |     +--rw l2vpn-id?            vpn-common:vpn-id
         |  +--rw bearer-reference?          string
         |          {vpn-common:bearer-reference}?
-        +--rw ip-connection
+        +--rw ip-connection  {ac-common:layer3-ac}?
         |  ...
         +--rw routing-protocols
         |  ...
