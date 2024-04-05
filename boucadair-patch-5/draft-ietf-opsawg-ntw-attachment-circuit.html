@@ -4925,6 +4925,7 @@ module ietf-ac-ntw {
           description
             "Only applies when the protocol is BGP.";
         }
+       if-feature "vpn-common:rtg-bgp";
         description
           "Configuration specific to BGP.";
         uses bgp-base;
@@ -4935,6 +4936,7 @@ module ietf-ac-ntw {
           description
             "Only applies when the protocol is OSPF.";
         }
+       if-feature "vpn-common:rtg-ospf";
         description
           "Configuration specific to OSPF.";
         uses ac-common:ospf-basic;
@@ -4953,6 +4955,7 @@ module ietf-ac-ntw {
           description
             "Only applies when the protocol is IS-IS.";
         }
+       if-feature "vpn-common:rtg-isis";
         description
           "Configuration specific to IS-IS.";
         uses ac-common:isis-basic;
@@ -4995,6 +4998,7 @@ module ietf-ac-ntw {
           description
             "Only applies when the protocol is RIP.";
         }
+       if-feature "vpn-common:rtg-rip";
         description
           "Configuration specific to RIP routing.";
         uses rip-base;
@@ -5006,6 +5010,7 @@ module ietf-ac-ntw {
             "Only applies when the protocol is the Virtual Router
              Redundancy Protocol (VRRP).";
         }
+       if-feature "vpn-common:rtg-vrrp";
         description
           "Configuration specific to VRRP.";
         reference
@@ -5111,6 +5116,7 @@ module ietf-ac-ntw {
           description
             "Only applies when the protocol is BGP.";
         }
+       if-feature "vpn-common:rtg-bgp";
         description
           "Configuration specific to BGP.";
         container peer-groups {
@@ -5180,6 +5186,7 @@ module ietf-ac-ntw {
           description
             "Only applies when the protocol is OSPF.";
         }
+        if-feature "vpn-common:rtg-ospf";
         description
           "Configuration specific to OSPF.";
         uses ac-common:ospf-basic;
@@ -5236,6 +5243,7 @@ module ietf-ac-ntw {
             "Only applies when the protocol is
              IS-IS.";
         }
+        if-feature "vpn-common:rtg-isis";
         description
           "Configuration specific to IS-IS.";
         uses ac-common:isis-basic;
@@ -5283,6 +5291,7 @@ module ietf-ac-ntw {
              For IPv4, the model assumes that RIP
              version 2 is used.";
         }
+        if-feature "vpn-common:rtg-rip";
         description
           "Configuration specific to RIP routing.";
         uses rip-base;
@@ -5295,6 +5304,7 @@ module ietf-ac-ntw {
           description
             "Only applies when the protocol is the VRRP.";
         }
+        if-feature "vpn-common:rtg-vrrp";
         description
           "Configuration specific to VRRP.";
         reference
