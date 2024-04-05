@@ -17,7 +17,7 @@
        |  +--rw routing-protocol* [id]
        |     +--rw id      string
        |     +--rw type?   identityref
-       |     +--rw bgp
+       |     +--rw bgp {vpn-common:rtg-bgp}?
        |     |  +--rw description?              string
        |     |  +--rw apply-policy
        |     |  |  +--rw import-policy*           leafref
@@ -37,7 +37,7 @@
        |     |  |       rt-types:ipv6-route-origin
        |     |  +--rw redistribute-connected* [address-family]
        |     |  |  +--rw address-family    identityref
-       |     |  |  +--rw enable?           boolean
+       |     |  |  +--rw enabled?          boolean
        |     |  +--rw bgp-max-prefix
        |     |  |  +--rw max-prefix?          uint32
        |     |  |  +--rw warning-threshold?   decimal64
@@ -49,18 +49,18 @@
        |     |  +--rw capability* [address-family]
        |     |     +--rw address-family    identityref
        |     |     +--rw name              identityref
-       |     +--rw ospf
+       |     +--rw ospf {vpn-common:rtg-ospf}?
        |     |  +--rw address-family?   identityref
        |     |  +--rw area-id           yang:dotted-quad
        |     |  +--rw metric?           uint16
        |     |  +--rw max-lsa?          uint32
-       |     +--rw isis
+       |     +--rw isis {vpn-common:rtg-isis}?
        |     |  +--rw address-family?   identityref
        |     |  +--rw area-address      area-address
        |     |  +--rw level?            identityref
        |     |  +--rw metric?           uint16
        |     |  +--rw mode?             enumeration
-       |     +--rw rip
+       |     +--rw rip {vpn-common:rtg-rip}?
        |     |  +--rw address-family?   identityref
        |     |  +--rw timers
        |     |  |  +--rw update-interval?     uint16
@@ -68,7 +68,7 @@
        |     |  |  +--rw holddown-interval?   uint16
        |     |  |  +--rw flush-interval?      uint16
        |     |  +--rw default-metric?   uint8
-       |     +--rw vrrp
+       |     +--rw vrrp {vpn-common:rtg-vrrp}?
        |        +--rw address-family?   identityref
        |        +--rw ping-reply?       boolean
        +--rw oam
@@ -287,7 +287,7 @@
        |     |           +--ro oper-status
        |     |              +--ro status?        identityref
        |     |              +--ro last-change?   yang:date-and-time
-       |     +--rw bgp
+       |     +--rw bgp {vpn-common:rtg-bgp}?
        |     |  +--rw peer-groups
        |     |  |  +--rw peer-group* [name]
        |     |  |     +--rw name                      string
@@ -314,7 +314,7 @@
        |     |  |     |       rt-types:ipv6-route-origin
        |     |  |     +--rw redistribute-connected* [address-family]
        |     |  |     |  +--rw address-family    identityref
-       |     |  |     |  +--rw enable?           boolean
+       |     |  |     |  +--rw enabled?          boolean
        |     |  |     +--rw bgp-max-prefix
        |     |  |     |  +--rw max-prefix?          uint32
        |     |  |     |  +--rw warning-threshold?   decimal64
@@ -327,7 +327,7 @@
        |     |  |     |  +--rw address-family    identityref
        |     |  |     |  +--rw name              identityref
        |     |  |     +--rw authentication
-       |     |  |        +--rw enable?            boolean
+       |     |  |        +--rw enabled?           boolean
        |     |  |        +--rw keying-material
        |     |  |           +--rw (option)?
        |     |  |              +--:(ao)
@@ -369,7 +369,7 @@
        |     |     |       rt-types:ipv6-route-origin
        |     |     +--rw redistribute-connected* [address-family]
        |     |     |  +--rw address-family    identityref
-       |     |     |  +--rw enable?           boolean
+       |     |     |  +--rw enabled?          boolean
        |     |     +--rw bgp-max-prefix
        |     |     |  +--rw max-prefix?          uint32
        |     |     |  +--rw warning-threshold?   decimal64
@@ -387,7 +387,7 @@
        |     |     |  +--rw network-ref?
        |     |     |          -> /nw:networks/network/network-id
        |     |     +--rw authentication
-       |     |     |  +--rw enable?            boolean
+       |     |     |  +--rw enabled?           boolean
        |     |     |  +--rw keying-material
        |     |     |     +--rw (option)?
        |     |     |        +--:(ao)
@@ -408,7 +408,7 @@
        |     |        +--ro oper-status
        |     |           +--ro status?        identityref
        |     |           +--ro last-change?   yang:date-and-time
-       |     +--rw ospf
+       |     +--rw ospf {vpn-common:rtg-ospf}?
        |     |  +--rw address-family?   identityref
        |     |  +--rw area-id           yang:dotted-quad
        |     |  +--rw metric?           uint16
@@ -418,7 +418,7 @@
        |     |  |     +--rw metric?        uint16
        |     |  +--rw max-lsa?          uint32
        |     |  +--rw authentication
-       |     |  |  +--rw enable?            boolean
+       |     |  |  +--rw enabled?           boolean
        |     |  |  +--rw keying-material
        |     |  |     +--rw (option)?
        |     |  |        +--:(auth-key-chain)
@@ -435,14 +435,14 @@
        |     |     +--ro oper-status
        |     |        +--ro status?        identityref
        |     |        +--ro last-change?   yang:date-and-time
-       |     +--rw isis
+       |     +--rw isis {vpn-common:rtg-isis}?
        |     |  +--rw address-family?   identityref
        |     |  +--rw area-address      area-address
        |     |  +--rw level?            identityref
        |     |  +--rw metric?           uint16
        |     |  +--rw mode?             enumeration
        |     |  +--rw authentication
-       |     |  |  +--rw enable?            boolean
+       |     |  |  +--rw enabled?           boolean
        |     |  |  +--rw keying-material
        |     |  |     +--rw (option)?
        |     |  |        +--:(auth-key-chain)
@@ -459,7 +459,7 @@
        |     |     +--ro oper-status
        |     |        +--ro status?        identityref
        |     |        +--ro last-change?   yang:date-and-time
-       |     +--rw rip
+       |     +--rw rip {vpn-common:rtg-rip}?
        |     |  +--rw address-family?   identityref
        |     |  +--rw timers
        |     |  |  +--rw update-interval?     uint16
@@ -468,7 +468,7 @@
        |     |  |  +--rw flush-interval?      uint16
        |     |  +--rw default-metric?   uint8
        |     |  +--rw authentication
-       |     |  |  +--rw enable?            boolean
+       |     |  |  +--rw enabled?           boolean
        |     |  |  +--rw keying-material
        |     |  |     +--rw (option)?
        |     |  |        +--:(auth-key-chain)
@@ -484,7 +484,7 @@
        |     |     +--ro oper-status
        |     |        +--ro status?        identityref
        |     |        +--ro last-change?   yang:date-and-time
-       |     +--rw vrrp
+       |     +--rw vrrp {vpn-common:rtg-vrrp}?
        |        +--rw address-family?       identityref
        |        +--rw vrrp-group?           uint8
        |        +--rw backup-peer?          inet:ip-address

@@ -6,7 +6,7 @@ module: ietf-ac-ntw
        |  +--rw routing-protocol* [id]
        |     +--rw id      string
        |     +--rw type?   identityref
-       |     +--rw bgp
+       |     +--rw bgp  {vpn-common:rtg-bgp}?
        |     |  +--rw description?              string
        |     |  +--rw apply-policy
        |     |  |  +--rw import-policy*           leafref
@@ -38,13 +38,13 @@ module: ietf-ac-ntw
        |     |  +--rw capability*        [address-family]
        |     |     +--rw address-family    identityref
        |     |     +--rw name              identityref
-       |     +--rw ospf
+       |     +--rw ospf  {vpn-common:rtg-ospf}?
        |     |  ...
-       |     +--rw isis
+       |     +--rw isis  {vpn-common:rtg-isis}?
        |     |  ...
-       |     +--rw rip
+       |     +--rw rip  {vpn-common:rtg-rip}?
        |     |  ...
-       |     +--rw vrrp
+       |     +--rw vrrp  {vpn-common:rtg-vrrp}?
        |        ...
        +--rw oam
           ...
@@ -67,7 +67,7 @@ module: ietf-ac-ntw
        |     |  +--rw type?                  identityref
        |     +--rw static
        |     |  ...
-       |     +--rw bgp
+       |     +--rw bgp  {vpn-common:rtg-bgp}?
        |     |  +--rw peer-groups
        |     |  |  +--rw peer-group* [name]
        |     |  |     +--rw name                      string
@@ -188,13 +188,13 @@ module: ietf-ac-ntw
        |     |        +--ro oper-status
        |     |           +--ro status?        identityref
        |     |           +--ro last-change?   yang:date-and-time
-       |     +--rw ospf
+       |     +--rw ospf  {vpn-common:rtg-ospf}?
        |     |  ...
-       |     +--rw isis
+       |     +--rw isis  {vpn-common:rtg-isis}?
        |     |  ...
-       |     +--rw rip
+       |     +--rw rip  {vpn-common:rtg-rip}?
        |     |  ...
-       |     +--rw vrrp
+       |     +--rw vrrp  {vpn-common:rtg-vrrp}?
        |        ...
        +--rw oam
        |  ...
