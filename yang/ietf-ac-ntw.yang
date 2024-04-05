@@ -1788,12 +1788,14 @@ module ietf-ac-ntw {
         "Associates a description with an AC.";
     }
     container l2-connection {
+      if-feature "ac-common:layer2-ac";
       description
         "Defines Layer 2 protocols and parameters that are required
          to enable AC connectivity.";
       uses l2-connection-if-ref;
     }
     container ip-connection {
+      if-feature "ac-common:layer3-ac";
       description
         "Defines IP connection parameters.";
       uses ip-connection;
