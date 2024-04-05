@@ -27,9 +27,9 @@
         |  +--ro service-id      string
         +--rw name                 string
         +--rw service-profile*     service-profile-reference        
-        +--rw l2-connection
+        +--rw l2-connection  {ac-common:layer2-ac}?
         |  ...
-        +--rw ip-connection
+        +--rw ip-connection  {ac-common:layer3-ac}?
         |  ...
         +--rw routing-protocols
         |  ...
