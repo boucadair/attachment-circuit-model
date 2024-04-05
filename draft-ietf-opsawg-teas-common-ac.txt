@@ -5,14 +5,14 @@
 OPSAWG                                                 M. Boucadair, Ed.
 Internet-Draft                                                    Orange
 Intended status: Standards Track                         R. Roberts, Ed.
-Expires: 6 October 2024                                          Juniper
+Expires: 7 October 2024                                          Juniper
                                                            O. G. D. Dios
                                                               Telefonica
                                                            S. B. Giraldo
                                                                    Nokia
                                                                    B. Wu
                                                      Huawei Technologies
-                                                            4 April 2024
+                                                            5 April 2024
 
 
             A Common YANG Data Model for Attachment Circuits
@@ -54,7 +54,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 6 October 2024.
+   This Internet-Draft will expire on 7 October 2024.
 
 Copyright Notice
 
@@ -2404,25 +2404,25 @@ Table of Contents
               Dios, "A YANG Data Model for Augmenting VPN Service and
               Network Models with Attachment Circuits", Work in
               Progress, Internet-Draft, draft-ietf-opsawg-ac-lxsm-lxnm-
-              glue-06, 9 February 2024,
+              glue-07, 4 April 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
-              ac-lxsm-lxnm-glue-06>.
+              ac-lxsm-lxnm-glue-07>.
 
    [I-D.ietf-opsawg-ntw-attachment-circuit]
               Boucadair, M., Roberts, R., de Dios, O. G., Barguil, S.,
               and B. Wu, "A Network YANG Data Model for Attachment
               Circuits", Work in Progress, Internet-Draft, draft-ietf-
-              opsawg-ntw-attachment-circuit-05, 9 February 2024,
+              opsawg-ntw-attachment-circuit-06, 4 April 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
-              ntw-attachment-circuit-05>.
+              ntw-attachment-circuit-06>.
 
    [I-D.ietf-opsawg-teas-attachment-circuit]
               Boucadair, M., Roberts, R., de Dios, O. G., Barguil, S.,
               and B. Wu, "YANG Data Models for Bearers and 'Attachment
               Circuits'-as-a-Service (ACaaS)", Work in Progress,
               Internet-Draft, draft-ietf-opsawg-teas-attachment-circuit-
-              08, 16 March 2024, <https://datatracker.ietf.org/doc/html/
-              draft-ietf-opsawg-teas-attachment-circuit-08>.
+              09, 4 April 2024, <https://datatracker.ietf.org/doc/html/
+              draft-ietf-opsawg-teas-attachment-circuit-09>.
 
    [I-D.ietf-teas-ietf-network-slice-nbi-yang]
               Wu, B., Dhody, D., Rokui, R., Saad, T., and J. Mullooly,

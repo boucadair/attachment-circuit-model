@@ -1036,7 +1036,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Boucadair, et al.</td>
-<td class="center">Expires 6 October 2024</td>
+<td class="center">Expires 7 October 2024</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1049,12 +1049,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-opsawg-teas-attachment-circuit-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2024-04-04" class="published">4 April 2024</time>
+<time datetime="2024-04-05" class="published">5 April 2024</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2024-10-06">6 October 2024</time></dd>
+<dd class="expires"><time datetime="2024-10-07">7 October 2024</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1118,7 +1118,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 6 October 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 7 October 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -2552,15 +2552,15 @@ a parent AC can be defined with a set of stable and common information, while
         |     |  +--rw type?   identityref
         |     +--rw static
         |     |  ...
-        |     +--rw bgp
+        |     +--rw bgp {vpn-common:rtg-bgp}?
         |     |  ...
-        |     +--rw ospf
+        |     +--rw ospf {vpn-common:rtg-ospf}?
         |     |  ...
-        |     +--rw isis
+        |     +--rw isis {vpn-common:rtg-isis}?
         |     |  ...
-        |     +--rw rip
+        |     +--rw rip {vpn-common:rtg-rip}?
         |     |  ...
-        |     +--rw vrrp
+        |     +--rw vrrp {vpn-common:rtg-vrrp}?
         |        ...
         +--rw oam
         |  ...
@@ -2622,15 +2622,15 @@ a parent AC can be defined with a set of stable and common information, while
         |     |           +--ro oper-status
         |     |              +--ro status?        identityref
         |     |              +--ro last-change?   yang:date-and-time
-        |     +--rw bgp
+        |     +--rw bgp {vpn-common:rtg-bgp}?
         |     |  ...
-        |     +--rw ospf
+        |     +--rw ospf {vpn-common:rtg-ospf}?
         |     |  ...
-        |     +--rw isis
+        |     +--rw isis {vpn-common:rtg-isis}?
         |     |  ...
-        |     +--rw rip
+        |     +--rw rip {vpn-common:rtg-rip}?
         |     |  ...
-        |     +--rw vrrp
+        |     +--rw vrrp {vpn-common:rtg-vrrp}?
         |        ...
 </pre>
 </div>
@@ -2693,7 +2693,7 @@ a parent AC can be defined with a set of stable and common information, while
         |     |  +--rw type?   identityref
         |     +--rw static
         |     |  ...
-        |     +--rw bgp
+        |     +--rw bgp {vpn-common:rtg-bgp}?
         |     |  +--rw peer-groups
         |     |  |  +--rw peer-group* [name]
         |     |  |     +--rw name              string
@@ -2749,13 +2749,13 @@ a parent AC can be defined with a set of stable and common information, while
         |     |        +--ro oper-status
         |     |           +--ro status?        identityref
         |     |           +--ro last-change?   yang:date-and-time
-        |     +--rw ospf
+        |     +--rw ospf {vpn-common:rtg-ospf}?
         |     |  ...
-        |     +--rw isis
+        |     +--rw isis {vpn-common:rtg-isis}?
         |     |  ...
-        |     +--rw rip
+        |     +--rw rip {vpn-common:rtg-rip}?
         |     |  ...
-        |     +--rw vrrp
+        |     +--rw vrrp {vpn-common:rtg-vrrp}?
         |        ...
 </pre>
 </div>
@@ -2856,9 +2856,9 @@ a parent AC can be defined with a set of stable and common information, while
         |     |  +--rw type?   identityref
         |     +--rw static
         |     |  ...
-        |     +--rw bgp
+        |     +--rw bgp {vpn-common:rtg-bgp}?
         |     |  ...
-        |     +--rw ospf
+        |     +--rw ospf {vpn-common:rtg-ospf}?
         |     |  +--rw address-family?   identityref
         |     |  +--rw area-id           yang:dotted-quad
         |     |  +--rw metric?           uint16
@@ -2880,11 +2880,11 @@ a parent AC can be defined with a set of stable and common information, while
         |     |     +--ro oper-status
         |     |        +--ro status?        identityref
         |     |        +--ro last-change?   yang:date-and-time
-        |     +--rw isis
+        |     +--rw isis {vpn-common:rtg-isis}?
         |     |  ...
-        |     +--rw rip
+        |     +--rw rip {vpn-common:rtg-rip}?
         |     |  ...
-        |     +--rw vrrp
+        |     +--rw vrrp {vpn-common:rtg-vrrp}?
         |        ...
 </pre>
 </div>
@@ -2947,11 +2947,11 @@ a parent AC can be defined with a set of stable and common information, while
         |     |  +--rw type?   identityref
         |     +--rw static
         |     |  ...
-        |     +--rw bgp
+        |     +--rw bgp {vpn-common:rtg-bgp}?
         |     |  ...
-        |     +--rw ospf
+        |     +--rw ospf {vpn-common:rtg-ospf}?
         |     |  ...
-        |     +--rw isis
+        |     +--rw isis {vpn-common:rtg-isis}?
         |     |  +--rw address-family?   identityref
         |     |  +--rw area-address      area-address
         |     |  +--rw authentication
@@ -2972,9 +2972,9 @@ a parent AC can be defined with a set of stable and common information, while
         |     |     +--ro oper-status
         |     |        +--ro status?        identityref
         |     |        +--ro last-change?   yang:date-and-time
-        |     +--rw rip
+        |     +--rw rip {vpn-common:rtg-rip}?
         |     |  ...
-        |     +--rw vrrp
+        |     +--rw vrrp {vpn-common:rtg-vrrp}?
         |      ...
 </pre>
 </div>
@@ -3030,13 +3030,13 @@ a parent AC can be defined with a set of stable and common information, while
         |     |  +--rw type?   identityref
         |     +--rw static
         |     |  ...
-        |     +--rw bgp
+        |     +--rw bgp {vpn-common:rtg-bgp}?
         |     |  ...
-        |     +--rw ospf
+        |     +--rw ospf {vpn-common:rtg-ospf}?
         |     |  ...
-        |     +--rw isis
+        |     +--rw isis {vpn-common:rtg-isis}?
         |     |  ...
-        |     +--rw rip
+        |     +--rw rip {vpn-common:rtg-rip}?
         |     |  +--rw address-family?   identityref
         |     |  +--rw authentication
         |     |  |  +--rw enabled?            boolean
@@ -3055,7 +3055,7 @@ a parent AC can be defined with a set of stable and common information, while
         |     |     +--ro oper-status
         |     |        +--ro status?        identityref
         |     |        +--ro last-change?   yang:date-and-time
-        |     +--rw vrrp
+        |     +--rw vrrp {vpn-common:rtg-vrrp}?
         |      ...
 </pre>
 </div>
@@ -3086,15 +3086,15 @@ a parent AC can be defined with a set of stable and common information, while
         |     |  +--rw type?   identityref
         |     +--rw static
         |     |  ...
-        |     +--rw bgp
+        |     +--rw bgp {vpn-common:rtg-bgp}?
         |     |  ...
-        |     +--rw ospf
+        |     +--rw ospf {vpn-common:rtg-ospf}?
         |     |  ...
-        |     +--rw isis
+        |     +--rw isis {vpn-common:rtg-isis}?
         |     |  ...
-        |     +--rw rip
+        |     +--rw rip {vpn-common:rtg-rip}?
         |     |  ...
-        |     +--rw vrrp
+        |     +--rw vrrp {vpn-common:rtg-vrrp}?
         |        +--rw address-family?   identityref
         |        +--rw status
         |           +--rw admin-status
@@ -4191,6 +4191,7 @@ module ietf-ac-svc {
         "List of LAN prefixes for the site.";
       uses ac-common:ipv4-static-rtg-entry;
       leaf bfd-profile {
+        if-feature "vpn-common:bfd";
         type bfd-profile-reference;
         description
           "Points to a BFD profile.";
@@ -4204,12 +4205,13 @@ module ietf-ac-svc {
       "Configuration specific to IPv6 static routing with
        BFD.";
     list ipv6-lan-prefixes {
-      if-feature "vpn-common:ipv4";
+      if-feature "vpn-common:ipv6";
       key "lan next-hop";
       description
         "List of LAN prefixes for the site.";
       uses ac-common:ipv4-static-rtg-entry;
       leaf bfd-profile {
+        if-feature "vpn-common:bfd";
         type bfd-profile-reference;
         description
           "Points to a BFD profile.";
@@ -4360,6 +4362,7 @@ module ietf-ac-svc {
           description
             "Only applies when the protocol is BGP.";
         }
+        if-feature "vpn-common:rtg-bgp";
         description
           "Configuration specific to BGP.";
         container peer-groups {
@@ -4381,6 +4384,7 @@ module ietf-ac-svc {
           description
             "Only applies when the protocol is OSPF.";
         }
+        if-feature "vpn-common:rtg-ospf";
         description
           "Configuration specific to OSPF.";
         uses ac-common:ospf-basic;
@@ -4391,6 +4395,7 @@ module ietf-ac-svc {
           description
             "Only applies when the protocol is IS-IS.";
         }
+       if-feature "vpn-common:rtg-isis";
         description
           "Configuration specific to IS-IS.";
         uses ac-common:isis-basic;
@@ -4403,6 +4408,7 @@ module ietf-ac-svc {
              For IPv4, the model assumes that RIP
              version 2 is used.";
         }
+        if-feature "vpn-common:rtg-rip";
         description
           "Configuration specific to RIP routing.";
         leaf address-family {
@@ -4421,6 +4427,7 @@ module ietf-ac-svc {
             "Only applies when the protocol is the
              Virtual Router Redundancy Protocol (VRRP).";
         }
+        if-feature "vpn-common:rtg-vrrp";
         description
           "Configuration specific to VRRP.";
         leaf address-family {
@@ -4472,6 +4479,7 @@ module ietf-ac-svc {
           description
             "Only applies when the protocol is BGP.";
         }
+        if-feature "vpn-common:rtg-bgp";
         description
           "Configuration specific to BGP.";
         uses bgp-svc {
@@ -4489,6 +4497,7 @@ module ietf-ac-svc {
           description
             "Only applies when the protocol is OSPF.";
         }
+        if-feature "vpn-common:rtg-ospf";
         description
           "Configuration specific to OSPF.";
         uses ospf-svc;
@@ -4499,6 +4508,7 @@ module ietf-ac-svc {
           description
             "Only applies when the protocol is IS-IS.";
         }
+        if-feature "vpn-common:rtg-isis";
         description
           "Configuration specific to IS-IS.";
         uses isis-svc;
@@ -4511,6 +4521,7 @@ module ietf-ac-svc {
              For IPv4, the model assumes that RIP version 2 is
              used.";
         }
+        if-feature "vpn-common:rtg-rip";
         description
           "Configuration specific to RIP routing.";
         uses rip-svc;
@@ -4522,6 +4533,7 @@ module ietf-ac-svc {
             "Only applies when the protocol is the Virtual Router
              Redundancy Protocol (VRRP).";
         }
+        if-feature "vpn-common:rtg-vrrp";
         description
           "Configuration specific to VRRP.";
         uses vrrp-svc;
@@ -5103,7 +5115,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 <dl class="references">
 <dt id="I-D.ietf-opsawg-teas-common-ac">[I-D.ietf-opsawg-teas-common-ac]</dt>
         <dd>
-<span class="refAuthor">Boucadair, M.</span>, <span class="refAuthor">Roberts, R.</span>, <span class="refAuthor">de Dios, O. G.</span>, <span class="refAuthor">Barguil, S.</span>, and <span class="refAuthor">B. Wu</span>, <span class="refTitle">"A Common YANG Data Model for Attachment Circuits"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-opsawg-teas-common-ac-06</span>, <time datetime="2024-03-21" class="refDate">21 March 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-teas-common-ac-06">https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-teas-common-ac-06</a>&gt;</span>. </dd>
+<span class="refAuthor">Boucadair, M.</span>, <span class="refAuthor">Roberts, R.</span>, <span class="refAuthor">de Dios, O. G.</span>, <span class="refAuthor">Barguil, S.</span>, and <span class="refAuthor">B. Wu</span>, <span class="refTitle">"A Common YANG Data Model for Attachment Circuits"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-opsawg-teas-common-ac-07</span>, <time datetime="2024-04-04" class="refDate">4 April 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-teas-common-ac-07">https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-teas-common-ac-07</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC2119">[RFC2119]</dt>
         <dd>
@@ -5228,11 +5240,11 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 <dd class="break"></dd>
 <dt id="I-D.ietf-opsawg-ac-lxsm-lxnm-glue">[I-D.ietf-opsawg-ac-lxsm-lxnm-glue]</dt>
         <dd>
-<span class="refAuthor">Boucadair, M.</span>, <span class="refAuthor">Roberts, R.</span>, <span class="refAuthor">Barguil, S.</span>, and <span class="refAuthor">O. G. de Dios</span>, <span class="refTitle">"A YANG Data Model for Augmenting VPN Service and Network Models with Attachment Circuits"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-opsawg-ac-lxsm-lxnm-glue-06</span>, <time datetime="2024-02-09" class="refDate">9 February 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-ac-lxsm-lxnm-glue-06">https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-ac-lxsm-lxnm-glue-06</a>&gt;</span>. </dd>
+<span class="refAuthor">Boucadair, M.</span>, <span class="refAuthor">Roberts, R.</span>, <span class="refAuthor">Barguil, S.</span>, and <span class="refAuthor">O. G. de Dios</span>, <span class="refTitle">"A YANG Data Model for Augmenting VPN Service and Network Models with Attachment Circuits"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-opsawg-ac-lxsm-lxnm-glue-07</span>, <time datetime="2024-04-04" class="refDate">4 April 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-ac-lxsm-lxnm-glue-07">https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-ac-lxsm-lxnm-glue-07</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="I-D.ietf-opsawg-ntw-attachment-circuit">[I-D.ietf-opsawg-ntw-attachment-circuit]</dt>
         <dd>
-<span class="refAuthor">Boucadair, M.</span>, <span class="refAuthor">Roberts, R.</span>, <span class="refAuthor">de Dios, O. G.</span>, <span class="refAuthor">Barguil, S.</span>, and <span class="refAuthor">B. Wu</span>, <span class="refTitle">"A Network YANG Data Model for Attachment Circuits"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-opsawg-ntw-attachment-circuit-05</span>, <time datetime="2024-02-09" class="refDate">9 February 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-ntw-attachment-circuit-05">https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-ntw-attachment-circuit-05</a>&gt;</span>. </dd>
+<span class="refAuthor">Boucadair, M.</span>, <span class="refAuthor">Roberts, R.</span>, <span class="refAuthor">de Dios, O. G.</span>, <span class="refAuthor">Barguil, S.</span>, and <span class="refAuthor">B. Wu</span>, <span class="refTitle">"A Network YANG Data Model for Attachment Circuits"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-opsawg-ntw-attachment-circuit-06</span>, <time datetime="2024-04-04" class="refDate">4 April 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-ntw-attachment-circuit-06">https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-ntw-attachment-circuit-06</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="I-D.ietf-teas-ietf-network-slice-nbi-yang">[I-D.ietf-teas-ietf-network-slice-nbi-yang]</dt>
         <dd>
