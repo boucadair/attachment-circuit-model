@@ -521,7 +521,7 @@ module ietf-ac-svc {
       }
       uses routing-protocol-list;
       container bgp {
-        if-feature "vpn-common:rtr-bgp";
+        if-feature "vpn-common:rtg-bgp";
         when
           "derived-from-or-self(../type, 'vpn-common:bgp-routing')" {
           description
@@ -543,7 +543,7 @@ module ietf-ac-svc {
         }
       }
       container ospf {
-        if-feature "vpn-common:rtr-ospf";
+        if-feature "vpn-common:rtg-ospf";
         when "derived-from-or-self(../type, "
            + "'vpn-common:ospf-routing')" {
           description
@@ -554,7 +554,7 @@ module ietf-ac-svc {
         uses ac-common:ospf-basic;
       }
       container isis {
-       if-feature "vpn-common:rtr-isis";
+       if-feature "vpn-common:rtg-isis";
         when "derived-from-or-self(../type, "
            + "'vpn-common:isis-routing')" {
           description
@@ -565,7 +565,7 @@ module ietf-ac-svc {
         uses ac-common:isis-basic;
       }
       container rip {
-        if-feature "vpn-common:rtr-rip";
+        if-feature "vpn-common:rtg-rip";
         when "derived-from-or-self(../type, "
            + "'vpn-common:rip-routing')" {
           description
@@ -585,7 +585,7 @@ module ietf-ac-svc {
         }
       }
       container vrrp {
-        if-feature "vpn-common:rtr-vrrp";
+        if-feature "vpn-common:rtg-vrrp";
         when "derived-from-or-self(../type, "
            + "'vpn-common:vrrp-routing')" {
           description
@@ -638,7 +638,7 @@ module ietf-ac-svc {
         }
       }
       container bgp {
-        if-feature "vpn-common:rtr-bgp";
+        if-feature "vpn-common:rtg-bgp";
         when "derived-from-or-self(../type, "
            + "'vpn-common:bgp-routing')" {
           description
@@ -656,7 +656,7 @@ module ietf-ac-svc {
         }
       }
       container ospf {
-        if-feature "vpn-common:rtr-ospf";
+        if-feature "vpn-common:rtg-ospf";
         when "derived-from-or-self(../type, "
            + "'vpn-common:ospf-routing')" {
           description
@@ -667,7 +667,7 @@ module ietf-ac-svc {
         uses ospf-svc;
       }
       container isis {
-        if-feature "vpn-common:rtr-isis";
+        if-feature "vpn-common:rtg-isis";
         when "derived-from-or-self(../type, "
            + "'vpn-common:isis-routing')" {
           description
@@ -678,7 +678,7 @@ module ietf-ac-svc {
         uses isis-svc;
       }
       container rip {
-        if-feature "vpn-common:rtr-rip";
+        if-feature "vpn-common:rtg-rip";
         when "derived-from-or-self(../type, "
            + "'vpn-common:rip-routing')" {
           description
@@ -691,7 +691,7 @@ module ietf-ac-svc {
         uses rip-svc;
       }
       container vrrp {
-        if-feature "vpn-common:rtr-vrrp";
+        if-feature "vpn-common:rtg-vrrp";
         when "derived-from-or-self(../type, "
            + "'vpn-common:vrrp-routing')" {
           description
