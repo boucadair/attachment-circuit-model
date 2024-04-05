@@ -6,19 +6,19 @@ module: ietf-ac-ntw
        |  +--rw routing-protocol* [id]
        |     +--rw id      string
        |     +--rw type?   identityref
-       |     +--rw bgp
+       |     +--rw bgp  {vpn-common:rtg-bgp}?
        |     |  ...
-       |     +--rw ospf
+       |     +--rw ospf  {vpn-common:rtg-ospf}?
        |     |  ...
-       |     +--rw isis
+       |     +--rw isis  {vpn-common:rtg-isis}?
        |     |  +--rw address-family?   identityref
        |     |  +--rw area-address      area-address
        |     |  +--rw level?            identityref
        |     |  +--rw metric?           uint16
        |     |  +--rw mode?             enumeration
-       |     +--rw rip
+       |     +--rw rip  {vpn-common:rtg-rip}?
        |     |  ...
-       |     +--rw vrrp
+       |     +--rw vrrp  {vpn-common:rtg-vrrp}?
        |        ...
        +--rw oam
           ...
@@ -41,11 +41,11 @@ module: ietf-ac-ntw
        |     |  +--rw type?                  identityref
        |     +--rw static
        |     |  ...
-       |     +--rw bgp
+       |     +--rw bgp  {vpn-common:rtg-bgp}?
        |     |  ...
-       |     +--rw ospf
+       |     +--rw ospf  {vpn-common:rtg-ospf}?
        |     |  ...
-       |     +--rw isis
+       |     +--rw isis  {vpn-common:rtg-isis}?
        |     |  +--rw address-family?   identityref
        |     |  +--rw area-address      area-address
        |     |  +--rw level?            identityref
@@ -69,9 +69,9 @@ module: ietf-ac-ntw
        |     |     +--ro oper-status
        |     |        +--ro status?        identityref
        |     |        +--ro last-change?   yang:date-and-time
-       |     +--rw rip
+       |     +--rw rip  {vpn-common:rtg-rip}?
        |     |  ...
-       |     +--rw vrrp
+       |     +--rw vrrp  {vpn-common:rtg-vrrp}?
        |        ...
        +--rw oam
        |  ...
