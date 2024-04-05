@@ -5,14 +5,14 @@
 OPSAWG                                                 M. Boucadair, Ed.
 Internet-Draft                                                    Orange
 Intended status: Standards Track                         R. Roberts, Ed.
-Expires: 13 September 2024                                       Juniper
+Expires: 7 October 2024                                          Juniper
                                                            O. G. D. Dios
                                                               Telefonica
                                                            S. B. Giraldo
                                                                    Nokia
                                                                    B. Wu
                                                      Huawei Technologies
-                                                           12 March 2024
+                                                            5 April 2024
 
 
   YANG Data Models for Bearers and 'Attachment Circuits'-as-a-Service
@@ -62,7 +62,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 13 September 2024.
+   This Internet-Draft will expire on 7 October 2024.
 
 Copyright Notice
 
@@ -82,31 +82,30 @@ Table of Contents
 
    1.  Introduction
      1.1.  Scope and Intended Use
-     1.2.  Position ACaaS vs. Other Data Models
-       1.2.1.  Why Not Using the L2SM as Reference Data Model for
-               ACaaS?
-       1.2.2.  Why Not Using the L3SM as Reference Data Model for
-               ACaaS?
+     1.2.  Positioning ACaaS vs. Other Data Models
+       1.2.1.  Why Not Use the L2SM as Reference Data Model for ACaaS?
+       1.2.2.  Why Not Use the L3SM as Reference Data Model for ACaaS?
    2.  Conventions and Definitions
-   3.  Sample Uses of the Data Models
-     3.1.  ACs Terminated by One or Multiple Customer Edges (CEs)
-     3.2.  Separate AC Provisioning vs. Actual Service Provisioning
-   4.  Description of the Data Models
-     4.1.  The Bearer Service ("ietf-bearer-svc") YANG Module
-     4.2.  The Attachment Circuit Service ("ietf-ac-svc") YANG Module
-       4.2.1.  Overall Structure
-       4.2.2.  Service Profiles
-       4.2.3.  Attachment Circuits Profiles
-       4.2.4.  AC Placement Contraints
-       4.2.5.  Attachment Circuits
-   5.  YANG Modules
+   3.  Relationship to Other AC Data Models
+   4.  Sample Uses of the Data Models
+     4.1.  ACs Terminated by One or Multiple Customer Edges (CEs)
+     4.2.  Separate AC Provisioning vs. Actual Service Provisioning
+   5.  Description of the Data Models
      5.1.  The Bearer Service ("ietf-bearer-svc") YANG Module
-     5.2.  The AC Service ("ietf-ac-svc") YANG Module
-   6.  Security Considerations
-   7.  IANA Considerations
-   8.  References
-     8.1.  Normative References
-     8.2.  Informative References
+     5.2.  The Attachment Circuit Service ("ietf-ac-svc") YANG Module
+       5.2.1.  Overall Structure
+       5.2.2.  Service Profiles
+       5.2.3.  Attachment Circuits Profiles
+       5.2.4.  AC Placement Contraints
+       5.2.5.  Attachment Circuits
+   6.  YANG Modules
+     6.1.  The Bearer Service ("ietf-bearer-svc") YANG Module
+     6.2.  The AC Service ("ietf-ac-svc") YANG Module
+   7.  Security Considerations
+   8.  IANA Considerations
+   9.  References
+     9.1.  Normative References
+     9.2.  Informative References
    Appendix A.  Examples
      A.1.  Create A New Bearer
      A.2.  Create An AC over An Existing Bearer
@@ -116,9 +115,8 @@ Table of Contents
      A.6.  Create Multiple ACs Bound to Multiple CEs
      A.7.  Binding Attachment Circuits to an IETF Network Slice
      A.8.  Connecting a Virtualized Environment Running in a Cloud
-            Provider
+           Provider
      A.9.  Connect Customer Network (CE) Through BGP
-     A.10. Connect Networks Through Pure IP
    Acknowledgments
    Contributors
    Authors' Addresses
@@ -128,20 +126,21 @@ Table of Contents
 1.1.  Scope and Intended Use
 
    Connectivity services are provided by networks to customers via
-   dedicated terminating points, such as Service Functions [RFC7665],
-   customer edges (CEs), peer Autonomous System Border Routers (ASBRs),
-   data centers gateways, or Internet Exchange Points.  A connectivity
-   service is basically about ensuring data transfer received from or
-   destined to a given terminating point to or from other terminating
-   points within the same customer/service, an interconnection node, or
-   an ancillary node.  The objectives for the connectivity service can
-   be negotiated and agreed upon between the customer and the network
-   provider.  To facilitate data transfer within the provider network,
-   it is assumed that the appropriate setup is provisioned over the
-   links that connect customer terminating points and a provider
-   network, allowing successfully data exchanged over these links.  The
-   required setup is referred to in this document as Attachment Circuits
-   (ACs), while the underlying link is referred to as "bearers".
+   dedicated terminating points, such as Service Functions (SFs)
+   [RFC7665], Customer Edges (CEs), peer Autonomous System Border
+   Routers (ASBRs), data centers gateways, or Internet Exchange Points.
+   A connectivity service is basically about ensuring data transfer
+   received from or destined to a given terminating point to or from
+   other terminating points within the same customer/service, an
+   interconnection node, or an ancillary node.  The objectives for the
+   connectivity service can be negotiated and agreed upon between the
+   customer and the network provider.  To facilitate data transfer
+   within the provider network, it is assumed that the appropriate setup
+   is provisioned over the links that connect customer terminating
+   points and a provider network (usually via a Provider Edge (PE)),
+   allowing successfully data exchanged over these links.  The required
+   setup is referred to in this document as Attachment Circuits (ACs),
+   while the underlying link is referred to as "bearers".
 
    This document adheres to the definition of an Attachment Circuit as
    provided in Section 1.2 of [RFC4364], especially:
@@ -166,69 +165,74 @@ Table of Contents
    Also, because the instantiation of an attachment circuit requires
    coordinating the provisioning of endpoints that might not belong to
    the same administrative entity (customer vs. provider or distinct
-   operational teams within the same provider, etc.), *providing
-   programmatic means to expose 'attachment circuits'-as-a-service will
-   greatly simplify the provisioning of value-added services* delivered
-   over an attachment circuits.  For example, management systems of
+   operational teams within the same provider, etc.), providing
+   programmatic means to expose 'attachment circuits'-as-a-service
+   greatly simplifies the provisioning of value-added services delivered
+   over an attachment circuit.  For example, management systems of
    adjacent domains that need to connect via an AC will use such means
-   to agree on the resources that are required for the activation of
+   to agree upon the resources that are required for the activation of
    both sides of an AC (e.g., Layer 2 tags, IP address family, or IP
    subnets).
 
    This document specifies a YANG service data model ("ietf-ac-svc") for
    managing attachment circuits that are exposed by a network to its
-   customers, such as an enterprise site, a network function, a hosting
+   customers, such as an enterprise site, an SF, a hosting
    infrastructure, or a peer network provider.  The model can be used
    for the provisioning of ACs prior or during advanced service
-   provisioning (e.g., Network Slice Service).
+   provisioning (e.g., Network Slice Service [RFC9543]).
 
-   The "ietf-ac-svc" module (Section 5.2) includes a set of reusable
+   The "ietf-ac-svc" module (Section 6.2) includes a set of reusable
    groupings.  Whether a service model reuses structures defined in the
    "ietf-ac-svc" or simply includes an AC reference (that was
    communicated during AC service instantiation) is a design choice of
    these service models.  Relying upon the AC service model to manage
-   ACs over which services are delivered has the merit to decorrelate
+   ACs over which services are delivered has the merit of decorrelating
    the management of the (core) service vs. upgrade the AC components to
    reflect recent AC technologies or new features (e.g., new encryption
-   scheme, additional routing protocol). *This document favors the
+   scheme, additional routing protocol).  This document favors the
    approach of completely relying upon the AC service model instead of
    duplicating data nodes into specific modules of advanced services
-   that are delivered over an Attachment Circuit.*
+   that are delivered over an Attachment Circuit.
 
    Since the provisioning of an AC requires a bearer to be in place,
    this document introduces a new module called "ietf-bearer-svc" that
-   enables customers to manage their bearer requests (Section 5.1).  The
+   enables customers to manage their bearer requests (Section 6.1).  The
    customers can then retrieve a provider-assigned bearer reference that
-   they will include in their AC service requests.  Likewise, the
-   customer may retrieve whether this bearer supports a synchronization
-   mechanism such as Sync Ethernet (SyncE) [ITU-T-G.781].  An example to
-   retrieve a bearer reference is provided in Appendix A.1.
+   they will include in their AC service requests.  Likewise, a customer
+   may retrieve whether their bearers support a synchronization
+   mechanism such as Sync Ethernet (SyncE) [ITU-T-G.781].  An example of
+   retrieving a bearer reference is provided in Appendix A.1.
 
    An AC service request can provide a reference to a bearer or a set of
-   peer SAPs.  Both schemes are supported in the AC service model.  When
-   several bearers are available, the AC service request may filter them
-   based on the bearer type, synchronization support, etc.
+   peer Service Attachment Points (SAPs) [RFC9408].  Both schemes are
+   supported in the AC service model.  When several bearers are
+   available, the AC service request may filter them based on the bearer
+   type, synchronization support, etc.
 
    Each AC is identified with a unique identifier within a (provider)
    domain.  From a network provider standpoint, an AC can be bound to a
-   single or multiple Service Attachment Points (SAPs) [RFC9408].
-   Likewise, the same SAP can be bound to one or multiple ACs.  However,
-   the mapping between an AC and a PE in the provider network that
-   terminates that AC is hidden to the application that makes use of the
-   AC service model.  Such mapping information is internal to the
-   network controllers.  As such, the details about the (node-specific)
-   attachment interfaces are not exposed in the AC service model.
+   single or multiple SAPs [RFC9408].  Likewise, the same SAP can be
+   bound to one or multiple ACs.  However, the mapping between an AC and
+   a PE in the provider network that terminates that AC is hidden to the
+   application that makes use of the AC service model.  Such mapping
+   information is internal to the network controllers.  As such, the
+   details about the (node-specific) attachment interfaces are not
+   exposed in the AC service model.  However, these details are exposed
+   at the network model per [I-D.ietf-opsawg-ntw-attachment-circuit].
+   [I-D.ietf-opsawg-ac-lxsm-lxnm-glue] specifies augmentations to the
+   L2VPN Service Model (L2SM) [RFC8466] and the L3VPN Service Model
+   (L3SM) [RFC8299] to bind LxVPN services to ACs.
 
-   The AC service model *does not make any assumptions about the
-   internal structure or even the nature or the services that will be
-   delivered over an attachment circuit or a set of attachment
-   circuits*. Customers do not have access to that network view other
-   than the ACs that the ordered.  For example, the AC service model can
-   be used to provision a set of ACs to connect multiple sites (Site1,
-   Site2, ..., SiteX) for customer who also requested VPN services.  If
-   these provisioning of these services require specific configuration
-   on ASBR nodes, such configuration is handled at the network level and
-   is not exposed to the customer at the service level.  However, the
+   The AC service model does not make any assumptions about the internal
+   structure or even the nature or the services that will be delivered
+   over an attachment circuit or a set of attachment circuits.
+   Customers do not have access to that network view other than the ACs
+   that they ordered.  For example, the AC service model can be used to
+   provision a set of ACs to connect multiple sites (Site1, Site2, ...,
+   SiteX) for customer who also requested VPN services.  If the
+   provisioning of these services requires specific configuration on
+   ASBR nodes, such configuration is handled at the network level and is
+   not exposed to the customer at the service level.  However, the
    network controller will have access to such a view as the service
    points in these ASBRs will be exposed as SAPs with "role" set to
    "ietf-sap-ntw:nni" [RFC9408].
@@ -263,9 +267,9 @@ Table of Contents
    The YANG data models in this document conform to the Network
    Management Datastore Architecture (NMDA) defined in [RFC8342].
 
-1.2.  Position ACaaS vs. Other Data Models
+1.2.  Positioning ACaaS vs. Other Data Models
 
-   The AC model specified in this document *is not a network model*
+   The AC model specified in this document is not a network model
    [RFC8969].  As such, the model does not expose details related to
    specific nodes in the provider's network that terminate an AC (e.g.,
    network node identifiers).  The mapping between an AC as seen by a
@@ -275,28 +279,29 @@ Table of Contents
    augmented SAP AC network model
    [I-D.ietf-opsawg-ntw-attachment-circuit].
 
-   The AC service model *is not a device model*. A network provider may
+   The AC service model is not a device model.  A network provider may
    use a variety of device models (e.g., Routing management [RFC8349] or
    BGP [I-D.ietf-idr-bgp-model]) to provision an AC service in relevant
    network nodes.
 
-1.2.1.  Why Not Using the L2SM as Reference Data Model for ACaaS?
+1.2.1.  Why Not Use the L2SM as Reference Data Model for ACaaS?
 
-   The L2SM [RFC8466] covers some AC-related considerations.
-   Nevertheless, the L2SM structure is primarily focused on Layer 2
-   aspects.  For example, the L2SM does not cover Layer 3 provisioning,
-   which is required for the typical AC instantiation.
+   The L2VPN Service Model (L2SM) [RFC8466] covers some AC-related
+   considerations.  Nevertheless, the L2SM structure is primarily
+   focused on Layer 2 aspects.  For example, the L2SM does not cover
+   Layer 3 provisioning, which is required for the typical AC
+   instantiation.
 
-1.2.2.  Why Not Using the L3SM as Reference Data Model for ACaaS?
+1.2.2.  Why Not Use the L3SM as Reference Data Model for ACaaS?
 
-   Like the L2SM, the L3SM [RFC8299] addresses certain AC-related
-   aspects.  However, the L3SM structure does not sufficiently address
-   Layer 2 provisioning requirements.  Additionally, the L3SM is
-   primarily designed for conventional L3VPN deployments and, as such,
-   has some limitations for instantiating ACs in other deployment
-   contexts (e.g., cloud environments).  For example, the L3SM does not
-   provide the capability to provision multiple BGP peer groups over the
-   same AC.
+   Like the L2SM, the L3VPN Service Model (L3SM) [RFC8299] addresses
+   certain AC-related aspects.  However, the L3SM structure does not
+   sufficiently address Layer 2 provisioning requirements.
+   Additionally, the L3SM is primarily designed for conventional L3VPN
+   deployments and, as such, has some limitations for instantiating ACs
+   in other deployment contexts (e.g., cloud environments).  For
+   example, the L3SM does not provide the capability to provision
+   multiple BGP peer groups over the same AC.
 
 2.  Conventions and Definitions
 
@@ -308,6 +313,10 @@ Table of Contents
 
    The meanings of the symbols in the YANG tree diagrams are defined in
    [RFC8340].
+
+   LxSM refers to both the L2SM and the L3SM.
+
+   LxNM refers to both the L2NM and the L3NM.
 
    This document uses the following terms:
 
@@ -333,35 +342,78 @@ Table of Contents
 
    Service orchestrator:  Refers to a functional entity that interacts
       with the customer of a network service.  The service orchestrator
-      is typically responsible for the attachment circuits, the Provider
-      Edge (PE) selection, and requesting the activation of the
-      requested service to a network controller.
+      is typically responsible for the attachment circuits, the PE
+      selection, and requesting the activation of the requested service
+      to a network controller.
 
    Service provider network:  A network that is able to provide network
-      services (e.g., Layer 2 VPN, Layer 3, and Network Slice Services).
+      services (e.g., Layer 2 VPN, Layer 3 VPN, or Network Slice
+      Services).
 
    Service provider:  A service provider that offers network services
-      (e.g., Layer 2 VPN, Layer 3, and Network Slice Services).
+      (e.g., Layer 2 VPN, Layer 3 VPN, or Network Slice Services).
 
-3.  Sample Uses of the Data Models
+3.  Relationship to Other AC Data Models
 
-3.1.  ACs Terminated by One or Multiple Customer Edges (CEs)
+   Figure 1 depicts the relationship between the various AC data models:
 
-   Figure 1 depicts two target topology flavors that involve ACs.  These
+   *  "ietf-ac-common" ([I-D.ietf-opsawg-teas-common-ac])
+
+   *  "ietf-bearer-svc" (Section 6.2)
+
+   *  "ietf-ac-svc" (Section 6.1)
+
+   *  "ietf-ac-ntw" ([I-D.ietf-opsawg-ntw-attachment-circuit])
+
+   *  "ietf-ac-glue" ([I-D.ietf-opsawg-ac-lxsm-lxnm-glue])
+
+                               ietf-ac-common
+                                ^     ^     ^
+                                |     |     |
+                     +----------+     |     +----------+
+                     |                |                |
+                     |                |                |
+               ietf-ac-svc <--> ietf-bearer-svc        |
+                  ^    ^                               |
+                  |    |                               |
+                  |    +------------------------ ietf-ac-ntw
+                  |                                    ^
+                  |                                    |
+                  |                                    |
+                  +----------- ietf-ac-glue -----------+
+
+                          Figure 1: AC Data Models
+
+   "ietf-ac-common" is imported by "ietf-bearer-svc", "ietf-ac-svc", and
+   "ietf-ac-ntw".  Bearers managed using "ietf-bearer-svc" may be
+   referenced in the service ACs managed using "ietf-ac-svc".
+   Similarly, a bearer managed using "ietf-bearer-svc" may list the set
+   of ACs that use that bearer.  In order to ease correlation between an
+   AC service requests and the actual AC provisioned in the network,
+   "ietf-ac-ntw" uses the AC references exposed by "ietf-ac-svc".  To
+   bind Layer 2 VPN or Layer 3 VPN services with ACs, "ietf-ac-glue"
+   augments the LxSM and LxNM with AC service references exposed by
+   "ietf-ac-svc" and AC network references exposed bt "ietf-ac-ntw".
+
+4.  Sample Uses of the Data Models
+
+4.1.  ACs Terminated by One or Multiple Customer Edges (CEs)
+
+   Figure 2 depicts two target topology flavors that involve ACs.  These
    topologies have the following characteristics:
 
-   *  A Customer Edges (CEs) can be either a physical device or a
-      logical entity.  Such logical entity is typically a software
-      component (e.g., a virtual service function that is hosted within
-      the provider's network or a third-party infrastructure).  A CE is
-      seen by the network as a peer SAP.
+   *  A CE can be either a physical device or a logical entity.  Such
+      logical entity is typically a software component (e.g., a virtual
+      service function that is hosted within the provider's network or a
+      third-party infrastructure).  A CE is seen by the network as a
+      peer SAP.
 
    *  An AC service request may include one or multiple ACs, which may
       be associated to a single CE or multiple CEs.
 
    *  CEs may be either dedicated to one single connectivity service or
-      host multiple connectivity services (e.g., CEs with roles of
-      service functions [RFC7665]).
+      host multiple connectivity services (e.g., CEs with roles of SFs
+      [RFC7665]).
 
    *  A network provider may bind a single AC to one or multiple peer
       SAPs (e.g., CE#1 and CE#2 are tagged as peer SAPs for the same
@@ -378,11 +430,13 @@ Table of Contents
       (e.g., CE#3), distinct PEs (e.g., CE#34), etc.  The network
       provider uses this request to decide where to terminate the AC in
       the network provider network and also whether to enable specific
-      capabilities (e.g., Virtual Router Redundancy Protocol (VRRP)).
+      capabilities (e.g., Virtual Router Redundancy Protocol (VRRP)
+      [RFC5798]).  Note that placement constraints may also be requested
+      during the instantiation of the underlying bearers (Section 5.1).
 
      .-------.                .--------------------.         .-------.
-     │       +------.         |                    +---AC----+       |
-     │ CE#1  │      |         |                    +---AC----+ CE#3  |
+     |       +------.         |                    +---AC----+       |
+     | CE#1  |      |         |                    +---AC----+ CE#3  |
      '-------'      |         |                    |         '-------'
                     +---AC----+     Network        |
      .-------.      |         |                    |
@@ -393,23 +447,25 @@ Table of Contents
                                           |                       |
                                           '-----------AC----------'
 
-                         Figure 1: Examples of ACs
+                         Figure 2: Examples of ACs
 
-3.2.  Separate AC Provisioning vs. Actual Service Provisioning
+4.2.  Separate AC Provisioning vs. Actual Service Provisioning
 
    The procedure to provision a service in a service provider network
    may depend on the practices adopted by a service provider.  This
-   includes the flow put in place for the provisioning of advanced
-   network services and how they are bound to an attachment circuit.
-   For example, a single attachment circuit may be used to host multiple
+   includes the flow put in place for the provisioning of network
+   services and how they are bound to an attachment circuit.  For
+   example, a single attachment circuit may be used to host multiple
    connectivity services.  In order to avoid service interference and
    redundant information in various locations, a service provider may
    expose an interface to manage ACs network-wide.  Customers can then
    request a bearer or an attachment circuit to be put in place, and
    then refer to that bearer or AC when requesting services that are
-   bound to the bearer or AC.
+   bound to the bearer or AC.  [I-D.ietf-opsawg-ac-lxsm-lxnm-glue]
+   specifies augmentations to the L2SM and the L3SM to bind LxVPN
+   services to ACs.
 
-   Figure 2 shows the positioning of the AC service model is the overall
+   Figure 3 shows the positioning of the AC service model is the overall
    service delivery process.
 
                                .---------------.
@@ -451,21 +507,21 @@ Table of Contents
                     '--------------------------------'
        Site A                                                  Site B
 
-                   Figure 2: An Example of AC Model Usage
+                   Figure 3: An Example of AC Model Usage
 
    In order to ease the mapping between the service model and underlying
-   network models (e.g., L3NM, SAP), the name conventions used in
-   existing network data models are reused as much as possible.  For
-   example, "local-address" is used rather than "provider-address" (or
-   similar) to refer to an IP address used in the provider network.
-   This approach is consistent with the automation framework defined in
-   [RFC8969].
+   network models (e.g., the L3VPN Network Model (L3NM), SAP), the name
+   conventions used in existing network data models are reused as much
+   as possible.  For example, "local-address" is used rather than
+   "provider-address" (or similar) to refer to an IP address used in the
+   provider network.  This approach is consistent with the automation
+   framework defined in [RFC8969].
 
-4.  Description of the Data Models
+5.  Description of the Data Models
 
-4.1.  The Bearer Service ("ietf-bearer-svc") YANG Module
+5.1.  The Bearer Service ("ietf-bearer-svc") YANG Module
 
-   Figure 3 shows the tree for managing the bearers (that is, the
+   Figure 4 shows the tree for managing the bearers (that is, the
    properties of an attachment that are below Layer 3).  A bearer can be
    a physical or logical link (e.g., Link Aggregation Group (LAG)
    [IEEE802.1AX]).  Also, a bearer can be a wireless or wired link.  A
@@ -473,7 +529,7 @@ Table of Contents
    can be used, e.g., in a subsequent service request to create an AC.
    The anchoring of the AC can also be achieved by indicating (with or
    without a bearer reference), a peer SAP identifier (e.g., an
-   identifier of a Service Function).
+   identifier of an SF).
 
   module: ietf-bearer-svc
 
@@ -541,9 +597,9 @@ Table of Contents
                 +--ro status?        identityref
                 +--ro last-change?   yang:date-and-time
 
-                 Figure 3: Bearer Service Tree Structure
+                 Figure 4: Bearer Service Tree Structure
 
-   The same customer site (CE, NF, etc.) can terminate one or multiple
+   The same customer site (CE, SF, etc.) can terminate one or multiple
    bearers; each of them uniquely identified by a reference that is
    assigned by the network provider.  These bearers can terminate on the
    same or distinct network nodes.  CEs that terminate multiple bearers
@@ -559,14 +615,14 @@ Table of Contents
       indicate some hints about the placement constraints ('placement-
       constraints').  These constraints are used by a provider to
       determine how/where to terminate a bearer in the network side
-      (e.g., PoP/PE selection).
+      (e.g., Point of Presence (PoP) or PE selection).
 
    Auto-discovery using network protocols:  Devices can use specific
-      protocols (e.g., Link Layer Discovery Protocol (LLDP)) to
-      automatically discover and connect to available network resources.
-      A network controller can use such reported information to expose
-      discovered bearers from the network using the same bearer data
-      model structure.
+      protocols (e.g., Link Layer Discovery Protocol (LLDP)
+      [IEEE802.1AB]) to automatically discover and connect to available
+      network resources.  A network controller can use such reported
+      information to expose discovered bearers from the network using
+      the same bearer data model structure.
 
    A request to create a bearer may include a set of constraints
    ("placement-constraints") that are used by a controller to decide the
@@ -682,22 +738,23 @@ Table of Contents
       For instance, when a bearer is administratively enabled but the
       "operational-status" of that bearer is reported as "op-down", it
       should be expected that the "oper-status" of services transported
-      over that bearer is also down.  If these status values differ, a
-      trigger to detect an anomaly.
+      over that bearer is also down.  These status values differing
+      should trigger the detection of an anomaly condition.
 
       See [RFC9181] for more details.
 
-4.2.  The Attachment Circuit Service ("ietf-ac-svc") YANG Module
+5.2.  The Attachment Circuit Service ("ietf-ac-svc") YANG Module
 
-   The full tree diagram of the module can be generated using the
+   The full tree diagram of the module can be generated using, e.g., the
    "pyang" tool [PYANG].  That tree is not included here because it is
-   too long (Section 3.3 of [RFC8340]).  Instead, subtrees are provided
-   for the reader's convenience.
+   too long (Section 3.4 of [I-D.ietf-netmod-rfc8407bis]).  Instead,
+   subtrees are provided for the reader's convenience.  The full tree of
+   the 'ac-svc' is provided in [AC-svc-Tree].
 
-4.2.1.  Overall Structure
+5.2.1.  Overall Structure
 
    The overall tree structure of the AC service module is shown in
-   Figure 4.
+   Figure 5.
 
                     +--rw specific-provisioning-profiles
                     |  ...
@@ -723,7 +780,7 @@ Table of Contents
                           +--rw service
                              ...
 
-                Figure 4: Overall AC Service Tree Structure
+                Figure 5: Overall AC Service Tree Structure
 
    The rationale for deciding whether a reusable grouping should be
    maintained in this document or be moved into the AC common module
@@ -748,13 +805,13 @@ Table of Contents
    description of these nodes are not reiterated in the following
    subsections.
 
-4.2.2.  Service Profiles
+5.2.2.  Service Profiles
 
-4.2.2.1.  Description
+5.2.2.1.  Description
 
-   The 'specific-provisioning-profiles' container (Figure 5) can be used
+   The 'specific-provisioning-profiles' container (Figure 6) can be used
    by a service provider to maintain a set of reusable profiles.  The
-   profiles definition are similar to those defined in [RFC9181],
+   profiles definitions are similar to those defined in [RFC9181],
    including: Quality of Service (QoS), Bidirectional Forwarding
    Detection (BFD), forwarding, and routing profiles.  The exact
    definition of the profiles is local to each service provider.  The
@@ -798,9 +855,9 @@ Table of Contents
                      +--rw service
                         ...
 
-                         Figure 5: Service Profiles
+                         Figure 6: Service Profiles
 
-   As shown in Figure 5, two profile types can be defined: 'specific-
+   As shown in Figure 6, two profile types can be defined: 'specific-
    provisioning-profiles' and 'service-provisioning-profiles'.  Whether
    only specific profiles, service profiles, or a combination thereof
    are used is local to each service provider.
@@ -825,7 +882,7 @@ Table of Contents
    'routing-profile-identifier':  Refers to a set of routing policies
       that will be invoked (e.g., BGP policies) when building an AC.
 
-4.2.2.2.  Referencing Service/Specific Profiles
+5.2.2.2.  Referencing Service/Specific Profiles
 
    All the abovementioned profiles are uniquely identified by the
    NETCONF/RESTCONF server by an identifier.  To ease referencing these
@@ -835,23 +892,23 @@ Table of Contents
    is required.  These typedefs SHOULD be used when other modules need a
    reference to one of these profiles or attachment circuits.
 
-4.2.3.  Attachment Circuits Profiles
+5.2.3.  Attachment Circuits Profiles
 
    The 'ac-group-profile' defines reusable parameters for a set of ACs.
    Each profile is identified by 'name'.  Some of the data nodes can be
    adjusted at the 'ac'.  These adjusted values take precedence over the
    global values.  The structure of 'ac-group-profile' is similar to the
-   one used to model each 'ac' (Figure 7).
+   one used to model each 'ac' (Figure 8).
 
-4.2.4.  AC Placement Contraints
+5.2.4.  AC Placement Contraints
 
    The 'placement-constraints' specifies the placement constraints of an
-   AC.  For example, this container can be used to request avoiding to
+   AC.  For example, this container can be used to request avoidance of
    connecting two ACs to the same PE.  The full set of supported
    constraints is defined in [RFC9181] (see 'placement-diversity', in
    particular).
 
-   The structure of 'placement-constraints' is shown in Figure 6.
+   The structure of 'placement-constraints' is shown in Figure 7.
 
              +--rw specific-provisioning-profiles
              |  ...
@@ -875,11 +932,11 @@ Table of Contents
                 +--rw ac* [name]
                    ...
 
-             Figure 6: Placement Constraints Subtree Structure
+             Figure 7: Placement Constraints Subtree Structure
 
-4.2.5.  Attachment Circuits
+5.2.5.  Attachment Circuits
 
-   The structure of 'attachment-circuits' is shown in Figure 7.
+   The structure of 'attachment-circuits' is shown in Figure 8.
 
     +--rw specific-provisioning-profiles
     |  ...
@@ -923,7 +980,7 @@ Table of Contents
           +--rw service
              ...
 
-               Figure 7: Attachment Circuits Tree Structure
+               Figure 8: Attachment Circuits Tree Structure
 
    The description of the data nodes is as follows:
 
@@ -954,7 +1011,7 @@ Table of Contents
       attachment circuit [RFC9408].
 
    'ac-group-profile':  Indicates references to one or more profiles
-      that are defined in Section 4.2.3.
+      that are defined in Section 5.2.3.
 
    'ac-parent-ref':  Specifies an AC that is inherited by an attachment
       circuit.
@@ -984,21 +1041,21 @@ Table of Contents
 
    'service-profile':  References a set of service-specific profiles.
 
-   'l2-connection':  See Section 4.2.5.1.
+   'l2-connection':  See Section 5.2.5.1.
 
-   'ip-connection':  See Section 4.2.5.2.
+   'ip-connection':  See Section 5.2.5.2.
 
-   'routing':  See Section 4.2.5.3.
+   'routing':  See Section 5.2.5.3.
 
-   'oam':  See Section 4.2.5.7.
+   'oam':  See Section 5.2.5.4.
 
-   'security':  See Section 4.2.5.8.
+   'security':  See Section 5.2.5.5.
 
-   'service':  See Section 4.2.5.9.
+   'service':  See Section 5.2.5.6.
 
-4.2.5.1.  Layer 2 Connection Structure
+5.2.5.1.  Layer 2 Connection Structure
 
-   The 'l2-connection' container (Figure 8) is used to configure the
+   The 'l2-connection' container (Figure 9) is used to configure the
    relevant Layer 2 properties of an AC including: encapsulation details
    and tunnel terminations.  For the encapsulation details, the model
    supports the definition of the type as well as the Identifiers (e.g.,
@@ -1066,9 +1123,9 @@ Table of Contents
               +--rw service
                  ...
 
-                Figure 8: Layer 2 Connection Tree Structure
+                Figure 9: Layer 2 Connection Tree Structure
 
-4.2.5.2.  IP Connection Structure
+5.2.5.2.  IP Connection Structure
 
    The 'ip-connection' container is used to configure the relevant IP
    properties of an AC.  The model supports the usage of dynamic and
@@ -1076,7 +1133,7 @@ Table of Contents
    defined in [I-D.ietf-opsawg-teas-common-ac].  Both IPv4 and IPv6
    parameters are supported.
 
-   Figure 9 shows the structure of the IPv4 connection.
+   Figure 10 shows the structure of the IPv4 connection.
 
             | ...
             +--rw ip-connection
@@ -1117,9 +1174,9 @@ Table of Contents
             |  +--rw ipv6 {vpn-common:ipv6}?
             |     ...
 
-             Figure 9: Layer 3 Connection Tree Structure (IPv4)
+            Figure 10: Layer 3 Connection Tree Structure (IPv4)
 
-   Figure 10 shows the structure of the IPv6 connection.
+   Figure 11 shows the structure of the IPv6 connection.
 
             | ...
             +--rw ip-connection
@@ -1161,11 +1218,11 @@ Table of Contents
             |              +--rw customer-address?   inet:ipv6-address
                ...
 
-            Figure 10: Layer 3 Connection Tree Structure (IPv6)
+            Figure 11: Layer 3 Connection Tree Structure (IPv6)
 
-4.2.5.3.  Routing
+5.2.5.3.  Routing
 
-   As shown in the tree depicted in Figure 11, the 'routing-protocols'
+   As shown in the tree depicted in Figure 12, the 'routing-protocols'
    container defines the required parameters to enable the desired
    routing features for an AC.  One or more routing protocols can be
    associated with an AC.  Such routing protocols will be then enabled
@@ -1174,12 +1231,13 @@ Table of Contents
    'type' to accommodate scenarios where multiple instances of the same
    routing protocol have to be configured on the same link.
 
-   In addition to static routing (Section 4.2.5.3.1), the module
-   supports BGP (Section 4.2.5.3.2), OSPF (Section 4.2.5.3.3), IS-IS
-   (Section 4.2.5.4), and RIP (Section 4.2.5.5).  It also includes a
+   In addition to static routing (Section 5.2.5.3.1), the module
+   supports BGP (Section 5.2.5.3.2), OSPF (Section 5.2.5.3.3), IS-IS
+   (Section 5.2.5.3.4), and RIP (Section 5.2.5.3.5).  It also includes a
    reference to the 'routing-profile-identifier' defined in
-   Section 4.2.2, so that additional constraints can be applied to a
-   specific instance of each routing protocol.
+   Section 5.2.2, so that additional constraints can be applied to a
+   specific instance of each routing protocol.  Moreover, the module
+   supports VRRP (Section 5.2.5.3.6).
 
            +--rw specific-provisioning-profiles
            |  ...
@@ -1218,6 +1276,7 @@ Table of Contents
                  |     |  ...
                  |     +--rw bgp
                  |     |  ...
+                 |     +--rw ospf
                  |     |  ...
                  |     +--rw isis
                  |     |  ...
@@ -1232,11 +1291,11 @@ Table of Contents
                  +--rw service
                     ...
 
-                     Figure 11: Routing Tree Structure
+                     Figure 12: Routing Tree Structure
 
-4.2.5.3.1.  Static Routing
+5.2.5.3.1.  Static Routing
 
-   The static tree structure is shown in Figure 12.
+   The static tree structure is shown in Figure 13.
 
            |  ...
            +--rw routing-protocols
@@ -1287,9 +1346,9 @@ Table of Contents
            |     +--rw vrrp
            |        ...
 
-                  Figure 12: Static Routing Tree Structure
+                  Figure 13: Static Routing Tree Structure
 
-   As depicted in Figure 12, the following data nodes can be defined for
+   As depicted in Figure 13, the following data nodes can be defined for
    a given IP prefix:
 
    'lan-tag':  Indicates a local tag (e.g., "myfavorite-lan") that is
@@ -1310,9 +1369,9 @@ Table of Contents
       data node can also be used to control the (de)activation of
       individual static route entries.
 
-4.2.5.3.2.  BGP
+5.2.5.3.2.  BGP
 
-   The BGP tree structure is shown in Figure 13.
+   The BGP tree structure is shown in Figure 14.
 
            |  ...
            +--rw routing-protocols
@@ -1389,7 +1448,7 @@ Table of Contents
            |     +--rw vrrp
            |        ...
 
-                       Figure 13: BGP Tree Structure
+                       Figure 14: BGP Tree Structure
 
    The following data nodes are supported for each BGP 'peer-group':
 
@@ -1440,9 +1499,9 @@ Table of Contents
 
    'status':  Indicates the status of the BGP routing instance.
 
-4.2.5.3.3.  OSPF
+5.2.5.3.3.  OSPF
 
-   The OSPF tree structure is shown in Figure 14.
+   The OSPF tree structure is shown in Figure 15.
 
             |  ...
             +--rw routing-protocols
@@ -1485,7 +1544,7 @@ Table of Contents
             |     +--rw vrrp
             |        ...
 
-                       Figure 14: OSPF Tree Structure
+                       Figure 15: OSPF Tree Structure
 
    The following OSPF data nodes are supported:
 
@@ -1507,9 +1566,9 @@ Table of Contents
 
    'status':  Indicates the status of the OSPF routing instance.
 
-4.2.5.4.  IS-IS
+5.2.5.3.4.  IS-IS
 
-   The IS-IS tree structure is shown in Figure 15.
+   The IS-IS tree structure is shown in Figure 16.
 
             |  ...
             +--rw routing-protocols
@@ -1551,7 +1610,7 @@ Table of Contents
             |     +--rw vrrp
             |      ...
 
-                      Figure 15: IS-IS Tree Structure
+                      Figure 16: IS-IS Tree Structure
 
    The following IS-IS data nodes are supported:
 
@@ -1567,9 +1626,9 @@ Table of Contents
 
    'status':  Indicates the status of the IS-IS routing instance.
 
-4.2.5.5.  RIP
+5.2.5.3.5.  RIP
 
-   The RIP tree structure is shown in Figure 16.
+   The RIP tree structure is shown in Figure 17.
 
             |  ...
             +--rw routing-protocols
@@ -1609,17 +1668,17 @@ Table of Contents
             |     +--rw vrrp
             |      ...
 
-                       Figure 16: RIP Tree Structure
+                       Figure 17: RIP Tree Structure
 
    'address-family' indicates whether IPv4, IPv6, or both address
    families are to be activated.  For example, this parameter is used to
    determine whether RIPv2 [RFC2453], RIP Next Generation (RIPng), or
    both are to be enabled [RFC2080].
 
-4.2.5.6.  VRRP
+5.2.5.3.6.  VRRP
 
    The model supports the Virtual Router Redundancy Protocol (VRRP)
-   [RFC5798] on an AC (Figure 17).
+   [RFC5798] on an AC (Figure 18).
 
               |  ...
               +--rw routing-protocols
@@ -1649,7 +1708,7 @@ Table of Contents
               |              +--ro status?        identityref
               |              +--ro last-change?   yang:date-and-time
 
-                       Figure 17: VRRP Tree Structure
+                       Figure 18: VRRP Tree Structure
 
    The following data nodes are supported:
 
@@ -1663,9 +1722,9 @@ Table of Contents
    isn't any type of VRRP authentication at this time (see Section 9 of
    [RFC5798]).
 
-4.2.5.7.  OAM
+5.2.5.4.  Operations, Administration, and Maintenance (OAM)
 
-   As shown in the tree depicted in Figure 18, the 'oam' container
+   As shown in the tree depicted in Figure 19, the 'oam' container
    defines OAM-related parameters of an AC.
 
           +--rw specific-provisioning-profiles
@@ -1701,7 +1760,7 @@ Table of Contents
                 +--rw service
                    ...
 
-                       Figure 18: OAM Tree Structure
+                       Figure 19: OAM Tree Structure
 
    This version of the module supports BFD.  The following BFD data
    nodes can be specified:
@@ -1713,9 +1772,9 @@ Table of Contents
 
    'status':  Indicates the status of the BFD over an AC.
 
-4.2.5.8.  Security
+5.2.5.5.  Security
 
-   As shown in the tree depicted in Figure 19, the 'security' container
+   As shown in the tree depicted in Figure 20, the 'security' container
    defines a set of AC security parameters.
 
            +--rw specific-provisioning-profiles
@@ -1752,16 +1811,16 @@ Table of Contents
                  +--rw service
                     ...
 
-                     Figure 19: Security Tree Structure
+                     Figure 20: Security Tree Structure
 
    The 'security' container specifies the authentication and the
    encryption to be applied to traffic for a given AC.  Tthe model can
    be used to directly control the encryption to be applied (e.g., Layer
    2 or Layer 3 encryption) or invoke a local encryption profile.
 
-4.2.5.9.  Service
+5.2.5.6.  Service
 
-   The structure of the 'service' container is depicted in Figure 20.
+   The structure of the 'service' container is depicted in Figure 21.
 
        +--rw specific-provisioning-profiles
        |  ...
@@ -1835,7 +1894,7 @@ Table of Contents
                       +--rw acl-profile* [profile]
                          +--rw profile    forwarding-profile-reference
 
-                    Figure 20: Bandwidth Tree Structure
+                    Figure 21: Bandwidth Tree Structure
 
    The 'service' container defines the following data nodes:
 
@@ -1862,9 +1921,9 @@ Table of Contents
    'access-control-list':  Specifies a list of ACL profiles to apply for
       this AC.
 
-5.  YANG Modules
+6.  YANG Modules
 
-5.1.  The Bearer Service ("ietf-bearer-svc") YANG Module
+6.1.  The Bearer Service ("ietf-bearer-svc") YANG Module
 
    This module uses types defined in [RFC6991] and [RFC9181].
 
@@ -1888,7 +1947,8 @@ Table of Contents
      import ietf-ac-svc {
        prefix ac-svc;
        reference
-         "RFC XXXX: YANG Service Data Models for Attachment Circuits";
+         "RFC XXXX: YANG Data Models for Bearers and 'Attachment
+                     Circuits'-as-a-Service (ACaaS)";
      }
 
      organization
@@ -1928,7 +1988,8 @@ Table of Contents
        description
          "Initial revision.";
        reference
-         "RFC xxxx: A YANG Service Data Model for Attachment Circuits";
+         "RFC XXXX: YANG Data Models for Bearers and 'Attachment
+                     Circuits'-as-a-Service (ACaaS)";
      }
 
      // Typedef to ease referencing cross-modules
@@ -2179,7 +2240,6 @@ Table of Contents
              mechanism is supported if set to false.";
          }
          leaf sync-phy-enabled {
-           when "../sync-phy-capable='true'";
            type boolean;
            description
             "Indicates when set to true that a mechanism for physical
@@ -2288,7 +2348,7 @@ Table of Contents
    }
    <CODE ENDS>
 
-5.2.  The AC Service ("ietf-ac-svc") YANG Module
+6.2.  The AC Service ("ietf-ac-svc") YANG Module
 
    This module uses types defined in [RFC6991], [RFC9181], [RFC8177],
    and [I-D.ietf-opsawg-teas-common-ac].
@@ -2363,7 +2423,8 @@ Table of Contents
        description
          "Initial revision.";
        reference
-         "RFC XXXX: YANG Service Data Models for Attachment Circuits";
+         "RFC XXXX: YANG Data Models for Bearers and 'Attachment
+                     Circuits'-as-a-Service (ACaaS)";
      }
 
      /* A set of typedefs to ease referencing cross-modules */
@@ -2394,8 +2455,7 @@ Table of Contents
          + "/ac-svc:encryption-profile-identifier/ac-svc:id";
        }
        description
-         "Defines a type to an encryption profile for referencing
-          purposes.";
+         "Defines a reference to an encryption profile.";
      }
 
      typedef qos-profile-reference {
@@ -2406,7 +2466,7 @@ Table of Contents
          + "/ac-svc:qos-profile-identifier/ac-svc:id";
        }
        description
-         "Defines a type to a QoS profile for referencing purposes.";
+         "Defines a reference to a QoS profile.";
      }
 
      typedef bfd-profile-reference {
@@ -2417,7 +2477,7 @@ Table of Contents
          + "/ac-svc:bfd-profile-identifier/ac-svc:id";
        }
        description
-         "Defines a type to a BFD profile for referencing purposes.";
+         "Defines a reference to a BFD profile.";
      }
 
      typedef forwarding-profile-reference {
@@ -2428,8 +2488,7 @@ Table of Contents
          + "/ac-svc:forwarding-profile-identifier/ac-svc:id";
        }
        description
-         "Defines a type to a forwarding profile for referencing
-          purposes.";
+         "Defines a reference to a forwarding profile.";
      }
 
      typedef routing-profile-reference {
@@ -2440,8 +2499,7 @@ Table of Contents
          + "/ac-svc:routing-profile-identifier/ac-svc:id";
        }
        description
-         "Defines a type to a routing profile for referencing
-          purposes.";
+         "Defines a reference to a routing profile.";
      }
 
      typedef service-profile-reference {
@@ -2452,8 +2510,7 @@ Table of Contents
          + "/ac-svc:id";
        }
        description
-         "Defines a type to a service profile for referencing
-          purposes.";
+         "Defines a reference to a service profile.";
      }
 
      /******************** Reusable groupings ********************/
@@ -2820,6 +2877,7 @@ Table of Contents
          }
          uses routing-protocol-list;
          container bgp {
+           if-feature "vpn-common:rtr-bgp";
            when
              "derived-from-or-self(../type, 'vpn-common:bgp-routing')" {
              description
@@ -2841,6 +2899,7 @@ Table of Contents
            }
          }
          container ospf {
+           if-feature "vpn-common:rtr-ospf";
            when "derived-from-or-self(../type, "
               + "'vpn-common:ospf-routing')" {
              description
@@ -2851,6 +2910,7 @@ Table of Contents
            uses ac-common:ospf-basic;
          }
          container isis {
+          if-feature "vpn-common:rtr-isis";
            when "derived-from-or-self(../type, "
               + "'vpn-common:isis-routing')" {
              description
@@ -2861,6 +2921,7 @@ Table of Contents
            uses ac-common:isis-basic;
          }
          container rip {
+           if-feature "vpn-common:rtr-rip";
            when "derived-from-or-self(../type, "
               + "'vpn-common:rip-routing')" {
              description
@@ -2880,6 +2941,7 @@ Table of Contents
            }
          }
          container vrrp {
+           if-feature "vpn-common:rtr-vrrp";
            when "derived-from-or-self(../type, "
               + "'vpn-common:vrrp-routing')" {
              description
@@ -2932,6 +2994,7 @@ Table of Contents
            }
          }
          container bgp {
+           if-feature "vpn-common:rtr-bgp";
            when "derived-from-or-self(../type, "
               + "'vpn-common:bgp-routing')" {
              description
@@ -2949,6 +3012,7 @@ Table of Contents
            }
          }
          container ospf {
+           if-feature "vpn-common:rtr-ospf";
            when "derived-from-or-self(../type, "
               + "'vpn-common:ospf-routing')" {
              description
@@ -2959,6 +3023,7 @@ Table of Contents
            uses ospf-svc;
          }
          container isis {
+           if-feature "vpn-common:rtr-isis";
            when "derived-from-or-self(../type, "
               + "'vpn-common:isis-routing')" {
              description
@@ -2969,6 +3034,7 @@ Table of Contents
            uses isis-svc;
          }
          container rip {
+           if-feature "vpn-common:rtr-rip";
            when "derived-from-or-self(../type, "
               + "'vpn-common:rip-routing')" {
              description
@@ -2981,6 +3047,7 @@ Table of Contents
            uses rip-svc;
          }
          container vrrp {
+           if-feature "vpn-common:rtr-vrrp";
            when "derived-from-or-self(../type, "
               + "'vpn-common:vrrp-routing')" {
              description
@@ -3385,7 +3452,7 @@ Table of Contents
    }
    <CODE ENDS>
 
-6.  Security Considerations
+7.  Security Considerations
 
    This section uses the template described in Section 3.7 of
    [I-D.ietf-netmod-rfc8407bis].
@@ -3414,7 +3481,7 @@ Table of Contents
 
    'placement-constraints':  An attacker who is able to access this data
       node can modify the attributes to influence how a service is
-      delivered to a customer, and this lead to Service Level Agreement
+      delivered to a customer, and this leads to Service Level Agreement
       (SLA) violations.
 
    'bearer':  An attacker who is able to access this data node can
@@ -3434,15 +3501,14 @@ Table of Contents
       able to manipulate routing policies, QoS policies, or encryption
       properties.
 
-      These data nodes are defined with "nacm:default-deny-write"
-      tagging [I-D.ietf-opsawg-teas-common-ac].
+      These profiles are defined with "nacm:default-deny-write" tagging
+      [I-D.ietf-opsawg-teas-common-ac].
 
    'service-provisioning-profiles':  An attacker who has access to these
       data nodes may be able to manipulate service-specific policies to
       be applied for an AC.
 
-      These data nodes are defined with "nacm:default-deny- write"
-      tagging.
+      This container is defined with "nacm:default-deny- write" tagging.
 
    'ac':  An attacker who is able to access this data node can modify
       the attributes of an AC (e.g., QoS, bandwidth, routing protocols,
@@ -3485,7 +3551,7 @@ Table of Contents
    version of the AC service model because it is not supported by the
    underlying device modules (e.g., [RFC8695]).
 
-7.  IANA Considerations
+8.  IANA Considerations
 
    IANA is requested to register the following URIs in the "ns"
    subregistry within the "IETF XML Registry" [RFC3688]:
@@ -3514,17 +3580,17 @@ Table of Contents
       Prefix:  ac-svc
       Reference:  RFC xxxx
 
-8.  References
+9.  References
 
-8.1.  Normative References
+9.1.  Normative References
 
    [I-D.ietf-opsawg-teas-common-ac]
               Boucadair, M., Roberts, R., de Dios, O. G., Barguil, S.,
               and B. Wu, "A Common YANG Data Model for Attachment
               Circuits", Work in Progress, Internet-Draft, draft-ietf-
-              opsawg-teas-common-ac-05, 9 February 2024,
+              opsawg-teas-common-ac-07, 4 April 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
-              teas-common-ac-05>.
+              teas-common-ac-07>.
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
@@ -3642,7 +3708,13 @@ Table of Contents
               Attachment Points (SAPs)", RFC 9408, DOI 10.17487/RFC9408,
               June 2023, <https://www.rfc-editor.org/rfc/rfc9408>.
 
-8.2.  Informative References
+9.2.  Informative References
+
+   [AC-svc-Tree]
+              "Full ACaaS Tree Structure", 2024,
+              <https://github.com/boucadair/attachment-circuit-
+              model/blob/main/yang/full-trees/ac-svc-without-
+              groupings.txt>.
 
    [I-D.ietf-idr-bgp-model]
               Jethanandani, M., Patel, K., Hares, S., and J. Haas, "YANG
@@ -3659,21 +3731,36 @@ Table of Contents
               <https://datatracker.ietf.org/doc/html/draft-ietf-netmod-
               rfc8407bis-09>.
 
+   [I-D.ietf-opsawg-ac-lxsm-lxnm-glue]
+              Boucadair, M., Roberts, R., Barguil, S., and O. G. de
+              Dios, "A YANG Data Model for Augmenting VPN Service and
+              Network Models with Attachment Circuits", Work in
+              Progress, Internet-Draft, draft-ietf-opsawg-ac-lxsm-lxnm-
+              glue-07, 4 April 2024,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
+              ac-lxsm-lxnm-glue-07>.
+
    [I-D.ietf-opsawg-ntw-attachment-circuit]
               Boucadair, M., Roberts, R., de Dios, O. G., Barguil, S.,
               and B. Wu, "A Network YANG Data Model for Attachment
               Circuits", Work in Progress, Internet-Draft, draft-ietf-
-              opsawg-ntw-attachment-circuit-05, 9 February 2024,
+              opsawg-ntw-attachment-circuit-06, 4 April 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
-              ntw-attachment-circuit-05>.
+              ntw-attachment-circuit-06>.
 
    [I-D.ietf-teas-ietf-network-slice-nbi-yang]
               Wu, B., Dhody, D., Rokui, R., Saad, T., and J. Mullooly,
-              "A YANG Data Model for the RFC AAAA Network Slice
+              "A YANG Data Model for the RFC 9543 Network Slice
               Service", Work in Progress, Internet-Draft, draft-ietf-
-              teas-ietf-network-slice-nbi-yang-09, 17 February 2024,
+              teas-ietf-network-slice-nbi-yang-10, 16 March 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-teas-
-              ietf-network-slice-nbi-yang-09>.
+              ietf-network-slice-nbi-yang-10>.
+
+   [IEEE802.1AB]
+              IEEE, "IEEE Standard for Local and metropolitan area
+              networks - Station and Media Access Control Connectivity
+              Discovery", January 2016,
+              <https://standards.ieee.org/ieee/802.1AB/6047/>.
 
    [IEEE802.1AX]
               IEEE, "IEEE Standard for Local and Metropolitan Area
@@ -3690,7 +3777,7 @@ Table of Contents
               synchronization based on the physical layer", January
               2024, <https://www.itu.int/rec/T-REC-G.781>.
 
-   [PYANG]    "pyang", 2023, <https://github.com/mbj4668/pyang>.
+   [PYANG]    "pyang", 2024, <https://github.com/mbj4668/pyang>.
 
    [RFC2080]  Malkin, G. and R. Minnear, "RIPng for IPv6", RFC 2080,
               DOI 10.17487/RFC2080, January 1997,
@@ -3768,6 +3855,12 @@ Table of Contents
               Management with YANG", RFC 8969, DOI 10.17487/RFC8969,
               January 2021, <https://www.rfc-editor.org/rfc/rfc8969>.
 
+   [RFC9543]  Farrel, A., Ed., Drake, J., Ed., Rokui, R., Homma, S.,
+              Makhijani, K., Contreras, L., and J. Tantsura, "A
+              Framework for Network Slices in Networks Built from IETF
+              Technologies", RFC 9543, DOI 10.17487/RFC9543, March 2024,
+              <https://www.rfc-editor.org/rfc/rfc9543>.
+
 Appendix A.  Examples
 
    This section includes a non-exhaustive list of examples to illustrate
@@ -3777,7 +3870,7 @@ Appendix A.  Examples
 A.1.  Create A New Bearer
 
    An example of a request message body to create a bearer is shown in
-   Figure 21.
+   Figure 22.
 
    {
      "ietf-bearer-svc:bearers": {
@@ -3796,10 +3889,10 @@ A.1.  Create A New Bearer
      }
    }
 
-        Figure 21: Example of a Message Body to Create A New Bearer
+        Figure 22: Example of a Message Body to Create A New Bearer
 
    A bearer-reference is then generated by the controller for this
-   bearer.  Figure 22 shows the example of a response message body that
+   bearer.  Figure 23 shows the example of a response message body that
    is sent by the controller to reply to a GET request:
 
    {
@@ -3821,7 +3914,7 @@ A.1.  Create A New Bearer
      }
    }
 
-       Figure 22: Example of a Response Message Body with the Bearer
+       Figure 23: Example of a Response Message Body with the Bearer
                                  Reference
 
    Note that the response also indicates that Sync Phy is supported for
@@ -3830,7 +3923,7 @@ A.1.  Create A New Bearer
 A.2.  Create An AC over An Existing Bearer
 
    An example of a request message body to create a simple AC over an
-   existing bearer is shown in Figure 23.  The bearer reference is
+   existing bearer is shown in Figure 24.  The bearer reference is
    assumed to be known to both the customer and the network provider.
    Such a reference can be retrieved, e.g., following the example
    described in Appendix A.1 or using other means (including, exchanged
@@ -3854,10 +3947,10 @@ A.2.  Create An AC over An Existing Bearer
      }
    }
 
-       Figure 23: Example of a Message Body to Request an AC over an
+       Figure 24: Example of a Message Body to Request an AC over an
                               Existing Bearer
 
-   Figure 24 shows the message body of a response received from the
+   Figure 25 shows the message body of a response received from the
    controller and which indicates the "cvlan-id" that was assigned for
    the requested AC.
 
@@ -3883,19 +3976,18 @@ A.2.  Create An AC over An Existing Bearer
      }
    }
 
-       Figure 24: Example of a Message Body of a Response to Assign a
+       Figure 25: Example of a Message Body of a Response to Assign a
                                   CVLAN ID
 
 A.3.  Create An AC for a Known Peer SAP
 
    An example of a request to create a simple AC, when the peer SAP is
-   known, is shown in Figure 25.  In this example, the peer SAP
-   identifier points to an identifier of a service function.  The
-   (topological) location of that service function is assumed to be
-   known to the network controller.  For example, this can be determined
-   as part of an on-demand procedure to instantiate a service function
-   in a cloud.  That instantiated service function can be granted a
-   connectivity service via the provider network.
+   known, is shown in Figure 26.  In this example, the peer SAP
+   identifier points to an identifier of an SF.  The (topological)
+   location of that SF is assumed to be known to the network controller.
+   For example, this can be determined as part of an on-demand procedure
+   to instantiate an SF in a cloud.  That instantiated SF can be granted
+   a connectivity service via the provider network.
 
    {
      "ietf-ac-svc:attachment-circuits": {
@@ -3921,13 +4013,13 @@ A.3.  Create An AC for a Known Peer SAP
      }
    }
 
-   Figure 25: Example of a Message Body to Request an AC with a Peer SAP
+   Figure 26: Example of a Message Body to Request an AC with a Peer SAP
 
 A.4.  One CE, Two ACs
 
-   Let’s consider the example of an eNodeB (CE) that is directly
+   Let us consider the example of an eNodeB (CE) that is directly
    connected to the access routers of the mobile backhaul (see
-   Figure 26).  In this example, two ACs are needed to service the
+   Figure 27).  In this example, two ACs are needed to service the
    eNodeB (e.g., distinct VLANs for Control and User Planes).
 
    .-------------.                  .------------------.
@@ -3944,10 +4036,10 @@ A.4.  One CE, Two ACs
                                     |                  |
                                     '------------------'
 
-                     Figure 26: Example of a CE-PE ACs
+                     Figure 27: Example of a CE-PE ACs
 
    An example of a request to create the ACs to service the eNodeB is
-   shown in Figure 27.  This example assumes that static addressing is
+   shown in Figure 28.  This example assumes that static addressing is
    used for both ACs.
 
    =============== NOTE: '\' line wrapping per RFC 8792 ================
@@ -4015,10 +4107,10 @@ A.4.  One CE, Two ACs
       }
    }
 
-       Figure 27: Example of a Message Body to Request Two ACs on The
+       Figure 28: Example of a Message Body to Request Two ACs on the
                         Same Link (Not Recommended)
 
-   Figure 28 shows the message body of a response received from the
+   Figure 29 shows the message body of a response received from the
    controller.
 
    {
@@ -4114,11 +4206,11 @@ A.4.  One CE, Two ACs
      }
    }
 
-      Figure 28: Example of a Message Body of a Response to Create Two
-                   ACs on The Same Link (Not Recommended)
+      Figure 29: Example of a Message Body of a Response to Create Two
+                   ACs on the Same Link (Not Recommended)
 
-   The example shown Figure 28 is not optimal as it includes many
-   redundant data.  Figure 29 shows a more compact request that
+   The example shown Figure 29 is not optimal as it includes many
+   redundant data.  Figure 30 shows a more compact request that
    factorizes all the redundant data.
 
    {
@@ -4192,11 +4284,11 @@ A.4.  One CE, Two ACs
      }
    }
 
-       Figure 29: Example of a Message Body to Request Two ACs on The
+       Figure 30: Example of a Message Body to Request Two ACs on the
                           Same Link (Node Profile)
 
    A customer may request adding a new AC by simply referring to an
-   existing per-node AC profile as shown in Figure 30.  This AC inherits
+   existing per-node AC profile as shown in Figure 31.  This AC inherits
    all the data that was enclosed in the indicated per-node AC profile
    (IP addressing, routing, etc.).
 
@@ -4222,7 +4314,7 @@ A.4.  One CE, Two ACs
      }
    }
 
-        Figure 30: Example of a Message Body to Add a new AC over an
+        Figure 31: Example of a Message Body to Add a new AC over an
                         existing link (Node Profile)
 
 A.5.  Control Precedence over Multiple ACs
@@ -4230,7 +4322,7 @@ A.5.  Control Precedence over Multiple ACs
    When multiple ACs are requested by the same customer for the same
    site, the request can tag one of these ACs as "primary" and the other
    ones as "secondary".  An example of such a request is shown in
-   Figure 32.  In this example, both ACs are bound to the same "group-
+   Figure 33.  In this example, both ACs are bound to the same "group-
    id", and the "precedence" data node is set as a function of the
    intended role of each AC (primary or secondary).
 
@@ -4246,7 +4338,7 @@ A.5.  Control Precedence over Multiple ACs
                     bearerY@site1   |   |
                                     '---'
 
-        Figure 31: An Example Topology for AC Precedence Enforcement
+        Figure 32: An Example Topology for AC Precedence Enforcement
 
    {
      "ietf-ac-svc:attachment-circuits": {
@@ -4281,12 +4373,12 @@ A.5.  Control Precedence over Multiple ACs
      }
    }
 
-       Figure 32: Example of a Message Body to Associate a Precedence
+       Figure 33: Example of a Message Body to Associate a Precedence
                                Level with ACs
 
 A.6.  Create Multiple ACs Bound to Multiple CEs
 
-   Figure 33 shows an example of CEs that are interconnected by a
+   Figure 34 shows an example of CEs that are interconnected by a
    service provider network.
 
                       .----------------------------------.
@@ -4299,10 +4391,10 @@ A.6.  Create Multiple ACs Bound to Multiple CEs
          '----'       |                                  |       '----'
                       '----------------------------------'
 
-                    Figure 33: Network Topology Example
+                    Figure 34: Network Topology Example
 
-   Figure 34 depicts an example of the message body of a response to a
-   request to instantiate the various ACs that are shown in Figure 33.
+   Figure 35 depicts an example of the message body of a response to a
+   request to instantiate the various ACs that are shown in Figure 34.
 
    {
      "ietf-ac-svc:attachment-circuits": {
@@ -4364,7 +4456,7 @@ A.6.  Create Multiple ACs Bound to Multiple CEs
      }
    }
 
-        Figure 34: Example of a Message Body of a Request to Create
+        Figure 35: Example of a Message Body of a Request to Create
                      Multiple ACs bound to Multiple CEs
 
 A.7.  Binding Attachment Circuits to an IETF Network Slice
@@ -4373,21 +4465,20 @@ A.7.  Binding Attachment Circuits to an IETF Network Slice
    [I-D.ietf-teas-ietf-network-slice-nbi-yang] to connect a site to a
    slice service.
 
-   First, Figure 35 describes the end-to-end network topology as well
+   First, Figure 36 describes the end-to-end network topology as well
    the orchestration scopes:
 
-   *  The topology is made up of two sites (site1 and site2),
-      interconnected via a Transport Network (e.g.  IP/MPLS Network).  A
-      Network Function is deployed within each site in a dedicated IP
-      Subnet.
+   *  The topology is made up of two sites ("site1" and "site2"),
+      interconnected via a Transport Network (e.g.  IP/MPLS Network).
+      An SF is deployed within each site in a dedicated IP Subnet.
 
-   *  A 5G SMO is responsible for the deployment Network Functions and
-      the indirect management of a local Gateway (i.e., CE device).
+   *  A 5G SMO is responsible for the deployment of SFs and the indirect
+      management of a local Gateway (i.e., CE device).
 
    *  An IETF Network Slice Controller is responsible for the deployment
       of IETF Network Slices across the TN.
 
-   Network Functions are deployed within each site.
+   SFs are deployed within each site.
 
          5G SMO                 IETF NSC                 5G SMO
             |               (TN Orchestrator)               |
@@ -4395,13 +4486,13 @@ A.7.  Binding Attachment Circuits to an IETF Network Slice
       <-----+----->        <---------+-------->        <----+---->
           Site1             Transport Network              Site2
       .---.                  .--------------.                 .---.
-      │NF1│                  |              |                 │NF2│
+      |SF1|                  |              |                 |SF2|
       '-+-'   .---.        .---.          .---.        .---.  '-+-'
-        |     |   |        │   │          │   │        │   │    |
-      --+-----+GW1+--------+PE1│          │PE2+--------+GW2+----+--
-          ^   |   |    ^   |   |          │   │   ^    │   │  ^
+        |     |   |        |   |          |   |        |   |    |
+      --+-----+GW1+--------+PE1|          |PE2+--------+GW2+----+--
+          ^   |   |    ^   |   |          |   |   ^    |   |  ^
           |   '---'    |   '-+-'          '-+-'   |    '---'  |
-          |            |     │              │     |           |
+          |            |     |              |     |           |
           |            |     '--------------'     |           |
         LAN1           |                          |          LAN2
    198.51.100.0/24     |                          |  203.0.113.0/24
@@ -4410,14 +4501,14 @@ A.7.  Binding Attachment Circuits to an IETF Network Slice
                Physical Link ID:           Physical Link ID:
                  bearerX@site1               bearerX@site2
 
-     Figure 35: An Example of a Network Topology Used to Deploy Slices
+     Figure 36: An Example of a Network Topology Used to Deploy Slices
 
-   Figure 36 describes the logical connectivity enforced thanks to both
+   Figure 37 describes the logical connectivity enforced thanks to both
    IETF Network Slice and Attachment Circuit models.
 
                                 AS 65536  <----BGP--> AS 65550
     .---.                     .--------.                    .---.
-    │NF1│       192.0.2.0/30  |        |   192.0.2.4/30     │NF2│
+    |SF1|       192.0.2.0/30  |        |   192.0.2.4/30     |SF2|
     '-+-'   .---.          .--+.      .+--.          .---.  '-+-'
       |     |   |.1      .2|   |      |   |.6      .5|   |    |
     --+-----+GW1+----------+PE1|      |PE2+----------+GW2+----+----
@@ -4447,9 +4538,9 @@ A.7.  Binding Attachment Circuits to an IETF Network Slice
                    customer-as: 65550
                    customer-address: 192.0.2.5
 
-                        Figure 36: Logical Overview
+                        Figure 37: Logical Overview
 
-   Figure 37 shows the message body of the request to create the
+   Figure 38 shows the message body of the request to create the
    required ACs using the Attachment Circuit module.
 
    =============== NOTE: '\' line wrapping per RFC 8792 ================
@@ -4536,9 +4627,9 @@ A.7.  Binding Attachment Circuits to an IETF Network Slice
       }
    }
 
-        Figure 37: Message Body of a Request to Create Required ACs
+        Figure 38: Message Body of a Request to Create Required ACs
 
-   Figure 38 shows the message body of a reponse received from the
+   Figure 39 shows the message body of a response received from the
    controller.
 
    {
@@ -4638,11 +4729,11 @@ A.7.  Binding Attachment Circuits to an IETF Network Slice
      }
    }
 
-     Figure 38: Example of a Message Body of a Response Indicating the
+     Figure 39: Example of a Message Body of a Response Indicating the
                             Creation of the ACs
 
-   Figure 39 shows the message body of the request to create the a slice
-   service bound to the ACs created using Figure 37.  Only references to
+   Figure 40 shows the message body of the request to create the a slice
+   service bound to the ACs created using Figure 38.  Only references to
    these ACs are included in the Slice Service request.  This example
    assumes that the module that "glues" the service/AC is also supported
    by the NSC.
@@ -4655,7 +4746,7 @@ A.7.  Binding Attachment Circuits to an IETF Network Slice
          "slo-sle-template": [
            {
              "id": "low-latency-template",
-             "template-description": "Lowest possible latencey \
+             "template-description": "Lowest possible latency \
                                                     forwarding behavior"
            }
          ]
@@ -4683,12 +4774,12 @@ A.7.  Binding Attachment Circuits to an IETF Network Slice
      }
    }
 
-       Figure 39: Message Body of a Request to Create a Slice Service
+       Figure 40: Message Body of a Request to Create a Slice Service
                             Referring to the ACs
 
 A.8.  Connecting a Virtualized Environment Running in a Cloud Provider
 
-   This example (Figure 40) shows how the AC service model can be used
+   This example (Figure 41) shows how the AC service model can be used
    to connect a Cloud Infrastructure to a service provider network.
    This example makes the following assumptions:
 
@@ -4714,44 +4805,44 @@ A.8.  Connecting a Virtualized Environment Running in a Cloud Provider
        |                                      Cloud Provider DC |
        |                                                        |
        |  .---. .---. .---.                                     |
-       |  │VM1│ │VM2│ │VM3│  Virtual Private Cloud              |
+       |  |VM1| |VM2| |VM3|  Virtual Private Cloud              |
        |  '-+-' '-+-' '-+-'                                     |
-       |    │.2   │.5   │.12      198.51.100.0/24               |
+       |    |.2   |.5   |.12      198.51.100.0/24               |
        |   -+-----+-----+---+-----------------------            |
-       |                    │.1                                 |
+       |                    |.1                                 |
        |                .---+----.                              |
-       |                │ CLOUD  │ BGP_ASN: 65536               |
-       |                │PROVIDER│ BGP md5:                     |
-       |                │   GW   │   "nyxNER_c5sdn608fFQl3331d" |
+       |                | Cloud  | BGP_ASN: 65536               |
+       |                |Provider| BGP md5:                     |
+       |                |   GW   |   "nyxNER_c5sdn608fFQl3331d" |
        |                '---+----'                              |
-       |                    │ ^ .2                              |
-       '--------------------│-│---------------------------------'
-                            │ │
-    Direct Interconnection  │ │
-    connection_id:          │BGP       vlan-id:50
-      1234-56789            │ │        192.0.2.0/24
-                            │ │
-                            │ │ .1
-       .--------------------│-v---------------------------------.
+       |                    | ^ .2                              |
+       '--------------------|-|---------------------------------'
+                            | |
+    Direct Interconnection  | |
+    connection_id:          |BGP       vlan-id:50
+      1234-56789            | |        192.0.2.0/24
+                            | |
+                            | | .1
+       .--------------------|-v---------------------------------.
        |             If-A.--+--.       Service Provider Network |
-       |                 │     │                                |
-       |                 │ PE1 │ BGP_ASN: 65550                 |
-       |                 │     │                                |
+       |                 |     |                                |
+       |                 | PE1 | BGP_ASN: 65550                 |
+       |                 |     |                                |
        |                 '-----'                                |
        |                                                        |
        |                                                        |
        |                                                        |
        '--------------------------------------------------------'
 
-      Figure 40: An Example of Realization for Connecting a Cloud Site
+      Figure 41: An Example of Realization for Connecting a Cloud Site
 
-   Figure 41 illustrates the pre-provisioning logic for the physical
+   Figure 42 illustrates the pre-provisioning logic for the physical
    connection to the Cloud Provider.  After this connection is delivered
    to the service provider, the network inventory is updated with
    "bearer-reference" set to the value of the "Connection Identifier".
 
   Customer                                                       Cloud
-Orchestration  DIRECT INTERCONNECTION ORDERING (API)            Provider
+Orchestration       DIRECT INTERCONNECTION ORDERING (API)       Provider
                ------------------------------------------------>
 
                Connection Created with "Connection ID:1234-56789"
@@ -4767,7 +4858,7 @@ Orchestration  DIRECT INTERCONNECTION ORDERING (API)            Provider
        Network  Inventory Updated with:
          bearer-reference: 1234-56789 for PE1/Interface If-A
 
-             Figure 41: Illustration of Pre-provisioning
+             Figure 42: Illustration of Pre-provisioning
 
    Next, API workflows can be initiated:
 
@@ -4775,10 +4866,10 @@ Orchestration  DIRECT INTERCONNECTION ORDERING (API)            Provider
 
    *  Service provider network via the Attachment Circuit model.  This
       request can be used in conjunction with additional requests based
-      on L3SM (VPN provisioning) or Network Slice Service model (5G
+      on the L3SM (VPN provisioning) or Network Slice Service model (5G
       hybrid Cloud deployment).
 
-   Figure 42 shows the message body of the request to create the
+   Figure 43 shows the message body of the request to create the
    required ACs to connect the Cloud Provider Virtualized (VM) using the
    Attachment Circuit module.
 
@@ -4825,10 +4916,10 @@ Orchestration  DIRECT INTERCONNECTION ORDERING (API)            Provider
      }
    }
 
-         Figure 42: Message Body of a Request to Create the ACs for
+         Figure 43: Message Body of a Request to Create the ACs for
                       Connecting to the Cloud Provider
 
-   Figure 43 shows the message body of the response received from the
+   Figure 44 shows the message body of the response received from the
    provider.  Note that this Cloud Provider mandates the use of MD5
    authentication for establishing BGP connections.
 
@@ -4896,47 +4987,47 @@ Orchestration  DIRECT INTERCONNECTION ORDERING (API)            Provider
      }
    }
 
-       Figure 43: Message Body of a Response to the Request to Create
+       Figure 44: Message Body of a Response to the Request to Create
                   ACs for Connecting to the Cloud Provider
 
 A.9.  Connect Customer Network (CE) Through BGP
 
    CE-PE routing using BGP is a common scenario in the context of MPLS
    VPNs and is widely used in enterprise networks.  In the example
-   depicted in Figure 44, the CE routers are customer-owned devices
-   belonging to an Autonomous System (ASN 65536).  CEs are located at
-   the edge of the provider's network (PE, or Provider Edge) and use
-   point-to-point interfaces to establish BGP sessions.  The point-to-
-   point interfaces rely upon a physical bearer (Line-113) to reach the
-   provider network.
+   depicted in Figure 45, the CE routers are customer-owned devices
+   belonging to an AS (ASN 65536).  CEs are located at the edge of the
+   provider's network (PE, or Provider Edge) and use point-to-point
+   interfaces to establish BGP sessions.  The point-to-point interfaces
+   rely upon a physical bearer ("Line-113") to reach the provider
+   network.
 
-  +------------------------+                       +-------------------+
-  |  Provider Network      |                       | Customer Network  |
-  |                        |                       |                   |
-  |        +------------+  |  Attachment-Circuit 1 | +-------+         |
-  |        | PE1(VRF11) +----------------------------+ CE1   | AS65536 |
-  |        |            |  |    Bearer=Line-113    | +-------+         |
-  |        | PE1(VRF12) |  |                       |                   |
-  |        |            |  |                       +-------------------+
-  |        | PE1(VRF1n) |  |
-  |        |            |  |
-  |        +------------+  |
-  | AS1                    |
-  |        +------------+  |
-  |        | PE2(VRF21) |  |
-  |        +------------+  |
-  |              .         |
-  |              .         |
-  |              .         |
-  |        +------------+  |
-  |        | PEm(VRFmn) |  |
-  |        +------------+  |
-  |                        |
-  +------------------------+
+   +------------------------+                      +------------------+
+   |  Provider Network      |                      | Customer Network |
+   |                        |                      |                  |
+   |        +------------+  | Attachment-Circuit 1 | +------+         |
+   |        | PE1(VRF11) +---------------------------+ CE1  | AS65536 |
+   |        |            |  |   Bearer=Line-113    | +------+         |
+   |        | PE1(VRF12) |  |                      |                  |
+   |        |            |  |                      +------------------+
+   |        | PE1(VRF1n) |  |
+   |        |            |  |
+   |        +------------+  |
+   | AS1                    |
+   |        +------------+  |
+   |        | PE2(VRF21) |  |
+   |        +------------+  |
+   |              .         |
+   |              .         |
+   |              .         |
+   |        +------------+  |
+   |        | PEm(VRFmn) |  |
+   |        +------------+  |
+   |                        |
+   +------------------------+
 
-           Figure 44: Illustration of Provider Network Scenario
+            Figure 45: Illustration of Provider Network Scenario
 
-   The attachment circuit in this case uses a SAP identifier to refer to
+   The attachment circuit in this case use a SAP identifier to refer to
    the physical interface used for the connection between the PE and the
    CE.  The attachment circuit includes all the additional logical
    attributes to describe the connection between the two ends, including
@@ -4996,136 +5087,22 @@ A.9.  Connect Customer Network (CE) Through BGP
       }
    }
 
-     Figure 45: Message Body of a Request to Create ACs for Connecting
+     Figure 46: Message Body of a Request to Create ACs for Connecting
                          CEs to a Provider Network
 
    This scenario allows the provider to maintain a list of ACs belonging
    to the same customer without requiring the full service
    configuration.
 
-A.10.  Connect Networks Through Pure IP
-
-   Interconnecting two distinct networks is a fundamental requirement
-   for enabling communication between devices in different locations or
-   segments.  This connectivity can be achieved through various means,
-   one of which is using IP connectivity without relying on specific VPN
-   technologies.  In this example, we illustrate how to interconnect two
-   networks, labeled "Provider Network A" and "Provider Network B",
-   using IP connectivity.  This method involves configuring adjacent
-   routers to facilitate communication between devices in each network.
-   By establishing IP connectivity between the networks and using the
-   attachment circuit model to express this desire.
-
-+------------------------+                       +-------------------------+
-|  Provider Network A    |                       | Provider Network B      |
-|       AS65536          |                       |      AS65536            |
-|        +------------+  |  Attachment-Circuit 1 | +------------+          |
-|        | ASBR-A-1   +----------------------------+ ASBR-B-1   |          |
-|        +------------+  |    Bearer=Line-114    | +------------+          |
-|                        |                       |                         |
-+------------------------+                       +-------------------------+
-
-   Figure 46: Illustration of Provider-to-Provider Network Scenario
-
-   The attachment circuit in this case uses a SAP identifier to refer to
-   the physical interface used for the connection between the PEs
-   ("ASBR-A-1" and "ASBR-B-1").  The attachment circuit includes all the
-   additional logical attributes to describe the connection between the
-   two ends, including VLAN information, IP addressing, and static
-   routes to connect two networks.
-
-   =============== NOTE: '\' line wrapping per RFC 8792 ================
-
-   {
-       "attachment-circuits": {
-           "ac": [
-               {
-                   "name": "IPT-NET-ABC",
-                   "customer-name": "CUST-ABC",
-                   "description": "CUST-ABC-114",
-                   "peer-sap-id": "sap#114",
-                   "ip-connection": {
-                       "ipv4": {
-                           "local-address": "192.168.1.1",
-                           "prefix-length": 24,
-                           "address-allocation-type": "ac-common:static\
-                                                               -address"
-                       }
-                   },
-                   "l2-connection": {
-                       "encapsulation": {
-                           "dot1q": {
-                               "tag-type": "vpn-common:c-vlan",
-                               "cvlan-id": "114"
-                           }
-                       },
-                       "bearer-reference": "line-114"
-                   },
-                   "routing-protocols": {
-                       "routing-protocol": {
-                           "id": "static",
-                           "type": "vpn-common:static-routing",
-                           "static": {
-                               "cascaded-lan-prefixes": {
-                                   "ipv4-lan-prefixes": {
-                                       "lan": "10.0.0.0/24",
-                                       "next-hop": "192.168.1.1"
-                                   }
-                               }
-                           }
-                       }
-                   }
-               },
-               {
-                   "name": "IPT-NET-DCE",
-                   "customer-name": "CUST-DCE",
-                   "description": "CUST-ABC-114",
-                   "peer-sap-id": "sap#114",
-                   "ip-connection": {
-                       "ipv4": {
-                           "local-address": "10.0.0.1",
-                           "prefix-length": 24,
-                           "address-allocation-type": "ac-common:static\
-                                                               -address"
-                       }
-                   },
-                   "l2-connection": {
-                       "encapsulation": {
-                           "dot1q": {
-                               "tag-type": "vpn-common:c-vlan",
-                               "cvlan-id": "114"
-                           }
-                       },
-                       "bearer-reference": "line-114"
-                   },
-                   "routing-protocols": {
-                       "routing-protocol": {
-                           "id": "static",
-                           "type": "vpn-common:static-routing",
-                           "static": {
-                               "cascaded-lan-prefixes": {
-                                   "ipv4-lan-prefixes": {
-                                       "lan": "192.168.1.0/24",
-                                       "next-hop": "10.0.0.1"
-                                   }
-                               }
-                           }
-                       }
-                   }
-               }
-           ]
-       }
-   }
-
-     Figure 47: Message Body of a Request to Create ACs for Connecting
-                           Two Provider Networks
-
 Acknowledgments
 
-   The document leverages [RFC9182] and [RFC9291].
+   This document leverages [RFC9182] and [RFC9291].  Thanks to Gyan
+   Mishra for the review.
 
    Thanks to Ebben Aries for the YANG Doctors review and for providing
    [Instance-Data].
+
+   Thanks to Donald Eastlake for the careful rtg-dir review.
 
 Contributors
 

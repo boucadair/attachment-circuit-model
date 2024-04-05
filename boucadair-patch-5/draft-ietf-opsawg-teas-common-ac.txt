@@ -5,14 +5,14 @@
 OPSAWG                                                 M. Boucadair, Ed.
 Internet-Draft                                                    Orange
 Intended status: Standards Track                         R. Roberts, Ed.
-Expires: 13 September 2024                                       Juniper
+Expires: 7 October 2024                                          Juniper
                                                            O. G. D. Dios
                                                               Telefonica
                                                            S. B. Giraldo
                                                                    Nokia
                                                                    B. Wu
                                                      Huawei Technologies
-                                                           12 March 2024
+                                                            5 April 2024
 
 
             A Common YANG Data Model for Attachment Circuits
@@ -54,7 +54,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 13 September 2024.
+   This Internet-Draft will expire on 7 October 2024.
 
 Copyright Notice
 
@@ -74,15 +74,16 @@ Table of Contents
 
    1.  Introduction
    2.  Conventions and Definitions
-   3.  Description of the AC Common YANG Module
-     3.1.  Identities
-     3.2.  Reusable Groupings
-   4.  Common Attachment Circuit YANG Module
-   5.  Security Considerations
-   6.  IANA Considerations
-   7.  References
-     7.1.  Normative References
-     7.2.  Informative References
+   3.  Relationship to Other AC Data Models
+   4.  Description of the AC Common YANG Module
+     4.1.  Identities
+     4.2.  Reusable Groupings
+   5.  Common Attachment Circuit YANG Module
+   6.  Security Considerations
+   7.  IANA Considerations
+   8.  References
+     8.1.  Normative References
+     8.2.  Informative References
    Acknowledgments
    Contributors
    Authors' Addresses
@@ -90,9 +91,9 @@ Table of Contents
 1.  Introduction
 
    Connectivity services are provided by networks to customers via
-   dedicated terminating points (e.g., service functions, Customer
+   dedicated terminating points (e.g., Service Functions (SFs), Customer
    Premises Equipment (CPEs), Autonomous System Border Routers (ASBRs),
-   data centers gateways, Internet Exchange Points).  A connectivity
+   data centers gateways, or Internet Exchange Points).  A connectivity
    service is basically about ensuring data transfer received from (or
    destined to) a given terminating point to (or from) other terminating
    points that belong to the same customer/service, an interconnection
@@ -101,10 +102,10 @@ Table of Contents
    customer a network provider.  For that data transfer to take place
    within the provider network, it is assumed that adequate setup is
    provisioned over the links that connect customer terminating points
-   and a provider network so that data can be successfully exchanged
-   over these links.  The required setup is referred to in this document
-   as Attachment Circuits (ACs), while the underlying link is referred
-   to as "bearer".
+   and a provider network (a Provider Edge (PE), typically) so that data
+   can be successfully exchanged over these links.  The required setup
+   is referred to in this document as Attachment Circuits (ACs), while
+   the underlying link is referred to as "bearer".
 
    This document adheres to the definition of an attachment circuit as
    provided in Section 1.2 of [RFC4364], especially:
@@ -131,19 +132,19 @@ Table of Contents
    Customer Edge (CE) may be a physical node or a logical entity.  A CE
    is seen by the network as a peer Service Attachment Point (SAP)
    [RFC9408].  CEs may be dedicated to one single service (e.g., Layer 3
-   Virtual Private Network (VPN), Layer 2 VPN) or host multiple services
-   (e.g., Service Functions [RFC7665]).  A single AC (as seen by a
-   network provider) may be bound to one or multiple peer SAPs (e.g.,
-   CE#1 and CE#2).  For example, and as discussed in [RFC4364], multiple
-   CEs can be attached to a PE over the same attachment circuit.  This
-   is typically implemented if the Layer 2 infrastructure between the CE
-   and the network provides a multipoint service.  The same CE may
-   terminate multiple ACs.  These ACs may be over the same or distinct
-   bearers.
+   Virtual Private Network (VPN) or Layer 2 VPN) or host multiple
+   services (e.g., Service Functions [RFC7665]).  A single AC (as seen
+   by a network provider) may be bound to one or multiple peer SAPs
+   (e.g., "CE#1" and "CE#2").  For example, and as discussed in
+   [RFC4364], multiple CEs can be attached to a PE over the same
+   attachment circuit.  This is typically implemented if the Layer 2
+   infrastructure between the CE and the network provides a multipoint
+   service.  The same CE may terminate multiple ACs.  These ACs may be
+   over the same or distinct bearers.
 
      .-------.                .--------------------.         .-------.
-     │       +------.         |                    +---AC----+       |
-     │ CE#1  │      |         |                    +---AC----+ CE#3  |
+     |       +------.         |                    +---AC----+       |
+     | CE#1  |      |         |                    +---AC----+ CE#3  |
      '-------'      |         |                    |         '-------'
                     +---AC----+     Network        |
      .-------.      |         |                    |
@@ -157,7 +158,7 @@ Table of Contents
                          Figure 1: Examples of ACs
 
    This document specifies a common module ("ietf-ac-common") for
-   attachment circuits (Section 4).  The model is designed with the
+   attachment circuits (Section 5).  The model is designed with the
    intent to be reusable by other models and, therefore, ensure
    consistent AC structures among modules that manipulate ACs.  For
    example, the common model can be reused by service models to expose
@@ -183,6 +184,12 @@ Table of Contents
 
    The meanings of the symbols in the YANG tree diagrams are defined in
    [RFC8340].
+
+   LxSM refers to both the Layer 2 Service Model (L2SM) [RFC8466] and
+   the Layer 3 Service Model (L3SM) [RFC8299].
+
+   LxNM refers to both the Layer 2 Network Model (L2NM) [RFC9291] and
+   the Layer 3 Network Model (L3NM) [RFC9182].
 
    This document uses the following terms:
 
@@ -222,12 +229,57 @@ Table of Contents
       controllers.
 
    Service provider network:  A network that is able to provide network
-      services (e.g., L2VPN, L3VPN, or Network Slice Services).
+      services (e.g., L2VPN, L3VPN, or Network Slice Services
+      [RFC9543]).
 
    Service provider:  A service provider that offers network services
       (e.g., L2VPN, L3VPN, or Network Slice Services).
 
-3.  Description of the AC Common YANG Module
+3.  Relationship to Other AC Data Models
+
+   Figure 2 depicts the relationship between the various AC data models:
+
+   *  "ietf-ac-common" (Section 5)
+
+   *  "ietf-bearer-svc" (Section 5.1 of
+      [I-D.ietf-opsawg-teas-attachment-circuit])
+
+   *  "ietf-ac-svc" (Section 5.2 of
+      [I-D.ietf-opsawg-teas-attachment-circuit])
+
+   *  "ietf-ac-ntw" ([I-D.ietf-opsawg-ntw-attachment-circuit])
+
+   *  "ietf-ac-glue" ([I-D.ietf-opsawg-ac-lxsm-lxnm-glue])
+
+                               ietf-ac-common
+                                ^     ^     ^
+                                |     |     |
+                     +----------+     |     +----------+
+                     |                |                |
+                     |                |                |
+               ietf-ac-svc <--> ietf-bearer-svc        |
+                  ^    ^                               |
+                  |    |                               |
+                  |    +------------------------ ietf-ac-ntw
+                  |                                    ^
+                  |                                    |
+                  |                                    |
+                  +----------- ietf-ac-glue -----------+
+
+                          Figure 2: AC Data Models
+
+   "ietf-ac-common" is imported by "ietf-bearer-svc", "ietf-ac-svc", and
+   "ietf-ac-ntw".  Bearers managed using "ietf-bearer-svc" may be
+   referenced in the service ACs managed using "ietf-ac-svc".
+   Similarly, a bearer managed using "ietf-bearer-svc" may list the set
+   of ACs that use that bearer.  In order to ease correlation between an
+   AC service requests and the actual AC provisioned in the network,
+   "ietf-ac-ntw" uses the AC references exposed by "ietf-ac-svc".  To
+   bind Layer 2 VPN or Layer 3 VPN services with ACs, "ietf-ac-glue"
+   augments the LxSM and LxNM with AC service references exposed by
+   "ietf-ac-svc" and AC network references exposed by "ietf-ac-ntw".
+
+4.  Description of the AC Common YANG Module
 
    The full tree diagram of the module can be generated using the
    "pyang" tool [PYANG] with "-f tree --tree-print-groupings" command-
@@ -238,7 +290,7 @@ Table of Contents
       The full tree of the "ietf-ac-common" module is available at
       [AC-Common-Tree].
 
-3.1.  Identities
+4.1.  Identities
 
    The module defines a set of identities, including the following:
 
@@ -268,12 +320,12 @@ Table of Contents
       BGP-4 [RFC4760], route refresh [RFC2918], graceful restart
       [RFC4724], or ADD-PATH [RFC7911].
 
-3.2.  Reusable Groupings
+4.2.  Reusable Groupings
 
    The module also defines a set of reusable groupings, including the
    following:
 
-   'op-instructions' (Figure 2):  Defines a set of parameters to specify
+   'op-instructions' (Figure 3):  Defines a set of parameters to specify
       scheduling instructions and report related events for a service
       request (e.g., AC or bearer).
 
@@ -291,15 +343,15 @@ Table of Contents
                  +--ro actual-start?      yang:date-and-time
                  +--ro actual-stop?       yang:date-and-time
 
-                Figure 2: Operational Instructions Grouping
+                Figure 3: Operational Instructions Grouping
 
-   Layer 2 encapsulations (Figure 3):  Groupings for the following
+   Layer 2 encapsulations (Figure 4):  Groupings for the following
       encapsulation schemes are supported: dot1Q, QinQ, and priority-
       tagged.
 
-   Layer 2 tunnel services (Figure 3):  These grouping are used to
+   Layer 2 tunnel services (Figure 4):  These groupings are used to
       define Layer 2 tunnel services that may be needed for the
-      activation of an AC.  Examples of supported Layer 2 servers are
+      activation of an AC.  Examples of supported Layer 2 services are
       the pseudowire (Section 6.1 of [RFC8077]), VPLS, or VXLAN
       [RFC7348].
 
@@ -335,13 +387,13 @@ Table of Contents
                       +-- peer-mode?         identityref
                       +-- peer-ip-address*   inet:ip-address
 
-                   Figure 3: Layer 2 Connection Groupings
+                   Figure 4: Layer 2 Connection Groupings
 
-   Layer 3 address allocation (Figure 4):  Defines both IPv4 and IPv6
+   Layer 3 address allocation (Figure 5):  Defines both IPv4 and IPv6
       groupings to specify IP address allocation over an AC.  Both
       dynamic and static address schemes are supported.
 
-   IP connections (Figure 4)::  Defines IPv4 and IPv6 grouping for
+   IP connections (Figure 5)::  Defines IPv4 and IPv6 grouping for
       managing Layer 3 connectivity over an AC.  Both basic and more
       elaborated IP connection groupings are supported.
 
@@ -430,9 +482,9 @@ Table of Contents
                  +-- address-id?         string
                  +-- customer-address?   inet:ipv6-address
 
-                   Figure 4: Layer 3 Connection Groupings
+                   Figure 5: Layer 3 Connection Groupings
 
-   Routing parameters (Figure 5):  In addition to static routing, the
+   Routing parameters (Figure 6):  In addition to static routing, the
       module supports the following routing protocols: BGP [RFC4271],
       OSPF [RFC4577] or [RFC6565], IS-IS [ISO10589][RFC1195][RFC5308],
       and RIP [RFC2453].  For all supported routing protocols, 'address-
@@ -566,9 +618,9 @@ Table of Contents
         grouping bfd:
           +-- holdtime?   uint32
 
-                   Figure 5: Layer 3 Connection Groupings
+                   Figure 6: Layer 3 Connection Groupings
 
-   Bandwidth parameters (Figure 6):  Bandwidth parameters can be
+   Bandwidth parameters (Figure 7):  Bandwidth parameters can be
       represented using the Committed Information Rate (CIR), the Excess
       Information Rate (EIR), or the Peak Information Rate (PIR).
 
@@ -608,9 +660,9 @@ Table of Contents
                                 +-- pir?   uint64
                                 +-- pbs?   uint64
 
-                       Figure 6: Bandwidth Groupings
+                       Figure 7: Bandwidth Groupings
 
-4.  Common Attachment Circuit YANG Module
+5.  Common Attachment Circuit YANG Module
 
    This module uses types defined in [RFC6991], [RFC8177], and
    [RFC9181].
@@ -2149,7 +2201,7 @@ Table of Contents
    }
    <CODE ENDS>
 
-5.  Security Considerations
+6.  Security Considerations
 
    This section uses the template described in Section 3.7 of
    [I-D.ietf-netmod-rfc8407bis].
@@ -2190,7 +2242,7 @@ Table of Contents
    included in this version of the common AC model, because it is not
    supported by the underlying device modules (e.g., [RFC8695]).
 
-6.  IANA Considerations
+7.  IANA Considerations
 
    IANA is requested to register the following URI in the "ns"
    subregistry within the "IETF XML Registry" [RFC3688]:
@@ -2209,9 +2261,9 @@ Table of Contents
       Maintained by IANA?  N
       Reference:  RFC XXXX
 
-7.  References
+8.  References
 
-7.1.  Normative References
+8.1.  Normative References
 
    [ISO10589] ISO, "Information technology - Telecommunications and
               information exchange between systems - Intermediate System
@@ -2331,7 +2383,7 @@ Table of Contents
               Layer 3 VPNs", RFC 9181, DOI 10.17487/RFC9181, February
               2022, <https://www.rfc-editor.org/rfc/rfc9181>.
 
-7.2.  Informative References
+8.2.  Informative References
 
    [AC-Common-Tree]
               "Full Common Attachment Circuit Tree Structure", 2023,
@@ -2347,29 +2399,38 @@ Table of Contents
               <https://datatracker.ietf.org/doc/html/draft-ietf-netmod-
               rfc8407bis-09>.
 
+   [I-D.ietf-opsawg-ac-lxsm-lxnm-glue]
+              Boucadair, M., Roberts, R., Barguil, S., and O. G. de
+              Dios, "A YANG Data Model for Augmenting VPN Service and
+              Network Models with Attachment Circuits", Work in
+              Progress, Internet-Draft, draft-ietf-opsawg-ac-lxsm-lxnm-
+              glue-07, 4 April 2024,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
+              ac-lxsm-lxnm-glue-07>.
+
    [I-D.ietf-opsawg-ntw-attachment-circuit]
               Boucadair, M., Roberts, R., de Dios, O. G., Barguil, S.,
               and B. Wu, "A Network YANG Data Model for Attachment
               Circuits", Work in Progress, Internet-Draft, draft-ietf-
-              opsawg-ntw-attachment-circuit-05, 9 February 2024,
+              opsawg-ntw-attachment-circuit-06, 4 April 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
-              ntw-attachment-circuit-05>.
+              ntw-attachment-circuit-06>.
 
    [I-D.ietf-opsawg-teas-attachment-circuit]
               Boucadair, M., Roberts, R., de Dios, O. G., Barguil, S.,
               and B. Wu, "YANG Data Models for Bearers and 'Attachment
               Circuits'-as-a-Service (ACaaS)", Work in Progress,
               Internet-Draft, draft-ietf-opsawg-teas-attachment-circuit-
-              07, 4 March 2024, <https://datatracker.ietf.org/doc/html/
-              draft-ietf-opsawg-teas-attachment-circuit-07>.
+              09, 4 April 2024, <https://datatracker.ietf.org/doc/html/
+              draft-ietf-opsawg-teas-attachment-circuit-09>.
 
    [I-D.ietf-teas-ietf-network-slice-nbi-yang]
               Wu, B., Dhody, D., Rokui, R., Saad, T., and J. Mullooly,
-              "A YANG Data Model for the RFC AAAA Network Slice
+              "A YANG Data Model for the RFC 9543 Network Slice
               Service", Work in Progress, Internet-Draft, draft-ietf-
-              teas-ietf-network-slice-nbi-yang-09, 17 February 2024,
+              teas-ietf-network-slice-nbi-yang-10, 16 March 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-teas-
-              ietf-network-slice-nbi-yang-09>.
+              ietf-network-slice-nbi-yang-10>.
 
    [PYANG]    "pyang", 2023, <https://github.com/mbj4668/pyang>.
 
@@ -2406,9 +2467,19 @@ Table of Contents
               DOI 10.17487/RFC7911, July 2016,
               <https://www.rfc-editor.org/rfc/rfc7911>.
 
+   [RFC8299]  Wu, Q., Ed., Litkowski, S., Tomotaki, L., and K. Ogaki,
+              "YANG Data Model for L3VPN Service Delivery", RFC 8299,
+              DOI 10.17487/RFC8299, January 2018,
+              <https://www.rfc-editor.org/rfc/rfc8299>.
+
    [RFC8340]  Bjorklund, M. and L. Berger, Ed., "YANG Tree Diagrams",
               BCP 215, RFC 8340, DOI 10.17487/RFC8340, March 2018,
               <https://www.rfc-editor.org/rfc/rfc8340>.
+
+   [RFC8466]  Wen, B., Fioccola, G., Ed., Xie, C., and L. Jalil, "A YANG
+              Data Model for Layer 2 Virtual Private Network (L2VPN)
+              Service Delivery", RFC 8466, DOI 10.17487/RFC8466, October
+              2018, <https://www.rfc-editor.org/rfc/rfc8466>.
 
    [RFC8695]  Liu, X., Sarda, P., and V. Choudhary, "A YANG Data Model
               for the Routing Information Protocol (RIP)", RFC 8695,
@@ -2425,17 +2496,29 @@ Table of Contents
               for Layer 3 VPNs", RFC 9182, DOI 10.17487/RFC9182,
               February 2022, <https://www.rfc-editor.org/rfc/rfc9182>.
 
+   [RFC9291]  Boucadair, M., Ed., Gonzalez de Dios, O., Ed., Barguil,
+              S., and L. Munoz, "A YANG Network Data Model for Layer 2
+              VPNs", RFC 9291, DOI 10.17487/RFC9291, September 2022,
+              <https://www.rfc-editor.org/rfc/rfc9291>.
+
    [RFC9408]  Boucadair, M., Ed., Gonzalez de Dios, O., Barguil, S., Wu,
               Q., and V. Lopez, "A YANG Network Data Model for Service
               Attachment Points (SAPs)", RFC 9408, DOI 10.17487/RFC9408,
               June 2023, <https://www.rfc-editor.org/rfc/rfc9408>.
+
+   [RFC9543]  Farrel, A., Ed., Drake, J., Ed., Rokui, R., Homma, S.,
+              Makhijani, K., Contreras, L., and J. Tantsura, "A
+              Framework for Network Slices in Networks Built from IETF
+              Technologies", RFC 9543, DOI 10.17487/RFC9543, March 2024,
+              <https://www.rfc-editor.org/rfc/rfc9543>.
 
 Acknowledgments
 
    The document reuses many of the structures that were defined in
    [RFC9181] and [RFC9182].
 
-   Thanks to Ebben Aries for the YANG Doctors review.
+   Thanks to Ebben Aries for the YANG Doctors review, Andy Smith and
+   Gyanh Mishra for the rtg-dir reviews.
 
 Contributors
 
