@@ -2243,15 +2243,15 @@ module: ietf-ac-ntw
        |  +--rw routing-protocol* [id]
        |     +--rw id      string
        |     +--rw type?   identityref
-       |     +--rw bgp
+       |     +--rw bgp  {vpn-common:rtg-bgp}?
        |     |  ...
-       |     +--rw ospf
+       |     +--rw ospf  {vpn-common:rtg-ospf}?
        |     |  ...
-       |     +--rw isis
+       |     +--rw isis  {vpn-common:rtg-isis}?
        |     |  ...
-       |     +--rw rip
+       |     +--rw rip  {vpn-common:rtg-rip}?
        |     |  ...
-       |     +--rw vrrp
+       |     +--rw vrrp  {vpn-common:rtg-vrrp}?
        |        ...
        +--rw oam
           ...
@@ -2274,15 +2274,15 @@ module: ietf-ac-ntw
        |     |  +--rw type?                  identityref
        |     +--rw static
        |     |  ...
-       |     +--rw bgp
+       |     +--rw bgp  {vpn-common:rtg-bgp}?
        |     |  ...
-       |     +--rw ospf
+       |     +--rw ospf  {vpn-common:rtg-ospf}?
        |     |  ...
-       |     +--rw isis
+       |     +--rw isis  {vpn-common:rtg-isis}?
        |     |  ...
-       |     +--rw rip
+       |     +--rw rip  {vpn-common:rtg-rip}?
        |     |  ...
-       |     +--rw vrrp
+       |     +--rw vrrp  {vpn-common:rtg-vrrp}?
        |        ...
        +--rw oam
        |  ...
@@ -2374,15 +2374,15 @@ module: ietf-ac-ntw
        |     |           +--ro oper-status
        |     |              +--ro status?        identityref
        |     |              +--ro last-change?   yang:date-and-time
-       |     +--rw bgp
+       |     +--rw bgp  {vpn-common:rtg-bgp}?
        |     |  ...
-       |     +--rw ospf
+       |     +--rw ospf  {vpn-common:rtg-ospf}?
        |     |  ...
-       |     +--rw isis
+       |     +--rw isis  {vpn-common:rtg-isis}?
        |     |  ...
-       |     +--rw rip
+       |     +--rw rip  {vpn-common:rtg-rip}?
        |     |  ...
-       |     +--rw vrrp
+       |     +--rw vrrp  {vpn-common:rtg-vrrp}?
        |        ...
        +--rw oam
        |  ...
@@ -2459,7 +2459,7 @@ module: ietf-ac-ntw
        |  +--rw routing-protocol* [id]
        |     +--rw id      string
        |     +--rw type?   identityref
-       |     +--rw bgp
+       |     +--rw bgp  {vpn-common:rtg-bgp}?
        |     |  +--rw description?              string
        |     |  +--rw apply-policy
        |     |  |  +--rw import-policy*           leafref
@@ -2491,13 +2491,13 @@ module: ietf-ac-ntw
        |     |  +--rw capability*        [address-family]
        |     |     +--rw address-family    identityref
        |     |     +--rw name              identityref
-       |     +--rw ospf
+       |     +--rw ospf  {vpn-common:rtg-ospf}?
        |     |  ...
-       |     +--rw isis
+       |     +--rw isis  {vpn-common:rtg-isis}?
        |     |  ...
-       |     +--rw rip
+       |     +--rw rip  {vpn-common:rtg-rip}?
        |     |  ...
-       |     +--rw vrrp
+       |     +--rw vrrp  {vpn-common:rtg-vrrp}?
        |        ...
        +--rw oam
           ...
@@ -2520,7 +2520,7 @@ module: ietf-ac-ntw
        |     |  +--rw type?                  identityref
        |     +--rw static
        |     |  ...
-       |     +--rw bgp
+       |     +--rw bgp  {vpn-common:rtg-bgp}?
        |     |  +--rw peer-groups
        |     |  |  +--rw peer-group* [name]
        |     |  |     +--rw name                      string
@@ -2641,13 +2641,13 @@ module: ietf-ac-ntw
        |     |        +--ro oper-status
        |     |           +--ro status?        identityref
        |     |           +--ro last-change?   yang:date-and-time
-       |     +--rw ospf
+       |     +--rw ospf  {vpn-common:rtg-ospf}?
        |     |  ...
-       |     +--rw isis
+       |     +--rw isis  {vpn-common:rtg-isis}?
        |     |  ...
-       |     +--rw rip
+       |     +--rw rip  {vpn-common:rtg-rip}?
        |     |  ...
-       |     +--rw vrrp
+       |     +--rw vrrp  {vpn-common:rtg-vrrp}?
        |        ...
        +--rw oam
        |  ...
@@ -2877,18 +2877,18 @@ module: ietf-ac-ntw
        |  +--rw routing-protocol* [id]
        |     +--rw id      string
        |     +--rw type?   identityref
-       |     +--rw bgp
+       |     +--rw bgp  {vpn-common:rtg-bgp}?
        |     |  ...
-       |     +--rw ospf
+       |     +--rw ospf  {vpn-common:rtg-ospf}?
        |     |  +--rw address-family?   identityref
        |     |  +--rw area-id           yang:dotted-quad
        |     |  +--rw metric?           uint16
        |     |  +--rw max-lsa?          uint32
-       |     +--rw isis
+       |     +--rw isis  {vpn-common:rtg-isis}?
        |     |  ...
-       |     +--rw rip
+       |     +--rw rip  {vpn-common:rtg-rip}?
        |     |  ...
-       |     +--rw vrrp
+       |     +--rw vrrp  {vpn-common:rtg-vrrp}?
        |        ...
        +--rw oam
           ...
@@ -2911,9 +2911,9 @@ module: ietf-ac-ntw
        |     |  +--rw type?                  identityref
        |     +--rw static
        |     |  ...
-       |     +--rw bgp
+       |     +--rw bgp  {vpn-common:rtg-bgp}?
        |     |  ...
-       |     +--rw ospf
+       |     +--rw ospf  {vpn-common:rtg-ospf}?
        |     |  +--rw address-family?   identityref
        |     |  +--rw area-id           yang:dotted-quad
        |     |  +--rw metric?           uint16
@@ -2940,11 +2940,11 @@ module: ietf-ac-ntw
        |     |     +--ro oper-status
        |     |        +--ro status?        identityref
        |     |        +--ro last-change?   yang:date-and-time
-       |     +--rw isis
+       |     +--rw isis  {vpn-common:rtg-isis}?
        |     |  ...
-       |     +--rw rip
+       |     +--rw rip  {vpn-common:rtg-rip}?
        |     |  ...
-       |     +--rw vrrp
+       |     +--rw vrrp  {vpn-common:rtg-vrrp}?
        |        ...
        +--rw oam
        |  ...
@@ -3030,19 +3030,19 @@ module: ietf-ac-ntw
        |  +--rw routing-protocol* [id]
        |     +--rw id      string
        |     +--rw type?   identityref
-       |     +--rw bgp
+       |     +--rw bgp  {vpn-common:rtg-bgp}?
        |     |  ...
-       |     +--rw ospf
+       |     +--rw ospf  {vpn-common:rtg-ospf}?
        |     |  ...
-       |     +--rw isis
+       |     +--rw isis  {vpn-common:rtg-isis}?
        |     |  +--rw address-family?   identityref
        |     |  +--rw area-address      area-address
        |     |  +--rw level?            identityref
        |     |  +--rw metric?           uint16
        |     |  +--rw mode?             enumeration
-       |     +--rw rip
+       |     +--rw rip  {vpn-common:rtg-rip}?
        |     |  ...
-       |     +--rw vrrp
+       |     +--rw vrrp  {vpn-common:rtg-vrrp}?
        |        ...
        +--rw oam
           ...
@@ -3065,11 +3065,11 @@ module: ietf-ac-ntw
        |     |  +--rw type?                  identityref
        |     +--rw static
        |     |  ...
-       |     +--rw bgp
+       |     +--rw bgp  {vpn-common:rtg-bgp}?
        |     |  ...
-       |     +--rw ospf
+       |     +--rw ospf  {vpn-common:rtg-ospf}?
        |     |  ...
-       |     +--rw isis
+       |     +--rw isis  {vpn-common:rtg-isis}?
        |     |  +--rw address-family?   identityref
        |     |  +--rw area-address      area-address
        |     |  +--rw level?            identityref
@@ -3093,9 +3093,9 @@ module: ietf-ac-ntw
        |     |     +--ro oper-status
        |     |        +--ro status?        identityref
        |     |        +--ro last-change?   yang:date-and-time
-       |     +--rw rip
+       |     +--rw rip  {vpn-common:rtg-rip}?
        |     |  ...
-       |     +--rw vrrp
+       |     +--rw vrrp  {vpn-common:rtg-vrrp}?
        |        ...
        +--rw oam
        |  ...
@@ -3178,13 +3178,13 @@ module: ietf-ac-ntw
        |  +--rw routing-protocol* [id]
        |     +--rw id      string
        |     +--rw type?   identityref
-       |     +--rw bgp
+       |     +--rw bgp  {vpn-common:rtg-bgp}?
        |     |  ...
-       |     +--rw ospf
+       |     +--rw ospf  {vpn-common:rtg-ospf}?
        |     |  ...
-       |     +--rw isis
+       |     +--rw isis  {vpn-common:rtg-isis}?
        |     |  ...
-       |     +--rw rip
+       |     +--rw rip  {vpn-common:rtg-rip}?
        |     |  +--rw address-family?   identityref
        |     |  +--rw timers
        |     |  |  +--rw update-interval?     uint16
@@ -3192,7 +3192,7 @@ module: ietf-ac-ntw
        |     |  |  +--rw holddown-interval?   uint16
        |     |  |  +--rw flush-interval?      uint16
        |     |  +--rw default-metric?   uint8
-       |     +--rw vrrp
+       |     +--rw vrrp  {vpn-common:rtg-vrrp}?
        |        ...
        +--rw oam
           ...
@@ -3215,13 +3215,13 @@ module: ietf-ac-ntw
        |     |  +--rw type?                  identityref
        |     +--rw static
        |     |  ...
-       |     +--rw bgp
+       |     +--rw bgp  {vpn-common:rtg-bgp}?
        |     |  ...
-       |     +--rw ospf
+       |     +--rw ospf  {vpn-common:rtg-ospf}?
        |     |  ...
-       |     +--rw isis
+       |     +--rw isis  {vpn-common:rtg-isis}?
        |     |  ...
-       |     +--rw rip
+       |     +--rw rip  {vpn-common:rtg-rip}?
        |     |  +--rw address-family?   identityref
        |     |  +--rw timers
        |     |  |  +--rw update-interval?     uint16
@@ -3349,15 +3349,15 @@ module: ietf-ac-ntw
        |  +--rw routing-protocol* [id]
        |     +--rw id      string
        |     +--rw type?   identityref
-       |     +--rw bgp
+       |     +--rw bgp  {vpn-common:rtg-bgp}?
        |     |  ...
-       |     +--rw ospf
+       |     +--rw ospf  {vpn-common:rtg-ospf}?
        |     |  ...
-       |     +--rw isis
+       |     +--rw isis  {vpn-common:rtg-isis}?
        |     |  ...
-       |     +--rw rip
+       |     +--rw rip  {vpn-common:rtg-rip}?
        |     |  ...
-       |     +--rw vrrp
+       |     +--rw vrrp  {vpn-common:rtg-vrrp}?
        |        +--rw address-family?   identityref
        |        +--rw ping-reply?       boolean
        +--rw oam
@@ -3381,15 +3381,15 @@ module: ietf-ac-ntw
        |     |  +--rw type?                  identityref
        |     +--rw static
        |     |  ...
-       |     +--rw bgp
+       |     +--rw bgp  {vpn-common:rtg-bgp}?
        |     |  ...
-       |     +--rw ospf
+       |     +--rw ospf  {vpn-common:rtg-ospf}?
        |     |  ...
-       |     +--rw isis
+       |     +--rw isis  {vpn-common:rtg-isis}?
        |     |  ...
-       |     +--rw rip
+       |     +--rw rip  {vpn-common:rtg-rip}?
        |     |  ...
-       |     +--rw vrrp
+       |     +--rw vrrp  {vpn-common:rtg-vrrp}?
        |        +--rw address-family?       identityref
        |        +--rw vrrp-group?           uint8
        |        +--rw backup-peer?          inet:ip-address
@@ -4925,6 +4925,7 @@ module ietf-ac-ntw {
           description
             "Only applies when the protocol is BGP.";
         }
+       if-feature "vpn-common:rtg-bgp";
         description
           "Configuration specific to BGP.";
         uses bgp-base;
@@ -4935,6 +4936,7 @@ module ietf-ac-ntw {
           description
             "Only applies when the protocol is OSPF.";
         }
+       if-feature "vpn-common:rtg-ospf";
         description
           "Configuration specific to OSPF.";
         uses ac-common:ospf-basic;
@@ -4953,6 +4955,7 @@ module ietf-ac-ntw {
           description
             "Only applies when the protocol is IS-IS.";
         }
+       if-feature "vpn-common:rtg-isis";
         description
           "Configuration specific to IS-IS.";
         uses ac-common:isis-basic;
@@ -4995,6 +4998,7 @@ module ietf-ac-ntw {
           description
             "Only applies when the protocol is RIP.";
         }
+       if-feature "vpn-common:rtg-rip";
         description
           "Configuration specific to RIP routing.";
         uses rip-base;
@@ -5006,6 +5010,7 @@ module ietf-ac-ntw {
             "Only applies when the protocol is the Virtual Router
              Redundancy Protocol (VRRP).";
         }
+       if-feature "vpn-common:rtg-vrrp";
         description
           "Configuration specific to VRRP.";
         reference
@@ -5111,6 +5116,7 @@ module ietf-ac-ntw {
           description
             "Only applies when the protocol is BGP.";
         }
+       if-feature "vpn-common:rtg-bgp";
         description
           "Configuration specific to BGP.";
         container peer-groups {
@@ -5180,6 +5186,7 @@ module ietf-ac-ntw {
           description
             "Only applies when the protocol is OSPF.";
         }
+        if-feature "vpn-common:rtg-ospf";
         description
           "Configuration specific to OSPF.";
         uses ac-common:ospf-basic;
@@ -5236,6 +5243,7 @@ module ietf-ac-ntw {
             "Only applies when the protocol is
              IS-IS.";
         }
+        if-feature "vpn-common:rtg-isis";
         description
           "Configuration specific to IS-IS.";
         uses ac-common:isis-basic;
@@ -5283,6 +5291,7 @@ module ietf-ac-ntw {
              For IPv4, the model assumes that RIP
              version 2 is used.";
         }
+        if-feature "vpn-common:rtg-rip";
         description
           "Configuration specific to RIP routing.";
         uses rip-base;
@@ -5295,6 +5304,7 @@ module ietf-ac-ntw {
           description
             "Only applies when the protocol is the VRRP.";
         }
+        if-feature "vpn-common:rtg-vrrp";
         description
           "Configuration specific to VRRP.";
         reference

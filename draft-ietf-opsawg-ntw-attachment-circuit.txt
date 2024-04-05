@@ -917,15 +917,15 @@ Table of Contents
           |  +--rw routing-protocol* [id]
           |     +--rw id      string
           |     +--rw type?   identityref
-          |     +--rw bgp
+          |     +--rw bgp  {vpn-common:rtg-bgp}?
           |     |  ...
-          |     +--rw ospf
+          |     +--rw ospf  {vpn-common:rtg-ospf}?
           |     |  ...
-          |     +--rw isis
+          |     +--rw isis  {vpn-common:rtg-isis}?
           |     |  ...
-          |     +--rw rip
+          |     +--rw rip  {vpn-common:rtg-rip}?
           |     |  ...
-          |     +--rw vrrp
+          |     +--rw vrrp  {vpn-common:rtg-vrrp}?
           |        ...
           +--rw oam
              ...
@@ -948,15 +948,15 @@ Table of Contents
           |     |  +--rw type?                  identityref
           |     +--rw static
           |     |  ...
-          |     +--rw bgp
+          |     +--rw bgp  {vpn-common:rtg-bgp}?
           |     |  ...
-          |     +--rw ospf
+          |     +--rw ospf  {vpn-common:rtg-ospf}?
           |     |  ...
-          |     +--rw isis
+          |     +--rw isis  {vpn-common:rtg-isis}?
           |     |  ...
-          |     +--rw rip
+          |     +--rw rip  {vpn-common:rtg-rip}?
           |     |  ...
-          |     +--rw vrrp
+          |     +--rw vrrp  {vpn-common:rtg-vrrp}?
           |        ...
           +--rw oam
           |  ...
@@ -1043,15 +1043,15 @@ Table of Contents
           |     |           +--ro oper-status
           |     |              +--ro status?        identityref
           |     |              +--ro last-change?   yang:date-and-time
-          |     +--rw bgp
+          |     +--rw bgp  {vpn-common:rtg-bgp}?
           |     |  ...
-          |     +--rw ospf
+          |     +--rw ospf  {vpn-common:rtg-ospf}?
           |     |  ...
-          |     +--rw isis
+          |     +--rw isis  {vpn-common:rtg-isis}?
           |     |  ...
-          |     +--rw rip
+          |     +--rw rip  {vpn-common:rtg-rip}?
           |     |  ...
-          |     +--rw vrrp
+          |     +--rw vrrp  {vpn-common:rtg-vrrp}?
           |        ...
           +--rw oam
           |  ...
@@ -1101,7 +1101,7 @@ Table of Contents
           |  +--rw routing-protocol* [id]
           |     +--rw id      string
           |     +--rw type?   identityref
-          |     +--rw bgp
+          |     +--rw bgp  {vpn-common:rtg-bgp}?
           |     |  +--rw description?              string
           |     |  +--rw apply-policy
           |     |  |  +--rw import-policy*           leafref
@@ -1133,13 +1133,13 @@ Table of Contents
           |     |  +--rw capability*        [address-family]
           |     |     +--rw address-family    identityref
           |     |     +--rw name              identityref
-          |     +--rw ospf
+          |     +--rw ospf  {vpn-common:rtg-ospf}?
           |     |  ...
-          |     +--rw isis
+          |     +--rw isis  {vpn-common:rtg-isis}?
           |     |  ...
-          |     +--rw rip
+          |     +--rw rip  {vpn-common:rtg-rip}?
           |     |  ...
-          |     +--rw vrrp
+          |     +--rw vrrp  {vpn-common:rtg-vrrp}?
           |        ...
           +--rw oam
              ...
@@ -1162,7 +1162,7 @@ Table of Contents
           |     |  +--rw type?                  identityref
           |     +--rw static
           |     |  ...
-          |     +--rw bgp
+          |     +--rw bgp  {vpn-common:rtg-bgp}?
           |     |  +--rw peer-groups
           |     |  |  +--rw peer-group* [name]
           |     |  |     +--rw name                      string
@@ -1283,13 +1283,13 @@ Table of Contents
           |     |        +--ro oper-status
           |     |           +--ro status?        identityref
           |     |           +--ro last-change?   yang:date-and-time
-          |     +--rw ospf
+          |     +--rw ospf  {vpn-common:rtg-ospf}?
           |     |  ...
-          |     +--rw isis
+          |     +--rw isis  {vpn-common:rtg-isis}?
           |     |  ...
-          |     +--rw rip
+          |     +--rw rip  {vpn-common:rtg-rip}?
           |     |  ...
-          |     +--rw vrrp
+          |     +--rw vrrp  {vpn-common:rtg-vrrp}?
           |        ...
           +--rw oam
           |  ...
@@ -1430,18 +1430,18 @@ Table of Contents
           |  +--rw routing-protocol* [id]
           |     +--rw id      string
           |     +--rw type?   identityref
-          |     +--rw bgp
+          |     +--rw bgp  {vpn-common:rtg-bgp}?
           |     |  ...
-          |     +--rw ospf
+          |     +--rw ospf  {vpn-common:rtg-ospf}?
           |     |  +--rw address-family?   identityref
           |     |  +--rw area-id           yang:dotted-quad
           |     |  +--rw metric?           uint16
           |     |  +--rw max-lsa?          uint32
-          |     +--rw isis
+          |     +--rw isis  {vpn-common:rtg-isis}?
           |     |  ...
-          |     +--rw rip
+          |     +--rw rip  {vpn-common:rtg-rip}?
           |     |  ...
-          |     +--rw vrrp
+          |     +--rw vrrp  {vpn-common:rtg-vrrp}?
           |        ...
           +--rw oam
              ...
@@ -1464,9 +1464,9 @@ Table of Contents
           |     |  +--rw type?                  identityref
           |     +--rw static
           |     |  ...
-          |     +--rw bgp
+          |     +--rw bgp  {vpn-common:rtg-bgp}?
           |     |  ...
-          |     +--rw ospf
+          |     +--rw ospf  {vpn-common:rtg-ospf}?
           |     |  +--rw address-family?   identityref
           |     |  +--rw area-id           yang:dotted-quad
           |     |  +--rw metric?           uint16
@@ -1493,11 +1493,11 @@ Table of Contents
           |     |     +--ro oper-status
           |     |        +--ro status?        identityref
           |     |        +--ro last-change?   yang:date-and-time
-          |     +--rw isis
+          |     +--rw isis  {vpn-common:rtg-isis}?
           |     |  ...
-          |     +--rw rip
+          |     +--rw rip  {vpn-common:rtg-rip}?
           |     |  ...
-          |     +--rw vrrp
+          |     +--rw vrrp  {vpn-common:rtg-vrrp}?
           |        ...
           +--rw oam
           |  ...
@@ -1548,19 +1548,19 @@ Table of Contents
           |  +--rw routing-protocol* [id]
           |     +--rw id      string
           |     +--rw type?   identityref
-          |     +--rw bgp
+          |     +--rw bgp  {vpn-common:rtg-bgp}?
           |     |  ...
-          |     +--rw ospf
+          |     +--rw ospf  {vpn-common:rtg-ospf}?
           |     |  ...
-          |     +--rw isis
+          |     +--rw isis  {vpn-common:rtg-isis}?
           |     |  +--rw address-family?   identityref
           |     |  +--rw area-address      area-address
           |     |  +--rw level?            identityref
           |     |  +--rw metric?           uint16
           |     |  +--rw mode?             enumeration
-          |     +--rw rip
+          |     +--rw rip  {vpn-common:rtg-rip}?
           |     |  ...
-          |     +--rw vrrp
+          |     +--rw vrrp  {vpn-common:rtg-vrrp}?
           |        ...
           +--rw oam
              ...
@@ -1583,11 +1583,11 @@ Table of Contents
           |     |  +--rw type?                  identityref
           |     +--rw static
           |     |  ...
-          |     +--rw bgp
+          |     +--rw bgp  {vpn-common:rtg-bgp}?
           |     |  ...
-          |     +--rw ospf
+          |     +--rw ospf  {vpn-common:rtg-ospf}?
           |     |  ...
-          |     +--rw isis
+          |     +--rw isis  {vpn-common:rtg-isis}?
           |     |  +--rw address-family?   identityref
           |     |  +--rw area-address      area-address
           |     |  +--rw level?            identityref
@@ -1611,9 +1611,9 @@ Table of Contents
           |     |     +--ro oper-status
           |     |        +--ro status?        identityref
           |     |        +--ro last-change?   yang:date-and-time
-          |     +--rw rip
+          |     +--rw rip  {vpn-common:rtg-rip}?
           |     |  ...
-          |     +--rw vrrp
+          |     +--rw vrrp  {vpn-common:rtg-vrrp}?
           |        ...
           +--rw oam
           |  ...
@@ -1661,13 +1661,13 @@ Table of Contents
           |  +--rw routing-protocol* [id]
           |     +--rw id      string
           |     +--rw type?   identityref
-          |     +--rw bgp
+          |     +--rw bgp  {vpn-common:rtg-bgp}?
           |     |  ...
-          |     +--rw ospf
+          |     +--rw ospf  {vpn-common:rtg-ospf}?
           |     |  ...
-          |     +--rw isis
+          |     +--rw isis  {vpn-common:rtg-isis}?
           |     |  ...
-          |     +--rw rip
+          |     +--rw rip  {vpn-common:rtg-rip}?
           |     |  +--rw address-family?   identityref
           |     |  +--rw timers
           |     |  |  +--rw update-interval?     uint16
@@ -1675,7 +1675,7 @@ Table of Contents
           |     |  |  +--rw holddown-interval?   uint16
           |     |  |  +--rw flush-interval?      uint16
           |     |  +--rw default-metric?   uint8
-          |     +--rw vrrp
+          |     +--rw vrrp  {vpn-common:rtg-vrrp}?
           |        ...
           +--rw oam
              ...
@@ -1698,13 +1698,13 @@ Table of Contents
           |     |  +--rw type?                  identityref
           |     +--rw static
           |     |  ...
-          |     +--rw bgp
+          |     +--rw bgp  {vpn-common:rtg-bgp}?
           |     |  ...
-          |     +--rw ospf
+          |     +--rw ospf  {vpn-common:rtg-ospf}?
           |     |  ...
-          |     +--rw isis
+          |     +--rw isis  {vpn-common:rtg-isis}?
           |     |  ...
-          |     +--rw rip
+          |     +--rw rip  {vpn-common:rtg-rip}?
           |     |  +--rw address-family?   identityref
           |     |  +--rw timers
           |     |  |  +--rw update-interval?     uint16
@@ -1779,15 +1779,15 @@ Table of Contents
           |  +--rw routing-protocol* [id]
           |     +--rw id      string
           |     +--rw type?   identityref
-          |     +--rw bgp
+          |     +--rw bgp  {vpn-common:rtg-bgp}?
           |     |  ...
-          |     +--rw ospf
+          |     +--rw ospf  {vpn-common:rtg-ospf}?
           |     |  ...
-          |     +--rw isis
+          |     +--rw isis  {vpn-common:rtg-isis}?
           |     |  ...
-          |     +--rw rip
+          |     +--rw rip  {vpn-common:rtg-rip}?
           |     |  ...
-          |     +--rw vrrp
+          |     +--rw vrrp  {vpn-common:rtg-vrrp}?
           |        +--rw address-family?   identityref
           |        +--rw ping-reply?       boolean
           +--rw oam
@@ -1811,15 +1811,15 @@ Table of Contents
           |     |  +--rw type?                  identityref
           |     +--rw static
           |     |  ...
-          |     +--rw bgp
+          |     +--rw bgp  {vpn-common:rtg-bgp}?
           |     |  ...
-          |     +--rw ospf
+          |     +--rw ospf  {vpn-common:rtg-ospf}?
           |     |  ...
-          |     +--rw isis
+          |     +--rw isis  {vpn-common:rtg-isis}?
           |     |  ...
-          |     +--rw rip
+          |     +--rw rip  {vpn-common:rtg-rip}?
           |     |  ...
-          |     +--rw vrrp
+          |     +--rw vrrp  {vpn-common:rtg-vrrp}?
           |        +--rw address-family?       identityref
           |        +--rw vrrp-group?           uint8
           |        +--rw backup-peer?          inet:ip-address
@@ -3250,6 +3250,7 @@ Table of Contents
              description
                "Only applies when the protocol is BGP.";
            }
+          if-feature "vpn-common:rtg-bgp";
            description
              "Configuration specific to BGP.";
            uses bgp-base;
@@ -3260,6 +3261,7 @@ Table of Contents
              description
                "Only applies when the protocol is OSPF.";
            }
+          if-feature "vpn-common:rtg-ospf";
            description
              "Configuration specific to OSPF.";
            uses ac-common:ospf-basic;
@@ -3278,6 +3280,7 @@ Table of Contents
              description
                "Only applies when the protocol is IS-IS.";
            }
+          if-feature "vpn-common:rtg-isis";
            description
              "Configuration specific to IS-IS.";
            uses ac-common:isis-basic;
@@ -3320,6 +3323,7 @@ Table of Contents
              description
                "Only applies when the protocol is RIP.";
            }
+          if-feature "vpn-common:rtg-rip";
            description
              "Configuration specific to RIP routing.";
            uses rip-base;
@@ -3331,6 +3335,7 @@ Table of Contents
                "Only applies when the protocol is the Virtual Router
                 Redundancy Protocol (VRRP).";
            }
+          if-feature "vpn-common:rtg-vrrp";
            description
              "Configuration specific to VRRP.";
            reference
@@ -3436,6 +3441,7 @@ Table of Contents
              description
                "Only applies when the protocol is BGP.";
            }
+          if-feature "vpn-common:rtg-bgp";
            description
              "Configuration specific to BGP.";
            container peer-groups {
@@ -3505,6 +3511,7 @@ Table of Contents
              description
                "Only applies when the protocol is OSPF.";
            }
+           if-feature "vpn-common:rtg-ospf";
            description
              "Configuration specific to OSPF.";
            uses ac-common:ospf-basic;
@@ -3561,6 +3568,7 @@ Table of Contents
                "Only applies when the protocol is
                 IS-IS.";
            }
+           if-feature "vpn-common:rtg-isis";
            description
              "Configuration specific to IS-IS.";
            uses ac-common:isis-basic;
@@ -3608,6 +3616,7 @@ Table of Contents
                 For IPv4, the model assumes that RIP
                 version 2 is used.";
            }
+           if-feature "vpn-common:rtg-rip";
            description
              "Configuration specific to RIP routing.";
            uses rip-base;
@@ -3620,6 +3629,7 @@ Table of Contents
              description
                "Only applies when the protocol is the VRRP.";
            }
+           if-feature "vpn-common:rtg-vrrp";
            description
              "Configuration specific to VRRP.";
            reference
