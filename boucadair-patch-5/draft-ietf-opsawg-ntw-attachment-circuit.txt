@@ -1661,13 +1661,13 @@ Table of Contents
           |  +--rw routing-protocol* [id]
           |     +--rw id      string
           |     +--rw type?   identityref
-          |     +--rw bgp
+          |     +--rw bgp  {vpn-common:rtg-bgp}?
           |     |  ...
-          |     +--rw ospf
+          |     +--rw ospf  {vpn-common:rtg-ospf}?
           |     |  ...
-          |     +--rw isis
+          |     +--rw isis  {vpn-common:rtg-isis}?
           |     |  ...
-          |     +--rw rip
+          |     +--rw rip  {vpn-common:rtg-rip}?
           |     |  +--rw address-family?   identityref
           |     |  +--rw timers
           |     |  |  +--rw update-interval?     uint16
@@ -1675,7 +1675,7 @@ Table of Contents
           |     |  |  +--rw holddown-interval?   uint16
           |     |  |  +--rw flush-interval?      uint16
           |     |  +--rw default-metric?   uint8
-          |     +--rw vrrp
+          |     +--rw vrrp  {vpn-common:rtg-vrrp}?
           |        ...
           +--rw oam
              ...
@@ -1698,13 +1698,13 @@ Table of Contents
           |     |  +--rw type?                  identityref
           |     +--rw static
           |     |  ...
-          |     +--rw bgp
+          |     +--rw bgp  {vpn-common:rtg-bgp}?
           |     |  ...
-          |     +--rw ospf
+          |     +--rw ospf  {vpn-common:rtg-ospf}?
           |     |  ...
-          |     +--rw isis
+          |     +--rw isis  {vpn-common:rtg-isis}?
           |     |  ...
-          |     +--rw rip
+          |     +--rw rip  {vpn-common:rtg-rip}?
           |     |  +--rw address-family?   identityref
           |     |  +--rw timers
           |     |  |  +--rw update-interval?     uint16
