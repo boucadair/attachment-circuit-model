@@ -2023,7 +2023,7 @@ reference points (the PE side of an AC, in the context of this document) where n
     +--rw ac* [name]
        +--rw name                 string
        + ...
-       +--rw l2-connection
+       +--rw l2-connection  {ac-common:layer2-ac}?
        |  +--rw encapsulation
        |  |  +--rw encap-type?        identityref
        |  |  +--rw dot1q
@@ -2088,7 +2088,7 @@ reference points (the PE side of an AC, in the context of this document) where n
        |     +--rw member-link-list
        |        +--rw member-link* [name]
        |           +--rw name    string
-       +--rw ip-connection
+       +--rw ip-connection  {ac-common:layer3-ac}?
        |  ...
        +--rw routing-protocols
        |  ...
