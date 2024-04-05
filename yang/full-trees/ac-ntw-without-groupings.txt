@@ -101,7 +101,7 @@
        |     +--ro status?        identityref
        |     +--ro last-change?   yang:date-and-time
        +--rw description?         string
-       +--rw l2-connection
+       +--rw l2-connection  {ac-common:layer2-ac}?
        |  +--rw encapsulation
        |  |  +--rw encap-type?        identityref
        |  |  +--rw dot1q
@@ -162,7 +162,7 @@
        |     +--rw member-link-list
        |        +--rw member-link* [name]
        |           +--rw name    string
-       +--rw ip-connection
+       +--rw ip-connection  {ac-common:layer3-ac}?
        |  +--rw l3-termination-point?   string
        |  +--rw ipv4 {vpn-common:ipv4}?
        |  |  +--rw local-address?
