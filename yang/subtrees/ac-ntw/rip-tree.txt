@@ -6,13 +6,13 @@ module: ietf-ac-ntw
        |  +--rw routing-protocol* [id]
        |     +--rw id      string
        |     +--rw type?   identityref
-       |     +--rw bgp
+       |     +--rw bgp  {vpn-common:rtg-bgp}?
        |     |  ...
-       |     +--rw ospf
+       |     +--rw ospf  {vpn-common:rtg-ospf}?
        |     |  ...
-       |     +--rw isis
+       |     +--rw isis  {vpn-common:rtg-isis}?
        |     |  ...
-       |     +--rw rip
+       |     +--rw rip  {vpn-common:rtg-rip}?
        |     |  +--rw address-family?   identityref
        |     |  +--rw timers
        |     |  |  +--rw update-interval?     uint16
@@ -20,7 +20,7 @@ module: ietf-ac-ntw
        |     |  |  +--rw holddown-interval?   uint16
        |     |  |  +--rw flush-interval?      uint16
        |     |  +--rw default-metric?   uint8
-       |     +--rw vrrp
+       |     +--rw vrrp  {vpn-common:rtg-vrrp}?
        |        ...
        +--rw oam
           ...
@@ -43,13 +43,13 @@ module: ietf-ac-ntw
        |     |  +--rw type?                  identityref
        |     +--rw static
        |     |  ...
-       |     +--rw bgp
+       |     +--rw bgp  {vpn-common:rtg-bgp}?
        |     |  ...
-       |     +--rw ospf
+       |     +--rw ospf  {vpn-common:rtg-ospf}?
        |     |  ...
-       |     +--rw isis
+       |     +--rw isis  {vpn-common:rtg-isis}?
        |     |  ...
-       |     +--rw rip
+       |     +--rw rip  {vpn-common:rtg-rip}?
        |     |  +--rw address-family?   identityref
        |     |  +--rw timers
        |     |  |  +--rw update-interval?     uint16
