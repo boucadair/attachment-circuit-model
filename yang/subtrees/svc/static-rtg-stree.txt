@@ -36,13 +36,13 @@
         |     |           +--ro oper-status
         |     |              +--ro status?        identityref
         |     |              +--ro last-change?   yang:date-and-time
-        |     +--rw bgp
+        |     +--rw bgp {vpn-common:rtg-bgp}?
         |     |  ...
-        |     +--rw ospf
+        |     +--rw ospf {vpn-common:rtg-ospf}?
         |     |  ...
-        |     +--rw isis
+        |     +--rw isis {vpn-common:rtg-isis}?
         |     |  ...
-        |     +--rw rip
+        |     +--rw rip {vpn-common:rtg-rip}?
         |     |  ...
-        |     +--rw vrrp
+        |     +--rw vrrp {vpn-common:rtg-vrrp}?
         |        ...
