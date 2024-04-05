@@ -1101,7 +1101,7 @@ Table of Contents
           |  +--rw routing-protocol* [id]
           |     +--rw id      string
           |     +--rw type?   identityref
-          |     +--rw bgp
+          |     +--rw bgp  {vpn-common:rtg-bgp}?
           |     |  +--rw description?              string
           |     |  +--rw apply-policy
           |     |  |  +--rw import-policy*           leafref
@@ -1133,13 +1133,13 @@ Table of Contents
           |     |  +--rw capability*        [address-family]
           |     |     +--rw address-family    identityref
           |     |     +--rw name              identityref
-          |     +--rw ospf
+          |     +--rw ospf  {vpn-common:rtg-ospf}?
           |     |  ...
-          |     +--rw isis
+          |     +--rw isis  {vpn-common:rtg-isis}?
           |     |  ...
-          |     +--rw rip
+          |     +--rw rip  {vpn-common:rtg-rip}?
           |     |  ...
-          |     +--rw vrrp
+          |     +--rw vrrp  {vpn-common:rtg-vrrp}?
           |        ...
           +--rw oam
              ...
@@ -1162,7 +1162,7 @@ Table of Contents
           |     |  +--rw type?                  identityref
           |     +--rw static
           |     |  ...
-          |     +--rw bgp
+          |     +--rw bgp  {vpn-common:rtg-bgp}?
           |     |  +--rw peer-groups
           |     |  |  +--rw peer-group* [name]
           |     |  |     +--rw name                      string
@@ -1283,13 +1283,13 @@ Table of Contents
           |     |        +--ro oper-status
           |     |           +--ro status?        identityref
           |     |           +--ro last-change?   yang:date-and-time
-          |     +--rw ospf
+          |     +--rw ospf  {vpn-common:rtg-ospf}?
           |     |  ...
-          |     +--rw isis
+          |     +--rw isis  {vpn-common:rtg-isis}?
           |     |  ...
-          |     +--rw rip
+          |     +--rw rip  {vpn-common:rtg-rip}?
           |     |  ...
-          |     +--rw vrrp
+          |     +--rw vrrp  {vpn-common:rtg-vrrp}?
           |        ...
           +--rw oam
           |  ...
