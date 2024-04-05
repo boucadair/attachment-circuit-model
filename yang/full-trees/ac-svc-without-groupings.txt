@@ -132,6 +132,7 @@
      |  |     |     |  +--rw next-hop       union
      |  |     |     |  +--rw metric?        uint32
      |  |     |     |  +--rw bfd-profile?   bfd-profile-reference
+     |  |     |     |  |       {vpn-common:bfd}?
      |  |     |     |  +--rw status
      |  |     |     |     +--rw admin-status
      |  |     |     |     |  +--rw status?        identityref
@@ -140,12 +141,13 @@
      |  |     |     |        +--ro status?        identityref
      |  |     |     |        +--ro last-change?   yang:date-and-time
      |  |     |     +--rw ipv6-lan-prefixes* [lan next-hop]
-     |  |     |             {vpn-common:ipv4}?
+     |  |     |             {vpn-common:ipv6}?
      |  |     |        +--rw lan            inet:ipv4-prefix
      |  |     |        +--rw lan-tag?       string
      |  |     |        +--rw next-hop       union
      |  |     |        +--rw metric?        uint32
      |  |     |        +--rw bfd-profile?   bfd-profile-reference
+     |  |     |        |       {vpn-common:bfd}?
      |  |     |        +--rw status
      |  |     |           +--rw admin-status
      |  |     |           |  +--rw status?        identityref
@@ -153,7 +155,7 @@
      |  |     |           +--ro oper-status
      |  |     |              +--ro status?        identityref
      |  |     |              +--ro last-change?   yang:date-and-time
-     |  |     +--rw bgp
+     |  |     +--rw bgp {vpn-common:rtg-bgp}?
      |  |     |  +--rw peer-groups
      |  |     |  |  +--rw peer-group* [name]
      |  |     |  |     +--rw name              string
@@ -209,7 +211,7 @@
      |  |     |        +--ro oper-status
      |  |     |           +--ro status?        identityref
      |  |     |           +--ro last-change?   yang:date-and-time
-     |  |     +--rw ospf
+     |  |     +--rw ospf {vpn-common:rtg-ospf}?
      |  |     |  +--rw address-family?   identityref
      |  |     |  +--rw area-id           yang:dotted-quad
      |  |     |  +--rw metric?           uint16
@@ -231,7 +233,7 @@
      |  |     |     +--ro oper-status
      |  |     |        +--ro status?        identityref
      |  |     |        +--ro last-change?   yang:date-and-time
-     |  |     +--rw isis
+     |  |     +--rw isis {vpn-common:rtg-isis}?
      |  |     |  +--rw address-family?   identityref
      |  |     |  +--rw area-address      area-address
      |  |     |  +--rw authentication
@@ -252,7 +254,7 @@
      |  |     |     +--ro oper-status
      |  |     |        +--ro status?        identityref
      |  |     |        +--ro last-change?   yang:date-and-time
-     |  |     +--rw rip
+     |  |     +--rw rip {vpn-common:rtg-rip}?
      |  |     |  +--rw address-family?   identityref
      |  |     |  +--rw authentication
      |  |     |  |  +--rw enabled?           boolean
@@ -271,7 +273,7 @@
      |  |     |     +--ro oper-status
      |  |     |        +--ro status?        identityref
      |  |     |        +--ro last-change?   yang:date-and-time
-     |  |     +--rw vrrp
+     |  |     +--rw vrrp {vpn-common:rtg-vrrp}?
      |  |        +--rw address-family?   identityref
      |  |        +--rw status
      |  |           +--rw admin-status
@@ -500,6 +502,7 @@
         |     |     |  +--rw next-hop       union
         |     |     |  +--rw metric?        uint32
         |     |     |  +--rw bfd-profile?   bfd-profile-reference
+        |     |     |  |       {vpn-common:bfd}?
         |     |     |  +--rw status
         |     |     |     +--rw admin-status
         |     |     |     |  +--rw status?        identityref
@@ -508,12 +511,13 @@
         |     |     |        +--ro status?        identityref
         |     |     |        +--ro last-change?   yang:date-and-time
         |     |     +--rw ipv6-lan-prefixes* [lan next-hop]
-        |     |             {vpn-common:ipv4}?
+        |     |             {vpn-common:ipv6}?
         |     |        +--rw lan            inet:ipv4-prefix
         |     |        +--rw lan-tag?       string
         |     |        +--rw next-hop       union
         |     |        +--rw metric?        uint32
         |     |        +--rw bfd-profile?   bfd-profile-reference
+        |     |        |       {vpn-common:bfd}?
         |     |        +--rw status
         |     |           +--rw admin-status
         |     |           |  +--rw status?        identityref
@@ -521,7 +525,7 @@
         |     |           +--ro oper-status
         |     |              +--ro status?        identityref
         |     |              +--ro last-change?   yang:date-and-time
-        |     +--rw bgp
+        |     +--rw bgp {vpn-common:rtg-bgp}?
         |     |  +--rw peer-groups
         |     |  |  +--rw peer-group* [name]
         |     |  |     +--rw name              string
@@ -577,7 +581,7 @@
         |     |        +--ro oper-status
         |     |           +--ro status?        identityref
         |     |           +--ro last-change?   yang:date-and-time
-        |     +--rw ospf
+        |     +--rw ospf {vpn-common:rtg-ospf}?
         |     |  +--rw address-family?   identityref
         |     |  +--rw area-id           yang:dotted-quad
         |     |  +--rw metric?           uint16
@@ -599,7 +603,7 @@
         |     |     +--ro oper-status
         |     |        +--ro status?        identityref
         |     |        +--ro last-change?   yang:date-and-time
-        |     +--rw isis
+        |     +--rw isis {vpn-common:rtg-isis}?
         |     |  +--rw address-family?   identityref
         |     |  +--rw area-address      area-address
         |     |  +--rw authentication
@@ -620,7 +624,7 @@
         |     |     +--ro oper-status
         |     |        +--ro status?        identityref
         |     |        +--ro last-change?   yang:date-and-time
-        |     +--rw rip
+        |     +--rw rip {vpn-common:rtg-rip}?
         |     |  +--rw address-family?   identityref
         |     |  +--rw authentication
         |     |  |  +--rw enabled?           boolean
@@ -639,7 +643,7 @@
         |     |     +--ro oper-status
         |     |        +--ro status?        identityref
         |     |        +--ro last-change?   yang:date-and-time
-        |     +--rw vrrp
+        |     +--rw vrrp {vpn-common:rtg-vrrp}?
         |        +--rw address-family?   identityref
         |        +--rw status
         |           +--rw admin-status
