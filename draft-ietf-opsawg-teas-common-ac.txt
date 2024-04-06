@@ -76,8 +76,9 @@ Table of Contents
    2.  Conventions and Definitions
    3.  Relationship to Other AC Data Models
    4.  Description of the AC Common YANG Module
-     4.1.  Identities
-     4.2.  Reusable Groupings
+     4.1.  Features
+     4.2.  Identities
+     4.3.  Reusable Groupings
    5.  Common Attachment Circuit YANG Module
    6.  Security Considerations
    7.  IANA Considerations
@@ -162,10 +163,11 @@ Table of Contents
    intent to be reusable by other models and, therefore, ensure
    consistent AC structures among modules that manipulate ACs.  For
    example, the common model can be reused by service models to expose
-   AC as a service (e.g., [I-D.ietf-opsawg-teas-attachment-circuit]),
-   service models that require binding a service to a set of ACs (e.g.,
-   [I-D.ietf-teas-ietf-network-slice-nbi-yang])), network models to
-   provision ACs (e.g., [I-D.ietf-opsawg-ntw-attachment-circuit]),
+   AC-as-a-Service (ACaaS) (e.g.,
+   [I-D.ietf-opsawg-teas-attachment-circuit]), service models that
+   require binding a service to a set of ACs (e.g., Network Slice
+   Service [I-D.ietf-teas-ietf-network-slice-nbi-yang])), network models
+   to provision ACs (e.g., [I-D.ietf-opsawg-ntw-attachment-circuit]),
    device models, etc.
 
    The common AC module eases data inheritance between modules (e.g.,
@@ -290,7 +292,17 @@ Table of Contents
       The full tree of the "ietf-ac-common" module is available at
       [AC-Common-Tree].
 
-4.1.  Identities
+4.1.  Features
+
+   The module defines the following features:
+
+   'layer2-ac':  Used to indicate support of ACs with Layer 2
+      properties.
+
+   'layer3-ac':  Used to indicate support of ACs with Layer 3
+      properties.
+
+4.2.  Identities
 
    The module defines a set of identities, including the following:
 
@@ -320,7 +332,7 @@ Table of Contents
       BGP-4 [RFC4760], route refresh [RFC2918], graceful restart
       [RFC4724], or ADD-PATH [RFC7911].
 
-4.2.  Reusable Groupings
+4.3.  Reusable Groupings
 
    The module also defines a set of reusable groupings, including the
    following:
