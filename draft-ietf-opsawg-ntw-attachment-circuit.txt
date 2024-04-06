@@ -3250,7 +3250,7 @@ Table of Contents
              description
                "Only applies when the protocol is BGP.";
            }
-          if-feature "vpn-common:rtg-bgp";
+           if-feature "vpn-common:rtg-bgp";
            description
              "Configuration specific to BGP.";
            uses bgp-base;
@@ -3261,7 +3261,7 @@ Table of Contents
              description
                "Only applies when the protocol is OSPF.";
            }
-          if-feature "vpn-common:rtg-ospf";
+           if-feature "vpn-common:rtg-ospf";
            description
              "Configuration specific to OSPF.";
            uses ac-common:ospf-basic;
@@ -3280,7 +3280,7 @@ Table of Contents
              description
                "Only applies when the protocol is IS-IS.";
            }
-          if-feature "vpn-common:rtg-isis";
+           if-feature "vpn-common:rtg-isis";
            description
              "Configuration specific to IS-IS.";
            uses ac-common:isis-basic;
@@ -3323,7 +3323,7 @@ Table of Contents
              description
                "Only applies when the protocol is RIP.";
            }
-          if-feature "vpn-common:rtg-rip";
+           if-feature "vpn-common:rtg-rip";
            description
              "Configuration specific to RIP routing.";
            uses rip-base;
@@ -3335,7 +3335,7 @@ Table of Contents
                "Only applies when the protocol is the Virtual Router
                 Redundancy Protocol (VRRP).";
            }
-          if-feature "vpn-common:rtg-vrrp";
+           if-feature "vpn-common:rtg-vrrp";
            description
              "Configuration specific to VRRP.";
            reference
@@ -3441,7 +3441,7 @@ Table of Contents
              description
                "Only applies when the protocol is BGP.";
            }
-          if-feature "vpn-common:rtg-bgp";
+           if-feature "vpn-common:rtg-bgp";
            description
              "Configuration specific to BGP.";
            container peer-groups {
@@ -3750,9 +3750,10 @@ Table of Contents
        description
          "Defines a basic BFD grouping for routing configuration.";
        container bfd {
+         if-feature "vpn-common:bfd";
          description
            "BFD control for this nighbor.";
-         leaf enable {
+         leaf enabled {
            type boolean;
            description
              "Enables BFD if set to true. BFD is disabled of set to
@@ -3769,6 +3770,7 @@ Table of Contents
          "Defines the Operations, Administration, and Maintenance
           (OAM) mechanisms used.";
        container bfd {
+         if-feature "vpn-common:bfd";
          description
            "Container for BFD.";
          list session {
