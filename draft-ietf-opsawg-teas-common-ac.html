@@ -1650,7 +1650,7 @@ for the reader's convenience.<a href="#section-4-1" class="pilcrow">¶</a></p>
        |  |  +--:(explicit)
        |  |     +-- customer-addresses
        |  |        +-- address-pool* [pool-id]
-       |  |           +-- pool-id?         string
+       |  |           +-- pool-id          string
        |  |           +-- start-address    inet:ipv4-address
        |  |           +-- end-address?     inet:ipv4-address
        |  +-- (provider-dhcp)?
@@ -1662,7 +1662,7 @@ for the reader's convenience.<a href="#section-4-1" class="pilcrow">¶</a></p>
        |           +-- server-ip-address*   inet:ipv4-address
        +--:(static-addresses)
           +-- address* [address-id]
-             +-- address-id?         string
+             +-- address-id          string
              +-- customer-address?   inet:ipv4-address
   grouping ipv6-connection:
     +-- local-address?                           inet:ipv6-address
@@ -1677,7 +1677,7 @@ for the reader's convenience.<a href="#section-4-1" class="pilcrow">¶</a></p>
        |  |  +--:(explicit)
        |  |     +-- customer-addresses
        |  |        +-- address-pool* [pool-id]
-       |  |           +-- pool-id?         string
+       |  |           +-- pool-id          string
        |  |           +-- start-address    inet:ipv6-address
        |  |           +-- end-address?     inet:ipv6-address
        |  +-- (provider-dhcp)?
@@ -1689,7 +1689,7 @@ for the reader's convenience.<a href="#section-4-1" class="pilcrow">¶</a></p>
        |           +-- server-ip-address*   inet:ipv6-address
        +--:(static-addresses)
           +-- address* [address-id]
-             +-- address-id?         string
+             +-- address-id          string
              +-- customer-address?   inet:ipv6-address
 </pre>
 </div>

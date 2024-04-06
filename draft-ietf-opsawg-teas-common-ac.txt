@@ -452,7 +452,7 @@ Table of Contents
            |  |  +--:(explicit)
            |  |     +-- customer-addresses
            |  |        +-- address-pool* [pool-id]
-           |  |           +-- pool-id?         string
+           |  |           +-- pool-id          string
            |  |           +-- start-address    inet:ipv4-address
            |  |           +-- end-address?     inet:ipv4-address
            |  +-- (provider-dhcp)?
@@ -464,7 +464,7 @@ Table of Contents
            |           +-- server-ip-address*   inet:ipv4-address
            +--:(static-addresses)
               +-- address* [address-id]
-                 +-- address-id?         string
+                 +-- address-id          string
                  +-- customer-address?   inet:ipv4-address
       grouping ipv6-connection:
         +-- local-address?                           inet:ipv6-address
@@ -479,7 +479,7 @@ Table of Contents
            |  |  +--:(explicit)
            |  |     +-- customer-addresses
            |  |        +-- address-pool* [pool-id]
-           |  |           +-- pool-id?         string
+           |  |           +-- pool-id          string
            |  |           +-- start-address    inet:ipv6-address
            |  |           +-- end-address?     inet:ipv6-address
            |  +-- (provider-dhcp)?
@@ -491,7 +491,7 @@ Table of Contents
            |           +-- server-ip-address*   inet:ipv6-address
            +--:(static-addresses)
               +-- address* [address-id]
-                 +-- address-id?         string
+                 +-- address-id          string
                  +-- customer-address?   inet:ipv6-address
 
                    Figure 5: Layer 3 Connection Groupings
