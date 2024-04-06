@@ -406,11 +406,13 @@ Each AC is identified with a unique name ('../ac/name') within a domain. The map
 
 The AC service model uses groupings and types defined in the AC common model {{!I-D.ietf-opsawg-teas-common-ac}}. Therefore, the description of these nodes are not reiterated in the following subsections.
 
+Features are used to tag conditional protions of the model in order to accomodate various deployments (support of layer 2 ACs, Layer 3 ACs, IPv4, IPv6, routing protocols,  Bidirectional Forwarding Detection (BFD), etc.).
+
 ### Service Profiles {#sec-profiles}
 
 #### Description
 
-The 'specific-provisioning-profiles' container ({{gp-svc-tree}}) can be used by a service provider to maintain a set of reusable profiles. The profiles definitions are similar to those defined in {{!RFC9181}}, including: Quality of Service (QoS),  Bidirectional Forwarding Detection (BFD), forwarding, and routing profiles. The exact definition of the profiles is local to each service provider. The model only includes an identifier for these profiles in order to facilitate identifying and binding local policies when building an AC.
+The 'specific-provisioning-profiles' container ({{gp-svc-tree}}) can be used by a service provider to maintain a set of reusable profiles. The profiles definitions are similar to those defined in {{!RFC9181}}, including: Quality of Service (QoS), BFD, forwarding, and routing profiles. The exact definition of the profiles is local to each service provider. The model only includes an identifier for these profiles in order to facilitate identifying and binding local policies when building an AC.
 
 ~~~~
 {::include ./yang/subtrees/svc/sp-svc-profiles-stree.txt}
