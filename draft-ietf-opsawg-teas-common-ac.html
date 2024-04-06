@@ -1876,11 +1876,11 @@ taken from <span>[<a href="#RFC9181" class="cite xref">RFC9181</a>]</span>, e.g.
     +-- pbs?   uint64
   grouping bandwidth-per-type:
     +-- bandwidth* [bw-type]
-       +-- bw-type?     identityref
+       +-- bw-type      identityref
        +-- (type)?
           +--:(per-cos)
           |  +-- cos* [cos-id]
-          |     +-- cos-id?   uint8
+          |     +-- cos-id    uint8
           |     +-- cir?      uint64
           |     +-- cbs?      uint64
           |     +-- eir?      uint64

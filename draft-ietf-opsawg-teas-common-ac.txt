@@ -653,11 +653,11 @@ Table of Contents
        +-- pbs?   uint64
      grouping bandwidth-per-type:
        +-- bandwidth* [bw-type]
-          +-- bw-type?     identityref
+          +-- bw-type      identityref
           +-- (type)?
              +--:(per-cos)
              |  +-- cos* [cos-id]
-             |     +-- cos-id?   uint8
+             |     +-- cos-id    uint8
              |     +-- cir?      uint64
              |     +-- cbs?      uint64
              |     +-- eir?      uint64
