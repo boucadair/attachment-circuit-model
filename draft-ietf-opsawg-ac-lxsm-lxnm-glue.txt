@@ -5,12 +5,12 @@
 OPSAWG                                                 M. Boucadair, Ed.
 Internet-Draft                                                    Orange
 Intended status: Standards Track                              R. Roberts
-Expires: 7 October 2024                                          Juniper
+Expires: 8 October 2024                                          Juniper
                                                            S. B. Giraldo
                                                                    Nokia
                                                            O. G. D. Dios
                                                               Telefonica
-                                                            5 April 2024
+                                                            6 April 2024
 
 
   A YANG Data Model for Augmenting VPN Service and Network Models with
@@ -54,7 +54,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 7 October 2024.
+   This Internet-Draft will expire on 8 October 2024.
 
 Copyright Notice
 
@@ -198,15 +198,11 @@ Table of Contents
    Figure 2 depicts two target topology flavors that involve ACs.  These
    topologies have the following characteristics:
 
-   *  A Customer Edges (CEs) can be either a physical device or a
-      logical entity.  Such logical entity is typically a software
-      component (e.g., a virtual service function that is hosted within
-      the provider's network or a third-party infrastructure).  A CE is
-      seen by the network as a peer Service Attachment Point (SAP)
-      [RFC9408].
-
-   *  An AC service request may include one or multiple ACs, which may
-      be associated to a single CE or multiple CEs.
+   *  A Customer Edge (CE) can be either a physical device or a logical
+      entity.  Such logical entity is typically a software component
+      (e.g., a virtual service function that is hosted within the
+      provider's network or a third-party infrastructure).  A CE is seen
+      by the network as a peer Service Attachment Point (SAP) [RFC9408].
 
    *  CEs may be either dedicated to one single connectivity service or
       host multiple connectivity services (e.g., CEs with roles of
@@ -251,14 +247,16 @@ Table of Contents
    includes the flow put in place for the provisioning of advanced
    network services and how they are bound to an attachment circuit.
    For example, a single attachment circuit may be used to host multiple
-   connectivity services.  In order to avoid service interference and
-   redundant information in various locations, a service provider may
-   expose an interface to manage ACs network-wide.  Customers can then
+   connectivity services (e.g., Layer 2 VPN, Layer 3 VPN, Network Slice
+   Service).  In order to avoid service interference and redundant
+   information in various locations, a service provider may expose an
+   interface to manage ACs network-wide using
+   [I-D.ietf-opsawg-teas-attachment-circuit].  Customers can then
    request a bearer or an attachment circuit to be put in place, and
    then refer to that bearer or AC when requesting VPN services that are
    bound to the bearer or AC.
 
-   Figure 3 shows the positioning of the AC service model is the overall
+   Figure 3 shows the positioning of the AC models in the overall
    service delivery process.
 
                                .---------------.
@@ -300,7 +298,7 @@ Table of Contents
                     '--------------------------------'
        Site A                                                  Site B
 
-                   Figure 3: An Example of AC Model Usage
+                  Figure 3: An Example of AC Models Usage
 
 5.  Module Tree Structure
 
@@ -322,8 +320,8 @@ Table of Contents
    VPN-related modules (e.g., L2SM, L3SM, L2NM, and L3NM).  Also, ACs
    managed using the "ietf-ac-ntw" module
    [I-D.ietf-opsawg-ntw-attachment-circuit] can be referenced in VPN-
-   related network modules (mainly, L2NM and L3NM).  The required
-   augmentations to that aim are shown in Figure 4.
+   related network modules (mainly, the L2NM and the L3NM).  The
+   required augmentations to that aim are shown in Figure 4.
 
   module: ietf-ac-glue
 
@@ -385,15 +383,19 @@ Table of Contents
       when both 'ac-svc-name' and the attributes of 'attachment-
       circuits' are defined, the 'ac-svc-name' takes precedence.
 
-   The module includes provisions to reference ACs within or outside a
-   VPN network access to accommodate deployment contexts where an AC
-   reference may be created before or after a VPN instance is created.
-   Appendix A.1 illustrates how an AC reference can be included as part
-   of a specific VPN network access, while Appendix A.2 shows how AC
-   references can be indicated outside individual VPN network access
-   entries.
+   The "ietf-ac-glue" module includes provisions to reference ACs within
+   or outside a VPN network access to accommodate deployment contexts
+   where an AC reference may be created before or after a VPN instance
+   is created.  Appendix A.1 illustrates how an AC reference can be
+   included as part of a specific VPN network access, while Appendix A.2
+   shows how AC references can be indicated outside individual VPN
+   network access entries.
 
 6.  The AC Glue ("ietf-ac-glue") YANG Module
+
+   This module uses references defined in
+   [I-D.ietf-opsawg-teas-attachment-circuit] and
+   [I-D.ietf-opsawg-ntw-attachment-circuit].
 
    <CODE BEGINS> file "ietf-ac-glue@2023-11-13.yang"
    module ietf-ac-glue {
