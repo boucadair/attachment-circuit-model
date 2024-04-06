@@ -341,19 +341,19 @@ Table of Contents
       scheduling instructions and report related events for a service
       request (e.g., AC or bearer).
 
-               grouping service-status:
-                 +-- status
-                    +-- admin-status
-                    |  +-- status?        identityref
-                    |  +--ro last-change?   yang:date-and-time
-                    +--ro oper-status
-                       +--ro status?        identityref
-                       +--ro last-change?   yang:date-and-time
-               grouping op-instructions:
-                 +-- requested-start?   yang:date-and-time
-                 +-- requested-stop?    yang:date-and-time
-                 +--ro actual-start?      yang:date-and-time
-                 +--ro actual-stop?       yang:date-and-time
+     grouping service-status:
+       +-- status
+          +-- admin-status
+          |  +-- status?        identityref
+          |  +--ro last-change?   yang:date-and-time
+          +--ro oper-status
+             +--ro status?        identityref
+             +--ro last-change?   yang:date-and-time
+     grouping op-instructions:
+       +-- requested-start?   yang:date-and-time
+       +-- requested-stop?    yang:date-and-time
+       +--ro actual-start?      yang:date-and-time
+       +--ro actual-stop?       yang:date-and-time
 
                 Figure 3: Operational Instructions Grouping
 
@@ -367,37 +367,37 @@ Table of Contents
       the pseudowire (Section 6.1 of [RFC8077]), VPLS, or VXLAN
       [RFC7348].
 
-                 grouping dot1q:
-                   +-- tag-type?   identityref
-                   +-- cvlan-id?   uint16
-                 grouping priority-tagged:
-                   +-- tag-type?   identityref
-                 grouping qinq:
-                   +-- tag-type?   identityref
-                   +-- svlan-id    uint16
-                   +-- cvlan-id    uint16
-                 grouping pseudowire:
-                   +-- vcid?      uint32
-                   +-- far-end?   union
-                 grouping vpls:
-                   +-- vcid?      uint32
-                   +-- far-end*   union
-                 grouping vxlan:
-                   +-- vni-id             uint32
-                   +-- peer-mode?         identityref
-                   +-- peer-ip-address*   inet:ip-address
-                 grouping l2-tunnel-service:
-                   +-- type?         identityref
-                   +-- pseudowire
-                   |  +-- vcid?      uint32
-                   |  +-- far-end?   union
-                   +-- vpls
-                   |  +-- vcid?      uint32
-                   |  +-- far-end*   union
-                   +-- vxlan
-                      +-- vni-id             uint32
-                      +-- peer-mode?         identityref
-                      +-- peer-ip-address*   inet:ip-address
+     grouping dot1q:
+       +-- tag-type?   identityref
+       +-- cvlan-id?   uint16
+     grouping priority-tagged:
+       +-- tag-type?   identityref
+     grouping qinq:
+       +-- tag-type?   identityref
+       +-- svlan-id    uint16
+       +-- cvlan-id    uint16
+     grouping pseudowire:
+       +-- vcid?      uint32
+       +-- far-end?   union
+     grouping vpls:
+       +-- vcid?      uint32
+       +-- far-end*   union
+     grouping vxlan:
+       +-- vni-id             uint32
+       +-- peer-mode?         identityref
+       +-- peer-ip-address*   inet:ip-address
+     grouping l2-tunnel-service:
+       +-- type?         identityref
+       +-- pseudowire
+       |  +-- vcid?      uint32
+       |  +-- far-end?   union
+       +-- vpls
+       |  +-- vcid?      uint32
+       |  +-- far-end*   union
+       +-- vxlan
+          +-- vni-id             uint32
+          +-- peer-mode?         identityref
+          +-- peer-ip-address*   inet:ip-address
 
                    Figure 4: Layer 2 Connection Groupings
 
@@ -409,90 +409,90 @@ Table of Contents
       managing Layer 3 connectivity over an AC.  Both basic and more
       elaborated IP connection groupings are supported.
 
-      grouping ipv4-allocation-type:
-        +-- prefix-length?             uint8
-        +-- address-allocation-type?   identityref
-      grouping ipv6-allocation-type:
-        +-- prefix-length?             uint8
-        +-- address-allocation-type?   identityref
-      grouping ipv4-connection-basic:
-        +-- prefix-length?                       uint8
-        +-- address-allocation-type?             identityref
-        +-- (allocation-type)?
-           +--:(dynamic)
-              +-- (provider-dhcp)?
-              |  +--:(dhcp-service-type)
-              |     +-- dhcp-service-type?       enumeration
-              +-- (dhcp-relay)?
-                 +--:(customer-dhcp-servers)
-                    +-- customer-dhcp-servers
-                       +-- server-ip-address*   inet:ipv4-address
-      grouping ipv6-connection-basic:
-        +-- prefix-length?                       uint8
-        +-- address-allocation-type?             identityref
-        +-- (allocation-type)?
-           +--:(dynamic)
-              +-- (provider-dhcp)?
-              |  +--:(dhcp-service-type)
-              |     +-- dhcp-service-type?       enumeration
-              +-- (dhcp-relay)?
-                 +--:(customer-dhcp-servers)
-                    +-- customer-dhcp-servers
-                       +-- server-ip-address*   inet:ipv6-address
-      grouping ipv4-connection:
-        +-- local-address?                           inet:ipv4-address
-        +-- virtual-address?                         inet:ipv4-address
-        +-- prefix-length?                           uint8
-        +-- address-allocation-type?                 identityref
-        +-- (allocation-type)?
-           +--:(dynamic)
-           |  +-- (address-assign)?
-           |  |  +--:(number)
-           |  |  |  +-- number-of-dynamic-address?   uint16
-           |  |  +--:(explicit)
-           |  |     +-- customer-addresses
-           |  |        +-- address-pool* [pool-id]
-           |  |           +-- pool-id          string
-           |  |           +-- start-address    inet:ipv4-address
-           |  |           +-- end-address?     inet:ipv4-address
-           |  +-- (provider-dhcp)?
-           |  |  +--:(dhcp-service-type)
-           |  |     +-- dhcp-service-type?           enumeration
-           |  +-- (dhcp-relay)?
-           |     +--:(customer-dhcp-servers)
-           |        +-- customer-dhcp-servers
-           |           +-- server-ip-address*   inet:ipv4-address
-           +--:(static-addresses)
-              +-- address* [address-id]
-                 +-- address-id          string
-                 +-- customer-address?   inet:ipv4-address
-      grouping ipv6-connection:
-        +-- local-address?                           inet:ipv6-address
-        +-- virtual-address?                         inet:ipv6-address
-        +-- prefix-length?                           uint8
-        +-- address-allocation-type?                 identityref
-        +-- (allocation-type)?
-           +--:(dynamic)
-           |  +-- (address-assign)?
-           |  |  +--:(number)
-           |  |  |  +-- number-of-dynamic-address?   uint16
-           |  |  +--:(explicit)
-           |  |     +-- customer-addresses
-           |  |        +-- address-pool* [pool-id]
-           |  |           +-- pool-id          string
-           |  |           +-- start-address    inet:ipv6-address
-           |  |           +-- end-address?     inet:ipv6-address
-           |  +-- (provider-dhcp)?
-           |  |  +--:(dhcp-service-type)
-           |  |     +-- dhcp-service-type?           enumeration
-           |  +-- (dhcp-relay)?
-           |     +--:(customer-dhcp-servers)
-           |        +-- customer-dhcp-servers
-           |           +-- server-ip-address*   inet:ipv6-address
-           +--:(static-addresses)
-              +-- address* [address-id]
-                 +-- address-id          string
-                 +-- customer-address?   inet:ipv6-address
+     grouping ipv4-allocation-type:
+       +-- prefix-length?             uint8
+       +-- address-allocation-type?   identityref
+     grouping ipv6-allocation-type:
+       +-- prefix-length?             uint8
+       +-- address-allocation-type?   identityref
+     grouping ipv4-connection-basic:
+       +-- prefix-length?                       uint8
+       +-- address-allocation-type?             identityref
+       +-- (allocation-type)?
+          +--:(dynamic)
+             +-- (provider-dhcp)?
+             |  +--:(dhcp-service-type)
+             |     +-- dhcp-service-type?       enumeration
+             +-- (dhcp-relay)?
+                +--:(customer-dhcp-servers)
+                   +-- customer-dhcp-servers
+                      +-- server-ip-address*   inet:ipv4-address
+     grouping ipv6-connection-basic:
+       +-- prefix-length?                       uint8
+       +-- address-allocation-type?             identityref
+       +-- (allocation-type)?
+          +--:(dynamic)
+             +-- (provider-dhcp)?
+             |  +--:(dhcp-service-type)
+             |     +-- dhcp-service-type?       enumeration
+             +-- (dhcp-relay)?
+                +--:(customer-dhcp-servers)
+                   +-- customer-dhcp-servers
+                      +-- server-ip-address*   inet:ipv6-address
+     grouping ipv4-connection:
+       +-- local-address?                           inet:ipv4-address
+       +-- virtual-address?                         inet:ipv4-address
+       +-- prefix-length?                           uint8
+       +-- address-allocation-type?                 identityref
+       +-- (allocation-type)?
+          +--:(dynamic)
+          |  +-- (address-assign)?
+          |  |  +--:(number)
+          |  |  |  +-- number-of-dynamic-address?   uint16
+          |  |  +--:(explicit)
+          |  |     +-- customer-addresses
+          |  |        +-- address-pool* [pool-id]
+          |  |           +-- pool-id          string
+          |  |           +-- start-address    inet:ipv4-address
+          |  |           +-- end-address?     inet:ipv4-address
+          |  +-- (provider-dhcp)?
+          |  |  +--:(dhcp-service-type)
+          |  |     +-- dhcp-service-type?           enumeration
+          |  +-- (dhcp-relay)?
+          |     +--:(customer-dhcp-servers)
+          |        +-- customer-dhcp-servers
+          |           +-- server-ip-address*   inet:ipv4-address
+          +--:(static-addresses)
+             +-- address* [address-id]
+                +-- address-id          string
+                +-- customer-address?   inet:ipv4-address
+     grouping ipv6-connection:
+       +-- local-address?                           inet:ipv6-address
+       +-- virtual-address?                         inet:ipv6-address
+       +-- prefix-length?                           uint8
+       +-- address-allocation-type?                 identityref
+       +-- (allocation-type)?
+          +--:(dynamic)
+          |  +-- (address-assign)?
+          |  |  +--:(number)
+          |  |  |  +-- number-of-dynamic-address?   uint16
+          |  |  +--:(explicit)
+          |  |     +-- customer-addresses
+          |  |        +-- address-pool* [pool-id]
+          |  |           +-- pool-id          string
+          |  |           +-- start-address    inet:ipv6-address
+          |  |           +-- end-address?     inet:ipv6-address
+          |  +-- (provider-dhcp)?
+          |  |  +--:(dhcp-service-type)
+          |  |     +-- dhcp-service-type?           enumeration
+          |  +-- (dhcp-relay)?
+          |     +--:(customer-dhcp-servers)
+          |        +-- customer-dhcp-servers
+          |           +-- server-ip-address*   inet:ipv6-address
+          +--:(static-addresses)
+             +-- address* [address-id]
+                +-- address-id          string
+                +-- customer-address?   inet:ipv6-address
 
                    Figure 5: Layer 3 Connection Groupings
 
@@ -529,106 +529,106 @@ Table of Contents
       *  Static routing: Parameters to configure an entry of a list of
          IP static routing entries.
 
-       grouping bgp-authentication:
-          +-- authentication
-             +-- enabled?           boolean
-             +-- keying-material
-                +-- (option)?
-                   +--:(ao)
-                   |  +-- enable-ao?          boolean
-                   |  +-- ao-keychain?        key-chain:key-chain-ref
-                   +--:(md5)
-                   |  +-- md5-keychain?       key-chain:key-chain-ref
-                   +--:(explicit)
-                      +-- key-id?             uint32
-                      +-- key?                string
-                      +-- crypto-algorithm?   identityref
-        grouping ospf-authentication:
-          +-- authentication
-             +-- enabled?           boolean
-             +-- keying-material
-                +-- (option)?
-                   +--:(auth-key-chain)
-                   |  +-- key-chain?          key-chain:key-chain-ref
-                   +--:(auth-key-explicit)
-                      +-- key-id?             uint32
-                      +-- key?                string
-                      +-- crypto-algorithm?   identityref
-        grouping isis-authentication:
-          +-- authentication
-             +-- enabled?           boolean
-             +-- keying-material
-                +-- (option)?
-                   +--:(auth-key-chain)
-                   |  +-- key-chain?          key-chain:key-chain-ref
-                   +--:(auth-key-explicit)
-                      +-- key-id?             uint32
-                      +-- key?                string
-                      +-- crypto-algorithm?   identityref
-        grouping rip-authentication:
-          +-- authentication
-             +-- enabled?           boolean
-             +-- keying-material
-                +-- (option)?
-                   +--:(auth-key-chain)
-                   |  +-- key-chain?          key-chain:key-chain-ref
-                   +--:(auth-key-explicit)
-                      +-- key?                string
-                      +-- crypto-algorithm?   identityref
-        grouping bgp-peer-group-without-name:
-          +--ro local-as?         inet:as-number
-          +-- peer-as?          inet:as-number
-          +-- address-family?   identityref
-        grouping bgp-peer-group-with-name:
-          +-- name?             string
-          +--ro local-as?         inet:as-number
-          +-- peer-as?          inet:as-number
-          +-- address-family?   identityref
-        grouping ospf-basic:
-          +-- address-family?   identityref
-          +-- area-id           yang:dotted-quad
-          +-- metric?           uint16
-        grouping isis-basic:
-          +-- address-family?   identityref
-          +-- area-address      area-address
-        grouping ipv4-static-rtg-entry:
-          +-- lan?        inet:ipv4-prefix
+    grouping bgp-authentication:
+       +-- authentication
+          +-- enabled?           boolean
+          +-- keying-material
+             +-- (option)?
+                +--:(ao)
+                |  +-- enable-ao?          boolean
+                |  +-- ao-keychain?        key-chain:key-chain-ref
+                +--:(md5)
+                |  +-- md5-keychain?       key-chain:key-chain-ref
+                +--:(explicit)
+                   +-- key-id?             uint32
+                   +-- key?                string
+                   +-- crypto-algorithm?   identityref
+     grouping ospf-authentication:
+       +-- authentication
+          +-- enabled?           boolean
+          +-- keying-material
+             +-- (option)?
+                +--:(auth-key-chain)
+                |  +-- key-chain?          key-chain:key-chain-ref
+                +--:(auth-key-explicit)
+                   +-- key-id?             uint32
+                   +-- key?                string
+                   +-- crypto-algorithm?   identityref
+     grouping isis-authentication:
+       +-- authentication
+          +-- enabled?           boolean
+          +-- keying-material
+             +-- (option)?
+                +--:(auth-key-chain)
+                |  +-- key-chain?          key-chain:key-chain-ref
+                +--:(auth-key-explicit)
+                   +-- key-id?             uint32
+                   +-- key?                string
+                   +-- crypto-algorithm?   identityref
+     grouping rip-authentication:
+       +-- authentication
+          +-- enabled?           boolean
+          +-- keying-material
+             +-- (option)?
+                +--:(auth-key-chain)
+                |  +-- key-chain?          key-chain:key-chain-ref
+                +--:(auth-key-explicit)
+                   +-- key?                string
+                   +-- crypto-algorithm?   identityref
+     grouping bgp-peer-group-without-name:
+       +--ro local-as?         inet:as-number
+       +-- peer-as?          inet:as-number
+       +-- address-family?   identityref
+     grouping bgp-peer-group-with-name:
+       +-- name?             string
+       +--ro local-as?         inet:as-number
+       +-- peer-as?          inet:as-number
+       +-- address-family?   identityref
+     grouping ospf-basic:
+       +-- address-family?   identityref
+       +-- area-id           yang:dotted-quad
+       +-- metric?           uint16
+     grouping isis-basic:
+       +-- address-family?   identityref
+       +-- area-address      area-address
+     grouping ipv4-static-rtg-entry:
+       +-- lan?        inet:ipv4-prefix
+       +-- lan-tag?    string
+       +-- next-hop?   union
+       +-- metric?     uint32
+     grouping ipv4-static-rtg:
+       +-- ipv4-lan-prefixes* [lan next-hop] {vpn-common:ipv4}?
+          +-- lan         inet:ipv4-prefix
           +-- lan-tag?    string
-          +-- next-hop?   union
+          +-- next-hop    union
           +-- metric?     uint32
-        grouping ipv4-static-rtg:
-          +-- ipv4-lan-prefixes* [lan next-hop] {vpn-common:ipv4}?
-             +-- lan         inet:ipv4-prefix
-             +-- lan-tag?    string
-             +-- next-hop    union
-             +-- metric?     uint32
-             +-- status
-                +-- admin-status
-                |  +-- status?        identityref
-                |  +--ro last-change?   yang:date-and-time
-                +--ro oper-status
-                   +--ro status?        identityref
-                   +--ro last-change?   yang:date-and-time
-        grouping ipv6-static-rtg-entry:
-          +-- lan?        inet:ipv6-prefix
+          +-- status
+             +-- admin-status
+             |  +-- status?        identityref
+             |  +--ro last-change?   yang:date-and-time
+             +--ro oper-status
+                +--ro status?        identityref
+                +--ro last-change?   yang:date-and-time
+     grouping ipv6-static-rtg-entry:
+       +-- lan?        inet:ipv6-prefix
+       +-- lan-tag?    string
+       +-- next-hop?   union
+       +-- metric?     uint32
+     grouping ipv6-static-rtg:
+       +-- ipv6-lan-prefixes* [lan next-hop] {vpn-common:ipv6}?
+          +-- lan         inet:ipv6-prefix
           +-- lan-tag?    string
-          +-- next-hop?   union
+          +-- next-hop    union
           +-- metric?     uint32
-        grouping ipv6-static-rtg:
-          +-- ipv6-lan-prefixes* [lan next-hop] {vpn-common:ipv6}?
-             +-- lan         inet:ipv6-prefix
-             +-- lan-tag?    string
-             +-- next-hop    union
-             +-- metric?     uint32
-             +-- status
-                +-- admin-status
-                |  +-- status?        identityref
-                |  +--ro last-change?   yang:date-and-time
-                +--ro oper-status
-                   +--ro status?        identityref
-                   +--ro last-change?   yang:date-and-time
-        grouping bfd:
-          +-- holdtime?   uint32
+          +-- status
+             +-- admin-status
+             |  +-- status?        identityref
+             |  +--ro last-change?   yang:date-and-time
+             +--ro oper-status
+                +--ro status?        identityref
+                +--ro last-change?   yang:date-and-time
+     grouping bfd:
+       +-- holdtime?   uint32
 
                    Figure 6: Layer 3 Connection Groupings
 
@@ -644,33 +644,33 @@ Table of Contents
       *  'bw-per-site':  The bandwidth is to all ACs that belong to the
             same site.
 
-                     grouping bandwidth-parameters:
-                       +-- cir?   uint64
-                       +-- cbs?   uint64
-                       +-- eir?   uint64
-                       +-- ebs?   uint64
-                       +-- pir?   uint64
-                       +-- pbs?   uint64
-                     grouping bandwidth-per-type:
-                       +-- bandwidth* [bw-type]
-                          +-- bw-type?     identityref
-                          +-- (type)?
-                             +--:(per-cos)
-                             |  +-- cos* [cos-id]
-                             |     +-- cos-id?   uint8
-                             |     +-- cir?      uint64
-                             |     +-- cbs?      uint64
-                             |     +-- eir?      uint64
-                             |     +-- ebs?      uint64
-                             |     +-- pir?      uint64
-                             |     +-- pbs?      uint64
-                             +--:(other)
-                                +-- cir?   uint64
-                                +-- cbs?   uint64
-                                +-- eir?   uint64
-                                +-- ebs?   uint64
-                                +-- pir?   uint64
-                                +-- pbs?   uint64
+     grouping bandwidth-parameters:
+       +-- cir?   uint64
+       +-- cbs?   uint64
+       +-- eir?   uint64
+       +-- ebs?   uint64
+       +-- pir?   uint64
+       +-- pbs?   uint64
+     grouping bandwidth-per-type:
+       +-- bandwidth* [bw-type]
+          +-- bw-type?     identityref
+          +-- (type)?
+             +--:(per-cos)
+             |  +-- cos* [cos-id]
+             |     +-- cos-id?   uint8
+             |     +-- cir?      uint64
+             |     +-- cbs?      uint64
+             |     +-- eir?      uint64
+             |     +-- ebs?      uint64
+             |     +-- pir?      uint64
+             |     +-- pbs?      uint64
+             +--:(other)
+                +-- cir?   uint64
+                +-- cbs?   uint64
+                +-- eir?   uint64
+                +-- ebs?   uint64
+                +-- pir?   uint64
+                +-- pbs?   uint64
 
                        Figure 7: Bandwidth Groupings
 
