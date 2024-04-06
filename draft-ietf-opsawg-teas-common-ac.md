@@ -242,7 +242,7 @@ The module also defines a set of reusable groupings, including the following:
 ~~~~
 {::include ./yang/subtrees/ac-common/ac-common-op.txt}
 ~~~~
-{: #op-full-tree title="Operational Instructions Grouping" artwork-align="center"}
+{: #op-full-tree title="Operational Instructions Grouping"}
 
 Layer 2 encapsulations ({{l2-full-tree}}):
 : Groupings for the following encapsulation schemes are supported: dot1Q, QinQ, and priority-tagged.
@@ -254,7 +254,7 @@ Layer 2 tunnel services  ({{l2-full-tree}}):
 ~~~~
 {::include ./yang/subtrees/ac-common/ac-common-l2-encap.txt}
 ~~~~
-{: #l2-full-tree title="Layer 2 Connection Groupings" artwork-align="center"}
+{: #l2-full-tree title="Layer 2 Connection Groupings"}
 
 Layer 3 address allocation ({{l3-full-tree}}):
 : Defines both IPv4 and IPv6 groupings to specify IP address allocation over an AC. Both dynamic and static address schemes are supported.
@@ -265,7 +265,7 @@ IP connections ({{l3-full-tree}})::
 ~~~~
 {::include ./yang/subtrees/ac-common/ac-common-ipc.txt}
 ~~~~
-{: #l3-full-tree title="Layer 3 Connection Groupings" artwork-align="center"}
+{: #l3-full-tree title="Layer 3 Connection Groupings"}
 
 Routing parameters ({{rtg-full-tree}}):
 : In addition to static routing, the module supports the following routing protocols: BGP {{!RFC4271}}, OSPF {{!RFC4577}} or {{!RFC6565}}, IS-IS {{ISO10589}}{{!RFC1195}}{{!RFC5308}}, and RIP {{!RFC2453}}. For all supported routing protocols, 'address-family' indicates whether IPv4, IPv6, or both address families are to be activated. For example, this parameter is used to determine whether RIPv2 {{!RFC2453}}, RIP Next Generation (RIPng), or both are to be enabled {{!RFC2080}}. More details about supported routing groupings are provided hereafter:
@@ -279,7 +279,7 @@ Routing parameters ({{rtg-full-tree}}):
 ~~~~
 {::include ./yang/subtrees/ac-common/ac-common-rtg.txt}
 ~~~~
-{: #rtg-full-tree title="Layer 3 Connection Groupings" artwork-align="center"}
+{: #rtg-full-tree title="Layer 3 Connection Groupings"}
 
 Bandwidth parameters ({{bw-full-tree}}):
 : Bandwidth parameters can be represented using the Committed
@@ -298,7 +298,7 @@ Bandwidth parameters ({{bw-full-tree}}):
 ~~~~
 {::include ./yang/subtrees/ac-common/ac-common-bw.txt}
 ~~~~
-{: #bw-full-tree title="Bandwidth Groupings" artwork-align="center"}
+{: #bw-full-tree title="Bandwidth Groupings"}
 
 # Common Attachment Circuit YANG Module {#sec-module}
 
