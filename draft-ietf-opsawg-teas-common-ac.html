@@ -1722,9 +1722,9 @@ for the reader's convenience.<a href="#section-4-1" class="pilcrow">¶</a></p>
 <figure id="figure-6">
           <div class="alignCenter art-text artwork" id="section-4.3-9.1">
 <pre>
-  grouping bgp-authentication:
+ grouping bgp-authentication:
     +-- authentication
-       +-- enabled?            boolean
+       +-- enabled?           boolean
        +-- keying-material
           +-- (option)?
              +--:(ao)
@@ -1738,7 +1738,7 @@ for the reader's convenience.<a href="#section-4-1" class="pilcrow">¶</a></p>
                 +-- crypto-algorithm?   identityref
   grouping ospf-authentication:
     +-- authentication
-       +-- enabled?            boolean
+       +-- enabled?           boolean
        +-- keying-material
           +-- (option)?
              +--:(auth-key-chain)
@@ -1749,7 +1749,7 @@ for the reader's convenience.<a href="#section-4-1" class="pilcrow">¶</a></p>
                 +-- crypto-algorithm?   identityref
   grouping isis-authentication:
     +-- authentication
-       +-- enabled?            boolean
+       +-- enabled?           boolean
        +-- keying-material
           +-- (option)?
              +--:(auth-key-chain)
@@ -1760,7 +1760,7 @@ for the reader's convenience.<a href="#section-4-1" class="pilcrow">¶</a></p>
                 +-- crypto-algorithm?   identityref
   grouping rip-authentication:
     +-- authentication
-       +-- enabled?            boolean
+       +-- enabled?           boolean
        +-- keying-material
           +-- (option)?
              +--:(auth-key-chain)
@@ -1791,9 +1791,9 @@ for the reader's convenience.<a href="#section-4-1" class="pilcrow">¶</a></p>
     +-- metric?     uint32
   grouping ipv4-static-rtg:
     +-- ipv4-lan-prefixes* [lan next-hop] {vpn-common:ipv4}?
-       +-- lan?        inet:ipv4-prefix
+       +-- lan         inet:ipv4-prefix
        +-- lan-tag?    string
-       +-- next-hop?   union
+       +-- next-hop    union
        +-- metric?     uint32
        +-- status
           +-- admin-status
@@ -1809,9 +1809,9 @@ for the reader's convenience.<a href="#section-4-1" class="pilcrow">¶</a></p>
     +-- metric?     uint32
   grouping ipv6-static-rtg:
     +-- ipv6-lan-prefixes* [lan next-hop] {vpn-common:ipv6}?
-       +-- lan?        inet:ipv6-prefix
+       +-- lan         inet:ipv6-prefix
        +-- lan-tag?    string
-       +-- next-hop?   union
+       +-- next-hop    union
        +-- metric?     uint32
        +-- status
           +-- admin-status
