@@ -273,7 +273,7 @@ subtrees and data nodes have particular sensitivities/vulnerabilities:
 
 ## A Service AC Reference within The VPN Network Access {#ref-within-access}
 
-Let's consider the example depicted in {{ex-vpws}} which is inspired from {{Section 2.1 of ?RFC4664}}. Each PE is servicing two CEs. Let's also assume that the service references to identify attachment circuits with these CEs are shown in the figure.
+Let us consider the example depicted in {{ex-vpws}} which is inspired from {{Section 2.1 of ?RFC4664}}. Each PE is servicing two CEs. Let us also assume that the service references to identify attachment circuits with these CEs are shown in the figure.
 
 ~~~~~~~~~~
 {::include ./figures/glue/rfc4664-vpws-example}
@@ -285,11 +285,11 @@ As shown in {{ex-vpws-query}}, the service AC references can be explicitly indic
 ~~~~~~~~~~
 {::include-fold ./json-examples/glue/example-vpws.json}
 ~~~~~~~~~~
-{: #ex-vpws-query title="Example of VPWS Creation with AC Service References" artwork-align="center"}
+{: #ex-vpws-query title="Example of VPWS Creation with AC Service References"}
 
 ## Network and Service AC References {#ref-outside-access}
 
-Let's consider the example depicted in {{ex-topo}} with two customer terminating points (CE1 and CE2). Let's also assume that the bearers to attach these CEs to the provider network are already in place. References to the identify these bearers are shown in the figure.
+Let us consider the example depicted in {{ex-topo}} with two customer terminating points (CE1 and CE2). Let us also assume that the bearers to attach these CEs to the provider network are already in place. References to identify these bearers are shown in the figure.
 
 ~~~~~~~~~~
 {::include ./figures/glue/ex-topo.txt}
@@ -301,42 +301,42 @@ The AC service model {{!I-D.ietf-opsawg-teas-attachment-circuit}} can be used by
 ~~~~~~~~~~
 {::include-fold ./json-examples/glue/example-acsvc-vpls.json}
 ~~~~~~~~~~
-{: #ex-ac title="ACs Created Using ACaaS" artwork-align="center"}
+{: #ex-ac title="ACs Created Using ACaaS"}
 
-Let's now consider that the customer wants to request a VPLS instance between the sites as shown in {{ex-vpls}}.
+Let us now consider that the customer wants to request a VPLS instance between the sites as shown in {{ex-vpls}}.
 
 ~~~~~~~~~~
 {::include ./figures/glue/ex-vpls.txt}
 ~~~~~~~~~~
 {: #ex-vpls title="Example of VPLS" artwork-align="center"}
 
-To that aim, existing ACs are referenced during the creation of the VPLS instance using the L2NM and the "ietf-ac-glue" as shown in {{ex-vpls-req}}.
+To that aim, existing ACs are referenced during the creation of the VPLS instance using the L2NM {{!RFC9291}} and the "ietf-ac-glue" as shown in {{ex-vpls-req}}.
 
 ~~~~~~~~~~
 {::include-fold ./json-examples/glue/example-vpls.json}
 ~~~~~~~~~~
-{: #ex-vpls-req title="Example of a VPLS Request Using L2NM and AC Glue (Message Body)" artwork-align="center"}
+{: #ex-vpls-req title="Example of a VPLS Request Using L2NM and AC Glue (Message Body)"}
 
 Note that before implementing the VPLS instance creation request, the provider service orchestrator may first check if the VPLS service can be provided to the customer using the target delivery locations. The orchestrator uses the SAP model {{?RFC9408}} as exemplified in {{ex-sap-query}}. This example assumes that the query concerns only PE1. A similar query can be issued for PE2.
 
 ~~~~~~~~~~
 {::include-fold ./json-examples/glue/example-sap-query.json}
 ~~~~~~~~~~
-{: #ex-sap-query title="Example of SAP Response (Message Body)" artwork-align="center"}
+{: #ex-sap-query title="Example of SAP Response (Message Body)"}
 
 The response in {{ex-sap-query}} indicates that the VPLS service can be delivered to CE1. {{!I-D.ietf-opsawg-ntw-attachment-circuit}} can be also used to access AC-related details that are bound to the target SAP ({{ex-acntw-query-2}}).
 
 ~~~~~~~~~~
 {::include-fold ./json-examples/glue/example-acntw.json}
 ~~~~~~~~~~
-{: #ex-acntw-query-2 title="Example of AC Network Response with SAP (Message Body)" artwork-align="center"}
+{: #ex-acntw-query-2 title="Example of AC Network Response with SAP (Message Body)"}
 
-The provisioned AC at PE1 can be retrieved using the AC network model as depicted in {{ex-acntw-query}}.
+The provisioned AC at PE1 can be retrieved using the AC network model {{!I-D.ietf-opsawg-ntw-attachment-circuit}} as depicted in {{ex-acntw-query}}.
 
 ~~~~~~~~~~
 {::include-fold ./json-examples/glue/example-acntw-2.json}
 ~~~~~~~~~~
-{: #ex-acntw-query title="Example of AC Network Response (Message Body)" artwork-align="center"}
+{: #ex-acntw-query title="Example of AC Network Response (Message Body)"}
 
 # Acknowledgments
 {:numbered="false"}
