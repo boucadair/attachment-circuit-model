@@ -139,9 +139,7 @@ To bind Layer 2 VPN or Layer 3 VPN services with ACs, "ietf-ac-glue" augments th
 
 {{uc}} depicts two target topology flavors that involve ACs. These topologies have the following characteristics:
 
-* A Customer Edges (CEs) can be either a physical device or a logical entity. Such logical entity is typically a software component (e.g., a virtual service function that is hosted within the provider's network or a third-party infrastructure). A CE is seen by the network as a peer Service Attachment Point (SAP) {{?RFC9408}}.
-
-* An AC service request may include one or multiple ACs, which may be associated to a single CE or multiple CEs.
+* A Customer Edge (CE) can be either a physical device or a logical entity. Such logical entity is typically a software component (e.g., a virtual service function that is hosted within the provider's network or a third-party infrastructure). A CE is seen by the network as a peer Service Attachment Point (SAP) {{?RFC9408}}.
 
 * CEs may be either dedicated to one single connectivity service or host multiple connectivity services (e.g., CEs with roles of service functions {{?RFC7665}}).
 
@@ -159,14 +157,14 @@ To bind Layer 2 VPN or Layer 3 VPN services with ACs, "ietf-ac-glue" augments th
 
 ## Separate AC Provisioning From Actual VPN Service Provisioning
 
-The procedure to provision a service in a service provider network may depend on the practices adopted by a service provider. This includes the flow put in place for the provisioning of advanced network services and how they are bound to an attachment circuit. For example, a single attachment circuit may be used to host multiple connectivity services. In order to avoid service interference and redundant information in various locations, a service provider may expose an interface to manage ACs network-wide. Customers can then request a bearer or an attachment circuit to be put in place, and then refer to that bearer or AC when requesting VPN services that are bound to the bearer or AC.
+The procedure to provision a service in a service provider network may depend on the practices adopted by a service provider. This includes the flow put in place for the provisioning of advanced network services and how they are bound to an attachment circuit. For example, a single attachment circuit may be used to host multiple connectivity services (e.g., Layer 2 VPN, Layer 3 VPN, Network Slice Service). In order to avoid service interference and redundant information in various locations, a service provider may expose an interface to manage ACs network-wide using {{!I-D.ietf-opsawg-teas-attachment-circuit}}. Customers can then request a bearer or an attachment circuit to be put in place, and then refer to that bearer or AC when requesting VPN services that are bound to the bearer or AC.
 
-{{u-ex}} shows the positioning of the AC service model is the overall service delivery process.
+{{u-ex}} shows the positioning of the AC models in the overall service delivery process.
 
 ~~~~ aasvg
 {::include ./figures/arch.txt}
 ~~~~
-{: #u-ex title="An Example of AC Model Usage" artwork-align="center"}
+{: #u-ex title="An Example of AC Models Usage" artwork-align="center"}
 
 
 # Module Tree Structure
@@ -175,7 +173,7 @@ The procedure to provision a service in a service provider network may depend on
 'bearer' with an 'ip-connection' on top. From that standpoint, a 'site-network-access' is mapped to an attachment circuit with both Layers 2 and 3 properties as per {{!I-D.ietf-opsawg-teas-attachment-circuit}}. {{!RFC8466}} specifies that a 'site-network-access' represents a logical Layer 2 connection to a site. A 'site-network-access' can thus be mapped to an attachment circuit with  Layer 2 properties {{!I-D.ietf-opsawg-teas-attachment-circuit}}. Similarly, 'vpn-network-access' defined in both {{!RFC9182}} and {{!RFC9291}} is mapped to an attachment circuit as per {{!I-D.ietf-opsawg-teas-attachment-circuit}} or {{!I-D.ietf-opsawg-ntw-attachment-circuit}}.
 
 As such, ACs created using the "ietf-ac-svc" module {{!I-D.ietf-opsawg-teas-attachment-circuit}} can be referenced in other
-VPN-related modules (e.g., L2SM, L3SM, L2NM, and L3NM). Also, ACs managed using the "ietf-ac-ntw" module {{!I-D.ietf-opsawg-ntw-attachment-circuit}} can be referenced in VPN-related network modules (mainly, L2NM and L3NM). The required augmentations to that aim are shown in {{tree}}.
+VPN-related modules (e.g., L2SM, L3SM, L2NM, and L3NM). Also, ACs managed using the "ietf-ac-ntw" module {{!I-D.ietf-opsawg-ntw-attachment-circuit}} can be referenced in VPN-related network modules (mainly, the L2NM and the L3NM). The required augmentations to that aim are shown in {{tree}}.
 
 ~~~~~~~~~~
 {::include ./yang/full-trees/ac-glue-tree.txt}
@@ -186,9 +184,11 @@ When an AC is referenced within a specific network access, then that AC informat
 
 > This approach is consistent with the design in {{?I-D.ietf-teas-ietf-network-slice-nbi-yang}} where an AC service reference, called 'ac-svc-name', is used to indicate the names of AC services. As per {{?I-D.ietf-teas-ietf-network-slice-nbi-yang}}, when both 'ac-svc-name' and the attributes of 'attachment-circuits' are defined, the 'ac-svc-name' takes precedence.
 
-The module includes provisions to reference ACs within or outside a VPN network access to accommodate deployment contexts where an AC reference may be created before or after a VPN instance is created. {{ref-within-access}} illustrates how an AC reference can be included as part of a specific VPN network access, while {{ref-outside-access}} shows how AC references can be indicated outside individual VPN network access entries.
+The "ietf-ac-glue" module includes provisions to reference ACs within or outside a VPN network access to accommodate deployment contexts where an AC reference may be created before or after a VPN instance is created. {{ref-within-access}} illustrates how an AC reference can be included as part of a specific VPN network access, while {{ref-outside-access}} shows how AC references can be indicated outside individual VPN network access entries.
 
 # The AC Glue ("ietf-ac-glue") YANG Module {#sec-glue}
+
+This module uses references defined in {{!I-D.ietf-opsawg-teas-attachment-circuit}} and {{!I-D.ietf-opsawg-ntw-attachment-circuit}}.
 
 ~~~~~~~~~~
 <CODE BEGINS> file "ietf-ac-glue@2023-11-13.yang"
