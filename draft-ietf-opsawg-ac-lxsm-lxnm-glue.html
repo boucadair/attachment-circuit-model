@@ -2083,7 +2083,7 @@ the set of VPN instances in which a given customer is involved.<a href="#section
         <h3 id="name-a-service-ac-reference-with">
 <a href="#appendix-A.1" class="section-number selfRef">A.1. </a><a href="#name-a-service-ac-reference-with" class="section-name selfRef">A Service AC Reference within The VPN Network Access</a>
         </h3>
-<p id="appendix-A.1-1">Let's consider the example depicted in <a href="#ex-vpws" class="auto internal xref">Figure 5</a> which is inspired from <span><a href="https://rfc-editor.org/rfc/rfc4664#section-2.1" class="relref">Section 2.1</a> of [<a href="#RFC4664" class="cite xref">RFC4664</a>]</span>. Each PE is servicing two CEs. Let's also assume that the service references to identify attachment circuits with these CEs are shown in the figure.<a href="#appendix-A.1-1" class="pilcrow">¶</a></p>
+<p id="appendix-A.1-1">Let us consider the example depicted in <a href="#ex-vpws" class="auto internal xref">Figure 5</a> which is inspired from <span><a href="https://rfc-editor.org/rfc/rfc4664#section-2.1" class="relref">Section 2.1</a> of [<a href="#RFC4664" class="cite xref">RFC4664</a>]</span>. Each PE is servicing two CEs. Let us also assume that the service references to identify attachment circuits with these CEs are shown in the figure.<a href="#appendix-A.1-1" class="pilcrow">¶</a></p>
 <span id="name-vpws-topology-example"></span><div id="ex-vpws">
 <figure id="figure-5">
           <div class="alignCenter art-text artwork" id="appendix-A.1-2.1">
@@ -2110,7 +2110,7 @@ the set of VPN instances in which a given customer is involved.<a href="#section
 <p id="appendix-A.1-3">As shown in <a href="#ex-vpws-query" class="auto internal xref">Figure 6</a>, the service AC references can be explicitly indicated in the L2NM query for the realization of the Virtual Private Wire Service (VPWS) <span><a href="https://rfc-editor.org/rfc/rfc4664#section-3.1.1" class="relref">Section 3.1.1</a> of [<a href="#RFC4664" class="cite xref">RFC4664</a>]</span>).<a href="#appendix-A.1-3" class="pilcrow">¶</a></p>
 <span id="name-example-of-vpws-creation-wi"></span><div id="ex-vpws-query">
 <figure id="figure-6">
-          <div class="alignCenter art-text artwork" id="appendix-A.1-4.1">
+          <div class="alignLeft art-text artwork" id="appendix-A.1-4.1">
 <pre>
 =============== NOTE: '\' line wrapping per RFC 8792 ================
 
@@ -2288,7 +2288,7 @@ the set of VPN instances in which a given customer is involved.<a href="#section
         <h3 id="name-network-and-service-ac-refe">
 <a href="#appendix-A.2" class="section-number selfRef">A.2. </a><a href="#name-network-and-service-ac-refe" class="section-name selfRef">Network and Service AC References</a>
         </h3>
-<p id="appendix-A.2-1">Let's consider the example depicted in <a href="#ex-topo" class="auto internal xref">Figure 7</a> with two customer terminating points (CE1 and CE2). Let's also assume that the bearers to attach these CEs to the provider network are already in place. References to the identify these bearers are shown in the figure.<a href="#appendix-A.2-1" class="pilcrow">¶</a></p>
+<p id="appendix-A.2-1">Let us consider the example depicted in <a href="#ex-topo" class="auto internal xref">Figure 7</a> with two customer terminating points (CE1 and CE2). Let us also assume that the bearers to attach these CEs to the provider network are already in place. References to identify these bearers are shown in the figure.<a href="#appendix-A.2-1" class="pilcrow">¶</a></p>
 <span id="name-topology-example"></span><div id="ex-topo">
 <figure id="figure-7">
           <div class="alignCenter art-text artwork" id="appendix-A.2-2.1">
@@ -2308,7 +2308,7 @@ the set of VPN instances in which a given customer is involved.<a href="#section
 <p id="appendix-A.2-3">The AC service model <span>[<a href="#I-D.ietf-opsawg-teas-attachment-circuit" class="cite xref">I-D.ietf-opsawg-teas-attachment-circuit</a>]</span> can be used by the provider to manage and expose the ACs over existing bearers as shown in <a href="#ex-ac" class="auto internal xref">Figure 8</a>.<a href="#appendix-A.2-3" class="pilcrow">¶</a></p>
 <span id="name-acs-created-using-acaas"></span><div id="ex-ac">
 <figure id="figure-8">
-          <div class="alignCenter art-text artwork" id="appendix-A.2-4.1">
+          <div class="alignLeft art-text artwork" id="appendix-A.2-4.1">
 <pre>
 {
    "ietf-ac-svc:attachment-circuits":{
@@ -2381,7 +2381,7 @@ the set of VPN instances in which a given customer is involved.<a href="#section
 <a href="#name-acs-created-using-acaas" class="selfRef">ACs Created Using ACaaS</a>
           </figcaption></figure>
 </div>
-<p id="appendix-A.2-5">Let's now consider that the customer wants to request a VPLS instance between the sites as shown in <a href="#ex-vpls" class="auto internal xref">Figure 9</a>.<a href="#appendix-A.2-5" class="pilcrow">¶</a></p>
+<p id="appendix-A.2-5">Let us now consider that the customer wants to request a VPLS instance between the sites as shown in <a href="#ex-vpls" class="auto internal xref">Figure 9</a>.<a href="#appendix-A.2-5" class="pilcrow">¶</a></p>
 <span id="name-example-of-vpls"></span><div id="ex-vpls">
 <figure id="figure-9">
           <div class="alignCenter art-text artwork" id="appendix-A.2-6.1">
@@ -2400,10 +2400,10 @@ the set of VPN instances in which a given customer is involved.<a href="#section
 <a href="#name-example-of-vpls" class="selfRef">Example of VPLS</a>
           </figcaption></figure>
 </div>
-<p id="appendix-A.2-7">To that aim, existing ACs are referenced during the creation of the VPLS instance using the L2NM and the "ietf-ac-glue" as shown in <a href="#ex-vpls-req" class="auto internal xref">Figure 10</a>.<a href="#appendix-A.2-7" class="pilcrow">¶</a></p>
+<p id="appendix-A.2-7">To that aim, existing ACs are referenced during the creation of the VPLS instance using the L2NM <span>[<a href="#RFC9291" class="cite xref">RFC9291</a>]</span> and the "ietf-ac-glue" as shown in <a href="#ex-vpls-req" class="auto internal xref">Figure 10</a>.<a href="#appendix-A.2-7" class="pilcrow">¶</a></p>
 <span id="name-example-of-a-vpls-request-u"></span><div id="ex-vpls-req">
 <figure id="figure-10">
-          <div class="alignCenter art-text artwork" id="appendix-A.2-8.1">
+          <div class="alignLeft art-text artwork" id="appendix-A.2-8.1">
 <pre>
 {
   "ietf-l2vpn-ntw:l2vpn-ntw": {
@@ -2506,7 +2506,7 @@ the set of VPN instances in which a given customer is involved.<a href="#section
 <p id="appendix-A.2-9">Note that before implementing the VPLS instance creation request, the provider service orchestrator may first check if the VPLS service can be provided to the customer using the target delivery locations. The orchestrator uses the SAP model <span>[<a href="#RFC9408" class="cite xref">RFC9408</a>]</span> as exemplified in <a href="#ex-sap-query" class="auto internal xref">Figure 11</a>. This example assumes that the query concerns only PE1. A similar query can be issued for PE2.<a href="#appendix-A.2-9" class="pilcrow">¶</a></p>
 <span id="name-example-of-sap-response-mes"></span><div id="ex-sap-query">
 <figure id="figure-11">
-          <div class="alignCenter art-text artwork" id="appendix-A.2-10.1">
+          <div class="alignLeft art-text artwork" id="appendix-A.2-10.1">
 <pre>
 {
    "ietf-sap-ntw:service":[
@@ -2540,7 +2540,7 @@ the set of VPN instances in which a given customer is involved.<a href="#section
 <p id="appendix-A.2-11">The response in <a href="#ex-sap-query" class="auto internal xref">Figure 11</a> indicates that the VPLS service can be delivered to CE1. <span>[<a href="#I-D.ietf-opsawg-ntw-attachment-circuit" class="cite xref">I-D.ietf-opsawg-ntw-attachment-circuit</a>]</span> can be also used to access AC-related details that are bound to the target SAP (<a href="#ex-acntw-query-2" class="auto internal xref">Figure 12</a>).<a href="#appendix-A.2-11" class="pilcrow">¶</a></p>
 <span id="name-example-of-ac-network-respo"></span><div id="ex-acntw-query-2">
 <figure id="figure-12">
-          <div class="alignCenter art-text artwork" id="appendix-A.2-12.1">
+          <div class="alignLeft art-text artwork" id="appendix-A.2-12.1">
 <pre>
 {
    "ietf-sap-ntw:service":[
@@ -2589,10 +2589,10 @@ the set of VPN instances in which a given customer is involved.<a href="#section
 <a href="#name-example-of-ac-network-respo" class="selfRef">Example of AC Network Response with SAP (Message Body)</a>
           </figcaption></figure>
 </div>
-<p id="appendix-A.2-13">The provisioned AC at PE1 can be retrieved using the AC network model as depicted in <a href="#ex-acntw-query" class="auto internal xref">Figure 13</a>.<a href="#appendix-A.2-13" class="pilcrow">¶</a></p>
+<p id="appendix-A.2-13">The provisioned AC at PE1 can be retrieved using the AC network model <span>[<a href="#I-D.ietf-opsawg-ntw-attachment-circuit" class="cite xref">I-D.ietf-opsawg-ntw-attachment-circuit</a>]</span> as depicted in <a href="#ex-acntw-query" class="auto internal xref">Figure 13</a>.<a href="#appendix-A.2-13" class="pilcrow">¶</a></p>
 <span id="name-example-of-ac-network-respon"></span><div id="ex-acntw-query">
 <figure id="figure-13">
-          <div class="alignCenter art-text artwork" id="appendix-A.2-14.1">
+          <div class="alignLeft art-text artwork" id="appendix-A.2-14.1">
 <pre>
 {
    "ietf-ac-ntw:ac":[
