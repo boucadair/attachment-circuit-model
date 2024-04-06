@@ -25,8 +25,8 @@ module: ietf-ac-ntw
        |     |     |  +--rw lan-tag?      string
        |     |     |  +--rw next-hop      union
        |     |     |  +--rw metric?       uint32
-       |     |     +--rw bfd
-       |     |     |  +--rw enable?            boolean
+       |     |     +--rw bfd {vpn-common:bfd}?
+       |     |     |  +--rw enabled?            boolean
        |     |     |  +--rw bfd-profile-ref?   leafref
        |     |     |  +--rw network-ref?
        |     |     |          -> /nw:networks/network/network-id
@@ -44,8 +44,8 @@ module: ietf-ac-ntw
        |     |        +--rw lan-tag?      string
        |     |        +--rw next-hop      union
        |     |        +--rw metric?       uint32
-       |     |        +--rw bfd
-       |     |        |  +--rw enable?            boolean
+       |     |        +--rw bfd {vpn-common:bfd}?
+       |     |        |  +--rw enabled?            boolean
        |     |        |  +--rw bfd-profile-ref?   leafref
        |     |        |  +--rw network-ref?
        |     |        |          -> /nw:networks/network/network-id
