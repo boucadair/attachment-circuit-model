@@ -2,13 +2,13 @@
                           |   Customer    |
                           '-------+-------'
           Customer Service Model  |
-          e.g., slice-svc, ac-svc,| and bearer-svc
+ l2vpn-svc, l3vpn-svc, ietf-nss, ac-svc, ac-glue, and bearer-svc
                           .-------+-------.
                           |    Service    |
                           | Orchestration |
                           '-------+-------'
            Network Model          |
-  e.g., l3vpn-ntw, sap, and ac-ntw|
+       l2vpn-ntw, l3vpn-ntw, sap, | ac-glue, and ac-ntw
                           .-------+-------.
                           |   Network     |
                           | Orchestration |
