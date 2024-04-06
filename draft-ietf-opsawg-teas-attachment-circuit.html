@@ -2005,6 +2005,7 @@ for the reader's convenience. The full tree of the 'ac-svc' is provided in <span
           </ul>
 <p id="section-5.2.1-5">Each AC is identified with a unique name ('../ac/name') within a domain. The mapping between this AC and a local PE that terminates the AC is hidden to the application that makes use of the AC service model. This information is internal to the Network controller. As such, the details about the (node-specific) attachment interfaces are not exposed in this service model.<a href="#section-5.2.1-5" class="pilcrow">¶</a></p>
 <p id="section-5.2.1-6">The AC service model uses groupings and types defined in the AC common model <span>[<a href="#I-D.ietf-opsawg-teas-common-ac" class="cite xref">I-D.ietf-opsawg-teas-common-ac</a>]</span>. Therefore, the description of these nodes are not reiterated in the following subsections.<a href="#section-5.2.1-6" class="pilcrow">¶</a></p>
+<p id="section-5.2.1-7">Features are used to tag conditional protions of the model in order to accomodate various deployments (support of layer 2 ACs, Layer 3 ACs, IPv4, IPv6, routing protocols,  Bidirectional Forwarding Detection (BFD), etc.).<a href="#section-5.2.1-7" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sec-profiles">
@@ -2017,7 +2018,7 @@ for the reader's convenience. The full tree of the 'ac-svc' is provided in <span
             <h5 id="name-description">
 <a href="#section-5.2.2.1" class="section-number selfRef">5.2.2.1. </a><a href="#name-description" class="section-name selfRef">Description</a>
             </h5>
-<p id="section-5.2.2.1-1">The 'specific-provisioning-profiles' container (<a href="#gp-svc-tree" class="auto internal xref">Figure 6</a>) can be used by a service provider to maintain a set of reusable profiles. The profiles definitions are similar to those defined in <span>[<a href="#RFC9181" class="cite xref">RFC9181</a>]</span>, including: Quality of Service (QoS),  Bidirectional Forwarding Detection (BFD), forwarding, and routing profiles. The exact definition of the profiles is local to each service provider. The model only includes an identifier for these profiles in order to facilitate identifying and binding local policies when building an AC.<a href="#section-5.2.2.1-1" class="pilcrow">¶</a></p>
+<p id="section-5.2.2.1-1">The 'specific-provisioning-profiles' container (<a href="#gp-svc-tree" class="auto internal xref">Figure 6</a>) can be used by a service provider to maintain a set of reusable profiles. The profiles definitions are similar to those defined in <span>[<a href="#RFC9181" class="cite xref">RFC9181</a>]</span>, including: Quality of Service (QoS), BFD, forwarding, and routing profiles. The exact definition of the profiles is local to each service provider. The model only includes an identifier for these profiles in order to facilitate identifying and binding local policies when building an AC.<a href="#section-5.2.2.1-1" class="pilcrow">¶</a></p>
 <span id="name-service-profiles-2"></span><div id="gp-svc-tree">
 <figure id="figure-6">
               <div class="alignCenter art-text artwork" id="section-5.2.2.1-2.1">

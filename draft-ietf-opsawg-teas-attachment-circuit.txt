@@ -805,6 +805,11 @@ Table of Contents
    description of these nodes are not reiterated in the following
    subsections.
 
+   Features are used to tag conditional protions of the model in order
+   to accomodate various deployments (support of layer 2 ACs, Layer 3
+   ACs, IPv4, IPv6, routing protocols, Bidirectional Forwarding
+   Detection (BFD), etc.).
+
 5.2.2.  Service Profiles
 
 5.2.2.1.  Description
@@ -812,12 +817,11 @@ Table of Contents
    The 'specific-provisioning-profiles' container (Figure 6) can be used
    by a service provider to maintain a set of reusable profiles.  The
    profiles definitions are similar to those defined in [RFC9181],
-   including: Quality of Service (QoS), Bidirectional Forwarding
-   Detection (BFD), forwarding, and routing profiles.  The exact
-   definition of the profiles is local to each service provider.  The
-   model only includes an identifier for these profiles in order to
-   facilitate identifying and binding local policies when building an
-   AC.
+   including: Quality of Service (QoS), BFD, forwarding, and routing
+   profiles.  The exact definition of the profiles is local to each
+   service provider.  The model only includes an identifier for these
+   profiles in order to facilitate identifying and binding local
+   policies when building an AC.
 
              module: ietf-ac-svc
                +--rw specific-provisioning-profiles
