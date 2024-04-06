@@ -271,9 +271,9 @@ augment /nw:networks/nw:network/nw:node:
      |     +--ro status?        identityref
      |     +--ro last-change?   yang:date-and-time
      +--rw description?         string
-     +--rw l2-connection
+     +--rw l2-connection  {ac-common:layer2-ac}?
      |  ...
-     +--rw ip-connection
+     +--rw ip-connection  {ac-common:layer3-ac}?
      |  ...
      +--rw routing-protocols
      |  ...
@@ -291,7 +291,7 @@ augment /nw:networks/nw:network/nw:node:
 ~~~~
 {: #o-ntw-tree title="Overall Tree Structure"}
 
-A node can host one or more SAPs. As per {{!RFC9408}}, a SAP is an abstraction of the network
+A node can host one or more SAPs. Per {{!RFC9408}}, a SAP is an abstraction of the network
 reference points (the PE side of an AC, in the context of this document) where network services can be delivered and/or are delivered to customers. Each SAP terminates one or multiple ACs. Each AC in turn may be terminated by one or more peer SAPs ('peer-sap'). In order to expose such AC/SAP binding information, the SAP model {{!RFC9408}} is augmented with required AC-related information.
 
 Unlike the AC service model {{!I-D.ietf-opsawg-teas-attachment-circuit}}, an AC is uniquely identified by a name within the scope of a node, not a network. A textual description of the AC may be provided ('description').
@@ -314,7 +314,7 @@ An AC may belong to one or multiple groups {{!RFC9181}}. For example, the 'group
 
 The status of an AC can be tracked using 'status'. Both operational status and administrative status are maintained. A mismatch between the administrative status vs. the operational status can be used as a trigger to detect anomalies.
 
-An AC can be characterized using Layer 2 connectivity ({{sec-l2}}), Layer 3 connectivity ({{sec-l3}}), routing protocols ({{sec-rtg}}), Operations, Administration, and Maintenance (OAM) ({{sec-oam}}), security ({{sec-sec}}), and service ({{sec-svc}}) considerations.
+An AC can be characterized using Layer 2 connectivity ({{sec-l2}}), Layer 3 connectivity ({{sec-l3}}), routing protocols ({{sec-rtg}}), Operations, Administration, and Maintenance (OAM) ({{sec-oam}}), security ({{sec-sec}}), and service ({{sec-svc}}) considerations. Features are used to tag conditional protions to accomodate various deployments (support of layer 2 ACs, Layer 3 ACs, IPv4, IPv6, routing protocols, BFD, etc.).
 
 ## References
 
