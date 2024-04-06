@@ -101,7 +101,7 @@
        |     +--ro status?        identityref
        |     +--ro last-change?   yang:date-and-time
        +--rw description?         string
-       +--rw l2-connection  {ac-common:layer2-ac}?
+       +--rw l2-connection {ac-common:layer2-ac}?
        |  +--rw encapsulation
        |  |  +--rw encap-type?        identityref
        |  |  +--rw dot1q
@@ -162,7 +162,7 @@
        |     +--rw member-link-list
        |        +--rw member-link* [name]
        |           +--rw name    string
-       +--rw ip-connection  {ac-common:layer3-ac}?
+       +--rw ip-connection {ac-common:layer3-ac}?
        |  +--rw l3-termination-point?   string
        |  +--rw ipv4 {vpn-common:ipv4}?
        |  |  +--rw local-address?
@@ -255,8 +255,8 @@
        |     |     |  +--rw lan-tag?      string
        |     |     |  +--rw next-hop      union
        |     |     |  +--rw metric?       uint32
-       |     |     |  +--rw bfd
-       |     |     |  |  +--rw enable?            boolean
+       |     |     |  +--rw bfd {vpn-common:bfd}?
+       |     |     |  |  +--rw enabled?           boolean
        |     |     |  |  +--rw bfd-profile-ref?   leafref
        |     |     |  |  +--rw network-ref?
        |     |     |  |          -> /nw:networks/network/network-id
@@ -274,8 +274,8 @@
        |     |        +--rw lan-tag?      string
        |     |        +--rw next-hop      union
        |     |        +--rw metric?       uint32
-       |     |        +--rw bfd
-       |     |        |  +--rw enable?            boolean
+       |     |        +--rw bfd {vpn-common:bfd}?
+       |     |        |  +--rw enabled?           boolean
        |     |        |  +--rw bfd-profile-ref?   leafref
        |     |        |  +--rw network-ref?
        |     |        |          -> /nw:networks/network/network-id
@@ -381,8 +381,8 @@
        |     |     +--rw capability* [address-family]
        |     |     |  +--rw address-family    identityref
        |     |     |  +--rw name              identityref
-       |     |     +--rw bfd
-       |     |     |  +--rw enable?            boolean
+       |     |     +--rw bfd {vpn-common:bfd}?
+       |     |     |  +--rw enabled?           boolean
        |     |     |  +--rw bfd-profile-ref?   leafref
        |     |     |  +--rw network-ref?
        |     |     |          -> /nw:networks/network/network-id
@@ -499,7 +499,7 @@
        |              +--ro status?        identityref
        |              +--ro last-change?   yang:date-and-time
        +--rw oam
-       |  +--rw bfd
+       |  +--rw bfd {vpn-common:bfd}?
        |     +--rw session* [dest-addr]
        |        +--rw dest-addr                   inet:ip-address
        |        +--rw source-address?             union
