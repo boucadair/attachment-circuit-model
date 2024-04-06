@@ -21,7 +21,7 @@
        +--rw routing-protocols
        |  ...
        +--rw oam
-       |  +--rw bfd
+       |  +--rw bfd {vpn-common:bfd}?
        |     +--rw session* [dest-addr]
        |        +--rw dest-addr                   inet:ip-address
        |        +--rw source-address?             union
