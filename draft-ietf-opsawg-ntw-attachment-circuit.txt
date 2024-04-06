@@ -425,9 +425,9 @@ Table of Contents
         |     +--ro status?        identityref
         |     +--ro last-change?   yang:date-and-time
         +--rw description?         string
-        +--rw l2-connection
+        +--rw l2-connection  {ac-common:layer2-ac}?
         |  ...
-        +--rw ip-connection
+        +--rw ip-connection  {ac-common:layer3-ac}?
         |  ...
         +--rw routing-protocols
         |  ...
@@ -445,7 +445,7 @@ Table of Contents
 
                       Figure 5: Overall Tree Structure
 
-   A node can host one or more SAPs.  As per [RFC9408], a SAP is an
+   A node can host one or more SAPs.  Per [RFC9408], a SAP is an
    abstraction of the network reference points (the PE side of an AC, in
    the context of this document) where network services can be delivered
    and/or are delivered to customers.  Each SAP terminates one or
@@ -506,6 +506,9 @@ Table of Contents
    Layer 3 connectivity (Section 5.5), routing protocols (Section 5.6),
    Operations, Administration, and Maintenance (OAM) (Section 5.7),
    security (Section 5.8), and service (Section 5.9) considerations.
+   Features are used to tag conditional protions to accomodate various
+   deployments (support of layer 2 ACs, Layer 3 ACs, IPv4, IPv6, routing
+   protocols, BFD, etc.).
 
 5.2.  References
 

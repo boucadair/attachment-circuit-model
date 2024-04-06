@@ -1790,9 +1790,9 @@ augment /nw:networks/nw:network/nw:node:
      |     +--ro status?        identityref
      |     +--ro last-change?   yang:date-and-time
      +--rw description?         string
-     +--rw l2-connection
+     +--rw l2-connection  {ac-common:layer2-ac}?
      |  ...
-     +--rw ip-connection
+     +--rw ip-connection  {ac-common:layer3-ac}?
      |  ...
      +--rw routing-protocols
      |  ...
@@ -1813,7 +1813,7 @@ augment /nw:networks/nw:network/nw:node:
 <a href="#name-overall-tree-structure" class="selfRef">Overall Tree Structure</a>
           </figcaption></figure>
 </div>
-<p id="section-5.1-3">A node can host one or more SAPs. As per <span>[<a href="#RFC9408" class="cite xref">RFC9408</a>]</span>, a SAP is an abstraction of the network
+<p id="section-5.1-3">A node can host one or more SAPs. Per <span>[<a href="#RFC9408" class="cite xref">RFC9408</a>]</span>, a SAP is an abstraction of the network
 reference points (the PE side of an AC, in the context of this document) where network services can be delivered and/or are delivered to customers. Each SAP terminates one or multiple ACs. Each AC in turn may be terminated by one or more peer SAPs ('peer-sap'). In order to expose such AC/SAP binding information, the SAP model <span>[<a href="#RFC9408" class="cite xref">RFC9408</a>]</span> is augmented with required AC-related information.<a href="#section-5.1-3" class="pilcrow">¶</a></p>
 <p id="section-5.1-4">Unlike the AC service model <span>[<a href="#I-D.ietf-opsawg-teas-attachment-circuit" class="cite xref">I-D.ietf-opsawg-teas-attachment-circuit</a>]</span>, an AC is uniquely identified by a name within the scope of a node, not a network. A textual description of the AC may be provided ('description').<a href="#section-5.1-4" class="pilcrow">¶</a></p>
 <p id="section-5.1-5">Also, in order to ease the correlation between the AC exposed at the service layer and the one that is actually provisioned in the network operation, a reference to the AC exposed to the customer ('ac-svc-ref') is stored in the 'ietf-ac-ntw' module.<a href="#section-5.1-5" class="pilcrow">¶</a></p>
@@ -1834,7 +1834,7 @@ reference points (the PE side of an AC, in the context of this document) where n
 <p id="section-5.1-10">Whenever a parent AC is deleted, then all child ACs of that AC <span class="bcp14">MUST</span> be deleted.<a href="#section-5.1-10" class="pilcrow">¶</a></p>
 <p id="section-5.1-11">An AC may belong to one or multiple groups <span>[<a href="#RFC9181" class="cite xref">RFC9181</a>]</span>. For example, the 'group-id' is used to associate redundancy or protection constraints with ACs.<a href="#section-5.1-11" class="pilcrow">¶</a></p>
 <p id="section-5.1-12">The status of an AC can be tracked using 'status'. Both operational status and administrative status are maintained. A mismatch between the administrative status vs. the operational status can be used as a trigger to detect anomalies.<a href="#section-5.1-12" class="pilcrow">¶</a></p>
-<p id="section-5.1-13">An AC can be characterized using Layer 2 connectivity (<a href="#sec-l2" class="auto internal xref">Section 5.4</a>), Layer 3 connectivity (<a href="#sec-l3" class="auto internal xref">Section 5.5</a>), routing protocols (<a href="#sec-rtg" class="auto internal xref">Section 5.6</a>), Operations, Administration, and Maintenance (OAM) (<a href="#sec-oam" class="auto internal xref">Section 5.7</a>), security (<a href="#sec-sec" class="auto internal xref">Section 5.8</a>), and service (<a href="#sec-svc" class="auto internal xref">Section 5.9</a>) considerations.<a href="#section-5.1-13" class="pilcrow">¶</a></p>
+<p id="section-5.1-13">An AC can be characterized using Layer 2 connectivity (<a href="#sec-l2" class="auto internal xref">Section 5.4</a>), Layer 3 connectivity (<a href="#sec-l3" class="auto internal xref">Section 5.5</a>), routing protocols (<a href="#sec-rtg" class="auto internal xref">Section 5.6</a>), Operations, Administration, and Maintenance (OAM) (<a href="#sec-oam" class="auto internal xref">Section 5.7</a>), security (<a href="#sec-sec" class="auto internal xref">Section 5.8</a>), and service (<a href="#sec-svc" class="auto internal xref">Section 5.9</a>) considerations. Features are used to tag conditional protions to accomodate various deployments (support of layer 2 ACs, Layer 3 ACs, IPv4, IPv6, routing protocols, BFD, etc.).<a href="#section-5.1-13" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="references">
