@@ -142,7 +142,7 @@ module: ietf-ac-common
              +-- customer-address?   inet:ipv6-address
   grouping bgp-authentication:
     +-- authentication
-       +-- enable?            boolean
+       +-- enabled?           boolean
        +-- keying-material
           +-- (option)?
              +--:(ao)
@@ -156,7 +156,7 @@ module: ietf-ac-common
                 +-- crypto-algorithm?   identityref
   grouping ospf-authentication:
     +-- authentication
-       +-- enable?            boolean
+       +-- enabled?           boolean
        +-- keying-material
           +-- (option)?
              +--:(auth-key-chain)
@@ -167,7 +167,7 @@ module: ietf-ac-common
                 +-- crypto-algorithm?   identityref
   grouping isis-authentication:
     +-- authentication
-       +-- enable?            boolean
+       +-- enabled?           boolean
        +-- keying-material
           +-- (option)?
              +--:(auth-key-chain)
@@ -178,7 +178,7 @@ module: ietf-ac-common
                 +-- crypto-algorithm?   identityref
   grouping rip-authentication:
     +-- authentication
-       +-- enable?            boolean
+       +-- enabled?           boolean
        +-- keying-material
           +-- (option)?
              +--:(auth-key-chain)
