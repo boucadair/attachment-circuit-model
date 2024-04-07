@@ -58,6 +58,10 @@
         |     |     |           +--rw key-id?             uint32
         |     |     |           +--rw key?                string
         |     |     |           +--rw crypto-algorithm?   identityref
+        |     |     +--rw requested-start?   yang:date-and-time
+        |     |     +--rw requested-stop?    yang:date-and-time
+        |     |     +--ro actual-start?      yang:date-and-time
+        |     |     +--ro actual-stop?       yang:date-and-time
         |     |     +--rw status
         |     |        +--rw admin-status
         |     |        |  +--rw status?        identityref
