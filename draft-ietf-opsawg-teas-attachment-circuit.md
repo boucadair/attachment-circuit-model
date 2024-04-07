@@ -154,7 +154,7 @@ An AC service request can provide a reference to a bearer or a set of peer Servi
 
 Each AC is identified with a unique identifier within a (provider) domain. From a network provider standpoint, an AC can be bound to a single or multiple SAPs {{!RFC9408}}. Likewise, the same SAP can be bound to one or multiple ACs. However, the mapping between an AC and a PE in the provider network that terminates that AC is hidden to the application that makes use of the AC service model. Such mapping information is internal to the network controllers. As such, the details about the (node-specific) attachment interfaces are not exposed in the AC service model. However, these details are exposed at the network model per {{?I-D.ietf-opsawg-ntw-attachment-circuit}}. {{?I-D.ietf-opsawg-ac-lxsm-lxnm-glue}} specifies augmentations to the	L2VPN Service Model (L2SM) {{?RFC8466}} and the L3VPN Service Model	(L3SM) {{?RFC8299}} to bind LxVPN services to ACs.
 
-The AC service model does not make any assumptions about the internal structure or even the nature or the services that will be delivered over an attachment circuit or a set of attachment circuits. Customers do not have access to that network view other than the ACs that they ordered. For example, the AC service model can be used to provision a set of ACs to connect multiple sites (Site1, Site2, ..., SiteX) for customer who also requested VPN services. If the provisioning of these services requires specific configuration on ASBR nodes, such configuration is handled at the network level and is not exposed to the customer at the service level. However, the network controller will have access to such a view as the service points in these ASBRs will be exposed as SAPs with "role" set to "ietf-sap-ntw:nni" {{!RFC9408}}.
+The AC service model does not make any assumptions about the internal structure or even the nature or the services that will be delivered over an attachment circuit or a set of attachment circuits. Customers do not have access to that network view other than the ACs that they ordered. For example, the AC service model can be used to provision a set of ACs to connect multiple sites (Site1, Site2, ..., SiteX) for customer who also requested VPN services. If the provisioning of these services requires specific configuration on ASBR nodes, such configuration is handled at the network level and is not exposed to the customer at the service level. However, the network controller will have access to such a view as the service points in these ASBRs will be exposed as SAPs with "" set to "ietf-sap-ntw:nni" {{!RFC9408}}.
 
 The AC service model can be used in a variety of contexts, such as (but not limited to) those provided in {{examples}}:
 
@@ -489,9 +489,6 @@ The description of the data nodes is as follows:
 
 'actual-stop':
 : Reports the actual date and time when the attachment circuit actually was disabled.
-
-'role':
-: Specifies whether an AC is used, e.g., as User-to-Network Interface (UNI) or Network-to-Network Interface (NNI).
 
 'peer-sap-id':
 : Includes references to the remote endpoints of an attachment circuit {{!RFC9408}}.
