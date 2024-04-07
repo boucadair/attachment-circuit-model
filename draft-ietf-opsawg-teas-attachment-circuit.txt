@@ -2815,6 +2815,7 @@ Table of Contents
          }
          uses ac-common:bgp-peer-group-without-name;
          uses ac-common:bgp-authentication;
+         uses ac-common:op-instructions;
          uses ac-common:service-status;
        }
      }
