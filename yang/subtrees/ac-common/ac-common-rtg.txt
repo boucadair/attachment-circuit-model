@@ -45,12 +45,12 @@
                 +-- key?                string
                 +-- crypto-algorithm?   identityref
   grouping bgp-peer-group-without-name:
-    +--ro local-as?         inet:as-number
+    +-- local-as?         inet:as-number
     +-- peer-as?          inet:as-number
     +-- address-family?   identityref
   grouping bgp-peer-group-with-name:
     +-- name?             string
-    +--ro local-as?         inet:as-number
+    +-- local-as?         inet:as-number
     +-- peer-as?          inet:as-number
     +-- address-family?   identityref
   grouping ospf-basic:
