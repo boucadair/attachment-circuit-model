@@ -375,6 +375,7 @@
         +--rw requested-stop?      yang:date-and-time
         +--ro actual-start?        yang:date-and-time
         +--ro actual-stop?         yang:date-and-time
+        +--rw role?                enumeration
         +--rw peer-sap-id*         string
         +--rw ac-group-profile*    ac-group-reference
         +--rw ac-parent-ref?       ac-svc:attachment-circuit-reference
