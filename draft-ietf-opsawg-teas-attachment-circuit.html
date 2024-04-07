@@ -2244,9 +2244,9 @@ These adjusted values take precedence over the global values.  The structure of 
               <p id="section-5.2.5-4.12.1">Reports the actual date and time when the attachment circuit actually was enabled.<a href="#section-5.2.5-4.12.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
-<dt id="section-5.2.5-4.13">'actual-stop':</dt>
+<dt id="section-5.2.5-4.13">'role':</dt>
             <dd style="margin-left: 1.5em" id="section-5.2.5-4.14">
-              <p id="section-5.2.5-4.14.1">Reports the actual date and time when the attachment circuit actually was disabled.<a href="#section-5.2.5-4.14.1" class="pilcrow">¶</a></p>
+              <p id="section-5.2.5-4.14.1">Specifies whether an AC is used as User-to-Network Interface (UNI) or Network-to-Network Interface (NNI).<a href="#section-5.2.5-4.14.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
 <dt id="section-5.2.5-4.15">'peer-sap-id':</dt>
@@ -2254,81 +2254,86 @@ These adjusted values take precedence over the global values.  The structure of 
               <p id="section-5.2.5-4.16.1">Includes references to the remote endpoints of an attachment circuit <span>[<a href="#RFC9408" class="cite xref">RFC9408</a>]</span>.<a href="#section-5.2.5-4.16.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
-<dt id="section-5.2.5-4.17">'ac-group-profile':</dt>
+<dt id="section-5.2.5-4.17">'peer-sap-id':</dt>
             <dd style="margin-left: 1.5em" id="section-5.2.5-4.18">
-              <p id="section-5.2.5-4.18.1">Indicates references to one or more profiles that are defined in <a href="#sec-acp" class="auto internal xref">Section 5.2.3</a>.<a href="#section-5.2.5-4.18.1" class="pilcrow">¶</a></p>
+              <p id="section-5.2.5-4.18.1">Includes references to the remote endpoints of an attachment circuit <span>[<a href="#RFC9408" class="cite xref">RFC9408</a>]</span>.<a href="#section-5.2.5-4.18.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
-<dt id="section-5.2.5-4.19">'ac-parent-ref':</dt>
+<dt id="section-5.2.5-4.19">'ac-group-profile':</dt>
             <dd style="margin-left: 1.5em" id="section-5.2.5-4.20">
-              <p id="section-5.2.5-4.20.1">Specifies an AC that is inherited by an attachment circuit.<a href="#section-5.2.5-4.20.1" class="pilcrow">¶</a></p>
+              <p id="section-5.2.5-4.20.1">Indicates references to one or more profiles that are defined in <a href="#sec-acp" class="auto internal xref">Section 5.2.3</a>.<a href="#section-5.2.5-4.20.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
-<dt id="section-5.2.5-4.21"></dt>
+<dt id="section-5.2.5-4.21">'ac-parent-ref':</dt>
             <dd style="margin-left: 1.5em" id="section-5.2.5-4.22">
-              <p id="section-5.2.5-4.22.1">In contexts where dynamic terminating points are managed for a given AC,
-a parent AC can be defined with a set of stable and common information, while
-"child" ACs are defined to track dynamic information. These "child" ACs are bound to the parent AC, which is exposed to services (as a stable reference).<a href="#section-5.2.5-4.22.1" class="pilcrow">¶</a></p>
+              <p id="section-5.2.5-4.22.1">Specifies an AC that is inherited by an attachment circuit.<a href="#section-5.2.5-4.22.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
 <dt id="section-5.2.5-4.23"></dt>
             <dd style="margin-left: 1.5em" id="section-5.2.5-4.24">
-              <p id="section-5.2.5-4.24.1">Whenever a parent AC is deleted, all its "child" ACs <span class="bcp14">MUST</span> be deleted.<a href="#section-5.2.5-4.24.1" class="pilcrow">¶</a></p>
+              <p id="section-5.2.5-4.24.1">In contexts where dynamic terminating points are managed for a given AC,
+a parent AC can be defined with a set of stable and common information, while
+"child" ACs are defined to track dynamic information. These "child" ACs are bound to the parent AC, which is exposed to services (as a stable reference).<a href="#section-5.2.5-4.24.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
-<dt id="section-5.2.5-4.25">'child-ac-ref':</dt>
+<dt id="section-5.2.5-4.25"></dt>
             <dd style="margin-left: 1.5em" id="section-5.2.5-4.26">
-              <p id="section-5.2.5-4.26.1">Lists one or more references of child ACs that rely upon this attachment circuit as a parent AC.<a href="#section-5.2.5-4.26.1" class="pilcrow">¶</a></p>
+              <p id="section-5.2.5-4.26.1">Whenever a parent AC is deleted, all its "child" ACs <span class="bcp14">MUST</span> be deleted.<a href="#section-5.2.5-4.26.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
-<dt id="section-5.2.5-4.27">'group':</dt>
+<dt id="section-5.2.5-4.27">'child-ac-ref':</dt>
             <dd style="margin-left: 1.5em" id="section-5.2.5-4.28">
-              <p id="section-5.2.5-4.28.1">Lists the groups to which an AC belongs <span>[<a href="#RFC9181" class="cite xref">RFC9181</a>]</span>. For example, the 'group-id' is used to associate redundancy or protection constraints of ACs. An example is provided in <a href="#sec-ex-prec" class="auto internal xref">Appendix A.5</a>.<a href="#section-5.2.5-4.28.1" class="pilcrow">¶</a></p>
+              <p id="section-5.2.5-4.28.1">Lists one or more references of child ACs that rely upon this attachment circuit as a parent AC.<a href="#section-5.2.5-4.28.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
-<dt id="section-5.2.5-4.29">'service-ref':</dt>
+<dt id="section-5.2.5-4.29">'group':</dt>
             <dd style="margin-left: 1.5em" id="section-5.2.5-4.30">
-              <p id="section-5.2.5-4.30.1">Reports the set of services that are bound to the attachment circuit. The services are indexed by their type.<a href="#section-5.2.5-4.30.1" class="pilcrow">¶</a></p>
+              <p id="section-5.2.5-4.30.1">Lists the groups to which an AC belongs <span>[<a href="#RFC9181" class="cite xref">RFC9181</a>]</span>. For example, the 'group-id' is used to associate redundancy or protection constraints of ACs. An example is provided in <a href="#sec-ex-prec" class="auto internal xref">Appendix A.5</a>.<a href="#section-5.2.5-4.30.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
-<dt id="section-5.2.5-4.31">'name':</dt>
+<dt id="section-5.2.5-4.31">'service-ref':</dt>
             <dd style="margin-left: 1.5em" id="section-5.2.5-4.32">
-              <p id="section-5.2.5-4.32.1">Associates a name that uniquely identifies an AC within a service provider network.<a href="#section-5.2.5-4.32.1" class="pilcrow">¶</a></p>
+              <p id="section-5.2.5-4.32.1">Reports the set of services that are bound to the attachment circuit. The services are indexed by their type.<a href="#section-5.2.5-4.32.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
-<dt id="section-5.2.5-4.33">'service-profile':</dt>
+<dt id="section-5.2.5-4.33">'name':</dt>
             <dd style="margin-left: 1.5em" id="section-5.2.5-4.34">
-              <p id="section-5.2.5-4.34.1">References a set of service-specific profiles.<a href="#section-5.2.5-4.34.1" class="pilcrow">¶</a></p>
+              <p id="section-5.2.5-4.34.1">Associates a name that uniquely identifies an AC within a service provider network.<a href="#section-5.2.5-4.34.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
-<dt id="section-5.2.5-4.35">'l2-connection':</dt>
+<dt id="section-5.2.5-4.35">'service-profile':</dt>
             <dd style="margin-left: 1.5em" id="section-5.2.5-4.36">
-              <p id="section-5.2.5-4.36.1">See <a href="#sec-l2" class="auto internal xref">Section 5.2.5.1</a>.<a href="#section-5.2.5-4.36.1" class="pilcrow">¶</a></p>
+              <p id="section-5.2.5-4.36.1">References a set of service-specific profiles.<a href="#section-5.2.5-4.36.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
-<dt id="section-5.2.5-4.37">'ip-connection':</dt>
+<dt id="section-5.2.5-4.37">'l2-connection':</dt>
             <dd style="margin-left: 1.5em" id="section-5.2.5-4.38">
-              <p id="section-5.2.5-4.38.1">See <a href="#sec-l3" class="auto internal xref">Section 5.2.5.2</a>.<a href="#section-5.2.5-4.38.1" class="pilcrow">¶</a></p>
+              <p id="section-5.2.5-4.38.1">See <a href="#sec-l2" class="auto internal xref">Section 5.2.5.1</a>.<a href="#section-5.2.5-4.38.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
-<dt id="section-5.2.5-4.39">'routing':</dt>
+<dt id="section-5.2.5-4.39">'ip-connection':</dt>
             <dd style="margin-left: 1.5em" id="section-5.2.5-4.40">
-              <p id="section-5.2.5-4.40.1">See <a href="#sec-rtg" class="auto internal xref">Section 5.2.5.3</a>.<a href="#section-5.2.5-4.40.1" class="pilcrow">¶</a></p>
+              <p id="section-5.2.5-4.40.1">See <a href="#sec-l3" class="auto internal xref">Section 5.2.5.2</a>.<a href="#section-5.2.5-4.40.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
-<dt id="section-5.2.5-4.41">'oam':</dt>
+<dt id="section-5.2.5-4.41">'routing':</dt>
             <dd style="margin-left: 1.5em" id="section-5.2.5-4.42">
-              <p id="section-5.2.5-4.42.1">See <a href="#sec-oam" class="auto internal xref">Section 5.2.5.4</a>.<a href="#section-5.2.5-4.42.1" class="pilcrow">¶</a></p>
+              <p id="section-5.2.5-4.42.1">See <a href="#sec-rtg" class="auto internal xref">Section 5.2.5.3</a>.<a href="#section-5.2.5-4.42.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
-<dt id="section-5.2.5-4.43">'security':</dt>
+<dt id="section-5.2.5-4.43">'oam':</dt>
             <dd style="margin-left: 1.5em" id="section-5.2.5-4.44">
-              <p id="section-5.2.5-4.44.1">See <a href="#sec-sec" class="auto internal xref">Section 5.2.5.5</a>.<a href="#section-5.2.5-4.44.1" class="pilcrow">¶</a></p>
+              <p id="section-5.2.5-4.44.1">See <a href="#sec-oam" class="auto internal xref">Section 5.2.5.4</a>.<a href="#section-5.2.5-4.44.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
-<dt id="section-5.2.5-4.45">'service':</dt>
+<dt id="section-5.2.5-4.45">'security':</dt>
             <dd style="margin-left: 1.5em" id="section-5.2.5-4.46">
-              <p id="section-5.2.5-4.46.1">See <a href="#sec-bw" class="auto internal xref">Section 5.2.5.6</a>.<a href="#section-5.2.5-4.46.1" class="pilcrow">¶</a></p>
+              <p id="section-5.2.5-4.46.1">See <a href="#sec-sec" class="auto internal xref">Section 5.2.5.5</a>.<a href="#section-5.2.5-4.46.1" class="pilcrow">¶</a></p>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-5.2.5-4.47">'service':</dt>
+            <dd style="margin-left: 1.5em" id="section-5.2.5-4.48">
+              <p id="section-5.2.5-4.48.1">See <a href="#sec-bw" class="auto internal xref">Section 5.2.5.6</a>.<a href="#section-5.2.5-4.48.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
 </dl>
