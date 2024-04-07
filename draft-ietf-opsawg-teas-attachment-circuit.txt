@@ -2807,6 +2807,7 @@ Table of Contents
              "The peer-group with which this neighbor is associated.";
          }
          leaf bfd-profile {
+           if-feature "vpn-common:bfd";
            type bfd-profile-reference;
            description
              "Points to a BFD profile.";
