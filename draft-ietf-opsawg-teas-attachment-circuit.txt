@@ -1424,6 +1424,7 @@ Table of Contents
            |     |     +--rw peer-group?
            |     |     |       -> ../../peer-groups/peer-group/name
            |     |     +--rw bfd-profile?      bfd-profile-reference
+           |     |     |          {vpn-common:bfd}?
            |     |     +--rw local-as?         inet:as-number
            |     |     +--rw peer-as?          inet:as-number
            |     |     +--rw address-family?   identityref
