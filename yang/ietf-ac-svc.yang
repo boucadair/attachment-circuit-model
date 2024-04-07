@@ -1031,20 +1031,11 @@ module ietf-ac-svc {
       }
       uses ac-common:op-instructions;
       leaf role {
-        type enumeration {
-          enum uni {
-            value 1;
-            description
-              "User-to-Network Interface (UNI) AC.";
-          }
-          enum nni {
-            value 2;
-            description
-              "Network-to-Network Interface (NNI) AC.";
-          }
+        type identityref {
+          base role;
         }
         description
-          "Indicates whether this AC is used as UNI or NNI.";
+          "Indicates whether this AC is used as UNI, NNI, etc.";
       }
       leaf-list peer-sap-id {
         type string;
