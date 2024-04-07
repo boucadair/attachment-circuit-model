@@ -68,7 +68,7 @@ module ietf-ac-svc {
       "Initial revision.";
     reference
       "RFC XXXX: YANG Data Models for Bearers and 'Attachment
-                  Circuits'-as-a-Service (ACaaS)";
+                 Circuits'-as-a-Service (ACaaS)";
   }
 
   /* A set of typedefs to ease referencing cross-modules */
@@ -1030,6 +1030,22 @@ module ietf-ac-svc {
           requests.";
       }
       uses ac-common:op-instructions;
+      leaf role {
+        type enumeration {
+          enum uni {
+            value 1;
+            description
+              "User-to-Network Interface (UNI) AC.";
+          }
+          enum nni {
+            value 2;
+            description
+              "Network-to-Network Interface (NNI) AC.";
+          }
+        }
+        description
+          "Indicates whether this AC is used as UNI or NNI.";
+      }
       leaf-list peer-sap-id {
         type string;
         description
@@ -1083,7 +1099,7 @@ module ietf-ac-svc {
             base vpn-common:service-type;
           }
           description
-            "Indicates the service type (e.g., L3VPN, Network Slice
+            "Indicates the service type (e.g., L3VPN or Network Slice
              Service).";
           reference
             "RFC 9408: A YANG Network Data Model for Service 
