@@ -26,7 +26,7 @@ author:
  -
     fullname: Richard Roberts
     organization: Juniper
-    role: editor
+    : editor
     email: rroberts@juniper.net
 
  -
@@ -488,7 +488,7 @@ The description of the data nodes is as follows:
 : Reports the actual date and time when the attachment circuit actually was enabled.
 
 'role':
-: Specifies whether an AC is used as User-to-Network Interface (UNI) or Network-to-Network Interface (NNI).
+: Specifies whether an AC is used, e.g., as User-to-Network Interface (UNI) or Network-to-Network Interface (NNI).
 
 'peer-sap-id':
 : Includes references to the remote endpoints of an attachment circuit {{!RFC9408}}.
