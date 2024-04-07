@@ -180,16 +180,16 @@
      |  |     |  |                 +--rw crypto-algorithm?
      |  |     |  |                         identityref
      |  |     |  +--rw neighbor* [id]
-     |  |     |     +--rw id                string
-     |  |     |     +--rw remote-address?   inet:ip-address
-     |  |     |     +--ro local-address?    inet:ip-address
+     |  |     |     +--rw id                 string
+     |  |     |     +--rw remote-address?    inet:ip-address
+     |  |     |     +--ro local-address?     inet:ip-address
      |  |     |     +--rw peer-group?
      |  |     |     |       -> ../../peer-groups/peer-group/name
-     |  |     |     +--rw bfd-profile?      bfd-profile-reference
-     |  |     |     |          {vpn-common:bfd}?
-     |  |     |     +--rw local-as?         inet:as-number
-     |  |     |     +--rw peer-as?          inet:as-number
-     |  |     |     +--rw address-family?   identityref
+     |  |     |     +--rw bfd-profile?       bfd-profile-reference
+     |  |     |     |       {vpn-common:bfd}?
+     |  |     |     +--rw local-as?          inet:as-number
+     |  |     |     +--rw peer-as?           inet:as-number
+     |  |     |     +--rw address-family?    identityref
      |  |     |     +--rw authentication
      |  |     |     |  +--rw enabled?           boolean
      |  |     |     |  +--rw keying-material
@@ -205,6 +205,10 @@
      |  |     |     |           +--rw key-id?             uint32
      |  |     |     |           +--rw key?                string
      |  |     |     |           +--rw crypto-algorithm?   identityref
+     |  |     |     +--rw requested-start?   yang:date-and-time
+     |  |     |     +--rw requested-stop?    yang:date-and-time
+     |  |     |     +--ro actual-start?      yang:date-and-time
+     |  |     |     +--ro actual-stop?       yang:date-and-time
      |  |     |     +--rw status
      |  |     |        +--rw admin-status
      |  |     |        |  +--rw status?        identityref
@@ -552,15 +556,16 @@
         |     |  |                 +--rw crypto-algorithm?
         |     |  |                         identityref
         |     |  +--rw neighbor* [id]
-        |     |     +--rw id                string
-        |     |     +--rw remote-address?   inet:ip-address
-        |     |     +--ro local-address?    inet:ip-address
+        |     |     +--rw id                 string
+        |     |     +--rw remote-address?    inet:ip-address
+        |     |     +--ro local-address?     inet:ip-address
         |     |     +--rw peer-group?
         |     |     |       -> ../../peer-groups/peer-group/name
-        |     |     +--rw bfd-profile?      bfd-profile-reference
-        |     |     +--rw local-as?         inet:as-number
-        |     |     +--rw peer-as?          inet:as-number
-        |     |     +--rw address-family?   identityref
+        |     |     +--rw bfd-profile?       bfd-profile-reference
+        |     |     |       {vpn-common:bfd}?
+        |     |     +--rw local-as?          inet:as-number
+        |     |     +--rw peer-as?           inet:as-number
+        |     |     +--rw address-family?    identityref
         |     |     +--rw authentication
         |     |     |  +--rw enabled?           boolean
         |     |     |  +--rw keying-material
@@ -576,6 +581,10 @@
         |     |     |           +--rw key-id?             uint32
         |     |     |           +--rw key?                string
         |     |     |           +--rw crypto-algorithm?   identityref
+        |     |     +--rw requested-start?   yang:date-and-time
+        |     |     +--rw requested-stop?    yang:date-and-time
+        |     |     +--ro actual-start?      yang:date-and-time
+        |     |     +--ro actual-stop?       yang:date-and-time
         |     |     +--rw status
         |     |        +--rw admin-status
         |     |        |  +--rw status?        identityref
