@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-04-04T00:37:01.287284+00:00",
+  "timestamp": "2024-04-07T00:40:00.272032+00:00",
   "repo": "boucadair/attachment-circuit-model",
   "labels": [
     {
@@ -7367,13 +7367,13 @@
       "labels": [],
       "body": "#178",
       "createdAt": "2024-03-05T12:22:59Z",
-      "updatedAt": "2024-03-19T11:31:23Z",
+      "updatedAt": "2024-04-04T08:18:36Z",
       "baseRepository": "boucadair/attachment-circuit-model",
       "baseRefName": "main",
       "baseRefOid": "0987d75015d34697e6722d93240f54980eceea7b",
       "headRepository": "boucadair/attachment-circuit-model",
       "headRefName": "example-two-network-connected",
-      "headRefOid": "1618ad6be8ddbb1285ebb2373b91edf8fd381435",
+      "headRefOid": "1b866b021ba9882f031f8fcbe822a3deac683f78",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -7427,6 +7427,94 @@
       "mergedBy": "boucadair",
       "mergeCommit": {
         "oid": "1618ad6be8ddbb1285ebb2373b91edf8fd381435"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 197,
+      "id": "PR_kwDOIiAkrc5r0kRm",
+      "title": "routing features",
+      "url": "https://github.com/boucadair/attachment-circuit-model/pull/197",
+      "state": "MERGED",
+      "author": "boucadair",
+      "authorAssociation": "OWNER",
+      "assignees": [
+        "boucadair"
+      ],
+      "labels": [
+        "AC-SVC"
+      ],
+      "body": "",
+      "createdAt": "2024-04-05T10:02:25Z",
+      "updatedAt": "2024-04-05T10:19:42Z",
+      "baseRepository": "boucadair/attachment-circuit-model",
+      "baseRefName": "main",
+      "baseRefOid": "40396adb09b3d52e5803602bfa1a5e8c8d533aa1",
+      "headRepository": "boucadair/attachment-circuit-model",
+      "headRefName": "boucadair-patch-5",
+      "headRefOid": "c6c084c971db75a817bc63ffe0ae9ec9a356a8e3",
+      "closedAt": "2024-04-05T10:19:42Z",
+      "mergedAt": "2024-04-05T10:19:42Z",
+      "mergedBy": "boucadair",
+      "mergeCommit": {
+        "oid": "4c938d05c1eb6ab503a9e14dd41403bf1215794b"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 198,
+      "id": "PR_kwDOIiAkrc5r3C38",
+      "title": "rtg features",
+      "url": "https://github.com/boucadair/attachment-circuit-model/pull/198",
+      "state": "MERGED",
+      "author": "boucadair",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-04-05T15:32:56Z",
+      "updatedAt": "2024-04-05T15:43:09Z",
+      "baseRepository": "boucadair/attachment-circuit-model",
+      "baseRefName": "main",
+      "baseRefOid": "4c938d05c1eb6ab503a9e14dd41403bf1215794b",
+      "headRepository": "boucadair/attachment-circuit-model",
+      "headRefName": "boucadair-patch-5",
+      "headRefOid": "6511af63232d9319ee7d79ff2290e0b2ce7acbaa",
+      "closedAt": "2024-04-05T15:43:09Z",
+      "mergedAt": "2024-04-05T15:43:09Z",
+      "mergedBy": "boucadair",
+      "mergeCommit": {
+        "oid": "c54a9571534e6cac01abf0f4b7d79eff9f6ddf9c"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 199,
+      "id": "PR_kwDOIiAkrc5r3K_A",
+      "title": "layer2/layer 3 ACs Features",
+      "url": "https://github.com/boucadair/attachment-circuit-model/pull/199",
+      "state": "MERGED",
+      "author": "boucadair",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-04-05T15:51:14Z",
+      "updatedAt": "2024-04-05T16:06:09Z",
+      "baseRepository": "boucadair/attachment-circuit-model",
+      "baseRefName": "main",
+      "baseRefOid": "c54a9571534e6cac01abf0f4b7d79eff9f6ddf9c",
+      "headRepository": "boucadair/attachment-circuit-model",
+      "headRefName": "boucadair-patch-5",
+      "headRefOid": "e2b7c8e452a899e30fed82da22aca52812277ec1",
+      "closedAt": "2024-04-05T16:06:08Z",
+      "mergedAt": "2024-04-05T16:06:08Z",
+      "mergedBy": "boucadair",
+      "mergeCommit": {
+        "oid": "1c6458039f39ac0669ced9ef45588033c8626039"
       },
       "comments": [],
       "reviews": []
