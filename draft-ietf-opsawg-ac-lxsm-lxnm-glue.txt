@@ -5,12 +5,12 @@
 OPSAWG                                                 M. Boucadair, Ed.
 Internet-Draft                                                    Orange
 Intended status: Standards Track                              R. Roberts
-Expires: 8 October 2024                                          Juniper
+Expires: 9 October 2024                                          Juniper
                                                            S. B. Giraldo
                                                                    Nokia
                                                            O. G. D. Dios
                                                               Telefonica
-                                                            6 April 2024
+                                                            7 April 2024
 
 
   A YANG Data Model for Augmenting VPN Service and Network Models with
@@ -54,7 +54,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 8 October 2024.
+   This Internet-Draft will expire on 9 October 2024.
 
 Copyright Notice
 
@@ -703,9 +703,9 @@ Table of Contents
               Boucadair, M., Roberts, R., de Dios, O. G., Barguil, S.,
               and B. Wu, "A Network YANG Data Model for Attachment
               Circuits", Work in Progress, Internet-Draft, draft-ietf-
-              opsawg-ntw-attachment-circuit-06, 4 April 2024,
+              opsawg-ntw-attachment-circuit-07, 6 April 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
-              ntw-attachment-circuit-06>.
+              ntw-attachment-circuit-07>.
 
    [I-D.ietf-opsawg-teas-attachment-circuit]
               Boucadair, M., Roberts, R., de Dios, O. G., Barguil, S.,
@@ -794,9 +794,9 @@ Table of Contents
               Boucadair, M., Roberts, R., de Dios, O. G., Barguil, S.,
               and B. Wu, "A Common YANG Data Model for Attachment
               Circuits", Work in Progress, Internet-Draft, draft-ietf-
-              opsawg-teas-common-ac-07, 4 April 2024,
+              opsawg-teas-common-ac-08, 6 April 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
-              teas-common-ac-07>.
+              teas-common-ac-08>.
 
    [I-D.ietf-teas-ietf-network-slice-nbi-yang]
               Wu, B., Dhody, D., Rokui, R., Saad, T., and J. Mullooly,
