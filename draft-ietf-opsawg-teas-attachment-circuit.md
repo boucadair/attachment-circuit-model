@@ -164,7 +164,7 @@ The AC service model can be used in a variety of contexts, such as (but not limi
 * Control the precedence over multiple attachment circuits ({{sec-ex-prec}}).
 * Create Multiple ACs bound to Multiple CEs ({{sec-multiple-ces}}).
 * Bind a slice service to a set of pre-provisioned attachment circuits ({{sec-ex-slice}}).
-* Connect a Cloud Infrastructure to a service provider network ({{sec-ex-cloud}}). Note that the AC model can be used between service providers for other interconnection purposes. Such ACs are identified with a "role" set to "ac-common:nni" or "ac-common:public-nni".
+* Connect a Cloud Infrastructure to a service provider network ({{sec-ex-cloud}}). Note that the AC model can be used between service providers for other interconnection purposes (e.g., {{?RFC8921}}). Such ACs are identified with a "role" set to "ac-common:nni" or "ac-common:public-nni".
 
 The examples provided in {{examples}} use the IPv4 address blocks reserved for documentation {{?RFC5737}}, the IPv6 prefix reserved for documentation {{?RFC3849}}, and the Autonomous System (AS) numbers reserved for documentation {{?RFC5398}}.
 
@@ -652,6 +652,18 @@ For each neighbor, the following data nodes are supported in addition to similar
 
 'bfd-profile':
 : Indicates a BFD profile that applies for a BGP neighbor.
+
+'requested-start':
+: Specifies the requested date and time when the BGP session is expected to be active.
+
+'requested-stop':
+: Specifies the requested date and time when the BGP session is expected to be disabled.
+
+'actual-start':
+: Reports the actual date and time when the BGP session actually was enabled.
+
+'actual-stop':
+: Reports the actual date and time when the BGP session actually was disabled.
 
 'status':
 : Indicates the status of the BGP routing instance.
