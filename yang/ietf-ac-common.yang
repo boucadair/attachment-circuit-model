@@ -1249,7 +1249,6 @@ module ietf-ac-common {
       "Identifies a BGP peer-group configured on the local system.";
     leaf local-as {
       type inet:as-number;
-      config false;
       description
         "Indicates a local AS Number (ASN). This ASN is exposed
          to a customer so that it knows which ASN to use
