@@ -250,6 +250,8 @@ module ietf-ac-common {
       "RFC 7911: Advertisement of Multiple Paths in BGP";
   }
 
+  // AC Type
+
   identity role {
     description
       "Base identity for the network role of an AC.";
@@ -271,6 +273,38 @@ module ietf-ac-common {
     base role;
     description
       "Public peering.";
+  }
+
+  // More Admin status types
+
+  identity awaiting-validation {
+    base vpn-common:administrative-status;
+    description
+      "This administrative status reflects that a request is
+       pending an adiministrator approval.";
+  }
+
+  identity awaiting-processing {
+    base vpn-common:administrative-status;
+    description
+      "This administrative status reflects that a request was
+       approved and validated, but is awaiting more processing
+       before activation.";
+  }
+
+  identity admin-prohibited {
+    base vpn-common:administrative-status;
+    description
+      "This administrative status reflects that a request cannot
+       be handled because of administrative policies.";
+  }
+
+  identity rejected {
+    base vpn-common:administrative-status;
+    description
+      "This administrative status reflects that a request was
+       rejected because, e.g., there are no sufficient resources
+       or other reasons not covered by the other status types.";
   }
 
   /****************************Typedefs************************/
