@@ -234,8 +234,8 @@ Table of Contents
    ASBR nodes, such configuration is handled at the network level and is
    not exposed to the customer at the service level.  However, the
    network controller will have access to such a view as the service
-   points in these ASBRs will be exposed as SAPs with "" set to "ietf-
-   sap-ntw:nni" [RFC9408].
+   points in these ASBRs will be exposed as SAPs with "role" set to
+   "ietf-sap-ntw:nni" [RFC9408].
 
    The AC service model can be used in a variety of contexts, such as
    (but not limited to) those provided in Appendix A:
@@ -257,7 +257,9 @@ Table of Contents
 
    *  Connect a Cloud Infrastructure to a service provider network
       (Appendix A.8).  Note that the AC model can be used between
-      service providers for other interconnection purposes.
+      service providers for other interconnection purposes.  Such ACs
+      are identified with a "role" set to "ac-common:nni" or "ac-
+      common:public-nni".
 
    The examples provided in Appendix A use the IPv4 address blocks
    reserved for documentation [RFC5737], the IPv6 prefix reserved for
