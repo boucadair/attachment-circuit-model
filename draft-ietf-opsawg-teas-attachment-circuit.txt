@@ -234,8 +234,8 @@ Table of Contents
    ASBR nodes, such configuration is handled at the network level and is
    not exposed to the customer at the service level.  However, the
    network controller will have access to such a view as the service
-   points in these ASBRs will be exposed as SAPs with "role" set to
-   "ietf-sap-ntw:nni" [RFC9408].
+   points in these ASBRs will be exposed as SAPs with "" set to "ietf-
+   sap-ntw:nni" [RFC9408].
 
    The AC service model can be used in a variety of contexts, such as
    (but not limited to) those provided in Appendix A:
@@ -1009,11 +1009,11 @@ Table of Contents
    'actual-start':  Reports the actual date and time when the attachment
       circuit actually was enabled.
 
-   'role':  Specifies whether an AC is used as User-to-Network Interface
-      (UNI) or Network-to-Network Interface (NNI).
+   'actual-stop':  Reports the actual date and time when the attachment
+      circuit actually was disabled.
 
-   'peer-sap-id':  Includes references to the remote endpoints of an
-      attachment circuit [RFC9408].
+   'role':  Specifies whether an AC is used, e.g., as User-to-Network
+      Interface (UNI) or Network-to-Network Interface (NNI).
 
    'peer-sap-id':  Includes references to the remote endpoints of an
       attachment circuit [RFC9408].
@@ -1395,7 +1395,7 @@ Table of Contents
            |     |  +--rw peer-groups
            |     |  |  +--rw peer-group* [name]
            |     |  |     +--rw name              string
-           |     |  |     +--ro local-as?         inet:as-number
+           |     |  |     +--rw local-as?         inet:as-number
            |     |  |     +--rw peer-as?          inet:as-number
            |     |  |     +--rw address-family?   identityref
            |     |  |     +--ro local-address?    inet:ip-address
@@ -1422,7 +1422,7 @@ Table of Contents
            |     |     +--rw peer-group?
            |     |     |       -> ../../peer-groups/peer-group/name
            |     |     +--rw bfd-profile?      bfd-profile-reference
-           |     |     +--ro local-as?         inet:as-number
+           |     |     +--rw local-as?         inet:as-number
            |     |     +--rw peer-as?          inet:as-number
            |     |     +--rw address-family?   identityref
            |     |     +--rw authentication
@@ -3396,7 +3396,7 @@ Table of Contents
          uses ac-common:op-instructions;
          leaf role {
            type identityref {
-             base role;
+             base ac-common:role;
            }
            description
              "Indicates whether this AC is used as UNI, NNI, etc.";
