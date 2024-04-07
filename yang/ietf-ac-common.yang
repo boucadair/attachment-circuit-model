@@ -250,6 +250,29 @@ module ietf-ac-common {
       "RFC 7911: Advertisement of Multiple Paths in BGP";
   }
 
+  identity role {
+    description
+      "Base identity for the network role of an AC.";
+  }
+
+  identity uni {
+    base role;
+      description
+        "User-to-Network Interface (UNI).";
+  }
+
+  identity nni {
+    base role;
+    description
+      "Network-to-Network Interface (NNI).";
+  }
+
+  identity public-nni {
+    base role;
+    description
+      "Public peering.";
+  }
+
   /****************************Typedefs************************/
 
   typedef predefined-next-hop {
