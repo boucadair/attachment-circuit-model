@@ -1339,7 +1339,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
             <p id="section-1.1-13.6.1">Bind a slice service to a set of pre-provisioned attachment circuits (<a href="#sec-ex-slice" class="auto internal xref">Appendix A.7</a>).<a href="#section-1.1-13.6.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-1.1-13.7">
-            <p id="section-1.1-13.7.1">Connect a Cloud Infrastructure to a service provider network (<a href="#sec-ex-cloud" class="auto internal xref">Appendix A.8</a>). Note that the AC model can be used between service providers for other interconnection purposes. Such ACs are identified with a "role" set to "ac-common:nni" or "ac-common:public-nni".<a href="#section-1.1-13.7.1" class="pilcrow">¶</a></p>
+            <p id="section-1.1-13.7.1">Connect a Cloud Infrastructure to a service provider network (<a href="#sec-ex-cloud" class="auto internal xref">Appendix A.8</a>). Note that the AC model can be used between service providers for other interconnection purposes (e.g., <span>[<a href="#RFC8921" class="cite xref">RFC8921</a>]</span>). Such ACs are identified with a "role" set to "ac-common:nni" or "ac-common:public-nni".<a href="#section-1.1-13.7.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
 <p id="section-1.1-14">The examples provided in <a href="#examples" class="auto internal xref">Appendix A</a> use the IPv4 address blocks reserved for documentation <span>[<a href="#RFC5737" class="cite xref">RFC5737</a>]</span>, the IPv6 prefix reserved for documentation <span>[<a href="#RFC3849" class="cite xref">RFC3849</a>]</span>, and the Autonomous System (AS) numbers reserved for documentation <span>[<a href="#RFC5398" class="cite xref">RFC5398</a>]</span>.<a href="#section-1.1-14" class="pilcrow">¶</a></p>
@@ -2843,9 +2843,29 @@ a parent AC can be defined with a set of stable and common information, while
                   <p id="section-5.2.5.3.2-6.8.1">Indicates a BFD profile that applies for a BGP neighbor.<a href="#section-5.2.5.3.2-6.8.1" class="pilcrow">¶</a></p>
 </dd>
                 <dd class="break"></dd>
-<dt id="section-5.2.5.3.2-6.9">'status':</dt>
+<dt id="section-5.2.5.3.2-6.9">'requested-start':</dt>
                 <dd style="margin-left: 1.5em" id="section-5.2.5.3.2-6.10">
-                  <p id="section-5.2.5.3.2-6.10.1">Indicates the status of the BGP routing instance.<a href="#section-5.2.5.3.2-6.10.1" class="pilcrow">¶</a></p>
+                  <p id="section-5.2.5.3.2-6.10.1">Specifies the requested date and time when the BGP session is expected to be active.<a href="#section-5.2.5.3.2-6.10.1" class="pilcrow">¶</a></p>
+</dd>
+                <dd class="break"></dd>
+<dt id="section-5.2.5.3.2-6.11">'requested-stop':</dt>
+                <dd style="margin-left: 1.5em" id="section-5.2.5.3.2-6.12">
+                  <p id="section-5.2.5.3.2-6.12.1">Specifies the requested date and time when the BGP session is expected to be disabled.<a href="#section-5.2.5.3.2-6.12.1" class="pilcrow">¶</a></p>
+</dd>
+                <dd class="break"></dd>
+<dt id="section-5.2.5.3.2-6.13">'actual-start':</dt>
+                <dd style="margin-left: 1.5em" id="section-5.2.5.3.2-6.14">
+                  <p id="section-5.2.5.3.2-6.14.1">Reports the actual date and time when the BGP session actually was enabled.<a href="#section-5.2.5.3.2-6.14.1" class="pilcrow">¶</a></p>
+</dd>
+                <dd class="break"></dd>
+<dt id="section-5.2.5.3.2-6.15">'actual-stop':</dt>
+                <dd style="margin-left: 1.5em" id="section-5.2.5.3.2-6.16">
+                  <p id="section-5.2.5.3.2-6.16.1">Reports the actual date and time when the BGP session actually was disabled.<a href="#section-5.2.5.3.2-6.16.1" class="pilcrow">¶</a></p>
+</dd>
+                <dd class="break"></dd>
+<dt id="section-5.2.5.3.2-6.17">'status':</dt>
+                <dd style="margin-left: 1.5em" id="section-5.2.5.3.2-6.18">
+                  <p id="section-5.2.5.3.2-6.18.1">Indicates the status of the BGP routing instance.<a href="#section-5.2.5.3.2-6.18.1" class="pilcrow">¶</a></p>
 </dd>
               <dd class="break"></dd>
 </dl>
@@ -5357,6 +5377,10 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 <dt id="RFC8695">[RFC8695]</dt>
         <dd>
 <span class="refAuthor">Liu, X.</span>, <span class="refAuthor">Sarda, P.</span>, and <span class="refAuthor">V. Choudhary</span>, <span class="refTitle">"A YANG Data Model for the Routing Information Protocol (RIP)"</span>, <span class="seriesInfo">RFC 8695</span>, <span class="seriesInfo">DOI 10.17487/RFC8695</span>, <time datetime="2020-02" class="refDate">February 2020</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8695">https://www.rfc-editor.org/rfc/rfc8695</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC8921">[RFC8921]</dt>
+        <dd>
+<span class="refAuthor">Boucadair, M., Ed.</span>, <span class="refAuthor">Jacquenet, C.</span>, <span class="refAuthor">Zhang, D.</span>, and <span class="refAuthor">P. Georgatsos</span>, <span class="refTitle">"Dynamic Service Negotiation: The Connectivity Provisioning Negotiation Protocol (CPNP)"</span>, <span class="seriesInfo">RFC 8921</span>, <span class="seriesInfo">DOI 10.17487/RFC8921</span>, <time datetime="2020-10" class="refDate">October 2020</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8921">https://www.rfc-editor.org/rfc/rfc8921</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC8969">[RFC8969]</dt>
         <dd>

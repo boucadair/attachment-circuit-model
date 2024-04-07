@@ -257,9 +257,9 @@ Table of Contents
 
    *  Connect a Cloud Infrastructure to a service provider network
       (Appendix A.8).  Note that the AC model can be used between
-      service providers for other interconnection purposes.  Such ACs
-      are identified with a "role" set to "ac-common:nni" or "ac-
-      common:public-nni".
+      service providers for other interconnection purposes (e.g.,
+      [RFC8921]).  Such ACs are identified with a "role" set to "ac-
+      common:nni" or "ac-common:public-nni".
 
    The examples provided in Appendix A use the IPv4 address blocks
    reserved for documentation [RFC5737], the IPv6 prefix reserved for
@@ -1511,6 +1511,18 @@ Table of Contents
 
    'bfd-profile':  Indicates a BFD profile that applies for a BGP
       neighbor.
+
+   'requested-start':  Specifies the requested date and time when the
+      BGP session is expected to be active.
+
+   'requested-stop':  Specifies the requested date and time when the BGP
+      session is expected to be disabled.
+
+   'actual-start':  Reports the actual date and time when the BGP
+      session actually was enabled.
+
+   'actual-stop':  Reports the actual date and time when the BGP session
+      actually was disabled.
 
    'status':  Indicates the status of the BGP routing instance.
 
@@ -3879,6 +3891,12 @@ Table of Contents
               for the Routing Information Protocol (RIP)", RFC 8695,
               DOI 10.17487/RFC8695, February 2020,
               <https://www.rfc-editor.org/rfc/rfc8695>.
+
+   [RFC8921]  Boucadair, M., Ed., Jacquenet, C., Zhang, D., and P.
+              Georgatsos, "Dynamic Service Negotiation: The Connectivity
+              Provisioning Negotiation Protocol (CPNP)", RFC 8921,
+              DOI 10.17487/RFC8921, October 2020,
+              <https://www.rfc-editor.org/rfc/rfc8921>.
 
    [RFC8969]  Wu, Q., Ed., Boucadair, M., Ed., Lopez, D., Xie, C., and
               L. Geng, "A Framework for Automating Service and Network
