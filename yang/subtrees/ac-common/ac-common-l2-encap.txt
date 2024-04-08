@@ -14,7 +14,7 @@
     +-- vcid?      uint32
     +-- far-end*   union
   grouping vxlan:
-    +-- vni-id             uint32
+    +-- vni-id?            uint32
     +-- peer-mode?         identityref
     +-- peer-ip-address*   inet:ip-address
   grouping l2-tunnel-service:
@@ -26,6 +26,6 @@
     |  +-- vcid?      uint32
     |  +-- far-end*   union
     +-- vxlan
-       +-- vni-id             uint32
+       +-- vni-id?            uint32
        +-- peer-mode?         identityref
        +-- peer-ip-address*   inet:ip-address
