@@ -458,7 +458,7 @@ module ietf-ac-ntw {
          A reference may be a local bridge domain.";
     }
     leaf bearer-reference {
-      if-feature "vpn-common:bearer-reference";
+      if-feature "ac-common:server-assigned-reference";
       type string;
       description
         "This is an internal reference for the service provider to
