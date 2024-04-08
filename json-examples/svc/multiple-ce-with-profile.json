@@ -2,7 +2,7 @@
   "ietf-ac-svc:attachment-circuits": {
     "ac-group-profile": [
       {
-        "id": "simple-profile",
+        "name": "simple-profile",
         "l2-connection": {
           "encapsulation": {
             "type": "ietf-vpn-common:dot1q",
