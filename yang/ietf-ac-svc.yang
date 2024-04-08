@@ -692,14 +692,7 @@ module ietf-ac-svc {
         if-feature "vpn-common:rtg-bgp";
         description
           "Configuration specific to BGP.";
-        uses bgp-svc {
-          refine "peer-groups/peer-group/local-address" {
-            config false;
-          }
-          refine "neighbor/local-address" {
-            config false;
-          }
-        }
+        uses bgp-svc;
       }
       container ospf {
         when "derived-from-or-self(../type, "
