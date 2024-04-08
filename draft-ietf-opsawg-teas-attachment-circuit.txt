@@ -2650,7 +2650,7 @@ Table of Contents
          }
        }
        leaf bearer-reference {
-         if-feature "vpn-common:bearer-reference";
+         if-feature "ac-common:server-assigned-reference";
          type string;
          description
            "This is an internal reference for the service provider
@@ -2801,6 +2801,14 @@ Table of Contents
            type string;
            description
              "A neighbor identifier.";
+         }
+         leaf server-reference {
+           if-feature "ac-common:server-assigned-reference";
+           type string;
+           config false;
+           description
+             "This is an internal reference for the service provider
+              to identify the BGP session.";
          }
          leaf remote-address {
            type inet:ip-address;
@@ -3192,10 +3200,10 @@ Table of Contents
      grouping ac-basic {
        description
          "Grouping for basic parameters for an attachment circuit.";
-       leaf id {
+       leaf name {
          type string;
          description
-           "An identifier of the AC.";
+           "A name that uniquely identifies the AC.";
        }
        container l2-connection {
          if-feature "ac-common:layer2-ac";
@@ -3487,6 +3495,14 @@ Table of Contents
                "Indicates an identifier of a service instance
                 of a given type that uses the AC.";
            }
+         }
+         leaf server-reference {
+           if-feature "ac-common:server-assigned-reference";
+           type string;
+           config false;
+           description
+             "This is an internal reference for the service provider
+              to identify the AC.";
          }
          uses ac;
        }
