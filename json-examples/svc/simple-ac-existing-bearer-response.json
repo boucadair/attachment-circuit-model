@@ -4,7 +4,7 @@
       {
         "name": "ac4585",
         "description": "An AC on an existing bearer",
-        "requested-ac-start": "2023-12-12T05:00:00.00Z",
+        "requested-start": "2023-12-12T05:00:00.00Z",
         "l2-connection": {
           "encapsulation": {
             "type": "ietf-vpn-common:dot1q",
