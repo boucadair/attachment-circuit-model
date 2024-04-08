@@ -6,6 +6,7 @@
         "description": "A bearer example",
         "sync-phy-capable": true,
         "customer-point": {
+          "identified-by": "ietf-bearer-svc:device-id",
           "device": {
             "device-id": "CE_X_SITE_Y"
           }
