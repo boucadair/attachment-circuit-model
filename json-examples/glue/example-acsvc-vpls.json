@@ -1,65 +1,69 @@
 {
-   "ietf-ac-svc:attachment-circuits":{
-      "ac-group-profile":[
-         {
-            "name":"an-ac-profile",
-            "l2-connection":{
-               "encapsulation":{
-                  "encap-type":"ietf-vpn-common:dot1q",
-                  "dot1q":{
-                     "tag-type":"ietf-vpn-common:c-vlan",
-                     "cvlan-id":550
-                  }
-               }
-            },
-            "service":{
-               "mtu":1550,
-               "svc-pe-to-ce-bandwidth":{
-                  "pe-to-ce-bandwidth":[
-                     {
-                        "bw-type":"ietf-vpn-common:bw-per-port",
-                        "cir":"20480000"
-                     }
-                  ]
-               },
-               "svc-ce-to-pe-bandwidth":{
-                  "ce-to-pe-bandwidth":[
-                     {
-                        "bw-type":"ietf-vpn-common:bw-per-port",
-                        "cir":"20480000"
-                     }
-                  ]
-               },
-               "qos":{
-                  "qos-profile":{
-                     "qos-profile":[
-                        {
-                           "profile":"QoS_Profile_A",
-                           "direction":"ietf-vpn-common:both"
-                        }
-                     ]
-                  }
-               }
+  "ietf-ac-svc:attachment-circuits": {
+    "ac-group-profile": [
+      {
+        "name": "an-ac-profile",
+        "l2-connection": {
+          "encapsulation": {
+            "type": "ietf-vpn-common:dot1q",
+            "dot1q": {
+              "tag-type": "ietf-vpn-common:c-vlan",
+              "cvlan-id": 550
             }
-         }
-      ],
-      "ac":[
-         {
-            "name":"ac-1",
-            "description":"First attachment",
-            "ac-group-profile":["an-ac-profile"],
-            "l2-connection":{
-               "bearer-reference":"1234"
+          }
+        },
+        "service": {
+          "mtu": 1550,
+          "svc-pe-to-ce-bandwidth": {
+            "bandwidth": [
+              {
+                "bw-type": "ietf-vpn-common:bw-per-port",
+                "cir": "20480000"
+              }
+            ]
+          },
+          "svc-ce-to-pe-bandwidth": {
+            "bandwidth": [
+              {
+                "bw-type": "ietf-vpn-common:bw-per-port",
+                "cir": "20480000"
+              }
+            ]
+          },
+          "qos": {
+            "qos-profiles": {
+              "qos-profile": [
+                {
+                  "profile": "QoS_Profile_A",
+                  "direction": "ietf-vpn-common:both"
+                }
+              ]
             }
-         },
-         {
-            "name":"ac-2",
-            "description":"Second attachment",
-            "ac-group-profile": ["an-ac-profile"],
-            "l2-connection":{
-               "bearer-reference":"5678"
-            }
-         }
-      ]
-   }
+          }
+        }
+      }
+    ],
+    "ac": [
+      {
+        "name": "ac-1",
+        "description": "First attachment",
+        "ac-group-profile": [
+          "an-ac-profile"
+        ],
+        "l2-connection": {
+          "bearer-reference": "1234"
+        }
+      },
+      {
+        "name": "ac-2",
+        "description": "Second attachment",
+        "ac-group-profile": [
+          "an-ac-profile"
+        ],
+        "l2-connection": {
+          "bearer-reference": "5678"
+        }
+      }
+    ]
+  }
 }
