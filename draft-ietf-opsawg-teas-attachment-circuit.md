@@ -1252,7 +1252,7 @@ This scenario allows the provider to maintain a list of ACs belonging to the sam
 
 ## Connectivity of Cloudidified Network Functions
 
-This example demonstrates how the AC service model permits to manage connectivity requirements for complex Network Functions - containerized or virtualized -  that typically met in Telco Networks. This integration leverages the concept of "parent ACs" to decouple L2 and L3 logic: several L2 AC shares the L3 of a common parent). to provide better stability, flexible and scalability.
+This example demonstrates how the AC service model permits to manage connectivity requirements for complex Network Functions - containerized or virtualized -  that typically met in Telco Networks. This integration leverages the concept of "parent ACs" to decouple physical and logical connectivity so that several AC can shares L2 and L3 resources.This approach provides flexibility, scalability and API stability.
 
 The Network Function have the following characteristics:
 - The Network Function is distributed on a set of computes with scaled-out and redundant instances. 
@@ -1262,10 +1262,12 @@ The Network Function have the following characteristics:
 - The NF is attached to distinct networks, each making use of a dedicated vlan. These vlans are therefore instantiated as separate Attachment Circuits. From a realization standpoint, the NF interface connectivity is generally provided thanks to macvlan or SR-IOV. For the sake of simplicity only 2 vlans are presented in this example, additional vlans are generally configured based on similar logic.
 
 Firstly, Figure {{cloud-parent-infra}} describes the physical infrastructure on which attachment circuits are provisionned. The compute nodes (customer) are attached to the provider infrastructure thanks to a set of bearers (i.e. compute-XX-nicY). The provider infrastructure can be realized in multiple ways, such as  IP Fabric, Gateways or L2/L3 Edge Routers. This document does not intend to detail these aspects.
+
 ~~~~ aasvg
 {::include-fold ./figures/cloud-parent-infra.txt}
 ~~~~
 {: #cloud-parent-infra title="Physical Topology for Cloud Deployment"}
+
 
 # Acknowledgments
 {:numbered="false"}
