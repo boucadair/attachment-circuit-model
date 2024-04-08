@@ -1273,7 +1273,6 @@ Table of Contents
          "VXLAN termination parameters.";
        leaf vni-id {
          type uint32;
-         mandatory true;
          description
            "VXLAN Network Identifier (VNI).";
        }
