@@ -213,6 +213,10 @@ The module defines the following features:
 'layer3-ac':
 : Used to indicate support of ACs with Layer 3 properties.
 
+'server-assigned-reference':
+: Used to indicate support of server-generated references to access relevant resources.
+: For example, a bearer request is first created using a name which is assigned by the client, but if this feature is supported, the request will also include a server-generated reference. That reference can be used when requesting the creating of an AC over the existing bearer.
+
 ## Identities
 
 The module defines a set of identities, including the following:
