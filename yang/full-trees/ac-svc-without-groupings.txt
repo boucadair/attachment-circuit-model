@@ -185,10 +185,6 @@
      |  |     |     |       {ac-common:server-assigned-reference}?
      |  |     |     +--rw remote-address?     inet:ip-address
      |  |     |     +--ro local-address?      inet:ip-address
-     |  |     |     +--rw peer-group?
-     |  |     |     |       -> ../../peer-groups/peer-group/name
-     |  |     |     +--rw bfd-profile?        bfd-profile-reference
-     |  |     |     |       {vpn-common:bfd}?
      |  |     |     +--rw local-as?           inet:as-number
      |  |     |     +--rw peer-as?            inet:as-number
      |  |     |     +--rw address-family?     identityref
@@ -212,12 +208,16 @@
      |  |     |     +--ro actual-start?       yang:date-and-time
      |  |     |     +--ro actual-stop?        yang:date-and-time
      |  |     |     +--rw status
-     |  |     |        +--rw admin-status
-     |  |     |        |  +--rw status?        identityref
-     |  |     |        |  +--ro last-change?   yang:date-and-time
-     |  |     |        +--ro oper-status
-     |  |     |           +--ro status?        identityref
-     |  |     |           +--ro last-change?   yang:date-and-time
+     |  |     |     |  +--rw admin-status
+     |  |     |     |  |  +--rw status?        identityref
+     |  |     |     |  |  +--ro last-change?   yang:date-and-time
+     |  |     |     |  +--ro oper-status
+     |  |     |     |     +--ro status?        identityref
+     |  |     |     |     +--ro last-change?   yang:date-and-time
+     |  |     |     +--rw peer-group?
+     |  |     |     |       -> ../../peer-groups/peer-group/name
+     |  |     |     +--rw bfd-profile?        bfd-profile-reference
+     |  |     |             {vpn-common:bfd}?
      |  |     +--rw ospf {vpn-common:rtg-ospf}?
      |  |     |  +--rw address-family?   identityref
      |  |     |  +--rw area-id           yang:dotted-quad
@@ -565,10 +565,6 @@
         |     |     |       {ac-common:server-assigned-reference}?
         |     |     +--rw remote-address?     inet:ip-address
         |     |     +--ro local-address?      inet:ip-address
-        |     |     +--rw peer-group?
-        |     |     |       -> ../../peer-groups/peer-group/name
-        |     |     +--rw bfd-profile?        bfd-profile-reference
-        |     |     |       {vpn-common:bfd}?
         |     |     +--rw local-as?           inet:as-number
         |     |     +--rw peer-as?            inet:as-number
         |     |     +--rw address-family?     identityref
@@ -592,12 +588,16 @@
         |     |     +--ro actual-start?       yang:date-and-time
         |     |     +--ro actual-stop?        yang:date-and-time
         |     |     +--rw status
-        |     |        +--rw admin-status
-        |     |        |  +--rw status?        identityref
-        |     |        |  +--ro last-change?   yang:date-and-time
-        |     |        +--ro oper-status
-        |     |           +--ro status?        identityref
-        |     |           +--ro last-change?   yang:date-and-time
+        |     |     |  +--rw admin-status
+        |     |     |  |  +--rw status?        identityref
+        |     |     |  |  +--ro last-change?   yang:date-and-time
+        |     |     |  +--ro oper-status
+        |     |     |     +--ro status?        identityref
+        |     |     |     +--ro last-change?   yang:date-and-time
+        |     |     +--rw peer-group?
+        |     |     |       -> ../../peer-groups/peer-group/name
+        |     |     +--rw bfd-profile?        bfd-profile-reference
+        |     |             {vpn-common:bfd}?
         |     +--rw ospf {vpn-common:rtg-ospf}?
         |     |  +--rw address-family?   identityref
         |     |  +--rw area-id           yang:dotted-quad
