@@ -5253,7 +5253,7 @@ A.10.  Connectivity of Cloudidified Service Functions
    additional VLANs are configured following a similar logic.
 
    Figure 47 describes the physical infrastructure on which attachment
-   circuits are provisionned.  The compute nodes (customer) are attached
+   circuits are provisioned.  The compute nodes (customer) are attached
    to the provider infrastructure via a set of bearers (i.e., "compute-
    XX-nicY").  The provider infrastructure can be realized in multiple
    ways, such as IP Fabric, Layer 2/Layer 3 Edge Routers.  This document
