@@ -82,6 +82,12 @@ module ietf-ac-common {
       "Indicates support of Layer 3 ACs.";
   }
 
+  feature server-assigned-reference {
+    description
+      "This feature indicates support for server-generated references
+       and use of such references to access related resources.";
+  }
+
   /****************************Identities************************/
   // IP address allocation types
 
