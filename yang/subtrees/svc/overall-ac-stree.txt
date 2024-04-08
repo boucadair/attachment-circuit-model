@@ -10,7 +10,7 @@
      +--rw ac* [name]
         +--rw customer-name?       string
         +--rw description?         string
-        +--rw test-only?          empty
+        +--rw test-only?           empty
         +--rw requested-start?     yang:date-and-time
         +--rw requested-stop?      yang:date-and-time
         +--ro actual-start?        yang:date-and-time
@@ -26,8 +26,10 @@
         +--ro service-ref* [service-type service-id]
         |  +--ro service-type    identityref
         |  +--ro service-id      string
+        +--ro server-reference?    string
+        |       {ac-common:server-assigned-reference}?
         +--rw name                 string
-        +--rw service-profile*     service-profile-reference        
+        +--rw service-profile*     service-profile-reference     
         +--rw l2-connection  {ac-common:layer2-ac}?
         |  ...
         +--rw ip-connection  {ac-common:layer3-ac}?
