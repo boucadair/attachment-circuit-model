@@ -9,6 +9,7 @@
         ],
         "l2-connection": {
           "encapsulation": {
+            "type": "ietf-vpn-common:dot1q",
             "dot1q": {
               "cvlan-id": 3
             }
