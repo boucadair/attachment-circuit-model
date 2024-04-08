@@ -50,7 +50,7 @@ module: ietf-bearer-svc
         +--rw type?                identityref
         +--rw test-only?           empty
         +--ro bearer-reference?    string
-        |       {vpn-common:bearer-reference}?
+        |       {ac-common:server-assigned-reference}?
         +--ro ac-svc-ref*          ac-svc:attachment-circuit-reference
         +--rw requested-start?     yang:date-and-time
         +--rw requested-stop?      yang:date-and-time
