@@ -4165,66 +4165,66 @@ A.4.  One CE, Two ACs
    =============== NOTE: '\' line wrapping per RFC 8792 ================
 
    {
-      "ietf-ac-svc:attachment-circuits":{
-         "ac":[
-            {
-               "name":"ac1",
-               "description":"a first ac with a same peer node",
-               "l2-connection":{
-                  "encapsulation":{
-                     "type":"ietf-vpn-common:dot1q"
-                  },
-                  "bearer-reference":"line-156"
-               },
-               "ip-connection":{
-                  "ipv4":{
-                     "address-allocation-type":"ietf-ac-common:static-\
+     "ietf-ac-svc:attachment-circuits": {
+       "ac": [
+         {
+           "name": "ac1",
+           "description": "a first ac with a same peer node",
+           "l2-connection": {
+             "encapsulation": {
+               "type": "ietf-vpn-common:dot1q"
+             },
+             "bearer-reference": "line-156"
+           },
+           "ip-connection": {
+             "ipv4": {
+               "address-allocation-type": "ietf-ac-common:static-\
                                                                 address"
-                  },
-                  "ipv6":{
-                     "address-allocation-type":"ietf-ac-common:static-\
+             },
+             "ipv6": {
+               "address-allocation-type": "ietf-ac-common:static-\
                                                                 address"
-                  },
-                  "routing-protocols":{
-                     "routing-protocol":[
-                        {
-                           "id":"1",
-                           "type":"ietf-vpn-common:direct-routing"
-                        }
-                     ]
-                  }
+             }
+           },
+           "routing-protocols": {
+             "routing-protocol": [
+               {
+                 "id": "1",
+                 "type": "ietf-vpn-common:direct-routing"
                }
-            },
-            {
-               "name":"ac2",
-               "description":"a second ac with a same peer node",
-               "l2-connection":{
-                  "encapsulation":{
-                     "type":"ietf-vpn-common:dot1q"
-                  },
-                  "bearer-reference":"line-156"
-               },
-               "ip-connection":{
-                  "ipv4":{
-                     "address-allocation-type":"ietf-ac-common:static-\
+             ]
+           }
+         },
+         {
+           "name": "ac2",
+           "description": "a second ac with a same peer node",
+           "l2-connection": {
+             "encapsulation": {
+               "type": "ietf-vpn-common:dot1q"
+             },
+             "bearer-reference": "line-156"
+           },
+           "ip-connection": {
+             "ipv4": {
+               "address-allocation-type": "ietf-ac-common:static-\
                                                                 address"
-                  },
-                  "ipv6":{
-                     "address-allocation-type":"ietf-ac-common:static-\
+             },
+             "ipv6": {
+               "address-allocation-type": "ietf-ac-common:static-\
                                                                 address"
-                  },
-                  "routing-protocols":{
-                     "routing-protocol":[
-                        {
-                           "id":"1",
-                           "type":"ietf-vpn-common:direct-routing"
-                        }
-                     ]
-                  }
+             }
+           },
+           "routing-protocols": {
+             "routing-protocol": [
+               {
+                 "id": "1",
+                 "type": "ietf-vpn-common:direct-routing"
                }
-            }
-         ]
-      }
+             ]
+           }
+         }
+       ]
+     }
    }
 
        Figure 28: Example of a Message Body to Request Two ACs on the
