@@ -398,7 +398,7 @@ module ietf-bearer-svc {
           requests.";
       }
       leaf bearer-reference {
-        if-feature "vpn-common:bearer-reference";
+        if-feature "ac-common:server-assigned-reference";
         type string;
         config false;
         description
