@@ -1884,6 +1884,7 @@ Table of Contents
              +--rw security
              |  ...
              +--rw service
+                +--rw mtu?      uint32
                 +--rw svc-pe-to-ce-bandwidth {vpn-common:inbound-bw}?
                 |  +--rw bandwidth* [bw-type]
                 |     +--rw bw-type      identityref
