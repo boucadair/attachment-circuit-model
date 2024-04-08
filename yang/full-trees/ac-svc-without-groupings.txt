@@ -162,7 +162,7 @@
      |  |     |  |     +--rw local-as?         inet:as-number
      |  |     |  |     +--rw peer-as?          inet:as-number
      |  |     |  |     +--rw address-family?   identityref
-     |  |     |  |     +--ro local-address?    inet:ip-address
+     |  |     |  |     +--rw local-address?    inet:ip-address
      |  |     |  |     +--rw authentication
      |  |     |  |        +--rw enabled?           boolean
      |  |     |  |        +--rw keying-material
@@ -184,7 +184,7 @@
      |  |     |     +--ro server-reference?   string
      |  |     |     |       {ac-common:server-assigned-reference}?
      |  |     |     +--rw remote-address?     inet:ip-address
-     |  |     |     +--ro local-address?      inet:ip-address
+     |  |     |     +--rw local-address?      inet:ip-address
      |  |     |     +--rw local-as?           inet:as-number
      |  |     |     +--rw peer-as?            inet:as-number
      |  |     |     +--rw address-family?     identityref
