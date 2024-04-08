@@ -1250,6 +1250,23 @@ The attachment circuit in this case use a SAP identifier to refer to the physica
 
 This scenario allows the provider to maintain a list of ACs belonging to the same customer without requiring the full service configuration.
 
+## Connectivity of Cloudidified Network Functions
+
+This example demonstrates how the AC service model permits to manage connectivity requirements for complex Network Functions - containerized or virtualized -  that typically met in Telco Networks. This integration leverages the concept of "parent ACs" to decouple L2 and L3 logic: several L2 AC shares the L3 of a common parent). to provide better stability, flexible and scalability.
+
+The Network Function have the following characteristics:
+- The Network Function is distributed on a set of computes with scaled-out and redundant instances. 
+- The NF has two distinct type of instances: user plane (nf-up) and  routing control plane (nf-cp).
+- The User plane component can be distributed among the first 8 compute nodes (compute-1 to compute-08) to achieve high performance.
+- The Control plane is deployed in a redundant fashion on 2 instances running on distinct compute nodes (compute-09 and compute-10).
+- The NF is attached to distinct networks, each making use of a dedicated vlan. These vlans are therefore instantiated as separate Attachment Circuits. From a realization standpoint, the NF interface connectivity is generally provided thanks to macvlan or SR-IOV. For the sake of simplicity only 2 vlans are presented in this example, additional vlans are generally configured based on similar logic.
+
+Firstly, Figure {{cloud-parent-infra}} describes the physical infrastructure on which attachment circuits are provisionned. The compute nodes (customer) are attached to the provider infrastructure thanks to a set of bearers (i.e. compute-XX-nicY). The provider infrastructure can be realized in multiple ways, such as  IP Fabric, Gateways or L2/L3 Edge Routers. This document does not intend to detail these aspects.
+~~~~ aasvg
+{::include-fold ./figures/cloud-parent-infra.txt}
+~~~~
+{: #cloud-parent-infra title="Physical Topology for Cloud Deployment"}
+
 # Acknowledgments
 {:numbered="false"}
 
