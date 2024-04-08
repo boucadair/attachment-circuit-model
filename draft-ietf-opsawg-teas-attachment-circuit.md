@@ -1261,7 +1261,7 @@ The SFs have the following characteristics:
 - The Control plane is deployed in a redundant fashion on two instances running on distinct compute nodes ("compute-09" and "compute-10").
 - The SF is attached to distinct networks, each making use of a dedicated VLAN. These VLANs are therefore instantiated as separate ACs. From a realization standpoint, the SF interface connectivity is generally provided thanks to MacVLAN or Single Root I/O Virtualization (SR-IOV). For the sake of simplicity only two VLANs are presented in this example, additional VLANs are configured following a similar logic.
 
-{{cloud-parent-infra}} describes the physical infrastructure on which attachment circuits are provisionned. The compute nodes (customer) are attached to the provider infrastructure via a set of bearers (i.e., "compute-XX-nicY"). The provider infrastructure can be realized in multiple ways, such as IP Fabric, Layer 2/Layer 3 Edge Routers. This document does not intend to detail these aspects.
+{{cloud-parent-infra}} describes the physical infrastructure on which attachment circuits are provisioned. The compute nodes (customer) are attached to the provider infrastructure via a set of bearers (i.e., "compute-XX-nicY"). The provider infrastructure can be realized in multiple ways, such as IP Fabric, Layer 2/Layer 3 Edge Routers. This document does not intend to detail these aspects.
 
 ~~~~ aasvg
 {::include-fold ./figures/cloud-parent-infra.txt}
