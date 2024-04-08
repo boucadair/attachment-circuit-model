@@ -123,8 +123,8 @@
        |  |  |  +--rw tag-type?   identityref
        |  |  +--rw qinq
        |  |     +--rw tag-type?         identityref
-       |  |     +--rw svlan-id          uint16
-       |  |     +--rw cvlan-id          uint16
+       |  |     +--rw svlan-id?         uint16
+       |  |     +--rw cvlan-id?         uint16
        |  |     +--rw tag-operations
        |  |        +--rw (op-choice)?
        |  |        |  +--:(pop)
@@ -148,7 +148,7 @@
        |  |  |     |  +--rw vcid?      uint32
        |  |  |     |  +--rw far-end*   union
        |  |  |     +--rw vxlan
-       |  |  |        +--rw vni-id             uint32
+       |  |  |        +--rw vni-id?            uint32
        |  |  |        +--rw peer-mode?         identityref
        |  |  |        +--rw peer-ip-address*   inet:ip-address
        |  |  +--:(l2vpn)
