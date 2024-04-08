@@ -5,14 +5,14 @@
 OPSAWG                                                 M. Boucadair, Ed.
 Internet-Draft                                                    Orange
 Intended status: Standards Track                         R. Roberts, Ed.
-Expires: 7 October 2024                                          Juniper
+Expires: 10 October 2024                                         Juniper
                                                            O. G. D. Dios
                                                               Telefonica
                                                            S. B. Giraldo
                                                                    Nokia
                                                                    B. Wu
                                                      Huawei Technologies
-                                                            5 April 2024
+                                                            8 April 2024
 
 
   YANG Data Models for Bearers and 'Attachment Circuits'-as-a-Service
@@ -62,7 +62,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 7 October 2024.
+   This Internet-Draft will expire on 10 October 2024.
 
 Copyright Notice
 
@@ -257,7 +257,9 @@ Table of Contents
 
    *  Connect a Cloud Infrastructure to a service provider network
       (Appendix A.8).  Note that the AC model can be used between
-      service providers for other interconnection purposes.
+      service providers for other interconnection purposes (e.g.,
+      [RFC8921]).  Such ACs are identified with a "role" set to "ac-
+      common:nni" or "ac-common:public-nni".
 
    The examples provided in Appendix A use the IPv4 address blocks
    reserved for documentation [RFC5737], the IPv6 prefix reserved for
@@ -472,13 +474,13 @@ Table of Contents
                                |   Customer    |
                                '-------+-------'
                Customer Service Model  |
-               e.g., slice-svc, ac-svc,| and bearer-svc
+      l2vpn-svc, l3vpn-svc, ietf-nss, ac-svc, ac-glue, and bearer-svc
                                .-------+-------.
                                |    Service    |
                                | Orchestration |
                                '-------+-------'
                 Network Model          |
-       e.g., l3vpn-ntw, sap, and ac-ntw|
+            l2vpn-ntw, l3vpn-ntw, sap, | ac-glue, and ac-ntw
                                .-------+-------.
                                |   Network     |
                                | Orchestration |
@@ -583,7 +585,7 @@ Table of Contents
           +--rw type?                identityref
           +--rw test-only?           empty
           +--ro bearer-reference?    string
-          |       {vpn-common:bearer-reference}?
+          |       {ac-common:server-assigned-reference}?
           +--ro ac-svc-ref*          ac-svc:attachment-circuit-reference
           +--rw requested-start?     yang:date-and-time
           +--rw requested-stop?      yang:date-and-time
@@ -805,6 +807,11 @@ Table of Contents
    description of these nodes are not reiterated in the following
    subsections.
 
+   Features are used to tag conditional protions of the model in order
+   to accomodate various deployments (support of layer 2 ACs, Layer 3
+   ACs, IPv4, IPv6, routing protocols, Bidirectional Forwarding
+   Detection (BFD), etc.).
+
 5.2.2.  Service Profiles
 
 5.2.2.1.  Description
@@ -812,12 +819,11 @@ Table of Contents
    The 'specific-provisioning-profiles' container (Figure 6) can be used
    by a service provider to maintain a set of reusable profiles.  The
    profiles definitions are similar to those defined in [RFC9181],
-   including: Quality of Service (QoS), Bidirectional Forwarding
-   Detection (BFD), forwarding, and routing profiles.  The exact
-   definition of the profiles is local to each service provider.  The
-   model only includes an identifier for these profiles in order to
-   facilitate identifying and binding local policies when building an
-   AC.
+   including: Quality of Service (QoS), BFD, forwarding, and routing
+   profiles.  The exact definition of the profiles is local to each
+   service provider.  The model only includes an identifier for these
+   profiles in order to facilitate identifying and binding local
+   policies when building an AC.
 
              module: ietf-ac-svc
                +--rw specific-provisioning-profiles
@@ -950,11 +956,12 @@ Table of Contents
        +--rw ac* [name]
           +--rw customer-name?       string
           +--rw description?         string
-          +--rw test-only?          empty
+          +--rw test-only?           empty
           +--rw requested-start?     yang:date-and-time
           +--rw requested-stop?      yang:date-and-time
           +--ro actual-start?        yang:date-and-time
           +--ro actual-stop?         yang:date-and-time
+          +--rw role?                identityref
           +--rw peer-sap-id*         string
           +--rw ac-group-profile*    ac-group-reference
           +--rw ac-parent-ref?       ac-svc:attachment-circuit-reference
@@ -965,6 +972,8 @@ Table of Contents
           +--ro service-ref* [service-type service-id]
           |  +--ro service-type    identityref
           |  +--ro service-id      string
+          +--ro server-reference?    string
+          |       {ac-common:server-assigned-reference}?
           +--rw name                 string
           +--rw service-profile*     service-profile-reference
           +--rw l2-connection  {ac-common:layer2-ac}?
@@ -1007,6 +1016,9 @@ Table of Contents
    'actual-stop':  Reports the actual date and time when the attachment
       circuit actually was disabled.
 
+   'role':  Specifies whether an AC is used, e.g., as User-to-Network
+      Interface (UNI) or Network-to-Network Interface (NNI).
+
    'peer-sap-id':  Includes references to the remote endpoints of an
       attachment circuit [RFC9408].
 
@@ -1035,6 +1047,12 @@ Table of Contents
 
    'service-ref':  Reports the set of services that are bound to the
       attachment circuit.  The services are indexed by their type.
+
+   'server-reference':  Reports the internal reference that is assigned
+      by the provider for this AC.  This reference is used to accomodate
+      deployment contexts (e.g., Section 9.1.2 of [RFC8921]) where an
+      identifier is generated by the server to identify a service order
+      locally.
 
    'name':  Associates a name that uniquely identifies an AC within a
       service provider network.
@@ -1387,12 +1405,12 @@ Table of Contents
            |     |  +--rw peer-groups
            |     |  |  +--rw peer-group* [name]
            |     |  |     +--rw name              string
-           |     |  |     +--ro local-as?         inet:as-number
+           |     |  |     +--rw local-as?         inet:as-number
            |     |  |     +--rw peer-as?          inet:as-number
            |     |  |     +--rw address-family?   identityref
            |     |  |     +--ro local-address?    inet:ip-address
            |     |  |     +--rw authentication
-           |     |  |        +--rw enabled?            boolean
+           |     |  |        +--rw enabled?           boolean
            |     |  |        +--rw keying-material
            |     |  |           +--rw (option)?
            |     |  |              +--:(ao)
@@ -1408,17 +1426,16 @@ Table of Contents
            |     |  |                 +--rw crypto-algorithm?
            |     |  |                         identityref
            |     |  +--rw neighbor* [id]
-           |     |     +--rw id                string
-           |     |     +--rw remote-address?   inet:ip-address
-           |     |     +--ro local-address?    inet:ip-address
-           |     |     +--rw peer-group?
-           |     |     |       -> ../../peer-groups/peer-group/name
-           |     |     +--rw bfd-profile?      bfd-profile-reference
-           |     |     +--ro local-as?         inet:as-number
-           |     |     +--rw peer-as?          inet:as-number
-           |     |     +--rw address-family?   identityref
+           |     |     +--rw id                  string
+           |     |     +--ro server-reference?   string
+           |     |     |       {ac-common:server-assigned-reference}?
+           |     |     +--rw remote-address?     inet:ip-address
+           |     |     +--ro local-address?      inet:ip-address
+           |     |     +--rw local-as?           inet:as-number
+           |     |     +--rw peer-as?            inet:as-number
+           |     |     +--rw address-family?     identityref
            |     |     +--rw authentication
-           |     |     |  +--rw enabled?            boolean
+           |     |     |  +--rw enabled?           boolean
            |     |     |  +--rw keying-material
            |     |     |     +--rw (option)?
            |     |     |        +--:(ao)
@@ -1432,13 +1449,21 @@ Table of Contents
            |     |     |           +--rw key-id?             uint32
            |     |     |           +--rw key?                string
            |     |     |           +--rw crypto-algorithm?   identityref
+           |     |     +--rw requested-start?    yang:date-and-time
+           |     |     +--rw requested-stop?     yang:date-and-time
+           |     |     +--ro actual-start?       yang:date-and-time
+           |     |     +--ro actual-stop?        yang:date-and-time
            |     |     +--rw status
-           |     |        +--rw admin-status
-           |     |        |  +--rw status?        identityref
-           |     |        |  +--ro last-change?   yang:date-and-time
-           |     |        +--ro oper-status
-           |     |           +--ro status?        identityref
-           |     |           +--ro last-change?   yang:date-and-time
+           |     |     |  +--rw admin-status
+           |     |     |  |  +--rw status?        identityref
+           |     |     |  |  +--ro last-change?   yang:date-and-time
+           |     |     |  +--ro oper-status
+           |     |     |     +--ro status?        identityref
+           |     |     |     +--ro last-change?   yang:date-and-time
+           |     |     +--rw peer-group?
+           |     |     |       -> ../../peer-groups/peer-group/name
+           |     |     +--rw bfd-profile?        bfd-profile-reference
+           |     |             {vpn-common:bfd}?
            |     +--rw ospf {vpn-common:rtg-ospf}?
            |     |  ...
            |     +--rw isis {vpn-common:rtg-isis}?
@@ -1487,7 +1512,24 @@ Table of Contents
    For each neighbor, the following data nodes are supported in addition
    to similar parameters that are provided for a peer group:
 
+   'server-reference':  Reports the internal reference that is assigned
+      by the provider for this BGP session.
+
    'remote-address':  Specifies the remote IP address of a BGP neighbor.
+
+   'requested-start':  Specifies the requested date and time when the
+      BGP session is expected to be active.
+
+   'requested-stop':  Specifies the requested date and time when the BGP
+      session is expected to be disabled.
+
+   'actual-start':  Reports the actual date and time when the BGP
+      session actually was enabled.
+
+   'actual-stop':  Reports the actual date and time when the BGP session
+      actually was disabled.
+
+   'status':  Indicates the status of the BGP routing instance.
 
    'peer-group':  A name of a peer group.
 
@@ -1496,8 +1538,6 @@ Table of Contents
 
    'bfd-profile':  Indicates a BFD profile that applies for a BGP
       neighbor.
-
-   'status':  Indicates the status of the BGP routing instance.
 
 5.2.5.3.3.  OSPF
 
@@ -2328,7 +2368,7 @@ Table of Contents
              requests.";
          }
          leaf bearer-reference {
-           if-feature "vpn-common:bearer-reference";
+           if-feature "ac-common:server-assigned-reference";
            type string;
            config false;
            description
@@ -2424,7 +2464,7 @@ Table of Contents
          "Initial revision.";
        reference
          "RFC XXXX: YANG Data Models for Bearers and 'Attachment
-                     Circuits'-as-a-Service (ACaaS)";
+                    Circuits'-as-a-Service (ACaaS)";
      }
 
      /* A set of typedefs to ease referencing cross-modules */
@@ -2623,7 +2663,7 @@ Table of Contents
          }
        }
        leaf bearer-reference {
-         if-feature "vpn-common:bearer-reference";
+         if-feature "ac-common:server-assigned-reference";
          type string;
          description
            "This is an internal reference for the service provider
@@ -2744,6 +2784,70 @@ Table of Contents
 
      //  BGP Service
 
+     grouping bgp-neighbor-without-name {
+       description
+         "A grouping with generic parameters for configuring a BGP
+          neighbor.";
+       leaf remote-address {
+         type inet:ip-address;
+         description
+           "The remote IP address of this entry's BGP peer.
+
+            If this leaf is not present, this means that the primary
+            customer IP address is used as remote IP address.";
+       }
+       leaf local-address {
+         type inet:ip-address;
+         description
+           "The local IP address that will be used to establish
+            the BGP session.";
+       }
+       uses ac-common:bgp-peer-group-without-name;
+       uses ac-common:bgp-authentication;
+       uses ac-common:op-instructions;
+       uses ac-common:service-status;
+     }
+
+     grouping bgp-neighbor-with-name {
+       description
+         "A grouping with generic parameters for configuring a BGP
+          neighbor with an identifier.";
+       leaf id {
+         type string;
+         description
+           "A neighbor identifier.";
+       }
+       uses ac-svc:bgp-neighbor-without-name;
+     }
+
+     grouping bgp-neighbor-with-server-reference {
+       description
+         "A grouping with generic parameters for configuring a BGP
+          neighbor with a reference generated by the provider.";
+       leaf server-reference {
+         if-feature "ac-common:server-assigned-reference";
+         type string;
+         config false;
+         description
+           "This is an internal reference for the service provider
+            to identify the BGP session.";
+       }
+       uses ac-svc:bgp-neighbor-without-name;
+     }
+
+     grouping bgp-neighbor-with-name-server-reference {
+       description
+         "A grouping with generic parameters for configuring a BGP
+          neighbor with an identifier and a reference generated by
+          the provider.";
+       leaf id {
+         type string;
+         description
+           "A neighbor identifier.";
+       }
+       uses ac-svc:bgp-neighbor-with-server-reference;
+     }
+
      grouping bgp-svc {
        description
          "Configuration specific to BGP.";
@@ -2770,25 +2874,7 @@ Table of Contents
          key "id";
          description
            "List of BGP neighbors.";
-         leaf id {
-           type string;
-           description
-             "A neighbor identifier.";
-         }
-         leaf remote-address {
-           type inet:ip-address;
-           description
-             "The remote IP address of this entry's BGP peer.
-
-              If this leaf is not present, this means that the primary
-              customer IP address is used as remote IP address.";
-         }
-         leaf local-address {
-           type inet:ip-address;
-           description
-             "The local IP address that will be used to establish
-              the BGP session.";
-         }
+         uses ac-svc:bgp-neighbor-with-name-server-reference;
          leaf peer-group {
            type leafref {
              path "../../peer-groups/peer-group/name";
@@ -2797,13 +2883,11 @@ Table of Contents
              "The peer-group with which this neighbor is associated.";
          }
          leaf bfd-profile {
+           if-feature "vpn-common:bfd";
            type bfd-profile-reference;
            description
              "Points to a BFD profile.";
          }
-         uses ac-common:bgp-peer-group-without-name;
-         uses ac-common:bgp-authentication;
-         uses ac-common:service-status;
        }
      }
 
@@ -3163,10 +3247,10 @@ Table of Contents
      grouping ac-basic {
        description
          "Grouping for basic parameters for an attachment circuit.";
-       leaf id {
+       leaf name {
          type string;
          description
-           "An identifier of the AC.";
+           "A name that uniquely identifies the AC.";
        }
        container l2-connection {
          if-feature "ac-common:layer2-ac";
@@ -3275,6 +3359,12 @@ Table of Contents
        container service {
          description
            "AC-specific bandwith parameters.";
+         leaf mtu {
+           type uint32;
+           units "bytes";
+           description
+             "Layer 2 MTU.";
+         }
          uses bandwidth;
          container qos {
            if-feature "vpn-common:qos";
@@ -3386,6 +3476,13 @@ Table of Contents
              requests.";
          }
          uses ac-common:op-instructions;
+         leaf role {
+           type identityref {
+             base ac-common:role;
+           }
+           description
+             "Indicates whether this AC is used as UNI, NNI, etc.";
+         }
          leaf-list peer-sap-id {
            type string;
            description
@@ -3439,7 +3536,7 @@ Table of Contents
                base vpn-common:service-type;
              }
              description
-               "Indicates the service type (e.g., L3VPN, Network Slice
+               "Indicates the service type (e.g., L3VPN or Network Slice
                 Service).";
              reference
                "RFC 9408: A YANG Network Data Model for Service
@@ -3451,6 +3548,14 @@ Table of Contents
                "Indicates an identifier of a service instance
                 of a given type that uses the AC.";
            }
+         }
+         leaf server-reference {
+           if-feature "ac-common:server-assigned-reference";
+           type string;
+           config false;
+           description
+             "This is an internal reference for the service provider
+              to identify the AC.";
          }
          uses ac;
        }
@@ -3594,9 +3699,9 @@ Table of Contents
               Boucadair, M., Roberts, R., de Dios, O. G., Barguil, S.,
               and B. Wu, "A Common YANG Data Model for Attachment
               Circuits", Work in Progress, Internet-Draft, draft-ietf-
-              opsawg-teas-common-ac-07, 4 April 2024,
+              opsawg-teas-common-ac-08, 6 April 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
-              teas-common-ac-07>.
+              teas-common-ac-08>.
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
@@ -3742,17 +3847,17 @@ Table of Contents
               Dios, "A YANG Data Model for Augmenting VPN Service and
               Network Models with Attachment Circuits", Work in
               Progress, Internet-Draft, draft-ietf-opsawg-ac-lxsm-lxnm-
-              glue-07, 4 April 2024,
+              glue-08, 6 April 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
-              ac-lxsm-lxnm-glue-07>.
+              ac-lxsm-lxnm-glue-08>.
 
    [I-D.ietf-opsawg-ntw-attachment-circuit]
               Boucadair, M., Roberts, R., de Dios, O. G., Barguil, S.,
               and B. Wu, "A Network YANG Data Model for Attachment
               Circuits", Work in Progress, Internet-Draft, draft-ietf-
-              opsawg-ntw-attachment-circuit-06, 4 April 2024,
+              opsawg-ntw-attachment-circuit-07, 6 April 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
-              ntw-attachment-circuit-06>.
+              ntw-attachment-circuit-07>.
 
    [I-D.ietf-teas-ietf-network-slice-nbi-yang]
               Wu, B., Dhody, D., Rokui, R., Saad, T., and J. Mullooly,
@@ -3855,6 +3960,12 @@ Table of Contents
               for the Routing Information Protocol (RIP)", RFC 8695,
               DOI 10.17487/RFC8695, February 2020,
               <https://www.rfc-editor.org/rfc/rfc8695>.
+
+   [RFC8921]  Boucadair, M., Ed., Jacquenet, C., Zhang, D., and P.
+              Georgatsos, "Dynamic Service Negotiation: The Connectivity
+              Provisioning Negotiation Protocol (CPNP)", RFC 8921,
+              DOI 10.17487/RFC8921, October 2020,
+              <https://www.rfc-editor.org/rfc/rfc8921>.
 
    [RFC8969]  Wu, Q., Ed., Boucadair, M., Ed., Lopez, D., Xie, C., and
               L. Geng, "A Framework for Automating Service and Network

@@ -5,14 +5,14 @@
 Operations and Management Area Working Group           M. Boucadair, Ed.
 Internet-Draft                                                    Orange
 Intended status: Standards Track                              R. Roberts
-Expires: 7 October 2024                                          Juniper
+Expires: 10 October 2024                                         Juniper
                                                            O. G. D. Dios
                                                               Telefonica
                                                            S. B. Giraldo
                                                                    Nokia
                                                                    B. Wu
                                                      Huawei Technologies
-                                                            5 April 2024
+                                                            8 April 2024
 
 
            A Network YANG Data Model for Attachment Circuits
@@ -57,7 +57,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 7 October 2024.
+   This Internet-Draft will expire on 10 October 2024.
 
 Copyright Notice
 
@@ -325,13 +325,13 @@ Table of Contents
                                |   Customer    |
                                '-------+-------'
                Customer Service Model  |
-               e.g., slice-svc, ac-svc,| and bearer-svc
+      l2vpn-svc, l3vpn-svc, ietf-nss, ac-svc, ac-glue, and bearer-svc
                                .-------+-------.
                                |    Service    |
                                | Orchestration |
                                '-------+-------'
                 Network Model          |
-       e.g., l3vpn-ntw, sap, and ac-ntw|
+            l2vpn-ntw, l3vpn-ntw, sap, | ac-glue, and ac-ntw
                                .-------+-------.
                                |   Network     |
                                | Orchestration |
@@ -425,9 +425,9 @@ Table of Contents
         |     +--ro status?        identityref
         |     +--ro last-change?   yang:date-and-time
         +--rw description?         string
-        +--rw l2-connection
+        +--rw l2-connection  {ac-common:layer2-ac}?
         |  ...
-        +--rw ip-connection
+        +--rw ip-connection  {ac-common:layer3-ac}?
         |  ...
         +--rw routing-protocols
         |  ...
@@ -445,7 +445,7 @@ Table of Contents
 
                       Figure 5: Overall Tree Structure
 
-   A node can host one or more SAPs.  As per [RFC9408], a SAP is an
+   A node can host one or more SAPs.  Per [RFC9408], a SAP is an
    abstraction of the network reference points (the PE side of an AC, in
    the context of this document) where network services can be delivered
    and/or are delivered to customers.  Each SAP terminates one or
@@ -506,6 +506,9 @@ Table of Contents
    Layer 3 connectivity (Section 5.5), routing protocols (Section 5.6),
    Operations, Administration, and Maintenance (OAM) (Section 5.7),
    security (Section 5.8), and service (Section 5.9) considerations.
+   Features are used to tag conditional protions to accomodate various
+   deployments (support of layer 2 ACs, Layer 3 ACs, IPv4, IPv6, routing
+   protocols, BFD, etc.).
 
 5.2.  References
 
@@ -1011,8 +1014,8 @@ Table of Contents
           |     |     |  +--rw lan-tag?      string
           |     |     |  +--rw next-hop      union
           |     |     |  +--rw metric?       uint32
-          |     |     +--rw bfd
-          |     |     |  +--rw enable?            boolean
+          |     |     +--rw bfd {vpn-common:bfd}?
+          |     |     |  +--rw enabled?            boolean
           |     |     |  +--rw bfd-profile-ref?   leafref
           |     |     |  +--rw network-ref?
           |     |     |          -> /nw:networks/network/network-id
@@ -1030,8 +1033,8 @@ Table of Contents
           |     |        +--rw lan-tag?      string
           |     |        +--rw next-hop      union
           |     |        +--rw metric?       uint32
-          |     |        +--rw bfd
-          |     |        |  +--rw enable?            boolean
+          |     |        +--rw bfd {vpn-common:bfd}?
+          |     |        |  +--rw enabled?            boolean
           |     |        |  +--rw bfd-profile-ref?   leafref
           |     |        |  +--rw network-ref?
           |     |        |          -> /nw:networks/network/network-id
@@ -1256,8 +1259,8 @@ Table of Contents
           |     |     +--rw capability*        [address-family]
           |     |     |   +--rw address-family    identityref
           |     |     |   +--rw name              identityref
-          |     |     +--rw bfd
-          |     |     |  +--rw enable?            boolean
+          |     |     +--rw bfd {vpn-common:bfd}?
+          |     |     |  +--rw enabled?            boolean
           |     |     |  +--rw bfd-profile-ref?   leafref
           |     |     |  +--rw network-ref?
           |     |     |          -> /nw:networks/network/network-id
@@ -1894,7 +1897,7 @@ Table of Contents
           +--rw routing-protocols
           |  ...
           +--rw oam
-          |  +--rw bfd
+          |  +--rw bfd {vpn-common:bfd}?
           |     +--rw session* [dest-addr]
           |        +--rw dest-addr                   inet:ip-address
           |        +--rw source-address?             union
@@ -3250,7 +3253,7 @@ Table of Contents
              description
                "Only applies when the protocol is BGP.";
            }
-          if-feature "vpn-common:rtg-bgp";
+           if-feature "vpn-common:rtg-bgp";
            description
              "Configuration specific to BGP.";
            uses bgp-base;
@@ -3261,7 +3264,7 @@ Table of Contents
              description
                "Only applies when the protocol is OSPF.";
            }
-          if-feature "vpn-common:rtg-ospf";
+           if-feature "vpn-common:rtg-ospf";
            description
              "Configuration specific to OSPF.";
            uses ac-common:ospf-basic;
@@ -3280,7 +3283,7 @@ Table of Contents
              description
                "Only applies when the protocol is IS-IS.";
            }
-          if-feature "vpn-common:rtg-isis";
+           if-feature "vpn-common:rtg-isis";
            description
              "Configuration specific to IS-IS.";
            uses ac-common:isis-basic;
@@ -3323,7 +3326,7 @@ Table of Contents
              description
                "Only applies when the protocol is RIP.";
            }
-          if-feature "vpn-common:rtg-rip";
+           if-feature "vpn-common:rtg-rip";
            description
              "Configuration specific to RIP routing.";
            uses rip-base;
@@ -3335,7 +3338,7 @@ Table of Contents
                "Only applies when the protocol is the Virtual Router
                 Redundancy Protocol (VRRP).";
            }
-          if-feature "vpn-common:rtg-vrrp";
+           if-feature "vpn-common:rtg-vrrp";
            description
              "Configuration specific to VRRP.";
            reference
@@ -3441,7 +3444,7 @@ Table of Contents
              description
                "Only applies when the protocol is BGP.";
            }
-          if-feature "vpn-common:rtg-bgp";
+           if-feature "vpn-common:rtg-bgp";
            description
              "Configuration specific to BGP.";
            container peer-groups {
@@ -3750,9 +3753,10 @@ Table of Contents
        description
          "Defines a basic BFD grouping for routing configuration.";
        container bfd {
+         if-feature "vpn-common:bfd";
          description
            "BFD control for this nighbor.";
-         leaf enable {
+         leaf enabled {
            type boolean;
            description
              "Enables BFD if set to true. BFD is disabled of set to
@@ -3769,6 +3773,7 @@ Table of Contents
          "Defines the Operations, Administration, and Maintenance
           (OAM) mechanisms used.";
        container bfd {
+         if-feature "vpn-common:bfd";
          description
            "Container for BFD.";
          list session {
@@ -4195,9 +4200,9 @@ Table of Contents
               Boucadair, M., Roberts, R., de Dios, O. G., Barguil, S.,
               and B. Wu, "A Common YANG Data Model for Attachment
               Circuits", Work in Progress, Internet-Draft, draft-ietf-
-              opsawg-teas-common-ac-07, 4 April 2024,
+              opsawg-teas-common-ac-08, 6 April 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
-              teas-common-ac-07>.
+              teas-common-ac-08>.
 
    [IEEE802.1Qcp]
               IEEE, "IEEE Standard for Local and metropolitan area
@@ -4386,9 +4391,9 @@ Table of Contents
               Dios, "A YANG Data Model for Augmenting VPN Service and
               Network Models with Attachment Circuits", Work in
               Progress, Internet-Draft, draft-ietf-opsawg-ac-lxsm-lxnm-
-              glue-07, 4 April 2024,
+              glue-08, 6 April 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
-              ac-lxsm-lxnm-glue-07>.
+              ac-lxsm-lxnm-glue-08>.
 
    [PYANG]    "pyang", 2023, <https://github.com/mbj4668/pyang>.
 
