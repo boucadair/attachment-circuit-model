@@ -20,8 +20,8 @@
         |  |  |  +--rw tag-type?   identityref
         |  |  +--rw qinq
         |  |     +--rw tag-type?   identityref
-        |  |     +--rw svlan-id    uint16
-        |  |     +--rw cvlan-id    uint16
+        |  |     +--rw svlan-id?   uint16
+        |  |     +--rw cvlan-id?   uint16
         |  +--rw (l2-service)?
         |  |  +--:(l2-tunnel-service)
         |  |  |  +--rw l2-tunnel-service
