@@ -1884,6 +1884,7 @@ Table of Contents
              +--rw security
              |  ...
              +--rw service
+                +--rw mtu?      uint32
                 +--rw svc-pe-to-ce-bandwidth {vpn-common:inbound-bw}?
                 |  +--rw bandwidth* [bw-type]
                 |     +--rw bw-type      identityref
@@ -3359,6 +3360,12 @@ Table of Contents
        container service {
          description
            "AC-specific bandwith parameters.";
+         leaf mtu {
+           type uint32;
+           units "bytes";
+           description
+             "Layer 2 MTU.";
+         }
          uses bandwidth;
          container qos {
            if-feature "vpn-common:qos";

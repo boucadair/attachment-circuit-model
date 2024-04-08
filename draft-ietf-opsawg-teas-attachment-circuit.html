@@ -3331,6 +3331,7 @@ isn't any type of VRRP authentication at this time (see <span><a href="https://r
         +--rw security
         |  ...
         +--rw service
+           +--rw mtu?      uint32
            +--rw svc-pe-to-ce-bandwidth {vpn-common:inbound-bw}?
            |  +--rw bandwidth* [bw-type]
            |     +--rw bw-type      identityref
@@ -4846,6 +4847,12 @@ module ietf-ac-svc {
     container service {
       description
         "AC-specific bandwith parameters.";
+      leaf mtu {
+        type uint32;
+        units "bytes";
+        description
+          "Layer 2 MTU.";
+      }
       uses bandwidth;
       container qos {
         if-feature "vpn-common:qos";
