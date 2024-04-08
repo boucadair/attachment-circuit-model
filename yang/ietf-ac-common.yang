@@ -519,7 +519,6 @@ module ietf-ac-common {
       type uint16 {
         range "1..4094";
       }
-      mandatory true;
       description
         "Service VLAN (S-VLAN) identifier.";
     }
@@ -527,7 +526,6 @@ module ietf-ac-common {
       type uint16 {
         range "1..4094";
       }
-      mandatory true;
       description
         "Customer VLAN (C-VLAN) identifier.";
     }
@@ -584,7 +582,6 @@ module ietf-ac-common {
       "VXLAN termination parameters.";
     leaf vni-id {
       type uint32;
-      mandatory true;
       description
         "VXLAN Network Identifier (VNI).";
     }

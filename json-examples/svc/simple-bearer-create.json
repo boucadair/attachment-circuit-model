@@ -5,6 +5,7 @@
         "name": "a-name-choosen-by-client",
         "description": "A bearer example",
         "customer-point": {
+          "identified-by": "ietf-bearer-svc:device-id",
           "device": {
             "device-id": "CE_X_SITE_Y"
           }

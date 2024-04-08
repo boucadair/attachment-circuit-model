@@ -4,25 +4,29 @@
       "slo-sle-template": [
         {
           "id": "low-latency-template",
-          "template-description": "Lowest possible latency forwarding behavior"
+          "description": "Lowest possible latency forwarding behavior"
         }
       ]
     },
     "slice-service": [
       {
-        "service-id": "Slice URLLC_UP",
-        "service-description": "Dedicate TN Slice for URLLC-UP",
+        "id": "Slice URLLC_UP",
+        "description": "Dedicated TN Slice for URLLC-UP",
         "slo-sle-template": "low-latency-template",
         "status": {},
         "sdps": {
           "sdp": [
             {
-              "sdp-id": "sdp1",
-              "ac-svc-name": ["ac1"]
+              "id": "sdp1",
+              "ac-svc-name": [
+                "ac1"
+              ]
             },
             {
               "sdp-id": "sdp2",
-              "ac-svc-name": ["ac2"]
+              "ac-svc-name": [
+                "ac2"
+              ]
             }
           ]
         }
