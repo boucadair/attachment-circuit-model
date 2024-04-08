@@ -1517,14 +1517,6 @@ Table of Contents
 
    'remote-address':  Specifies the remote IP address of a BGP neighbor.
 
-   'peer-group':  A name of a peer group.
-
-      Parameters that are provided at the 'neighbor' level takes
-      precedence over the ones provided in the peer group.
-
-   'bfd-profile':  Indicates a BFD profile that applies for a BGP
-      neighbor.
-
    'requested-start':  Specifies the requested date and time when the
       BGP session is expected to be active.
 
@@ -1538,6 +1530,14 @@ Table of Contents
       actually was disabled.
 
    'status':  Indicates the status of the BGP routing instance.
+
+   'peer-group':  A name of a peer group.
+
+      Parameters that are provided at the 'neighbor' level takes
+      precedence over the ones provided in the peer group.
+
+   'bfd-profile':  Indicates a BFD profile that applies for a BGP
+      neighbor.
 
 5.2.5.3.3.  OSPF
 
