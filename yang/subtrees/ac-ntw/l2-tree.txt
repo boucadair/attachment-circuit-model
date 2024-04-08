@@ -61,7 +61,7 @@
        |  +--rw l2-termination-point?      string
        |  +--rw local-bridge-reference?    string
        |  +--rw bearer-reference?          string
-       |  |       {vpn-common:bearer-reference}?
+       |  |       {ac-common:server-assigned-reference}?
        |  +--rw lag-interface {vpn-common:lag-interface}?
        |     +--rw lag-interface-id?   string
        |     +--rw member-link-list
