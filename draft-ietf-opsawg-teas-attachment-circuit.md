@@ -1255,7 +1255,7 @@ This scenario allows the provider to maintain a list of ACs belonging to the sam
 This example demonstrates how the AC service model permits to manage connectivity requirements for complex Network Functions - containerized or virtualized -  that typically met in Telco Networks. This integration leverages the concept of "parent ACs" to decouple physical and logical connectivity so that several AC can shares L2 and L3 resources.This approach provides flexibility, scalability and API stability.
 
 The Network Function have the following characteristics:
-- The Network Function is distributed on a set of computes with scaled-out and redundant instances. 
+- The Network Function is distributed on a set of computes with scaled-out and redundant instances.
 - The NF has two distinct type of instances: user plane (nf-up) and  routing control plane (nf-cp).
 - The User plane component can be distributed among the first 8 compute nodes (compute-1 to compute-08) to achieve high performance.
 - The Control plane is deployed in a redundant fashion on 2 instances running on distinct compute nodes (compute-09 and compute-10).
