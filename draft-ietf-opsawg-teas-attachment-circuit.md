@@ -652,13 +652,6 @@ For each neighbor, the following data nodes are supported in addition to similar
 'remote-address':
 : Specifies the remote IP address of a BGP neighbor.
 
-'peer-group':
-: A name of a peer group.
-: Parameters that are provided at the 'neighbor' level takes precedence over the ones provided in the peer group.
-
-'bfd-profile':
-: Indicates a BFD profile that applies for a BGP neighbor.
-
 'requested-start':
 : Specifies the requested date and time when the BGP session is expected to be active.
 
@@ -674,6 +667,12 @@ For each neighbor, the following data nodes are supported in addition to similar
 'status':
 : Indicates the status of the BGP routing instance.
 
+'peer-group':
+: A name of a peer group.
+: Parameters that are provided at the 'neighbor' level takes precedence over the ones provided in the peer group.
+
+'bfd-profile':
+: Indicates a BFD profile that applies for a BGP neighbor.
 
 ##### OSPF {#sec-ospf-rtg}
 
