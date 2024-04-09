@@ -1295,10 +1295,10 @@ Note that no individual IP address is assigned in the data model for the NF user
 ~~~~
 {: #parent-profile title="Message body for configuration of the NF ACs"}
 
-Assuming a failure of compute-01, nf-up-1 can be redeployed to compute-07 by the NF/Cloud Orchestration. This operation is transparent to the. Next, the nf can be scaled out thanks to the creation of an extra instance nf-up_07 on compute-08. Since networking is pre-provisionned, these operations happens without any API call. In other words, this is transparent from the perspective of the configuration of the provider network.
+Assuming a failure of compute-01, the instance nf-up-1 is redeployed to compute-07 by the NF/Cloud Orchestration. Additionally, the nf can be scaled-out thanks to the creation of an extra instance nf-up7 on compute-08. Since networking is pre-provisionned, these operations happen without any API call. In other words, this is transparent from the perspective of the configuration of the provider network.
 
 ~~~~ aasvg
-{::include-fold ./figures/ac-parent-logical.txt}
+{::include-fold ./figures/ac-parent-nf-lcm.txt}
 ~~~~
 {: #cloud-parent-nf-lcm title="Compute failure and Scale-out"}
 
