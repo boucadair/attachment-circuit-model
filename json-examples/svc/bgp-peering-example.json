@@ -1,0 +1,48 @@
+{
+  "ietf-ac-svc:attachment-circuits": {
+    "ac": [
+      {
+        "name": "IPT-NET-ABC",
+        "customer-name": "NET-ABC",
+        "description": "NET-ABC",
+        "peer-sap-id": [
+          "sap#114"
+        ],
+        "l2-connection": {
+          "encapsulation": {
+            "type": "ietf-vpn-common:dot1q",
+            "dot1q": {
+              "tag-type": "ietf-vpn-common:c-vlan",
+              "cvlan-id": 114
+            }
+          },
+          "bearer-reference": "line-114"
+        },
+        "ip-connection": {
+          "ipv4": {
+            "local-address": "192.168.1.1",
+            "prefix-length": 30
+          }
+        },
+        "routing-protocols": {
+          "routing-protocol": [
+            {
+              "id": "static",
+              "type": "ietf-vpn-common:static-routing",
+              "static": {
+                "cascaded-lan-prefixes": {
+                  "ipv4-lan-prefixes": [
+                    {
+                      "lan": "198.51.100.1/32",
+                      "next-hop": "192.168.1.1"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

@@ -1250,6 +1250,35 @@ The attachment circuit in this case use a SAP identifier to refer to the physica
 
 This scenario allows the provider to maintain a list of ACs belonging to the same customer without requiring the full service configuration.
 
+
+## BGP Peering
+
+In this scenario, multiple networks, each represented by a Network Element (NE), connect to other networks or a Network Access Point (NAP) for interconnection purposes. Each network connects to each other through one or more ACs.
+
+To facilitate forwarding between the interconnected networks, BGP peering sessions are established between the participating networks. BGP is used to exchange routing information and reachability announcements between those networks.
+
+~~~~ aasvg
+{::include-fold ./figures/bgp-peering-example.txt}
+~~~~
+{: #bgp-peer-network title="Illustration of Provider Network Scenario"}
+
+As depicted in {{bgp-peer-network}}, each AC represents the link between the two networks. The AC configuration includes parameters such as interface settings, VLAN configuration (if applicable), and any additional settings required for connectivity.
+
+~~~~ json
+{::include-fold ./json-examples/svc/bgp-peering-example.json}
+~~~~
+{: #bgp-peer-network-add-attachment-circuit title="Message Body of a Request to create an AC to connect two networks through eBGP peering."}
+
+Once the ACs are established, BGP peering sessions are configured between the routers of the participating networks. BGP sessions are established over the ACs, allowing the routers to exchange routing information and forward traffic between the two ends. BGP peering configuration includes parameters such as neighbor IP addresses, autonomous system (AS) numbers, authentication settings (if required), etc.
+
+~~~~ json
+{::include-fold ./json-examples/svc/bgp-conf-peering-example.json}
+~~~~
+{: #bgp-peer-network-add-bgp-attachment-circuit title="Message Body of a Request to create the eBGP peering into the AC to connect two networks."}
+
+This scenario allows the provider to maintain a list of ACs associated with peering sessions.
+
+
 ## Connectivity of Cloudified Network Functions
 
 This section demonstrates how the AC service model permits to manage connectivity requirements for complex Network Functions (NFs) - containerized or virtualized -  that are typically deployed in Telco networks. This integration leverages the concept of "parent AC" to decouple physical and logical connectivity so that several ACs can shares Layer 2 and Layer 3 resources. This approach provides flexibility, scalability, and API stability.
