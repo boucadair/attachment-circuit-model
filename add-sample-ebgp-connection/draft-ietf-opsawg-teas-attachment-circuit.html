@@ -7248,10 +7248,9 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
           </figcaption></figure>
 </div>
 <p id="appendix-A.10-4">As depicted in <a href="#bgp-peer-network" class="auto internal xref">Figure 47</a>, each AC represents the link between the two networks. The AC configuration includes parameters such as interface settings, VLAN configuration (if applicable), and any additional settings required for connectivity.<a href="#appendix-A.10-4" class="pilcrow">¶</a></p>
-<p id="appendix-A.10-5">Once the ACs are established, BGP peering sessions are configured between the routers of the participating networks. BGP sessions are established over the ACs, allowing the routers to exchange routing information. BGP peering configuration includes parameters such as neighbor IP addresses, AS numbers, authentication settings (if required), etc.<a href="#appendix-A.10-5" class="pilcrow">¶</a></p>
 <span id="name-message-body-of-a-request-to-cr"></span><div id="bgp-peer-network-add-attachment-circuit">
 <figure id="figure-48">
-          <div class="lang-json sourcecode" id="appendix-A.10-6.1">
+          <div class="lang-json sourcecode" id="appendix-A.10-5.1">
 <pre>
 {
   "ietf-ac-svc:attachment-circuits": {
@@ -7304,10 +7303,60 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 </pre>
 </div>
 <figcaption><a href="#figure-48" class="selfRef">Figure 48</a>:
-<a href="#name-message-body-of-a-request-to-cr" class="selfRef">Message Body of a Request to create an AC to connect two networks through eBGP peering</a>
+<a href="#name-message-body-of-a-request-to-cr" class="selfRef">Message Body of a Request to create an AC to connect two networks through eBGP peering.</a>
           </figcaption></figure>
 </div>
-<p id="appendix-A.10-7">This scenario allows the provider to maintain a list of ACs associated with peering sessions.<a href="#appendix-A.10-7" class="pilcrow">¶</a></p>
+<p id="appendix-A.10-6">Once the ACs are established, BGP peering sessions are configured between the routers of the participating networks. BGP sessions are established over the ACs, allowing the routers to exchange routing information. BGP peering configuration includes parameters such as neighbor IP addresses, AS numbers, authentication settings (if required), etc.<a href="#appendix-A.10-6" class="pilcrow">¶</a></p>
+<span id="name-message-body-of-a-request-to-cre"></span><div id="bgp-peer-network-add-bgp-attachment-circuit">
+<figure id="figure-49">
+          <div class="lang-json sourcecode" id="appendix-A.10-7.1">
+<pre>
+{
+  "ietf-ac-svc:attachment-circuits": {
+    "ac": [
+      {
+        "name": "IPT-NET-ABC",
+        "routing-protocols": {
+          "routing-protocol": [
+            {
+              "id": "BGP",
+              "type": "ietf-vpn-common:bgp-routing",
+              "bgp": {
+                "neighbor": [
+                  {
+                    "id": "NAP-1",
+                    "remote-address": "100.100.100.1",
+                    "peer-as": 65537,
+                    "address-family": "ietf-vpn-common:ipv4",
+                    "authentication": {
+                      "enabled": true,
+                      "keying-material": {
+                        "key-id": 1,
+                        "key": "test##"
+                      }
+                    },
+                    "status": {
+                      "admin-status": {
+                        "status": "ietf-vpn-common:admin-up"
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
+</pre>
+</div>
+<figcaption><a href="#figure-49" class="selfRef">Figure 49</a>:
+<a href="#name-message-body-of-a-request-to-cre" class="selfRef">Message Body of a Request to create the eBGP peering into the AC to connect two networks.</a>
+          </figcaption></figure>
+</div>
+<p id="appendix-A.10-8">This scenario allows the provider to maintain a list of ACs associated with peering sessions.<a href="#appendix-A.10-8" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="connectivity-of-cloudidified-network-functions">
@@ -7322,10 +7371,10 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 - The User plane component can be distributed among the first 8 compute nodes (compute-1 to compute-08) to achieve high performance.
 - The Control plane is deployed in a redundant fashion on 2 instances running on distinct compute nodes (compute-09 and compute-10).
 - The NF is attached to distinct networks, each making use of a dedicated vlan. These vlans are therefore instantiated as separate Attachment Circuits. From a realization standpoint, the NF interface connectivity is generally provided thanks to macvlan or SR-IOV. For the sake of simplicity only 2 vlans are presented in this example, additional vlans are generally configured based on similar logic.<a href="#appendix-A.11-2" class="pilcrow">¶</a></p>
-<p id="appendix-A.11-3">Figure <a href="#cloud-parent-infra" class="auto internal xref">Figure 49</a> describes the physical infrastructure. The compute nodes (customer) are attached to the provider infrastructure thanks to a set of physical links on which attachment circuits are provisionned (i.e. compute-XX-nicY).
+<p id="appendix-A.11-3">Figure <a href="#cloud-parent-infra" class="auto internal xref">Figure 50</a> describes the physical infrastructure. The compute nodes (customer) are attached to the provider infrastructure thanks to a set of physical links on which attachment circuits are provisionned (i.e. compute-XX-nicY).
 The provider infrastructure can be realized in multiple ways, such as  IP Fabric, Gateways or L2/L3 Edge Routers. This document does not intend to detail these aspects.<a href="#appendix-A.11-3" class="pilcrow">¶</a></p>
 <span id="name-physical-topology-for-cloud"></span><div id="cloud-parent-infra">
-<figure id="figure-49">
+<figure id="figure-50">
           <div id="appendix-A.11-4.1">
             <div class="alignLeft art-svg artwork" id="appendix-A.11-4.1.1">
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="368" width="560" viewBox="0 0 560 368" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
@@ -7479,7 +7528,7 @@ The provider infrastructure can be realized in multiple ways, such as  IP Fabric
               </svg><a href="#appendix-A.11-4.1.1" class="pilcrow">¶</a>
 </div>
 </div>
-<figcaption><a href="#figure-49" class="selfRef">Figure 49</a>:
+<figcaption><a href="#figure-50" class="selfRef">Figure 50</a>:
 <a href="#name-physical-topology-for-cloud" class="selfRef">Physical Topology for Cloud Deployment</a>
           </figcaption></figure>
 </div>
@@ -7491,7 +7540,7 @@ The deployment actually deploys the Network Service to all computes (compute-01 
 <p id="appendix-A.11-6">For readability the payload are displayed as single JSON files. In practice, several API can happen to initialize these resources (e.g.#1 GET request from customer get IP pools for NFs on vlan 100 thanks to parent configuration and BGP configuration, #2  POST extra routes for user planes and BFD...).<a href="#appendix-A.11-6" class="pilcrow">¶</a></p>
 <p id="appendix-A.11-7">Note that for user plane, no IP address is assigned to Child ACs. The assignment of IP addresses to the NF endpoints is managed by the infrastructure IPAM.<a href="#appendix-A.11-7" class="pilcrow">¶</a></p>
 <span id="name-message-body-of-a-response-t"></span><div id="get-bfd-profiles">
-<figure id="figure-50">
+<figure id="figure-51">
           <div class="lang-json sourcecode" id="appendix-A.11-8.1">
 <pre>
 {
@@ -7507,12 +7556,12 @@ The deployment actually deploys the Network Service to all computes (compute-01 
 }
 </pre>
 </div>
-<figcaption><a href="#figure-50" class="selfRef">Figure 50</a>:
+<figcaption><a href="#figure-51" class="selfRef">Figure 51</a>:
 <a href="#name-message-body-of-a-response-t" class="selfRef">Message Body of a Response to get available BFD profiles from Provider Network</a>
           </figcaption></figure>
 </div>
 <span id="name-message-body-for-configurat"></span><div id="parent-profile">
-<figure id="figure-51">
+<figure id="figure-52">
           <div class="breakable lang-json sourcecode" id="appendix-A.11-9.1">
 <pre>
 =============== NOTE: '\' line wrapping per RFC 8792 ================
@@ -7736,7 +7785,7 @@ The deployment actually deploys the Network Service to all computes (compute-01 
 }
 </pre>
 </div>
-<figcaption><a href="#figure-51" class="selfRef">Figure 51</a>:
+<figcaption><a href="#figure-52" class="selfRef">Figure 52</a>:
 <a href="#name-message-body-for-configurat" class="selfRef">Message body for configuration of the NF ACs</a>
           </figcaption></figure>
 </div>
