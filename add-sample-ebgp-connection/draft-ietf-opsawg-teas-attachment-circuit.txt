@@ -5352,7 +5352,9 @@ A.10.  BGP Peering
                    "neighbor": [
                      {
                        "id": "NAP-1",
+                       "local-address": "198.51.100.1",
                        "remote-address": "100.100.100.1",
+                       "local-as": 65536,
                        "peer-as": 65537,
                        "address-family": "ietf-vpn-common:ipv4",
                        "authentication": {
