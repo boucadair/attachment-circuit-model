@@ -1270,7 +1270,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
                 <p id="section-toc.1-1.10.2.9.1"><a href="#appendix-A.9" class="auto internal xref">A.9</a>.  <a href="#name-connect-customer-network-ce" class="internal xref">Connect Customer Network (CE) Through BGP</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.10">
-                <p id="section-toc.1-1.10.2.10.1"><a href="#appendix-A.10" class="auto internal xref">A.10</a>. <a href="#name-connectivity-of-cloudified-" class="internal xref">Connectivity of Cloudified Service Functions</a></p>
+                <p id="section-toc.1-1.10.2.10.1"><a href="#appendix-A.10" class="auto internal xref">A.10</a>. <a href="#name-connectivity-of-cloudified-" class="internal xref">Connectivity of Cloudified Network Functions</a></p>
 </li>
             </ul>
 </li>
@@ -1297,7 +1297,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         <h3 id="name-scope-and-intended-use">
 <a href="#section-1.1" class="section-number selfRef">1.1. </a><a href="#name-scope-and-intended-use" class="section-name selfRef">Scope and Intended Use</a>
         </h3>
-<p id="section-1.1-1">Connectivity services are provided by networks to customers via dedicated terminating points, such as Service Functions (SFs) <span>[<a href="#RFC7665" class="cite xref">RFC7665</a>]</span>, Customer Edges (CEs), peer Autonomous System Border Routers (ASBRs), data centers gateways, or Internet Exchange Points. A connectivity service is basically about ensuring data transfer received from or destined to a given terminating point to or from other terminating points within the same customer/service, an interconnection node, or an ancillary node. The objectives for the connectivity service can be negotiated and agreed upon between the customer and the network provider. To facilitate data transfer within the provider network, it is assumed that the appropriate setup is provisioned over the links that connect customer terminating points and a provider network (usually via a Provider Edge (PE)), allowing successfully data exchanged over these links. The required setup is referred to in this document as Attachment Circuits (ACs), while the underlying link is referred to as "bearers".<a href="#section-1.1-1" class="pilcrow">¶</a></p>
+<p id="section-1.1-1">Connectivity services are provided by networks to customers via dedicated terminating points, such as Service Functions (NFs) <span>[<a href="#RFC7665" class="cite xref">RFC7665</a>]</span>, Customer Edges (CEs), peer Autonomous System Border Routers (ASBRs), data centers gateways, or Internet Exchange Points. A connectivity service is basically about ensuring data tranNFer received from or destined to a given terminating point to or from other terminating points within the same customer/service, an interconnection node, or an ancillary node. The objectives for the connectivity service can be negotiated and agreed upon between the customer and the network provider. To facilitate data transfer within the provider network, it is assumed that the appropriate setup is provisioned over the links that connect customer terminating points and a provider network (usually via a Provider Edge (PE)), allowing successfully data exchanged over these links. The required setup is referred to in this document as Attachment Circuits (ACs), while the underlying link is referred to as "bearers".<a href="#section-1.1-1" class="pilcrow">¶</a></p>
 <p id="section-1.1-2">This document adheres to the definition of an Attachment Circuit as provided in <span><a href="https://rfc-editor.org/rfc/rfc4364#section-1.2" class="relref">Section 1.2</a> of [<a href="#RFC4364" class="cite xref">RFC4364</a>]</span>, especially:<a href="#section-1.1-2" class="pilcrow">¶</a></p>
 <ul class="normal ulEmpty">
 <li class="normal ulEmpty" id="section-1.1-3.1">
@@ -1315,7 +1315,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         </ul>
 <p id="section-1.1-4">When a customer requests a new value-added service, the service can be bound to existing attachment circuits or trigger the instantiation of new attachment circuits. The provisioning of a value-added service should, thus, accommodate both deployments.<a href="#section-1.1-4" class="pilcrow">¶</a></p>
 <p id="section-1.1-5">Also, because the instantiation of an attachment circuit requires coordinating the provisioning of endpoints that might not belong to the same administrative entity (customer vs. provider or distinct operational teams within the same provider, etc.), providing programmatic means to expose 'attachment circuits'-as-a-service greatly simplifies the provisioning of value-added services delivered over an attachment circuit. For example, management systems of adjacent domains that need to connect via an AC will use such means to agree upon the resources that are required for the activation of both sides of an AC (e.g., Layer 2 tags, IP address family, or IP subnets).<a href="#section-1.1-5" class="pilcrow">¶</a></p>
-<p id="section-1.1-6">This document specifies a YANG service data model ("ietf-ac-svc") for managing attachment circuits that are exposed by a network to its customers, such as an enterprise site, an SF, a hosting infrastructure, or a peer network provider. The model can be used for the provisioning of ACs prior or during advanced service provisioning (e.g., Network Slice Service <span>[<a href="#RFC9543" class="cite xref">RFC9543</a>]</span>).<a href="#section-1.1-6" class="pilcrow">¶</a></p>
+<p id="section-1.1-6">This document specifies a YANG service data model ("ietf-ac-svc") for managing attachment circuits that are exposed by a network to its customers, such as an enterprise site, an NF, a hosting infrastructure, or a peer network provider. The model can be used for the provisioning of ACs prior or during advanced service provisioning (e.g., Network Slice Service <span>[<a href="#RFC9543" class="cite xref">RFC9543</a>]</span>).<a href="#section-1.1-6" class="pilcrow">¶</a></p>
 <p id="section-1.1-7">The "ietf-ac-svc" module (<a href="#sec-ac-module" class="auto internal xref">Section 6.2</a>) includes a set of reusable groupings. Whether a service model reuses structures defined in the "ietf-ac-svc" or simply includes an AC reference (that was communicated during AC service instantiation) is a design choice of these service models. Relying upon the AC service model to manage ACs over which services are delivered has the merit of decorrelating the management of the (core) service vs. upgrade the AC components to reflect recent AC technologies or new features (e.g., new encryption scheme, additional routing protocol). This document favors the approach of completely relying upon the AC service model instead of duplicating data nodes into specific modules of advanced services that are delivered over an Attachment Circuit.<a href="#section-1.1-7" class="pilcrow">¶</a></p>
 <p id="section-1.1-8">Since the provisioning of an AC requires a bearer to be in place, this document introduces a new module called "ietf-bearer-svc" that enables customers to manage their bearer requests (<a href="#sec-bearer-module" class="auto internal xref">Section 6.1</a>). The customers can then retrieve a provider-assigned bearer reference that they will include in their AC service requests. Likewise, a customer may retrieve whether their bearers support a synchronization mechanism such as Sync Ethernet (SyncE) <span>[<a href="#ITU-T-G.781" class="cite xref">ITU-T-G.781</a>]</span>. An example of retrieving a bearer reference is provided in <a href="#ex-create-bearer" class="auto internal xref">Appendix A.1</a>.<a href="#section-1.1-8" class="pilcrow">¶</a></p>
 <p id="section-1.1-9">An AC service request can provide a reference to a bearer or a set of peer Service Attachment Points (SAPs) <span>[<a href="#RFC9408" class="cite xref">RFC9408</a>]</span>. Both schemes are supported in the AC service model. When several bearers are available, the AC service request may filter them based on the bearer type, synchronization support, etc.<a href="#section-1.1-9" class="pilcrow">¶</a></p>
@@ -7169,35 +7169,40 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 <p id="appendix-A.9-5">This scenario allows the provider to maintain a list of ACs belonging to the same customer without requiring the full service configuration.<a href="#appendix-A.9-5" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="connectivity-of-cloudified-service-functions">
+<div id="connectivity-of-cloudified-network-functions">
 <section id="appendix-A.10">
         <h3 id="name-connectivity-of-cloudified-">
-<a href="#appendix-A.10" class="section-number selfRef">A.10. </a><a href="#name-connectivity-of-cloudified-" class="section-name selfRef">Connectivity of Cloudified Service Functions</a>
+<a href="#appendix-A.10" class="section-number selfRef">A.10. </a><a href="#name-connectivity-of-cloudified-" class="section-name selfRef">Connectivity of Cloudified Network Functions</a>
         </h3>
-<p id="appendix-A.10-1">This example demonstrates how the AC service model permits to manage connectivity requirements for complex SFs - containerized or virtualized -  that are typically deployed in Telco networks. This integration leverages the concept of "parent AC" to decouple physical and logical connectivity so that several ACs can shares Layer 2 and Layer 3 resources. This approach provides flexibility, scalability, and API stability.<a href="#appendix-A.10-1" class="pilcrow">¶</a></p>
-<p id="appendix-A.10-2">The SFs have the following characteristics:<a href="#appendix-A.10-2" class="pilcrow">¶</a></p>
-<ul class="normal">
-<li class="normal" id="appendix-A.10-3.1">
-            <p id="appendix-A.10-3.1.1">The SF is distributed on a set of compute nodes with scaled-out and redundant instances.<a href="#appendix-A.10-3.1.1" class="pilcrow">¶</a></p>
-</li>
-          <li class="normal" id="appendix-A.10-3.2">
-            <p id="appendix-A.10-3.2.1">The SF has two distinct type of instances: user plane ("nf-up") and routing control plane ("nf-cp").<a href="#appendix-A.10-3.2.1" class="pilcrow">¶</a></p>
-</li>
-          <li class="normal" id="appendix-A.10-3.3">
-            <p id="appendix-A.10-3.3.1">The User plane component can be distributed among the first 8 compute nodes ("compute-01" to "compute-08") to achieve high performance.<a href="#appendix-A.10-3.3.1" class="pilcrow">¶</a></p>
-</li>
-          <li class="normal" id="appendix-A.10-3.4">
-            <p id="appendix-A.10-3.4.1">The Control plane is deployed in a redundant fashion on two instances running on distinct compute nodes ("compute-09" and "compute-10").<a href="#appendix-A.10-3.4.1" class="pilcrow">¶</a></p>
-</li>
-          <li class="normal" id="appendix-A.10-3.5">
-            <p id="appendix-A.10-3.5.1">The SF is attached to distinct networks, each making use of a dedicated VLAN. These VLANs are therefore instantiated as separate ACs. From a realization standpoint, the SF interface connectivity is generally provided thanks to MacVLAN or Single Root I/O Virtualization (SR-IOV). For the sake of simplicity only two VLANs are presented in this example, additional VLANs are configured following a similar logic.<a href="#appendix-A.10-3.5.1" class="pilcrow">¶</a></p>
+<p id="appendix-A.10-1">This section demonstrates how the AC service model permits to manage connectivity requirements for complex Network Functions (NFs) - containerized or virtualized -  that are typically deployed in Telco networks. This integration leverages the concept of "parent AC" to decouple physical and logical connectivity so that several ACs can shares Layer 2 and Layer 3 resources. This approach provides flexibility, scalability, and API stability.<a href="#appendix-A.10-1" class="pilcrow">¶</a></p>
+<ul class="normal ulEmpty">
+<li class="normal ulEmpty" id="appendix-A.10-2.1">
+            <p id="appendix-A.10-2.1.1">NFs is used to refer to the SFs defined <span>[<a href="#RFC7665" class="cite xref">RFC7665</a>]</span>.<a href="#appendix-A.10-2.1.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
-<p id="appendix-A.10-4"><a href="#cloud-parent-infra" class="auto internal xref">Figure 47</a> describes the physical infrastructure. The compute nodes (customer) are attached to the provider infrastructure thanks to a set of physical links on which attachment circuits are provisioned (i.e., "compute-XX-nicY"). The provider infrastructure can be realized in multiple ways, such as IP Fabric, Layer 2/Layer 3 Edge Routers. This document does not intend to detail these aspects.<a href="#appendix-A.10-4" class="pilcrow">¶</a></p>
+<p id="appendix-A.10-3">The NFs have the following characteristics:<a href="#appendix-A.10-3" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="appendix-A.10-4.1">
+            <p id="appendix-A.10-4.1.1">The NF is distributed on a set of compute nodes with scaled-out and redundant instances.<a href="#appendix-A.10-4.1.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="appendix-A.10-4.2">
+            <p id="appendix-A.10-4.2.1">The NF has two distinct type of instances: user plane ("nf-up") and routing control plane ("nf-cp").<a href="#appendix-A.10-4.2.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="appendix-A.10-4.3">
+            <p id="appendix-A.10-4.3.1">The User plane component can be distributed among the first 8 compute nodes ("compute-01" to "compute-08") to achieve high performance.<a href="#appendix-A.10-4.3.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="appendix-A.10-4.4">
+            <p id="appendix-A.10-4.4.1">The Control plane is deployed in a redundant fashion on two instances running on distinct compute nodes ("compute-09" and "compute-10").<a href="#appendix-A.10-4.4.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="appendix-A.10-4.5">
+            <p id="appendix-A.10-4.5.1">The NF is attached to distinct networks, each making use of a dedicated VLAN. These VLANs are therefore instantiated as separate ACs. From a realization standpoint, the NF interface connectivity is generally provided thanks to MacVLAN or Single Root I/O Virtualization (SR-IOV). For the sake of simplicity only two VLANs are presented in this example, additional VLANs are configured following a similar logic.<a href="#appendix-A.10-4.5.1" class="pilcrow">¶</a></p>
+</li>
+        </ul>
+<p id="appendix-A.10-5"><a href="#cloud-parent-infra" class="auto internal xref">Figure 47</a> describes the physical infrastructure. The compute nodes (customer) are attached to the provider infrastructure thanks to a set of physical links on which attachment circuits are provisioned (i.e., "compute-XX-nicY"). The provider infrastructure can be realized in multiple ways, such as IP Fabric, Layer 2/Layer 3 Edge Routers. This document does not intend to detail these aspects.<a href="#appendix-A.10-5" class="pilcrow">¶</a></p>
 <span id="name-example-physical-topology-f"></span><div id="cloud-parent-infra">
 <figure id="figure-47">
-          <div id="appendix-A.10-5.1">
-            <div class="alignLeft art-svg artwork" id="appendix-A.10-5.1.1">
+          <div id="appendix-A.10-6.1">
+            <div class="alignLeft art-svg artwork" id="appendix-A.10-6.1.1">
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="368" width="560" viewBox="0 0 560 368" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
                 <g class="text">
                   <text x="320" y="36">┌</text>
@@ -7346,32 +7351,32 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
                   <text x="528" y="356">─</text>
                   <text x="544" y="356">┘</text>
                 </g>
-              </svg><a href="#appendix-A.10-5.1.1" class="pilcrow">¶</a>
+              </svg><a href="#appendix-A.10-6.1.1" class="pilcrow">¶</a>
 </div>
 </div>
 <figcaption><a href="#figure-47" class="selfRef">Figure 47</a>:
 <a href="#name-example-physical-topology-f" class="selfRef">Example Physical Topology for Cloud Deployment</a>
           </figcaption></figure>
 </div>
-<p id="appendix-A.10-6">The SFs are deployed on this infrastructure in the following way:<a href="#appendix-A.10-6" class="pilcrow">¶</a></p>
+<p id="appendix-A.10-7">The NFs are deployed on this infrastructure in the following way:<a href="#appendix-A.10-7" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="appendix-A.10-7.1">
-            <p id="appendix-A.10-7.1.1">Configuration of a parent AC as a centralized attachment for "vlan 100". The parent AC captures Layer 2 and Layer 3 properties for this VLAN: vlan-id, IP default gateway and subnet, IP address pool for SFs endpoints, static routes with BFD to user plane and BGP configuration to control plane SFs.<a href="#appendix-A.10-7.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="appendix-A.10-8.1">
+            <p id="appendix-A.10-8.1.1">Configuration of a parent AC as a centralized attachment for "vlan 100". The parent AC captures Layer 2 and Layer 3 properties for this VLAN: vlan-id, IP default gateway and subnet, IP address pool for NFs endpoints, static routes with BFD to user plane and BGP configuration to control plane NFs.<a href="#appendix-A.10-8.1.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="appendix-A.10-7.2">
-            <p id="appendix-A.10-7.2.1">Configuration of a parent AC as a centralized attachment for "vlan 200". This vlan is for Layer 2 connectivity between SFs (no IP configuration in the provider network).<a href="#appendix-A.10-7.2.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="appendix-A.10-8.2">
+            <p id="appendix-A.10-8.2.1">Configuration of a parent AC as a centralized attachment for "vlan 200". This vlan is for Layer 2 connectivity between NFs (no IP configuration in the provider network).<a href="#appendix-A.10-8.2.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="appendix-A.10-7.3">
-            <p id="appendix-A.10-7.3.1">"Child ACs" binding bearers to parent ACs for "vlan 100" and "vlan 200".<a href="#appendix-A.10-7.3.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="appendix-A.10-8.3">
+            <p id="appendix-A.10-8.3.1">"Child ACs" binding bearers to parent ACs for "vlan 100" and "vlan 200".<a href="#appendix-A.10-8.3.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="appendix-A.10-7.4">
-            <p id="appendix-A.10-7.4.1">The deployment deploys the network service to all compute nodes ("compute-01" to "compute-10"), even though the SF is not instantiated on "compute-07"/"compute-08". This approach permits to handle compute failures and scale-out scenarios in a reactive and flexible fashion thanks to a pre-provisioned networking logic.<a href="#appendix-A.10-7.4.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="appendix-A.10-8.4">
+            <p id="appendix-A.10-8.4.1">The deployment deploys the network service to all compute nodes ("compute-01" to "compute-10"), even though the NF is not instantiated on "compute-07"/"compute-08". This approach permits to handle compute failures and scale-out scenarios in a reactive and flexible fashion thanks to a pre-provisioned networking logic.<a href="#appendix-A.10-8.4.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
-<span id="name-logical-topology-of-the-sfs"></span><div id="cloud-parent-logical">
+<span id="name-logical-topology-of-the-nfs"></span><div id="cloud-parent-logical">
 <figure id="figure-48">
-          <div id="appendix-A.10-8.1">
-            <div class="alignLeft art-svg artwork" id="appendix-A.10-8.1.1">
+          <div id="appendix-A.10-9.1">
+            <div class="alignLeft art-svg artwork" id="appendix-A.10-9.1.1">
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="1088" width="536" viewBox="0 0 536 1088" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
                 <g class="text">
                   <text x="360" y="36">┌───────────────────────────────────────┐</text>
@@ -7651,18 +7656,18 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
                   <text x="296" y="1044">│</text>
                   <text x="152" y="1060">└───────────────────────────────────┘</text>
                 </g>
-              </svg><a href="#appendix-A.10-8.1.1" class="pilcrow">¶</a>
+              </svg><a href="#appendix-A.10-9.1.1" class="pilcrow">¶</a>
 </div>
 </div>
 <figcaption><a href="#figure-48" class="selfRef">Figure 48</a>:
-<a href="#name-logical-topology-of-the-sfs" class="selfRef">Logical Topology of the SFs Deployment</a>
+<a href="#name-logical-topology-of-the-nfs" class="selfRef">Logical Topology of the NFs Deployment</a>
           </figcaption></figure>
 </div>
-<p id="appendix-A.10-9">For readability the payload is displayed as single JSON file (<a href="#parent-profile" class="auto internal xref">Figure 49</a>). In practice, several API calls make take place to initialize these resources (e.g., GET requests from the customer to retrieve the IP address pools for SFs on "vlan 100" thanks to parent configuration and BGP configuration, and POST extra routes for user planes and BFD).<a href="#appendix-A.10-9" class="pilcrow">¶</a></p>
-<p id="appendix-A.10-10">Note that no individual IP address is assigned in the data model for the SF user plane instances (i.e., no "customer-address" in the Child AC). The assignment of IP addresses to the SF endpoints is managed by the Cloud Infrastructure IPAM based on the customer-addresses IP address pool "192.0.2.1-200". Like in any standard LAN-facing scenario, it is assumed that the actual binding of IP endpoints to logical attachments (here Child ACs) relies on a dedicated protocol logic  (typically, ARP or NDP) and is not captured in the data model. Hence, the IP addresses displayed for SF user plane instances are simply examples of a realization approach. Note also that the Control Plane is defined with static IP address assignment on a given AC/bearer to illustrate another deployment alternative.<a href="#appendix-A.10-10" class="pilcrow">¶</a></p>
+<p id="appendix-A.10-10">For readability the payload is displayed as single JSON file (<a href="#parent-profile" class="auto internal xref">Figure 49</a>). In practice, several API calls make take place to initialize these resources (e.g., GET requests from the customer to retrieve the IP address pools for NFs on "vlan 100" thanks to parent configuration and BGP configuration, and POST extra routes for user planes and BFD).<a href="#appendix-A.10-10" class="pilcrow">¶</a></p>
+<p id="appendix-A.10-11">Note that no individual IP address is assigned in the data model for the NF user plane instances (i.e., no "customer-address" in the Child AC). The assignment of IP addresses to the NF endpoints is managed by the Cloud Infrastructure IPAM based on the customer-addresses IP address pool "192.0.2.1-200". Like in any standard LAN-facing scenario, it is assumed that the actual binding of IP endpoints to logical attachments (here Child ACs) relies on a dedicated protocol logic  (typically, ARP or NDP) and is not captured in the data model. Hence, the IP addresses displayed for NF user plane instances are simply examples of a realization approach. Note also that the Control Plane is defined with static IP address assignment on a given AC/bearer to illustrate another deployment alternative.<a href="#appendix-A.10-11" class="pilcrow">¶</a></p>
 <span id="name-message-body-for-the-config"></span><div id="parent-profile">
 <figure id="figure-49">
-          <div class="breakable lang-json sourcecode" id="appendix-A.10-11.1">
+          <div class="breakable lang-json sourcecode" id="appendix-A.10-12.1">
 <pre>
 =============== NOTE: '\' line wrapping per RFC 8792 ================
 
@@ -7892,14 +7897,14 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 </pre>
 </div>
 <figcaption><a href="#figure-49" class="selfRef">Figure 49</a>:
-<a href="#name-message-body-for-the-config" class="selfRef">Message Body for the Configuration of The SF ACs</a>
+<a href="#name-message-body-for-the-config" class="selfRef">Message Body for the Configuration of The NF ACs</a>
           </figcaption></figure>
 </div>
-<p id="appendix-A.10-12">Assuming a failure of "compute-01", the instance "nf-up-1" can be redeployed to "compute-07" by the SF/Cloud Orchestration. Additionally, the SF can be scaled-out thanks to the creation of an extra instance "nf-up7" on "compute-08". Since connectivity is pre-provisioned, these operations happen without any API calls. In other words, this redeployment is transparent from the perspective of the configuration of the provider network.<a href="#appendix-A.10-12" class="pilcrow">¶</a></p>
+<p id="appendix-A.10-13">Assuming a failure of "compute-01", the instance "nf-up-1" can be redeployed to "compute-07" by the NF/Cloud Orchestration. Additionally, the NF can be scaled-out thanks to the creation of an extra instance "nf-up7" on "compute-08". Since connectivity is pre-provisioned, these operations happen without any API calls. In other words, this redeployment is transparent from the perspective of the configuration of the provider network.<a href="#appendix-A.10-13" class="pilcrow">¶</a></p>
 <span id="name-example-of-compute-failure-"></span><div id="cloud-parent-nf-lcm">
 <figure id="figure-50">
-          <div id="appendix-A.10-13.1">
-            <div class="alignLeft art-svg artwork" id="appendix-A.10-13.1.1">
+          <div id="appendix-A.10-14.1">
+            <div class="alignLeft art-svg artwork" id="appendix-A.10-14.1.1">
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="496" width="544" viewBox="0 0 544 496" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
                 <path d="M 16,320 L 16,336" fill="none" stroke="black"></path>
                 <path d="M 16,416 L 16,432" fill="none" stroke="black"></path>
@@ -8028,14 +8033,14 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
                   <text x="504" y="468">─</text>
                   <text x="520" y="468">─</text>
                 </g>
-              </svg><a href="#appendix-A.10-13.1.1" class="pilcrow">¶</a>
+              </svg><a href="#appendix-A.10-14.1.1" class="pilcrow">¶</a>
 </div>
 </div>
 <figcaption><a href="#figure-50" class="selfRef">Figure 50</a>:
 <a href="#name-example-of-compute-failure-" class="selfRef">Example of Compute Failure and Scale-out</a>
           </figcaption></figure>
 </div>
-<p id="appendix-A.10-14">Finally, the addition or deletion of compute nodes (e.g., "compute-11", "compute-12") in the deployment involves merely the configuration of Child ACs. The parent AC remains unchanged: it is a stable identifier. This is practical for referencing by end-to-end service models for VPN configuration <span>[<a href="#I-D.ietf-opsawg-ac-lxsm-lxnm-glue" class="cite xref">I-D.ietf-opsawg-ac-lxsm-lxnm-glue</a>]</span>, Slice Service <span>[<a href="#I-D.ietf-teas-ietf-network-slice-nbi-yang" class="cite xref">I-D.ietf-teas-ietf-network-slice-nbi-yang</a>]</span>, etc.<a href="#appendix-A.10-14" class="pilcrow">¶</a></p>
+<p id="appendix-A.10-15">Finally, the addition or deletion of compute nodes (e.g., "compute-11", "compute-12") in the deployment involves merely the configuration of Child ACs. The parent AC remains unchanged: it is a stable identifier. This is practical for referencing by end-to-end service models for VPN configuration <span>[<a href="#I-D.ietf-opsawg-ac-lxsm-lxnm-glue" class="cite xref">I-D.ietf-opsawg-ac-lxsm-lxnm-glue</a>]</span>, Slice Service <span>[<a href="#I-D.ietf-teas-ietf-network-slice-nbi-yang" class="cite xref">I-D.ietf-teas-ietf-network-slice-nbi-yang</a>]</span>, etc.<a href="#appendix-A.10-15" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>

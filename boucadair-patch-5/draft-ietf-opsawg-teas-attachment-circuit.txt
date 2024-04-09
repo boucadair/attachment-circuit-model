@@ -117,7 +117,7 @@ Table of Contents
      A.8.  Connecting a Virtualized Environment Running in a Cloud
             Provider
      A.9.  Connect Customer Network (CE) Through BGP
-     A.10. Connectivity of Cloudified Service Functions
+     A.10. Connectivity of Cloudified Network Functions
    Acknowledgments
    Contributors
    Authors' Addresses
@@ -127,10 +127,10 @@ Table of Contents
 1.1.  Scope and Intended Use
 
    Connectivity services are provided by networks to customers via
-   dedicated terminating points, such as Service Functions (SFs)
+   dedicated terminating points, such as Service Functions (NFs)
    [RFC7665], Customer Edges (CEs), peer Autonomous System Border
    Routers (ASBRs), data centers gateways, or Internet Exchange Points.
-   A connectivity service is basically about ensuring data transfer
+   A connectivity service is basically about ensuring data tranNFer
    received from or destined to a given terminating point to or from
    other terminating points within the same customer/service, an
    interconnection node, or an ancillary node.  The objectives for the
@@ -177,7 +177,7 @@ Table of Contents
 
    This document specifies a YANG service data model ("ietf-ac-svc") for
    managing attachment circuits that are exposed by a network to its
-   customers, such as an enterprise site, an SF, a hosting
+   customers, such as an enterprise site, an NF, a hosting
    infrastructure, or a peer network provider.  The model can be used
    for the provisioning of ACs prior or during advanced service
    provisioning (e.g., Network Slice Service [RFC9543]).
@@ -5232,22 +5232,24 @@ A.9.  Connect Customer Network (CE) Through BGP
    to the same customer without requiring the full service
    configuration.
 
-A.10.  Connectivity of Cloudified Service Functions
+A.10.  Connectivity of Cloudified Network Functions
 
-   This example demonstrates how the AC service model permits to manage
-   connectivity requirements for complex SFs - containerized or
-   virtualized - that are typically deployed in Telco networks.  This
-   integration leverages the concept of "parent AC" to decouple physical
-   and logical connectivity so that several ACs can shares Layer 2 and
-   Layer 3 resources.  This approach provides flexibility, scalability,
-   and API stability.
+   This section demonstrates how the AC service model permits to manage
+   connectivity requirements for complex Network Functions (NFs) -
+   containerized or virtualized - that are typically deployed in Telco
+   networks.  This integration leverages the concept of "parent AC" to
+   decouple physical and logical connectivity so that several ACs can
+   shares Layer 2 and Layer 3 resources.  This approach provides
+   flexibility, scalability, and API stability.
 
-   The SFs have the following characteristics:
+      NFs is used to refer to the SFs defined [RFC7665].
 
-   *  The SF is distributed on a set of compute nodes with scaled-out
+   The NFs have the following characteristics:
+
+   *  The NF is distributed on a set of compute nodes with scaled-out
       and redundant instances.
 
-   *  The SF has two distinct type of instances: user plane ("nf-up")
+   *  The NF has two distinct type of instances: user plane ("nf-up")
       and routing control plane ("nf-cp").
 
    *  The User plane component can be distributed among the first 8
@@ -5258,9 +5260,9 @@ A.10.  Connectivity of Cloudified Service Functions
       instances running on distinct compute nodes ("compute-09" and
       "compute-10").
 
-   *  The SF is attached to distinct networks, each making use of a
+   *  The NF is attached to distinct networks, each making use of a
       dedicated VLAN.  These VLANs are therefore instantiated as
-      separate ACs.  From a realization standpoint, the SF interface
+      separate ACs.  From a realization standpoint, the NF interface
       connectivity is generally provided thanks to MacVLAN or Single
       Root I/O Virtualization (SR-IOV).  For the sake of simplicity only
       two VLANs are presented in this example, additional VLANs are
@@ -5297,23 +5299,23 @@ A.10.  Connectivity of Cloudified Service Functions
 
          Figure 47: Example Physical Topology for Cloud Deployment
 
-   The SFs are deployed on this infrastructure in the following way:
+   The NFs are deployed on this infrastructure in the following way:
 
    *  Configuration of a parent AC as a centralized attachment for "vlan
       100".  The parent AC captures Layer 2 and Layer 3 properties for
       this VLAN: vlan-id, IP default gateway and subnet, IP address pool
-      for SFs endpoints, static routes with BFD to user plane and BGP
-      configuration to control plane SFs.
+      for NFs endpoints, static routes with BFD to user plane and BGP
+      configuration to control plane NFs.
 
    *  Configuration of a parent AC as a centralized attachment for "vlan
-      200".  This vlan is for Layer 2 connectivity between SFs (no IP
+      200".  This vlan is for Layer 2 connectivity between NFs (no IP
       configuration in the provider network).
 
    *  "Child ACs" binding bearers to parent ACs for "vlan 100" and "vlan
       200".
 
    *  The deployment deploys the network service to all compute nodes
-      ("compute-01" to "compute-10"), even though the SF is not
+      ("compute-01" to "compute-10"), even though the NF is not
       instantiated on "compute-07"/"compute-08".  This approach permits
       to handle compute failures and scale-out scenarios in a reactive
       and flexible fashion thanks to a pre-provisioned networking logic.
@@ -5384,24 +5386,24 @@ A.10.  Connectivity of Cloudified Service Functions
     │203.0.113.96/28, NH = 192.2.0.1    │
     └───────────────────────────────────┘
 
-             Figure 48: Logical Topology of the SFs Deployment
+             Figure 48: Logical Topology of the NFs Deployment
 
    For readability the payload is displayed as single JSON file
    (Figure 49).  In practice, several API calls make take place to
    initialize these resources (e.g., GET requests from the customer to
-   retrieve the IP address pools for SFs on "vlan 100" thanks to parent
+   retrieve the IP address pools for NFs on "vlan 100" thanks to parent
    configuration and BGP configuration, and POST extra routes for user
    planes and BFD).
 
    Note that no individual IP address is assigned in the data model for
-   the SF user plane instances (i.e., no "customer-address" in the Child
-   AC).  The assignment of IP addresses to the SF endpoints is managed
+   the NF user plane instances (i.e., no "customer-address" in the Child
+   AC).  The assignment of IP addresses to the NF endpoints is managed
    by the Cloud Infrastructure IPAM based on the customer-addresses IP
    address pool "192.0.2.1-200".  Like in any standard LAN-facing
    scenario, it is assumed that the actual binding of IP endpoints to
    logical attachments (here Child ACs) relies on a dedicated protocol
    logic (typically, ARP or NDP) and is not captured in the data model.
-   Hence, the IP addresses displayed for SF user plane instances are
+   Hence, the IP addresses displayed for NF user plane instances are
    simply examples of a realization approach.  Note also that the
    Control Plane is defined with static IP address assignment on a given
    AC/bearer to illustrate another deployment alternative.
@@ -5632,11 +5634,11 @@ A.10.  Connectivity of Cloudified Service Functions
      }
    }
 
-        Figure 49: Message Body for the Configuration of The SF ACs
+        Figure 49: Message Body for the Configuration of The NF ACs
 
    Assuming a failure of "compute-01", the instance "nf-up-1" can be
-   redeployed to "compute-07" by the SF/Cloud Orchestration.
-   Additionally, the SF can be scaled-out thanks to the creation of an
+   redeployed to "compute-07" by the NF/Cloud Orchestration.
+   Additionally, the NF can be scaled-out thanks to the creation of an
    extra instance "nf-up7" on "compute-08".  Since connectivity is pre-
    provisioned, these operations happen without any API calls.  In other
    words, this redeployment is transparent from the perspective of the
