@@ -5242,7 +5242,7 @@ A.10.  Connectivity of Cloudified Network Functions
    shares Layer 2 and Layer 3 resources.  This approach provides
    flexibility, scalability, and API stability.
 
-      NFs is used to refer to the SFs defined [RFC7665].
+      NF is used to refer to the SFs defined [RFC7665].
 
    The NFs have the following characteristics:
 
