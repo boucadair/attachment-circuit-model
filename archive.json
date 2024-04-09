@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-04-07T00:40:00.272032+00:00",
+  "timestamp": "2024-04-09T00:36:15.956014+00:00",
   "repo": "boucadair/attachment-circuit-model",
   "labels": [
     {
@@ -2450,9 +2450,24 @@
       ],
       "body": "",
       "createdAt": "2024-02-05T09:52:00Z",
-      "updatedAt": "2024-02-05T09:52:00Z",
+      "updatedAt": "2024-04-08T09:06:07Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "boucadair",
+          "authorAssociation": "OWNER",
+          "body": "Made changes to the model to better handle interconnection case:\r\n* provider-assigned reference\r\n* add operation instructions to manage BGP sessions individually\r\n* add role for nni, public nni\r\n* local-as used to be ro, change to rw to cover public peering case\r\n\r\n",
+          "createdAt": "2024-04-08T09:02:20Z",
+          "updatedAt": "2024-04-08T09:02:20Z"
+        },
+        {
+          "author": "boucadair",
+          "authorAssociation": "OWNER",
+          "body": "Also, updated the ac-common model with new admin-status codes: \r\n* awaiting-validation\r\n* awaiting-processing\r\n* admin-prohibited\r\n* rejected",
+          "createdAt": "2024-04-08T09:06:05Z",
+          "updatedAt": "2024-04-08T09:06:05Z"
+        }
+      ]
     },
     {
       "number": 180,
@@ -2589,15 +2604,15 @@
       "id": "I_kwDOIiAkrc6Azllh",
       "title": "For static routing, shouldn't we have bfd under next-hop as well ?",
       "url": "https://github.com/boucadair/attachment-circuit-model/issues/193",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "robric",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Today bfd-profile is attached to the ip prefix.\r\nUsually you want bfd to the nexthop(s), since an IP prefix is a range (not /32).\r\nShouldn't we add bfd-profile to the next-hop instead ?\r\n\r\n```\r\n     |  |     |     +--rw ipv4-lan-prefixes* [lan next-hop]\r\n     |  |     |     |       {vpn-common:ipv4}?\r\n     |  |     |     |  +--rw lan            inet:ipv4-prefix\r\n     |  |     |     |  +--rw lan-tag?       string\r\n     |  |     |     |  +--rw next-hop       union\r\n     |  |     |     |  +--rw metric?        uint32\r\n     |  |     |     |  +--rw bfd-profile?   bfd-profile-reference\r\n```\r\n",
       "createdAt": "2024-02-29T11:12:17Z",
-      "updatedAt": "2024-03-04T16:20:31Z",
-      "closedAt": null,
+      "updatedAt": "2024-04-08T08:58:02Z",
+      "closedAt": "2024-04-08T08:58:02Z",
       "comments": [
         {
           "author": "boucadair",
@@ -2613,7 +2628,7 @@
       "id": "I_kwDOIiAkrc6DdXku",
       "title": "check service tree (MTU)",
       "url": "https://github.com/boucadair/attachment-circuit-model/issues/196",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "boucadair",
       "authorAssociation": "OWNER",
       "assignees": [],
@@ -2622,8 +2637,8 @@
       ],
       "body": "",
       "createdAt": "2024-03-25T11:23:07Z",
-      "updatedAt": "2024-03-25T11:23:07Z",
-      "closedAt": null,
+      "updatedAt": "2024-04-08T08:57:34Z",
+      "closedAt": "2024-04-08T08:57:34Z",
       "comments": []
     }
   ],
@@ -7518,6 +7533,109 @@
       },
       "comments": [],
       "reviews": []
+    },
+    {
+      "number": 200,
+      "id": "PR_kwDOIiAkrc5r-tKh",
+      "title": "missing MTU",
+      "url": "https://github.com/boucadair/attachment-circuit-model/pull/200",
+      "state": "MERGED",
+      "author": "boucadair",
+      "authorAssociation": "OWNER",
+      "assignees": [
+        "boucadair"
+      ],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-04-08T08:53:59Z",
+      "updatedAt": "2024-04-08T08:57:33Z",
+      "baseRepository": "boucadair/attachment-circuit-model",
+      "baseRefName": "main",
+      "baseRefOid": "2d8d0ae69b8da8bbd1a28bcfc0d031f2e1eb517d",
+      "headRepository": "boucadair/attachment-circuit-model",
+      "headRefName": "boucadair-patch-5",
+      "headRefOid": "e9bd34f32c7b958ce11908226d4d95d9cb369af2",
+      "closedAt": "2024-04-08T08:57:33Z",
+      "mergedAt": "2024-04-08T08:57:33Z",
+      "mergedBy": "boucadair",
+      "mergeCommit": {
+        "oid": "884930369c620000504837dfe85ec6f4c06a9eb6"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 201,
+      "id": "PR_kwDOIiAkrc5sCewo",
+      "title": "Review of draft cloud json",
+      "url": "https://github.com/boucadair/attachment-circuit-model/pull/201",
+      "state": "OPEN",
+      "author": "boucadair",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-04-08T17:21:47Z",
+      "updatedAt": "2024-04-08T17:21:47Z",
+      "baseRepository": "boucadair/attachment-circuit-model",
+      "baseRefName": "main",
+      "baseRefOid": "aab357bb9a86934dd717a5d6ee060f30babf316c",
+      "headRepository": "boucadair/attachment-circuit-model",
+      "headRefName": "boucadair-patch-5",
+      "headRefOid": "729872dff3ccdd43b4561f327ec06802b02634a9",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 202,
+      "id": "PR_kwDOIiAkrc5sClmM",
+      "title": "cloud example",
+      "url": "https://github.com/boucadair/attachment-circuit-model/pull/202",
+      "state": "OPEN",
+      "author": "boucadair",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-04-08T17:40:24Z",
+      "updatedAt": "2024-04-08T17:43:24Z",
+      "baseRepository": "boucadair/attachment-circuit-model",
+      "baseRefName": "main",
+      "baseRefOid": "9f85c67840c267a2219a1fd1f6fdc5527c64e3d0",
+      "headRepository": "boucadair/attachment-circuit-model",
+      "headRefName": "boucadair-patch-6",
+      "headRefOid": "2148a4193a5de41f90514c2b178bc7fe1425c5ed",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIiAkrc52b9fo",
+          "commit": {
+            "abbreviatedOid": "f1f106b"
+          },
+          "author": "boucadair",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-04-08T17:43:19Z",
+          "updatedAt": "2024-04-08T17:43:19Z",
+          "comments": [
+            {
+              "originalPosition": 24,
+              "body": "```suggestion\r\n{{cloud-parent-infra}} describes the physical infrastructure on which attachment circuits are provisioned. The compute nodes (customer) are attached to the provider infrastructure via a set of bearers (i.e., \"compute-XX-nicY\"). The provider infrastructure can be realized in multiple ways, such as IP Fabric, Layer 2/Layer 3 Edge Routers. This document does not intend to detail these aspects.\r\n```",
+              "createdAt": "2024-04-08T17:43:19Z",
+              "updatedAt": "2024-04-08T17:43:19Z"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
