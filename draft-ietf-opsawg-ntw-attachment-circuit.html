@@ -6123,7 +6123,7 @@ be used to inject spoofed routing  advertisements.<a href="#section-7-7.6.1" cla
         <h3 id="name-vpls">
 <a href="#appendix-A.1" class="section-number selfRef">A.1. </a><a href="#name-vpls" class="section-name selfRef">VPLS</a>
         </h3>
-<p id="appendix-A.1-1">Let's consider the example depicted in <a href="#ex-topo" class="auto internal xref">Figure 20</a> with two customer terminating points (CE1 and CE2). Let's also assume that the bearers to attach these CEs to the provider network are already in place. References to the identify these bearers are shown in the figure.<a href="#appendix-A.1-1" class="pilcrow">¶</a></p>
+<p id="appendix-A.1-1">Let us consider the example depicted in <a href="#ex-topo" class="auto internal xref">Figure 20</a> with two customer terminating points (CE1 and CE2). Let us also assume that the bearers to attach these CEs to the provider network are already in place. References to the identify these bearers are shown in the figure.<a href="#appendix-A.1-1" class="pilcrow">¶</a></p>
 <span id="name-topology-example"></span><div id="ex-topo">
 <figure id="figure-20">
           <div class="alignCenter art-text artwork" id="appendix-A.1-2.1">
@@ -6143,7 +6143,7 @@ be used to inject spoofed routing  advertisements.<a href="#section-7-7.6.1" cla
 <p id="appendix-A.1-3">The AC service model <span>[<a href="#I-D.ietf-opsawg-teas-attachment-circuit" class="cite xref">I-D.ietf-opsawg-teas-attachment-circuit</a>]</span> can be used by the provider to manage and expose the ACs over existing bearers as shown in <a href="#ex-ac" class="auto internal xref">Figure 21</a>.<a href="#appendix-A.1-3" class="pilcrow">¶</a></p>
 <span id="name-acs-created-using-acaas"></span><div id="ex-ac">
 <figure id="figure-21">
-          <div class="alignCenter art-text artwork" id="appendix-A.1-4.1">
+          <div class="alignLeft art-text artwork" id="appendix-A.1-4.1">
 <pre>
 {
   "ietf-ac-svc:attachment-circuits": {
@@ -6223,7 +6223,7 @@ be used to inject spoofed routing  advertisements.<a href="#section-7-7.6.1" cla
 <p id="appendix-A.1-5">The provisioned AC at PE1 can be retrieved using the AC network model as depicted in <a href="#ex-acntw-query" class="auto internal xref">Figure 22</a>. A similar query can be used for the AC at PE2.<a href="#appendix-A.1-5" class="pilcrow">¶</a></p>
 <span id="name-example-of-ac-network-respo"></span><div id="ex-acntw-query">
 <figure id="figure-22">
-          <div class="alignCenter art-text artwork" id="appendix-A.1-6.1">
+          <div class="alignLeft art-text artwork" id="appendix-A.1-6.1">
 <pre>
 {
    "ietf-ac-ntw:ac":[
@@ -6293,7 +6293,7 @@ be used to inject spoofed routing  advertisements.<a href="#section-7-7.6.1" cla
 <p id="appendix-A.1-7">Also, the AC network model can be used to retrieve the list of SAPs to which the ACs are bound as shown in <a href="#ex-acntw-query" class="auto internal xref">Figure 22</a>.<a href="#appendix-A.1-7" class="pilcrow">¶</a></p>
 <span id="name-example-of-ac-network-respon"></span><div id="ex-acntw-query-2">
 <figure id="figure-23">
-          <div class="alignCenter art-text artwork" id="appendix-A.1-8.1">
+          <div class="alignLeft art-text artwork" id="appendix-A.1-8.1">
 <pre>
 {
    "ietf-sap-ntw:service":[
@@ -6352,7 +6352,7 @@ be used to inject spoofed routing  advertisements.<a href="#section-7-7.6.1" cla
 <p id="appendix-A.2-1">In reference to the topology depicted in <a href="#sap-ac-ntw" class="auto internal xref">Figure 1</a>, PE2 has a SAP which terminates an AC with two peer SAPs (CE2 and CE5). In order to control data that is specific to each of these peer SAPs over the same AC, child ACs can be instantiated as depicted in <a href="#ex-parent-ac" class="auto internal xref">Figure 24</a>.<a href="#appendix-A.2-1" class="pilcrow">¶</a></p>
 <span id="name-example-of-child-acs"></span><div id="ex-parent-ac">
 <figure id="figure-24">
-          <div class="alignCenter art-text artwork" id="appendix-A.2-2.1">
+          <div class="alignLeft art-text artwork" id="appendix-A.2-2.1">
 <pre>
 {
    "ietf-ac-ntw:ac":[
@@ -6414,7 +6414,7 @@ be used to inject spoofed routing  advertisements.<a href="#section-7-7.6.1" cla
 <p id="appendix-A.2-3"><a href="#ex-parent-ac-sap" class="auto internal xref">Figure 25</a> shows how to bind the parent AC to a SAP.<a href="#appendix-A.2-3" class="pilcrow">¶</a></p>
 <span id="name-example-of-binding-parent-a"></span><div id="ex-parent-ac-sap">
 <figure id="figure-25">
-          <div class="alignCenter art-text artwork" id="appendix-A.2-4.1">
+          <div class="alignLeft art-text artwork" id="appendix-A.2-4.1">
 <pre>
 {
    "ietf-sap-ntw:service":[
