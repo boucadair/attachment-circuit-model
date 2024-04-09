@@ -4885,7 +4885,7 @@ A.7.  Binding Attachment Circuits to an IETF Network Slice
                  ]
                },
                {
-                 "sdp-id": "sdp2",
+                 "id": "sdp2",
                  "ac-svc-name": [
                    "ac2"
                  ]
