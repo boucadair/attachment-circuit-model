@@ -177,7 +177,7 @@ Table of Contents
 
    This document specifies a YANG service data model ("ietf-ac-svc") for
    managing attachment circuits that are exposed by a network to its
-   customers, such as an enterprise site, an NF, a hosting
+   customers, such as an enterprise site, an SF, a hosting
    infrastructure, or a peer network provider.  The model can be used
    for the provisioning of ACs prior or during advanced service
    provisioning (e.g., Network Slice Service [RFC9543]).
