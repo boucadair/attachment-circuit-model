@@ -5808,7 +5808,7 @@ A.11.  Connectivity of Cloudidified Network Functions
 
     ┌ - - - -┐                               |  ┌------------------┐ |
                                                 |                  |
-    |        |--------vlan-100---------------|  | Bridge vlan 100  | |
+    |status= |--------vlan-100---------------|  | Bridge vlan 100  | |
        DOWN   --------vlan-200---------------   |                  |
     |        |                               |  └------------------┘ |
     compute-01
