@@ -1254,7 +1254,7 @@ This scenario allows the provider to maintain a list of ACs belonging to the sam
 
 In this scenario, multiple networks, each represented by a Network Element (NE), connect to other networks or a Network Access Point (NAP) for interconnection purposes. Each network connects to each other through one or more Attachment Circuits (ACs).
 
-To facilitate routing between the interconnected networks, BGP (Border Gateway Protocol) peering sessions are established between the participating networks. BGP is used to exchange routing information and reachability announcements between those networks.
+To facilitate forwarding between the interconnected networks, BGP peering sessions are established between the participating networks. BGP is used to exchange routing information and reachability announcements between those networks.
 
 ~~~~ aasvg
 {::include-fold ./figures/bgp-peering-example.txt}
