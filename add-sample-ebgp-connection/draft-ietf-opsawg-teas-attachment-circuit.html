@@ -7262,8 +7262,8 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 <a href="#name-illustration-of-provider-net" class="selfRef">Illustration of Provider Network Scenario</a>
           </figcaption></figure>
 </div>
-<p id="appendix-A.10-4">As depicted in the figure <a href="#bgp-peer-network" class="auto internal xref">Figure 47</a>, each AC represents the physical or virtual link between the two networks. The AC configuration includes parameters such as interface settings, VLAN configuration (if applicable), and any additional settings required for connectivity.<a href="#appendix-A.10-4" class="pilcrow">¶</a></p>
-<p id="appendix-A.10-5">Once the ACs are established, BGP peering sessions are configured between the routers of the participating networks. BGP sessions are established over the Attachment Circuits, allowing the routers to exchange routing information. BGP peering configuration includes parameters such as neighbor IP addresses, BGP AS numbers, authentication settings (if required), and route filtering policies.<a href="#appendix-A.10-5" class="pilcrow">¶</a></p>
+<p id="appendix-A.10-4">As depicted in <a href="#bgp-peer-network" class="auto internal xref">Figure 47</a>, each AC represents the link between the two networks. The AC configuration includes parameters such as interface settings, VLAN configuration (if applicable), and any additional settings required for connectivity.<a href="#appendix-A.10-4" class="pilcrow">¶</a></p>
+<p id="appendix-A.10-5">Once the ACs are established, BGP peering sessions are configured between the routers of the participating networks. BGP sessions are established over the ACs, allowing the routers to exchange routing information. BGP peering configuration includes parameters such as neighbor IP addresses, AS numbers, authentication settings (if required), etc.<a href="#appendix-A.10-5" class="pilcrow">¶</a></p>
 <span id="name-message-body-of-a-request-to-cr"></span><div id="bgp-peer-network-add-attachment-circuit">
 <figure id="figure-48">
           <div class="breakable lang-json sourcecode" id="appendix-A.10-6.1">
