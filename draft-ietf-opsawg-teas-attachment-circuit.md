@@ -1250,6 +1250,25 @@ The attachment circuit in this case use a SAP identifier to refer to the physica
 
 This scenario allows the provider to maintain a list of ACs belonging to the same customer without requiring the full service configuration.
 
+## Connect two networks through eBGP peering
+
+CE-PE routing using BGP is a common scenario in the context of MPLS VPNs and is widely used in enterprise networks. In the example depicted in {{provider-network}}, the CE routers are customer-owned devices belonging to an AS (ASN 65536). CEs are located at the edge of the provider's network (PE, or Provider Edge) and use point-to-point interfaces to establish BGP sessions. The point-to-point interfaces rely upon a physical bearer ("Line-113") to reach the provider network.
+
+~~~~ aasvg
+{::include-fold ./figures/ce-to-provider-bgp.txt}
+~~~~
+{: #provider-network title="Illustration of Provider Network Scenario"}
+
+The attachment circuit in this case use a SAP identifier to refer to the physical interface used for the connection between the PE and the CE. The attachment circuit includes all the additional logical attributes to describe the connection between the two ends, including VLAN information and IP addressing. Also, the configuration details of the BGP session makes use of peer group details instead of defining the entire configuration inside the 'neighbor' data node.
+
+~~~~ json
+{::include-fold ./json-examples/svc/provider-network-interas-option-a.json}
+~~~~
+{: #add-attachment-circuit-bgp-routing title="Message Body of a Request to create an AC to connect two networks through eBGP peering"}
+
+This scenario allows the provider to maintain a list of ACs associaed with peering sessions.
+
+
 ## Connectivity of Cloudidified Network Functions
 
 This example demonstrates how the AC service model permits to manage connectivity requirements for complex Network Functions - containerized or virtualized -  that typically met in Telco Networks. This integration leverages the concept of "parent ACs" to decouple physical and logical connectivity so that several AC can shares L2 and L3 resources.This approach provides flexibility, scalability and API stability.
