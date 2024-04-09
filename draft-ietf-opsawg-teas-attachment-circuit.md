@@ -1257,7 +1257,7 @@ This example demonstrates how the AC service model permits to manage connectivit
 The SFs have the following characteristics:
 - The SF is distributed on a set of compute nodes with scaled-out and redundant instances.
 - The SF has two distinct type of instances: user plane ("nf-up") and routing control plane ("nf-cp").
-- The User plane component can be distributed among the first 8 compute nodes ("compute-1" to "compute-08") to achieve high performance.
+- The User plane component can be distributed among the first 8 compute nodes ("compute-01" to "compute-08") to achieve high performance.
 - The Control plane is deployed in a redundant fashion on two instances running on distinct compute nodes ("compute-09" and "compute-10").
 - The SF is attached to distinct networks, each making use of a dedicated VLAN. These VLANs are therefore instantiated as separate ACs. From a realization standpoint, the SF interface connectivity is generally provided thanks to MacVLAN or Single Root I/O Virtualization (SR-IOV). For the sake of simplicity only two VLANs are presented in this example, additional VLANs are configured following a similar logic.
 
