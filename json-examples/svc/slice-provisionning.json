@@ -23,7 +23,7 @@
               ]
             },
             {
-              "sdp-id": "sdp2",
+              "id": "sdp2",
               "ac-svc-name": [
                 "ac2"
               ]
