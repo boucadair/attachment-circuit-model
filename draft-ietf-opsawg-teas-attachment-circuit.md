@@ -1250,7 +1250,7 @@ The attachment circuit in this case use a SAP identifier to refer to the physica
 
 This scenario allows the provider to maintain a list of ACs belonging to the same customer without requiring the full service configuration.
 
-## Connectivity of Cloudidified Service Functions
+## Connectivity of Cloudified Service Functions
 
 This example demonstrates how the AC service model permits to manage connectivity requirements for complex SFs - containerized or virtualized -  that are typically deployed in Telco networks. This integration leverages the concept of "parent AC" to decouple physical and logical connectivity so that several ACs can shares Layer 2 and Layer 3 resources. This approach provides flexibility, scalability, and API stability.
 
