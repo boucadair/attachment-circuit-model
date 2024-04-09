@@ -1,0 +1,144 @@
+{
+  "ietf-yang-library:modules-state": {
+    "module-set-id": "",
+    "module": [
+      {
+        "name": "ietf-inet-types",
+        "revision": "",
+        "namespace": "urn:ietf:params:xml:ns:yang:ietf-inet-types",
+        "conformance-type": "import"
+      },
+      {
+        "name": "ietf-yang-types",
+        "revision": "",
+        "namespace": "urn:ietf:params:xml:ns:yang:ietf-yang-types",
+        "conformance-type": "import"
+      },
+      {
+        "name": "ietf-netconf-acm",
+        "revision": "",
+        "namespace": "urn:ietf:params:xml:ns:yang:ietf-netconf-acm",
+        "conformance-type": "import"
+      },
+      {
+        "name": "ietf-routing-policy",
+        "revision": "",
+        "namespace": "urn:ietf:params:xml:ns:yang:ietf-routing-policy",
+        "conformance-type": "import"
+      },
+      {
+        "name": "ietf-routing",
+        "revision": "",
+        "namespace": "urn:ietf:params:xml:ns:yang:ietf-routing",
+        "conformance-type": "import"
+      },
+      {
+        "name": "ietf-key-chain",
+        "revision": "",
+        "namespace": "urn:ietf:params:xml:ns:yang:ietf-key-chain",
+        "conformance-type": "implement"
+      },
+      {
+        "name": "ietf-interfaces",
+        "revision": "",
+        "namespace": "urn:ietf:params:xml:ns:yang:ietf-interfaces",
+        "conformance-type": "import"
+      },
+      {
+        "name": "ietf-ethertypes",
+        "revision": "",
+        "namespace": "urn:ietf:params:xml:ns:yang:ietf-ethertypes",
+        "conformance-type": "import"
+      },
+      {
+        "name": "ieee802-dot1q-types",
+        "revision": "",
+        "namespace": "urn:ieee:std:802.1Q:yang:ieee802-dot1q-types",
+        "conformance-type": "import"
+      },
+      {
+        "name": "iana-bgp-l2-encaps",
+        "revision": "",
+        "namespace": "urn:ietf:params:xml:ns:yang:iana-bgp-l2-encaps",
+        "conformance-type": "import"
+      },
+      {
+        "name": "iana-pseudowire-types",
+        "revision": "",
+        "namespace": "urn:ietf:params:xml:ns:yang:iana-pseudowire-types",
+        "conformance-type": "import"
+      },
+      {
+        "name": "ietf-packet-fields",
+        "revision": "",
+        "namespace": "urn:ietf:params:xml:ns:yang:ietf-packet-fields",
+        "conformance-type": "import"
+      },
+      {
+        "name": "ietf-routing-types",
+        "revision": "",
+        "namespace": "urn:ietf:params:xml:ns:yang:ietf-routing-types",
+        "conformance-type": "import"
+      },
+      {
+        "name": "ietf-vpn-common",
+        "revision": "",
+        "namespace": "urn:ietf:params:xml:ns:yang:ietf-vpn-common",
+        "feature": [
+          "dot1q",
+          "qinq",
+          "vxlan",
+          "qinany",
+          "lag-interface",
+          "multicast",
+          "igmp",
+          "mld",
+          "pim",
+          "ipv4",
+          "ipv6",
+          "rtg-ospf",
+          "rtg-ospf-sham-link",
+          "rtg-bgp",
+          "rtg-rip",
+          "rtg-isis",
+          "rtg-vrrp",
+          "bfd",
+          "bearer-reference",
+          "placement-diversity",
+          "qos",
+          "inbound-bw",
+          "outbound-bw",
+          "encryption",
+          "fast-reroute",
+          "external-connectivity",
+          "extranet-vpn",
+          "carriers-carrier"
+        ],
+        "conformance-type": "implement"
+      },
+      {
+        "name": "ietf-ac-svc",
+        "revision": "",
+        "namespace": "urn:ietf:params:xml:ns:yang:ietf-ac-svc",
+        "conformance-type": "implement"
+      },
+      {
+        "name": "ietf-ac-common",
+        "revision": "",
+        "namespace": "urn:ietf:params:xml:ns:yang:ietf-ac-common",
+        "feature": [
+          "layer2-ac",
+          "layer3-ac",
+          "server-assigned-reference"
+        ],
+        "conformance-type": "implement"
+      },
+      {
+        "name": "ietf-bearer-svc",
+        "revision": "",
+        "namespace": "urn:ietf:params:xml:ns:yang:ietf-bearer-svc",
+        "conformance-type": "implement"
+      }
+    ]
+  }
+}
