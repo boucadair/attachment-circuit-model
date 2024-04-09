@@ -1279,7 +1279,7 @@ The NF is deployed on this infrastructure in the following way:
 ~~~~ aasvg
 {::include-fold ./figures/ac-parent-logical.txt}
 ~~~~
-{: #cloud-parent-infra title="Logical Topology of the NF Deployment"}
+{: #cloud-parent-logical title="Logical Topology of the NF Deployment"}
 
 For readability the payload are displayed as single JSON files. In practice, several API can happen to initialize these resources (e.g.#1 GET request from customer get IP pools for NFs on vlan 100 thanks to parent configuration and BGP configuration, #2  POST extra routes for user planes and BFD...).
 
