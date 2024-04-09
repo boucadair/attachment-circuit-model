@@ -1,0 +1,130 @@
+{
+	"attachment-circuits": {
+		"ac": [
+			{
+				"name": "IPT-NET-ABC",
+				"customer-name": "NET-ABC",
+				"description": "NET-ABC",
+				"peer-sap-id": "sap#114",
+				"l2-connection": {
+					"encapsulation": {
+						"type": "vpn-common:dot1q",
+						"dot1q": {
+							"tag-type": "vpn-common:c-vlan",
+							"cvlan-id": "114"
+						}
+					},
+					"bearer-reference": "line-114"
+				},
+				"ip-connection": {
+					"ipv4": {
+						"local-address": "192.168.1.1",
+						"prefix-length": "30"
+					}
+				},
+				"routing-protocols": { 
+					"routing-protocol": [ 
+						{
+							"id": "BGP",
+							"type": "vpn-common:bgp-routing",
+							"bgp": {
+								"neighbor": {
+									"id": "NAP-1",
+									"remote-address": "100.100.100.1",
+									"peer-as": "65537",
+									"address-family": "vpn-common:ipv4",
+									"authentication": {
+										"enable": "true",
+										"keying-material": {
+											"key-id": "1",
+											"key": "test##"
+										}
+									},
+									"status": {
+										"admin-status": {
+											"status": "vpn-common:admin-up"
+										}
+									}
+								}
+							}
+						},
+						{
+	                        "id": "static",
+	                        "type": "vpn-common:static-routing",
+	                        "static": {
+	                            "cascaded-lan-prefixes": {
+	                                "ipv4-lan-prefixes": {
+	                                    "lan": "200.200.200.1/32",
+	                                    "next-hop": "192.168.1.1"
+	                                }
+	                            }
+	                        }
+	                    }
+                    ]
+				}
+			},
+			{
+				"name": "IPT-NET-DEF",
+				"customer-name": "NET-DEF",
+				"description": "NET-DEF",
+				"peer-sap-id": "sap#114",
+				"ip-connection": {
+					"ipv4": {
+						"local-address": "192.168.1.2",
+						"prefix-length": "30"
+					}
+				},
+				"l2-connection": {
+					"encapsulation": {
+						"type": "vpn-common:dot1q",
+						"dot1q": {
+							"tag-type": "vpn-common:c-vlan",
+							"cvlan-id": "114"
+						}
+					},
+					"bearer-reference": "line-114"
+				},
+				"routing-protocols": {
+					"routing-protocol": [
+						{
+							"id": "BGP",
+							"type": "vpn-common:bgp-routing",
+							"bgp": {
+								"neighbor": {
+									"id": "NAP-1",
+									"remote-address": "200.200.200.1",
+									"peer-as": "65536",
+									"address-family": "vpn-common:ipv4",
+									"authentication": {
+										"enable": "true",
+										"keying-material": {
+											"key-id": "1",
+											"key": "test##"
+										}
+									},
+									"status": {
+										"admin-status": {
+											"status": "vpn-common:admin-up"
+										}
+									}
+								}
+							}
+						},
+						{
+	                        "id": "static",
+	                        "type": "vpn-common:static-routing",
+	                        "static": {
+	                            "cascaded-lan-prefixes": {
+	                                "ipv4-lan-prefixes": {
+	                                    "lan": "100.100.100.1/32",
+	                                    "next-hop": "192.168.1.2"
+	                                }
+	                            }
+	                        }
+	                    }
+	                ]
+				}
+			}
+		]
+	}
+}
