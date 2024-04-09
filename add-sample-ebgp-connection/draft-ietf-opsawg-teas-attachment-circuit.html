@@ -7177,8 +7177,8 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
         <h3 id="name-connect-two-networks-throug">
 <a href="#appendix-A.10" class="section-number selfRef">A.10. </a><a href="#name-connect-two-networks-throug" class="section-name selfRef">Connect two networks through eBGP peering</a>
         </h3>
-<p id="appendix-A.10-1">In this scenario, multiple networks, each represented by a Network Element (NE), connect to a Network Access Point (NAP) for interconnection purposes. The NAP serves as a centralized location where different networks exchange traffic. Each network connects to the NAP through one or more Attachment Circuits (ACs).<a href="#appendix-A.10-1" class="pilcrow">¶</a></p>
-<p id="appendix-A.10-2">To facilitate routing between the interconnected networks, BGP (Border Gateway Protocol) peering sessions are established between the routers at the NAP and the routers of the participating networks. BGP is used to exchange routing information and reachability announcements between the networks.<a href="#appendix-A.10-2" class="pilcrow">¶</a></p>
+<p id="appendix-A.10-1">In this scenario, multiple networks, each represented by a Network Element (NE), connect to other networks or a Network Access Point (NAP) for interconnection purposes. Each network connects to each other through one or more Attachment Circuits (ACs).<a href="#appendix-A.10-1" class="pilcrow">¶</a></p>
+<p id="appendix-A.10-2">To facilitate routing between the interconnected networks, BGP (Border Gateway Protocol) peering sessions are established between the participating networks. BGP is used to exchange routing information and reachability announcements between those networks.<a href="#appendix-A.10-2" class="pilcrow">¶</a></p>
 <span id="name-illustration-of-provider-net"></span><div id="bgp-peer-network">
 <figure id="figure-47">
           <div id="appendix-A.10-3.1">
@@ -7262,12 +7262,11 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 <a href="#name-illustration-of-provider-net" class="selfRef">Illustration of Provider Network Scenario</a>
           </figcaption></figure>
 </div>
-<p id="appendix-A.10-4">An AC is a logical connection between the network's routers. It represents the physical or virtual link between the two networks.
-The AC configuration includes parameters such as the interface settings, VLAN configuration (if applicable), and any additional settings required for connectivity.
-Once the ACs are established, BGP peering sessions are configured between the routers of the participating networks. BGP sessions are established over the Attachment Circuits, allowing the routers to exchange routing information. BGP peering configuration includes parameters such as the neighbor IP addresses, BGP AS numbers, authentication settings (if required), and route filtering policies.<a href="#appendix-A.10-4" class="pilcrow">¶</a></p>
+<p id="appendix-A.10-4">As depicted in the figure <a href="#bgp-peer-network" class="auto internal xref">Figure 47</a>, each AC represents the physical or virtual link between the two networks. The AC configuration includes parameters such as interface settings, VLAN configuration (if applicable), and any additional settings required for connectivity.<a href="#appendix-A.10-4" class="pilcrow">¶</a></p>
+<p id="appendix-A.10-5">Once the ACs are established, BGP peering sessions are configured between the routers of the participating networks. BGP sessions are established over the Attachment Circuits, allowing the routers to exchange routing information. BGP peering configuration includes parameters such as neighbor IP addresses, BGP AS numbers, authentication settings (if required), and route filtering policies.<a href="#appendix-A.10-5" class="pilcrow">¶</a></p>
 <span id="name-message-body-of-a-request-to-cr"></span><div id="bgp-peer-network-add-attachment-circuit">
 <figure id="figure-48">
-          <div class="breakable lang-json sourcecode" id="appendix-A.10-5.1">
+          <div class="breakable lang-json sourcecode" id="appendix-A.10-6.1">
 <pre>
 {
         "attachment-circuits": {
@@ -7405,7 +7404,7 @@ Once the ACs are established, BGP peering sessions are configured between the ro
 <a href="#name-message-body-of-a-request-to-cr" class="selfRef">Message Body of a Request to create an AC to connect two networks through eBGP peering</a>
           </figcaption></figure>
 </div>
-<p id="appendix-A.10-6">This scenario allows the provider to maintain a list of ACs associaed with peering sessions.<a href="#appendix-A.10-6" class="pilcrow">¶</a></p>
+<p id="appendix-A.10-7">This scenario allows the provider to maintain a list of ACs associated with peering sessions.<a href="#appendix-A.10-7" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="connectivity-of-cloudidified-network-functions">

@@ -5236,16 +5236,14 @@ A.9.  Connect Customer Network (CE) Through BGP
 A.10.  Connect two networks through eBGP peering
 
    In this scenario, multiple networks, each represented by a Network
-   Element (NE), connect to a Network Access Point (NAP) for
-   interconnection purposes.  The NAP serves as a centralized location
-   where different networks exchange traffic.  Each network connects to
-   the NAP through one or more Attachment Circuits (ACs).
+   Element (NE), connect to other networks or a Network Access Point
+   (NAP) for interconnection purposes.  Each network connects to each
+   other through one or more Attachment Circuits (ACs).
 
    To facilitate routing between the interconnected networks, BGP
    (Border Gateway Protocol) peering sessions are established between
-   the routers at the NAP and the routers of the participating networks.
-   BGP is used to exchange routing information and reachability
-   announcements between the networks.
+   the participating networks.  BGP is used to exchange routing
+   information and reachability announcements between those networks.
 
    =============== NOTE: '\' line wrapping per RFC 8792 ================
 
@@ -5268,17 +5266,18 @@ A.10.  Connect two networks through eBGP peering
 
             Figure 47: Illustration of Provider Network Scenario
 
-   An AC is a logical connection between the network's routers.  It
-   represents the physical or virtual link between the two networks.
-   The AC configuration includes parameters such as the interface
-   settings, VLAN configuration (if applicable), and any additional
-   settings required for connectivity.  Once the ACs are established,
-   BGP peering sessions are configured between the routers of the
-   participating networks.  BGP sessions are established over the
-   Attachment Circuits, allowing the routers to exchange routing
-   information.  BGP peering configuration includes parameters such as
-   the neighbor IP addresses, BGP AS numbers, authentication settings
-   (if required), and route filtering policies.
+   As depicted in the figure Figure 47, each AC represents the physical
+   or virtual link between the two networks.  The AC configuration
+   includes parameters such as interface settings, VLAN configuration
+   (if applicable), and any additional settings required for
+   connectivity.
+
+   Once the ACs are established, BGP peering sessions are configured
+   between the routers of the participating networks.  BGP sessions are
+   established over the Attachment Circuits, allowing the routers to
+   exchange routing information.  BGP peering configuration includes
+   parameters such as neighbor IP addresses, BGP AS numbers,
+   authentication settings (if required), and route filtering policies.
 
    {
            "attachment-circuits": {
@@ -5414,8 +5413,8 @@ A.10.  Connect two networks through eBGP peering
       Figure 48: Message Body of a Request to create an AC to connect
                      two networks through eBGP peering
 
-   This scenario allows the provider to maintain a list of ACs associaed
-   with peering sessions.
+   This scenario allows the provider to maintain a list of ACs
+   associated with peering sessions.
 
 A.11.  Connectivity of Cloudidified Network Functions
 
