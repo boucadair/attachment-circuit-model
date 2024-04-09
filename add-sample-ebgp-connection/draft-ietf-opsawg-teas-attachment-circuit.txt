@@ -117,7 +117,7 @@ Table of Contents
      A.8.  Connecting a Virtualized Environment Running in a Cloud
             Provider
      A.9.  Connect Customer Network (CE) Through BGP
-     A.10. Connect two networks through eBGP peering
+     A.10. BGP Peering
      A.11. Connectivity of Cloudidified Network Functions
    Acknowledgments
    Contributors
@@ -5233,7 +5233,7 @@ A.9.  Connect Customer Network (CE) Through BGP
    to the same customer without requiring the full service
    configuration.
 
-A.10.  Connect two networks through eBGP peering
+A.10.  BGP Peering
 
    In this scenario, multiple networks, each represented by a Network
    Element (NE), connect to other networks or a Network Access Point
