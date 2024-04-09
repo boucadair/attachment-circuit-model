@@ -1261,7 +1261,7 @@ To facilitate routing between the interconnected networks, BGP (Border Gateway P
 ~~~~
 {: #bgp-peer-network title="Illustration of Provider Network Scenario"}
 
-As depicted in the figure {{bgp-peer-network}}, each AC represents the physical or virtual link between the two networks. The AC configuration includes parameters such as interface settings, VLAN configuration (if applicable), and any additional settings required for connectivity.
+As depicted in {{bgp-peer-network}}, each AC represents the link between the two networks. The AC configuration includes parameters such as interface settings, VLAN configuration (if applicable), and any additional settings required for connectivity.
 
 Once the ACs are established, BGP peering sessions are configured between the routers of the participating networks. BGP sessions are established over the ACs, allowing the routers to exchange routing information. BGP peering configuration includes parameters such as neighbor IP addresses, AS numbers, authentication settings (if required), etc.
 
