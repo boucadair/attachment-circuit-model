@@ -30,5 +30,8 @@ yang-gen-diagram: yang-lint $(TXT)
 yang-clean:
 	rm -f $(TXT)
 
+yangson-validate: $(EXPSVCJSON) $(STDYANGDIR)
+	yangson -p $(YANGDIR) -p $(YANGDIR):$(STDYANGDIR)/standard/ietf/RFC/:$(STDYANGDIR)/experimental/ietf-extracted-YANG-modules -v $(EXPSVCJSON) $(YANGDIR)/yanglib-ac-svc.json
+
 %-diagram.txt: $(YANGDIR)/%.yang
 	pyang $(OPTIONS) -p $(YANG_PATH) $< > $@
