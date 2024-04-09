@@ -1255,11 +1255,12 @@ This scenario allows the provider to maintain a list of ACs belonging to the sam
 This example demonstrates how the AC service model permits to manage connectivity requirements for complex Network Functions - containerized or virtualized -  that typically met in Telco Networks. This integration leverages the concept of "parent ACs" to decouple physical and logical connectivity so that several AC can shares L2 and L3 resources.This approach provides flexibility, scalability and API stability.
 
 The Network Function have the following characteristics:
-- The Network Function is distributed on a set of computes with scaled-out and redundant instances.
-- The NF has two distinct type of instances: user plane (nf-up) and  routing control plane (nf-cp).
-- The User plane component can be distributed among the first 8 compute nodes (compute-1 to compute-08) to achieve high performance.
-- The Control plane is deployed in a redundant fashion on 2 instances running on distinct compute nodes (compute-09 and compute-10).
-- The NF is attached to distinct networks, each making use of a dedicated vlan. These vlans are therefore instantiated as separate Attachment Circuits. From a realization standpoint, the NF interface connectivity is generally provided thanks to macvlan or SR-IOV. For the sake of simplicity only 2 vlans are presented in this example, additional vlans are generally configured based on similar logic.
+
+* The Network Function is distributed on a set of computes with scaled-out and redundant instances.
+* The NF has two distinct type of instances: user plane (nf-up) and  routing control plane (nf-cp).
+* The User plane component can be distributed among the first 8 compute nodes (compute-1 to compute-08) to achieve high performance.
+* The Control plane is deployed in a redundant fashion on 2 instances running on distinct compute nodes (compute-09 and compute-10).
+* The NF is attached to distinct networks, each making use of a dedicated vlan. These vlans are therefore instantiated as separate Attachment Circuits. From a realization standpoint, the NF interface connectivity is generally provided thanks to macvlan or SR-IOV. For the sake of simplicity only 2 vlans are presented in this example, additional vlans are generally configured based on similar logic.
 
 Figure {{cloud-parent-infra}} describes the physical infrastructure. The compute nodes (customer) are attached to the provider infrastructure thanks to a set of physical links on which attachment circuits are provisionned (i.e. compute-XX-nicY).
 The provider infrastructure can be realized in multiple ways, such as  IP Fabric, Gateways or L2/L3 Edge Routers. This document does not intend to detail these aspects.
@@ -1269,16 +1270,20 @@ The provider infrastructure can be realized in multiple ways, such as  IP Fabric
 ~~~~
 {: #cloud-parent-infra title="Physical Topology for Cloud Deployment"}
 
-Next, the NF is deployed on this infrastructure thanks to the configuration of:
-- A parent AC as a centralized attachment for vlan 100. The parent AC captures vlan has additional Layer 3 configuration: IP range for NFs endpoints through Caas/Iaas IPAM, Static Routes with BFD to user plane and BGP configuration to control plane NFs.
-- A parent AC as a centralized attachment for vlan 200. This vlan is for L2 connectivity between NFs (no IP configuration in the Provider Network).
-- "Child ACs" attached to bearers for both vlan 100 and vlan 200.
-The deployment actually deploys the Network Service to all computes (compute-01 to compute-10), even though the NF is not instantiated on compute-07/compute-08. This permits to handle compute failure and scale-out scenarios (see later).
+The NF is deployed on this infrastructure in the following way:
+* Configuration of a parent AC as a centralized attachment for vlan 100. The parent AC captures L2/L3 information for this  vlan: vlan-id, IP gateway and subnet, IP pool for NFs endpoints, Static Routes with BFD to user plane and BGP configuration to control plane NFs.
+* Configuration of a parent AC as a centralized attachment for vlan 200. This vlan is for L2 connectivity between NFs (no IP configuration in the Provider Network).
+* "Child ACs" binding bearers to parent ACs for vlan 100 and vlan 200.
+* The deployment deploys the Network Service to all computes (compute-01 to compute-10), even though the NF is  not instantiated on compute-07/compute-08. This approach permits to handle compute failure and scale-out scenarios in a reactive and flexible fashion thanks to pre-provisionned networking logic.
 
+~~~~ aasvg
+{::include-fold ./figures/ac-parent-logical.txt}
+~~~~
+{: #cloud-parent-infra title="Logical Topology of the NF Deployment"}
 
 For readability the payload are displayed as single JSON files. In practice, several API can happen to initialize these resources (e.g.#1 GET request from customer get IP pools for NFs on vlan 100 thanks to parent configuration and BGP configuration, #2  POST extra routes for user planes and BFD...).
 
-Note that for user plane, no IP address is assigned to Child ACs. The assignment of IP addresses to the NF endpoints is managed by the infrastructure IPAM.
+Note that no individual IP address is assigned in the data model for the NF user plane instances (i.e. no "customer-address" in the Child AC). The assignment of IP addresses to the NF endpoints is managed by the Cloud Infrastructure IPAM based on  the customer-addresses IP pool "192.0.2.1-200". Just like in any standard LAN-facing scenario, we assume that the actual binding of IP endpoints to logical attachments (here Child ACs) relies on protocol logic  (i.e. ARP or NDP) and is not captured in the data model. Hence, the IP addresses displayed for NF user plane instances is simply example of a realization. On the other hand, we defined Control Plane with static IP address assignement on a given AC/bearer to demonstrate an alternative. 
 
 ~~~~ json
 {::include-fold ./json-examples/svc/ac-cloud-bfd.json}
@@ -1290,8 +1295,14 @@ Note that for user plane, no IP address is assigned to Child ACs. The assignment
 ~~~~
 {: #parent-profile title="Message body for configuration of the NF ACs"}
 
+Assuming a failure of compute-01, nf-up-1 can be redeployed to compute-07 by the NF/Cloud Orchestration. This operation is transparent to the. Next, the nf can be scaled out thanks to the creation of an extra instance nf-up_07 on compute-08. Since networking is pre-provisionned, these operations happens without any API call. In other words, this is transparent from the perspective of the configuration of the provider network.
 
+~~~~ aasvg
+{::include-fold ./figures/ac-parent-logical.txt}
+~~~~
+{: #cloud-parent-nf-lcm title="Compute failure and Scale-out"}
 
+Finally, the addition/deletion of computes (e.g. compute-11+) in the deployment involves merely the configuration of Child ACs. The parent AC remains unchanged: it is a stable identifier. This is practical for referencing by End to End models for VPN configuration (??? ref NBI network Slice and L2/L3SM / ac-glue).
 
 
 # Acknowledgments
