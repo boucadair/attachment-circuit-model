@@ -5238,7 +5238,7 @@ A.10.  BGP Peering
    In this scenario, multiple networks, each represented by a Network
    Element (NE), connect to other networks or a Network Access Point
    (NAP) for interconnection purposes.  Each network connects to each
-   other through one or more Attachment Circuits (ACs).
+   other through one or more ACs.
 
    To facilitate forwarding between the interconnected networks, BGP
    peering sessions are established between the participating networks.
@@ -5313,7 +5313,7 @@ A.10.  BGP Peering
                    "cascaded-lan-prefixes": {
                      "ipv4-lan-prefixes": [
                        {
-                         "lan": "200.200.200.1/32",
+                         "lan": "198.51.100.1/32",
                          "next-hop": "192.168.1.1"
                        }
                      ]
