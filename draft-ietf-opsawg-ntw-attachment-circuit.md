@@ -945,7 +945,7 @@ Several data nodes ('bgp', 'ospf', 'isis', and 'rip') rely upon {{!RFC8177}} for
 
 ## VPLS
 
-Let's consider the example depicted in {{ex-topo}} with two customer terminating points (CE1 and CE2). Let's also assume that the bearers to attach these CEs to the provider network are already in place. References to the identify these bearers are shown in the figure.
+Let us consider the example depicted in {{ex-topo}} with two customer terminating points (CE1 and CE2). Let us also assume that the bearers to attach these CEs to the provider network are already in place. References to the identify these bearers are shown in the figure.
 
 ~~~~~~~~~~
 {::include ./figures/glue/ex-topo.txt}
@@ -957,21 +957,21 @@ The AC service model {{!I-D.ietf-opsawg-teas-attachment-circuit}} can be used by
 ~~~~~~~~~~
 {::include-fold ./json-examples/glue/example-acsvc-vpls.json}
 ~~~~~~~~~~
-{: #ex-ac title="ACs Created Using ACaaS" artwork-align="center"}
+{: #ex-ac title="ACs Created Using ACaaS"}
 
 The provisioned AC at PE1 can be retrieved using the AC network model as depicted in {{ex-acntw-query}}. A similar query can be used for the AC at PE2.
 
 ~~~~~~~~~~
 {::include-fold ./json-examples/glue/example-acntw-2.json}
 ~~~~~~~~~~
-{: #ex-acntw-query title="Example of AC Network Response (Message Body)" artwork-align="center"}
+{: #ex-acntw-query title="Example of AC Network Response (Message Body)"}
 
 Also, the AC network model can be used to retrieve the list of SAPs to which the ACs are bound as shown in {{ex-acntw-query}}.
 
 ~~~~~~~~~~
 {::include-fold ./json-examples/glue/example-acntw.json}
 ~~~~~~~~~~
-{: #ex-acntw-query-2 title="Example of AC Network Response to Retrieve the SAP (Message Body)" artwork-align="center"}
+{: #ex-acntw-query-2 title="Example of AC Network Response to Retrieve the SAP (Message Body)"}
 
 ## Parent AC
 
@@ -980,14 +980,14 @@ In reference to the topology depicted in {{sap-ac-ntw}}, PE2 has a SAP which ter
 ~~~~~~~~~~
 {::include-fold ./json-examples/ntw/multiple-acs-same-sap-2.json}
 ~~~~~~~~~~
-{: #ex-parent-ac title="Example of Child ACs" artwork-align="center"}
+{: #ex-parent-ac title="Example of Child ACs"}
 
 {{ex-parent-ac-sap}} shows how to bind the parent AC to a SAP.
 
 ~~~~~~~~~~
 {::include-fold ./json-examples/ntw/multiple-acs-same-sap.json}
 ~~~~~~~~~~
-{: #ex-parent-ac-sap title="Example of Binding Parent AC to SAPs" artwork-align="center"}
+{: #ex-parent-ac-sap title="Example of Binding Parent AC to SAPs"}
 
 # Acknowledgments
 {:numbered="false"}
