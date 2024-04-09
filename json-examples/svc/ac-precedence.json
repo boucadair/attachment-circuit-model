@@ -3,7 +3,7 @@
     "ac": [
       {
         "name": "ac1",
-        "description": "Example to illustrate AC precedence usage",
+        "description": "An example to illustrate AC precedence usage",
         "group": [
           {
             "group-id": "1",
@@ -16,7 +16,7 @@
       },
       {
         "name": "ac2",
-        "description": "Example to illustrate AC precedence usage",
+        "description": "An AC example to illustrate AC precedence usage",
         "group": [
           {
             "group-id": "1",
