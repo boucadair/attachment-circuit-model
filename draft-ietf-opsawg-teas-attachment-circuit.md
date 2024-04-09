@@ -1263,7 +1263,7 @@ To facilitate routing between the interconnected networks, BGP (Border Gateway P
 
 As depicted in the figure {{bgp-peer-network}}, each AC represents the physical or virtual link between the two networks. The AC configuration includes parameters such as interface settings, VLAN configuration (if applicable), and any additional settings required for connectivity.
 
-Once the ACs are established, BGP peering sessions are configured between the routers of the participating networks. BGP sessions are established over the Attachment Circuits, allowing the routers to exchange routing information. BGP peering configuration includes parameters such as neighbor IP addresses, BGP AS numbers, authentication settings (if required), and route filtering policies.
+Once the ACs are established, BGP peering sessions are configured between the routers of the participating networks. BGP sessions are established over the ACs, allowing the routers to exchange routing information. BGP peering configuration includes parameters such as neighbor IP addresses, AS numbers, authentication settings (if required), etc.
 
 ~~~~ json
 {::include-fold ./json-examples/svc/bgp-peering-example.json}
