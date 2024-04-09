@@ -1571,8 +1571,8 @@ for the reader's convenience.<a href="#section-4-1" class="pilcrow">¶</a></p>
     +-- tag-type?   identityref
   grouping qinq:
     +-- tag-type?   identityref
-    +-- svlan-id    uint16
-    +-- cvlan-id    uint16
+    +-- svlan-id?   uint16
+    +-- cvlan-id?   uint16
   grouping pseudowire:
     +-- vcid?      uint32
     +-- far-end?   union
@@ -1580,7 +1580,7 @@ for the reader's convenience.<a href="#section-4-1" class="pilcrow">¶</a></p>
     +-- vcid?      uint32
     +-- far-end*   union
   grouping vxlan:
-    +-- vni-id             uint32
+    +-- vni-id?            uint32
     +-- peer-mode?         identityref
     +-- peer-ip-address*   inet:ip-address
   grouping l2-tunnel-service:
@@ -1592,7 +1592,7 @@ for the reader's convenience.<a href="#section-4-1" class="pilcrow">¶</a></p>
     |  +-- vcid?      uint32
     |  +-- far-end*   union
     +-- vxlan
-       +-- vni-id             uint32
+       +-- vni-id?            uint32
        +-- peer-mode?         identityref
        +-- peer-ip-address*   inet:ip-address
 </pre>

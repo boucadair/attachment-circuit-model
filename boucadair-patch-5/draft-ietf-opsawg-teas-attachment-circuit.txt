@@ -117,7 +117,8 @@ Table of Contents
      A.8.  Connecting a Virtualized Environment Running in a Cloud
             Provider
      A.9.  Connect Customer Network (CE) Through BGP
-     A.10. Connectivity of Cloudidified Network Functions
+     A.10. Connect two networks through eBGP peering
+     A.11. Connectivity of Cloudidified Network Functions
    Acknowledgments
    Contributors
    Authors' Addresses
@@ -1111,8 +1112,8 @@ Table of Contents
               |  |  |  +--rw tag-type?   identityref
               |  |  +--rw qinq
               |  |     +--rw tag-type?   identityref
-              |  |     +--rw svlan-id    uint16
-              |  |     +--rw cvlan-id    uint16
+              |  |     +--rw svlan-id?   uint16
+              |  |     +--rw cvlan-id?   uint16
               |  +--rw (l2-service)?
               |  |  +--:(l2-tunnel-service)
               |  |  |  +--rw l2-tunnel-service
@@ -1409,7 +1410,7 @@ Table of Contents
            |     |  |     +--rw local-as?         inet:as-number
            |     |  |     +--rw peer-as?          inet:as-number
            |     |  |     +--rw address-family?   identityref
-           |     |  |     +--ro local-address?    inet:ip-address
+           |     |  |     +--rw local-address?    inet:ip-address
            |     |  |     +--rw authentication
            |     |  |        +--rw enabled?           boolean
            |     |  |        +--rw keying-material
@@ -1431,7 +1432,7 @@ Table of Contents
            |     |     +--ro server-reference?   string
            |     |     |       {ac-common:server-assigned-reference}?
            |     |     +--rw remote-address?     inet:ip-address
-           |     |     +--ro local-address?      inet:ip-address
+           |     |     +--rw local-address?      inet:ip-address
            |     |     +--rw local-as?           inet:as-number
            |     |     +--rw peer-as?            inet:as-number
            |     |     +--rw address-family?     identityref
@@ -3090,14 +3091,7 @@ Table of Contents
            if-feature "vpn-common:rtg-bgp";
            description
              "Configuration specific to BGP.";
-           uses bgp-svc {
-             refine "peer-groups/peer-group/local-address" {
-               config false;
-             }
-             refine "neighbor/local-address" {
-               config false;
-             }
-           }
+           uses bgp-svc;
          }
          container ospf {
            when "derived-from-or-self(../type, "
@@ -4462,12 +4456,15 @@ A.5.  Control Precedence over Multiple ACs
 
         Figure 32: An Example Topology for AC Precedence Enforcement
 
+   =============== NOTE: '\' line wrapping per RFC 8792 ================
+
    {
      "ietf-ac-svc:attachment-circuits": {
        "ac": [
          {
            "name": "ac1",
-           "description": "Example to illustrate AC precedence usage",
+           "description": "An example to illustrate AC precedence usage\
+                                                                      ",
            "group": [
              {
                "group-id": "1",
@@ -4480,7 +4477,8 @@ A.5.  Control Precedence over Multiple ACs
          },
          {
            "name": "ac2",
-           "description": "Example to illustrate AC precedence usage",
+           "description": "An AC example to illustrate AC precedence \
+                                                                 usage",
            "group": [
              {
                "group-id": "1",
@@ -4888,7 +4886,7 @@ A.7.  Binding Attachment Circuits to an IETF Network Slice
                  ]
                },
                {
-                 "sdp-id": "sdp2",
+                 "id": "sdp2",
                  "ac-svc-name": [
                    "ac2"
                  ]
@@ -5098,6 +5096,7 @@ Orchestration       DIRECT INTERCONNECTION ORDERING (API)       Provider
                        "peer-as": 65536,
                        "local-as": 65550,
                        "authentication": {
+                         "enabled": true,
                          "keying-material": {
                            "md5-keychain": "nyxNER_c5sdn608fFQl3331d"
                          }
@@ -5234,7 +5233,202 @@ A.9.  Connect Customer Network (CE) Through BGP
    to the same customer without requiring the full service
    configuration.
 
-A.10.  Connectivity of Cloudidified Network Functions
+A.10.  Connect two networks through eBGP peering
+
+   In this scenario, multiple networks, each represented by a Network
+   Element (NE), connect to other networks or a Network Access Point
+   (NAP) for interconnection purposes.  Each network connects to each
+   other through one or more Attachment Circuits (ACs).
+
+   To facilitate routing between the interconnected networks, BGP
+   (Border Gateway Protocol) peering sessions are established between
+   the participating networks.  BGP is used to exchange routing
+   information and reachability announcements between those networks.
+
+   =============== NOTE: '\' line wrapping per RFC 8792 ================
+
+   +------------------------+                       +------------------\
+                                                                -------+
+   |  Provider Network A    |                       | Provider Network \
+                                                                B      |
+   |       AS65536          |                       |      \
+                                                    AS65537            |
+   |        +------------+  |  Attachment-Circuit 1 | +------------\
+                                                            +          |
+   |        | ASBR-A-1   +----------------------------+ ASBR-B-1   \
+                                                            |          |
+   |        +------------+  |    Bearer=Line-114    | +------------\
+                                                            +          |
+   |                        |                       \
+                                             |                         |
+   +------------------------+                       +------------------\
+                                                                -------+
+
+            Figure 47: Illustration of Provider Network Scenario
+
+   As depicted in the figure Figure 47, each AC represents the physical
+   or virtual link between the two networks.  The AC configuration
+   includes parameters such as interface settings, VLAN configuration
+   (if applicable), and any additional settings required for
+   connectivity.
+
+   Once the ACs are established, BGP peering sessions are configured
+   between the routers of the participating networks.  BGP sessions are
+   established over the Attachment Circuits, allowing the routers to
+   exchange routing information.  BGP peering configuration includes
+   parameters such as neighbor IP addresses, BGP AS numbers,
+   authentication settings (if required), and route filtering policies.
+
+   {
+     "ietf-ac-svc:attachment-circuits": {
+       "ac": [
+         {
+           "name": "IPT-NET-ABC",
+           "customer-name": "NET-ABC",
+           "description": "NET-ABC",
+           "peer-sap-id": [
+             "sap#114"
+           ],
+           "l2-connection": {
+             "encapsulation": {
+               "type": "ietf-vpn-common:dot1q",
+               "dot1q": {
+                 "tag-type": "ietf-vpn-common:c-vlan",
+                 "cvlan-id": 114
+               }
+             },
+             "bearer-reference": "line-114"
+           },
+           "ip-connection": {
+             "ipv4": {
+               "local-address": "192.168.1.1",
+               "prefix-length": 30
+             }
+           },
+           "routing-protocols": {
+             "routing-protocol": [
+               {
+                 "id": "BGP",
+                 "type": "ietf-vpn-common:bgp-routing",
+                 "bgp": {
+                   "neighbor": [
+                     {
+                       "id": "NAP-1",
+                       "remote-address": "100.100.100.1",
+                       "peer-as": 65537,
+                       "address-family": "ietf-vpn-common:ipv4",
+                       "authentication": {
+                         "enabled": true,
+                         "keying-material": {
+                           "key-id": 1,
+                           "key": "test##"
+                         }
+                       },
+                       "status": {
+                         "admin-status": {
+                           "status": "ietf-vpn-common:admin-up"
+                         }
+                       }
+                     }
+                   ]
+                 }
+               },
+               {
+                 "id": "static",
+                 "type": "ietf-vpn-common:static-routing",
+                 "static": {
+                   "cascaded-lan-prefixes": {
+                     "ipv4-lan-prefixes": [
+                       {
+                         "lan": "200.200.200.1/32",
+                         "next-hop": "192.168.1.1"
+                       }
+                     ]
+                   }
+                 }
+               }
+             ]
+           }
+         },
+         {
+           "name": "IPT-NET-DEF",
+           "customer-name": "NET-DEF",
+           "description": "NET-DEF",
+           "peer-sap-id": [
+             "sap#114"
+           ],
+           "ip-connection": {
+             "ipv4": {
+               "local-address": "192.168.1.2",
+               "prefix-length": 30
+             }
+           },
+           "l2-connection": {
+             "encapsulation": {
+               "type": "ietf-vpn-common:dot1q",
+               "dot1q": {
+                 "tag-type": "ietf-vpn-common:c-vlan",
+                 "cvlan-id": 114
+               }
+             },
+             "bearer-reference": "line-114"
+           },
+           "routing-protocols": {
+             "routing-protocol": [
+               {
+                 "id": "BGP",
+                 "type": "ietf-vpn-common:bgp-routing",
+                 "bgp": {
+                   "neighbor": [
+                     {
+                       "id": "NAP-1",
+                       "remote-address": "200.200.200.1",
+                       "peer-as": 65536,
+                       "address-family": "ietf-vpn-common:ipv4",
+                       "authentication": {
+                         "enabled": true,
+                         "keying-material": {
+                           "key-id": 1,
+                           "key": "test##"
+                         }
+                       },
+                       "status": {
+                         "admin-status": {
+                           "status": "ietf-vpn-common:admin-up"
+                         }
+                       }
+                     }
+                   ]
+                 }
+               },
+               {
+                 "id": "static",
+                 "type": "ietf-vpn-common:static-routing",
+                 "static": {
+                   "cascaded-lan-prefixes": {
+                     "ipv4-lan-prefixes": [
+                       {
+                         "lan": "100.100.100.1/32",
+                         "next-hop": "192.168.1.2"
+                       }
+                     ]
+                   }
+                 }
+               }
+             ]
+           }
+         }
+       ]
+     }
+   }
+
+      Figure 48: Message Body of a Request to create an AC to connect
+                     two networks through eBGP peering
+
+   This scenario allows the provider to maintain a list of ACs
+   associated with peering sessions.
+
+A.11.  Connectivity of Cloudidified Network Functions
 
    This example demonstrates how the AC service model permits to manage
    connectivity requirements for complex Network Functions -
@@ -5259,59 +5453,296 @@ A.10.  Connectivity of Cloudidified Network Functions
    the sake of simplicity only 2 vlans are presented in this example,
    additional vlans are generally configured based on similar logic.
 
-   Firstly, Figure Figure 47 describes the physical infrastructure on
-   which attachment circuits are provisionned.  The compute nodes
-   (customer) are attached to the provider infrastructure thanks to a
-   set of bearers (i.e. compute-XX-nicY).  The provider infrastructure
-   can be realized in multiple ways, such as IP Fabric, Gateways or L2/
-   L3 Edge Routers.  This document does not intend to detail these
-   aspects.
+   Figure Figure 49 describes the physical infrastructure.  The compute
+   nodes (customer) are attached to the provider infrastructure thanks
+   to a set of physical links on which attachment circuits are
+   provisionned (i.e. compute-XX-nicY).  The provider infrastructure can
+   be realized in multiple ways, such as IP Fabric, Gateways or L2/L3
+   Edge Routers.  This document does not intend to detail these aspects.
+
+                                          ┌ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ┐
+    ┌ ─ ─ ─ ─ ─ ─        bearer =               ┌────────┐
+                 |    compute-01-nic1     |     │        │            |
+    | compute-01  ────────────────────────      └────────┘
+                 |                        |     ┌────────┐ ┌────────┐ |
+    └ ─ ─ ─ ─ ─ ─                               │        │ │        │
+    ┌ ─ ─ ─ ─ ─ ─        bearer =         |     └────────┘ └────────┘ |
+                 |    compute-02-nic2           ┌────────┐ ┌────────┐
+    | compute-02  ────────────────────────|     │        │ │        │ |
+                 |                              └────────┘ └────────┘
+    └ ─ ─ ─ ─ ─ ─                         |     ┌────────┐            |
+                                                │        │
+                           [...]          |     └────────┘            |
+
+                                          |                           |
+   ┌ ─ ─ ─ ─ ─ ─ ┐       bearer =               Provider Network
+                      compute-10-nic0     |       Infrastructure      |
+   | compute-10  |────────────────────────     (IP Fabric, Gateways)
+                                          |            etc.)          |
+   └ ─ ─ ─ ─ ─ ─ ┘
+                                          └ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ┘
+
+             Figure 49: Physical Topology for Cloud Deployment
+
+   Next, the NF is deployed on this infrastructure thanks to the
+   configuration of: - A parent AC as a centralized attachment for vlan
+   100.  The parent AC captures vlan has additional Layer 3
+   configuration: IP range for NFs endpoints through Caas/Iaas IPAM,
+   Static Routes with BFD to user plane and BGP configuration to control
+   plane NFs. - A parent AC as a centralized attachment for vlan 200.
+   This vlan is for L2 connectivity between NFs (no IP configuration in
+   the Provider Network). - "Child ACs" attached to bearers for both
+   vlan 100 and vlan 200.  The deployment actually deploys the Network
+   Service to all computes (compute-01 to compute-10), even though the
+   NF is not instantiated on compute-07/compute-08.  This permits to
+   handle compute failure and scale-out scenarios (see later).
+
+   For readability the payload are displayed as single JSON files.  In
+   practice, several API can happen to initialize these resources
+   (e.g.#1 GET request from customer get IP pools for NFs on vlan 100
+   thanks to parent configuration and BGP configuration, #2 POST extra
+   routes for user planes and BFD...).
+
+   Note that for user plane, no IP address is assigned to Child ACs.
+   The assignment of IP addresses to the NF endpoints is managed by the
+   infrastructure IPAM.
+
+   {
+       "ietf-ac-svc:specific-provisioning-profiles": {
+         "valid-provider-identifiers": {
+           "bfd-profile-identifier": [
+             {
+               "id": "single-hop-bfd-user-plane"
+             }
+           ]
+         }
+       }
+   }
+
+         Figure 50: Message Body of a Response to get available BFD
+                       profiles from Provider Network
 
    =============== NOTE: '\' line wrapping per RFC 8792 ================
 
-                                                ┌ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ \
-                                                                 ─ ─ ─ ┐
-    ┌ ─ ─ ─ ─ ─ ─           bearer =                  ┌────────\
-                                                          ┐
-                 │       compute-01-nic1        │     │        \
-                                                          │            │
-    │ compute-01  ──────────────────────────────      └────────\
-                                                          ┘
-                 │                              │     ┌────────┐ ┌─────\
-                                                                  ───┐ │
-    └ ─ ─ ─ ─ ─ ─                                     │        │ \
-                                                            │        │
-    ┌ ─ ─ ─ ─ ─ ─           bearer =            │     └────────┘ └─────\
-                                                                  ───┘ │
-                 │       compute-02-nic2              ┌────────┐ ┌─────\
-                                                                  ───┐
-    │ compute-02  ──────────────────────────────│     │        │ \
-                                                            │        │ │
-                 │                                    └────────┘ └─────\
-                                                                  ───┘
-    └ ─ ─ ─ ─ ─ ─                               │     ┌────────\
-                                                          ┐            │
-                                                      │        \
-                                                          │
-                              [...]             │     └────────\
-                                                          ┘            │
+   {
+     "ietf-ac-svc:specific-provisioning-profiles": {
+       "valid-provider-identifiers": {
+         "bfd-profile-identifier": [
+           {
+             "id": "single-hop-bfd-user-plane"
+           }
+         ]
+       }
+     },
+     "ietf-ac-svc:attachment-circuits": {
+       "ac": [
+         {
+           "name": "parent-vlan-100",
+           "description": "This parent represents a bridge with L3 \
+                             interface (IRB) to connect NF in vlan 100",
+           "l2-connection": {
+             "encapsulation": {
+               "type": "ietf-vpn-common:dot1q",
+               "dot1q": {
+                 "cvlan-id": 100
+               }
+             }
+           },
+           "ip-connection": {
+             "ipv4": {
+               "virtual-address": "192.0.2.254",
+               "prefix-length": 24,
+               "customer-addresses": {
+                 "address-pool": [
+                   {
+                     "pool-id": "pool-1",
+                     "start-address": "192.0.2.1",
+                     "end-address": "192.0.2.200"
+                   }
+                 ]
+               }
+             }
+           },
+           "routing-protocols": {
+             "routing-protocol": [
+               {
+                 "id": "1",
+                 "type": "ietf-vpn-common:static-routing",
+                 "static": {
+                   "cascaded-lan-prefixes": {
+                     "ipv4-lan-prefixes": [
+                       {
+                         "lan": "198.51.100.100/32",
+                         "next-hop": "192.0.2.1",
+                         "lan-tag": "virtual-next-hop",
+                         "bfd-profile": "single-hop-bfd-user-plane"
+                       },
+                       {
+                         "lan": "198.51.100.100/32",
+                         "next-hop": "192.0.2.2",
+                         "lan-tag": "virtual-next-hop",
+                         "bfd-profile": "single-hop-bfd-user-plane"
+                       },
+                       {
+                         "lan": "198.51.100.100/32",
+                         "next-hop": "192.0.2.8",
+                         "lan-tag": "virtual-next-hop",
+                         "bfd-profile": "single-hop-bfd-user-plane"
+                       }
+                     ]
+                   }
+                 }
+               },
+               {
+                 "id": "2",
+                 "type": "ietf-vpn-common:bgp-routing",
+                 "bgp": {
+                   "peer-groups": {
+                     "peer-group": [
+                       {
+                         "name": "peer-nf-cp-vlan-100-gw1",
+                         "local-as": 65536,
+                         "peer-as": 65537,
+                         "local-address": "192.0.2.252"
+                       },
+                       {
+                         "name": "peer-nf-cp-vlan-100-gw2",
+                         "local-as": 65536,
+                         "peer-as": 65537,
+                         "local-address": "192.0.2.253"
+                       }
+                     ]
+                   },
+                   "neighbor": [
+                     {
+                       "id": "gw1-cp1",
+                       "remote-address": "192.0.2.101",
+                       "peer-group": "peer-nf-cp-vlan-100-gw1"
+                     },
+                     {
+                       "id": "gw1-cp2",
+                       "remote-address": "192.0.2.102",
+                       "peer-group": "peer-nf-cp-vlan-100-gw1"
+                     },
+                     {
+                       "id": "gw2-cp1",
+                       "remote-address": "192.0.2.101",
+                       "peer-group": "peer-nf-cp-vlan-100-gw1"
+                     },
+                     {
+                       "id": "gw2-cp2",
+                       "remote-address": "192.0.2.102",
+                       "peer-group": "peer-nf-cp-vlan-100-gw1"
+                     }
+                   ]
+                 }
+               }
+             ]
+           }
+         },
+         {
+           "name": "parent-vlan-200",
+           "description": "This parent represents a bridge that \
+                                             connects a NF in vlan 200",
+           "l2-connection": {
+             "encapsulation": {
+               "type": "ietf-vpn-common:dot1q",
+               "dot1q": {
+                 "cvlan-id": 200
+               }
+             }
+           }
+         },
+         {
+           "name": "ac-nf-up-01-vlan-100",
+           "description": "attachment to Network Function NF-up \
+                                                instance 1 in vlan 100",
+           "ac-parent-ref": "parent-vlan-100",
+           "l2-connection": {
+             "bearer-reference": "compute-01-nic1"
+           }
+         },
+         {
+           "name": "ac-nf-up-02-vlan-100",
+           "description": "attachment to Network Function NF-up \
+                                                instance 2 in vlan 100",
+           "ac-parent-ref": "parent-vlan-100",
+           "l2-connection": {
+             "bearer-reference": "compute-02-nic2"
+           }
+         },
+         {
+           "name": "ac-nf-up-08-vlan-100",
+           "description": "attachment to Network Function NF-up \
+                                               instance 10 in vlan 100",
+           "ac-parent-ref": "parent-vlan-100",
+           "l2-connection": {
+             "bearer-reference": "compute-08-nic1"
+           }
+         },
+         {
+           "name": "ac-nf-cp-01-vlan-100",
+           "description": "attachment to Network Function NF-CP \
+                                                instance 1 in vlan 100",
+           "ac-parent-ref": "parent-vlan-100",
+           "l2-connection": {
+             "bearer-reference": "compute-09-nic0"
+           },
+           "ip-connection": {
+             "ipv4": {
+               "prefix-length": 24,
+               "address": [
+                 {
+                   "address-id": "1",
+                   "customer-address": "192.0.2.101"
+                 }
+               ]
+             }
+           }
+         },
+         {
+           "name": "ac-nf-cp-02-vlan-100",
+           "description": "attachment to Network Function NF-CP \
+                                                instance 2 in vlan 100",
+           "ac-parent-ref": "parent-vlan-100",
+           "l2-connection": {
+             "bearer-reference": "compute-10-nic0"
+           },
+           "ip-connection": {
+             "ipv4": {
+               "prefix-length": 24,
+               "address": [
+                 {
+                   "address-id": "1",
+                   "customer-address": "192.0.2.102"
+                 }
+               ]
+             }
+           }
+         },
+         {
+           "name": "ac-nf-up-1-vlan-200",
+           "description": "attachment to Network Function NF-up \
+                                                instance 1 in vlan 200",
+           "ac-parent-ref": "parent-vlan-200",
+           "l2-connection": {
+             "bearer-reference": "compute-01-nic1"
+           }
+         },
+         {
+           "name": "ac-nf-cp-2-vlan-200",
+           "description": "attachment to Network Function NF-CP \
+                                                instance 2 in vlan 200",
+           "ac-parent-ref": "parent-vlan-200",
+           "l2-connection": {
+             "bearer-reference": "compute-10-nic1"
+           }
+         }
+       ]
+     }
+   }
 
-                                                \
-                                           │                           │
-   ┌ ─ ─ ─ ─ ─ ─ ┐          bearer =                   Provider \
-                                                           Network
-                         compute-10-nic0        │    Infrastructure (e.\
-                                                                  g.   │
-   │ compute-10  │──────────────────────────────     IP Fabric, \
-                                                           Gateways,
-                                                │            etc.\
-                                                            )          │
-   └ ─ ─ ─ ─ ─ ─ \
-            ┘
-                                                └ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ \
-                                                                 ─ ─ ─ ┘
-
-             Figure 47: Physical Topology for Cloud Deployment
+          Figure 51: Message body for configuration of the NF ACs
 
 Acknowledgments
 

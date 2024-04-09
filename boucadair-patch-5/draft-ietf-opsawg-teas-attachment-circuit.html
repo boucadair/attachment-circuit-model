@@ -1270,7 +1270,10 @@ svg :is([fill="white"], [fill^="#fff"]) {
                 <p id="section-toc.1-1.10.2.9.1"><a href="#appendix-A.9" class="auto internal xref">A.9</a>.  <a href="#name-connect-customer-network-ce" class="internal xref">Connect Customer Network (CE) Through BGP</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.10">
-                <p id="section-toc.1-1.10.2.10.1"><a href="#appendix-A.10" class="auto internal xref">A.10</a>. <a href="#name-connectivity-of-cloudidifie" class="internal xref">Connectivity of Cloudidified Network Functions</a></p>
+                <p id="section-toc.1-1.10.2.10.1"><a href="#appendix-A.10" class="auto internal xref">A.10</a>. <a href="#name-connect-two-networks-throug" class="internal xref">Connect two networks through eBGP peering</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.11">
+                <p id="section-toc.1-1.10.2.11.1"><a href="#appendix-A.11" class="auto internal xref">A.11</a>. <a href="#name-connectivity-of-cloudidifie" class="internal xref">Connectivity of Cloudidified Network Functions</a></p>
 </li>
             </ul>
 </li>
@@ -2381,8 +2384,8 @@ a parent AC can be defined with a set of stable and common information, while
         |  |  |  +--rw tag-type?   identityref
         |  |  +--rw qinq
         |  |     +--rw tag-type?   identityref
-        |  |     +--rw svlan-id    uint16
-        |  |     +--rw cvlan-id    uint16
+        |  |     +--rw svlan-id?   uint16
+        |  |     +--rw cvlan-id?   uint16
         |  +--rw (l2-service)?
         |  |  +--:(l2-tunnel-service)
         |  |  |  +--rw l2-tunnel-service
@@ -2720,7 +2723,7 @@ a parent AC can be defined with a set of stable and common information, while
         |     |  |     +--rw local-as?         inet:as-number
         |     |  |     +--rw peer-as?          inet:as-number
         |     |  |     +--rw address-family?   identityref
-        |     |  |     +--ro local-address?    inet:ip-address
+        |     |  |     +--rw local-address?    inet:ip-address
         |     |  |     +--rw authentication
         |     |  |        +--rw enabled?           boolean
         |     |  |        +--rw keying-material
@@ -2742,7 +2745,7 @@ a parent AC can be defined with a set of stable and common information, while
         |     |     +--ro server-reference?   string
         |     |     |       {ac-common:server-assigned-reference}?
         |     |     +--rw remote-address?     inet:ip-address
-        |     |     +--ro local-address?      inet:ip-address
+        |     |     +--rw local-address?      inet:ip-address
         |     |     +--rw local-as?           inet:as-number
         |     |     +--rw peer-as?            inet:as-number
         |     |     +--rw address-family?     identityref
@@ -4579,14 +4582,7 @@ module ietf-ac-svc {
         if-feature "vpn-common:rtg-bgp";
         description
           "Configuration specific to BGP.";
-        uses bgp-svc {
-          refine "peer-groups/peer-group/local-address" {
-            config false;
-          }
-          refine "neighbor/local-address" {
-            config false;
-          }
-        }
+        uses bgp-svc;
       }
       container ospf {
         when "derived-from-or-self(../type, "
@@ -6036,12 +6032,15 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 <figure id="figure-33">
           <div class="lang-json sourcecode" id="appendix-A.5-3.1">
 <pre>
+=============== NOTE: '\' line wrapping per RFC 8792 ================
+
 {
   "ietf-ac-svc:attachment-circuits": {
     "ac": [
       {
         "name": "ac1",
-        "description": "Example to illustrate AC precedence usage",
+        "description": "An example to illustrate AC precedence usage\
+                                                                   ",
         "group": [
           {
             "group-id": "1",
@@ -6054,7 +6053,8 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
       },
       {
         "name": "ac2",
-        "description": "Example to illustrate AC precedence usage",
+        "description": "An AC example to illustrate AC precedence \
+                                                              usage",
         "group": [
           {
             "group-id": "1",
@@ -6705,7 +6705,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
               ]
             },
             {
-              "sdp-id": "sdp2",
+              "id": "sdp2",
               "ac-svc-name": [
                 "ac2"
               ]
@@ -7005,6 +7005,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
                     "peer-as": 65536,
                     "local-as": 65550,
                     "authentication": {
+                      "enabled": true,
                       "keying-material": {
                         "md5-keychain": "nyxNER_c5sdn608fFQl3331d"
                       }
@@ -7171,28 +7172,33 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 <p id="appendix-A.9-5">This scenario allows the provider to maintain a list of ACs belonging to the same customer without requiring the full service configuration.<a href="#appendix-A.9-5" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="connectivity-of-cloudidified-network-functions">
+<div id="connect-two-networks-through-ebgp-peering">
 <section id="appendix-A.10">
-        <h3 id="name-connectivity-of-cloudidifie">
-<a href="#appendix-A.10" class="section-number selfRef">A.10. </a><a href="#name-connectivity-of-cloudidifie" class="section-name selfRef">Connectivity of Cloudidified Network Functions</a>
+        <h3 id="name-connect-two-networks-throug">
+<a href="#appendix-A.10" class="section-number selfRef">A.10. </a><a href="#name-connect-two-networks-throug" class="section-name selfRef">Connect two networks through eBGP peering</a>
         </h3>
-<p id="appendix-A.10-1">This example demonstrates how the AC service model permits to manage connectivity requirements for complex Network Functions - containerized or virtualized -  that typically met in Telco Networks. This integration leverages the concept of "parent ACs" to decouple physical and logical connectivity so that several AC can shares L2 and L3 resources.This approach provides flexibility, scalability and API stability.<a href="#appendix-A.10-1" class="pilcrow">¶</a></p>
-<p id="appendix-A.10-2">The Network Function have the following characteristics:
-- The Network Function is distributed on a set of computes with scaled-out and redundant instances.
-- The NF has two distinct type of instances: user plane (nf-up) and  routing control plane (nf-cp).
-- The User plane component can be distributed among the first 8 compute nodes (compute-1 to compute-08) to achieve high performance.
-- The Control plane is deployed in a redundant fashion on 2 instances running on distinct compute nodes (compute-09 and compute-10).
-- The NF is attached to distinct networks, each making use of a dedicated vlan. These vlans are therefore instantiated as separate Attachment Circuits. From a realization standpoint, the NF interface connectivity is generally provided thanks to macvlan or SR-IOV. For the sake of simplicity only 2 vlans are presented in this example, additional vlans are generally configured based on similar logic.<a href="#appendix-A.10-2" class="pilcrow">¶</a></p>
-<p id="appendix-A.10-3">Firstly, Figure <a href="#cloud-parent-infra" class="auto internal xref">Figure 47</a> describes the physical infrastructure on which attachment circuits are provisionned. The compute nodes (customer) are attached to the provider infrastructure thanks to a set of bearers (i.e. compute-XX-nicY). The provider infrastructure can be realized in multiple ways, such as  IP Fabric, Gateways or L2/L3 Edge Routers. This document does not intend to detail these aspects.<a href="#appendix-A.10-3" class="pilcrow">¶</a></p>
-<span id="name-physical-topology-for-cloud"></span><div id="cloud-parent-infra">
+<p id="appendix-A.10-1">In this scenario, multiple networks, each represented by a Network Element (NE), connect to other networks or a Network Access Point (NAP) for interconnection purposes. Each network connects to each other through one or more Attachment Circuits (ACs).<a href="#appendix-A.10-1" class="pilcrow">¶</a></p>
+<p id="appendix-A.10-2">To facilitate routing between the interconnected networks, BGP (Border Gateway Protocol) peering sessions are established between the participating networks. BGP is used to exchange routing information and reachability announcements between those networks.<a href="#appendix-A.10-2" class="pilcrow">¶</a></p>
+<span id="name-illustration-of-provider-net"></span><div id="bgp-peer-network">
 <figure id="figure-47">
-          <div id="appendix-A.10-4.1">
-            <div class="alignLeft art-svg artwork" id="appendix-A.10-4.1.1">
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="720" width="600" viewBox="0 0 600 720" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
+          <div id="appendix-A.10-3.1">
+            <div class="alignLeft art-svg artwork" id="appendix-A.10-3.1.1">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="320" width="560" viewBox="0 0 560 320" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
                 <path d="M 8,30 L 120,30" fill="none" stroke="black"></path>
                 <path d="M 8,34 L 120,34" fill="none" stroke="black"></path>
                 <path d="M 432,30 L 552,30" fill="none" stroke="black"></path>
                 <path d="M 432,34 L 552,34" fill="none" stroke="black"></path>
+                <path d="M 8,64 L 208,64" fill="none" stroke="black"></path>
+                <path d="M 400,64 L 544,64" fill="none" stroke="black"></path>
+                <path d="M 496,80 L 552,80" fill="none" stroke="black"></path>
+                <path d="M 80,160 L 184,160" fill="none" stroke="black"></path>
+                <path d="M 416,160 L 512,160" fill="none" stroke="black"></path>
+                <path d="M 184,192 L 416,192" fill="none" stroke="black"></path>
+                <path d="M 80,224 L 184,224" fill="none" stroke="black"></path>
+                <path d="M 416,224 L 512,224" fill="none" stroke="black"></path>
+                <path d="M 8,288 L 208,288" fill="none" stroke="black"></path>
+                <path d="M 400,288 L 544,288" fill="none" stroke="black"></path>
+                <path d="M 496,304 L 552,304" fill="none" stroke="black"></path>
                 <g class="text">
                   <text x="152" y="36">NOTE:</text>
                   <text x="192" y="36">'\'</text>
@@ -7201,178 +7207,646 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
                   <text x="336" y="36">per</text>
                   <text x="368" y="36">RFC</text>
                   <text x="404" y="36">8792</text>
-                  <text x="368" y="68">┌</text>
-                  <text x="384" y="68">─</text>
-                  <text x="400" y="68">─</text>
-                  <text x="416" y="68">─</text>
-                  <text x="432" y="68">─</text>
-                  <text x="448" y="68">─</text>
-                  <text x="464" y="68">─</text>
-                  <text x="480" y="68">─</text>
-                  <text x="496" y="68">─</text>
-                  <text x="512" y="68">─</text>
-                  <text x="528" y="68">─</text>
-                  <text x="544" y="68">\</text>
-                  <text x="504" y="84">─</text>
-                  <text x="520" y="84">─</text>
-                  <text x="536" y="84">─</text>
-                  <text x="552" y="84">┐</text>
-                  <text x="16" y="100">┌</text>
-                  <text x="32" y="100">─</text>
-                  <text x="48" y="100">─</text>
-                  <text x="64" y="100">─</text>
-                  <text x="80" y="100">─</text>
-                  <text x="96" y="100">─</text>
-                  <text x="112" y="100">─</text>
-                  <text x="228" y="100">bearer</text>
-                  <text x="264" y="100">=</text>
-                  <text x="452" y="100">┌────────\</text>
-                  <text x="448" y="116">┐</text>
-                  <text x="120" y="132">│</text>
-                  <text x="240" y="132">compute-01-nic1</text>
-                  <text x="368" y="132">│</text>
-                  <text x="416" y="132">│</text>
-                  <text x="488" y="132">\</text>
-                  <text x="448" y="148">│</text>
-                  <text x="552" y="148">│</text>
-                  <text x="16" y="164">│</text>
-                  <text x="68" y="164">compute-01</text>
-                  <text x="244" y="164">──────────────────────────────</text>
-                  <text x="452" y="164">└────────\</text>
-                  <text x="448" y="180">┘</text>
-                  <text x="120" y="196">│</text>
-                  <text x="368" y="196">│</text>
-                  <text x="452" y="196">┌────────┐</text>
-                  <text x="528" y="196">┌─────\</text>
-                  <text x="524" y="212">───┐</text>
-                  <text x="552" y="212">│</text>
-                  <text x="16" y="228">└</text>
-                  <text x="32" y="228">─</text>
-                  <text x="48" y="228">─</text>
-                  <text x="64" y="228">─</text>
-                  <text x="80" y="228">─</text>
-                  <text x="96" y="228">─</text>
-                  <text x="112" y="228">─</text>
-                  <text x="416" y="228">│</text>
-                  <text x="488" y="228">│</text>
-                  <text x="504" y="228">\</text>
-                  <text x="464" y="244">│</text>
-                  <text x="536" y="244">│</text>
-                  <text x="16" y="260">┌</text>
-                  <text x="32" y="260">─</text>
-                  <text x="48" y="260">─</text>
-                  <text x="64" y="260">─</text>
-                  <text x="80" y="260">─</text>
-                  <text x="96" y="260">─</text>
-                  <text x="112" y="260">─</text>
-                  <text x="228" y="260">bearer</text>
-                  <text x="264" y="260">=</text>
-                  <text x="368" y="260">│</text>
-                  <text x="452" y="260">└────────┘</text>
-                  <text x="528" y="260">└─────\</text>
-                  <text x="524" y="276">───┘</text>
-                  <text x="552" y="276">│</text>
-                  <text x="120" y="292">│</text>
-                  <text x="240" y="292">compute-02-nic2</text>
-                  <text x="452" y="292">┌────────┐</text>
-                  <text x="528" y="292">┌─────\</text>
-                  <text x="524" y="308">───┐</text>
-                  <text x="16" y="324">│</text>
-                  <text x="68" y="324">compute-02</text>
-                  <text x="248" y="324">──────────────────────────────│</text>
-                  <text x="416" y="324">│</text>
-                  <text x="488" y="324">│</text>
-                  <text x="504" y="324">\</text>
-                  <text x="464" y="340">│</text>
-                  <text x="536" y="340">│</text>
-                  <text x="552" y="340">│</text>
-                  <text x="120" y="356">│</text>
-                  <text x="452" y="356">└────────┘</text>
-                  <text x="528" y="356">└─────\</text>
-                  <text x="524" y="372">───┘</text>
-                  <text x="16" y="388">└</text>
-                  <text x="32" y="388">─</text>
-                  <text x="48" y="388">─</text>
-                  <text x="64" y="388">─</text>
-                  <text x="80" y="388">─</text>
-                  <text x="96" y="388">─</text>
-                  <text x="112" y="388">─</text>
-                  <text x="368" y="388">│</text>
-                  <text x="452" y="388">┌────────\</text>
-                  <text x="448" y="404">┐</text>
-                  <text x="552" y="404">│</text>
-                  <text x="416" y="420">│</text>
-                  <text x="488" y="420">\</text>
-                  <text x="448" y="436">│</text>
-                  <text x="240" y="452">[...]</text>
-                  <text x="368" y="452">│</text>
-                  <text x="452" y="452">└────────\</text>
-                  <text x="448" y="468">┘</text>
-                  <text x="552" y="468">│</text>
-                  <text x="368" y="500">\</text>
-                  <text x="328" y="516">│</text>
-                  <text x="552" y="516">│</text>
-                  <text x="8" y="532">┌</text>
-                  <text x="24" y="532">─</text>
-                  <text x="40" y="532">─</text>
-                  <text x="56" y="532">─</text>
-                  <text x="72" y="532">─</text>
-                  <text x="88" y="532">─</text>
-                  <text x="104" y="532">─</text>
-                  <text x="120" y="532">┐</text>
-                  <text x="228" y="532">bearer</text>
-                  <text x="264" y="532">=</text>
-                  <text x="452" y="532">Provider</text>
-                  <text x="496" y="532">\</text>
-                  <text x="480" y="548">Network</text>
-                  <text x="240" y="564">compute-10-nic0</text>
-                  <text x="368" y="564">│</text>
-                  <text x="460" y="564">Infrastructure</text>
-                  <text x="540" y="564">(e.\</text>
-                  <text x="516" y="580">g.</text>
-                  <text x="552" y="580">│</text>
-                  <text x="8" y="596">│</text>
-                  <text x="60" y="596">compute-10</text>
-                  <text x="240" y="596">│──────────────────────────────</text>
-                  <text x="412" y="596">IP</text>
-                  <text x="456" y="596">Fabric,</text>
-                  <text x="496" y="596">\</text>
-                  <text x="488" y="612">Gateways,</text>
-                  <text x="368" y="628">│</text>
-                  <text x="488" y="628">etc.\</text>
-                  <text x="464" y="644">)</text>
-                  <text x="552" y="644">│</text>
-                  <text x="8" y="660">└</text>
-                  <text x="24" y="660">─</text>
-                  <text x="40" y="660">─</text>
-                  <text x="56" y="660">─</text>
-                  <text x="72" y="660">─</text>
-                  <text x="88" y="660">─</text>
-                  <text x="104" y="660">─</text>
-                  <text x="120" y="660">\</text>
-                  <text x="80" y="676">┘</text>
-                  <text x="368" y="692">└</text>
-                  <text x="384" y="692">─</text>
-                  <text x="400" y="692">─</text>
-                  <text x="416" y="692">─</text>
-                  <text x="432" y="692">─</text>
-                  <text x="448" y="692">─</text>
-                  <text x="464" y="692">─</text>
-                  <text x="480" y="692">─</text>
-                  <text x="496" y="692">─</text>
-                  <text x="512" y="692">─</text>
-                  <text x="528" y="692">─</text>
-                  <text x="544" y="692">\</text>
-                  <text x="504" y="708">─</text>
-                  <text x="520" y="708">─</text>
-                  <text x="536" y="708">─</text>
-                  <text x="552" y="708">┘</text>
+                  <text x="552" y="68">\</text>
+                  <text x="8" y="100">|</text>
+                  <text x="60" y="100">Provider</text>
+                  <text x="128" y="100">Network</text>
+                  <text x="168" y="100">A</text>
+                  <text x="208" y="100">|</text>
+                  <text x="400" y="100">|</text>
+                  <text x="444" y="100">Provider</text>
+                  <text x="512" y="100">Network</text>
+                  <text x="552" y="100">\</text>
+                  <text x="496" y="116">B</text>
+                  <text x="552" y="116">|</text>
+                  <text x="8" y="132">|</text>
+                  <text x="96" y="132">AS65536</text>
+                  <text x="208" y="132">|</text>
+                  <text x="400" y="132">|</text>
+                  <text x="456" y="132">\</text>
+                  <text x="424" y="148">AS65537</text>
+                  <text x="552" y="148">|</text>
+                  <text x="8" y="164">|</text>
+                  <text x="208" y="164">|</text>
+                  <text x="300" y="164">Attachment-Circuit</text>
+                  <text x="384" y="164">1</text>
+                  <text x="400" y="164">|</text>
+                  <text x="520" y="164">\</text>
+                  <text x="464" y="180">+</text>
+                  <text x="552" y="180">|</text>
+                  <text x="8" y="196">|</text>
+                  <text x="80" y="196">|</text>
+                  <text x="124" y="196">ASBR-A-1</text>
+                  <text x="460" y="196">ASBR-B-1</text>
+                  <text x="520" y="196">\</text>
+                  <text x="464" y="212">|</text>
+                  <text x="552" y="212">|</text>
+                  <text x="8" y="228">|</text>
+                  <text x="208" y="228">|</text>
+                  <text x="304" y="228">Bearer=Line-114</text>
+                  <text x="400" y="228">|</text>
+                  <text x="520" y="228">\</text>
+                  <text x="464" y="244">+</text>
+                  <text x="552" y="244">|</text>
+                  <text x="8" y="260">|</text>
+                  <text x="208" y="260">|</text>
+                  <text x="400" y="260">\</text>
+                  <text x="344" y="276">|</text>
+                  <text x="552" y="276">|</text>
+                  <text x="552" y="292">\</text>
                 </g>
-              </svg><a href="#appendix-A.10-4.1.1" class="pilcrow">¶</a>
+              </svg><a href="#appendix-A.10-3.1.1" class="pilcrow">¶</a>
 </div>
 </div>
 <figcaption><a href="#figure-47" class="selfRef">Figure 47</a>:
+<a href="#name-illustration-of-provider-net" class="selfRef">Illustration of Provider Network Scenario</a>
+          </figcaption></figure>
+</div>
+<p id="appendix-A.10-4">As depicted in the figure <a href="#bgp-peer-network" class="auto internal xref">Figure 47</a>, each AC represents the physical or virtual link between the two networks. The AC configuration includes parameters such as interface settings, VLAN configuration (if applicable), and any additional settings required for connectivity.<a href="#appendix-A.10-4" class="pilcrow">¶</a></p>
+<p id="appendix-A.10-5">Once the ACs are established, BGP peering sessions are configured between the routers of the participating networks. BGP sessions are established over the Attachment Circuits, allowing the routers to exchange routing information. BGP peering configuration includes parameters such as neighbor IP addresses, BGP AS numbers, authentication settings (if required), and route filtering policies.<a href="#appendix-A.10-5" class="pilcrow">¶</a></p>
+<span id="name-message-body-of-a-request-to-cr"></span><div id="bgp-peer-network-add-attachment-circuit">
+<figure id="figure-48">
+          <div class="breakable lang-json sourcecode" id="appendix-A.10-6.1">
+<pre>
+{
+  "ietf-ac-svc:attachment-circuits": {
+    "ac": [
+      {
+        "name": "IPT-NET-ABC",
+        "customer-name": "NET-ABC",
+        "description": "NET-ABC",
+        "peer-sap-id": [
+          "sap#114"
+        ],
+        "l2-connection": {
+          "encapsulation": {
+            "type": "ietf-vpn-common:dot1q",
+            "dot1q": {
+              "tag-type": "ietf-vpn-common:c-vlan",
+              "cvlan-id": 114
+            }
+          },
+          "bearer-reference": "line-114"
+        },
+        "ip-connection": {
+          "ipv4": {
+            "local-address": "192.168.1.1",
+            "prefix-length": 30
+          }
+        },
+        "routing-protocols": {
+          "routing-protocol": [
+            {
+              "id": "BGP",
+              "type": "ietf-vpn-common:bgp-routing",
+              "bgp": {
+                "neighbor": [
+                  {
+                    "id": "NAP-1",
+                    "remote-address": "100.100.100.1",
+                    "peer-as": 65537,
+                    "address-family": "ietf-vpn-common:ipv4",
+                    "authentication": {
+                      "enabled": true,
+                      "keying-material": {
+                        "key-id": 1,
+                        "key": "test##"
+                      }
+                    },
+                    "status": {
+                      "admin-status": {
+                        "status": "ietf-vpn-common:admin-up"
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "id": "static",
+              "type": "ietf-vpn-common:static-routing",
+              "static": {
+                "cascaded-lan-prefixes": {
+                  "ipv4-lan-prefixes": [
+                    {
+                      "lan": "200.200.200.1/32",
+                      "next-hop": "192.168.1.1"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "IPT-NET-DEF",
+        "customer-name": "NET-DEF",
+        "description": "NET-DEF",
+        "peer-sap-id": [
+          "sap#114"
+        ],
+        "ip-connection": {
+          "ipv4": {
+            "local-address": "192.168.1.2",
+            "prefix-length": 30
+          }
+        },
+        "l2-connection": {
+          "encapsulation": {
+            "type": "ietf-vpn-common:dot1q",
+            "dot1q": {
+              "tag-type": "ietf-vpn-common:c-vlan",
+              "cvlan-id": 114
+            }
+          },
+          "bearer-reference": "line-114"
+        },
+        "routing-protocols": {
+          "routing-protocol": [
+            {
+              "id": "BGP",
+              "type": "ietf-vpn-common:bgp-routing",
+              "bgp": {
+                "neighbor": [
+                  {
+                    "id": "NAP-1",
+                    "remote-address": "200.200.200.1",
+                    "peer-as": 65536,
+                    "address-family": "ietf-vpn-common:ipv4",
+                    "authentication": {
+                      "enabled": true,
+                      "keying-material": {
+                        "key-id": 1,
+                        "key": "test##"
+                      }
+                    },
+                    "status": {
+                      "admin-status": {
+                        "status": "ietf-vpn-common:admin-up"
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "id": "static",
+              "type": "ietf-vpn-common:static-routing",
+              "static": {
+                "cascaded-lan-prefixes": {
+                  "ipv4-lan-prefixes": [
+                    {
+                      "lan": "100.100.100.1/32",
+                      "next-hop": "192.168.1.2"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
+</pre>
+</div>
+<figcaption><a href="#figure-48" class="selfRef">Figure 48</a>:
+<a href="#name-message-body-of-a-request-to-cr" class="selfRef">Message Body of a Request to create an AC to connect two networks through eBGP peering</a>
+          </figcaption></figure>
+</div>
+<p id="appendix-A.10-7">This scenario allows the provider to maintain a list of ACs associated with peering sessions.<a href="#appendix-A.10-7" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="connectivity-of-cloudidified-network-functions">
+<section id="appendix-A.11">
+        <h3 id="name-connectivity-of-cloudidifie">
+<a href="#appendix-A.11" class="section-number selfRef">A.11. </a><a href="#name-connectivity-of-cloudidifie" class="section-name selfRef">Connectivity of Cloudidified Network Functions</a>
+        </h3>
+<p id="appendix-A.11-1">This example demonstrates how the AC service model permits to manage connectivity requirements for complex Network Functions - containerized or virtualized -  that typically met in Telco Networks. This integration leverages the concept of "parent ACs" to decouple physical and logical connectivity so that several AC can shares L2 and L3 resources.This approach provides flexibility, scalability and API stability.<a href="#appendix-A.11-1" class="pilcrow">¶</a></p>
+<p id="appendix-A.11-2">The Network Function have the following characteristics:
+- The Network Function is distributed on a set of computes with scaled-out and redundant instances.
+- The NF has two distinct type of instances: user plane (nf-up) and  routing control plane (nf-cp).
+- The User plane component can be distributed among the first 8 compute nodes (compute-1 to compute-08) to achieve high performance.
+- The Control plane is deployed in a redundant fashion on 2 instances running on distinct compute nodes (compute-09 and compute-10).
+- The NF is attached to distinct networks, each making use of a dedicated vlan. These vlans are therefore instantiated as separate Attachment Circuits. From a realization standpoint, the NF interface connectivity is generally provided thanks to macvlan or SR-IOV. For the sake of simplicity only 2 vlans are presented in this example, additional vlans are generally configured based on similar logic.<a href="#appendix-A.11-2" class="pilcrow">¶</a></p>
+<p id="appendix-A.11-3">Figure <a href="#cloud-parent-infra" class="auto internal xref">Figure 49</a> describes the physical infrastructure. The compute nodes (customer) are attached to the provider infrastructure thanks to a set of physical links on which attachment circuits are provisionned (i.e. compute-XX-nicY).
+The provider infrastructure can be realized in multiple ways, such as  IP Fabric, Gateways or L2/L3 Edge Routers. This document does not intend to detail these aspects.<a href="#appendix-A.11-3" class="pilcrow">¶</a></p>
+<span id="name-physical-topology-for-cloud"></span><div id="cloud-parent-infra">
+<figure id="figure-49">
+          <div id="appendix-A.11-4.1">
+            <div class="alignLeft art-svg artwork" id="appendix-A.11-4.1.1">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="368" width="560" viewBox="0 0 560 368" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
+                <g class="text">
+                  <text x="320" y="36">┌</text>
+                  <text x="336" y="36">─</text>
+                  <text x="352" y="36">─</text>
+                  <text x="368" y="36">─</text>
+                  <text x="384" y="36">─</text>
+                  <text x="400" y="36">─</text>
+                  <text x="416" y="36">─</text>
+                  <text x="432" y="36">─</text>
+                  <text x="448" y="36">─</text>
+                  <text x="464" y="36">─</text>
+                  <text x="480" y="36">─</text>
+                  <text x="496" y="36">─</text>
+                  <text x="512" y="36">─</text>
+                  <text x="528" y="36">─</text>
+                  <text x="544" y="36">┐</text>
+                  <text x="16" y="52">┌</text>
+                  <text x="32" y="52">─</text>
+                  <text x="48" y="52">─</text>
+                  <text x="64" y="52">─</text>
+                  <text x="80" y="52">─</text>
+                  <text x="96" y="52">─</text>
+                  <text x="112" y="52">─</text>
+                  <text x="204" y="52">bearer</text>
+                  <text x="240" y="52">=</text>
+                  <text x="404" y="52">┌────────┐</text>
+                  <text x="120" y="68">|</text>
+                  <text x="216" y="68">compute-01-nic1</text>
+                  <text x="320" y="68">|</text>
+                  <text x="368" y="68">│</text>
+                  <text x="440" y="68">│</text>
+                  <text x="544" y="68">|</text>
+                  <text x="16" y="84">|</text>
+                  <text x="68" y="84">compute-01</text>
+                  <text x="220" y="84">────────────────────────</text>
+                  <text x="404" y="84">└────────┘</text>
+                  <text x="120" y="100">|</text>
+                  <text x="320" y="100">|</text>
+                  <text x="404" y="100">┌────────┐</text>
+                  <text x="492" y="100">┌────────┐</text>
+                  <text x="544" y="100">|</text>
+                  <text x="16" y="116">└</text>
+                  <text x="32" y="116">─</text>
+                  <text x="48" y="116">─</text>
+                  <text x="64" y="116">─</text>
+                  <text x="80" y="116">─</text>
+                  <text x="96" y="116">─</text>
+                  <text x="112" y="116">─</text>
+                  <text x="368" y="116">│</text>
+                  <text x="440" y="116">│</text>
+                  <text x="456" y="116">│</text>
+                  <text x="528" y="116">│</text>
+                  <text x="16" y="132">┌</text>
+                  <text x="32" y="132">─</text>
+                  <text x="48" y="132">─</text>
+                  <text x="64" y="132">─</text>
+                  <text x="80" y="132">─</text>
+                  <text x="96" y="132">─</text>
+                  <text x="112" y="132">─</text>
+                  <text x="204" y="132">bearer</text>
+                  <text x="240" y="132">=</text>
+                  <text x="320" y="132">|</text>
+                  <text x="404" y="132">└────────┘</text>
+                  <text x="492" y="132">└────────┘</text>
+                  <text x="544" y="132">|</text>
+                  <text x="120" y="148">|</text>
+                  <text x="216" y="148">compute-02-nic2</text>
+                  <text x="404" y="148">┌────────┐</text>
+                  <text x="492" y="148">┌────────┐</text>
+                  <text x="16" y="164">|</text>
+                  <text x="68" y="164">compute-02</text>
+                  <text x="224" y="164">────────────────────────|</text>
+                  <text x="368" y="164">│</text>
+                  <text x="440" y="164">│</text>
+                  <text x="456" y="164">│</text>
+                  <text x="528" y="164">│</text>
+                  <text x="544" y="164">|</text>
+                  <text x="120" y="180">|</text>
+                  <text x="404" y="180">└────────┘</text>
+                  <text x="492" y="180">└────────┘</text>
+                  <text x="16" y="196">└</text>
+                  <text x="32" y="196">─</text>
+                  <text x="48" y="196">─</text>
+                  <text x="64" y="196">─</text>
+                  <text x="80" y="196">─</text>
+                  <text x="96" y="196">─</text>
+                  <text x="112" y="196">─</text>
+                  <text x="320" y="196">|</text>
+                  <text x="404" y="196">┌────────┐</text>
+                  <text x="544" y="196">|</text>
+                  <text x="368" y="212">│</text>
+                  <text x="440" y="212">│</text>
+                  <text x="216" y="228">[...]</text>
+                  <text x="320" y="228">|</text>
+                  <text x="404" y="228">└────────┘</text>
+                  <text x="544" y="228">|</text>
+                  <text x="320" y="260">|</text>
+                  <text x="544" y="260">|</text>
+                  <text x="8" y="276">┌</text>
+                  <text x="24" y="276">─</text>
+                  <text x="40" y="276">─</text>
+                  <text x="56" y="276">─</text>
+                  <text x="72" y="276">─</text>
+                  <text x="88" y="276">─</text>
+                  <text x="104" y="276">─</text>
+                  <text x="120" y="276">┐</text>
+                  <text x="204" y="276">bearer</text>
+                  <text x="240" y="276">=</text>
+                  <text x="396" y="276">Provider</text>
+                  <text x="464" y="276">Network</text>
+                  <text x="216" y="292">compute-10-nic0</text>
+                  <text x="320" y="292">|</text>
+                  <text x="436" y="292">Infrastructure</text>
+                  <text x="544" y="292">|</text>
+                  <text x="8" y="308">|</text>
+                  <text x="60" y="308">compute-10</text>
+                  <text x="216" y="308">|────────────────────────</text>
+                  <text x="368" y="308">(IP</text>
+                  <text x="416" y="308">Fabric,</text>
+                  <text x="488" y="308">Gateways)</text>
+                  <text x="320" y="324">|</text>
+                  <text x="440" y="324">etc.)</text>
+                  <text x="544" y="324">|</text>
+                  <text x="8" y="340">└</text>
+                  <text x="24" y="340">─</text>
+                  <text x="40" y="340">─</text>
+                  <text x="56" y="340">─</text>
+                  <text x="72" y="340">─</text>
+                  <text x="88" y="340">─</text>
+                  <text x="104" y="340">─</text>
+                  <text x="120" y="340">┘</text>
+                  <text x="320" y="356">└</text>
+                  <text x="336" y="356">─</text>
+                  <text x="352" y="356">─</text>
+                  <text x="368" y="356">─</text>
+                  <text x="384" y="356">─</text>
+                  <text x="400" y="356">─</text>
+                  <text x="416" y="356">─</text>
+                  <text x="432" y="356">─</text>
+                  <text x="448" y="356">─</text>
+                  <text x="464" y="356">─</text>
+                  <text x="480" y="356">─</text>
+                  <text x="496" y="356">─</text>
+                  <text x="512" y="356">─</text>
+                  <text x="528" y="356">─</text>
+                  <text x="544" y="356">┘</text>
+                </g>
+              </svg><a href="#appendix-A.11-4.1.1" class="pilcrow">¶</a>
+</div>
+</div>
+<figcaption><a href="#figure-49" class="selfRef">Figure 49</a>:
 <a href="#name-physical-topology-for-cloud" class="selfRef">Physical Topology for Cloud Deployment</a>
+          </figcaption></figure>
+</div>
+<p id="appendix-A.11-5">Next, the NF is deployed on this infrastructure thanks to the configuration of:
+- A parent AC as a centralized attachment for vlan 100. The parent AC captures vlan has additional Layer 3 configuration: IP range for NFs endpoints through Caas/Iaas IPAM, Static Routes with BFD to user plane and BGP configuration to control plane NFs.
+- A parent AC as a centralized attachment for vlan 200. This vlan is for L2 connectivity between NFs (no IP configuration in the Provider Network).
+- "Child ACs" attached to bearers for both vlan 100 and vlan 200.
+The deployment actually deploys the Network Service to all computes (compute-01 to compute-10), even though the NF is not instantiated on compute-07/compute-08. This permits to handle compute failure and scale-out scenarios (see later).<a href="#appendix-A.11-5" class="pilcrow">¶</a></p>
+<p id="appendix-A.11-6">For readability the payload are displayed as single JSON files. In practice, several API can happen to initialize these resources (e.g.#1 GET request from customer get IP pools for NFs on vlan 100 thanks to parent configuration and BGP configuration, #2  POST extra routes for user planes and BFD...).<a href="#appendix-A.11-6" class="pilcrow">¶</a></p>
+<p id="appendix-A.11-7">Note that for user plane, no IP address is assigned to Child ACs. The assignment of IP addresses to the NF endpoints is managed by the infrastructure IPAM.<a href="#appendix-A.11-7" class="pilcrow">¶</a></p>
+<span id="name-message-body-of-a-response-t"></span><div id="get-bfd-profiles">
+<figure id="figure-50">
+          <div class="lang-json sourcecode" id="appendix-A.11-8.1">
+<pre>
+{
+    "ietf-ac-svc:specific-provisioning-profiles": {
+      "valid-provider-identifiers": {
+        "bfd-profile-identifier": [
+          {
+            "id": "single-hop-bfd-user-plane"
+          }
+        ]
+      }
+    }
+}
+</pre>
+</div>
+<figcaption><a href="#figure-50" class="selfRef">Figure 50</a>:
+<a href="#name-message-body-of-a-response-t" class="selfRef">Message Body of a Response to get available BFD profiles from Provider Network</a>
+          </figcaption></figure>
+</div>
+<span id="name-message-body-for-configurat"></span><div id="parent-profile">
+<figure id="figure-51">
+          <div class="breakable lang-json sourcecode" id="appendix-A.11-9.1">
+<pre>
+=============== NOTE: '\' line wrapping per RFC 8792 ================
+
+{
+  "ietf-ac-svc:specific-provisioning-profiles": {
+    "valid-provider-identifiers": {
+      "bfd-profile-identifier": [
+        {
+          "id": "single-hop-bfd-user-plane"
+        }
+      ]
+    }
+  },
+  "ietf-ac-svc:attachment-circuits": {
+    "ac": [
+      {
+        "name": "parent-vlan-100",
+        "description": "This parent represents a bridge with L3 \
+                          interface (IRB) to connect NF in vlan 100",
+        "l2-connection": {
+          "encapsulation": {
+            "type": "ietf-vpn-common:dot1q",
+            "dot1q": {
+              "cvlan-id": 100
+            }
+          }
+        },
+        "ip-connection": {
+          "ipv4": {
+            "virtual-address": "192.0.2.254",
+            "prefix-length": 24,
+            "customer-addresses": {
+              "address-pool": [
+                {
+                  "pool-id": "pool-1",
+                  "start-address": "192.0.2.1",
+                  "end-address": "192.0.2.200"
+                }
+              ]
+            }
+          }
+        },
+        "routing-protocols": {
+          "routing-protocol": [
+            {
+              "id": "1",
+              "type": "ietf-vpn-common:static-routing",
+              "static": {
+                "cascaded-lan-prefixes": {
+                  "ipv4-lan-prefixes": [
+                    {
+                      "lan": "198.51.100.100/32",
+                      "next-hop": "192.0.2.1",
+                      "lan-tag": "virtual-next-hop",
+                      "bfd-profile": "single-hop-bfd-user-plane"
+                    },
+                    {
+                      "lan": "198.51.100.100/32",
+                      "next-hop": "192.0.2.2",
+                      "lan-tag": "virtual-next-hop",
+                      "bfd-profile": "single-hop-bfd-user-plane"
+                    },
+                    {
+                      "lan": "198.51.100.100/32",
+                      "next-hop": "192.0.2.8",
+                      "lan-tag": "virtual-next-hop",
+                      "bfd-profile": "single-hop-bfd-user-plane"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "id": "2",
+              "type": "ietf-vpn-common:bgp-routing",
+              "bgp": {
+                "peer-groups": {
+                  "peer-group": [
+                    {
+                      "name": "peer-nf-cp-vlan-100-gw1",
+                      "local-as": 65536,
+                      "peer-as": 65537,
+                      "local-address": "192.0.2.252"
+                    },
+                    {
+                      "name": "peer-nf-cp-vlan-100-gw2",
+                      "local-as": 65536,
+                      "peer-as": 65537,
+                      "local-address": "192.0.2.253"
+                    }
+                  ]
+                },
+                "neighbor": [
+                  {
+                    "id": "gw1-cp1",
+                    "remote-address": "192.0.2.101",
+                    "peer-group": "peer-nf-cp-vlan-100-gw1"
+                  },
+                  {
+                    "id": "gw1-cp2",
+                    "remote-address": "192.0.2.102",
+                    "peer-group": "peer-nf-cp-vlan-100-gw1"
+                  },
+                  {
+                    "id": "gw2-cp1",
+                    "remote-address": "192.0.2.101",
+                    "peer-group": "peer-nf-cp-vlan-100-gw1"
+                  },
+                  {
+                    "id": "gw2-cp2",
+                    "remote-address": "192.0.2.102",
+                    "peer-group": "peer-nf-cp-vlan-100-gw1"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "parent-vlan-200",
+        "description": "This parent represents a bridge that \
+                                          connects a NF in vlan 200",
+        "l2-connection": {
+          "encapsulation": {
+            "type": "ietf-vpn-common:dot1q",
+            "dot1q": {
+              "cvlan-id": 200
+            }
+          }
+        }
+      },
+      {
+        "name": "ac-nf-up-01-vlan-100",
+        "description": "attachment to Network Function NF-up \
+                                             instance 1 in vlan 100",
+        "ac-parent-ref": "parent-vlan-100",
+        "l2-connection": {
+          "bearer-reference": "compute-01-nic1"
+        }
+      },
+      {
+        "name": "ac-nf-up-02-vlan-100",
+        "description": "attachment to Network Function NF-up \
+                                             instance 2 in vlan 100",
+        "ac-parent-ref": "parent-vlan-100",
+        "l2-connection": {
+          "bearer-reference": "compute-02-nic2"
+        }
+      },
+      {
+        "name": "ac-nf-up-08-vlan-100",
+        "description": "attachment to Network Function NF-up \
+                                            instance 10 in vlan 100",
+        "ac-parent-ref": "parent-vlan-100",
+        "l2-connection": {
+          "bearer-reference": "compute-08-nic1"
+        }
+      },
+      {
+        "name": "ac-nf-cp-01-vlan-100",
+        "description": "attachment to Network Function NF-CP \
+                                             instance 1 in vlan 100",
+        "ac-parent-ref": "parent-vlan-100",
+        "l2-connection": {
+          "bearer-reference": "compute-09-nic0"
+        },
+        "ip-connection": {
+          "ipv4": {
+            "prefix-length": 24,
+            "address": [
+              {
+                "address-id": "1",
+                "customer-address": "192.0.2.101"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "name": "ac-nf-cp-02-vlan-100",
+        "description": "attachment to Network Function NF-CP \
+                                             instance 2 in vlan 100",
+        "ac-parent-ref": "parent-vlan-100",
+        "l2-connection": {
+          "bearer-reference": "compute-10-nic0"
+        },
+        "ip-connection": {
+          "ipv4": {
+            "prefix-length": 24,
+            "address": [
+              {
+                "address-id": "1",
+                "customer-address": "192.0.2.102"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "name": "ac-nf-up-1-vlan-200",
+        "description": "attachment to Network Function NF-up \
+                                             instance 1 in vlan 200",
+        "ac-parent-ref": "parent-vlan-200",
+        "l2-connection": {
+          "bearer-reference": "compute-01-nic1"
+        }
+      },
+      {
+        "name": "ac-nf-cp-2-vlan-200",
+        "description": "attachment to Network Function NF-CP \
+                                             instance 2 in vlan 200",
+        "ac-parent-ref": "parent-vlan-200",
+        "l2-connection": {
+          "bearer-reference": "compute-10-nic1"
+        }
+      }
+    ]
+  }
+}
+</pre>
+</div>
+<figcaption><a href="#figure-51" class="selfRef">Figure 51</a>:
+<a href="#name-message-body-for-configurat" class="selfRef">Message body for configuration of the NF ACs</a>
           </figcaption></figure>
 </div>
 </section>

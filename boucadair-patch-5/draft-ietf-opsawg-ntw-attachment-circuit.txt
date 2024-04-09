@@ -700,8 +700,8 @@ Table of Contents
           |  |  |  +--rw tag-type?   identityref
           |  |  +--rw qinq
           |  |     +--rw tag-type?         identityref
-          |  |     +--rw svlan-id          uint16
-          |  |     +--rw cvlan-id          uint16
+          |  |     +--rw svlan-id?         uint16
+          |  |     +--rw cvlan-id?         uint16
           |  |     +--rw tag-operations
           |  |        +--rw (op-choice)?
           |  |        |  +--:(pop)
@@ -727,7 +727,7 @@ Table of Contents
           |  |  |     |  +--rw vcid?      uint32
           |  |  |     |  +--rw far-end*   union
           |  |  |     +--rw vxlan
-          |  |  |        +--rw vni-id             uint32
+          |  |  |        +--rw vni-id?            uint32
           |  |  |        +--rw peer-mode?         identityref
           |  |  |        +--rw peer-ip-address*   inet:ip-address
           |  |  +--:(l2vpn)
@@ -735,7 +735,7 @@ Table of Contents
           |  +--rw l2-termination-point?      string
           |  +--rw local-bridge-reference?    string
           |  +--rw bearer-reference?          string
-          |  |       {vpn-common:bearer-reference}?
+          |  |       {ac-common:server-assigned-reference}?
           |  +--rw lag-interface {vpn-common:lag-interface}?
           |     +--rw lag-interface-id?   string
           |     +--rw member-link-list
@@ -2581,7 +2581,7 @@ Table of Contents
             A reference may be a local bridge domain.";
        }
        leaf bearer-reference {
-         if-feature "vpn-common:bearer-reference";
+         if-feature "ac-common:server-assigned-reference";
          type string;
          description
            "This is an internal reference for the service provider to
@@ -4455,10 +4455,11 @@ Appendix A.  Examples
 
 A.1.  VPLS
 
-   Let's consider the example depicted in Figure 20 with two customer
-   terminating points (CE1 and CE2).  Let's also assume that the bearers
-   to attach these CEs to the provider network are already in place.
-   References to the identify these bearers are shown in the figure.
+   Let us consider the example depicted in Figure 20 with two customer
+   terminating points (CE1 and CE2).  Let us also assume that the
+   bearers to attach these CEs to the provider network are already in
+   place.  References to the identify these bearers are shown in the
+   figure.
 
                    .-----.   .--------------.   .-----.
        .----.      | PE1 +===+              +===+ PE2 |      .----.
@@ -4473,75 +4474,75 @@ A.1.  VPLS
    used by the provider to manage and expose the ACs over existing
    bearers as shown in Figure 21.
 
+   {
+     "ietf-ac-svc:attachment-circuits": {
+       "ac-group-profile": [
          {
-           "ietf-ac-svc:attachment-circuits": {
-             "ac-group-profile": [
-               {
-                 "name": "an-ac-profile",
-                 "l2-connection": {
-                   "encapsulation": {
-                     "type": "ietf-vpn-common:dot1q",
-                     "dot1q": {
-                       "tag-type": "ietf-vpn-common:c-vlan",
-                       "cvlan-id": 550
-                     }
-                   }
-                 },
-                 "service": {
-                   "mtu": 1550,
-                   "svc-pe-to-ce-bandwidth": {
-                     "bandwidth": [
-                       {
-                         "bw-type": "ietf-vpn-common:bw-per-port",
-                         "cir": "20480000"
-                       }
-                     ]
-                   },
-                   "svc-ce-to-pe-bandwidth": {
-                     "bandwidth": [
-                       {
-                         "bw-type": "ietf-vpn-common:bw-per-port",
-                         "cir": "20480000"
-                       }
-                     ]
-                   },
-                   "qos": {
-                     "qos-profiles": {
-                       "qos-profile": [
-                         {
-                           "profile": "QoS_Profile_A",
-                           "direction": "ietf-vpn-common:both"
-                         }
-                       ]
-                     }
-                   }
-                 }
+           "name": "an-ac-profile",
+           "l2-connection": {
+             "encapsulation": {
+               "type": "ietf-vpn-common:dot1q",
+               "dot1q": {
+                 "tag-type": "ietf-vpn-common:c-vlan",
+                 "cvlan-id": 550
                }
-             ],
-             "ac": [
-               {
-                 "name": "ac-1",
-                 "description": "First attachment",
-                 "ac-group-profile": [
-                   "an-ac-profile"
-                 ],
-                 "l2-connection": {
-                   "bearer-reference": "1234"
+             }
+           },
+           "service": {
+             "mtu": 1550,
+             "svc-pe-to-ce-bandwidth": {
+               "bandwidth": [
+                 {
+                   "bw-type": "ietf-vpn-common:bw-per-port",
+                   "cir": "20480000"
                  }
-               },
-               {
-                 "name": "ac-2",
-                 "description": "Second attachment",
-                 "ac-group-profile": [
-                   "an-ac-profile"
-                 ],
-                 "l2-connection": {
-                   "bearer-reference": "5678"
+               ]
+             },
+             "svc-ce-to-pe-bandwidth": {
+               "bandwidth": [
+                 {
+                   "bw-type": "ietf-vpn-common:bw-per-port",
+                   "cir": "20480000"
                  }
+               ]
+             },
+             "qos": {
+               "qos-profiles": {
+                 "qos-profile": [
+                   {
+                     "profile": "QoS_Profile_A",
+                     "direction": "ietf-vpn-common:both"
+                   }
+                 ]
                }
-             ]
+             }
            }
          }
+       ],
+       "ac": [
+         {
+           "name": "ac-1",
+           "description": "First attachment",
+           "ac-group-profile": [
+             "an-ac-profile"
+           ],
+           "l2-connection": {
+             "bearer-reference": "1234"
+           }
+         },
+         {
+           "name": "ac-2",
+           "description": "Second attachment",
+           "ac-group-profile": [
+             "an-ac-profile"
+           ],
+           "l2-connection": {
+             "bearer-reference": "5678"
+           }
+         }
+       ]
+     }
+   }
 
                      Figure 21: ACs Created Using ACaaS
 
@@ -4549,110 +4550,112 @@ A.1.  VPLS
    as depicted in Figure 22.  A similar query can be used for the AC at
    PE2.
 
-        {
-           "ietf-ac-ntw:ac":[
-              {
-                 "name":"ac-11",
-                 "ac-svc-ref":"ac-1",
-                 "peer-sap-id":[
-                    "ce-1"
-                 ],
-                 "status":{
-                    "admin-status":{
-                       "status":"ietf-vpn-common:admin-up"
-                    },
-                    "oper-status":{
-                       "status":"ietf-vpn-common:op-up"
-                    }
-                 },
-                 "l2-connection":{
-                    "encapsulation":{
-                       "encap-type":"ietf-vpn-common:dot1q",
-                       "dot1q":{
-                          "tag-type":"ietf-vpn-common:c-vlan",
-                          "cvlan-id":550
-                       }
-                    },
-                    "bearer-reference":"1234"
-                 },
-                 "service":{
-                    "mtu":1550,
-                    "svc-pe-to-ce-bandwidth":{
-                       "pe-to-ce-bandwidth":[
-                          {
-                             "cir":"20480000"
-                          }
-                       ]
-                    },
-                    "svc-ce-to-pe-bandwidth":{
-                       "ce-to-pe-bandwidth":[
-                          {
-                             "cir":"20480000"
-                          }
-                       ]
-                    },
-                    "qos":{
-                       "qos-profile":{
-                          "qos-profile":[
-                             {
-                                "qos-profile-ref":"QoS_Profile_A",
-                                "network-ref":"example:an-id",
-                                "direction":"ietf-vpn-common:both"
-                             }
-                          ]
-                       }
-                    }
-                 }
-              }
-           ]
-        }
+   {
+      "ietf-ac-ntw:ac":[
+         {
+            "name":"ac-11",
+            "ac-svc-ref":"ac-1",
+            "peer-sap-id":[
+               "ce-1"
+            ],
+            "status":{
+               "admin-status":{
+                  "status":"ietf-vpn-common:admin-up"
+               },
+               "oper-status":{
+                  "status":"ietf-vpn-common:op-up"
+               }
+            },
+            "l2-connection":{
+               "encapsulation":{
+                  "encap-type":"ietf-vpn-common:dot1q",
+                  "dot1q":{
+                     "tag-type":"ietf-vpn-common:c-vlan",
+                     "cvlan-id":550
+                  }
+               },
+               "bearer-reference":"1234"
+            },
+            "service":{
+               "mtu":1550,
+               "svc-pe-to-ce-bandwidth":{
+                  "bandwidth":[
+                     {
+                        "bw-type": "ietf-vpn-common:bw-per-port",
+                        "cir":"20480000"
+                     }
+                  ]
+               },
+               "svc-ce-to-pe-bandwidth":{
+                  "bandwidth":[
+                     {
+                        "bw-type": "ietf-vpn-common:bw-per-port",
+                        "cir":"20480000"
+                     }
+                  ]
+               },
+               "qos":{
+                  "qos-profiles":{
+                     "qos-profile":[
+                        {
+                           "qos-profile-ref":"QoS_Profile_A",
+                           "network-ref":"example:an-id",
+                           "direction":"ietf-vpn-common:both"
+                        }
+                     ]
+                  }
+               }
+            }
+         }
+      ]
+   }
 
           Figure 22: Example of AC Network Response (Message Body)
 
    Also, the AC network model can be used to retrieve the list of SAPs
    to which the ACs are bound as shown in Figure 22.
 
-     {
-        "ietf-sap-ntw:service":[
-           {
-              "service-type":"ietf-vpn-common:vpls",
-              "sap":[
-                 {
-                    "sap-id":"sap#1",
-                    "peer-sap-id":[
-                       "ce-1"
-                    ],
-                    "description":"A parent SAP",
-                    "attachment-interface":"GE0/6/1",
-                    "interface-type":"ietf-sap-ntw:phy",
-                    "role":"ietf-sap-ntw:uni",
-                    "allows-child-saps":true,
-                    "sap-status":{
-                       "status":"ietf-vpn-common:op-up"
-                    }
-                 },
-                 {
-                    "sap-id":"sap#11",
-                    "description":"A child SAP",
-                    "parent-termination-point":"GE0/6/4",
-                    "attachment-interface":"GE0/6/4.2",
-                    "interface-type":"ietf-sap-ntw:logical",
-                    "encapsulation-type":"ietf-vpn-common:vlan-type",
-                    "sap-status":{
-                       "status":"ietf-vpn-common:op-up"
-                    },
-                    "ietf-ac-ntw:ac":[
-                       {
-                          "ac-ref":"ac-1",
-                          "node-ref":"example:pe2",
-                          "network-ref":"example:an-id"
-                       }
-                    ]
-                 }
-              ]
-           }
-        ]
-     }
+   {
+      "ietf-sap-ntw:service":[
+         {
+            "service-type":"ietf-vpn-common:vpls",
+            "sap":[
+               {
+                  "sap-id":"sap#1",
+                  "peer-sap-id":[
+                     "ce-1"
+                  ],
+                  "description":"A parent SAP",
+                  "attachment-interface":"GE0/6/1",
+                  "interface-type":"ietf-sap-ntw:phy",
+                  "role":"ietf-sap-ntw:uni",
+                  "allows-child-saps":true,
+                  "sap-status":{
+                     "status":"ietf-vpn-common:op-up"
+                  }
+               },
+               {
+                  "sap-id":"sap#11",
+                  "description":"A child SAP",
+                  "parent-termination-point":"GE0/6/4",
+                  "attachment-interface":"GE0/6/4.2",
+                  "interface-type":"ietf-sap-ntw:logical",
+                  "encapsulation-type":"ietf-vpn-common:vlan-type",
+                  "sap-status":{
+                     "status":"ietf-vpn-common:op-up"
+                  },
+                  "ietf-ac-ntw:ac":[
+                     {
+                        "ac-ref":"ac-1",
+                        "node-ref":"example:pe2",
+                        "network-ref":"example:an-id"
+                     }
+                  ]
+               }
+            ]
+         }
+      ]
+   }
 
        Figure 23: Example of AC Network Response to Retrieve the SAP
                                (Message Body)
@@ -4664,89 +4667,89 @@ A.2.  Parent AC
    control data that is specific to each of these peer SAPs over the
    same AC, child ACs can be instantiated as depicted in Figure 24.
 
-          {
-             "ietf-ac-ntw:ac":[
-                {
-                   "name":"ac-1",
-                   "peer-sap-id":[
-                      "CE2",
-                      "CE5"
-                   ],
-                   "status":{
-                      "admin-status":{
-                         "status":"ietf-vpn-common:admin-up"
-                      },
-                      "oper-status":{
-                         "status":"ietf-vpn-common:op-up"
-                      }
-                   },
-                   "l2-connection":{
-                      "encapsulation":{
-                         "encap-type":"ietf-vpn-common:dot1q",
-                         "dot1q":{
-                            "tag-type":"ietf-vpn-common:c-vlan",
-                            "cvlan-id":550
-                         }
-                      },
-                      "bearer-reference":"1234"
-                   }
-                },
-                {
-                   "name":"ac-1-to-ce2",
-                   "ac-parent-ref":{
-                      "ac-ref":"ac-1",
-                      "node-ref":"example:pe2",
-                      "network-ref":"example:an-id"
-                   },
-                   "peer-sap-id":[
-                      "CE2"
-                   ]
-                },
-                {
-                   "name":"ac-1-to-ce5",
-                   "ac-parent-ref":{
-                      "ac-ref":"ac-1",
-                      "node-ref":"example:pe2",
-                      "network-ref":"example:an-id"
-                   },
-                   "peer-sap-id":[
-                      "CE5"
-                   ]
-                }
-             ]
-          }
+   {
+      "ietf-ac-ntw:ac":[
+         {
+            "name":"ac-1",
+            "peer-sap-id":[
+               "CE2",
+               "CE5"
+            ],
+            "status":{
+               "admin-status":{
+                  "status":"ietf-vpn-common:admin-up"
+               },
+               "oper-status":{
+                  "status":"ietf-vpn-common:op-up"
+               }
+            },
+            "l2-connection":{
+               "encapsulation":{
+                  "encap-type":"ietf-vpn-common:dot1q",
+                  "dot1q":{
+                     "tag-type":"ietf-vpn-common:c-vlan",
+                     "cvlan-id":550
+                  }
+               },
+               "bearer-reference":"1234"
+            }
+         },
+         {
+            "name":"ac-1-to-ce2",
+            "ac-parent-ref":{
+               "ac-ref":"ac-1",
+               "node-ref":"example:pe2",
+               "network-ref":"example:an-id"
+            },
+            "peer-sap-id":[
+               "CE2"
+            ]
+         },
+         {
+            "name":"ac-1-to-ce5",
+            "ac-parent-ref":{
+               "ac-ref":"ac-1",
+               "node-ref":"example:pe2",
+               "network-ref":"example:an-id"
+            },
+            "peer-sap-id":[
+               "CE5"
+            ]
+         }
+      ]
+   }
 
                       Figure 24: Example of Child ACs
 
    Figure 25 shows how to bind the parent AC to a SAP.
 
-     {
-        "ietf-sap-ntw:service":[
-           {
-              "service-type":"ietf-vpn-common:l3vpn",
-              "sap":[
-                 {
-                    "sap-id":"sap#14587",
-                    "description":"A SAP",
-                    "parent-termination-point":"GE0/6/4",
-                    "attachment-interface":"GE0/6/4.2",
-                    "interface-type":"ietf-sap-ntw:logical",
-                    "encapsulation-type":"ietf-vpn-common:vlan-type",
-                    "sap-status":{
-                       "status":"ietf-vpn-common:op-up"
-                    },
-                    "ietf-ac-ntw:ac":[
-                       {
-                          "ac-ref":"ac-1",
-                          "node-ref":"example:pe2",
-                          "network-ref":"example:an-id"
-                       }
-                    ]
-                 }
-              ]
-           }
-        ]
-     }
+   {
+      "ietf-sap-ntw:service":[
+         {
+            "service-type":"ietf-vpn-common:l3vpn",
+            "sap":[
+               {
+                  "sap-id":"sap#14587",
+                  "description":"A SAP",
+                  "parent-termination-point":"GE0/6/4",
+                  "attachment-interface":"GE0/6/4.2",
+                  "interface-type":"ietf-sap-ntw:logical",
+                  "encapsulation-type":"ietf-vpn-common:vlan-type",
+                  "sap-status":{
+                     "status":"ietf-vpn-common:op-up"
+                  },
+                  "ietf-ac-ntw:ac":[
+                     {
+                        "ac-ref":"ac-1",
+                        "node-ref":"example:pe2",
+                        "network-ref":"example:an-id"
+                     }
+                  ]
+               }
+            ]
+         }
+      ]
+   }
 
               Figure 25: Example of Binding Parent AC to SAPs
 
