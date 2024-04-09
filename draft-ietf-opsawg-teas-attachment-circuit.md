@@ -1250,7 +1250,7 @@ The attachment circuit in this case use a SAP identifier to refer to the physica
 
 This scenario allows the provider to maintain a list of ACs belonging to the same customer without requiring the full service configuration.
 
-## Connect two networks through eBGP peering
+## BGP Peering
 
 In this scenario, multiple networks, each represented by a Network Element (NE), connect to other networks or a Network Access Point (NAP) for interconnection purposes. Each network connects to each other through one or more Attachment Circuits (ACs).
 
