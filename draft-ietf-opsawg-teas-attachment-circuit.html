@@ -1270,7 +1270,10 @@ svg :is([fill="white"], [fill^="#fff"]) {
                 <p id="section-toc.1-1.10.2.9.1"><a href="#appendix-A.9" class="auto internal xref">A.9</a>.  <a href="#name-connect-customer-network-ce" class="internal xref">Connect Customer Network (CE) Through BGP</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.10">
-                <p id="section-toc.1-1.10.2.10.1"><a href="#appendix-A.10" class="auto internal xref">A.10</a>. <a href="#name-connectivity-of-cloudidifie" class="internal xref">Connectivity of Cloudidified Network Functions</a></p>
+                <p id="section-toc.1-1.10.2.10.1"><a href="#appendix-A.10" class="auto internal xref">A.10</a>. <a href="#name-bgp-peering" class="internal xref">BGP Peering</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.11">
+                <p id="section-toc.1-1.10.2.11.1"><a href="#appendix-A.11" class="auto internal xref">A.11</a>. <a href="#name-connectivity-of-cloudidifie" class="internal xref">Connectivity of Cloudidified Network Functions</a></p>
 </li>
             </ul>
 </li>
@@ -7169,36 +7172,226 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 <p id="appendix-A.9-5">This scenario allows the provider to maintain a list of ACs belonging to the same customer without requiring the full service configuration.<a href="#appendix-A.9-5" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="connectivity-of-cloudidified-network-functions">
+<div id="bgp-peering">
 <section id="appendix-A.10">
-        <h3 id="name-connectivity-of-cloudidifie">
-<a href="#appendix-A.10" class="section-number selfRef">A.10. </a><a href="#name-connectivity-of-cloudidifie" class="section-name selfRef">Connectivity of Cloudidified Network Functions</a>
+        <h3 id="name-bgp-peering">
+<a href="#appendix-A.10" class="section-number selfRef">A.10. </a><a href="#name-bgp-peering" class="section-name selfRef">BGP Peering</a>
         </h3>
-<p id="appendix-A.10-1">This example demonstrates how the AC service model permits to manage connectivity requirements for complex Network Functions - containerized or virtualized -  that typically met in Telco Networks. This integration leverages the concept of "parent ACs" to decouple physical and logical connectivity so that several AC can shares L2 and L3 resources.This approach provides flexibility, scalability and API stability.<a href="#appendix-A.10-1" class="pilcrow">¶</a></p>
-<p id="appendix-A.10-2">The Network Function have the following characteristics:<a href="#appendix-A.10-2" class="pilcrow">¶</a></p>
+<p id="appendix-A.10-1">In this scenario, multiple networks, each represented by a Network Element (NE), connect to other networks or a Network Access Point (NAP) for interconnection purposes. Each network connects to each other through one or more ACs.<a href="#appendix-A.10-1" class="pilcrow">¶</a></p>
+<p id="appendix-A.10-2">To facilitate forwarding between the interconnected networks, BGP peering sessions are established between the participating networks. BGP is used to exchange routing information and reachability announcements between those networks.<a href="#appendix-A.10-2" class="pilcrow">¶</a></p>
+<span id="name-illustration-of-provider-net"></span><div id="bgp-peer-network">
+<figure id="figure-47">
+          <div id="appendix-A.10-3.1">
+            <div class="alignLeft art-svg artwork" id="appendix-A.10-3.1.1">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="432" width="408" viewBox="0 0 408 432" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
+                <path d="M 8,32 L 8,176" fill="none" stroke="black"></path>
+                <path d="M 8,272 L 8,416" fill="none" stroke="black"></path>
+                <path d="M 24,96 L 24,144" fill="none" stroke="black"></path>
+                <path d="M 24,336 L 24,384" fill="none" stroke="black"></path>
+                <path d="M 152,96 L 152,144" fill="none" stroke="black"></path>
+                <path d="M 152,336 L 152,384" fill="none" stroke="black"></path>
+                <path d="M 192,32 L 192,104" fill="none" stroke="black"></path>
+                <path d="M 192,160 L 192,176" fill="none" stroke="black"></path>
+                <path d="M 192,272 L 192,344" fill="none" stroke="black"></path>
+                <path d="M 192,360 L 192,416" fill="none" stroke="black"></path>
+                <path d="M 248,208 L 248,240" fill="none" stroke="black"></path>
+                <path d="M 312,112 L 312,208" fill="none" stroke="black"></path>
+                <path d="M 312,240 L 312,352" fill="none" stroke="black"></path>
+                <path d="M 368,208 L 368,240" fill="none" stroke="black"></path>
+                <path d="M 8,32 L 192,32" fill="none" stroke="black"></path>
+                <path d="M 24,96 L 152,96" fill="none" stroke="black"></path>
+                <path d="M 160,112 L 312,112" fill="none" stroke="black"></path>
+                <path d="M 24,144 L 152,144" fill="none" stroke="black"></path>
+                <path d="M 8,176 L 192,176" fill="none" stroke="black"></path>
+                <path d="M 248,208 L 304,208" fill="none" stroke="black"></path>
+                <path d="M 320,208 L 368,208" fill="none" stroke="black"></path>
+                <path d="M 248,240 L 304,240" fill="none" stroke="black"></path>
+                <path d="M 320,240 L 368,240" fill="none" stroke="black"></path>
+                <path d="M 8,272 L 192,272" fill="none" stroke="black"></path>
+                <path d="M 24,336 L 152,336" fill="none" stroke="black"></path>
+                <path d="M 160,352 L 312,352" fill="none" stroke="black"></path>
+                <path d="M 24,384 L 152,384" fill="none" stroke="black"></path>
+                <path d="M 8,416 L 192,416" fill="none" stroke="black"></path>
+                <circle cx="144" cy="112" r="6" class="closeddot" fill="black"></circle>
+                <circle cx="144" cy="352" r="6" class="closeddot" fill="black"></circle>
+                <circle cx="152" cy="112" r="6" class="closeddot" fill="black"></circle>
+                <circle cx="152" cy="352" r="6" class="closeddot" fill="black"></circle>
+                <circle cx="312" cy="208" r="6" class="closeddot" fill="black"></circle>
+                <circle cx="312" cy="240" r="6" class="closeddot" fill="black"></circle>
+                <g class="text">
+                  <text x="60" y="52">Provider</text>
+                  <text x="128" y="52">Network</text>
+                  <text x="168" y="52">A</text>
+                  <text x="56" y="68">BGP</text>
+                  <text x="112" y="68">ASN:65536</text>
+                  <text x="284" y="68">Attachment-Circuit</text>
+                  <text x="368" y="68">1</text>
+                  <text x="288" y="84">Bearer=Line-114</text>
+                  <text x="68" y="116">ASBR-A-1</text>
+                  <text x="84" y="132">198.51.100.1</text>
+                  <text x="220" y="132">192.0.2.1/30</text>
+                  <text x="216" y="148">vlan-id:114</text>
+                  <text x="312" y="228">NAP</text>
+                  <text x="60" y="292">Provider</text>
+                  <text x="128" y="292">Network</text>
+                  <text x="168" y="292">B</text>
+                  <text x="56" y="308">BGP</text>
+                  <text x="112" y="308">ASN:65537</text>
+                  <text x="232" y="340">.2/30</text>
+                  <text x="68" y="356">ASBR-B-1</text>
+                  <text x="80" y="372">203.0.113.1</text>
+                </g>
+              </svg><a href="#appendix-A.10-3.1.1" class="pilcrow">¶</a>
+</div>
+</div>
+<figcaption><a href="#figure-47" class="selfRef">Figure 47</a>:
+<a href="#name-illustration-of-provider-net" class="selfRef">Illustration of Provider Network Scenario</a>
+          </figcaption></figure>
+</div>
+<p id="appendix-A.10-4">As depicted in <a href="#bgp-peer-network" class="auto internal xref">Figure 47</a>, each AC represents the link between the two networks. The AC configuration includes parameters such as interface settings, VLAN configuration (if applicable), and any additional settings required for connectivity.<a href="#appendix-A.10-4" class="pilcrow">¶</a></p>
+<span id="name-message-body-of-a-request-to-cr"></span><div id="bgp-peer-network-add-attachment-circuit">
+<figure id="figure-48">
+          <div class="lang-json sourcecode" id="appendix-A.10-5.1">
+<pre>
+{
+  "ietf-ac-svc:attachment-circuits": {
+    "ac": [
+      {
+        "name": "IPT-NET-ABC",
+        "customer-name": "NET-ABC",
+        "description": "NET-ABC",
+        "peer-sap-id": [
+          "sap#114"
+        ],
+        "l2-connection": {
+          "encapsulation": {
+            "type": "ietf-vpn-common:dot1q",
+            "dot1q": {
+              "tag-type": "ietf-vpn-common:c-vlan",
+              "cvlan-id": 114
+            }
+          },
+          "bearer-reference": "line-114"
+        },
+        "ip-connection": {
+          "ipv4": {
+            "local-address": "192.168.1.1",
+            "prefix-length": 30
+          }
+        },
+        "routing-protocols": {
+          "routing-protocol": [
+            {
+              "id": "static",
+              "type": "ietf-vpn-common:static-routing",
+              "static": {
+                "cascaded-lan-prefixes": {
+                  "ipv4-lan-prefixes": [
+                    {
+                      "lan": "198.51.100.1/32",
+                      "next-hop": "192.168.1.1"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
+</pre>
+</div>
+<figcaption><a href="#figure-48" class="selfRef">Figure 48</a>:
+<a href="#name-message-body-of-a-request-to-cr" class="selfRef">Message Body of a Request to create an AC to connect two networks through eBGP peering.</a>
+          </figcaption></figure>
+</div>
+<p id="appendix-A.10-6">Once the ACs are established, BGP peering sessions are configured between the routers of the participating networks. BGP sessions are established over the ACs, allowing the routers to exchange routing information and forward traffic between the two ends. BGP peering configuration includes parameters such as neighbor IP addresses, autonomous system (AS) numbers, authentication settings (if required), etc.<a href="#appendix-A.10-6" class="pilcrow">¶</a></p>
+<span id="name-message-body-of-a-request-to-cre"></span><div id="bgp-peer-network-add-bgp-attachment-circuit">
+<figure id="figure-49">
+          <div class="lang-json sourcecode" id="appendix-A.10-7.1">
+<pre>
+{
+  "ietf-ac-svc:attachment-circuits": {
+    "ac": [
+      {
+        "name": "IPT-NET-ABC",
+        "routing-protocols": {
+          "routing-protocol": [
+            {
+              "id": "BGP",
+              "type": "ietf-vpn-common:bgp-routing",
+              "bgp": {
+                "neighbor": [
+                  {
+                    "id": "NAP-1",
+                    "local-address": "198.51.100.1",
+                    "remote-address": "100.100.100.1",
+                    "local-as": 65536,
+                    "peer-as": 65537,
+                    "address-family": "ietf-vpn-common:ipv4",
+                    "authentication": {
+                      "enabled": true,
+                      "keying-material": {
+                        "key-id": 1,
+                        "key": "test##"
+                      }
+                    },
+                    "status": {
+                      "admin-status": {
+                        "status": "ietf-vpn-common:admin-up"
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
+</pre>
+</div>
+<figcaption><a href="#figure-49" class="selfRef">Figure 49</a>:
+<a href="#name-message-body-of-a-request-to-cre" class="selfRef">Message Body of a Request to create the eBGP peering into the AC to connect two networks.</a>
+          </figcaption></figure>
+</div>
+<p id="appendix-A.10-8">This scenario allows the provider to maintain a list of ACs associated with peering sessions.<a href="#appendix-A.10-8" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="connectivity-of-cloudidified-network-functions">
+<section id="appendix-A.11">
+        <h3 id="name-connectivity-of-cloudidifie">
+<a href="#appendix-A.11" class="section-number selfRef">A.11. </a><a href="#name-connectivity-of-cloudidifie" class="section-name selfRef">Connectivity of Cloudidified Network Functions</a>
+        </h3>
+<p id="appendix-A.11-1">This example demonstrates how the AC service model permits to manage connectivity requirements for complex Network Functions - containerized or virtualized -  that typically met in Telco Networks. This integration leverages the concept of "parent ACs" to decouple physical and logical connectivity so that several AC can shares L2 and L3 resources.This approach provides flexibility, scalability and API stability.<a href="#appendix-A.11-1" class="pilcrow">¶</a></p>
+<p id="appendix-A.11-2">The Network Function have the following characteristics:<a href="#appendix-A.11-2" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="appendix-A.10-3.1">
-            <p id="appendix-A.10-3.1.1">The Network Function is distributed on a set of computes with scaled-out and redundant instances.<a href="#appendix-A.10-3.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="appendix-A.11-3.1">
+            <p id="appendix-A.11-3.1.1">The Network Function is distributed on a set of computes with scaled-out and redundant instances.<a href="#appendix-A.11-3.1.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="appendix-A.10-3.2">
-            <p id="appendix-A.10-3.2.1">The NF has two distinct type of instances: user plane (nf-up) and  routing control plane (nf-cp).<a href="#appendix-A.10-3.2.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="appendix-A.11-3.2">
+            <p id="appendix-A.11-3.2.1">The NF has two distinct type of instances: user plane (nf-up) and  routing control plane (nf-cp).<a href="#appendix-A.11-3.2.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="appendix-A.10-3.3">
-            <p id="appendix-A.10-3.3.1">The User plane component can be distributed among the first 8 compute nodes (compute-1 to compute-08) to achieve high performance.<a href="#appendix-A.10-3.3.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="appendix-A.11-3.3">
+            <p id="appendix-A.11-3.3.1">The User plane component can be distributed among the first 8 compute nodes (compute-1 to compute-08) to achieve high performance.<a href="#appendix-A.11-3.3.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="appendix-A.10-3.4">
-            <p id="appendix-A.10-3.4.1">The Control plane is deployed in a redundant fashion on 2 instances running on distinct compute nodes (compute-09 and compute-10).<a href="#appendix-A.10-3.4.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="appendix-A.11-3.4">
+            <p id="appendix-A.11-3.4.1">The Control plane is deployed in a redundant fashion on 2 instances running on distinct compute nodes (compute-09 and compute-10).<a href="#appendix-A.11-3.4.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="appendix-A.10-3.5">
-            <p id="appendix-A.10-3.5.1">The NF is attached to distinct networks, each making use of a dedicated vlan. These vlans are therefore instantiated as separate Attachment Circuits. From a realization standpoint, the NF interface connectivity is generally provided thanks to macvlan or SR-IOV. For the sake of simplicity only 2 vlans are presented in this example, additional vlans are generally configured based on similar logic.<a href="#appendix-A.10-3.5.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="appendix-A.11-3.5">
+            <p id="appendix-A.11-3.5.1">The NF is attached to distinct networks, each making use of a dedicated vlan. These vlans are therefore instantiated as separate Attachment Circuits. From a realization standpoint, the NF interface connectivity is generally provided thanks to macvlan or SR-IOV. For the sake of simplicity only 2 vlans are presented in this example, additional vlans are generally configured based on similar logic.<a href="#appendix-A.11-3.5.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
-<p id="appendix-A.10-4">Figure <a href="#cloud-parent-infra" class="auto internal xref">Figure 47</a> describes the physical infrastructure. The compute nodes (customer) are attached to the provider infrastructure thanks to a set of physical links on which attachment circuits are provisionned (i.e. compute-XX-nicY).
-The provider infrastructure can be realized in multiple ways, such as  IP Fabric, Gateways or L2/L3 Edge Routers. This document does not intend to detail these aspects.<a href="#appendix-A.10-4" class="pilcrow">¶</a></p>
+<p id="appendix-A.11-4">Figure <a href="#cloud-parent-infra" class="auto internal xref">Figure 50</a> describes the physical infrastructure. The compute nodes (customer) are attached to the provider infrastructure thanks to a set of physical links on which attachment circuits are provisionned (i.e. compute-XX-nicY).
+The provider infrastructure can be realized in multiple ways, such as  IP Fabric, Gateways or L2/L3 Edge Routers. This document does not intend to detail these aspects.<a href="#appendix-A.11-4" class="pilcrow">¶</a></p>
 <span id="name-physical-topology-for-cloud"></span><div id="cloud-parent-infra">
-<figure id="figure-47">
-          <div id="appendix-A.10-5.1">
-            <div class="alignLeft art-svg artwork" id="appendix-A.10-5.1.1">
+<figure id="figure-50">
+          <div id="appendix-A.11-5.1">
+            <div class="alignLeft art-svg artwork" id="appendix-A.11-5.1.1">
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="368" width="552" viewBox="0 0 552 368" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
                 <path d="M 376,48 L 432,48" fill="none" stroke="black"></path>
                 <path d="M 128,80 L 312,80" fill="none" stroke="black"></path>
@@ -7373,22 +7566,22 @@ The provider infrastructure can be realized in multiple ways, such as  IP Fabric
                   <text x="528" y="356">-</text>
                   <text x="544" y="356">┘</text>
                 </g>
-              </svg><a href="#appendix-A.10-5.1.1" class="pilcrow">¶</a>
+              </svg><a href="#appendix-A.11-5.1.1" class="pilcrow">¶</a>
 </div>
 </div>
-<figcaption><a href="#figure-47" class="selfRef">Figure 47</a>:
+<figcaption><a href="#figure-50" class="selfRef">Figure 50</a>:
 <a href="#name-physical-topology-for-cloud" class="selfRef">Physical Topology for Cloud Deployment</a>
           </figcaption></figure>
 </div>
-<p id="appendix-A.10-6">The NF is deployed on this infrastructure in the following way:
+<p id="appendix-A.11-6">The NF is deployed on this infrastructure in the following way:
 * Configuration of a parent AC as a centralized attachment for vlan 100. The parent AC captures L2/L3 information for this  vlan: vlan-id, IP gateway and subnet, IP pool for NFs endpoints, Static Routes with BFD to user plane and BGP configuration to control plane NFs.
 * Configuration of a parent AC as a centralized attachment for vlan 200. This vlan is for L2 connectivity between NFs (no IP configuration in the Provider Network).
 * "Child ACs" binding bearers to parent ACs for vlan 100 and vlan 200.
-* The deployment deploys the Network Service to all computes (compute-01 to compute-10), even though the NF is  not instantiated on compute-07/compute-08. This approach permits to handle compute failure and scale-out scenarios in a reactive and flexible fashion thanks to pre-provisionned networking logic.<a href="#appendix-A.10-6" class="pilcrow">¶</a></p>
+* The deployment deploys the Network Service to all computes (compute-01 to compute-10), even though the NF is  not instantiated on compute-07/compute-08. This approach permits to handle compute failure and scale-out scenarios in a reactive and flexible fashion thanks to pre-provisionned networking logic.<a href="#appendix-A.11-6" class="pilcrow">¶</a></p>
 <span id="name-logical-topology-of-the-nf-"></span><div id="cloud-parent-logical">
-<figure id="figure-48">
-          <div id="appendix-A.10-7.1">
-            <div class="alignLeft art-svg artwork" id="appendix-A.10-7.1.1">
+<figure id="figure-51">
+          <div id="appendix-A.11-7.1">
+            <div class="alignLeft art-svg artwork" id="appendix-A.11-7.1.1">
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="1088" width="536" viewBox="0 0 536 1088" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
                 <path d="M 208,32 L 512,32" fill="none" stroke="black"></path>
                 <path d="M 208,192 L 512,192" fill="none" stroke="black"></path>
@@ -7755,18 +7948,18 @@ The provider infrastructure can be realized in multiple ways, such as  IP Fabric
                   <text x="8" y="1060">└</text>
                   <text x="296" y="1060">┘</text>
                 </g>
-              </svg><a href="#appendix-A.10-7.1.1" class="pilcrow">¶</a>
+              </svg><a href="#appendix-A.11-7.1.1" class="pilcrow">¶</a>
 </div>
 </div>
-<figcaption><a href="#figure-48" class="selfRef">Figure 48</a>:
+<figcaption><a href="#figure-51" class="selfRef">Figure 51</a>:
 <a href="#name-logical-topology-of-the-nf-" class="selfRef">Logical Topology of the NF Deployment</a>
           </figcaption></figure>
 </div>
-<p id="appendix-A.10-8">For readability the payload are displayed as single JSON files. In practice, several API can happen to initialize these resources (e.g.#1 GET request from customer get IP pools for NFs on vlan 100 thanks to parent configuration and BGP configuration, #2  POST extra routes for user planes and BFD...).<a href="#appendix-A.10-8" class="pilcrow">¶</a></p>
-<p id="appendix-A.10-9">Note that no individual IP address is assigned in the data model for the NF user plane instances (i.e. no "customer-address" in the Child AC). The assignment of IP addresses to the NF endpoints is managed by the Cloud Infrastructure IPAM based on  the customer-addresses IP pool "192.0.2.1-200". Just like in any standard LAN-facing scenario, we assume that the actual binding of IP endpoints to logical attachments (here Child ACs) relies on protocol logic  (i.e. ARP or NDP) and is not captured in the data model. Hence, the IP addresses displayed for NF user plane instances is simply example of a realization. On the other hand, we defined Control Plane with static IP address assignement on a given AC/bearer to demonstrate an alternative.<a href="#appendix-A.10-9" class="pilcrow">¶</a></p>
+<p id="appendix-A.11-8">For readability the payload are displayed as single JSON files. In practice, several API can happen to initialize these resources (e.g.#1 GET request from customer get IP pools for NFs on vlan 100 thanks to parent configuration and BGP configuration, #2  POST extra routes for user planes and BFD...).<a href="#appendix-A.11-8" class="pilcrow">¶</a></p>
+<p id="appendix-A.11-9">Note that no individual IP address is assigned in the data model for the NF user plane instances (i.e. no "customer-address" in the Child AC). The assignment of IP addresses to the NF endpoints is managed by the Cloud Infrastructure IPAM based on  the customer-addresses IP pool "192.0.2.1-200". Just like in any standard LAN-facing scenario, we assume that the actual binding of IP endpoints to logical attachments (here Child ACs) relies on protocol logic  (i.e. ARP or NDP) and is not captured in the data model. Hence, the IP addresses displayed for NF user plane instances is simply example of a realization. On the other hand, we defined Control Plane with static IP address assignement on a given AC/bearer to demonstrate an alternative.<a href="#appendix-A.11-9" class="pilcrow">¶</a></p>
 <span id="name-message-body-of-a-response-t"></span><div id="get-bfd-profiles">
-<figure id="figure-49">
-          <div class="lang-json sourcecode" id="appendix-A.10-10.1">
+<figure id="figure-52">
+          <div class="lang-json sourcecode" id="appendix-A.11-10.1">
 <pre>
 {
     "ietf-ac-svc:specific-provisioning-profiles": {
@@ -7781,13 +7974,13 @@ The provider infrastructure can be realized in multiple ways, such as  IP Fabric
 }
 </pre>
 </div>
-<figcaption><a href="#figure-49" class="selfRef">Figure 49</a>:
+<figcaption><a href="#figure-52" class="selfRef">Figure 52</a>:
 <a href="#name-message-body-of-a-response-t" class="selfRef">Message Body of a Response to get available BFD profiles from Provider Network</a>
           </figcaption></figure>
 </div>
 <span id="name-message-body-for-configurat"></span><div id="parent-profile">
-<figure id="figure-50">
-          <div class="breakable lang-json sourcecode" id="appendix-A.10-11.1">
+<figure id="figure-53">
+          <div class="breakable lang-json sourcecode" id="appendix-A.11-11.1">
 <pre>
 =============== NOTE: '\' line wrapping per RFC 8792 ================
 
@@ -8016,15 +8209,15 @@ The provider infrastructure can be realized in multiple ways, such as  IP Fabric
 }
 </pre>
 </div>
-<figcaption><a href="#figure-50" class="selfRef">Figure 50</a>:
+<figcaption><a href="#figure-53" class="selfRef">Figure 53</a>:
 <a href="#name-message-body-for-configurat" class="selfRef">Message body for configuration of the NF ACs</a>
           </figcaption></figure>
 </div>
-<p id="appendix-A.10-12">Assuming a failure of compute-01, the instance nf-up-1 is redeployed to compute-07 by the NF/Cloud Orchestration. Additionally, the nf can be scaled-out thanks to the creation of an extra instance nf-up7 on compute-08. Since networking is pre-provisionned, these operations happen without any API call. In other words, this is transparent from the perspective of the configuration of the provider network.<a href="#appendix-A.10-12" class="pilcrow">¶</a></p>
+<p id="appendix-A.11-12">Assuming a failure of compute-01, the instance nf-up-1 is redeployed to compute-07 by the NF/Cloud Orchestration. Additionally, the nf can be scaled-out thanks to the creation of an extra instance nf-up7 on compute-08. Since networking is pre-provisionned, these operations happen without any API call. In other words, this is transparent from the perspective of the configuration of the provider network.<a href="#appendix-A.11-12" class="pilcrow">¶</a></p>
 <span id="name-compute-failure-and-scale-o"></span><div id="cloud-parent-nf-lcm">
-<figure id="figure-51">
-          <div id="appendix-A.10-13.1">
-            <div class="alignLeft art-svg artwork" id="appendix-A.10-13.1.1">
+<figure id="figure-54">
+          <div id="appendix-A.11-13.1">
+            <div class="alignLeft art-svg artwork" id="appendix-A.11-13.1.1">
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="496" width="544" viewBox="0 0 544 496" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
                 <path d="M 16,320 L 16,336" fill="none" stroke="black"></path>
                 <path d="M 16,416 L 16,432" fill="none" stroke="black"></path>
@@ -8187,14 +8380,14 @@ The provider infrastructure can be realized in multiple ways, such as  IP Fabric
                   <text x="504" y="468">-</text>
                   <text x="520" y="468">-</text>
                 </g>
-              </svg><a href="#appendix-A.10-13.1.1" class="pilcrow">¶</a>
+              </svg><a href="#appendix-A.11-13.1.1" class="pilcrow">¶</a>
 </div>
 </div>
-<figcaption><a href="#figure-51" class="selfRef">Figure 51</a>:
+<figcaption><a href="#figure-54" class="selfRef">Figure 54</a>:
 <a href="#name-compute-failure-and-scale-o" class="selfRef">Compute failure and Scale-out</a>
           </figcaption></figure>
 </div>
-<p id="appendix-A.10-14">Finally, the addition/deletion of computes (e.g. compute-11+) in the deployment involves merely the configuration of Child ACs. The parent AC remains unchanged: it is a stable identifier. This is practical for referencing by End to End models for VPN configuration (??? ref NBI network Slice and L2/L3SM / ac-glue).<a href="#appendix-A.10-14" class="pilcrow">¶</a></p>
+<p id="appendix-A.11-14">Finally, the addition/deletion of computes (e.g. compute-11+) in the deployment involves merely the configuration of Child ACs. The parent AC remains unchanged: it is a stable identifier. This is practical for referencing by End to End models for VPN configuration (??? ref NBI network Slice and L2/L3SM / ac-glue).<a href="#appendix-A.11-14" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>

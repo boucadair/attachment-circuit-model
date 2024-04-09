@@ -117,7 +117,8 @@ Table of Contents
      A.8.  Connecting a Virtualized Environment Running in a Cloud
             Provider
      A.9.  Connect Customer Network (CE) Through BGP
-     A.10. Connectivity of Cloudidified Network Functions
+     A.10. BGP Peering
+     A.11. Connectivity of Cloudidified Network Functions
    Acknowledgments
    Contributors
    Authors' Addresses
@@ -5232,7 +5233,160 @@ A.9.  Connect Customer Network (CE) Through BGP
    to the same customer without requiring the full service
    configuration.
 
-A.10.  Connectivity of Cloudidified Network Functions
+A.10.  BGP Peering
+
+   In this scenario, multiple networks, each represented by a Network
+   Element (NE), connect to other networks or a Network Access Point
+   (NAP) for interconnection purposes.  Each network connects to each
+   other through one or more ACs.
+
+   To facilitate forwarding between the interconnected networks, BGP
+   peering sessions are established between the participating networks.
+   BGP is used to exchange routing information and reachability
+   announcements between those networks.
+
+   +----------------------+
+   |  Provider Network A  |
+   |    BGP ASN:65536     |  Attachment-Circuit 1
+   |                      |    Bearer=Line-114
+   | +---------------+    |
+   | | ASBR-A-1     **-------------------+
+   | | 198.51.100.1  |  192.0.2.1/30     |
+   | +---------------+  vlan-id:114      |
+   |                      |              |
+   +----------------------+              |
+                                         |
+                                 +-------*------+
+                                 |      NAP     |
+                                 +-------*------+
+                                         |
+   +----------------------+              |
+   |  Provider Network B  |              |
+   |    BGP ASN:65537     |              |
+   |                      |              |
+   | +---------------+    |  .2/30       |
+   | | ASBR-B-1     **-------------------+
+   | | 203.0.113.1   |    |
+   | +---------------+    |
+   |                      |
+   +----------------------+
+
+            Figure 47: Illustration of Provider Network Scenario
+
+   As depicted in Figure 47, each AC represents the link between the two
+   networks.  The AC configuration includes parameters such as interface
+   settings, VLAN configuration (if applicable), and any additional
+   settings required for connectivity.
+
+   {
+     "ietf-ac-svc:attachment-circuits": {
+       "ac": [
+         {
+           "name": "IPT-NET-ABC",
+           "customer-name": "NET-ABC",
+           "description": "NET-ABC",
+           "peer-sap-id": [
+             "sap#114"
+           ],
+           "l2-connection": {
+             "encapsulation": {
+               "type": "ietf-vpn-common:dot1q",
+               "dot1q": {
+                 "tag-type": "ietf-vpn-common:c-vlan",
+                 "cvlan-id": 114
+               }
+             },
+             "bearer-reference": "line-114"
+           },
+           "ip-connection": {
+             "ipv4": {
+               "local-address": "192.168.1.1",
+               "prefix-length": 30
+             }
+           },
+           "routing-protocols": {
+             "routing-protocol": [
+               {
+                 "id": "static",
+                 "type": "ietf-vpn-common:static-routing",
+                 "static": {
+                   "cascaded-lan-prefixes": {
+                     "ipv4-lan-prefixes": [
+                       {
+                         "lan": "198.51.100.1/32",
+                         "next-hop": "192.168.1.1"
+                       }
+                     ]
+                   }
+                 }
+               }
+             ]
+           }
+         }
+       ]
+     }
+   }
+
+      Figure 48: Message Body of a Request to create an AC to connect
+                     two networks through eBGP peering.
+
+   Once the ACs are established, BGP peering sessions are configured
+   between the routers of the participating networks.  BGP sessions are
+   established over the ACs, allowing the routers to exchange routing
+   information and forward traffic between the two ends.  BGP peering
+   configuration includes parameters such as neighbor IP addresses,
+   autonomous system (AS) numbers, authentication settings (if
+   required), etc.
+
+   {
+     "ietf-ac-svc:attachment-circuits": {
+       "ac": [
+         {
+           "name": "IPT-NET-ABC",
+           "routing-protocols": {
+             "routing-protocol": [
+               {
+                 "id": "BGP",
+                 "type": "ietf-vpn-common:bgp-routing",
+                 "bgp": {
+                   "neighbor": [
+                     {
+                       "id": "NAP-1",
+                       "local-address": "198.51.100.1",
+                       "remote-address": "100.100.100.1",
+                       "local-as": 65536,
+                       "peer-as": 65537,
+                       "address-family": "ietf-vpn-common:ipv4",
+                       "authentication": {
+                         "enabled": true,
+                         "keying-material": {
+                           "key-id": 1,
+                           "key": "test##"
+                         }
+                       },
+                       "status": {
+                         "admin-status": {
+                           "status": "ietf-vpn-common:admin-up"
+                         }
+                       }
+                     }
+                   ]
+                 }
+               }
+             ]
+           }
+         }
+       ]
+     }
+   }
+
+      Figure 49: Message Body of a Request to create the eBGP peering
+                    into the AC to connect two networks.
+
+   This scenario allows the provider to maintain a list of ACs
+   associated with peering sessions.
+
+A.11.  Connectivity of Cloudidified Network Functions
 
    This example demonstrates how the AC service model permits to manage
    connectivity requirements for complex Network Functions -
@@ -5266,7 +5420,7 @@ A.10.  Connectivity of Cloudidified Network Functions
       in this example, additional vlans are generally configured based
       on similar logic.
 
-   Figure Figure 47 describes the physical infrastructure.  The compute
+   Figure Figure 50 describes the physical infrastructure.  The compute
    nodes (customer) are attached to the provider infrastructure thanks
    to a set of physical links on which attachment circuits are
    provisionned (i.e. compute-XX-nicY).  The provider infrastructure can
@@ -5295,7 +5449,7 @@ A.10.  Connectivity of Cloudidified Network Functions
    └ - - - - - - ┘
                                           └ - - - - - - - - - - - - - ┘
 
-             Figure 47: Physical Topology for Cloud Deployment
+             Figure 50: Physical Topology for Cloud Deployment
 
    The NF is deployed on this infrastructure in the following way: *
    Configuration of a parent AC as a centralized attachment for vlan
@@ -5378,7 +5532,7 @@ A.10.  Connectivity of Cloudidified Network Functions
     │203.0.113.96/28, NH = 192.2.0.1    │
     └-----------------------------------┘
 
-              Figure 48: Logical Topology of the NF Deployment
+              Figure 51: Logical Topology of the NF Deployment
 
    For readability the payload are displayed as single JSON files.  In
    practice, several API can happen to initialize these resources
@@ -5411,7 +5565,7 @@ A.10.  Connectivity of Cloudidified Network Functions
        }
    }
 
-         Figure 49: Message Body of a Response to get available BFD
+         Figure 52: Message Body of a Response to get available BFD
                        profiles from Provider Network
 
    =============== NOTE: '\' line wrapping per RFC 8792 ================
@@ -5640,7 +5794,7 @@ A.10.  Connectivity of Cloudidified Network Functions
      }
    }
 
-          Figure 50: Message body for configuration of the NF ACs
+          Figure 53: Message body for configuration of the NF ACs
 
    Assuming a failure of compute-01, the instance nf-up-1 is redeployed
    to compute-07 by the NF/Cloud Orchestration.  Additionally, the nf
@@ -5679,7 +5833,7 @@ A.10.  Connectivity of Cloudidified Network Functions
     |└------┴                                |                       |
     compute-08                                - - - - - - - - - - - -
 
-                  Figure 51: Compute failure and Scale-out
+                  Figure 54: Compute failure and Scale-out
 
    Finally, the addition/deletion of computes (e.g. compute-11+) in the
    deployment involves merely the configuration of Child ACs.  The
