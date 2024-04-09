@@ -5245,26 +5245,33 @@ A.10.  Connect two networks through eBGP peering
    BGP is used to exchange routing information and reachability
    announcements between those networks.
 
-   =============== NOTE: '\' line wrapping per RFC 8792 ================
++---------------------+
+|  Provider Network A |
+|       AS65536       |  Attachment-Circuit 1
+|                     |    Bearer=Line-114
+| +--------------+    |
+| | ASBR-A-1     **------------------+
+| |100.100.100.1 | 192.168.0.1/30    |
+| +--------------+    |              |
+|                     |              |
++---------------------+                  |
+                                                                     |
+                                                          +------*------+
+                              |     NAP     |
+                              +------*------+
+                                     |
++---------------------+              |
+| Provider Network B  |              |
+|      AS65537        |              |
+|                     |              |
+| +--------------+    |              |
+| | ASBR-B-1     **------------------+
+| |200.200.200.1 |    |
+| +--------------+    |
+|                     |
++---------------------+
 
-   +------------------------+                       +------------------\
-                                                                -------+
-   |  Provider Network A    |                       | Provider Network \
-                                                                B      |
-   |       AS65536          |                       |      \
-                                                    AS65537            |
-   |        +------------+  |  Attachment-Circuit 1 | +------------\
-                                                            +          |
-   |        | ASBR-A-1   +----------------------------+ ASBR-B-1   \
-                                                            |          |
-   |        +------------+  |    Bearer=Line-114    | +------------\
-                                                            +          |
-   |                        |                       \
-                                             |                         |
-   +------------------------+                       +------------------\
-                                                                -------+
-
-            Figure 47: Illustration of Provider Network Scenario
+         Figure 47: Illustration of Provider Network Scenario
 
    As depicted in Figure 47, each AC represents the link between the two
    networks.  The AC configuration includes parameters such as interface
@@ -5307,32 +5314,6 @@ A.10.  Connect two networks through eBGP peering
            "routing-protocols": {
              "routing-protocol": [
                {
-                 "id": "BGP",
-                 "type": "ietf-vpn-common:bgp-routing",
-                 "bgp": {
-                   "neighbor": [
-                     {
-                       "id": "NAP-1",
-                       "remote-address": "100.100.100.1",
-                       "peer-as": 65537,
-                       "address-family": "ietf-vpn-common:ipv4",
-                       "authentication": {
-                         "enabled": true,
-                         "keying-material": {
-                           "key-id": 1,
-                           "key": "test##"
-                         }
-                       },
-                       "status": {
-                         "admin-status": {
-                           "status": "ietf-vpn-common:admin-up"
-                         }
-                       }
-                     }
-                   ]
-                 }
-               },
-               {
                  "id": "static",
                  "type": "ietf-vpn-common:static-routing",
                  "static": {
@@ -5341,74 +5322,6 @@ A.10.  Connect two networks through eBGP peering
                        {
                          "lan": "200.200.200.1/32",
                          "next-hop": "192.168.1.1"
-                       }
-                     ]
-                   }
-                 }
-               }
-             ]
-           }
-         },
-         {
-           "name": "IPT-NET-DEF",
-           "customer-name": "NET-DEF",
-           "description": "NET-DEF",
-           "peer-sap-id": [
-             "sap#114"
-           ],
-           "ip-connection": {
-             "ipv4": {
-               "local-address": "192.168.1.2",
-               "prefix-length": 30
-             }
-           },
-           "l2-connection": {
-             "encapsulation": {
-               "type": "ietf-vpn-common:dot1q",
-               "dot1q": {
-                 "tag-type": "ietf-vpn-common:c-vlan",
-                 "cvlan-id": 114
-               }
-             },
-             "bearer-reference": "line-114"
-           },
-           "routing-protocols": {
-             "routing-protocol": [
-               {
-                 "id": "BGP",
-                 "type": "ietf-vpn-common:bgp-routing",
-                 "bgp": {
-                   "neighbor": [
-                     {
-                       "id": "NAP-1",
-                       "remote-address": "200.200.200.1",
-                       "peer-as": 65536,
-                       "address-family": "ietf-vpn-common:ipv4",
-                       "authentication": {
-                         "enabled": true,
-                         "keying-material": {
-                           "key-id": 1,
-                           "key": "test##"
-                         }
-                       },
-                       "status": {
-                         "admin-status": {
-                           "status": "ietf-vpn-common:admin-up"
-                         }
-                       }
-                     }
-                   ]
-                 }
-               },
-               {
-                 "id": "static",
-                 "type": "ietf-vpn-common:static-routing",
-                 "static": {
-                   "cascaded-lan-prefixes": {
-                     "ipv4-lan-prefixes": [
-                       {
-                         "lan": "100.100.100.1/32",
-                         "next-hop": "192.168.1.2"
                        }
                      ]
                    }
