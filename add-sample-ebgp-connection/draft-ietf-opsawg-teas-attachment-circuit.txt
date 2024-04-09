@@ -5240,10 +5240,10 @@ A.10.  Connect two networks through eBGP peering
    (NAP) for interconnection purposes.  Each network connects to each
    other through one or more Attachment Circuits (ACs).
 
-   To facilitate routing between the interconnected networks, BGP
-   (Border Gateway Protocol) peering sessions are established between
-   the participating networks.  BGP is used to exchange routing
-   information and reachability announcements between those networks.
+   To facilitate forwarding between the interconnected networks, BGP
+   peering sessions are established between the participating networks.
+   BGP is used to exchange routing information and reachability
+   announcements between those networks.
 
    =============== NOTE: '\' line wrapping per RFC 8792 ================
 
