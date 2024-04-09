@@ -1254,7 +1254,7 @@ This scenario allows the provider to maintain a list of ACs belonging to the sam
 
 This section demonstrates how the AC service model permits to manage connectivity requirements for complex Network Functions (NFs) - containerized or virtualized -  that are typically deployed in Telco networks. This integration leverages the concept of "parent AC" to decouple physical and logical connectivity so that several ACs can shares Layer 2 and Layer 3 resources. This approach provides flexibility, scalability, and API stability.
 
-> NFs is used to refer to the SFs defined {{?RFC7665}}.
+> NF is used to refer to the SFs defined {{?RFC7665}}.
 
 The NFs have the following characteristics:
 
