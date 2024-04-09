@@ -5333,8 +5333,9 @@ A.10.  BGP Peering
    Once the ACs are established, BGP peering sessions are configured
    between the routers of the participating networks.  BGP sessions are
    established over the ACs, allowing the routers to exchange routing
-   information.  BGP peering configuration includes parameters such as
-   neighbor IP addresses, AS numbers, authentication settings (if
+   information and forward traffic between the two ends.  BGP peering
+   configuration includes parameters such as neighbor IP addresses,
+   autonomous system (AS) numbers, authentication settings (if
    required), etc.
 
    {
