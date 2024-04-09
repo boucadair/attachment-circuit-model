@@ -1,0 +1,188 @@
+{
+  "ietf-ac-svc:attachment-circuits": {
+    "ac": [
+      {
+        "name": "parent-vlan-100",
+        "description": "This parent represents a bridge with L3 interface (IRB) to connect NF in vlan 100",
+        "l2-connection": {
+          "encapsulation": {
+            "type": "ietf-vpn-common:dot1q",
+            "dot1q": {
+              "cvlan-id": 100
+            }
+          }
+        },
+        "ip-connection": {
+          "ipv4": {
+            "virtual-address": "192.0.2.254",
+            "prefix-length": 24,
+            "customer-addresses": {
+              "address-pool": [
+                {
+                  "pool-id": "pool-1",
+                  "start-address": "192.0.2.1",
+                  "end-address": "192.0.2.200"
+                }
+              ]
+            }
+          },
+          "routing-protocols": {
+            "routing-protocol": [
+              {
+                  "id": "1",
+                  "type": "ietf-vpn-common:static-routing",
+                  "static": {
+                    "cascaded-lan-prefixes": {
+                      "ipv4-lan-prefixes": [
+                        {
+                          "lan": "198.51.100.100/32",
+                          "next-hop": "192.0.2.1",
+                          "lan-tag": "virtual-next-hop",
+                          "rw bfd-profile" : "single-hop-bfd-user-plane"
+                        },
+                        {
+                          "lan": "198.51.100.100/32",
+                          "next-hop": "192.0.2.2",
+                          "lan-tag": "virtual-next-hop",
+                          "rw bfd-profile" : "single-hop-bfd-user-plane"
+                        },
+  [...]
+                        {
+                          "lan": "198.51.100.100/32",
+                          "next-hop": "192.0.2.8",
+                          "lan-tag": "virtual-next-hop",
+                          "rw bfd-profile" : "single-hop-bfd-user-plane"
+                        }
+                      ]
+                    }
+                  }
+              },
+              {
+                  "id":"2",
+                  "type":"ietf-vpn-common:bgp-routing",
+                  "bgp": {
+                    "peer-groups": {
+                      "peer-group": [
+                        {
+                          "name": "peer-nf-cp-vlan-100-gw1",
+                          "local-as": 65000,
+                          "peer-as": 65001,
+                          "local-address": "192.0.2.252"
+                        },
+                        {
+                          "name": "peer-nf-cp-vlan-100-gw2",
+                          "local-as": 65000,
+                          "peer-as": 65001,
+                          "local-address": "192.0.2.253"
+                        }
+                      ]
+                    },
+                    "neighbor": [
+                      {
+                        "id": "gw1-cp1",
+                        "remote-address": "192.0.2.101",
+                        "peer-group": "peer-nf-cp-vlan-100-gw1"
+                      },
+                      {
+                        "id": "gw1-cp2",
+                        "remote-address": "192.0.2.102",
+                        "peer-group": "peer-nf-cp-vlan-100-gw1"
+                      },
+                      {
+                        "id": "gw2-cp1",
+                        "remote-address": "192.0.2.101",
+                        "peer-group": "peer-nf-cp-vlan-100-gw1"
+                      },
+                      {
+                        "id": "gw2-cp2",
+                        "remote-address": "192.0.2.102",
+                        "peer-group": "peer-nf-cp-vlan-100-gw1"
+                      }
+                    ]
+                  }
+              }
+            ]
+          }         
+        }
+      },
+      {
+        "name": "parent-vlan-200",
+        "description": "This parent represents a bridge that connects a NF in vlan 200",
+        "l2-connection": {
+          "encapsulation": {
+            "type": "ietf-vpn-common:dot1q",
+            "dot1q": {
+              "cvlan-id": 200
+            }
+          }
+        }
+      },
+      {
+        "name": "ac-nf-up-01-vlan-100",
+        "description": "attachment to Network Function NF-up instance 1 in vlan 100",
+        "ac-parent-ref": "parent-vlan-100",
+        "bearer-reference":"compute-01-nic1"
+      },
+      {
+        "name": "ac-nf-up-02-vlan-100",
+        "description": "attachment to Network Function NF-up instance 2 in vlan 100",
+        "ac-parent-ref": "parent-vlan-100",
+        "bearer-reference":"compute-02-nic2"
+      },
+[...]
+      {
+        "name": "ac-nf-up-08-vlan-100",
+        "description": "attachment to Network Function NF-up instance 10 in vlan 100",
+        "ac-parent-ref": "parent-vlan-100",
+        "bearer-reference":"compute-08-nic1"
+      },
+      {
+        "name": "ac-nf-cp-01-vlan-100",
+        "description": "attachment to Network Function NF-CP instance 1 in vlan 100",
+        "ac-parent-ref": "parent-vlan-100",
+        "bearer-reference":"compute-09-nic0",
+        "ip-connection": {
+          "ipv4": {
+            "prefix-length": 24,
+            "address": [
+              {
+                "address-id": "1",
+                "customer-address": "192.0.2.101"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "name": "ac-nf-cp-02-vlan-100",
+        "description": "attachment to Network Function NF-CP instance 2 in vlan 100",
+        "ac-parent-ref": "parent-vlan-100",
+        "bearer-reference":"compute-10-nic0",
+        "ip-connection": {
+          "ipv4": {
+            "prefix-length": 24,
+            "address": [
+              {
+                "address-id": "1",
+                "customer-address": "192.0.2.102"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "name": "ac-nf-up-1-vlan-200",
+        "description": "attachment to Network Function NF-up instance 1 in vlan 200",
+        "ac-parent-ref": "parent-vlan-200",
+        "bearer-reference":"compute-01-nic1"
+      },
+[...]
+      {
+        "name": "ac-nf-cp-2-vlan-200",
+        "description": "attachment to Network Function NF-CP instance 2 in vlan 200",
+        "ac-parent-ref": "parent-vlan-200",
+        "bearer-reference":"compute-10-nic0"
+      }
+    ]
+  }
+}

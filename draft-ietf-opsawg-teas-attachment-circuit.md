@@ -1261,12 +1261,37 @@ The Network Function have the following characteristics:
 - The Control plane is deployed in a redundant fashion on 2 instances running on distinct compute nodes (compute-09 and compute-10).
 - The NF is attached to distinct networks, each making use of a dedicated vlan. These vlans are therefore instantiated as separate Attachment Circuits. From a realization standpoint, the NF interface connectivity is generally provided thanks to macvlan or SR-IOV. For the sake of simplicity only 2 vlans are presented in this example, additional vlans are generally configured based on similar logic.
 
-Firstly, Figure {{cloud-parent-infra}} describes the physical infrastructure on which attachment circuits are provisionned. The compute nodes (customer) are attached to the provider infrastructure thanks to a set of bearers (i.e. compute-XX-nicY). The provider infrastructure can be realized in multiple ways, such as  IP Fabric, Gateways or L2/L3 Edge Routers. This document does not intend to detail these aspects.
+Figure {{cloud-parent-infra}} describes the physical infrastructure. The compute nodes (customer) are attached to the provider infrastructure thanks to a set of physical links on which attachment circuits are provisionned (i.e. compute-XX-nicY).
+The provider infrastructure can be realized in multiple ways, such as  IP Fabric, Gateways or L2/L3 Edge Routers. This document does not intend to detail these aspects.
 
 ~~~~ aasvg
 {::include-fold ./figures/cloud-parent-infra.txt}
 ~~~~
 {: #cloud-parent-infra title="Physical Topology for Cloud Deployment"}
+
+Next, the NF is deployed on this infrastructure thanks to the configuration of:
+- A parent AC as a centralized attachment for vlan 100. The parent AC captures vlan has additional Layer 3 configuration: IP range for NFs endpoints through Caas/Iaas IPAM, Static Routes with BFD to user plane and BGP configuration to control plane NFs.
+- A parent AC as a centralized attachment for vlan 200. This vlan is for L2 connectivity between NFs (no IP configuration in the Provider Network).
+- "Child ACs" attached to bearers for both vlan 100 and vlan 200.
+The deployment actually deploys the Network Service to all computes (compute-01 to compute-10), even though the NF is not instantiated on compute-07/compute-08. This permits to handle compute failure and scale-out scenarios (see later).
+
+
+For readability the payload are displayed as single JSON files. In practice, several API can happen to initialize these resources (e.g.#1 GET request from customer get IP pools for NFs on vlan 100 thanks to parent configuration and BGP configuration, #2  POST extra routes for user planes and BFD...).
+
+Note that for user plane, no IP address is assigned to Child ACs. The assignment of IP addresses to the NF endpoints is managed by the infrastructure IPAM.
+
+~~~~ json
+{::include-fold ./json-examples/svc/ac-cloud-bfd.json}
+~~~~
+{: #get-bfd-profiles title="Message Body of a Response to get available BFD profiles from Provider Network"}
+
+~~~~ json
+{::include-fold ./json-examples/svc/ac-cloud-parent.json}
+~~~~
+{: #parent-profile title="Message body for configuration of the NF ACs"}
+
+
+
 
 
 # Acknowledgments

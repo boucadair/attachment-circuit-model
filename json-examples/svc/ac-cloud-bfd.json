@@ -1,0 +1,11 @@
+{
+    "ietf-ac-svc:specific-provisioning-profiles": {
+      "valid-provider-identifiers": {
+        "bfd-profile-identifier": [
+          {
+            "id": "single-hop-bfd-user-plane"
+          }
+        ]
+      }
+    }
+}
