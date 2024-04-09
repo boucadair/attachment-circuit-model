@@ -5235,10 +5235,10 @@ A.9.  Connect Customer Network (CE) Through BGP
 
 A.10.  BGP Peering
 
-   In this scenario, multiple networks, each represented by a Network
-   Element (NE), connect to other networks or a Network Access Point
-   (NAP) for interconnection purposes.  Each network connects to each
-   other through one or more Attachment Circuits (ACs).
+   To extend reachability, a network connects to other networks or a
+   Network Access Point (NAP) (e.g., Internet eXhange Point) for
+   interconnection purposes.  The interconnection is achieved through
+   one or more ACs.
 
    To facilitate forwarding between the interconnected networks, BGP
    peering sessions are established between the participating networks.
@@ -5273,10 +5273,10 @@ A.10.  BGP Peering
 
             Figure 47: Illustration of Provider Network Scenario
 
-   As depicted in Figure 47, each AC represents the link between the two
-   networks.  The AC configuration includes parameters such as interface
-   settings, VLAN configuration (if applicable), and any additional
-   settings required for connectivity.
+   As depicted in Figure 47, each AC represents the link between two
+   networks.  The AC configuration (Figure 48) includes parameters such
+   as interface settings, VLAN configuration (if applicable), and any
+   additional settings required for connectivity.
 
    {
      "ietf-ac-svc:attachment-circuits": {
@@ -5313,7 +5313,7 @@ A.10.  BGP Peering
                    "cascaded-lan-prefixes": {
                      "ipv4-lan-prefixes": [
                        {
-                         "lan": "200.200.200.1/32",
+                         "lan": "198.51.100.1/32",
                          "next-hop": "192.168.1.1"
                        }
                      ]
@@ -5327,16 +5327,14 @@ A.10.  BGP Peering
      }
    }
 
-      Figure 48: Message Body of a Request to create an AC to connect
-                     two networks through eBGP peering.
+      Figure 48: Message Body of a Request to Create an AC to Connect
+                      Two Networks Through BGP Peering
 
-   Once the ACs are established, BGP peering sessions are configured
-   between the routers of the participating networks.  BGP sessions are
-   established over the ACs, allowing the routers to exchange routing
-   information and forward traffic between the two ends.  BGP peering
-   configuration includes parameters such as neighbor IP addresses,
-   autonomous system (AS) numbers, authentication settings (if
-   required), etc.
+   Once the ACs are established, BGP peering sessions can be configured
+   between the routers of the participating networks.  Figure 49 shows
+   an example of a request to add a BGP session to an existing AC.  The
+   properties of that AC are not repeated in this request because that
+   information is already communicated durint the creation of the AC.
 
    {
      "ietf-ac-svc:attachment-circuits": {
@@ -5352,7 +5350,9 @@ A.10.  BGP Peering
                    "neighbor": [
                      {
                        "id": "NAP-1",
+                       "local-address": "198.51.100.1",
                        "remote-address": "100.100.100.1",
+                       "local-as": 65536,
                        "peer-as": 65537,
                        "address-family": "ietf-vpn-common:ipv4",
                        "authentication": {
@@ -5378,11 +5378,71 @@ A.10.  BGP Peering
      }
    }
 
-      Figure 49: Message Body of a Request to create the eBGP peering
-                    into the AC to connect two networks.
+       Figure 49: Message Body of a Request to Create the BGP Peering
+                    over the AC to Connect Two Networks
+
+   Figure 50 provides the example of a response which indicates that the
+   request is awaiting validation.  The response includes also a server-
+   assigned reference for this session.
+
+   =============== NOTE: '\' line wrapping per RFC 8792 ================
+
+   {
+     "ietf-ac-svc:attachment-circuits": {
+       "ac": [
+         {
+           "name": "IPT-NET-ABC",
+           "role": "ietf-ac-common:public-nni",
+           "routing-protocols": {
+             "routing-protocol": [
+               {
+                 "id": "BGP",
+                 "type": "ietf-vpn-common:bgp-routing",
+                 "bgp": {
+                   "neighbor": [
+                     {
+                       "id": "NAP-1",
+                       "server-reference": "peering-svc-45857",
+                       "local-address": "198.51.100.1",
+                       "remote-address": "100.100.100.1",
+                       "local-as": 65536,
+                       "peer-as": 65537,
+                       "address-family": "ietf-vpn-common:ipv4",
+                       "authentication": {
+                         "enabled": true,
+                         "keying-material": {
+                           "key-id": 1,
+                           "key": "test##"
+                         }
+                       },
+                       "status": {
+                         "admin-status": {
+                           "status": "ietf-ac-common:awaiting-\
+                                                             validation"
+                         }
+                       }
+                     }
+                   ]
+                 }
+               }
+             ]
+           }
+         }
+       ]
+     }
+   }
+
+      Figure 50: Message Body of a Response for a BGP Session Awaiting
+                                 Validation
+
+   Once validation is accomplished, a status update is communicated back
+   to the requestor.  The BGP session can then be established over the
+   AC.  The BGP peering configuration includes parameters such as
+   neighbor IP addresses, ASNs, authentication settings (if required),
+   etc.
 
    This scenario allows the provider to maintain a list of ACs
-   associated with peering sessions.
+   associated with BGP peering sessions.
 
 A.11.  Connectivity of Cloudidified Network Functions
 
@@ -5394,64 +5454,143 @@ A.11.  Connectivity of Cloudidified Network Functions
    and L3 resources.This approach provides flexibility, scalability and
    API stability.
 
-   The Network Function have the following characteristics: - The
-   Network Function is distributed on a set of computes with scaled-out
-   and redundant instances. - The NF has two distinct type of instances:
-   user plane (nf-up) and routing control plane (nf-cp). - The User
-   plane component can be distributed among the first 8 compute nodes
-   (compute-1 to compute-08) to achieve high performance. - The Control
-   plane is deployed in a redundant fashion on 2 instances running on
-   distinct compute nodes (compute-09 and compute-10). - The NF is
-   attached to distinct networks, each making use of a dedicated vlan.
-   These vlans are therefore instantiated as separate Attachment
-   Circuits.  From a realization standpoint, the NF interface
-   connectivity is generally provided thanks to macvlan or SR-IOV.  For
-   the sake of simplicity only 2 vlans are presented in this example,
-   additional vlans are generally configured based on similar logic.
+   The Network Function have the following characteristics:
 
-   Figure Figure 50 describes the physical infrastructure.  The compute
+   *  The Network Function is distributed on a set of computes with
+      scaled-out and redundant instances.
+
+   *  The NF has two distinct type of instances: user plane (nf-up) and
+      routing control plane (nf-cp).
+
+   *  The User plane component can be distributed among the first 8
+      compute nodes (compute-1 to compute-08) to achieve high
+      performance.
+
+   *  The Control plane is deployed in a redundant fashion on 2
+      instances running on distinct compute nodes (compute-09 and
+      compute-10).
+
+   *  The NF is attached to distinct networks, each making use of a
+      dedicated vlan.  These vlans are therefore instantiated as
+      separate Attachment Circuits.  From a realization standpoint, the
+      NF interface connectivity is generally provided thanks to macvlan
+      or SR-IOV.  For the sake of simplicity only 2 vlans are presented
+      in this example, additional vlans are generally configured based
+      on similar logic.
+
+   Figure Figure 51 describes the physical infrastructure.  The compute
    nodes (customer) are attached to the provider infrastructure thanks
    to a set of physical links on which attachment circuits are
    provisionned (i.e. compute-XX-nicY).  The provider infrastructure can
    be realized in multiple ways, such as IP Fabric, Gateways or L2/L3
    Edge Routers.  This document does not intend to detail these aspects.
 
-                                          ┌ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ┐
-    ┌ ─ ─ ─ ─ ─ ─        bearer =               ┌────────┐
+                                          ┌ - - - - - - - - - - - - - ┐
+    ┌ - - - - - -        bearer =               ┌--------┐
                  |    compute-01-nic1     |     │        │            |
-    | compute-01  ────────────────────────      └────────┘
-                 |                        |     ┌────────┐ ┌────────┐ |
-    └ ─ ─ ─ ─ ─ ─                               │        │ │        │
-    ┌ ─ ─ ─ ─ ─ ─        bearer =         |     └────────┘ └────────┘ |
-                 |    compute-02-nic2           ┌────────┐ ┌────────┐
-    | compute-02  ────────────────────────|     │        │ │        │ |
-                 |                              └────────┘ └────────┘
-    └ ─ ─ ─ ─ ─ ─                         |     ┌────────┐            |
+    | compute-01  ------------------------      └--------┘
+                 |                        |     ┌--------┐ ┌--------┐ |
+    └ - - - - - -                               │        │ │        │
+    ┌ - - - - - -        bearer =         |     └--------┘ └--------┘ |
+                 |    compute-02-nic2           ┌--------┐ ┌--------┐
+    | compute-02  ------------------------|     │        │ │        │ |
+                 |                              └--------┘ └--------┘
+    └ - - - - - -                         |     ┌--------┐            |
                                                 │        │
-                           [...]          |     └────────┘            |
+                           [...]          |     └--------┘            |
 
                                           |                           |
-   ┌ ─ ─ ─ ─ ─ ─ ┐       bearer =               Provider Network
+   ┌ - - - - - - ┐       bearer =               Provider Network
                       compute-10-nic0     |       Infrastructure      |
-   | compute-10  |────────────────────────     (IP Fabric, Gateways)
+   | compute-10  |------------------------     (IP Fabric, Gateways
                                           |            etc.)          |
-   └ ─ ─ ─ ─ ─ ─ ┘
-                                          └ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ┘
+   └ - - - - - - ┘
+                                          └ - - - - - - - - - - - - - ┘
 
-             Figure 50: Physical Topology for Cloud Deployment
+             Figure 51: Physical Topology for Cloud Deployment
 
-   Next, the NF is deployed on this infrastructure thanks to the
-   configuration of: - A parent AC as a centralized attachment for vlan
-   100.  The parent AC captures vlan has additional Layer 3
-   configuration: IP range for NFs endpoints through Caas/Iaas IPAM,
-   Static Routes with BFD to user plane and BGP configuration to control
-   plane NFs. - A parent AC as a centralized attachment for vlan 200.
-   This vlan is for L2 connectivity between NFs (no IP configuration in
-   the Provider Network). - "Child ACs" attached to bearers for both
-   vlan 100 and vlan 200.  The deployment actually deploys the Network
-   Service to all computes (compute-01 to compute-10), even though the
-   NF is not instantiated on compute-07/compute-08.  This permits to
-   handle compute failure and scale-out scenarios (see later).
+   The NF is deployed on this infrastructure in the following way: *
+   Configuration of a parent AC as a centralized attachment for vlan
+   100.  The parent AC captures L2/L3 information for this vlan: vlan-
+   id, IP gateway and subnet, IP pool for NFs endpoints, Static Routes
+   with BFD to user plane and BGP configuration to control plane NFs. *
+   Configuration of a parent AC as a centralized attachment for vlan
+   200.  This vlan is for L2 connectivity between NFs (no IP
+   configuration in the Provider Network). * "Child ACs" binding bearers
+   to parent ACs for vlan 100 and vlan 200. * The deployment deploys the
+   Network Service to all computes (compute-01 to compute-10), even
+   though the NF is not instantiated on compute-07/compute-08.  This
+   approach permits to handle compute failure and scale-out scenarios in
+   a reactive and flexible fashion thanks to pre-provisionned networking
+   logic.
+
+                            ┌---------------------------------------┐
+                            │VLAN 100:                              │
+                            │                                       │
+                            │Static Route to virtual BGP NH in user │
+                            │plane instances NF with BFD protection:│
+                            │                                       │
+                            │- 198.51.100.100/32 via 192.0.2.1      │
+                            │- 198.51.100.100/32 via 192.0.2.2      │
+                            │...                                    │
+                            │- 198.51.100.100/32 via 192.0.2.8      │
+                            └---------------------------------------┘
+                                                  │
+                 vlan 100 IP subnet          ┌ - -│- - - - - - - - - ┐
+                     192.2.0.0/24                 └-------┐
+    ┌ - - - -                                │            │          │
+     ┌------┐│.1     <- bfd ->                            │
+    ││nf-up1│ --------vlan-100---------------│            ▼          │
+     │      ││--------vlan-200---------------   ┌------------------┐
+    │└------┘                                │  │ Bridge vlan 100  │ │
+    compute-01                                  │     (l2/l3)      │
+    ┌ - - - -                                │  │   IP gateway:    │ │
+     ┌------┐│.2     <- bfd ->                  │  192.2.0.254/24  │
+    ││nf-up2│ --------vlan-100---------------│  └------------------┘ │
+     │      ││--------vlan-200---------------   ┌------------------┐
+    │└------┘                                │  │                  │ │
+    compute-02                                  │ Bridge vlan 200  │
+                        [...]                │  │    (l2 only)     │ │
+    ┌ - 06- -                                   │                  │
+     ┌------┐│.6     <- bfd ->               │  └------------------┘ │
+    ││nf-up6│ --------vlan-100---------------
+     │      ││--------vlan-200---------------│                       │
+    │└------┘
+    compute-06                               │                       │
+     ┌ - - - ┐
+              ---------vlan-100--------------│                       │
+     │       │---------vlan-200--------------
+    compute-07                               │                       │
+     ┌ - - - ┐
+              ---------vlan-100--------------│                       │
+     │       │---------vlan-200--------------
+    compute-08                               │                       │
+    ┌ - - - - <----------BGP-------------->
+     ┌------┐│.9                       .252  │                       │
+    ││nf-cp1│ --------vlan-100---------------
+     │      ││--------vlan-200---------------│                       │
+    │└------┘
+    compute-09                               │                       │
+    ┌ - - - - <-----------BGP-------------->
+     ┌------┐│.10                       .253 │                       │
+    ││nf-cp2│ ---------vlan-100--------------
+     │      ││---------vlan-200--------------└ - - - - - - - - - - - ┘
+    │└------┘
+    compute-10
+    ┌-----------------------------------┐
+    │nf-cp routing for VLAN 100         │
+    │advertises pools with 1:N backup   │
+    │route.                             │
+    │BGP UPDATE:                        │
+    │203.0.113.0/24, NH = 198.51.100.100│ ---->
+    │203.0.113.0/28, NH = 192.2.0.1     │
+    │203.0.113.16/28, NH = 192.2.0.2    │
+    │...                                │
+    │203.0.113.80/28, NH = 192.2.0.6    │
+    │203.0.113.96/28, NH = 192.2.0.1    │
+    └-----------------------------------┘
+
+              Figure 52: Logical Topology of the NF Deployment
 
    For readability the payload are displayed as single JSON files.  In
    practice, several API can happen to initialize these resources
@@ -5459,9 +5598,18 @@ A.11.  Connectivity of Cloudidified Network Functions
    thanks to parent configuration and BGP configuration, #2 POST extra
    routes for user planes and BFD...).
 
-   Note that for user plane, no IP address is assigned to Child ACs.
-   The assignment of IP addresses to the NF endpoints is managed by the
-   infrastructure IPAM.
+   Note that no individual IP address is assigned in the data model for
+   the NF user plane instances (i.e. no "customer-address" in the Child
+   AC).  The assignment of IP addresses to the NF endpoints is managed
+   by the Cloud Infrastructure IPAM based on the customer-addresses IP
+   pool "192.0.2.1-200".  Just like in any standard LAN-facing scenario,
+   we assume that the actual binding of IP endpoints to logical
+   attachments (here Child ACs) relies on protocol logic (i.e.  ARP or
+   NDP) and is not captured in the data model.  Hence, the IP addresses
+   displayed for NF user plane instances is simply example of a
+   realization.  On the other hand, we defined Control Plane with static
+   IP address assignement on a given AC/bearer to demonstrate an
+   alternative.
 
    {
        "ietf-ac-svc:specific-provisioning-profiles": {
@@ -5475,7 +5623,7 @@ A.11.  Connectivity of Cloudidified Network Functions
        }
    }
 
-         Figure 51: Message Body of a Response to get available BFD
+         Figure 53: Message Body of a Response to get available BFD
                        profiles from Provider Network
 
    =============== NOTE: '\' line wrapping per RFC 8792 ================
@@ -5539,6 +5687,8 @@ A.11.  Connectivity of Cloudidified Network Functions
                          "lan-tag": "virtual-next-hop",
                          "bfd-profile": "single-hop-bfd-user-plane"
                        },
+                       {"_comment": "192.0.2.3-192.0.2.7 are not \
+                                                            displayed"},
                        {
                          "lan": "198.51.100.100/32",
                          "next-hop": "192.0.2.8",
@@ -5627,6 +5777,8 @@ A.11.  Connectivity of Cloudidified Network Functions
              "bearer-reference": "compute-02-nic2"
            }
          },
+         {"_comment": "ac-nf-up-03-vlan-100 to ac-nf-up-07-vlan-100 \
+                                                           are hidden"},
          {
            "name": "ac-nf-up-08-vlan-100",
            "description": "attachment to Network Function NF-up \
@@ -5685,6 +5837,8 @@ A.11.  Connectivity of Cloudidified Network Functions
              "bearer-reference": "compute-01-nic1"
            }
          },
+         {"_comment": "ac-nf-up-2-vlan-200 to ac-nf-cp-01-vlan-200 are \
+                                                        not displayed"},
          {
            "name": "ac-nf-cp-2-vlan-200",
            "description": "attachment to Network Function NF-CP \
@@ -5698,7 +5852,52 @@ A.11.  Connectivity of Cloudidified Network Functions
      }
    }
 
-          Figure 52: Message body for configuration of the NF ACs
+          Figure 54: Message body for configuration of the NF ACs
+
+   Assuming a failure of compute-01, the instance nf-up-1 is redeployed
+   to compute-07 by the NF/Cloud Orchestration.  Additionally, the nf
+   can be scaled-out thanks to the creation of an extra instance nf-up7
+   on compute-08.  Since networking is pre-provisionned, these
+   operations happen without any API call.  In other words, this is
+   transparent from the perspective of the configuration of the provider
+   network.
+
+                                             ┌ - - - - - - - - - - - ┐
+
+    ┌ - - - -┐                               |  ┌------------------┐ |
+                                                |                  |
+    |        |--------vlan-100---------------|  | Bridge vlan 100  | |
+       DOWN   --------vlan-200---------------   |                  |
+    |        |                               |  └------------------┘ |
+    compute-01
+         |                                   |  ┌------------------┐ |
+         |                                      |                  |
+         |                                   |  | Bridge vlan 200  | |
+         |                                      |                  |
+         |                                   |  └------------------┘ |
+         |
+         |              [...]                |                       |
+         ▼
+    ┌ - - - -                                |                       |
+     ┌------┐|.1     < - bfd - >
+    ||nf-up1| ---------vlan-100--------------|  nf-up1 moved to      |
+     |      ||---------vlan-200--------------      compute-07
+    |└------┴                                |                       |
+    compute-07
+    ┌ - - - -                                |     nf-up7 on         |
+     ┌------┐|.7     < - bfd - >                  compute-08
+    ||ng-up7| ---------vlan-100--------------|    created for        |
+     |      ||---------vlan-200--------------      scale-out
+    |└------┴                                |                       |
+    compute-08                                - - - - - - - - - - - -
+
+                  Figure 55: Compute failure and Scale-out
+
+   Finally, the addition/deletion of computes (e.g. compute-11+) in the
+   deployment involves merely the configuration of Child ACs.  The
+   parent AC remains unchanged: it is a stable identifier.  This is
+   practical for referencing by End to End models for VPN configuration
+   (??? ref NBI network Slice and L2/L3SM / ac-glue).
 
 Acknowledgments
 
