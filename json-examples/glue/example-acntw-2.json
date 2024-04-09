@@ -27,21 +27,23 @@
          "service":{
             "mtu":1550,
             "svc-pe-to-ce-bandwidth":{
-               "pe-to-ce-bandwidth":[
+               "bandwidth":[
                   {
+                     "bw-type": "ietf-vpn-common:bw-per-port",
                      "cir":"20480000"
                   }
                ]
             },
             "svc-ce-to-pe-bandwidth":{
-               "ce-to-pe-bandwidth":[
+               "bandwidth":[
                   {
+                     "bw-type": "ietf-vpn-common:bw-per-port",
                      "cir":"20480000"
                   }
                ]
             },
             "qos":{
-               "qos-profile":{
+               "qos-profiles":{
                   "qos-profile":[
                      {
                         "qos-profile-ref":"QoS_Profile_A",
