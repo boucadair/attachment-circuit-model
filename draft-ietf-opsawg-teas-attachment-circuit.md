@@ -1263,12 +1263,17 @@ To facilitate forwarding between the interconnected networks, BGP peering sessio
 
 As depicted in {{bgp-peer-network}}, each AC represents the link between the two networks. The AC configuration includes parameters such as interface settings, VLAN configuration (if applicable), and any additional settings required for connectivity.
 
-Once the ACs are established, BGP peering sessions are configured between the routers of the participating networks. BGP sessions are established over the ACs, allowing the routers to exchange routing information. BGP peering configuration includes parameters such as neighbor IP addresses, AS numbers, authentication settings (if required), etc.
-
 ~~~~ json
 {::include-fold ./json-examples/svc/bgp-peering-example.json}
 ~~~~
-{: #bgp-peer-network-add-attachment-circuit title="Message Body of a Request to create an AC to connect two networks through eBGP peering"}
+{: #bgp-peer-network-add-attachment-circuit title="Message Body of a Request to create an AC to connect two networks through eBGP peering."}
+
+Once the ACs are established, BGP peering sessions are configured between the routers of the participating networks. BGP sessions are established over the ACs, allowing the routers to exchange routing information. BGP peering configuration includes parameters such as neighbor IP addresses, AS numbers, authentication settings (if required), etc.
+
+~~~~ json
+{::include-fold ./json-examples/svc/bgp-conf-peering-example.json}
+~~~~
+{: #bgp-peer-network-add-bgp-attachment-circuit title="Message Body of a Request to create the eBGP peering into the AC to connect two networks."}
 
 This scenario allows the provider to maintain a list of ACs associated with peering sessions.
 

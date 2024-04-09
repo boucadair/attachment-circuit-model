@@ -1,0 +1,39 @@
+{
+  "ietf-ac-svc:attachment-circuits": {
+    "ac": [
+      {
+        "name": "IPT-NET-ABC",
+        "routing-protocols": {
+          "routing-protocol": [
+            {
+              "id": "BGP",
+              "type": "ietf-vpn-common:bgp-routing",
+              "bgp": {
+                "neighbor": [
+                  {
+                    "id": "NAP-1",
+                    "remote-address": "100.100.100.1",
+                    "peer-as": 65537,
+                    "address-family": "ietf-vpn-common:ipv4",
+                    "authentication": {
+                      "enabled": true,
+                      "keying-material": {
+                        "key-id": 1,
+                        "key": "test##"
+                      }
+                    },
+                    "status": {
+                      "admin-status": {
+                        "status": "ietf-vpn-common:admin-up"
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
