@@ -5619,79 +5619,42 @@ A.10.  Connectivity of Cloudidified Network Functions
 
           Figure 50: Message body for configuration of the NF ACs
 
-   Assuming a failure of compute-01, nf-up-1 can be redeployed to
-   compute-07 by the NF/Cloud Orchestration.  This operation is
-   transparent to the.  Next, the nf can be scaled out thanks to the
-   creation of an extra instance nf-up_07 on compute-08.  Since
-   networking is pre-provisionned, these operations happens without any
-   API call.  In other words, this is transparent from the perspective
-   of the configuration of the provider network.
+   Assuming a failure of compute-01, the instance nf-up-1 is redeployed
+   to compute-07 by the NF/Cloud Orchestration.  Additionally, the nf
+   can be scaled-out thanks to the creation of an extra instance nf-up7
+   on compute-08.  Since networking is pre-provisionned, these
+   operations happen without any API call.  In other words, this is
+   transparent from the perspective of the configuration of the provider
+   network.
 
-                            ┌───────────────────────────────────────┐
-                            │VLAN 100:                              │
-                            │                                       │
-                            │Static Route to virtual BGP NH in user │
-                            │plane instances NF with BFD protection:│
-                            │                                       │
-                            │- 198.51.100.100/32 via 192.0.2.1      │
-                            │- 198.51.100.100/32 via 192.0.2.2      │
-                            │...                                    │
-                            │- 198.51.100.100/32 via 192.0.2.8      │
-                            └───────────────────────────────────────┘
-                                                  │
-                 vlan 100 IP subnet          ┌ ─ ─│─ ─ ─ ─ ─ ─ ─ ─ ─ ┐
-                     192.2.0.0/24                 └───────┐
-    ┌ ─ ─ ─ ─                                │            │          │
-     ┌──────┐│.1     ◀ ─ bfd ─▶                           │
-    ││nf-up1│ ────────vlan-100───────────────│            ▼          │
-     │      ││────────vlan-200───────────────   ┌──────────────────┐
-    │└──────┘                                │  │ Bridge vlan 100  │ │
-    compute-01                                  │     (l2/l3)      │
-    ┌ ─ ─ ─ ─                                │  │   IP gateway:    │ │
-     ┌──────┐│.2    ◀ ─ bfd ─▶                  │  192.2.0.254/24  │
-    ││nf-up2│ ────────vlan-100───────────────│  └──────────────────┘ │
-     │      ││────────vlan-200───────────────   ┌──────────────────┐
-    │└──────┘                                │  │                  │ │
-    compute-02                                  │ Bridge vlan 200  │
-                        [...]                │  │    (l2 only)     │ │
-    ┌ ─ 06─ ─                                   │                  │
-     ┌──────┐│.6     ◀ ─bfd─ ─▶              │  └──────────────────┘ │
-    ││nf-up6│ ────────vlan-100───────────────
-     │      ││────────vlan-200───────────────│                       │
-    │└──────┘
-    compute-06                               │                       │
-     ┌ ─ ─ ─ ┐
-              ─────────vlan-100──────────────│                       │
-     │       │─────────vlan-200──────────────
-    compute-07                               │                       │
-     ┌ ─ ─ ─ ┐
-              ─────────vlan-100──────────────│                       │
-     │       │─────────vlan-200──────────────
-    compute-08                               │                       │
-    ┌ ─ ─ ─ ─ ◁──────────BGP──────────────▷
-     ┌──────┐│.9                       .252  │                       │
-    ││nf-cp1│ ────────vlan-100───────────────
-     │      ││────────vlan-200───────────────│                       │
-    │└──────┘
-    compute-09                               │                       │
-    ┌ ─ ─ ─ ─ ◁───────────BGP──────────────▷
-     ┌──────┐│.10                       .253 │                       │
-    ││nf-cp2│ ─────────vlan-100──────────────
-     │      ││─────────vlan-200──────────────└ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ┘
-    │└──────┘
-    compute-10
-    ┌───────────────────────────────────┐
-    │nf-cp routing for VLAN 100         │
-    │advertises pools with 1:N backup   │
-    │route.                             │
-    │BGP UPDATE:                        │
-    │203.0.113.0/24, NH = 198.51.100.100│ ────▶
-    │203.0.113.0/28, NH = 192.2.0.1     │
-    │203.0.113.16/28, NH = 192.2.0.2    │
-    │...                                │
-    │203.0.113.80/28, NH = 192.2.0.6    │
-    │203.0.113.96/28, NH = 192.2.0.1    │
-    └───────────────────────────────────┘
+                                             ┌ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ┐
+
+    ┌ ─ ─ ─ ─                                |  ┌──────────────────┐ |
+             |                                  |                  |
+    |         ────────vlan-100───────────────|  | Bridge vlan 100  | |
+       DOWN  |────────vlan-200───────────────   |                  |
+    |                                        |  └──────────────────┘ |
+    compute-01
+         |                                   |  ┌──────────────────┐ |
+         |                                      |                  |
+         |                                   |  | Bridge vlan 200  | |
+         |                                      |                  |
+         |                                   |  └──────────────────┘ |
+         |
+         |              [...]                |                       |
+         ▼
+    ┌ ─ ─ ─ ─                                |                       |
+     ┌──────┐┤.1     < ─ bfd ─ >
+    ||nf-up1| ─────────vlan-100──────────────|  nf-up1 moved to      |
+     |      ||─────────vlan-200──────────────      compute-07
+    |└──────┴                                |                       |
+    compute-07
+    ┌ ─ ─ ─ ─                                |     nf-up7 on         |
+     ┌──────┐┤.7     < ─ bfd ─ >                  compute-08
+    ||ng-up7| ─────────vlan-100──────────────|    created for        |
+     |      ||─────────vlan-200──────────────      scale-out
+    |└──────┴                                |                       |
+    compute-08                                ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─
 
                   Figure 51: Compute failure and Scale-out
 
