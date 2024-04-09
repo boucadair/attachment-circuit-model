@@ -1,5 +1,7 @@
 YANGDIR ?= yang
 
+SVCEXDIR ?= json-examples/svc
+
 STDYANGDIR ?= tools/yang
 $(STDYANGDIR):
 	git clone --depth 10 -b main https://github.com/YangModels/yang $@
@@ -12,6 +14,7 @@ YANG_PATH="$(YANGDIR):$(STDYANGDIR)/standard/ietf/RFC/:$(STDYANGDIR)/standard/ie
 endif
 YANG=$(wildcard $(YANGDIR)/*.yang)
 STDYANG=$(wildcard $(YANGDIR)/ietf-*.yang)
+EXPSVCJSON=$(wildcard $(SVCEXDIR)/*.json)
 TXT=$(patsubst $(YANGDIR)/%.yang,%-diagram.txt,$(YANG))
 
 .PHONY: yang-lint yang-gen-diagram yang-clean
