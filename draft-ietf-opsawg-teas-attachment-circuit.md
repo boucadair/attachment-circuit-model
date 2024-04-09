@@ -1275,7 +1275,7 @@ Once the ACs are established, BGP peering sessions can be configured between the
 ~~~~
 {: #bgp-peer-network-add-bgp-attachment-circuit title="Message Body of a Request to Create the BGP Peering over the AC to Connect Two Networks"}
 
-{{bgp-awaiting-validation}} provides the example of a response which indicates that the request is awaiting validation. The response includes also a server-assigned reference for this session. 
+{{bgp-awaiting-validation}} provides the example of a response which indicates that the request is awaiting validation. The response includes also a server-assigned reference for this session.
 
 ~~~~ json
 {::include-fold ./json-examples/svc/bgp-conf-peering-awaiting-validation.json}
