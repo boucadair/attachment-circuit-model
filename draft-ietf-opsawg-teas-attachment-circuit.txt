@@ -1505,6 +1505,9 @@ Table of Contents
    'local-address':  Specifies a provider's IP address to use when
       establishing the BGP transport session.
 
+   'bgp-max-prefix':  Indicates the maximum number of BGP prefixes
+      allowed in a session for this group.
+
    'authentication':  The module adheres to the recommendations in
       Section 13.2 of [RFC4364], as it allows enabling the TCP
       Authentication Option (TCP-AO) [RFC5925] and accommodates the
