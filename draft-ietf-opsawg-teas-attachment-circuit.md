@@ -164,7 +164,8 @@ The AC service model can be used in a variety of contexts, such as (but not limi
 * Control the precedence over multiple attachment circuits ({{sec-ex-prec}}).
 * Create Multiple ACs bound to Multiple CEs ({{sec-multiple-ces}}).
 * Bind a slice service to a set of pre-provisioned attachment circuits ({{sec-ex-slice}}).
-* Connect a Cloud Infrastructure to a service provider network ({{sec-ex-cloud}}). Note that the AC model can be used between service providers for other interconnection purposes (e.g., {{?RFC8921}}). Such ACs are identified with a "role" set to "ac-common:nni" or "ac-common:public-nni".
+* Connect a Cloud Infrastructure to a service provider network ({{sec-ex-cloud}}).
+* Interconnect provider networks (e.g., {{?RFC8921}} or {{?I-D.ramseyer-grow-peering-api}}). Such ACs are identified with a "role" set to "ac-common:nni" or "ac-common:public-nni". See {{sec-peering}} to illustrate the use of the AC model for peering.
 
 The examples provided in {{examples}} use the IPv4 address blocks reserved for documentation {{?RFC5737}}, the IPv6 prefix reserved for documentation {{?RFC3849}}, and the Autonomous System (AS) numbers reserved for documentation {{?RFC5398}}.
 
@@ -628,17 +629,17 @@ The following data nodes are supported for each BGP 'peer-group':
 : Defines a name for the peer group.
 
 'local-as':
-: Indicates a local AS Number (ASN).
+: Indicates the provider's AS Number (ASN).
 
 'peer-as':
-: Indicates the peer's ASN.
+: Indicates the customer's ASN.
 
 'address-family':
 : Indicates the address family of the peer. It can be set to 'ipv4', 'ipv6', or 'dual-stack'.
 : This address family might be used together with the service type that uses an AC (e.g., 'vpn-type' {{?RFC9182}}) to derive the appropriate Address Family Identifiers (AFIs) / Subsequent Address Family Identifiers (SAFIs) that will be part of the derived device configurations (e.g., unicast IPv4 MPLS L3VPN (AFI,SAFI = 1,128) as defined in {{Section 4.3.4 of !RFC4364}}).
 
 'local-address':
-: Specifies an address or a reference to an interface to use when establishing the BGP transport session.
+: Specifies a provider's IP address to use when establishing the BGP transport session.
 
 'authentication':
 : The module adheres to the recommendations in {{Section 13.2 of !RFC4364}}, as it allows enabling the TCP Authentication Option (TCP-AO) {{?RFC5925}} and accommodates the installed base that makes use of MD5. In addition, the module includes a provision for using IPsec.
@@ -650,7 +651,7 @@ For each neighbor, the following data nodes are supported in addition to similar
 : Reports the internal reference that is assigned by the provider for this BGP session.
 
 'remote-address':
-: Specifies the remote IP address of a BGP neighbor.
+: Specifies the customer's IP address used to establishing this BGP session.
 
 'requested-start':
 : Specifies the requested date and time when the BGP session is expected to be active.
@@ -668,7 +669,7 @@ For each neighbor, the following data nodes are supported in addition to similar
 : Indicates the status of the BGP routing instance.
 
 'peer-group':
-: A name of a peer group.
+: Specifies a name of a peer group.
 : Parameters that are provided at the 'neighbor' level takes precedence over the ones provided in the peer group.
 
 'bfd-profile':
@@ -1232,7 +1233,7 @@ Next, API workflows can be initiated:
 {: #cloud-provider-ac-res title="Message Body of a Response to the Request to Create ACs for Connecting to the Cloud Provider"}
 
 
-## Connect Customer Network (CE) Through BGP
+## Connect Customer Network Through BGP
 
 CE-PE routing using BGP is a common scenario in the context of MPLS VPNs and is widely used in enterprise networks. In the example depicted in {{provider-network}}, the CE routers are customer-owned devices belonging to an AS (ASN 65536). CEs are located at the edge of the provider's network (PE, or Provider Edge) and use point-to-point interfaces to establish BGP sessions. The point-to-point interfaces rely upon a physical bearer ("Line-113") to reach the provider network.
 
@@ -1251,41 +1252,49 @@ The attachment circuit in this case use a SAP identifier to refer to the physica
 This scenario allows the provider to maintain a list of ACs belonging to the same customer without requiring the full service configuration.
 
 
-## BGP Peering
+## BGP Peering {#sec-peering}
 
-To extend reachability, a network connects to other networks or a Network Access Point (NAP) (e.g., Internet eXhange Point) for interconnection purposes. The interconnection is achieved through one or more ACs.
-
-To facilitate forwarding between the interconnected networks, BGP peering sessions are established between the participating networks. BGP is used to exchange routing information and reachability announcements between those networks.
+This section illustrates how to use the AC service model for interconnection purposes. To that aim, we assume a simplified Internet eXchange Point (IXP) configuration without zooming into IXP deployment specifics. Let us assume that networks are interconnected via a Layer 2 facility. BGP is used to exchange routing information and reachability announcements between those networks. The same approach can be used to negotiate interconnection between two networks and without involving an IXP.
 
 ~~~~ aasvg
 {::include-fold ./figures/bgp-peering-example.txt}
 ~~~~
-{: #bgp-peer-network title="Illustration of Provider Network Scenario"}
+{: #bgp-peer-network title="Simple Interconnection Topology"}
 
-As depicted in {{bgp-peer-network}}, each AC represents the link between two networks. The AC configuration ({{bgp-peer-network-add-attachment-circuit}}) includes parameters such as interface settings, VLAN configuration (if applicable), and any additional settings required for connectivity.
+As depicted in {{bgp-peer-network}}, each network connects to the IXP switch via a bearer over which an AC is created. The AC configuration ({{bgp-peer-network-add-attachment-circuit}}) includes parameters such as VLAN configuration, IP addresses, MTU, and any additional settings required for connectivity. The peering location is inferred from the "bearer-reference".
 
 ~~~~ json
 {::include-fold ./json-examples/svc/bgp-peering-example.json}
 ~~~~
-{: #bgp-peer-network-add-attachment-circuit title="Message Body of a Request to Create an AC to Connect Two Networks Through BGP Peering"}
+{: #bgp-peer-network-add-attachment-circuit title="Message Body of a Request to Create an AC to Connect to an IXP"}
 
-Once the ACs are established, BGP peering sessions can be configured between the routers of the participating networks. {{bgp-peer-network-add-bgp-attachment-circuit}} shows an example of a request to add a BGP session to an existing AC. The properties of that AC are not repeated in this request because that information is already communicated durint the creation of the AC.
+{{bgp-peer-network-response}} shows the received response with the required information for the activation of the AC.
+
+~~~~ json
+{::include-fold ./json-examples/svc/bgp-peering-example-response.json}
+~~~~
+{: #bgp-peer-network-response title="Message Body of a Response to an AC Request to Connect to an IXP"}
+
+Once the ACs are established, BGP peering sessions can be configured between routers of the participating networks. BGP sessions can be established via a route server or between two networks. For the sake of illustration, let us assume that BGP sessions are established directly between two network. {{bgp-peer-network-add-bgp-attachment-circuit}} shows an example of a request to add a BGP session to an existing AC. The properties of that AC are not repeated in this request because that information is already communicated during the creation of the AC.
 
 ~~~~ json
 {::include-fold ./json-examples/svc/bgp-conf-peering-example.json}
 ~~~~
-{: #bgp-peer-network-add-bgp-attachment-circuit title="Message Body of a Request to Create the BGP Peering over the AC to Connect Two Networks"}
+{: #bgp-peer-network-add-bgp-attachment-circuit title="Message Body of a Request to Create a BGP Session over an AC"}
 
-{{bgp-awaiting-validation}} provides the example of a response which indicates that the request is awaiting validation. The response includes also a server-assigned reference for this session.
+{{bgp-awaiting-validation}} provides the example of a response which indicates that the request is awaiting validation. The response includes also a server-assigned reference for this BGP session.
 
 ~~~~ json
 {::include-fold ./json-examples/svc/bgp-conf-peering-awaiting-validation.json}
 ~~~~
 {: #bgp-awaiting-validation title="Message Body of a Response for a BGP Session Awaiting Validation"}
 
-Once validation is accomplished, a status update is communicated back to the requestor. The BGP session can then be established over the AC. The BGP peering configuration includes parameters such as neighbor IP addresses, ASNs, authentication settings (if required), etc.
+Once validation is accomplished, a status update is communicated back to the requestor. The BGP session can then be established over the AC. The BGP session configuration includes parameters such as neighbor IP addresses, ASNs, authentication settings (if required), etc. The configuration is triggered at each side of the BGP connection.
 
-This scenario allows the provider to maintain a list of ACs associated with BGP peering sessions.
+~~~~ json
+{::include-fold ./json-examples/svc/bgp-peering-all-sessions.json}
+~~~~
+{: #bgp-peering-all-sessions.json title="Message Body of a Response to Report All Active BGP sessions over an AC"}
 
 ## Connectivity of Cloudified Network Functions
 

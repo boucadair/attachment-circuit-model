@@ -5,25 +5,15 @@
         "name": "Attachment Circuit 1",
         "customer-name": "Network A",
         "description": "An AC to IXP SW in Location X",
-        "requested-ac-start": "2025-12-12T05:00:00.00Z",
+        "requested-start": "2025-12-12T05:00:00.00Z",
         "peer-sap-id": [
           "asbr-1-interface"
         ],
         "l2-connection": {
           "encapsulation": {
-            "type": "ietf-vpn-common:dot1q",
-            "dot1q": {
-              "tag-type": "ietf-vpn-common:c-vlan",
-              "cvlan-id": 114
-            }
+            "type": "ietf-vpn-common:dot1q"
           },
           "bearer-reference": "Location-X-Line-114"
-        },
-        "ip-connection": {
-          "ipv4": {
-            "local-address": "192.0.2.1",
-            "prefix-length": 24
-          }
         }
       }
     ]

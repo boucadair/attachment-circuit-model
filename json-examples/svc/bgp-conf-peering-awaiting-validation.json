@@ -15,7 +15,7 @@
                     "id": "Session-Network-B",
                     "server-reference": "peering-svc-45857",
                     "local-address": "192.0.2.2",
-                    "remote-address": "192.0.2.1",                    
+                    "remote-address": "192.0.2.1",
                     "local-as": 65537,
                     "peer-as": 65536,
                     "address-family": "ietf-vpn-common:ipv4",
