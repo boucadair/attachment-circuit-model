@@ -4761,7 +4761,7 @@ A.7.  Binding Attachment Circuits to an IETF Network Slice
          {
            "name": "ac1",
            "description": "Connection to site1 on vlan 100",
-           "requested-start": "2023-12-12T05:00:00.00Z",
+           "actual-start": "2023-12-12T05:00:00.00Z",
            "l2-connection": {
              "encapsulation": {
                "type": "ietf-vpn-common:dot1q",
@@ -4807,7 +4807,7 @@ A.7.  Binding Attachment Circuits to an IETF Network Slice
          {
            "name": "ac2",
            "description": "Connection to site2 on vlan 200",
-           "requested-start": "2023-12-12T05:00:00.00Z",
+           "actual-start": "2023-12-12T05:00:00.00Z",
            "l2-connection": {
              "encapsulation": {
                "type": "ietf-vpn-common:dot1q",
