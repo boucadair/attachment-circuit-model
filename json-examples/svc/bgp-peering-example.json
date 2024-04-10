@@ -2,11 +2,12 @@
   "ietf-ac-svc:attachment-circuits": {
     "ac": [
       {
-        "name": "IPT-NET-ABC",
-        "customer-name": "NET-ABC",
-        "description": "NET-ABC",
+        "name": "Attachment Circuit 1",
+        "customer-name": "Network A",
+        "description": "An AC to IXP SW in Location X",
+        "requested-ac-start": "2025-12-12T05:00:00.00Z",
         "peer-sap-id": [
-          "sap#114"
+          "asbr-1-interface"
         ],
         "l2-connection": {
           "encapsulation": {
@@ -16,31 +17,13 @@
               "cvlan-id": 114
             }
           },
-          "bearer-reference": "line-114"
+          "bearer-reference": "Location-X-Line-114"
         },
         "ip-connection": {
           "ipv4": {
-            "local-address": "192.168.1.1",
-            "prefix-length": 30
+            "local-address": "192.0.2.1",
+            "prefix-length": 24
           }
-        },
-        "routing-protocols": {
-          "routing-protocol": [
-            {
-              "id": "static",
-              "type": "ietf-vpn-common:static-routing",
-              "static": {
-                "cascaded-lan-prefixes": {
-                  "ipv4-lan-prefixes": [
-                    {
-                      "lan": "198.51.100.1/32",
-                      "next-hop": "192.168.1.1"
-                    }
-                  ]
-                }
-              }
-            }
-          ]
         }
       }
     ]
