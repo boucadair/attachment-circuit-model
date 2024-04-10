@@ -1348,7 +1348,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
             <p id="section-1.1-13.7.1">Connect a Cloud Infrastructure to a service provider network (<a href="#sec-ex-cloud" class="auto internal xref">Appendix A.8</a>).<a href="#section-1.1-13.7.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-1.1-13.8">
-            <p id="section-1.1-13.8.1">Interconnect provider networks (e.g., <span>[<a href="#RFC8921" class="cite xref">RFC8921</a>]</span>). Such ACs are identified with a "role" set to "ac-common:nni" or "ac-common:public-nni". See <a href="#sec-peering" class="auto internal xref">Appendix A.10</a> to illustrate the use of the AC model for peering.<a href="#section-1.1-13.8.1" class="pilcrow">¶</a></p>
+            <p id="section-1.1-13.8.1">Interconnect provider networks (e.g., <span>[<a href="#RFC8921" class="cite xref">RFC8921</a>]</span> or <span>[<a href="#I-D.ramseyer-grow-peering-api" class="cite xref">I-D.ramseyer-grow-peering-api</a>]</span>). Such ACs are identified with a "role" set to "ac-common:nni" or "ac-common:public-nni". See <a href="#sec-peering" class="auto internal xref">Appendix A.10</a> to illustrate the use of the AC model for peering.<a href="#section-1.1-13.8.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
 <p id="section-1.1-14">The examples provided in <a href="#examples" class="auto internal xref">Appendix A</a> use the IPv4 address blocks reserved for documentation <span>[<a href="#RFC5737" class="cite xref">RFC5737</a>]</span>, the IPv6 prefix reserved for documentation <span>[<a href="#RFC3849" class="cite xref">RFC3849</a>]</span>, and the Autonomous System (AS) numbers reserved for documentation <span>[<a href="#RFC5398" class="cite xref">RFC5398</a>]</span>.<a href="#section-1.1-14" class="pilcrow">¶</a></p>
@@ -2848,7 +2848,7 @@ a parent AC can be defined with a set of stable and common information, while
                 <dd class="break"></dd>
 <dt id="section-5.2.5.3.2-6.3">'remote-address':</dt>
                 <dd style="margin-left: 1.5em" id="section-5.2.5.3.2-6.4">
-                  <p id="section-5.2.5.3.2-6.4.1">Specifies the customer's IP address used when establishing the BGP transport session with a neighbor.<a href="#section-5.2.5.3.2-6.4.1" class="pilcrow">¶</a></p>
+                  <p id="section-5.2.5.3.2-6.4.1">Specifies the customer's IP address used to establishing this BGP session.<a href="#section-5.2.5.3.2-6.4.1" class="pilcrow">¶</a></p>
 </dd>
                 <dd class="break"></dd>
 <dt id="section-5.2.5.3.2-6.5">'requested-start':</dt>
@@ -5370,6 +5370,10 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 <dt id="I-D.ietf-teas-ietf-network-slice-nbi-yang">[I-D.ietf-teas-ietf-network-slice-nbi-yang]</dt>
         <dd>
 <span class="refAuthor">Wu, B.</span>, <span class="refAuthor">Dhody, D.</span>, <span class="refAuthor">Rokui, R.</span>, <span class="refAuthor">Saad, T.</span>, and <span class="refAuthor">J. Mullooly</span>, <span class="refTitle">"A YANG Data Model for the RFC 9543 Network Slice Service"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-teas-ietf-network-slice-nbi-yang-10</span>, <time datetime="2024-03-16" class="refDate">16 March 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-teas-ietf-network-slice-nbi-yang-10">https://datatracker.ietf.org/doc/html/draft-ietf-teas-ietf-network-slice-nbi-yang-10</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="I-D.ramseyer-grow-peering-api">[I-D.ramseyer-grow-peering-api]</dt>
+        <dd>
+<span class="refAuthor">Aguado, C.</span>, <span class="refAuthor">Griswold, M.</span>, <span class="refAuthor">Ramseyer, J.</span>, <span class="refAuthor">Servin, A. L.</span>, and <span class="refAuthor">T. Strickx</span>, <span class="refTitle">"Peering API"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ramseyer-grow-peering-api-04</span>, <time datetime="2024-03-16" class="refDate">16 March 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ramseyer-grow-peering-api-04">https://datatracker.ietf.org/doc/html/draft-ramseyer-grow-peering-api-04</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="IEEE802.1AB">[IEEE802.1AB]</dt>
         <dd>
