@@ -1015,7 +1015,7 @@ Table of Contents
    The description of the data nodes is as follows:
 
    'customer-name':  Indicates the name of the customer who ordered the
-      AC.
+      AC or a set of ACs.
 
    'description':  Includes a textual description of the AC.
 
