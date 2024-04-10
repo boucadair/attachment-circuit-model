@@ -242,7 +242,7 @@ module: ietf-ac-common
     +-- holdtime?   uint32
   grouping redundancy-group:
     +-- group* [group-id]
-       +-- group-id?     string
+       +-- group-id      string
        +-- precedence?   identityref
   grouping bandwidth-parameters:
     +-- cir?   uint64
