@@ -5401,8 +5401,8 @@ A.10.  BGP Peering
      }
    }
 
-       Figure 50: Message Body of a Request to Create the BGP Peering
-                                 over an AC
+     Figure 50: Message Body of a Request to Create a BGP Session over
+                                   an AC
 
    Figure 51 provides the example of a response which indicates that the
    request is awaiting validation.  The response includes also a server-
