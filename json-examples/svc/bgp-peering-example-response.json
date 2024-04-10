@@ -1,0 +1,37 @@
+{
+  "ietf-ac-svc:attachment-circuits": {
+    "ac": [
+      {
+        "name": "Attachment Circuit 1",
+        "customer-name": "Network A",
+        "description": "An AC to IXP SW in Location X",
+        "role": "ietf-ac-common:public-nni",
+        "actual-ac-start": "2025-12-12T05:00:00.00Z",
+        "peer-sap-id": [
+          "asbr-1-interface"
+        ],
+        "l2-connection": {
+          "encapsulation": {
+            "type": "ietf-vpn-common:dot1q",
+            "dot1q": {
+              "tag-type": "ietf-vpn-common:c-vlan",
+              "cvlan-id": 114
+            }
+          },
+          "bearer-reference": "Location-X-Line-114"
+        },
+        "ip-connection": {
+          "ipv4": {
+            "prefix-length": 24,
+            "address": [
+              {
+                "address-id": "1",
+                "customer-address": "192.0.2.1"
+              }
+            ]
+          }
+        }
+      }
+    ]
+  }
+}
