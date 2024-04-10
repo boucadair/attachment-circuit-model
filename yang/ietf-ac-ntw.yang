@@ -1929,23 +1929,7 @@ module ietf-ac-ntw {
         description
           "One or more peer SAPs can be indicated.";
       }
-      list group {
-        key "group-id";
-        description
-          "List of group-ids.";
-        leaf group-id {
-          type string;
-          description
-            "Indicates the group-id to which the AC belongs.";
-        }
-        leaf precedence {
-          type identityref {
-            base ac-common:precedence-type;
-          }
-          description
-            "Defines redundancy of an AC.";
-        }
-      }
+      uses ac-common:redundancy-group;
       uses ac-common:service-status;
       uses ac-ntw:ac;
     }
