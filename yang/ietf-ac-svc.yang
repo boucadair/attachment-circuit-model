@@ -408,6 +408,23 @@ module ietf-ac-svc {
          the BGP session.";
     }
     uses ac-common:bgp-peer-group-without-name;
+    container bgp-max-prefix {
+      description
+        "A container for the maximum number of BGP prefixes allowed
+         in the BGP session.";
+      leaf max-prefix {
+        type uint32;
+        description
+          "Indicates the maximum number of BGP prefixes allowed in
+           the BGP session.
+
+           It allows control of how many prefixes can be received
+           from a neighbor.";
+        reference
+          "RFC 4271: A Border Gateway Protocol 4 (BGP-4),
+                     Section 8.2.2";
+      }
+    }
     uses ac-common:bgp-authentication;
     uses ac-common:op-instructions;
     uses ac-common:service-status;
