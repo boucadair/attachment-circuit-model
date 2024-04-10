@@ -265,6 +265,9 @@ Table of Contents
       "role" set to "ac-common:nni" or "ac-common:public-nni".  See
       Appendix A.10 to illustrate the use of the AC model for peering.
 
+   *  Manage connectivity for complex containerized or virtualized
+      functions in the cloud (Appendix A.11).
+
    The examples provided in Appendix A use the IPv4 address blocks
    reserved for documentation [RFC5737], the IPv6 prefix reserved for
    documentation [RFC3849], and the Autonomous System (AS) numbers
@@ -3697,11 +3700,11 @@ Table of Contents
 
    [I-D.ietf-opsawg-teas-common-ac]
               Boucadair, M., Roberts, R., de Dios, O. G., Barguil, S.,
-              and B. Wu, "A Common YANG Data Model for Attachment
-              Circuits", Work in Progress, Internet-Draft, draft-ietf-
-              opsawg-teas-common-ac-08, 6 April 2024,
-              <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
-              teas-common-ac-08>.
+              and B. Wu, "YANG Data Models for Bearers and 'Attachment
+              Circuits'-as-a-Service (ACaaS)", Work in Progress,
+              Internet-Draft, draft-ietf-opsawg-teas-attachment-circuit-
+              09, 4 April 2024, <https://datatracker.ietf.org/doc/html/
+              draft-ietf-opsawg-teas-attachment-circuit-09>.
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
@@ -3859,12 +3862,12 @@ Table of Contents
               draft-ietf-opsawg-teas-attachment-circuit-09>.
 
    [I-D.ietf-teas-ietf-network-slice-nbi-yang]
-              Wu, B., Dhody, D., Rokui, R., Saad, T., and J. Mullooly,
-              "A YANG Data Model for the RFC 9543 Network Slice
-              Service", Work in Progress, Internet-Draft, draft-ietf-
-              teas-ietf-network-slice-nbi-yang-10, 16 March 2024,
-              <https://datatracker.ietf.org/doc/html/draft-ietf-teas-
-              ietf-network-slice-nbi-yang-10>.
+              Boucadair, M., Roberts, R., de Dios, O. G., Barguil, S.,
+              and B. Wu, "YANG Data Models for Bearers and 'Attachment
+              Circuits'-as-a-Service (ACaaS)", Work in Progress,
+              Internet-Draft, draft-ietf-opsawg-teas-attachment-circuit-
+              09, 4 April 2024, <https://datatracker.ietf.org/doc/html/
+              draft-ietf-opsawg-teas-attachment-circuit-09>.
 
    [I-D.ramseyer-grow-peering-api]
               Aguado, C., Griswold, M., Ramseyer, J., Servin, A. L., and
@@ -5985,15 +5988,15 @@ A.11.  Connectivity of Cloudified Network Functions
             Figure 56: Example of Compute Failure and Scale-out
 
    Finally, the addition or deletion of compute nodes in the deployment
-   (e.g., "compute-11", "compute-12" ...) involves merely changes on
-   Child ACs and possible routing on the parent AC.  In any case, the
-   parent AC is a stable identifier, which can be consumed as a
-   reference by end-to-end service models for VPN configuration such as
+   ("compute-11", "compute-12", etc.) involves merely changes on Child
+   ACs and possible routing on the parent AC.  In any case, the parent
+   AC is a stable identifier, which can be consumed as a reference by
+   end-to-end service models for VPN configuration such as
    [I-D.ietf-opsawg-ac-lxsm-lxnm-glue], Slice Service
    [I-D.ietf-teas-ietf-network-slice-nbi-yang], etc.  This decoupling to
    a stable identifier provides great benefits in terms of scalability
    and flexibility since once the reference with the parent AC is
-   implemented, no API call to the VPN model is needed for any
+   implemented, no API calls to the VPN model are needed for any
    modification in the cloud.
 
 Acknowledgments
