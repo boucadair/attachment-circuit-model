@@ -470,7 +470,7 @@ module ietf-ac-svc {
           type inet:ip-address;
           description
             "The provider's local IP address that will be used to
-             establish the BGP session. ";
+             establish the BGP session.";
         }
         uses ac-common:bgp-authentication;
       }
