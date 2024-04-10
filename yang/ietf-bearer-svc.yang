@@ -259,12 +259,18 @@ module ietf-bearer-svc {
     description
       "Main container for the bearers.";
 
+    leaf customer-name {
+      type string;
+      description
+        "Indicates the name of the customer that requested this
+         bearers.";
+    }
+    uses ac-common:op-instructions;
     container placement-constraints {
       description
         "Diversity constraint type.";
       uses placement-constraints;
     }
-
     list bearer {
       key "name";
       description
