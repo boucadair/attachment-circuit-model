@@ -1,0 +1,59 @@
+{
+  "ietf-ac-svc:routing-protocols": {
+    "routing-protocol": [
+      {
+        "id": "BGP",
+        "type": "ietf-vpn-common:bgp-routing",
+        "bgp": {
+          "neighbor": [
+            {
+              "id": "Session-Network-B",
+              "server-reference": "peering-svc-45857",
+              "local-address": "192.0.2.2",
+              "remote-address": "192.0.2.1",
+              "local-as": 65537,
+              "peer-as": 65536,
+              "address-family": "ietf-vpn-common:ipv4",
+              "authentication": {
+                "enabled": true,
+                "keying-material": {
+                  "key-id": 1,
+                  "key": "test##"
+                }
+              },
+              "status": {
+                "admin-status": {
+                  "status": "ietf-ac-common:up"
+                }
+              }
+            },
+            {
+              "id": "Session-Network-C",
+              "server-reference": "peering-svc-7866",
+              "local-address": "192.0.2.3",
+              "remote-address": "192.0.2.1",
+              "local-as": 65538,
+              "peer-as": 65536,
+              "address-family": "ietf-vpn-common:ipv4",
+              "authentication": {
+                "enabled": true,
+                "keying-material": {
+                  "key-id": 1,
+                  "key": "##test##"
+                }
+              },
+              "status": {
+                "admin-status": {
+                  "status": "ietf-ac-common:up"
+                }
+              }
+            },
+            {
+              "_comment": "list of other active BGP sessions over this AC"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
