@@ -1267,7 +1267,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
                 <p id="section-toc.1-1.10.2.8.1"><a href="#appendix-A.8" class="auto internal xref">A.8</a>.  <a href="#name-connecting-a-virtualized-en" class="internal xref">Connecting a Virtualized Environment Running in a Cloud Provider</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.9">
-                <p id="section-toc.1-1.10.2.9.1"><a href="#appendix-A.9" class="auto internal xref">A.9</a>.  <a href="#name-connect-customer-network-ce" class="internal xref">Connect Customer Network (CE) Through BGP</a></p>
+                <p id="section-toc.1-1.10.2.9.1"><a href="#appendix-A.9" class="auto internal xref">A.9</a>.  <a href="#name-connect-customer-network-th" class="internal xref">Connect Customer Network Through BGP</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.10">
                 <p id="section-toc.1-1.10.2.10.1"><a href="#appendix-A.10" class="auto internal xref">A.10</a>. <a href="#name-bgp-peering" class="internal xref">BGP Peering</a></p>
@@ -1345,7 +1345,10 @@ svg :is([fill="white"], [fill^="#fff"]) {
             <p id="section-1.1-13.6.1">Bind a slice service to a set of pre-provisioned attachment circuits (<a href="#sec-ex-slice" class="auto internal xref">Appendix A.7</a>).<a href="#section-1.1-13.6.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-1.1-13.7">
-            <p id="section-1.1-13.7.1">Connect a Cloud Infrastructure to a service provider network (<a href="#sec-ex-cloud" class="auto internal xref">Appendix A.8</a>). Note that the AC model can be used between service providers for other interconnection purposes (e.g., <span>[<a href="#RFC8921" class="cite xref">RFC8921</a>]</span>). Such ACs are identified with a "role" set to "ac-common:nni" or "ac-common:public-nni".<a href="#section-1.1-13.7.1" class="pilcrow">¶</a></p>
+            <p id="section-1.1-13.7.1">Connect a Cloud Infrastructure to a service provider network (<a href="#sec-ex-cloud" class="auto internal xref">Appendix A.8</a>).<a href="#section-1.1-13.7.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-1.1-13.8">
+            <p id="section-1.1-13.8.1">Interconnect provider networks (e.g., <span>[<a href="#RFC8921" class="cite xref">RFC8921</a>]</span>). Such ACs are identified with a "role" set to "ac-common:nni" or "ac-common:public-nni". See <a href="#sec-peering" class="auto internal xref">Appendix A.10</a> to illustrate the use of the AC model for peering.<a href="#section-1.1-13.8.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
 <p id="section-1.1-14">The examples provided in <a href="#examples" class="auto internal xref">Appendix A</a> use the IPv4 address blocks reserved for documentation <span>[<a href="#RFC5737" class="cite xref">RFC5737</a>]</span>, the IPv6 prefix reserved for documentation <span>[<a href="#RFC3849" class="cite xref">RFC3849</a>]</span>, and the Autonomous System (AS) numbers reserved for documentation <span>[<a href="#RFC5398" class="cite xref">RFC5398</a>]</span>.<a href="#section-1.1-14" class="pilcrow">¶</a></p>
@@ -2802,12 +2805,12 @@ a parent AC can be defined with a set of stable and common information, while
                 <dd class="break"></dd>
 <dt id="section-5.2.5.3.2-4.3">'local-as':</dt>
                 <dd style="margin-left: 1.5em" id="section-5.2.5.3.2-4.4">
-                  <p id="section-5.2.5.3.2-4.4.1">Indicates a local AS Number (ASN).<a href="#section-5.2.5.3.2-4.4.1" class="pilcrow">¶</a></p>
+                  <p id="section-5.2.5.3.2-4.4.1">Indicates the provider's AS Number (ASN).<a href="#section-5.2.5.3.2-4.4.1" class="pilcrow">¶</a></p>
 </dd>
                 <dd class="break"></dd>
 <dt id="section-5.2.5.3.2-4.5">'peer-as':</dt>
                 <dd style="margin-left: 1.5em" id="section-5.2.5.3.2-4.6">
-                  <p id="section-5.2.5.3.2-4.6.1">Indicates the peer's ASN.<a href="#section-5.2.5.3.2-4.6.1" class="pilcrow">¶</a></p>
+                  <p id="section-5.2.5.3.2-4.6.1">Indicates the customer's ASN.<a href="#section-5.2.5.3.2-4.6.1" class="pilcrow">¶</a></p>
 </dd>
                 <dd class="break"></dd>
 <dt id="section-5.2.5.3.2-4.7">'address-family':</dt>
@@ -2822,7 +2825,7 @@ a parent AC can be defined with a set of stable and common information, while
                 <dd class="break"></dd>
 <dt id="section-5.2.5.3.2-4.11">'local-address':</dt>
                 <dd style="margin-left: 1.5em" id="section-5.2.5.3.2-4.12">
-                  <p id="section-5.2.5.3.2-4.12.1">Specifies an address or a reference to an interface to use when establishing the BGP transport session.<a href="#section-5.2.5.3.2-4.12.1" class="pilcrow">¶</a></p>
+                  <p id="section-5.2.5.3.2-4.12.1">Specifies a provider's IP address to use when establishing the BGP transport session.<a href="#section-5.2.5.3.2-4.12.1" class="pilcrow">¶</a></p>
 </dd>
                 <dd class="break"></dd>
 <dt id="section-5.2.5.3.2-4.13">'authentication':</dt>
@@ -2845,7 +2848,7 @@ a parent AC can be defined with a set of stable and common information, while
                 <dd class="break"></dd>
 <dt id="section-5.2.5.3.2-6.3">'remote-address':</dt>
                 <dd style="margin-left: 1.5em" id="section-5.2.5.3.2-6.4">
-                  <p id="section-5.2.5.3.2-6.4.1">Specifies the remote IP address of a BGP neighbor.<a href="#section-5.2.5.3.2-6.4.1" class="pilcrow">¶</a></p>
+                  <p id="section-5.2.5.3.2-6.4.1">Specifies the customer's IP address used when establishing the BGP transport session with a neighbor.<a href="#section-5.2.5.3.2-6.4.1" class="pilcrow">¶</a></p>
 </dd>
                 <dd class="break"></dd>
 <dt id="section-5.2.5.3.2-6.5">'requested-start':</dt>
@@ -2875,7 +2878,7 @@ a parent AC can be defined with a set of stable and common information, while
                 <dd class="break"></dd>
 <dt id="section-5.2.5.3.2-6.15">'peer-group':</dt>
                 <dd style="margin-left: 1.5em" id="section-5.2.5.3.2-6.16">
-                  <p id="section-5.2.5.3.2-6.16.1">A name of a peer group.<a href="#section-5.2.5.3.2-6.16.1" class="pilcrow">¶</a></p>
+                  <p id="section-5.2.5.3.2-6.16.1">Specifies a name of a peer group.<a href="#section-5.2.5.3.2-6.16.1" class="pilcrow">¶</a></p>
 </dd>
                 <dd class="break"></dd>
 <dt id="section-5.2.5.3.2-6.17"></dt>
@@ -7028,10 +7031,10 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 </div>
 </section>
 </div>
-<div id="connect-customer-network-ce-through-bgp">
+<div id="connect-customer-network-through-bgp">
 <section id="appendix-A.9">
-        <h3 id="name-connect-customer-network-ce">
-<a href="#appendix-A.9" class="section-number selfRef">A.9. </a><a href="#name-connect-customer-network-ce" class="section-name selfRef">Connect Customer Network (CE) Through BGP</a>
+        <h3 id="name-connect-customer-network-th">
+<a href="#appendix-A.9" class="section-number selfRef">A.9. </a><a href="#name-connect-customer-network-th" class="section-name selfRef">Connect Customer Network Through BGP</a>
         </h3>
 <p id="appendix-A.9-1">CE-PE routing using BGP is a common scenario in the context of MPLS VPNs and is widely used in enterprise networks. In the example depicted in <a href="#provider-network" class="auto internal xref">Figure 45</a>, the CE routers are customer-owned devices belonging to an AS (ASN 65536). CEs are located at the edge of the provider's network (PE, or Provider Edge) and use point-to-point interfaces to establish BGP sessions. The point-to-point interfaces rely upon a physical bearer ("Line-113") to reach the provider network.<a href="#appendix-A.9-1" class="pilcrow">¶</a></p>
 <span id="name-illustration-of-provider-ne"></span><div id="provider-network">
@@ -7172,7 +7175,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 <p id="appendix-A.9-5">This scenario allows the provider to maintain a list of ACs belonging to the same customer without requiring the full service configuration.<a href="#appendix-A.9-5" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="bgp-peering">
+<div id="sec-peering">
 <section id="appendix-A.10">
         <h3 id="name-bgp-peering">
 <a href="#appendix-A.10" class="section-number selfRef">A.10. </a><a href="#name-bgp-peering" class="section-name selfRef">BGP Peering</a>
@@ -7370,8 +7373,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
                     "id": "Session-Network-B",
                     "server-reference": "peering-svc-45857",
                     "local-address": "192.0.2.2",
-                    "remote-address": "192.0.2.1"\
-                                                ,
+                    "remote-address": "192.0.2.1",
                     "local-as": 65537,
                     "peer-as": 65536,
                     "address-family": "ietf-vpn-common:ipv4",
@@ -7842,7 +7844,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
                   <text x="496" y="228">-</text>
                   <text x="512" y="228">-</text>
                   <text x="528" y="228">┐</text>
-                  <text x="188" y="244">192.2.0.0/24</text>
+                  <text x="188" y="244">192.0.2.0/24</text>
                   <text x="376" y="244">└</text>
                   <text x="440" y="244">┐</text>
                   <text x="8" y="260">┌</text>
@@ -7890,7 +7892,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
                   <text x="148" y="372">&lt;-</text>
                   <text x="176" y="372">bfd</text>
                   <text x="204" y="372">-&gt;</text>
-                  <text x="436" y="372">192.2.0.254/24</text>
+                  <text x="436" y="372">192.0.2.254/24</text>
                   <text x="8" y="388">|</text>
                   <text x="44" y="388">nf-up2</text>
                   <text x="180" y="388">vlan-100</text>
@@ -7917,7 +7919,8 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
                   <text x="528" y="452">|</text>
                   <text x="8" y="468">┌</text>
                   <text x="24" y="468">-</text>
-                  <text x="48" y="468">06-</text>
+                  <text x="40" y="468">-</text>
+                  <text x="56" y="468">-</text>
                   <text x="72" y="468">-</text>
                   <text x="16" y="484">┌</text>
                   <text x="84" y="484">┐|.6</text>
@@ -8045,20 +8048,20 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
                   <text x="72" y="980">203.0.113.0/28,</text>
                   <text x="148" y="980">NH</text>
                   <text x="168" y="980">=</text>
-                  <text x="216" y="980">192.2.0.1</text>
+                  <text x="216" y="980">192.0.2.1</text>
                   <text x="76" y="996">203.0.113.16/28,</text>
                   <text x="156" y="996">NH</text>
                   <text x="176" y="996">=</text>
-                  <text x="224" y="996">192.2.0.2</text>
+                  <text x="224" y="996">192.0.2.2</text>
                   <text x="24" y="1012">...</text>
                   <text x="76" y="1028">203.0.113.80/28,</text>
                   <text x="156" y="1028">NH</text>
                   <text x="176" y="1028">=</text>
-                  <text x="224" y="1028">192.2.0.6</text>
+                  <text x="224" y="1028">192.0.2.6</text>
                   <text x="76" y="1044">203.0.113.96/28,</text>
                   <text x="156" y="1044">NH</text>
                   <text x="176" y="1044">=</text>
-                  <text x="224" y="1044">192.2.0.1</text>
+                  <text x="224" y="1044">192.0.2.7</text>
                   <text x="8" y="1060">└</text>
                   <text x="296" y="1060">┘</text>
                 </g>
@@ -8294,7 +8297,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
                                              instance 2 in vlan 200",
         "ac-parent-ref": "parent-vlan-200",
         "l2-connection": {
-          "bearer-reference": "compute-10-nic1"
+          "bearer-reference": "compute-10-nic0"
         }
       }
     ]
@@ -8480,7 +8483,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 <a href="#name-example-of-compute-failure-" class="selfRef">Example of Compute Failure and Scale-out</a>
           </figcaption></figure>
 </div>
-<p id="appendix-A.11-15">Finally, the addition or deletion of compute nodes (e.g., "compute-11", "compute-12") in the deployment involves merely the configuration of Child ACs. The parent AC remains unchanged: it is a stable identifier. This is practical for referencing by end-to-end service models for VPN configuration <span>[<a href="#I-D.ietf-opsawg-ac-lxsm-lxnm-glue" class="cite xref">I-D.ietf-opsawg-ac-lxsm-lxnm-glue</a>]</span>, Slice Service <span>[<a href="#I-D.ietf-teas-ietf-network-slice-nbi-yang" class="cite xref">I-D.ietf-teas-ietf-network-slice-nbi-yang</a>]</span>, etc.<a href="#appendix-A.11-15" class="pilcrow">¶</a></p>
+<p id="appendix-A.11-15">Finally, the addition or deletion of compute nodes in the deployment (e.g., "compute-11", "compute-12" ...) involves merely the configuration of Child ACs. The parent AC remains unchanged: it is a stable identifier. For this reason, the use of parent AC for referencing by end-to-end service models for VPN configuration is a compelling driver for scalability, flexility and simplicity <span>[<a href="#I-D.ietf-opsawg-ac-lxsm-lxnm-glue" class="cite xref">I-D.ietf-opsawg-ac-lxsm-lxnm-glue</a>]</span>, Slice Service <span>[<a href="#I-D.ietf-teas-ietf-network-slice-nbi-yang" class="cite xref">I-D.ietf-teas-ietf-network-slice-nbi-yang</a>]</span>, etc.<a href="#appendix-A.11-15" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>

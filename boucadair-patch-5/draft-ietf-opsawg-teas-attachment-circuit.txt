@@ -116,7 +116,7 @@ Table of Contents
      A.7.  Binding Attachment Circuits to an IETF Network Slice
      A.8.  Connecting a Virtualized Environment Running in a Cloud
             Provider
-     A.9.  Connect Customer Network (CE) Through BGP
+     A.9.  Connect Customer Network Through BGP
      A.10. BGP Peering
      A.11. Connectivity of Cloudified Network Functions
    Acknowledgments
@@ -258,10 +258,12 @@ Table of Contents
       circuits (Appendix A.7).
 
    *  Connect a Cloud Infrastructure to a service provider network
-      (Appendix A.8).  Note that the AC model can be used between
-      service providers for other interconnection purposes (e.g.,
-      [RFC8921]).  Such ACs are identified with a "role" set to "ac-
-      common:nni" or "ac-common:public-nni".
+      (Appendix A.8).
+
+   *  Interconnect provider networks (e.g., [RFC8921]).  Such ACs are
+      identified with a "role" set to "ac-common:nni" or "ac-
+      common:public-nni".  See Appendix A.10 to illustrate the use of
+      the AC model for peering.
 
    The examples provided in Appendix A use the IPv4 address blocks
    reserved for documentation [RFC5737], the IPv6 prefix reserved for
@@ -1481,9 +1483,9 @@ Table of Contents
 
    'name':  Defines a name for the peer group.
 
-   'local-as':  Indicates a local AS Number (ASN).
+   'local-as':  Indicates the provider's AS Number (ASN).
 
-   'peer-as':  Indicates the peer's ASN.
+   'peer-as':  Indicates the customer's ASN.
 
    'address-family':  Indicates the address family of the peer.  It can
       be set to 'ipv4', 'ipv6', or 'dual-stack'.
@@ -1495,8 +1497,8 @@ Table of Contents
       configurations (e.g., unicast IPv4 MPLS L3VPN (AFI,SAFI = 1,128)
       as defined in Section 4.3.4 of [RFC4364]).
 
-   'local-address':  Specifies an address or a reference to an interface
-      to use when establishing the BGP transport session.
+   'local-address':  Specifies a provider's IP address to use when
+      establishing the BGP transport session.
 
    'authentication':  The module adheres to the recommendations in
       Section 13.2 of [RFC4364], as it allows enabling the TCP
@@ -1517,7 +1519,8 @@ Table of Contents
    'server-reference':  Reports the internal reference that is assigned
       by the provider for this BGP session.
 
-   'remote-address':  Specifies the remote IP address of a BGP neighbor.
+   'remote-address':  Specifies the customer's IP address used when
+      establishing the BGP transport session with a neighbor.
 
    'requested-start':  Specifies the requested date and time when the
       BGP session is expected to be active.
@@ -1533,7 +1536,7 @@ Table of Contents
 
    'status':  Indicates the status of the BGP routing instance.
 
-   'peer-group':  A name of a peer group.
+   'peer-group':  Specifies a name of a peer group.
 
       Parameters that are provided at the 'neighbor' level takes
       precedence over the ones provided in the peer group.
@@ -5115,7 +5118,7 @@ Orchestration       DIRECT INTERCONNECTION ORDERING (API)       Provider
        Figure 44: Message Body of a Response to the Request to Create
                   ACs for Connecting to the Cloud Provider
 
-A.9.  Connect Customer Network (CE) Through BGP
+A.9.  Connect Customer Network Through BGP
 
    CE-PE routing using BGP is a common scenario in the context of MPLS
    VPNs and is widely used in enterprise networks.  In the example
@@ -5390,8 +5393,7 @@ A.10.  BGP Peering
                        "id": "Session-Network-B",
                        "server-reference": "peering-svc-45857",
                        "local-address": "192.0.2.2",
-                       "remote-address": "192.0.2.1"\
-                                                   ,
+                       "remote-address": "192.0.2.1",
                        "local-as": 65537,
                        "peer-as": 65536,
                        "address-family": "ietf-vpn-common:ipv4",
@@ -5597,7 +5599,7 @@ A.11.  Connectivity of Cloudified Network Functions
                             └---------------------------------------┘
                                                   |
                  vlan 100 IP subnet          ┌ - -|- - - - - - - - - ┐
-                     192.2.0.0/24                 └-------┐
+                     192.0.2.0/24                 └-------┐
     ┌ - - - -                                |            |          |
      ┌------┐|.1     <- bfd ->                            |
     ||nf-up1| --------vlan-100---------------|            ▼          |
@@ -5605,13 +5607,13 @@ A.11.  Connectivity of Cloudified Network Functions
     |└------┘                                |  | Bridge vlan 100  | |
     compute-01                                  |     (l2/l3)      |
     ┌ - - - -                                |  |   IP gateway:    | |
-     ┌------┐|.2     <- bfd ->                  |  192.2.0.254/24  |
+     ┌------┐|.2     <- bfd ->                  |  192.0.2.254/24  |
     ||nf-up2| --------vlan-100---------------|  └------------------┘ |
      |      ||--------vlan-200---------------   ┌------------------┐
     |└------┘                                |  |                  | |
     compute-02                                  | Bridge vlan 200  |
                         [...]                |  |    (l2 only)     | |
-    ┌ - 06- -                                   |                  |
+    ┌ - - - -                                   |                  |
      ┌------┐|.6     <- bfd ->               |  └------------------┘ |
     ||nf-up6| --------vlan-100---------------
      |      ||--------vlan-200---------------|                       |
@@ -5643,11 +5645,11 @@ A.11.  Connectivity of Cloudified Network Functions
     |route.                             |
     |BGP UPDATE:                        |
     |203.0.113.0/24, NH = 198.51.100.100| ---->
-    |203.0.113.0/28, NH = 192.2.0.1     |
-    |203.0.113.16/28, NH = 192.2.0.2    |
+    |203.0.113.0/28, NH = 192.0.2.1     |
+    |203.0.113.16/28, NH = 192.0.2.2    |
     |...                                |
-    |203.0.113.80/28, NH = 192.2.0.6    |
-    |203.0.113.96/28, NH = 192.2.0.1    |
+    |203.0.113.80/28, NH = 192.0.2.6    |
+    |203.0.113.96/28, NH = 192.0.2.7    |
     └-----------------------------------┘
 
              Figure 53: Logical Topology of the NFs Deployment
@@ -5891,7 +5893,7 @@ A.11.  Connectivity of Cloudified Network Functions
                                                 instance 2 in vlan 200",
            "ac-parent-ref": "parent-vlan-200",
            "l2-connection": {
-             "bearer-reference": "compute-10-nic1"
+             "bearer-reference": "compute-10-nic0"
            }
          }
        ]
@@ -5939,11 +5941,12 @@ A.11.  Connectivity of Cloudified Network Functions
 
             Figure 55: Example of Compute Failure and Scale-out
 
-   Finally, the addition or deletion of compute nodes (e.g., "compute-
-   11", "compute-12") in the deployment involves merely the
+   Finally, the addition or deletion of compute nodes in the deployment
+   (e.g., "compute-11", "compute-12" ...) involves merely the
    configuration of Child ACs.  The parent AC remains unchanged: it is a
-   stable identifier.  This is practical for referencing by end-to-end
-   service models for VPN configuration
+   stable identifier.  For this reason, the use of parent AC for
+   referencing by end-to-end service models for VPN configuration is a
+   compelling driver for scalability, flexility and simplicity
    [I-D.ietf-opsawg-ac-lxsm-lxnm-glue], Slice Service
    [I-D.ietf-teas-ietf-network-slice-nbi-yang], etc.
 
