@@ -1336,7 +1336,8 @@ Assuming a failure of "compute-01", the instance "nf-up-1" can be redeployed to 
 ~~~~
 {: #cloud-parent-nf-lcm title="Example of Compute Failure and Scale-out"}
 
-Finally, the addition or deletion of compute nodes in the deployment (e.g., "compute-11", "compute-12" ...) involves merely the configuration of Child ACs. The parent AC remains unchanged: it is a stable identifier. For this reason, the use of parent AC for referencing by end-to-end service models for VPN configuration is a compelling driver for scalability, flexility and simplicity {{?I-D.ietf-opsawg-ac-lxsm-lxnm-glue}}, Slice Service {{?I-D.ietf-teas-ietf-network-slice-nbi-yang}}, etc.
+Finally, the addition or deletion of compute nodes in the deployment (e.g., "compute-11", "compute-12" ...) involves merely changes on Child ACs and possible routing on the parent AC. In any case, the parent AC is a stable identifier, which can be consumed as a reference by end-to-end service models for VPN configuration such as {{?I-D.ietf-opsawg-ac-lxsm-lxnm-glue}}, Slice Service {{?I-D.ietf-teas-ietf-network-slice-nbi-yang}}, etc. This decoupling to a stable identifier provides great benefits in terms of scalability and flexibility since once the reference with the parent AC is implemented, no API call to the VPN model is needed for any modification in the cloud.
+
 
 # Acknowledgments
 {:numbered="false"}
