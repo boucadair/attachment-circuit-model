@@ -188,6 +188,8 @@
      |  |     |     +--rw local-as?           inet:as-number
      |  |     |     +--rw peer-as?            inet:as-number
      |  |     |     +--rw address-family?     identityref
+     |  |     |     +--rw bgp-max-prefix
+     |  |     |     |  +--rw max-prefix?   uint32
      |  |     |     +--rw authentication
      |  |     |     |  +--rw enabled?           boolean
      |  |     |     |  +--rw keying-material
@@ -313,6 +315,7 @@
      |  |           +--rw customer-key-chain?
      |  |                   key-chain:key-chain-ref
      |  +--rw service
+     |     +--rw mtu?                      uint32
      |     +--rw svc-pe-to-ce-bandwidth {vpn-common:inbound-bw}?
      |     |  +--rw bandwidth* [bw-type]
      |     |     +--rw bw-type      identityref
@@ -407,8 +410,8 @@
         |  |  |  +--rw tag-type?   identityref
         |  |  +--rw qinq
         |  |     +--rw tag-type?   identityref
-        |  |     +--rw svlan-id    uint16
-        |  |     +--rw cvlan-id    uint16
+        |  |     +--rw svlan-id?   uint16
+        |  |     +--rw cvlan-id?   uint16
         |  +--rw (l2-service)?
         |  |  +--:(l2-tunnel-service)
         |  |  |  +--rw l2-tunnel-service
@@ -420,7 +423,7 @@
         |  |  |     |  +--rw vcid?      uint32
         |  |  |     |  +--rw far-end*   union
         |  |  |     +--rw vxlan
-        |  |  |        +--rw vni-id             uint32
+        |  |  |        +--rw vni-id?            uint32
         |  |  |        +--rw peer-mode?         identityref
         |  |  |        +--rw peer-ip-address*   inet:ip-address
         |  |  +--:(l2vpn)
@@ -542,7 +545,7 @@
         |     |  |     +--rw local-as?         inet:as-number
         |     |  |     +--rw peer-as?          inet:as-number
         |     |  |     +--rw address-family?   identityref
-        |     |  |     +--ro local-address?    inet:ip-address
+        |     |  |     +--rw local-address?    inet:ip-address
         |     |  |     +--rw authentication
         |     |  |        +--rw enabled?           boolean
         |     |  |        +--rw keying-material
@@ -564,10 +567,12 @@
         |     |     +--ro server-reference?   string
         |     |     |       {ac-common:server-assigned-reference}?
         |     |     +--rw remote-address?     inet:ip-address
-        |     |     +--ro local-address?      inet:ip-address
+        |     |     +--rw local-address?      inet:ip-address
         |     |     +--rw local-as?           inet:as-number
         |     |     +--rw peer-as?            inet:as-number
         |     |     +--rw address-family?     identityref
+        |     |     +--rw bgp-max-prefix
+        |     |     |  +--rw max-prefix?   uint32
         |     |     +--rw authentication
         |     |     |  +--rw enabled?           boolean
         |     |     |  +--rw keying-material
@@ -693,7 +698,7 @@
         |           +--rw customer-key-chain?
         |                   key-chain:key-chain-ref
         +--rw service
-           +--rw mtu?      uint32
+           +--rw mtu?                      uint32
            +--rw svc-pe-to-ce-bandwidth {vpn-common:inbound-bw}?
            |  +--rw bandwidth* [bw-type]
            |     +--rw bw-type      identityref
