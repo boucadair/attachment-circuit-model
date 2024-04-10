@@ -1441,6 +1441,8 @@ Table of Contents
            |     |     +--rw local-as?           inet:as-number
            |     |     +--rw peer-as?            inet:as-number
            |     |     +--rw address-family?     identityref
+           |     |     +--rw bgp-max-prefix
+           |     |     |  +--rw max-prefix?   uint32
            |     |     +--rw authentication
            |     |     |  +--rw enabled?           boolean
            |     |     |  +--rw keying-material
