@@ -2492,13 +2492,12 @@ Table of Contents
               ietf-network-slice-nbi-yang-10>.
 
    [I-D.ietf-opsawg-ac-lxsm-lxnm-glue]
-              Boucadair, M., Roberts, R., Barguil, S., and O. G. de
-              Dios, "A YANG Data Model for Augmenting VPN Service and
-              Network Models with Attachment Circuits", Work in
-              Progress, Internet-Draft, draft-ietf-opsawg-ac-lxsm-lxnm-
-              glue-08, 6 April 2024,
+              Boucadair, M., Roberts, R., de Dios, O. G., Barguil, S.,
+              and B. Wu, "A Common YANG Data Model for Attachment
+              Circuits", Work in Progress, Internet-Draft, draft-ietf-
+              opsawg-teas-common-ac-08, 6 April 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
-              ac-lxsm-lxnm-glue-08>.
+              teas-common-ac-08>.
 
    [I-D.ietf-opsawg-ntw-attachment-circuit]
               Boucadair, M., Roberts, R., de Dios, O. G., Barguil, S.,
@@ -2517,11 +2516,12 @@ Table of Contents
               draft-ietf-opsawg-teas-attachment-circuit-09>.
 
    [I-D.ietf-teas-ietf-network-slice-nbi-yang]
-              Jethanandani, M., Patel, K., Hares, S., and J. Haas, "YANG
-              Model for Border Gateway Protocol (BGP-4)", Work in
-              Progress, Internet-Draft, draft-ietf-idr-bgp-model-17, 5
-              July 2023, <https://datatracker.ietf.org/doc/html/draft-
-              ietf-idr-bgp-model-17>.
+              Boucadair, M., Roberts, R., de Dios, O. G., Barguil, S.,
+              and B. Wu, "YANG Data Models for Bearers and 'Attachment
+              Circuits'-as-a-Service (ACaaS)", Work in Progress,
+              Internet-Draft, draft-ietf-opsawg-teas-attachment-circuit-
+              09, 4 April 2024, <https://datatracker.ietf.org/doc/html/
+              draft-ietf-opsawg-teas-attachment-circuit-09>.
 
    [PYANG]    "pyang", 2023, <https://github.com/mbj4668/pyang>.
 
