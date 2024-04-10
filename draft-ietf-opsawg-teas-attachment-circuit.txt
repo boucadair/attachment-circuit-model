@@ -5,14 +5,14 @@
 OPSAWG                                                 M. Boucadair, Ed.
 Internet-Draft                                                    Orange
 Intended status: Standards Track                         R. Roberts, Ed.
-Expires: 11 October 2024                                         Juniper
+Expires: 12 October 2024                                         Juniper
                                                            O. G. D. Dios
                                                               Telefonica
                                                            S. B. Giraldo
                                                                    Nokia
                                                                    B. Wu
                                                      Huawei Technologies
-                                                            9 April 2024
+                                                           10 April 2024
 
 
   YANG Data Models for Bearers and 'Attachment Circuits'-as-a-Service
@@ -62,7 +62,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 11 October 2024.
+   This Internet-Draft will expire on 12 October 2024.
 
 Copyright Notice
 
@@ -5396,7 +5396,8 @@ A.11.  Connectivity of Cloudified Network Functions
    shares Layer 2 and Layer 3 resources.  This approach provides
    flexibility, scalability, and API stability.
 
-      NF is used to refer to the SFs defined [RFC7665].
+      NF is used to refer to the SF defined [RFC7665].  NF is used here
+      as this term is widely used outside the IETF.
 
    The NFs have the following characteristics:
 
@@ -5543,7 +5544,7 @@ A.11.  Connectivity of Cloudified Network Functions
              Figure 51: Logical Topology of the NFs Deployment
 
    For readability the payload is displayed as single JSON file
-   (Figure 52).  In practice, several API calls make take place to
+   (Figure 52).  In practice, several API calls may take place to
    initialize these resources (e.g., GET requests from the customer to
    retrieve the IP address pools for NFs on "vlan 100" thanks to parent
    configuration and BGP configuration, and POST extra routes for user
