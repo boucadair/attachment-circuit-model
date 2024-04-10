@@ -1280,7 +1280,7 @@ Once the ACs are established, BGP peering sessions can be configured between rou
 ~~~~ json
 {::include-fold ./json-examples/svc/bgp-conf-peering-example.json}
 ~~~~
-{: #bgp-peer-network-add-bgp-attachment-circuit title="Message Body of a Request to Create the BGP Peering over an AC"}
+{: #bgp-peer-network-add-bgp-attachment-circuit title="Message Body of a Request to Create a BGP Session over an AC"}
 
 {{bgp-awaiting-validation}} provides the example of a response which indicates that the request is awaiting validation. The response includes also a server-assigned reference for this BGP session.
 
