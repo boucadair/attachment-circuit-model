@@ -2196,6 +2196,11 @@ These adjusted values take precedence over the global values.  The structure of 
      |  ...
      +--rw placement-constraints
      |  ...
+     +--rw customer-name?           string
+     +--rw requested-start?         yang:date-and-time
+     +--rw requested-stop?          yang:date-and-time
+     +--ro actual-start?            yang:date-and-time
+     +--ro actual-stop?             yang:date-and-time
      +--rw ac* [name]
         +--rw customer-name?       string
         +--rw description?         string
