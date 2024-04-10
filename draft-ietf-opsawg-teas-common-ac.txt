@@ -2175,7 +2175,7 @@ Table of Contents
 
      grouping bfd {
        description
-         "Container for BFD.";
+         "A grouping for BFD.";
        leaf holdtime {
          type uint32;
          units "milliseconds";
@@ -2191,6 +2191,30 @@ Table of Contents
                       Section 6.8.18";
        }
      }
+
+     // redundancy
+
+     grouping redundancy-group {
+       description
+         "A grouping for redundancy group.";
+       list group {
+          key "group-id";
+          description
+            "List of group-ids.";
+          leaf group-id {
+            type string;
+            description
+              "Indicates the group-id to which the AC belongs.";
+          }
+          leaf precedence {
+            type identityref {
+              base ac-common:precedence-type;
+            }
+            description
+              "Defines redundancy of an AC.";
+          }
+        }
+      }
 
      // QoS
 
