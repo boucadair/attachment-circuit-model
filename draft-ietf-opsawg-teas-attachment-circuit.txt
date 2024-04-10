@@ -5529,7 +5529,7 @@ A.11.  Connectivity of Cloudified Network Functions
                             └---------------------------------------┘
                                                   |
                  vlan 100 IP subnet          ┌ - -|- - - - - - - - - ┐
-                     192.2.0.0/24                 └-------┐
+                     192.0.2.0/24                 └-------┐
     ┌ - - - -                                |            |          |
      ┌------┐|.1     <- bfd ->                            |
     ||nf-up1| --------vlan-100---------------|            ▼          |
@@ -5537,13 +5537,13 @@ A.11.  Connectivity of Cloudified Network Functions
     |└------┘                                |  | Bridge vlan 100  | |
     compute-01                                  |     (l2/l3)      |
     ┌ - - - -                                |  |   IP gateway:    | |
-     ┌------┐|.2     <- bfd ->                  |  192.2.0.254/24  |
+     ┌------┐|.2     <- bfd ->                  |  192.0.2.254/24  |
     ||nf-up2| --------vlan-100---------------|  └------------------┘ |
      |      ||--------vlan-200---------------   ┌------------------┐
     |└------┘                                |  |                  | |
     compute-02                                  | Bridge vlan 200  |
                         [...]                |  |    (l2 only)     | |
-    ┌ - 06- -                                   |                  |
+    ┌ - - - -                                   |                  |
      ┌------┐|.6     <- bfd ->               |  └------------------┘ |
     ||nf-up6| --------vlan-100---------------
      |      ||--------vlan-200---------------|                       |
@@ -5823,7 +5823,7 @@ A.11.  Connectivity of Cloudified Network Functions
                                                 instance 2 in vlan 200",
            "ac-parent-ref": "parent-vlan-200",
            "l2-connection": {
-             "bearer-reference": "compute-10-nic1"
+             "bearer-reference": "compute-10-nic0"
            }
          }
        ]
@@ -5871,11 +5871,12 @@ A.11.  Connectivity of Cloudified Network Functions
 
             Figure 54: Example of Compute Failure and Scale-out
 
-   Finally, the addition or deletion of compute nodes (e.g., "compute-
-   11", "compute-12") in the deployment involves merely the
+   Finally, the addition or deletion of compute nodes in the deployment
+   (e.g., "compute-11", "compute-12" ...) involves merely the
    configuration of Child ACs.  The parent AC remains unchanged: it is a
-   stable identifier.  This is practical for referencing by end-to-end
-   service models for VPN configuration
+   stable identifier.  For this reason, the use of parent AC for
+   referencing by end-to-end service models for VPN configuration is a
+   compelling driver for scalability, flexility and simplicity
    [I-D.ietf-opsawg-ac-lxsm-lxnm-glue], Slice Service
    [I-D.ietf-teas-ietf-network-slice-nbi-yang], etc.
 

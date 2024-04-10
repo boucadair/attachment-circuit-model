@@ -7772,7 +7772,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
                   <text x="496" y="228">-</text>
                   <text x="512" y="228">-</text>
                   <text x="528" y="228">┐</text>
-                  <text x="188" y="244">192.2.0.0/24</text>
+                  <text x="188" y="244">192.0.2.0/24</text>
                   <text x="376" y="244">└</text>
                   <text x="440" y="244">┐</text>
                   <text x="8" y="260">┌</text>
@@ -7820,7 +7820,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
                   <text x="148" y="372">&lt;-</text>
                   <text x="176" y="372">bfd</text>
                   <text x="204" y="372">-&gt;</text>
-                  <text x="436" y="372">192.2.0.254/24</text>
+                  <text x="436" y="372">192.0.2.254/24</text>
                   <text x="8" y="388">|</text>
                   <text x="44" y="388">nf-up2</text>
                   <text x="180" y="388">vlan-100</text>
@@ -7847,7 +7847,8 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
                   <text x="528" y="452">|</text>
                   <text x="8" y="468">┌</text>
                   <text x="24" y="468">-</text>
-                  <text x="48" y="468">06-</text>
+                  <text x="40" y="468">-</text>
+                  <text x="56" y="468">-</text>
                   <text x="72" y="468">-</text>
                   <text x="16" y="484">┌</text>
                   <text x="84" y="484">┐|.6</text>
@@ -8224,7 +8225,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
                                              instance 2 in vlan 200",
         "ac-parent-ref": "parent-vlan-200",
         "l2-connection": {
-          "bearer-reference": "compute-10-nic1"
+          "bearer-reference": "compute-10-nic0"
         }
       }
     ]
@@ -8410,7 +8411,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 <a href="#name-example-of-compute-failure-" class="selfRef">Example of Compute Failure and Scale-out</a>
           </figcaption></figure>
 </div>
-<p id="appendix-A.11-15">Finally, the addition or deletion of compute nodes (e.g., "compute-11", "compute-12") in the deployment involves merely the configuration of Child ACs. The parent AC remains unchanged: it is a stable identifier. This is practical for referencing by end-to-end service models for VPN configuration <span>[<a href="#I-D.ietf-opsawg-ac-lxsm-lxnm-glue" class="cite xref">I-D.ietf-opsawg-ac-lxsm-lxnm-glue</a>]</span>, Slice Service <span>[<a href="#I-D.ietf-teas-ietf-network-slice-nbi-yang" class="cite xref">I-D.ietf-teas-ietf-network-slice-nbi-yang</a>]</span>, etc.<a href="#appendix-A.11-15" class="pilcrow">¶</a></p>
+<p id="appendix-A.11-15">Finally, the addition or deletion of compute nodes in the deployment (e.g., "compute-11", "compute-12" ...) involves merely the configuration of Child ACs. The parent AC remains unchanged: it is a stable identifier. For this reason, the use of parent AC for referencing by end-to-end service models for VPN configuration is a compelling driver for scalability, flexility and simplicity <span>[<a href="#I-D.ietf-opsawg-ac-lxsm-lxnm-glue" class="cite xref">I-D.ietf-opsawg-ac-lxsm-lxnm-glue</a>]</span>, Slice Service <span>[<a href="#I-D.ietf-teas-ietf-network-slice-nbi-yang" class="cite xref">I-D.ietf-teas-ietf-network-slice-nbi-yang</a>]</span>, etc.<a href="#appendix-A.11-15" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
