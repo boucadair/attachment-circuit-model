@@ -4379,12 +4379,12 @@ Table of Contents
               groupings.txt>.
 
    [I-D.ietf-netmod-rfc8407bis]
-              Bierman, A., Boucadair, M., and Q. Wu, "Guidelines for
-              Authors and Reviewers of Documents Containing YANG Data
-              Models", Work in Progress, Internet-Draft, draft-ietf-
-              netmod-rfc8407bis-09, 28 February 2024,
-              <https://datatracker.ietf.org/doc/html/draft-ietf-netmod-
-              rfc8407bis-09>.
+              Wu, B., Dhody, D., Rokui, R., Saad, T., and J. Mullooly,
+              "A YANG Data Model for the RFC 9543 Network Slice
+              Service", Work in Progress, Internet-Draft, draft-ietf-
+              teas-ietf-network-slice-nbi-yang-10, 16 March 2024,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-teas-
+              ietf-network-slice-nbi-yang-10>.
 
    [I-D.ietf-opsawg-ac-lxsm-lxnm-glue]
               Boucadair, M., Roberts, R., Barguil, S., and O. G. de

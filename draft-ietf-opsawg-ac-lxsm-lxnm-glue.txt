@@ -701,11 +701,11 @@ Table of Contents
 
    [I-D.ietf-opsawg-ntw-attachment-circuit]
               Boucadair, M., Roberts, R., de Dios, O. G., Barguil, S.,
-              and B. Wu, "A Network YANG Data Model for Attachment
-              Circuits", Work in Progress, Internet-Draft, draft-ietf-
-              opsawg-ntw-attachment-circuit-07, 6 April 2024,
-              <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
-              ntw-attachment-circuit-07>.
+              and B. Wu, "YANG Data Models for Bearers and 'Attachment
+              Circuits'-as-a-Service (ACaaS)", Work in Progress,
+              Internet-Draft, draft-ietf-opsawg-teas-attachment-circuit-
+              09, 4 April 2024, <https://datatracker.ietf.org/doc/html/
+              draft-ietf-opsawg-teas-attachment-circuit-09>.
 
    [I-D.ietf-opsawg-teas-attachment-circuit]
               Boucadair, M., Roberts, R., de Dios, O. G., Barguil, S.,
@@ -783,12 +783,12 @@ Table of Contents
 9.2.  Informative References
 
    [I-D.ietf-netmod-rfc8407bis]
-              Bierman, A., Boucadair, M., and Q. Wu, "Guidelines for
-              Authors and Reviewers of Documents Containing YANG Data
-              Models", Work in Progress, Internet-Draft, draft-ietf-
-              netmod-rfc8407bis-09, 28 February 2024,
-              <https://datatracker.ietf.org/doc/html/draft-ietf-netmod-
-              rfc8407bis-09>.
+              Wu, B., Dhody, D., Rokui, R., Saad, T., and J. Mullooly,
+              "A YANG Data Model for the RFC 9543 Network Slice
+              Service", Work in Progress, Internet-Draft, draft-ietf-
+              teas-ietf-network-slice-nbi-yang-10, 16 March 2024,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-teas-
+              ietf-network-slice-nbi-yang-10>.
 
    [I-D.ietf-opsawg-teas-common-ac]
               Boucadair, M., Roberts, R., de Dios, O. G., Barguil, S.,
