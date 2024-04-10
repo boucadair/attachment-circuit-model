@@ -16,6 +16,7 @@ module: ietf-bearer-svc
      |              +--rw all-other-groups?    empty
      +--rw bearer* [name]
         +--rw name                 string
+        +--rw customer-name?       string
         +--rw description?         string
         +--rw groups
         |  +--rw group* [group-id]
