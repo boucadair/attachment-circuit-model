@@ -628,17 +628,17 @@ The following data nodes are supported for each BGP 'peer-group':
 : Defines a name for the peer group.
 
 'local-as':
-: Indicates a local AS Number (ASN).
+: Indicates the provider's AS Number (ASN).
 
 'peer-as':
-: Indicates the peer's ASN.
+: Indicates the customer's ASN.
 
 'address-family':
 : Indicates the address family of the peer. It can be set to 'ipv4', 'ipv6', or 'dual-stack'.
 : This address family might be used together with the service type that uses an AC (e.g., 'vpn-type' {{?RFC9182}}) to derive the appropriate Address Family Identifiers (AFIs) / Subsequent Address Family Identifiers (SAFIs) that will be part of the derived device configurations (e.g., unicast IPv4 MPLS L3VPN (AFI,SAFI = 1,128) as defined in {{Section 4.3.4 of !RFC4364}}).
 
 'local-address':
-: Specifies an address or a reference to an interface to use when establishing the BGP transport session.
+: Specifies a provider's IP address to use when establishing the BGP transport session.
 
 'authentication':
 : The module adheres to the recommendations in {{Section 13.2 of !RFC4364}}, as it allows enabling the TCP Authentication Option (TCP-AO) {{?RFC5925}} and accommodates the installed base that makes use of MD5. In addition, the module includes a provision for using IPsec.
@@ -650,7 +650,7 @@ For each neighbor, the following data nodes are supported in addition to similar
 : Reports the internal reference that is assigned by the provider for this BGP session.
 
 'remote-address':
-: Specifies the remote IP address of a BGP neighbor.
+: Specifies the customer's IP address used when establishing the BGP transport session with a neighbor.
 
 'requested-start':
 : Specifies the requested date and time when the BGP session is expected to be active.
@@ -668,7 +668,7 @@ For each neighbor, the following data nodes are supported in addition to similar
 : Indicates the status of the BGP routing instance.
 
 'peer-group':
-: A name of a peer group.
+: Specifies a name of a peer group.
 : Parameters that are provided at the 'neighbor' level takes precedence over the ones provided in the peer group.
 
 'bfd-profile':
