@@ -1267,7 +1267,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
                 <p id="section-toc.1-1.10.2.8.1"><a href="#appendix-A.8" class="auto internal xref">A.8</a>.  <a href="#name-connecting-a-virtualized-en" class="internal xref">Connecting a Virtualized Environment Running in a Cloud Provider</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.9">
-                <p id="section-toc.1-1.10.2.9.1"><a href="#appendix-A.9" class="auto internal xref">A.9</a>.  <a href="#name-connect-customer-network-ce" class="internal xref">Connect Customer Network (CE) Through BGP</a></p>
+                <p id="section-toc.1-1.10.2.9.1"><a href="#appendix-A.9" class="auto internal xref">A.9</a>.  <a href="#name-connect-customer-network-th" class="internal xref">Connect Customer Network Through BGP</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.10">
                 <p id="section-toc.1-1.10.2.10.1"><a href="#appendix-A.10" class="auto internal xref">A.10</a>. <a href="#name-bgp-peering" class="internal xref">BGP Peering</a></p>
@@ -1345,7 +1345,10 @@ svg :is([fill="white"], [fill^="#fff"]) {
             <p id="section-1.1-13.6.1">Bind a slice service to a set of pre-provisioned attachment circuits (<a href="#sec-ex-slice" class="auto internal xref">Appendix A.7</a>).<a href="#section-1.1-13.6.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-1.1-13.7">
-            <p id="section-1.1-13.7.1">Connect a Cloud Infrastructure to a service provider network (<a href="#sec-ex-cloud" class="auto internal xref">Appendix A.8</a>). Note that the AC model can be used between service providers for other interconnection purposes (e.g., <span>[<a href="#RFC8921" class="cite xref">RFC8921</a>]</span>). Such ACs are identified with a "role" set to "ac-common:nni" or "ac-common:public-nni".<a href="#section-1.1-13.7.1" class="pilcrow">¶</a></p>
+            <p id="section-1.1-13.7.1">Connect a Cloud Infrastructure to a service provider network (<a href="#sec-ex-cloud" class="auto internal xref">Appendix A.8</a>).<a href="#section-1.1-13.7.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-1.1-13.8">
+            <p id="section-1.1-13.8.1">Interconnect provider networks (e.g., <span>[<a href="#RFC8921" class="cite xref">RFC8921</a>]</span>). Such ACs are identified with a "role" set to "ac-common:nni" or "ac-common:public-nni". See <a href="#sec-peering" class="auto internal xref">Appendix A.10</a> to illustrate the use of the AC model for peering.<a href="#section-1.1-13.8.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
 <p id="section-1.1-14">The examples provided in <a href="#examples" class="auto internal xref">Appendix A</a> use the IPv4 address blocks reserved for documentation <span>[<a href="#RFC5737" class="cite xref">RFC5737</a>]</span>, the IPv6 prefix reserved for documentation <span>[<a href="#RFC3849" class="cite xref">RFC3849</a>]</span>, and the Autonomous System (AS) numbers reserved for documentation <span>[<a href="#RFC5398" class="cite xref">RFC5398</a>]</span>.<a href="#section-1.1-14" class="pilcrow">¶</a></p>
@@ -7028,10 +7031,10 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 </div>
 </section>
 </div>
-<div id="connect-customer-network-ce-through-bgp">
+<div id="connect-customer-network-through-bgp">
 <section id="appendix-A.9">
-        <h3 id="name-connect-customer-network-ce">
-<a href="#appendix-A.9" class="section-number selfRef">A.9. </a><a href="#name-connect-customer-network-ce" class="section-name selfRef">Connect Customer Network (CE) Through BGP</a>
+        <h3 id="name-connect-customer-network-th">
+<a href="#appendix-A.9" class="section-number selfRef">A.9. </a><a href="#name-connect-customer-network-th" class="section-name selfRef">Connect Customer Network Through BGP</a>
         </h3>
 <p id="appendix-A.9-1">CE-PE routing using BGP is a common scenario in the context of MPLS VPNs and is widely used in enterprise networks. In the example depicted in <a href="#provider-network" class="auto internal xref">Figure 45</a>, the CE routers are customer-owned devices belonging to an AS (ASN 65536). CEs are located at the edge of the provider's network (PE, or Provider Edge) and use point-to-point interfaces to establish BGP sessions. The point-to-point interfaces rely upon a physical bearer ("Line-113") to reach the provider network.<a href="#appendix-A.9-1" class="pilcrow">¶</a></p>
 <span id="name-illustration-of-provider-ne"></span><div id="provider-network">
@@ -7172,7 +7175,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 <p id="appendix-A.9-5">This scenario allows the provider to maintain a list of ACs belonging to the same customer without requiring the full service configuration.<a href="#appendix-A.9-5" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="bgp-peering">
+<div id="sec-peering">
 <section id="appendix-A.10">
         <h3 id="name-bgp-peering">
 <a href="#appendix-A.10" class="section-number selfRef">A.10. </a><a href="#name-bgp-peering" class="section-name selfRef">BGP Peering</a>

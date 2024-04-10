@@ -116,7 +116,7 @@ Table of Contents
      A.7.  Binding Attachment Circuits to an IETF Network Slice
      A.8.  Connecting a Virtualized Environment Running in a Cloud
             Provider
-     A.9.  Connect Customer Network (CE) Through BGP
+     A.9.  Connect Customer Network Through BGP
      A.10. BGP Peering
      A.11. Connectivity of Cloudified Network Functions
    Acknowledgments
@@ -258,10 +258,12 @@ Table of Contents
       circuits (Appendix A.7).
 
    *  Connect a Cloud Infrastructure to a service provider network
-      (Appendix A.8).  Note that the AC model can be used between
-      service providers for other interconnection purposes (e.g.,
-      [RFC8921]).  Such ACs are identified with a "role" set to "ac-
-      common:nni" or "ac-common:public-nni".
+      (Appendix A.8).
+
+   *  Interconnect provider networks (e.g., [RFC8921]).  Such ACs are
+      identified with a "role" set to "ac-common:nni" or "ac-
+      common:public-nni".  See Appendix A.10 to illustrate the use of
+      the AC model for peering.
 
    The examples provided in Appendix A use the IPv4 address blocks
    reserved for documentation [RFC5737], the IPv6 prefix reserved for
@@ -5116,7 +5118,7 @@ Orchestration       DIRECT INTERCONNECTION ORDERING (API)       Provider
        Figure 44: Message Body of a Response to the Request to Create
                   ACs for Connecting to the Cloud Provider
 
-A.9.  Connect Customer Network (CE) Through BGP
+A.9.  Connect Customer Network Through BGP
 
    CE-PE routing using BGP is a common scenario in the context of MPLS
    VPNs and is widely used in enterprise networks.  In the example
