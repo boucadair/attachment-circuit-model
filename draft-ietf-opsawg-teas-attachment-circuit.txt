@@ -1481,9 +1481,9 @@ Table of Contents
 
    'name':  Defines a name for the peer group.
 
-   'local-as':  Indicates a local AS Number (ASN).
+   'local-as':  Indicates the provider's AS Number (ASN).
 
-   'peer-as':  Indicates the peer's ASN.
+   'peer-as':  Indicates the customer's ASN.
 
    'address-family':  Indicates the address family of the peer.  It can
       be set to 'ipv4', 'ipv6', or 'dual-stack'.
@@ -1495,8 +1495,8 @@ Table of Contents
       configurations (e.g., unicast IPv4 MPLS L3VPN (AFI,SAFI = 1,128)
       as defined in Section 4.3.4 of [RFC4364]).
 
-   'local-address':  Specifies an address or a reference to an interface
-      to use when establishing the BGP transport session.
+   'local-address':  Specifies a provider's IP address to use when
+      establishing the BGP transport session.
 
    'authentication':  The module adheres to the recommendations in
       Section 13.2 of [RFC4364], as it allows enabling the TCP
@@ -1517,7 +1517,8 @@ Table of Contents
    'server-reference':  Reports the internal reference that is assigned
       by the provider for this BGP session.
 
-   'remote-address':  Specifies the remote IP address of a BGP neighbor.
+   'remote-address':  Specifies the customer's IP address used when
+      establishing the BGP transport session with a neighbor.
 
    'requested-start':  Specifies the requested date and time when the
       BGP session is expected to be active.
@@ -1533,7 +1534,7 @@ Table of Contents
 
    'status':  Indicates the status of the BGP routing instance.
 
-   'peer-group':  A name of a peer group.
+   'peer-group':  Specifies a name of a peer group.
 
       Parameters that are provided at the 'neighbor' level takes
       precedence over the ones provided in the peer group.
