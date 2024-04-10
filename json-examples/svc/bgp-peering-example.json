@@ -11,10 +11,7 @@
         ],
         "l2-connection": {
           "encapsulation": {
-            "type": "ietf-vpn-common:dot1q",
-            "dot1q": {
-              "tag-type": "ietf-vpn-common:c-vlan"
-            }
+            "type": "ietf-vpn-common:dot1q"
           },
           "bearer-reference": "Location-X-Line-114"
         }
