@@ -1266,7 +1266,14 @@ As depicted in {{bgp-peer-network}}, each network connects to the IXP switch via
 ~~~~ json
 {::include-fold ./json-examples/svc/bgp-peering-example.json}
 ~~~~
-{: #bgp-peer-network-add-attachment-circuit title="Message Body of a Request to Create an AC to Connect Two Networks Through BGP Peering"}
+{: #bgp-peer-network-add-attachment-circuit title="Message Body of a Request to Create an AC to Connect to an IXP"}
+
+{{bgp-peer-network-response}} shows the received response with the required information for the activation of the AC.
+
+~~~~ json
+{::include-fold ./json-examples/svc/bgp-peering-example-response.json}
+~~~~
+{: #bgp-peer-network-response title="Message Body of a Response to an AC Request to Connect to an IXP"}
 
 Once the ACs are established, BGP peering sessions can be configured between routers of the participating networks. BGP sessions can be established via a route server or between two networks. For the sake of illustration, let us assume that BGP sessions are established directly between two network. {{bgp-peer-network-add-bgp-attachment-circuit}} shows an example of a request to add a BGP session to an existing AC. The properties of that AC are not repeated in this request because that information is already communicated during the creation of the AC.
 
