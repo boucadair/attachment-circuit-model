@@ -5,7 +5,7 @@
         "name": "Attachment Circuit 1",
         "customer-name": "Network A",
         "description": "An AC to IXP SW in Location X",
-        "requested-ac-start": "2025-12-12T05:00:00.00Z",
+        "requested-start": "2025-12-12T05:00:00.00Z",
         "peer-sap-id": [
           "asbr-1-interface"
         ],
