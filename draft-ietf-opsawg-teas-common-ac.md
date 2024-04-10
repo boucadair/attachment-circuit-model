@@ -271,7 +271,7 @@ IP connections ({{l3-full-tree}})::
 ~~~~
 {: #l3-full-tree title="Layer 3 Connection Groupings"}
 
-Routing parameters ({{rtg-full-tree}}):
+Routing parameters & OAM ({{rtg-full-tree}}):
 : In addition to static routing, the module supports the following routing protocols: BGP {{!RFC4271}}, OSPF {{!RFC4577}} or {{!RFC6565}}, IS-IS {{ISO10589}}{{!RFC1195}}{{!RFC5308}}, and RIP {{!RFC2453}}. For all supported routing protocols, 'address-family' indicates whether IPv4, IPv6, or both address families are to be activated. For example, this parameter is used to determine whether RIPv2 {{!RFC2453}}, RIP Next Generation (RIPng), or both are to be enabled {{!RFC2080}}. More details about supported routing groupings are provided hereafter:
 
   * Authentication: These groupings include the required information to manage the authentication of OSPF, IS-IS, BGP, and RIP. Similar to {{?RFC9182}}, this version of the common AC model assumes that parameters specific to the TCP-AO are preconfigured as part of the key chain that is referenced in the model. No assumption is made about how such a key chain is preconfigured. However, the structure of the key chain should cover data nodes beyond those in {{!RFC8177}}, mainly SendID and RecvID (Section 3.1 of {{!RFC5925}}).
@@ -279,6 +279,8 @@ Routing parameters ({{rtg-full-tree}}):
   * BGP peer groups: Includes a set of parameters to identify a BGP peer group. Such a group can be defined by providing a local AS Number (ASN), a customer's ASN, and the address families to be activated for this group. BGP peer groups can be identified by a name.
   * Basic parameters: These groupings include the minimal set of routing configuration that is required for the activation of OSPF, IS-IS, BGP, and RIP.
   * Static routing: Parameters to configure an entry of a list of IP static routing entries.
+
+: The 'redundancy-group' grouping lists the groups to which an AC belongs {{§RFC9181}}. For example, the 'group-id' is used to associate redundancy or protection constraints of ACs.
 
 ~~~~
 {::include ./yang/subtrees/ac-common/ac-common-rtg.txt}
