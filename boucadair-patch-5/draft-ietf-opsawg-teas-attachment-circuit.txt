@@ -5240,7 +5240,9 @@ A.10.  BGP Peering
    Internet eXchange Point (IXP) configuration without zooming into IXP
    deployment specifics.  Let us assume that networks are interconnected
    via a Layer 2 facility.  BGP is used to exchange routing information
-   and reachability announcements between those networks.
+   and reachability announcements between those networks.  The same
+   approach can be used to negotiate interconnection between two
+   networks and without involving an IXP.
 
    +----------------------+
    |  Provider Network A  |
@@ -5274,7 +5276,8 @@ A.10.  BGP Peering
    a bearer over which an AC is created.  The AC configuration
    (Figure 48) includes parameters such as VLAN configuration, IP
    addresses, MTU, and any additional settings required for
-   connectivity.
+   connectivity.  The peering location is inferred from the "bearer-
+   reference".
 
    {
      "ietf-ac-svc:attachment-circuits": {

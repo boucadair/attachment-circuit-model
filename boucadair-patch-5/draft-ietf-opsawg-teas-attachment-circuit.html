@@ -7177,7 +7177,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
         <h3 id="name-bgp-peering">
 <a href="#appendix-A.10" class="section-number selfRef">A.10. </a><a href="#name-bgp-peering" class="section-name selfRef">BGP Peering</a>
         </h3>
-<p id="appendix-A.10-1">This section illustrates how to use the AC service model for interconnection purposes. To that aim, we assume a simplified Internet eXchange Point (IXP) configuration without zooming into IXP deployment specifics. Let us assume that networks are interconnected via a Layer 2 facility. BGP is used to exchange routing information and reachability announcements between those networks.<a href="#appendix-A.10-1" class="pilcrow">¶</a></p>
+<p id="appendix-A.10-1">This section illustrates how to use the AC service model for interconnection purposes. To that aim, we assume a simplified Internet eXchange Point (IXP) configuration without zooming into IXP deployment specifics. Let us assume that networks are interconnected via a Layer 2 facility. BGP is used to exchange routing information and reachability announcements between those networks. The same approach can be used to negotiate interconnection between two networks and without involving an IXP.<a href="#appendix-A.10-1" class="pilcrow">¶</a></p>
 <span id="name-simple-interconnection-topo"></span><div id="bgp-peer-network">
 <figure id="figure-47">
           <div id="appendix-A.10-2.1">
@@ -7253,7 +7253,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 <a href="#name-simple-interconnection-topo" class="selfRef">Simple Interconnection Topology</a>
           </figcaption></figure>
 </div>
-<p id="appendix-A.10-3">As depicted in <a href="#bgp-peer-network" class="auto internal xref">Figure 47</a>, each network connects to the IXP switch via a bearer over which an AC is created. The AC configuration (<a href="#bgp-peer-network-add-attachment-circuit" class="auto internal xref">Figure 48</a>) includes parameters such as VLAN configuration, IP addresses, MTU, and any additional settings required for connectivity.<a href="#appendix-A.10-3" class="pilcrow">¶</a></p>
+<p id="appendix-A.10-3">As depicted in <a href="#bgp-peer-network" class="auto internal xref">Figure 47</a>, each network connects to the IXP switch via a bearer over which an AC is created. The AC configuration (<a href="#bgp-peer-network-add-attachment-circuit" class="auto internal xref">Figure 48</a>) includes parameters such as VLAN configuration, IP addresses, MTU, and any additional settings required for connectivity. The peering location is inferred from the "bearer-reference".<a href="#appendix-A.10-3" class="pilcrow">¶</a></p>
 <span id="name-message-body-of-a-request-to-cr"></span><div id="bgp-peer-network-add-attachment-circuit">
 <figure id="figure-48">
           <div class="lang-json sourcecode" id="appendix-A.10-4.1">
