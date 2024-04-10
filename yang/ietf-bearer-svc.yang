@@ -262,7 +262,7 @@ module ietf-bearer-svc {
     leaf customer-name {
       type string;
       description
-        "Indicates the name of the customer that requested this
+        "Indicates the name of the customer that requested these
          bearers.";
     }
     uses ac-common:op-instructions;
@@ -290,7 +290,7 @@ module ietf-bearer-svc {
         type string;
         description
           "Indicates the name of the customer that requested this
-           bearers.";
+           bearer.";
       }
       uses vpn-common:vpn-components-group;
       leaf op-comment {
