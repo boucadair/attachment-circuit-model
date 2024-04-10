@@ -1046,6 +1046,28 @@ module ietf-ac-svc {
     }
   }
 
+  // Parent and Child ACs
+
+  grouping ac-hierarchy {
+    description
+      "Container for parent and child AC references.";
+    leaf ac-parent-ref {
+      type ac-svc:attachment-circuit-reference;
+      description
+        "Specifies the parent AC that is inherited by an AC.
+         In contexts where dynamic terminating points are 
+         bound to the same AC, a parent AC with stable
+         information is created with a set of child ACs
+         to track dynamic AC information.";
+    }
+    leaf-list child-ac-ref {
+      type ac-svc:attachment-circuit-reference;
+      config false;
+      description
+        "Specifies a child AC that relies upon a parent AC.";
+    }
+  }
+
   /******************** Main AC containers ********************/
 
   container specific-provisioning-profiles {
@@ -1085,6 +1107,13 @@ module ietf-ac-svc {
         "Diversity constraint type.";
       uses vpn-common:placement-constraints;
     }
+    leaf customer-name {
+      type string;
+      description
+        "Indicates the name of the customer that requested these
+         ACs.";
+    }
+    uses ac-common:op-instructions;
     list ac {
       key "name";
       description
@@ -1125,39 +1154,8 @@ module ietf-ac-svc {
         description
           "A reference to an AC profile.";
       }
-      leaf ac-parent-ref {
-        type ac-svc:attachment-circuit-reference;
-        description
-          "Specifies the parent AC that is inherited by an AC.
-           In contexts where dynamic terminating points are 
-           bound to the same AC, a parent AC with stable
-           information is created with a set of child ACs
-           to track dynamic AC information.";
-      }
-      leaf-list child-ac-ref {
-        type ac-svc:attachment-circuit-reference;
-        config false;
-        description
-          "Specifies a child AC that relies upon a parent AC.";
-      }
-      list group {
-        key "group-id";
-        description
-          "List of group-ids.";
-        leaf group-id {
-          type string;
-          description
-            "Indicates the group-id to which the network access
-             belongs.";
-        }
-        leaf precedence {
-          type identityref {
-            base ac-common:precedence-type;
-          }
-          description
-            "Defines redundancy of an AC.";
-        }
-      }
+      uses ac-hierarchy;
+      uses ac-common:redundancy-group;
       list service-ref {
         key "service-type service-id";
         config false;
@@ -1186,7 +1184,7 @@ module ietf-ac-svc {
         type string;
         config false;
         description
-          "This is an internal reference for the service provider
+          "Reports an internal reference for the service provider
            to identify the AC.";
       }
       uses ac;
