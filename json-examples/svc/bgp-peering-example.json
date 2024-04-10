@@ -18,12 +18,6 @@
             }
           },
           "bearer-reference": "Location-X-Line-114"
-        },
-        "ip-connection": {
-          "ipv4": {
-            "local-address": "192.0.2.1",
-            "prefix-length": 24
-          }
         }
       }
     ]
