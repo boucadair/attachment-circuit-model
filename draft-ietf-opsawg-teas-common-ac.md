@@ -280,7 +280,7 @@ Routing parameters & OAM ({{rtg-full-tree}}):
   * Basic parameters: These groupings include the minimal set of routing configuration that is required for the activation of OSPF, IS-IS, BGP, and RIP.
   * Static routing: Parameters to configure an entry of a list of IP static routing entries.
 
-: The 'redundancy-group' grouping lists the groups to which an AC belongs {{§RFC9181}}. For example, the 'group-id' is used to associate redundancy or protection constraints of ACs.
+: The 'redundancy-group' grouping lists the groups to which an AC belongs {{!RFC9181}}. For example, the 'group-id' is used to associate redundancy or protection constraints of ACs.
 
 ~~~~
 {::include ./yang/subtrees/ac-common/ac-common-rtg.txt}
