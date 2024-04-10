@@ -280,6 +280,12 @@ module ietf-bearer-svc {
         description
           "A description of this bearer.";
       }
+      leaf customer-name {
+        type string;
+        description
+          "Indicates the name of the customer that requested this
+           bearers.";
+      }
       uses vpn-common:vpn-components-group;
       leaf op-comment {
         type string;
