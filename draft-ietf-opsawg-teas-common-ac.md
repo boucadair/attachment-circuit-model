@@ -236,6 +236,17 @@ The module defines a set of identities, including the following:
 'bgp-capability':
 : Used to indicate a BGP capability {{!RFC5492}}. Examples of BGP capabilities are Multiprotocol extensions for BGP-4 {{?RFC4760}}, route refresh {{?RFC2918}}, graceful restart {{?RFC4724}}, or ADD-PATH {{?RFC7911}}.
 
+'role':
+: Used to indicate the type of an AC: User-to-Network Interface (UNI), Network-to-Network Interface (NNI), or public NNI.
+
+New administrative status types:
+: In addition to the status types already defined in {{!RFC9181}}, this document defines:
+
+   + 'awaiting-validation' to report that a request is pending an adiministrator approval.
+   + 'awaiting-processing' to report that a request was	approved and validated, but is awaiting more processing before activation.
+   + 'admin-prohibited' to report that a request cannot	be handled because of administrative policies.
+   + 'rejected' to report that a request was rejected reasons not covered by the other status types.
+
 ## Reusable Groupings
 
 The module also defines a set of reusable groupings, including the following:
@@ -264,7 +275,7 @@ Layer 3 address allocation ({{l3-full-tree}}):
 : Defines both IPv4 and IPv6 groupings to specify IP address allocation over an AC. Both dynamic and static address schemes are supported.
 
 IP connections ({{l3-full-tree}})::
-: Defines IPv4 and IPv6 grouping for managing Layer 3 connectivity over an AC. Both basic and more elaborated IP connection groupings are supported.
+: Defines IPv4 and IPv6 groupings for managing Layer 3 connectivity over an AC. Both basic and more elaborated IP connection groupings are supported.
 
 ~~~~
 {::include ./yang/subtrees/ac-common/ac-common-ipc.txt}
