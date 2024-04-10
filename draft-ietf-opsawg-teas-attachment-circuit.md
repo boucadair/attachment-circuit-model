@@ -475,7 +475,7 @@ The structure of 'attachment-circuits' is shown in {{ac-svc-tree}}.
 The description of the data nodes is as follows:
 
 'customer-name':
-: Indicates the name of the customer who ordered the AC.
+: Indicates the name of the customer who ordered the AC or a set of ACs.
 
 'description':
 : Includes a textual description of the AC.
