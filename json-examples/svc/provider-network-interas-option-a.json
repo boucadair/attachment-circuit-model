@@ -2,26 +2,26 @@
   "ietf-ac-svc:attachment-circuits": {
     "ac": [
       {
-        "name": "IPT-CUST-ABC",
-        "customer-name": "CUST-ABC",
-        "description": "CUST-ABC-113",
+        "name": "CE-PE-AC",
+        "customer-name": "Customer-4875",
+        "description": "An AC between a CP and a PE",
         "peer-sap-id": [
           "sap#113"
         ],
         "ip-connection": {
           "ipv4": {
-            "local-address": "192.0.2.1",
             "prefix-length": 30,
-            "address-allocation-type": "ietf-ac-common:static-address"
+            "address": [
+              {
+                "address-id": "1",
+                "customer-address": "192.0.2.1"
+              }
+            ]
           }
         },
         "l2-connection": {
           "encapsulation": {
-            "type": "ietf-vpn-common:dot1q",
-            "dot1q": {
-              "tag-type": "ietf-vpn-common:c-vlan",
-              "cvlan-id": 113
-            }
+            "type": "ietf-vpn-common:dot1q"
           },
           "bearer-reference": "line-113"
         },
@@ -34,7 +34,7 @@
                 "peer-groups": {
                   "peer-group": [
                     {
-                      "name": "IPT-CUST-ABC",
+                      "name": "first-peer-group",
                       "peer-as": 65536,
                       "address-family": "ietf-vpn-common:ipv4"
                     }
@@ -42,9 +42,9 @@
                 },
                 "neighbor": [
                   {
-                    "id": "BGP-DIA-Single-1",
-                    "remote-address": "192.0.2.2",
-                    "peer-group": "IPT-CUST-ABC",
+                    "id": "session#57",
+                    "remote-address": "192.0.2.1",
+                    "peer-group": "first-peer-group",
                     "status": {
                       "admin-status": {
                         "status": "ietf-vpn-common:admin-up"
