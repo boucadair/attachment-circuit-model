@@ -1506,6 +1506,30 @@ for the reader's convenience.<a href="#section-4-1" class="pilcrow">¶</a></p>
           <dd style="margin-left: 1.5em" id="section-4.2-2.10">
             <p id="section-4.2-2.10.1">Used to indicate a BGP capability <span>[<a href="#RFC5492" class="cite xref">RFC5492</a>]</span>. Examples of BGP capabilities are Multiprotocol extensions for BGP-4 <span>[<a href="#RFC4760" class="cite xref">RFC4760</a>]</span>, route refresh <span>[<a href="#RFC2918" class="cite xref">RFC2918</a>]</span>, graceful restart <span>[<a href="#RFC4724" class="cite xref">RFC4724</a>]</span>, or ADD-PATH <span>[<a href="#RFC7911" class="cite xref">RFC7911</a>]</span>.<a href="#section-4.2-2.10.1" class="pilcrow">¶</a></p>
 </dd>
+          <dd class="break"></dd>
+<dt id="section-4.2-2.11">'role':</dt>
+          <dd style="margin-left: 1.5em" id="section-4.2-2.12">
+            <p id="section-4.2-2.12.1">Used to indicate the type of an AC: User-to-Network Interface (UNI), Network-to-Network Interface (NNI), or public NNI.<a href="#section-4.2-2.12.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.2-2.13">New administrative status types:</dt>
+          <dd style="margin-left: 1.5em" id="section-4.2-2.14">
+            <p id="section-4.2-2.14.1">In addition to the status types already defined in <span>[<a href="#RFC9181" class="cite xref">RFC9181</a>]</span>, this document defines:<a href="#section-4.2-2.14.1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-4.2-2.14.2.1">
+                <p id="section-4.2-2.14.2.1.1">'awaiting-validation' to report that a request is pending an adiministrator approval.<a href="#section-4.2-2.14.2.1.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="section-4.2-2.14.2.2">
+                <p id="section-4.2-2.14.2.2.1">'awaiting-processing' to report that a request was approved and validated, but is awaiting more processing before activation.<a href="#section-4.2-2.14.2.2.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="section-4.2-2.14.2.3">
+                <p id="section-4.2-2.14.2.3.1">'admin-prohibited' to report that a request cannot be handled because of administrative policies.<a href="#section-4.2-2.14.2.3.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="section-4.2-2.14.2.4">
+                <p id="section-4.2-2.14.2.4.1">'rejected' to report that a request was rejected reasons not covered by the other status types.<a href="#section-4.2-2.14.2.4.1" class="pilcrow">¶</a></p>
+</li>
+            </ul>
+</dd>
         <dd class="break"></dd>
 </dl>
 </section>
@@ -1609,7 +1633,7 @@ for the reader's convenience.<a href="#section-4-1" class="pilcrow">¶</a></p>
           <dd class="break"></dd>
 <dt id="section-4.3-6.3">IP connections (<a href="#l3-full-tree" class="auto internal xref">Figure 5</a>)::</dt>
           <dd style="margin-left: 1.5em" id="section-4.3-6.4">
-            <p id="section-4.3-6.4.1">Defines IPv4 and IPv6 grouping for managing Layer 3 connectivity over an AC. Both basic and more elaborated IP connection groupings are supported.<a href="#section-4.3-6.4.1" class="pilcrow">¶</a></p>
+            <p id="section-4.3-6.4.1">Defines IPv4 and IPv6 groupings for managing Layer 3 connectivity over an AC. Both basic and more elaborated IP connection groupings are supported.<a href="#section-4.3-6.4.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 </dl>
