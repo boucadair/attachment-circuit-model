@@ -5235,10 +5235,10 @@ A.9.  Connect Customer Network (CE) Through BGP
 
 A.10.  BGP Peering
 
-   In this scenario, multiple networks, each represented by a Network
-   Element (NE), connect to other networks or a Network Access Point
-   (NAP) for interconnection purposes.  Each network connects to each
-   other through one or more ACs.
+   To extend reachability, a network connects to other networks or a
+   Network Access Point (NAP) (e.g., Internet eXhange Point) for
+   interconnection purposes.  The interconnection is achieved through
+   one or more ACs.
 
    To facilitate forwarding between the interconnected networks, BGP
    peering sessions are established between the participating networks.
@@ -5273,10 +5273,10 @@ A.10.  BGP Peering
 
             Figure 47: Illustration of Provider Network Scenario
 
-   As depicted in Figure 47, each AC represents the link between the two
-   networks.  The AC configuration includes parameters such as interface
-   settings, VLAN configuration (if applicable), and any additional
-   settings required for connectivity.
+   As depicted in Figure 47, each AC represents the link between two
+   networks.  The AC configuration (Figure 48) includes parameters such
+   as interface settings, VLAN configuration (if applicable), and any
+   additional settings required for connectivity.
 
    {
      "ietf-ac-svc:attachment-circuits": {
@@ -5327,16 +5327,14 @@ A.10.  BGP Peering
      }
    }
 
-      Figure 48: Message Body of a Request to create an AC to connect
-                     two networks through eBGP peering.
+      Figure 48: Message Body of a Request to Create an AC to Connect
+                      Two Networks Through BGP Peering
 
-   Once the ACs are established, BGP peering sessions are configured
-   between the routers of the participating networks.  BGP sessions are
-   established over the ACs, allowing the routers to exchange routing
-   information and forward traffic between the two ends.  BGP peering
-   configuration includes parameters such as neighbor IP addresses,
-   autonomous system (AS) numbers, authentication settings (if
-   required), etc.
+   Once the ACs are established, BGP peering sessions can be configured
+   between the routers of the participating networks.  Figure 49 shows
+   an example of a request to add a BGP session to an existing AC.  The
+   properties of that AC are not repeated in this request because that
+   information is already communicated durint the creation of the AC.
 
    {
      "ietf-ac-svc:attachment-circuits": {
@@ -5380,11 +5378,71 @@ A.10.  BGP Peering
      }
    }
 
-      Figure 49: Message Body of a Request to create the eBGP peering
-                    into the AC to connect two networks.
+       Figure 49: Message Body of a Request to Create the BGP Peering
+                    over the AC to Connect Two Networks
+
+   Figure 50 provides the example of a response which indicates that the
+   request is awaiting validation.  The response includes also a server-
+   assigned reference for this session.
+
+   =============== NOTE: '\' line wrapping per RFC 8792 ================
+
+   {
+     "ietf-ac-svc:attachment-circuits": {
+       "ac": [
+         {
+           "name": "IPT-NET-ABC",
+           "role": "ietf-ac-common:public-nni",
+           "routing-protocols": {
+             "routing-protocol": [
+               {
+                 "id": "BGP",
+                 "type": "ietf-vpn-common:bgp-routing",
+                 "bgp": {
+                   "neighbor": [
+                     {
+                       "id": "NAP-1",
+                       "server-reference": "peering-svc-45857",
+                       "local-address": "198.51.100.1",
+                       "remote-address": "100.100.100.1",
+                       "local-as": 65536,
+                       "peer-as": 65537,
+                       "address-family": "ietf-vpn-common:ipv4",
+                       "authentication": {
+                         "enabled": true,
+                         "keying-material": {
+                           "key-id": 1,
+                           "key": "test##"
+                         }
+                       },
+                       "status": {
+                         "admin-status": {
+                           "status": "ietf-ac-common:awaiting-\
+                                                             validation"
+                         }
+                       }
+                     }
+                   ]
+                 }
+               }
+             ]
+           }
+         }
+       ]
+     }
+   }
+
+      Figure 50: Message Body of a Response for a BGP Session Awaiting
+                                 Validation
+
+   Once validation is accomplished, a status update is communicated back
+   to the requestor.  The BGP session can then be established over the
+   AC.  The BGP peering configuration includes parameters such as
+   neighbor IP addresses, ASNs, authentication settings (if required),
+   etc.
 
    This scenario allows the provider to maintain a list of ACs
-   associated with peering sessions.
+   associated with BGP peering sessions.
 
 A.11.  Connectivity of Cloudified Network Functions
 
@@ -5423,7 +5481,7 @@ A.11.  Connectivity of Cloudified Network Functions
       two VLANs are presented in this example, additional VLANs are
       configured following a similar logic.
 
-   Figure 50 describes the physical infrastructure.  The compute nodes
+   Figure 51 describes the physical infrastructure.  The compute nodes
    (customer) are attached to the provider infrastructure thanks to a
    set of physical links on which attachment circuits are provisioned
    (i.e., "compute-XX-nicY").  The provider infrastructure can be
@@ -5452,7 +5510,7 @@ A.11.  Connectivity of Cloudified Network Functions
    └ - - - - - - ┘
                                           └ - - - - - - - - - - - - - ┘
 
-         Figure 50: Example Physical Topology for Cloud Deployment
+         Figure 51: Example Physical Topology for Cloud Deployment
 
    The NFs are deployed on this infrastructure in the following way:
 
@@ -5541,10 +5599,10 @@ A.11.  Connectivity of Cloudified Network Functions
     |203.0.113.96/28, NH = 192.2.0.1    |
     └-----------------------------------┘
 
-             Figure 51: Logical Topology of the NFs Deployment
+             Figure 52: Logical Topology of the NFs Deployment
 
    For readability the payload is displayed as single JSON file
-   (Figure 52).  In practice, several API calls may take place to
+   (Figure 53).  In practice, several API calls may take place to
    initialize these resources (e.g., GET requests from the customer to
    retrieve the IP address pools for NFs on "vlan 100" thanks to parent
    configuration and BGP configuration, and POST extra routes for user
@@ -5789,7 +5847,7 @@ A.11.  Connectivity of Cloudified Network Functions
      }
    }
 
-        Figure 52: Message Body for the Configuration of The NF ACs
+        Figure 53: Message Body for the Configuration of The NF ACs
 
    Assuming a failure of "compute-01", the instance "nf-up-1" can be
    redeployed to "compute-07" by the NF/Cloud Orchestration.
@@ -5828,7 +5886,7 @@ A.11.  Connectivity of Cloudified Network Functions
     |└------┴                                |                       |
     compute-08                                - - - - - - - - - - - -
 
-            Figure 53: Example of Compute Failure and Scale-out
+            Figure 54: Example of Compute Failure and Scale-out
 
    Finally, the addition or deletion of compute nodes (e.g., "compute-
    11", "compute-12") in the deployment involves merely the
