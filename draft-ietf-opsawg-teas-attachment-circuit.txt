@@ -5308,13 +5308,57 @@ A.10.  BGP Peering
    }
 
       Figure 48: Message Body of a Request to Create an AC to Connect
-                      Two Networks Through BGP Peering
+                                 to an IXP
+
+   Figure 49 shows the received response with the required information
+   for the activation of the AC.
+
+   {
+     "ietf-ac-svc:attachment-circuits": {
+       "ac": [
+         {
+           "name": "Attachment Circuit 1",
+           "customer-name": "Network A",
+           "description": "An AC to IXP SW in Location X",
+           "role": "ietf-ac-common:public-nni",
+           "actual-ac-start": "2025-12-12T05:00:00.00Z",
+           "peer-sap-id": [
+             "asbr-1-interface"
+           ],
+           "l2-connection": {
+             "encapsulation": {
+               "type": "ietf-vpn-common:dot1q",
+               "dot1q": {
+                 "tag-type": "ietf-vpn-common:c-vlan",
+                 "cvlan-id": 114
+               }
+             },
+             "bearer-reference": "Location-X-Line-114"
+           },
+           "ip-connection": {
+             "ipv4": {
+               "prefix-length": 24,
+               "address": [
+                 {
+                   "address-id": "1",
+                   "customer-address": "192.0.2.1"
+                 }
+               ]
+             }
+           }
+         }
+       ]
+     }
+   }
+
+     Figure 49: Message Body of a Response to an AC Request to Connect
+                                 to an IXP
 
    Once the ACs are established, BGP peering sessions can be configured
    between routers of the participating networks.  BGP sessions can be
    established via a route server or between two networks.  For the sake
    of illustration, let us assume that BGP sessions are established
-   directly between two network.  Figure 49 shows an example of a
+   directly between two network.  Figure 50 shows an example of a
    request to add a BGP session to an existing AC.  The properties of
    that AC are not repeated in this request because that information is
    already communicated during the creation of the AC.
@@ -5360,10 +5404,10 @@ A.10.  BGP Peering
      }
    }
 
-       Figure 49: Message Body of a Request to Create the BGP Peering
+       Figure 50: Message Body of a Request to Create the BGP Peering
                                  over an AC
 
-   Figure 50 provides the example of a response which indicates that the
+   Figure 51 provides the example of a response which indicates that the
    request is awaiting validation.  The response includes also a server-
    assigned reference for this BGP session.
 
@@ -5414,7 +5458,7 @@ A.10.  BGP Peering
      }
    }
 
-      Figure 50: Message Body of a Response for a BGP Session Awaiting
+      Figure 51: Message Body of a Response for a BGP Session Awaiting
                                  Validation
 
    Once validation is accomplished, a status update is communicated back
@@ -5487,7 +5531,7 @@ A.10.  BGP Peering
      }
    }
 
-       Figure 51: Message Body of a Response to Report All Active BGP
+       Figure 52: Message Body of a Response to Report All Active BGP
                             sessions over an AC
 
 A.11.  Connectivity of Cloudified Network Functions
@@ -5527,7 +5571,7 @@ A.11.  Connectivity of Cloudified Network Functions
       two VLANs are presented in this example, additional VLANs are
       configured following a similar logic.
 
-   Figure 52 describes the physical infrastructure.  The compute nodes
+   Figure 53 describes the physical infrastructure.  The compute nodes
    (customer) are attached to the provider infrastructure thanks to a
    set of physical links on which attachment circuits are provisioned
    (i.e., "compute-XX-nicY").  The provider infrastructure can be
@@ -5556,7 +5600,7 @@ A.11.  Connectivity of Cloudified Network Functions
    └ - - - - - - ┘
                                           └ - - - - - - - - - - - - - ┘
 
-         Figure 52: Example Physical Topology for Cloud Deployment
+         Figure 53: Example Physical Topology for Cloud Deployment
 
    The NFs are deployed on this infrastructure in the following way:
 
@@ -5645,10 +5689,10 @@ A.11.  Connectivity of Cloudified Network Functions
     |203.0.113.96/28, NH = 192.2.0.1    |
     └-----------------------------------┘
 
-             Figure 53: Logical Topology of the NFs Deployment
+             Figure 54: Logical Topology of the NFs Deployment
 
    For readability the payload is displayed as single JSON file
-   (Figure 54).  In practice, several API calls may take place to
+   (Figure 55).  In practice, several API calls may take place to
    initialize these resources (e.g., GET requests from the customer to
    retrieve the IP address pools for NFs on "vlan 100" thanks to parent
    configuration and BGP configuration, and POST extra routes for user
@@ -5893,7 +5937,7 @@ A.11.  Connectivity of Cloudified Network Functions
      }
    }
 
-        Figure 54: Message Body for the Configuration of The NF ACs
+        Figure 55: Message Body for the Configuration of The NF ACs
 
    Assuming a failure of "compute-01", the instance "nf-up-1" can be
    redeployed to "compute-07" by the NF/Cloud Orchestration.
@@ -5932,7 +5976,7 @@ A.11.  Connectivity of Cloudified Network Functions
     |└------┴                                |                       |
     compute-08                                - - - - - - - - - - - -
 
-            Figure 55: Example of Compute Failure and Scale-out
+            Figure 56: Example of Compute Failure and Scale-out
 
    Finally, the addition or deletion of compute nodes in the deployment
    (e.g., "compute-11", "compute-12" ...) involves merely the
