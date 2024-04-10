@@ -164,7 +164,8 @@ The AC service model can be used in a variety of contexts, such as (but not limi
 * Control the precedence over multiple attachment circuits ({{sec-ex-prec}}).
 * Create Multiple ACs bound to Multiple CEs ({{sec-multiple-ces}}).
 * Bind a slice service to a set of pre-provisioned attachment circuits ({{sec-ex-slice}}).
-* Connect a Cloud Infrastructure to a service provider network ({{sec-ex-cloud}}). Note that the AC model can be used between service providers for other interconnection purposes (e.g., {{?RFC8921}}). Such ACs are identified with a "role" set to "ac-common:nni" or "ac-common:public-nni".
+* Connect a Cloud Infrastructure to a service provider network ({{sec-ex-cloud}}).
+* Interconnect provider networks (e.g., {{?RFC8921}}). Such ACs are identified with a "role" set to "ac-common:nni" or "ac-common:public-nni". See {{sec-peering}} to illustrate the use of the AC model for peering.
 
 The examples provided in {{examples}} use the IPv4 address blocks reserved for documentation {{?RFC5737}}, the IPv6 prefix reserved for documentation {{?RFC3849}}, and the Autonomous System (AS) numbers reserved for documentation {{?RFC5398}}.
 
@@ -1232,7 +1233,7 @@ Next, API workflows can be initiated:
 {: #cloud-provider-ac-res title="Message Body of a Response to the Request to Create ACs for Connecting to the Cloud Provider"}
 
 
-## Connect Customer Network (CE) Through BGP
+## Connect Customer Network Through BGP
 
 CE-PE routing using BGP is a common scenario in the context of MPLS VPNs and is widely used in enterprise networks. In the example depicted in {{provider-network}}, the CE routers are customer-owned devices belonging to an AS (ASN 65536). CEs are located at the edge of the provider's network (PE, or Provider Edge) and use point-to-point interfaces to establish BGP sessions. The point-to-point interfaces rely upon a physical bearer ("Line-113") to reach the provider network.
 
@@ -1251,7 +1252,7 @@ The attachment circuit in this case use a SAP identifier to refer to the physica
 This scenario allows the provider to maintain a list of ACs belonging to the same customer without requiring the full service configuration.
 
 
-## BGP Peering
+## BGP Peering {#sec-peering}
 
 This section illustrates how to use the AC service model for interconnection purposes. To that aim, we assume a simplified Internet eXchange Point (IXP) configuration without zooming into IXP deployment specifics. Let us assume that networks are interconnected via a Layer 2 facility. BGP is used to exchange routing information and reachability announcements between those networks. The same approach can be used to negotiate interconnection between two networks and without involving an IXP.
 
