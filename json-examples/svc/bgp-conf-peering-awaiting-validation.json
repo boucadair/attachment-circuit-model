@@ -2,7 +2,7 @@
   "ietf-ac-svc:attachment-circuits": {
     "ac": [
       {
-        "name": "IPT-NET-ABC",
+        "name": "Attachment Circuit 1",
         "role": "ietf-ac-common:public-nni",
         "routing-protocols": {
           "routing-protocol": [
@@ -12,12 +12,12 @@
               "bgp": {
                 "neighbor": [
                   {
-                    "id": "NAP-1",
+                    "id": "Session-Network-B",
                     "server-reference": "peering-svc-45857",
-                    "local-address": "198.51.100.1",
-                    "remote-address": "100.100.100.1",
-                    "local-as": 65536,
-                    "peer-as": 65537,
+                    "local-address": "192.0.2.2",
+                    "remote-address": "192.0.2.1",                    
+                    "local-as": 65537,
+                    "peer-as": 65536,
                     "address-family": "ietf-vpn-common:ipv4",
                     "authentication": {
                       "enabled": true,
