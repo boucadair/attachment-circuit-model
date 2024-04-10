@@ -642,6 +642,9 @@ The following data nodes are supported for each BGP 'peer-group':
 'local-address':
 : Specifies a provider's IP address to use when establishing the BGP transport session.
 
+'bgp-max-prefix':
+: Indicates the maximum number of BGP prefixes allowed in a session for this group.
+
 'authentication':
 : The module adheres to the recommendations in {{Section 13.2 of !RFC4364}}, as it allows enabling the TCP Authentication Option (TCP-AO) {{?RFC5925}} and accommodates the installed base that makes use of MD5. In addition, the module includes a provision for using IPsec.
 : Similar to {{?RFC9182}}, this version of the ACaaS assumes that parameters specific to the TCP-AO are preconfigured as part of the key chain that is referenced in the ACaaS. No assumption is made about how such a key chain is preconfigured. However, the structure of the key chain should cover data nodes beyond those in {{!RFC8177}}, mainly SendID and RecvID ({{Section 3.1 of ?RFC5925}}).
