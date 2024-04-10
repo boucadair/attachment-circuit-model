@@ -3896,6 +3896,8 @@ module ietf-bearer-svc {
 <div class="breakable lang-yang sourcecode" id="section-6.2-2">
 <pre>
 &lt;CODE BEGINS&gt; file "ietf-ac-svc@2023-11-13.yang"
+=============== NOTE: '\' line wrapping per RFC 8792 ================
+
 module ietf-ac-svc {
   yang-version 1.1;
   namespace "urn:ietf:params:xml:ns:yang:ietf-ac-svc";
@@ -4386,6 +4388,25 @@ module ietf-ac-svc {
           description
             "The provider's local IP address that will be used to
              establish the BGP session.";
+        }
+        container bgp-max-prefix {
+          description
+            "A container for the maximum number of BGP prefixes \
+                                                              allowed
+             in the BGP session.";
+          leaf max-prefix {
+            type uint32;
+            description
+              "Indicates the maximum number of BGP prefixes allowed \
+                                                                   in
+               the BGP session.
+
+               It allows control of how many prefixes can be received
+               from a neighbor.";
+            reference
+              "RFC 4271: A Border Gateway Protocol 4 (BGP-4),
+                         Section 8.2.2";
+          }
         }
         uses ac-common:bgp-authentication;
       }
