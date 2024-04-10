@@ -316,6 +316,9 @@ The descriptions of the bearer data nodes are as follows:
 'name':
 : Used to uniquely identify a bearer. This name is typically selected by the client when requesting a bearer.
 
+'customer-name':
+: Indicates the name of the customer who ordered the bearer.
+
 'description':
 : Includes a textual description of the bearer.
 
