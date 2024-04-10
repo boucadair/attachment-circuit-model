@@ -1832,6 +1832,10 @@ for the reader's convenience.<a href="#section-4-1" class="pilcrow">¶</a></p>
              +--ro last-change?   yang:date-and-time
   grouping bfd:
     +-- holdtime?   uint32
+  grouping redundancy-group:
+    +-- group* [group-id]
+       +-- group-id?     string
+       +-- precedence?   identityref
 </pre>
 </div>
 <figcaption><a href="#figure-6" class="selfRef">Figure 6</a>:

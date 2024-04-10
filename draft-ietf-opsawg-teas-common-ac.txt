@@ -638,6 +638,10 @@ Table of Contents
                 +--ro last-change?   yang:date-and-time
      grouping bfd:
        +-- holdtime?   uint32
+     grouping redundancy-group:
+       +-- group* [group-id]
+          +-- group-id?     string
+          +-- precedence?   identityref
 
                    Figure 6: Layer 3 Connection Groupings
 
