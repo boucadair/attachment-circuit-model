@@ -2252,7 +2252,7 @@ Table of Contents
        leaf customer-name {
          type string;
          description
-           "Indicates the name of the customer that requested this
+           "Indicates the name of the customer that requested these
             bearers.";
        }
        uses ac-common:op-instructions;
@@ -2280,7 +2280,7 @@ Table of Contents
            type string;
            description
              "Indicates the name of the customer that requested this
-              bearers.";
+              bearer.";
          }
          uses vpn-common:vpn-components-group;
          leaf op-comment {
