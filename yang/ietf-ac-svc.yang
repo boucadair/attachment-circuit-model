@@ -489,6 +489,23 @@ module ietf-ac-svc {
             "The provider's local IP address that will be used to
              establish the BGP session.";
         }
+        container bgp-max-prefix {
+          description
+            "A container for the maximum number of BGP prefixes allowed
+             in the BGP session.";
+          leaf max-prefix {
+            type uint32;
+            description
+              "Indicates the maximum number of BGP prefixes allowed in
+               the BGP session.
+
+               It allows control of how many prefixes can be received
+               from a neighbor.";
+            reference
+              "RFC 4271: A Border Gateway Protocol 4 (BGP-4),
+                         Section 8.2.2";
+          }
+        }
         uses ac-common:bgp-authentication;
       }
     }
