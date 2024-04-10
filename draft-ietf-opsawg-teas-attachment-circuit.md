@@ -1253,14 +1253,14 @@ This scenario allows the provider to maintain a list of ACs belonging to the sam
 
 ## BGP Peering
 
-This section illustrates how to use the AC service model for interconnection purposes. To that aim, we assume a simplified Internet eXchange Point (IXP) configuration without zooming into IXP deployment specifics. Let us assume that networks are interconnected via a Layer 2 facility. BGP is used to exchange routing information and reachability announcements between those networks.
+This section illustrates how to use the AC service model for interconnection purposes. To that aim, we assume a simplified Internet eXchange Point (IXP) configuration without zooming into IXP deployment specifics. Let us assume that networks are interconnected via a Layer 2 facility. BGP is used to exchange routing information and reachability announcements between those networks. The same approach can be used to negotiate interconnection between two networks and without involving an IXP.
 
 ~~~~ aasvg
 {::include-fold ./figures/bgp-peering-example.txt}
 ~~~~
 {: #bgp-peer-network title="Simple Interconnection Topology"}
 
-As depicted in {{bgp-peer-network}}, each network connects to the IXP switch via a bearer over which an AC is created. The AC configuration ({{bgp-peer-network-add-attachment-circuit}}) includes parameters such as VLAN configuration, IP addresses, MTU, and any additional settings required for connectivity.
+As depicted in {{bgp-peer-network}}, each network connects to the IXP switch via a bearer over which an AC is created. The AC configuration ({{bgp-peer-network-add-attachment-circuit}}) includes parameters such as VLAN configuration, IP addresses, MTU, and any additional settings required for connectivity. The peering location is inferred from the "bearer-reference".
 
 ~~~~ json
 {::include-fold ./json-examples/svc/bgp-peering-example.json}
