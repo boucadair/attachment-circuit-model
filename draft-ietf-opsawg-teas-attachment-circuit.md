@@ -1283,7 +1283,7 @@ This scenario allows the provider to maintain a list of ACs associated with peer
 
 This section demonstrates how the AC service model permits to manage connectivity requirements for complex Network Functions (NFs) - containerized or virtualized -  that are typically deployed in Telco networks. This integration leverages the concept of "parent AC" to decouple physical and logical connectivity so that several ACs can shares Layer 2 and Layer 3 resources. This approach provides flexibility, scalability, and API stability.
 
-> NF is used to refer to the SFs defined {{?RFC7665}}.
+> NF is used to refer to the SF defined {{?RFC7665}}. NF is used here as this term is widely used outside the IETF.
 
 The NFs have the following characteristics:
 
@@ -1312,7 +1312,7 @@ The NFs are deployed on this infrastructure in the following way:
 ~~~~
 {: #cloud-parent-logical title="Logical Topology of the NFs Deployment"}
 
-For readability the payload is displayed as single JSON file ({{parent-profile}}). In practice, several API calls make take place to initialize these resources (e.g., GET requests from the customer to retrieve the IP address pools for NFs on "vlan 100" thanks to parent configuration and BGP configuration, and POST extra routes for user planes and BFD).
+For readability the payload is displayed as single JSON file ({{parent-profile}}). In practice, several API calls may take place to initialize these resources (e.g., GET requests from the customer to retrieve the IP address pools for NFs on "vlan 100" thanks to parent configuration and BGP configuration, and POST extra routes for user planes and BFD).
 
 Note that no individual IP address is assigned in the data model for the NF user plane instances (i.e., no "customer-address" in the Child AC). The assignment of IP addresses to the NF endpoints is managed by the Cloud Infrastructure IPAM based on the customer-addresses IP address pool "192.0.2.1-200". Like in any standard LAN-facing scenario, it is assumed that the actual binding of IP endpoints to logical attachments (here Child ACs) relies on a dedicated protocol logic  (typically, ARP or NDP) and is not captured in the data model. Hence, the IP addresses displayed for NF user plane instances are simply examples of a realization approach. Note also that the Control Plane is defined with static IP address assignment on a given AC/bearer to illustrate another deployment alternative.
 
