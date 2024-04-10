@@ -2813,6 +2813,23 @@ Table of Contents
             the BGP session.";
        }
        uses ac-common:bgp-peer-group-without-name;
+       container bgp-max-prefix {
+         description
+           "A container for the maximum number of BGP prefixes allowed
+            in the BGP session.";
+         leaf max-prefix {
+           type uint32;
+           description
+             "Indicates the maximum number of BGP prefixes allowed in
+              the BGP session.
+
+              It allows control of how many prefixes can be received
+              from a neighbor.";
+           reference
+             "RFC 4271: A Border Gateway Protocol 4 (BGP-4),
+                        Section 8.2.2";
+         }
+       }
        uses ac-common:bgp-authentication;
        uses ac-common:op-instructions;
        uses ac-common:service-status;
@@ -3831,11 +3848,11 @@ Table of Contents
               groupings.txt>.
 
    [I-D.ietf-idr-bgp-model]
-              Jethanandani, M., Patel, K., Hares, S., and J. Haas, "YANG
-              Model for Border Gateway Protocol (BGP-4)", Work in
-              Progress, Internet-Draft, draft-ietf-idr-bgp-model-17, 5
-              July 2023, <https://datatracker.ietf.org/doc/html/draft-
-              ietf-idr-bgp-model-17>.
+              Aguado, C., Griswold, M., Ramseyer, J., Servin, A. L., and
+              T. Strickx, "Peering API", Work in Progress, Internet-
+              Draft, draft-ramseyer-grow-peering-api-04, 16 March 2024,
+              <https://datatracker.ietf.org/doc/html/draft-ramseyer-
+              grow-peering-api-04>.
 
    [I-D.ietf-netmod-rfc8407bis]
               Wu, B., Dhody, D., Rokui, R., Saad, T., and J. Mullooly,

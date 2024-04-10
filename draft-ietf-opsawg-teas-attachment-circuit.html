@@ -4304,6 +4304,23 @@ module ietf-ac-svc {
          the BGP session.";
     }
     uses ac-common:bgp-peer-group-without-name;
+    container bgp-max-prefix {
+      description
+        "A container for the maximum number of BGP prefixes allowed
+         in the BGP session.";
+      leaf max-prefix {
+        type uint32;
+        description
+          "Indicates the maximum number of BGP prefixes allowed in
+           the BGP session.
+
+           It allows control of how many prefixes can be received
+           from a neighbor.";
+        reference
+          "RFC 4271: A Border Gateway Protocol 4 (BGP-4),
+                     Section 8.2.2";
+      }
+    }
     uses ac-common:bgp-authentication;
     uses ac-common:op-instructions;
     uses ac-common:service-status;
@@ -5357,7 +5374,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 <dd class="break"></dd>
 <dt id="I-D.ietf-idr-bgp-model">[I-D.ietf-idr-bgp-model]</dt>
         <dd>
-<span class="refAuthor">Jethanandani, M.</span>, <span class="refAuthor">Patel, K.</span>, <span class="refAuthor">Hares, S.</span>, and <span class="refAuthor">J. Haas</span>, <span class="refTitle">"YANG Model for Border Gateway Protocol (BGP-4)"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-idr-bgp-model-17</span>, <time datetime="2023-07-05" class="refDate">5 July 2023</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-idr-bgp-model-17">https://datatracker.ietf.org/doc/html/draft-ietf-idr-bgp-model-17</a>&gt;</span>. </dd>
+<span class="refAuthor">Aguado, C.</span>, <span class="refAuthor">Griswold, M.</span>, <span class="refAuthor">Ramseyer, J.</span>, <span class="refAuthor">Servin, A. L.</span>, and <span class="refAuthor">T. Strickx</span>, <span class="refTitle">"Peering API"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ramseyer-grow-peering-api-04</span>, <time datetime="2024-03-16" class="refDate">16 March 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ramseyer-grow-peering-api-04">https://datatracker.ietf.org/doc/html/draft-ramseyer-grow-peering-api-04</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="I-D.ietf-netmod-rfc8407bis">[I-D.ietf-netmod-rfc8407bis]</dt>
         <dd>
