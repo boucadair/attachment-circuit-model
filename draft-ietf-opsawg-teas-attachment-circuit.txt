@@ -2850,13 +2850,13 @@ Table of Contents
        uses ac-common:bgp-peer-group-without-name;
        container bgp-max-prefix {
          description
-           "A container for the maximum number of BGP prefixes allowed
-            in the BGP session.";
+           "A container for the maximum number of BGP prefixes
+            allowed in the BGP session.";
          leaf max-prefix {
            type uint32;
            description
-             "Indicates the maximum number of BGP prefixes allowed in
-              the BGP session.
+             "Indicates the maximum number of BGP prefixes allowed
+              in the BGP session.
 
               It allows control of how many prefixes can be received
               from a neighbor.";
