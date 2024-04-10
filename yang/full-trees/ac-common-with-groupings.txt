@@ -240,6 +240,10 @@ module: ietf-ac-common
              +--ro last-change?   yang:date-and-time
   grouping bfd:
     +-- holdtime?   uint32
+  grouping redundancy-group:
+    +-- group* [group-id]
+       +-- group-id?     string
+       +-- precedence?   identityref
   grouping bandwidth-parameters:
     +-- cir?   uint64
     +-- cbs?   uint64
