@@ -203,7 +203,7 @@
         "description": "attachment to Network Function NF-CP instance 2 in vlan 200",
         "ac-parent-ref": "parent-vlan-200",
         "l2-connection": {
-          "bearer-reference": "compute-10-nic1"
+          "bearer-reference": "compute-10-nic0"
         }
       }
     ]
