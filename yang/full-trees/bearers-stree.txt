@@ -1,6 +1,11 @@
 module: ietf-bearer-svc
 
   +--rw bearers
+     +--rw customer-name?           string
+     +--rw requested-start?         yang:date-and-time
+     +--rw requested-stop?          yang:date-and-time
+     +--ro actual-start?            yang:date-and-time
+     +--ro actual-stop?             yang:date-and-time
      +--rw placement-constraints
      |  +--rw constraint* [constraint-type]
      |          {vpn-common:placement-diversity}?
