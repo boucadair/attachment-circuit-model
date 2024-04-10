@@ -1708,7 +1708,7 @@ for the reader's convenience.<a href="#section-4-1" class="pilcrow">¶</a></p>
           </figcaption></figure>
 </div>
 <span class="break"></span><dl class="dlParallel" id="section-4.3-8">
-          <dt id="section-4.3-8.1">Routing parameters (<a href="#rtg-full-tree" class="auto internal xref">Figure 6</a>):</dt>
+          <dt id="section-4.3-8.1">Routing parameters &amp; OAM (<a href="#rtg-full-tree" class="auto internal xref">Figure 6</a>):</dt>
           <dd style="margin-left: 1.5em" id="section-4.3-8.2">
             <p id="section-4.3-8.2.1">In addition to static routing, the module supports the following routing protocols: BGP <span>[<a href="#RFC4271" class="cite xref">RFC4271</a>]</span>, OSPF <span>[<a href="#RFC4577" class="cite xref">RFC4577</a>]</span> or <span>[<a href="#RFC6565" class="cite xref">RFC6565</a>]</span>, IS-IS <span>[<a href="#ISO10589" class="cite xref">ISO10589</a>]</span><span>[<a href="#RFC1195" class="cite xref">RFC1195</a>]</span><span>[<a href="#RFC5308" class="cite xref">RFC5308</a>]</span>, and RIP <span>[<a href="#RFC2453" class="cite xref">RFC2453</a>]</span>. For all supported routing protocols, 'address-family' indicates whether IPv4, IPv6, or both address families are to be activated. For example, this parameter is used to determine whether RIPv2 <span>[<a href="#RFC2453" class="cite xref">RFC2453</a>]</span>, RIP Next Generation (RIPng), or both are to be enabled <span>[<a href="#RFC2080" class="cite xref">RFC2080</a>]</span>. More details about supported routing groupings are provided hereafter:<a href="#section-4.3-8.2.1" class="pilcrow">¶</a></p>
 <ul class="normal">
@@ -1725,6 +1725,11 @@ for the reader's convenience.<a href="#section-4-1" class="pilcrow">¶</a></p>
                 <p id="section-4.3-8.2.2.4.1">Static routing: Parameters to configure an entry of a list of IP static routing entries.<a href="#section-4.3-8.2.2.4.1" class="pilcrow">¶</a></p>
 </li>
             </ul>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.3-8.3"></dt>
+          <dd style="margin-left: 1.5em" id="section-4.3-8.4">
+            <p id="section-4.3-8.4.1">The 'redundancy-group' grouping lists the groups to which an AC belongs <span>[<a href="#RFC9181" class="cite xref">RFC9181</a>]</span>. For example, the 'group-id' is used to associate redundancy or protection constraints of ACs.<a href="#section-4.3-8.4.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 </dl>
