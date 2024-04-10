@@ -1416,6 +1416,8 @@ Table of Contents
            |     |  |     +--rw peer-as?          inet:as-number
            |     |  |     +--rw address-family?   identityref
            |     |  |     +--rw local-address?    inet:ip-address
+           |     |  |     +--rw bgp-max-prefix
+           |     |  |     |  +--rw max-prefix?   uint32
            |     |  |     +--rw authentication
            |     |  |        +--rw enabled?           boolean
            |     |  |        +--rw keying-material
