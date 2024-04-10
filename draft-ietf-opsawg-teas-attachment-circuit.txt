@@ -2797,7 +2797,8 @@ Table of Contents
        leaf remote-address {
          type inet:ip-address;
          description
-           "The remote IP address of this entry's BGP peer.
+           "The remote IP address of this entry's BGP peer. This is
+            a customer IP address.
 
             If this leaf is not present, this means that the primary
             customer IP address is used as remote IP address.";
@@ -2805,7 +2806,7 @@ Table of Contents
        leaf local-address {
          type inet:ip-address;
          description
-           "The local IP address that will be used to establish
+           "The provider's IP address that will be used to establish
             the BGP session.";
        }
        uses ac-common:bgp-peer-group-without-name;
@@ -2870,8 +2871,8 @@ Table of Contents
            leaf local-address {
              type inet:ip-address;
              description
-               "The local IP address that will be used to establish
-                the BGP session.";
+               "The provider's local IP address that will be used to
+                establish the BGP session. ";
            }
            uses ac-common:bgp-authentication;
          }
