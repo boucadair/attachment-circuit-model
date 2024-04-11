@@ -1270,13 +1270,15 @@ The attachment circuit in this case use a SAP identifier to refer to the physica
 This scenario allows the provider to maintain a list of ACs belonging to the same customer without requiring the full service configuration.
 
 
-## BGP Peering {#sec-peering}
+## Interconnection via Internet eXchange Points (IXPs) {#sec-peering}
 
-This section illustrates how to use the AC service model for interconnection purposes. To that aim, we assume a simplified Internet eXchange Point (IXP) configuration without zooming into IXP deployment specifics. Let us assume that networks are interconnected via a Layer 2 facility. BGP is used to exchange routing information and reachability announcements between those networks. The same approach can be used to negotiate interconnection between two networks and without involving an IXP.
+This section illustrates how to use the AC service model for interconnection purposes. To that aim, the document assumes a simplified Internet eXchange Point (IXP) configuration without zooming into IXP deployment specifics. Let us assume that networks are interconnected via a Layer 2 facility. BGP is used to exchange routing information and reachability announcements between those networks. The same approach can be used to negotiate interconnection between two networks and without involving an IXP.
 
-### Retrieve interconnection Locations
+The following subsections exemplify a deployment flow, but BGP sessions can be managed without having to execute systematically all the steps detailed hereafter.
 
-{{ex-retrieve-locations}} shows an example a message body of a request to retrieve a list of interconnection locations. The request includes information such as customer name, peer ASN, etc. to filter the locations.
+### Retrieve Interconnection Locations
+
+{{ex-retrieve-locations}} shows an example a message body of a request to retrieve a list of interconnection locations. The request includes optional information such as customer name, peer ASN, etc. to filter out the locations.
 
 ~~~~ json
 {::include-fold ./json-examples/svc/get-locations.json}
@@ -1306,7 +1308,7 @@ The bearer is then activated by the server as shown in {{ex-create-bearer-parent
 ~~~~
 {: #ex-create-bearer-parent-ref-res title="Message Body of a Response to Create a Bearer in a Specific Location"}
 
-### Manage ACs and BGP Sessions
+### Manage ACs and BGP Sessions {#-sec-manage-ac-bgp}
 
 As depicted in {{bgp-peer-network}}, each network connects to the IXP switch via a bearer over which an AC is created.
 
@@ -1352,6 +1354,8 @@ Once validation is accomplished, a status update is communicated back to the req
 
 ## Connectivity of Cloud Network Functions {#sec-cloudified-nfs}
 
+### Scope
+
 This section demonstrates how the AC service model permits to manage connectivity requirements for complex Network Functions (NFs) - containerized or virtualized -  that are typically deployed in Telco networks. This integration leverages the concept of "parent AC" to decouple physical and logical connectivity so that several ACs can shares Layer 2 and Layer 3 resources. This approach provides flexibility, scalability, and API stability.
 
 > NF is used to refer to the SF defined {{?RFC7665}}. NF is used here as this term is widely used outside the IETF.
@@ -1364,12 +1368,16 @@ The NFs have the following characteristics:
 - The Control plane is deployed in a redundant fashion on two instances running on distinct compute nodes ("compute-09" and "compute-10").
 - The NF is attached to distinct networks, each making use of a dedicated VLAN. These VLANs are therefore instantiated as separate ACs. From a realization standpoint, the NF interface connectivity is generally provided thanks to MacVLAN or Single Root I/O Virtualization (SR-IOV). For the sake of simplicity only two VLANs are presented in this example, additional VLANs are configured following a similar logic.
 
+### Physical Infrastructure
+
 {{cloud-parent-infra}} describes the physical infrastructure. The compute nodes (customer) are attached to the provider infrastructure thanks to a set of physical links on which attachment circuits are provisioned (i.e., "compute-XX-nicY"). The provider infrastructure can be realized in multiple ways, such as IP Fabric, Layer 2/Layer 3 Edge Routers. This document does not intend to detail these aspects.
 
 ~~~~ aasvg
 {::include-fold ./figures/cloud-parent-infra.txt}
 ~~~~
 {: #cloud-parent-infra title="Example Physical Topology for Cloud Deployment"}
+
+### NFs Deployment
 
 The NFs are deployed on this infrastructure in the following way:
 
@@ -1391,6 +1399,8 @@ Note that no individual IP address is assigned in the data model for the NF user
 {::include-fold ./json-examples/svc/ac-cloud-parent.json}
 ~~~~
 {: #parent-profile title="Message Body for the Configuration of The NF ACs"}
+
+### NF Scale-Out
 
 Assuming a failure of "compute-01", the instance "nf-up-1" can be redeployed to "compute-07" by the NF/Cloud Orchestration. Additionally, the NF can be scaled-out thanks to the creation of an extra instance "nf-up7" on "compute-08". Since connectivity is pre-provisioned, these operations happen without any API calls. In other words, this redeployment is transparent from the perspective of the configuration of the provider network.
 
