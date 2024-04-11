@@ -298,6 +298,8 @@ Such a reference can be used, e.g., in a subsequent service request to create an
 ~~~~
 {: #bearer-st title="Bearer Service Tree Structure" artwork-align="center"}
 
+In some deployments, a customer may first retrieve a list of available presence locations before actually placing an order for a bearer creation. The request may be filtered based upon a customer name, role of the bearer, etc. The retrieved location name may be then referenced in the bearer creation request ("provider-location-reference").
+
 The same customer site (CE, SF, etc.) can terminate one or multiple bearers; each of them uniquely identified by a reference that is assigned by the network provider. These bearers can terminate on the same or distinct network nodes. CEs that terminate multiple bearers are called multi-homed CEs.
 
 A bearer can be created, modified, or discovered from the network. For example, the following deployment options can be considered:
@@ -343,6 +345,9 @@ The descriptions of the bearer data nodes are as follows:
 'sync-phy-type':
 : Specifies the Sync PHY mechanism (e.g., SynchE {{ITU-T-G.781}}) enabled for the bearer.
 
+'provider-location-reference':
+: Indicates a location identified by a provider-assigned reference.
+
 'customer-point':
 : Specifies the customer terminating point for the bearer. A bearer request can indicate a device, a site, a combination thereof, or a custom information when requesting a bearer. All these schemes are supported in the model.
 
@@ -375,7 +380,6 @@ The descriptions of the bearer data nodes are as follows:
 : Used to track the overall status of a given bearer. Both operational and administrative status are maintained together with a timestamp.
 
 : The "admin-status" attribute is typically configured by a network operator to indicate whether the service is enabled, disabled, or subjected to additional testing or pre-deployment checks. These additional options, such as 'admin-testing' and 'admin-pre-deployment', provide the operators the flexibility to conduct additional validations on the bearer before deploying services over that connection.
-
 
 'oper-status':
 : The "oper-status" of a bearer reflects its operational state as observed. As a bearer can contain multiple services, the operational status should only reflect the status of the bearer connection. To obtain network-level service status, specific network models such as those in {{Section 7.3 of !RFC9182}}  or {{Section 7.3 of !RFC9291}} should be consulted.
