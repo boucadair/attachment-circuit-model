@@ -1147,13 +1147,13 @@ When multiple ACs are requested by the same customer for the same site, the requ
 
 ## Binding Attachment Circuits to an IETF Network Slice {#sec-ex-slice}
 
-This example shows how the AC service model complements {{?I-D.ietf-teas-ietf-network-slice-nbi-yang}} to connect a site to a slice service.
+This example shows how the AC service model complements the IETF Network Slice model {{?I-D.ietf-teas-ietf-network-slice-nbi-yang}} to connect a site to a Slice Service.
 
 First, {{slice-vlan-1}} describes the end-to-end network topology as well the orchestration scopes:
 
-- The topology is made up of two sites ("site1" and "site2"), interconnected via a Transport Network (e.g. IP/MPLS Network). An SF is deployed within each site in a dedicated IP Subnet.
-- A 5G SMO is responsible for the deployment of SFs and the indirect management of a local Gateway (i.e., CE device).
-- An IETF Network Slice Controller is responsible for the deployment of IETF Network Slices across the Transport Network.
+- The topology is made up of two sites ("site1" and "site2"), interconnected via a Transport Network (e.g., IP/MPLS network). An SF is deployed within each site in a dedicated IP subnet.
+- A 5G Service Management and Orchestration (SMO) is responsible for the deployment of SFs and the indirect management of a local Gateway (i.e., CE).
+- An IETF Network Slice Controller (NSC) {{?RFC9543}} is responsible for the deployment of IETF Network Slices across the Transport Network.
 
 SFs are deployed within each site.
 
@@ -1162,14 +1162,14 @@ SFs are deployed within each site.
 ~~~~
 {: #slice-vlan-1 title="An Example of a Network Topology Used to Deploy Slices"}
 
-{{slice-vlan-2}} describes the logical connectivity enforced thanks to both IETF Network Slice and Attachment Circuit models.
+{{slice-vlan-2}} describes the logical connectivity enforced thanks to both IETF Network Slice and ACaaS models.
 
 ~~~~ aasvg
 {::include ./figures/drawing-slice-2.fig}
 ~~~~
 {: #slice-vlan-2 title="Logical Overview"}
 
-{{slice-acs}} shows the message body of the request to create the required ACs using the Attachment Circuit module.
+{{slice-acs}} shows the message body of the request to create the required ACs using the ACaaS module.
 
 ~~~~ json
 {::include-fold ./json-examples/svc/acs-for-slices.json}
@@ -1184,7 +1184,7 @@ SFs are deployed within each site.
 {: #slice-acs-res title="Example of a Message Body of a Response Indicating the Creation of the ACs"}
 
 
-{{slice-prov}} shows the message body of the request to create the a slice service bound to the ACs created using {{slice-acs}}. Only references to these ACs are included in the Slice Service request. This example assumes that the module that "glues" the service/AC is also supported by the NSC.
+{{slice-prov}} shows the message body of the request to create a Slice Service bound to the ACs created using {{slice-acs}}. Only references to these ACs are included in the Slice Service request.
 
 ~~~~ json
 {::include-fold ./json-examples/svc/slice-provisionning.json}
@@ -1199,7 +1199,7 @@ This example ({{cloud-provider-1}}) shows how the AC service model can be used t
 
 1.	The connectivity to the Data Center is achieved thanks to a service based on direct attachment (physical connection), which is delivered upon ordering via an API exposed by the Cloud Provider. When ordering that connection, a unique "Connection Identifier" is generated and returned via the API.
 
-1.	The customer provisions the networking logic within the Cloud Provider based on that unique connection Identifier (i.e., logical interfaces, IP addressing, and routing).
+1.	The customer provisions the networking logic within the Cloud Provider based on that unique connection identifier (i.e., logical interfaces, IP addressing, and routing).
 
 
 ~~~~ aasvg
@@ -1212,7 +1212,7 @@ This example ({{cloud-provider-1}}) shows how the AC service model can be used t
 ~~~~ aasvg
   Customer                                                       Cloud
 Orchestration       DIRECT INTERCONNECTION ORDERING (API)       Provider
-               ------------------------------------------------>
+                ------------------------------------------------>  
 
                Connection Created with "Connection ID:1234-56789"
                <------------------------------------------------
@@ -1225,7 +1225,7 @@ Orchestration       DIRECT INTERCONNECTION ORDERING (API)       Provider
                          connected to PE1
 
        Network  Inventory Updated with:
-         bearer-reference: 1234-56789 for PE1/Interface If-A
+         bearer-reference: 1234-56789 for PE1/Interface "If-A"
 ~~~~
 {: #cloud-provider-2 title="Illustration of Pre-provisioning"}
 
