@@ -120,7 +120,7 @@ Table of Contents
      A.10. Interconnection via Internet eXchange Points (IXPs)
        A.10.1.  Retrieve Interconnection Locations
        A.10.2.  Create Bearers and Retrieve Bearer References
-       A.10.3.  Manage ACs and BGP Sessions {#-sec-manage-ac-bgp}
+       A.10.3.  Manage ACs and BGP Sessions
      A.11. Connectivity of Cloud Network Functions
        A.11.1.  Scope
        A.11.2.  Physical Infrastructure
@@ -4322,12 +4322,12 @@ A.4.  One CE, Two ACs
    eNodeB (e.g., distinct VLANs for Control and User Planes).
 
    .-------------.                  .------------------.
-   |             |                  | PE               |
-   |             |                  |  192.0.2.1       |
-   |   eNodeB    |==================|  2001:db8::1     |
-   |             |          VLAN 1  |                  |
-   |             |==================|                  |
+   |             |       ac1        | PE               |
+   |             |==================|  192.0.2.1       |
+   |   eNodeB    |          VLAN 1  |  2001:db8::1     |
    |             |          VLAN 2  |                  |
+   |             |==================|                  |
+   |             |       ac2        |                  |
    |             | Direct           |                  |
    '-------------' Routing          |                  |
                                     |                  |
@@ -4691,11 +4691,11 @@ A.6.  Create Multiple ACs Bound to Multiple CEs
    service provider network.
 
                       .----------------------------------.
-         .----.       |                                  |       .----.
+         .----.  ac1  |                                  |  ac3  .----.
          | CE1+-------+                                  +-------+ CE3|
          '----'       |                                  |       '----'
                       |              Network             |
-         .----.       |                                  |       .----.
+         .----.  ac2  |                                  |  ac4  .----.
          |CE2 +-------+                                  +-------+ CE4|
          '----'       |                                  |       '----'
                       '----------------------------------'
@@ -4785,7 +4785,7 @@ A.7.  Binding Attachment Circuits to an IETF Network Slice
       management of a local Gateway (i.e., CE device).
 
    *  An IETF Network Slice Controller is responsible for the deployment
-      of IETF Network Slices across the TN.
+      of IETF Network Slices across the Transport Network.
 
    SFs are deployed within each site.
 
@@ -5504,7 +5504,7 @@ A.10.2.  Create Bearers and Retrieve Bearer References
                         Provider- Assigned Reference
 
    The bearer is then activated by the server as shown in Figure 51.  A
-   bearer-reference is also returned.  That reference can be used for
+   "bearer-reference" is also returned.  That reference can be used for
    subsequent AC activation requests.
 
    {
@@ -5534,7 +5534,7 @@ A.10.2.  Create Bearers and Retrieve Bearer References
        Figure 51: Message Body of a Response to Create a Bearer in a
                              Specific Location
 
-A.10.3.  Manage ACs and BGP Sessions {#-sec-manage-ac-bgp}
+A.10.3.  Manage ACs and BGP Sessions
 
    As depicted in Figure 52, each network connects to the IXP switch via
    a bearer over which an AC is created.

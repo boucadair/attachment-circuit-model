@@ -1279,7 +1279,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
                     <p id="section-toc.1-1.10.2.10.2.2.1"><a href="#appendix-A.10.2" class="auto internal xref">A.10.2</a>.  <a href="#name-create-bearers-and-retrieve" class="internal xref">Create Bearers and Retrieve Bearer References</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.10.2.3">
-                    <p id="section-toc.1-1.10.2.10.2.3.1"><a href="#appendix-A.10.3" class="auto internal xref">A.10.3</a>.  <a href="#name-manage-acs-and-bgp-sessions" class="internal xref">Manage ACs and BGP Sessions {#-sec-manage-ac-bgp}</a></p>
+                    <p id="section-toc.1-1.10.2.10.2.3.1"><a href="#appendix-A.10.3" class="auto internal xref">A.10.3</a>.  <a href="#name-manage-acs-and-bgp-sessions" class="internal xref">Manage ACs and BGP Sessions</a></p>
 </li>
                 </ul>
 </li>
@@ -5720,7 +5720,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
         <h3 id="name-create-an-ac-over-an-existi">
 <a href="#appendix-A.2" class="section-number selfRef">A.2. </a><a href="#name-create-an-ac-over-an-existi" class="section-name selfRef">Create An AC over An Existing Bearer</a>
         </h3>
-<p id="appendix-A.2-1">An example of  a request message body to create a simple AC over an existing bearer is shown in <a href="#ac-b" class="auto internal xref">Figure 24</a>. The bearer reference is assumed to be known to both the customer and the network provider. Such a reference can be retrieved, e.g., following the example described in <a href="#ex-create-bearer" class="auto internal xref">Appendix A.1</a> or using other means (including, exchanged out-of-band or via proprietary APIs).<a href="#appendix-A.2-1" class="pilcrow">¶</a></p>
+<p id="appendix-A.2-1">An example of a request message body to create a simple AC over an existing bearer is shown in <a href="#ac-b" class="auto internal xref">Figure 24</a>. The bearer reference is assumed to be known to both the customer and the network provider. Such a reference can be retrieved, e.g., following the example described in <a href="#ex-create-bearer" class="auto internal xref">Appendix A.1</a> or using other means (including, exchanged out-of-band or via proprietary APIs).<a href="#appendix-A.2-1" class="pilcrow">¶</a></p>
 <span id="name-example-of-a-message-body-to"></span><div id="ac-b">
 <figure id="figure-24">
           <div class="lang-json sourcecode" id="appendix-A.2-2.1">
@@ -5865,21 +5865,23 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
                 <path d="M 424,32 L 424,224" fill="none" stroke="black"></path>
                 <path d="M 8,32 L 120,32" fill="none" stroke="black"></path>
                 <path d="M 272,32 L 424,32" fill="none" stroke="black"></path>
-                <path d="M 128,78 L 264,78" fill="none" stroke="black"></path>
-                <path d="M 128,82 L 264,82" fill="none" stroke="black"></path>
+                <path d="M 128,62 L 264,62" fill="none" stroke="black"></path>
+                <path d="M 128,66 L 264,66" fill="none" stroke="black"></path>
                 <path d="M 128,110 L 264,110" fill="none" stroke="black"></path>
                 <path d="M 128,114 L 264,114" fill="none" stroke="black"></path>
                 <path d="M 8,160 L 120,160" fill="none" stroke="black"></path>
                 <path d="M 272,224 L 424,224" fill="none" stroke="black"></path>
                 <g class="text">
+                  <text x="192" y="52">ac1</text>
                   <text x="292" y="52">PE</text>
                   <text x="328" y="68">192.0.2.1</text>
                   <text x="60" y="84">eNodeB</text>
+                  <text x="220" y="84">VLAN</text>
+                  <text x="248" y="84">1</text>
                   <text x="336" y="84">2001:db8::1</text>
                   <text x="220" y="100">VLAN</text>
-                  <text x="248" y="100">1</text>
-                  <text x="220" y="132">VLAN</text>
-                  <text x="248" y="132">2</text>
+                  <text x="248" y="100">2</text>
+                  <text x="192" y="132">ac2</text>
                   <text x="156" y="148">Direct</text>
                   <text x="160" y="164">Routing</text>
                 </g>
@@ -6320,9 +6322,13 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
                 <path d="M 456,144 L 496,144" fill="none" stroke="black"></path>
                 <path d="M 112,160 L 392,160" fill="none" stroke="black"></path>
                 <g class="text">
+                  <text x="80" y="52">ac1</text>
+                  <text x="424" y="52">ac3</text>
                   <text x="32" y="68">CE1</text>
                   <text x="480" y="68">CE3</text>
                   <text x="256" y="100">Network</text>
+                  <text x="80" y="116">ac2</text>
+                  <text x="424" y="116">ac4</text>
                   <text x="24" y="132">CE2</text>
                   <text x="480" y="132">CE4</text>
                 </g>
@@ -6420,7 +6426,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
             <p id="appendix-A.7-3.2.1">A 5G SMO is responsible for the deployment of SFs and the indirect management of a local Gateway (i.e., CE device).<a href="#appendix-A.7-3.2.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="appendix-A.7-3.3">
-            <p id="appendix-A.7-3.3.1">An IETF Network Slice Controller is responsible for the deployment of IETF Network Slices across the TN.<a href="#appendix-A.7-3.3.1" class="pilcrow">¶</a></p>
+            <p id="appendix-A.7-3.3.1">An IETF Network Slice Controller is responsible for the deployment of IETF Network Slices across the Transport Network.<a href="#appendix-A.7-3.3.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
 <p id="appendix-A.7-4">SFs are deployed within each site.<a href="#appendix-A.7-4" class="pilcrow">¶</a></p>
@@ -7473,7 +7479,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 <a href="#name-message-body-of-a-request-to-cr" class="selfRef">Message Body of a Request to Create a Bearer using a Provider-Assigned Reference</a>
             </figcaption></figure>
 </div>
-<p id="appendix-A.10.2-3">The bearer is then activated by the server as shown in <a href="#ex-create-bearer-parent-ref-res" class="auto internal xref">Figure 51</a>. A bearer-reference is also returned. That reference can be used for subsequent AC activation requests.<a href="#appendix-A.10.2-3" class="pilcrow">¶</a></p>
+<p id="appendix-A.10.2-3">The bearer is then activated by the server as shown in <a href="#ex-create-bearer-parent-ref-res" class="auto internal xref">Figure 51</a>. A "bearer-reference" is also returned. That reference can be used for subsequent AC activation requests.<a href="#appendix-A.10.2-3" class="pilcrow">¶</a></p>
 <span id="name-message-body-of-a-response-to"></span><div id="ex-create-bearer-parent-ref-res">
 <figure id="figure-51">
             <div class="lang-json sourcecode" id="appendix-A.10.2-4.1">
@@ -7509,10 +7515,10 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 </div>
 </section>
 </div>
-<div id="manage-acs-and-bgp-sessions-sec-manage-ac-bgp">
+<div id="sec-manage-ac-bgp">
 <section id="appendix-A.10.3">
           <h4 id="name-manage-acs-and-bgp-sessions">
-<a href="#appendix-A.10.3" class="section-number selfRef">A.10.3. </a><a href="#name-manage-acs-and-bgp-sessions" class="section-name selfRef">Manage ACs and BGP Sessions {#-sec-manage-ac-bgp}</a>
+<a href="#appendix-A.10.3" class="section-number selfRef">A.10.3. </a><a href="#name-manage-acs-and-bgp-sessions" class="section-name selfRef">Manage ACs and BGP Sessions</a>
           </h4>
 <p id="appendix-A.10.3-1">As depicted in <a href="#bgp-peer-network" class="auto internal xref">Figure 52</a>, each network connects to the IXP switch via a bearer over which an AC is created.<a href="#appendix-A.10.3-1" class="pilcrow">¶</a></p>
 <span id="name-simple-interconnection-topo"></span><div id="bgp-peer-network">
