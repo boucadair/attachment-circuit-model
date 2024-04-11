@@ -3,20 +3,11 @@
     "ac": [
       {
         "name": "ac4585",
-        "description": "An AC on an existing bearer",
-        "requested-start": "2023-12-12T05:00:00.00Z",
+        "description": "An AC for a known peer SAP",
+        "requested-start": "2025-12-12T05:00:00.00Z",
         "peer-sap-id": [
           "nf-termination-ip"
-        ],
-        "l2-connection": {
-          "encapsulation": {
-            "type": "ietf-vpn-common:dot1q",
-            "dot1q": {
-              "tag-type": "ietf-vpn-common:c-vlan",
-              "cvlan-id": 550
-            }
-          }
-        }
+        ]
       }
     ]
   }
