@@ -628,6 +628,13 @@ Table of Contents
 
                   Figure 4: Bearer Service Tree Structure
 
+   In some deployments, a customer may first retrieve a list of
+   available presence locations before actually placing an order for a
+   bearer creation.  The request may be filtered based upon a customer
+   name, role of the bearer, etc.  The retrieved location name may be
+   then referenced in the bearer creation request ("provider-location-
+   reference").
+
    The same customer site (CE, SF, etc.) can terminate one or multiple
    bearers; each of them uniquely identified by a reference that is
    assigned by the network provider.  These bearers can terminate on the
@@ -693,6 +700,9 @@ Table of Contents
 
    'sync-phy-type':  Specifies the Sync PHY mechanism (e.g., SynchE
       [ITU-T-G.781]) enabled for the bearer.
+
+   'provider-location-reference':  Indicates a location identified by a
+      provider-assigned reference.
 
    'customer-point':  Specifies the customer terminating point for the
       bearer.  A bearer request can indicate a device, a site, a
