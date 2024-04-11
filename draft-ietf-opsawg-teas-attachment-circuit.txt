@@ -5,14 +5,14 @@
 OPSAWG                                                 M. Boucadair, Ed.
 Internet-Draft                                                    Orange
 Intended status: Standards Track                         R. Roberts, Ed.
-Expires: 12 October 2024                                         Juniper
+Expires: 13 October 2024                                         Juniper
                                                            O. G. D. Dios
                                                               Telefonica
                                                            S. B. Giraldo
                                                                    Nokia
                                                                    B. Wu
                                                      Huawei Technologies
-                                                           10 April 2024
+                                                           11 April 2024
 
 
   YANG Data Models for Bearers and 'Attachment Circuits'-as-a-Service
@@ -62,7 +62,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 12 October 2024.
+   This Internet-Draft will expire on 13 October 2024.
 
 Copyright Notice
 
@@ -2003,6 +2003,11 @@ Table of Contents
      namespace "urn:ietf:params:xml:ns:yang:ietf-bearer-svc";
      prefix bearer-svc;
 
+     import ietf-inet-types {
+       prefix inet;
+       reference
+         "RFC 6991: Common YANG Data Types, Section 4";
+     }
      import ietf-vpn-common {
        prefix vpn-common;
        reference
@@ -2018,7 +2023,7 @@ Table of Contents
        prefix ac-svc;
        reference
          "RFC XXXX: YANG Data Models for Bearers and 'Attachment
-                     Circuits'-as-a-Service (ACaaS)";
+                    Circuits'-as-a-Service (ACaaS)";
      }
 
      organization
@@ -2059,7 +2064,7 @@ Table of Contents
          "Initial revision.";
        reference
          "RFC XXXX: YANG Data Models for Bearers and 'Attachment
-                     Circuits'-as-a-Service (ACaaS)";
+                    Circuits'-as-a-Service (ACaaS)";
      }
 
      // Typedef to ease referencing cross-modules
@@ -2147,48 +2152,47 @@ Table of Contents
                        synchronization based on the physical layer";
      }
 
+     // Reusabel groupings
+
      grouping location-information {
        description
          "Basic location information";
-       container location {
+
+       leaf location-name {
+         type string;
          description
-           "Location of the node.";
-         leaf location-name {
-           type string;
-           description
-             "Provides a location name. This data node can be mapped,
-              e.g., to the 3GPP NRM IOC ManagedElement.";
+           "Provides a location name. This data node can be mapped,
+            e.g., to the 3GPP NRM IOC ManagedElement.";
+       }
+       leaf address {
+         type string;
+         description
+           "Address (number and street) of the device/site.";
+       }
+       leaf postal-code {
+         type string;
+         description
+           "Postal code of the device/site.";
+       }
+       leaf state {
+         type string;
+         description
+           "State of the device/site.  This leaf can also be
+            used to describe a region for a country that
+            does not have states.";
+       }
+       leaf city {
+         type string;
+         description
+           "City of the device/site.";
+       }
+       leaf country-code {
+         type string {
+           pattern '[A-Z]{2}';
          }
-         leaf address {
-           type string;
-           description
-             "Address (number and street) of the device/site.";
-         }
-         leaf postal-code {
-           type string;
-           description
-             "Postal code of the device/site.";
-         }
-         leaf state {
-           type string;
-           description
-             "State of the device/site.  This leaf can also be
-              used to describe a region for a country that
-              does not have states.";
-         }
-         leaf city {
-           type string;
-           description
-             "City of the device/site.";
-         }
-         leaf country-code {
-           type string {
-             pattern '[A-Z]{2}';
-           }
-           description
-             "Country of the device/site.
-              Expressed as ISO ALPHA-2 code.";
-         }
+         description
+           "Country of the device/site.
+            Expressed as ISO ALPHA-2 code.";
        }
      }
 
@@ -2252,6 +2256,42 @@ Table of Contents
              }
            }
          }
+       }
+     }
+
+     container locations {
+       description
+         "Retrieves the list of available provider locations for
+          terminating bearers.";
+       leaf customer-name {
+         type string;
+         description
+           "Indicates the name of the customer that requested these
+            bearers.";
+       }
+       leaf role {
+         type identityref {
+           base ac-common:role;
+         }
+         description
+           "Indicates whether this bearer is used as UNI, NNI, etc.";
+       }
+       leaf local-as {
+         type inet:as-number;
+         description
+           "Indicates a provider AS Number (ASN).";
+       }
+       leaf peer-as {
+         type inet:as-number;
+         description
+           "Indicates the customer's ASN.";
+       }
+       list location {
+         key "location-name";
+         config false;
+         description
+           "Reports the list of available locations.";
+         uses location-information;
        }
      }
 
@@ -2336,6 +2376,11 @@ Table of Contents
            description
              "Type of the physical layer synchronization.";
          }
+         leaf provider-location-reference {
+           type string;
+           description
+             "Specifies the provider's location reference.";
+         }
          container customer-point {
            description
              "Base container to link the Bearer existence";
@@ -2362,7 +2407,11 @@ Table of Contents
                description
                  "Identifier for the device where that bearer belongs.";
              }
-             uses location-information;
+             container location {
+               description
+                 "Location of the node.";
+                uses location-information;
+             }
            }
            container site {
              when
@@ -2381,7 +2430,11 @@ Table of Contents
                  "Identifier for the site or sites where that bearer
                   belongs.";
              }
-             uses location-information;
+             container location {
+               description
+                 "Location of the node.";
+                uses location-information;
+             }
            }
            leaf custom-id {
              when "derived-from-or-self(../identified-by, "
