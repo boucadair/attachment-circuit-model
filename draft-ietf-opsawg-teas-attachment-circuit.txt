@@ -117,11 +117,15 @@ Table of Contents
      A.8.  Connecting a Virtualized Environment Running in a Cloud
             Provider
      A.9.  Connect Customer Network Through BGP
-     A.10. BGP Peering
-       A.10.1.  Retrieve interconnection Locations
+     A.10. Interconnection via Internet eXchange Points (IXPs)
+       A.10.1.  Retrieve Interconnection Locations
        A.10.2.  Create Bearers and Retrieve Bearer References
-       A.10.3.  Manage ACs and BGP Sessions
+       A.10.3.  Manage ACs and BGP Sessions {#-sec-manage-ac-bgp}
      A.11. Connectivity of Cloud Network Functions
+       A.11.1.  Scope
+       A.11.2.  Physical Infrastructure
+       A.11.3.  NFs Deployment
+       A.11.4.  NF Scale-Out
    Acknowledgments
    Contributors
    Authors' Addresses
@@ -5415,22 +5419,27 @@ A.9.  Connect Customer Network Through BGP
    to the same customer without requiring the full service
    configuration.
 
-A.10.  BGP Peering
+A.10.  Interconnection via Internet eXchange Points (IXPs)
 
    This section illustrates how to use the AC service model for
-   interconnection purposes.  To that aim, we assume a simplified
-   Internet eXchange Point (IXP) configuration without zooming into IXP
-   deployment specifics.  Let us assume that networks are interconnected
-   via a Layer 2 facility.  BGP is used to exchange routing information
-   and reachability announcements between those networks.  The same
-   approach can be used to negotiate interconnection between two
-   networks and without involving an IXP.
+   interconnection purposes.  To that aim, the document assumes a
+   simplified Internet eXchange Point (IXP) configuration without
+   zooming into IXP deployment specifics.  Let us assume that networks
+   are interconnected via a Layer 2 facility.  BGP is used to exchange
+   routing information and reachability announcements between those
+   networks.  The same approach can be used to negotiate interconnection
+   between two networks and without involving an IXP.
 
-A.10.1.  Retrieve interconnection Locations
+   The following subsections exemplify a deployment flow, but BGP
+   sessions can be managed without having to execute systematically all
+   the steps detailed hereafter.
+
+A.10.1.  Retrieve Interconnection Locations
 
    Figure 48 shows an example a message body of a request to retrieve a
-   list of interconnection locations.  The request includes information
-   such as customer name, peer ASN, etc. to filter the locations.
+   list of interconnection locations.  The request includes optional
+   information such as customer name, peer ASN, etc. to filter out the
+   locations.
 
    {
      "ietf-bearer-svc:locations": {
@@ -5525,7 +5534,7 @@ A.10.2.  Create Bearers and Retrieve Bearer References
        Figure 51: Message Body of a Response to Create a Bearer in a
                              Specific Location
 
-A.10.3.  Manage ACs and BGP Sessions
+A.10.3.  Manage ACs and BGP Sessions {#-sec-manage-ac-bgp}
 
    As depicted in Figure 52, each network connects to the IXP switch via
    a bearer over which an AC is created.
@@ -5814,6 +5823,8 @@ A.10.3.  Manage ACs and BGP Sessions
 
 A.11.  Connectivity of Cloud Network Functions
 
+A.11.1.  Scope
+
    This section demonstrates how the AC service model permits to manage
    connectivity requirements for complex Network Functions (NFs) -
    containerized or virtualized - that are typically deployed in Telco
@@ -5849,6 +5860,8 @@ A.11.  Connectivity of Cloud Network Functions
       two VLANs are presented in this example, additional VLANs are
       configured following a similar logic.
 
+A.11.2.  Physical Infrastructure
+
    Figure 58 describes the physical infrastructure.  The compute nodes
    (customer) are attached to the provider infrastructure thanks to a
    set of physical links on which attachment circuits are provisioned
@@ -5879,6 +5892,8 @@ A.11.  Connectivity of Cloud Network Functions
                                           └ - - - - - - - - - - - - - ┘
 
          Figure 58: Example Physical Topology for Cloud Deployment
+
+A.11.3.  NFs Deployment
 
    The NFs are deployed on this infrastructure in the following way:
 
@@ -6216,6 +6231,8 @@ A.11.  Connectivity of Cloud Network Functions
    }
 
         Figure 60: Message Body for the Configuration of The NF ACs
+
+A.11.4.  NF Scale-Out
 
    Assuming a failure of "compute-01", the instance "nf-up-1" can be
    redeployed to "compute-07" by the NF/Cloud Orchestration.
