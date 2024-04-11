@@ -1,0 +1,16 @@
+{
+  "ietf-bearer-svc:locations": {
+    "customer-name": "a future peer",
+    "role": "ietf-ac-common:nni",
+    "peer-as": 65536,
+    "location": [
+      {
+        "location-name": "Location-X",
+        "_comment": "other location attributes"        
+      },
+      {
+        "_comment": "other locations"
+      }
+    ]
+  }  
+}

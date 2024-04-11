@@ -1,0 +1,17 @@
+{
+  "ietf-bearer-svc:bearers": {
+    "bearer": [
+      {
+        "name": "a-name-choosen-by-client",
+        "provider-location-reference": "Location X",
+        "customer-point": {
+          "identified-by": "ietf-bearer-svc:device-id",
+          "device": {
+            "device-id": "ASBR_1_Location_X"
+          }
+        },
+        "type": "ietf-bearer-svc:ethernet"
+      }
+    ]
+  }
+}
