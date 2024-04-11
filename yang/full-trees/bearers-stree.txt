@@ -1,5 +1,17 @@
 module: ietf-bearer-svc
 
+  +--rw locations
+  |  +--rw customer-name?   string
+  |  +--rw role?            identityref
+  |  +--rw local-as?        inet:as-number
+  |  +--rw peer-as?         inet:as-number
+  |  +--ro location* [location-name]
+  |     +--ro location-name    string
+  |     +--ro address?         string
+  |     +--ro postal-code?     string
+  |     +--ro state?           string
+  |     +--ro city?            string
+  |     +--ro country-code?    string
   +--rw bearers
      +--rw customer-name?           string
      +--rw requested-start?         yang:date-and-time
@@ -20,18 +32,19 @@ module: ietf-bearer-svc
      |           +--:(all-groups)
      |              +--rw all-other-groups?    empty
      +--rw bearer* [name]
-        +--rw name                 string
-        +--rw customer-name?       string
-        +--rw description?         string
+        +--rw name                           string
+        +--rw description?                   string
+        +--rw customer-name?                 string
         +--rw groups
         |  +--rw group* [group-id]
         |     +--rw group-id    string
-        +--rw op-comment?          string
-        +--rw bearer-parent-ref?   bearer-svc:bearer-ref
-        +--ro bearer-lag-member*   bearer-svc:bearer-ref
-        +--ro sync-phy-capable?    boolean
-        +--rw sync-phy-enabled?    boolean
-        +--rw sync-phy-type?       identityref
+        +--rw op-comment?                    string
+        +--rw bearer-parent-ref?             bearer-svc:bearer-ref
+        +--ro bearer-lag-member*             bearer-svc:bearer-ref
+        +--ro sync-phy-capable?              boolean
+        +--rw sync-phy-enabled?              boolean
+        +--rw sync-phy-type?                 identityref
+        +--rw provider-location-reference?   string
         +--rw customer-point
         |  +--rw identified-by?   identityref
         |  +--rw device
@@ -53,15 +66,16 @@ module: ietf-bearer-svc
         |  |     +--rw city?            string
         |  |     +--rw country-code?    string
         |  +--rw custom-id?       string
-        +--rw type?                identityref
-        +--rw test-only?           empty
-        +--ro bearer-reference?    string
+        +--rw type?                          identityref
+        +--rw test-only?                     empty
+        +--ro bearer-reference?              string
         |       {ac-common:server-assigned-reference}?
-        +--ro ac-svc-ref*          ac-svc:attachment-circuit-reference
-        +--rw requested-start?     yang:date-and-time
-        +--rw requested-stop?      yang:date-and-time
-        +--ro actual-start?        yang:date-and-time
-        +--ro actual-stop?         yang:date-and-time
+        +--ro ac-svc-ref*
+        |       ac-svc:attachment-circuit-reference
+        +--rw requested-start?               yang:date-and-time
+        +--rw requested-stop?                yang:date-and-time
+        +--ro actual-start?                  yang:date-and-time
+        +--ro actual-stop?                   yang:date-and-time
         +--rw status
            +--rw admin-status
            |  +--rw status?        identityref
