@@ -26,6 +26,6 @@
  - vlan-id: 200
  - CE address (GW2): 192.0.2.5/30
  - PE address: 192.0.2.6/30
- - Routing: BGP local-as: 65536
-                customer-as: 65550
-                customer-address: 192.0.2.5
+ - Routing: BGP local-as: 65536 (Provider ASN)
+                peer-as: 65550 (customer ASN)
+                remote-address: 192.0.2.5 (Customer address)
