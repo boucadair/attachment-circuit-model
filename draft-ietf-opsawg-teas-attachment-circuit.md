@@ -1274,12 +1274,48 @@ This scenario allows the provider to maintain a list of ACs belonging to the sam
 
 This section illustrates how to use the AC service model for interconnection purposes. To that aim, we assume a simplified Internet eXchange Point (IXP) configuration without zooming into IXP deployment specifics. Let us assume that networks are interconnected via a Layer 2 facility. BGP is used to exchange routing information and reachability announcements between those networks. The same approach can be used to negotiate interconnection between two networks and without involving an IXP.
 
+### Retrieve interconnection Locations
+
+{{ex-retrieve-locations}} shows an example a message body of a request to retrieve a list of interconnection locations. The request includes information such as customer name, peer ASN, etc. to filter the locations.
+
+~~~~ json
+{::include-fold ./json-examples/svc/get-locations.json}
+~~~~
+{: #ex-retrieve-locations title="Message Body of a Request to Retrieve Interconnection Locations"}
+
+{{ex-retrieve-locations-res}} provides an example of a response received from the server with a list of available interconnection locations.
+
+~~~~ json
+{::include-fold ./json-examples/svc/get-locations-response.json}
+~~~~
+{: #ex-retrieve-locations-res title="Message Body of a Response to Retrieve Interconnection Locations"}
+
+### Create Bearers and Retrieve Bearer References
+
+A peer can then use the location information and select the ones where it can request new bearers. As shown in {{ex-create-bearer-parent-ref}}, the request includes a location reference which is known to the server (returned in {{ex-retrieve-locations-res}}).
+
+~~~~ json
+{::include-fold ./json-examples/svc/simple-bearer-create-with-provider-ref.json}
+~~~~
+{: #ex-create-bearer-parent-ref title="Message Body of a Request to Create a Bearer using a Provider-Assigned Reference"}
+
+The bearer is then activated by the server as shown in {{ex-create-bearer-parent-ref-res}}. A bearer-reference is also returned. That reference can be used for subsequent AC activation requests.
+
+~~~~ json
+{::include-fold ./json-examples/svc/simple-bearer-create-with-provider-ref-response}
+~~~~
+{: #ex-create-bearer-parent-ref-res title="Message Body of a Response to Create a Bearer in a Specific Location"}
+
+### Manage ACs and BGP Sessions
+
+As depicted in {{bgp-peer-network}}, each network connects to the IXP switch via a bearer over which an AC is created.
+
 ~~~~ aasvg
 {::include-fold ./figures/bgp-peering-example.txt}
 ~~~~
 {: #bgp-peer-network title="Simple Interconnection Topology"}
 
-As depicted in {{bgp-peer-network}}, each network connects to the IXP switch via a bearer over which an AC is created. The AC configuration ({{bgp-peer-network-add-attachment-circuit}}) includes parameters such as VLAN configuration, IP addresses, MTU, and any additional settings required for connectivity. The peering location is inferred from the "bearer-reference".
+The AC configuration ({{bgp-peer-network-add-attachment-circuit}}) includes parameters such as VLAN configuration, IP addresses, MTU, and any additional settings required for connectivity. The peering location is inferred from the "bearer-reference".
 
 ~~~~ json
 {::include-fold ./json-examples/svc/bgp-peering-example.json}
