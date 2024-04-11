@@ -1017,7 +1017,7 @@ Note that the response also indicates that Sync Phy mechanism is supported for t
 
 ## Create An AC over An Existing Bearer {#ac-bearer-exist}
 
-An example of  a request message body to create a simple AC over an existing bearer is shown in {{ac-b}}. The bearer reference is assumed to be known to both the customer and the network provider. Such a reference can be retrieved, e.g., following the example described in {{ex-create-bearer}} or using other means (including, exchanged out-of-band or via proprietary APIs).
+An example of a request message body to create a simple AC over an existing bearer is shown in {{ac-b}}. The bearer reference is assumed to be known to both the customer and the network provider. Such a reference can be retrieved, e.g., following the example described in {{ex-create-bearer}} or using other means (including, exchanged out-of-band or via proprietary APIs).
 
 ~~~~ json
 {::include-dolf ./json-examples/svc/simple-ac-existing-bearer.json}
@@ -1053,12 +1053,12 @@ Let us consider the example of an eNodeB (CE) that is directly connected to the 
 
 ~~~~ aasvg
 .-------------.                  .------------------.
-|             |                  | PE               |
-|             |                  |  192.0.2.1       |
-|   eNodeB    |==================|  2001:db8::1     |
-|             |          VLAN 1  |                  |
-|             |==================|                  |
+|             |       ac1        | PE               |
+|             |==================|  192.0.2.1       |
+|   eNodeB    |          VLAN 1  |  2001:db8::1     |
 |             |          VLAN 2  |                  |
+|             |==================|                  |
+|             |       ac2        |                  |
 |             | Direct           |                  |
 '-------------' Routing          |                  |
                                  |                  |
@@ -1127,11 +1127,11 @@ When multiple ACs are requested by the same customer for the same site, the requ
 
 ~~~~ aasvg
                    .----------------------------------.
-      .----.       |                                  |       .----.
+      .----.  ac1  |                                  |  ac3  .----.
       | CE1+-------+                                  +-------+ CE3|
       '----'       |                                  |       '----'
                    |              Network             |
-      .----.       |                                  |       .----.
+      .----.  ac2  |                                  |  ac4  .----.
       |CE2 +-------+                                  +-------+ CE4|
       '----'       |                                  |       '----'
                    '----------------------------------'
@@ -1153,7 +1153,7 @@ First, {{slice-vlan-1}} describes the end-to-end network topology as well the or
 
 - The topology is made up of two sites ("site1" and "site2"), interconnected via a Transport Network (e.g. IP/MPLS Network). An SF is deployed within each site in a dedicated IP Subnet.
 - A 5G SMO is responsible for the deployment of SFs and the indirect management of a local Gateway (i.e., CE device).
-- An IETF Network Slice Controller is responsible for the deployment of IETF Network Slices across the TN.
+- An IETF Network Slice Controller is responsible for the deployment of IETF Network Slices across the Transport Network.
 
 SFs are deployed within each site.
 
@@ -1301,14 +1301,14 @@ A peer can then use the location information and select the ones where it can re
 ~~~~
 {: #ex-create-bearer-parent-ref title="Message Body of a Request to Create a Bearer using a Provider-Assigned Reference"}
 
-The bearer is then activated by the server as shown in {{ex-create-bearer-parent-ref-res}}. A bearer-reference is also returned. That reference can be used for subsequent AC activation requests.
+The bearer is then activated by the server as shown in {{ex-create-bearer-parent-ref-res}}. A "bearer-reference" is also returned. That reference can be used for subsequent AC activation requests.
 
 ~~~~ json
 {::include-fold ./json-examples/svc/simple-bearer-create-with-provider-ref-response.json}
 ~~~~
 {: #ex-create-bearer-parent-ref-res title="Message Body of a Response to Create a Bearer in a Specific Location"}
 
-### Manage ACs and BGP Sessions {#-sec-manage-ac-bgp}
+### Manage ACs and BGP Sessions {#sec-manage-ac-bgp}
 
 As depicted in {{bgp-peer-network}}, each network connects to the IXP switch via a bearer over which an AC is created.
 
