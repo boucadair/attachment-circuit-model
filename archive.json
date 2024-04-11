@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-04-09T00:36:15.956014+00:00",
+  "timestamp": "2024-04-11T00:36:28.764599+00:00",
   "repo": "boucadair/attachment-circuit-model",
   "labels": [
     {
@@ -1975,7 +1975,7 @@
       "id": "I_kwDOIiAkrc53xJHx",
       "title": "Add parent AC example",
       "url": "https://github.com/boucadair/attachment-circuit-model/issues/111",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "boucadair",
       "authorAssociation": "OWNER",
       "assignees": [
@@ -1986,8 +1986,8 @@
       ],
       "body": "From Richard: \"Think for example of a set of compute nodes attached to a TOR/Fabric or Cell Site Router).\r\n\r\nExample:\r\n\r\nComp1-------[  TOR  ]\r\nComp2---------|| |\r\nComp3----------| | \r\n...              |   \r\nCompX------------| \r\n\r\nAssume you have sapX = CompX interface\"\r\n\r\nac-parent:\r\nname: aggregate-service-foo\r\nl2-connection:\r\n   cvlan-id: 100\r\nip-connection:\r\n   ipv4:\r\n     local-address: 192.168.1.1/24\r\n     customer-addresses:\r\n       address-pool:192.168.1.3-254\r\n\r\nac1\r\npeer-sap sap1\r\nac-parent-ref:\r\n    aggregate-service-foo\r\nac2\r\npeer-sap sap2\r\nac-parent-ref:\r\n    aggregate-service-foo",
       "createdAt": "2023-11-24T09:15:14Z",
-      "updatedAt": "2023-11-29T13:18:06Z",
-      "closedAt": null,
+      "updatedAt": "2024-04-10T10:13:48Z",
+      "closedAt": "2024-04-10T10:13:48Z",
       "comments": [
         {
           "author": "boucadair",
@@ -2438,7 +2438,7 @@
       "id": "I_kwDOIiAkrc5-P8fH",
       "title": "add an example of interconnecting two networks (not vpn specific)",
       "url": "https://github.com/boucadair/attachment-circuit-model/issues/178",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "boucadair",
       "authorAssociation": "OWNER",
       "assignees": [
@@ -2450,8 +2450,8 @@
       ],
       "body": "",
       "createdAt": "2024-02-05T09:52:00Z",
-      "updatedAt": "2024-04-08T09:06:07Z",
-      "closedAt": null,
+      "updatedAt": "2024-04-10T11:54:08Z",
+      "closedAt": "2024-04-10T11:54:07Z",
       "comments": [
         {
           "author": "boucadair",
@@ -2466,6 +2466,13 @@
           "body": "Also, updated the ac-common model with new admin-status codes: \r\n* awaiting-validation\r\n* awaiting-processing\r\n* admin-prohibited\r\n* rejected",
           "createdAt": "2024-04-08T09:06:05Z",
           "updatedAt": "2024-04-08T09:06:05Z"
+        },
+        {
+          "author": "boucadair",
+          "authorAssociation": "OWNER",
+          "body": "Done. See https://github.com/boucadair/attachment-circuit-model/commit/95ed4fafe5cfb9bc9a3d567f71ee65d6adfd5b1f",
+          "createdAt": "2024-04-10T11:54:07Z",
+          "updatedAt": "2024-04-10T11:54:07Z"
         }
       ]
     },
@@ -2639,6 +2646,24 @@
       "createdAt": "2024-03-25T11:23:07Z",
       "updatedAt": "2024-04-08T08:57:34Z",
       "closedAt": "2024-04-08T08:57:34Z",
+      "comments": []
+    },
+    {
+      "number": 203,
+      "id": "I_kwDOIiAkrc6FGgra",
+      "title": "Have a more generic way to capture failure detection than BFD  ?",
+      "url": "https://github.com/boucadair/attachment-circuit-model/issues/203",
+      "state": "OPEN",
+      "author": "robric",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "AC-SVC"
+      ],
+      "body": "BFD is technology specific and we might have alternative failover detection mechanism.\r\n\r\nShould not we express the fact that fast detection is wanted for an Endpoint in a non technology specific (oam protected). This would refer to the profile name which capture the technology-specific part.\r\n\r\nWe could for example list a set of endpoint for which we want protection, no matter what protocol leverages it: static Next Hop or BGP neighbor.",
+      "createdAt": "2024-04-09T10:02:21Z",
+      "updatedAt": "2024-04-09T10:21:57Z",
+      "closedAt": null,
       "comments": []
     }
   ],
@@ -7375,21 +7400,21 @@
       "id": "PR_kwDOIiAkrc5otX-j",
       "title": "Add sample",
       "url": "https://github.com/boucadair/attachment-circuit-model/pull/194",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "sbarguil",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "#178",
       "createdAt": "2024-03-05T12:22:59Z",
-      "updatedAt": "2024-04-04T08:18:36Z",
+      "updatedAt": "2024-04-09T09:26:41Z",
       "baseRepository": "boucadair/attachment-circuit-model",
       "baseRefName": "main",
       "baseRefOid": "0987d75015d34697e6722d93240f54980eceea7b",
       "headRepository": "boucadair/attachment-circuit-model",
       "headRefName": "example-two-network-connected",
       "headRefOid": "1b866b021ba9882f031f8fcbe822a3deac683f78",
-      "closedAt": null,
+      "closedAt": "2024-04-09T09:26:41Z",
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
@@ -7414,6 +7439,34 @@
           "body": "Thanks @sbarguil. Sent you right now a PR to clean up the example and remove VPN mentions in the figure, in particular",
           "createdAt": "2024-03-12T05:24:20Z",
           "updatedAt": "2024-03-12T05:24:20Z"
+        },
+        {
+          "author": "boucadair",
+          "authorAssociation": "OWNER",
+          "body": "@Samier, I'm planning to reject this PR because it does not reflect the use for interconnection/peering we had initially in mind. \r\n\r\nCan you please inspire from https://datatracker.ietf.org/doc/draft-ramseyer-grow-peering-api/04/ and show how we can use the AC model for this case?",
+          "createdAt": "2024-04-09T08:42:06Z",
+          "updatedAt": "2024-04-09T08:42:06Z"
+        },
+        {
+          "author": "boucadair",
+          "authorAssociation": "OWNER",
+          "body": "Here is the part to focus on: no need to use peer group, bfd, etc. \r\n\r\n        |     +--rw bgp {vpn-common:rtg-bgp}?\r\n        |     |  ..\r\n        |     |  +--rw neighbor* [id]\r\n        |     |     +--rw id                  string\r\n        |     |     +--ro server-reference?   string\r\n        |     |     |       {ac-common:server-assigned-reference}?\r\n        |     |     +--rw remote-address?     inet:ip-address\r\n        |     |     +--rw local-address?      inet:ip-address\r\n        |     |     +--rw local-as?           inet:as-number\r\n        |     |     +--rw peer-as?            inet:as-number\r\n        |     |     +--rw address-family?     identityref\r\n        |     |     +--rw authentication\r\n        |     |     |  +--rw enabled?           boolean\r\n        |     |     |  +--rw keying-material\r\n        |     |     |     +--rw (option)?\r\n        |     |     |        +--:(ao)\r\n        |     |     |        |  +--rw enable-ao?          boolean\r\n        |     |     |        |  +--rw ao-keychain?\r\n        |     |     |        |          key-chain:key-chain-ref\r\n        |     |     |        +--:(md5)\r\n        |     |     |        |  +--rw md5-keychain?\r\n        |     |     |        |          key-chain:key-chain-ref\r\n        |     |     |        +--:(explicit)\r\n        |     |     |           +--rw key-id?             uint32\r\n        |     |     |           +--rw key?                string\r\n        |     |     |           +--rw crypto-algorithm?   identityref\r\n        |     |     +--rw requested-start?    yang:date-and-time\r\n        |     |     +--rw requested-stop?     yang:date-and-time\r\n        |     |     +--ro actual-start?       yang:date-and-time\r\n        |     |     +--ro actual-stop?        yang:date-and-time\r\n        |     |     +--rw status\r\n        |     |     |  +--rw admin-status\r\n        |     |     |  |  +--rw status?        identityref\r\n        |     |     |  |  +--ro last-change?   yang:date-and-time\r\n        |     |     |  +--ro oper-status\r\n        |     |     |     +--ro status?        identityref\r\n        |     |     |     +--ro last-change?   yang:date-and-time",
+          "createdAt": "2024-04-09T09:02:07Z",
+          "updatedAt": "2024-04-09T09:02:23Z"
+        },
+        {
+          "author": "sbarguil",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> @samier, I'm planning to reject this PR because it does not reflect the use for interconnection/peering we had initially in mind.\r\n> \r\n> Can you please inspire from https://datatracker.ietf.org/doc/draft-ramseyer-grow-peering-api/04/ and show how we can use the AC model for this case?\r\n\r\nsure! let me elaborate a new one . ",
+          "createdAt": "2024-04-09T09:25:09Z",
+          "updatedAt": "2024-04-09T09:25:09Z"
+        },
+        {
+          "author": "sbarguil",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I will open a new PR for this issue",
+          "createdAt": "2024-04-09T09:26:41Z",
+          "updatedAt": "2024-04-09T09:26:41Z"
         }
       ],
       "reviews": []
@@ -7569,24 +7622,26 @@
       "id": "PR_kwDOIiAkrc5sCewo",
       "title": "Review of draft cloud json",
       "url": "https://github.com/boucadair/attachment-circuit-model/pull/201",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "boucadair",
       "authorAssociation": "OWNER",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2024-04-08T17:21:47Z",
-      "updatedAt": "2024-04-08T17:21:47Z",
+      "updatedAt": "2024-04-09T08:34:55Z",
       "baseRepository": "boucadair/attachment-circuit-model",
       "baseRefName": "main",
       "baseRefOid": "aab357bb9a86934dd717a5d6ee060f30babf316c",
       "headRepository": "boucadair/attachment-circuit-model",
       "headRefName": "boucadair-patch-5",
-      "headRefOid": "729872dff3ccdd43b4561f327ec06802b02634a9",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "ce76739e9dd7909181c585095f5ac9d46e954766",
+      "closedAt": "2024-04-09T08:34:54Z",
+      "mergedAt": "2024-04-09T08:34:54Z",
+      "mergedBy": "boucadair",
+      "mergeCommit": {
+        "oid": "f73e592b4d110931b48378a23b5facba5394f437"
+      },
       "comments": [],
       "reviews": []
     },
@@ -7595,25 +7650,54 @@
       "id": "PR_kwDOIiAkrc5sClmM",
       "title": "cloud example",
       "url": "https://github.com/boucadair/attachment-circuit-model/pull/202",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "boucadair",
       "authorAssociation": "OWNER",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2024-04-08T17:40:24Z",
-      "updatedAt": "2024-04-08T17:43:24Z",
+      "updatedAt": "2024-04-09T16:42:19Z",
       "baseRepository": "boucadair/attachment-circuit-model",
       "baseRefName": "main",
       "baseRefOid": "9f85c67840c267a2219a1fd1f6fdc5527c64e3d0",
       "headRepository": "boucadair/attachment-circuit-model",
       "headRefName": "boucadair-patch-6",
-      "headRefOid": "2148a4193a5de41f90514c2b178bc7fe1425c5ed",
-      "closedAt": null,
+      "headRefOid": "c12a584ed26d1b75ef944a594d29ce2d10b230e3",
+      "closedAt": "2024-04-09T16:42:19Z",
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
-      "comments": [],
+      "comments": [
+        {
+          "author": "robric",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Guys, this is a draft, please wait before commenting.\r\n\r\n\r\n\r\nJuniper Business Use Only\r\nFrom: samier barguil ***@***.***>\r\nSent: Tuesday, April 9, 2024 10:13 AM\r\nTo: boucadair/attachment-circuit-model ***@***.***>\r\nCc: Richard Roberts ***@***.***>; Review requested ***@***.***>\r\nSubject: Re: [boucadair/attachment-circuit-model] cloud example (PR #202)\r\n\r\n[External Email. Be cautious of content]\r\n\r\n\r\n@sbarguil commented on this pull request.\r\n\r\n________________________________\r\n\r\nIn draft-ietf-opsawg-teas-attachment-circuit.md<https://urldefense.com/v3/__https:/github.com/boucadair/attachment-circuit-model/pull/202*discussion_r1557175910__;Iw!!NEt6yMaO-gk!GEUTQ4iSoTi3NKDFMXxdde2ij-thAvkIaIo_KuDcMhsqfa1ZMlWG_AmOePSupKhDvRtdKdRrrM_Uv7hgoUzU57jy7A$>:\r\n\r\n>\r\n\r\n-The Network Function have the following characteristics:\r\n\r\n-- The Network Function is distributed on a set of computes with scaled-out and redundant instances.\r\n\r\n-- The NF has two distinct type of instances: user plane (nf-up) and  routing control plane (nf-cp).\r\n\r\n-- The User plane component can be distributed among the first 8 compute nodes (compute-1 to compute-08) to achieve high performance.\r\n\r\n-- The Control plane is deployed in a redundant fashion on 2 instances running on distinct compute nodes (compute-09 and compute-10).\r\n\r\n-- The NF is attached to distinct networks, each making use of a dedicated vlan. These vlans are therefore instantiated as separate Attachment Circuits. From a realization standpoint, the NF interface connectivity is generally provided thanks to macvlan or SR-IOV. For the sake of simplicity only 2 vlans are presented in this example, additional vlans are generally configured based on similar logic.\r\n\r\n+The SFs have the following characteristics:\r\n\r\n+- The SF is distributed on a set of compute nodes with scaled-out and redundant instances.\r\n\r\n+- The SF has two distinct type of instances: user plane (\"nf-up\") and routing control plane (\"nf-cp\").\r\n\r\n+- The User plane component can be distributed among the first 8 compute nodes (\"compute-1\" to \"compute-08\") to achieve high performance.\r\n\u2b07\ufe0f Suggested change\r\n\r\n-- The User plane component can be distributed among the first 8 compute nodes (\"compute-1\" to \"compute-08\") to achieve high performance.\r\n\r\n+- The User plane component can be distributed among the first 8 compute nodes (\"compute-01\" to \"compute-08\") to achieve high performance.\r\n\r\n\u2014\r\nReply to this email directly, view it on GitHub<https://urldefense.com/v3/__https:/github.com/boucadair/attachment-circuit-model/pull/202*pullrequestreview-1988402334__;Iw!!NEt6yMaO-gk!GEUTQ4iSoTi3NKDFMXxdde2ij-thAvkIaIo_KuDcMhsqfa1ZMlWG_AmOePSupKhDvRtdKdRrrM_Uv7hgoUz8QadwWg$>, or unsubscribe<https://urldefense.com/v3/__https:/github.com/notifications/unsubscribe-auth/AFFJ54KKF4OBHT2PVR2SPLDY4OPH3AVCNFSM6AAAAABF5EN4O6VHI2DSMVQWIX3LMV43YUDVNRWFEZLROVSXG5CSMV3GSZLXHMYTSOBYGQYDEMZTGQ__;!!NEt6yMaO-gk!GEUTQ4iSoTi3NKDFMXxdde2ij-thAvkIaIo_KuDcMhsqfa1ZMlWG_AmOePSupKhDvRtdKdRrrM_Uv7hgoUzyi_7_Mw$>.\r\nYou are receiving this because your review was requested.Message ID: ***@***.******@***.***>>\r\n",
+          "createdAt": "2024-04-09T08:21:34Z",
+          "updatedAt": "2024-04-09T08:21:34Z"
+        },
+        {
+          "author": "boucadair",
+          "authorAssociation": "OWNER",
+          "body": "> Guys, this is a draft, please wait before commenting\r\n\r\nThat was not clear because the text commented by Samier was already in the main copy. Please keep the draft version in a separate PR for future changes. Thanks.\r\n\r\n",
+          "createdAt": "2024-04-09T08:26:54Z",
+          "updatedAt": "2024-04-09T08:26:54Z"
+        },
+        {
+          "author": "robric",
+          "authorAssociation": "COLLABORATOR",
+          "body": "yeah I know, I am struggling to handle branching from the vscode  github plugin \u2639\r\nSorry for that !\r\nR\r\n\r\n\r\n\r\nJuniper Business Use Only\r\nFrom: Med ***@***.***>\r\nSent: Tuesday, April 9, 2024 10:27 AM\r\nTo: boucadair/attachment-circuit-model ***@***.***>\r\nCc: Richard Roberts ***@***.***>; Review requested ***@***.***>\r\nSubject: Re: [boucadair/attachment-circuit-model] cloud example (PR #202)\r\n\r\n[External Email. Be cautious of content]\r\n\r\n\r\nGuys, this is a draft, please wait before commenting\r\n\r\nThat was not clear because the text commented by Samier was already in the main copy. Please keep the draft version in a separate PR for future changes. Thanks.\r\n\r\n\u2014\r\nReply to this email directly, view it on GitHub<https://urldefense.com/v3/__https:/github.com/boucadair/attachment-circuit-model/pull/202*issuecomment-2044433113__;Iw!!NEt6yMaO-gk!ACz98xFa03_kMDHcNGND1GLiWIEfHYlt-pGV2qR6VEnoUzex6UyfC1y6w5uys7ANjY1qZP9-bfctLiB21sepVZOEvw$>, or unsubscribe<https://urldefense.com/v3/__https:/github.com/notifications/unsubscribe-auth/AFFJ54OFAPG45U2QRWA6OCDY4OQ6JAVCNFSM6AAAAABF5EN4O6VHI2DSMVQWIX3LMV43OSLTON2WKQ3PNVWWK3TUHMZDANBUGQZTGMJRGM__;!!NEt6yMaO-gk!ACz98xFa03_kMDHcNGND1GLiWIEfHYlt-pGV2qR6VEnoUzex6UyfC1y6w5uys7ANjY1qZP9-bfctLiB21sd2vvkSWg$>.\r\nYou are receiving this because your review was requested.Message ID: ***@***.******@***.***>>\r\n",
+          "createdAt": "2024-04-09T08:28:47Z",
+          "updatedAt": "2024-04-09T08:28:47Z"
+        },
+        {
+          "author": "sbarguil",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> Guys, this is a draft, please wait before commenting. Juniper Business Use Only From: samier barguil ***@***.***> Sent: Tuesday, April 9, 2024 10:13 AM To: boucadair/attachment-circuit-model ***@***.***> Cc: Richard Roberts ***@***.***>; Review requested ***@***.***> Subject: Re: [boucadair/attachment-circuit-model] cloud example (PR #202) [External Email. Be cautious of content] @sbarguil commented on this pull request.\r\n> [\u2026](#)\r\n> ________________________________ In draft-ietf-opsawg-teas-attachment-circuit.md<https://urldefense.com/v3/__https:/github.com/boucadair/attachment-circuit-model/pull/202*discussion_r1557175910__;Iw!!NEt6yMaO-gk!GEUTQ4iSoTi3NKDFMXxdde2ij-thAvkIaIo_KuDcMhsqfa1ZMlWG_AmOePSupKhDvRtdKdRrrM_Uv7hgoUzU57jy7A$>:\r\n> -The Network Function have the following characteristics:\r\n> -- The Network Function is distributed on a set of computes with scaled-out and redundant instances.\r\n> -- The NF has two distinct type of instances: user plane (nf-up) and routing control plane (nf-cp).\r\n> -- The User plane component can be distributed among the first 8 compute nodes (compute-1 to compute-08) to achieve high performance.\r\n> -- The Control plane is deployed in a redundant fashion on 2 instances running on distinct compute nodes (compute-09 and compute-10).\r\n> -- The NF is attached to distinct networks, each making use of a dedicated vlan. These vlans are therefore instantiated as separate Attachment Circuits. From a realization standpoint, the NF interface connectivity is generally provided thanks to macvlan or SR-IOV. For the sake of simplicity only 2 vlans are presented in this example, additional vlans are generally configured based on similar logic. +The SFs have the following characteristics: +- The SF is distributed on a set of compute nodes with scaled-out and redundant instances. +- The SF has two distinct type of instances: user plane (\"nf-up\") and routing control plane (\"nf-cp\"). +- The User plane component can be distributed among the first 8 compute nodes (\"compute-1\" to \"compute-08\") to achieve high performance. \u2b07\ufe0f Suggested change\r\n> -- The User plane component can be distributed among the first 8 compute nodes (\"compute-1\" to \"compute-08\") to achieve high performance. +- The User plane component can be distributed among the first 8 compute nodes (\"compute-01\" to \"compute-08\") to achieve high performance. \u2014 Reply to this email directly, view it on GitHub<https://urldefense.com/v3/__https:/github.com/boucadair/attachment-circuit-model/pull/202*pullrequestreview-1988402334__;Iw!!NEt6yMaO-gk!GEUTQ4iSoTi3NKDFMXxdde2ij-thAvkIaIo_KuDcMhsqfa1ZMlWG_AmOePSupKhDvRtdKdRrrM_Uv7hgoUz8QadwWg$>, or unsubscribe<https://urldefense.com/v3/__https:/github.com/notifications/unsubscribe-auth/AFFJ54KKF4OBHT2PVR2SPLDY4OPH3AVCNFSM6AAAAABF5EN4O6VHI2DSMVQWIX3LMV43YUDVNRWFEZLROVSXG5CSMV3GSZLXHMYTSOBYGQYDEMZTGQ__;!!NEt6yMaO-gk!GEUTQ4iSoTi3NKDFMXxdde2ij-thAvkIaIo_KuDcMhsqfa1ZMlWG_AmOePSupKhDvRtdKdRrrM_Uv7hgoUzyi_7_Mw$>. You are receiving this because your review was requested.Message ID: ***@***.******@***.***>>\r\n\r\nOki!",
+          "createdAt": "2024-04-09T08:30:09Z",
+          "updatedAt": "2024-04-09T08:30:09Z"
+        }
+      ],
       "reviews": [
         {
           "id": "PRR_kwDOIiAkrc52b9fo",
@@ -7634,8 +7718,580 @@
               "updatedAt": "2024-04-08T17:43:19Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOIiAkrc52hJye",
+          "commit": {
+            "abbreviatedOid": "e25de2c"
+          },
+          "author": "sbarguil",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-04-09T08:11:10Z",
+          "updatedAt": "2024-04-09T08:12:25Z",
+          "comments": [
+            {
+              "originalPosition": 19,
+              "body": "```suggestion\r\n- The User plane component can be distributed among the first 8 compute nodes (\"compute-01\" to \"compute-08\") to achieve high performance.\r\n```",
+              "createdAt": "2024-04-09T08:11:11Z",
+              "updatedAt": "2024-04-09T08:12:25Z"
+            }
+          ]
         }
       ]
+    },
+    {
+      "number": 204,
+      "id": "PR_kwDOIiAkrc5sHX_C",
+      "title": "Add sample ebgp connection",
+      "url": "https://github.com/boucadair/attachment-circuit-model/pull/204",
+      "state": "MERGED",
+      "author": "sbarguil",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "#178 ",
+      "createdAt": "2024-04-09T10:43:26Z",
+      "updatedAt": "2024-04-09T16:26:10Z",
+      "baseRepository": "boucadair/attachment-circuit-model",
+      "baseRefName": "main",
+      "baseRefOid": "ca74d9ca0e1f7b2181e25ced1aed3e03dedf63fb",
+      "headRepository": "boucadair/attachment-circuit-model",
+      "headRefName": "add-sample-ebgp-connection",
+      "headRefOid": "cd706262df7d268a6b4f4058d38df82858660243",
+      "closedAt": "2024-04-09T16:26:09Z",
+      "mergedAt": "2024-04-09T16:26:09Z",
+      "mergedBy": "boucadair",
+      "mergeCommit": {
+        "oid": "61cf4d157dd438ce0478ef3f4ff3b0bebc329059"
+      },
+      "comments": [
+        {
+          "author": "boucadair",
+          "authorAssociation": "OWNER",
+          "body": "Thanks @Samier.\r\n\r\n* Can you please update the figure to show the various elements (addressing, for example) that are mentioned in the example?\r\n* Also, please use the address ranges in [RFC](https://datatracker.ietf.org/doc/html/rfc5737).\r\n* I don't quit understand why the two ACs are listed in the JSON.\r\n* You may split the example in two steps: first the creation of the AC (with L2/L3 addressing), then add a new BGP session over the existing AC (peer sap/bearer-ref/neighbors).\r\n",
+          "createdAt": "2024-04-09T11:10:19Z",
+          "updatedAt": "2024-04-09T11:10:19Z"
+        },
+        {
+          "author": "boucadair",
+          "authorAssociation": "OWNER",
+          "body": "@Samier, please let me know when you are ready so that I can review. Thanks/",
+          "createdAt": "2024-04-09T14:16:16Z",
+          "updatedAt": "2024-04-09T14:16:16Z"
+        },
+        {
+          "author": "sbarguil",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> @samier, please let me know when you are ready so that I can review. Thanks/\r\n\r\ncan you please check it now. ",
+          "createdAt": "2024-04-09T14:46:59Z",
+          "updatedAt": "2024-04-09T14:46:59Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIiAkrc52ij8p",
+          "commit": {
+            "abbreviatedOid": "a333b20"
+          },
+          "author": "boucadair",
+          "authorAssociation": "OWNER",
+          "state": "CHANGES_REQUESTED",
+          "body": "",
+          "createdAt": "2024-04-09T11:13:16Z",
+          "updatedAt": "2024-04-09T11:16:41Z",
+          "comments": [
+            {
+              "originalPosition": 4,
+              "body": "```suggestion\r\n## BGP Peering\r\n```",
+              "createdAt": "2024-04-09T11:13:16Z",
+              "updatedAt": "2024-04-09T11:16:41Z"
+            },
+            {
+              "originalPosition": 6,
+              "body": "NE, NAP are not represented in the figure",
+              "createdAt": "2024-04-09T11:14:00Z",
+              "updatedAt": "2024-04-09T11:16:41Z"
+            },
+            {
+              "originalPosition": 8,
+              "body": "```suggestion\r\nTo facilitate forwarding between the interconnected networks, BGP peering sessions are established between the participating networks. BGP is used to exchange routing information and reachability announcements between those networks.\r\n```",
+              "createdAt": "2024-04-09T11:14:34Z",
+              "updatedAt": "2024-04-09T11:16:41Z"
+            },
+            {
+              "originalPosition": 15,
+              "body": "```suggestion\r\nAs depicted in {{bgp-peer-network}}, each AC represents the link between the two networks. The AC configuration includes parameters such as interface settings, VLAN configuration (if applicable), and any additional settings required for connectivity.\r\n```",
+              "createdAt": "2024-04-09T11:15:39Z",
+              "updatedAt": "2024-04-09T11:16:41Z"
+            },
+            {
+              "originalPosition": 17,
+              "body": "```suggestion\r\nOnce the ACs are established, BGP peering sessions are configured between the routers of the participating networks. BGP sessions are established over the ACs, allowing the routers to exchange routing information. BGP peering configuration includes parameters such as neighbor IP addresses, AS numbers, authentication settings (if required), etc.\r\n```",
+              "createdAt": "2024-04-09T11:16:25Z",
+              "updatedAt": "2024-04-09T11:16:41Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIiAkrc52kj7J",
+          "commit": {
+            "abbreviatedOid": "071e732"
+          },
+          "author": "boucadair",
+          "authorAssociation": "OWNER",
+          "state": "CHANGES_REQUESTED",
+          "body": "",
+          "createdAt": "2024-04-09T14:52:21Z",
+          "updatedAt": "2024-04-09T15:05:14Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "```suggestion\r\nIn this scenario, multiple networks, each represented by a Network Element (NE), connect to other networks or a Network Access Point (NAP) for interconnection purposes. Each network connects to each other through one or more ACs.\r\n```",
+              "createdAt": "2024-04-09T14:52:21Z",
+              "updatedAt": "2024-04-09T15:05:14Z"
+            },
+            {
+              "originalPosition": 15,
+              "body": "```suggestion\r\n                    \"local-address\": \"198.51.100.1\",\r\n                    \"remote-address\": \"100.100.100.1\",\r\n```",
+              "createdAt": "2024-04-09T14:54:07Z",
+              "updatedAt": "2024-04-09T15:05:14Z"
+            },
+            {
+              "originalPosition": 36,
+              "body": "```suggestion\r\n                      \"lan\": \"198.51.100.1/32\",\r\n```",
+              "createdAt": "2024-04-09T14:57:05Z",
+              "updatedAt": "2024-04-09T15:05:14Z"
+            },
+            {
+              "originalPosition": 16,
+              "body": "```suggestion\r\n                    \"local-as\": 65536,\r\n                    \"peer-as\": 65537,\r\n```",
+              "createdAt": "2024-04-09T15:01:03Z",
+              "updatedAt": "2024-04-09T15:05:14Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIiAkrc52lS47",
+          "commit": {
+            "abbreviatedOid": "cd70626"
+          },
+          "author": "boucadair",
+          "authorAssociation": "OWNER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-04-09T16:04:47Z",
+          "updatedAt": "2024-04-09T16:04:47Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 205,
+      "id": "PR_kwDOIiAkrc5sHgOT",
+      "title": "fix json to align with the data model",
+      "url": "https://github.com/boucadair/attachment-circuit-model/pull/205",
+      "state": "MERGED",
+      "author": "boucadair",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-04-09T11:04:49Z",
+      "updatedAt": "2024-04-09T12:32:24Z",
+      "baseRepository": "boucadair/attachment-circuit-model",
+      "baseRefName": "add-sample-ebgp-connection",
+      "baseRefOid": "a333b20553e273b0403dd86ef6f90f5f78bcf749",
+      "headRepository": "boucadair/attachment-circuit-model",
+      "headRefName": "boucadair-patch-5",
+      "headRefOid": "4f6ff6ac14c08e971d7cead999199ded155ca7f4",
+      "closedAt": "2024-04-09T12:32:23Z",
+      "mergedAt": "2024-04-09T12:32:23Z",
+      "mergedBy": "sbarguil",
+      "mergeCommit": {
+        "oid": "0bbd462e77aa006ada5e48bbac928a97ffb2c6d4"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIiAkrc52jHlo",
+          "commit": {
+            "abbreviatedOid": "4f6ff6a"
+          },
+          "author": "sbarguil",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-04-09T12:32:15Z",
+          "updatedAt": "2024-04-09T12:32:15Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 206,
+      "id": "PR_kwDOIiAkrc5sIhXS",
+      "title": "fix cloud json example",
+      "url": "https://github.com/boucadair/attachment-circuit-model/pull/206",
+      "state": "MERGED",
+      "author": "boucadair",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-04-09T13:45:31Z",
+      "updatedAt": "2024-04-09T13:48:56Z",
+      "baseRepository": "boucadair/attachment-circuit-model",
+      "baseRefName": "main",
+      "baseRefOid": "bde0c872132ebef136140de541f1c55db21990af",
+      "headRepository": "boucadair/attachment-circuit-model",
+      "headRefName": "boucadair-patch-5",
+      "headRefOid": "e26548dbc33b148997bec9a27003e980ad092b78",
+      "closedAt": "2024-04-09T13:48:55Z",
+      "mergedAt": "2024-04-09T13:48:55Z",
+      "mergedBy": "robric",
+      "mergeCommit": {
+        "oid": "cb22d85fd48562814981243f6762756d7323240f"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIiAkrc52jyln",
+          "commit": {
+            "abbreviatedOid": "e26548d"
+          },
+          "author": "robric",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-04-09T13:48:48Z",
+          "updatedAt": "2024-04-09T13:48:48Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 207,
+      "id": "PR_kwDOIiAkrc5sIwGa",
+      "title": "review of the cloudified SF text",
+      "url": "https://github.com/boucadair/attachment-circuit-model/pull/207",
+      "state": "MERGED",
+      "author": "boucadair",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "SF is used rather than NF for doc consistency and also to take into account rtg-dir review",
+      "createdAt": "2024-04-09T14:12:57Z",
+      "updatedAt": "2024-04-09T16:54:20Z",
+      "baseRepository": "boucadair/attachment-circuit-model",
+      "baseRefName": "main",
+      "baseRefOid": "61cf4d157dd438ce0478ef3f4ff3b0bebc329059",
+      "headRepository": "boucadair/attachment-circuit-model",
+      "headRefName": "boucadair-patch-5",
+      "headRefOid": "d39d8ec827187c4630a4c25550f6322c5e266d45",
+      "closedAt": "2024-04-09T16:54:19Z",
+      "mergedAt": "2024-04-09T16:54:19Z",
+      "mergedBy": "boucadair",
+      "mergeCommit": {
+        "oid": "6071d67812654f5cd1d643598f822adaeba8c143"
+      },
+      "comments": [
+        {
+          "author": "boucadair",
+          "authorAssociation": "OWNER",
+          "body": "> I really don't like SF - it does not resonate with the use case imho. NF is better since it has broad industry adoption.\r\n\r\nI suspected that but we need to be consistent though the doc and also reuse the terminology in the IETF. Thanks.\r\n",
+          "createdAt": "2024-04-09T14:17:10Z",
+          "updatedAt": "2024-04-09T14:17:10Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIiAkrc52kIJp",
+          "commit": {
+            "abbreviatedOid": "b7ca6ba"
+          },
+          "author": "robric",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "I really don't like SF - it does not resonate with the  use case imho. NF is better since it has broad industry adoption.",
+          "createdAt": "2024-04-09T14:16:07Z",
+          "updatedAt": "2024-04-09T14:16:07Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIiAkrc52kREb",
+          "commit": {
+            "abbreviatedOid": "b7ca6ba"
+          },
+          "author": "boucadair",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-04-09T14:29:31Z",
+          "updatedAt": "2024-04-09T14:29:31Z",
+          "comments": [
+            {
+              "originalPosition": 73,
+              "body": "What does it means \"DOWN\" in the figure?",
+              "createdAt": "2024-04-09T14:29:31Z",
+              "updatedAt": "2024-04-09T14:29:31Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIiAkrc52lOds",
+          "commit": {
+            "abbreviatedOid": "b7ca6ba"
+          },
+          "author": "robric",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-04-09T15:58:24Z",
+          "updatedAt": "2024-04-09T15:58:24Z",
+          "comments": [
+            {
+              "originalPosition": 73,
+              "body": "it is broken (failure ?)",
+              "createdAt": "2024-04-09T15:58:24Z",
+              "updatedAt": "2024-04-09T15:58:24Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIiAkrc52lcOh",
+          "commit": {
+            "abbreviatedOid": "b7ca6ba"
+          },
+          "author": "robric",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-04-09T16:13:19Z",
+          "updatedAt": "2024-04-09T16:13:19Z",
+          "comments": [
+            {
+              "originalPosition": 73,
+              "body": "I still really  hate SF - outside classics such as Dune, Old Star Wars :-)  - \r\nAfaik, NF is used in IETF: https://datatracker.ietf.org/doc/html/draft-ietf-teas-5g-ns-ip-mpls\r\n(and please let's not touch it :-))\r\n",
+              "createdAt": "2024-04-09T16:13:19Z",
+              "updatedAt": "2024-04-09T16:13:45Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIiAkrc52lgQW",
+          "commit": {
+            "abbreviatedOid": "b7ca6ba"
+          },
+          "author": "boucadair",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-04-09T16:20:07Z",
+          "updatedAt": "2024-04-09T16:20:07Z",
+          "comments": [
+            {
+              "originalPosition": 73,
+              "body": ";-) \r\n\r\nI have a consistency concern here. Using SF makes my life easier. This is an appendix after all. I will see how to reconcile all views here.\r\n\r\n\r\n",
+              "createdAt": "2024-04-09T16:20:07Z",
+              "updatedAt": "2024-04-09T16:20:07Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIiAkrc52liLP",
+          "commit": {
+            "abbreviatedOid": "a6630c2"
+          },
+          "author": "boucadair",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-04-09T16:23:58Z",
+          "updatedAt": "2024-04-09T16:23:59Z",
+          "comments": [
+            {
+              "originalPosition": 14,
+              "body": "```suggestion\r\nThis document specifies a YANG service data model (\"ietf-ac-svc\") for managing attachment circuits that are exposed by a network to its customers, such as an enterprise site, an SF, a hosting infrastructure, or a peer network provider. The model can be used for the provisioning of ACs prior or during advanced service provisioning (e.g., Network Slice Service {{?RFC9543}}).\r\n```",
+              "createdAt": "2024-04-09T16:23:58Z",
+              "updatedAt": "2024-04-09T16:23:59Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIiAkrc52liZN",
+          "commit": {
+            "abbreviatedOid": "875a459"
+          },
+          "author": "boucadair",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-04-09T16:24:28Z",
+          "updatedAt": "2024-04-09T16:24:28Z",
+          "comments": [
+            {
+              "originalPosition": 20,
+              "body": "```suggestion\r\n> NF is used to refer to the SFs defined {{?RFC7665}}.\r\n```",
+              "createdAt": "2024-04-09T16:24:28Z",
+              "updatedAt": "2024-04-09T16:24:28Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 208,
+      "id": "PR_kwDOIiAkrc5sJEYu",
+      "title": "Use RFC5737 address range",
+      "url": "https://github.com/boucadair/attachment-circuit-model/pull/208",
+      "state": "MERGED",
+      "author": "boucadair",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-04-09T14:51:39Z",
+      "updatedAt": "2024-04-09T14:55:37Z",
+      "baseRepository": "boucadair/attachment-circuit-model",
+      "baseRefName": "add-sample-ebgp-connection",
+      "baseRefOid": "6494d3bb0fa10dbe13da47f25e717ba70f32f985",
+      "headRepository": "boucadair/attachment-circuit-model",
+      "headRefName": "boucadair-patch-7",
+      "headRefOid": "c87ea537dee8289ea5c35dd157a30885eebdcaa8",
+      "closedAt": "2024-04-09T14:55:36Z",
+      "mergedAt": "2024-04-09T14:55:36Z",
+      "mergedBy": "sbarguil",
+      "mergeCommit": {
+        "oid": "071e732ac595014d305238609d91e27bfb30b420"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIiAkrc52kmIP",
+          "commit": {
+            "abbreviatedOid": "c87ea53"
+          },
+          "author": "sbarguil",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-04-09T14:55:30Z",
+          "updatedAt": "2024-04-09T14:55:30Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 209,
+      "id": "PR_kwDOIiAkrc5sJM0X",
+      "title": "example to illustrate that the network is awaiting approval from the NAP",
+      "url": "https://github.com/boucadair/attachment-circuit-model/pull/209",
+      "state": "MERGED",
+      "author": "boucadair",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "+ return server generated reference for this BGP session",
+      "createdAt": "2024-04-09T15:09:26Z",
+      "updatedAt": "2024-04-09T15:32:20Z",
+      "baseRepository": "boucadair/attachment-circuit-model",
+      "baseRefName": "add-sample-ebgp-connection",
+      "baseRefOid": "071e732ac595014d305238609d91e27bfb30b420",
+      "headRepository": "boucadair/attachment-circuit-model",
+      "headRefName": "boucadair-patch-7",
+      "headRefOid": "0bf4d4c69060d4f625223f20c7a9d37da3f6ecae",
+      "closedAt": "2024-04-09T15:32:19Z",
+      "mergedAt": "2024-04-09T15:32:19Z",
+      "mergedBy": "sbarguil",
+      "mergeCommit": {
+        "oid": "39399c903a17e175b8c606bc953de39aabc84db7"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 210,
+      "id": "PR_kwDOIiAkrc5sJ2C8",
+      "title": "add an example to illustrate awaiting processing",
+      "url": "https://github.com/boucadair/attachment-circuit-model/pull/210",
+      "state": "MERGED",
+      "author": "boucadair",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-04-09T16:40:02Z",
+      "updatedAt": "2024-04-10T08:21:16Z",
+      "baseRepository": "boucadair/attachment-circuit-model",
+      "baseRefName": "main",
+      "baseRefOid": "61cf4d157dd438ce0478ef3f4ff3b0bebc329059",
+      "headRepository": "boucadair/attachment-circuit-model",
+      "headRefName": "boucadair-patch-7",
+      "headRefOid": "3eaf5a363ce5aead4e52f74f29b67f3139af8ee4",
+      "closedAt": "2024-04-10T08:21:15Z",
+      "mergedAt": "2024-04-10T08:21:14Z",
+      "mergedBy": "boucadair",
+      "mergeCommit": {
+        "oid": "c045a96de85be176d82ceb79949c882b1075a21f"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 211,
+      "id": "PR_kwDOIiAkrc5sOfdI",
+      "title": "Restructure the BGP Peering Section",
+      "url": "https://github.com/boucadair/attachment-circuit-model/pull/211",
+      "state": "MERGED",
+      "author": "boucadair",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-04-10T10:08:15Z",
+      "updatedAt": "2024-04-10T10:15:40Z",
+      "baseRepository": "boucadair/attachment-circuit-model",
+      "baseRefName": "main",
+      "baseRefOid": "2c919f899207bd951120af8b47c6ae3e4248e114",
+      "headRepository": "boucadair/attachment-circuit-model",
+      "headRefName": "boucadair-patch-5",
+      "headRefOid": "3b9cd871d13f544720985acd51aa8388af249fb5",
+      "closedAt": "2024-04-10T10:15:40Z",
+      "mergedAt": "2024-04-10T10:15:40Z",
+      "mergedBy": "boucadair",
+      "mergeCommit": {
+        "oid": "f59c71307235ba8f4e8d05b0d2f301bbd27a3a15"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 212,
+      "id": "PR_kwDOIiAkrc5sPN2L",
+      "title": "check routing adv",
+      "url": "https://github.com/boucadair/attachment-circuit-model/pull/212",
+      "state": "OPEN",
+      "author": "boucadair",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-04-10T12:05:14Z",
+      "updatedAt": "2024-04-10T12:05:14Z",
+      "baseRepository": "boucadair/attachment-circuit-model",
+      "baseRefName": "main",
+      "baseRefOid": "e0745968d2898df8e0846c1c0397002d03e84e08",
+      "headRepository": "boucadair/attachment-circuit-model",
+      "headRefName": "boucadair-patch-5",
+      "headRefOid": "30e4df82cfc2168fa854008c8d1a8c4c4ad9885f",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
     }
   ]
 }
