@@ -1,0 +1,23 @@
+{
+  "ietf-ac-svc:attachment-circuits": {
+    "ac": [
+      {
+        "name": "ac4585",
+        "description": "An AC for a known peer SAP",
+        "actual-start": "2025-12-12T05:00:00.00Z",
+        "peer-sap-id": [
+          "nf-termination-ip"
+        ],
+        "l2-connection": {
+          "encapsulation": {
+            "type": "ietf-vpn-common:dot1q",
+            "dot1q": {
+              "tag-type": "ietf-vpn-common:c-vlan",
+              "cvlan-id": 550
+            }
+          }
+        }
+      }
+    ]
+  }
+}
