@@ -1307,7 +1307,7 @@ Once validation is accomplished, a status update is communicated back to the req
 ~~~~
 {: #bgp-peering-all-sessions.json title="Message Body of a Response to Report All Active BGP sessions over an AC"}
 
-## Connectivity of Cloudified Network Functions {#sec-cloudified-nfs}
+## Connectivity of Cloud Network Functions {#sec-cloudified-nfs}
 
 This section demonstrates how the AC service model permits to manage connectivity requirements for complex Network Functions (NFs) - containerized or virtualized -  that are typically deployed in Telco networks. This integration leverages the concept of "parent AC" to decouple physical and logical connectivity so that several ACs can shares Layer 2 and Layer 3 resources. This approach provides flexibility, scalability, and API stability.
 
@@ -1356,7 +1356,7 @@ Assuming a failure of "compute-01", the instance "nf-up-1" can be redeployed to 
 ~~~~
 {: #cloud-parent-nf-lcm title="Example of Compute Failure and Scale-out"}
 
-Finally, the addition or deletion of compute nodes in the deployment ("compute-11", "compute-12", etc.) involves merely changes on Child ACs and possible routing on the parent AC. In any case, the parent AC is a stable identifier, which can be consumed as a reference by end-to-end service models for VPN configuration such as {{?I-D.ietf-opsawg-ac-lxsm-lxnm-glue}}, Slice Service {{?I-D.ietf-teas-ietf-network-slice-nbi-yang}}, etc. This decoupling to a stable identifier provides great benefits in terms of scalability and flexibility since once the reference with the parent AC is implemented, no API calls to the VPN model are needed for any modification in the cloud.
+Finally, the addition or deletion of compute nodes in the deployment ("compute-11", "compute-12", etc.) involves merely changes on Child ACs and possible routing on the parent AC. In any case, the parent AC is a stable identifier, which can be consumed as a reference by end-to-end service models for VPN configuration such as {{?I-D.ietf-opsawg-ac-lxsm-lxnm-glue}}, Slice Service {{?I-D.ietf-teas-ietf-network-slice-nbi-yang}}, etc. This decoupling to a stable identifier provides great benefits in terms of scalability and flexibility since once the reference with the parent AC is implemented, no API call involving the VPN model is needed for any modification in the cloud.
 
 
 # Acknowledgments
