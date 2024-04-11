@@ -1302,7 +1302,7 @@ A peer can then use the location information and select the ones where it can re
 The bearer is then activated by the server as shown in {{ex-create-bearer-parent-ref-res}}. A bearer-reference is also returned. That reference can be used for subsequent AC activation requests.
 
 ~~~~ json
-{::include-fold ./json-examples/svc/simple-bearer-create-with-provider-ref-response}
+{::include-fold ./json-examples/svc/simple-bearer-create-with-provider-ref-response.json}
 ~~~~
 {: #ex-create-bearer-parent-ref-res title="Message Body of a Response to Create a Bearer in a Specific Location"}
 
