@@ -33,7 +33,7 @@
         |  |  |     |  +--rw vcid?      uint32
         |  |  |     |  +--rw far-end*   union
         |  |  |     +--rw vxlan
-        |  |  |        +--rw vni-id             uint32
+        |  |  |        +--rw vni-id?            uint32
         |  |  |        +--rw peer-mode?         identityref
         |  |  |        +--rw peer-ip-address*   inet:ip-address
         |  |  +--:(l2vpn)
