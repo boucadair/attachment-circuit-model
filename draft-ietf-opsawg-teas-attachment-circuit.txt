@@ -1206,7 +1206,7 @@ Table of Contents
    Figure 10 shows the structure of the IPv4 connection.
 
             | ...
-            +--rw ip-connection
+            +--rw ip-connection  {ac-common:layer3-ac}?
             |  +--rw ipv4 {vpn-common:ipv4}?
             |  |  +--rw local-address?
             |  |  |       inet:ipv4-address
