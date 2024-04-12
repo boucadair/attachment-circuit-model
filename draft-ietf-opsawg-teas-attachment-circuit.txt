@@ -5,14 +5,14 @@
 OPSAWG                                                 M. Boucadair, Ed.
 Internet-Draft                                                    Orange
 Intended status: Standards Track                         R. Roberts, Ed.
-Expires: 13 October 2024                                         Juniper
+Expires: 14 October 2024                                         Juniper
                                                            O. G. D. Dios
                                                               Telefonica
                                                            S. B. Giraldo
                                                                    Nokia
                                                                    B. Wu
                                                      Huawei Technologies
-                                                           11 April 2024
+                                                           12 April 2024
 
 
   YANG Data Models for Bearers and 'Attachment Circuits'-as-a-Service
@@ -62,7 +62,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 13 October 2024.
+   This Internet-Draft will expire on 14 October 2024.
 
 Copyright Notice
 
@@ -4770,22 +4770,24 @@ A.6.  Create Multiple ACs Bound to Multiple CEs
 
 A.7.  Binding Attachment Circuits to an IETF Network Slice
 
-   This example shows how the AC service model complements
-   [I-D.ietf-teas-ietf-network-slice-nbi-yang] to connect a site to a
-   slice service.
+   This example shows how the AC service model complements the IETF
+   Network Slice model [I-D.ietf-teas-ietf-network-slice-nbi-yang] to
+   connect a site to a Slice Service.
 
    First, Figure 37 describes the end-to-end network topology as well
    the orchestration scopes:
 
    *  The topology is made up of two sites ("site1" and "site2"),
-      interconnected via a Transport Network (e.g.  IP/MPLS Network).
-      An SF is deployed within each site in a dedicated IP Subnet.
+      interconnected via a Transport Network (e.g., IP/MPLS network).
+      An SF is deployed within each site in a dedicated IP subnet.
 
-   *  A 5G SMO is responsible for the deployment of SFs and the indirect
-      management of a local Gateway (i.e., CE device).
+   *  A 5G Service Management and Orchestration (SMO) is responsible for
+      the deployment of SFs and the indirect management of a local
+      Gateway (i.e., CE).
 
-   *  An IETF Network Slice Controller is responsible for the deployment
-      of IETF Network Slices across the Transport Network.
+   *  An IETF Network Slice Controller (NSC) [RFC9543] is responsible
+      for the deployment of IETF Network Slices across the Transport
+      Network.
 
    SFs are deployed within each site.
 
@@ -4813,7 +4815,7 @@ A.7.  Binding Attachment Circuits to an IETF Network Slice
      Figure 37: An Example of a Network Topology Used to Deploy Slices
 
    Figure 38 describes the logical connectivity enforced thanks to both
-   IETF Network Slice and Attachment Circuit models.
+   IETF Network Slice and ACaaS models.
 
                                 AS 65536  <----BGP--> AS 65550
     .---.                     .--------.                    .---.
@@ -4850,7 +4852,7 @@ A.7.  Binding Attachment Circuits to an IETF Network Slice
                         Figure 38: Logical Overview
 
    Figure 39 shows the message body of the request to create the
-   required ACs using the Attachment Circuit module.
+   required ACs using the ACaaS module.
 
    =============== NOTE: '\' line wrapping per RFC 8792 ================
 
@@ -5041,11 +5043,9 @@ A.7.  Binding Attachment Circuits to an IETF Network Slice
      Figure 40: Example of a Message Body of a Response Indicating the
                             Creation of the ACs
 
-   Figure 41 shows the message body of the request to create the a slice
-   service bound to the ACs created using Figure 39.  Only references to
-   these ACs are included in the Slice Service request.  This example
-   assumes that the module that "glues" the service/AC is also supported
-   by the NSC.
+   Figure 41 shows the message body of the request to create a Slice
+   Service bound to the ACs created using Figure 39.  Only references to
+   these ACs are included in the Slice Service request.
 
    =============== NOTE: '\' line wrapping per RFC 8792 ================
 
@@ -5111,7 +5111,7 @@ A.8.  Connecting a Virtualized Environment Running in a Cloud Provider
        Identifier" is generated and returned via the API.
 
    3.  The customer provisions the networking logic within the Cloud
-       Provider based on that unique connection Identifier (i.e.,
+       Provider based on that unique connection identifier (i.e.,
        logical interfaces, IP addressing, and routing).
 
        .--------------------------------------------------------.
@@ -5156,7 +5156,7 @@ A.8.  Connecting a Virtualized Environment Running in a Cloud Provider
 
   Customer                                                       Cloud
 Orchestration       DIRECT INTERCONNECTION ORDERING (API)       Provider
-               ------------------------------------------------>
+                ------------------------------------------------>
 
                Connection Created with "Connection ID:1234-56789"
                <------------------------------------------------
@@ -5168,19 +5168,19 @@ Orchestration       DIRECT INTERCONNECTION ORDERING (API)       Provider
        Physical Connection 1234-56789 is delivered and
                          connected to PE1
 
-       Network  Inventory Updated with:
-         bearer-reference: 1234-56789 for PE1/Interface If-A
+       Network Inventory Updated with:
+         bearer-reference: 1234-56789 for PE1/Interface "If-A"
 
              Figure 43: Illustration of Pre-provisioning
 
-   Next, API workflows can be initiated:
+   Next, API workflows can be initiated by:
 
-   *  Cloud Provider for the configuration as per (3) above.
+   *  The Cloud Provider for the configuration per Step (3) above.
 
-   *  Service provider network via the Attachment Circuit model.  This
-      request can be used in conjunction with additional requests based
-      on the L3SM (VPN provisioning) or Network Slice Service model (5G
-      hybrid Cloud deployment).
+   *  The Service provider network via the ACaaS model.  This request
+      can be used in conjunction with additional requests based on the
+      L3SM (VPN provisioning) or Network Slice Service model (5G hybrid
+      Cloud deployment).
 
    Figure 44 shows the message body of the request to create the
    required ACs to connect the Cloud Provider Virtualized (VM) using the
@@ -5312,7 +5312,7 @@ A.9.  Connect Customer Network Through BGP
    belonging to an AS (ASN 65536).  CEs are located at the edge of the
    provider's network (PE, or Provider Edge) and use point-to-point
    interfaces to establish BGP sessions.  The point-to-point interfaces
-   rely upon a physical bearer ("Line-113") to reach the provider
+   rely upon a physical bearer ("line-113") to reach the provider
    network.
 
    .------------------------.                      .------------------.
