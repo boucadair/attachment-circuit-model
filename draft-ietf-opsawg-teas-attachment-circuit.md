@@ -1212,7 +1212,7 @@ This example ({{cloud-provider-1}}) shows how the AC service model can be used t
 ~~~~ aasvg
   Customer                                                       Cloud
 Orchestration       DIRECT INTERCONNECTION ORDERING (API)       Provider
-                ------------------------------------------------>  
+                ------------------------------------------------>
 
                Connection Created with "Connection ID:1234-56789"
                <------------------------------------------------
@@ -1224,15 +1224,15 @@ Orchestration       DIRECT INTERCONNECTION ORDERING (API)       Provider
        Physical Connection 1234-56789 is delivered and
                          connected to PE1
 
-       Network  Inventory Updated with:
+       Network Inventory Updated with:
          bearer-reference: 1234-56789 for PE1/Interface "If-A"
 ~~~~
 {: #cloud-provider-2 title="Illustration of Pre-provisioning"}
 
-Next, API workflows can be initiated:
+Next, API workflows can be initiated by:
 
-* Cloud Provider for the configuration as per (3) above.
-* Service provider network via the Attachment Circuit model. This request can be used in conjunction with additional requests based on the L3SM (VPN provisioning) or Network Slice Service model (5G hybrid Cloud deployment).
+* The Cloud Provider for the configuration per Step (3) above.
+* The Service provider network via the ACaaS model. This request can be used in conjunction with additional requests based on the L3SM (VPN provisioning) or Network Slice Service model (5G hybrid Cloud deployment).
 
 {{cloud-provider-ac}} shows the message body of the request to create the required ACs to connect the Cloud Provider Virtualized (VM) using the Attachment Circuit module.
 
@@ -1253,7 +1253,7 @@ Next, API workflows can be initiated:
 
 ## Connect Customer Network Through BGP
 
-CE-PE routing using BGP is a common scenario in the context of MPLS VPNs and is widely used in enterprise networks. In the example depicted in {{provider-network}}, the CE routers are customer-owned devices belonging to an AS (ASN 65536). CEs are located at the edge of the provider's network (PE, or Provider Edge) and use point-to-point interfaces to establish BGP sessions. The point-to-point interfaces rely upon a physical bearer ("Line-113") to reach the provider network.
+CE-PE routing using BGP is a common scenario in the context of MPLS VPNs and is widely used in enterprise networks. In the example depicted in {{provider-network}}, the CE routers are customer-owned devices belonging to an AS (ASN 65536). CEs are located at the edge of the provider's network (PE, or Provider Edge) and use point-to-point interfaces to establish BGP sessions. The point-to-point interfaces rely upon a physical bearer ("line-113") to reach the provider network.
 
 ~~~~ aasvg
 {::include-fold ./figures/ce-to-provider-bgp.txt}
