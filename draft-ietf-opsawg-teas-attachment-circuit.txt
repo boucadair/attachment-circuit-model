@@ -1249,7 +1249,7 @@ Table of Contents
    Figure 11 shows the structure of the IPv6 connection.
 
             | ...
-            +--rw ip-connection
+            +--rw ip-connection  {ac-common:layer3-ac}?
             |  +--rw ipv4 {vpn-common:ipv4}?
             |  |  ...
             |  +--rw ipv6 {vpn-common:ipv6}?
