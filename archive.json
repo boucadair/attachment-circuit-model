@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-04-11T00:36:28.764599+00:00",
+  "timestamp": "2024-04-14T00:38:28.705202+00:00",
   "repo": "boucadair/attachment-circuit-model",
   "labels": [
     {
@@ -1464,7 +1464,7 @@
       "id": "I_kwDOIiAkrc5haM5d",
       "title": "Use case for MPLS/SRv6  as an AC",
       "url": "https://github.com/boucadair/attachment-circuit-model/issues/67",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "robric",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -1472,12 +1472,13 @@
         "robric"
       ],
       "labels": [
+        "wontfix",
         "AC-SVC"
       ],
       "body": "MPLS as data plane can be linked to multiple types of  control planes for label assignements.\r\nDiscuss whether we should support both static and dynamic Label assignment should be considered.\r\n- Static should be straightforward, although this is likely a minor Use Case. Dynamic is more important.\r\n- Dynamic: \r\n  1 L3VPN: Key identifiers are RD and RTs. \r\n  2 EVPN / EVPN-VPWS ?\r\n1 looks more important imho.\r\n",
       "createdAt": "2023-03-21T16:10:58Z",
-      "updatedAt": "2023-12-11T09:43:14Z",
-      "closedAt": null,
+      "updatedAt": "2024-04-11T07:08:19Z",
+      "closedAt": "2024-04-11T07:08:19Z",
       "comments": [
         {
           "author": "boucadair",
@@ -2070,7 +2071,7 @@
       "id": "I_kwDOIiAkrc53xY8v",
       "title": "Add example to illustrate the use of the model with multiple IP subnets (merging, case)",
       "url": "https://github.com/boucadair/attachment-circuit-model/issues/115",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "boucadair",
       "authorAssociation": "OWNER",
       "assignees": [
@@ -2081,8 +2082,8 @@
       ],
       "body": "",
       "createdAt": "2023-11-24T09:57:18Z",
-      "updatedAt": "2023-11-24T16:40:01Z",
-      "closedAt": null,
+      "updatedAt": "2024-04-11T07:07:45Z",
+      "closedAt": "2024-04-11T07:07:45Z",
       "comments": []
     },
     {
@@ -8272,24 +8273,26 @@
       "id": "PR_kwDOIiAkrc5sPN2L",
       "title": "check routing adv",
       "url": "https://github.com/boucadair/attachment-circuit-model/pull/212",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "boucadair",
       "authorAssociation": "OWNER",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2024-04-10T12:05:14Z",
-      "updatedAt": "2024-04-10T12:05:14Z",
+      "updatedAt": "2024-04-11T07:01:31Z",
       "baseRepository": "boucadair/attachment-circuit-model",
       "baseRefName": "main",
       "baseRefOid": "e0745968d2898df8e0846c1c0397002d03e84e08",
       "headRepository": "boucadair/attachment-circuit-model",
       "headRefName": "boucadair-patch-5",
       "headRefOid": "30e4df82cfc2168fa854008c8d1a8c4c4ad9885f",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2024-04-11T07:01:30Z",
+      "mergedAt": "2024-04-11T07:01:30Z",
+      "mergedBy": "boucadair",
+      "mergeCommit": {
+        "oid": "2829683247946beb503757371b8a28ae276494b1"
+      },
       "comments": [],
       "reviews": []
     }
