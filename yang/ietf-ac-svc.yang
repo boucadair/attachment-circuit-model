@@ -113,12 +113,13 @@ module ietf-ac-svc {
       "Defines a reference to a QoS profile.";
   }
 
-  typedef bfd-profile-reference {
+  typedef failure-detection-profile-reference {
     type leafref {
       path
         "/ac-svc:specific-provisioning-profiles"
       + "/ac-svc:valid-provider-identifiers"
-      + "/ac-svc:bfd-profile-identifier/ac-svc:id";
+      + "/ac-svc:failure-detection-profile-identifier
+      + "/ac-svc:id";
     }
     description
       "Defines a reference to a BFD profile.";
@@ -305,14 +306,14 @@ module ietf-ac-svc {
         "IPv4-specific parameters.";
       uses ac-common:ipv4-connection {
         augment ac-svc:allocation-type/static-addresses/address {
-          leaf bfd-profile {
+          leaf failure-detection-profile {
             if-feature "vpn-common:bfd";
-            type bfd-profile-reference;
+            type failure-detection-profile-reference;
             description
-              "Points to a BFD profile.";
+              "Points to a failure detection profile.";
           }
           description
-            "Add a BFD profile as part of ip connection.";
+            "Adds a failure detection profile.";
         }
       }
     }
@@ -322,14 +323,14 @@ module ietf-ac-svc {
         "IPv6-specific parameters.";
       uses ac-common:ipv6-connection {
         augment ac-svc:allocation-type/static-addresses/address {
-          leaf bfd-profile {
+          leaf failure-detection-profile {
             if-feature "vpn-common:bfd";
-            type bfd-profile-reference;
+            type failure-detection-profile-reference;
             description
-              "Points to a BFD profile.";
+              "Points to a failure detection profile.";
           }
           description
-            "Add a BFD profile as part of ip connection.";
+            "Adds a failure detection profile.";
         }
       }
     }
@@ -378,11 +379,11 @@ module ietf-ac-svc {
       description
         "List of LAN prefixes for the site.";
       uses ac-common:ipv4-static-rtg-entry;
-      leaf bfd-profile {
+      leaf failure-detection-profile {
         if-feature "vpn-common:bfd";
-        type bfd-profile-reference;
+        type failure-detection-profile-reference;
         description
-          "Points to a BFD profile.";
+          "Points to a failure detection profile.";
       }
       uses ac-common:service-status;
     }
@@ -398,11 +399,11 @@ module ietf-ac-svc {
       description
         "List of LAN prefixes for the site.";
       uses ac-common:ipv4-static-rtg-entry;
-      leaf bfd-profile {
+      leaf failure-detection-profile {
         if-feature "vpn-common:bfd";
-        type bfd-profile-reference;
+        type failure-detection-profile-reference;
         description
-          "Points to a BFD profile.";
+          "Points to a failure detection profile.";
       }
       uses ac-common:service-status;
     }
@@ -543,11 +544,11 @@ module ietf-ac-svc {
         description
           "The peer-group with which this neighbor is associated.";
       }
-      leaf bfd-profile {
+      leaf failure-detection-profile {
         if-feature "vpn-common:bfd";
-        type bfd-profile-reference;
+        type failure-detection-profile-reference;
         description
-          "Points to a BFD profile.";
+          "Points to a failure detection profile.";
       }
     }
   }
@@ -997,7 +998,7 @@ module ietf-ac-svc {
         description
           "Container for BFD.";
         leaf profile {
-          type bfd-profile-reference;
+          type failure-detection-profile-reference;
           description
             "Points to a BFD profile.";
         }
