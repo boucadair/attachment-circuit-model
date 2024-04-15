@@ -5,7 +5,7 @@
     |     |  +--rw id    string
     |     +--rw qos-profile-identifier* [id]
     |     |  +--rw id    string
-    |     +--rw bfd-profile-identifier* [id]
+    |     +--rw failure-detection-profile-identifier* [id]
     |     |  +--rw id    string
     |     +--rw forwarding-profile-identifier* [id]
     |     |  +--rw id    string
