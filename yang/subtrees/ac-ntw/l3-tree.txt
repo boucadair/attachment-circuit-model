@@ -40,9 +40,11 @@
        |  |     |           +--rw server-ip-address*
        |  |     |                   inet:ipv4-address
        |  |     +--:(static-addresses)
-       |  |        +--rw address* [address-id]
-       |  |           +--rw address-id          string
-       |  |           +--rw customer-address?   inet:ipv4-address
+       |  |           +--rw customer-address?
+       |  |           |       inet:ipv4-address
+       |  |           +--rw failure-detection-profile-ref?   leafref
+       |  |           +--rw network-ref?
+       |  |                   -> /nw:networks/network/network-id
        |  +--rw ipv6 {vpn-common:ipv6}?
        |     +--rw local-address?
        |     |       inet:ipv6-address
@@ -77,9 +79,12 @@
        |        |           +--rw server-ip-address*
        |        |                   inet:ipv6-address
        |        +--:(static-addresses)
-       |           +--rw address* [address-id]
-       |              +--rw address-id          string
-       |              +--rw customer-address?   inet:ipv6-address
+       |              +--rw address-id                       string
+       |              +--rw customer-address?
+       |              |       inet:ipv6-address
+       |              +--rw failure-detection-profile-ref?   leafref
+       |              +--rw network-ref?
+       |                      -> /nw:networks/network/network-id
        +--rw routing-protocols
        |  ...
        +--rw oam
