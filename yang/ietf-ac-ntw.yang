@@ -629,6 +629,7 @@ module ietf-ac-ntw {
             description
               "An IPv4 address of the customer side.";
           }
+          uses bfd-profile-reference;
         }
       }
     }
@@ -770,6 +771,7 @@ module ietf-ac-ntw {
             description
               "An IPv6 address of the customer side.";
           }
+          uses bfd-profile-reference;
         }
       }
     }
