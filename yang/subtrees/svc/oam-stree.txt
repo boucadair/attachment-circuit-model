@@ -17,15 +17,19 @@
         |  ...
         +--rw oam
         |  +--rw bfd {vpn-common:bfd}?
-        |     +--rw profile?    bfd-profile-reference
-        |     +--rw holdtime?   uint32
-        |     +--rw status
-        |        +--rw admin-status
-        |        |  +--rw status?        identityref
-        |        |  +--ro last-change?   yang:date-and-time
-        |        +--ro oper-status
-        |           +--ro status?        identityref
-        |           +--ro last-change?   yang:date-and-time
+        |     +--rw session* [remote-address]
+        |        +--rw local-address?    inet:ip-address
+        |        +--rw remote-address    inet:ip-address
+        |        +--rw profile?
+        |        |       failure-detection-profile-reference
+        |        +--rw holdtime?         uint32
+        |        +--rw status
+        |           +--rw admin-status
+        |           |  +--rw status?        identityref
+        |           |  +--ro last-change?   yang:date-and-time
+        |           +--ro oper-status
+        |              +--ro status?        identityref
+        |              +--ro last-change?   yang:date-and-time
         +--rw security
         |  ...
         +--rw service
