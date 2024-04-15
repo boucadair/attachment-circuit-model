@@ -34,5 +34,7 @@
         |  |        +--rw address* [address-id]
         |  |           +--rw address-id          string
         |  |           +--rw customer-address?   inet:ipv4-address
+        |  |           +--rw bfd-profile? 
+        |  |               failure-detection-profile-reference {vpn-common:bfd}?
         |  +--rw ipv6 {vpn-common:ipv6}?
         |     ...
