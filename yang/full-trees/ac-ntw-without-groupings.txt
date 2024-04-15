@@ -5,7 +5,7 @@
     |     |  +--rw id    string
     |     +--rw qos-profile-identifier* [id]
     |     |  +--rw id    string
-    |     +--rw bfd-profile-identifier* [id]
+    |     +--rw failure-detection-profile-identifier* [id]
     |     |  +--rw id    string
     |     +--rw forwarding-profile-identifier* [id]
     |     |  +--rw id    string
@@ -199,8 +199,12 @@
        |  |     |                   inet:ipv4-address
        |  |     +--:(static-addresses)
        |  |        +--rw address* [address-id]
-       |  |           +--rw address-id          string
-       |  |           +--rw customer-address?   inet:ipv4-address
+       |  |           +--rw address-id                       string
+       |  |           +--rw customer-address?
+       |  |           |       inet:ipv4-address
+       |  |           +--rw failure-detection-profile-ref?   leafref
+       |  |           +--rw network-ref?
+       |  |                   -> /nw:networks/network/network-id
        |  +--rw ipv6 {vpn-common:ipv6}?
        |     +--rw local-address?
        |     |       inet:ipv6-address
@@ -236,8 +240,12 @@
        |        |                   inet:ipv6-address
        |        +--:(static-addresses)
        |           +--rw address* [address-id]
-       |              +--rw address-id          string
-       |              +--rw customer-address?   inet:ipv6-address
+       |              +--rw address-id                       string
+       |              +--rw customer-address?
+       |              |       inet:ipv6-address
+       |              +--rw failure-detection-profile-ref?   leafref
+       |              +--rw network-ref?
+       |                      -> /nw:networks/network/network-id
        +--rw routing-protocols
        |  +--rw routing-protocol* [id]
        |     +--rw id                 string
@@ -256,8 +264,10 @@
        |     |     |  +--rw next-hop      union
        |     |     |  +--rw metric?       uint32
        |     |     |  +--rw bfd {vpn-common:bfd}?
-       |     |     |  |  +--rw enabled?           boolean
-       |     |     |  |  +--rw bfd-profile-ref?   leafref
+       |     |     |  |  +--rw enabled?
+       |     |     |  |  |       boolean
+       |     |     |  |  +--rw failure-detection-profile-ref?
+       |     |     |  |  |       leafref
        |     |     |  |  +--rw network-ref?
        |     |     |  |          -> /nw:networks/network/network-id
        |     |     |  +--rw preference?   uint32
@@ -275,8 +285,10 @@
        |     |        +--rw next-hop      union
        |     |        +--rw metric?       uint32
        |     |        +--rw bfd {vpn-common:bfd}?
-       |     |        |  +--rw enabled?           boolean
-       |     |        |  +--rw bfd-profile-ref?   leafref
+       |     |        |  +--rw enabled?
+       |     |        |  |       boolean
+       |     |        |  +--rw failure-detection-profile-ref?
+       |     |        |  |       leafref
        |     |        |  +--rw network-ref?
        |     |        |          -> /nw:networks/network/network-id
        |     |        +--rw preference?   uint32
@@ -382,8 +394,8 @@
        |     |     |  +--rw address-family    identityref
        |     |     |  +--rw name              identityref
        |     |     +--rw bfd {vpn-common:bfd}?
-       |     |     |  +--rw enabled?           boolean
-       |     |     |  +--rw bfd-profile-ref?   leafref
+       |     |     |  +--rw enabled?                         boolean
+       |     |     |  +--rw failure-detection-profile-ref?   leafref
        |     |     |  +--rw network-ref?
        |     |     |          -> /nw:networks/network/network-id
        |     |     +--rw authentication
@@ -501,16 +513,16 @@
        +--rw oam
        |  +--rw bfd {vpn-common:bfd}?
        |     +--rw session* [dest-addr]
-       |        +--rw dest-addr                   inet:ip-address
-       |        +--rw source-address?             union
-       |        +--rw bfd-profile-ref?            leafref
+       |        +--rw dest-addr                        inet:ip-address
+       |        +--rw source-address?                  union
+       |        +--rw failure-detection-profile-ref?   leafref
        |        +--rw network-ref?
        |        |       -> /nw:networks/network/network-id
-       |        +--rw session-type?               identityref
-       |        +--rw desired-min-tx-interval?    uint32
-       |        +--rw required-min-rx-interval?   uint32
-       |        +--rw local-multiplier?           uint8
-       |        +--rw holdtime?                   uint32
+       |        +--rw session-type?                    identityref
+       |        +--rw desired-min-tx-interval?         uint32
+       |        +--rw required-min-rx-interval?        uint32
+       |        +--rw local-multiplier?                uint8
+       |        +--rw holdtime?                        uint32
        |        +--rw authentication!
        |        |  +--rw key-chain?    key-chain:key-chain-ref
        |        |  +--rw meticulous?   boolean
