@@ -1036,7 +1036,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Boucadair, et al.</td>
-<td class="center">Expires 14 October 2024</td>
+<td class="center">Expires 17 October 2024</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1049,12 +1049,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-opsawg-teas-attachment-circuit-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2024-04-12" class="published">12 April 2024</time>
+<time datetime="2024-04-15" class="published">15 April 2024</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2024-10-14">14 October 2024</time></dd>
+<dd class="expires"><time datetime="2024-10-17">17 October 2024</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1118,7 +1118,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 14 October 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 17 October 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -4323,13 +4323,35 @@ module ietf-ac-svc {
       if-feature "vpn-common:ipv4";
       description
         "IPv4-specific parameters.";
-      uses ac-common:ipv4-connection;
+      uses ac-common:ipv4-connection {
+        augment ac-svc:allocation-type/static-addresses/address {
+          leaf bfd-profile {
+            if-feature "vpn-common:bfd";
+            type bfd-profile-reference;
+            description
+              "Points to a BFD profile.";
+          }
+          description
+            "Add a BFD profile as part of ip connection.";
+        }
+      }
     }
     container ipv6 {
       if-feature "vpn-common:ipv6";
       description
         "IPv6-specific parameters.";
-      uses ac-common:ipv6-connection;
+      uses ac-common:ipv6-connection {
+        augment ac-svc:allocation-type/static-addresses/address {
+          leaf bfd-profile {
+            if-feature "vpn-common:bfd";
+            type bfd-profile-reference;
+            description
+              "Points to a BFD profile.";
+          }
+          description
+            "Add a BFD profile as part of ip connection.";
+        }
+      }
     }
   }
 
