@@ -1483,7 +1483,7 @@ module ietf-ac-common {
 
   // OAM
 
-  grouping bfd-basic {
+  grouping bfd {
     description
       "A grouping for basic BFD.";
     leaf holdtime {
@@ -1499,31 +1499,6 @@ module ietf-ac-common {
       reference
         "RFC 5880: Bidirectional Forwarding Detection (BFD),
                    Section 6.8.18";
-    }
-  }
-
-  grouping bfd {
-    description
-      "A grouping for BFD sessions.";
-    container bfd {
-      if-feature "vpn-common:bfd";
-      description
-        "Container for BFD.";
-      list session {
-        key "remote-address";
-        description
-          "List of IP sessions.";
-         leaf local-address {
-           type inet:ip-address;
-           description
-             "Provider's IP address of the BFD session.";
-        }
-        leaf remote-address {
-           type inet:ip-address;
-           description
-             "Customer's IP address of the BFD session.";
-        }
-        uses bfd-basic;
     }
   }
 
