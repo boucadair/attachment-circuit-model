@@ -2302,16 +2302,16 @@ Table of Contents
      }
 
 
-     grouping bfd-profile-reference {
+     grouping failure-detection-profile-reference {
        description
          "This grouping can be used to reference a BFD profile.";
-       leaf bfd-profile-ref {
+       leaf failure-detection-profile-ref {
          type leafref {
            path "/nw:networks/nw:network[nw:network-id=current()/../"
            + "network-ref]"
            + "/ac-ntw:specific-provisioning-profiles"
            + "/ac-ntw:valid-provider-identifiers"
-           + "/ac-ntw:bfd-profile-identifier/ac-ntw:id";
+           + "/ac-ntw:failure-detection-profile-identifier/ac-ntw:id";
            require-instance false;
          }
          description
@@ -2752,7 +2752,7 @@ Table of Contents
                description
                  "An IPv4 address of the customer side.";
              }
-             uses bfd-profile-reference;
+             uses failure-detection-profile-reference;
            }
          }
        }
@@ -2894,7 +2894,7 @@ Table of Contents
                description
                  "An IPv6 address of the customer side.";
              }
-             uses bfd-profile-reference;
+             uses failure-detection-profile-reference;
            }
          }
        }
@@ -3764,7 +3764,7 @@ Table of Contents
              "Enables BFD if set to true. BFD is disabled of set to
               false.";
          }
-         uses bfd-profile-reference;
+         uses failure-detection-profile-reference;
        }
      }
 
@@ -3797,7 +3797,7 @@ Table of Contents
                  session. This may be expressed as either
                  an IP address or a reference to an interface.";
            }
-           uses bfd-profile-reference;
+           uses failure-detection-profile-reference;
            uses bfd;
            container authentication {
              presence "Enables BFD authentication";
