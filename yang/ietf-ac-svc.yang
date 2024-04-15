@@ -303,13 +303,35 @@ module ietf-ac-svc {
       if-feature "vpn-common:ipv4";
       description
         "IPv4-specific parameters.";
-      uses ac-common:ipv4-connection;
+      uses ac-common:ipv4-connection {
+        augment ac-svc:allocation-type/static-addresses/address {
+          leaf bfd-profile {
+            if-feature "vpn-common:bfd";
+            type bfd-profile-reference;
+            description
+              "Points to a BFD profile.";
+          }
+          description
+            "Add a BFD profile as part of ip connection.";
+        }
+      }
     }
     container ipv6 {
       if-feature "vpn-common:ipv6";
       description
         "IPv6-specific parameters.";
-      uses ac-common:ipv6-connection;
+      uses ac-common:ipv6-connection {
+        augment ac-svc:allocation-type/static-addresses/address {
+          leaf bfd-profile {
+            if-feature "vpn-common:bfd";
+            type bfd-profile-reference;
+            description
+              "Points to a BFD profile.";
+          }
+          description
+            "Add a BFD profile as part of ip connection.";
+        }
+      }
     }
   }
 
