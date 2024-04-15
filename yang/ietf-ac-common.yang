@@ -406,8 +406,8 @@ module ietf-ac-common {
         leaf id {
           type string;
           description
-            "Identification of the a failure detection (e.g., BFD) profile
-             to be used.";
+            "Identification of the a failure detection (e.g., BFD)
+             profile to be used.";
         }
       }
       list forwarding-profile-identifier {
