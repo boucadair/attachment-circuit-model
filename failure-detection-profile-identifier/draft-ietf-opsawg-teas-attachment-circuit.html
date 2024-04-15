@@ -2849,8 +2849,9 @@ a parent AC can be defined with a set of stable and common information, while
         |     |     |     +--ro last-change?   yang:date-and-time
         |     |     +--rw peer-group?
         |     |     |       -&gt; ../../peer-groups/peer-group/name
-        |     |     +--rw bfd-profile?
-        |     |            failure-detection-profile-reference {vpn-common:bfd}?
+        |     |     +--rw failure-detection-profile?
+        |     |                   failure-detection-profile-reference
+        |     |                   {vpn-common:bfd}?
         |     +--rw ospf {vpn-common:rtg-ospf}?
         |     |  ...
         |     +--rw isis {vpn-common:rtg-isis}?
