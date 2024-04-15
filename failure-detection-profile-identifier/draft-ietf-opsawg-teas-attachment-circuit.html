@@ -2590,9 +2590,10 @@ a parent AC can be defined with a set of stable and common information, while
         |           +--rw address* [address-id]
         |              +--rw address-id          string
         |              +--rw customer-address?   inet:ipv6-address
-        |              +--rw bfd-profile?
-        |                  failure-detection-profile-reference {vpn-common:bfd}?
-           ...
+        |              +--rw failure-detection-profile?
+        |                                failure-detection-profile-reference
+        |                                {vpn-common:bfd}?
+        | ...
 </pre>
 </div>
 <figcaption><a href="#figure-11" class="selfRef">Figure 11</a>:
