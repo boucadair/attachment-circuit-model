@@ -3506,7 +3506,7 @@ isn't any type of VRRP authentication at this time (see <span><a href="https://r
        |     +--rw session* [dest-addr]
        |        +--rw dest-addr                   inet:ip-address
        |        +--rw source-address?             union
-       |        +--rw bfd-profile-ref?            leafref
+       |        +--rw failure-detection-profile-ref?   leafref
        |        +--rw network-ref?
        |        |       -&gt; /nw:networks/network/network-id
        |        +--rw session-type?               identityref
