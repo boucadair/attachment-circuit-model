@@ -348,8 +348,8 @@ The exact definition of the specific provisioning profiles profiles is local to 
 'qos-profile-identifier':
 : A Quality of Service (QoS) profile refers to a set of policies such as classification, marking, and actions (e.g., {{?RFC3644}}).
 
-'bfd-profile-identifier':
-: A Bidirectional Forwarding Detection (BFD) profile refers to a set of BFD policies {{!RFC5880}} that can be invoked when building an AC.
+'failure-detection-profile-identifier':
+: A failure detection profile refers to a set of failure detection policies such as Bidirectional Forwarding Detection (BFD) policies {{!RFC5880}} that can be invoked when building an AC.
 
 'forwarding-profile-identifier':
 : A forwarding profile refers to the policies that apply to the forwarding of packets conveyed over an AC. Such policies may consist of, for example, applying Access Control Lists (ACLs).
@@ -753,12 +753,12 @@ The OAM subtree structure is shown in {{oam-tree}}.
 The following OAM data nodes can be specified for each BFD session:
 
 'dest-addr':
-: Specifies the BFD peer address.
+: Specifies the BFD peer address. This data node is mapped to 'remote-address' of BFD container in {{I-D.ietf-opsawg-teas-attachment-circuit}}. 'dest-address' is used here to ease the mapping with the underlying device model defind in {{?RFC9127}}.
 
 'source-address':
-: Specifies the local IP address or interface to use for the session.
+: Specifies the local IP address or interface to use for the session. This data node is mapped to 'local-address' of BFD container in {{I-D.ietf-opsawg-teas-attachment-circuit}}. 'source-address' is used here to ease the mapping with the underlying device model defind in {{?RFC9127}}.
 
-'bfd-profile-ref':
+'failure-detection-profile-profile-ref':
 : Refers to a BFD profile ({{sec-profiles}}).
 
 'network-ref':
