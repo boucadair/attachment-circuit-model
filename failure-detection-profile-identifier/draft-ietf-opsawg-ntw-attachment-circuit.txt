@@ -653,9 +653,10 @@ Table of Contents
       to a set of policies such as classification, marking, and actions
       (e.g., [RFC3644]).
 
-   'bfd-profile-identifier':  A Bidirectional Forwarding Detection (BFD)
-      profile refers to a set of BFD policies [RFC5880] that can be
-      invoked when building an AC.
+   'failure-detection-profile-identifier':  A failure detection profile
+      refers to a set of failure detection policies such as
+      Bidirectional Forwarding Detection (BFD) policies [RFC5880] that
+      can be invoked when building an AC.
 
    'forwarding-profile-identifier':  A forwarding profile refers to the
       policies that apply to the forwarding of packets conveyed over an
@@ -1933,12 +1934,20 @@ Table of Contents
 
    The following OAM data nodes can be specified for each BFD session:
 
-   'dest-addr':  Specifies the BFD peer address.
+   'dest-addr':  Specifies the BFD peer address.  This data node is
+      mapped to 'remote-address' of BFD container in
+      [I-D.ietf-opsawg-teas-attachment-circuit]. 'dest-address' is used
+      here to ease the mapping with the underlying device model defind
+      in [RFC9127].
 
    'source-address':  Specifies the local IP address or interface to use
-      for the session.
+      for the session.  This data node is mapped to 'local-address' of
+      BFD container in [I-D.ietf-opsawg-teas-attachment-circuit].
+      'source-address' is used here to ease the mapping with the
+      underlying device model defind in [RFC9127].
 
-   'bfd-profile-ref':  Refers to a BFD profile (Section 5.3).
+   'failure-detection-profile-profile-ref':  Refers to a BFD profile
+      (Section 5.3).
 
    'network-ref':  Includes a network reference to uniquely identify a
       BFD profile.
@@ -4437,6 +4446,12 @@ Table of Contents
               L. Geng, "A Framework for Automating Service and Network
               Management with YANG", RFC 8969, DOI 10.17487/RFC8969,
               January 2021, <https://www.rfc-editor.org/rfc/rfc8969>.
+
+   [RFC9127]  Rahman, R., Ed., Zheng, L., Ed., Jethanandani, M., Ed.,
+              Pallagatti, S., and G. Mirsky, "YANG Data Model for
+              Bidirectional Forwarding Detection (BFD)", RFC 9127,
+              DOI 10.17487/RFC9127, October 2021,
+              <https://www.rfc-editor.org/rfc/rfc9127>.
 
    [RFC9543]  Farrel, A., Ed., Drake, J., Ed., Rokui, R., Homma, S.,
               Makhijani, K., Contreras, L., and J. Tantsura, "A

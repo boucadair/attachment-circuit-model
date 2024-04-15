@@ -1994,9 +1994,9 @@ reference points (the PE side of an AC, in the context of this document) where n
             <p id="section-5.3-4.4.1">A Quality of Service (QoS) profile refers to a set of policies such as classification, marking, and actions (e.g., <span>[<a href="#RFC3644" class="cite xref">RFC3644</a>]</span>).<a href="#section-5.3-4.4.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-5.3-4.5">'bfd-profile-identifier':</dt>
+<dt id="section-5.3-4.5">'failure-detection-profile-identifier':</dt>
           <dd style="margin-left: 1.5em" id="section-5.3-4.6">
-            <p id="section-5.3-4.6.1">A Bidirectional Forwarding Detection (BFD) profile refers to a set of BFD policies <span>[<a href="#RFC5880" class="cite xref">RFC5880</a>]</span> that can be invoked when building an AC.<a href="#section-5.3-4.6.1" class="pilcrow">¶</a></p>
+            <p id="section-5.3-4.6.1">A failure detection profile refers to a set of failure detection policies such as Bidirectional Forwarding Detection (BFD) policies <span>[<a href="#RFC5880" class="cite xref">RFC5880</a>]</span> that can be invoked when building an AC.<a href="#section-5.3-4.6.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
 <dt id="section-5.3-4.7">'forwarding-profile-identifier':</dt>
@@ -3538,15 +3538,15 @@ isn't any type of VRRP authentication at this time (see <span><a href="https://r
 <span class="break"></span><dl class="dlParallel" id="section-5.7-4">
           <dt id="section-5.7-4.1">'dest-addr':</dt>
           <dd style="margin-left: 1.5em" id="section-5.7-4.2">
-            <p id="section-5.7-4.2.1">Specifies the BFD peer address.<a href="#section-5.7-4.2.1" class="pilcrow">¶</a></p>
+            <p id="section-5.7-4.2.1">Specifies the BFD peer address. This data node is mapped to 'remote-address' of BFD container in <span>[<a href="#I-D.ietf-opsawg-teas-attachment-circuit" class="cite xref">I-D.ietf-opsawg-teas-attachment-circuit</a>]</span>. 'dest-address' is used here to ease the mapping with the underlying device model defind in <span>[<a href="#RFC9127" class="cite xref">RFC9127</a>]</span>.<a href="#section-5.7-4.2.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
 <dt id="section-5.7-4.3">'source-address':</dt>
           <dd style="margin-left: 1.5em" id="section-5.7-4.4">
-            <p id="section-5.7-4.4.1">Specifies the local IP address or interface to use for the session.<a href="#section-5.7-4.4.1" class="pilcrow">¶</a></p>
+            <p id="section-5.7-4.4.1">Specifies the local IP address or interface to use for the session. This data node is mapped to 'local-address' of BFD container in <span>[<a href="#I-D.ietf-opsawg-teas-attachment-circuit" class="cite xref">I-D.ietf-opsawg-teas-attachment-circuit</a>]</span>. 'source-address' is used here to ease the mapping with the underlying device model defind in <span>[<a href="#RFC9127" class="cite xref">RFC9127</a>]</span>.<a href="#section-5.7-4.4.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-5.7-4.5">'bfd-profile-ref':</dt>
+<dt id="section-5.7-4.5">'failure-detection-profile-profile-ref':</dt>
           <dd style="margin-left: 1.5em" id="section-5.7-4.6">
             <p id="section-5.7-4.6.1">Refers to a BFD profile (<a href="#sec-profiles" class="auto internal xref">Section 5.3</a>).<a href="#section-5.7-4.6.1" class="pilcrow">¶</a></p>
 </dd>
@@ -6097,6 +6097,10 @@ be used to inject spoofed routing  advertisements.<a href="#section-7-7.6.1" cla
 <dt id="RFC8969">[RFC8969]</dt>
         <dd>
 <span class="refAuthor">Wu, Q., Ed.</span>, <span class="refAuthor">Boucadair, M., Ed.</span>, <span class="refAuthor">Lopez, D.</span>, <span class="refAuthor">Xie, C.</span>, and <span class="refAuthor">L. Geng</span>, <span class="refTitle">"A Framework for Automating Service and Network Management with YANG"</span>, <span class="seriesInfo">RFC 8969</span>, <span class="seriesInfo">DOI 10.17487/RFC8969</span>, <time datetime="2021-01" class="refDate">January 2021</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8969">https://www.rfc-editor.org/rfc/rfc8969</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC9127">[RFC9127]</dt>
+        <dd>
+<span class="refAuthor">Rahman, R., Ed.</span>, <span class="refAuthor">Zheng, L., Ed.</span>, <span class="refAuthor">Jethanandani, M., Ed.</span>, <span class="refAuthor">Pallagatti, S.</span>, and <span class="refAuthor">G. Mirsky</span>, <span class="refTitle">"YANG Data Model for Bidirectional Forwarding Detection (BFD)"</span>, <span class="seriesInfo">RFC 9127</span>, <span class="seriesInfo">DOI 10.17487/RFC9127</span>, <time datetime="2021-10" class="refDate">October 2021</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9127">https://www.rfc-editor.org/rfc/rfc9127</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC9543">[RFC9543]</dt>
       <dd>
