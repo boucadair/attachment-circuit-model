@@ -997,13 +997,28 @@ module ietf-ac-svc {
         if-feature "vpn-common:bfd";
         description
           "Container for BFD.";
-        leaf profile {
-          type failure-detection-profile-reference;
+        list session {
+          key "remote-address";
           description
-            "Points to a BFD profile.";
-        }
-        uses ac-common:bfd;
-        uses ac-common:service-status;
+            "List of IP sessions.";
+           leaf local-address {
+             type inet:ip-address;
+             description
+               "Provider's IP address of the BFD session.";
+          }
+          leaf remote-address {
+             type inet:ip-address;
+             description
+               "Customer's IP address of the BFD session.";
+          }
+          leaf profile {
+            type failure-detection-profile-reference;
+            description
+              "Points to a BFD profile.";
+          }
+          uses ac-common:bfd;
+          uses ac-common:service-status;
+        } 
       }
     }
     container security {
