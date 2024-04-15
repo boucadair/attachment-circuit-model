@@ -73,8 +73,8 @@
         |     |     |     +--ro last-change?   yang:date-and-time
         |     |     +--rw peer-group?
         |     |     |       -> ../../peer-groups/peer-group/name
-        |     |     +--rw bfd-profile?        bfd-profile-reference
-        |     |             {vpn-common:bfd}?
+        |     |     +--rw bfd-profile? 
+        |     |            failure-detection-profile-reference {vpn-common:bfd}?
         |     +--rw ospf {vpn-common:rtg-ospf}?
         |     |  ...
         |     +--rw isis {vpn-common:rtg-isis}?
