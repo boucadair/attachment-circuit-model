@@ -2822,6 +2822,8 @@ Table of Contents
                description
                  "Points to a BFD profile.";
              }
+             description
+               "Add a BFD profile as part of ip connection.";
            }
          }
        }
@@ -2837,6 +2839,8 @@ Table of Contents
                description
                  "Points to a BFD profile.";
              }
+             description
+               "Add a BFD profile as part of ip connection.";
            }
          }
        }
