@@ -8541,7 +8541,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 {
   "ietf-ac-svc:specific-provisioning-profiles": {
     "valid-provider-identifiers": {
-      "bfd-profile-identifier": [
+      "failure-detection-profile-identifier": [
         {
           "id": "single-hop-bfd-user-plane"
         }
@@ -8589,13 +8589,15 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
                       "lan": "198.51.100.100/32",
                       "next-hop": "192.0.2.1",
                       "lan-tag": "virtual-next-hop",
-                      "bfd-profile": "single-hop-bfd-user-plane"
+                      "failure-detection-profile": "single-hop-bfd-\
+                                                          user-plane"
                     },
                     {
                       "lan": "198.51.100.100/32",
                       "next-hop": "192.0.2.2",
                       "lan-tag": "virtual-next-hop",
-                      "bfd-profile": "single-hop-bfd-user-plane"
+                      "failure-detection-profile": "single-hop-bfd-\
+                                                          user-plane"
                     },
                     {"_comment": "192.0.2.3-192.0.2.7 are not \
                                                          displayed"},
@@ -8603,7 +8605,8 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
                       "lan": "198.51.100.100/32",
                       "next-hop": "192.0.2.8",
                       "lan-tag": "virtual-next-hop",
-                      "bfd-profile": "single-hop-bfd-user-plane"
+                      "failure-detection-profile": "single-hop-bfd-\
+                                                          user-plane"
                     }
                   ]
                 }
