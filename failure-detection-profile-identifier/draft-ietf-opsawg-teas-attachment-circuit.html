@@ -2145,9 +2145,9 @@ module: ietf-ac-svc
                 <p id="section-5.2.2.1-5.4.1">Refers to a set of policies, such as classification, marking, and actions (e.g., <span>[<a href="#RFC3644" class="cite xref">RFC3644</a>]</span>).<a href="#section-5.2.2.1-5.4.1" class="pilcrow">¶</a></p>
 </dd>
               <dd class="break"></dd>
-<dt id="section-5.2.2.1-5.5">'bfd-profile-identifier':</dt>
+<dt id="section-5.2.2.1-5.5">'failure-detection-profile-identifier':</dt>
               <dd style="margin-left: 1.5em" id="section-5.2.2.1-5.6">
-                <p id="section-5.2.2.1-5.6.1">Refers to a set of Bidirectional Forwarding Detection (BFD) policies <span>[<a href="#RFC5880" class="cite xref">RFC5880</a>]</span> that can be invoked when building an AC.<a href="#section-5.2.2.1-5.6.1" class="pilcrow">¶</a></p>
+                <p id="section-5.2.2.1-5.6.1">Refers to a set of failure detection policies (e.g., Bidirectional Forwarding Detection (BFD) policies <span>[<a href="#RFC5880" class="cite xref">RFC5880</a>]</span>) that can be invoked when building an AC.<a href="#section-5.2.2.1-5.6.1" class="pilcrow">¶</a></p>
 </dd>
               <dd class="break"></dd>
 <dt id="section-5.2.2.1-5.7">'forwarding-profile-identifier':</dt>
@@ -2751,9 +2751,9 @@ a parent AC can be defined with a set of stable and common information, while
                   <p id="section-5.2.5.3.1-4.8.1">Indicates the metric associated with the static route entry. This metric is used when the route is exported into an IGP.<a href="#section-5.2.5.3.1-4.8.1" class="pilcrow">¶</a></p>
 </dd>
                 <dd class="break"></dd>
-<dt id="section-5.2.5.3.1-4.9">'bfd-profile':</dt>
+<dt id="section-5.2.5.3.1-4.9">'failure-detection-profile':</dt>
                 <dd style="margin-left: 1.5em" id="section-5.2.5.3.1-4.10">
-                  <p id="section-5.2.5.3.1-4.10.1">Indicates a BFD profile that applies for this entry.<a href="#section-5.2.5.3.1-4.10.1" class="pilcrow">¶</a></p>
+                  <p id="section-5.2.5.3.1-4.10.1">Indicates a failure detection profile (e.g., BFD) that applies for this entry.<a href="#section-5.2.5.3.1-4.10.1" class="pilcrow">¶</a></p>
 </dd>
                 <dd class="break"></dd>
 <dt id="section-5.2.5.3.1-4.11">'status':</dt>
@@ -2961,9 +2961,9 @@ a parent AC can be defined with a set of stable and common information, while
                   <p id="section-5.2.5.3.2-6.18.1">Parameters that are provided at the 'neighbor' level takes precedence over the ones provided in the peer group.<a href="#section-5.2.5.3.2-6.18.1" class="pilcrow">¶</a></p>
 </dd>
                 <dd class="break"></dd>
-<dt id="section-5.2.5.3.2-6.19">'bfd-profile':</dt>
+<dt id="section-5.2.5.3.2-6.19">'failure-detection-profile':</dt>
                 <dd style="margin-left: 1.5em" id="section-5.2.5.3.2-6.20">
-                  <p id="section-5.2.5.3.2-6.20.1">Indicates a BFD profile that applies for a BGP neighbor.<a href="#section-5.2.5.3.2-6.20.1" class="pilcrow">¶</a></p>
+                  <p id="section-5.2.5.3.2-6.20.1">Indicates a failure detection profile (BFD) that applies for a BGP neighbor.<a href="#section-5.2.5.3.2-6.20.1" class="pilcrow">¶</a></p>
 </dd>
               <dd class="break"></dd>
 </dl>
@@ -3317,19 +3317,29 @@ isn't any type of VRRP authentication at this time (see <span><a href="https://r
 </div>
 <p id="section-5.2.5.4-3">This version of the module supports BFD. The following BFD data nodes can be specified:<a href="#section-5.2.5.4-3" class="pilcrow">¶</a></p>
 <span class="break"></span><dl class="dlParallel" id="section-5.2.5.4-4">
-              <dt id="section-5.2.5.4-4.1">'profile':</dt>
+              <dt id="section-5.2.5.4-4.1">'local-address':</dt>
               <dd style="margin-left: 1.5em" id="section-5.2.5.4-4.2">
-                <p id="section-5.2.5.4-4.2.1">Refers to a BFD profile.<a href="#section-5.2.5.4-4.2.1" class="pilcrow">¶</a></p>
+                <p id="section-5.2.5.4-4.2.1">Indicates the provider's IP address used for a BFD session.<a href="#section-5.2.5.4-4.2.1" class="pilcrow">¶</a></p>
 </dd>
               <dd class="break"></dd>
-<dt id="section-5.2.5.4-4.3">'holdtime':</dt>
+<dt id="section-5.2.5.4-4.3">'remote-address':</dt>
               <dd style="margin-left: 1.5em" id="section-5.2.5.4-4.4">
-                <p id="section-5.2.5.4-4.4.1">Used to indicate the expected BFD holddown time, in milliseconds.<a href="#section-5.2.5.4-4.4.1" class="pilcrow">¶</a></p>
+                <p id="section-5.2.5.4-4.4.1">Indicates the customer's IP address used for a BFD session.<a href="#section-5.2.5.4-4.4.1" class="pilcrow">¶</a></p>
 </dd>
               <dd class="break"></dd>
-<dt id="section-5.2.5.4-4.5">'status':</dt>
+<dt id="section-5.2.5.4-4.5">'profile':</dt>
               <dd style="margin-left: 1.5em" id="section-5.2.5.4-4.6">
-                <p id="section-5.2.5.4-4.6.1">Indicates the status of the BFD over an AC.<a href="#section-5.2.5.4-4.6.1" class="pilcrow">¶</a></p>
+                <p id="section-5.2.5.4-4.6.1">Refers to a BFD profile.<a href="#section-5.2.5.4-4.6.1" class="pilcrow">¶</a></p>
+</dd>
+              <dd class="break"></dd>
+<dt id="section-5.2.5.4-4.7">'holdtime':</dt>
+              <dd style="margin-left: 1.5em" id="section-5.2.5.4-4.8">
+                <p id="section-5.2.5.4-4.8.1">Used to indicate the expected BFD holddown time, in milliseconds.<a href="#section-5.2.5.4-4.8.1" class="pilcrow">¶</a></p>
+</dd>
+              <dd class="break"></dd>
+<dt id="section-5.2.5.4-4.9">'status':</dt>
+              <dd style="margin-left: 1.5em" id="section-5.2.5.4-4.10">
+                <p id="section-5.2.5.4-4.10.1">Indicates the status of the BFD session.<a href="#section-5.2.5.4-4.10.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
 </dl>
