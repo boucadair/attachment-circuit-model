@@ -27,7 +27,7 @@ module: ietf-ac-ntw
        |     |     |  +--rw metric?       uint32
        |     |     +--rw bfd {vpn-common:bfd}?
        |     |     |  +--rw enabled?            boolean
-       |     |     |  +--rw bfd-profile-ref?   leafref
+       |     |     |  +--rw failure-detection-profile-ref?   leafref
        |     |     |  +--rw network-ref?
        |     |     |          -> /nw:networks/network/network-id
        |     |     |  +--rw preference?   uint32
@@ -46,7 +46,7 @@ module: ietf-ac-ntw
        |     |        +--rw metric?       uint32
        |     |        +--rw bfd {vpn-common:bfd}?
        |     |        |  +--rw enabled?            boolean
-       |     |        |  +--rw bfd-profile-ref?   leafref
+       |     |        |  +--rw failure-detection-profile-ref?   leafref
        |     |        |  +--rw network-ref?
        |     |        |          -> /nw:networks/network/network-id
        |     |        +--rw preference?   uint32
