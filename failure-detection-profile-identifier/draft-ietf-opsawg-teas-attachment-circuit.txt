@@ -1432,93 +1432,93 @@ Table of Contents
 
    The BGP tree structure is shown in Figure 14.
 
-           |  ...
-           +--rw routing-protocols
-           |  +--rw routing-protocol* [id]
-           |     +--rw id                  string
-           |     +--rw type?               identityref
-           |     +--rw routing-profiles* [id]
-           |     |  +--rw id      routing-profile-reference
-           |     |  +--rw type?   identityref
-           |     +--rw static
-           |     |  ...
-           |     +--rw bgp {vpn-common:rtg-bgp}?
-           |     |  +--rw peer-groups
-           |     |  |  +--rw peer-group* [name]
-           |     |  |     +--rw name              string
-           |     |  |     +--rw local-as?         inet:as-number
-           |     |  |     +--rw peer-as?          inet:as-number
-           |     |  |     +--rw address-family?   identityref
-           |     |  |     +--rw local-address?    inet:ip-address
-           |     |  |     +--rw bgp-max-prefix
-           |     |  |     |  +--rw max-prefix?   uint32
-           |     |  |     +--rw authentication
-           |     |  |        +--rw enabled?           boolean
-           |     |  |        +--rw keying-material
-           |     |  |           +--rw (option)?
-           |     |  |              +--:(ao)
-           |     |  |              |  +--rw enable-ao?          boolean
-           |     |  |              |  +--rw ao-keychain?
-           |     |  |              |          key-chain:key-chain-ref
-           |     |  |              +--:(md5)
-           |     |  |              |  +--rw md5-keychain?
-           |     |  |              |          key-chain:key-chain-ref
-           |     |  |              +--:(explicit)
-           |     |  |                 +--rw key-id?             uint32
-           |     |  |                 +--rw key?                string
-           |     |  |                 +--rw crypto-algorithm?
-           |     |  |                         identityref
-           |     |  +--rw neighbor* [id]
-           |     |     +--rw id                  string
-           |     |     +--ro server-reference?   string
-           |     |     |       {ac-common:server-assigned-reference}?
-           |     |     +--rw remote-address?     inet:ip-address
-           |     |     +--rw local-address?      inet:ip-address
-           |     |     +--rw local-as?           inet:as-number
-           |     |     +--rw peer-as?            inet:as-number
-           |     |     +--rw address-family?     identityref
-           |     |     +--rw bgp-max-prefix
-           |     |     |  +--rw max-prefix?   uint32
-           |     |     +--rw authentication
-           |     |     |  +--rw enabled?           boolean
-           |     |     |  +--rw keying-material
-           |     |     |     +--rw (option)?
-           |     |     |        +--:(ao)
-           |     |     |        |  +--rw enable-ao?          boolean
-           |     |     |        |  +--rw ao-keychain?
-           |     |     |        |          key-chain:key-chain-ref
-           |     |     |        +--:(md5)
-           |     |     |        |  +--rw md5-keychain?
-           |     |     |        |          key-chain:key-chain-ref
-           |     |     |        +--:(explicit)
-           |     |     |           +--rw key-id?             uint32
-           |     |     |           +--rw key?                string
-           |     |     |           +--rw crypto-algorithm?   identityref
-           |     |     +--rw requested-start?    yang:date-and-time
-           |     |     +--rw requested-stop?     yang:date-and-time
-           |     |     +--ro actual-start?       yang:date-and-time
-           |     |     +--ro actual-stop?        yang:date-and-time
-           |     |     +--rw status
-           |     |     |  +--rw admin-status
-           |     |     |  |  +--rw status?        identityref
-           |     |     |  |  +--ro last-change?   yang:date-and-time
-           |     |     |  +--ro oper-status
-           |     |     |     +--ro status?        identityref
-           |     |     |     +--ro last-change?   yang:date-and-time
-           |     |     +--rw peer-group?
-           |     |     |       -> ../../peer-groups/peer-group/name
-           |     |     +--rw bfd-profile?        bfd-profile-reference
-           |     |             {vpn-common:bfd}?
-           |     +--rw ospf {vpn-common:rtg-ospf}?
-           |     |  ...
-           |     +--rw isis {vpn-common:rtg-isis}?
-           |     |  ...
-           |     +--rw rip {vpn-common:rtg-rip}?
-           |     |  ...
-           |     +--rw vrrp {vpn-common:rtg-vrrp}?
-           |        ...
+        |  ...
+        +--rw routing-protocols
+        |  +--rw routing-protocol* [id]
+        |     +--rw id                  string
+        |     +--rw type?               identityref
+        |     +--rw routing-profiles* [id]
+        |     |  +--rw id      routing-profile-reference
+        |     |  +--rw type?   identityref
+        |     +--rw static
+        |     |  ...
+        |     +--rw bgp {vpn-common:rtg-bgp}?
+        |     |  +--rw peer-groups
+        |     |  |  +--rw peer-group* [name]
+        |     |  |     +--rw name              string
+        |     |  |     +--rw local-as?         inet:as-number
+        |     |  |     +--rw peer-as?          inet:as-number
+        |     |  |     +--rw address-family?   identityref
+        |     |  |     +--rw local-address?    inet:ip-address
+        |     |  |     +--rw bgp-max-prefix
+        |     |  |     |  +--rw max-prefix?   uint32
+        |     |  |     +--rw authentication
+        |     |  |        +--rw enabled?           boolean
+        |     |  |        +--rw keying-material
+        |     |  |           +--rw (option)?
+        |     |  |              +--:(ao)
+        |     |  |              |  +--rw enable-ao?          boolean
+        |     |  |              |  +--rw ao-keychain?
+        |     |  |              |          key-chain:key-chain-ref
+        |     |  |              +--:(md5)
+        |     |  |              |  +--rw md5-keychain?
+        |     |  |              |          key-chain:key-chain-ref
+        |     |  |              +--:(explicit)
+        |     |  |                 +--rw key-id?             uint32
+        |     |  |                 +--rw key?                string
+        |     |  |                 +--rw crypto-algorithm?
+        |     |  |                         identityref
+        |     |  +--rw neighbor* [id]
+        |     |     +--rw id                  string
+        |     |     +--ro server-reference?   string
+        |     |     |       {ac-common:server-assigned-reference}?
+        |     |     +--rw remote-address?     inet:ip-address
+        |     |     +--rw local-address?      inet:ip-address
+        |     |     +--rw local-as?           inet:as-number
+        |     |     +--rw peer-as?            inet:as-number
+        |     |     +--rw address-family?     identityref
+        |     |     +--rw bgp-max-prefix
+        |     |     |  +--rw max-prefix?   uint32
+        |     |     +--rw authentication
+        |     |     |  +--rw enabled?           boolean
+        |     |     |  +--rw keying-material
+        |     |     |     +--rw (option)?
+        |     |     |        +--:(ao)
+        |     |     |        |  +--rw enable-ao?          boolean
+        |     |     |        |  +--rw ao-keychain?
+        |     |     |        |          key-chain:key-chain-ref
+        |     |     |        +--:(md5)
+        |     |     |        |  +--rw md5-keychain?
+        |     |     |        |          key-chain:key-chain-ref
+        |     |     |        +--:(explicit)
+        |     |     |           +--rw key-id?             uint32
+        |     |     |           +--rw key?                string
+        |     |     |           +--rw crypto-algorithm?   identityref
+        |     |     +--rw requested-start?    yang:date-and-time
+        |     |     +--rw requested-stop?     yang:date-and-time
+        |     |     +--ro actual-start?       yang:date-and-time
+        |     |     +--ro actual-stop?        yang:date-and-time
+        |     |     +--rw status
+        |     |     |  +--rw admin-status
+        |     |     |  |  +--rw status?        identityref
+        |     |     |  |  +--ro last-change?   yang:date-and-time
+        |     |     |  +--ro oper-status
+        |     |     |     +--ro status?        identityref
+        |     |     |     +--ro last-change?   yang:date-and-time
+        |     |     +--rw peer-group?
+        |     |     |       -> ../../peer-groups/peer-group/name
+        |     |     +--rw bfd-profile?
+        |     |            failure-detection-profile-reference {vpn-common:bfd}?
+        |     +--rw ospf {vpn-common:rtg-ospf}?
+        |     |  ...
+        |     +--rw isis {vpn-common:rtg-isis}?
+        |     |  ...
+        |     +--rw rip {vpn-common:rtg-rip}?
+        |     |  ...
+        |     +--rw vrrp {vpn-common:rtg-vrrp}?
+        |        ...
 
-                       Figure 14: BGP Tree Structure
+                    Figure 14: BGP Tree Structure
 
    The following data nodes are supported for each BGP 'peer-group':
 
