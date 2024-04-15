@@ -4,7 +4,7 @@
   |     |  +--rw id    string
   |     +--rw qos-profile-identifier* [id]
   |     |  +--rw id    string
-  |     +--rw bfd-profile-identifier* [id]
+  |     +--rw failure-detection-profile-identifier* [id]
   |     |  +--rw id    string
   |     +--rw forwarding-profile-identifier* [id]
   |     |  +--rw id    string
@@ -80,8 +80,12 @@
      |  |  |     |                   inet:ipv4-address
      |  |  |     +--:(static-addresses)
      |  |  |        +--rw address* [address-id]
-     |  |  |           +--rw address-id          string
-     |  |  |           +--rw customer-address?   inet:ipv4-address
+     |  |  |           +--rw address-id                   string
+     |  |  |           +--rw customer-address?
+     |  |  |           |       inet:ipv4-address
+     |  |  |           +--rw failure-detection-profile?
+     |  |  |                   failure-detection-profile-reference
+     |  |  |                   {vpn-common:bfd}?
      |  |  +--rw ipv6 {vpn-common:ipv6}?
      |  |     +--rw local-address?
      |  |     |       inet:ipv6-address
@@ -114,8 +118,12 @@
      |  |        |                   inet:ipv6-address
      |  |        +--:(static-addresses)
      |  |           +--rw address* [address-id]
-     |  |              +--rw address-id          string
-     |  |              +--rw customer-address?   inet:ipv6-address
+     |  |              +--rw address-id                   string
+     |  |              +--rw customer-address?
+     |  |              |       inet:ipv6-address
+     |  |              +--rw failure-detection-profile?
+     |  |                      failure-detection-profile-reference
+     |  |                      {vpn-common:bfd}?
      |  +--rw routing-protocols
      |  |  +--rw routing-protocol* [id]
      |  |     +--rw id                  string
@@ -127,11 +135,13 @@
      |  |     |  +--rw cascaded-lan-prefixes
      |  |     |     +--rw ipv4-lan-prefixes* [lan next-hop]
      |  |     |     |       {vpn-common:ipv4}?
-     |  |     |     |  +--rw lan            inet:ipv4-prefix
-     |  |     |     |  +--rw lan-tag?       string
-     |  |     |     |  +--rw next-hop       union
-     |  |     |     |  +--rw metric?        uint32
-     |  |     |     |  +--rw bfd-profile?   bfd-profile-reference
+     |  |     |     |  +--rw lan
+     |  |     |     |  |       inet:ipv4-prefix
+     |  |     |     |  +--rw lan-tag?                     string
+     |  |     |     |  +--rw next-hop                     union
+     |  |     |     |  +--rw metric?                      uint32
+     |  |     |     |  +--rw failure-detection-profile?
+     |  |     |     |  |       failure-detection-profile-reference
      |  |     |     |  |       {vpn-common:bfd}?
      |  |     |     |  +--rw status
      |  |     |     |     +--rw admin-status
@@ -142,11 +152,13 @@
      |  |     |     |        +--ro last-change?   yang:date-and-time
      |  |     |     +--rw ipv6-lan-prefixes* [lan next-hop]
      |  |     |             {vpn-common:ipv6}?
-     |  |     |        +--rw lan            inet:ipv4-prefix
-     |  |     |        +--rw lan-tag?       string
-     |  |     |        +--rw next-hop       union
-     |  |     |        +--rw metric?        uint32
-     |  |     |        +--rw bfd-profile?   bfd-profile-reference
+     |  |     |        +--rw lan
+     |  |     |        |       inet:ipv4-prefix
+     |  |     |        +--rw lan-tag?                     string
+     |  |     |        +--rw next-hop                     union
+     |  |     |        +--rw metric?                      uint32
+     |  |     |        +--rw failure-detection-profile?
+     |  |     |        |       failure-detection-profile-reference
      |  |     |        |       {vpn-common:bfd}?
      |  |     |        +--rw status
      |  |     |           +--rw admin-status
@@ -182,14 +194,14 @@
      |  |     |  |                 +--rw crypto-algorithm?
      |  |     |  |                         identityref
      |  |     |  +--rw neighbor* [id]
-     |  |     |     +--rw id                  string
-     |  |     |     +--ro server-reference?   string
+     |  |     |     +--rw id                           string
+     |  |     |     +--ro server-reference?            string
      |  |     |     |       {ac-common:server-assigned-reference}?
-     |  |     |     +--rw remote-address?     inet:ip-address
-     |  |     |     +--rw local-address?      inet:ip-address
-     |  |     |     +--rw local-as?           inet:as-number
-     |  |     |     +--rw peer-as?            inet:as-number
-     |  |     |     +--rw address-family?     identityref
+     |  |     |     +--rw remote-address?              inet:ip-address
+     |  |     |     +--rw local-address?               inet:ip-address
+     |  |     |     +--rw local-as?                    inet:as-number
+     |  |     |     +--rw peer-as?                     inet:as-number
+     |  |     |     +--rw address-family?              identityref
      |  |     |     +--rw bgp-max-prefix
      |  |     |     |  +--rw max-prefix?   uint32
      |  |     |     +--rw authentication
@@ -207,10 +219,14 @@
      |  |     |     |           +--rw key-id?             uint32
      |  |     |     |           +--rw key?                string
      |  |     |     |           +--rw crypto-algorithm?   identityref
-     |  |     |     +--rw requested-start?    yang:date-and-time
-     |  |     |     +--rw requested-stop?     yang:date-and-time
-     |  |     |     +--ro actual-start?       yang:date-and-time
-     |  |     |     +--ro actual-stop?        yang:date-and-time
+     |  |     |     +--rw requested-start?
+     |  |     |     |       yang:date-and-time
+     |  |     |     +--rw requested-stop?
+     |  |     |     |       yang:date-and-time
+     |  |     |     +--ro actual-start?
+     |  |     |     |       yang:date-and-time
+     |  |     |     +--ro actual-stop?
+     |  |     |     |       yang:date-and-time
      |  |     |     +--rw status
      |  |     |     |  +--rw admin-status
      |  |     |     |  |  +--rw status?        identityref
@@ -220,7 +236,8 @@
      |  |     |     |     +--ro last-change?   yang:date-and-time
      |  |     |     +--rw peer-group?
      |  |     |     |       -> ../../peer-groups/peer-group/name
-     |  |     |     +--rw bfd-profile?        bfd-profile-reference
+     |  |     |     +--rw failure-detection-profile?
+     |  |     |             failure-detection-profile-reference
      |  |     |             {vpn-common:bfd}?
      |  |     +--rw ospf {vpn-common:rtg-ospf}?
      |  |     |  +--rw address-family?   identityref
@@ -295,15 +312,19 @@
      |  |              +--ro last-change?   yang:date-and-time
      |  +--rw oam
      |  |  +--rw bfd {vpn-common:bfd}?
-     |  |     +--rw profile?    bfd-profile-reference
-     |  |     +--rw holdtime?   uint32
-     |  |     +--rw status
-     |  |        +--rw admin-status
-     |  |        |  +--rw status?        identityref
-     |  |        |  +--ro last-change?   yang:date-and-time
-     |  |        +--ro oper-status
-     |  |           +--ro status?        identityref
-     |  |           +--ro last-change?   yang:date-and-time
+     |  |     +--rw session* [remote-address]
+     |  |        +--rw local-address?    inet:ip-address
+     |  |        +--rw remote-address    inet:ip-address
+     |  |        +--rw profile?
+     |  |        |       failure-detection-profile-reference
+     |  |        +--rw holdtime?         uint32
+     |  |        +--rw status
+     |  |           +--rw admin-status
+     |  |           |  +--rw status?        identityref
+     |  |           |  +--ro last-change?   yang:date-and-time
+     |  |           +--ro oper-status
+     |  |              +--ro status?        identityref
+     |  |              +--ro last-change?   yang:date-and-time
      |  +--rw security
      |  |  +--rw encryption {vpn-common:encryption}?
      |  |  |  +--rw enabled?   boolean
@@ -470,8 +491,12 @@
         |  |     |                   inet:ipv4-address
         |  |     +--:(static-addresses)
         |  |        +--rw address* [address-id]
-        |  |           +--rw address-id          string
-        |  |           +--rw customer-address?   inet:ipv4-address
+        |  |           +--rw address-id                   string
+        |  |           +--rw customer-address?
+        |  |           |       inet:ipv4-address
+        |  |           +--rw failure-detection-profile?
+        |  |                   failure-detection-profile-reference
+        |  |                   {vpn-common:bfd}?
         |  +--rw ipv6 {vpn-common:ipv6}?
         |     +--rw local-address?
         |     |       inet:ipv6-address
@@ -504,8 +529,12 @@
         |        |                   inet:ipv6-address
         |        +--:(static-addresses)
         |           +--rw address* [address-id]
-        |              +--rw address-id          string
-        |              +--rw customer-address?   inet:ipv6-address
+        |              +--rw address-id                   string
+        |              +--rw customer-address?
+        |              |       inet:ipv6-address
+        |              +--rw failure-detection-profile?
+        |                      failure-detection-profile-reference
+        |                      {vpn-common:bfd}?
         +--rw routing-protocols
         |  +--rw routing-protocol* [id]
         |     +--rw id                  string
@@ -517,11 +546,13 @@
         |     |  +--rw cascaded-lan-prefixes
         |     |     +--rw ipv4-lan-prefixes* [lan next-hop]
         |     |     |       {vpn-common:ipv4}?
-        |     |     |  +--rw lan            inet:ipv4-prefix
-        |     |     |  +--rw lan-tag?       string
-        |     |     |  +--rw next-hop       union
-        |     |     |  +--rw metric?        uint32
-        |     |     |  +--rw bfd-profile?   bfd-profile-reference
+        |     |     |  +--rw lan
+        |     |     |  |       inet:ipv4-prefix
+        |     |     |  +--rw lan-tag?                     string
+        |     |     |  +--rw next-hop                     union
+        |     |     |  +--rw metric?                      uint32
+        |     |     |  +--rw failure-detection-profile?
+        |     |     |  |       failure-detection-profile-reference
         |     |     |  |       {vpn-common:bfd}?
         |     |     |  +--rw status
         |     |     |     +--rw admin-status
@@ -532,11 +563,13 @@
         |     |     |        +--ro last-change?   yang:date-and-time
         |     |     +--rw ipv6-lan-prefixes* [lan next-hop]
         |     |             {vpn-common:ipv6}?
-        |     |        +--rw lan            inet:ipv4-prefix
-        |     |        +--rw lan-tag?       string
-        |     |        +--rw next-hop       union
-        |     |        +--rw metric?        uint32
-        |     |        +--rw bfd-profile?   bfd-profile-reference
+        |     |        +--rw lan
+        |     |        |       inet:ipv4-prefix
+        |     |        +--rw lan-tag?                     string
+        |     |        +--rw next-hop                     union
+        |     |        +--rw metric?                      uint32
+        |     |        +--rw failure-detection-profile?
+        |     |        |       failure-detection-profile-reference
         |     |        |       {vpn-common:bfd}?
         |     |        +--rw status
         |     |           +--rw admin-status
@@ -572,14 +605,14 @@
         |     |  |                 +--rw crypto-algorithm?
         |     |  |                         identityref
         |     |  +--rw neighbor* [id]
-        |     |     +--rw id                  string
-        |     |     +--ro server-reference?   string
+        |     |     +--rw id                           string
+        |     |     +--ro server-reference?            string
         |     |     |       {ac-common:server-assigned-reference}?
-        |     |     +--rw remote-address?     inet:ip-address
-        |     |     +--rw local-address?      inet:ip-address
-        |     |     +--rw local-as?           inet:as-number
-        |     |     +--rw peer-as?            inet:as-number
-        |     |     +--rw address-family?     identityref
+        |     |     +--rw remote-address?              inet:ip-address
+        |     |     +--rw local-address?               inet:ip-address
+        |     |     +--rw local-as?                    inet:as-number
+        |     |     +--rw peer-as?                     inet:as-number
+        |     |     +--rw address-family?              identityref
         |     |     +--rw bgp-max-prefix
         |     |     |  +--rw max-prefix?   uint32
         |     |     +--rw authentication
@@ -597,10 +630,14 @@
         |     |     |           +--rw key-id?             uint32
         |     |     |           +--rw key?                string
         |     |     |           +--rw crypto-algorithm?   identityref
-        |     |     +--rw requested-start?    yang:date-and-time
-        |     |     +--rw requested-stop?     yang:date-and-time
-        |     |     +--ro actual-start?       yang:date-and-time
-        |     |     +--ro actual-stop?        yang:date-and-time
+        |     |     +--rw requested-start?
+        |     |     |       yang:date-and-time
+        |     |     +--rw requested-stop?
+        |     |     |       yang:date-and-time
+        |     |     +--ro actual-start?
+        |     |     |       yang:date-and-time
+        |     |     +--ro actual-stop?
+        |     |     |       yang:date-and-time
         |     |     +--rw status
         |     |     |  +--rw admin-status
         |     |     |  |  +--rw status?        identityref
@@ -610,7 +647,8 @@
         |     |     |     +--ro last-change?   yang:date-and-time
         |     |     +--rw peer-group?
         |     |     |       -> ../../peer-groups/peer-group/name
-        |     |     +--rw bfd-profile?        bfd-profile-reference
+        |     |     +--rw failure-detection-profile?
+        |     |             failure-detection-profile-reference
         |     |             {vpn-common:bfd}?
         |     +--rw ospf {vpn-common:rtg-ospf}?
         |     |  +--rw address-family?   identityref
@@ -685,15 +723,19 @@
         |              +--ro last-change?   yang:date-and-time
         +--rw oam
         |  +--rw bfd {vpn-common:bfd}?
-        |     +--rw profile?    bfd-profile-reference
-        |     +--rw holdtime?   uint32
-        |     +--rw status
-        |        +--rw admin-status
-        |        |  +--rw status?        identityref
-        |        |  +--ro last-change?   yang:date-and-time
-        |        +--ro oper-status
-        |           +--ro status?        identityref
-        |           +--ro last-change?   yang:date-and-time
+        |     +--rw session* [remote-address]
+        |        +--rw local-address?    inet:ip-address
+        |        +--rw remote-address    inet:ip-address
+        |        +--rw profile?
+        |        |       failure-detection-profile-reference
+        |        +--rw holdtime?         uint32
+        |        +--rw status
+        |           +--rw admin-status
+        |           |  +--rw status?        identityref
+        |           |  +--ro last-change?   yang:date-and-time
+        |           +--ro oper-status
+        |              +--ro status?        identityref
+        |              +--ro last-change?   yang:date-and-time
         +--rw security
         |  +--rw encryption {vpn-common:encryption}?
         |  |  +--rw enabled?   boolean
