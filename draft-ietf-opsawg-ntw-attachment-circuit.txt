@@ -530,8 +530,8 @@ Table of Contents
      grouping qos-profile-reference:
        +-- qos-profile-ref?   leafref
        +-- network-ref?       -> /nw:networks/network/network-id
-     grouping bfd-profile-reference:
-       +-- bfd-profile-ref?   leafref
+     grouping failure-detection-profile-reference:
+       +-- failure-detection-profile-ref?   leafref
        +-- network-ref?       -> /nw:networks/network/network-id
      grouping forwarding-profile-reference:
        +-- forwarding-profile-ref?   leafref
@@ -566,7 +566,7 @@ Table of Contents
        |     |  +--rw id    string
        |     +--rw qos-profile-identifier* [id]
        |     |  +--rw id    string
-       |     +--rw bfd-profile-identifier* [id]
+       |     +--rw failure-detection-profile-identifier* [id]
        |     |  +--rw id    string
        |     +--rw forwarding-profile-identifier* [id]
        |     |  +--rw id    string
@@ -653,9 +653,10 @@ Table of Contents
       to a set of policies such as classification, marking, and actions
       (e.g., [RFC3644]).
 
-   'bfd-profile-identifier':  A Bidirectional Forwarding Detection (BFD)
-      profile refers to a set of BFD policies [RFC5880] that can be
-      invoked when building an AC.
+   'failure-detection-profile-identifier':  A failure detection profile
+      refers to a set of failure detection policies such as
+      Bidirectional Forwarding Detection (BFD) policies [RFC5880] that
+      can be invoked when building an AC.
 
    'forwarding-profile-identifier':  A forwarding profile refers to the
       policies that apply to the forwarding of packets conveyed over an
@@ -825,9 +826,11 @@ Table of Contents
           |  |     |           +--rw server-ip-address*
           |  |     |                   inet:ipv4-address
           |  |     +--:(static-addresses)
-          |  |        +--rw address* [address-id]
-          |  |           +--rw address-id          string
-          |  |           +--rw customer-address?   inet:ipv4-address
+          |  |           +--rw customer-address?
+          |  |           |       inet:ipv4-address
+          |  |           +--rw failure-detection-profile-ref?   leafref
+          |  |           +--rw network-ref?
+          |  |                   -> /nw:networks/network/network-id
           |  +--rw ipv6 {vpn-common:ipv6}?
           |     +--rw local-address?
           |     |       inet:ipv6-address
@@ -862,9 +865,12 @@ Table of Contents
           |        |           +--rw server-ip-address*
           |        |                   inet:ipv6-address
           |        +--:(static-addresses)
-          |           +--rw address* [address-id]
-          |              +--rw address-id          string
-          |              +--rw customer-address?   inet:ipv6-address
+          |              +--rw address-id                       string
+          |              +--rw customer-address?
+          |              |       inet:ipv6-address
+          |              +--rw failure-detection-profile-ref?   leafref
+          |              +--rw network-ref?
+          |                      -> /nw:networks/network/network-id
           +--rw routing-protocols
           |  ...
           +--rw oam
@@ -987,83 +993,83 @@ Table of Contents
 
    The static routing subtree structure is shown in Figure 11.
 
-   module: ietf-ac-ntw
-             ...
-     augment /nw:networks/nw:network/nw:node:
-       +--rw ac* [name]
-          +--rw name                 string
-          ...
-          +--rw l2-connection  {ac-common:layer2-ac}?
-          |  ...
-          +--rw ip-connection  {ac-common:layer3-ac}?
-          |  ...
-          +--rw routing-protocols
-          |  +--rw routing-protocol* [id]
-          |     +--rw id                  string
-          |     +--rw type?               identityref
-          |     +--rw routing-profile* [routing-profile-ref]
-          |     |  +--rw routing-profile-ref    leafref
-          |     |  +--rw network-ref?
-          |     |  |       -> /nw:networks/network/network-id
-          |     |  +--rw type?                  identityref
-          |     +--rw static
-          |     |  +--rw cascaded-lan-prefixes
-          |     |     +--rw ipv4-lan-prefixes* [lan next-hop]
-          |     |     |       {vpn-common:ipv4}?
-          |     |     |  +--rw lan           inet:ipv4-prefix
-          |     |     |  +--rw lan-tag?      string
-          |     |     |  +--rw next-hop      union
-          |     |     |  +--rw metric?       uint32
-          |     |     +--rw bfd {vpn-common:bfd}?
-          |     |     |  +--rw enabled?            boolean
-          |     |     |  +--rw bfd-profile-ref?   leafref
-          |     |     |  +--rw network-ref?
-          |     |     |          -> /nw:networks/network/network-id
-          |     |     |  +--rw preference?   uint32
-          |     |     |  +--rw status
-          |     |     |     +--rw admin-status
-          |     |     |     |  +--rw status?        identityref
-          |     |     |     |  +--ro last-change?   yang:date-and-time
-          |     |     |     +--ro oper-status
-          |     |     |        +--ro status?        identityref
-          |     |     |        +--ro last-change?   yang:date-and-time
-          |     |     +--rw ipv6-lan-prefixes* [lan next-hop]
-          |     |             {vpn-common:ipv6}?
-          |     |        +--rw lan           inet:ipv4-prefix
-          |     |        +--rw lan-tag?      string
-          |     |        +--rw next-hop      union
-          |     |        +--rw metric?       uint32
-          |     |        +--rw bfd {vpn-common:bfd}?
-          |     |        |  +--rw enabled?            boolean
-          |     |        |  +--rw bfd-profile-ref?   leafref
-          |     |        |  +--rw network-ref?
-          |     |        |          -> /nw:networks/network/network-id
-          |     |        +--rw preference?   uint32
-          |     |        +--rw status
-          |     |           +--rw admin-status
-          |     |           |  +--rw status?        identityref
-          |     |           |  +--ro last-change?   yang:date-and-time
-          |     |           +--ro oper-status
-          |     |              +--ro status?        identityref
-          |     |              +--ro last-change?   yang:date-and-time
-          |     +--rw bgp  {vpn-common:rtg-bgp}?
-          |     |  ...
-          |     +--rw ospf  {vpn-common:rtg-ospf}?
-          |     |  ...
-          |     +--rw isis  {vpn-common:rtg-isis}?
-          |     |  ...
-          |     +--rw rip  {vpn-common:rtg-rip}?
-          |     |  ...
-          |     +--rw vrrp  {vpn-common:rtg-vrrp}?
-          |        ...
-          +--rw oam
-          |  ...
-          +--rw security
-          |  ...
-          +--rw service
-             ...
+ module: ietf-ac-ntw
+           ...
+   augment /nw:networks/nw:network/nw:node:
+     +--rw ac* [name]
+        +--rw name                 string
+        ...
+        +--rw l2-connection  {ac-common:layer2-ac}?
+        |  ...
+        +--rw ip-connection  {ac-common:layer3-ac}?
+        |  ...
+        +--rw routing-protocols
+        |  +--rw routing-protocol* [id]
+        |     +--rw id                  string
+        |     +--rw type?               identityref
+        |     +--rw routing-profile* [routing-profile-ref]
+        |     |  +--rw routing-profile-ref    leafref
+        |     |  +--rw network-ref?
+        |     |  |       -> /nw:networks/network/network-id
+        |     |  +--rw type?                  identityref
+        |     +--rw static
+        |     |  +--rw cascaded-lan-prefixes
+        |     |     +--rw ipv4-lan-prefixes* [lan next-hop]
+        |     |     |       {vpn-common:ipv4}?
+        |     |     |  +--rw lan           inet:ipv4-prefix
+        |     |     |  +--rw lan-tag?      string
+        |     |     |  +--rw next-hop      union
+        |     |     |  +--rw metric?       uint32
+        |     |     +--rw bfd {vpn-common:bfd}?
+        |     |     |  +--rw enabled?            boolean
+        |     |     |  +--rw failure-detection-profile-ref?   leafref
+        |     |     |  +--rw network-ref?
+        |     |     |          -> /nw:networks/network/network-id
+        |     |     |  +--rw preference?   uint32
+        |     |     |  +--rw status
+        |     |     |     +--rw admin-status
+        |     |     |     |  +--rw status?        identityref
+        |     |     |     |  +--ro last-change?   yang:date-and-time
+        |     |     |     +--ro oper-status
+        |     |     |        +--ro status?        identityref
+        |     |     |        +--ro last-change?   yang:date-and-time
+        |     |     +--rw ipv6-lan-prefixes* [lan next-hop]
+        |     |             {vpn-common:ipv6}?
+        |     |        +--rw lan           inet:ipv4-prefix
+        |     |        +--rw lan-tag?      string
+        |     |        +--rw next-hop      union
+        |     |        +--rw metric?       uint32
+        |     |        +--rw bfd {vpn-common:bfd}?
+        |     |        |  +--rw enabled?            boolean
+        |     |        |  +--rw failure-detection-profile-ref?   leafref
+        |     |        |  +--rw network-ref?
+        |     |        |          -> /nw:networks/network/network-id
+        |     |        +--rw preference?   uint32
+        |     |        +--rw status
+        |     |           +--rw admin-status
+        |     |           |  +--rw status?        identityref
+        |     |           |  +--ro last-change?   yang:date-and-time
+        |     |           +--ro oper-status
+        |     |              +--ro status?        identityref
+        |     |              +--ro last-change?   yang:date-and-time
+        |     +--rw bgp  {vpn-common:rtg-bgp}?
+        |     |  ...
+        |     +--rw ospf  {vpn-common:rtg-ospf}?
+        |     |  ...
+        |     +--rw isis  {vpn-common:rtg-isis}?
+        |     |  ...
+        |     +--rw rip  {vpn-common:rtg-rip}?
+        |     |  ...
+        |     +--rw vrrp  {vpn-common:rtg-vrrp}?
+        |        ...
+        +--rw oam
+        |  ...
+        +--rw security
+        |  ...
+        +--rw service
+           ...
 
-                  Figure 11: Static Routing Tree Structure
+                Figure 11: Static Routing Tree Structure
 
    The following data nodes can be defined for a given IP prefix:
 
@@ -1261,7 +1267,7 @@ Table of Contents
           |     |     |   +--rw name              identityref
           |     |     +--rw bfd {vpn-common:bfd}?
           |     |     |  +--rw enabled?            boolean
-          |     |     |  +--rw bfd-profile-ref?   leafref
+          |     |     |  +--rw failure-detection-profile-ref?   leafref
           |     |     |  +--rw network-ref?
           |     |     |          -> /nw:networks/network/network-id
           |     |     +--rw authentication
@@ -1901,7 +1907,7 @@ Table of Contents
           |     +--rw session* [dest-addr]
           |        +--rw dest-addr                   inet:ip-address
           |        +--rw source-address?             union
-          |        +--rw bfd-profile-ref?            leafref
+          |        +--rw failure-detection-profile-ref?   leafref
           |        +--rw network-ref?
           |        |       -> /nw:networks/network/network-id
           |        +--rw session-type?               identityref
@@ -1928,12 +1934,20 @@ Table of Contents
 
    The following OAM data nodes can be specified for each BFD session:
 
-   'dest-addr':  Specifies the BFD peer address.
+   'dest-addr':  Specifies the BFD peer address.  This data node is
+      mapped to 'remote-address' of BFD container in
+      [I-D.ietf-opsawg-teas-attachment-circuit]. 'dest-address' is used
+      here to ease the mapping with the underlying device model defind
+      in [RFC9127].
 
    'source-address':  Specifies the local IP address or interface to use
-      for the session.
+      for the session.  This data node is mapped to 'local-address' of
+      BFD container in [I-D.ietf-opsawg-teas-attachment-circuit].
+      'source-address' is used here to ease the mapping with the
+      underlying device model defind in [RFC9127].
 
-   'bfd-profile-ref':  Refers to a BFD profile (Section 5.3).
+   'failure-detection-profile-profile-ref':  Refers to a BFD profile
+      (Section 5.3).
 
    'network-ref':  Includes a network reference to uniquely identify a
       BFD profile.
@@ -2296,26 +2310,28 @@ Table of Contents
            require-instance false;
          }
          description
-           "A type for an absolute reference to a QoS profile.";
+           "Type for an absolute reference to a QoS profile.";
        }
        uses nw:network-ref;
      }
 
 
-     grouping bfd-profile-reference {
+     grouping failure-detection-profile-reference {
        description
-         "This grouping can be used to reference a BFD profile.";
-       leaf bfd-profile-ref {
+         "This grouping can be used to reference a failure detection
+          profile.";
+       leaf failure-detection-profile-ref {
          type leafref {
            path "/nw:networks/nw:network[nw:network-id=current()/../"
            + "network-ref]"
            + "/ac-ntw:specific-provisioning-profiles"
            + "/ac-ntw:valid-provider-identifiers"
-           + "/ac-ntw:bfd-profile-identifier/ac-ntw:id";
+           + "/ac-ntw:failure-detection-profile-identifier/ac-ntw:id";
            require-instance false;
          }
          description
-           "A type for an absolute reference to a BFD profile.";
+           "Type for an absolute reference to a failure detection
+            profile.";
        }
        uses nw:network-ref;
      }
@@ -2752,7 +2768,7 @@ Table of Contents
                description
                  "An IPv4 address of the customer side.";
              }
-             uses bfd-profile-reference;
+             uses failure-detection-profile-reference;
            }
          }
        }
@@ -2894,7 +2910,7 @@ Table of Contents
                description
                  "An IPv6 address of the customer side.";
              }
-             uses bfd-profile-reference;
+             uses failure-detection-profile-reference;
            }
          }
        }
@@ -3764,7 +3780,7 @@ Table of Contents
              "Enables BFD if set to true. BFD is disabled of set to
               false.";
          }
-         uses bfd-profile-reference;
+         uses failure-detection-profile-reference;
        }
      }
 
@@ -3797,7 +3813,7 @@ Table of Contents
                  session. This may be expressed as either
                  an IP address or a reference to an interface.";
            }
-           uses bfd-profile-reference;
+           uses failure-detection-profile-reference;
            uses bfd;
            container authentication {
              presence "Enables BFD authentication";
@@ -4430,6 +4446,12 @@ Table of Contents
               L. Geng, "A Framework for Automating Service and Network
               Management with YANG", RFC 8969, DOI 10.17487/RFC8969,
               January 2021, <https://www.rfc-editor.org/rfc/rfc8969>.
+
+   [RFC9127]  Rahman, R., Ed., Zheng, L., Ed., Jethanandani, M., Ed.,
+              Pallagatti, S., and G. Mirsky, "YANG Data Model for
+              Bidirectional Forwarding Detection (BFD)", RFC 9127,
+              DOI 10.17487/RFC9127, October 2021,
+              <https://www.rfc-editor.org/rfc/rfc9127>.
 
    [RFC9543]  Farrel, A., Ed., Drake, J., Ed., Rokui, R., Homma, S.,
               Makhijani, K., Contreras, L., and J. Tantsura, "A

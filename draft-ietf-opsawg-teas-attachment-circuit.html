@@ -2098,7 +2098,7 @@ module: ietf-ac-svc
   |     |  +--rw id    string
   |     +--rw qos-profile-identifier* [id]
   |     |  +--rw id    string
-  |     +--rw bfd-profile-identifier* [id]
+  |     +--rw failure-detection-profile-identifier* [id]
   |     |  +--rw id    string
   |     +--rw forwarding-profile-identifier* [id]
   |     |  +--rw id    string
@@ -2145,9 +2145,9 @@ module: ietf-ac-svc
                 <p id="section-5.2.2.1-5.4.1">Refers to a set of policies, such as classification, marking, and actions (e.g., <span>[<a href="#RFC3644" class="cite xref">RFC3644</a>]</span>).<a href="#section-5.2.2.1-5.4.1" class="pilcrow">¶</a></p>
 </dd>
               <dd class="break"></dd>
-<dt id="section-5.2.2.1-5.5">'bfd-profile-identifier':</dt>
+<dt id="section-5.2.2.1-5.5">'failure-detection-profile-identifier':</dt>
               <dd style="margin-left: 1.5em" id="section-5.2.2.1-5.6">
-                <p id="section-5.2.2.1-5.6.1">Refers to a set of Bidirectional Forwarding Detection (BFD) policies <span>[<a href="#RFC5880" class="cite xref">RFC5880</a>]</span> that can be invoked when building an AC.<a href="#section-5.2.2.1-5.6.1" class="pilcrow">¶</a></p>
+                <p id="section-5.2.2.1-5.6.1">Refers to a set of failure detection policies (e.g., Bidirectional Forwarding Detection (BFD) policies <span>[<a href="#RFC5880" class="cite xref">RFC5880</a>]</span>) that can be invoked when building an AC.<a href="#section-5.2.2.1-5.6.1" class="pilcrow">¶</a></p>
 </dd>
               <dd class="break"></dd>
 <dt id="section-5.2.2.1-5.7">'forwarding-profile-identifier':</dt>
@@ -2536,6 +2536,9 @@ a parent AC can be defined with a set of stable and common information, while
         |  |        +--rw address* [address-id]
         |  |           +--rw address-id          string
         |  |           +--rw customer-address?   inet:ipv4-address
+        |  |           +--rw failure-detection-profile?
+        |  |                             failure-detection-profile-reference
+        |  |                             {vpn-common:bfd}?
         |  +--rw ipv6 {vpn-common:ipv6}?
         |     ...
 </pre>
@@ -2587,7 +2590,10 @@ a parent AC can be defined with a set of stable and common information, while
         |           +--rw address* [address-id]
         |              +--rw address-id          string
         |              +--rw customer-address?   inet:ipv6-address
-           ...
+        |              +--rw failure-detection-profile?
+        |                                failure-detection-profile-reference
+        |                                {vpn-common:bfd}?
+        | ...
 </pre>
 </div>
 <figcaption><a href="#figure-11" class="selfRef">Figure 11</a>:
@@ -2675,11 +2681,14 @@ a parent AC can be defined with a set of stable and common information, while
         |     |  +--rw cascaded-lan-prefixes
         |     |     +--rw ipv4-lan-prefixes* [lan next-hop]
         |     |     |       {vpn-common:ipv4}?
-        |     |     |  +--rw lan         inet:ipv4-prefix
-        |     |     |  +--rw lan-tag?    string
-        |     |     |  +--rw next-hop    union
-        |     |     |  +--rw metric?     uint32
-        |     |     |  +--rw bfd-profile?   bfd-profile-reference
+        |     |     |  +--rw lan
+        |     |     |  |       inet:ipv4-prefix
+        |     |     |  +--rw lan-tag?                     string
+        |     |     |  +--rw next-hop                     union
+        |     |     |  +--rw metric?                      uint32
+        |     |     |  +--rw failure-detection-profile?
+        |     |     |  |       failure-detection-profile-reference
+        |     |     |  |       {vpn-common:bfd}?
         |     |     |  +--rw status
         |     |     |     +--rw admin-status
         |     |     |     |  +--rw status?        identityref
@@ -2689,11 +2698,14 @@ a parent AC can be defined with a set of stable and common information, while
         |     |     |        +--ro last-change?   yang:date-and-time
         |     |     +--rw ipv6-lan-prefixes* [lan next-hop]
         |     |             {vpn-common:ipv6}?
-        |     |        +--rw lan         inet:ipv6-prefix
-        |     |        +--rw lan-tag?    string
-        |     |        +--rw next-hop    union
-        |     |        +--rw metric?     uint32
-        |     |        +--rw bfd-profile?   bfd-profile-reference
+        |     |        +--rw lan
+        |     |        |       inet:ipv4-prefix
+        |     |        +--rw lan-tag?                     string
+        |     |        +--rw next-hop                     union
+        |     |        +--rw metric?                      uint32
+        |     |        +--rw failure-detection-profile?
+        |     |        |       failure-detection-profile-reference
+        |     |        |       {vpn-common:bfd}?
         |     |        +--rw status
         |     |           +--rw admin-status
         |     |           |  +--rw status?        identityref
@@ -2739,9 +2751,9 @@ a parent AC can be defined with a set of stable and common information, while
                   <p id="section-5.2.5.3.1-4.8.1">Indicates the metric associated with the static route entry. This metric is used when the route is exported into an IGP.<a href="#section-5.2.5.3.1-4.8.1" class="pilcrow">¶</a></p>
 </dd>
                 <dd class="break"></dd>
-<dt id="section-5.2.5.3.1-4.9">'bfd-profile':</dt>
+<dt id="section-5.2.5.3.1-4.9">'failure-detection-profile':</dt>
                 <dd style="margin-left: 1.5em" id="section-5.2.5.3.1-4.10">
-                  <p id="section-5.2.5.3.1-4.10.1">Indicates a BFD profile that applies for this entry.<a href="#section-5.2.5.3.1-4.10.1" class="pilcrow">¶</a></p>
+                  <p id="section-5.2.5.3.1-4.10.1">Indicates a failure detection profile (e.g., BFD) that applies for this entry.<a href="#section-5.2.5.3.1-4.10.1" class="pilcrow">¶</a></p>
 </dd>
                 <dd class="break"></dd>
 <dt id="section-5.2.5.3.1-4.11">'status':</dt>
@@ -2837,8 +2849,9 @@ a parent AC can be defined with a set of stable and common information, while
         |     |     |     +--ro last-change?   yang:date-and-time
         |     |     +--rw peer-group?
         |     |     |       -&gt; ../../peer-groups/peer-group/name
-        |     |     +--rw bfd-profile?        bfd-profile-reference
-        |     |             {vpn-common:bfd}?
+        |     |     +--rw failure-detection-profile?
+        |     |                   failure-detection-profile-reference
+        |     |                   {vpn-common:bfd}?
         |     +--rw ospf {vpn-common:rtg-ospf}?
         |     |  ...
         |     +--rw isis {vpn-common:rtg-isis}?
@@ -2948,9 +2961,9 @@ a parent AC can be defined with a set of stable and common information, while
                   <p id="section-5.2.5.3.2-6.18.1">Parameters that are provided at the 'neighbor' level takes precedence over the ones provided in the peer group.<a href="#section-5.2.5.3.2-6.18.1" class="pilcrow">¶</a></p>
 </dd>
                 <dd class="break"></dd>
-<dt id="section-5.2.5.3.2-6.19">'bfd-profile':</dt>
+<dt id="section-5.2.5.3.2-6.19">'failure-detection-profile':</dt>
                 <dd style="margin-left: 1.5em" id="section-5.2.5.3.2-6.20">
-                  <p id="section-5.2.5.3.2-6.20.1">Indicates a BFD profile that applies for a BGP neighbor.<a href="#section-5.2.5.3.2-6.20.1" class="pilcrow">¶</a></p>
+                  <p id="section-5.2.5.3.2-6.20.1">Indicates a failure detection profile (BFD) that applies for a BGP neighbor.<a href="#section-5.2.5.3.2-6.20.1" class="pilcrow">¶</a></p>
 </dd>
               <dd class="break"></dd>
 </dl>
@@ -3279,15 +3292,19 @@ isn't any type of VRRP authentication at this time (see <span><a href="https://r
         |  ...
         +--rw oam
         |  +--rw bfd {vpn-common:bfd}?
-        |     +--rw profile?    bfd-profile-reference
-        |     +--rw holdtime?   uint32
-        |     +--rw status
-        |        +--rw admin-status
-        |        |  +--rw status?        identityref
-        |        |  +--ro last-change?   yang:date-and-time
-        |        +--ro oper-status
-        |           +--ro status?        identityref
-        |           +--ro last-change?   yang:date-and-time
+        |     +--rw session* [remote-address]
+        |        +--rw local-address?    inet:ip-address
+        |        +--rw remote-address    inet:ip-address
+        |        +--rw profile?
+        |        |       failure-detection-profile-reference
+        |        +--rw holdtime?         uint32
+        |        +--rw status
+        |           +--rw admin-status
+        |           |  +--rw status?        identityref
+        |           |  +--ro last-change?   yang:date-and-time
+        |           +--ro oper-status
+        |              +--ro status?        identityref
+        |              +--ro last-change?   yang:date-and-time
         +--rw security
         |  ...
         +--rw service
@@ -3300,19 +3317,29 @@ isn't any type of VRRP authentication at this time (see <span><a href="https://r
 </div>
 <p id="section-5.2.5.4-3">This version of the module supports BFD. The following BFD data nodes can be specified:<a href="#section-5.2.5.4-3" class="pilcrow">¶</a></p>
 <span class="break"></span><dl class="dlParallel" id="section-5.2.5.4-4">
-              <dt id="section-5.2.5.4-4.1">'profile':</dt>
+              <dt id="section-5.2.5.4-4.1">'local-address':</dt>
               <dd style="margin-left: 1.5em" id="section-5.2.5.4-4.2">
-                <p id="section-5.2.5.4-4.2.1">Refers to a BFD profile.<a href="#section-5.2.5.4-4.2.1" class="pilcrow">¶</a></p>
+                <p id="section-5.2.5.4-4.2.1">Indicates the provider's IP address used for a BFD session.<a href="#section-5.2.5.4-4.2.1" class="pilcrow">¶</a></p>
 </dd>
               <dd class="break"></dd>
-<dt id="section-5.2.5.4-4.3">'holdtime':</dt>
+<dt id="section-5.2.5.4-4.3">'remote-address':</dt>
               <dd style="margin-left: 1.5em" id="section-5.2.5.4-4.4">
-                <p id="section-5.2.5.4-4.4.1">Used to indicate the expected BFD holddown time, in milliseconds.<a href="#section-5.2.5.4-4.4.1" class="pilcrow">¶</a></p>
+                <p id="section-5.2.5.4-4.4.1">Indicates the customer's IP address used for a BFD session.<a href="#section-5.2.5.4-4.4.1" class="pilcrow">¶</a></p>
 </dd>
               <dd class="break"></dd>
-<dt id="section-5.2.5.4-4.5">'status':</dt>
+<dt id="section-5.2.5.4-4.5">'profile':</dt>
               <dd style="margin-left: 1.5em" id="section-5.2.5.4-4.6">
-                <p id="section-5.2.5.4-4.6.1">Indicates the status of the BFD over an AC.<a href="#section-5.2.5.4-4.6.1" class="pilcrow">¶</a></p>
+                <p id="section-5.2.5.4-4.6.1">Refers to a BFD profile.<a href="#section-5.2.5.4-4.6.1" class="pilcrow">¶</a></p>
+</dd>
+              <dd class="break"></dd>
+<dt id="section-5.2.5.4-4.7">'holdtime':</dt>
+              <dd style="margin-left: 1.5em" id="section-5.2.5.4-4.8">
+                <p id="section-5.2.5.4-4.8.1">Used to indicate the expected BFD holddown time, in milliseconds.<a href="#section-5.2.5.4-4.8.1" class="pilcrow">¶</a></p>
+</dd>
+              <dd class="break"></dd>
+<dt id="section-5.2.5.4-4.9">'status':</dt>
+              <dd style="margin-left: 1.5em" id="section-5.2.5.4-4.10">
+                <p id="section-5.2.5.4-4.10.1">Indicates the status of the BFD session.<a href="#section-5.2.5.4-4.10.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
 </dl>
@@ -4133,12 +4160,13 @@ module ietf-ac-svc {
       "Defines a reference to a QoS profile.";
   }
 
-  typedef bfd-profile-reference {
+  typedef failure-detection-profile-reference {
     type leafref {
       path
         "/ac-svc:specific-provisioning-profiles"
       + "/ac-svc:valid-provider-identifiers"
-      + "/ac-svc:bfd-profile-identifier/ac-svc:id";
+      + "/ac-svc:failure-detection-profile-identifier"
+      + "/ac-svc:id";
     }
     description
       "Defines a reference to a BFD profile.";
@@ -4325,14 +4353,14 @@ module ietf-ac-svc {
         "IPv4-specific parameters.";
       uses ac-common:ipv4-connection {
         augment ac-svc:allocation-type/static-addresses/address {
-          leaf bfd-profile {
+          leaf failure-detection-profile {
             if-feature "vpn-common:bfd";
-            type bfd-profile-reference;
+            type failure-detection-profile-reference;
             description
-              "Points to a BFD profile.";
+              "Points to a failure detection profile.";
           }
           description
-            "Add a BFD profile as part of ip connection.";
+            "Adds a failure detection profile.";
         }
       }
     }
@@ -4342,14 +4370,14 @@ module ietf-ac-svc {
         "IPv6-specific parameters.";
       uses ac-common:ipv6-connection {
         augment ac-svc:allocation-type/static-addresses/address {
-          leaf bfd-profile {
+          leaf failure-detection-profile {
             if-feature "vpn-common:bfd";
-            type bfd-profile-reference;
+            type failure-detection-profile-reference;
             description
-              "Points to a BFD profile.";
+              "Points to a failure detection profile.";
           }
           description
-            "Add a BFD profile as part of ip connection.";
+            "Adds a failure detection profile.";
         }
       }
     }
@@ -4398,11 +4426,11 @@ module ietf-ac-svc {
       description
         "List of LAN prefixes for the site.";
       uses ac-common:ipv4-static-rtg-entry;
-      leaf bfd-profile {
+      leaf failure-detection-profile {
         if-feature "vpn-common:bfd";
-        type bfd-profile-reference;
+        type failure-detection-profile-reference;
         description
-          "Points to a BFD profile.";
+          "Points to a failure detection profile.";
       }
       uses ac-common:service-status;
     }
@@ -4418,11 +4446,11 @@ module ietf-ac-svc {
       description
         "List of LAN prefixes for the site.";
       uses ac-common:ipv4-static-rtg-entry;
-      leaf bfd-profile {
+      leaf failure-detection-profile {
         if-feature "vpn-common:bfd";
-        type bfd-profile-reference;
+        type failure-detection-profile-reference;
         description
-          "Points to a BFD profile.";
+          "Points to a failure detection profile.";
       }
       uses ac-common:service-status;
     }
@@ -4563,11 +4591,11 @@ module ietf-ac-svc {
         description
           "The peer-group with which this neighbor is associated.";
       }
-      leaf bfd-profile {
+      leaf failure-detection-profile {
         if-feature "vpn-common:bfd";
-        type bfd-profile-reference;
+        type failure-detection-profile-reference;
         description
-          "Points to a BFD profile.";
+          "Points to a failure detection profile.";
       }
     }
   }
@@ -5016,13 +5044,28 @@ module ietf-ac-svc {
         if-feature "vpn-common:bfd";
         description
           "Container for BFD.";
-        leaf profile {
-          type bfd-profile-reference;
+        list session {
+          key "remote-address";
           description
-            "Points to a BFD profile.";
+            "List of IP sessions.";
+           leaf local-address {
+             type inet:ip-address;
+             description
+               "Provider's IP address of the BFD session.";
+          }
+          leaf remote-address {
+             type inet:ip-address;
+             description
+               "Customer's IP address of the BFD session.";
+          }
+          leaf profile {
+            type failure-detection-profile-reference;
+            description
+              "Points to a BFD profile.";
+          }
+          uses ac-common:bfd;
+          uses ac-common:service-status;
         }
-        uses ac-common:bfd;
-        uses ac-common:service-status;
       }
     }
     container security {
@@ -8498,7 +8541,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 {
   "ietf-ac-svc:specific-provisioning-profiles": {
     "valid-provider-identifiers": {
-      "bfd-profile-identifier": [
+      "failure-detection-profile-identifier": [
         {
           "id": "single-hop-bfd-user-plane"
         }
@@ -8546,13 +8589,15 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
                       "lan": "198.51.100.100/32",
                       "next-hop": "192.0.2.1",
                       "lan-tag": "virtual-next-hop",
-                      "bfd-profile": "single-hop-bfd-user-plane"
+                      "failure-detection-profile": "single-hop-bfd-\
+                                                          user-plane"
                     },
                     {
                       "lan": "198.51.100.100/32",
                       "next-hop": "192.0.2.2",
                       "lan-tag": "virtual-next-hop",
-                      "bfd-profile": "single-hop-bfd-user-plane"
+                      "failure-detection-profile": "single-hop-bfd-\
+                                                          user-plane"
                     },
                     {"_comment": "192.0.2.3-192.0.2.7 are not \
                                                          displayed"},
@@ -8560,7 +8605,8 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
                       "lan": "198.51.100.100/32",
                       "next-hop": "192.0.2.8",
                       "lan-tag": "virtual-next-hop",
-                      "bfd-profile": "single-hop-bfd-user-plane"
+                      "failure-detection-profile": "single-hop-bfd-\
+                                                          user-plane"
                     }
                   ]
                 }

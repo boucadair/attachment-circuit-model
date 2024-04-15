@@ -1956,6 +1956,8 @@ taken from <span>[<a href="#RFC9181" class="cite xref">RFC9181</a>]</span>, e.g.
 <div class="breakable sourcecode" id="section-5-2">
 <pre>&lt;CODE BEGINS&gt; file "ietf-ac-common@2023-11-13.yang"
 
+=============== NOTE: '\' line wrapping per RFC 8792 ================
+
 module ietf-ac-common {
   yang-version 1.1;
   namespace "urn:ietf:params:xml:ns:yang:ietf-ac-common";
@@ -2357,14 +2359,16 @@ module ietf-ac-common {
             "Identification of the QoS profile to be used.";
         }
       }
-      list bfd-profile-identifier {
+      list failure-detection-profile-identifier {
         key "id";
         description
           "List of BFD profile identifiers.";
         leaf id {
           type string;
           description
-            "Identification of the BFD profile to be used.";
+            "Identification of the a failure detection (e.g., BFD) \
+                                                              profile
+             to be used.";
         }
       }
       list forwarding-profile-identifier {
@@ -3442,7 +3446,7 @@ module ietf-ac-common {
 
   grouping bfd {
     description
-      "A grouping for BFD.";
+      "A grouping for basic BFD.";
     leaf holdtime {
       type uint32;
       units "milliseconds";

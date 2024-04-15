@@ -872,41 +872,41 @@ Table of Contents
    profiles in order to facilitate identifying and binding local
    policies when building an AC.
 
-            module: ietf-ac-svc
-              +--rw specific-provisioning-profiles
-              |  +--rw valid-provider-identifiers
-              |     +--rw encryption-profile-identifier* [id]
-              |     |  +--rw id    string
-              |     +--rw qos-profile-identifier* [id]
-              |     |  +--rw id    string
-              |     +--rw bfd-profile-identifier* [id]
-              |     |  +--rw id    string
-              |     +--rw forwarding-profile-identifier* [id]
-              |     |  +--rw id    string
-              |     +--rw routing-profile-identifier* [id]
-              |        +--rw id    string
-              +--rw service-provisioning-profiles
-              |  +--rw service-profile-identifier* [id]
-              |     +--rw id    string
-              +--rw attachment-circuits
-                 +--rw ac-group-profile* [name]
+         module: ietf-ac-svc
+           +--rw specific-provisioning-profiles
+           |  +--rw valid-provider-identifiers
+           |     +--rw encryption-profile-identifier* [id]
+           |     |  +--rw id    string
+           |     +--rw qos-profile-identifier* [id]
+           |     |  +--rw id    string
+           |     +--rw failure-detection-profile-identifier* [id]
+           |     |  +--rw id    string
+           |     +--rw forwarding-profile-identifier* [id]
+           |     |  +--rw id    string
+           |     +--rw routing-profile-identifier* [id]
+           |        +--rw id    string
+           +--rw service-provisioning-profiles
+           |  +--rw service-profile-identifier* [id]
+           |     +--rw id    string
+           +--rw attachment-circuits
+              +--rw ac-group-profile* [name]
+              |  ...
+              +--rw placement-constraints
+              |  ...
+              +--rw ac* [name]
+                 ...
+                 +--rw l2-connection  {ac-common:layer2-ac}?
                  |  ...
-                 +--rw placement-constraints
+                 +--rw ip-connection  {ac-common:layer3-ac}?
                  |  ...
-                 +--rw ac* [name]
+                 +--rw routing-protocols
+                 |  ...
+                 +--rw oam
+                 |  ...
+                 +--rw security
+                 |  ...
+                 +--rw service
                     ...
-                    +--rw l2-connection  {ac-common:layer2-ac}?
-                    |  ...
-                    +--rw ip-connection  {ac-common:layer3-ac}?
-                    |  ...
-                    +--rw routing-protocols
-                    |  ...
-                    +--rw oam
-                    |  ...
-                    +--rw security
-                    |  ...
-                    +--rw service
-                       ...
 
                          Figure 6: Service Profiles
 
@@ -924,9 +924,9 @@ Table of Contents
    'qos-profile-identifier':  Refers to a set of policies, such as
       classification, marking, and actions (e.g., [RFC3644]).
 
-   'bfd-profile-identifier':  Refers to a set of Bidirectional
-      Forwarding Detection (BFD) policies [RFC5880] that can be invoked
-      when building an AC.
+   'failure-detection-profile-identifier':  Refers to a set of failure
+      detection policies (e.g., Bidirectional Forwarding Detection (BFD)
+      policies [RFC5880]) that can be invoked when building an AC.
 
    'forwarding-profile-identifier':  Refers to the policies that apply
       to the forwarding of packets conveyed within an AC.  Such policies
@@ -1205,90 +1205,96 @@ Table of Contents
 
    Figure 10 shows the structure of the IPv4 connection.
 
-            | ...
-            +--rw ip-connection  {ac-common:layer3-ac}?
-            |  +--rw ipv4 {vpn-common:ipv4}?
-            |  |  +--rw local-address?
-            |  |  |       inet:ipv4-address
-            |  |  +--rw virtual-address?
-            |  |  |       inet:ipv4-address
-            |  |  +--rw prefix-length?                           uint8
-            |  |  +--rw address-allocation-type?
-            |  |  |       identityref
-            |  |  +--rw (allocation-type)?
-            |  |     +--:(dynamic)
-            |  |     |  +--rw (address-assign)?
-            |  |     |  |  +--:(number)
-            |  |     |  |  |  +--rw number-of-dynamic-address?   uint16
-            |  |     |  |  +--:(explicit)
-            |  |     |  |     +--rw customer-addresses
-            |  |     |  |        +--rw address-pool* [pool-id]
-            |  |     |  |           +--rw pool-id          string
-            |  |     |  |           +--rw start-address
-            |  |     |  |           |       inet:ipv4-address
-            |  |     |  |           +--rw end-address?
-            |  |     |  |                   inet:ipv4-address
-            |  |     |  +--rw (provider-dhcp)?
-            |  |     |  |  +--:(dhcp-service-type)
-            |  |     |  |     +--rw dhcp-service-type?
-            |  |     |  |             enumeration
-            |  |     |  +--rw (dhcp-relay)?
-            |  |     |     +--:(customer-dhcp-servers)
-            |  |     |        +--rw customer-dhcp-servers
-            |  |     |           +--rw server-ip-address*
-            |  |     |                   inet:ipv4-address
-            |  |     +--:(static-addresses)
-            |  |        +--rw address* [address-id]
-            |  |           +--rw address-id          string
-            |  |           +--rw customer-address?   inet:ipv4-address
-            |  +--rw ipv6 {vpn-common:ipv6}?
-            |     ...
+        | ...
+        +--rw ip-connection  {ac-common:layer3-ac}?
+        |  +--rw ipv4 {vpn-common:ipv4}?
+        |  |  +--rw local-address?
+        |  |  |       inet:ipv4-address
+        |  |  +--rw virtual-address?
+        |  |  |       inet:ipv4-address
+        |  |  +--rw prefix-length?                           uint8
+        |  |  +--rw address-allocation-type?
+        |  |  |       identityref
+        |  |  +--rw (allocation-type)?
+        |  |     +--:(dynamic)
+        |  |     |  +--rw (address-assign)?
+        |  |     |  |  +--:(number)
+        |  |     |  |  |  +--rw number-of-dynamic-address?   uint16
+        |  |     |  |  +--:(explicit)
+        |  |     |  |     +--rw customer-addresses
+        |  |     |  |        +--rw address-pool* [pool-id]
+        |  |     |  |           +--rw pool-id          string
+        |  |     |  |           +--rw start-address
+        |  |     |  |           |       inet:ipv4-address
+        |  |     |  |           +--rw end-address?
+        |  |     |  |                   inet:ipv4-address
+        |  |     |  +--rw (provider-dhcp)?
+        |  |     |  |  +--:(dhcp-service-type)
+        |  |     |  |     +--rw dhcp-service-type?
+        |  |     |  |             enumeration
+        |  |     |  +--rw (dhcp-relay)?
+        |  |     |     +--:(customer-dhcp-servers)
+        |  |     |        +--rw customer-dhcp-servers
+        |  |     |           +--rw server-ip-address*
+        |  |     |                   inet:ipv4-address
+        |  |     +--:(static-addresses)
+        |  |        +--rw address* [address-id]
+        |  |           +--rw address-id          string
+        |  |           +--rw customer-address?   inet:ipv4-address
+        |  |           +--rw failure-detection-profile?
+        |  |                             failure-detection-profile-reference
+        |  |                             {vpn-common:bfd}?
+        |  +--rw ipv6 {vpn-common:ipv6}?
+        |     ...
 
-            Figure 10: Layer 3 Connection Tree Structure (IPv4)
+         Figure 10: Layer 3 Connection Tree Structure (IPv4)
 
    Figure 11 shows the structure of the IPv6 connection.
 
-            | ...
-            +--rw ip-connection  {ac-common:layer3-ac}?
-            |  +--rw ipv4 {vpn-common:ipv4}?
-            |  |  ...
-            |  +--rw ipv6 {vpn-common:ipv6}?
-            |     +--rw local-address?
-            |     |       inet:ipv6-address
-            |     +--rw virtual-address?
-            |     |       inet:ipv6-address
-            |     +--rw prefix-length?                           uint8
-            |     +--rw address-allocation-type?
-            |     |       identityref
-            |     +--rw (allocation-type)?
-            |        +--:(dynamic)
-            |        |  +--rw (address-assign)?
-            |        |  |  +--:(number)
-            |        |  |  |  +--rw number-of-dynamic-address?   uint16
-            |        |  |  +--:(explicit)
-            |        |  |     +--rw customer-addresses
-            |        |  |        +--rw address-pool* [pool-id]
-            |        |  |           +--rw pool-id          string
-            |        |  |           +--rw start-address
-            |        |  |           |       inet:ipv6-address
-            |        |  |           +--rw end-address?
-            |        |  |                   inet:ipv6-address
-            |        |  +--rw (provider-dhcp)?
-            |        |  |  +--:(dhcp-service-type)
-            |        |  |     +--rw dhcp-service-type?
-            |        |  |             enumeration
-            |        |  +--rw (dhcp-relay)?
-            |        |     +--:(customer-dhcp-servers)
-            |        |        +--rw customer-dhcp-servers
-            |        |           +--rw server-ip-address*
-            |        |                   inet:ipv6-address
-            |        +--:(static-addresses)
-            |           +--rw address* [address-id]
-            |              +--rw address-id          string
-            |              +--rw customer-address?   inet:ipv6-address
-               ...
+        | ...
+        +--rw ip-connection  {ac-common:layer3-ac}?
+        |  +--rw ipv4 {vpn-common:ipv4}?
+        |  |  ...
+        |  +--rw ipv6 {vpn-common:ipv6}?
+        |     +--rw local-address?
+        |     |       inet:ipv6-address
+        |     +--rw virtual-address?
+        |     |       inet:ipv6-address
+        |     +--rw prefix-length?                           uint8
+        |     +--rw address-allocation-type?
+        |     |       identityref
+        |     +--rw (allocation-type)?
+        |        +--:(dynamic)
+        |        |  +--rw (address-assign)?
+        |        |  |  +--:(number)
+        |        |  |  |  +--rw number-of-dynamic-address?   uint16
+        |        |  |  +--:(explicit)
+        |        |  |     +--rw customer-addresses
+        |        |  |        +--rw address-pool* [pool-id]
+        |        |  |           +--rw pool-id          string
+        |        |  |           +--rw start-address
+        |        |  |           |       inet:ipv6-address
+        |        |  |           +--rw end-address?
+        |        |  |                   inet:ipv6-address
+        |        |  +--rw (provider-dhcp)?
+        |        |  |  +--:(dhcp-service-type)
+        |        |  |     +--rw dhcp-service-type?
+        |        |  |             enumeration
+        |        |  +--rw (dhcp-relay)?
+        |        |     +--:(customer-dhcp-servers)
+        |        |        +--rw customer-dhcp-servers
+        |        |           +--rw server-ip-address*
+        |        |                   inet:ipv6-address
+        |        +--:(static-addresses)
+        |           +--rw address* [address-id]
+        |              +--rw address-id          string
+        |              +--rw customer-address?   inet:ipv6-address
+        |              +--rw failure-detection-profile?
+        |                                failure-detection-profile-reference
+        |                                {vpn-common:bfd}?
+        | ...
 
-            Figure 11: Layer 3 Connection Tree Structure (IPv6)
+         Figure 11: Layer 3 Connection Tree Structure (IPv6)
 
 5.2.5.3.  Routing
 
@@ -1368,11 +1374,14 @@ Table of Contents
            |     |  +--rw cascaded-lan-prefixes
            |     |     +--rw ipv4-lan-prefixes* [lan next-hop]
            |     |     |       {vpn-common:ipv4}?
-           |     |     |  +--rw lan         inet:ipv4-prefix
-           |     |     |  +--rw lan-tag?    string
-           |     |     |  +--rw next-hop    union
-           |     |     |  +--rw metric?     uint32
-           |     |     |  +--rw bfd-profile?   bfd-profile-reference
+           |     |     |  +--rw lan
+           |     |     |  |       inet:ipv4-prefix
+           |     |     |  +--rw lan-tag?                     string
+           |     |     |  +--rw next-hop                     union
+           |     |     |  +--rw metric?                      uint32
+           |     |     |  +--rw failure-detection-profile?
+           |     |     |  |       failure-detection-profile-reference
+           |     |     |  |       {vpn-common:bfd}?
            |     |     |  +--rw status
            |     |     |     +--rw admin-status
            |     |     |     |  +--rw status?        identityref
@@ -1382,11 +1391,14 @@ Table of Contents
            |     |     |        +--ro last-change?   yang:date-and-time
            |     |     +--rw ipv6-lan-prefixes* [lan next-hop]
            |     |             {vpn-common:ipv6}?
-           |     |        +--rw lan         inet:ipv6-prefix
-           |     |        +--rw lan-tag?    string
-           |     |        +--rw next-hop    union
-           |     |        +--rw metric?     uint32
-           |     |        +--rw bfd-profile?   bfd-profile-reference
+           |     |        +--rw lan
+           |     |        |       inet:ipv4-prefix
+           |     |        +--rw lan-tag?                     string
+           |     |        +--rw next-hop                     union
+           |     |        +--rw metric?                      uint32
+           |     |        +--rw failure-detection-profile?
+           |     |        |       failure-detection-profile-reference
+           |     |        |       {vpn-common:bfd}?
            |     |        +--rw status
            |     |           +--rw admin-status
            |     |           |  +--rw status?        identityref
@@ -1422,7 +1434,8 @@ Table of Contents
       entry.  This metric is used when the route is exported into an
       IGP.
 
-   'bfd-profile':  Indicates a BFD profile that applies for this entry.
+   'failure-detection-profile':  Indicates a failure detection profile
+      (e.g., BFD) that applies for this entry.
 
    'status':  Used to convey the status of a static route entry.  This
       data node can also be used to control the (de)activation of
@@ -1507,8 +1520,9 @@ Table of Contents
            |     |     |     +--ro last-change?   yang:date-and-time
            |     |     +--rw peer-group?
            |     |     |       -> ../../peer-groups/peer-group/name
-           |     |     +--rw bfd-profile?        bfd-profile-reference
-           |     |             {vpn-common:bfd}?
+           |     |     +--rw failure-detection-profile?
+           |     |                   failure-detection-profile-reference
+           |     |                   {vpn-common:bfd}?
            |     +--rw ospf {vpn-common:rtg-ospf}?
            |     |  ...
            |     +--rw isis {vpn-common:rtg-isis}?
@@ -1585,8 +1599,8 @@ Table of Contents
       Parameters that are provided at the 'neighbor' level takes
       precedence over the ones provided in the peer group.
 
-   'bfd-profile':  Indicates a BFD profile that applies for a BGP
-      neighbor.
+   'failure-detection-profile':  Indicates a failure detection profile
+      (BFD) that applies for a BGP neighbor.
 
 5.2.5.3.3.  OSPF
 
@@ -1816,50 +1830,60 @@ Table of Contents
    As shown in the tree depicted in Figure 19, the 'oam' container
    defines OAM-related parameters of an AC.
 
-          +--rw specific-provisioning-profiles
-          |  ...
-          +--rw service-provisioning-profiles
-          |  ...
-          +--rw attachment-circuits
-             +--rw ac-group-profile* [name]
-             |  ...
-             +--rw placement-constraints
-             |  ...
-             +--rw ac* [name]
-                ...
-                +--rw l2-connection  {ac-common:layer2-ac}?
-                |  ...
-                +--rw ip-connection  {ac-common:layer3-ac}?
-                |  ...
-                +--rw routing-protocols
-                |  ...
-                +--rw oam
-                |  +--rw bfd {vpn-common:bfd}?
-                |     +--rw profile?    bfd-profile-reference
-                |     +--rw holdtime?   uint32
-                |     +--rw status
-                |        +--rw admin-status
-                |        |  +--rw status?        identityref
-                |        |  +--ro last-change?   yang:date-and-time
-                |        +--ro oper-status
-                |           +--ro status?        identityref
-                |           +--ro last-change?   yang:date-and-time
-                +--rw security
-                |  ...
-                +--rw service
-                   ...
+        +--rw specific-provisioning-profiles
+        |  ...
+        +--rw service-provisioning-profiles
+        |  ...
+        +--rw attachment-circuits
+           +--rw ac-group-profile* [name]
+           |  ...
+           +--rw placement-constraints
+           |  ...
+           +--rw ac* [name]
+              ...
+              +--rw l2-connection  {ac-common:layer2-ac}?
+              |  ...
+              +--rw ip-connection  {ac-common:layer3-ac}?
+              |  ...
+              +--rw routing-protocols
+              |  ...
+              +--rw oam
+              |  +--rw bfd {vpn-common:bfd}?
+              |     +--rw session* [remote-address]
+              |        +--rw local-address?    inet:ip-address
+              |        +--rw remote-address    inet:ip-address
+              |        +--rw profile?
+              |        |       failure-detection-profile-reference
+              |        +--rw holdtime?         uint32
+              |        +--rw status
+              |           +--rw admin-status
+              |           |  +--rw status?        identityref
+              |           |  +--ro last-change?   yang:date-and-time
+              |           +--ro oper-status
+              |              +--ro status?        identityref
+              |              +--ro last-change?   yang:date-and-time
+              +--rw security
+              |  ...
+              +--rw service
+                 ...
 
                        Figure 19: OAM Tree Structure
 
    This version of the module supports BFD.  The following BFD data
    nodes can be specified:
 
+   'local-address':  Indicates the provider's IP address used for a BFD
+      session.
+
+   'remote-address':  Indicates the customer's IP address used for a BFD
+      session.
+
    'profile':  Refers to a BFD profile.
 
    'holdtime':  Used to indicate the expected BFD holddown time, in
       milliseconds.
 
-   'status':  Indicates the status of the BFD over an AC.
+   'status':  Indicates the status of the BFD session.
 
 5.2.5.5.  Security
 
@@ -2624,12 +2648,13 @@ Table of Contents
          "Defines a reference to a QoS profile.";
      }
 
-     typedef bfd-profile-reference {
+     typedef failure-detection-profile-reference {
        type leafref {
          path
            "/ac-svc:specific-provisioning-profiles"
          + "/ac-svc:valid-provider-identifiers"
-         + "/ac-svc:bfd-profile-identifier/ac-svc:id";
+         + "/ac-svc:failure-detection-profile-identifier"
+         + "/ac-svc:id";
        }
        description
          "Defines a reference to a BFD profile.";
@@ -2816,14 +2841,14 @@ Table of Contents
            "IPv4-specific parameters.";
          uses ac-common:ipv4-connection {
            augment ac-svc:allocation-type/static-addresses/address {
-             leaf bfd-profile {
+             leaf failure-detection-profile {
                if-feature "vpn-common:bfd";
-               type bfd-profile-reference;
+               type failure-detection-profile-reference;
                description
-                 "Points to a BFD profile.";
+                 "Points to a failure detection profile.";
              }
              description
-               "Add a BFD profile as part of ip connection.";
+               "Adds a failure detection profile.";
            }
          }
        }
@@ -2833,14 +2858,14 @@ Table of Contents
            "IPv6-specific parameters.";
          uses ac-common:ipv6-connection {
            augment ac-svc:allocation-type/static-addresses/address {
-             leaf bfd-profile {
+             leaf failure-detection-profile {
                if-feature "vpn-common:bfd";
-               type bfd-profile-reference;
+               type failure-detection-profile-reference;
                description
-                 "Points to a BFD profile.";
+                 "Points to a failure detection profile.";
              }
              description
-               "Add a BFD profile as part of ip connection.";
+               "Adds a failure detection profile.";
            }
          }
        }
@@ -2889,11 +2914,11 @@ Table of Contents
          description
            "List of LAN prefixes for the site.";
          uses ac-common:ipv4-static-rtg-entry;
-         leaf bfd-profile {
+         leaf failure-detection-profile {
            if-feature "vpn-common:bfd";
-           type bfd-profile-reference;
+           type failure-detection-profile-reference;
            description
-             "Points to a BFD profile.";
+             "Points to a failure detection profile.";
          }
          uses ac-common:service-status;
        }
@@ -2909,11 +2934,11 @@ Table of Contents
          description
            "List of LAN prefixes for the site.";
          uses ac-common:ipv4-static-rtg-entry;
-         leaf bfd-profile {
+         leaf failure-detection-profile {
            if-feature "vpn-common:bfd";
-           type bfd-profile-reference;
+           type failure-detection-profile-reference;
            description
-             "Points to a BFD profile.";
+             "Points to a failure detection profile.";
          }
          uses ac-common:service-status;
        }
@@ -3054,11 +3079,11 @@ Table of Contents
            description
              "The peer-group with which this neighbor is associated.";
          }
-         leaf bfd-profile {
+         leaf failure-detection-profile {
            if-feature "vpn-common:bfd";
-           type bfd-profile-reference;
+           type failure-detection-profile-reference;
            description
-             "Points to a BFD profile.";
+             "Points to a failure detection profile.";
          }
        }
      }
@@ -3507,13 +3532,28 @@ Table of Contents
            if-feature "vpn-common:bfd";
            description
              "Container for BFD.";
-           leaf profile {
-             type bfd-profile-reference;
+           list session {
+             key "remote-address";
              description
-               "Points to a BFD profile.";
+               "List of IP sessions.";
+              leaf local-address {
+                type inet:ip-address;
+                description
+                  "Provider's IP address of the BFD session.";
+             }
+             leaf remote-address {
+                type inet:ip-address;
+                description
+                  "Customer's IP address of the BFD session.";
+             }
+             leaf profile {
+               type failure-detection-profile-reference;
+               description
+                 "Points to a BFD profile.";
+             }
+             uses ac-common:bfd;
+             uses ac-common:service-status;
            }
-           uses ac-common:bfd;
-           uses ac-common:service-status;
          }
        }
        container security {
@@ -6018,7 +6058,7 @@ A.11.3.  NFs Deployment
    {
      "ietf-ac-svc:specific-provisioning-profiles": {
        "valid-provider-identifiers": {
-         "bfd-profile-identifier": [
+         "failure-detection-profile-identifier": [
            {
              "id": "single-hop-bfd-user-plane"
            }
@@ -6066,13 +6106,15 @@ A.11.3.  NFs Deployment
                          "lan": "198.51.100.100/32",
                          "next-hop": "192.0.2.1",
                          "lan-tag": "virtual-next-hop",
-                         "bfd-profile": "single-hop-bfd-user-plane"
+                         "failure-detection-profile": "single-hop-bfd-\
+                                                             user-plane"
                        },
                        {
                          "lan": "198.51.100.100/32",
                          "next-hop": "192.0.2.2",
                          "lan-tag": "virtual-next-hop",
-                         "bfd-profile": "single-hop-bfd-user-plane"
+                         "failure-detection-profile": "single-hop-bfd-\
+                                                             user-plane"
                        },
                        {"_comment": "192.0.2.3-192.0.2.7 are not \
                                                             displayed"},
@@ -6080,7 +6122,8 @@ A.11.3.  NFs Deployment
                          "lan": "198.51.100.100/32",
                          "next-hop": "192.0.2.8",
                          "lan-tag": "virtual-next-hop",
-                         "bfd-profile": "single-hop-bfd-user-plane"
+                         "failure-detection-profile": "single-hop-bfd-\
+                                                             user-plane"
                        }
                      ]
                    }
