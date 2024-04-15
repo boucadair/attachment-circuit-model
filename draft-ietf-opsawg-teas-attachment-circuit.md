@@ -438,8 +438,8 @@ The following specific provisioning profiles can be defined:
 'qos-profile-identifier':
 : Refers to a set of policies, such as classification, marking, and actions (e.g., {{?RFC3644}}).
 
-'bfd-profile-identifier':
-: Refers to a set of Bidirectional Forwarding Detection (BFD) policies {{!RFC5880}} that can be invoked when building an AC.
+'failure-detection-profile-identifier':
+: Refers to a set of failure detection policies (e.g., Bidirectional Forwarding Detection (BFD) policies {{!RFC5880}}) that can be invoked when building an AC.
 
 'forwarding-profile-identifier':
 : Refers to the policies that apply to the forwarding of packets conveyed within an AC. Such policies may consist, for example, of applying Access Control Lists (ACLs).
@@ -616,8 +616,8 @@ As depicted in {{static-rtg-svc-tree}}, the following data nodes can be defined 
 'metric':
 : Indicates the metric associated with the static route entry. This metric is used when the route is exported into an IGP.
 
-'bfd-profile':
-: Indicates a BFD profile that applies for this entry.
+'failure-detection-profile':
+: Indicates a failure detection profile (e.g., BFD) that applies for this entry.
 
 'status':
 : Used to convey the status of a static route entry. This data node can also be used to control the (de)activation of individual static route entries.
@@ -683,8 +683,8 @@ For each neighbor, the following data nodes are supported in addition to similar
 : Specifies a name of a peer group.
 : Parameters that are provided at the 'neighbor' level takes precedence over the ones provided in the peer group.
 
-'bfd-profile':
-: Indicates a BFD profile that applies for a BGP neighbor.
+'failure-detection-profile':
+: Indicates a failure detection profile (BFD) that applies for a BGP neighbor.
 
 ##### OSPF {#sec-ospf-rtg}
 
@@ -787,6 +787,12 @@ As shown in the tree depicted in {{oam-svc-tree}}, the 'oam' container defines O
 
 This version of the module supports BFD. The following BFD data nodes can be specified:
 
+'local-address':
+: Indicates the provider's IP address used for a BFD session.
+
+'remote-address':
+: Indicates the customer's IP address used for a BFD session.
+
 'profile':
 : Refers to a BFD profile.
 
@@ -794,7 +800,7 @@ This version of the module supports BFD. The following BFD data nodes can be spe
 :  Used to indicate the expected BFD holddown time, in milliseconds.
 
 'status':
-:  Indicates the status of the BFD over an AC.
+:  Indicates the status of the BFD session.
 
 #### Security {#sec-sec}
 
