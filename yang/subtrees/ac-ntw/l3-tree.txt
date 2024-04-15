@@ -40,6 +40,8 @@
        |  |     |           +--rw server-ip-address*
        |  |     |                   inet:ipv4-address
        |  |     +--:(static-addresses)
+       |  |        +--rw address* [address-id]
+       |  |           +--rw address-id                       string
        |  |           +--rw customer-address?
        |  |           |       inet:ipv4-address
        |  |           +--rw failure-detection-profile-ref?   leafref
