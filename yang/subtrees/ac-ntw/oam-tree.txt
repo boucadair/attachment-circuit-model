@@ -25,7 +25,7 @@
        |     +--rw session* [dest-addr]
        |        +--rw dest-addr                   inet:ip-address
        |        +--rw source-address?             union
-       |        +--rw bfd-profile-ref?            leafref
+       |        +--rw failure-detection-profile-ref?   leafref
        |        +--rw network-ref?
        |        |       -> /nw:networks/network/network-id
        |        +--rw session-type?               identityref
