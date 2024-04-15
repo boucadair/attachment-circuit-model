@@ -118,7 +118,7 @@ module ietf-ac-svc {
       path
         "/ac-svc:specific-provisioning-profiles"
       + "/ac-svc:valid-provider-identifiers"
-      + "/ac-svc:failure-detection-profile-identifier
+      + "/ac-svc:failure-detection-profile-identifier"
       + "/ac-svc:id";
     }
     description
