@@ -872,41 +872,41 @@ Table of Contents
    profiles in order to facilitate identifying and binding local
    policies when building an AC.
 
-            module: ietf-ac-svc
-              +--rw specific-provisioning-profiles
-              |  +--rw valid-provider-identifiers
-              |     +--rw encryption-profile-identifier* [id]
-              |     |  +--rw id    string
-              |     +--rw qos-profile-identifier* [id]
-              |     |  +--rw id    string
-              |     +--rw bfd-profile-identifier* [id]
-              |     |  +--rw id    string
-              |     +--rw forwarding-profile-identifier* [id]
-              |     |  +--rw id    string
-              |     +--rw routing-profile-identifier* [id]
-              |        +--rw id    string
-              +--rw service-provisioning-profiles
-              |  +--rw service-profile-identifier* [id]
-              |     +--rw id    string
-              +--rw attachment-circuits
-                 +--rw ac-group-profile* [name]
+         module: ietf-ac-svc
+           +--rw specific-provisioning-profiles
+           |  +--rw valid-provider-identifiers
+           |     +--rw encryption-profile-identifier* [id]
+           |     |  +--rw id    string
+           |     +--rw qos-profile-identifier* [id]
+           |     |  +--rw id    string
+           |     +--rw failure-detection-profile-identifier* [id]
+           |     |  +--rw id    string
+           |     +--rw forwarding-profile-identifier* [id]
+           |     |  +--rw id    string
+           |     +--rw routing-profile-identifier* [id]
+           |        +--rw id    string
+           +--rw service-provisioning-profiles
+           |  +--rw service-profile-identifier* [id]
+           |     +--rw id    string
+           +--rw attachment-circuits
+              +--rw ac-group-profile* [name]
+              |  ...
+              +--rw placement-constraints
+              |  ...
+              +--rw ac* [name]
+                 ...
+                 +--rw l2-connection  {ac-common:layer2-ac}?
                  |  ...
-                 +--rw placement-constraints
+                 +--rw ip-connection  {ac-common:layer3-ac}?
                  |  ...
-                 +--rw ac* [name]
+                 +--rw routing-protocols
+                 |  ...
+                 +--rw oam
+                 |  ...
+                 +--rw security
+                 |  ...
+                 +--rw service
                     ...
-                    +--rw l2-connection  {ac-common:layer2-ac}?
-                    |  ...
-                    +--rw ip-connection  {ac-common:layer3-ac}?
-                    |  ...
-                    +--rw routing-protocols
-                    |  ...
-                    +--rw oam
-                    |  ...
-                    +--rw security
-                    |  ...
-                    +--rw service
-                       ...
 
                          Figure 6: Service Profiles
 
