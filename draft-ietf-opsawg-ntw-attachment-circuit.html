@@ -2167,6 +2167,8 @@ reference points (the PE side of an AC, in the context of this document) where n
        |  |     |           +--rw server-ip-address*
        |  |     |                   inet:ipv4-address
        |  |     +--:(static-addresses)
+       |  |        +--rw address* [address-id]
+       |  |           +--rw address-id                       string
        |  |           +--rw customer-address?
        |  |           |       inet:ipv4-address
        |  |           +--rw failure-detection-profile-ref?   leafref
