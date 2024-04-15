@@ -399,14 +399,15 @@ module ietf-ac-common {
             "Identification of the QoS profile to be used.";
         }
       }
-      list bfd-profile-identifier {
+      list failure-detection-profile-identifier {
         key "id";
         description
           "List of BFD profile identifiers.";
         leaf id {
           type string;
           description
-            "Identification of the BFD profile to be used.";
+            "Identification of the a failure detection (e.g., BFD) profile
+             to be used.";
         }
       }
       list forwarding-profile-identifier {
@@ -1484,7 +1485,7 @@ module ietf-ac-common {
 
   grouping bfd {
     description
-      "A grouping for BFD.";
+      "A grouping for basic BFD.";
     leaf holdtime {
       type uint32;
       units "milliseconds";

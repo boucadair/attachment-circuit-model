@@ -11,8 +11,8 @@
   grouping qos-profile-reference:
     +-- qos-profile-ref?   leafref
     +-- network-ref?       -> /nw:networks/network/network-id
-  grouping bfd-profile-reference:
-    +-- bfd-profile-ref?   leafref
+  grouping failure-detection-profile-reference:
+    +-- failure-detection-profile-ref?   leafref
     +-- network-ref?       -> /nw:networks/network/network-id
   grouping forwarding-profile-reference:
     +-- forwarding-profile-ref?   leafref

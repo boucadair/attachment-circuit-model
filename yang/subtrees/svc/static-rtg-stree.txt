@@ -10,11 +10,14 @@
         |     |  +--rw cascaded-lan-prefixes
         |     |     +--rw ipv4-lan-prefixes* [lan next-hop]
         |     |     |       {vpn-common:ipv4}?
-        |     |     |  +--rw lan         inet:ipv4-prefix
-        |     |     |  +--rw lan-tag?    string
-        |     |     |  +--rw next-hop    union
-        |     |     |  +--rw metric?     uint32
-        |     |     |  +--rw bfd-profile?   bfd-profile-reference
+        |     |     |  +--rw lan
+        |     |     |  |       inet:ipv4-prefix
+        |     |     |  +--rw lan-tag?                     string
+        |     |     |  +--rw next-hop                     union
+        |     |     |  +--rw metric?                      uint32
+        |     |     |  +--rw failure-detection-profile?
+        |     |     |  |       failure-detection-profile-reference
+        |     |     |  |       {vpn-common:bfd}?
         |     |     |  +--rw status
         |     |     |     +--rw admin-status
         |     |     |     |  +--rw status?        identityref
@@ -24,11 +27,14 @@
         |     |     |        +--ro last-change?   yang:date-and-time
         |     |     +--rw ipv6-lan-prefixes* [lan next-hop]
         |     |             {vpn-common:ipv6}?
-        |     |        +--rw lan         inet:ipv6-prefix
-        |     |        +--rw lan-tag?    string
-        |     |        +--rw next-hop    union
-        |     |        +--rw metric?     uint32
-        |     |        +--rw bfd-profile?   bfd-profile-reference
+        |     |        +--rw lan
+        |     |        |       inet:ipv4-prefix
+        |     |        +--rw lan-tag?                     string
+        |     |        +--rw next-hop                     union
+        |     |        +--rw metric?                      uint32
+        |     |        +--rw failure-detection-profile?
+        |     |        |       failure-detection-profile-reference
+        |     |        |       {vpn-common:bfd}?
         |     |        +--rw status
         |     |           +--rw admin-status
         |     |           |  +--rw status?        identityref
