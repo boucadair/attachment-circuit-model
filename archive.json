@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-04-14T00:38:28.705202+00:00",
+  "timestamp": "2024-04-16T00:35:51.436119+00:00",
   "repo": "boucadair/attachment-circuit-model",
   "labels": [
     {
@@ -2654,7 +2654,7 @@
       "id": "I_kwDOIiAkrc6FGgra",
       "title": "Have a more generic way to capture failure detection than BFD  ?",
       "url": "https://github.com/boucadair/attachment-circuit-model/issues/203",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "robric",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
@@ -2663,9 +2663,81 @@
       ],
       "body": "BFD is technology specific and we might have alternative failover detection mechanism.\r\n\r\nShould not we express the fact that fast detection is wanted for an Endpoint in a non technology specific (oam protected). This would refer to the profile name which capture the technology-specific part.\r\n\r\nWe could for example list a set of endpoint for which we want protection, no matter what protocol leverages it: static Next Hop or BGP neighbor.",
       "createdAt": "2024-04-09T10:02:21Z",
-      "updatedAt": "2024-04-09T10:21:57Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2024-04-15T13:07:23Z",
+      "closedAt": "2024-04-15T13:07:23Z",
+      "comments": [
+        {
+          "author": "boucadair",
+          "authorAssociation": "OWNER",
+          "body": "@sbarguil to update the static entries to point to the bfd-profile",
+          "createdAt": "2024-04-15T08:37:52Z",
+          "updatedAt": "2024-04-15T08:37:52Z"
+        },
+        {
+          "author": "boucadair",
+          "authorAssociation": "OWNER",
+          "body": "@boucadair, check the bfd to be indexed per session. This will be consistent with act-ntw",
+          "createdAt": "2024-04-15T08:38:37Z",
+          "updatedAt": "2024-04-15T08:38:37Z"
+        },
+        {
+          "author": "boucadair",
+          "authorAssociation": "OWNER",
+          "body": "@boucadair: change to failure-detection-profile",
+          "createdAt": "2024-04-15T08:45:53Z",
+          "updatedAt": "2024-04-15T08:45:53Z"
+        },
+        {
+          "author": "boucadair",
+          "authorAssociation": "OWNER",
+          "body": "went with local/remote @ for the ac-svc, but kept so far the current names to be consistent with RFC9127",
+          "createdAt": "2024-04-15T13:04:45Z",
+          "updatedAt": "2024-04-15T13:04:45Z"
+        },
+        {
+          "author": "boucadair",
+          "authorAssociation": "OWNER",
+          "body": "Fixed with #213 and #215 ",
+          "createdAt": "2024-04-15T13:07:23Z",
+          "updatedAt": "2024-04-15T13:07:23Z"
+        }
+      ]
+    },
+    {
+      "number": 213,
+      "id": "I_kwDOIiAkrc6Fsr7K",
+      "title": "Add BFD profile as part of IPv4/6 ip-connection",
+      "url": "https://github.com/boucadair/attachment-circuit-model/issues/213",
+      "state": "CLOSED",
+      "author": "sbarguil",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [
+        "sbarguil"
+      ],
+      "labels": [
+        "AC-SVC",
+        "ac-ntw"
+      ],
+      "body": "",
+      "createdAt": "2024-04-15T08:51:46Z",
+      "updatedAt": "2024-04-15T11:59:24Z",
+      "closedAt": "2024-04-15T11:59:24Z",
+      "comments": [
+        {
+          "author": "sbarguil",
+          "authorAssociation": "COLLABORATOR",
+          "body": "to update the static entries to point to the bfd-profile",
+          "createdAt": "2024-04-15T08:52:44Z",
+          "updatedAt": "2024-04-15T08:52:44Z"
+        },
+        {
+          "author": "boucadair",
+          "authorAssociation": "OWNER",
+          "body": "Fixed per https://github.com/boucadair/attachment-circuit-model/pull/214",
+          "createdAt": "2024-04-15T11:59:24Z",
+          "updatedAt": "2024-04-15T11:59:24Z"
+        }
+      ]
     }
   ],
   "pulls": [
@@ -8294,6 +8366,70 @@
         "oid": "2829683247946beb503757371b8a28ae276494b1"
       },
       "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 214,
+      "id": "PR_kwDOIiAkrc5sp7pz",
+      "title": "add pointer to the bfd profile",
+      "url": "https://github.com/boucadair/attachment-circuit-model/pull/214",
+      "state": "MERGED",
+      "author": "sbarguil",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "#213 ",
+      "createdAt": "2024-04-15T10:20:51Z",
+      "updatedAt": "2024-04-15T11:58:53Z",
+      "baseRepository": "boucadair/attachment-circuit-model",
+      "baseRefName": "main",
+      "baseRefOid": "bb589b730a685763b27b46f911002399fdb0cf01",
+      "headRepository": "boucadair/attachment-circuit-model",
+      "headRefName": "add-bfd-ip-connection",
+      "headRefOid": "915cb02aa21385733e2e1580f3d2826f8560ce22",
+      "closedAt": "2024-04-15T11:58:52Z",
+      "mergedAt": "2024-04-15T11:58:52Z",
+      "mergedBy": "boucadair",
+      "mergeCommit": {
+        "oid": "20be445bba1324e328887b966ddd428ef0728e43"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 215,
+      "id": "PR_kwDOIiAkrc5sqqjK",
+      "title": "failure-detection-profile-identifier",
+      "url": "https://github.com/boucadair/attachment-circuit-model/pull/215",
+      "state": "MERGED",
+      "author": "boucadair",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-04-15T12:00:51Z",
+      "updatedAt": "2024-04-15T13:06:58Z",
+      "baseRepository": "boucadair/attachment-circuit-model",
+      "baseRefName": "main",
+      "baseRefOid": "20be445bba1324e328887b966ddd428ef0728e43",
+      "headRepository": "boucadair/attachment-circuit-model",
+      "headRefName": "failure-detection-profile-identifier",
+      "headRefOid": "f0c45094457f6604dd485237653c08ce9e3e808c",
+      "closedAt": "2024-04-15T13:06:09Z",
+      "mergedAt": "2024-04-15T13:06:09Z",
+      "mergedBy": "boucadair",
+      "mergeCommit": {
+        "oid": "9a35ee307584f5c14d706335f078b9b0861613ea"
+      },
+      "comments": [
+        {
+          "author": "boucadair",
+          "authorAssociation": "OWNER",
+          "body": "#203 ",
+          "createdAt": "2024-04-15T13:06:57Z",
+          "updatedAt": "2024-04-15T13:06:57Z"
+        }
+      ],
       "reviews": []
     }
   ]
