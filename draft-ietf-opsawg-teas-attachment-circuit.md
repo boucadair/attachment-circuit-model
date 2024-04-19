@@ -850,7 +850,7 @@ Information Rate (EIR), or the Peak Information Rate (PIR). Both reuse the 'band
 
 ## The Bearer Service ("ietf-bearer-svc") YANG Module {#sec-bearer-module}
 
-This module uses types defined in {{!RFC6991}} and {{!RFC9181}}.
+This module uses types defined in {{!RFC6991}}, {{!RFC9181}}, and {{!I-D.ietf-opsawg-teas-common-ac}}.
 
 ~~~~~~~~~~ yang
 <CODE BEGINS> file "ietf-bearer-svc@2023-11-13.yang"
