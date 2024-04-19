@@ -398,7 +398,7 @@ module ietf-ac-svc {
       key "lan next-hop";
       description
         "List of LAN prefixes for the site.";
-      uses ac-common:ipv4-static-rtg-entry;
+      uses ac-common:ipv6-static-rtg-entry;
       leaf failure-detection-profile {
         if-feature "vpn-common:bfd";
         type failure-detection-profile-reference;
