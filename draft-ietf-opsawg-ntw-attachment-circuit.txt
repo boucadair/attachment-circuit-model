@@ -996,83 +996,87 @@ Table of Contents
 
    The static routing subtree structure is shown in Figure 11.
 
- module: ietf-ac-ntw
-           ...
-   augment /nw:networks/nw:network/nw:node:
-     +--rw ac* [name]
-        +--rw name                 string
-        ...
-        +--rw l2-connection  {ac-common:layer2-ac}?
-        |  ...
-        +--rw ip-connection  {ac-common:layer3-ac}?
-        |  ...
-        +--rw routing-protocols
-        |  +--rw routing-protocol* [id]
-        |     +--rw id                  string
-        |     +--rw type?               identityref
-        |     +--rw routing-profile* [routing-profile-ref]
-        |     |  +--rw routing-profile-ref    leafref
-        |     |  +--rw network-ref?
-        |     |  |       -> /nw:networks/network/network-id
-        |     |  +--rw type?                  identityref
-        |     +--rw static
-        |     |  +--rw cascaded-lan-prefixes
-        |     |     +--rw ipv4-lan-prefixes* [lan next-hop]
-        |     |     |       {vpn-common:ipv4}?
-        |     |     |  +--rw lan           inet:ipv4-prefix
-        |     |     |  +--rw lan-tag?      string
-        |     |     |  +--rw next-hop      union
-        |     |     |  +--rw metric?       uint32
-        |     |     +--rw bfd {vpn-common:bfd}?
-        |     |     |  +--rw enabled?            boolean
-        |     |     |  +--rw failure-detection-profile-ref?   leafref
-        |     |     |  +--rw network-ref?
-        |     |     |          -> /nw:networks/network/network-id
-        |     |     |  +--rw preference?   uint32
-        |     |     |  +--rw status
-        |     |     |     +--rw admin-status
-        |     |     |     |  +--rw status?        identityref
-        |     |     |     |  +--ro last-change?   yang:date-and-time
-        |     |     |     +--ro oper-status
-        |     |     |        +--ro status?        identityref
-        |     |     |        +--ro last-change?   yang:date-and-time
-        |     |     +--rw ipv6-lan-prefixes* [lan next-hop]
-        |     |             {vpn-common:ipv6}?
-        |     |        +--rw lan           inet:ipv4-prefix
-        |     |        +--rw lan-tag?      string
-        |     |        +--rw next-hop      union
-        |     |        +--rw metric?       uint32
-        |     |        +--rw bfd {vpn-common:bfd}?
-        |     |        |  +--rw enabled?            boolean
-        |     |        |  +--rw failure-detection-profile-ref?   leafref
-        |     |        |  +--rw network-ref?
-        |     |        |          -> /nw:networks/network/network-id
-        |     |        +--rw preference?   uint32
-        |     |        +--rw status
-        |     |           +--rw admin-status
-        |     |           |  +--rw status?        identityref
-        |     |           |  +--ro last-change?   yang:date-and-time
-        |     |           +--ro oper-status
-        |     |              +--ro status?        identityref
-        |     |              +--ro last-change?   yang:date-and-time
-        |     +--rw bgp  {vpn-common:rtg-bgp}?
-        |     |  ...
-        |     +--rw ospf  {vpn-common:rtg-ospf}?
-        |     |  ...
-        |     +--rw isis  {vpn-common:rtg-isis}?
-        |     |  ...
-        |     +--rw rip  {vpn-common:rtg-rip}?
-        |     |  ...
-        |     +--rw vrrp  {vpn-common:rtg-vrrp}?
-        |        ...
-        +--rw oam
-        |  ...
-        +--rw security
-        |  ...
-        +--rw service
-           ...
+   module: ietf-ac-ntw
+             ...
+     augment /nw:networks/nw:network/nw:node:
+       +--rw ac* [name]
+          +--rw name                 string
+          ...
+          +--rw l2-connection  {ac-common:layer2-ac}?
+          |  ...
+          +--rw ip-connection  {ac-common:layer3-ac}?
+          |  ...
+          +--rw routing-protocols
+          |  +--rw routing-protocol* [id]
+          |     +--rw id                 string
+          |     +--rw type?              identityref
+          |     +--rw routing-profile* [routing-profile-ref]
+          |     |  +--rw routing-profile-ref    leafref
+          |     |  +--rw network-ref?
+          |     |  |       -> /nw:networks/network/network-id
+          |     |  +--rw type?                  identityref
+          |     +--rw static
+          |     |  +--rw cascaded-lan-prefixes
+          |     |     +--rw ipv4-lan-prefix* [lan next-hop]
+          |     |     |       {vpn-common:ipv4}?
+          |     |     |  +--rw lan           inet:ipv4-prefix
+          |     |     |  +--rw lan-tag?      string
+          |     |     |  +--rw next-hop      union
+          |     |     |  +--rw metric?       uint32
+          |     |     |  +--rw bfd {vpn-common:bfd}?
+          |     |     |  |  +--rw enabled?
+          |     |     |  |  |       boolean
+          |     |     |  |  +--rw failure-detection-profile-ref?
+          |     |     |  |  |       leafref
+          |     |     |  |  +--rw network-ref?
+          |     |     |  |          -> /nw:networks/network/network-id
+          |     |     |  +--rw preference?   uint32
+          |     |     |  +--rw status
+          |     |     |     +--rw admin-status
+          |     |     |     |  +--rw status?        identityref
+          |     |     |     |  +--ro last-change?   yang:date-and-time
+          |     |     |     +--ro oper-status
+          |     |     |        +--ro status?        identityref
+          |     |     |        +--ro last-change?   yang:date-and-time
+          |     |     +--rw ipv6-lan-prefix* [lan next-hop]
+          |     |             {vpn-common:ipv6}?
+          |     |        +--rw lan           inet:ipv6-prefix
+          |     |        +--rw lan-tag?      string
+          |     |        +--rw next-hop      union
+          |     |        +--rw metric?       uint32
+          |     |        +--rw bfd {vpn-common:bfd}?
+          |     |        |  +--rw enabled?
+          |     |        |  |       boolean
+          |     |        |  +--rw failure-detection-profile-ref?
+          |     |        |  |       leafref
+          |     |        |  +--rw network-ref?
+          |     |        |          -> /nw:networks/network/network-id
+          |     |        +--rw preference?   uint32
+          |     |        +--rw status
+          |     |           +--rw admin-status
+          |     |           |  +--rw status?        identityref
+          |     |           |  +--ro last-change?   yang:date-and-time
+          |     |           +--ro oper-status
+          |     |              +--ro status?        identityref
+          |     |              +--ro last-change?   yang:date-and-time
+          |     +--rw bgp  {vpn-common:rtg-bgp}?
+          |     |  ...
+          |     +--rw ospf  {vpn-common:rtg-ospf}?
+          |     |  ...
+          |     +--rw isis  {vpn-common:rtg-isis}?
+          |     |  ...
+          |     +--rw rip  {vpn-common:rtg-rip}?
+          |     |  ...
+          |     +--rw vrrp  {vpn-common:rtg-vrrp}?
+          |        ...
+          +--rw oam
+          |  ...
+          +--rw security
+          |  ...
+          +--rw service
+             ...
 
-                Figure 11: Static Routing Tree Structure
+                  Figure 11: Static Routing Tree Structure
 
    The following data nodes can be defined for a given IP prefix:
 
