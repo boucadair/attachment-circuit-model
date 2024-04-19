@@ -5,14 +5,14 @@
 OPSAWG                                                 M. Boucadair, Ed.
 Internet-Draft                                                    Orange
 Intended status: Standards Track                         R. Roberts, Ed.
-Expires: 17 September 2024                                       Juniper
+Expires: 21 October 2024                                         Juniper
                                                            O. G. D. Dios
                                                               Telefonica
                                                            S. B. Giraldo
                                                                    Nokia
                                                                    B. Wu
                                                      Huawei Technologies
-                                                           16 March 2024
+                                                           19 April 2024
 
 
   YANG Data Models for Bearers and 'Attachment Circuits'-as-a-Service
@@ -62,7 +62,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 17 September 2024.
+   This Internet-Draft will expire on 21 October 2024.
 
 Copyright Notice
 
@@ -86,25 +86,26 @@ Table of Contents
        1.2.1.  Why Not Use the L2SM as Reference Data Model for ACaaS?
        1.2.2.  Why Not Use the L3SM as Reference Data Model for ACaaS?
    2.  Conventions and Definitions
-   3.  Sample Uses of the Data Models
-     3.1.  ACs Terminated by One or Multiple Customer Edges (CEs)
-     3.2.  Separate AC Provisioning vs. Actual Service Provisioning
-   4.  Description of the Data Models
-     4.1.  The Bearer Service ("ietf-bearer-svc") YANG Module
-     4.2.  The Attachment Circuit Service ("ietf-ac-svc") YANG Module
-       4.2.1.  Overall Structure
-       4.2.2.  Service Profiles
-       4.2.3.  Attachment Circuits Profiles
-       4.2.4.  AC Placement Contraints
-       4.2.5.  Attachment Circuits
-   5.  YANG Modules
+   3.  Relationship to Other AC Data Models
+   4.  Sample Uses of the Data Models
+     4.1.  ACs Terminated by One or Multiple Customer Edges (CEs)
+     4.2.  Separate AC Provisioning vs. Actual Service Provisioning
+   5.  Description of the Data Models
      5.1.  The Bearer Service ("ietf-bearer-svc") YANG Module
-     5.2.  The AC Service ("ietf-ac-svc") YANG Module
-   6.  Security Considerations
-   7.  IANA Considerations
-   8.  References
-     8.1.  Normative References
-     8.2.  Informative References
+     5.2.  The Attachment Circuit Service ("ietf-ac-svc") YANG Module
+       5.2.1.  Overall Structure
+       5.2.2.  Service Profiles
+       5.2.3.  Attachment Circuits Profiles
+       5.2.4.  AC Placement Contraints
+       5.2.5.  Attachment Circuits
+   6.  YANG Modules
+     6.1.  The Bearer Service ("ietf-bearer-svc") YANG Module
+     6.2.  The AC Service ("ietf-ac-svc") YANG Module
+   7.  Security Considerations
+   8.  IANA Considerations
+   9.  References
+     9.1.  Normative References
+     9.2.  Informative References
    Appendix A.  Examples
      A.1.  Create A New Bearer
      A.2.  Create An AC over An Existing Bearer
@@ -114,8 +115,17 @@ Table of Contents
      A.6.  Create Multiple ACs Bound to Multiple CEs
      A.7.  Binding Attachment Circuits to an IETF Network Slice
      A.8.  Connecting a Virtualized Environment Running in a Cloud
-           Provider
-     A.9.  Connect Customer Network (CE) Through BGP
+            Provider
+     A.9.  Connect Customer Network Through BGP
+     A.10. Interconnection via Internet eXchange Points (IXPs)
+       A.10.1.  Retrieve Interconnection Locations
+       A.10.2.  Create Bearers and Retrieve Bearer References
+       A.10.3.  Manage ACs and BGP Sessions
+     A.11. Connectivity of Cloud Network Functions
+       A.11.1.  Scope
+       A.11.2.  Physical Infrastructure
+       A.11.3.  NFs Deployment
+       A.11.4.  NF Scale-Out
    Acknowledgments
    Contributors
    Authors' Addresses
@@ -164,14 +174,14 @@ Table of Contents
    Also, because the instantiation of an attachment circuit requires
    coordinating the provisioning of endpoints that might not belong to
    the same administrative entity (customer vs. provider or distinct
-   operational teams within the same provider, etc.), *providing
+   operational teams within the same provider, etc.), providing
    programmatic means to expose 'attachment circuits'-as-a-service
-   greatly simplifies the provisioning of value-added services*
-   delivered over an attachment circuit.  For example, management
-   systems of adjacent domains that need to connect via an AC will use
-   such means to agree upon the resources that are required for the
-   activation of both sides of an AC (e.g., Layer 2 tags, IP address
-   family, or IP subnets).
+   greatly simplifies the provisioning of value-added services delivered
+   over an attachment circuit.  For example, management systems of
+   adjacent domains that need to connect via an AC will use such means
+   to agree upon the resources that are required for the activation of
+   both sides of an AC (e.g., Layer 2 tags, IP address family, or IP
+   subnets).
 
    This document specifies a YANG service data model ("ietf-ac-svc") for
    managing attachment circuits that are exposed by a network to its
@@ -180,7 +190,7 @@ Table of Contents
    for the provisioning of ACs prior or during advanced service
    provisioning (e.g., Network Slice Service [RFC9543]).
 
-   The "ietf-ac-svc" module (Section 5.2) includes a set of reusable
+   The "ietf-ac-svc" module (Section 6.2) includes a set of reusable
    groupings.  Whether a service model reuses structures defined in the
    "ietf-ac-svc" or simply includes an AC reference (that was
    communicated during AC service instantiation) is a design choice of
@@ -188,14 +198,14 @@ Table of Contents
    ACs over which services are delivered has the merit of decorrelating
    the management of the (core) service vs. upgrade the AC components to
    reflect recent AC technologies or new features (e.g., new encryption
-   scheme, additional routing protocol). *This document favors the
+   scheme, additional routing protocol).  This document favors the
    approach of completely relying upon the AC service model instead of
    duplicating data nodes into specific modules of advanced services
-   that are delivered over an Attachment Circuit.*
+   that are delivered over an Attachment Circuit.
 
    Since the provisioning of an AC requires a bearer to be in place,
    this document introduces a new module called "ietf-bearer-svc" that
-   enables customers to manage their bearer requests (Section 5.1).  The
+   enables customers to manage their bearer requests (Section 6.1).  The
    customers can then retrieve a provider-assigned bearer reference that
    they will include in their AC service requests.  Likewise, a customer
    may retrieve whether their bearers support a synchronization
@@ -218,20 +228,23 @@ Table of Contents
    details about the (node-specific) attachment interfaces are not
    exposed in the AC service model.  However, these details are exposed
    at the network model per [I-D.ietf-opsawg-ntw-attachment-circuit].
+   [I-D.ietf-opsawg-ac-lxsm-lxnm-glue] specifies augmentations to the
+   L2VPN Service Model (L2SM) [RFC8466] and the L3VPN Service Model
+   (L3SM) [RFC8299] to bind LxVPN services to ACs.
 
-   The AC service model *does not make any assumptions about the
-   internal structure or even the nature or the services that will be
-   delivered over an attachment circuit or a set of attachment
-   circuits*. Customers do not have access to that network view other
-   than the ACs that they ordered.  For example, the AC service model
-   can be used to provision a set of ACs to connect multiple sites
-   (Site1, Site2, ..., SiteX) for customer who also requested VPN
-   services.  If the provisioning of these services requires specific
-   configuration on ASBR nodes, such configuration is handled at the
-   network level and is not exposed to the customer at the service
-   level.  However, the network controller will have access to such a
-   view as the service points in these ASBRs will be exposed as SAPs
-   with "role" set to "ietf-sap-ntw:nni" [RFC9408].
+   The AC service model does not make any assumptions about the internal
+   structure or even the nature or the services that will be delivered
+   over an attachment circuit or a set of attachment circuits.
+   Customers do not have access to that network view other than the ACs
+   that they ordered.  For example, the AC service model can be used to
+   provision a set of ACs to connect multiple sites (Site1, Site2, ...,
+   SiteX) for customer who also requested VPN services.  If the
+   provisioning of these services requires specific configuration on
+   ASBR nodes, such configuration is handled at the network level and is
+   not exposed to the customer at the service level.  However, the
+   network controller will have access to such a view as the service
+   points in these ASBRs will be exposed as SAPs with "role" set to
+   "ietf-sap-ntw:nni" [RFC9408].
 
    The AC service model can be used in a variety of contexts, such as
    (but not limited to) those provided in Appendix A:
@@ -252,8 +265,15 @@ Table of Contents
       circuits (Appendix A.7).
 
    *  Connect a Cloud Infrastructure to a service provider network
-      (Appendix A.8).  Note that the AC model can be used between
-      service providers for other interconnection purposes.
+      (Appendix A.8).
+
+   *  Interconnect provider networks (e.g., [RFC8921] or
+      [I-D.ramseyer-grow-peering-api]).  Such ACs are identified with a
+      "role" set to "ac-common:nni" or "ac-common:public-nni".  See
+      Appendix A.10 to illustrate the use of the AC model for peering.
+
+   *  Manage connectivity for complex containerized or virtualized
+      functions in the cloud (Appendix A.11).
 
    The examples provided in Appendix A use the IPv4 address blocks
    reserved for documentation [RFC5737], the IPv6 prefix reserved for
@@ -265,7 +285,7 @@ Table of Contents
 
 1.2.  Positioning ACaaS vs. Other Data Models
 
-   The AC model specified in this document *is not a network model*
+   The AC model specified in this document is not a network model
    [RFC8969].  As such, the model does not expose details related to
    specific nodes in the provider's network that terminate an AC (e.g.,
    network node identifiers).  The mapping between an AC as seen by a
@@ -275,7 +295,7 @@ Table of Contents
    augmented SAP AC network model
    [I-D.ietf-opsawg-ntw-attachment-circuit].
 
-   The AC service model *is not a device model*. A network provider may
+   The AC service model is not a device model.  A network provider may
    use a variety of device models (e.g., Routing management [RFC8349] or
    BGP [I-D.ietf-idr-bgp-model]) to provision an AC service in relevant
    network nodes.
@@ -309,6 +329,10 @@ Table of Contents
 
    The meanings of the symbols in the YANG tree diagrams are defined in
    [RFC8340].
+
+   LxSM refers to both the L2SM and the L3SM.
+
+   LxNM refers to both the L2NM and the L3NM.
 
    This document uses the following terms:
 
@@ -345,11 +369,53 @@ Table of Contents
    Service provider:  A service provider that offers network services
       (e.g., Layer 2 VPN, Layer 3 VPN, or Network Slice Services).
 
-3.  Sample Uses of the Data Models
+3.  Relationship to Other AC Data Models
 
-3.1.  ACs Terminated by One or Multiple Customer Edges (CEs)
+   Figure 1 depicts the relationship between the various AC data models:
 
-   Figure 1 depicts two target topology flavors that involve ACs.  These
+   *  "ietf-ac-common" ([I-D.ietf-opsawg-teas-common-ac])
+
+   *  "ietf-bearer-svc" (Section 6.2)
+
+   *  "ietf-ac-svc" (Section 6.1)
+
+   *  "ietf-ac-ntw" ([I-D.ietf-opsawg-ntw-attachment-circuit])
+
+   *  "ietf-ac-glue" ([I-D.ietf-opsawg-ac-lxsm-lxnm-glue])
+
+                               ietf-ac-common
+                                ^     ^     ^
+                                |     |     |
+                     +----------+     |     +----------+
+                     |                |                |
+                     |                |                |
+               ietf-ac-svc <--> ietf-bearer-svc        |
+                  ^    ^                               |
+                  |    |                               |
+                  |    +------------------------ ietf-ac-ntw
+                  |                                    ^
+                  |                                    |
+                  |                                    |
+                  +----------- ietf-ac-glue -----------+
+
+                          Figure 1: AC Data Models
+
+   "ietf-ac-common" is imported by "ietf-bearer-svc", "ietf-ac-svc", and
+   "ietf-ac-ntw".  Bearers managed using "ietf-bearer-svc" may be
+   referenced in the service ACs managed using "ietf-ac-svc".
+   Similarly, a bearer managed using "ietf-bearer-svc" may list the set
+   of ACs that use that bearer.  In order to ease correlation between an
+   AC service requests and the actual AC provisioned in the network,
+   "ietf-ac-ntw" uses the AC references exposed by "ietf-ac-svc".  To
+   bind Layer 2 VPN or Layer 3 VPN services with ACs, "ietf-ac-glue"
+   augments the LxSM and LxNM with AC service references exposed by
+   "ietf-ac-svc" and AC network references exposed bt "ietf-ac-ntw".
+
+4.  Sample Uses of the Data Models
+
+4.1.  ACs Terminated by One or Multiple Customer Edges (CEs)
+
+   Figure 2 depicts two target topology flavors that involve ACs.  These
    topologies have the following characteristics:
 
    *  A CE can be either a physical device or a logical entity.  Such
@@ -382,7 +448,7 @@ Table of Contents
       the network provider network and also whether to enable specific
       capabilities (e.g., Virtual Router Redundancy Protocol (VRRP)
       [RFC5798]).  Note that placement constraints may also be requested
-      during the instantiation of the underlying bearers (Section 4.1).
+      during the instantiation of the underlying bearers (Section 5.1).
 
      .-------.                .--------------------.         .-------.
      |       +------.         |                    +---AC----+       |
@@ -397,9 +463,9 @@ Table of Contents
                                           |                       |
                                           '-----------AC----------'
 
-                         Figure 1: Examples of ACs
+                         Figure 2: Examples of ACs
 
-3.2.  Separate AC Provisioning vs. Actual Service Provisioning
+4.2.  Separate AC Provisioning vs. Actual Service Provisioning
 
    The procedure to provision a service in a service provider network
    may depend on the practices adopted by a service provider.  This
@@ -415,20 +481,20 @@ Table of Contents
    specifies augmentations to the L2SM and the L3SM to bind LxVPN
    services to ACs.
 
-   Figure 2 shows the positioning of the AC service model is the overall
+   Figure 3 shows the positioning of the AC service model is the overall
    service delivery process.
 
                                .---------------.
                                |   Customer    |
                                '-------+-------'
                Customer Service Model  |
-               e.g., slice-svc, ac-svc,| and bearer-svc
+      l2vpn-svc, l3vpn-svc, ietf-nss, ac-svc, ac-glue, and bearer-svc
                                .-------+-------.
                                |    Service    |
                                | Orchestration |
                                '-------+-------'
                 Network Model          |
-       e.g., l3vpn-ntw, sap, and ac-ntw|
+            l2vpn-ntw, l3vpn-ntw, sap, | ac-glue, and ac-ntw
                                .-------+-------.
                                |   Network     |
                                | Orchestration |
@@ -457,7 +523,7 @@ Table of Contents
                     '--------------------------------'
        Site A                                                  Site B
 
-                   Figure 2: An Example of AC Model Usage
+                   Figure 3: An Example of AC Model Usage
 
    In order to ease the mapping between the service model and underlying
    network models (e.g., the L3VPN Network Model (L3NM), SAP), the name
@@ -467,11 +533,11 @@ Table of Contents
    provider network.  This approach is consistent with the automation
    framework defined in [RFC8969].
 
-4.  Description of the Data Models
+5.  Description of the Data Models
 
-4.1.  The Bearer Service ("ietf-bearer-svc") YANG Module
+5.1.  The Bearer Service ("ietf-bearer-svc") YANG Module
 
-   Figure 3 shows the tree for managing the bearers (that is, the
+   Figure 4 shows the tree for managing the bearers (that is, the
    properties of an attachment that are below Layer 3).  A bearer can be
    a physical or logical link (e.g., Link Aggregation Group (LAG)
    [IEEE802.1AX]).  Also, a bearer can be a wireless or wired link.  A
@@ -481,73 +547,100 @@ Table of Contents
    without a bearer reference), a peer SAP identifier (e.g., an
    identifier of an SF).
 
-  module: ietf-bearer-svc
+    module: ietf-bearer-svc
 
-    +--rw bearers
-       +--rw placement-constraints
-       |  +--rw constraint* [constraint-type]
-       |          {vpn-common:placement-diversity}?
-       |     +--rw constraint-type    identityref
-       |     +--rw target
-       |        +--rw (target-flavor)?
-       |           +--:(id)
-       |           |  +--rw group* [group-id]
-       |           |     +--rw group-id    string
-       |           +--:(all-bearers)
-       |           |  +--rw all-other-bearers?   empty
-       |           +--:(all-groups)
-       |              +--rw all-other-groups?    empty
-       +--rw bearer* [name]
-          +--rw name                 string
-          +--rw description?         string
-          +--rw groups
-          |  +--rw group* [group-id]
-          |     +--rw group-id    string
-          +--rw op-comment?          string
-          +--rw bearer-parent-ref?   bearer-svc:bearer-ref
-          +--ro bearer-lag-member*   bearer-svc:bearer-ref
-          +--ro sync-phy-capable?    boolean
-          +--rw sync-phy-enabled?    boolean
-          +--rw sync-phy-type?       identityref
-          +--rw customer-point
-          |  +--rw identified-by?   identityref
-          |  +--rw device
-          |  |  +--rw device-id?   string
-          |  |  +--rw location
-          |  |     +--rw location-name?   string
-          |  |     +--rw address?         string
-          |  |     +--rw postal-code?     string
-          |  |     +--rw state?           string
-          |  |     +--rw city?            string
-          |  |     +--rw country-code?    string
-          |  +--rw site
-          |  |  +--rw site-id?    string
-          |  |  +--rw location
-          |  |     +--rw location-name?   string
-          |  |     +--rw address?         string
-          |  |     +--rw postal-code?     string
-          |  |     +--rw state?           string
-          |  |     +--rw city?            string
-          |  |     +--rw country-code?    string
-          |  +--rw custom-id?       string
-          +--rw type?                identityref
-          +--rw test-only?           empty
-          +--ro bearer-reference?    string
-          |       {vpn-common:bearer-reference}?
-          +--ro ac-svc-ref*          ac-svc:attachment-circuit-reference
-          +--rw requested-start?     yang:date-and-time
-          +--rw requested-stop?      yang:date-and-time
-          +--ro actual-start?        yang:date-and-time
-          +--ro actual-stop?         yang:date-and-time
-          +--rw status
-             +--rw admin-status
-             |  +--rw status?        identityref
-             |  +--ro last-change?   yang:date-and-time
-             +--ro oper-status
-                +--ro status?        identityref
-                +--ro last-change?   yang:date-and-time
+      +--rw locations
+      |  +--rw customer-name?   string
+      |  +--rw role?            identityref
+      |  +--rw local-as?        inet:as-number
+      |  +--rw peer-as?         inet:as-number
+      |  +--ro location* [location-name]
+      |     +--ro location-name    string
+      |     +--ro address?         string
+      |     +--ro postal-code?     string
+      |     +--ro state?           string
+      |     +--ro city?            string
+      |     +--ro country-code?    string
+      +--rw bearers
+         +--rw customer-name?           string
+         +--rw requested-start?         yang:date-and-time
+         +--rw requested-stop?          yang:date-and-time
+         +--ro actual-start?            yang:date-and-time
+         +--ro actual-stop?             yang:date-and-time
+         +--rw placement-constraints
+         |  +--rw constraint* [constraint-type]
+         |          {vpn-common:placement-diversity}?
+         |     +--rw constraint-type    identityref
+         |     +--rw target
+         |        +--rw (target-flavor)?
+         |           +--:(id)
+         |           |  +--rw group* [group-id]
+         |           |     +--rw group-id    string
+         |           +--:(all-bearers)
+         |           |  +--rw all-other-bearers?   empty
+         |           +--:(all-groups)
+         |              +--rw all-other-groups?    empty
+         +--rw bearer* [name]
+            +--rw name                           string
+            +--rw description?                   string
+            +--rw customer-name?                 string
+            +--rw groups
+            |  +--rw group* [group-id]
+            |     +--rw group-id    string
+            +--rw op-comment?                    string
+            +--rw bearer-parent-ref?             bearer-svc:bearer-ref
+            +--ro bearer-lag-member*             bearer-svc:bearer-ref
+            +--ro sync-phy-capable?              boolean
+            +--rw sync-phy-enabled?              boolean
+            +--rw sync-phy-type?                 identityref
+            +--rw provider-location-reference?   string
+            +--rw customer-point
+            |  +--rw identified-by?   identityref
+            |  +--rw device
+            |  |  +--rw device-id?   string
+            |  |  +--rw location
+            |  |     +--rw location-name?   string
+            |  |     +--rw address?         string
+            |  |     +--rw postal-code?     string
+            |  |     +--rw state?           string
+            |  |     +--rw city?            string
+            |  |     +--rw country-code?    string
+            |  +--rw site
+            |  |  +--rw site-id?    string
+            |  |  +--rw location
+            |  |     +--rw location-name?   string
+            |  |     +--rw address?         string
+            |  |     +--rw postal-code?     string
+            |  |     +--rw state?           string
+            |  |     +--rw city?            string
+            |  |     +--rw country-code?    string
+            |  +--rw custom-id?       string
+            +--rw type?                          identityref
+            +--rw test-only?                     empty
+            +--ro bearer-reference?              string
+            |       {ac-common:server-assigned-reference}?
+            +--ro ac-svc-ref*
+            |       ac-svc:attachment-circuit-reference
+            +--rw requested-start?               yang:date-and-time
+            +--rw requested-stop?                yang:date-and-time
+            +--ro actual-start?                  yang:date-and-time
+            +--ro actual-stop?                   yang:date-and-time
+            +--rw status
+               +--rw admin-status
+               |  +--rw status?        identityref
+               |  +--ro last-change?   yang:date-and-time
+               +--ro oper-status
+                  +--ro status?        identityref
+                  +--ro last-change?   yang:date-and-time
 
-                 Figure 3: Bearer Service Tree Structure
+                  Figure 4: Bearer Service Tree Structure
+
+   In some deployments, a customer may first retrieve a list of
+   available presence locations before actually placing an order for a
+   bearer creation.  The request may be filtered based upon a customer
+   name, role of the bearer, etc.  The retrieved location name may be
+   then referenced in the bearer creation request ("provider-location-
+   reference").
 
    The same customer site (CE, SF, etc.) can terminate one or multiple
    bearers; each of them uniquely identified by a reference that is
@@ -586,6 +679,9 @@ Table of Contents
    'name':  Used to uniquely identify a bearer.  This name is typically
       selected by the client when requesting a bearer.
 
+   'customer-name':  Indicates the name of the customer who ordered the
+      bearer.
+
    'description':  Includes a textual description of the bearer.
 
    'group':  Tags a bearer with one ore more identifiers that are used
@@ -611,6 +707,9 @@ Table of Contents
 
    'sync-phy-type':  Specifies the Sync PHY mechanism (e.g., SynchE
       [ITU-T-G.781]) enabled for the bearer.
+
+   'provider-location-reference':  Indicates a location identified by a
+      provider-assigned reference.
 
    'customer-point':  Specifies the customer terminating point for the
       bearer.  A bearer request can indicate a device, a site, a
@@ -693,7 +792,7 @@ Table of Contents
 
       See [RFC9181] for more details.
 
-4.2.  The Attachment Circuit Service ("ietf-ac-svc") YANG Module
+5.2.  The Attachment Circuit Service ("ietf-ac-svc") YANG Module
 
    The full tree diagram of the module can be generated using, e.g., the
    "pyang" tool [PYANG].  That tree is not included here because it is
@@ -701,36 +800,36 @@ Table of Contents
    subtrees are provided for the reader's convenience.  The full tree of
    the 'ac-svc' is provided in [AC-svc-Tree].
 
-4.2.1.  Overall Structure
+5.2.1.  Overall Structure
 
    The overall tree structure of the AC service module is shown in
-   Figure 4.
+   Figure 5.
 
-                    +--rw specific-provisioning-profiles
+              +--rw specific-provisioning-profiles
+              |  ...
+              +--rw service-provisioning-profiles
+              |  ...
+              +--rw attachment-circuits
+                 +--rw ac-group-profile* [name]
+                 |  ...
+                 +--rw placement-constraints
+                 |  ...
+                 +--rw ac* [name]
+                    ...
+                    +--rw l2-connection  {ac-common:layer2-ac}?
                     |  ...
-                    +--rw service-provisioning-profiles
+                    +--rw ip-connection  {ac-common:layer3-ac}?
                     |  ...
-                    +--rw attachment-circuits
-                       +--rw ac-group-profile* [name]
-                       |  ...
-                       +--rw placement-constraints
-                       |  ...
-                       +--rw ac* [name]
-                          ...
-                          +--rw l2-connection
-                          |  ...
-                          +--rw ip-connection
-                          |  ...
-                          +--rw routing-protocols
-                          |  ...
-                          +--rw oam
-                          |  ...
-                          +--rw security
-                          |  ...
-                          +--rw service
-                             ...
+                    +--rw routing-protocols
+                    |  ...
+                    +--rw oam
+                    |  ...
+                    +--rw security
+                    |  ...
+                    +--rw service
+                       ...
 
-                Figure 4: Overall AC Service Tree Structure
+                Figure 5: Overall AC Service Tree Structure
 
    The rationale for deciding whether a reusable grouping should be
    maintained in this document or be moved into the AC common module
@@ -755,59 +854,63 @@ Table of Contents
    description of these nodes are not reiterated in the following
    subsections.
 
-4.2.2.  Service Profiles
+   Features are used to tag conditional protions of the model in order
+   to accomodate various deployments (support of layer 2 ACs, Layer 3
+   ACs, IPv4, IPv6, routing protocols, Bidirectional Forwarding
+   Detection (BFD), etc.).
 
-4.2.2.1.  Description
+5.2.2.  Service Profiles
 
-   The 'specific-provisioning-profiles' container (Figure 5) can be used
+5.2.2.1.  Description
+
+   The 'specific-provisioning-profiles' container (Figure 6) can be used
    by a service provider to maintain a set of reusable profiles.  The
    profiles definitions are similar to those defined in [RFC9181],
-   including: Quality of Service (QoS), Bidirectional Forwarding
-   Detection (BFD), forwarding, and routing profiles.  The exact
-   definition of the profiles is local to each service provider.  The
-   model only includes an identifier for these profiles in order to
-   facilitate identifying and binding local policies when building an
-   AC.
+   including: Quality of Service (QoS), BFD, forwarding, and routing
+   profiles.  The exact definition of the profiles is local to each
+   service provider.  The model only includes an identifier for these
+   profiles in order to facilitate identifying and binding local
+   policies when building an AC.
 
-             module: ietf-ac-svc
-               +--rw specific-provisioning-profiles
-               |  +--rw valid-provider-identifiers
-               |     +--rw encryption-profile-identifier* [id]
-               |     |  +--rw id    string
-               |     +--rw qos-profile-identifier* [id]
-               |     |  +--rw id    string
-               |     +--rw bfd-profile-identifier* [id]
-               |     |  +--rw id    string
-               |     +--rw forwarding-profile-identifier* [id]
-               |     |  +--rw id    string
-               |     +--rw routing-profile-identifier* [id]
-               |        +--rw id    string
-               +--rw service-provisioning-profiles
-               |  +--rw service-profile-identifier* [id]
-               |     +--rw id    string
-               +--rw attachment-circuits
-                  +--rw ac-group-profile* [name]
-                  |  ...
-                  +--rw placement-constraints
-                  |  ...
-                  +--rw ac* [name]
-                     ...
-                     +--rw l2-connection
-                     |  ...
-                     +--rw ip-connection
-                     |  ...
-                     +--rw routing-protocols
-                     |  ...
-                     +--rw oam
-                     |  ...
-                     +--rw security
-                     |  ...
-                     +--rw service
-                        ...
+         module: ietf-ac-svc
+           +--rw specific-provisioning-profiles
+           |  +--rw valid-provider-identifiers
+           |     +--rw encryption-profile-identifier* [id]
+           |     |  +--rw id    string
+           |     +--rw qos-profile-identifier* [id]
+           |     |  +--rw id    string
+           |     +--rw failure-detection-profile-identifier* [id]
+           |     |  +--rw id    string
+           |     +--rw forwarding-profile-identifier* [id]
+           |     |  +--rw id    string
+           |     +--rw routing-profile-identifier* [id]
+           |        +--rw id    string
+           +--rw service-provisioning-profiles
+           |  +--rw service-profile-identifier* [id]
+           |     +--rw id    string
+           +--rw attachment-circuits
+              +--rw ac-group-profile* [name]
+              |  ...
+              +--rw placement-constraints
+              |  ...
+              +--rw ac* [name]
+                 ...
+                 +--rw l2-connection  {ac-common:layer2-ac}?
+                 |  ...
+                 +--rw ip-connection  {ac-common:layer3-ac}?
+                 |  ...
+                 +--rw routing-protocols
+                 |  ...
+                 +--rw oam
+                 |  ...
+                 +--rw security
+                 |  ...
+                 +--rw service
+                    ...
 
-                         Figure 5: Service Profiles
+                         Figure 6: Service Profiles
 
-   As shown in Figure 5, two profile types can be defined: 'specific-
+   As shown in Figure 6, two profile types can be defined: 'specific-
    provisioning-profiles' and 'service-provisioning-profiles'.  Whether
    only specific profiles, service profiles, or a combination thereof
    are used is local to each service provider.
@@ -821,9 +924,9 @@ Table of Contents
    'qos-profile-identifier':  Refers to a set of policies, such as
       classification, marking, and actions (e.g., [RFC3644]).
 
-   'bfd-profile-identifier':  Refers to a set of Bidirectional
-      Forwarding Detection (BFD) policies [RFC5880] that can be invoked
-      when building an AC.
+   'failure-detection-profile-identifier':  Refers to a set of failure
+      detection policies (e.g., Bidirectional Forwarding Detection (BFD)
+      policies [RFC5880]) that can be invoked when building an AC.
 
    'forwarding-profile-identifier':  Refers to the policies that apply
       to the forwarding of packets conveyed within an AC.  Such policies
@@ -832,7 +935,7 @@ Table of Contents
    'routing-profile-identifier':  Refers to a set of routing policies
       that will be invoked (e.g., BGP policies) when building an AC.
 
-4.2.2.2.  Referencing Service/Specific Profiles
+5.2.2.2.  Referencing Service/Specific Profiles
 
    All the abovementioned profiles are uniquely identified by the
    NETCONF/RESTCONF server by an identifier.  To ease referencing these
@@ -842,15 +945,15 @@ Table of Contents
    is required.  These typedefs SHOULD be used when other modules need a
    reference to one of these profiles or attachment circuits.
 
-4.2.3.  Attachment Circuits Profiles
+5.2.3.  Attachment Circuits Profiles
 
    The 'ac-group-profile' defines reusable parameters for a set of ACs.
    Each profile is identified by 'name'.  Some of the data nodes can be
    adjusted at the 'ac'.  These adjusted values take precedence over the
    global values.  The structure of 'ac-group-profile' is similar to the
-   one used to model each 'ac' (Figure 7).
+   one used to model each 'ac' (Figure 8).
 
-4.2.4.  AC Placement Contraints
+5.2.4.  AC Placement Contraints
 
    The 'placement-constraints' specifies the placement constraints of an
    AC.  For example, this container can be used to request avoidance of
@@ -858,7 +961,7 @@ Table of Contents
    constraints is defined in [RFC9181] (see 'placement-diversity', in
    particular).
 
-   The structure of 'placement-constraints' is shown in Figure 6.
+   The structure of 'placement-constraints' is shown in Figure 7.
 
              +--rw specific-provisioning-profiles
              |  ...
@@ -882,11 +985,11 @@ Table of Contents
                 +--rw ac* [name]
                    ...
 
-             Figure 6: Placement Constraints Subtree Structure
+             Figure 7: Placement Constraints Subtree Structure
 
-4.2.5.  Attachment Circuits
+5.2.5.  Attachment Circuits
 
-   The structure of 'attachment-circuits' is shown in Figure 7.
+   The structure of 'attachment-circuits' is shown in Figure 8.
 
     +--rw specific-provisioning-profiles
     |  ...
@@ -897,14 +1000,20 @@ Table of Contents
        |  ...
        +--rw placement-constraints
        |  ...
+       +--rw customer-name?           string
+       +--rw requested-start?         yang:date-and-time
+       +--rw requested-stop?          yang:date-and-time
+       +--ro actual-start?            yang:date-and-time
+       +--ro actual-stop?             yang:date-and-time
        +--rw ac* [name]
           +--rw customer-name?       string
           +--rw description?         string
-          +--rw test-only?          empty
+          +--rw test-only?           empty
           +--rw requested-start?     yang:date-and-time
           +--rw requested-stop?      yang:date-and-time
           +--ro actual-start?        yang:date-and-time
           +--ro actual-stop?         yang:date-and-time
+          +--rw role?                identityref
           +--rw peer-sap-id*         string
           +--rw ac-group-profile*    ac-group-reference
           +--rw ac-parent-ref?       ac-svc:attachment-circuit-reference
@@ -915,11 +1024,13 @@ Table of Contents
           +--ro service-ref* [service-type service-id]
           |  +--ro service-type    identityref
           |  +--ro service-id      string
+          +--ro server-reference?    string
+          |       {ac-common:server-assigned-reference}?
           +--rw name                 string
           +--rw service-profile*     service-profile-reference
-          +--rw l2-connection
+          +--rw l2-connection  {ac-common:layer2-ac}?
           |  ...
-          +--rw ip-connection
+          +--rw ip-connection  {ac-common:layer3-ac}?
           |  ...
           +--rw routing-protocols
           |  ...
@@ -930,12 +1041,12 @@ Table of Contents
           +--rw service
              ...
 
-               Figure 7: Attachment Circuits Tree Structure
+               Figure 8: Attachment Circuits Tree Structure
 
    The description of the data nodes is as follows:
 
    'customer-name':  Indicates the name of the customer who ordered the
-      AC.
+      AC or a set of ACs.
 
    'description':  Includes a textual description of the AC.
 
@@ -957,11 +1068,14 @@ Table of Contents
    'actual-stop':  Reports the actual date and time when the attachment
       circuit actually was disabled.
 
+   'role':  Specifies whether an AC is used, e.g., as User-to-Network
+      Interface (UNI) or Network-to-Network Interface (NNI).
+
    'peer-sap-id':  Includes references to the remote endpoints of an
       attachment circuit [RFC9408].
 
    'ac-group-profile':  Indicates references to one or more profiles
-      that are defined in Section 4.2.3.
+      that are defined in Section 5.2.3.
 
    'ac-parent-ref':  Specifies an AC that is inherited by an attachment
       circuit.
@@ -986,26 +1100,32 @@ Table of Contents
    'service-ref':  Reports the set of services that are bound to the
       attachment circuit.  The services are indexed by their type.
 
+   'server-reference':  Reports the internal reference that is assigned
+      by the provider for this AC.  This reference is used to accomodate
+      deployment contexts (e.g., Section 9.1.2 of [RFC8921]) where an
+      identifier is generated by the provider to identify a service
+      order locally.
+
    'name':  Associates a name that uniquely identifies an AC within a
       service provider network.
 
    'service-profile':  References a set of service-specific profiles.
 
-   'l2-connection':  See Section 4.2.5.1.
+   'l2-connection':  See Section 5.2.5.1.
 
-   'ip-connection':  See Section 4.2.5.2.
+   'ip-connection':  See Section 5.2.5.2.
 
-   'routing':  See Section 4.2.5.3.
+   'routing':  See Section 5.2.5.3.
 
-   'oam':  See Section 4.2.5.4.
+   'oam':  See Section 5.2.5.4.
 
-   'security':  See Section 4.2.5.5.
+   'security':  See Section 5.2.5.5.
 
-   'service':  See Section 4.2.5.6.
+   'service':  See Section 5.2.5.6.
 
-4.2.5.1.  Layer 2 Connection Structure
+5.2.5.1.  Layer 2 Connection Structure
 
-   The 'l2-connection' container (Figure 8) is used to configure the
+   The 'l2-connection' container (Figure 9) is used to configure the
    relevant Layer 2 properties of an AC including: encapsulation details
    and tunnel terminations.  For the encapsulation details, the model
    supports the definition of the type as well as the Identifiers (e.g.,
@@ -1032,7 +1152,7 @@ Table of Contents
            +--rw ac* [name]
               ...
               +--rw name                 string
-              +--rw l2-connection
+              +--rw l2-connection  {ac-common:layer2-ac}?
               |  +--rw encapsulation
               |  |  +--rw type?              identityref
               |  |  +--rw dot1q
@@ -1042,8 +1162,8 @@ Table of Contents
               |  |  |  +--rw tag-type?   identityref
               |  |  +--rw qinq
               |  |     +--rw tag-type?   identityref
-              |  |     +--rw svlan-id    uint16
-              |  |     +--rw cvlan-id    uint16
+              |  |     +--rw svlan-id?   uint16
+              |  |     +--rw cvlan-id?   uint16
               |  +--rw (l2-service)?
               |  |  +--:(l2-tunnel-service)
               |  |  |  +--rw l2-tunnel-service
@@ -1055,14 +1175,14 @@ Table of Contents
               |  |  |     |  +--rw vcid?      uint32
               |  |  |     |  +--rw far-end*   union
               |  |  |     +--rw vxlan
-              |  |  |        +--rw vni-id             uint32
+              |  |  |        +--rw vni-id?            uint32
               |  |  |        +--rw peer-mode?         identityref
               |  |  |        +--rw peer-ip-address*   inet:ip-address
               |  |  +--:(l2vpn)
               |  |     +--rw l2vpn-id?            vpn-common:vpn-id
               |  +--rw bearer-reference?          string
               |          {vpn-common:bearer-reference}?
-              +--rw ip-connection
+              +--rw ip-connection  {ac-common:layer3-ac}?
               |  ...
               +--rw routing-protocols
               |  ...
@@ -1073,9 +1193,9 @@ Table of Contents
               +--rw service
                  ...
 
-                Figure 8: Layer 2 Connection Tree Structure
+                Figure 9: Layer 2 Connection Tree Structure
 
-4.2.5.2.  IP Connection Structure
+5.2.5.2.  IP Connection Structure
 
    The 'ip-connection' container is used to configure the relevant IP
    properties of an AC.  The model supports the usage of dynamic and
@@ -1083,96 +1203,102 @@ Table of Contents
    defined in [I-D.ietf-opsawg-teas-common-ac].  Both IPv4 and IPv6
    parameters are supported.
 
-   Figure 9 shows the structure of the IPv4 connection.
+   Figure 10 shows the structure of the IPv4 connection.
 
-            | ...
-            +--rw ip-connection
-            |  +--rw ipv4 {vpn-common:ipv4}?
-            |  |  +--rw local-address?
-            |  |  |       inet:ipv4-address
-            |  |  +--rw virtual-address?
-            |  |  |       inet:ipv4-address
-            |  |  +--rw prefix-length?                           uint8
-            |  |  +--rw address-allocation-type?
-            |  |  |       identityref
-            |  |  +--rw (allocation-type)?
-            |  |     +--:(dynamic)
-            |  |     |  +--rw (address-assign)?
-            |  |     |  |  +--:(number)
-            |  |     |  |  |  +--rw number-of-dynamic-address?   uint16
-            |  |     |  |  +--:(explicit)
-            |  |     |  |     +--rw customer-addresses
-            |  |     |  |        +--rw address-pool* [pool-id]
-            |  |     |  |           +--rw pool-id          string
-            |  |     |  |           +--rw start-address
-            |  |     |  |           |       inet:ipv4-address
-            |  |     |  |           +--rw end-address?
-            |  |     |  |                   inet:ipv4-address
-            |  |     |  +--rw (provider-dhcp)?
-            |  |     |  |  +--:(dhcp-service-type)
-            |  |     |  |     +--rw dhcp-service-type?
-            |  |     |  |             enumeration
-            |  |     |  +--rw (dhcp-relay)?
-            |  |     |     +--:(customer-dhcp-servers)
-            |  |     |        +--rw customer-dhcp-servers
-            |  |     |           +--rw server-ip-address*
-            |  |     |                   inet:ipv4-address
-            |  |     +--:(static-addresses)
-            |  |        +--rw address* [address-id]
-            |  |           +--rw address-id          string
-            |  |           +--rw customer-address?   inet:ipv4-address
-            |  +--rw ipv6 {vpn-common:ipv6}?
-            |     ...
+        | ...
+        +--rw ip-connection  {ac-common:layer3-ac}?
+        |  +--rw ipv4 {vpn-common:ipv4}?
+        |  |  +--rw local-address?
+        |  |  |       inet:ipv4-address
+        |  |  +--rw virtual-address?
+        |  |  |       inet:ipv4-address
+        |  |  +--rw prefix-length?                           uint8
+        |  |  +--rw address-allocation-type?
+        |  |  |       identityref
+        |  |  +--rw (allocation-type)?
+        |  |     +--:(dynamic)
+        |  |     |  +--rw (address-assign)?
+        |  |     |  |  +--:(number)
+        |  |     |  |  |  +--rw number-of-dynamic-address?   uint16
+        |  |     |  |  +--:(explicit)
+        |  |     |  |     +--rw customer-addresses
+        |  |     |  |        +--rw address-pool* [pool-id]
+        |  |     |  |           +--rw pool-id          string
+        |  |     |  |           +--rw start-address
+        |  |     |  |           |       inet:ipv4-address
+        |  |     |  |           +--rw end-address?
+        |  |     |  |                   inet:ipv4-address
+        |  |     |  +--rw (provider-dhcp)?
+        |  |     |  |  +--:(dhcp-service-type)
+        |  |     |  |     +--rw dhcp-service-type?
+        |  |     |  |             enumeration
+        |  |     |  +--rw (dhcp-relay)?
+        |  |     |     +--:(customer-dhcp-servers)
+        |  |     |        +--rw customer-dhcp-servers
+        |  |     |           +--rw server-ip-address*
+        |  |     |                   inet:ipv4-address
+        |  |     +--:(static-addresses)
+        |  |        +--rw address* [address-id]
+        |  |           +--rw address-id          string
+        |  |           +--rw customer-address?   inet:ipv4-address
+        |  |           +--rw failure-detection-profile?
+        |  |                             failure-detection-profile-reference
+        |  |                             {vpn-common:bfd}?
+        |  +--rw ipv6 {vpn-common:ipv6}?
+        |     ...
 
-             Figure 9: Layer 3 Connection Tree Structure (IPv4)
+         Figure 10: Layer 3 Connection Tree Structure (IPv4)
 
-   Figure 10 shows the structure of the IPv6 connection.
+   Figure 11 shows the structure of the IPv6 connection.
 
-            | ...
-            +--rw ip-connection
-            |  +--rw ipv4 {vpn-common:ipv4}?
-            |  |  ...
-            |  +--rw ipv6 {vpn-common:ipv6}?
-            |     +--rw local-address?
-            |     |       inet:ipv6-address
-            |     +--rw virtual-address?
-            |     |       inet:ipv6-address
-            |     +--rw prefix-length?                           uint8
-            |     +--rw address-allocation-type?
-            |     |       identityref
-            |     +--rw (allocation-type)?
-            |        +--:(dynamic)
-            |        |  +--rw (address-assign)?
-            |        |  |  +--:(number)
-            |        |  |  |  +--rw number-of-dynamic-address?   uint16
-            |        |  |  +--:(explicit)
-            |        |  |     +--rw customer-addresses
-            |        |  |        +--rw address-pool* [pool-id]
-            |        |  |           +--rw pool-id          string
-            |        |  |           +--rw start-address
-            |        |  |           |       inet:ipv6-address
-            |        |  |           +--rw end-address?
-            |        |  |                   inet:ipv6-address
-            |        |  +--rw (provider-dhcp)?
-            |        |  |  +--:(dhcp-service-type)
-            |        |  |     +--rw dhcp-service-type?
-            |        |  |             enumeration
-            |        |  +--rw (dhcp-relay)?
-            |        |     +--:(customer-dhcp-servers)
-            |        |        +--rw customer-dhcp-servers
-            |        |           +--rw server-ip-address*
-            |        |                   inet:ipv6-address
-            |        +--:(static-addresses)
-            |           +--rw address* [address-id]
-            |              +--rw address-id          string
-            |              +--rw customer-address?   inet:ipv6-address
-               ...
+        | ...
+        +--rw ip-connection  {ac-common:layer3-ac}?
+        |  +--rw ipv4 {vpn-common:ipv4}?
+        |  |  ...
+        |  +--rw ipv6 {vpn-common:ipv6}?
+        |     +--rw local-address?
+        |     |       inet:ipv6-address
+        |     +--rw virtual-address?
+        |     |       inet:ipv6-address
+        |     +--rw prefix-length?                           uint8
+        |     +--rw address-allocation-type?
+        |     |       identityref
+        |     +--rw (allocation-type)?
+        |        +--:(dynamic)
+        |        |  +--rw (address-assign)?
+        |        |  |  +--:(number)
+        |        |  |  |  +--rw number-of-dynamic-address?   uint16
+        |        |  |  +--:(explicit)
+        |        |  |     +--rw customer-addresses
+        |        |  |        +--rw address-pool* [pool-id]
+        |        |  |           +--rw pool-id          string
+        |        |  |           +--rw start-address
+        |        |  |           |       inet:ipv6-address
+        |        |  |           +--rw end-address?
+        |        |  |                   inet:ipv6-address
+        |        |  +--rw (provider-dhcp)?
+        |        |  |  +--:(dhcp-service-type)
+        |        |  |     +--rw dhcp-service-type?
+        |        |  |             enumeration
+        |        |  +--rw (dhcp-relay)?
+        |        |     +--:(customer-dhcp-servers)
+        |        |        +--rw customer-dhcp-servers
+        |        |           +--rw server-ip-address*
+        |        |                   inet:ipv6-address
+        |        +--:(static-addresses)
+        |           +--rw address* [address-id]
+        |              +--rw address-id          string
+        |              +--rw customer-address?   inet:ipv6-address
+        |              +--rw failure-detection-profile?
+        |                                failure-detection-profile-reference
+        |                                {vpn-common:bfd}?
+        | ...
 
-            Figure 10: Layer 3 Connection Tree Structure (IPv6)
+         Figure 11: Layer 3 Connection Tree Structure (IPv6)
 
-4.2.5.3.  Routing
+5.2.5.3.  Routing
 
-   As shown in the tree depicted in Figure 11, the 'routing-protocols'
+   As shown in the tree depicted in Figure 12, the 'routing-protocols'
    container defines the required parameters to enable the desired
    routing features for an AC.  One or more routing protocols can be
    associated with an AC.  Such routing protocols will be then enabled
@@ -1181,13 +1307,13 @@ Table of Contents
    'type' to accommodate scenarios where multiple instances of the same
    routing protocol have to be configured on the same link.
 
-   In addition to static routing (Section 4.2.5.3.1), the module
-   supports BGP (Section 4.2.5.3.2), OSPF (Section 4.2.5.3.3), IS-IS
-   (Section 4.2.5.3.4), and RIP (Section 4.2.5.3.5).  It also includes a
+   In addition to static routing (Section 5.2.5.3.1), the module
+   supports BGP (Section 5.2.5.3.2), OSPF (Section 5.2.5.3.3), IS-IS
+   (Section 5.2.5.3.4), and RIP (Section 5.2.5.3.5).  It also includes a
    reference to the 'routing-profile-identifier' defined in
-   Section 4.2.2, so that additional constraints can be applied to a
+   Section 5.2.2, so that additional constraints can be applied to a
    specific instance of each routing protocol.  Moreover, the module
-   supports VRRP (Section 4.2.5.3.6).
+   supports VRRP (Section 5.2.5.3.6).
 
            +--rw specific-provisioning-profiles
            |  ...
@@ -1199,21 +1325,10 @@ Table of Contents
               +--rw placement-constraints
               |  ...
               +--rw ac* [name]
-                 +--rw customer-name?       string
-                 +--rw description?         string
-                 +--rw requested-start?     yang:date-and-time
-                 +--rw requested-stop?      yang:date-and-time
-                 +--ro actual-start?        yang:date-and-time
-                 +--ro actual-stop?         yang:date-and-time
-                 +--rw peer-sap-id*         string
-                 +--rw ac-group-profile*    ac-group-reference
-                 +--rw group* [group-id]
-                 |  +--rw group-id      string
-                 |  +--rw precedence?   identityref
-                 +--rw name                 string
-                 +--rw l2-connection
+                 ...
+                 +--rw l2-connection  {ac-common:layer2-ac}?
                  | ...
-                 +--rw ip-connection
+                 +--rw ip-connection  {ac-common:layer3-ac}?
                  |  ...
                  +--rw routing-protocols
                  |  +--rw routing-protocol* [id]
@@ -1224,15 +1339,15 @@ Table of Contents
                  |     |  +--rw type?   identityref
                  |     +--rw static
                  |     |  ...
-                 |     +--rw bgp
+                 |     +--rw bgp {vpn-common:rtg-bgp}?
                  |     |  ...
-                 |     +--rw ospf
+                 |     +--rw ospf {vpn-common:rtg-ospf}?
                  |     |  ...
-                 |     +--rw isis
+                 |     +--rw isis {vpn-common:rtg-isis}?
                  |     |  ...
-                 |     +--rw rip
+                 |     +--rw rip {vpn-common:rtg-rip}?
                  |     |  ...
-                 |     +--rw vrrp
+                 |     +--rw vrrp {vpn-common:rtg-vrrp}?
                  |        ...
                  +--rw oam
                  |  ...
@@ -1241,11 +1356,11 @@ Table of Contents
                  +--rw service
                     ...
 
-                     Figure 11: Routing Tree Structure
+                     Figure 12: Routing Tree Structure
 
-4.2.5.3.1.  Static Routing
+5.2.5.3.1.  Static Routing
 
-   The static tree structure is shown in Figure 12.
+   The static tree structure is shown in Figure 13.
 
            |  ...
            +--rw routing-protocols
@@ -1259,11 +1374,14 @@ Table of Contents
            |     |  +--rw cascaded-lan-prefixes
            |     |     +--rw ipv4-lan-prefixes* [lan next-hop]
            |     |     |       {vpn-common:ipv4}?
-           |     |     |  +--rw lan         inet:ipv4-prefix
-           |     |     |  +--rw lan-tag?    string
-           |     |     |  +--rw next-hop    union
-           |     |     |  +--rw metric?     uint32
-           |     |     |  +--rw bfd-profile?   bfd-profile-reference
+           |     |     |  +--rw lan
+           |     |     |  |       inet:ipv4-prefix
+           |     |     |  +--rw lan-tag?                     string
+           |     |     |  +--rw next-hop                     union
+           |     |     |  +--rw metric?                      uint32
+           |     |     |  +--rw failure-detection-profile?
+           |     |     |  |       failure-detection-profile-reference
+           |     |     |  |       {vpn-common:bfd}?
            |     |     |  +--rw status
            |     |     |     +--rw admin-status
            |     |     |     |  +--rw status?        identityref
@@ -1273,11 +1391,14 @@ Table of Contents
            |     |     |        +--ro last-change?   yang:date-and-time
            |     |     +--rw ipv6-lan-prefixes* [lan next-hop]
            |     |             {vpn-common:ipv6}?
-           |     |        +--rw lan         inet:ipv6-prefix
-           |     |        +--rw lan-tag?    string
-           |     |        +--rw next-hop    union
-           |     |        +--rw metric?     uint32
-           |     |        +--rw bfd-profile?   bfd-profile-reference
+           |     |        +--rw lan
+           |     |        |       inet:ipv4-prefix
+           |     |        +--rw lan-tag?                     string
+           |     |        +--rw next-hop                     union
+           |     |        +--rw metric?                      uint32
+           |     |        +--rw failure-detection-profile?
+           |     |        |       failure-detection-profile-reference
+           |     |        |       {vpn-common:bfd}?
            |     |        +--rw status
            |     |           +--rw admin-status
            |     |           |  +--rw status?        identityref
@@ -1285,20 +1406,20 @@ Table of Contents
            |     |           +--ro oper-status
            |     |              +--ro status?        identityref
            |     |              +--ro last-change?   yang:date-and-time
-           |     +--rw bgp
+           |     +--rw bgp {vpn-common:rtg-bgp}?
            |     |  ...
-           |     +--rw ospf
+           |     +--rw ospf {vpn-common:rtg-ospf}?
            |     |  ...
-           |     +--rw isis
+           |     +--rw isis {vpn-common:rtg-isis}?
            |     |  ...
-           |     +--rw rip
+           |     +--rw rip {vpn-common:rtg-rip}?
            |     |  ...
-           |     +--rw vrrp
+           |     +--rw vrrp {vpn-common:rtg-vrrp}?
            |        ...
 
-                  Figure 12: Static Routing Tree Structure
+                  Figure 13: Static Routing Tree Structure
 
-   As depicted in Figure 12, the following data nodes can be defined for
+   As depicted in Figure 13, the following data nodes can be defined for
    a given IP prefix:
 
    'lan-tag':  Indicates a local tag (e.g., "myfavorite-lan") that is
@@ -1313,15 +1434,16 @@ Table of Contents
       entry.  This metric is used when the route is exported into an
       IGP.
 
-   'bfd-profile':  Indicates a BFD profile that applies for this entry.
+   'failure-detection-profile':  Indicates a failure detection profile
+      (e.g., BFD) that applies for this entry.
 
    'status':  Used to convey the status of a static route entry.  This
       data node can also be used to control the (de)activation of
       individual static route entries.
 
-4.2.5.3.2.  BGP
+5.2.5.3.2.  BGP
 
-   The BGP tree structure is shown in Figure 13.
+   The BGP tree structure is shown in Figure 14.
 
            |  ...
            +--rw routing-protocols
@@ -1333,16 +1455,18 @@ Table of Contents
            |     |  +--rw type?   identityref
            |     +--rw static
            |     |  ...
-           |     +--rw bgp
+           |     +--rw bgp {vpn-common:rtg-bgp}?
            |     |  +--rw peer-groups
            |     |  |  +--rw peer-group* [name]
            |     |  |     +--rw name              string
-           |     |  |     +--ro local-as?         inet:as-number
+           |     |  |     +--rw local-as?         inet:as-number
            |     |  |     +--rw peer-as?          inet:as-number
            |     |  |     +--rw address-family?   identityref
-           |     |  |     +--ro local-address?    inet:ip-address
+           |     |  |     +--rw local-address?    inet:ip-address
+           |     |  |     +--rw bgp-max-prefix
+           |     |  |     |  +--rw max-prefix?   uint32
            |     |  |     +--rw authentication
-           |     |  |        +--rw enabled?            boolean
+           |     |  |        +--rw enabled?           boolean
            |     |  |        +--rw keying-material
            |     |  |           +--rw (option)?
            |     |  |              +--:(ao)
@@ -1358,17 +1482,18 @@ Table of Contents
            |     |  |                 +--rw crypto-algorithm?
            |     |  |                         identityref
            |     |  +--rw neighbor* [id]
-           |     |     +--rw id                string
-           |     |     +--rw remote-address?   inet:ip-address
-           |     |     +--ro local-address?    inet:ip-address
-           |     |     +--rw peer-group?
-           |     |     |       -> ../../peer-groups/peer-group/name
-           |     |     +--rw bfd-profile?      bfd-profile-reference
-           |     |     +--ro local-as?         inet:as-number
-           |     |     +--rw peer-as?          inet:as-number
-           |     |     +--rw address-family?   identityref
+           |     |     +--rw id                  string
+           |     |     +--ro server-reference?   string
+           |     |     |       {ac-common:server-assigned-reference}?
+           |     |     +--rw remote-address?     inet:ip-address
+           |     |     +--rw local-address?      inet:ip-address
+           |     |     +--rw local-as?           inet:as-number
+           |     |     +--rw peer-as?            inet:as-number
+           |     |     +--rw address-family?     identityref
+           |     |     +--rw bgp-max-prefix
+           |     |     |  +--rw max-prefix?   uint32
            |     |     +--rw authentication
-           |     |     |  +--rw enabled?            boolean
+           |     |     |  +--rw enabled?           boolean
            |     |     |  +--rw keying-material
            |     |     |     +--rw (option)?
            |     |     |        +--:(ao)
@@ -1382,31 +1507,40 @@ Table of Contents
            |     |     |           +--rw key-id?             uint32
            |     |     |           +--rw key?                string
            |     |     |           +--rw crypto-algorithm?   identityref
+           |     |     +--rw requested-start?    yang:date-and-time
+           |     |     +--rw requested-stop?     yang:date-and-time
+           |     |     +--ro actual-start?       yang:date-and-time
+           |     |     +--ro actual-stop?        yang:date-and-time
            |     |     +--rw status
-           |     |        +--rw admin-status
-           |     |        |  +--rw status?        identityref
-           |     |        |  +--ro last-change?   yang:date-and-time
-           |     |        +--ro oper-status
-           |     |           +--ro status?        identityref
-           |     |           +--ro last-change?   yang:date-and-time
-           |     +--rw ospf
+           |     |     |  +--rw admin-status
+           |     |     |  |  +--rw status?        identityref
+           |     |     |  |  +--ro last-change?   yang:date-and-time
+           |     |     |  +--ro oper-status
+           |     |     |     +--ro status?        identityref
+           |     |     |     +--ro last-change?   yang:date-and-time
+           |     |     +--rw peer-group?
+           |     |     |       -> ../../peer-groups/peer-group/name
+           |     |     +--rw failure-detection-profile?
+           |     |                   failure-detection-profile-reference
+           |     |                   {vpn-common:bfd}?
+           |     +--rw ospf {vpn-common:rtg-ospf}?
            |     |  ...
-           |     +--rw isis
+           |     +--rw isis {vpn-common:rtg-isis}?
            |     |  ...
-           |     +--rw rip
+           |     +--rw rip {vpn-common:rtg-rip}?
            |     |  ...
-           |     +--rw vrrp
+           |     +--rw vrrp {vpn-common:rtg-vrrp}?
            |        ...
 
-                       Figure 13: BGP Tree Structure
+                       Figure 14: BGP Tree Structure
 
    The following data nodes are supported for each BGP 'peer-group':
 
    'name':  Defines a name for the peer group.
 
-   'local-as':  Indicates a local AS Number (ASN).
+   'local-as':  Indicates the provider's AS Number (ASN).
 
-   'peer-as':  Indicates the peer's ASN.
+   'peer-as':  Indicates the customer's ASN.
 
    'address-family':  Indicates the address family of the peer.  It can
       be set to 'ipv4', 'ipv6', or 'dual-stack'.
@@ -1418,8 +1552,11 @@ Table of Contents
       configurations (e.g., unicast IPv4 MPLS L3VPN (AFI,SAFI = 1,128)
       as defined in Section 4.3.4 of [RFC4364]).
 
-   'local-address':  Specifies an address or a reference to an interface
-      to use when establishing the BGP transport session.
+   'local-address':  Specifies a provider's IP address to use when
+      establishing the BGP transport session.
+
+   'bgp-max-prefix':  Indicates the maximum number of BGP prefixes
+      allowed in a session for this group.
 
    'authentication':  The module adheres to the recommendations in
       Section 13.2 of [RFC4364], as it allows enabling the TCP
@@ -1437,21 +1574,37 @@ Table of Contents
    For each neighbor, the following data nodes are supported in addition
    to similar parameters that are provided for a peer group:
 
-   'remote-address':  Specifies the remote IP address of a BGP neighbor.
+   'server-reference':  Reports the internal reference that is assigned
+      by the provider for this BGP session.
 
-   'peer-group':  A name of a peer group.
+   'remote-address':  Specifies the customer's IP address used to
+      establishing this BGP session.
+
+   'requested-start':  Specifies the requested date and time when the
+      BGP session is expected to be active.
+
+   'requested-stop':  Specifies the requested date and time when the BGP
+      session is expected to be disabled.
+
+   'actual-start':  Reports the actual date and time when the BGP
+      session actually was enabled.
+
+   'actual-stop':  Reports the actual date and time when the BGP session
+      actually was disabled.
+
+   'status':  Indicates the status of the BGP routing instance.
+
+   'peer-group':  Specifies a name of a peer group.
 
       Parameters that are provided at the 'neighbor' level takes
       precedence over the ones provided in the peer group.
 
-   'bfd-profile':  Indicates a BFD profile that applies for a BGP
-      neighbor.
+   'failure-detection-profile':  Indicates a failure detection profile
+      (BFD) that applies for a BGP neighbor.
 
-   'status':  Indicates the status of the BGP routing instance.
+5.2.5.3.3.  OSPF
 
-4.2.5.3.3.  OSPF
-
-   The OSPF tree structure is shown in Figure 14.
+   The OSPF tree structure is shown in Figure 15.
 
             |  ...
             +--rw routing-protocols
@@ -1463,9 +1616,9 @@ Table of Contents
             |     |  +--rw type?   identityref
             |     +--rw static
             |     |  ...
-            |     +--rw bgp
+            |     +--rw bgp {vpn-common:rtg-bgp}?
             |     |  ...
-            |     +--rw ospf
+            |     +--rw ospf {vpn-common:rtg-ospf}?
             |     |  +--rw address-family?   identityref
             |     |  +--rw area-id           yang:dotted-quad
             |     |  +--rw metric?           uint16
@@ -1487,14 +1640,14 @@ Table of Contents
             |     |     +--ro oper-status
             |     |        +--ro status?        identityref
             |     |        +--ro last-change?   yang:date-and-time
-            |     +--rw isis
+            |     +--rw isis {vpn-common:rtg-isis}?
             |     |  ...
-            |     +--rw rip
+            |     +--rw rip {vpn-common:rtg-rip}?
             |     |  ...
-            |     +--rw vrrp
+            |     +--rw vrrp {vpn-common:rtg-vrrp}?
             |        ...
 
-                       Figure 14: OSPF Tree Structure
+                       Figure 15: OSPF Tree Structure
 
    The following OSPF data nodes are supported:
 
@@ -1516,9 +1669,9 @@ Table of Contents
 
    'status':  Indicates the status of the OSPF routing instance.
 
-4.2.5.3.4.  IS-IS
+5.2.5.3.4.  IS-IS
 
-   The IS-IS tree structure is shown in Figure 15.
+   The IS-IS tree structure is shown in Figure 16.
 
             |  ...
             +--rw routing-protocols
@@ -1530,11 +1683,11 @@ Table of Contents
             |     |  +--rw type?   identityref
             |     +--rw static
             |     |  ...
-            |     +--rw bgp
+            |     +--rw bgp {vpn-common:rtg-bgp}?
             |     |  ...
-            |     +--rw ospf
+            |     +--rw ospf {vpn-common:rtg-ospf}?
             |     |  ...
-            |     +--rw isis
+            |     +--rw isis {vpn-common:rtg-isis}?
             |     |  +--rw address-family?   identityref
             |     |  +--rw area-address      area-address
             |     |  +--rw authentication
@@ -1555,12 +1708,12 @@ Table of Contents
             |     |     +--ro oper-status
             |     |        +--ro status?        identityref
             |     |        +--ro last-change?   yang:date-and-time
-            |     +--rw rip
+            |     +--rw rip {vpn-common:rtg-rip}?
             |     |  ...
-            |     +--rw vrrp
+            |     +--rw vrrp {vpn-common:rtg-vrrp}?
             |      ...
 
-                      Figure 15: IS-IS Tree Structure
+                      Figure 16: IS-IS Tree Structure
 
    The following IS-IS data nodes are supported:
 
@@ -1576,9 +1729,9 @@ Table of Contents
 
    'status':  Indicates the status of the IS-IS routing instance.
 
-4.2.5.3.5.  RIP
+5.2.5.3.5.  RIP
 
-   The RIP tree structure is shown in Figure 16.
+   The RIP tree structure is shown in Figure 17.
 
             |  ...
             +--rw routing-protocols
@@ -1590,13 +1743,13 @@ Table of Contents
             |     |  +--rw type?   identityref
             |     +--rw static
             |     |  ...
-            |     +--rw bgp
+            |     +--rw bgp {vpn-common:rtg-bgp}?
             |     |  ...
-            |     +--rw ospf
+            |     +--rw ospf {vpn-common:rtg-ospf}?
             |     |  ...
-            |     +--rw isis
+            |     +--rw isis {vpn-common:rtg-isis}?
             |     |  ...
-            |     +--rw rip
+            |     +--rw rip {vpn-common:rtg-rip}?
             |     |  +--rw address-family?   identityref
             |     |  +--rw authentication
             |     |  |  +--rw enabled?            boolean
@@ -1615,20 +1768,20 @@ Table of Contents
             |     |     +--ro oper-status
             |     |        +--ro status?        identityref
             |     |        +--ro last-change?   yang:date-and-time
-            |     +--rw vrrp
+            |     +--rw vrrp {vpn-common:rtg-vrrp}?
             |      ...
 
-                       Figure 16: RIP Tree Structure
+                       Figure 17: RIP Tree Structure
 
    'address-family' indicates whether IPv4, IPv6, or both address
    families are to be activated.  For example, this parameter is used to
    determine whether RIPv2 [RFC2453], RIP Next Generation (RIPng), or
    both are to be enabled [RFC2080].
 
-4.2.5.3.6.  VRRP
+5.2.5.3.6.  VRRP
 
    The model supports the Virtual Router Redundancy Protocol (VRRP)
-   [RFC5798] on an AC (Figure 17).
+   [RFC5798] on an AC (Figure 18).
 
               |  ...
               +--rw routing-protocols
@@ -1640,15 +1793,15 @@ Table of Contents
               |     |  +--rw type?   identityref
               |     +--rw static
               |     |  ...
-              |     +--rw bgp
+              |     +--rw bgp {vpn-common:rtg-bgp}?
               |     |  ...
-              |     +--rw ospf
+              |     +--rw ospf {vpn-common:rtg-ospf}?
               |     |  ...
-              |     +--rw isis
+              |     +--rw isis {vpn-common:rtg-isis}?
               |     |  ...
-              |     +--rw rip
+              |     +--rw rip {vpn-common:rtg-rip}?
               |     |  ...
-              |     +--rw vrrp
+              |     +--rw vrrp {vpn-common:rtg-vrrp}?
               |        +--rw address-family?   identityref
               |        +--rw status
               |           +--rw admin-status
@@ -1658,7 +1811,7 @@ Table of Contents
               |              +--ro status?        identityref
               |              +--ro last-change?   yang:date-and-time
 
-                       Figure 17: VRRP Tree Structure
+                       Figure 18: VRRP Tree Structure
 
    The following data nodes are supported:
 
@@ -1672,59 +1825,69 @@ Table of Contents
    isn't any type of VRRP authentication at this time (see Section 9 of
    [RFC5798]).
 
-4.2.5.4.  Operations, Administration, and Maintenance (OAM)
+5.2.5.4.  Operations, Administration, and Maintenance (OAM)
 
-   As shown in the tree depicted in Figure 18, the 'oam' container
+   As shown in the tree depicted in Figure 19, the 'oam' container
    defines OAM-related parameters of an AC.
 
-          +--rw specific-provisioning-profiles
-          |  ...
-          +--rw service-provisioning-profiles
-          |  ...
-          +--rw attachment-circuits
-             +--rw ac-group-profile* [name]
-             |  ...
-             +--rw placement-constraints
-             |  ...
-             +--rw ac* [name]
-                ...
-                +--rw l2-connection
-                |  ...
-                +--rw ip-connection
-                |  ...
-                +--rw routing-protocols
-                |  ...
-                +--rw oam
-                |  +--rw bfd {vpn-common:bfd}?
-                |     +--rw profile?    bfd-profile-reference
-                |     +--rw holdtime?   uint32
-                |     +--rw status
-                |        +--rw admin-status
-                |        |  +--rw status?        identityref
-                |        |  +--ro last-change?   yang:date-and-time
-                |        +--ro oper-status
-                |           +--ro status?        identityref
-                |           +--ro last-change?   yang:date-and-time
-                +--rw security
-                |  ...
-                +--rw service
-                   ...
+        +--rw specific-provisioning-profiles
+        |  ...
+        +--rw service-provisioning-profiles
+        |  ...
+        +--rw attachment-circuits
+           +--rw ac-group-profile* [name]
+           |  ...
+           +--rw placement-constraints
+           |  ...
+           +--rw ac* [name]
+              ...
+              +--rw l2-connection  {ac-common:layer2-ac}?
+              |  ...
+              +--rw ip-connection  {ac-common:layer3-ac}?
+              |  ...
+              +--rw routing-protocols
+              |  ...
+              +--rw oam
+              |  +--rw bfd {vpn-common:bfd}?
+              |     +--rw session* [remote-address]
+              |        +--rw local-address?    inet:ip-address
+              |        +--rw remote-address    inet:ip-address
+              |        +--rw profile?
+              |        |       failure-detection-profile-reference
+              |        +--rw holdtime?         uint32
+              |        +--rw status
+              |           +--rw admin-status
+              |           |  +--rw status?        identityref
+              |           |  +--ro last-change?   yang:date-and-time
+              |           +--ro oper-status
+              |              +--ro status?        identityref
+              |              +--ro last-change?   yang:date-and-time
+              +--rw security
+              |  ...
+              +--rw service
+                 ...
 
-                       Figure 18: OAM Tree Structure
+                       Figure 19: OAM Tree Structure
 
    This version of the module supports BFD.  The following BFD data
    nodes can be specified:
+
+   'local-address':  Indicates the provider's IP address used for a BFD
+      session.
+
+   'remote-address':  Indicates the customer's IP address used for a BFD
+      session.
 
    'profile':  Refers to a BFD profile.
 
    'holdtime':  Used to indicate the expected BFD holddown time, in
       milliseconds.
 
-   'status':  Indicates the status of the BFD over an AC.
+   'status':  Indicates the status of the BFD session.
 
-4.2.5.5.  Security
+5.2.5.5.  Security
 
-   As shown in the tree depicted in Figure 19, the 'security' container
+   As shown in the tree depicted in Figure 20, the 'security' container
    defines a set of AC security parameters.
 
            +--rw specific-provisioning-profiles
@@ -1738,9 +1901,9 @@ Table of Contents
               |  ...
               +--rw ac* [name]
                  ...
-                 +--rw l2-connection
+                 +--rw l2-connection  {ac-common:layer2-ac}?
                  |  ...
-                 +--rw ip-connection
+                 +--rw ip-connection  {ac-common:layer3-ac}?
                  |  ...
                  +--rw routing-protocols
                  |  ...
@@ -1761,16 +1924,16 @@ Table of Contents
                  +--rw service
                     ...
 
-                     Figure 19: Security Tree Structure
+                     Figure 20: Security Tree Structure
 
    The 'security' container specifies the authentication and the
    encryption to be applied to traffic for a given AC.  Tthe model can
    be used to directly control the encryption to be applied (e.g., Layer
    2 or Layer 3 encryption) or invoke a local encryption profile.
 
-4.2.5.6.  Service
+5.2.5.6.  Service
 
-   The structure of the 'service' container is depicted in Figure 20.
+   The structure of the 'service' container is depicted in Figure 21.
 
        +--rw specific-provisioning-profiles
        |  ...
@@ -1783,9 +1946,9 @@ Table of Contents
           |  ...
           +--rw ac* [name]
              ...
-             +--rw l2-connection
+             +--rw l2-connection  {ac-common:layer2-ac}?
              |  ...
-             +--rw ip-connection
+             +--rw ip-connection  {ac-common:layer3-ac}?
              |  ...
              +--rw routing-protocols
              |  ...
@@ -1794,6 +1957,7 @@ Table of Contents
              +--rw security
              |  ...
              +--rw service
+                +--rw mtu?      uint32
                 +--rw svc-pe-to-ce-bandwidth {vpn-common:inbound-bw}?
                 |  +--rw bandwidth* [bw-type]
                 |     +--rw bw-type      identityref
@@ -1844,7 +2008,7 @@ Table of Contents
                       +--rw acl-profile* [profile]
                          +--rw profile    forwarding-profile-reference
 
-                    Figure 20: Bandwidth Tree Structure
+                    Figure 21: Bandwidth Tree Structure
 
    The 'service' container defines the following data nodes:
 
@@ -1871,9 +2035,9 @@ Table of Contents
    'access-control-list':  Specifies a list of ACL profiles to apply for
       this AC.
 
-5.  YANG Modules
+6.  YANG Modules
 
-5.1.  The Bearer Service ("ietf-bearer-svc") YANG Module
+6.1.  The Bearer Service ("ietf-bearer-svc") YANG Module
 
    This module uses types defined in [RFC6991] and [RFC9181].
 
@@ -1883,6 +2047,11 @@ Table of Contents
      namespace "urn:ietf:params:xml:ns:yang:ietf-bearer-svc";
      prefix bearer-svc;
 
+     import ietf-inet-types {
+       prefix inet;
+       reference
+         "RFC 6991: Common YANG Data Types, Section 4";
+     }
      import ietf-vpn-common {
        prefix vpn-common;
        reference
@@ -1898,7 +2067,7 @@ Table of Contents
        prefix ac-svc;
        reference
          "RFC XXXX: YANG Data Models for Bearers and 'Attachment
-                     Circuits'-as-a-Service (ACaaS)";
+                    Circuits'-as-a-Service (ACaaS)";
      }
 
      organization
@@ -1939,7 +2108,7 @@ Table of Contents
          "Initial revision.";
        reference
          "RFC XXXX: YANG Data Models for Bearers and 'Attachment
-                     Circuits'-as-a-Service (ACaaS)";
+                    Circuits'-as-a-Service (ACaaS)";
      }
 
      // Typedef to ease referencing cross-modules
@@ -2027,48 +2196,47 @@ Table of Contents
                        synchronization based on the physical layer";
      }
 
+     // Reusabel groupings
+
      grouping location-information {
        description
          "Basic location information";
-       container location {
+
+       leaf location-name {
+         type string;
          description
-           "Location of the node.";
-         leaf location-name {
-           type string;
-           description
-             "Provides a location name. This data node can be mapped,
-              e.g., to the 3GPP NRM IOC ManagedElement.";
+           "Provides a location name. This data node can be mapped,
+            e.g., to the 3GPP NRM IOC ManagedElement.";
+       }
+       leaf address {
+         type string;
+         description
+           "Address (number and street) of the device/site.";
+       }
+       leaf postal-code {
+         type string;
+         description
+           "Postal code of the device/site.";
+       }
+       leaf state {
+         type string;
+         description
+           "State of the device/site.  This leaf can also be
+            used to describe a region for a country that
+            does not have states.";
+       }
+       leaf city {
+         type string;
+         description
+           "City of the device/site.";
+       }
+       leaf country-code {
+         type string {
+           pattern '[A-Z]{2}';
          }
-         leaf address {
-           type string;
-           description
-             "Address (number and street) of the device/site.";
-         }
-         leaf postal-code {
-           type string;
-           description
-             "Postal code of the device/site.";
-         }
-         leaf state {
-           type string;
-           description
-             "State of the device/site.  This leaf can also be
-              used to describe a region for a country that
-              does not have states.";
-         }
-         leaf city {
-           type string;
-           description
-             "City of the device/site.";
-         }
-         leaf country-code {
-           type string {
-             pattern '[A-Z]{2}';
-           }
-           description
-             "Country of the device/site.
-              Expressed as ISO ALPHA-2 code.";
-         }
+         description
+           "Country of the device/site.
+            Expressed as ISO ALPHA-2 code.";
        }
      }
 
@@ -2135,16 +2303,58 @@ Table of Contents
        }
      }
 
+     container locations {
+       description
+         "Retrieves the list of available provider locations for
+          terminating bearers.";
+       leaf customer-name {
+         type string;
+         description
+           "Indicates the name of the customer that requested these
+            bearers.";
+       }
+       leaf role {
+         type identityref {
+           base ac-common:role;
+         }
+         description
+           "Indicates whether this bearer is used as UNI, NNI, etc.";
+       }
+       leaf local-as {
+         type inet:as-number;
+         description
+           "Indicates a provider AS Number (ASN).";
+       }
+       leaf peer-as {
+         type inet:as-number;
+         description
+           "Indicates the customer's ASN.";
+       }
+       list location {
+         key "location-name";
+         config false;
+         description
+           "Reports the list of available locations.";
+         uses location-information;
+       }
+     }
+
      container bearers {
        description
          "Main container for the bearers.";
 
+       leaf customer-name {
+         type string;
+         description
+           "Indicates the name of the customer that requested these
+            bearers.";
+       }
+       uses ac-common:op-instructions;
        container placement-constraints {
          description
            "Diversity constraint type.";
          uses placement-constraints;
        }
-
        list bearer {
          key "name";
          description
@@ -2159,6 +2369,12 @@ Table of Contents
            type string;
            description
              "A description of this bearer.";
+         }
+         leaf customer-name {
+           type string;
+           description
+             "Indicates the name of the customer that requested this
+              bearer.";
          }
          uses vpn-common:vpn-components-group;
          leaf op-comment {
@@ -2204,6 +2420,11 @@ Table of Contents
            description
              "Type of the physical layer synchronization.";
          }
+         leaf provider-location-reference {
+           type string;
+           description
+             "Specifies the provider's location reference.";
+         }
          container customer-point {
            description
              "Base container to link the Bearer existence";
@@ -2230,7 +2451,11 @@ Table of Contents
                description
                  "Identifier for the device where that bearer belongs.";
              }
-             uses location-information;
+             container location {
+               description
+                 "Location of the node.";
+                uses location-information;
+             }
            }
            container site {
              when
@@ -2249,7 +2474,11 @@ Table of Contents
                  "Identifier for the site or sites where that bearer
                   belongs.";
              }
-             uses location-information;
+             container location {
+               description
+                 "Location of the node.";
+                uses location-information;
+             }
            }
            leaf custom-id {
              when "derived-from-or-self(../identified-by, "
@@ -2278,7 +2507,7 @@ Table of Contents
              requests.";
          }
          leaf bearer-reference {
-           if-feature "vpn-common:bearer-reference";
+           if-feature "ac-common:server-assigned-reference";
            type string;
            config false;
            description
@@ -2298,7 +2527,7 @@ Table of Contents
    }
    <CODE ENDS>
 
-5.2.  The AC Service ("ietf-ac-svc") YANG Module
+6.2.  The AC Service ("ietf-ac-svc") YANG Module
 
    This module uses types defined in [RFC6991], [RFC9181], [RFC8177],
    and [I-D.ietf-opsawg-teas-common-ac].
@@ -2374,7 +2603,7 @@ Table of Contents
          "Initial revision.";
        reference
          "RFC XXXX: YANG Data Models for Bearers and 'Attachment
-                     Circuits'-as-a-Service (ACaaS)";
+                    Circuits'-as-a-Service (ACaaS)";
      }
 
      /* A set of typedefs to ease referencing cross-modules */
@@ -2419,12 +2648,13 @@ Table of Contents
          "Defines a reference to a QoS profile.";
      }
 
-     typedef bfd-profile-reference {
+     typedef failure-detection-profile-reference {
        type leafref {
          path
            "/ac-svc:specific-provisioning-profiles"
          + "/ac-svc:valid-provider-identifiers"
-         + "/ac-svc:bfd-profile-identifier/ac-svc:id";
+         + "/ac-svc:failure-detection-profile-identifier"
+         + "/ac-svc:id";
        }
        description
          "Defines a reference to a BFD profile.";
@@ -2573,7 +2803,7 @@ Table of Contents
          }
        }
        leaf bearer-reference {
-         if-feature "vpn-common:bearer-reference";
+         if-feature "ac-common:server-assigned-reference";
          type string;
          description
            "This is an internal reference for the service provider
@@ -2609,13 +2839,35 @@ Table of Contents
          if-feature "vpn-common:ipv4";
          description
            "IPv4-specific parameters.";
-         uses ac-common:ipv4-connection;
+         uses ac-common:ipv4-connection {
+           augment ac-svc:allocation-type/static-addresses/address {
+             leaf failure-detection-profile {
+               if-feature "vpn-common:bfd";
+               type failure-detection-profile-reference;
+               description
+                 "Points to a failure detection profile.";
+             }
+             description
+               "Adds a failure detection profile.";
+           }
+         }
        }
        container ipv6 {
          if-feature "vpn-common:ipv6";
          description
            "IPv6-specific parameters.";
-         uses ac-common:ipv6-connection;
+         uses ac-common:ipv6-connection {
+           augment ac-svc:allocation-type/static-addresses/address {
+             leaf failure-detection-profile {
+               if-feature "vpn-common:bfd";
+               type failure-detection-profile-reference;
+               description
+                 "Points to a failure detection profile.";
+             }
+             description
+               "Adds a failure detection profile.";
+           }
+         }
        }
      }
 
@@ -2662,10 +2914,11 @@ Table of Contents
          description
            "List of LAN prefixes for the site.";
          uses ac-common:ipv4-static-rtg-entry;
-         leaf bfd-profile {
-           type bfd-profile-reference;
+         leaf failure-detection-profile {
+           if-feature "vpn-common:bfd";
+           type failure-detection-profile-reference;
            description
-             "Points to a BFD profile.";
+             "Points to a failure detection profile.";
          }
          uses ac-common:service-status;
        }
@@ -2676,21 +2929,104 @@ Table of Contents
          "Configuration specific to IPv6 static routing with
           BFD.";
        list ipv6-lan-prefixes {
-         if-feature "vpn-common:ipv4";
+         if-feature "vpn-common:ipv6";
          key "lan next-hop";
          description
            "List of LAN prefixes for the site.";
          uses ac-common:ipv4-static-rtg-entry;
-         leaf bfd-profile {
-           type bfd-profile-reference;
+         leaf failure-detection-profile {
+           if-feature "vpn-common:bfd";
+           type failure-detection-profile-reference;
            description
-             "Points to a BFD profile.";
+             "Points to a failure detection profile.";
          }
          uses ac-common:service-status;
        }
      }
 
      //  BGP Service
+
+     grouping bgp-neighbor-without-name {
+       description
+         "A grouping with generic parameters for configuring a BGP
+          neighbor.";
+       leaf remote-address {
+         type inet:ip-address;
+         description
+           "The remote IP address of this entry's BGP peer. This is
+            a customer IP address.
+
+            If this leaf is not present, this means that the primary
+            customer IP address is used as remote IP address.";
+       }
+       leaf local-address {
+         type inet:ip-address;
+         description
+           "The provider's IP address that will be used to establish
+            the BGP session.";
+       }
+       uses ac-common:bgp-peer-group-without-name;
+       container bgp-max-prefix {
+         description
+           "A container for the maximum number of BGP prefixes
+            allowed in the BGP session.";
+         leaf max-prefix {
+           type uint32;
+           description
+             "Indicates the maximum number of BGP prefixes allowed
+              in the BGP session.
+
+              It allows control of how many prefixes can be received
+              from a neighbor.";
+           reference
+             "RFC 4271: A Border Gateway Protocol 4 (BGP-4),
+                        Section 8.2.2";
+         }
+       }
+       uses ac-common:bgp-authentication;
+       uses ac-common:op-instructions;
+       uses ac-common:service-status;
+     }
+
+     grouping bgp-neighbor-with-name {
+       description
+         "A grouping with generic parameters for configuring a BGP
+          neighbor with an identifier.";
+       leaf id {
+         type string;
+         description
+           "A neighbor identifier.";
+       }
+       uses ac-svc:bgp-neighbor-without-name;
+     }
+
+     grouping bgp-neighbor-with-server-reference {
+       description
+         "A grouping with generic parameters for configuring a BGP
+          neighbor with a reference generated by the provider.";
+       leaf server-reference {
+         if-feature "ac-common:server-assigned-reference";
+         type string;
+         config false;
+         description
+           "This is an internal reference for the service provider
+            to identify the BGP session.";
+       }
+       uses ac-svc:bgp-neighbor-without-name;
+     }
+
+     grouping bgp-neighbor-with-name-server-reference {
+       description
+         "A grouping with generic parameters for configuring a BGP
+          neighbor with an identifier and a reference generated by
+          the provider.";
+       leaf id {
+         type string;
+         description
+           "A neighbor identifier.";
+       }
+       uses ac-svc:bgp-neighbor-with-server-reference;
+     }
 
      grouping bgp-svc {
        description
@@ -2708,8 +3044,25 @@ Table of Contents
            leaf local-address {
              type inet:ip-address;
              description
-               "The local IP address that will be used to establish
-                the BGP session.";
+               "The provider's local IP address that will be used to
+                establish the BGP session.";
+           }
+           container bgp-max-prefix {
+             description
+               "A container for the maximum number of BGP prefixes
+                allowed in the BGP session.";
+             leaf max-prefix {
+               type uint32;
+               description
+                 "Indicates the maximum number of BGP prefixes allowed
+                  in the BGP session.
+
+                  It allows control of how many prefixes can be received
+                  from a neighbor.";
+               reference
+                 "RFC 4271: A Border Gateway Protocol 4 (BGP-4),
+                            Section 8.2.2";
+             }
            }
            uses ac-common:bgp-authentication;
          }
@@ -2718,25 +3071,7 @@ Table of Contents
          key "id";
          description
            "List of BGP neighbors.";
-         leaf id {
-           type string;
-           description
-             "A neighbor identifier.";
-         }
-         leaf remote-address {
-           type inet:ip-address;
-           description
-             "The remote IP address of this entry's BGP peer.
-
-              If this leaf is not present, this means that the primary
-              customer IP address is used as remote IP address.";
-         }
-         leaf local-address {
-           type inet:ip-address;
-           description
-             "The local IP address that will be used to establish
-              the BGP session.";
-         }
+         uses ac-svc:bgp-neighbor-with-name-server-reference;
          leaf peer-group {
            type leafref {
              path "../../peer-groups/peer-group/name";
@@ -2744,14 +3079,12 @@ Table of Contents
            description
              "The peer-group with which this neighbor is associated.";
          }
-         leaf bfd-profile {
-           type bfd-profile-reference;
+         leaf failure-detection-profile {
+           if-feature "vpn-common:bfd";
+           type failure-detection-profile-reference;
            description
-             "Points to a BFD profile.";
+             "Points to a failure detection profile.";
          }
-         uses ac-common:bgp-peer-group-without-name;
-         uses ac-common:bgp-authentication;
-         uses ac-common:service-status;
        }
      }
 
@@ -2832,6 +3165,7 @@ Table of Contents
              description
                "Only applies when the protocol is BGP.";
            }
+           if-feature "vpn-common:rtg-bgp";
            description
              "Configuration specific to BGP.";
            container peer-groups {
@@ -2853,6 +3187,7 @@ Table of Contents
              description
                "Only applies when the protocol is OSPF.";
            }
+           if-feature "vpn-common:rtg-ospf";
            description
              "Configuration specific to OSPF.";
            uses ac-common:ospf-basic;
@@ -2863,6 +3198,7 @@ Table of Contents
              description
                "Only applies when the protocol is IS-IS.";
            }
+          if-feature "vpn-common:rtg-isis";
            description
              "Configuration specific to IS-IS.";
            uses ac-common:isis-basic;
@@ -2875,6 +3211,7 @@ Table of Contents
                 For IPv4, the model assumes that RIP
                 version 2 is used.";
            }
+           if-feature "vpn-common:rtg-rip";
            description
              "Configuration specific to RIP routing.";
            leaf address-family {
@@ -2893,6 +3230,7 @@ Table of Contents
                "Only applies when the protocol is the
                 Virtual Router Redundancy Protocol (VRRP).";
            }
+           if-feature "vpn-common:rtg-vrrp";
            description
              "Configuration specific to VRRP.";
            leaf address-family {
@@ -2944,16 +3282,10 @@ Table of Contents
              description
                "Only applies when the protocol is BGP.";
            }
+           if-feature "vpn-common:rtg-bgp";
            description
              "Configuration specific to BGP.";
-           uses bgp-svc {
-             refine "peer-groups/peer-group/local-address" {
-               config false;
-             }
-             refine "neighbor/local-address" {
-               config false;
-             }
-           }
+           uses bgp-svc;
          }
          container ospf {
            when "derived-from-or-self(../type, "
@@ -2961,6 +3293,7 @@ Table of Contents
              description
                "Only applies when the protocol is OSPF.";
            }
+           if-feature "vpn-common:rtg-ospf";
            description
              "Configuration specific to OSPF.";
            uses ospf-svc;
@@ -2971,6 +3304,7 @@ Table of Contents
              description
                "Only applies when the protocol is IS-IS.";
            }
+           if-feature "vpn-common:rtg-isis";
            description
              "Configuration specific to IS-IS.";
            uses isis-svc;
@@ -2983,6 +3317,7 @@ Table of Contents
                 For IPv4, the model assumes that RIP version 2 is
                 used.";
            }
+           if-feature "vpn-common:rtg-rip";
            description
              "Configuration specific to RIP routing.";
            uses rip-svc;
@@ -2994,6 +3329,7 @@ Table of Contents
                "Only applies when the protocol is the Virtual Router
                 Redundancy Protocol (VRRP).";
            }
+           if-feature "vpn-common:rtg-vrrp";
            description
              "Configuration specific to VRRP.";
            uses vrrp-svc;
@@ -3101,18 +3437,20 @@ Table of Contents
      grouping ac-basic {
        description
          "Grouping for basic parameters for an attachment circuit.";
-       leaf id {
+       leaf name {
          type string;
          description
-           "An identifier of the AC.";
+           "A name that uniquely identifies the AC.";
        }
        container l2-connection {
+         if-feature "ac-common:layer2-ac";
          description
            "Defines Layer 2 protocols and parameters that are required
             to enable AC connectivity.";
          uses l2-connection-basic;
        }
        container ip-connection {
+         if-feature "ac-common:layer3-ac";
          description
            "Defines IP connection parameters.";
          uses ip-connection-basic;
@@ -3170,12 +3508,14 @@ Table of Contents
            "A reference to a service profile.";
        }
        container l2-connection {
+         if-feature "ac-common:layer2-ac";
          description
            "Defines Layer 2 protocols and parameters that are required
             to enable AC connectivity.";
          uses l2-connection;
        }
        container ip-connection {
+         if-feature "ac-common:layer3-ac";
          description
            "Defines IP connection parameters.";
          uses ip-connection;
@@ -3192,13 +3532,28 @@ Table of Contents
            if-feature "vpn-common:bfd";
            description
              "Container for BFD.";
-           leaf profile {
-             type bfd-profile-reference;
+           list session {
+             key "remote-address";
              description
-               "Points to a BFD profile.";
+               "List of IP sessions.";
+              leaf local-address {
+                type inet:ip-address;
+                description
+                  "Provider's IP address of the BFD session.";
+             }
+             leaf remote-address {
+                type inet:ip-address;
+                description
+                  "Customer's IP address of the BFD session.";
+             }
+             leaf profile {
+               type failure-detection-profile-reference;
+               description
+                 "Points to a BFD profile.";
+             }
+             uses ac-common:bfd;
+             uses ac-common:service-status;
            }
-           uses ac-common:bfd;
-           uses ac-common:service-status;
          }
        }
        container security {
@@ -3209,6 +3564,12 @@ Table of Contents
        container service {
          description
            "AC-specific bandwith parameters.";
+         leaf mtu {
+           type uint32;
+           units "bytes";
+           description
+             "Layer 2 MTU.";
+         }
          uses bandwidth;
          container qos {
            if-feature "vpn-common:qos";
@@ -3258,6 +3619,28 @@ Table of Contents
        }
      }
 
+     // Parent and Child ACs
+
+     grouping ac-hierarchy {
+       description
+         "Container for parent and child AC references.";
+       leaf ac-parent-ref {
+         type ac-svc:attachment-circuit-reference;
+         description
+           "Specifies the parent AC that is inherited by an AC.
+            In contexts where dynamic terminating points are
+            bound to the same AC, a parent AC with stable
+            information is created with a set of child ACs
+            to track dynamic AC information.";
+       }
+       leaf-list child-ac-ref {
+         type ac-svc:attachment-circuit-reference;
+         config false;
+         description
+           "Specifies a child AC that relies upon a parent AC.";
+       }
+     }
+
      /******************** Main AC containers ********************/
 
      container specific-provisioning-profiles {
@@ -3297,6 +3680,13 @@ Table of Contents
            "Diversity constraint type.";
          uses vpn-common:placement-constraints;
        }
+       leaf customer-name {
+         type string;
+         description
+           "Indicates the name of the customer that requested these
+            ACs.";
+       }
+       uses ac-common:op-instructions;
        list ac {
          key "name";
          description
@@ -3320,6 +3710,13 @@ Table of Contents
              requests.";
          }
          uses ac-common:op-instructions;
+         leaf role {
+           type identityref {
+             base ac-common:role;
+           }
+           description
+             "Indicates whether this AC is used as UNI, NNI, etc.";
+         }
          leaf-list peer-sap-id {
            type string;
            description
@@ -3330,39 +3727,8 @@ Table of Contents
            description
              "A reference to an AC profile.";
          }
-         leaf ac-parent-ref {
-           type ac-svc:attachment-circuit-reference;
-           description
-             "Specifies the parent AC that is inherited by an AC.
-              In contexts where dynamic terminating points are
-              bound to the same AC, a parent AC with stable
-              information is created with a set of child ACs
-              to track dynamic AC information.";
-         }
-         leaf-list child-ac-ref {
-           type ac-svc:attachment-circuit-reference;
-           config false;
-           description
-             "Specifies a child AC that relies upon a parent AC.";
-         }
-         list group {
-           key "group-id";
-           description
-             "List of group-ids.";
-           leaf group-id {
-             type string;
-             description
-               "Indicates the group-id to which the network access
-                belongs.";
-           }
-           leaf precedence {
-             type identityref {
-               base ac-common:precedence-type;
-             }
-             description
-               "Defines redundancy of an AC.";
-           }
-         }
+         uses ac-hierarchy;
+         uses ac-common:redundancy-group;
          list service-ref {
            key "service-type service-id";
            config false;
@@ -3373,7 +3739,7 @@ Table of Contents
                base vpn-common:service-type;
              }
              description
-               "Indicates the service type (e.g., L3VPN, Network Slice
+               "Indicates the service type (e.g., L3VPN or Network Slice
                 Service).";
              reference
                "RFC 9408: A YANG Network Data Model for Service
@@ -3386,13 +3752,21 @@ Table of Contents
                 of a given type that uses the AC.";
            }
          }
+         leaf server-reference {
+           if-feature "ac-common:server-assigned-reference";
+           type string;
+           config false;
+           description
+             "Reports an internal reference for the service provider
+              to identify the AC.";
+         }
          uses ac;
        }
      }
    }
    <CODE ENDS>
 
-6.  Security Considerations
+7.  Security Considerations
 
    This section uses the template described in Section 3.7 of
    [I-D.ietf-netmod-rfc8407bis].
@@ -3491,7 +3865,7 @@ Table of Contents
    version of the AC service model because it is not supported by the
    underlying device modules (e.g., [RFC8695]).
 
-7.  IANA Considerations
+8.  IANA Considerations
 
    IANA is requested to register the following URIs in the "ns"
    subregistry within the "IETF XML Registry" [RFC3688]:
@@ -3520,17 +3894,17 @@ Table of Contents
       Prefix:  ac-svc
       Reference:  RFC xxxx
 
-8.  References
+9.  References
 
-8.1.  Normative References
+9.1.  Normative References
 
    [I-D.ietf-opsawg-teas-common-ac]
               Boucadair, M., Roberts, R., de Dios, O. G., Barguil, S.,
               and B. Wu, "A Common YANG Data Model for Attachment
               Circuits", Work in Progress, Internet-Draft, draft-ietf-
-              opsawg-teas-common-ac-05, 9 February 2024,
+              opsawg-teas-common-ac-09, 11 April 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
-              teas-common-ac-05>.
+              teas-common-ac-09>.
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
@@ -3648,7 +4022,7 @@ Table of Contents
               Attachment Points (SAPs)", RFC 9408, DOI 10.17487/RFC9408,
               June 2023, <https://www.rfc-editor.org/rfc/rfc9408>.
 
-8.2.  Informative References
+9.2.  Informative References
 
    [AC-svc-Tree]
               "Full ACaaS Tree Structure", 2024,
@@ -3667,34 +4041,41 @@ Table of Contents
               Bierman, A., Boucadair, M., and Q. Wu, "Guidelines for
               Authors and Reviewers of Documents Containing YANG Data
               Models", Work in Progress, Internet-Draft, draft-ietf-
-              netmod-rfc8407bis-09, 28 February 2024,
+              netmod-rfc8407bis-11, 18 April 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-netmod-
-              rfc8407bis-09>.
+              rfc8407bis-11>.
 
    [I-D.ietf-opsawg-ac-lxsm-lxnm-glue]
               Boucadair, M., Roberts, R., Barguil, S., and O. G. de
               Dios, "A YANG Data Model for Augmenting VPN Service and
               Network Models with Attachment Circuits", Work in
               Progress, Internet-Draft, draft-ietf-opsawg-ac-lxsm-lxnm-
-              glue-06, 9 February 2024,
+              glue-09, 11 April 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
-              ac-lxsm-lxnm-glue-06>.
+              ac-lxsm-lxnm-glue-09>.
 
    [I-D.ietf-opsawg-ntw-attachment-circuit]
               Boucadair, M., Roberts, R., de Dios, O. G., Barguil, S.,
               and B. Wu, "A Network YANG Data Model for Attachment
               Circuits", Work in Progress, Internet-Draft, draft-ietf-
-              opsawg-ntw-attachment-circuit-05, 9 February 2024,
+              opsawg-ntw-attachment-circuit-08, 11 April 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
-              ntw-attachment-circuit-05>.
+              ntw-attachment-circuit-08>.
 
    [I-D.ietf-teas-ietf-network-slice-nbi-yang]
               Wu, B., Dhody, D., Rokui, R., Saad, T., and J. Mullooly,
-              "A YANG Data Model for the RFC AAAA Network Slice
+              "A YANG Data Model for the RFC 9543 Network Slice
               Service", Work in Progress, Internet-Draft, draft-ietf-
-              teas-ietf-network-slice-nbi-yang-09, 17 February 2024,
+              teas-ietf-network-slice-nbi-yang-10, 16 March 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-teas-
-              ietf-network-slice-nbi-yang-09>.
+              ietf-network-slice-nbi-yang-10>.
+
+   [I-D.ramseyer-grow-peering-api]
+              Aguado, C., Griswold, M., Ramseyer, J., Servin, A. L., and
+              T. Strickx, "Peering API", Work in Progress, Internet-
+              Draft, draft-ramseyer-grow-peering-api-04, 16 March 2024,
+              <https://datatracker.ietf.org/doc/html/draft-ramseyer-
+              grow-peering-api-04>.
 
    [IEEE802.1AB]
               IEEE, "IEEE Standard for Local and metropolitan area
@@ -3790,6 +4171,12 @@ Table of Contents
               DOI 10.17487/RFC8695, February 2020,
               <https://www.rfc-editor.org/rfc/rfc8695>.
 
+   [RFC8921]  Boucadair, M., Ed., Jacquenet, C., Zhang, D., and P.
+              Georgatsos, "Dynamic Service Negotiation: The Connectivity
+              Provisioning Negotiation Protocol (CPNP)", RFC 8921,
+              DOI 10.17487/RFC8921, October 2020,
+              <https://www.rfc-editor.org/rfc/rfc8921>.
+
    [RFC8969]  Wu, Q., Ed., Boucadair, M., Ed., Lopez, D., Xie, C., and
               L. Geng, "A Framework for Automating Service and Network
               Management with YANG", RFC 8969, DOI 10.17487/RFC8969,
@@ -3810,7 +4197,7 @@ Appendix A.  Examples
 A.1.  Create A New Bearer
 
    An example of a request message body to create a bearer is shown in
-   Figure 21.
+   Figure 22.
 
    {
      "ietf-bearer-svc:bearers": {
@@ -3819,6 +4206,7 @@ A.1.  Create A New Bearer
            "name": "a-name-choosen-by-client",
            "description": "A bearer example",
            "customer-point": {
+             "identified-by": "ietf-bearer-svc:device-id",
              "device": {
                "device-id": "CE_X_SITE_Y"
              }
@@ -3829,10 +4217,10 @@ A.1.  Create A New Bearer
      }
    }
 
-        Figure 21: Example of a Message Body to Create A New Bearer
+        Figure 22: Example of a Message Body to Create A New Bearer
 
-   A bearer-reference is then generated by the controller for this
-   bearer.  Figure 22 shows the example of a response message body that
+   A "bearer-reference" is then generated by the controller for this
+   bearer.  Figure 23 shows the example of a response message body that
    is sent by the controller to reply to a GET request:
 
    {
@@ -3843,6 +4231,7 @@ A.1.  Create A New Bearer
            "description": "A bearer example",
            "sync-phy-capable": true,
            "customer-point": {
+             "identified-by": "ietf-bearer-svc:device-id",
              "device": {
                "device-id": "CE_X_SITE_Y"
              }
@@ -3854,16 +4243,16 @@ A.1.  Create A New Bearer
      }
    }
 
-       Figure 22: Example of a Response Message Body with the Bearer
+       Figure 23: Example of a Response Message Body with the Bearer
                                  Reference
 
-   Note that the response also indicates that Sync Phy is supported for
-   this bearer.
+   Note that the response also indicates that Sync Phy mechanism is
+   supported for this bearer.
 
 A.2.  Create An AC over An Existing Bearer
 
    An example of a request message body to create a simple AC over an
-   existing bearer is shown in Figure 23.  The bearer reference is
+   existing bearer is shown in Figure 24.  The bearer reference is
    assumed to be known to both the customer and the network provider.
    Such a reference can be retrieved, e.g., following the example
    described in Appendix A.1 or using other means (including, exchanged
@@ -3875,7 +4264,7 @@ A.2.  Create An AC over An Existing Bearer
          {
            "name": "ac4585",
            "description": "An AC on an existing bearer",
-           "requested-ac-start": "2023-12-12T05:00:00.00Z",
+           "requested-start": "2023-12-12T05:00:00.00Z",
            "l2-connection": {
              "encapsulation": {
                "type": "ietf-vpn-common:dot1q"
@@ -3887,10 +4276,10 @@ A.2.  Create An AC over An Existing Bearer
      }
    }
 
-       Figure 23: Example of a Message Body to Request an AC over an
+       Figure 24: Example of a Message Body to Request an AC over an
                               Existing Bearer
 
-   Figure 24 shows the message body of a response received from the
+   Figure 25 shows the message body of a response received from the
    controller and which indicates the "cvlan-id" that was assigned for
    the requested AC.
 
@@ -3900,7 +4289,7 @@ A.2.  Create An AC over An Existing Bearer
          {
            "name": "ac4585",
            "description": "An AC on an existing bearer",
-           "requested-ac-start": "2023-12-12T05:00:00.00Z",
+           "actual-start": "2023-12-12T05:00:00.00Z",
            "l2-connection": {
              "encapsulation": {
                "type": "ietf-vpn-common:dot1q",
@@ -3916,13 +4305,13 @@ A.2.  Create An AC over An Existing Bearer
      }
    }
 
-       Figure 24: Example of a Message Body of a Response to Assign a
+       Figure 25: Example of a Message Body of a Response to Assign a
                                   CVLAN ID
 
 A.3.  Create An AC for a Known Peer SAP
 
    An example of a request to create a simple AC, when the peer SAP is
-   known, is shown in Figure 25.  In this example, the peer SAP
+   known, is shown in Figure 26.  In this example, the peer SAP
    identifier points to an identifier of an SF.  The (topological)
    location of that SF is assumed to be known to the network controller.
    For example, this can be determined as part of an on-demand procedure
@@ -3934,8 +4323,28 @@ A.3.  Create An AC for a Known Peer SAP
        "ac": [
          {
            "name": "ac4585",
-           "description": "An AC on an existing bearer",
-           "requested-ac-start": "2023-12-12T05:00:00.00Z",
+           "description": "An AC for a known peer SAP",
+           "requested-start": "2025-12-12T05:00:00.00Z",
+           "peer-sap-id": [
+             "nf-termination-ip"
+           ]
+         }
+       ]
+     }
+   }
+
+   Figure 26: Example of a Message Body to Request an AC with a Peer SAP
+
+   Figure 27 shows the received response with the required informaiton
+   to connect the SF.
+
+   {
+     "ietf-ac-svc:attachment-circuits": {
+       "ac": [
+         {
+           "name": "ac4585",
+           "description": "An AC for a known peer SAP",
+           "actual-start": "2025-12-12T05:00:00.00Z",
            "peer-sap-id": [
              "nf-termination-ip"
            ],
@@ -3953,22 +4362,23 @@ A.3.  Create An AC for a Known Peer SAP
      }
    }
 
-   Figure 25: Example of a Message Body to Request an AC with a Peer SAP
+      Figure 27: Example of a Message Body of a Response to Create an
+                             AC with a Peer SAP
 
 A.4.  One CE, Two ACs
 
    Let us consider the example of an eNodeB (CE) that is directly
    connected to the access routers of the mobile backhaul (see
-   Figure 26).  In this example, two ACs are needed to service the
+   Figure 28).  In this example, two ACs are needed to service the
    eNodeB (e.g., distinct VLANs for Control and User Planes).
 
    .-------------.                  .------------------.
-   |             |                  | PE               |
-   |             |                  |  192.0.2.1       |
-   |   eNodeB    |==================|  2001:db8::1     |
-   |             |          VLAN 1  |                  |
-   |             |==================|                  |
+   |             |       ac1        | PE               |
+   |             |==================|  192.0.2.1       |
+   |   eNodeB    |          VLAN 1  |  2001:db8::1     |
    |             |          VLAN 2  |                  |
+   |             |==================|                  |
+   |             |       ac2        |                  |
    |             | Direct           |                  |
    '-------------' Routing          |                  |
                                     |                  |
@@ -3976,81 +4386,81 @@ A.4.  One CE, Two ACs
                                     |                  |
                                     '------------------'
 
-                     Figure 26: Example of a CE-PE ACs
+                     Figure 28: Example of a CE-PE ACs
 
    An example of a request to create the ACs to service the eNodeB is
-   shown in Figure 27.  This example assumes that static addressing is
+   shown in Figure 29.  This example assumes that static addressing is
    used for both ACs.
 
    =============== NOTE: '\' line wrapping per RFC 8792 ================
 
    {
-      "ietf-ac-svc:attachment-circuits":{
-         "ac":[
-            {
-               "name":"ac1",
-               "description":"a first ac with a same peer node",
-               "l2-connection":{
-                  "encapsulation":{
-                     "type":"ietf-vpn-common:dot1q"
-                  },
-                  "bearer-reference":"line-156"
-               },
-               "ip-connection":{
-                  "ipv4":{
-                     "address-allocation-type":"ietf-ac-common:static-\
+     "ietf-ac-svc:attachment-circuits": {
+       "ac": [
+         {
+           "name": "ac1",
+           "description": "a first ac with a same peer node",
+           "l2-connection": {
+             "encapsulation": {
+               "type": "ietf-vpn-common:dot1q"
+             },
+             "bearer-reference": "line-156"
+           },
+           "ip-connection": {
+             "ipv4": {
+               "address-allocation-type": "ietf-ac-common:static-\
                                                                 address"
-                  },
-                  "ipv6":{
-                     "address-allocation-type":"ietf-ac-common:static-\
+             },
+             "ipv6": {
+               "address-allocation-type": "ietf-ac-common:static-\
                                                                 address"
-                  },
-                  "routing-protocols":{
-                     "routing-protocol":[
-                        {
-                           "id":"1",
-                           "type":"ietf-vpn-common:direct-routing"
-                        }
-                     ]
-                  }
+             }
+           },
+           "routing-protocols": {
+             "routing-protocol": [
+               {
+                 "id": "1",
+                 "type": "ietf-vpn-common:direct-routing"
                }
-            },
-            {
-               "name":"ac2",
-               "description":"a second ac with a same peer node",
-               "l2-connection":{
-                  "encapsulation":{
-                     "type":"ietf-vpn-common:dot1q"
-                  },
-                  "bearer-reference":"line-156"
-               },
-               "ip-connection":{
-                  "ipv4":{
-                     "address-allocation-type":"ietf-ac-common:static-\
+             ]
+           }
+         },
+         {
+           "name": "ac2",
+           "description": "a second ac with a same peer node",
+           "l2-connection": {
+             "encapsulation": {
+               "type": "ietf-vpn-common:dot1q"
+             },
+             "bearer-reference": "line-156"
+           },
+           "ip-connection": {
+             "ipv4": {
+               "address-allocation-type": "ietf-ac-common:static-\
                                                                 address"
-                  },
-                  "ipv6":{
-                     "address-allocation-type":"ietf-ac-common:static-\
+             },
+             "ipv6": {
+               "address-allocation-type": "ietf-ac-common:static-\
                                                                 address"
-                  },
-                  "routing-protocols":{
-                     "routing-protocol":[
-                        {
-                           "id":"1",
-                           "type":"ietf-vpn-common:direct-routing"
-                        }
-                     ]
-                  }
+             }
+           },
+           "routing-protocols": {
+             "routing-protocol": [
+               {
+                 "id": "1",
+                 "type": "ietf-vpn-common:direct-routing"
                }
-            }
-         ]
-      }
+             ]
+           }
+         }
+       ]
+     }
    }
 
-       Figure 27: Example of a Message Body to Request Two ACs on the
+       Figure 29: Example of a Message Body to Request Two ACs on the
                         Same Link (Not Recommended)
 
-   Figure 28 shows the message body of a response received from the
+   Figure 30 shows the message body of a response received from the
    controller.
 
    {
@@ -4146,18 +4556,18 @@ A.4.  One CE, Two ACs
      }
    }
 
-      Figure 28: Example of a Message Body of a Response to Create Two
+      Figure 30: Example of a Message Body of a Response to Create Two
                    ACs on the Same Link (Not Recommended)
 
-   The example shown Figure 28 is not optimal as it includes many
-   redundant data.  Figure 29 shows a more compact request that
+   The example shown Figure 30 is not optimal as it includes many
+   redundant data.  Figure 31 shows a more compact request that
    factorizes all the redundant data.
 
    {
      "ietf-ac-svc:attachment-circuits": {
        "ac-group-profile": [
          {
-           "id": "simple-node-profile",
+           "name": "simple-node-profile",
            "l2-connection": {
              "bearer-reference": "line-156"
            },
@@ -4224,16 +4634,21 @@ A.4.  One CE, Two ACs
      }
    }
 
-       Figure 29: Example of a Message Body to Request Two ACs on the
+       Figure 31: Example of a Message Body to Request Two ACs on the
                           Same Link (Node Profile)
 
    A customer may request adding a new AC by simply referring to an
-   existing per-node AC profile as shown in Figure 30.  This AC inherits
+   existing per-node AC profile as shown in Figure 32.  This AC inherits
    all the data that was enclosed in the indicated per-node AC profile
    (IP addressing, routing, etc.).
 
    {
      "ietf-ac-svc:attachment-circuits": {
+       "ac-group-profile": [
+         {
+           "name": "simple-node-profile"
+         }
+       ],
        "ac": [
          {
            "name": "ac3",
@@ -4243,6 +4658,7 @@ A.4.  One CE, Two ACs
            ],
            "l2-connection": {
              "encapsulation": {
+               "type": "ietf-vpn-common:dot1q",
                "dot1q": {
                  "cvlan-id": 3
                }
@@ -4254,7 +4670,7 @@ A.4.  One CE, Two ACs
      }
    }
 
-        Figure 30: Example of a Message Body to Add a new AC over an
+        Figure 32: Example of a Message Body to Add a new AC over an
                         existing link (Node Profile)
 
 A.5.  Control Precedence over Multiple ACs
@@ -4262,7 +4678,7 @@ A.5.  Control Precedence over Multiple ACs
    When multiple ACs are requested by the same customer for the same
    site, the request can tag one of these ACs as "primary" and the other
    ones as "secondary".  An example of such a request is shown in
-   Figure 32.  In this example, both ACs are bound to the same "group-
+   Figure 34.  In this example, both ACs are bound to the same "group-
    id", and the "precedence" data node is set as a function of the
    intended role of each AC (primary or secondary).
 
@@ -4278,14 +4694,17 @@ A.5.  Control Precedence over Multiple ACs
                     bearerY@site1   |   |
                                     '---'
 
-        Figure 31: An Example Topology for AC Precedence Enforcement
+        Figure 33: An Example Topology for AC Precedence Enforcement
+
+   =============== NOTE: '\' line wrapping per RFC 8792 ================
 
    {
      "ietf-ac-svc:attachment-circuits": {
        "ac": [
          {
            "name": "ac1",
-           "description": "Example to illustrate AC precedence usage",
+           "description": "An example to illustrate AC precedence usage\
+                                                                      ",
            "group": [
              {
                "group-id": "1",
@@ -4298,7 +4717,8 @@ A.5.  Control Precedence over Multiple ACs
          },
          {
            "name": "ac2",
-           "description": "Example to illustrate AC precedence usage",
+           "description": "An AC example to illustrate AC precedence \
+                                                                 usage",
            "group": [
              {
                "group-id": "1",
@@ -4313,34 +4733,34 @@ A.5.  Control Precedence over Multiple ACs
      }
    }
 
-       Figure 32: Example of a Message Body to Associate a Precedence
+       Figure 34: Example of a Message Body to Associate a Precedence
                                Level with ACs
 
 A.6.  Create Multiple ACs Bound to Multiple CEs
 
-   Figure 33 shows an example of CEs that are interconnected by a
+   Figure 35 shows an example of CEs that are interconnected by a
    service provider network.
 
                       .----------------------------------.
-         .----.       |                                  |       .----.
+         .----.  ac1  |                                  |  ac3  .----.
          | CE1+-------+                                  +-------+ CE3|
          '----'       |                                  |       '----'
                       |              Network             |
-         .----.       |                                  |       .----.
+         .----.  ac2  |                                  |  ac4  .----.
          |CE2 +-------+                                  +-------+ CE4|
          '----'       |                                  |       '----'
                       '----------------------------------'
 
-                    Figure 33: Network Topology Example
+                    Figure 35: Network Topology Example
 
-   Figure 34 depicts an example of the message body of a response to a
-   request to instantiate the various ACs that are shown in Figure 33.
+   Figure 36 depicts an example of the message body of a response to a
+   request to instantiate the various ACs that are shown in Figure 35.
 
    {
      "ietf-ac-svc:attachment-circuits": {
        "ac-group-profile": [
          {
-           "id": "simple-profile",
+           "name": "simple-profile",
            "l2-connection": {
              "encapsulation": {
                "type": "ietf-vpn-common:dot1q",
@@ -4396,27 +4816,29 @@ A.6.  Create Multiple ACs Bound to Multiple CEs
      }
    }
 
-        Figure 34: Example of a Message Body of a Request to Create
+        Figure 36: Example of a Message Body of a Request to Create
                      Multiple ACs bound to Multiple CEs
 
 A.7.  Binding Attachment Circuits to an IETF Network Slice
 
-   This example shows how the AC service model complements
-   [I-D.ietf-teas-ietf-network-slice-nbi-yang] to connect a site to a
-   slice service.
+   This example shows how the AC service model complements the IETF
+   Network Slice model [I-D.ietf-teas-ietf-network-slice-nbi-yang] to
+   connect a site to a Slice Service.
 
-   First, Figure 35 describes the end-to-end network topology as well
+   First, Figure 37 describes the end-to-end network topology as well
    the orchestration scopes:
 
    *  The topology is made up of two sites ("site1" and "site2"),
-      interconnected via a Transport Network (e.g.  IP/MPLS Network).
-      An SF is deployed within each site in a dedicated IP Subnet.
+      interconnected via a Transport Network (e.g., IP/MPLS network).
+      An SF is deployed within each site in a dedicated IP subnet.
 
-   *  A 5G SMO is responsible for the deployment of SFs and the indirect
-      management of a local Gateway (i.e., CE device).
+   *  A 5G Service Management and Orchestration (SMO) is responsible for
+      the deployment of SFs and the indirect management of a local
+      Gateway (i.e., CE).
 
-   *  An IETF Network Slice Controller is responsible for the deployment
-      of IETF Network Slices across the TN.
+   *  An IETF Network Slice Controller (NSC) [RFC9543] is responsible
+      for the deployment of IETF Network Slices across the Transport
+      Network.
 
    SFs are deployed within each site.
 
@@ -4441,10 +4863,10 @@ A.7.  Binding Attachment Circuits to an IETF Network Slice
                Physical Link ID:           Physical Link ID:
                  bearerX@site1               bearerX@site2
 
-     Figure 35: An Example of a Network Topology Used to Deploy Slices
+     Figure 37: An Example of a Network Topology Used to Deploy Slices
 
-   Figure 36 describes the logical connectivity enforced thanks to both
-   IETF Network Slice and Attachment Circuit models.
+   Figure 38 describes the logical connectivity enforced thanks to both
+   IETF Network Slice and ACaaS models.
 
                                 AS 65536  <----BGP--> AS 65550
     .---.                     .--------.                    .---.
@@ -4474,103 +4896,16 @@ A.7.  Binding Attachment Circuits to an IETF Network Slice
     - vlan-id: 200
     - CE address (GW2): 192.0.2.5/30
     - PE address: 192.0.2.6/30
-    - Routing: BGP local-as: 65536
-                   customer-as: 65550
-                   customer-address: 192.0.2.5
+    - Routing: BGP local-as: 65536 (Provider ASN)
+                   peer-as: 65550 (customer ASN)
+                   remote-address: 192.0.2.5 (Customer address)
 
-                        Figure 36: Logical Overview
+                        Figure 38: Logical Overview
 
-   Figure 37 shows the message body of the request to create the
-   required ACs using the Attachment Circuit module.
+   Figure 39 shows the message body of the request to create the
+   required ACs using the ACaaS module.
 
    =============== NOTE: '\' line wrapping per RFC 8792 ================
-
-   {
-      "ietf-ac-svc:attachment-circuits":{
-         "ac":[
-            {
-               "name":"ac1",
-               "description":"Connection to site1 on vlan 100",
-               "requested-start":"2023-12-12T05:00:00.00Z",
-               "l2-connection":{
-                  "encapsulation":{
-                     "type":"ietf-vpn-common:dot1q",
-                     "dot1q":{
-                        "tag-type":"ietf-vpn-common:c-vlan"
-                     },
-                     "bearer-reference":"bearerX@site1"
-                  },
-                  "ip-connection":{
-                     "ipv4":{
-                        "address-allocation-type":"ietf-ac-common:\
-                                                         static-address"
-                     },
-                     "routing-protocols":{
-                        "routing-protocol":[
-                           {
-                              "id":"1",
-                              "type":"ietf-vpn-common:static-routing",
-                              "static":{
-                                 "cascaded-lan-prefixes":{
-                                    "ipv4-lan-prefixes":[
-                                       {
-                                          "lan":"198.51.100.0/24",
-                                          "next-hop":"192.0.2.1",
-                                          "lan-tag":"primary_UP_slice"
-                                       }
-                                    ]
-                                 }
-                              }
-                           }
-                        ]
-                     }
-                  }
-               }
-            },
-            {
-               "name":"ac2",
-               "description":"Connection to site2 on vlan 200",
-               "requested-start":"2023-12-12T05:00:00.00Z",
-               "l2-connection":{
-                  "encapsulation":{
-                     "type":"ietf-vpn-common:dot1q",
-                     "dot1q":{
-                        "tag-type":"ietf-vpn-common:c-vlan"
-                     }
-                  },
-                  "bearer-reference":"bearerY@site2"
-               },
-               "ip-connection":{
-                  "ipv4":{
-                     "address-allocation-type":"ietf-ac-common:static-\
-                                                                address"
-                  },
-                  "routing-protocols":{
-                     "routing-protocol":[
-                        {
-                           "id":"1",
-                           "type":"ietf-vpn-common:bgp-routing",
-                           "bgp":{
-                              "neighbor":[
-                                 {
-                                    "id":"1",
-                                    "peer-as":65550
-                                 }
-                              ]
-                           }
-                        }
-                     ]
-                  }
-               }
-            }
-         ]
-      }
-   }
-
-        Figure 37: Message Body of a Request to Create Required ACs
-
-   Figure 38 shows the message body of a response received from the
-   controller.
 
    {
      "ietf-ac-svc:attachment-circuits": {
@@ -4579,6 +4914,93 @@ A.7.  Binding Attachment Circuits to an IETF Network Slice
            "name": "ac1",
            "description": "Connection to site1 on vlan 100",
            "requested-start": "2023-12-12T05:00:00.00Z",
+           "l2-connection": {
+             "encapsulation": {
+               "type": "ietf-vpn-common:dot1q",
+               "dot1q": {
+                 "tag-type": "ietf-vpn-common:c-vlan"
+               }
+             },
+             "bearer-reference": "bearerX@site1"
+           },
+           "ip-connection": {
+             "ipv4": {
+               "address-allocation-type": "ietf-ac-common:static-\
+                                                                address"
+             }
+           },
+           "routing-protocols": {
+             "routing-protocol": [
+               {
+                 "id": "1",
+                 "type": "ietf-vpn-common:static-routing",
+                 "static": {
+                   "cascaded-lan-prefixes": {
+                     "ipv4-lan-prefixes": [
+                       {
+                         "lan": "198.51.100.0/24",
+                         "next-hop": "192.0.2.1",
+                         "lan-tag": "primary_UP_slice"
+                       }
+                     ]
+                   }
+                 }
+               }
+             ]
+           }
+         },
+         {
+           "name": "ac2",
+           "description": "Connection to site2 on vlan 200",
+           "requested-start": "2023-12-12T05:00:00.00Z",
+           "l2-connection": {
+             "encapsulation": {
+               "type": "ietf-vpn-common:dot1q",
+               "dot1q": {
+                 "tag-type": "ietf-vpn-common:c-vlan"
+               }
+             },
+             "bearer-reference": "bearerY@site2"
+           },
+           "ip-connection": {
+             "ipv4": {
+               "address-allocation-type": "ietf-ac-common:static-\
+                                                                address"
+             }
+           },
+           "routing-protocols": {
+             "routing-protocol": [
+               {
+                 "id": "1",
+                 "type": "ietf-vpn-common:bgp-routing",
+                 "bgp": {
+                   "neighbor": [
+                     {
+                       "id": "1",
+                       "peer-as": 65550
+                     }
+                   ]
+                 }
+               }
+             ]
+           }
+         }
+       ]
+     }
+   }
+
+        Figure 39: Message Body of a Request to Create Required ACs
+
+   Figure 40 shows the message body of a response received from the
+   controller.
+
+   {
+     "ietf-ac-svc:attachment-circuits": {
+       "ac": [
+         {
+           "name": "ac1",
+           "description": "Connection to site1 on vlan 100",
+           "actual-start": "2023-12-12T05:00:00.00Z",
            "l2-connection": {
              "encapsulation": {
                "type": "ietf-vpn-common:dot1q",
@@ -4624,7 +5046,7 @@ A.7.  Binding Attachment Circuits to an IETF Network Slice
          {
            "name": "ac2",
            "description": "Connection to site2 on vlan 200",
-           "requested-start": "2023-12-12T05:00:00.00Z",
+           "actual-start": "2023-12-12T05:00:00.00Z",
            "l2-connection": {
              "encapsulation": {
                "type": "ietf-vpn-common:dot1q",
@@ -4669,14 +5091,12 @@ A.7.  Binding Attachment Circuits to an IETF Network Slice
      }
    }
 
-     Figure 38: Example of a Message Body of a Response Indicating the
+     Figure 40: Example of a Message Body of a Response Indicating the
                             Creation of the ACs
 
-   Figure 39 shows the message body of the request to create the a slice
-   service bound to the ACs created using Figure 37.  Only references to
-   these ACs are included in the Slice Service request.  This example
-   assumes that the module that "glues" the service/AC is also supported
-   by the NSC.
+   Figure 41 shows the message body of the request to create a Slice
+   Service bound to the ACs created using Figure 39.  Only references to
+   these ACs are included in the Slice Service request.
 
    =============== NOTE: '\' line wrapping per RFC 8792 ================
 
@@ -4686,26 +5106,30 @@ A.7.  Binding Attachment Circuits to an IETF Network Slice
          "slo-sle-template": [
            {
              "id": "low-latency-template",
-             "template-description": "Lowest possible latency \
-                                                    forwarding behavior"
+             "description": "Lowest possible latency forwarding \
+                                                               behavior"
            }
          ]
        },
        "slice-service": [
          {
-           "service-id": "Slice URLLC_UP",
-           "service-description": "Dedicate TN Slice for URLLC-UP",
+           "id": "Slice URLLC_UP",
+           "description": "Dedicated TN Slice for URLLC-UP",
            "slo-sle-template": "low-latency-template",
            "status": {},
            "sdps": {
              "sdp": [
                {
-                 "sdp-id": "sdp1",
-                 "ac-svc-name": ["ac1"]
+                 "id": "sdp1",
+                 "ac-svc-name": [
+                   "ac1"
+                 ]
                },
                {
-                 "sdp-id": "sdp2",
-                 "ac-svc-name": ["ac2"]
+                 "id": "sdp2",
+                 "ac-svc-name": [
+                   "ac2"
+                 ]
                }
              ]
            }
@@ -4714,12 +5138,12 @@ A.7.  Binding Attachment Circuits to an IETF Network Slice
      }
    }
 
-       Figure 39: Message Body of a Request to Create a Slice Service
+       Figure 41: Message Body of a Request to Create a Slice Service
                             Referring to the ACs
 
 A.8.  Connecting a Virtualized Environment Running in a Cloud Provider
 
-   This example (Figure 40) shows how the AC service model can be used
+   This example (Figure 42) shows how the AC service model can be used
    to connect a Cloud Infrastructure to a service provider network.
    This example makes the following assumptions:
 
@@ -4738,7 +5162,7 @@ A.8.  Connecting a Virtualized Environment Running in a Cloud Provider
        Identifier" is generated and returned via the API.
 
    3.  The customer provisions the networking logic within the Cloud
-       Provider based on that unique connection Identifier (i.e.,
+       Provider based on that unique connection identifier (i.e.,
        logical interfaces, IP addressing, and routing).
 
        .--------------------------------------------------------.
@@ -4774,16 +5198,16 @@ A.8.  Connecting a Virtualized Environment Running in a Cloud Provider
        |                                                        |
        '--------------------------------------------------------'
 
-      Figure 40: An Example of Realization for Connecting a Cloud Site
+      Figure 42: An Example of Realization for Connecting a Cloud Site
 
-   Figure 41 illustrates the pre-provisioning logic for the physical
+   Figure 43 illustrates the pre-provisioning logic for the physical
    connection to the Cloud Provider.  After this connection is delivered
    to the service provider, the network inventory is updated with
    "bearer-reference" set to the value of the "Connection Identifier".
 
   Customer                                                       Cloud
 Orchestration       DIRECT INTERCONNECTION ORDERING (API)       Provider
-               ------------------------------------------------>
+                ------------------------------------------------>
 
                Connection Created with "Connection ID:1234-56789"
                <------------------------------------------------
@@ -4795,21 +5219,21 @@ Orchestration       DIRECT INTERCONNECTION ORDERING (API)       Provider
        Physical Connection 1234-56789 is delivered and
                          connected to PE1
 
-       Network  Inventory Updated with:
-         bearer-reference: 1234-56789 for PE1/Interface If-A
+       Network Inventory Updated with:
+         bearer-reference: 1234-56789 for PE1/Interface "If-A"
 
-             Figure 41: Illustration of Pre-provisioning
+             Figure 43: Illustration of Pre-provisioning
 
-   Next, API workflows can be initiated:
+   Next, API workflows can be initiated by:
 
-   *  Cloud Provider for the configuration as per (3) above.
+   *  The Cloud Provider for the configuration per Step (3) above.
 
-   *  Service provider network via the Attachment Circuit model.  This
-      request can be used in conjunction with additional requests based
-      on the L3SM (VPN provisioning) or Network Slice Service model (5G
-      hybrid Cloud deployment).
+   *  The Service provider network via the ACaaS model.  This request
+      can be used in conjunction with additional requests based on the
+      L3SM (VPN provisioning) or Network Slice Service model (5G hybrid
+      Cloud deployment).
 
-   Figure 42 shows the message body of the request to create the
+   Figure 44 shows the message body of the request to create the
    required ACs to connect the Cloud Provider Virtualized (VM) using the
    Attachment Circuit module.
 
@@ -4833,33 +5257,33 @@ Orchestration       DIRECT INTERCONNECTION ORDERING (API)       Provider
              "ipv4": {
                "address-allocation-type": "ietf-ac-common:static-\
                                                                 address"
-             },
-             "routing-protocols": {
-               "routing-protocol": [
-                 {
-                   "id": "1",
-                   "type": "ietf-vpn-common:bgp-routing",
-                   "bgp": {
-                     "neighbor": [
-                       {
-                         "id": "1",
-                         "peer-as": 65536
-                       }
-                     ]
-                   }
-                 }
-               ]
              }
+           },
+           "routing-protocols": {
+             "routing-protocol": [
+               {
+                 "id": "1",
+                 "type": "ietf-vpn-common:bgp-routing",
+                 "bgp": {
+                   "neighbor": [
+                     {
+                       "id": "1",
+                       "peer-as": 65536
+                     }
+                   ]
+                 }
+               }
+             ]
            }
          }
        ]
      }
    }
 
-         Figure 42: Message Body of a Request to Create the ACs for
+         Figure 44: Message Body of a Request to Create the ACs for
                       Connecting to the Cloud Provider
 
-   Figure 43 shows the message body of the response received from the
+   Figure 45 shows the message body of the response received from the
    provider.  Note that this Cloud Provider mandates the use of MD5
    authentication for establishing BGP connections.
 
@@ -4877,7 +5301,7 @@ Orchestration       DIRECT INTERCONNECTION ORDERING (API)       Provider
            "name": "ac--BXT-DC-customer-VPC-foo",
            "description": "Connection to Cloud Provider BXT on \
                                                  connection 1234-56789",
-           "requested-start": "2023-12-12T05:00:00.00Z",
+           "actual-start": "2023-12-12T05:00:00.00Z",
            "l2-connection": {
              "encapsulation": {
                "type": "ietf-vpn-common:dot1q",
@@ -4912,6 +5336,7 @@ Orchestration       DIRECT INTERCONNECTION ORDERING (API)       Provider
                        "peer-as": 65536,
                        "local-as": 65550,
                        "authentication": {
+                         "enabled": true,
                          "keying-material": {
                            "md5-keychain": "nyxNER_c5sdn608fFQl3331d"
                          }
@@ -4927,45 +5352,43 @@ Orchestration       DIRECT INTERCONNECTION ORDERING (API)       Provider
      }
    }
 
-       Figure 43: Message Body of a Response to the Request to Create
+       Figure 45: Message Body of a Response to the Request to Create
                   ACs for Connecting to the Cloud Provider
 
-A.9.  Connect Customer Network (CE) Through BGP
+A.9.  Connect Customer Network Through BGP
 
    CE-PE routing using BGP is a common scenario in the context of MPLS
    VPNs and is widely used in enterprise networks.  In the example
-   depicted in Figure 44, the CE routers are customer-owned devices
+   depicted in Figure 46, the CE routers are customer-owned devices
    belonging to an AS (ASN 65536).  CEs are located at the edge of the
    provider's network (PE, or Provider Edge) and use point-to-point
    interfaces to establish BGP sessions.  The point-to-point interfaces
-   rely upon a physical bearer ("Line-113") to reach the provider
+   rely upon a physical bearer ("line-113") to reach the provider
    network.
 
-   +------------------------+                      +------------------+
+   .------------------------.                      .------------------.
    |  Provider Network      |                      | Customer Network |
-   |                        |                      |                  |
-   |        +------------+  | Attachment-Circuit 1 | +------+         |
-   |        | PE1(VRF11) +---------------------------+ CE1  | AS65536 |
-   |        |            |  |   Bearer=Line-113    | +------+         |
-   |        | PE1(VRF12) |  |                      |                  |
-   |        |            |  |                      +------------------+
+   |                        |       CE-PE-AC       |                  |
+   |        .------------.  |.2                 .1 | .------.   ASN   |
+   |        | PE1(VRF11) +---------------------sap#113 CE1  |  65536  |
+   |        |            |  |   Bearer=line-113    | '------'         |
+   |        | PE1(VRF12) |  |     192.0.2.1/30     |                  |
+   |        |            |  |                      '------------------'
    |        | PE1(VRF1n) |  |
-   |        |            |  |
-   |        +------------+  |
+   |        '------------'  |
    | AS1                    |
-   |        +------------+  |
+   |        .------------.  |
    |        | PE2(VRF21) |  |
-   |        +------------+  |
+   |        '------------'  |
    |              .         |
    |              .         |
    |              .         |
-   |        +------------+  |
+   |        .------------.  |
    |        | PEm(VRFmn) |  |
-   |        +------------+  |
-   |                        |
-   +------------------------+
+   |        '------------'  |
+   '------------------------'
 
-            Figure 44: Illustration of Provider Network Scenario
+            Figure 46: Illustration of Provider Network Scenario
 
    The attachment circuit in this case use a SAP identifier to refer to
    the physical interface used for the connection between the PE and the
@@ -4976,67 +5399,948 @@ A.9.  Connect Customer Network (CE) Through BGP
    defining the entire configuration inside the 'neighbor' data node.
 
    {
-      "attachment-circuits":{
-         "ac":{
-            "name":"IPT-CUST-ABC",
-            "customer-name":"CUST-ABC",
-            "description":"CUST-ABC-113",
-            "peer-sap-id":"sap#113",
-            "ip-connection":{
-               "ipv4":{
-                  "local-address":"192.0.2.1",
-                  "prefix-length":30,
-                  "address-allocation-type":"ac-common:static-address"
-               }
-            },
-            "l2-connection":{
-               "encapsulation":{
-                  "dot1q":{
-                     "tag-type":"vpn-common:c-vlan",
-                     "cvlan-id":"113"
-                  }
-               },
-               "bearer-reference":"line-113"
-            },
-            "routing-protocols":{
-               "routing-protocol":{
-                  "id":"BGP-Single-Access",
-                  "type":"vpn-common:bgp-routing",
-                  "bgp":{
-                     "peer-groups":{
-                        "peer-group":{
-                           "name":"IPT-CUST-ABC",
-                           "peer-as":65536,
-                           "address-family":"vpn-common:ipv4"
-                        }
-                     },
-                     "neighbor":{
-                        "id":"BGP-DIA-Single-1",
-                        "remote-address":"192.0.2.2",
-                        "peer-group":"IPT-CUST-ABC",
-                        "status":{
-                           "admin-status":{
-                              "status":"vpn-common:admin-up"
-                           }
-                        }
+     "ietf-ac-svc:attachment-circuits": {
+       "ac": [
+         {
+           "name": "CE-PE-AC",
+           "customer-name": "Customer-4875",
+           "description": "An AC between a CP and a PE",
+           "peer-sap-id": [
+             "sap#113"
+           ],
+           "ip-connection": {
+             "ipv4": {
+               "prefix-length": 30,
+               "address": [
+                 {
+                   "address-id": "1",
+                   "customer-address": "192.0.2.1"
+                 }
+               ]
+             }
+           },
+           "l2-connection": {
+             "encapsulation": {
+               "type": "ietf-vpn-common:dot1q"
+             },
+             "bearer-reference": "line-113"
+           },
+           "routing-protocols": {
+             "routing-protocol": [
+               {
+                 "id": "BGP-Single-Access",
+                 "type": "ietf-vpn-common:bgp-routing",
+                 "bgp": {
+                   "peer-groups": {
+                     "peer-group": [
+                       {
+                         "name": "first-peer-group",
+                         "peer-as": 65536,
+                         "address-family": "ietf-vpn-common:ipv4"
+                       }
+                     ]
+                   },
+                   "neighbor": [
+                     {
+                       "id": "session#57",
+                       "remote-address": "192.0.2.1",
+                       "peer-group": "first-peer-group",
+                       "status": {
+                         "admin-status": {
+                           "status": "ietf-vpn-common:admin-up"
+                         }
+                       }
                      }
-                  }
+                   ]
+                 }
                }
-            }
+             ]
+           }
          }
-      }
+       ]
+     }
    }
 
-     Figure 45: Message Body of a Request to Create ACs for Connecting
+     Figure 47: Message Body of a Request to Create ACs for Connecting
                          CEs to a Provider Network
 
    This scenario allows the provider to maintain a list of ACs belonging
    to the same customer without requiring the full service
    configuration.
 
+A.10.  Interconnection via Internet eXchange Points (IXPs)
+
+   This section illustrates how to use the AC service model for
+   interconnection purposes.  To that aim, the document assumes a
+   simplified Internet eXchange Point (IXP) configuration without
+   zooming into IXP deployment specifics.  Let us assume that networks
+   are interconnected via a Layer 2 facility.  BGP is used to exchange
+   routing information and reachability announcements between those
+   networks.  The same approach can be used to negotiate interconnection
+   between two networks and without involving an IXP.
+
+   The following subsections exemplify a deployment flow, but BGP
+   sessions can be managed without having to execute systematically all
+   the steps detailed hereafter.
+
+A.10.1.  Retrieve Interconnection Locations
+
+   Figure 48 shows an example a message body of a request to retrieve a
+   list of interconnection locations.  The request includes optional
+   information such as customer name, peer ASN, etc. to filter out the
+   locations.
+
+   {
+     "ietf-bearer-svc:locations": {
+       "customer-name": "a future peer",
+       "role": "ietf-ac-common:nni",
+       "peer-as": 65536
+     }
+   }
+
+      Figure 48: Message Body of a Request to Retrieve Interconnection
+                                 Locations
+
+   Figure 49 provides an example of a response received from the server
+   with a list of available interconnection locations.
+
+   {
+     "ietf-bearer-svc:locations": {
+       "customer-name": "a future peer",
+       "role": "ietf-ac-common:nni",
+       "peer-as": 65536,
+       "location": [
+         {
+           "location-name": "Location-X",
+           "_comment": "other location attributes"
+         },
+         {
+           "_comment": "other locations"
+         }
+       ]
+     }
+   }
+
+     Figure 49: Message Body of a Response to Retrieve Interconnection
+                                 Locations
+
+A.10.2.  Create Bearers and Retrieve Bearer References
+
+   A peer can then use the location information and select the ones
+   where it can request new bearers.  As shown in Figure 50, the request
+   includes a location reference which is known to the server (returned
+   in Figure 49).
+
+   {
+     "ietf-bearer-svc:bearers": {
+       "bearer": [
+         {
+           "name": "a-name-choosen-by-client",
+           "provider-location-reference": "Location-X",
+           "customer-point": {
+             "identified-by": "ietf-bearer-svc:device-id",
+             "device": {
+               "device-id": "ASBR_1_Location_X"
+             }
+           },
+           "type": "ietf-bearer-svc:ethernet"
+         }
+       ]
+     }
+   }
+
+      Figure 50: Message Body of a Request to Create a Bearer using a
+                        Provider- Assigned Reference
+
+   The bearer is then activated by the server as shown in Figure 51.  A
+   "bearer-reference" is also returned.  That reference can be used for
+   subsequent AC activation requests.
+
+   {
+     "ietf-bearer-svc:bearers": {
+       "bearer": [
+         {
+           "name": "a-name-choosen-by-client"
+           "provider-location-reference": "Location-X",
+           "customer-point": {
+             "identified-by": "ietf-bearer-svc:device-id",
+             "device": {
+               "device-id": "ASBR_1_Location_X"
+             }
+           },
+           "type": "ietf-bearer-svc:ethernet",
+           "bearer-reference": "Location-X-Line-114",
+           "status": {
+             "oper-status": {
+               "status": "ietf-vpn-common:op-up"
+             }
+           }
+         }
+       ]
+     }
+   }
+
+       Figure 51: Message Body of a Response to Create a Bearer in a
+                             Specific Location
+
+A.10.3.  Manage ACs and BGP Sessions
+
+   As depicted in Figure 52, each network connects to the IXP switch via
+   a bearer over which an AC is created.
+
+   .----------------------.
+   |  Provider Network A  |
+   |    BGP ASN:65536     |  Attachment-Circuit 1
+   |                      |    Bearer=Location-X-Line-114
+   | .---------------.    |
+   | | ASBR-A-1     **-------------------+
+   | |               |  192.0.2.1/24     |
+   | '---------------'  vlan-id:114      |
+   |                      |              |
+   '----------------------'              |
+                                         |
+                                 .-------*------.
+                    ... ---------+   IXP SW     +------- ...
+                                 '-------*------'
+                                         |
+   .----------------------.              |
+   |  Provider Network B  |              |
+   |    BGP ASN:65537     |              |
+   |                      |              |
+   | +---------------+    |  .2/24       |
+   | | ASBR-B-1     **-------------------+
+   | |               |    |Attachment-Circuit 2
+   | '---------------'    | Bearer=Location-X-Line-448
+   |                      |
+   '----------------------'
+
+                 Figure 52: Simple Interconnection Topology
+
+   The AC configuration (Figure 53) includes parameters such as VLAN
+   configuration, IP addresses, MTU, and any additional settings
+   required for connectivity.  The peering location is inferred from the
+   "bearer-reference".
+
+   {
+     "ietf-ac-svc:attachment-circuits": {
+       "ac": [
+         {
+           "name": "Attachment Circuit 1",
+           "customer-name": "Network A",
+           "description": "An AC to IXP SW in Location X",
+           "requested-start": "2025-12-12T05:00:00.00Z",
+           "peer-sap-id": [
+             "asbr-1-interface"
+           ],
+           "l2-connection": {
+             "encapsulation": {
+               "type": "ietf-vpn-common:dot1q"
+             },
+             "bearer-reference": "Location-X-Line-114"
+           }
+         }
+       ]
+     }
+   }
+
+      Figure 53: Message Body of a Request to Create an AC to Connect
+                                 to an IXP
+
+   Figure 54 shows the received response with the required information
+   for the activation of the AC.
+
+   {
+     "ietf-ac-svc:attachment-circuits": {
+       "ac": [
+         {
+           "name": "Attachment Circuit 1",
+           "customer-name": "Network A",
+           "description": "An AC to IXP SW in Location X",
+           "role": "ietf-ac-common:public-nni",
+           "actual-start": "2025-12-12T05:00:00.00Z",
+           "peer-sap-id": [
+             "asbr-1-interface"
+           ],
+           "l2-connection": {
+             "encapsulation": {
+               "type": "ietf-vpn-common:dot1q",
+               "dot1q": {
+                 "tag-type": "ietf-vpn-common:c-vlan",
+                 "cvlan-id": 114
+               }
+             },
+             "bearer-reference": "Location-X-Line-114"
+           },
+           "ip-connection": {
+             "ipv4": {
+               "prefix-length": 24,
+               "address": [
+                 {
+                   "address-id": "1",
+                   "customer-address": "192.0.2.1"
+                 }
+               ]
+             }
+           }
+         }
+       ]
+     }
+   }
+
+     Figure 54: Message Body of a Response to an AC Request to Connect
+                                 to an IXP
+
+   Once the ACs are established, BGP peering sessions can be configured
+   between routers of the participating networks.  BGP sessions can be
+   established via a route server or between two networks.  For the sake
+   of illustration, let us assume that BGP sessions are established
+   directly between two network.  Figure 55 shows an example of a
+   request to add a BGP session to an existing AC.  The properties of
+   that AC are not repeated in this request because that information is
+   already communicated during the creation of the AC.
+
+   {
+     "ietf-ac-svc:attachment-circuits": {
+       "ac": [
+         {
+           "name": "Attachment Circuit 1",
+           "routing-protocols": {
+             "routing-protocol": [
+               {
+                 "id": "BGP",
+                 "type": "ietf-vpn-common:bgp-routing",
+                 "bgp": {
+                   "neighbor": [
+                     {
+                       "id": "Session-Network-B",
+                       "remote-address": "192.0.2.1",
+                       "local-as": 65537,
+                       "peer-as": 65536,
+                       "address-family": "ietf-vpn-common:ipv4",
+                       "authentication": {
+                         "enabled": true,
+                         "keying-material": {
+                           "key-id": 1,
+                           "key": "test##"
+                         }
+                       },
+                       "status": {
+                         "admin-status": {
+                           "status": "ietf-vpn-common:admin-up"
+                         }
+                       }
+                     }
+                   ]
+                 }
+               }
+             ]
+           }
+         }
+       ]
+     }
+   }
+
+     Figure 55: Message Body of a Request to Create a BGP Session over
+                                   an AC
+
+   Figure 56 provides the example of a response which indicates that the
+   request is awaiting validation.  The response includes also a server-
+   assigned reference for this BGP session.
+
+   =============== NOTE: '\' line wrapping per RFC 8792 ================
+
+   {
+     "ietf-ac-svc:attachment-circuits": {
+       "ac": [
+         {
+           "name": "Attachment Circuit 1",
+           "role": "ietf-ac-common:public-nni",
+           "routing-protocols": {
+             "routing-protocol": [
+               {
+                 "id": "BGP",
+                 "type": "ietf-vpn-common:bgp-routing",
+                 "bgp": {
+                   "neighbor": [
+                     {
+                       "id": "Session-Network-B",
+                       "server-reference": "peering-svc-45857",
+                       "local-address": "192.0.2.2",
+                       "remote-address": "192.0.2.1",
+                       "local-as": 65537,
+                       "peer-as": 65536,
+                       "address-family": "ietf-vpn-common:ipv4",
+                       "authentication": {
+                         "enabled": true,
+                         "keying-material": {
+                           "key-id": 1,
+                           "key": "test##"
+                         }
+                       },
+                       "status": {
+                         "admin-status": {
+                           "status": "ietf-ac-common:awaiting-\
+                                                             validation"
+                         }
+                       }
+                     }
+                   ]
+                 }
+               }
+             ]
+           }
+         }
+       ]
+     }
+   }
+
+      Figure 56: Message Body of a Response for a BGP Session Awaiting
+                                 Validation
+
+   Once validation is accomplished, a status update is communicated back
+   to the requestor.  The BGP session can then be established over the
+   AC.  The BGP session configuration includes parameters such as
+   neighbor IP addresses, ASNs, authentication settings (if required),
+   etc.  The configuration is triggered at each side of the BGP
+   connection.
+
+   =============== NOTE: '\' line wrapping per RFC 8792 ================
+
+   {
+     "ietf-ac-svc:routing-protocols": {
+       "routing-protocol": [
+         {
+           "id": "BGP",
+           "type": "ietf-vpn-common:bgp-routing",
+           "bgp": {
+             "neighbor": [
+               {
+                 "id": "Session-Network-B",
+                 "server-reference": "peering-svc-45857",
+                 "local-address": "192.0.2.2",
+                 "remote-address": "192.0.2.1",
+                 "local-as": 65537,
+                 "peer-as": 65536,
+                 "address-family": "ietf-vpn-common:ipv4",
+                 "authentication": {
+                   "enabled": true,
+                   "keying-material": {
+                     "key-id": 1,
+                     "key": "test##"
+                   }
+                 },
+                 "status": {
+                   "admin-status": {
+                     "status": "ietf-ac-common:up"
+                   }
+                 }
+               },
+               {
+                 "id": "Session-Network-C",
+                 "server-reference": "peering-svc-7866",
+                 "local-address": "192.0.2.3",
+                 "remote-address": "192.0.2.1",
+                 "local-as": 65538,
+                 "peer-as": 65536,
+                 "address-family": "ietf-vpn-common:ipv4",
+                 "authentication": {
+                   "enabled": true,
+                   "keying-material": {
+                     "key-id": 1,
+                     "key": "##test##"
+                   }
+                 },
+                 "status": {
+                   "admin-status": {
+                     "status": "ietf-ac-common:up"
+                   }
+                 }
+               },
+               {
+                 "_comment": "list of other active BGP sessions over \
+                                                                this AC"
+               }
+             ]
+           }
+         }
+       ]
+     }
+   }
+
+       Figure 57: Message Body of a Response to Report All Active BGP
+                            sessions over an AC
+
+A.11.  Connectivity of Cloud Network Functions
+
+A.11.1.  Scope
+
+   This section demonstrates how the AC service model permits to manage
+   connectivity requirements for complex Network Functions (NFs) -
+   containerized or virtualized - that are typically deployed in Telco
+   networks.  This integration leverages the concept of "parent AC" to
+   decouple physical and logical connectivity so that several ACs can
+   shares Layer 2 and Layer 3 resources.  This approach provides
+   flexibility, scalability, and API stability.
+
+      NF is used to refer to the SF defined [RFC7665].  NF is used here
+      as this term is widely used outside the IETF.
+
+   The NFs have the following characteristics:
+
+   *  The NF is distributed on a set of compute nodes with scaled-out
+      and redundant instances.
+
+   *  The NF has two distinct type of instances: user plane ("nf-up")
+      and routing control plane ("nf-cp").
+
+   *  The User plane component can be distributed among the first 8
+      compute nodes ("compute-01" to "compute-08") to achieve high
+      performance.
+
+   *  The Control plane is deployed in a redundant fashion on two
+      instances running on distinct compute nodes ("compute-09" and
+      "compute-10").
+
+   *  The NF is attached to distinct networks, each making use of a
+      dedicated VLAN.  These VLANs are therefore instantiated as
+      separate ACs.  From a realization standpoint, the NF interface
+      connectivity is generally provided thanks to MacVLAN or Single
+      Root I/O Virtualization (SR-IOV).  For the sake of simplicity only
+      two VLANs are presented in this example, additional VLANs are
+      configured following a similar logic.
+
+A.11.2.  Physical Infrastructure
+
+   Figure 58 describes the physical infrastructure.  The compute nodes
+   (customer) are attached to the provider infrastructure thanks to a
+   set of physical links on which attachment circuits are provisioned
+   (i.e., "compute-XX-nicY").  The provider infrastructure can be
+   realized in multiple ways, such as IP Fabric, Layer 2/Layer 3 Edge
+   Routers.  This document does not intend to detail these aspects.
+
+                                          ┌ - - - - - - - - - - - - - ┐
+    ┌ - - - - - -        bearer =               ┌--------┐
+                 |    compute-01-nic1     |     │        │            |
+    | compute-01  ------------------------      └--------┘
+                 |                        |     ┌--------┐ ┌--------┐ |
+    └ - - - - - -                               │        │ │        │
+    ┌ - - - - - -        bearer =         |     └--------┘ └--------┘ |
+                 |    compute-02-nic2           ┌--------┐ ┌--------┐
+    | compute-02  ------------------------|     │        │ │        │ |
+                 |                              └--------┘ └--------┘
+    └ - - - - - -                         |     ┌--------┐            |
+                                                │        │
+                           [...]          |     └--------┘            |
+
+                                          |                           |
+   ┌ - - - - - - ┐       bearer =               Provider Network
+                      compute-10-nic0     |       Infrastructure      |
+   | compute-10  |------------------------     (IP Fabric, Gateways
+                                          |            etc.)          |
+   └ - - - - - - ┘
+                                          └ - - - - - - - - - - - - - ┘
+
+         Figure 58: Example Physical Topology for Cloud Deployment
+
+A.11.3.  NFs Deployment
+
+   The NFs are deployed on this infrastructure in the following way:
+
+   *  Configuration of a parent AC as a centralized attachment for "vlan
+      100".  The parent AC captures Layer 2 and Layer 3 properties for
+      this VLAN: vlan-id, IP default gateway and subnet, IP address pool
+      for NFs endpoints, static routes with BFD to user plane and BGP
+      configuration to control plane NFs.
+
+   *  Configuration of a parent AC as a centralized attachment for "vlan
+      200".  This vlan is for Layer 2 connectivity between NFs (no IP
+      configuration in the provider network).
+
+   *  "Child ACs" binding bearers to parent ACs for "vlan 100" and "vlan
+      200".
+
+   *  The deployment deploys the network service to all compute nodes
+      ("compute-01" to "compute-10"), even though the NF is not
+      instantiated on "compute-07"/"compute-08".  This approach permits
+      to handle compute failures and scale-out scenarios in a reactive
+      and flexible fashion thanks to a pre-provisioned networking logic.
+
+                            ┌---------------------------------------┐
+                            |VLAN 100:                              |
+                            |                                       |
+                            |Static route to virtual BGP NH in user |
+                            |plane instances NF with BFD protection:|
+                            |                                       |
+                            |- 198.51.100.100/32 via 192.0.2.1      |
+                            |- 198.51.100.100/32 via 192.0.2.2      |
+                            |...                                    |
+                            |- 198.51.100.100/32 via 192.0.2.8      |
+                            └---------------------------------------┘
+                                                  |
+                 vlan 100 IP subnet          ┌ - -|- - - - - - - - - ┐
+                     192.0.2.0/24                 └-------┐
+    ┌ - - - -                                |            |          |
+     ┌------┐|.1     <- bfd ->                            |
+    ||nf-up1| --------vlan-100---------------|            ▼          |
+     |      ||--------vlan-200---------------   ┌------------------┐
+    |└------┘                                |  | Bridge vlan 100  | |
+    compute-01                                  |     (l2/l3)      |
+    ┌ - - - -                                |  |   IP gateway:    | |
+     ┌------┐|.2     <- bfd ->                  |  192.0.2.254/24  |
+    ||nf-up2| --------vlan-100---------------|  └------------------┘ |
+     |      ||--------vlan-200---------------   ┌------------------┐
+    |└------┘                                |  |                  | |
+    compute-02                                  | Bridge vlan 200  |
+                        [...]                |  |    (l2 only)     | |
+    ┌ - - - -                                   |                  |
+     ┌------┐|.6     <- bfd ->               |  └------------------┘ |
+    ||nf-up6| --------vlan-100---------------
+     |      ||--------vlan-200---------------|                       |
+    |└------┘
+    compute-06                               |                       |
+     ┌ - - - ┐
+              ---------vlan-100--------------|                       |
+     |       |---------vlan-200--------------
+    compute-07                               |                       |
+     ┌ - - - ┐
+              ---------vlan-100--------------|                       |
+     |       |---------vlan-200--------------
+    compute-08                               |                       |
+    ┌ - - - - <----------BGP-------------->
+     ┌------┐|.9                       .252  |                       |
+    ||nf-cp1| --------vlan-100---------------
+     |      ||--------vlan-200---------------|                       |
+    |└------┘
+    compute-09                               |                       |
+    ┌ - - - - <-----------BGP-------------->
+     ┌------┐|.10                       .253 |                       |
+    ||nf-cp2| ---------vlan-100--------------
+     |      ||---------vlan-200--------------└ - - - - - - - - - - - ┘
+    |└------┘
+    compute-10
+    ┌-----------------------------------┐
+    |nf-cp routing for VLAN 100         |
+    |advertises pools with 1:N backup   |
+    |route.                             |
+    |BGP UPDATE:                        |
+    |203.0.113.0/24, NH = 198.51.100.100| ---->
+    |203.0.113.0/28, NH = 192.0.2.1     |
+    |203.0.113.16/28, NH = 192.0.2.2    |
+    |...                                |
+    |203.0.113.80/28, NH = 192.0.2.6    |
+    |203.0.113.96/28, NH = 192.0.2.7    |
+    └-----------------------------------┘
+
+             Figure 59: Logical Topology of the NFs Deployment
+
+   For readability the payload is displayed as single JSON file
+   (Figure 60).  In practice, several API calls may take place to
+   initialize these resources (e.g., GET requests from the customer to
+   retrieve the IP address pools for NFs on "vlan 100" thanks to parent
+   configuration and BGP configuration, and POST extra routes for user
+   planes and BFD).
+
+   Note that no individual IP address is assigned in the data model for
+   the NF user plane instances (i.e., no "customer-address" in the Child
+   AC).  The assignment of IP addresses to the NF endpoints is managed
+   by the Cloud Infrastructure IPAM based on the customer-addresses IP
+   address pool "192.0.2.1-200".  Like in any standard LAN-facing
+   scenario, it is assumed that the actual binding of IP endpoints to
+   logical attachments (here Child ACs) relies on a dedicated protocol
+   logic (typically, ARP or NDP) and is not captured in the data model.
+   Hence, the IP addresses displayed for NF user plane instances are
+   simply examples of a realization approach.  Note also that the
+   Control Plane is defined with static IP address assignment on a given
+   AC/bearer to illustrate another deployment alternative.
+
+   =============== NOTE: '\' line wrapping per RFC 8792 ================
+
+   {
+     "ietf-ac-svc:specific-provisioning-profiles": {
+       "valid-provider-identifiers": {
+         "failure-detection-profile-identifier": [
+           {
+             "id": "single-hop-bfd-user-plane"
+           }
+         ]
+       }
+     },
+     "ietf-ac-svc:attachment-circuits": {
+       "ac": [
+         {
+           "name": "parent-vlan-100",
+           "description": "This parent represents a bridge with L3 \
+                             interface (IRB) to connect NF in vlan 100",
+           "l2-connection": {
+             "encapsulation": {
+               "type": "ietf-vpn-common:dot1q",
+               "dot1q": {
+                 "cvlan-id": 100
+               }
+             }
+           },
+           "ip-connection": {
+             "ipv4": {
+               "virtual-address": "192.0.2.254",
+               "prefix-length": 24,
+               "customer-addresses": {
+                 "address-pool": [
+                   {
+                     "pool-id": "pool-1",
+                     "start-address": "192.0.2.1",
+                     "end-address": "192.0.2.200"
+                   }
+                 ]
+               }
+             }
+           },
+           "routing-protocols": {
+             "routing-protocol": [
+               {
+                 "id": "1",
+                 "type": "ietf-vpn-common:static-routing",
+                 "static": {
+                   "cascaded-lan-prefixes": {
+                     "ipv4-lan-prefixes": [
+                       {
+                         "lan": "198.51.100.100/32",
+                         "next-hop": "192.0.2.1",
+                         "lan-tag": "virtual-next-hop",
+                         "failure-detection-profile": "single-hop-bfd-\
+                                                             user-plane"
+                       },
+                       {
+                         "lan": "198.51.100.100/32",
+                         "next-hop": "192.0.2.2",
+                         "lan-tag": "virtual-next-hop",
+                         "failure-detection-profile": "single-hop-bfd-\
+                                                             user-plane"
+                       },
+                       {"_comment": "192.0.2.3-192.0.2.7 are not \
+                                                            displayed"},
+                       {
+                         "lan": "198.51.100.100/32",
+                         "next-hop": "192.0.2.8",
+                         "lan-tag": "virtual-next-hop",
+                         "failure-detection-profile": "single-hop-bfd-\
+                                                             user-plane"
+                       }
+                     ]
+                   }
+                 }
+               },
+               {
+                 "id": "2",
+                 "type": "ietf-vpn-common:bgp-routing",
+                 "bgp": {
+                   "peer-groups": {
+                     "peer-group": [
+                       {
+                         "name": "peer-nf-cp-vlan-100-gw1",
+                         "local-as": 65536,
+                         "peer-as": 65537,
+                         "local-address": "192.0.2.252"
+                       },
+                       {
+                         "name": "peer-nf-cp-vlan-100-gw2",
+                         "local-as": 65536,
+                         "peer-as": 65537,
+                         "local-address": "192.0.2.253"
+                       }
+                     ]
+                   },
+                   "neighbor": [
+                     {
+                       "id": "gw1-cp1",
+                       "remote-address": "192.0.2.101",
+                       "peer-group": "peer-nf-cp-vlan-100-gw1"
+                     },
+                     {
+                       "id": "gw1-cp2",
+                       "remote-address": "192.0.2.102",
+                       "peer-group": "peer-nf-cp-vlan-100-gw1"
+                     },
+                     {
+                       "id": "gw2-cp1",
+                       "remote-address": "192.0.2.101",
+                       "peer-group": "peer-nf-cp-vlan-100-gw1"
+                     },
+                     {
+                       "id": "gw2-cp2",
+                       "remote-address": "192.0.2.102",
+                       "peer-group": "peer-nf-cp-vlan-100-gw1"
+                     }
+                   ]
+                 }
+               }
+             ]
+           }
+         },
+         {
+           "name": "parent-vlan-200",
+           "description": "This parent represents a bridge that \
+                                             connects a NF in vlan 200",
+           "l2-connection": {
+             "encapsulation": {
+               "type": "ietf-vpn-common:dot1q",
+               "dot1q": {
+                 "cvlan-id": 200
+               }
+             }
+           }
+         },
+         {
+           "name": "ac-nf-up-01-vlan-100",
+           "description": "attachment to Network Function NF-up \
+                                                instance 1 in vlan 100",
+           "ac-parent-ref": "parent-vlan-100",
+           "l2-connection": {
+             "bearer-reference": "compute-01-nic1"
+           }
+         },
+         {
+           "name": "ac-nf-up-02-vlan-100",
+           "description": "attachment to Network Function NF-up \
+                                                instance 2 in vlan 100",
+           "ac-parent-ref": "parent-vlan-100",
+           "l2-connection": {
+             "bearer-reference": "compute-02-nic2"
+           }
+         },
+         {"_comment": "ac-nf-up-03-vlan-100 to ac-nf-up-07-vlan-100 \
+                                                           are hidden"},
+         {
+           "name": "ac-nf-up-08-vlan-100",
+           "description": "attachment to Network Function NF-up \
+                                               instance 10 in vlan 100",
+           "ac-parent-ref": "parent-vlan-100",
+           "l2-connection": {
+             "bearer-reference": "compute-08-nic1"
+           }
+         },
+         {
+           "name": "ac-nf-cp-01-vlan-100",
+           "description": "attachment to Network Function NF-CP \
+                                                instance 1 in vlan 100",
+           "ac-parent-ref": "parent-vlan-100",
+           "l2-connection": {
+             "bearer-reference": "compute-09-nic0"
+           },
+           "ip-connection": {
+             "ipv4": {
+               "prefix-length": 24,
+               "address": [
+                 {
+                   "address-id": "1",
+                   "customer-address": "192.0.2.101"
+                 }
+               ]
+             }
+           }
+         },
+         {
+           "name": "ac-nf-cp-02-vlan-100",
+           "description": "attachment to Network Function NF-CP \
+                                                instance 2 in vlan 100",
+           "ac-parent-ref": "parent-vlan-100",
+           "l2-connection": {
+             "bearer-reference": "compute-10-nic0"
+           },
+           "ip-connection": {
+             "ipv4": {
+               "prefix-length": 24,
+               "address": [
+                 {
+                   "address-id": "1",
+                   "customer-address": "192.0.2.102"
+                 }
+               ]
+             }
+           }
+         },
+         {
+           "name": "ac-nf-up-1-vlan-200",
+           "description": "attachment to Network Function NF-up \
+                                                instance 1 in vlan 200",
+           "ac-parent-ref": "parent-vlan-200",
+           "l2-connection": {
+             "bearer-reference": "compute-01-nic1"
+           }
+         },
+         {"_comment": "ac-nf-up-2-vlan-200 to ac-nf-cp-01-vlan-200 are \
+                                                        not displayed"},
+         {
+           "name": "ac-nf-cp-2-vlan-200",
+           "description": "attachment to Network Function NF-CP \
+                                                instance 2 in vlan 200",
+           "ac-parent-ref": "parent-vlan-200",
+           "l2-connection": {
+             "bearer-reference": "compute-10-nic0"
+           }
+         }
+       ]
+     }
+   }
+
+        Figure 60: Message Body for the Configuration of The NF ACs
+
+A.11.4.  NF Scale-Out
+
+   Assuming a failure of "compute-01", the instance "nf-up-1" can be
+   redeployed to "compute-07" by the NF/Cloud Orchestration.
+   Additionally, the NF can be scaled-out thanks to the creation of an
+   extra instance "nf-up7" on "compute-08".  Since connectivity is pre-
+   provisioned, these operations happen without any API calls.  In other
+   words, this redeployment is transparent from the perspective of the
+   configuration of the provider network.
+
+                                             ┌ - - - - - - - - - - - ┐
+
+    ┌ - - - -┐                               |  ┌------------------┐ |
+                                                |                  |
+    |status= |--------vlan-100---------------|  | Bridge vlan 100  | |
+       DOWN   --------vlan-200---------------   |                  |
+    |        |                               |  └------------------┘ |
+    compute-01
+         |                                   |  ┌------------------┐ |
+         |                                      |                  |
+         |                                   |  | Bridge vlan 200  | |
+         |                                      |                  |
+         |                                   |  └------------------┘ |
+         |
+         |              [...]                |                       |
+         ▼
+    ┌ - - - -                                |                       |
+     ┌------┐|.1     < - bfd - >
+    ||nf-up1| ---------vlan-100--------------|  nf-up1 moved to      |
+     |      ||---------vlan-200--------------      compute-07
+    |└------┴                                |                       |
+    compute-07
+    ┌ - - - -                                |     nf-up7 on         |
+     ┌------┐|.7     < - bfd - >                  compute-08
+    ||ng-up7| ---------vlan-100--------------|    created for        |
+     |      ||---------vlan-200--------------      scale-out
+    |└------┴                                |                       |
+    compute-08                                - - - - - - - - - - - -
+
+            Figure 61: Example of Compute Failure and Scale-out
+
+   Finally, the addition or deletion of compute nodes in the deployment
+   ("compute-11", "compute-12", etc.) involves merely changes on Child
+   ACs and possible routing on the parent AC.  In any case, the parent
+   AC is a stable identifier, which can be consumed as a reference by
+   end-to-end service models for VPN configuration such as
+   [I-D.ietf-opsawg-ac-lxsm-lxnm-glue], Slice Service
+   [I-D.ietf-teas-ietf-network-slice-nbi-yang], etc.  This decoupling to
+   a stable identifier provides great benefits in terms of scalability
+   and flexibility since once the reference with the parent AC is
+   implemented, no API call involving the VPN model is needed for any
+   modification in the cloud.
+
 Acknowledgments
 
-   This document leverages [RFC9182] and [RFC9291].
+   This document leverages [RFC9182] and [RFC9291].  Thanks to Gyan
+   Mishra for the review.
 
    Thanks to Ebben Aries for the YANG Doctors review and for providing
    [Instance-Data].
