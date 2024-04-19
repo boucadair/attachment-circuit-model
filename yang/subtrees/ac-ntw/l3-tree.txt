@@ -81,6 +81,7 @@
        |        |           +--rw server-ip-address*
        |        |                   inet:ipv6-address
        |        +--:(static-addresses)
+       |           +--rw address* [address-id]
        |              +--rw address-id                       string
        |              +--rw customer-address?
        |              |       inet:ipv6-address
