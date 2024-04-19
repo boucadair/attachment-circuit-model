@@ -2039,7 +2039,8 @@ Table of Contents
 
 6.1.  The Bearer Service ("ietf-bearer-svc") YANG Module
 
-   This module uses types defined in [RFC6991] and [RFC9181].
+   This module uses types defined in [RFC6991], [RFC9181], and
+   [I-D.ietf-opsawg-teas-common-ac].
 
    <CODE BEGINS> file "ietf-bearer-svc@2023-11-13.yang"
    module ietf-bearer-svc {
