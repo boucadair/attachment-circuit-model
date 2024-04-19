@@ -10,8 +10,8 @@ module: ietf-ac-ntw
        |  ...
        +--rw routing-protocols
        |  +--rw routing-protocol* [id]
-       |     +--rw id                  string
-       |     +--rw type?               identityref
+       |     +--rw id                 string
+       |     +--rw type?              identityref
        |     +--rw routing-profile* [routing-profile-ref]
        |     |  +--rw routing-profile-ref    leafref
        |     |  +--rw network-ref?
@@ -19,17 +19,19 @@ module: ietf-ac-ntw
        |     |  +--rw type?                  identityref
        |     +--rw static
        |     |  +--rw cascaded-lan-prefixes
-       |     |     +--rw ipv4-lan-prefixes* [lan next-hop]
+       |     |     +--rw ipv4-lan-prefix* [lan next-hop]
        |     |     |       {vpn-common:ipv4}?
        |     |     |  +--rw lan           inet:ipv4-prefix
        |     |     |  +--rw lan-tag?      string
        |     |     |  +--rw next-hop      union
        |     |     |  +--rw metric?       uint32
-       |     |     +--rw bfd {vpn-common:bfd}?
-       |     |     |  +--rw enabled?            boolean
-       |     |     |  +--rw failure-detection-profile-ref?   leafref
-       |     |     |  +--rw network-ref?
-       |     |     |          -> /nw:networks/network/network-id
+       |     |     |  +--rw bfd {vpn-common:bfd}?
+       |     |     |  |  +--rw enabled?
+       |     |     |  |  |       boolean
+       |     |     |  |  +--rw failure-detection-profile-ref?
+       |     |     |  |  |       leafref
+       |     |     |  |  +--rw network-ref?
+       |     |     |  |          -> /nw:networks/network/network-id
        |     |     |  +--rw preference?   uint32
        |     |     |  +--rw status
        |     |     |     +--rw admin-status
@@ -38,15 +40,17 @@ module: ietf-ac-ntw
        |     |     |     +--ro oper-status
        |     |     |        +--ro status?        identityref
        |     |     |        +--ro last-change?   yang:date-and-time
-       |     |     +--rw ipv6-lan-prefixes* [lan next-hop]
+       |     |     +--rw ipv6-lan-prefix* [lan next-hop]
        |     |             {vpn-common:ipv6}?
-       |     |        +--rw lan           inet:ipv4-prefix
+       |     |        +--rw lan           inet:ipv6-prefix
        |     |        +--rw lan-tag?      string
        |     |        +--rw next-hop      union
        |     |        +--rw metric?       uint32
        |     |        +--rw bfd {vpn-common:bfd}?
-       |     |        |  +--rw enabled?            boolean
-       |     |        |  +--rw failure-detection-profile-ref?   leafref
+       |     |        |  +--rw enabled?
+       |     |        |  |       boolean
+       |     |        |  +--rw failure-detection-profile-ref?
+       |     |        |  |       leafref
        |     |        |  +--rw network-ref?
        |     |        |          -> /nw:networks/network/network-id
        |     |        +--rw preference?   uint32
