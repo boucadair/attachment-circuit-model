@@ -2679,7 +2679,7 @@ a parent AC can be defined with a set of stable and common information, while
         |     |  +--rw type?   identityref
         |     +--rw static
         |     |  +--rw cascaded-lan-prefixes
-        |     |     +--rw ipv4-lan-prefixes* [lan next-hop]
+        |     |     +--rw ipv4-lan-prefix* [lan next-hop]
         |     |     |       {vpn-common:ipv4}?
         |     |     |  +--rw lan
         |     |     |  |       inet:ipv4-prefix
@@ -2696,7 +2696,7 @@ a parent AC can be defined with a set of stable and common information, while
         |     |     |     +--ro oper-status
         |     |     |        +--ro status?        identityref
         |     |     |        +--ro last-change?   yang:date-and-time
-        |     |     +--rw ipv6-lan-prefixes* [lan next-hop]
+        |     |     +--rw ipv6-lan-prefix* [lan next-hop]
         |     |             {vpn-common:ipv6}?
         |     |        +--rw lan
         |     |        |       inet:ipv6-prefix
