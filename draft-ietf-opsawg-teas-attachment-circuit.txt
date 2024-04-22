@@ -5,14 +5,14 @@
 OPSAWG                                                 M. Boucadair, Ed.
 Internet-Draft                                                    Orange
 Intended status: Standards Track                         R. Roberts, Ed.
-Expires: 21 October 2024                                         Juniper
+Expires: 24 October 2024                                         Juniper
                                                            O. G. D. Dios
                                                               Telefonica
                                                            S. B. Giraldo
                                                                    Nokia
                                                                    B. Wu
                                                      Huawei Technologies
-                                                           19 April 2024
+                                                           22 April 2024
 
 
   YANG Data Models for Bearers and 'Attachment Circuits'-as-a-Service
@@ -62,7 +62,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 21 October 2024.
+   This Internet-Draft will expire on 24 October 2024.
 
 Copyright Notice
 
@@ -2909,7 +2909,7 @@ Table of Contents
        description
          "Configuration specific to IPv4 static routing with
           BFD.";
-       list ipv4-lan-prefixes {
+       list ipv4-lan-prefix {
          if-feature "vpn-common:ipv4";
          key "lan next-hop";
          description
@@ -2929,7 +2929,7 @@ Table of Contents
        description
          "Configuration specific to IPv6 static routing with
           BFD.";
-       list ipv6-lan-prefixes {
+       list ipv6-lan-prefix {
          if-feature "vpn-common:ipv6";
          key "lan next-hop";
          description
@@ -3903,9 +3903,9 @@ Table of Contents
               Boucadair, M., Roberts, R., de Dios, O. G., Barguil, S.,
               and B. Wu, "A Common YANG Data Model for Attachment
               Circuits", Work in Progress, Internet-Draft, draft-ietf-
-              opsawg-teas-common-ac-09, 11 April 2024,
+              opsawg-teas-common-ac-10, 19 April 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
-              teas-common-ac-09>.
+              teas-common-ac-10>.
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
@@ -4059,9 +4059,9 @@ Table of Contents
               Boucadair, M., Roberts, R., de Dios, O. G., Barguil, S.,
               and B. Wu, "A Network YANG Data Model for Attachment
               Circuits", Work in Progress, Internet-Draft, draft-ietf-
-              opsawg-ntw-attachment-circuit-08, 11 April 2024,
+              opsawg-ntw-attachment-circuit-09, 19 April 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
-              ntw-attachment-circuit-08>.
+              ntw-attachment-circuit-09>.
 
    [I-D.ietf-teas-ietf-network-slice-nbi-yang]
               Wu, B., Dhody, D., Rokui, R., Saad, T., and J. Mullooly,
