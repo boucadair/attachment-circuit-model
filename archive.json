@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-04-21T00:39:29.249638+00:00",
+  "timestamp": "2024-04-23T00:36:47.641076+00:00",
   "repo": "boucadair/attachment-circuit-model",
   "labels": [
     {
@@ -2738,6 +2738,24 @@
           "updatedAt": "2024-04-15T11:59:24Z"
         }
       ]
+    },
+    {
+      "number": 216,
+      "id": "I_kwDOIiAkrc6GeAWo",
+      "title": "bgp peer group as a container at the level of ac-profile",
+      "url": "https://github.com/boucadair/attachment-circuit-model/issues/216",
+      "state": "OPEN",
+      "author": "boucadair",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [
+        "ac-ntw"
+      ],
+      "body": "consider a separate module for peer groups",
+      "createdAt": "2024-04-22T09:12:46Z",
+      "updatedAt": "2024-04-22T09:12:46Z",
+      "closedAt": null,
+      "comments": []
     }
   ],
   "pulls": [
