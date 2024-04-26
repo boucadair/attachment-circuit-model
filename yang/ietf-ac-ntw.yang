@@ -1070,6 +1070,7 @@ module ietf-ac-ntw {
       description
         "List of BGP peer groups uniquely identified by a name.";
      uses bgp-peer-group;
+    }
   }
 
   // RIP base parameters
