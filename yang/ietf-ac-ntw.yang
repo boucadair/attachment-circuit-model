@@ -1040,6 +1040,28 @@ module ietf-ac-ntw {
     }
   }
 
+  grouping bgp-base-peer-group {
+    description
+      "Grouping for a basic BGP peer group.";
+    leaf name {
+      type string;
+      description
+        "Name of the BGP peer-group";
+    }
+    uses bgp-base;
+  }
+
+  grouping bgp-base-peer-group-list {
+    description
+      "Grouping for a list of basic BGP peer groups.";
+    list peer-group {
+      key "name";
+      description
+        "List of BGP peer groups uniquely identified by a name.";
+     uses bgp-base-peer-group;
+    }
+  }
+
   grouping bgp-peer-group {
     description
       "Grouping for BGP peer group.";
@@ -1172,7 +1194,7 @@ module ietf-ac-ntw {
         container peer-groups {
           description
             "Lists a set of BGP peer groups.";
-          uses bgp-peer-group-list;
+          uses bgp-base-peer-group-list;
         }
       }
       container ospf {
