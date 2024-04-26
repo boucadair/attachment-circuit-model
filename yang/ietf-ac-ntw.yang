@@ -1365,7 +1365,7 @@ module ietf-ac-ntw {
             key "lan next-hop";
             description
               "List of LAN prefixes for the site.";
-            uses ac-common:ipv4-static-rtg-entry;
+            uses ac-common:ipv6-static-rtg-entry;
             uses bfd-routing;
             leaf preference {
               type uint32;
