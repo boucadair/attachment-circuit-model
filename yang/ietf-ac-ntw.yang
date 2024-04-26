@@ -178,7 +178,6 @@ module ietf-ac-ntw {
     uses nw:network-ref;
   }
 
-
   grouping failure-detection-profile-reference {
     description
       "This grouping can be used to reference a failure detection
@@ -1041,6 +1040,38 @@ module ietf-ac-ntw {
     }
   }
 
+  grouping bgp-peer-group {
+    description
+      "Grouping for BGP peer group.";
+    leaf name {
+      type string;
+      description
+        "Name of the BGP peer-group";
+    }
+    leaf local-address {
+      type union {
+        type inet:ip-address;
+        type if:interface-ref;
+      }
+    description
+      "Sets the local IP address to use for the BGP 
+       transport session. This may be expressed as either 
+       an IP address or a reference to an interface.";
+    }
+    uses bgp-base;
+    uses ac-common:bgp-authentication;
+  }
+
+  grouping bgp-peer-group-list {
+    description
+      "Grouping for a list of BGP peer groups.";
+    list peer-group {
+      key "name";
+      description
+        "List of BGP peer groups uniquely identified by a name.";
+     uses bgp-peer-group;
+  }
+
   // RIP base parameters
 
   grouping rip-base {
@@ -1137,7 +1168,11 @@ module ietf-ac-ntw {
         if-feature "vpn-common:rtg-bgp";
         description
           "Configuration specific to BGP.";
-        uses bgp-base;
+        container peer-groups {
+          description
+            "Lists a set of BGP peer groups.";
+          uses bgp-peer-group-list;
+        }
       }
       container ospf {
         when "derived-from-or-self(../type, "
@@ -1331,29 +1366,7 @@ module ietf-ac-ntw {
         container peer-groups {
           description
             "Configuration for BGP peer-groups";
-          list peer-group {
-            key "name";
-            description
-              "List of BGP peer-groups configured on the local 
-               system - uniquely identified by peer-group name";
-            leaf name {
-              type string;
-              description
-                "Name of the BGP peer-group";
-            }
-            leaf local-address {
-              type union {
-                type inet:ip-address;
-                type if:interface-ref;
-              }
-              description
-                "Sets the local IP address to use for the BGP 
-                 transport session. This may be expressed as either 
-                 an IP address or a reference to an interface.";
-            }
-            uses bgp-base;
-            uses ac-common:bgp-authentication;
-          }
+          uses bgp-peer-group-list;
         }
         list neighbor {
           key "remote-address";
