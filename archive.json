@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-04-25T00:39:09.118493+00:00",
+  "timestamp": "2024-04-28T00:40:09.906716+00:00",
   "repo": "boucadair/attachment-circuit-model",
   "labels": [
     {
@@ -2751,9 +2751,9 @@
       "labels": [
         "ac-ntw"
       ],
-      "body": "consider a separate module for peer groups",
+      "body": "or consider a separate module for peer groups??\r\n\r\nThe target use is to management of peerings/interconnections.",
       "createdAt": "2024-04-22T09:12:46Z",
-      "updatedAt": "2024-04-22T09:12:46Z",
+      "updatedAt": "2024-04-26T05:57:38Z",
       "closedAt": null,
       "comments": []
     }
@@ -8448,6 +8448,32 @@
           "updatedAt": "2024-04-15T13:06:57Z"
         }
       ],
+      "reviews": []
+    },
+    {
+      "number": 217,
+      "id": "PR_kwDOIiAkrc5tzRIm",
+      "title": "define peer groups as part of network-level AC profiles",
+      "url": "https://github.com/boucadair/attachment-circuit-model/pull/217",
+      "state": "OPEN",
+      "author": "boucadair",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-04-26T05:38:39Z",
+      "updatedAt": "2024-04-26T05:54:45Z",
+      "baseRepository": "boucadair/attachment-circuit-model",
+      "baseRefName": "main",
+      "baseRefOid": "942c44a5ffc33c804aed003384d6f0ee00083f93",
+      "headRepository": "boucadair/attachment-circuit-model",
+      "headRefName": "peer-groups-in-profiles",
+      "headRefOid": "5ed93a7cab8458a84696f76bc52236edd6c3818f",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
       "reviews": []
     }
   ]
