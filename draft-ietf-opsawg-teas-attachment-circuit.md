@@ -1380,8 +1380,8 @@ The NFs have the following characteristics:
 
 - The NF is distributed on a set of compute nodes with scaled-out and redundant instances.
 - The NF has two distinct type of instances: user plane ("nf-up") and routing control plane ("nf-cp").
-- The User plane component can be distributed among the first 8 compute nodes ("compute-01" to "compute-08") to achieve high performance.
-- The Control plane is deployed in a redundant fashion on two instances running on distinct compute nodes ("compute-09" and "compute-10").
+- The user plane component can be distributed among the first 8 compute nodes ("compute-01" to "compute-08") to achieve high performance.
+- The control plane is deployed in a redundant fashion on two instances running on distinct compute nodes ("compute-09" and "compute-10").
 - The NF is attached to distinct networks, each making use of a dedicated VLAN. These VLANs are therefore instantiated as separate ACs. From a realization standpoint, the NF interface connectivity is generally provided thanks to MacVLAN or Single Root I/O Virtualization (SR-IOV). For the sake of simplicity only two VLANs are presented in this example, additional VLANs are configured following a similar logic.
 
 ### Physical Infrastructure
@@ -1397,10 +1397,10 @@ The NFs have the following characteristics:
 
 The NFs are deployed on this infrastructure in the following way:
 
-* Configuration of a parent AC as a centralized attachment for "vlan 100". The parent AC captures Layer 2 and Layer 3 properties for this VLAN: vlan-id, IP default gateway and subnet, IP address pool for NFs endpoints, static routes with BFD to user plane and BGP configuration to control plane NFs.
+* Configuration of a parent AC as a centralized attachment for "vlan 100". The parent AC captures Layer 2 and Layer 3 properties for this VLAN: vlan-id, IP default gateway and subnet, IP address pool for NFs endpoints, static routes with BFD to user plane, and BGP configuration to control plane NFs. In addition, the IP addresses of the user plane ("nf-up") instances are protected using BFD.
 * Configuration of a parent AC as a centralized attachment for "vlan 200". This vlan is for Layer 2 connectivity between NFs (no IP configuration in the provider network).
 * "Child ACs" binding bearers to parent ACs for "vlan 100" and "vlan 200".
-* The deployment deploys the network service to all compute nodes ("compute-01" to "compute-10"), even though the NF is not instantiated on "compute-07"/"compute-08". This approach permits handling compute failures and scale-out scenarios in a reactive and flexible fashion thanks to a pre-provisioned networking logic.
+* The deployment of the network service to all compute nodes ("compute-01" to "compute-10"), even though the NF is not instantiated on "compute-07"/"compute-08". This approach permits handling compute failures and scale-out scenarios in a reactive and flexible fashion thanks to a pre-provisioned networking logic.
 
 ~~~~ aasvg
 {::include-fold ./figures/ac-parent-logical.txt}
@@ -1416,9 +1416,9 @@ Note that no individual IP address is assigned in the data model for the NF user
 ~~~~
 {: #parent-profile title="Message Body for the Configuration of The NF ACs"}
 
-### NF Scale-Out
+### NF Failure and Scale-Out
 
-Assuming a failure of "compute-01", the instance "nf-up-1" can be redeployed to "compute-07" by the NF/Cloud Orchestration. Additionally, the NF can be scaled-out thanks to the creation of an extra instance "nf-up7" on "compute-08". Since connectivity is pre-provisioned, these operations happen without any API calls. In other words, this redeployment is transparent from the perspective of the configuration of the provider network.
+Assuming a failure of "compute-01", the instance "nf-up-1" can be redeployed to "compute-07" by the NF/Cloud Orchestration. The NFs can be scaled-out thanks to the creation of an extra instance "nf-up7" on "compute-08". Since connectivity is pre-provisioned, these operations happen without any API calls. In other words, this redeployment is transparent from the perspective of the configuration of the provider network.
 
 ~~~~ aasvg
 {::include-fold ./figures/ac-parent-nf-lcm.txt}
