@@ -1281,7 +1281,7 @@ module ietf-ac-ntw {
         description
           "Configuration specific to VRRP.";
         reference
-          "RFC 5798: Virtual Router Redundancy Protocol (VRRP)
+          "RFC 9568: Virtual Router Redundancy Protocol (VRRP)
                      Version 3 for IPv4 and IPv6";
         leaf address-family {
           type identityref {
@@ -1553,7 +1553,7 @@ module ietf-ac-ntw {
         description
           "Configuration specific to VRRP.";
         reference
-          "RFC 5798: Virtual Router Redundancy Protocol (VRRP)
+          "RFC 9568: Virtual Router Redundancy Protocol (VRRP)
                      Version 3 for IPv4 and IPv6";
         leaf address-family {
           type identityref {
@@ -1581,7 +1581,7 @@ module ietf-ac-ntw {
             "Virtual IP addresses for a single VRRP
              group.";
           reference
-            "RFC 5798: Virtual Router Redundancy Protocol (VRRP)
+            "RFC 9568: Virtual Router Redundancy Protocol (VRRP)
                        Version 3 for IPv4 and IPv6, Sections 1.2
                        and 1.3";
         }
