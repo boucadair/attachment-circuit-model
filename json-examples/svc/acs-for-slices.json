@@ -26,7 +26,7 @@
               "type": "ietf-vpn-common:static-routing",
               "static": {
                 "cascaded-lan-prefixes": {
-                  "ipv4-lan-prefixes": [
+                  "ipv4-lan-prefix": [
                     {
                       "lan": "198.51.100.0/24",
                       "next-hop": "192.0.2.1",
