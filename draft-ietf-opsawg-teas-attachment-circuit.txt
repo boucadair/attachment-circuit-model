@@ -348,8 +348,8 @@ Table of Contents
       the same bearer (e.g., multiple VLANs on the same bearer that is
       provided by a physical link).
 
-   Customer Edge (CE):  Equipment that is dedicated to a particular
-      customer and is directly connected to one or more PEs via ACs.
+   Customer Edge (CE):  Equipment that is dedicated to a customer and is
+      connected to one or more PEs via ACs.
 
       A CE can be a router, a bridge, a switch, etc.
 
@@ -361,7 +361,7 @@ Table of Contents
       of the service network with the functionality that is needed to
       interface with the customer.
 
-      A PE is directly connected to one or more CEs via ACs.
+      A PE is connected to one or more CEs via ACs.
 
    Network controller:  Denotes a functional entity responsible for the
       management of the service provider network.
