@@ -56,7 +56,9 @@
                       "lan-tag": "virtual-next-hop",
                       "failure-detection-profile": "single-hop-bfd-user-plane"
                     },
-                    {"_comment": "192.0.2.3-192.0.2.7 are not displayed"},
+                    {
+                      "_comment": "192.0.2.3-192.0.2.7 are not displayed"
+                    },
                     {
                       "lan": "198.51.100.100/32",
                       "next-hop": "192.0.2.8",
@@ -117,18 +119,18 @@
           "bfd": {
             "session": [
               {
-                "remote-address": 192.0.2.1,
+                "remote-address": "192.0.2.1",
                 "failure-detection-profile": "single-hop-bfd-user-plane"
               },
               {
-                "remote-address": 192.0.2.2,
+                "remote-address": "192.0.2.2",
                 "failure-detection-profile": "single-hop-bfd-user-plane"
               },
               {
-                "_comment": "list more sessions"
+                "_comment": "192.0.2.3-192.0.2.9 sessions are not displayed"
               },
               {
-                "remote-address": 192.0.2.10,
+                "remote-address": "192.0.2.10",
                 "failure-detection-profile": "single-hop-bfd-user-plane"
               }
             ]
@@ -163,7 +165,9 @@
           "bearer-reference": "compute-02-nic2"
         }
       },
-      {"_comment": "ac-nf-up-03-vlan-100 to ac-nf-up-07-vlan-100 are hidden"},
+      {
+        "_comment": "ac-nf-up-03-vlan-100 to ac-nf-up-07-vlan-100 are hidden"
+      },
       {
         "name": "ac-nf-up-08-vlan-100",
         "description": "attachment to Network Function NF-up instance 10 in vlan 100",
@@ -218,7 +222,9 @@
           "bearer-reference": "compute-01-nic1"
         }
       },
-      {"_comment": "ac-nf-up-2-vlan-200 to ac-nf-cp-01-vlan-200 are not displayed"},
+      {
+        "_comment": "ac-nf-up-2-vlan-200 to ac-nf-cp-01-vlan-200 are not displayed"
+      },
       {
         "name": "ac-nf-cp-2-vlan-200",
         "description": "attachment to Network Function NF-CP instance 2 in vlan 200",
