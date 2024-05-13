@@ -168,8 +168,6 @@ The AC service model can be used in a variety of contexts, such as (but not limi
 * Interconnect provider networks (e.g., {{?RFC8921}} or {{?I-D.ramseyer-grow-peering-api}}). Such ACs are identified with a "role" set to "ac-common:nni" or "ac-common:public-nni". See {{sec-peering}} to illustrate the use of the AC model for peering.
 * Manage connectivity for complex containerized or virtualized functions in the cloud ({{sec-cloudified-nfs}}).
 
-The examples provided in {{examples}} use the IPv4 address blocks reserved for documentation {{?RFC5737}}, the IPv6 prefix reserved for documentation {{?RFC3849}}, and the Autonomous System (AS) numbers reserved for documentation {{?RFC5398}}.
-
 The YANG data models in this document conform to the Network Management Datastore Architecture (NMDA) defined in {{!RFC8342}}.
 
 ## Positioning ACaaS vs. Other Data Models
@@ -203,8 +201,20 @@ Bearer:
 : The operator allocates a unique bearer reference to identify a bearer within its network (e.g., customer line identifier). Such a reference can be retrieved by a customer and used in subsequent service placement requests to unambiguously identify where a service is to be bound.
 : The concept of bearer can be generalized to refer to the required underlying connection for the provisioning of an attachment circuit. One or multiple attachment circuits may be hosted over the same bearer (e.g., multiple VLANs on the same bearer that is provided by a physical link).
 
+Customer Edge (CE):
+:  Equipment that is dedicated to a particular customer and is directly connected to one or more PEs via ACs.
+:  A CE can be a router, a bridge, a switch, etc.
+
+Provider Edge (PE):
+: Equipment owned and managed by the service provider that can support multiple services for different customers.
+: Per {{Section 5.2 of ?RFC4026}}, a PE is a device located at the edge of the service network with the functionality that is needed to interface with the customer.
+: A PE is directly connected to one or more CEs via ACs.
+
 Network controller:
 : Denotes a functional entity responsible for the management of the service provider network.
+
+Network Function (NF):
+: Used to refer to the same concept as Service Function (SF) ({{Section 1.4 of ?RFC7665}}).
 
 Service orchestrator:
 : Refers to a functional entity that interacts with the customer of a network service. The service orchestrator is typically responsible for the attachment circuits, the PE selection, and requesting the activation of the requested service to a network controller.
@@ -265,7 +275,7 @@ To bind Layer 2 VPN or Layer 3 VPN services with ACs, "ietf-ac-glue" augments th
 
 * A single CE may terminate multiple ACs, which can be associated with the same bearer or distinct bearers.
 
-* Customers may request protection schemes in which the ACs associated with their endpoints are terminated by the same PE (e.g., CE#3), distinct PEs (e.g., CE#34), etc. The network provider uses this request to decide where to terminate the AC in the network provider network and also whether to enable specific capabilities (e.g., Virtual Router Redundancy Protocol (VRRP) {{?RFC5798}}). Note that placement constraints may also be requested during the instantiation of the underlying bearers ({{sec-bearer}}).
+* Customers may request protection schemes in which the ACs associated with their endpoints are terminated by the same PE (e.g., CE#3), distinct PEs (e.g., CE#34), etc. The network provider uses this request to decide where to terminate the AC in the network provider network and also whether to enable specific capabilities (e.g., Virtual Router Redundancy Protocol (VRRP) {{?RFC9568}}). Note that placement constraints may also be requested during the instantiation of the underlying bearers ({{sec-bearer}}).
 
 
 ~~~~ aasvg
@@ -755,7 +765,7 @@ The RIP tree structure is shown in {{rip-rtg-svc-tree}}.
 
 ##### VRRP {#sec-vrrp-rtg}
 
-The model supports the Virtual Router Redundancy Protocol (VRRP) {{?RFC5798}} on an AC ({{vrrp-rtg-svc-tree}}).
+The model supports the Virtual Router Redundancy Protocol (VRRP) {{?RFC9568}} on an AC ({{vrrp-rtg-svc-tree}}).
 
 ~~~~
 {::include ./yang/subtrees/svc/vrrp-rtg-stree.txt}
@@ -766,14 +776,14 @@ The following data nodes are supported:
 
 'address-family':
 : Indicates whether IPv4, IPv6, or both address
-      families are to be activated.  Note that VRRP version 3 {{!RFC5798}}
+      families are to be activated.  Note that VRRP version 3 {{!RFC9568}}
       supports both IPv4 and IPv6.
 
 'status':
 :  Indicates the status of the VRRP instance.
 
 Note that no authentication data node is included for VRRP, as there
-isn't any type of VRRP authentication at this time (see {{Section 9 of !RFC5798}}).
+isn't any type of VRRP authentication at this time (see {{Section 9 of !RFC9568}}).
 
 
 #### Operations, Administration, and Maintenance (OAM) {#sec-oam}
@@ -920,7 +930,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:
    'service-provisioning-profiles':
    : An attacker who has access to these data nodes may be able
    to manipulate service-specific policies to be applied for an AC.
-   : This container is defined with "nacm:default-deny- write" tagging.
+   : This container is defined with "nacm:default-deny-write" tagging.
 
    'ac':
    : An attacker who is able to access this data node can modify
@@ -959,8 +969,8 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:
    inherits the security considerations discussed in Section 5 of
    {{!RFC8177}}.  Also, these data nodes support supplying explicit keys as
    strings in ASCII format.  The use of keys in hexadecimal string
-   format would afford greater key entropy with the same number of key-
-   string octets.  However, such a format is not included in this
+   format would afford greater key entropy with the same number of
+   key-string octets.  However, such a format is not included in this
    version of the AC service model because it is not supported by the underlying
    device modules (e.g., {{?RFC8695}}).
 
@@ -1362,7 +1372,7 @@ Once validation is accomplished, a status update is communicated back to the req
 
 ### Scope
 
-This section demonstrates how the AC service model permits to manage connectivity requirements for complex Network Functions (NFs) - containerized or virtualized -  that are typically deployed in Telco networks. This integration leverages the concept of "parent AC" to decouple physical and logical connectivity so that several ACs can shares Layer 2 and Layer 3 resources. This approach provides flexibility, scalability, and API stability.
+This section demonstrates how the AC service model permits managing connectivity requirements for complex Network Functions (NFs) - containerized or virtualized -  that are typically deployed in Telco networks. This integration leverages the concept of "parent AC" to decouple physical and logical connectivity so that several ACs can shares Layer 2 and Layer 3 resources. This approach provides flexibility, scalability, and API stability.
 
 > NF is used to refer to the SF defined {{?RFC7665}}. NF is used here as this term is widely used outside the IETF.
 
@@ -1390,7 +1400,7 @@ The NFs are deployed on this infrastructure in the following way:
 * Configuration of a parent AC as a centralized attachment for "vlan 100". The parent AC captures Layer 2 and Layer 3 properties for this VLAN: vlan-id, IP default gateway and subnet, IP address pool for NFs endpoints, static routes with BFD to user plane and BGP configuration to control plane NFs.
 * Configuration of a parent AC as a centralized attachment for "vlan 200". This vlan is for Layer 2 connectivity between NFs (no IP configuration in the provider network).
 * "Child ACs" binding bearers to parent ACs for "vlan 100" and "vlan 200".
-* The deployment deploys the network service to all compute nodes ("compute-01" to "compute-10"), even though the NF is not instantiated on "compute-07"/"compute-08". This approach permits to handle compute failures and scale-out scenarios in a reactive and flexible fashion thanks to a pre-provisioned networking logic.
+* The deployment deploys the network service to all compute nodes ("compute-01" to "compute-10"), even though the NF is not instantiated on "compute-07"/"compute-08". This approach permits handling compute failures and scale-out scenarios in a reactive and flexible fashion thanks to a pre-provisioned networking logic.
 
 ~~~~ aasvg
 {::include-fold ./figures/ac-parent-logical.txt}
