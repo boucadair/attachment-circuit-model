@@ -43,7 +43,7 @@
               "type": "ietf-vpn-common:static-routing",
               "static": {
                 "cascaded-lan-prefixes": {
-                  "ipv4-lan-prefixes": [
+                  "ipv4-lan-prefix": [
                     {
                       "lan": "198.51.100.100/32",
                       "next-hop": "192.0.2.1",
@@ -120,18 +120,18 @@
             "session": [
               {
                 "remote-address": "192.0.2.1",
-                "failure-detection-profile": "single-hop-bfd-user-plane"
+                "profile": "single-hop-bfd-user-plane"
               },
               {
                 "remote-address": "192.0.2.2",
-                "failure-detection-profile": "single-hop-bfd-user-plane"
+                "profile": "single-hop-bfd-user-plane"
               },
               {
                 "_comment": "192.0.2.3-192.0.2.9 sessions are not displayed"
               },
               {
                 "remote-address": "192.0.2.10",
-                "failure-detection-profile": "single-hop-bfd-user-plane"
+                "profile": "single-hop-bfd-user-plane"
               }
             ]
           }
