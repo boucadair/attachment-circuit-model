@@ -5,14 +5,14 @@
 OPSAWG                                                 M. Boucadair, Ed.
 Internet-Draft                                                    Orange
 Intended status: Standards Track                         R. Roberts, Ed.
-Expires: 24 October 2024                                         Juniper
+Expires: 14 November 2024                                        Juniper
                                                            O. G. D. Dios
                                                               Telefonica
                                                            S. B. Giraldo
                                                                    Nokia
                                                                    B. Wu
                                                      Huawei Technologies
-                                                           22 April 2024
+                                                             13 May 2024
 
 
   YANG Data Models for Bearers and 'Attachment Circuits'-as-a-Service
@@ -62,7 +62,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 24 October 2024.
+   This Internet-Draft will expire on 14 November 2024.
 
 Copyright Notice
 
@@ -275,11 +275,6 @@ Table of Contents
    *  Manage connectivity for complex containerized or virtualized
       functions in the cloud (Appendix A.11).
 
-   The examples provided in Appendix A use the IPv4 address blocks
-   reserved for documentation [RFC5737], the IPv6 prefix reserved for
-   documentation [RFC3849], and the Autonomous System (AS) numbers
-   reserved for documentation [RFC5398].
-
    The YANG data models in this document conform to the Network
    Management Datastore Architecture (NMDA) defined in [RFC8342].
 
@@ -353,8 +348,26 @@ Table of Contents
       the same bearer (e.g., multiple VLANs on the same bearer that is
       provided by a physical link).
 
+   Customer Edge (CE):  Equipment that is dedicated to a particular
+      customer and is directly connected to one or more PEs via ACs.
+
+      A CE can be a router, a bridge, a switch, etc.
+
+   Provider Edge (PE):  Equipment owned and managed by the service
+      provider that can support multiple services for different
+      customers.
+
+      Per Section 5.2 of [RFC4026], a PE is a device located at the edge
+      of the service network with the functionality that is needed to
+      interface with the customer.
+
+      A PE is directly connected to one or more CEs via ACs.
+
    Network controller:  Denotes a functional entity responsible for the
       management of the service provider network.
+
+   Network Function (NF):  Used to refer to the same concept as Service
+      Function (SF) (Section 1.4 of [RFC7665]).
 
    Service orchestrator:  Refers to a functional entity that interacts
       with the customer of a network service.  The service orchestrator
@@ -447,7 +460,7 @@ Table of Contents
       provider uses this request to decide where to terminate the AC in
       the network provider network and also whether to enable specific
       capabilities (e.g., Virtual Router Redundancy Protocol (VRRP)
-      [RFC5798]).  Note that placement constraints may also be requested
+      [RFC9568]).  Note that placement constraints may also be requested
       during the instantiation of the underlying bearers (Section 5.1).
 
      .-------.                .--------------------.         .-------.
@@ -1781,7 +1794,7 @@ Table of Contents
 5.2.5.3.6.  VRRP
 
    The model supports the Virtual Router Redundancy Protocol (VRRP)
-   [RFC5798] on an AC (Figure 18).
+   [RFC9568] on an AC (Figure 18).
 
               |  ...
               +--rw routing-protocols
@@ -1816,14 +1829,14 @@ Table of Contents
    The following data nodes are supported:
 
    'address-family':  Indicates whether IPv4, IPv6, or both address
-      families are to be activated.  Note that VRRP version 3 [RFC5798]
+      families are to be activated.  Note that VRRP version 3 [RFC9568]
       supports both IPv4 and IPv6.
 
    'status':  Indicates the status of the VRRP instance.
 
    Note that no authentication data node is included for VRRP, as there
    isn't any type of VRRP authentication at this time (see Section 9 of
-   [RFC5798]).
+   [RFC9568]).
 
 5.2.5.4.  Operations, Administration, and Maintenance (OAM)
 
@@ -3823,7 +3836,7 @@ Table of Contents
       data nodes may be able to manipulate service-specific policies to
       be applied for an AC.
 
-      This container is defined with "nacm:default-deny- write" tagging.
+      This container is defined with "nacm:default-deny-write" tagging.
 
    'ac':  An attacker who is able to access this data node can modify
       the attributes of an AC (e.g., QoS, bandwidth, routing protocols,
@@ -3934,11 +3947,6 @@ Table of Contents
               Authentication", RFC 5709, DOI 10.17487/RFC5709, October
               2009, <https://www.rfc-editor.org/rfc/rfc5709>.
 
-   [RFC5798]  Nadas, S., Ed., "Virtual Router Redundancy Protocol (VRRP)
-              Version 3 for IPv4 and IPv6", RFC 5798,
-              DOI 10.17487/RFC5798, March 2010,
-              <https://www.rfc-editor.org/rfc/rfc5798>.
-
    [RFC5880]  Katz, D. and D. Ward, "Bidirectional Forwarding Detection
               (BFD)", RFC 5880, DOI 10.17487/RFC5880, June 2010,
               <https://www.rfc-editor.org/rfc/rfc5880>.
@@ -4023,6 +4031,11 @@ Table of Contents
               Attachment Points (SAPs)", RFC 9408, DOI 10.17487/RFC9408,
               June 2023, <https://www.rfc-editor.org/rfc/rfc9408>.
 
+   [RFC9568]  Lindem, A. and A. Dogra, "Virtual Router Redundancy
+              Protocol (VRRP) Version 3 for IPv4 and IPv6", RFC 9568,
+              DOI 10.17487/RFC9568, April 2024,
+              <https://www.rfc-editor.org/rfc/rfc9568>.
+
 9.2.  Informative References
 
    [AC-svc-Tree]
@@ -4067,9 +4080,9 @@ Table of Contents
               Wu, B., Dhody, D., Rokui, R., Saad, T., and J. Mullooly,
               "A YANG Data Model for the RFC 9543 Network Slice
               Service", Work in Progress, Internet-Draft, draft-ietf-
-              teas-ietf-network-slice-nbi-yang-10, 16 March 2024,
+              teas-ietf-network-slice-nbi-yang-13, 9 May 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-teas-
-              ietf-network-slice-nbi-yang-10>.
+              ietf-network-slice-nbi-yang-13>.
 
    [I-D.ramseyer-grow-peering-api]
               Aguado, C., Griswold, M., Ramseyer, J., Servin, A. L., and
@@ -4114,19 +4127,10 @@ Table of Contents
               Model", RFC 3644, DOI 10.17487/RFC3644, November 2003,
               <https://www.rfc-editor.org/rfc/rfc3644>.
 
-   [RFC3849]  Huston, G., Lord, A., and P. Smith, "IPv6 Address Prefix
-              Reserved for Documentation", RFC 3849,
-              DOI 10.17487/RFC3849, July 2004,
-              <https://www.rfc-editor.org/rfc/rfc3849>.
-
-   [RFC5398]  Huston, G., "Autonomous System (AS) Number Reservation for
-              Documentation Use", RFC 5398, DOI 10.17487/RFC5398,
-              December 2008, <https://www.rfc-editor.org/rfc/rfc5398>.
-
-   [RFC5737]  Arkko, J., Cotton, M., and L. Vegoda, "IPv4 Address Blocks
-              Reserved for Documentation", RFC 5737,
-              DOI 10.17487/RFC5737, January 2010,
-              <https://www.rfc-editor.org/rfc/rfc5737>.
+   [RFC4026]  Andersson, L. and T. Madsen, "Provider Provisioned Virtual
+              Private Network (VPN) Terminology", RFC 4026,
+              DOI 10.17487/RFC4026, March 2005,
+              <https://www.rfc-editor.org/rfc/rfc4026>.
 
    [RFC5925]  Touch, J., Mankin, A., and R. Bonica, "The TCP
               Authentication Option", RFC 5925, DOI 10.17487/RFC5925,
@@ -5875,7 +5879,7 @@ A.11.  Connectivity of Cloud Network Functions
 
 A.11.1.  Scope
 
-   This section demonstrates how the AC service model permits to manage
+   This section demonstrates how the AC service model permits managing
    connectivity requirements for complex Network Functions (NFs) -
    containerized or virtualized - that are typically deployed in Telco
    networks.  This integration leverages the concept of "parent AC" to
@@ -5963,7 +5967,7 @@ A.11.3.  NFs Deployment
    *  The deployment deploys the network service to all compute nodes
       ("compute-01" to "compute-10"), even though the NF is not
       instantiated on "compute-07"/"compute-08".  This approach permits
-      to handle compute failures and scale-out scenarios in a reactive
+      handling compute failures and scale-out scenarios in a reactive
       and flexible fashion thanks to a pre-provisioned networking logic.
 
                             ┌---------------------------------------┐
