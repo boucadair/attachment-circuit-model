@@ -173,7 +173,7 @@
        |  +--rw ipv4 {vpn-common:ipv4}?
        |  |  +--rw local-address?
        |  |  |       inet:ipv4-address
-       |  |  +--rw -length?                           uint8
+       |  |  +--rw prefix-length?                           uint8
        |  |  +--rw address-allocation-type?
        |  |  |       identityref
        |  |  +--rw (allocation-type)?
