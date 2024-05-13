@@ -1473,19 +1473,29 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
           <p id="section-2-6.20.1">Used to refer to the same concept as Service Function (SF) (<span><a href="https://rfc-editor.org/rfc/rfc7665#section-1.4" class="relref">Section 1.4</a> of [<a href="#RFC7665" class="cite xref">RFC7665</a>]</span>).<a href="#section-2-6.20.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-2-6.21">Service orchestrator:</dt>
+<dt id="section-2-6.21"></dt>
         <dd style="margin-left: 1.5em" id="section-2-6.22">
-          <p id="section-2-6.22.1">Refers to a functional entity that interacts with the customer of a network service. The service orchestrator is typically responsible for the attachment circuits, the PE selection, and requesting the activation of the requested service to a network controller.<a href="#section-2-6.22.1" class="pilcrow">¶</a></p>
+          <p id="section-2-6.22.1">NF is also used in this as this term is widely used outside the IETF.<a href="#section-2-6.22.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-2-6.23">Service provider network:</dt>
+<dt id="section-2-6.23"></dt>
         <dd style="margin-left: 1.5em" id="section-2-6.24">
-          <p id="section-2-6.24.1">A network that is able to provide network services (e.g., Layer 2 VPN, Layer 3 VPN, or Network Slice Services).<a href="#section-2-6.24.1" class="pilcrow">¶</a></p>
+          <p id="section-2-6.24.1">NF and SF are used interchangeably.<a href="#section-2-6.24.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-2-6.25">Service provider:</dt>
+<dt id="section-2-6.25">Service orchestrator:</dt>
         <dd style="margin-left: 1.5em" id="section-2-6.26">
-          <p id="section-2-6.26.1">A service provider that offers network services (e.g., Layer 2 VPN, Layer 3 VPN, or Network Slice Services).<a href="#section-2-6.26.1" class="pilcrow">¶</a></p>
+          <p id="section-2-6.26.1">Refers to a functional entity that interacts with the customer of a network service. The service orchestrator is typically responsible for the attachment circuits, the PE selection, and requesting the activation of the requested service to a network controller.<a href="#section-2-6.26.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-2-6.27">Service provider network:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-6.28">
+          <p id="section-2-6.28.1">A network that is able to provide network services (e.g., Layer 2 VPN, Layer 3 VPN, or Network Slice Services).<a href="#section-2-6.28.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-2-6.29">Service provider:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-6.30">
+          <p id="section-2-6.30.1">A service provider that offers network services (e.g., Layer 2 VPN, Layer 3 VPN, or Network Slice Services).<a href="#section-2-6.30.1" class="pilcrow">¶</a></p>
 </dd>
       <dd class="break"></dd>
 </dl>
@@ -7952,27 +7962,22 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 <a href="#appendix-A.11.1" class="section-number selfRef">A.11.1. </a><a href="#name-scope" class="section-name selfRef">Scope</a>
           </h4>
 <p id="appendix-A.11.1-1">This section demonstrates how the AC service model permits managing connectivity requirements for complex Network Functions (NFs) - containerized or virtualized -  that are typically deployed in Telco networks. This integration leverages the concept of "parent AC" to decouple physical and logical connectivity so that several ACs can shares Layer 2 and Layer 3 resources. This approach provides flexibility, scalability, and API stability.<a href="#appendix-A.11.1-1" class="pilcrow">¶</a></p>
-<ul class="normal ulEmpty">
-<li class="normal ulEmpty" id="appendix-A.11.1-2.1">
-              <p id="appendix-A.11.1-2.1.1">NF is used to refer to the SF defined <span>[<a href="#RFC7665" class="cite xref">RFC7665</a>]</span>. NF is used here as this term is widely used outside the IETF.<a href="#appendix-A.11.1-2.1.1" class="pilcrow">¶</a></p>
-</li>
-          </ul>
-<p id="appendix-A.11.1-3">The NFs have the following characteristics:<a href="#appendix-A.11.1-3" class="pilcrow">¶</a></p>
+<p id="appendix-A.11.1-2">The NFs have the following characteristics:<a href="#appendix-A.11.1-2" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="appendix-A.11.1-4.1">
-              <p id="appendix-A.11.1-4.1.1">The NF is distributed on a set of compute nodes with scaled-out and redundant instances.<a href="#appendix-A.11.1-4.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="appendix-A.11.1-3.1">
+              <p id="appendix-A.11.1-3.1.1">The NF is distributed on a set of compute nodes with scaled-out and redundant instances.<a href="#appendix-A.11.1-3.1.1" class="pilcrow">¶</a></p>
 </li>
-            <li class="normal" id="appendix-A.11.1-4.2">
-              <p id="appendix-A.11.1-4.2.1">The NF has two distinct type of instances: user plane ("nf-up") and routing control plane ("nf-cp").<a href="#appendix-A.11.1-4.2.1" class="pilcrow">¶</a></p>
+            <li class="normal" id="appendix-A.11.1-3.2">
+              <p id="appendix-A.11.1-3.2.1">The NF has two distinct type of instances: user plane ("nf-up") and routing control plane ("nf-cp").<a href="#appendix-A.11.1-3.2.1" class="pilcrow">¶</a></p>
 </li>
-            <li class="normal" id="appendix-A.11.1-4.3">
-              <p id="appendix-A.11.1-4.3.1">The user plane component can be distributed among the first 8 compute nodes ("compute-01" to "compute-08") to achieve high performance.<a href="#appendix-A.11.1-4.3.1" class="pilcrow">¶</a></p>
+            <li class="normal" id="appendix-A.11.1-3.3">
+              <p id="appendix-A.11.1-3.3.1">The user plane component can be distributed among the first 8 compute nodes ("compute-01" to "compute-08") to achieve high performance.<a href="#appendix-A.11.1-3.3.1" class="pilcrow">¶</a></p>
 </li>
-            <li class="normal" id="appendix-A.11.1-4.4">
-              <p id="appendix-A.11.1-4.4.1">The control plane is deployed in a redundant fashion on two instances running on distinct compute nodes ("compute-09" and "compute-10").<a href="#appendix-A.11.1-4.4.1" class="pilcrow">¶</a></p>
+            <li class="normal" id="appendix-A.11.1-3.4">
+              <p id="appendix-A.11.1-3.4.1">The control plane is deployed in a redundant fashion on two instances running on distinct compute nodes ("compute-09" and "compute-10").<a href="#appendix-A.11.1-3.4.1" class="pilcrow">¶</a></p>
 </li>
-            <li class="normal" id="appendix-A.11.1-4.5">
-              <p id="appendix-A.11.1-4.5.1">The NF is attached to distinct networks, each making use of a dedicated VLAN. These VLANs are therefore instantiated as separate ACs. From a realization standpoint, the NF interface connectivity is generally provided thanks to MacVLAN or Single Root I/O Virtualization (SR-IOV). For the sake of simplicity only two VLANs are presented in this example, additional VLANs are configured following a similar logic.<a href="#appendix-A.11.1-4.5.1" class="pilcrow">¶</a></p>
+            <li class="normal" id="appendix-A.11.1-3.5">
+              <p id="appendix-A.11.1-3.5.1">The NF is attached to distinct networks, each making use of a dedicated VLAN. These VLANs are therefore instantiated as separate ACs. From a realization standpoint, the NF interface connectivity is generally provided thanks to MacVLAN or Single Root I/O Virtualization (SR-IOV). For the sake of simplicity only two VLANs are presented in this example, additional VLANs are configured following a similar logic.<a href="#appendix-A.11.1-3.5.1" class="pilcrow">¶</a></p>
 </li>
           </ul>
 </section>
