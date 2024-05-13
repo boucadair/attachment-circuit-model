@@ -955,7 +955,7 @@ Table of Contents
 
 5.2.2.2.  Referencing Service/Specific Profiles
 
-   All the abovementioned profiles are uniquely identified by the
+   All the above mentioned profiles are uniquely identified by the
    NETCONF/RESTCONF server by an identifier.  To ease referencing these
    profiles by other data models, specific typedefs are defined for each
    of these profiles.  Likewise, an attachment circuit reference typedef
@@ -6381,7 +6381,7 @@ Acknowledgments
    Thanks to Ebben Aries for the YANG Doctors review and for providing
    [Instance-Data].
 
-   Thanks to Donald Eastlake for the careful rtg-dir review.
+   Thanks to Donald Eastlake for the careful rtg-dir reviews.
 
 Contributors
 
