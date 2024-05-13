@@ -215,6 +215,8 @@ Network controller:
 
 Network Function (NF):
 : Used to refer to the same concept as Service Function (SF) ({{Section 1.4 of ?RFC7665}}).
+: NF is also used in this as this term is widely used outside the IETF.
+: NF and SF are used interchangeably.
 
 Service orchestrator:
 : Refers to a functional entity that interacts with the customer of a network service. The service orchestrator is typically responsible for the attachment circuits, the PE selection, and requesting the activation of the requested service to a network controller.
@@ -1373,8 +1375,6 @@ Once validation is accomplished, a status update is communicated back to the req
 ### Scope
 
 This section demonstrates how the AC service model permits managing connectivity requirements for complex Network Functions (NFs) - containerized or virtualized -  that are typically deployed in Telco networks. This integration leverages the concept of "parent AC" to decouple physical and logical connectivity so that several ACs can shares Layer 2 and Layer 3 resources. This approach provides flexibility, scalability, and API stability.
-
-> NF is used to refer to the SF defined {{?RFC7665}}. NF is used here as this term is widely used outside the IETF.
 
 The NFs have the following characteristics:
 
