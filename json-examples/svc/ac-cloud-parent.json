@@ -112,6 +112,27 @@
               }
             }
           ]
+        },
+        "oam": {
+          "bfd": {
+            "session": [
+              {
+                "remote-address": 192.0.2.1,
+                "failure-detection-profile": "single-hop-bfd-user-plane"
+              },
+              {
+                "remote-address": 192.0.2.2,
+                "failure-detection-profile": "single-hop-bfd-user-plane"
+              },
+              {
+                "_comment": "list more sessions"
+              },
+              {
+                "remote-address": 192.0.2.10,
+                "failure-detection-profile": "single-hop-bfd-user-plane"
+              }
+            ]
+          }
         }
       },
       {
