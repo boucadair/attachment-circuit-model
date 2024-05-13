@@ -596,7 +596,7 @@ module ietf-ac-svc {
     description
       "Service configuration specific to VRRP.";
     reference
-      "RFC 5798: Virtual Router Redundancy Protocol (VRRP)
+      "RFC 9568: Virtual Router Redundancy Protocol (VRRP)
                  Version 3 for IPv4 and IPv6";
     leaf address-family {
       type identityref {
