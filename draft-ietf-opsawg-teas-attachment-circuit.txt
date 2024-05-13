@@ -369,8 +369,8 @@ Table of Contents
    Network Function (NF):  Used to refer to the same concept as Service
       Function (SF) (Section 1.4 of [RFC7665]).
 
-      NF is also used in this as this term is widely used outside the
-      IETF.
+      NF is also used in this document as this term is widely used
+      outside the IETF.
 
       NF and SF are used interchangeably.
 
