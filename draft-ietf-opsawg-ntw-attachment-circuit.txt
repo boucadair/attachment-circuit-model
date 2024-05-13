@@ -1876,7 +1876,7 @@ Table of Contents
    The following VRRP data nodes are supported:
 
    'address-family':  Indicates whether IPv4, IPv6, or both address
-      families are to be activated.  Note that VRRP version 3 [RFC5798]
+      families are to be activated.  Note that VRRP version 3 [RFC9568]
       supports both IPv4 and IPv6.
 
    'vrrp-group':  Used to identify the VRRP group.
@@ -1896,7 +1896,7 @@ Table of Contents
 
    Note that no authentication data node is included for VRRP, as there
    isn't any type of VRRP authentication at this time (see Section 9 of
-   [RFC5798]).
+   [RFC9568]).
 
 5.7.  OAM
 
@@ -4314,11 +4314,6 @@ Table of Contents
               Authentication", RFC 5709, DOI 10.17487/RFC5709, October
               2009, <https://www.rfc-editor.org/rfc/rfc5709>.
 
-   [RFC5798]  Nadas, S., Ed., "Virtual Router Redundancy Protocol (VRRP)
-              Version 3 for IPv4 and IPv6", RFC 5798,
-              DOI 10.17487/RFC5798, March 2010,
-              <https://www.rfc-editor.org/rfc/rfc5798>.
-
    [RFC5880]  Katz, D. and D. Ward, "Bidirectional Forwarding Detection
               (BFD)", RFC 5880, DOI 10.17487/RFC5880, June 2010,
               <https://www.rfc-editor.org/rfc/rfc5880>.
@@ -4429,6 +4424,11 @@ Table of Contents
               Q., and V. Lopez, "A YANG Network Data Model for Service
               Attachment Points (SAPs)", RFC 9408, DOI 10.17487/RFC9408,
               June 2023, <https://www.rfc-editor.org/rfc/rfc9408>.
+
+   [RFC9568]  Lindem, A. and A. Dogra, "Virtual Router Redundancy
+              Protocol (VRRP) Version 3 for IPv4 and IPv6", RFC 9568,
+              DOI 10.17487/RFC9568, April 2024,
+              <https://www.rfc-editor.org/rfc/rfc9568>.
 
 9.2.  Informative References
 
