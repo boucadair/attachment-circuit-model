@@ -18,34 +18,43 @@
        |     +--rw id      string
        |     +--rw type?   identityref
        |     +--rw bgp
-       |     |  +--rw description?              string
-       |     |  +--rw apply-policy
-       |     |  |  +--rw import-policy*           leafref
-       |     |  |  +--rw default-import-policy?   default-policy-type
-       |     |  |  +--rw export-policy*           leafref
-       |     |  |  +--rw default-export-policy?   default-policy-type
-       |     |  +--rw local-as?                 inet:as-number
-       |     |  +--rw peer-as                   inet:as-number
-       |     |  +--rw address-family?           identityref
-       |     |  +--rw multihop?                 uint8
-       |     |  +--rw as-override?              boolean
-       |     |  +--rw allow-own-as?             uint8
-       |     |  +--rw prepend-global-as?        boolean
-       |     |  +--rw send-default-route?       boolean
-       |     |  +--rw site-of-origin?           rt-types:route-origin
-       |     |  +--rw ipv6-site-of-origin?
-       |     |  |       rt-types:ipv6-route-origin
-       |     |  +--rw redistribute-connected* [address-family]
-       |     |  |  +--rw address-family    identityref
-       |     |  |  +--rw enable?           boolean
-       |     |  +--rw bgp-max-prefix
-       |     |  |  +--rw max-prefix?          uint32
-       |     |  |  +--rw warning-threshold?   decimal64
-       |     |  |  +--rw violate-action?      enumeration
-       |     |  |  +--rw restart-timer?       uint32
-       |     |  +--rw bgp-timers
-       |     |     +--rw keepalive?   uint16
-       |     |     +--rw hold-time?   uint16
+       |     |  +--rw peer-groups
+       |     |     +--rw peer-group* [name]
+       |     |        +--rw name                      string
+       |     |        +--rw description?              string
+       |     |        +--rw apply-policy
+       |     |        |  +--rw import-policy*           leafref
+       |     |        |  +--rw default-import-policy?
+       |     |        |  |       default-policy-type
+       |     |        |  +--rw export-policy*           leafref
+       |     |        |  +--rw default-export-policy?
+       |     |        |          default-policy-type
+       |     |        +--rw local-as?                 inet:as-number
+       |     |        +--rw peer-as                   inet:as-number
+       |     |        +--rw address-family?           identityref
+       |     |        +--rw multihop?                 uint8
+       |     |        +--rw as-override?              boolean
+       |     |        +--rw allow-own-as?             uint8
+       |     |        +--rw prepend-global-as?        boolean
+       |     |        +--rw send-default-route?       boolean
+       |     |        +--rw site-of-origin?
+       |     |        |       rt-types:route-origin
+       |     |        +--rw ipv6-site-of-origin?
+       |     |        |       rt-types:ipv6-route-origin
+       |     |        +--rw redistribute-connected* [address-family]
+       |     |        |  +--rw address-family    identityref
+       |     |        |  +--rw enabled?          boolean
+       |     |        +--rw bgp-max-prefix
+       |     |        |  +--rw max-prefix?          uint32
+       |     |        |  +--rw warning-threshold?   decimal64
+       |     |        |  +--rw violate-action?      enumeration
+       |     |        |  +--rw restart-timer?       uint32
+       |     |        +--rw bgp-timers
+       |     |        |  +--rw keepalive?   uint16
+       |     |        |  +--rw hold-time?   uint16
+       |     |        +--rw capability* [address-family]
+       |     |           +--rw address-family    identityref
+       |     |           +--rw name              identityref
        |     +--rw ospf
        |     |  +--rw address-family?   identityref
        |     |  +--rw area-id           yang:dotted-quad
