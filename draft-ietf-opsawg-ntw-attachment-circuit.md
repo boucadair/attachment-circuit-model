@@ -717,7 +717,7 @@ The following VRRP data nodes are supported:
 
 'address-family':
 :  Indicates whether IPv4, IPv6, or both address
-      families are to be activated.  Note that VRRP version 3 {{!RFC5798}}
+      families are to be activated.  Note that VRRP version 3 {{!RFC9568}}
       supports both IPv4 and IPv6.
 
 'vrrp-group':
@@ -739,7 +739,7 @@ The following VRRP data nodes are supported:
 :  Indicates the status of the VRRP instance.
 
 Note that no authentication data node is included for VRRP, as there
-isn't any type of VRRP authentication at this time (see {{Section 9 of !RFC5798}}).
+isn't any type of VRRP authentication at this time (see {{Section 9 of !RFC9568}}).
 
 ## OAM {#sec-oam}
 
