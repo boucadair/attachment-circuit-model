@@ -1919,34 +1919,43 @@ reference points (the PE side of an AC, in the context of this document) where n
        |     +--rw id      string
        |     +--rw type?   identityref
        |     +--rw bgp
-       |     |  +--rw description?              string
-       |     |  +--rw apply-policy
-       |     |  |  +--rw import-policy*           leafref
-       |     |  |  +--rw default-import-policy?   default-policy-type
-       |     |  |  +--rw export-policy*           leafref
-       |     |  |  +--rw default-export-policy?   default-policy-type
-       |     |  +--rw local-as?                 inet:as-number
-       |     |  +--rw peer-as                   inet:as-number
-       |     |  +--rw address-family?           identityref
-       |     |  +--rw multihop?                 uint8
-       |     |  +--rw as-override?              boolean
-       |     |  +--rw allow-own-as?             uint8
-       |     |  +--rw prepend-global-as?        boolean
-       |     |  +--rw send-default-route?       boolean
-       |     |  +--rw site-of-origin?           rt-types:route-origin
-       |     |  +--rw ipv6-site-of-origin?
-       |     |  |       rt-types:ipv6-route-origin
-       |     |  +--rw redistribute-connected* [address-family]
-       |     |  |  +--rw address-family    identityref
-       |     |  |  +--rw enable?           boolean
-       |     |  +--rw bgp-max-prefix
-       |     |  |  +--rw max-prefix?          uint32
-       |     |  |  +--rw warning-threshold?   decimal64
-       |     |  |  +--rw violate-action?      enumeration
-       |     |  |  +--rw restart-timer?       uint32
-       |     |  +--rw bgp-timers
-       |     |     +--rw keepalive?   uint16
-       |     |     +--rw hold-time?   uint16
+       |     |  +--rw peer-groups
+       |     |     +--rw peer-group* [name]
+       |     |        +--rw name                      string
+       |     |        +--rw description?              string
+       |     |        +--rw apply-policy
+       |     |        |  +--rw import-policy*           leafref
+       |     |        |  +--rw default-import-policy?
+       |     |        |  |       default-policy-type
+       |     |        |  +--rw export-policy*           leafref
+       |     |        |  +--rw default-export-policy?
+       |     |        |          default-policy-type
+       |     |        +--rw local-as?                 inet:as-number
+       |     |        +--rw peer-as                   inet:as-number
+       |     |        +--rw address-family?           identityref
+       |     |        +--rw multihop?                 uint8
+       |     |        +--rw as-override?              boolean
+       |     |        +--rw allow-own-as?             uint8
+       |     |        +--rw prepend-global-as?        boolean
+       |     |        +--rw send-default-route?       boolean
+       |     |        +--rw site-of-origin?
+       |     |        |       rt-types:route-origin
+       |     |        +--rw ipv6-site-of-origin?
+       |     |        |       rt-types:ipv6-route-origin
+       |     |        +--rw redistribute-connected* [address-family]
+       |     |        |  +--rw address-family    identityref
+       |     |        |  +--rw enabled?          boolean
+       |     |        +--rw bgp-max-prefix
+       |     |        |  +--rw max-prefix?          uint32
+       |     |        |  +--rw warning-threshold?   decimal64
+       |     |        |  +--rw violate-action?      enumeration
+       |     |        |  +--rw restart-timer?       uint32
+       |     |        +--rw bgp-timers
+       |     |        |  +--rw keepalive?   uint16
+       |     |        |  +--rw hold-time?   uint16
+       |     |        +--rw capability* [address-family]
+       |     |           +--rw address-family    identityref
+       |     |           +--rw name              identityref
        |     +--rw ospf
        |     |  +--rw address-family?   identityref
        |     |  +--rw area-id           yang:dotted-quad
@@ -2475,37 +2484,43 @@ module: ietf-ac-ntw
        |     +--rw id      string
        |     +--rw type?   identityref
        |     +--rw bgp  {vpn-common:rtg-bgp}?
-       |     |  +--rw description?              string
-       |     |  +--rw apply-policy
-       |     |  |  +--rw import-policy*           leafref
-       |     |  |  +--rw default-import-policy?   default-policy-type
-       |     |  |  +--rw export-policy*           leafref
-       |     |  |  +--rw default-export-policy?   default-policy-type
-       |     |  +--rw local-as?                 inet:as-number
-       |     |  +--rw peer-as                   inet:as-number
-       |     |  +--rw address-family?           identityref
-       |     |  +--rw multihop?                 uint8
-       |     |  +--rw as-override?              boolean
-       |     |  +--rw allow-own-as?             uint8
-       |     |  +--rw prepend-global-as?        boolean
-       |     |  +--rw send-default-route?       boolean
-       |     |  +--rw site-of-origin?           rt-types:route-origin
-       |     |  +--rw ipv6-site-of-origin?
-       |     |  |       rt-types:ipv6-route-origin
-       |     |  +--rw redistribute-connected* [address-family]
-       |     |  |  +--rw address-family    identityref
-       |     |  |  +--rw enabled?           boolean
-       |     |  +--rw bgp-max-prefix
-       |     |  |  +--rw max-prefix?          uint32
-       |     |  |  +--rw warning-threshold?   decimal64
-       |     |  |  +--rw violate-action?      enumeration
-       |     |  |  +--rw restart-timer?       uint32
-       |     |  +--rw bgp-timers
-       |     |  |  +--rw keepalive?   uint16
-       |     |  |  +--rw hold-time?   uint16
-       |     |  +--rw capability*        [address-family]
-       |     |     +--rw address-family    identityref
-       |     |     +--rw name              identityref
+       |     |  +--rw peer-groups
+       |     |     +--rw peer-group* [name]
+       |     |        +--rw name                      string
+       |     |        +--rw description?              string
+       |     |        +--rw apply-policy
+       |     |        |  +--rw import-policy*           leafref
+       |     |        |  +--rw default-import-policy?
+       |     |        |  |       default-policy-type
+       |     |        |  +--rw export-policy*           leafref
+       |     |        |  +--rw default-export-policy?
+       |     |        |          default-policy-type
+       |     |        +--rw local-as?                 inet:as-number
+       |     |        +--rw peer-as                   inet:as-number
+       |     |        +--rw address-family?           identityref
+       |     |        +--rw multihop?                 uint8
+       |     |        +--rw as-override?              boolean
+       |     |        +--rw allow-own-as?             uint8
+       |     |        +--rw prepend-global-as?        boolean
+       |     |        +--rw send-default-route?       boolean
+       |     |        +--rw site-of-origin?
+       |     |        |       rt-types:route-origin
+       |     |        +--rw ipv6-site-of-origin?
+       |     |        |       rt-types:ipv6-route-origin
+       |     |        +--rw redistribute-connected* [address-family]
+       |     |        |  +--rw address-family    identityref
+       |     |        |  +--rw enabled?          boolean
+       |     |        +--rw bgp-max-prefix
+       |     |        |  +--rw max-prefix?          uint32
+       |     |        |  +--rw warning-threshold?   decimal64
+       |     |        |  +--rw violate-action?      enumeration
+       |     |        |  +--rw restart-timer?       uint32
+       |     |        +--rw bgp-timers
+       |     |        |  +--rw keepalive?   uint16
+       |     |        |  +--rw hold-time?   uint16
+       |     |        +--rw capability* [address-family]
+       |     |           +--rw address-family    identityref
+       |     |           +--rw name              identityref
        |     +--rw ospf  {vpn-common:rtg-ospf}?
        |     |  ...
        |     +--rw isis  {vpn-common:rtg-isis}?
@@ -3988,7 +4003,6 @@ module ietf-ac-ntw {
     uses nw:network-ref;
   }
 
-
   grouping failure-detection-profile-reference {
     description
       "This grouping can be used to reference a failure detection
@@ -4851,6 +4865,61 @@ module ietf-ac-ntw {
     }
   }
 
+  grouping bgp-base-peer-group {
+    description
+      "Grouping for a basic BGP peer group.";
+    leaf name {
+      type string;
+      description
+        "Name of the BGP peer-group";
+    }
+    uses bgp-base;
+  }
+
+  grouping bgp-base-peer-group-list {
+    description
+      "Grouping for a list of basic BGP peer groups.";
+    list peer-group {
+      key "name";
+      description
+        "List of BGP peer groups uniquely identified by a name.";
+     uses bgp-base-peer-group;
+    }
+  }
+
+  grouping bgp-peer-group {
+    description
+      "Grouping for BGP peer group.";
+    leaf name {
+      type string;
+      description
+        "Name of the BGP peer-group";
+    }
+    leaf local-address {
+      type union {
+        type inet:ip-address;
+        type if:interface-ref;
+      }
+    description
+      "Sets the local IP address to use for the BGP
+       transport session. This may be expressed as either
+       an IP address or a reference to an interface.";
+    }
+    uses bgp-base;
+    uses ac-common:bgp-authentication;
+  }
+
+  grouping bgp-peer-group-list {
+    description
+      "Grouping for a list of BGP peer groups.";
+    list peer-group {
+      key "name";
+      description
+        "List of BGP peer groups uniquely identified by a name.";
+     uses bgp-peer-group;
+    }
+  }
+
   // RIP base parameters
 
   grouping rip-base {
@@ -4947,7 +5016,11 @@ module ietf-ac-ntw {
         if-feature "vpn-common:rtg-bgp";
         description
           "Configuration specific to BGP.";
-        uses bgp-base;
+        container peer-groups {
+          description
+            "Lists a set of BGP peer groups.";
+          uses bgp-base-peer-group-list;
+        }
       }
       container ospf {
         when "derived-from-or-self(../type, "
@@ -5117,7 +5190,7 @@ module ietf-ac-ntw {
             key "lan next-hop";
             description
               "List of LAN prefixes for the site.";
-            uses ac-common:ipv4-static-rtg-entry;
+            uses ac-common:ipv6-static-rtg-entry;
             uses bfd-routing;
             leaf preference {
               type uint32;
@@ -5141,29 +5214,7 @@ module ietf-ac-ntw {
         container peer-groups {
           description
             "Configuration for BGP peer-groups";
-          list peer-group {
-            key "name";
-            description
-              "List of BGP peer-groups configured on the local
-               system - uniquely identified by peer-group name";
-            leaf name {
-              type string;
-              description
-                "Name of the BGP peer-group";
-            }
-            leaf local-address {
-              type union {
-                type inet:ip-address;
-                type if:interface-ref;
-              }
-              description
-                "Sets the local IP address to use for the BGP
-                 transport session. This may be expressed as either
-                 an IP address or a reference to an interface.";
-            }
-            uses bgp-base;
-            uses ac-common:bgp-authentication;
-          }
+          uses bgp-peer-group-list;
         }
         list neighbor {
           key "remote-address";
