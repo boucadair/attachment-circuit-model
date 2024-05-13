@@ -202,13 +202,13 @@ Bearer:
 : The concept of bearer can be generalized to refer to the required underlying connection for the provisioning of an attachment circuit. One or multiple attachment circuits may be hosted over the same bearer (e.g., multiple VLANs on the same bearer that is provided by a physical link).
 
 Customer Edge (CE):
-:  Equipment that is dedicated to a particular customer and is directly connected to one or more PEs via ACs.
+:  Equipment that is dedicated to a customer and is connected to one or more PEs via ACs.
 :  A CE can be a router, a bridge, a switch, etc.
 
 Provider Edge (PE):
 : Equipment owned and managed by the service provider that can support multiple services for different customers.
 : Per {{Section 5.2 of ?RFC4026}}, a PE is a device located at the edge of the service network with the functionality that is needed to interface with the customer.
-: A PE is directly connected to one or more CEs via ACs.
+: A PE is connected to one or more CEs via ACs.
 
 Network controller:
 : Denotes a functional entity responsible for the management of the service provider network.
