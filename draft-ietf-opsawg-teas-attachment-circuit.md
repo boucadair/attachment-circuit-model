@@ -215,7 +215,7 @@ Network controller:
 
 Network Function (NF):
 : Used to refer to the same concept as Service Function (SF) ({{Section 1.4 of ?RFC7665}}).
-: NF is also used in this as this term is widely used outside the IETF.
+: NF is also used in this document as this term is widely used outside the IETF.
 : NF and SF are used interchangeably.
 
 Service orchestrator:
@@ -1401,6 +1401,7 @@ The NFs are deployed on this infrastructure in the following way:
 * Configuration of a parent AC as a centralized attachment for "vlan 200". This vlan is for Layer 2 connectivity between NFs (no IP configuration in the provider network).
 * "Child ACs" binding bearers to parent ACs for "vlan 100" and "vlan 200".
 * The deployment of the network service to all compute nodes ("compute-01" to "compute-10"), even though the NF is not instantiated on "compute-07"/"compute-08". This approach permits handling compute failures and scale-out scenarios in a reactive and flexible fashion thanks to a pre-provisioned networking logic.
+
 
 ~~~~ aasvg
 {::include-fold ./figures/ac-parent-logical.txt}
