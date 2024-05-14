@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-05-12T00:41:11.053101+00:00",
+  "timestamp": "2024-05-14T00:37:33.183509+00:00",
   "repo": "boucadair/attachment-circuit-model",
   "labels": [
     {
@@ -8455,26 +8455,49 @@
       "id": "PR_kwDOIiAkrc5tzRIm",
       "title": "define peer groups as part of network-level AC profiles",
       "url": "https://github.com/boucadair/attachment-circuit-model/pull/217",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "boucadair",
       "authorAssociation": "OWNER",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2024-04-26T05:38:39Z",
-      "updatedAt": "2024-04-26T05:54:45Z",
+      "updatedAt": "2024-05-13T10:54:24Z",
       "baseRepository": "boucadair/attachment-circuit-model",
       "baseRefName": "main",
       "baseRefOid": "942c44a5ffc33c804aed003384d6f0ee00083f93",
       "headRepository": "boucadair/attachment-circuit-model",
       "headRefName": "peer-groups-in-profiles",
-      "headRefOid": "5ed93a7cab8458a84696f76bc52236edd6c3818f",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "498d38995192c42169be383bf514af45d3c4a536",
+      "closedAt": "2024-05-13T10:54:23Z",
+      "mergedAt": "2024-05-13T10:54:23Z",
+      "mergedBy": "boucadair",
+      "mergeCommit": {
+        "oid": "40db6e96c33f356d99e16fedf3b06ef90dc38b29"
+      },
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOIiAkrc56TtJW",
+          "commit": {
+            "abbreviatedOid": "5ed93a7"
+          },
+          "author": "boucadair",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-05-13T08:08:22Z",
+          "updatedAt": "2024-05-13T08:08:23Z",
+          "comments": [
+            {
+              "originalPosition": 80,
+              "body": "seems a global change bug",
+              "createdAt": "2024-05-13T08:08:22Z",
+              "updatedAt": "2024-05-13T08:08:23Z"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
