@@ -5925,27 +5925,30 @@ A.11.2.  Physical Infrastructure
    realized in multiple ways, such as IP Fabric, Layer 2/Layer 3 Edge
    Routers.  This document does not intend to detail these aspects.
 
-                                          ┌ - - - - - - - - - - - - - ┐
-    ┌ - - - - - -        bearer =               ┌--------┐
-                 |    compute-01-nic1     |     |        |            |
-    | compute-01  ------------------------      └--------┘
-                 |                        |     ┌--------┐ ┌--------┐ |
-    └ - - - - - -                               |        | |        |
-    ┌ - - - - - -        bearer =         |     └--------┘ └--------┘ |
-                 |    compute-02-nic2           ┌--------┐ ┌--------┐
-    | compute-02  ------------------------|     |        | |        | |
-                 |                              └--------┘ └--------┘
-    └ - - - - - -                         |     ┌--------┐            |
-                                                |        |
-                           [...]          |     └--------┘            |
+   =============== NOTE: '\' line wrapping per RFC 8792 ================
 
+                                          .---------------------------.
+    .------------.       bearer =         |     .--------.            |
+    |            |    compute-01-nic1     |     |        |            |
+    | compute-01 |------------------------|     '--------'            |
+    |            |                        |     .--------. .--------. |
+    '------------'                        |     |        | |        | |
+    .------------.       bearer =         |     '--------' '--------' |
+    |            |    compute-02-nic2     |     .--------. .--------. |
+    | compute-02 |------------------------|     |        | |        | |
+    |            |                        |     └--------┘ '--------' |
+    '------------'                        |     .--------.            |
+                                          |     |        |            |
+                           [...]          |     '--------'            |
                                           |                           |
-   ┌ - - - - - - ┐       bearer =               Provider Network
-                      compute-10-nic0     |       Infrastructure      |
-   | compute-10  |------------------------     (IP Fabric, Gateways
-                                          |            etc.)          |
-   └ - - - - - - ┘
-                                          └ - - - - - - - - - - - - - ┘
+                                          |                           |
+   .------------.       bearer =          |     Provider Network      |
+   |            |     compute-10-nic0     |       Infrastructure      |
+   | compute-10 |-------------------------|    (IP Fabric, Gateways   |
+   |            |                         |            etc.)          |
+   '------------'                         |                           \
+                     |
+                                          '---------------------------'
 
          Figure 58: Example Physical Topology for Cloud Deployment
 
