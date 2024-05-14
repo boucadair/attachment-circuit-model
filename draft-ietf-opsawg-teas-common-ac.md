@@ -129,8 +129,6 @@ The YANG data model in this document conforms to the Network Management Datastor
 
 # Conventions and Definitions
 
-{::boilerplate bcp14-tagged}
-
 The meanings of the symbols in the YANG tree diagrams are defined in {{?RFC8340}}.
 
 LxSM refers to both the Layer 2 Service Model (L2SM) {{?RFC8466}} and the Layer 3 Service Model (L3SM) {{?RFC8299}}.
@@ -399,3 +397,5 @@ in {{!RFC9181}} and {{?RFC9182}}.
 
 Thanks to Ebben Aries for the YANG Doctors review, Andy Smith and Gyanh Mishra for the
 rtg-dir reviews.
+
+Thanks to Reza Rokui for the Shepherd review.
