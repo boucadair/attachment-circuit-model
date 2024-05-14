@@ -12,9 +12,20 @@ v: 3
 area: "Operations and Management"
 workgroup: "Operations and Management Area Working Group"
 keyword:
-- Slice Service
-- L3VPN
-- L2VPN
+ - Slice Service
+ - L3VPN
+ - L2VPN
+ - Automation
+ - Network Automation
+ - Orchestration
+ - service delivery
+ - Service provisioning
+ - service segmentation
+ - service flexibility
+ - service simplification
+ - Network Service
+ - 3GPP
+ - Network Slicing
 
 author:
 -
