@@ -15,7 +15,17 @@ keyword:
  - Slice Service
  - L3VPN
  - L2VPN
-
+ - Automation
+ - Network Automation
+ - Orchestration
+ - service delivery
+ - Service provisioning
+ - service segmentation
+ - service flexibility
+ - service simplification
+ - Network Service
+ - 3GPP
+ - Network Slicing
 author:
  -
     fullname: Mohamed Boucadair
