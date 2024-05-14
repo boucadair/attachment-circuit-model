@@ -13,9 +13,9 @@
                         [...]          |     '--------'            |
                                        |                           |
                                        |                           |
-.------------.       bearer =          |     Provider Network      |
-|            |     compute-10-nic0     |       Infrastructure      |
-| compute-10 |-------------------------|    (IP Fabric, Gateways   |
-|            |                         |            etc.)          |
-'------------'                         |                           |                                                  
+ .------------.       bearer =         |     Provider Network      |
+ |            |    compute-10-nic0     |       Infrastructure      |
+ | compute-10 |------------------------|    (IP Fabric, Gateways   |
+ |            |                        |            etc.)          |
+ '------------'                        |                           |                                                  
                                        '---------------------------'
