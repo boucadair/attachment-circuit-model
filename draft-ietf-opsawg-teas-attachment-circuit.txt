@@ -5973,8 +5973,6 @@ A.11.3.  NFs Deployment
       handling compute failures and scale-out scenarios in a reactive
       and flexible fashion thanks to a pre-provisioned networking logic.
 
-   =============== NOTE: '\' line wrapping per RFC 8792 ================
-
                             .---------------------------------------.
                             |VLAN 100:                              |
                             |                                       |
@@ -6026,8 +6024,7 @@ A.11.3.  NFs Deployment
     |.------.|.10                       .253 |                       |
     ||nf-cp2||---------vlan-100--------------|                       |
     ||      ||---------vlan-200--------------|                       |
-    |'------'|                               '-----------------------\
-                                              '
+    |'------'|                               '-----------------------'
     compute-10
     .-----------------------------------.
     |nf-cp routing for VLAN 100         |
