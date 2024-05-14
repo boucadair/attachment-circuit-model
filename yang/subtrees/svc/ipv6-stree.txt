@@ -37,6 +37,6 @@
         |              +--rw address-id          string
         |              +--rw customer-address?   inet:ipv6-address
         |              +--rw failure-detection-profile? 
-        |                                failure-detection-profile-reference
-        |                                {vpn-common:bfd}?
+        |                         failure-detection-profile-reference
+        |                         {vpn-common:bfd}?
         | ...
