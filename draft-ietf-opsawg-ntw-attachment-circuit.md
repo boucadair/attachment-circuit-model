@@ -665,11 +665,11 @@ The following IS-IS data nodes are supported:
 'passive':
 :  Controls whether an IS-IS interface is passive or active.
 
-: 'authentication':
+'authentication':
 :  Controls the authentication schemes to be enabled
-      for the IS-IS instance.  Both the specification of a key chain
-      {{!RFC8177}} and the direct specification of key and authentication
-      algorithms are supported.
+   for the IS-IS instance.  Both the specification of a key chain
+   {{!RFC8177}} and the direct specification of key and authentication
+   algorithms are supported.
 
 'status':
 :  Indicates the status of the IS-IS routing instance.
