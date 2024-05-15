@@ -60,13 +60,13 @@
        |     |  +--rw area-id           yang:dotted-quad
        |     |  +--rw metric?           uint16
        |     |  +--rw max-lsa?          uint32
-       |     |  +--rw mode?             enumeration
+       |     |  +--rw passive?          boolean
        |     +--rw isis
        |     |  +--rw address-family?   identityref
        |     |  +--rw area-address      area-address
        |     |  +--rw level?            identityref
        |     |  +--rw metric?           uint32
-       |     |  +--rw mode?             enumeration
+       |     |  +--rw passive?          boolean
        |     +--rw rip
        |     |  +--rw address-family?   identityref
        |     |  +--rw timers
