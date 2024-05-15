@@ -1367,9 +1367,7 @@ module ietf-ac-common {
                    (PE-CE) Routing Protocol, Section 4.2";
     }
     leaf metric {
-      type uint32 {
-        range "0 .. 16777215";
-      }
+      type uint16;
       description
         "Metric of the AC.  It is used in the routing state
          calculation and path selection.";
