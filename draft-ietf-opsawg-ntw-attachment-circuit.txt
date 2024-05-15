@@ -2161,6 +2161,8 @@ Table of Contents
    and [IEEE802.1Qcp].
 
    <CODE BEGINS> file "ietf-ac-ntw@2022-11-30.yang"
+   =============== NOTE: '\' line wrapping per RFC 8792 ================
+
    module ietf-ac-ntw {
      yang-version 1.1;
      namespace "urn:ietf:params:xml:ns:yang:ietf-ac-ntw";
@@ -3377,6 +3379,22 @@ Table of Contents
              description
                "Maximum number of allowed Link State Advertisements
                 (LSAs) that the OSPF instance will accept.";
+           }
+           leaf mode {
+             type enumeration {
+               enum active {
+                 description
+                   "The interface sends or receives OSPF routing \
+                                                              updates.";
+               }
+               enum passive {
+                 description
+                   "Suppresses the sending of OSPF updates through the
+                    specified interface.";
+               }
+             }
+             description
+               "OSPF interface mode type.";
            }
          }
          container isis {
