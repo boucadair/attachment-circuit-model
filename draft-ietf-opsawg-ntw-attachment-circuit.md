@@ -231,8 +231,8 @@ To bind Layer 2 VPN or Layer 3 VPN services with ACs, "ietf-ac-glue" augments th
 
 Similar to {{!RFC9408}}, the 'ietf-ac-ntw' module can be used for both User-to-Network Interface (UNI) and
 Network-to-Network Interface (NNI). For example, all the ACs shown in {{fig-inter-pn}} have a 'role' set
-to 'ietf-sap-ntw:nni'. Typically, AS Border Routers (ASBRs) of each network is directly
-connected to an ASBR of a neighboring network via one or multiple links (bearers). ASBRs of "Network#1" behave as a PE and treat the other adjacent ASBRs as if it were a CE.
+to 'ietf-sap-ntw:nni'. Typically, AS Border Routers (ASBRs) of each network are directly
+connected to ASBRs of a neighboring network via one or multiple links (bearers). ASBRs of "Network#1" behave as a PE and treat the other adjacent ASBRs as if it were a CE.
 
 ~~~~ aasvg
 {::include-fold ./figures//ntw/inter-pn.txt}
@@ -303,7 +303,7 @@ augment /nw:networks/nw:network/nw:node:
 {: #o-ntw-tree title="Overall Tree Structure"}
 
 A node can host one or more SAPs. Per {{!RFC9408}}, a SAP is an abstraction of the network
-reference points (the PE side of an AC, in the context of this document) where network services can be delivered and/or are delivered to customers. Each SAP terminates one or multiple ACs. Each AC in turn may be terminated by one or more peer SAPs ('peer-sap'). In order to expose such AC/SAP binding information, the SAP model {{!RFC9408}} is augmented with required AC-related information.
+reference point (the PE side of an AC, in the context of this document) where network services can be delivered and/or are delivered to customers. Each SAP terminates one or multiple ACs. Each AC in turn may be terminated by one or more peer SAPs ('peer-sap'). In order to expose such AC/SAP binding information, the SAP model {{!RFC9408}} is augmented with required AC-related information.
 
 Unlike the AC service model {{!I-D.ietf-opsawg-teas-attachment-circuit}}, an AC is uniquely identified by a name within the scope of a node, not a network. A textual description of the AC may be provided ('description').
 
@@ -317,7 +317,7 @@ In contexts where the same AC is terminated by multiple peer SAPs (e.g., an AC w
 
 * Define a parent AC that may list all these CEs as peer SAPs.
 * Create individual ACs that are bound to the parent AC using 'ac-parent-ref'.
-* Indicate for each individual ACs one or a subset of the CEs as peer SAPs. All these individual ACs will inherit the properties of the parent AC.
+* Indicate for each individual AC one or a subset of the CEs as peer SAPs. All these individual ACs will inherit the properties of the parent AC.
 
 Whenever a parent AC is deleted, then all child ACs of that AC MUST be deleted.
 
@@ -627,6 +627,9 @@ The following OSPF data nodes are supported:
 :  Sets the maximum number of Link State Advertisements
       (LSAs) that the OSPF instance will accept.
 
+'passive':
+:  Controls whether an OSPF interface is passive or active.
+
 'authentication':
 :  Controls the authentication schemes to be enabled
       for the OSPF instance.  The following options are supported: IPsec
@@ -659,11 +662,8 @@ The following IS-IS data nodes are supported:
 'metric':
 :  Associates a metric with IS-IS routes.
 
-'mode':
-:  Indicates the IS-IS interface mode type.  It can be set to
-      'active' (that is, send or receive IS-IS protocol control packets)
-      or 'passive' (that is, suppress the sending of IS-IS updates
-      through the interface).
+'passive':
+:  Controls whether an IS-IS interface is passive or active.
 
 : 'authentication':
 :  Controls the authentication schemes to be enabled
@@ -1008,3 +1008,5 @@ This document builds on {{!RFC9182}} and {{!RFC9291}}.
 Thanks to Moti Morgenstern for the review and comments.
 
 Thanks to Martin Björklund for the yangdoctors review and Gyan Mishra for the rtg-dir review.
+
+Thanks to Krzysztof Szarkowicz for the Shepherd review.
