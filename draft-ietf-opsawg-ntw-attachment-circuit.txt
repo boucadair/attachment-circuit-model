@@ -3400,7 +3400,7 @@ Table of Contents
                           and Layer 3 VPNs";
            }
            leaf metric {
-             type uint16;
+             type uint32;
              description
                "Metric of the AC. It is used in the routing state
                 calculation and path selection.";
