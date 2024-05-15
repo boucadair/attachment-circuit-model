@@ -266,7 +266,7 @@ module ietf-ac-ntw {
              a set of tag manipulations that allow for the insertion,
              removal, or rewriting of 802.1Q VLAN tags. These
              operations are indicated for the CE-PE direction.
-             By default, tag operations are symmetric. As such, the
+             By default, tag operations are sym. As such, the
              reverse tag operation is assumed on the PE-CE 
              direction.";
           choice op-choice {
@@ -1245,7 +1245,9 @@ module ietf-ac-ntw {
                        and Layer 3 VPNs";
         }
         leaf metric {
-          type uint32;
+          type uint32 {
+            range "0 .. 16777215";
+          }
           description
             "Metric of the AC. It is used in the routing state
              calculation and path selection.";
