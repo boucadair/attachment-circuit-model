@@ -51,7 +51,7 @@ module: ietf-ac-ntw
        |     |  |     +--rw target-site    string
        |     |  |     +--rw metric?        uint16
        |     |  +--rw max-lsa?          uint32
-       |     |  +--rw mode?             enumeration
+       |     |  +--rw passive?          boolean
        |     |  +--rw authentication
        |     |  |  +--rw enabled?            boolean
        |     |  |  +--rw keying-material
