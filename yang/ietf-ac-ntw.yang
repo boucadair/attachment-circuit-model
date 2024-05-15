@@ -1215,6 +1215,21 @@ module ietf-ac-ntw {
             "Maximum number of allowed Link State Advertisements
              (LSAs) that the OSPF instance will accept.";
         }
+        leaf mode {
+          type enumeration {
+            enum active {
+              description
+                "The interface sends or receives OSPF routing updates.";
+            }
+            enum passive {
+              description
+                "Suppresses the sending of OSPF updates through the
+                 specified interface.";
+            }
+          }
+          description
+            "OSPF interface mode type.";
+        }
       }
       container isis {
         when "derived-from-or-self(../type, "
