@@ -1973,11 +1973,12 @@ reference points (the PE side of an AC, in the context of this document) where n
        |     |  +--rw area-id           yang:dotted-quad
        |     |  +--rw metric?           uint16
        |     |  +--rw max-lsa?          uint32
+       |     |  +--rw mode?             enumeration
        |     +--rw isis
        |     |  +--rw address-family?   identityref
        |     |  +--rw area-address      area-address
        |     |  +--rw level?            identityref
-       |     |  +--rw metric?           uint16
+       |     |  +--rw metric?           uint32
        |     |  +--rw mode?             enumeration
        |     +--rw rip
        |     |  +--rw address-family?   identityref
