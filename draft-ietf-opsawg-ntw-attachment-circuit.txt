@@ -2163,8 +2163,6 @@ Table of Contents
    and [IEEE802.1Qcp].
 
    <CODE BEGINS> file "ietf-ac-ntw@2022-11-30.yang"
-   =============== NOTE: '\' line wrapping per RFC 8792 ================
-
    module ietf-ac-ntw {
      yang-version 1.1;
      namespace "urn:ietf:params:xml:ns:yang:ietf-ac-ntw";
@@ -3382,21 +3380,13 @@ Table of Contents
                "Maximum number of allowed Link State Advertisements
                 (LSAs) that the OSPF instance will accept.";
            }
-           leaf mode {
-             type enumeration {
-               enum active {
-                 description
-                   "The interface sends or receives OSPF routing \
-                                                              updates.";
-               }
-               enum passive {
-                 description
-                   "Suppresses the sending of OSPF updates through the
-                    specified interface.";
-               }
-             }
+           leaf passive {
+             type boolean;
              description
-               "OSPF interface mode type.";
+               "Enables when set to true a passive interface. It is
+                active when set to false. A passive interface's prefix
+                will be advertised, but no neighbor adjacencies will be
+                formed on the interface.";
            }
          }
          container isis {
@@ -3425,21 +3415,16 @@ Table of Contents
                "Metric of the AC. It is used in the routing state
                 calculation and path selection.";
            }
-           leaf mode {
-             type enumeration {
-               enum active {
-                 description
-                   "The interface sends or receives IS-IS protocol
-                    control packets.";
-               }
-               enum passive {
-                 description
-                   "Suppresses the sending of IS-IS updates through the
-                    specified interface.";
-               }
-             }
+           leaf passive {
+             type boolean;
              description
-               "IS-IS interface mode type.";
+               "When set to false, the interface is active. In such
+                mode, the interface sends or receives IS-IS protocol
+                control packets.
+
+                When set to true, the interface is passive. That is,
+                it suppresses the sending of IS-IS updates through the
+                specified interface.";
            }
          }
          container rip {
