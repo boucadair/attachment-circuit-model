@@ -23,12 +23,13 @@ Abstract
    This document specifies a network model for attachment circuits.  The
    model can be used for the provisioning of attachment circuits prior
    or during service provisioning (e.g., VPN, Network Slice Service).  A
-   companion service model is specified in I-D.ietf-opsawg-teas-
-   attachment-circuit.
+   companion service model is specified in the YANG Data Models for
+   Bearers and 'Attachment Circuits'-as-a-Service (ACaaS) (I-D.ietf-
+   opsawg-teas-attachment-circuit).
 
-   The module augments the 'ietf-network' and the Service Attachment
-   Point (SAP) models with the detailed information for the provisioning
-   of attachment circuits in Provider Edges (PEs).
+   The module augments the base network ('ietf-network') and the Service
+   Attachment Point (SAP) models with the detailed information for the
+   provisioning of attachment circuits in Provider Edges (PEs).
 
 Discussion Venues
 
@@ -142,7 +143,7 @@ Table of Contents
    provisioning structure that uses data nodes that are defined in these
    RFCs.  Some refinements were introduced to cover, not only
    conventional service provider networks, but also specifics of other
-   target deployments (cloud, for example).
+   target deployments (cloud network, for example).
 
    The AC network model is designed as augmentations to both the 'ietf-
    network' model [RFC8345] and the Service Attachment Point (SAP) model
@@ -367,10 +368,10 @@ Table of Contents
    Similar to [RFC9408], the 'ietf-ac-ntw' module can be used for both
    User-to-Network Interface (UNI) and Network-to-Network Interface
    (NNI).  For example, all the ACs shown in Figure 4 have a 'role' set
-   to 'ietf-sap-ntw:nni'.  Typically, AS Border Routers (ASBRs) of each
-   network are directly connected to ASBRs of a neighboring network via
-   one or multiple links (bearers).  ASBRs of "Network#1" behave as a PE
-   and treat the other adjacent ASBRs as if it were a CE.
+   to 'ietf-sap-ntw:nni'.  Typically, ASBRs of each network are directly
+   connected to ASBRs of a neighboring network via one or multiple links
+   (bearers).  ASBRs of "Network#1" behave as a PE and treat the other
+   adjacent ASBRs as if it were a CE.
 
               .--------------------.         .-------------.
               |                    +---AC----+             |
@@ -391,16 +392,18 @@ Table of Contents
 
 5.  Description of the Attachment Circuit YANG Module
 
-   The full tree diagram of the module can be generated using the
-   "pyang" tool [PYANG].  That tree is not included here because it is
-   too long (Section 3.3 of [RFC8340]).  Instead, subtrees are provided
-   in the following subsections for the reader's convenience.
+   The full tree diagram of the 'ietf-ac-ntw' module can be generated
+   using the "pyang" tool [PYANG].  That tree is not included here
+   because it is too long (Section 3.4 of [RFC8340]).  Instead, subtrees
+   are provided in the following subsections for the reader's
+   convenience.
 
-   The full tree of the 'ac-ntw' is provided in [AC-Ntw-Tree].
+   The full tree of the 'ietf-ac-ntw' is provided in [AC-Ntw-Tree].
 
 5.1.  Overall Structure of the Module
 
-   The overall tree structure of the module is shown in Figure 5.
+   The overall tree structure of the 'ietf-ac-ntw' module is shown in
+   Figure 5.
 
    augment /nw:networks/nw:network:
      +--rw specific-provisioning-profiles
@@ -465,15 +468,15 @@ Table of Contents
    textual description of the AC may be provided ('description').
 
    Also, in order to ease the correlation between the AC exposed at the
-   service layer and the one that is actually provisioned in the network
+   service layer and the AC that is actually provisioned in the network
    operation, a reference to the AC exposed to the customer ('ac-svc-
    ref') is stored in the 'ietf-ac-ntw' module.
 
-   ACs that are terminated by a SAP are listed in 'ac' under
-   '/nw:networks/nw:network/nw:node/sap:service/sap:sap'.  A controller
-   may indicate a filter based on the service type (e.g., Network Slice
-   or L3VPN) to retrieve the list of available SAPs, and thus ACs, for
-   that service.
+   ACs that are terminated by a SAP are listed in the 'ac' container
+   under '/nw:networks/nw:network/nw:node/sap:service/sap:sap'.  A
+   controller may indicate a filter based on the service type (e.g.,
+   Network Slice or L3VPN) to retrieve the list of available SAPs, and
+   thus ACs, for that service.
 
    In order to factorize common data that is provisioned for a group of
    ACs, a set of profiles (Section 5.3) can be defined at the network
@@ -790,7 +793,8 @@ Table of Contents
    local bridge reference can be specified in 'local-bridge-reference'.
    Such a reference may be a local bridge domain.
 
-   A reference to the bearer is maintained using 'bearer-reference'.
+   A reference to the bearer used by this AC is maintained using
+   'bearer-reference'.
 
 5.5.  IP Connection
 
@@ -2163,7 +2167,7 @@ Table of Contents
    [RFC8343], [RFC9067], [RFC9181], [I-D.ietf-opsawg-teas-common-ac],
    and [IEEE802.1Qcp].
 
-   <CODE BEGINS> file "ietf-ac-ntw@2022-11-30.yang"
+   <CODE BEGINS> file "ietf-ac-ntw@2024-05-15.yang"
    module ietf-ac-ntw {
      yang-version 1.1;
      namespace "urn:ietf:params:xml:ns:yang:ietf-ac-ntw";
