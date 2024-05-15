@@ -827,7 +827,7 @@ The description of the service data nodes is as follows:
 
 : 'svc-ce-to-pe-bandwidth' indicates the outbound bandwidth of the connection (i.e., upload bandwidth from the site to the service provider).
 
-: 'svc-pe-to-ce-bandwidth' and 'svc-ce-to-pe-bandwidth' can be represented using the Committed Information Rate (CIR), the Excess Information Rate (EIR), or the Peak Information Rate (PIR).
+: 'svc-pe-to-ce-bandwidth' and 'svc-ce-to-pe-bandwidth' can be represented using the Committed Information Rate (CIR), the Committed Burst Size (CBS), the Excess Information Rate (EIR), the Excess Burst Size (EBS), the Peak Information Rate (PIR), and the Peak Burst Size (PBS). CIR, EIR, and PIR are expressed in bps, while CBS, EBS, and PBS are expressed in bytes.
 
 : The following types, defined in {{!RFC9181}}, can be used to indicate the bandwidth type:
 
