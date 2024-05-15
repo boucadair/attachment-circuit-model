@@ -103,9 +103,9 @@ informative:
 
 --- abstract
 
-This document specifies a network model for attachment circuits. The model can be used for the provisioning of attachment circuits prior or during service provisioning (e.g., VPN, Network Slice Service). A companion service model is specified in I-D.ietf-opsawg-teas-attachment-circuit.
+This document specifies a network model for attachment circuits. The model can be used for the provisioning of attachment circuits prior or during service provisioning (e.g., VPN, Network Slice Service). A companion service model is specified in the YANG Data Models for Bearers and 'Attachment Circuits'-as-a-Service (ACaaS) (I-D.ietf-opsawg-teas-attachment-circuit).
 
-The module augments the 'ietf-network' and the Service Attachment Point (SAP) models with the detailed information for the provisioning of attachment circuits in Provider Edges (PEs).
+The module augments the base network ('ietf-network') and the Service Attachment Point (SAP) models with the detailed information for the provisioning of attachment circuits in Provider Edges (PEs).
 
 --- middle
 
@@ -120,7 +120,7 @@ The procedure to provision a service in a service provider network may depend on
 
 {{sec-module}} specifies a network model for attachment circuits ('ietf-ac-ntw'). The model can be used for the provisioning of ACs prior or during service provisioning. For example, {{?I-D.ietf-opsawg-ac-lxsm-lxnm-glue}} specifies augmentations to the L2VPN Network Model (L2NM) {{!RFC9291}} and the L3VPN Network Model (L3NM) {{!RFC9182}} to bind LxVPNs to ACs that are provisioned using the procedure defined in this document.
 
-The document leverages {{!RFC9182}} and {{!RFC9291}} by adopting an AC provisioning structure that uses data nodes that are defined in these RFCs. Some refinements were introduced to cover, not only conventional service provider networks, but also specifics of other target deployments (cloud, for example).
+The document leverages {{!RFC9182}} and {{!RFC9291}} by adopting an AC provisioning structure that uses data nodes that are defined in these RFCs. Some refinements were introduced to cover, not only conventional service provider networks, but also specifics of other target deployments (cloud network, for example).
 
 The AC network model is designed as augmentations to both the 'ietf-network' model {{!RFC8345}} and the Service Attachment Point (SAP) model {{!RFC9408}}. An attachment circuit can be bound to a single or multiple SAPs. Likewise, the model is designed to accommodate deployments where a SAP can be bound to one or multiple ACs (e.g., a parent AC and its child ACs).
 
@@ -231,7 +231,7 @@ To bind Layer 2 VPN or Layer 3 VPN services with ACs, "ietf-ac-glue" augments th
 
 Similar to {{!RFC9408}}, the 'ietf-ac-ntw' module can be used for both User-to-Network Interface (UNI) and
 Network-to-Network Interface (NNI). For example, all the ACs shown in {{fig-inter-pn}} have a 'role' set
-to 'ietf-sap-ntw:nni'. Typically, AS Border Routers (ASBRs) of each network are directly
+to 'ietf-sap-ntw:nni'. Typically, ASBRs of each network are directly
 connected to ASBRs of a neighboring network via one or multiple links (bearers). ASBRs of "Network#1" behave as a PE and treat the other adjacent ASBRs as if it were a CE.
 
 ~~~~ aasvg
@@ -242,16 +242,16 @@ connected to ASBRs of a neighboring network via one or multiple links (bearers).
 
 # Description of the Attachment Circuit YANG Module
 
-The full tree diagram of the module can be generated using the
+The full tree diagram of the 'ietf-ac-ntw' module can be generated using the
 "pyang" tool {{PYANG}}.  That tree is not included here because it is
-too long ({{Section 3.3 of ?RFC8340}}).  Instead, subtrees are provided in the following subsections
+too long ({{Section 3.4 of ?RFC8340}}).  Instead, subtrees are provided in the following subsections
 for the reader's convenience.
 
-The full tree of the 'ac-ntw' is provided in {{AC-Ntw-Tree}}.
+The full tree of the 'ietf-ac-ntw' is provided in {{AC-Ntw-Tree}}.
 
 ## Overall Structure of the Module
 
-The overall tree structure of the module is shown in {{o-ntw-tree}}.
+The overall tree structure of the 'ietf-ac-ntw' module is shown in {{o-ntw-tree}}.
 
 ~~~~
 augment /nw:networks/nw:network:
@@ -307,9 +307,9 @@ reference point (the PE side of an AC, in the context of this document) where ne
 
 Unlike the AC service model {{!I-D.ietf-opsawg-teas-attachment-circuit}}, an AC is uniquely identified by a name within the scope of a node, not a network. A textual description of the AC may be provided ('description').
 
-Also, in order to ease the correlation between the AC exposed at the service layer and the one that is actually provisioned in the network operation, a reference to the AC exposed to the customer ('ac-svc-ref') is stored in the 'ietf-ac-ntw' module.
+Also, in order to ease the correlation between the AC exposed at the service layer and the AC that is actually provisioned in the network operation, a reference to the AC exposed to the customer ('ac-svc-ref') is stored in the 'ietf-ac-ntw' module.
 
-ACs that are terminated by a SAP are listed in 'ac' under '/nw:networks/nw:network/nw:node/sap:service/sap:sap'. A controller may indicate a filter based on the service type (e.g., Network Slice or L3VPN) to retrieve the list of available SAPs, and thus ACs, for that service.
+ACs that are terminated by a SAP are listed in the 'ac' container under '/nw:networks/nw:network/nw:node/sap:service/sap:sap'. A controller may indicate a filter based on the service type (e.g., Network Slice or L3VPN) to retrieve the list of available SAPs, and thus ACs, for that service.
 
 In order to factorize common data that is provisioned for a group of ACs, a set of profiles ({{sec-profiles}}) can be defined at the network level, and then called under the node level. The information contained in a profile is thus inherited, unless the corresponding data node is refined at the AC level. In such a case, the value provided at the AC level takes precedence over the global one.
 
@@ -385,7 +385,7 @@ Specific Layer 2 sub-interfaces may be required to be configured in some impleme
 
 To accommodate implementations that require internal bridging, a local bridge reference can be specified in 'local-bridge-reference'. Such a reference may be a local bridge domain.
 
-A reference to the bearer is maintained using 'bearer-reference'.
+A reference to the bearer used by this AC is maintained using 'bearer-reference'.
 
 ## IP Connection {#sec-l3}
 
@@ -854,7 +854,7 @@ The description of the service data nodes is as follows:
 This module uses types defined in {{!RFC6991}}, {{!RFC8177}}, {{!RFC8294}}, {{!RFC8343}}, {{!RFC9067}}, {{!RFC9181}}, {{!I-D.ietf-opsawg-teas-common-ac}}, and {{IEEE802.1Qcp}}.
 
 ~~~~ yang
-<CODE BEGINS> file "ietf-ac-ntw@2022-11-30.yang"
+<CODE BEGINS> file "ietf-ac-ntw@2024-05-15.yang"
 {::include-fold ./yang/ietf-ac-ntw.yang}
 <CODE ENDS>
 ~~~~
