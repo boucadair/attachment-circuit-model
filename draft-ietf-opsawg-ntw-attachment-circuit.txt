@@ -5,14 +5,14 @@
 Operations and Management Area Working Group           M. Boucadair, Ed.
 Internet-Draft                                                    Orange
 Intended status: Standards Track                              R. Roberts
-Expires: 15 November 2024                                        Juniper
+Expires: 16 November 2024                                        Juniper
                                                            O. G. D. Dios
                                                               Telefonica
                                                            S. B. Giraldo
                                                                    Nokia
                                                                    B. Wu
                                                      Huawei Technologies
-                                                             14 May 2024
+                                                             15 May 2024
 
 
            A Network YANG Data Model for Attachment Circuits
@@ -57,7 +57,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 15 November 2024.
+   This Internet-Draft will expire on 16 November 2024.
 
 Copyright Notice
 
@@ -151,19 +151,20 @@ Table of Contents
    deployments where a SAP can be bound to one or multiple ACs (e.g., a
    parent AC and its child ACs).
 
-                      .---.
-                      |CE6|
-                      '-+-'
-                     ac |        .---.             .---.
-                        |        |CE5+------+------+CE2|
-                 .------+-----.  '---'      |      '---'
-                 |            |             |ac
-                 |            |             |
+                     .---.
+                     |CE6|
+                     '-+-'
+                    ac |         .---.             .---.
+                       |         |CE5+------+------+CE2|
+                 .-----+-----.   '---'      |      '---'
+                 |           |              |ac
+                 |           |              |
                .-+-.       .-+-.          .-+-.
              .-+sap+-------+sap+-.      .-+sap+-------------.
              | '---'       '---' |      | '---'             |
+             |        PE1        |      |        PE2        |
     .---.  .-+-.                 |      |                   |
-    |CE1+--+sap|      PE1        |      |         PE2       |
+    |CE1+--+sap|                 |      |                   |
     '---'ac'-+-'                 |      |                   |
              '-------------------'      '-------------------'
 
@@ -171,6 +172,7 @@ Table of Contents
              |                   |      |                 .-+-.ac.---.
              |         PE3       |      |        PE4      |sap+--+CE5|
              |                   |      |                 '---'  '---'
+             |                   |      |                   |
              |             .---. |      | .---. .---. .---. |
              '-------------+sap+-'      '-+sap+-+sap+-+sap+-'
                            '-+-'          '-+-' '-+-' '-+-'
@@ -4253,16 +4255,16 @@ Table of Contents
               and B. Wu, "YANG Data Models for Bearers and 'Attachment
               Circuits'-as-a-Service (ACaaS)", Work in Progress,
               Internet-Draft, draft-ietf-opsawg-teas-attachment-circuit-
-              11, 19 April 2024, <https://datatracker.ietf.org/doc/html/
-              draft-ietf-opsawg-teas-attachment-circuit-11>.
+              12, 14 May 2024, <https://datatracker.ietf.org/doc/html/
+              draft-ietf-opsawg-teas-attachment-circuit-12>.
 
    [I-D.ietf-opsawg-teas-common-ac]
               Boucadair, M., Roberts, R., de Dios, O. G., Barguil, S.,
               and B. Wu, "A Common YANG Data Model for Attachment
               Circuits", Work in Progress, Internet-Draft, draft-ietf-
-              opsawg-teas-common-ac-10, 19 April 2024,
+              opsawg-teas-common-ac-11, 14 May 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
-              teas-common-ac-10>.
+              teas-common-ac-11>.
 
    [IEEE802.1Qcp]
               IEEE, "IEEE Standard for Local and metropolitan area
