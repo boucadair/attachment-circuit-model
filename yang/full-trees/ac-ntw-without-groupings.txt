@@ -64,7 +64,7 @@
        |     |  +--rw address-family?   identityref
        |     |  +--rw area-address      area-address
        |     |  +--rw level?            identityref
-       |     |  +--rw metric?           uint16
+       |     |  +--rw metric?           uint32
        |     |  +--rw mode?             enumeration
        |     +--rw rip {vpn-common:rtg-rip}?
        |     |  +--rw address-family?   identityref
@@ -457,7 +457,7 @@
        |     |  +--rw address-family?   identityref
        |     |  +--rw area-address      area-address
        |     |  +--rw level?            identityref
-       |     |  +--rw metric?           uint16
+       |     |  +--rw metric?           uint32
        |     |  +--rw mode?             enumeration
        |     |  +--rw authentication
        |     |  |  +--rw enabled?           boolean
