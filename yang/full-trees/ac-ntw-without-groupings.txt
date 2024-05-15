@@ -60,13 +60,13 @@
        |     |  +--rw area-id           yang:dotted-quad
        |     |  +--rw metric?           uint16
        |     |  +--rw max-lsa?          uint32
-       |     |  +--rw mode?             enumeration
+       |     |  +--rw passive?          boolean
        |     +--rw isis {vpn-common:rtg-isis}?
        |     |  +--rw address-family?   identityref
        |     |  +--rw area-address      area-address
        |     |  +--rw level?            identityref
        |     |  +--rw metric?           uint32
-       |     |  +--rw mode?             enumeration
+       |     |  +--rw passive?          boolean
        |     +--rw rip {vpn-common:rtg-rip}?
        |     |  +--rw address-family?   identityref
        |     |  +--rw timers
@@ -436,7 +436,7 @@
        |     |  |     +--rw target-site    string
        |     |  |     +--rw metric?        uint16
        |     |  +--rw max-lsa?          uint32
-       |     |  +--rw mode?             enumeration
+       |     |  +--rw passive?          boolean
        |     |  +--rw authentication
        |     |  |  +--rw enabled?           boolean
        |     |  |  +--rw keying-material
@@ -460,7 +460,7 @@
        |     |  +--rw area-address      area-address
        |     |  +--rw level?            identityref
        |     |  +--rw metric?           uint32
-       |     |  +--rw mode?             enumeration
+       |     |  +--rw passive?          boolean
        |     |  +--rw authentication
        |     |  |  +--rw enabled?           boolean
        |     |  |  +--rw keying-material
