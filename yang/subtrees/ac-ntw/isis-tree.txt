@@ -15,7 +15,7 @@ module: ietf-ac-ntw
        |     |  +--rw area-address      area-address
        |     |  +--rw level?            identityref
        |     |  +--rw metric?           uint32
-       |     |  +--rw mode?             enumeration
+       |     |  +--rw passive?          boolean
        |     +--rw rip  {vpn-common:rtg-rip}?
        |     |  ...
        |     +--rw vrrp  {vpn-common:rtg-vrrp}?
@@ -50,7 +50,7 @@ module: ietf-ac-ntw
        |     |  +--rw area-address      area-address
        |     |  +--rw level?            identityref
        |     |  +--rw metric?           uint32
-       |     |  +--rw mode?             enumeration
+       |     |  +--rw passive?          boolean
        |     |  +--rw authentication
        |     |  |  +--rw enabled?            boolean
        |     |  |  +--rw keying-material
