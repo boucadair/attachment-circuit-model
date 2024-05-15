@@ -2080,7 +2080,9 @@ Table of Contents
                       (PE-CE) Routing Protocol, Section 4.2";
        }
        leaf metric {
-         type uint16;
+         type uint32 {
+           range "0 .. 16777215";
+         }
          description
            "Metric of the AC.  It is used in the routing state
             calculation and path selection.";
