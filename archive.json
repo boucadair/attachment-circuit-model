@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-05-23T00:37:57.999690+00:00",
+  "timestamp": "2024-05-26T00:41:34.389267+00:00",
   "repo": "boucadair/attachment-circuit-model",
   "labels": [
     {
@@ -2744,7 +2744,7 @@
       "id": "I_kwDOIiAkrc6GeAWo",
       "title": "bgp peer group as a container at the level of ac-profile",
       "url": "https://github.com/boucadair/attachment-circuit-model/issues/216",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "boucadair",
       "authorAssociation": "OWNER",
       "assignees": [],
@@ -2753,8 +2753,8 @@
       ],
       "body": "or consider a separate module for peer groups??\r\n\r\nThe target use is to management of peerings/interconnections.",
       "createdAt": "2024-04-22T09:12:46Z",
-      "updatedAt": "2024-04-26T05:57:38Z",
-      "closedAt": null,
+      "updatedAt": "2024-05-23T09:34:44Z",
+      "closedAt": "2024-05-23T09:34:44Z",
       "comments": []
     }
   ],
