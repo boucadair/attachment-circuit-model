@@ -810,6 +810,9 @@ As shown in the tree depicted in {{oam-svc-tree}}, the 'oam' container defines O
 
 This version of the module supports BFD. The following BFD data nodes can be specified:
 
+'id':
+: An identifier that uniquely identifies a BFD session.
+
 'local-address':
 : Indicates the provider's IP address used for a BFD session.
 
