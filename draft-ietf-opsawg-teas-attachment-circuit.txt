@@ -6361,7 +6361,7 @@ A.11.4.  NF Failure and Scale-Out
     compute-07                               |                       |
     .--------.                               |     nf-up7 on         |
     |.------.|.7     < - bfd - >             |    compute-08         |
-    ||ng-up7||---------vlan-100--------------|    created for        |
+    ||nf-up7||---------vlan-100--------------|    created for        |
     ||      ||---------vlan-200--------------|     scale-out         |
     |'------'|                               |                       |
     compute-08                               '-----------------------'
