@@ -103,12 +103,12 @@
                   {
                     "id": "gw2-cp1",
                     "remote-address": "192.0.2.101",
-                    "peer-group": "peer-nf-cp-vlan-100-gw1"
+                    "peer-group": "peer-nf-cp-vlan-100-gw2"
                   },
                   {
                     "id": "gw2-cp2",
                     "remote-address": "192.0.2.102",
-                    "peer-group": "peer-nf-cp-vlan-100-gw1"
+                    "peer-group": "peer-nf-cp-vlan-100-gw2"
                   }
                 ]
               }
