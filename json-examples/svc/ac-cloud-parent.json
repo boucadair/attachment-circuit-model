@@ -119,18 +119,42 @@
           "bfd": {
             "session": [
               {
+                "id": "bfd-gw1-nf-up1",
+                "local-address": "192.0.2.252",
                 "remote-address": "192.0.2.1",
                 "profile": "single-hop-bfd-user-plane"
               },
               {
+                "id": "bfd-gw2-nf-up1",
+                "local-address": "192.0.2.253",
+                "remote-address": "192.0.2.1",
+                "profile": "single-hop-bfd-user-plane"
+              },
+              {
+                "id": "bfd-gw1-nf-up2",
+                "local-address": "192.0.2.252",
                 "remote-address": "192.0.2.2",
                 "profile": "single-hop-bfd-user-plane"
               },
               {
-                "_comment": "192.0.2.3-192.0.2.9 sessions are not displayed"
+                "id": "bfd-gw2-nf-up2",
+                "local-address": "192.0.2.253",
+                "remote-address": "192.0.2.2",
+                "profile": "single-hop-bfd-user-plane"
               },
               {
-                "remote-address": "192.0.2.10",
+                "_comment": "192.0.2.3-192.0.2.7 sessions are not displayed"
+              },
+              {
+                "id": "bfd-gw1-nf-up8",
+                "local-address": "192.0.2.252",
+                "remote-address": "192.0.2.8",
+                "profile": "single-hop-bfd-user-plane"
+              },
+              {
+                "id": "bfd-gw2-nf-up8",
+                "local-address": "192.0.2.253",
+                "remote-address": "192.0.2.8",
                 "profile": "single-hop-bfd-user-plane"
               }
             ]
