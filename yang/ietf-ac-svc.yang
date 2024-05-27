@@ -998,18 +998,23 @@ module ietf-ac-svc {
         description
           "Container for BFD.";
         list session {
-          key "remote-address";
+          key "id";
           description
-            "List of IP sessions.";
-           leaf local-address {
-             type inet:ip-address;
+            "List of BFD sessions.";
+          leaf id {
+             type string;
              description
-               "Provider's IP address of the BFD session.";
+               "A unique identifer for the BFD session.";
+          }
+          leaf local-address {
+            type inet:ip-address;
+            description
+              "Provider's IP address of the BFD session.";
           }
           leaf remote-address {
-             type inet:ip-address;
-             description
-               "Customer's IP address of the BFD session.";
+            type inet:ip-address;
+            description
+              "Customer's IP address of the BFD session.";
           }
           leaf profile {
             type failure-detection-profile-reference;
