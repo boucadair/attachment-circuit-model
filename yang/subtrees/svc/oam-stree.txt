@@ -17,9 +17,10 @@
         |  ...
         +--rw oam
         |  +--rw bfd {vpn-common:bfd}?
-        |     +--rw session* [remote-address]
+        |     +--rw session* [id]
+        |        +--rw id                string
         |        +--rw local-address?    inet:ip-address
-        |        +--rw remote-address    inet:ip-address
+        |        +--rw remote-address?   inet:ip-address
         |        +--rw profile?
         |        |       failure-detection-profile-reference
         |        +--rw holdtime?         uint32
