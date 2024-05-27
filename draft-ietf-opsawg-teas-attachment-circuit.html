@@ -3368,29 +3368,34 @@ isn't any type of VRRP authentication at this time (see <span><a href="https://r
 </div>
 <p id="section-5.2.5.4-3">This version of the module supports BFD. The following BFD data nodes can be specified:<a href="#section-5.2.5.4-3" class="pilcrow">¶</a></p>
 <span class="break"></span><dl class="dlParallel" id="section-5.2.5.4-4">
-              <dt id="section-5.2.5.4-4.1">'local-address':</dt>
+              <dt id="section-5.2.5.4-4.1">'id':</dt>
               <dd style="margin-left: 1.5em" id="section-5.2.5.4-4.2">
-                <p id="section-5.2.5.4-4.2.1">Indicates the provider's IP address used for a BFD session.<a href="#section-5.2.5.4-4.2.1" class="pilcrow">¶</a></p>
+                <p id="section-5.2.5.4-4.2.1">An identifier that uniquely identifies a BFD session.<a href="#section-5.2.5.4-4.2.1" class="pilcrow">¶</a></p>
 </dd>
               <dd class="break"></dd>
-<dt id="section-5.2.5.4-4.3">'remote-address':</dt>
+<dt id="section-5.2.5.4-4.3">'local-address':</dt>
               <dd style="margin-left: 1.5em" id="section-5.2.5.4-4.4">
-                <p id="section-5.2.5.4-4.4.1">Indicates the customer's IP address used for a BFD session.<a href="#section-5.2.5.4-4.4.1" class="pilcrow">¶</a></p>
+                <p id="section-5.2.5.4-4.4.1">Indicates the provider's IP address used for a BFD session.<a href="#section-5.2.5.4-4.4.1" class="pilcrow">¶</a></p>
 </dd>
               <dd class="break"></dd>
-<dt id="section-5.2.5.4-4.5">'profile':</dt>
+<dt id="section-5.2.5.4-4.5">'remote-address':</dt>
               <dd style="margin-left: 1.5em" id="section-5.2.5.4-4.6">
-                <p id="section-5.2.5.4-4.6.1">Refers to a BFD profile.<a href="#section-5.2.5.4-4.6.1" class="pilcrow">¶</a></p>
+                <p id="section-5.2.5.4-4.6.1">Indicates the customer's IP address used for a BFD session.<a href="#section-5.2.5.4-4.6.1" class="pilcrow">¶</a></p>
 </dd>
               <dd class="break"></dd>
-<dt id="section-5.2.5.4-4.7">'holdtime':</dt>
+<dt id="section-5.2.5.4-4.7">'profile':</dt>
               <dd style="margin-left: 1.5em" id="section-5.2.5.4-4.8">
-                <p id="section-5.2.5.4-4.8.1">Used to indicate the expected BFD holddown time, in milliseconds.<a href="#section-5.2.5.4-4.8.1" class="pilcrow">¶</a></p>
+                <p id="section-5.2.5.4-4.8.1">Refers to a BFD profile.<a href="#section-5.2.5.4-4.8.1" class="pilcrow">¶</a></p>
 </dd>
               <dd class="break"></dd>
-<dt id="section-5.2.5.4-4.9">'status':</dt>
+<dt id="section-5.2.5.4-4.9">'holdtime':</dt>
               <dd style="margin-left: 1.5em" id="section-5.2.5.4-4.10">
-                <p id="section-5.2.5.4-4.10.1">Indicates the status of the BFD session.<a href="#section-5.2.5.4-4.10.1" class="pilcrow">¶</a></p>
+                <p id="section-5.2.5.4-4.10.1">Used to indicate the expected BFD holddown time, in milliseconds.<a href="#section-5.2.5.4-4.10.1" class="pilcrow">¶</a></p>
+</dd>
+              <dd class="break"></dd>
+<dt id="section-5.2.5.4-4.11">'status':</dt>
+              <dd style="margin-left: 1.5em" id="section-5.2.5.4-4.12">
+                <p id="section-5.2.5.4-4.12.1">Indicates the status of the BFD session.<a href="#section-5.2.5.4-4.12.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
 </dl>
