@@ -1043,7 +1043,7 @@ Table of Contents
           +--rw role?                identityref
           +--rw peer-sap-id*         string
           +--rw ac-group-profile-ref*    ac-group-reference
-          +--rw ac-parent-ref?       ac-svc:attachment-circuit-reference
+          +--rw ac-parent-ref*       ac-svc:attachment-circuit-reference
           +--ro child-ac-ref*        ac-svc:attachment-circuit-reference
           +--rw group* [group-id]
           |  +--rw group-id      string
@@ -1117,6 +1117,10 @@ Table of Contents
 
       Whenever a parent AC is deleted, all its "child" ACs MUST be
       deleted.
+
+      A "child" AC MAY rely upon more than one parent AC (e.g., parent
+      Layer 2 AC and parent Layer 3 AC).  In such cases, these ACs MUST
+      NOT be overlapping.
 
    'child-ac-ref':  Lists one or more references of child ACs that rely
       upon this attachment circuit as a parent AC.
@@ -3662,10 +3666,10 @@ Table of Contents
      grouping ac-hierarchy {
        description
          "Container for parent and child AC references.";
-       leaf ac-parent-ref {
+       leaf-list ac-parent-ref {
          type ac-svc:attachment-circuit-reference;
          description
-           "Specifies the parent AC that is inherited by an AC.
+           "Specifies a parent AC that is inherited by an AC.
             In contexts where dynamic terminating points are
             bound to the same AC, a parent AC with stable
             information is created with a set of child ACs
@@ -6267,7 +6271,7 @@ A.11.3.  NFs Deployment
          {
            "name": "ac-nf-up-01-vlan-100",
            "description": "attachment to NF-up instance 1 in vlan 100",
-           "ac-parent-ref": "parent-vlan-100",
+           "ac-parent-ref": ["parent-vlan-100"],
            "l2-connection": {
              "bearer-reference": "compute-01-nic1"
            }
@@ -6275,7 +6279,7 @@ A.11.3.  NFs Deployment
          {
            "name": "ac-nf-up-02-vlan-100",
            "description": "attachment to NF-up instance 2 in vlan 100",
-           "ac-parent-ref": "parent-vlan-100",
+           "ac-parent-ref": ["parent-vlan-100"],
            "l2-connection": {
              "bearer-reference": "compute-02-nic2"
            }
@@ -6287,7 +6291,7 @@ A.11.3.  NFs Deployment
          {
            "name": "ac-nf-up-08-vlan-100",
            "description": "attachment to NF-up instance 10 in vlan 100",
-           "ac-parent-ref": "parent-vlan-100",
+           "ac-parent-ref": ["parent-vlan-100"],
            "l2-connection": {
              "bearer-reference": "compute-08-nic1"
            }
@@ -6295,7 +6299,7 @@ A.11.3.  NFs Deployment
          {
            "name": "ac-nf-cp-01-vlan-100",
            "description": "attachment to NF-CP instance 1 in vlan 100",
-           "ac-parent-ref": "parent-vlan-100",
+           "ac-parent-ref": ["parent-vlan-100"],
            "l2-connection": {
              "bearer-reference": "compute-09-nic0"
            },
@@ -6314,7 +6318,7 @@ A.11.3.  NFs Deployment
          {
            "name": "ac-nf-cp-02-vlan-100",
            "description": "attachment to NF-CP instance 2 in vlan 100",
-           "ac-parent-ref": "parent-vlan-100",
+           "ac-parent-ref": ["parent-vlan-100"],
            "l2-connection": {
              "bearer-reference": "compute-10-nic0"
            },
@@ -6333,7 +6337,7 @@ A.11.3.  NFs Deployment
          {
            "name": "ac-nf-up-1-vlan-200",
            "description": "attachment to NF-up instance 1 in vlan 200",
-           "ac-parent-ref": "parent-vlan-200",
+           "ac-parent-ref": ["parent-vlan-200"],
            "l2-connection": {
              "bearer-reference": "compute-01-nic1"
            }
@@ -6345,7 +6349,7 @@ A.11.3.  NFs Deployment
          {
            "name": "ac-nf-cp-2-vlan-200",
            "description": "attachment to NF-CP instance 2 in vlan 200",
-           "ac-parent-ref": "parent-vlan-200",
+           "ac-parent-ref": ["parent-vlan-200"],
            "l2-connection": {
              "bearer-reference": "compute-10-nic0"
            }
