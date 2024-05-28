@@ -1192,7 +1192,7 @@ module ietf-ac-svc {
         description
           "One or more peer SAPs can be indicated.";
       }
-      leaf-list ac-group-profile {
+      leaf-list ac-group-profile-ref {
         type ac-group-reference;
         description
           "A reference to an AC profile.";
