@@ -528,7 +528,7 @@ The description of the data nodes is as follows:
 'peer-sap-id':
 : Includes references to the remote endpoints of an attachment circuit {{!RFC9408}}.
 
-'ac-group-profile':
+'ac-group-profile-ref':
 : Indicates references to one or more profiles that are defined in {{sec-acp}}.
 
 'ac-parent-ref':
