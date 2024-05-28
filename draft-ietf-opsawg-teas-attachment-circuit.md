@@ -543,6 +543,7 @@ The description of the data nodes is as follows:
 a parent AC can be defined with a set of stable and common information, while
 "child" ACs are defined to track dynamic information. These "child" ACs are bound to the parent AC, which is exposed to services (as a stable reference).
 : Whenever a parent AC is deleted, all its "child" ACs MUST be deleted.
+: A "child" AC MAY rely upon more than one parent AC (e.g., parent Layer 2 AC and parent Layer 3 AC). In such cases, these ACs MUST NOT be overlapping.
 
 'child-ac-ref':
 : Lists one or more references of child ACs that rely upon this attachment circuit as a parent AC.

@@ -1094,10 +1094,10 @@ module ietf-ac-svc {
   grouping ac-hierarchy {
     description
       "Container for parent and child AC references.";
-    leaf ac-parent-ref {
+    leaf-list ac-parent-ref {
       type ac-svc:attachment-circuit-reference;
       description
-        "Specifies the parent AC that is inherited by an AC.
+        "Specifies a parent AC that is inherited by an AC.
          In contexts where dynamic terminating points are 
          bound to the same AC, a parent AC with stable
          information is created with a set of child ACs
