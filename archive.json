@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-05-26T00:41:34.389267+00:00",
+  "timestamp": "2024-05-28T00:38:37.564846+00:00",
   "repo": "boucadair/attachment-circuit-model",
   "labels": [
     {
@@ -8498,6 +8498,74 @@
           ]
         }
       ]
+    },
+    {
+      "number": 218,
+      "id": "PR_kwDOIiAkrc5wo97x",
+      "title": "Update ac-cloud-parent.json with BFD sessions",
+      "url": "https://github.com/boucadair/attachment-circuit-model/pull/218",
+      "state": "MERGED",
+      "author": "robric",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-05-27T09:37:49Z",
+      "updatedAt": "2024-05-27T16:18:15Z",
+      "baseRepository": "boucadair/attachment-circuit-model",
+      "baseRefName": "main",
+      "baseRefOid": "fd0cbd79bb278af7e5b252550a42a8b4291da70c",
+      "headRepository": "boucadair/attachment-circuit-model",
+      "headRefName": "bfd-json-update",
+      "headRefOid": "fff811a007bf1c930bb7bc338ee6e2ccff6f007d",
+      "closedAt": "2024-05-27T16:18:15Z",
+      "mergedAt": "2024-05-27T16:18:15Z",
+      "mergedBy": "boucadair",
+      "mergeCommit": {
+        "oid": "6e93c08ac64be74cf26034e98ccaca3611acafe6"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIiAkrc58DSG2",
+          "commit": {
+            "abbreviatedOid": "fff811a"
+          },
+          "author": "boucadair",
+          "authorAssociation": "OWNER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-05-27T16:18:11Z",
+          "updatedAt": "2024-05-27T16:18:11Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 219,
+      "id": "PR_kwDOIiAkrc5wrwfV",
+      "title": "Luis Review",
+      "url": "https://github.com/boucadair/attachment-circuit-model/pull/219",
+      "state": "OPEN",
+      "author": "boucadair",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-05-27T16:55:29Z",
+      "updatedAt": "2024-05-27T16:55:29Z",
+      "baseRepository": "boucadair/attachment-circuit-model",
+      "baseRefName": "main",
+      "baseRefOid": "6e93c08ac64be74cf26034e98ccaca3611acafe6",
+      "headRepository": "boucadair/attachment-circuit-model",
+      "headRefName": "boucadair-patch-5",
+      "headRefOid": "938e879ccb2477df0a637f81a470e871b043ee78",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
     }
   ]
 }
