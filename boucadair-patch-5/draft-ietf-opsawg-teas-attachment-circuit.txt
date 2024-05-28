@@ -5,14 +5,14 @@
 OPSAWG                                                 M. Boucadair, Ed.
 Internet-Draft                                                    Orange
 Intended status: Standards Track                         R. Roberts, Ed.
-Expires: 28 November 2024                                        Juniper
+Expires: 29 November 2024                                        Juniper
                                                            O. G. D. Dios
                                                               Telefonica
                                                            S. B. Giraldo
                                                                    Nokia
                                                                    B. Wu
                                                      Huawei Technologies
-                                                             27 May 2024
+                                                             28 May 2024
 
 
   YANG Data Models for Bearers and 'Attachment Circuits'-as-a-Service
@@ -62,7 +62,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 28 November 2024.
+   This Internet-Draft will expire on 29 November 2024.
 
 Copyright Notice
 
@@ -148,8 +148,8 @@ Table of Contents
    is provisioned over the links that connect customer terminating
    points and a provider network (usually via a Provider Edge (PE)),
    allowing successfully data exchanged over these links.  The required
-   setup is referred to in this document as Attachment Circuit (AC),
-   while the underlying link is referred to as "bearer".
+   setup is referred to in this document as Attachment Circuits (ACs),
+   while the underlying link is referred to as "bearers".
 
    This document adheres to the definition of an Attachment Circuit as
    provided in Section 1.2 of [RFC4364], especially:
@@ -175,20 +175,20 @@ Table of Contents
    coordinating the provisioning of endpoints that might not belong to
    the same administrative entity (customer vs. provider or distinct
    operational teams within the same provider, etc.), providing
-   programmatic means to expose 'Attachment Circuits'-as-a-Service
-   (ACaaS) greatly simplifies the provisioning of value-added services
-   delivered over an attachment circuit.  For example, management
-   systems of adjacent domains that need to connect via an AC will use
-   such means to agree upon the resources that are required for the
-   activation of both sides of an AC (e.g., Layer 2 tags, IP address
-   family, or IP subnets).
+   programmatic means to expose 'attachment circuits'-as-a-service
+   greatly simplifies the provisioning of value-added services delivered
+   over an attachment circuit.  For example, management systems of
+   adjacent domains that need to connect via an AC will use such means
+   to agree upon the resources that are required for the activation of
+   both sides of an AC (e.g., Layer 2 tags, IP address family, or IP
+   subnets).
 
    This document specifies a YANG service data model ("ietf-ac-svc") for
    managing attachment circuits that are exposed by a network to its
    customers, such as an enterprise site, an SF, a hosting
    infrastructure, or a peer network provider.  The model can be used
    for the provisioning of ACs prior or during advanced service
-   provisioning (e.g., IETF Network Slice Service [RFC9543]).
+   provisioning (e.g., Network Slice Service [RFC9543]).
 
    The "ietf-ac-svc" module (Section 6.2) includes a set of reusable
    groupings.  Whether a service model reuses structures defined in the
@@ -218,7 +218,7 @@ Table of Contents
    available, the AC service request may filter them based on the bearer
    type, synchronization support, etc.
 
-   Each AC is identified with a unique identifier within a provider
+   Each AC is identified with a unique identifier within a (provider)
    domain.  From a network provider standpoint, an AC can be bound to a
    single or multiple SAPs [RFC9408].  Likewise, the same SAP can be
    bound to one or multiple ACs.  However, the mapping between an AC and
@@ -333,9 +333,8 @@ Table of Contents
 
    Bearer:  A physical or logical link that connects a customer node (or
       site) to a provider network.  A bearer can be a wireless or wired
-      link.  One or multiple technologies can be used to build a bearer
-      (e.g., Link Aggregation Group (LAG) [IEEE802.1AX]).  The bearer
-      type can be specified by a customer.
+      link.  One or multiple technologies can be used to build a bearer.
+      The bearer type can be specified by a customer.
 
       The operator allocates a unique bearer reference to identify a
       bearer within its network (e.g., customer line identifier).  Such
@@ -374,13 +373,6 @@ Table of Contents
       outside the IETF.
 
       NF and SF are used interchangeably.
-
-   Parent Bearer:  Refers to a bearer (e.g., LAG) that is used to build
-      other bearers.  These bearers (called, child bearers) inherit th
-      parent bearer properties.
-
-   Parent AC:  Refers to an AC that is used to build other ACs.  These
-      ACs (called, child ACs) inherit th parent AC properties.
 
    Service orchestrator:  Refers to a functional entity that interacts
       with the customer of a network service.  The service orchestrator
@@ -471,11 +463,10 @@ Table of Contents
       associated with their endpoints are terminated by the same PE
       (e.g., CE#3), distinct PEs (e.g., CE#34), etc.  The network
       provider uses this request to decide where to terminate the AC in
-      the provider network (i.e., select which PE(s) to use) and also
-      whether to enable specific capabilities (e.g., Virtual Router
-      Redundancy Protocol (VRRP) [RFC9568]).  Note that placement
-      constraints may also be requested during the instantiation of the
-      underlying bearers (Section 5.1).
+      the network provider network and also whether to enable specific
+      capabilities (e.g., Virtual Router Redundancy Protocol (VRRP)
+      [RFC9568]).  Note that placement constraints may also be requested
+      during the instantiation of the underlying bearers (Section 5.1).
 
      .-------.                .--------------------.         .-------.
      |       +------.         |                    +---AC----+       |
@@ -496,7 +487,7 @@ Table of Contents
 
    The procedure to provision a service in a service provider network
    may depend on the practices adopted by a service provider.  This
-   includes the workflow put in place for the provisioning of network
+   includes the flow put in place for the provisioning of network
    services and how they are bound to an attachment circuit.  For
    example, a single attachment circuit may be used to host multiple
    connectivity services.  In order to avoid service interference and
@@ -508,7 +499,7 @@ Table of Contents
    specifies augmentations to the L2SM and the L3SM to bind LxVPN
    services to ACs.
 
-   Figure 3 shows the positioning of the AC service model in the overall
+   Figure 3 shows the positioning of the AC service model is the overall
    service delivery process.
 
                                .---------------.
@@ -566,12 +557,13 @@ Table of Contents
 
    Figure 4 shows the tree for managing the bearers (that is, the
    properties of an attachment that are below Layer 3).  A bearer can be
-   a physical or logical link (e.g., LAG [IEEE802.1AX]).  Also, a bearer
-   can be a wireless or wired link.  A reference to a bearer is
-   generated by the operator.  Such a reference can be used, e.g., in a
-   subsequent service request to create an AC.  The anchoring of the AC
-   can also be achieved by indicating (with or without a bearer
-   reference), a peer SAP identifier (e.g., an identifier of an SF).
+   a physical or logical link (e.g., Link Aggregation Group (LAG)
+   [IEEE802.1AX]).  Also, a bearer can be a wireless or wired link.  A
+   reference to a bearer is generated by the operator.  Such a reference
+   can be used, e.g., in a subsequent service request to create an AC.
+   The anchoring of the AC can also be achieved by indicating (with or
+   without a bearer reference), a peer SAP identifier (e.g., an
+   identifier of an SF).
 
     module: ietf-bearer-svc
 
@@ -876,10 +868,9 @@ Table of Contents
    not exposed in this service model.
 
    The AC service model uses groupings and types defined in the AC
-   common model [I-D.ietf-opsawg-teas-common-ac] ('op-instructions',
-   'dot1q', 'qinq', 'priority-tagged', 'l2-tunnel-service', etc.).
-   Therefore, the description of these nodes are not reiterated in the
-   following subsections.
+   common model [I-D.ietf-opsawg-teas-common-ac].  Therefore, the
+   description of these nodes are not reiterated in the following
+   subsections.
 
    Features are used to tag conditional protions of the model in order
    to accomodate various deployments (support of layer 2 ACs, Layer 3
@@ -1099,9 +1090,7 @@ Table of Contents
       Interface (UNI) or Network-to-Network Interface (NNI).
 
    'peer-sap-id':  Includes references to the remote endpoints of an
-      attachment circuit [RFC9408]. 'peer' is drawn here from the
-      perspective of the provider network.  That is, a 'peer-sap' will
-      refer to a customer node.
+      attachment circuit [RFC9408].
 
    'ac-group-profile':  Indicates references to one or more profiles
       that are defined in Section 5.2.3.
@@ -3842,7 +3831,7 @@ Table of Contents
 
       In addition, an attacker could attempt to add a new bearer or
       delete existing ones.  An attacker may also change the requested
-      type, whether it is for test-only, or the activation scheduling.
+      type or the activation scheduling.
 
    The following subtrees and data nodes have particular sensitivities/
    vulnerabilities in the "ietf-ac-svc" module:
@@ -6192,12 +6181,12 @@ A.11.3.  NFs Deployment
                      {
                        "id": "gw2-cp1",
                        "remote-address": "192.0.2.101",
-                       "peer-group": "peer-nf-cp-vlan-100-gw1"
+                       "peer-group": "peer-nf-cp-vlan-100-gw2"
                      },
                      {
                        "id": "gw2-cp2",
                        "remote-address": "192.0.2.102",
-                       "peer-group": "peer-nf-cp-vlan-100-gw1"
+                       "peer-group": "peer-nf-cp-vlan-100-gw2"
                      }
                    ]
                  }
@@ -6208,43 +6197,19 @@ A.11.3.  NFs Deployment
              "bfd": {
                "session": [
                  {
-                   "id": "bfd-gw1-nf-up1",
-                   "local-address": "192.0.2.252",
                    "remote-address": "192.0.2.1",
                    "profile": "single-hop-bfd-user-plane"
                  },
                  {
-                   "id": "bfd-gw2-nf-up1",
-                   "local-address": "192.0.2.253",
-                   "remote-address": "192.0.2.1",
-                   "profile": "single-hop-bfd-user-plane"
-                 },
-                 {
-                   "id": "bfd-gw1-nf-up2",
-                   "local-address": "192.0.2.252",
                    "remote-address": "192.0.2.2",
                    "profile": "single-hop-bfd-user-plane"
                  },
                  {
-                   "id": "bfd-gw2-nf-up2",
-                   "local-address": "192.0.2.253",
-                   "remote-address": "192.0.2.2",
-                   "profile": "single-hop-bfd-user-plane"
-                 },
-                 {
-                   "_comment": "192.0.2.3-192.0.2.7 sessions are not \
+                   "_comment": "192.0.2.3-192.0.2.9 sessions are not \
                                                               displayed"
                  },
                  {
-                   "id": "bfd-gw1-nf-up8",
-                   "local-address": "192.0.2.252",
-                   "remote-address": "192.0.2.8",
-                   "profile": "single-hop-bfd-user-plane"
-                 },
-                 {
-                   "id": "bfd-gw2-nf-up8",
-                   "local-address": "192.0.2.253",
-                   "remote-address": "192.0.2.8",
+                   "remote-address": "192.0.2.10",
                    "profile": "single-hop-bfd-user-plane"
                  }
                ]
@@ -6424,9 +6389,6 @@ Acknowledgments
    [Instance-Data].
 
    Thanks to Donald Eastlake for the careful rtg-dir reviews.
-
-   Thanks to Luis Miguel Contreras Murillo for the careful Shepherd
-   review.
 
 Contributors
 
