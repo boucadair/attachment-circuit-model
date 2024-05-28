@@ -136,7 +136,7 @@ Also, the document specifies a set of reusable groupings. Whether other service 
 
 ## Scope and Intended Use
 
-Connectivity services are provided by networks to customers via dedicated terminating points, such as Service Functions (SFs) {{?RFC7665}}, Customer Edges (CEs), peer Autonomous System Border Routers (ASBRs), data centers gateways, or Internet Exchange Points. A connectivity service is basically about ensuring data transfer received from or destined to a given terminating point to or from other terminating points within the same customer/service, an interconnection node, or an ancillary node. The objectives for the connectivity service can be negotiated and agreed upon between the customer and the network provider. To facilitate data transfer within the provider network, it is assumed that the appropriate setup is provisioned over the links that connect customer terminating points and a provider network (usually via a Provider Edge (PE)), allowing successfully data exchanged over these links. The required setup is referred to in this document as Attachment Circuits (ACs), while the underlying link is referred to as "bearers".
+Connectivity services are provided by networks to customers via dedicated terminating points, such as Service Functions (SFs) {{?RFC7665}}, Customer Edges (CEs), peer Autonomous System Border Routers (ASBRs), data centers gateways, or Internet Exchange Points. A connectivity service is basically about ensuring data transfer received from or destined to a given terminating point to or from other terminating points within the same customer/service, an interconnection node, or an ancillary node. The objectives for the connectivity service can be negotiated and agreed upon between the customer and the network provider. To facilitate data transfer within the provider network, it is assumed that the appropriate setup is provisioned over the links that connect customer terminating points and a provider network (usually via a Provider Edge (PE)), allowing successfully data exchanged over these links. The required setup is referred to in this document as Attachment Circuit (AC), while the underlying link is referred to as "bearer".
 
 This document adheres to the definition of an Attachment Circuit as provided in {{Section 1.2 of !RFC4364}}, especially:
 
@@ -153,9 +153,9 @@ This document adheres to the definition of an Attachment Circuit as provided in 
 
 When a customer requests a new value-added service, the service can be bound to existing attachment circuits or trigger the instantiation of new attachment circuits. The provisioning of a value-added service should, thus, accommodate both deployments.
 
-Also, because the instantiation of an attachment circuit requires coordinating the provisioning of endpoints that might not belong to the same administrative entity (customer vs. provider or distinct operational teams within the same provider, etc.), providing programmatic means to expose 'attachment circuits'-as-a-service greatly simplifies the provisioning of value-added services delivered over an attachment circuit. For example, management systems of adjacent domains that need to connect via an AC will use such means to agree upon the resources that are required for the activation of both sides of an AC (e.g., Layer 2 tags, IP address family, or IP subnets).
+Also, because the instantiation of an attachment circuit requires coordinating the provisioning of endpoints that might not belong to the same administrative entity (customer vs. provider or distinct operational teams within the same provider, etc.), providing programmatic means to expose 'Attachment Circuits'-as-a-Service (ACaaS) greatly simplifies the provisioning of value-added services delivered over an attachment circuit. For example, management systems of adjacent domains that need to connect via an AC will use such means to agree upon the resources that are required for the activation of both sides of an AC (e.g., Layer 2 tags, IP address family, or IP subnets).
 
-This document specifies a YANG service data model ("ietf-ac-svc") for managing attachment circuits that are exposed by a network to its customers, such as an enterprise site, an SF, a hosting infrastructure, or a peer network provider. The model can be used for the provisioning of ACs prior or during advanced service provisioning (e.g., Network Slice Service {{?RFC9543}}).
+This document specifies a YANG service data model ("ietf-ac-svc") for managing attachment circuits that are exposed by a network to its customers, such as an enterprise site, an SF, a hosting infrastructure, or a peer network provider. The model can be used for the provisioning of ACs prior or during advanced service provisioning (e.g., IETF Network Slice Service {{?RFC9543}}).
 
 The "ietf-ac-svc" module ({{sec-ac-module}}) includes a set of reusable groupings. Whether a service model reuses structures defined in the "ietf-ac-svc" or simply includes an AC reference (that was communicated during AC service instantiation) is a design choice of these service models. Relying upon the AC service model to manage ACs over which services are delivered has the merit of decorrelating the management of the (core) service vs. upgrade the AC components to reflect recent AC technologies or new features (e.g., new encryption scheme, additional routing protocol). This document favors the approach of completely relying upon the AC service model instead of duplicating data nodes into specific modules of advanced services that are delivered over an Attachment Circuit.
 
@@ -163,7 +163,7 @@ Since the provisioning of an AC requires a bearer to be in place, this document 
 
 An AC service request can provide a reference to a bearer or a set of peer Service Attachment Points (SAPs) {{!RFC9408}}. Both schemes are supported in the AC service model. When several bearers are available, the AC service request may filter them based on the bearer type, synchronization support, etc.
 
-Each AC is identified with a unique identifier within a (provider) domain. From a network provider standpoint, an AC can be bound to a single or multiple SAPs {{!RFC9408}}. Likewise, the same SAP can be bound to one or multiple ACs. However, the mapping between an AC and a PE in the provider network that terminates that AC is hidden to the application that makes use of the AC service model. Such mapping information is internal to the network controllers. As such, the details about the (node-specific) attachment interfaces are not exposed in the AC service model. However, these details are exposed at the network model per {{?I-D.ietf-opsawg-ntw-attachment-circuit}}. {{?I-D.ietf-opsawg-ac-lxsm-lxnm-glue}} specifies augmentations to the	L2VPN Service Model (L2SM) {{?RFC8466}} and the L3VPN Service Model	(L3SM) {{?RFC8299}} to bind LxVPN services to ACs.
+Each AC is identified with a unique identifier within a provider domain. From a network provider standpoint, an AC can be bound to a single or multiple SAPs {{!RFC9408}}. Likewise, the same SAP can be bound to one or multiple ACs. However, the mapping between an AC and a PE in the provider network that terminates that AC is hidden to the application that makes use of the AC service model. Such mapping information is internal to the network controllers. As such, the details about the (node-specific) attachment interfaces are not exposed in the AC service model. However, these details are exposed at the network model per {{?I-D.ietf-opsawg-ntw-attachment-circuit}}. {{?I-D.ietf-opsawg-ac-lxsm-lxnm-glue}} specifies augmentations to the	L2VPN Service Model (L2SM) {{?RFC8466}} and the L3VPN Service Model	(L3SM) {{?RFC8299}} to bind LxVPN services to ACs.
 
 The AC service model does not make any assumptions about the internal structure or even the nature or the services that will be delivered over an attachment circuit or a set of attachment circuits. Customers do not have access to that network view other than the ACs that they ordered. For example, the AC service model can be used to provision a set of ACs to connect multiple sites (Site1, Site2, ..., SiteX) for customer who also requested VPN services. If the provisioning of these services requires specific configuration on ASBR nodes, such configuration is handled at the network level and is not exposed to the customer at the service level. However, the network controller will have access to such a view as the service points in these ASBRs will be exposed as SAPs with "role" set to "ietf-sap-ntw:nni" {{!RFC9408}}.
 
@@ -208,7 +208,7 @@ LxNM refers to both the L2NM and the L3NM.
 This document uses the following terms:
 
 Bearer:
-: A physical or logical link that connects a customer node (or site) to a provider network. A bearer can be a wireless or wired link. One or multiple technologies can be used to build a bearer. The bearer type can be specified by a customer.
+: A physical or logical link that connects a customer node (or site) to a provider network. A bearer can be a wireless or wired link. One or multiple technologies can be used to build a bearer (e.g., Link Aggregation Group (LAG) {{IEEE802.1AX}}). The bearer type can be specified by a customer.
 : The operator allocates a unique bearer reference to identify a bearer within its network (e.g., customer line identifier). Such a reference can be retrieved by a customer and used in subsequent service placement requests to unambiguously identify where a service is to be bound.
 : The concept of bearer can be generalized to refer to the required underlying connection for the provisioning of an attachment circuit. One or multiple attachment circuits may be hosted over the same bearer (e.g., multiple VLANs on the same bearer that is provided by a physical link).
 
@@ -228,6 +228,12 @@ Network Function (NF):
 : Used to refer to the same concept as Service Function (SF) ({{Section 1.4 of ?RFC7665}}).
 : NF is also used in this document as this term is widely used outside the IETF.
 : NF and SF are used interchangeably.
+
+Parent Bearer:
+: Refers to a bearer (e.g., LAG) that is used to build other bearers. These bearers (called, child bearers) inherit th parent bearer properties.
+
+Parent AC:
+: Refers to an AC that is used to build other ACs. These ACs (called, child ACs) inherit th parent AC properties.
 
 Service orchestrator:
 : Refers to a functional entity that interacts with the customer of a network service. The service orchestrator is typically responsible for the attachment circuits, the PE selection, and requesting the activation of the requested service to a network controller.
@@ -288,7 +294,7 @@ To bind Layer 2 VPN or Layer 3 VPN services with ACs, "ietf-ac-glue" augments th
 
 * A single CE may terminate multiple ACs, which can be associated with the same bearer or distinct bearers.
 
-* Customers may request protection schemes in which the ACs associated with their endpoints are terminated by the same PE (e.g., CE#3), distinct PEs (e.g., CE#34), etc. The network provider uses this request to decide where to terminate the AC in the network provider network and also whether to enable specific capabilities (e.g., Virtual Router Redundancy Protocol (VRRP) {{?RFC9568}}). Note that placement constraints may also be requested during the instantiation of the underlying bearers ({{sec-bearer}}).
+* Customers may request protection schemes in which the ACs associated with their endpoints are terminated by the same PE (e.g., CE#3), distinct PEs (e.g., CE#34), etc. The network provider uses this request to decide where to terminate the AC in the provider network (i.e., select which PE(s) to use) and also whether to enable specific capabilities (e.g., Virtual Router Redundancy Protocol (VRRP) {{?RFC9568}}). Note that placement constraints may also be requested during the instantiation of the underlying bearers ({{sec-bearer}}).
 
 
 ~~~~ aasvg
@@ -298,9 +304,9 @@ To bind Layer 2 VPN or Layer 3 VPN services with ACs, "ietf-ac-glue" augments th
 
 ## Separate AC Provisioning vs. Actual Service Provisioning
 
-The procedure to provision a service in a service provider network may depend on the practices adopted by a service provider. This includes the flow put in place for the provisioning of network services and how they are bound to an attachment circuit. For example, a single attachment circuit may be used to host multiple connectivity services. In order to avoid service interference and redundant information in various locations, a service provider may expose an interface to manage ACs network-wide. Customers can then request a bearer or an attachment circuit to be put in place, and then refer to that bearer or AC when requesting services that are bound to the bearer or AC. {{?I-D.ietf-opsawg-ac-lxsm-lxnm-glue}} specifies augmentations to the L2SM and the L3SM to bind LxVPN services to ACs.
+The procedure to provision a service in a service provider network may depend on the practices adopted by a service provider. This includes the workflow put in place for the provisioning of network services  and how they are bound to an attachment circuit. For example, a single attachment circuit may be used to host multiple connectivity services. In order to avoid service interference and redundant information in various locations, a service provider may expose an interface to manage ACs network-wide. Customers can then request a bearer or an attachment circuit to be put in place, and then refer to that bearer or AC when requesting services that are bound to the bearer or AC. {{?I-D.ietf-opsawg-ac-lxsm-lxnm-glue}} specifies augmentations to the L2SM and the L3SM to bind LxVPN services to ACs.
 
-{{u-ex}} shows the positioning of the AC service model is the overall service delivery process.
+{{u-ex}} shows the positioning of the AC service model in the overall service delivery process.
 
 ~~~~ aasvg
 {::include ./figures/arch.txt}
@@ -313,7 +319,7 @@ In order to ease the mapping between the service model and underlying network mo
 
 ## The Bearer Service ("ietf-bearer-svc") YANG Module {#sec-bearer}
 
-{{bearer-st}} shows the tree for managing the bearers (that is, the properties of an attachment that are below Layer 3). A bearer can be a physical or logical link (e.g., Link Aggregation Group (LAG) {{IEEE802.1AX}}). Also, a bearer can be a wireless or wired link. A reference to a bearer is generated by the operator.
+{{bearer-st}} shows the tree for managing the bearers (that is, the properties of an attachment that are below Layer 3). A bearer can be a physical or logical link (e.g., LAG {{IEEE802.1AX}}). Also, a bearer can be a wireless or wired link. A reference to a bearer is generated by the operator.
 Such a reference can be used, e.g., in a subsequent service request to create an AC. The anchoring of the AC can also be achieved by indicating (with or without a bearer reference), a peer SAP identifier (e.g., an identifier of an SF).
 
 ~~~~
@@ -436,7 +442,7 @@ The rationale for deciding whether a reusable grouping should be maintained in t
 
 Each AC is identified with a unique name ('../ac/name') within a domain. The mapping between this AC and a local PE that terminates the AC is hidden to the application that makes use of the AC service model. This information is internal to the Network controller. As such, the details about the (node-specific) attachment interfaces are not exposed in this service model.
 
-The AC service model uses groupings and types defined in the AC common model {{!I-D.ietf-opsawg-teas-common-ac}}. Therefore, the description of these nodes are not reiterated in the following subsections.
+The AC service model uses groupings and types defined in the AC common model {{!I-D.ietf-opsawg-teas-common-ac}} ('op-instructions', 'dot1q', 'qinq', 'priority-tagged', 'l2-tunnel-service', etc.). Therefore, the description of these nodes are not reiterated in the following subsections.
 
 Features are used to tag conditional protions of the model in order to accomodate various deployments (support of layer 2 ACs, Layer 3 ACs, IPv4, IPv6, routing protocols,  Bidirectional Forwarding Detection (BFD), etc.).
 
@@ -526,7 +532,7 @@ The description of the data nodes is as follows:
 : Specifies whether an AC is used, e.g., as User-to-Network Interface (UNI) or Network-to-Network Interface (NNI).
 
 'peer-sap-id':
-: Includes references to the remote endpoints of an attachment circuit {{!RFC9408}}.
+: Includes references to the remote endpoints of an attachment circuit {{!RFC9408}}. 'peer' is drawn here from the perspective of the provider network. That is, a 'peer-sap' will refer to a customer node.
 
 'ac-group-profile':
 : Indicates references to one or more profiles that are defined in {{sec-acp}}.
@@ -930,7 +936,7 @@ sensitivities/vulnerabilities in the "ietf-bearer-svc" module:
    the attributes of bearer and, thus, hinder how ACs are built.
    : In addition, an attacker could attempt to add a new bearer or
    delete existing ones. An attacker may also change the requested
-   type or the activation scheduling.
+   type, whether it is for test-only, or the activation scheduling.
 
    The following subtrees and data nodes have particular
 sensitivities/vulnerabilities in the "ietf-ac-svc" module:
@@ -1451,3 +1457,5 @@ This document leverages {{!RFC9182}} and {{!RFC9291}}. Thanks to Gyan Mishra for
 Thanks to Ebben Aries for the YANG Doctors review and for providing {{Instance-Data}}.
 
 Thanks to Donald Eastlake for the careful rtg-dir reviews.
+
+Thanks to Luis Miguel Contreras Murillo for the careful Shepherd review.
