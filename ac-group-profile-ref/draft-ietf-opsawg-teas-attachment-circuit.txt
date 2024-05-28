@@ -1092,7 +1092,7 @@ Table of Contents
    'peer-sap-id':  Includes references to the remote endpoints of an
       attachment circuit [RFC9408].
 
-   'ac-group-profile':  Indicates references to one or more profiles
+   'ac-group-profile-ref':  Indicates references to one or more profiles
       that are defined in Section 5.2.3.
 
    'ac-parent-ref':  Specifies an AC that is inherited by an attachment
