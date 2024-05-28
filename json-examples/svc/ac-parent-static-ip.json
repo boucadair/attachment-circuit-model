@@ -24,7 +24,7 @@
             "ipv4": {
               "virtual-address": "192.0.2.254",
               "prefix-length": 24,
-              " static-addresses": [
+              "address": [
                   {
                     "address-id": "ce1",
                     "customer-address": "192.0.2.1",
@@ -52,22 +52,22 @@
         {
           "name": "parent-vlan-100-gw1",
           "description": "This parent represents a bridge with L3 interface (IRB) to connect NF in vlan 100",
+          "ac-group-profile-ref": ["profile-vlan-100"],
           "ip-connection": {
             "ipv4": {
               "local-address": "192.0.2.252",
-              "prefix-length": 24,
-              "ac-group-profile": "profile-vlan-100"
+              "prefix-length": 24
             }
           }
         },
         {
             "name": "parent-vlan-100-gw2",
             "description": "This parent represents a bridge with L3 interface (IRB) to connect NF in vlan 100",
+            "ac-group-profile-ref": ["profile-vlan-100"],
             "ip-connection": {
               "ipv4": {
                 "local-address": "192.0.2.253",
-                "prefix-length": 24,
-                "ac-group-profile": "profile-vlan-100"
+                "prefix-length": 24
               }
             }
           },
