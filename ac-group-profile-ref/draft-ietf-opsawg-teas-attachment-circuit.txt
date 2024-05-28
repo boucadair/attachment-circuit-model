@@ -4671,7 +4671,7 @@ A.4.  One CE, Two ACs
          {
            "name": "ac3",
            "description": "a third AC with a same peer node",
-           "ac-group-profile": [
+           "ac-group-profile-ref": [
              "simple-node-profile"
            ],
            "l2-connection": {
