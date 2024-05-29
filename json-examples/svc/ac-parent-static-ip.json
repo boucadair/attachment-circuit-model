@@ -3,7 +3,7 @@
     "valid-provider-identifiers": {
       "failure-detection-profile-identifier": [
         {
-          "id": "single-hop-bfd-user-plane"
+          "id": "single-hop-bfd"
         }
       ]
     }
@@ -28,12 +28,12 @@
               {
                 "address-id": "ce1",
                 "customer-address": "192.0.2.1",
-                "failure-detection-profile": "single-hop-bfd-user-plane"
+                "failure-detection-profile": "single-hop-bfd"
               },
               {
                 "address-id": "ce2",
                 "customer-address": "192.0.2.2",
-                "failure-detection-profile": "single-hop-bfd-user-plane"
+                "failure-detection-profile": "single-hop-bfd"
               },
               {
                 "_comment": "ce3 to ce7 are not displayed"
@@ -41,7 +41,7 @@
               {
                 "address-id": "ce8",
                 "customer-address": "192.0.2.8",
-                "failure-detection-profile": "single-hop-bfd-user-plane"
+                "failure-detection-profile": "single-hop-bfd"
               }
             ]
           }
