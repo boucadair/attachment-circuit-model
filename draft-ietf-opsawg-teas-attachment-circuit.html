@@ -1311,6 +1311,9 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </li>
                 </ul>
 </li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.12">
+                <p id="section-toc.1-1.10.2.12.1"><a href="#appendix-A.12" class="auto internal xref">A.12</a>. <a href="#name-bfd-and-static-addressing" class="internal xref">BFD and Static Addressing</a></p>
+</li>
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11">
@@ -8657,7 +8660,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 </pre>
 </div>
 <figcaption><a href="#figure-60" class="selfRef">Figure 60</a>:
-<a href="#name-message-body-for-the-config" class="selfRef">Message Body for the Configuration of The NF ACs</a>
+<a href="#name-message-body-for-the-config" class="selfRef">Message Body for the Configuration of the NF ACs</a>
             </figcaption></figure>
 </div>
 </section>
@@ -8777,6 +8780,250 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 </div>
 <p id="appendix-A.11.4-3">Finally, the addition or deletion of compute nodes in the deployment ("compute-11", "compute-12", etc.) involves merely changes on Child ACs and possible routing on the parent AC. In any case, the parent AC is a stable identifier, which can be consumed as a reference by end-to-end service models for VPN configuration such as <span>[<a href="#I-D.ietf-opsawg-ac-lxsm-lxnm-glue" class="cite xref">I-D.ietf-opsawg-ac-lxsm-lxnm-glue</a>]</span>, Slice Service <span>[<a href="#I-D.ietf-teas-ietf-network-slice-nbi-yang" class="cite xref">I-D.ietf-teas-ietf-network-slice-nbi-yang</a>]</span>, etc. This decoupling to a stable identifier provides great benefits in terms of scalability and flexibility since once the reference with the parent AC is implemented, no API call involving the VPN model is needed for any modification in the cloud.<a href="#appendix-A.11.4-3" class="pilcrow">¶</a></p>
 </section>
+</div>
+</section>
+</div>
+<div id="bfd-and-static-addressing">
+<section id="appendix-A.12">
+        <h3 id="name-bfd-and-static-addressing">
+<a href="#appendix-A.12" class="section-number selfRef">A.12. </a><a href="#name-bfd-and-static-addressing" class="section-name selfRef">BFD and Static Addressing</a>
+        </h3>
+<p id="appendix-A.12-1"><a href="#ex-bfd-static" class="auto internal xref">Figure 62</a> shows a topology example of a set of CEs connected to a provider network via dedicated bearers. Each of these CE maintains two BFD sessions with the provider network.<a href="#appendix-A.12-1" class="pilcrow">¶</a></p>
+<span id="name-example-of-static-addressin"></span><div id="ex-bfd-static">
+<figure id="figure-62">
+          <div id="appendix-A.12-2.1">
+            <div class="alignLeft art-svg artwork" id="appendix-A.12-2.1.1">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="368" width="464" viewBox="0 0 464 368" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
+                <path d="M 8,48 L 8,80" fill="none" stroke="black"></path>
+                <path d="M 8,112 L 8,144" fill="none" stroke="black"></path>
+                <path d="M 8,208 L 8,240" fill="none" stroke="black"></path>
+                <path d="M 8,320 L 8,352" fill="none" stroke="black"></path>
+                <path d="M 80,48 L 80,80" fill="none" stroke="black"></path>
+                <path d="M 80,112 L 80,144" fill="none" stroke="black"></path>
+                <path d="M 80,208 L 80,240" fill="none" stroke="black"></path>
+                <path d="M 80,320 L 80,352" fill="none" stroke="black"></path>
+                <path d="M 184,32 L 184,272" fill="none" stroke="black"></path>
+                <path d="M 208,96 L 208,128" fill="none" stroke="black"></path>
+                <path d="M 208,160 L 208,176" fill="none" stroke="black"></path>
+                <path d="M 240,64 L 240,96" fill="none" stroke="black"></path>
+                <path d="M 248,176 L 248,224" fill="none" stroke="black"></path>
+                <path d="M 264,184 L 264,208" fill="none" stroke="black"></path>
+                <path d="M 280,96 L 280,128" fill="none" stroke="black"></path>
+                <path d="M 280,160 L 280,176" fill="none" stroke="black"></path>
+                <path d="M 312,96 L 312,144" fill="none" stroke="black"></path>
+                <path d="M 312,176 L 312,224" fill="none" stroke="black"></path>
+                <path d="M 400,96 L 400,144" fill="none" stroke="black"></path>
+                <path d="M 400,176 L 400,224" fill="none" stroke="black"></path>
+                <path d="M 416,32 L 416,272" fill="none" stroke="black"></path>
+                <path d="M 184,32 L 416,32" fill="none" stroke="black"></path>
+                <path d="M 8,48 L 80,48" fill="none" stroke="black"></path>
+                <path d="M 88,64 L 176,64" fill="none" stroke="black"></path>
+                <path d="M 192,64 L 240,64" fill="none" stroke="black"></path>
+                <path d="M 8,80 L 80,80" fill="none" stroke="black"></path>
+                <path d="M 208,96 L 280,96" fill="none" stroke="black"></path>
+                <path d="M 312,96 L 400,96" fill="none" stroke="black"></path>
+                <path d="M 8,112 L 80,112" fill="none" stroke="black"></path>
+                <path d="M 288,112 L 304,112" fill="none" stroke="black"></path>
+                <path d="M 88,128 L 176,128" fill="none" stroke="black"></path>
+                <path d="M 8,144 L 80,144" fill="none" stroke="black"></path>
+                <path d="M 312,144 L 400,144" fill="none" stroke="black"></path>
+                <path d="M 208,176 L 280,176" fill="none" stroke="black"></path>
+                <path d="M 312,176 L 400,176" fill="none" stroke="black"></path>
+                <path d="M 8,208 L 80,208" fill="none" stroke="black"></path>
+                <path d="M 264,208 L 312,208" fill="none" stroke="black"></path>
+                <path d="M 88,224 L 176,224" fill="none" stroke="black"></path>
+                <path d="M 192,224 L 248,224" fill="none" stroke="black"></path>
+                <path d="M 312,224 L 400,224" fill="none" stroke="black"></path>
+                <path d="M 8,240 L 80,240" fill="none" stroke="black"></path>
+                <path d="M 184,272 L 416,272" fill="none" stroke="black"></path>
+                <path d="M 8,320 L 80,320" fill="none" stroke="black"></path>
+                <path d="M 120,336 L 144,336" fill="none" stroke="black"></path>
+                <path d="M 176,336 L 200,336" fill="none" stroke="black"></path>
+                <path d="M 8,352 L 80,352" fill="none" stroke="black"></path>
+                <path d="M 120,352 L 144,352" fill="none" stroke="black"></path>
+                <path d="M 176,352 L 200,352" fill="none" stroke="black"></path>
+                <polygon class="arrowhead" points="208,352 196,346.4 196,357.6" fill="black" transform="rotate(0,200,352)"></polygon>
+                <polygon class="arrowhead" points="208,336 196,330.4 196,341.6" fill="black" transform="rotate(0,200,336)"></polygon>
+                <polygon class="arrowhead" points="128,352 116,346.4 116,357.6" fill="black" transform="rotate(180,120,352)"></polygon>
+                <polygon class="arrowhead" points="128,336 116,330.4 116,341.6" fill="black" transform="rotate(180,120,336)"></polygon>
+                <g class="text">
+                  <text x="100" y="52">.1</text>
+                  <text x="48" y="68">CE1</text>
+                  <text x="356" y="84">.252</text>
+                  <text x="100" y="116">.2</text>
+                  <text x="248" y="116">LAN</text>
+                  <text x="352" y="116">GW1</text>
+                  <text x="48" y="132">CE2</text>
+                  <text x="196" y="132">--</text>
+                  <text x="352" y="132">[bfd]</text>
+                  <text x="244" y="148">192.0.2/24</text>
+                  <text x="364" y="164">.253</text>
+                  <text x="16" y="180">...</text>
+                  <text x="352" y="196">GW2</text>
+                  <text x="104" y="212">.10</text>
+                  <text x="352" y="212">[bfd]</text>
+                  <text x="52" y="228">CE10</text>
+                  <text x="260" y="260">Provider</text>
+                  <text x="328" y="260">Network</text>
+                  <text x="20" y="308">Each</text>
+                  <text x="52" y="308">CE</text>
+                  <text x="80" y="308">has</text>
+                  <text x="104" y="308">a</text>
+                  <text x="128" y="308">BFD</text>
+                  <text x="176" y="308">session</text>
+                  <text x="220" y="308">to</text>
+                  <text x="252" y="308">each</text>
+                  <text x="304" y="308">gateway</text>
+                  <text x="352" y="308">for</text>
+                  <text x="416" y="308">redundancy:</text>
+                  <text x="48" y="340">CEx</text>
+                  <text x="100" y="340">.x</text>
+                  <text x="160" y="340">bfd</text>
+                  <text x="228" y="340">.252</text>
+                  <text x="160" y="356">bfd</text>
+                  <text x="228" y="356">.253</text>
+                </g>
+              </svg><a href="#appendix-A.12-2.1.1" class="pilcrow">¶</a>
+</div>
+</div>
+<figcaption><a href="#figure-62" class="selfRef">Figure 62</a>:
+<a href="#name-example-of-static-addressin" class="selfRef">Example of Static Addressing with BFD</a>
+          </figcaption></figure>
+</div>
+<p id="appendix-A.12-3"><a href="#ex-json-bfd-static" class="auto internal xref">Figure 63</a> shows the message body of the ACaaS configuration used to enable the target architecture shown in <a href="#ex-bfd-static" class="auto internal xref">Figure 62</a>. This example uses an AC group profile to factorize common data between all involved ACs. It also uses child ACs that inherits the properties of two parent ACs; each terminating in a separate gateway in the provider network.<a href="#appendix-A.12-3" class="pilcrow">¶</a></p>
+<span id="name-message-body-for-the-configu"></span><div id="ex-json-bfd-static">
+<figure id="figure-63">
+          <div class="breakable lang-json sourcecode" id="appendix-A.12-4.1">
+<pre>
+=============== NOTE: '\' line wrapping per RFC 8792 ================
+
+{
+  "ietf-ac-svc:specific-provisioning-profiles": {
+    "valid-provider-identifiers": {
+      "failure-detection-profile-identifier": [
+        {
+          "id": "single-hop-bfd-user-plane"
+        }
+      ]
+    }
+  },
+  "ietf-ac-svc:attachment-circuits": {
+    "ac-group-profile": [
+      {
+        "name": "profile-vlan-100",
+        "l2-connection": {
+          "encapsulation": {
+            "type": "ietf-vpn-common:dot1q",
+            "dot1q": {
+              "cvlan-id": 100
+            }
+          }
+        },
+        "ip-connection": {
+          "ipv4": {
+            "virtual-address": "192.0.2.254",
+            "prefix-length": 24,
+            "address": [
+              {
+                "address-id": "ce1",
+                "customer-address": "192.0.2.1",
+                "failure-detection-profile": "single-hop-bfd-user-\
+                                                               plane"
+              },
+              {
+                "address-id": "ce2",
+                "customer-address": "192.0.2.2",
+                "failure-detection-profile": "single-hop-bfd-user-\
+                                                               plane"
+              },
+              {
+                "_comment": "ce3 to ce7 are not displayed"
+              },
+              {
+                "address-id": "ce8",
+                "customer-address": "192.0.2.8",
+                "failure-detection-profile": "single-hop-bfd-user-\
+                                                               plane"
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "ac": [
+      {
+        "name": "parent-vlan-100-gw1",
+        "description": "This parent represents a bridge with Layer \
+                       3 interface (IRB) to connect NFs in VLAN 100",
+        "ac-group-profile-ref": [
+          "profile-vlan-100"
+        ],
+        "ip-connection": {
+          "ipv4": {
+            "local-address": "192.0.2.252",
+            "prefix-length": 24
+          }
+        }
+      },
+      {
+        "name": "parent-vlan-100-gw2",
+        "description": "This parent represents a bridge with Layer \
+                       3 interface (IRB) to connect NFs in VLAN 100",
+        "ac-group-profile-ref": [
+          "profile-vlan-100"
+        ],
+        "ip-connection": {
+          "ipv4": {
+            "local-address": "192.0.2.253",
+            "prefix-length": 24
+          }
+        }
+      },
+      {
+        "name": "ac-ce-01-vlan-100",
+        "description": "attachment to CE1 in VLAN 100",
+        "ac-parent-ref": [
+          "parent-vlan-100-gw1",
+          "parent-vlan-100-gw2"
+        ],
+        "l2-connection": {
+          "bearer-reference": "bearer--1"
+        }
+      },
+      {
+        "name": "ac-ce-02-vlan-100",
+        "description": "attachment to CE2 in VLAN 100",
+        "ac-parent-ref": [
+          "parent-vlan-100-gw1",
+          "parent-vlan-100-gw2"
+        ],
+        "l2-connection": {
+          "bearer-reference": "bearer--2"
+        }
+      },
+      {
+        "_comment": "ac-ce-03-vlan-100 to ac-ce-09-vlan-100 are \
+                                                              hidden"
+      },
+      {
+        "name": "ac-ce-10-vlan-100",
+        "description": "attachment to CE10 in VLAN 100",
+        "ac-parent-ref": [
+          "parent-vlan-100-gw1",
+          "parent-vlan-100-gw2"
+        ],
+        "l2-connection": {
+          "bearer-reference": "bearer--10"
+        }
+      }
+    ]
+  }
+}
+</pre>
+</div>
+<figcaption><a href="#figure-63" class="selfRef">Figure 63</a>:
+<a href="#name-message-body-for-the-configu" class="selfRef">Message Body for the Configuration of CEs with Static Addressing and BFD Protection</a>
+          </figcaption></figure>
 </div>
 </section>
 </div>
