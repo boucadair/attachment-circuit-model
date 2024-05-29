@@ -2421,7 +2421,7 @@ a parent AC can be defined with a set of stable and common information, while
             <dd class="break"></dd>
 <dt id="section-5.2.5-4.27"></dt>
             <dd style="margin-left: 1.5em" id="section-5.2.5-4.28">
-              <p id="section-5.2.5-4.28.1">A "child" AC <span class="bcp14">MAY</span> rely upon more than one parent AC (e.g., parent Layer 2 AC and parent Layer 3 AC). In such cases, these ACs <span class="bcp14">MUST NOT</span> be overlapping.<a href="#section-5.2.5-4.28.1" class="pilcrow">¶</a></p>
+              <p id="section-5.2.5-4.28.1">A "child" AC <span class="bcp14">MAY</span> rely upon more than one parent AC (e.g., parent Layer 2 AC and parent Layer 3 AC). In such cases, these ACs <span class="bcp14">MUST NOT</span> be overlapping. An example to illustrate the use of multiple parent ACs is provided in  <a href="#sec-bfd-static" class="auto internal xref">Appendix A.12</a>.<a href="#section-5.2.5-4.28.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
 <dt id="section-5.2.5-4.29">'child-ac-ref':</dt>
@@ -8783,7 +8783,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 </div>
 </section>
 </div>
-<div id="bfd-and-static-addressing">
+<div id="sec-bfd-static">
 <section id="appendix-A.12">
         <h3 id="name-bfd-and-static-addressing">
 <a href="#appendix-A.12" class="section-number selfRef">A.12. </a><a href="#name-bfd-and-static-addressing" class="section-name selfRef">BFD and Static Addressing</a>
@@ -8890,7 +8890,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 <a href="#name-example-of-static-addressin" class="selfRef">Example of Static Addressing with BFD</a>
           </figcaption></figure>
 </div>
-<p id="appendix-A.12-3"><a href="#ex-json-bfd-static" class="auto internal xref">Figure 63</a> shows the message body of the ACaaS configuration used to enable the target architecture shown in <a href="#ex-bfd-static" class="auto internal xref">Figure 62</a>. This example uses an AC group profile to factorize common data between all involved ACs. It also uses child ACs that inherits the properties of two parent ACs; each terminating in a separate gateway in the provider network.<a href="#appendix-A.12-3" class="pilcrow">¶</a></p>
+<p id="appendix-A.12-3"><a href="#ex-json-bfd-static" class="auto internal xref">Figure 63</a> shows the message body of the ACaaS configuration to enable the target architecture shown in <a href="#ex-bfd-static" class="auto internal xref">Figure 62</a>. This example uses an AC group profile to factorize common data between all involved ACs. It also uses child ACs that inherit the properties of two parent ACs; each terminating in a separate gateway in the provider network.<a href="#appendix-A.12-3" class="pilcrow">¶</a></p>
 <span id="name-message-body-for-the-configu"></span><div id="ex-json-bfd-static">
 <figure id="figure-63">
           <div class="breakable lang-json sourcecode" id="appendix-A.12-4.1">

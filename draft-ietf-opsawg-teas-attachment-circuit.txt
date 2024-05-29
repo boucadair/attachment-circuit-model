@@ -1121,7 +1121,8 @@ Table of Contents
 
       A "child" AC MAY rely upon more than one parent AC (e.g., parent
       Layer 2 AC and parent Layer 3 AC).  In such cases, these ACs MUST
-      NOT be overlapping.
+      NOT be overlapping.  An example to illustrate the use of multiple
+      parent ACs is provided in Appendix A.12.
 
    'child-ac-ref':  Lists one or more references of child ACs that rely
       upon this attachment circuit as a parent AC.
@@ -6443,12 +6444,11 @@ A.12.  BFD and Static Addressing
 
               Figure 62: Example of Static Addressing with BFD
 
-   Figure 63 shows the message body of the ACaaS configuration used to
-   enable the target architecture shown in Figure 62.  This example uses
-   an AC group profile to factorize common data between all involved
-   ACs.  It also uses child ACs that inherits the properties of two
-   parent ACs; each terminating in a separate gateway in the provider
-   network.
+   Figure 63 shows the message body of the ACaaS configuration to enable
+   the target architecture shown in Figure 62.  This example uses an AC
+   group profile to factorize common data between all involved ACs.  It
+   also uses child ACs that inherit the properties of two parent ACs;
+   each terminating in a separate gateway in the provider network.
 
    =============== NOTE: '\' line wrapping per RFC 8792 ================
 
