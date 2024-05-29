@@ -543,7 +543,7 @@ The description of the data nodes is as follows:
 a parent AC can be defined with a set of stable and common information, while
 "child" ACs are defined to track dynamic information. These "child" ACs are bound to the parent AC, which is exposed to services (as a stable reference).
 : Whenever a parent AC is deleted, all its "child" ACs MUST be deleted.
-: A "child" AC MAY rely upon more than one parent AC (e.g., parent Layer 2 AC and parent Layer 3 AC). In such cases, these ACs MUST NOT be overlapping.
+: A "child" AC MAY rely upon more than one parent AC (e.g., parent Layer 2 AC and parent Layer 3 AC). In such cases, these ACs MUST NOT be overlapping. An example to illustrate the use of multiple parent ACs is provided in  {{sec-bfd-static}}.
 
 'child-ac-ref':
 : Lists one or more references of child ACs that rely upon this attachment circuit as a parent AC.
@@ -1449,7 +1449,7 @@ Assuming a failure of "compute-01", the instance "nf-up-1" can be redeployed to 
 
 Finally, the addition or deletion of compute nodes in the deployment ("compute-11", "compute-12", etc.) involves merely changes on Child ACs and possible routing on the parent AC. In any case, the parent AC is a stable identifier, which can be consumed as a reference by end-to-end service models for VPN configuration such as {{?I-D.ietf-opsawg-ac-lxsm-lxnm-glue}}, Slice Service {{?I-D.ietf-teas-ietf-network-slice-nbi-yang}}, etc. This decoupling to a stable identifier provides great benefits in terms of scalability and flexibility since once the reference with the parent AC is implemented, no API call involving the VPN model is needed for any modification in the cloud.
 
-## BFD and Static Addressing
+## BFD and Static Addressing {#sec-bfd-static}
 
 {{ex-bfd-static}} shows a topology example of a set of CEs connected to a provider network via dedicated bearers. Each of these CE maintains two BFD sessions with the provider network.
 
@@ -1458,7 +1458,7 @@ Finally, the addition or deletion of compute nodes in the deployment ("compute-1
 ~~~~
 {: #ex-bfd-static title="Example of Static Addressing with BFD"}
 
-{{ex-json-bfd-static}} shows the message body of the ACaaS configuration used to enable the target architecture shown in {{ex-bfd-static}}. This example uses an AC group profile to factorize common data between all involved ACs. It also uses child ACs that inherits the properties of two parent ACs; each terminating in a separate gateway in the provider network.
+{{ex-json-bfd-static}} shows the message body of the ACaaS configuration to enable the target architecture shown in {{ex-bfd-static}}. This example uses an AC group profile to factorize common data between all involved ACs. It also uses child ACs that inherit the properties of two parent ACs; each terminating in a separate gateway in the provider network.
 
 ~~~~ json
 {::include-fold ./json-examples/svc/ac-parent-static-ip.json}
