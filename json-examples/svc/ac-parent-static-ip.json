@@ -1,110 +1,116 @@
 {
-    "ietf-ac-svc:specific-provisioning-profiles": {
-      "valid-provider-identifiers": {
-        "failure-detection-profile-identifier": [
-          {
-            "id": "single-hop-bfd-user-plane"
-          }
-        ]
-      }
-    },
-    "ietf-ac-svc:attachment-circuits": {
-      "ac-group-profile": [
+  "ietf-ac-svc:specific-provisioning-profiles": {
+    "valid-provider-identifiers": {
+      "failure-detection-profile-identifier": [
         {
-          "name": "profile-vlan-100",
-          "l2-connection": {
-            "encapsulation": {
-              "type": "ietf-vpn-common:dot1q",
-              "dot1q": {
-                "cvlan-id": 100
-              }
-            }
-          },
-          "ip-connection": {
-            "ipv4": {
-              "virtual-address": "192.0.2.254",
-              "prefix-length": 24,
-              "address": [
-                  {
-                    "address-id": "ce1",
-                    "customer-address": "192.0.2.1",
-                    "failure-detection-profile": "single-hop-bfd-user-plane"
-                  },
-                  {
-                    "address-id": "ce2",
-                    "customer-address": "192.0.2.2",
-                    "failure-detection-profile": "single-hop-bfd-user-plane"
-                  },
-                  {
-                    "_comment": "ce3 to ce7 are not displayed"
-                  },
-                  {
-                    "address-id": "ce8",
-                    "customer-address": "192.0.2.8",
-                    "failure-detection-profile": "single-hop-bfd-user-plane"
-                  }
-                ]
-            }
-          }
-        }
-      ],
-      "ac": [
-        {
-          "name": "parent-vlan-100-gw1",
-          "description": "This parent represents a bridge with L3 interface (IRB) to connect NF in vlan 100",
-          "ac-group-profile-ref": ["profile-vlan-100"],
-          "ip-connection": {
-            "ipv4": {
-              "local-address": "192.0.2.252",
-              "prefix-length": 24
-            }
-          }
-        },
-        {
-            "name": "parent-vlan-100-gw2",
-            "description": "This parent represents a bridge with L3 interface (IRB) to connect NF in vlan 100",
-            "ac-group-profile-ref": ["profile-vlan-100"],
-            "ip-connection": {
-              "ipv4": {
-                "local-address": "192.0.2.253",
-                "prefix-length": 24
-              }
-            }
-          },
-        {
-          "name": "ac-ce-01-vlan-100",
-          "description": "attachment to Network Function ce instance 1 in vlan 100",
-          "ac-parent-ref": "parent-vlan-100-gw1",
-          "l2-connection": {
-            "bearer-reference": "compute-01-nic1"
-          }
-        },
-#############           
-#############            
-#############           
-#############       We're having a problem here since we can have only a single parent-ac-ref !!!!
-#############                     "ac-parent-ref": "parent-vlan-100-gw1",
-#############               
-        {
-          "name": "ac-ce-02-vlan-100",
-          "description": "attachment to Network Function ce instance 2 in vlan 100",
-          "ac-parent-ref": "parent-vlan-100",
-          "l2-connection": {
-            "bearer-reference": "compute-02-nic2"
-          }
-        },
-        {
-          "_comment": "ac-ce-03-vlan-100 to ac-ce-07-vlan-100 are hidden"
-        },
-        {
-          "name": "ac-ce-08-vlan-100",
-          "description": "attachment to Network Function ce instance 10 in vlan 100",
-          "ac-parent-ref": "parent-vlan-100",
-          "l2-connection": {
-            "bearer-reference": "compute-08-nic1"
-          }
+          "id": "single-hop-bfd-user-plane"
         }
       ]
     }
+  },
+  "ietf-ac-svc:attachment-circuits": {
+    "ac-group-profile": [
+      {
+        "name": "profile-vlan-100",
+        "l2-connection": {
+          "encapsulation": {
+            "type": "ietf-vpn-common:dot1q",
+            "dot1q": {
+              "cvlan-id": 100
+            }
+          }
+        },
+        "ip-connection": {
+          "ipv4": {
+            "virtual-address": "192.0.2.254",
+            "prefix-length": 24,
+            "address": [
+              {
+                "address-id": "ce1",
+                "customer-address": "192.0.2.1",
+                "failure-detection-profile": "single-hop-bfd-user-plane"
+              },
+              {
+                "address-id": "ce2",
+                "customer-address": "192.0.2.2",
+                "failure-detection-profile": "single-hop-bfd-user-plane"
+              },
+              {
+                "_comment": "ce3 to ce7 are not displayed"
+              },
+              {
+                "address-id": "ce8",
+                "customer-address": "192.0.2.8",
+                "failure-detection-profile": "single-hop-bfd-user-plane"
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "ac": [
+      {
+        "name": "parent-vlan-100-gw1",
+        "description": "This parent represents a bridge with L3 interface (IRB) to connect NF in vlan 100",
+        "ac-group-profile-ref": [
+          "profile-vlan-100"
+        ],
+        "ip-connection": {
+          "ipv4": {
+            "local-address": "192.0.2.252",
+            "prefix-length": 24
+          }
+        }
+      },
+      {
+        "name": "parent-vlan-100-gw2",
+        "description": "This parent represents a bridge with L3 interface (IRB) to connect NF in vlan 100",
+        "ac-group-profile-ref": [
+          "profile-vlan-100"
+        ],
+        "ip-connection": {
+          "ipv4": {
+            "local-address": "192.0.2.253",
+            "prefix-length": 24
+          }
+        }
+      },
+      {
+        "name": "ac-ce-01-vlan-100",
+        "description": "attachment to Network Function ce instance 1 in vlan 100",
+        "ac-parent-ref": [
+          "parent-vlan-100-gw1",
+          "parent-vlan-100-gw2"
+        ],
+        "l2-connection": {
+          "bearer-reference": "compute-01-nic1"
+        }
+      },
+      {
+        "name": "ac-ce-02-vlan-100",
+        "description": "attachment to Network Function ce instance 2 in vlan 100",
+        "ac-parent-ref": [
+          "parent-vlan-100-gw1",
+          "parent-vlan-100-gw2"
+        ],
+        "l2-connection": {
+          "bearer-reference": "compute-02-nic2"
+        }
+      },
+      {
+        "_comment": "ac-ce-03-vlan-100 to ac-ce-07-vlan-100 are hidden"
+      },
+      {
+        "name": "ac-ce-08-vlan-100",
+        "description": "attachment to Network Function ce instance 10 in vlan 100",
+        "ac-parent-ref": [
+          "parent-vlan-100-gw1",
+          "parent-vlan-100-gw2"
+        ],
+        "l2-connection": {
+          "bearer-reference": "compute-08-nic1"
+        }
+      }
+    ]
   }
-  
+}
