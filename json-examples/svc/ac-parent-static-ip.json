@@ -36,11 +36,11 @@
                 "failure-detection-profile": "single-hop-bfd"
               },
               {
-                "_comment": "ce3 to ce7 are not displayed"
+                "_comment": "ce3 to ce9 are not displayed"
               },
               {
-                "address-id": "ce8",
-                "customer-address": "192.0.2.8",
+                "address-id": "ce10",
+                "customer-address": "192.0.2.10",
                 "failure-detection-profile": "single-hop-bfd"
               }
             ]
