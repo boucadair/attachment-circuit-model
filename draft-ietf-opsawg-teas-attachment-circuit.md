@@ -1436,7 +1436,7 @@ Note that no individual IP address is assigned in the data model for the NF user
 ~~~~ json
 {::include-fold ./json-examples/svc/ac-cloud-parent.json}
 ~~~~
-{: #parent-profile title="Message Body for the Configuration of The NF ACs"}
+{: #parent-profile title="Message Body for the Configuration of the NF ACs"}
 
 ### NF Failure and Scale-Out
 
@@ -1448,6 +1448,24 @@ Assuming a failure of "compute-01", the instance "nf-up-1" can be redeployed to 
 {: #cloud-parent-nf-lcm title="Example of Compute Failure and Scale-out"}
 
 Finally, the addition or deletion of compute nodes in the deployment ("compute-11", "compute-12", etc.) involves merely changes on Child ACs and possible routing on the parent AC. In any case, the parent AC is a stable identifier, which can be consumed as a reference by end-to-end service models for VPN configuration such as {{?I-D.ietf-opsawg-ac-lxsm-lxnm-glue}}, Slice Service {{?I-D.ietf-teas-ietf-network-slice-nbi-yang}}, etc. This decoupling to a stable identifier provides great benefits in terms of scalability and flexibility since once the reference with the parent AC is implemented, no API call involving the VPN model is needed for any modification in the cloud.
+
+## BFD and Static Addressing
+
+{{ex-bfd-static}} shows a topology example of a set of CEs connected to a provider network via dedicated bearers. Each of these CE maintains two BFD sessions with the provider network.
+
+~~~~ aasvg
+{::include-fold ./figures/ac-parent-nf-static-ips.txt}
+~~~~
+{: #ex-bfd-static title="Example of Static Addressing with BFD"}
+
+{{ex-json-bfd-static}} shows the message body of the ACaaS configuration used to enable the target architecture shown in {{ex-bfd-static}}. This example uses an AC group profile to factorize common data between all involved ACs. It also uses child ACs that inherits the properties of two parent ACs; each terminating in a separate gateway in the provider network.
+
+~~~~ json
+{::include-fold ./json-examples/svc/ac-parent-static-ip.json}
+~~~~
+{: #ex-json-bfd-static title="Message Body for the Configuration of CEs with Static Addressing and BFD Protection"}
+
+
 
 
 # Acknowledgments
