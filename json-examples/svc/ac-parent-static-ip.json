@@ -94,7 +94,7 @@
           "parent-vlan-100-gw2"
         ],
         "l2-connection": {
-          "bearer-reference": "bearer--1"
+          "bearer-reference": "bearer--2"
         }
       },
       {
@@ -108,7 +108,7 @@
           "parent-vlan-100-gw2"
         ],
         "l2-connection": {
-          "bearer-reference": "bearer--1"
+          "bearer-reference": "bearer--10"
         }
       }
     ]
