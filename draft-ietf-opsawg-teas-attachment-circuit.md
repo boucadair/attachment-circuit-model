@@ -195,6 +195,17 @@ The L2VPN Service Model (L2SM) {{?RFC8466}} covers some AC-related consideration
 
 Like the L2SM, the L3VPN Service Model (L3SM) {{?RFC8299}} addresses certain AC-related aspects. However, the L3SM structure does not sufficiently address Layer 2 provisioning requirements. Additionally, the L3SM is primarily designed for conventional L3VPN deployments and, as such, has some limitations for instantiating ACs in other deployment contexts (e.g., cloud environments). For example, the L3SM does not provide the capability to provision multiple BGP peer groups over the same AC.
 
+## Editorial Note (To be removed by RFC Editor)
+
+Note to the RFC Editor: This section is to be removed prior to publication.
+
+This document contains placeholder values that need to be replaced with finalized values at the time of publication. This note summarizes all of the substitutions that are needed.
+
+Please apply the following replacements:
+
+* XXXX --> the assigned RFC number for this I-D
+* 2023-11-13 --> the actual date of the publication of this document
+
 # Conventions and Definitions
 
 {::boilerplate bcp14-tagged}
