@@ -137,6 +137,17 @@ The common AC module eases data inheritance between modules (e.g., from service 
 
 The YANG data model in this document conforms to the Network Management Datastore Architecture (NMDA) defined in {{!RFC8342}}.
 
+## Editorial Note (To be removed by RFC Editor)
+
+Note to the RFC Editor: This section is to be removed prior to publication.
+
+This document contains placeholder values that need to be replaced with finalized values at the time of publication. This note summarizes all of the substitutions that are needed.
+
+Please apply the following replacements:
+
+* XXXX --> the assigned RFC number for this I-D
+* 2023-11-13 --> the actual date of the publication of this document
+
 # Conventions and Definitions
 
 The meanings of the symbols in the YANG tree diagrams are defined in {{?RFC8340}}.
@@ -145,7 +156,7 @@ LxSM refers to both the Layer 2 Service Model (L2SM) {{?RFC8466}} and the Layer 
 
 LxNM refers to both the Layer 2 Network Model (L2NM) {{?RFC9291}} and the Layer 3 Network Model (L3NM) {{?RFC9182}}.
 
-This document uses the following terms:
+This document uses the following term:
 
 Bearer:
 : A physical or logical link that connects a customer node (or site) to a provider network.
@@ -153,22 +164,6 @@ Bearer:
 : The operator allocates a unique bearer reference to identify a bearer within its network (e.g., customer line identifier). Such a reference can be retrieved by a customer and then used in subsequent service placement requests to unambiguously identify where a service is to be bound.
 : The concept of bearer can be generalized to refer to the required underlying connection for the provisioning of an attachment circuit.
 : One or multiple attachment circuits may be hosted over the same bearer (e.g., multiple Virtual Local Area Networks (VLANs) on the same bearer that is provided by a physical link).
-
-<--
-Network controller:
-: Denotes a functional entity responsible for the management of the service provider network. One or multiple network controllers can be deployed in a service provider network.
-
-Service orchestrator:
-: Refers to a functional entity that interacts with the customer of a network service.
-: A service orchestrator is typically responsible for the attachment circuits, the Provider Edge (PE) selection, and requesting the activation of the requested services to a network controller.
-: A service orchestrator may interact with one or more network controllers.
-
-Service provider network:
-: A network that is able to provide network services (e.g., L2VPN, L3VPN, or Network Slice Services {{?RFC9543}}).
-
-Service provider:
-: A service provider that offers network services (e.g., L2VPN, L3VPN, or Network Slice Services).
--->
 
 The names of data nodes are prefixed using the prefix associated with the corresponding imported YANG module as shown in {{pref}}:
 
