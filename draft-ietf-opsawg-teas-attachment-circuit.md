@@ -244,6 +244,15 @@ Service provider network:
 Service provider:
 : A service provider that offers network services (e.g., Layer 2 VPN, Layer 3 VPN, or Network Slice Services).
 
+The names of data nodes are prefixed using the prefix associated with the corresponding imported YANG module as shown in {{pref}}:
+
+|Prefix|	Module| Reference |
+| inet|ietf-inet-types| {{Section 4 of !RFC6991}}|
+| key-chain|ietf-key-chain| {{!RFC8177}}|
+| nacm|ietf-netconf-acm|{{!RFC8341}}|
+| vpn-common|ietf-vpn-common|{{!RFC9181}}|
+{: #pref title="Modules and Their Associated Prefixes"}
+
 # Relationship to Other AC Data Models
 
 {{ac-overview}} depicts the relationship between the various AC data models:
