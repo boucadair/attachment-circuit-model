@@ -135,6 +135,19 @@ The YANG data model in this document conforms to the Network Management Datastor
 
 Sample examples are provided in {{sec-examples}}.
 
+## Editorial Note (To be removed by RFC Editor)
+
+Note to the RFC Editor: This section is to be removed prior to publication.
+
+This document contains placeholder values that need to be replaced with finalized values at the time of publication. This note summarizes all of the substitutions that are needed.
+
+Please apply the following replacements:
+
+  * CCCC --> the assigned RFC number for {{!I-D.ietf-opsawg-teas-common-ac}}
+  * SSSS --> the assigned RFC number for {{!I-D.ietf-opsawg-teas-attachment-circuit}}
+  * XXXX --> the assigned RFC number for this I-D
+  * 2024-05-15 --> the actual date of the publication of this document
+
 # Conventions and Definitions
 
 {::boilerplate bcp14-tagged}
@@ -185,6 +198,23 @@ Service provider network:
 
 Service provider:
 : A service provider that offers network services (e.g., L2VPN, L3VPN, or Network Slice Services).
+
+The names of data nodes are prefixed using the prefix associated with the corresponding imported YANG module as shown in {{pref}}:
+
+|Prefix|	Module| Reference |
+| ac-common|ietf-ac-common| RFC CCCC|
+| ac-svc|ietf-ac-svc|Section 5.2 of RFC SSSS|
+| dot1q-types|ieee802-dot1q-types|{{IEEE802.1Qcp}}|
+| if|ietf-interfaces| {{!RFC8343}}|
+| inet|ietf-inet-types| {{Section 4 of !RFC6991}}|
+| key-chain|ietf-key-chain| {{!RFC8177}}|
+| nacm|ietf-netconf-acm|{{!RFC8341}}|
+| nw|ietf-network| {{!RFC8345}}|
+| rt-types|ietf-routing-types| {{!RFC8294}}|
+| rt-pol|ietf-routing-policy| {{!RFC9067}}|
+| sap|ietf-sap-ntw| {{!RF9408}}|
+| vpn-common|ietf-vpn-common|{{!RFC9181}}|
+{: #pref title="Modules and Their Associated Prefixes"}
 
 # Relationship to Other AC Data Models
 
