@@ -2,13 +2,15 @@
                           |   Customer    |
                           '-------+-------'
           Customer Service Model  |
- l2vpn-svc, l3vpn-svc, ietf-nss, ac-svc, ac-glue, and bearer-svc
+  ietf-l2vpn-svc, ietf-l3vpn-svc, | ietf-network-slice-service,
+       ietf-ac-svc, ietf-ac-glue, | and ietf-bearer-svc
                           .-------+-------.
                           |    Service    |
                           | Orchestration |
                           '-------+-------'
            Network Model          |
-       l2vpn-ntw, l3vpn-ntw, sap, | ac-glue, and ac-ntw
+  ietf-l2vpn-ntw, ietf-l3vpn-ntw, | ietf-sap-ntw, ietf-ac-glue,
+           and ietf-ac-ntw        |
                           .-------+-------.
                           |   Network     |
                           | Orchestration |
