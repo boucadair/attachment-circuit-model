@@ -73,6 +73,7 @@ Copyright Notice
 Table of Contents
 
    1.  Introduction
+     1.1.  Editorial Note (To be removed by RFC Editor)
    2.  Conventions and Definitions
    3.  Relationship to Other AC Data Models
    4.  Description of the AC Common YANG Module
@@ -179,6 +180,21 @@ Table of Contents
    The YANG data model in this document conforms to the Network
    Management Datastore Architecture (NMDA) defined in [RFC8342].
 
+1.1.  Editorial Note (To be removed by RFC Editor)
+
+   Note to the RFC Editor: This section is to be removed prior to
+   publication.
+
+   This document contains placeholder values that need to be replaced
+   with finalized values at the time of publication.  This note
+   summarizes all of the substitutions that are needed.
+
+   Please apply the following replacements:
+
+   *  XXXX --> the assigned RFC number for this I-D
+
+   *  2023-11-13 --> the actual date of the publication of this document
+
 2.  Conventions and Definitions
 
    The meanings of the symbols in the YANG tree diagrams are defined in
@@ -190,7 +206,7 @@ Table of Contents
    LxNM refers to both the Layer 2 Network Model (L2NM) [RFC9291] and
    the Layer 3 Network Model (L3NM) [RFC9182].
 
-   This document uses the following terms:
+   This document uses the following term:
 
    Bearer:  A physical or logical link that connects a customer node (or
       site) to a provider network.
@@ -212,29 +228,6 @@ Table of Contents
       One or multiple attachment circuits may be hosted over the same
       bearer (e.g., multiple Virtual Local Area Networks (VLANs) on the
       same bearer that is provided by a physical link).
-
-   <--
-
-   Network controller:  Denotes a functional entity responsible for the
-      management of the service provider network.  One or multiple
-      network controllers can be deployed in a service provider network.
-
-   Service orchestrator:  Refers to a functional entity that interacts
-      with the customer of a network service.
-
-      A service orchestrator is typically responsible for the attachment
-      circuits, the Provider Edge (PE) selection, and requesting the
-      activation of the requested services to a network controller.
-
-      A service orchestrator may interact with one or more network
-      controllers.
-
-   Service provider network:  A network that is able to provide network
-      services (e.g., L2VPN, L3VPN, or Network Slice Services
-      [RFC9543]).
-
-   Service provider:  A service provider that offers network services
-      (e.g., L2VPN, L3VPN, or Network Slice Services). -->
 
    The names of data nodes are prefixed using the prefix associated with
    the corresponding imported YANG module as shown in Table 1:
@@ -2659,12 +2652,6 @@ Table of Contents
               Q., and V. Lopez, "A YANG Network Data Model for Service
               Attachment Points (SAPs)", RFC 9408, DOI 10.17487/RFC9408,
               June 2023, <https://www.rfc-editor.org/rfc/rfc9408>.
-
-   [RFC9543]  Farrel, A., Ed., Drake, J., Ed., Rokui, R., Homma, S.,
-              Makhijani, K., Contreras, L., and J. Tantsura, "A
-              Framework for Network Slices in Networks Built from IETF
-              Technologies", RFC 9543, DOI 10.17487/RFC9543, March 2024,
-              <https://www.rfc-editor.org/rfc/rfc9543>.
 
 Acknowledgments
 
