@@ -69,7 +69,7 @@ informative:
 
 The document specifies a YANG module ("ietf-ac-glue", {{sec-glue}}) that updates existing service and
 network Virtual Private Network (VPN) modules with the required information to bind specific
-services to Attachment Circuits (ACs) that are created using the AC service model {{!I-D.ietf-opsawg-teas-attachment-circuit}}, specifically the following modules are augmented:
+services to Attachment Circuits (ACs) that are created using the AC service model {{!I-D.ietf-opsawg-teas-attachment-circuit}}. Specifically, the following modules are augmented:
 
 
 * The Layer 2 Service Model (L2SM) {{!RFC8466}}
@@ -85,8 +85,6 @@ Management Datastore Architecture (NMDA) defined in {{!RFC8342}}.
 An example to illustrate the use of the "ietf-ac-glue" model is provided in {{sec-example}}.
 
 # Conventions and Definitions
-
-{::boilerplate bcp14-tagged}
 
 The meanings of the symbols in the YANG tree diagrams are defined in {{?RFC8340}}.
 
@@ -109,6 +107,18 @@ ref:
 
 svc:
 : Service
+
+The names of data nodes are prefixed using the prefix associated with the corresponding imported YANG module as shown in {{pref}}:
+
+|Prefix|	Module| Reference |
+| ac-svc|ietf-ac-svc|{{Section 5.2 of !I-D.ietf-opsawg-teas-attachment-circuit}}|
+| ac-ntw|ietf-ac-ntw|{{!I-D.ietf-opsawg-ntw-attachment-circuit}}|
+| bearer-svc|ietf-bearer-svc|{{Section 5.1 of !I-D.ietf-opsawg-teas-attachment-circuit}}|
+| l2vpn-svc|ietf-l2vpn-svc| {{!RFC8466}}|
+| l3vpn-svc|ietf-l3vpn-svc| {{!RFC8299}}
+| l2nm|ietf-l3vpn-ntw| {{!RFC9291}}|
+| l3nm|ietf-l3vpn-ntw| {{!RFC9182}}|
+{: #pref title="Modules and Their Associated Prefixes"}
 
 # Relationship to Other AC Data Models
 
@@ -141,8 +151,8 @@ ietf-ac-svc <--> ietf-bearer-svc        |
 "ietf-ac-common" is imported  by "ietf-bearer-svc", "ietf-ac-svc", and "ietf-ac-ntw".
 Bearers managed using "ietf-bearer-svc" may be referenced in the service ACs managed using "ietf-ac-svc".
 Similarly, a bearer managed using "ietf-bearer-svc" may list the set of ACs that use that bearer.
-In order to ease correlation between an AC service requests and the actual AC provisioned in the network, "ietf-ac-ntw" uses the AC references exposed by "ietf-ac-svc".
-To bind Layer 2 VPN or Layer 3 VPN services with ACs, "ietf-ac-glue" augments the LxSM and LxNM with AC service references exposed by "ietf-ac-svc" and AC network references exposed bt "ietf-ac-ntw".
+In order to ease correlation between an AC service request and the actual AC provisioned in the network, "ietf-ac-ntw" uses the AC references exposed by "ietf-ac-svc".
+To bind Layer 2 VPN or Layer 3 VPN services with ACs, "ietf-ac-glue" augments the LxSM and LxNM with AC service references exposed by "ietf-ac-svc" and AC network references exposed by "ietf-ac-ntw".
 
 # Sample Uses of the Data Models
 
@@ -156,10 +166,9 @@ To bind Layer 2 VPN or Layer 3 VPN services with ACs, "ietf-ac-glue" augments th
 
 * A network provider may bind a single AC to one or multiple peer SAPs (e.g., CE1 and CE2 are tagged as peer SAPs for the same AC). For example, and as discussed in {{?RFC4364}}, multiple CEs can be attached to a PE over the same attachment circuit. This scenario is typically implemented when the Layer 2 infrastructure between the CE and the network is a multipoint service.
 
-* A single CE may terminate multiple ACs, which can be associated with the same bearer or distinct bearers.
+* A single CE may terminate multiple ACs, which can be associated with the same bearer or distinct bearers (e.g., CE4).
 
-* Customers may request protection schemes in which the ACs associated with their endpoints are terminated by the same PE (e.g., CE3), distinct PEs (e.g., CE34), etc. The network provider uses this request to decide where to terminate the AC in the network provider network and also whether to enable specific capabilities (e.g., Virtual Router Redundancy Protocol (VRRP)).
-
+* Customers may request protection schemes in which the ACs associated with their endpoints are terminated by the same PE (e.g., CE3), distinct PEs (e.g., CE4), etc. The network provider uses this request to decide where to terminate the AC in the provider network and also whether to enable specific capabilities (e.g., Virtual Router Redundancy Protocol (VRRP)).
 
 ~~~~ aasvg
 {::include ./figures/acs-examples.txt}
@@ -199,6 +208,8 @@ The "ietf-ac-glue" module includes provisions to reference ACs within or outside
 
 # The AC Glue ("ietf-ac-glue") YANG Module {#sec-glue}
 
+This modules augaments the L2SM {{!RFC8466}}, the L3SM {{!RFC8299}}, the L2NM {{!RFC9291}}, and the L3NM {{!RFC9182}}.
+
 This module uses references defined in {{!I-D.ietf-opsawg-teas-attachment-circuit}} and {{!I-D.ietf-opsawg-ntw-attachment-circuit}}.
 
 ~~~~~~~~~~
@@ -209,7 +220,7 @@ This module uses references defined in {{!I-D.ietf-opsawg-teas-attachment-circui
 
 # Security Considerations
 
-This section uses the template described in Section 3.7 of {{?I-D.ietf-netmod-rfc8407bis}}.
+This section uses the template described in {{Section 3.7 of ?I-D.ietf-netmod-rfc8407bis}}.
 
    The YANG module specified in this document defines schema for data
    that is designed to be accessed via network management protocols such
@@ -355,3 +366,5 @@ The provisioned AC at PE1 can be retrieved using the AC network model {{!I-D.iet
 Thanks to Bo Wu and Qin Wu for the review and comments.
 
 Thanks to Martin Björklund for the yangdoctors review and Gyan Mishra for the rtg-dir review.
+
+Thanks to Mahesh Jethanandani for the AD review.
