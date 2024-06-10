@@ -1159,12 +1159,17 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <nav class="toc"><ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.1">
             <p id="section-toc.1-1.1.1" class="keepWithNext"><a href="#section-1" class="auto internal xref">1</a>.  <a href="#name-introduction" class="internal xref">Introduction</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.1.2.1">
+                <p id="section-toc.1-1.1.2.1.1" class="keepWithNext"><a href="#section-1.1" class="auto internal xref">1.1</a>.  <a href="#name-editorial-note-to-be-remove" class="internal xref">Editorial Note (To be removed by RFC Editor)</a></p>
+</li>
+            </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2">
             <p id="section-toc.1-1.2.1" class="keepWithNext"><a href="#section-2" class="auto internal xref">2</a>.  <a href="#name-conventions-and-definitions" class="internal xref">Conventions and Definitions</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3">
-            <p id="section-toc.1-1.3.1" class="keepWithNext"><a href="#section-3" class="auto internal xref">3</a>.  <a href="#name-relationship-to-other-ac-da" class="internal xref">Relationship to Other AC Data Models</a></p>
+            <p id="section-toc.1-1.3.1"><a href="#section-3" class="auto internal xref">3</a>.  <a href="#name-relationship-to-other-ac-da" class="internal xref">Relationship to Other AC Data Models</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4">
             <p id="section-toc.1-1.4.1"><a href="#section-4" class="auto internal xref">4</a>.  <a href="#name-sample-uses-of-the-attachme" class="internal xref">Sample Uses of the Attachment Circuit Data Models</a></p>
@@ -1427,6 +1432,30 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <p id="section-1-7">The AC network model uses the AC common model defined in <span>[<a href="#I-D.ietf-opsawg-teas-common-ac" class="cite xref">I-D.ietf-opsawg-teas-common-ac</a>]</span>.<a href="#section-1-7" class="pilcrow">¶</a></p>
 <p id="section-1-8">The YANG data model in this document conforms to the Network Management Datastore Architecture (NMDA) defined in <span>[<a href="#RFC8342" class="cite xref">RFC8342</a>]</span>.<a href="#section-1-8" class="pilcrow">¶</a></p>
 <p id="section-1-9">Sample examples are provided in <a href="#sec-examples" class="auto internal xref">Appendix A</a>.<a href="#section-1-9" class="pilcrow">¶</a></p>
+<div id="editorial-note-to-be-removed-by-rfc-editor">
+<section id="section-1.1">
+        <h3 id="name-editorial-note-to-be-remove">
+<a href="#section-1.1" class="section-number selfRef">1.1. </a><a href="#name-editorial-note-to-be-remove" class="section-name selfRef">Editorial Note (To be removed by RFC Editor)</a>
+        </h3>
+<p id="section-1.1-1">Note to the RFC Editor: This section is to be removed prior to publication.<a href="#section-1.1-1" class="pilcrow">¶</a></p>
+<p id="section-1.1-2">This document contains placeholder values that need to be replaced with finalized values at the time of publication. This note summarizes all of the substitutions that are needed.<a href="#section-1.1-2" class="pilcrow">¶</a></p>
+<p id="section-1.1-3">Please apply the following replacements:<a href="#section-1.1-3" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-1.1-4.1">
+            <p id="section-1.1-4.1.1">CCCC --&gt; the assigned RFC number for <span>[<a href="#I-D.ietf-opsawg-teas-common-ac" class="cite xref">I-D.ietf-opsawg-teas-common-ac</a>]</span><a href="#section-1.1-4.1.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-1.1-4.2">
+            <p id="section-1.1-4.2.1">SSSS --&gt; the assigned RFC number for <span>[<a href="#I-D.ietf-opsawg-teas-attachment-circuit" class="cite xref">I-D.ietf-opsawg-teas-attachment-circuit</a>]</span><a href="#section-1.1-4.2.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-1.1-4.3">
+            <p id="section-1.1-4.3.1">XXXX --&gt; the assigned RFC number for this I-D<a href="#section-1.1-4.3.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-1.1-4.4">
+            <p id="section-1.1-4.4.1">2024-05-15 --&gt; the actual date of the publication of this document<a href="#section-1.1-4.4.1" class="pilcrow">¶</a></p>
+</li>
+        </ul>
+</section>
+</div>
 </section>
 </div>
 <div id="conventions-and-definitions">
@@ -1524,6 +1553,104 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 </dd>
       <dd class="break"></dd>
 </dl>
+<p id="section-2-11">The names of data nodes are prefixed using the prefix associated with the corresponding imported YANG module as shown in <a href="#pref" class="auto internal xref">Table 1</a>:<a href="#section-2-11" class="pilcrow">¶</a></p>
+<span id="name-modules-and-their-associate"></span><div id="pref">
+<table class="center" id="table-1">
+        <caption>
+<a href="#table-1" class="selfRef">Table 1</a>:
+<a href="#name-modules-and-their-associate" class="selfRef">Modules and Their Associated Prefixes</a>
+        </caption>
+<thead>
+          <tr>
+            <th class="text-left" rowspan="1" colspan="1">Prefix</th>
+            <th class="text-left" rowspan="1" colspan="1">Module</th>
+            <th class="text-left" rowspan="1" colspan="1">Reference</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">ac-common</td>
+            <td class="text-left" rowspan="1" colspan="1">ietf-ac-common</td>
+            <td class="text-left" rowspan="1" colspan="1">RFC CCCC</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">ac-svc</td>
+            <td class="text-left" rowspan="1" colspan="1">ietf-ac-svc</td>
+            <td class="text-left" rowspan="1" colspan="1">Section 5.2 of RFC SSSS</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">dot1q-types</td>
+            <td class="text-left" rowspan="1" colspan="1">ieee802-dot1q-types</td>
+            <td class="text-left" rowspan="1" colspan="1">
+              <span>[<a href="#IEEE802.1Qcp" class="cite xref">IEEE802.1Qcp</a>]</span>
+</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">if</td>
+            <td class="text-left" rowspan="1" colspan="1">ietf-interfaces</td>
+            <td class="text-left" rowspan="1" colspan="1">
+              <span>[<a href="#RFC8343" class="cite xref">RFC8343</a>]</span>
+</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">inet</td>
+            <td class="text-left" rowspan="1" colspan="1">ietf-inet-types</td>
+            <td class="text-left" rowspan="1" colspan="1">
+              <span><a href="https://rfc-editor.org/rfc/rfc6991#section-4" class="relref">Section 4</a> of [<a href="#RFC6991" class="cite xref">RFC6991</a>]</span>
+</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">key-chain</td>
+            <td class="text-left" rowspan="1" colspan="1">ietf-key-chain</td>
+            <td class="text-left" rowspan="1" colspan="1">
+              <span>[<a href="#RFC8177" class="cite xref">RFC8177</a>]</span>
+</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">nacm</td>
+            <td class="text-left" rowspan="1" colspan="1">ietf-netconf-acm</td>
+            <td class="text-left" rowspan="1" colspan="1">
+              <span>[<a href="#RFC8341" class="cite xref">RFC8341</a>]</span>
+</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">nw</td>
+            <td class="text-left" rowspan="1" colspan="1">ietf-network</td>
+            <td class="text-left" rowspan="1" colspan="1">
+              <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span>
+</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">rt-types</td>
+            <td class="text-left" rowspan="1" colspan="1">ietf-routing-types</td>
+            <td class="text-left" rowspan="1" colspan="1">
+              <span>[<a href="#RFC8294" class="cite xref">RFC8294</a>]</span>
+</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">rt-pol</td>
+            <td class="text-left" rowspan="1" colspan="1">ietf-routing-policy</td>
+            <td class="text-left" rowspan="1" colspan="1">
+              <span>[<a href="#RFC9067" class="cite xref">RFC9067</a>]</span>
+</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">sap</td>
+            <td class="text-left" rowspan="1" colspan="1">ietf-sap-ntw</td>
+            <td class="text-left" rowspan="1" colspan="1">
+              <span>[<a href="#RFC9408" class="cite xref">RFC9408</a>]</span>
+</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">vpn-common</td>
+            <td class="text-left" rowspan="1" colspan="1">ietf-vpn-common</td>
+            <td class="text-left" rowspan="1" colspan="1">
+              <span>[<a href="#RFC9181" class="cite xref">RFC9181</a>]</span>
+</td>
+          </tr>
+        </tbody>
+      </table>
+</div>
 </section>
 </div>
 <div id="relationship-to-other-ac-data-models">
