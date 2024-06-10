@@ -73,6 +73,7 @@ Copyright Notice
 Table of Contents
 
    1.  Introduction
+     1.1.  Editorial Note (To be removed by RFC Editor)
    2.  Conventions and Definitions
    3.  Relationship to Other AC Data Models
    4.  Sample Uses of the Data Models
@@ -119,6 +120,27 @@ Table of Contents
    An example to illustrate the use of the "ietf-ac-glue" model is
    provided in Appendix A.
 
+1.1.  Editorial Note (To be removed by RFC Editor)
+
+   Note to the RFC Editor: This section is to be removed prior to
+   publication.
+
+   This document contains placeholder values that need to be replaced
+   with finalized values at the time of publication.  This note
+   summarizes all of the substitutions that are needed.
+
+   Please apply the following replacements:
+
+   *  XXXX --> the assigned RFC number for this I-D
+
+   *  SSSS --> the assigned RFC number for
+      [I-D.ietf-opsawg-teas-attachment-circuit]
+
+   *  NNNN --> the assigned RFC number for
+      [I-D.ietf-opsawg-ntw-attachment-circuit]
+
+   *  2023-11-13 --> the actual date of the publication of this document
+
 2.  Conventions and Definitions
 
    The meanings of the symbols in the YANG tree diagrams are defined in
@@ -144,32 +166,25 @@ Table of Contents
    The names of data nodes are prefixed using the prefix associated with
    the corresponding imported YANG module as shown in Table 1:
 
-   +=========+=============+===========================================+
-   | Prefix  | Module      | Reference                                 |
-   +=========+=============+===========================================+
-   | ac-svc  | ietf-ac-    | Section 5.2 of                            |
-   |         | svc         | [I-D.ietf-opsawg-teas-attachment-circuit] |
-   +---------+-------------+-------------------------------------------+
-   | ac-ntw  | ietf-ac-    | [I-D.ietf-opsawg-ntw-attachment-circuit]  |
-   |         | ntw         |                                           |
-   +---------+-------------+-------------------------------------------+
-   | bearer- | ietf-       | Section 5.1 of                            |
-   | svc     | bearer-svc  | [I-D.ietf-opsawg-teas-attachment-circuit] |
-   +---------+-------------+-------------------------------------------+
-   | l2vpn-  | ietf-       | [RFC8466]                                 |
-   | svc     | l2vpn-svc   |                                           |
-   +---------+-------------+-------------------------------------------+
-   | l3vpn-  | ietf-       | [RFC8299]                                 |
-   | svc     | l3vpn-svc   |                                           |
-   +---------+-------------+-------------------------------------------+
-   | l2nm    | ietf-       | [RFC9291]                                 |
-   |         | l3vpn-ntw   |                                           |
-   +---------+-------------+-------------------------------------------+
-   | l3nm    | ietf-       | [RFC9182]                                 |
-   |         | l3vpn-ntw   |                                           |
-   +---------+-------------+-------------------------------------------+
+        +============+=================+=========================+
+        | Prefix     | Module          | Reference               |
+        +============+=================+=========================+
+        | ac-svc     | ietf-ac-svc     | Section 5.2 of RFC SSSS |
+        +------------+-----------------+-------------------------+
+        | ac-ntw     | ietf-ac-ntw     | RFC NNNN                |
+        +------------+-----------------+-------------------------+
+        | bearer-svc | ietf-bearer-svc | Section 5.1 of RFC SSSS |
+        +------------+-----------------+-------------------------+
+        | l2vpn-svc  | ietf-l2vpn-svc  | [RFC8466]               |
+        +------------+-----------------+-------------------------+
+        | l3vpn-svc  | ietf-l3vpn-svc  | [RFC8299]               |
+        +------------+-----------------+-------------------------+
+        | l2nm       | ietf-l3vpn-ntw  | [RFC9291]               |
+        +------------+-----------------+-------------------------+
+        | l3nm       | ietf-l3vpn-ntw  | [RFC9182]               |
+        +------------+-----------------+-------------------------+
 
-               Table 1: Modules and Their Associated Prefixes
+              Table 1: Modules and Their Associated Prefixes
 
 3.  Relationship to Other AC Data Models
 
@@ -758,7 +773,7 @@ Table of Contents
       Namespace:  urn:ietf:params:xml:ns:yang:ietf-ac-glue
       Prefix:  ac-glue
       Maintained by IANA?  N
-      Reference:  RFC xxxx
+      Reference:  RFC XXXX
 
 9.  References
 
