@@ -1278,6 +1278,73 @@ Management Datastore Architecture (NMDA) defined in <span>[<a href="#RFC8342" cl
 </dd>
       <dd class="break"></dd>
 </dl>
+<p id="section-2-7">The names of data nodes are prefixed using the prefix associated with the corresponding imported YANG module as shown in <a href="#pref" class="auto internal xref">Table 1</a>:<a href="#section-2-7" class="pilcrow">¶</a></p>
+<span id="name-modules-and-prefixes"></span><div id="pref">
+<table class="center" id="table-1">
+        <caption>
+<a href="#table-1" class="selfRef">Table 1</a>:
+<a href="#name-modules-and-prefixes" class="selfRef">Modules and Prefixes</a>
+        </caption>
+<thead>
+          <tr>
+            <th class="text-left" rowspan="1" colspan="1">Module</th>
+            <th class="text-left" rowspan="1" colspan="1">Prefix</th>
+            <th class="text-left" rowspan="1" colspan="1">Reference</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">ietf-ac-svc</td>
+            <td class="text-left" rowspan="1" colspan="1">ac-svc</td>
+            <td class="text-left" rowspan="1" colspan="1">
+              <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-teas-attachment-circuit-13#section-5.2" class="relref">Section 5.2</a> of [<a href="#I-D.ietf-opsawg-teas-attachment-circuit" class="cite xref">I-D.ietf-opsawg-teas-attachment-circuit</a>]</span>
+</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">ietf-ac-ntw</td>
+            <td class="text-left" rowspan="1" colspan="1">ac-ntw</td>
+            <td class="text-left" rowspan="1" colspan="1">
+              <span>[<a href="#I-D.ietf-opsawg-ntw-attachment-circuit" class="cite xref">I-D.ietf-opsawg-ntw-attachment-circuit</a>]</span>
+</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">ietf-bearer-svc</td>
+            <td class="text-left" rowspan="1" colspan="1">bearer-svc</td>
+            <td class="text-left" rowspan="1" colspan="1">
+              <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-teas-attachment-circuit-13#section-5.1" class="relref">Section 5.1</a> of [<a href="#I-D.ietf-opsawg-teas-attachment-circuit" class="cite xref">I-D.ietf-opsawg-teas-attachment-circuit</a>]</span>
+</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">ietf-l2vpn-svc</td>
+            <td class="text-left" rowspan="1" colspan="1">l2vpn-svc</td>
+            <td class="text-left" rowspan="1" colspan="1">
+              <span>[<a href="#RFC8466" class="cite xref">RFC8466</a>]</span>
+</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">ietf-l3vpn-svc</td>
+            <td class="text-left" rowspan="1" colspan="1">l3vpn-svc</td>
+            <td class="text-left" rowspan="1" colspan="1">
+              <span>[<a href="#RFC8299" class="cite xref">RFC8299</a>]</span>
+</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">ietf-l3vpn-ntw</td>
+            <td class="text-left" rowspan="1" colspan="1">l2nm</td>
+            <td class="text-left" rowspan="1" colspan="1">
+              <span>[<a href="#RFC9291" class="cite xref">RFC9291</a>]</span>
+</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">ietf-l3vpn-ntw</td>
+            <td class="text-left" rowspan="1" colspan="1">l3nm</td>
+            <td class="text-left" rowspan="1" colspan="1">
+              <span>[<a href="#RFC9182" class="cite xref">RFC9182</a>]</span>
+</td>
+          </tr>
+        </tbody>
+      </table>
+</div>
 </section>
 </div>
 <div id="relationship-to-other-ac-data-models">
@@ -1347,7 +1414,7 @@ Management Datastore Architecture (NMDA) defined in <span>[<a href="#RFC8342" cl
 <p id="section-3-4">"ietf-ac-common" is imported  by "ietf-bearer-svc", "ietf-ac-svc", and "ietf-ac-ntw".
 Bearers managed using "ietf-bearer-svc" may be referenced in the service ACs managed using "ietf-ac-svc".
 Similarly, a bearer managed using "ietf-bearer-svc" may list the set of ACs that use that bearer.
-In order to ease correlation between an AC service requests and the actual AC provisioned in the network, "ietf-ac-ntw" uses the AC references exposed by "ietf-ac-svc".
+In order to ease correlation between an AC service request and the actual AC provisioned in the network, "ietf-ac-ntw" uses the AC references exposed by "ietf-ac-svc".
 To bind Layer 2 VPN or Layer 3 VPN services with ACs, "ietf-ac-glue" augments the LxSM and LxNM with AC service references exposed by "ietf-ac-svc" and AC network references exposed by "ietf-ac-ntw".<a href="#section-3-4" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -1882,7 +1949,7 @@ module ietf-ac-glue {
       <h2 id="name-security-considerations">
 <a href="#section-7" class="section-number selfRef">7. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
       </h2>
-<p id="section-7-1">This section uses the template described in Section 3.7 of <span>[<a href="#I-D.ietf-netmod-rfc8407bis" class="cite xref">I-D.ietf-netmod-rfc8407bis</a>]</span>.<a href="#section-7-1" class="pilcrow">¶</a></p>
+<p id="section-7-1">This section uses the template described in <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-netmod-rfc8407bis-11#section-3.7" class="relref">Section 3.7</a> of [<a href="#I-D.ietf-netmod-rfc8407bis" class="cite xref">I-D.ietf-netmod-rfc8407bis</a>]</span>.<a href="#section-7-1" class="pilcrow">¶</a></p>
 <p id="section-7-2">The YANG module specified in this document defines schema for data
    that is designed to be accessed via network management protocols such
    as NETCONF <span>[<a href="#RFC6241" class="cite xref">RFC6241</a>]</span> or RESTCONF <span>[<a href="#RFC8040" class="cite xref">RFC8040</a>]</span>.  The lowest NETCONF layer

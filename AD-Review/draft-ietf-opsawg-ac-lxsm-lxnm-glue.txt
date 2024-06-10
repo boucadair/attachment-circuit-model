@@ -141,6 +141,36 @@ Table of Contents
 
    svc:  Service
 
+   The names of data nodes are prefixed using the prefix associated with
+   the corresponding imported YANG module as shown in Table 1:
+
+   +=============+=========+===========================================+
+   | Module      | Prefix  | Reference                                 |
+   +=============+=========+===========================================+
+   | ietf-ac-    | ac-svc  | Section 5.2 of                            |
+   | svc         |         | [I-D.ietf-opsawg-teas-attachment-circuit] |
+   +-------------+---------+-------------------------------------------+
+   | ietf-ac-    | ac-ntw  | [I-D.ietf-opsawg-ntw-attachment-circuit]  |
+   | ntw         |         |                                           |
+   +-------------+---------+-------------------------------------------+
+   | ietf-       | bearer- | Section 5.1 of                            |
+   | bearer-svc  | svc     | [I-D.ietf-opsawg-teas-attachment-circuit] |
+   +-------------+---------+-------------------------------------------+
+   | ietf-       | l2vpn-  | [RFC8466]                                 |
+   | l2vpn-svc   | svc     |                                           |
+   +-------------+---------+-------------------------------------------+
+   | ietf-       | l3vpn-  | [RFC8299]                                 |
+   | l3vpn-svc   | svc     |                                           |
+   +-------------+---------+-------------------------------------------+
+   | ietf-       | l2nm    | [RFC9291]                                 |
+   | l3vpn-ntw   |         |                                           |
+   +-------------+---------+-------------------------------------------+
+   | ietf-       | l3nm    | [RFC9182]                                 |
+   | l3vpn-ntw   |         |                                           |
+   +-------------+---------+-------------------------------------------+
+
+                       Table 1: Modules and Prefixes
+
 3.  Relationship to Other AC Data Models
 
    Figure 1 depicts the relationship between the various AC data models:
@@ -179,7 +209,7 @@ Table of Contents
    referenced in the service ACs managed using "ietf-ac-svc".
    Similarly, a bearer managed using "ietf-bearer-svc" may list the set
    of ACs that use that bearer.  In order to ease correlation between an
-   AC service requests and the actual AC provisioned in the network,
+   AC service request and the actual AC provisioned in the network,
    "ietf-ac-ntw" uses the AC references exposed by "ietf-ac-svc".  To
    bind Layer 2 VPN or Layer 3 VPN services with ACs, "ietf-ac-glue"
    augments the LxSM and LxNM with AC service references exposed by
