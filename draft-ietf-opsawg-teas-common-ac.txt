@@ -136,12 +136,12 @@ Table of Contents
    Virtual Private Network (VPN) or Layer 2 VPN) or host multiple
    services (e.g., Service Functions [RFC7665]).  A single AC (as seen
    by a network provider) may be bound to one or multiple peer SAPs
-   (e.g., "CE#1" and "CE#2").  For example, and as discussed in
-   [RFC4364], multiple CEs can be attached to a PE over the same
-   attachment circuit.  This is typically implemented if the Layer 2
-   infrastructure between the CE and the network provides a multipoint
-   service.  The same CE may terminate multiple ACs.  These ACs may be
-   over the same or distinct bearers.
+   (e.g., "CE1" and "CE2").  For example, and as discussed in [RFC4364],
+   multiple CEs can be attached to a PE over the same attachment
+   circuit.  This is typically implemented if the Layer 2 infrastructure
+   between the CE and the network provides a multipoint service.  The
+   same CE may terminate multiple ACs.  These ACs may be over the same
+   or distinct bearers.
 
                              .--------------------.
       .-------.              |                   .--.  (b1)  .------.
@@ -213,6 +213,8 @@ Table of Contents
       bearer (e.g., multiple Virtual Local Area Networks (VLANs) on the
       same bearer that is provided by a physical link).
 
+   <--
+
    Network controller:  Denotes a functional entity responsible for the
       management of the service provider network.  One or multiple
       network controllers can be deployed in a service provider network.
@@ -232,7 +234,26 @@ Table of Contents
       [RFC9543]).
 
    Service provider:  A service provider that offers network services
-      (e.g., L2VPN, L3VPN, or Network Slice Services).
+      (e.g., L2VPN, L3VPN, or Network Slice Services). -->
+
+   The names of data nodes are prefixed using the prefix associated with
+   the corresponding imported YANG module as shown in Table 1:
+
+        +============+==================+========================+
+        | Prefix     | Module           | Reference              |
+        +============+==================+========================+
+        | inet       | ietf-inet-types  | Section 4 of [RFC6991] |
+        +------------+------------------+------------------------+
+        | key-chain  | ietf-key-chain   | [RFC8177]              |
+        +------------+------------------+------------------------+
+        | nacm       | ietf-netconf-acm | [RFC8341]              |
+        +------------+------------------+------------------------+
+        | vpn-common | ietf-vpn-common  | [RFC9181]              |
+        +------------+------------------+------------------------+
+        | yang       | ietf-yang-types  | Section 3 of [RFC6991] |
+        +------------+------------------+------------------------+
+
+              Table 1: Modules and Their Associated Prefixes
 
 3.  Relationship to Other AC Data Models
 
@@ -2537,9 +2558,9 @@ Table of Contents
               Dios, "A YANG Data Model for Augmenting VPN Service and
               Network Models with Attachment Circuits", Work in
               Progress, Internet-Draft, draft-ietf-opsawg-ac-lxsm-lxnm-
-              glue-09, 11 April 2024,
+              glue-10, 10 June 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
-              ac-lxsm-lxnm-glue-09>.
+              ac-lxsm-lxnm-glue-10>.
 
    [I-D.ietf-opsawg-ntw-attachment-circuit]
               Boucadair, M., Roberts, R., de Dios, O. G., Barguil, S.,
