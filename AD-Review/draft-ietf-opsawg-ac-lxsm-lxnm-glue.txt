@@ -144,32 +144,32 @@ Table of Contents
    The names of data nodes are prefixed using the prefix associated with
    the corresponding imported YANG module as shown in Table 1:
 
-   +=============+=========+===========================================+
-   | Module      | Prefix  | Reference                                 |
-   +=============+=========+===========================================+
-   | ietf-ac-    | ac-svc  | Section 5.2 of                            |
-   | svc         |         | [I-D.ietf-opsawg-teas-attachment-circuit] |
-   +-------------+---------+-------------------------------------------+
-   | ietf-ac-    | ac-ntw  | [I-D.ietf-opsawg-ntw-attachment-circuit]  |
-   | ntw         |         |                                           |
-   +-------------+---------+-------------------------------------------+
-   | ietf-       | bearer- | Section 5.1 of                            |
-   | bearer-svc  | svc     | [I-D.ietf-opsawg-teas-attachment-circuit] |
-   +-------------+---------+-------------------------------------------+
-   | ietf-       | l2vpn-  | [RFC8466]                                 |
-   | l2vpn-svc   | svc     |                                           |
-   +-------------+---------+-------------------------------------------+
-   | ietf-       | l3vpn-  | [RFC8299]                                 |
-   | l3vpn-svc   | svc     |                                           |
-   +-------------+---------+-------------------------------------------+
-   | ietf-       | l2nm    | [RFC9291]                                 |
-   | l3vpn-ntw   |         |                                           |
-   +-------------+---------+-------------------------------------------+
-   | ietf-       | l3nm    | [RFC9182]                                 |
-   | l3vpn-ntw   |         |                                           |
-   +-------------+---------+-------------------------------------------+
+   +=========+=============+===========================================+
+   | Prefix  | Module      | Reference                                 |
+   +=========+=============+===========================================+
+   | ac-svc  | ietf-ac-    | Section 5.2 of                            |
+   |         | svc         | [I-D.ietf-opsawg-teas-attachment-circuit] |
+   +---------+-------------+-------------------------------------------+
+   | ac-ntw  | ietf-ac-    | [I-D.ietf-opsawg-ntw-attachment-circuit]  |
+   |         | ntw         |                                           |
+   +---------+-------------+-------------------------------------------+
+   | bearer- | ietf-       | Section 5.1 of                            |
+   | svc     | bearer-svc  | [I-D.ietf-opsawg-teas-attachment-circuit] |
+   +---------+-------------+-------------------------------------------+
+   | l2vpn-  | ietf-       | [RFC8466]                                 |
+   | svc     | l2vpn-svc   |                                           |
+   +---------+-------------+-------------------------------------------+
+   | l3vpn-  | ietf-       | [RFC8299]                                 |
+   | svc     | l3vpn-svc   |                                           |
+   +---------+-------------+-------------------------------------------+
+   | l2nm    | ietf-       | [RFC9291]                                 |
+   |         | l3vpn-ntw   |                                           |
+   +---------+-------------+-------------------------------------------+
+   | l3nm    | ietf-       | [RFC9182]                                 |
+   |         | l3vpn-ntw   |                                           |
+   +---------+-------------+-------------------------------------------+
 
-                       Table 1: Modules and Prefixes
+               Table 1: Modules and Their Associated Prefixes
 
 3.  Relationship to Other AC Data Models
 
