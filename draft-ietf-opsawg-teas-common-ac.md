@@ -124,7 +124,7 @@ This document adheres to the definition of an attachment circuit as provided in 
 
 When a customer requests a new value-added service, the service can be bound to existing attachment circuits or trigger the instantiation of new attachment circuits. Whether these attachment circuits are specific to a given service or be shared to deliver a variety of services is deployment-specific.
 
-An example of attachment circuits is depicted in {{uc}}. A Customer Edge (CE) may be a physical node or a logical entity. A CE is seen by the network as a peer Service Attachment Point (SAP) {{?RFC9408}}. CEs may be dedicated to one single service (e.g., Layer 3 Virtual Private Network (VPN) or Layer 2 VPN) or host multiple services (e.g., Service Functions {{?RFC7665}}). A single AC (as seen by a network provider) may be bound to one or multiple peer SAPs (e.g., "CE#1" and "CE#2"). For example, and as discussed in {{?RFC4364}}, multiple CEs can be attached to a PE over the same attachment circuit. This is typically implemented if the Layer 2 infrastructure between the CE and the network provides a multipoint service. The same CE may terminate multiple ACs. These ACs may be over the same or distinct bearers.
+An example of attachment circuits is depicted in {{uc}}. A Customer Edge (CE) may be a physical node or a logical entity. A CE is seen by the network as a peer Service Attachment Point (SAP) {{?RFC9408}}. CEs may be dedicated to one single service (e.g., Layer 3 Virtual Private Network (VPN) or Layer 2 VPN) or host multiple services (e.g., Service Functions {{?RFC7665}}). A single AC (as seen by a network provider) may be bound to one or multiple peer SAPs (e.g., "CE1" and "CE2"). For example, and as discussed in {{?RFC4364}}, multiple CEs can be attached to a PE over the same attachment circuit. This is typically implemented if the Layer 2 infrastructure between the CE and the network provides a multipoint service. The same CE may terminate multiple ACs. These ACs may be over the same or distinct bearers.
 
 ~~~~ aasvg
 {::include ./figures/acs-examples.txt}
@@ -154,6 +154,7 @@ Bearer:
 : The concept of bearer can be generalized to refer to the required underlying connection for the provisioning of an attachment circuit.
 : One or multiple attachment circuits may be hosted over the same bearer (e.g., multiple Virtual Local Area Networks (VLANs) on the same bearer that is provided by a physical link).
 
+<--
 Network controller:
 : Denotes a functional entity responsible for the management of the service provider network. One or multiple network controllers can be deployed in a service provider network.
 
@@ -167,6 +168,17 @@ Service provider network:
 
 Service provider:
 : A service provider that offers network services (e.g., L2VPN, L3VPN, or Network Slice Services).
+-->
+
+The names of data nodes are prefixed using the prefix associated with the corresponding imported YANG module as shown in {{pref}}:
+
+|Prefix|	Module| Reference |
+| inet|ietf-inet-types| {{Section 4 of !RFC6991}}|
+| key-chain|ietf-key-chain| {{!RFC8177}}|
+| nacm|ietf-netconf-acm|{{!RFC8341}}|
+| vpn-common|ietf-vpn-common|{{!RFC9181}}|
+| yang|ietf-yang-types| {{Section 3 of !RFC6991}}|
+{: #pref title="Modules and Their Associated Prefixes"}
 
 # Relationship to Other AC Data Models
 
@@ -337,7 +349,7 @@ This module uses types defined in {{!RFC6991}}, {{!RFC8177}}, and  {{!RFC9181}}.
 
 # Security Considerations
 
-This section uses the template described in Section 3.7 of {{?I-D.ietf-netmod-rfc8407bis}}.
+This section uses the template described in {{Section 3.7 of ?I-D.ietf-netmod-rfc8407bis}}.
 
    The YANG module specified in this document defines schema for data
    that is designed to be accessed via network management protocols such
