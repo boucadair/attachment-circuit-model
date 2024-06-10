@@ -108,6 +108,18 @@ ref:
 svc:
 : Service
 
+The names of data nodes are prefixed using the prefix associated with the corresponding imported YANG module as shown in {{pref}}: 
+
+|Module|	Prefix| Reference |
+|ietf-ac-svc| ac-svc|{{Section 5.2 of !I-D.ietf-opsawg-teas-attachment-circuit}}|
+|ietf-ac-ntw| ac-ntw|{{!I-D.ietf-opsawg-ntw-attachment-circuit}}|
+|ietf-bearer-svc| bearer-svc|{{Section 5.1 of !I-D.ietf-opsawg-teas-attachment-circuit}}|
+|ietf-l2vpn-svc| l2vpn-svc| {{!RFC8466}}|
+|ietf-l3vpn-svc| l3vpn-svc| {{!RFC8299}}
+|ietf-l3vpn-ntw| l2nm| {{!RFC9291}}|
+|ietf-l3vpn-ntw| l3nm| {{!RFC9182}}|
+{: #pref title="Modules and Prefixes"}
+
 # Relationship to Other AC Data Models
 
 {{ac-overview}} depicts the relationship between the various AC data models:
@@ -139,7 +151,7 @@ ietf-ac-svc <--> ietf-bearer-svc        |
 "ietf-ac-common" is imported  by "ietf-bearer-svc", "ietf-ac-svc", and "ietf-ac-ntw".
 Bearers managed using "ietf-bearer-svc" may be referenced in the service ACs managed using "ietf-ac-svc".
 Similarly, a bearer managed using "ietf-bearer-svc" may list the set of ACs that use that bearer.
-In order to ease correlation between an AC service requests and the actual AC provisioned in the network, "ietf-ac-ntw" uses the AC references exposed by "ietf-ac-svc".
+In order to ease correlation between an AC service request and the actual AC provisioned in the network, "ietf-ac-ntw" uses the AC references exposed by "ietf-ac-svc".
 To bind Layer 2 VPN or Layer 3 VPN services with ACs, "ietf-ac-glue" augments the LxSM and LxNM with AC service references exposed by "ietf-ac-svc" and AC network references exposed by "ietf-ac-ntw".
 
 # Sample Uses of the Data Models
@@ -209,7 +221,7 @@ This module uses references defined in {{!I-D.ietf-opsawg-teas-attachment-circui
 
 # Security Considerations
 
-This section uses the template described in Section 3.7 of {{?I-D.ietf-netmod-rfc8407bis}}.
+This section uses the template described in {{Section 3.7 of ?I-D.ietf-netmod-rfc8407bis}}.
 
    The YANG module specified in this document defines schema for data
    that is designed to be accessed via network management protocols such
