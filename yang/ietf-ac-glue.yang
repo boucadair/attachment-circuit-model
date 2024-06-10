@@ -212,11 +212,11 @@ module ietf-ac-glue {
     if-feature "ac-glue";
     description
       "Augments VPN network access with service and network
-       references to an AC. Concretely, it glues a 'vpn-network-access'
-       to (1) an attachment circuit with Layer 2 properties that was
-       created using the ACaaS module and (2) an attachment circuit
-       with Layer 2 properties that was created using the AC network
-       module.
+       references to an AC. Concretely, it glues a VPN network
+       access to (1) an attachment circuit with Layer 2 properties
+       that was created using the ACaaS module and (2) an attachment 
+       circuit with Layer 2 properties that was created using the AC 
+       network module.
 
        The AC service and network information takes precedence over
        any overlapping information that is also provided for a VPN
@@ -244,11 +244,11 @@ module ietf-ac-glue {
     if-feature "ac-glue";
     description
       "Augments VPN network access with service and network
-       references to an AC. Concretely, it glues a 'vpn-network-access'
-       to (1) an attachment circuit with both Layer 2 and Layer 3
-       properties that was created using the ACaaS module and (2) an
-       attachment circuit with both Layer 2 and Layer 3 properties that
-       was created using the AC network module.
+       references to an AC. Concretely, it glues a VPN network
+       access to (1) an attachment circuit with both Layer 2 and
+       Layer 3 properties that was created using the ACaaS module
+       and (2) an attachment circuit with both Layer 2 and Layer 3
+       properties that was created using the AC network module.
 
        The AC service and network information takes precedence over
        any overlapping information that is also provided for a VPN
