@@ -110,15 +110,15 @@ svc:
 
 The names of data nodes are prefixed using the prefix associated with the corresponding imported YANG module as shown in {{pref}}:
 
-|Module|	Prefix| Reference |
-|ietf-ac-svc| ac-svc|{{Section 5.2 of !I-D.ietf-opsawg-teas-attachment-circuit}}|
-|ietf-ac-ntw| ac-ntw|{{!I-D.ietf-opsawg-ntw-attachment-circuit}}|
-|ietf-bearer-svc| bearer-svc|{{Section 5.1 of !I-D.ietf-opsawg-teas-attachment-circuit}}|
-|ietf-l2vpn-svc| l2vpn-svc| {{!RFC8466}}|
-|ietf-l3vpn-svc| l3vpn-svc| {{!RFC8299}}
-|ietf-l3vpn-ntw| l2nm| {{!RFC9291}}|
-|ietf-l3vpn-ntw| l3nm| {{!RFC9182}}|
-{: #pref title="Modules and Prefixes"}
+|Prefix|	Module| Reference |
+| ac-svc|ietf-ac-svc|{{Section 5.2 of !I-D.ietf-opsawg-teas-attachment-circuit}}|
+| ac-ntw|ietf-ac-ntw|{{!I-D.ietf-opsawg-ntw-attachment-circuit}}|
+| bearer-svc|ietf-bearer-svc|{{Section 5.1 of !I-D.ietf-opsawg-teas-attachment-circuit}}|
+| l2vpn-svc|ietf-l2vpn-svc| {{!RFC8466}}|
+| l3vpn-svc|ietf-l3vpn-svc| {{!RFC8299}}
+| l2nm|ietf-l3vpn-ntw| {{!RFC9291}}|
+| l3nm|ietf-l3vpn-ntw| {{!RFC9182}}|
+{: #pref title="Modules and Their Associated Prefixes"}
 
 # Relationship to Other AC Data Models
 
