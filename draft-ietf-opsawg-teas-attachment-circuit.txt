@@ -5,14 +5,14 @@
 OPSAWG                                                 M. Boucadair, Ed.
 Internet-Draft                                                    Orange
 Intended status: Standards Track                         R. Roberts, Ed.
-Expires: 30 November 2024                                        Juniper
+Expires: 12 December 2024                                        Juniper
                                                            O. G. D. Dios
                                                               Telefonica
                                                            S. B. Giraldo
                                                                    Nokia
                                                                    B. Wu
                                                      Huawei Technologies
-                                                             29 May 2024
+                                                            10 June 2024
 
 
   YANG Data Models for Bearers and 'Attachment Circuits'-as-a-Service
@@ -62,7 +62,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 30 November 2024.
+   This Internet-Draft will expire on 12 December 2024.
 
 Copyright Notice
 
@@ -4117,9 +4117,9 @@ Table of Contents
    [I-D.ramseyer-grow-peering-api]
               Aguado, C., Griswold, M., Ramseyer, J., Servin, A. L., and
               T. Strickx, "Peering API", Work in Progress, Internet-
-              Draft, draft-ramseyer-grow-peering-api-04, 16 March 2024,
+              Draft, draft-ramseyer-grow-peering-api-05, 30 May 2024,
               <https://datatracker.ietf.org/doc/html/draft-ramseyer-
-              grow-peering-api-04>.
+              grow-peering-api-05>.
 
    [IEEE802.1AB]
               IEEE, "IEEE Standard for Local and metropolitan area
