@@ -127,10 +127,10 @@ The names of data nodes are prefixed using the prefix associated with the corres
 | ac-svc|ietf-ac-svc|Section 5.2 of RFC SSSS|
 | ac-ntw|ietf-ac-ntw|RFC NNNN|
 | bearer-svc|ietf-bearer-svc|Section 5.1 of RFC SSSS|
-| l2vpn-svc|ietf-l2vpn-svc| {{!RFC8466}}|
-| l3vpn-svc|ietf-l3vpn-svc| {{!RFC8299}}
 | l2nm|ietf-l3vpn-ntw| {{!RFC9291}}|
+| l2vpn-svc|ietf-l2vpn-svc| {{!RFC8466}}|
 | l3nm|ietf-l3vpn-ntw| {{!RFC9182}}|
+| l3vpn-svc|ietf-l3vpn-svc| {{!RFC8299}}
 {: #pref title="Modules and Their Associated Prefixes"}
 
 # Relationship to Other AC Data Models
