@@ -39,17 +39,17 @@ module ietf-ac-glue {
   organization
     "IETF OPSAWG (Operations and Management Area Working Group)";
   contact
-    "WG Web:   https://datatracker.ietf.org/wg/opsawg/
-     WG List:  mailto:opsawg@ietf.org
+    "WG Web:   <https://datatracker.ietf.org/wg/opsawg/>
+     WG List:  <mailto:opsawg@ietf.org>
 
      Editor:   Mohamed Boucadair
-               mailto:mohamed.boucadair@orange.com
+               <mailto:mohamed.boucadair@orange.com>
      Author:   Richard Roberts
-               mailto:rroberts@juniper.net
+               <mailto:rroberts@juniper.net>
      Author:   Samier Barguil
-               mailto:ssamier.barguil_giraldo@nokia.com
+               <mailto:ssamier.barguil_giraldo@nokia.com>
      Author:   Oscar Gonzalez de Dios
-               mailto:oscar.gonzalezdedios@telefonica.com";
+               <mailto:oscar.gonzalezdedios@telefonica.com>";
   description
     "This YANG module defines a YANG model for augmenting the LxSM
      and the LxNM with attachment circuit references.
@@ -103,8 +103,8 @@ module ietf-ac-glue {
     }
     container ac-ntw-ref {
       description
-        "A reference to the AC that was provisioned
-         using the AC network module.";
+        "A reference to the AC that was provisioned using the AC
+         network module.";
       uses ac-ntw:attachment-circuit-reference;
     }
   }
@@ -197,10 +197,11 @@ module ietf-ac-glue {
         + "/l2nm:vpn-network-accesses" {
     description
       "Augments VPN network accesses with both service and network
-       AC provisioning details. Concretely, it binds a site to (1) a set of
-       attachment circuits with Layer 2 properties that were created using
-       the ACaaS module and (2) a set of attachment circuits with Layer 2
-       properties that were provisioned using the AC network model.";
+       AC provisioning details. Concretely, it binds a site to (1)
+       a set of attachment circuits with Layer 2 properties that were
+       created using the ACaaS module and (2) a set of attachment
+       circuits with Layer 2 properties that were provisioned using
+       the AC network model.";
     uses ac-svc-ntw-ref;
   }
 
@@ -210,15 +211,16 @@ module ietf-ac-glue {
         + "/l2nm:vpn-network-access" {
     if-feature "ac-glue";
     description
-      "Augments VPN network access with service and network references
-       to an AC. Concretely, it glues a 'vpn-network-access' to (1) an
-       attachment circuit with Layer 2 properties that was created using
-       the ACaaS module and (2) an attachment circuit with Layer 2
-       properties that was created using the AC network module.
+      "Augments VPN network access with service and network
+       references to an AC. Concretely, it glues a 'vpn-network-access'
+       to (1) an attachment circuit with Layer 2 properties that was
+       created using the ACaaS module and (2) an attachment circuit
+       with Layer 2 properties that was created using the AC network
+       module.
 
-       The AC service and network information takes precedence over any
-       overlapping information that is also provided for a VPN network
-       access.";
+       The AC service and network information takes precedence over
+       any overlapping information that is also provided for a VPN
+       network access.";
     uses single-ac-svc-ntw-ref;
   }
 
@@ -227,11 +229,11 @@ module ietf-ac-glue {
         + "/l3nm:vpn-network-accesses" {
     description
       "Augments VPN network accesses with both service and network
-       AC provisioning details. Concretely, it binds a site to (1) a set of
-       attachment circuits with both Layer 2 and Layer 3 properties that
-       were created using the ACaaS module and (2) a set of attachment circuits
-       with both Layer 2 and Layer 3 properties that were provisioned using the
-       AC network model.";
+       AC provisioning details. Concretely, it binds a site to (1)
+       a set of attachment circuits with both Layer 2 and Layer 3 
+       properties that were created using the ACaaS module and (2)
+       a set of attachment circuits with both Layer 2 and Layer 3
+       properties that were provisioned using the AC network model.";
     uses ac-svc-ntw-ref;
   }
 
@@ -241,16 +243,16 @@ module ietf-ac-glue {
         + "/l3nm:vpn-network-access" {
     if-feature "ac-glue";
     description
-      "Augments VPN network access with service and network references
-       to an AC. Concretely, it glues a 'vpn-network-access' to (1) an
+      "Augments VPN network access with service and network
+       references to an AC. Concretely, it glues a 'vpn-network-access'
+       to (1) an attachment circuit with both Layer 2 and Layer 3
+       properties that was created using the ACaaS module and (2) an
        attachment circuit with both Layer 2 and Layer 3 properties that
-       was created using the ACaaS module and (2) an attachment circuit with
-       both Layer 2 and Layer 3 properties that was created using the AC
-       network module.
+       was created using the AC network module.
 
-       The AC service and network information takes precedence over any
-       overlapping information that is also provided for a VPN network
-       access.";
+       The AC service and network information takes precedence over
+       any overlapping information that is also provided for a VPN
+       network access.";
     uses single-ac-svc-ntw-ref;
   }
 }
