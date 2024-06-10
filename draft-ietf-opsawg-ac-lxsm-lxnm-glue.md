@@ -108,7 +108,7 @@ ref:
 svc:
 : Service
 
-The names of data nodes are prefixed using the prefix associated with the corresponding imported YANG module as shown in {{pref}}: 
+The names of data nodes are prefixed using the prefix associated with the corresponding imported YANG module as shown in {{pref}}:
 
 |Module|	Prefix| Reference |
 |ietf-ac-svc| ac-svc|{{Section 5.2 of !I-D.ietf-opsawg-teas-attachment-circuit}}|
