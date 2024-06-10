@@ -164,11 +164,11 @@ To bind Layer 2 VPN or Layer 3 VPN services with ACs, "ietf-ac-glue" augments th
 
 * CEs may be either dedicated to one single connectivity service or host multiple connectivity services (e.g., CEs with roles of service functions {{?RFC7665}}).
 
-* A network provider may bind a single AC to one or multiple peer SAPs (e.g., CE#1 and CE#2 are tagged as peer SAPs for the same AC). For example, and as discussed in {{?RFC4364}}, multiple CEs can be attached to a PE over the same attachment circuit. This scenario is typically implemented when the Layer 2 infrastructure between the CE and the network is a multipoint service.
+* A network provider may bind a single AC to one or multiple peer SAPs (e.g., CE1 and CE2 are tagged as peer SAPs for the same AC). For example, and as discussed in {{?RFC4364}}, multiple CEs can be attached to a PE over the same attachment circuit. This scenario is typically implemented when the Layer 2 infrastructure between the CE and the network is a multipoint service.
 
-* A single CE may terminate multiple ACs (e.g., CE#4), which can be associated with the same bearer or distinct bearers.
+* A single CE may terminate multiple ACs, which can be associated with the same bearer or distinct bearers (e.g., CE4).
 
-* Customers may request protection schemes in which the ACs associated with their endpoints are terminated by the same PE (e.g., CE#3), distinct PEs (e.g., CE#4), etc. The network provider uses this request to decide where to terminate the AC in the provider network and also whether to enable specific capabilities (e.g., Virtual Router Redundancy Protocol (VRRP)).
+* Customers may request protection schemes in which the ACs associated with their endpoints are terminated by the same PE (e.g., CE3), distinct PEs (e.g., CE4), etc. The network provider uses this request to decide where to terminate the AC in the provider network and also whether to enable specific capabilities (e.g., Virtual Router Redundancy Protocol (VRRP)).
 
 
 ~~~~ aasvg
