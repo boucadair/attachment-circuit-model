@@ -60,8 +60,8 @@ informative:
 --- abstract
 
    The document specifies a module that updates existing service (i.e., the Layer 2 Service Model (L2SM) and the Layer 3 Service Model (L3SM)) and
-   network ((i.e., the Layer 2 Network Model (L2NM) and the Layer 3 Network Model (L3NM))) Virtual Private Network (VPN) modules with the required information to bind specific
-   VPN services to ACs that are created using the Attachment Circuit (AC) service ("ietf-ac-svc") and network ("ietf-ac-ntw") models.
+   network (i.e., the Layer 2 Network Model (L2NM) and the Layer 3 Network Model (L3NM)) Virtual Private Network (VPN) modules with the required information to bind specific
+   VPN services to Attachment Circuits (ACs) that are created using the AC service ("ietf-ac-svc") and network ("ietf-ac-ntw") models.
 
 --- middle
 
