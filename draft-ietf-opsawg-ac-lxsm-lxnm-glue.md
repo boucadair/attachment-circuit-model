@@ -168,12 +168,7 @@ To bind Layer 2 VPN or Layer 3 VPN services with ACs, "ietf-ac-glue" augments th
 
 * A single CE may terminate multiple ACs, which can be associated with the same bearer or distinct bearers (e.g., CE4).
 
-<<<<<<< AD-Review
 * Customers may request protection schemes in which the ACs associated with their endpoints are terminated by the same PE (e.g., CE3), distinct PEs (e.g., CE4), etc. The network provider uses this request to decide where to terminate the AC in the provider network and also whether to enable specific capabilities (e.g., Virtual Router Redundancy Protocol (VRRP)).
-=======
-* Customers may request protection schemes in which the ACs associated with their endpoints are terminated by the same PE (e.g., CE3), distinct PEs (e.g., CE34), etc. The network provider uses this request to decide where to terminate the AC in the network provider network and also whether to enable specific capabilities (e.g., Virtual Router Redundancy Protocol (VRRP)).
->>>>>>> main
-
 
 ~~~~ aasvg
 {::include ./figures/acs-examples.txt}
