@@ -396,6 +396,23 @@ Table of Contents
    Service provider:  A service provider that offers network services
       (e.g., Layer 2 VPN, Layer 3 VPN, or Network Slice Services).
 
+   The names of data nodes are prefixed using the prefix associated with
+   the corresponding imported YANG module as shown in Table 1:
+
+        +============+==================+========================+
+        | Prefix     | Module           | Reference              |
+        +============+==================+========================+
+        | inet       | ietf-inet-types  | Section 4 of [RFC6991] |
+        +------------+------------------+------------------------+
+        | key-chain  | ietf-key-chain   | [RFC8177]              |
+        +------------+------------------+------------------------+
+        | nacm       | ietf-netconf-acm | [RFC8341]              |
+        +------------+------------------+------------------------+
+        | vpn-common | ietf-vpn-common  | [RFC9181]              |
+        +------------+------------------+------------------------+
+
+              Table 1: Modules and Their Associated Prefixes
+
 3.  Relationship to Other AC Data Models
 
    Figure 1 depicts the relationship between the various AC data models:
