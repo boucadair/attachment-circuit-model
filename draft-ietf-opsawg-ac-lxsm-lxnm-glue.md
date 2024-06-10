@@ -181,7 +181,7 @@ To bind Layer 2 VPN or Layer 3 VPN services with ACs, "ietf-ac-glue" augments th
 
 * A single CE may terminate multiple ACs, which can be associated with the same bearer or distinct bearers (e.g., CE4).
 
-* Customers may request protection schemes in which the ACs associated with their endpoints are terminated by the same PE (e.g., CE3), distinct PEs (e.g., CE4), etc. The network provider uses this request to decide where to terminate the AC in the provider network and also whether to enable specific capabilities (e.g., Virtual Router Redundancy Protocol (VRRP)).
+* Customers may request protection schemes in which the ACs associated with their endpoints are terminated by the same PE (e.g., CE3), distinct PEs (e.g., CE4), etc. The network provider uses this request to decide where to terminate the AC in the service provider network and also whether to enable specific capabilities (e.g., Virtual Router Redundancy Protocol (VRRP)).
 
 ~~~~ aasvg
 {::include ./figures/acs-examples.txt}
@@ -190,7 +190,9 @@ To bind Layer 2 VPN or Layer 3 VPN services with ACs, "ietf-ac-glue" augments th
 
 ## Separate AC Provisioning From Actual VPN Service Provisioning
 
-The procedure to provision a service in a service provider network may depend on the practices adopted by a service provider. This includes the flow put in place for the provisioning of advanced network services and how they are bound to an attachment circuit. For example, a single attachment circuit may be used to host multiple connectivity services (e.g., Layer 2 VPN, Layer 3 VPN, Network Slice Service). In order to avoid service interference and redundant information in various locations, a service provider may expose an interface to manage ACs network-wide using {{!I-D.ietf-opsawg-teas-attachment-circuit}}. Customers can then request a bearer or an attachment circuit to be put in place, and then refer to that bearer or AC when requesting VPN services that are bound to the bearer or AC.
+The procedure to provision a service in a service provider network may depend on the practices adopted by a service provider. This includes the flow put in place for the provisioning of advanced network services and how they are bound to an attachment circuit. For example, a single attachment circuit may be used to host multiple connectivity services (e.g., Layer 2 VPN ("ietf-l2vpn-svc"), Layer 3 VPN ("ietf-l3vpn-svc"), Network Slice Service ("ietf-network-slice-service")). In order to avoid service interference and redundant information in various locations, a service provider may expose an interface to manage ACs network-wide using {{!I-D.ietf-opsawg-teas-attachment-circuit}}. Customers can request a bearer ("ietf-bearer-svc") or an attachment circuit ("ietf-ac-svc") to be put in place, and then refer to that bearer or AC when requesting VPN services that are bound to the bearer or AC ("ietf-ac-glue").
+
+Also, internal references ("ietf-ac-ntw") used within a service provider network to implement ACs can be used by network controllers to glue the L2NM ("ietf-l2vpn-ntw") or the L3NM ("ietf-l3vpn-ntw") services with relevant ACs.
 
 {{u-ex}} shows the positioning of the AC models in the overall service delivery process.
 
@@ -324,7 +326,7 @@ As shown in {{ex-vpws-query}}, the service AC references can be explicitly indic
 
 ## Network and Service AC References {#ref-outside-access}
 
-Let us consider the example depicted in {{ex-topo}} with two customer terminating points (CE1 and CE2). Let us also assume that the bearers to attach these CEs to the provider network are already in place. References to identify these bearers are shown in the figure.
+Let us consider the example depicted in {{ex-topo}} with two customer terminating points (CE1 and CE2). Let us also assume that the bearers to attach these CEs to the service provider network are already in place. References to identify these bearers are shown in the figure.
 
 ~~~~~~~~~~
 {::include ./figures/glue/ex-topo.txt}
