@@ -84,6 +84,19 @@ Management Datastore Architecture (NMDA) defined in {{!RFC8342}}.
 
 An example to illustrate the use of the "ietf-ac-glue" model is provided in {{sec-example}}.
 
+## Editorial Note (To be removed by RFC Editor)
+
+Note to the RFC Editor: This section is to be removed prior to publication.
+
+This document contains placeholder values that need to be replaced with finalized values at the time of publication. This note summarizes all of the substitutions that are needed.
+
+Please apply the following replacements:
+
+  * XXXX --> the assigned RFC number for this I-D
+  * SSSS --> the assigned RFC number for {{!I-D.ietf-opsawg-teas-attachment-circuit}}
+  * NNNN --> the assigned RFC number for {{!I-D.ietf-opsawg-ntw-attachment-circuit}}
+  * 2023-11-13 --> the actual date of the publication of this document
+
 # Conventions and Definitions
 
 The meanings of the symbols in the YANG tree diagrams are defined in {{?RFC8340}}.
@@ -111,9 +124,9 @@ svc:
 The names of data nodes are prefixed using the prefix associated with the corresponding imported YANG module as shown in {{pref}}:
 
 |Prefix|	Module| Reference |
-| ac-svc|ietf-ac-svc|{{Section 5.2 of !I-D.ietf-opsawg-teas-attachment-circuit}}|
-| ac-ntw|ietf-ac-ntw|{{!I-D.ietf-opsawg-ntw-attachment-circuit}}|
-| bearer-svc|ietf-bearer-svc|{{Section 5.1 of !I-D.ietf-opsawg-teas-attachment-circuit}}|
+| ac-svc|ietf-ac-svc|Section 5.2 of RFC SSSS|
+| ac-ntw|ietf-ac-ntw|RFC NNNN|
+| bearer-svc|ietf-bearer-svc|Section 5.1 of RFC SSSS|
 | l2vpn-svc|ietf-l2vpn-svc| {{!RFC8466}}|
 | l3vpn-svc|ietf-l3vpn-svc| {{!RFC8299}}
 | l2nm|ietf-l3vpn-ntw| {{!RFC9291}}|
@@ -286,7 +299,7 @@ subtrees and data nodes have particular sensitivities/vulnerabilities:
    Namespace:  urn:ietf:params:xml:ns:yang:ietf-ac-glue
    Prefix:  ac-glue
    Maintained by IANA?  N
-   Reference:  RFC xxxx
+   Reference:  RFC XXXX
 ~~~~
 
 --- back
