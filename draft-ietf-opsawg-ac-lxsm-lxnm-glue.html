@@ -1466,7 +1466,7 @@ To bind Layer 2 VPN or Layer 3 VPN services with ACs, "ietf-ac-glue" augments th
             <p id="section-4.1-2.4.1">A single CE may terminate multiple ACs, which can be associated with the same bearer or distinct bearers (e.g., CE4).<a href="#section-4.1-2.4.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-4.1-2.5">
-            <p id="section-4.1-2.5.1">Customers may request protection schemes in which the ACs associated with their endpoints are terminated by the same PE (e.g., CE3), distinct PEs (e.g., CE4), etc. The network provider uses this request to decide where to terminate the AC in the provider network and also whether to enable specific capabilities (e.g., Virtual Router Redundancy Protocol (VRRP)).<a href="#section-4.1-2.5.1" class="pilcrow">¶</a></p>
+            <p id="section-4.1-2.5.1">Customers may request protection schemes in which the ACs associated with their endpoints are terminated by the same PE (e.g., CE3), distinct PEs (e.g., CE4), etc. The network provider uses this request to decide where to terminate the AC in the service provider network and also whether to enable specific capabilities (e.g., Virtual Router Redundancy Protocol (VRRP)).<a href="#section-4.1-2.5.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
 <span id="name-examples-of-acs"></span><div id="uc">
@@ -1569,12 +1569,13 @@ To bind Layer 2 VPN or Layer 3 VPN services with ACs, "ietf-ac-glue" augments th
         <h3 id="name-separate-ac-provisioning-fr">
 <a href="#section-4.2" class="section-number selfRef">4.2. </a><a href="#name-separate-ac-provisioning-fr" class="section-name selfRef">Separate AC Provisioning From Actual VPN Service Provisioning</a>
         </h3>
-<p id="section-4.2-1">The procedure to provision a service in a service provider network may depend on the practices adopted by a service provider. This includes the flow put in place for the provisioning of advanced network services and how they are bound to an attachment circuit. For example, a single attachment circuit may be used to host multiple connectivity services (e.g., Layer 2 VPN, Layer 3 VPN, Network Slice Service). In order to avoid service interference and redundant information in various locations, a service provider may expose an interface to manage ACs network-wide using <span>[<a href="#I-D.ietf-opsawg-teas-attachment-circuit" class="cite xref">I-D.ietf-opsawg-teas-attachment-circuit</a>]</span>. Customers can then request a bearer or an attachment circuit to be put in place, and then refer to that bearer or AC when requesting VPN services that are bound to the bearer or AC.<a href="#section-4.2-1" class="pilcrow">¶</a></p>
-<p id="section-4.2-2"><a href="#_u-ex" class="auto internal xref">Figure 3</a> shows the positioning of the AC models in the overall service delivery process.<a href="#section-4.2-2" class="pilcrow">¶</a></p>
+<p id="section-4.2-1">The procedure to provision a service in a service provider network may depend on the practices adopted by a service provider. This includes the flow put in place for the provisioning of advanced network services and how they are bound to an attachment circuit. For example, a single attachment circuit may be used to host multiple connectivity services (e.g., Layer 2 VPN ("ietf-l2vpn-svc"), Layer 3 VPN ("ietf-l3vpn-svc"), Network Slice Service ("ietf-network-slice-service")). In order to avoid service interference and redundant information in various locations, a service provider may expose an interface to manage ACs network-wide using <span>[<a href="#I-D.ietf-opsawg-teas-attachment-circuit" class="cite xref">I-D.ietf-opsawg-teas-attachment-circuit</a>]</span>. Customers can request a bearer ("ietf-bearer-svc") or an attachment circuit ("ietf-ac-svc") to be put in place, and then refer to that bearer or AC when requesting VPN services that are bound to the bearer or AC ("ietf-ac-glue").<a href="#section-4.2-1" class="pilcrow">¶</a></p>
+<p id="section-4.2-2">Also, internal references ("ietf-ac-ntw") used within a service provider network to implement ACs can be used by network controllers to glue the L2NM ("ietf-l2vpn-ntw") or the L3NM ("ietf-l3vpn-ntw") services with relevant ACs.<a href="#section-4.2-2" class="pilcrow">¶</a></p>
+<p id="section-4.2-3"><a href="#_u-ex" class="auto internal xref">Figure 3</a> shows the positioning of the AC models in the overall service delivery process.<a href="#section-4.2-3" class="pilcrow">¶</a></p>
 <span id="name-an-example-of-ac-models-usa"></span><div id="_u-ex">
 <figure id="figure-3">
-          <div id="section-4.2-3.1">
-            <div class="alignCenter art-svg artwork" id="section-4.2-3.1.1">
+          <div id="section-4.2-4.1">
+            <div class="alignCenter art-svg artwork" id="section-4.2-4.1.1">
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="688" width="512" viewBox="0 0 512 688" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
                 <path d="M 8,592 L 8,624" fill="none" stroke="black"></path>
                 <path d="M 48,592 L 48,624" fill="none" stroke="black"></path>
@@ -1673,7 +1674,7 @@ To bind Layer 2 VPN or Layer 3 VPN services with ACs, "ietf-ac-glue" augments th
                   <text x="476" y="660">Site</text>
                   <text x="504" y="660">B</text>
                 </g>
-              </svg><a href="#section-4.2-3.1.1" class="pilcrow">¶</a>
+              </svg><a href="#section-4.2-4.1.1" class="pilcrow">¶</a>
 </div>
 </div>
 <figcaption><a href="#figure-3" class="selfRef">Figure 3</a>:
@@ -2445,7 +2446,7 @@ the set of VPN instances in which a given customer is involved.<a href="#section
         <h3 id="name-network-and-service-ac-refe">
 <a href="#appendix-A.2" class="section-number selfRef">A.2. </a><a href="#name-network-and-service-ac-refe" class="section-name selfRef">Network and Service AC References</a>
         </h3>
-<p id="appendix-A.2-1">Let us consider the example depicted in <a href="#ex-topo" class="auto internal xref">Figure 7</a> with two customer terminating points (CE1 and CE2). Let us also assume that the bearers to attach these CEs to the provider network are already in place. References to identify these bearers are shown in the figure.<a href="#appendix-A.2-1" class="pilcrow">¶</a></p>
+<p id="appendix-A.2-1">Let us consider the example depicted in <a href="#ex-topo" class="auto internal xref">Figure 7</a> with two customer terminating points (CE1 and CE2). Let us also assume that the bearers to attach these CEs to the service provider network are already in place. References to identify these bearers are shown in the figure.<a href="#appendix-A.2-1" class="pilcrow">¶</a></p>
 <span id="name-topology-example"></span><div id="ex-topo">
 <figure id="figure-7">
           <div class="alignCenter art-text artwork" id="appendix-A.2-2.1">
