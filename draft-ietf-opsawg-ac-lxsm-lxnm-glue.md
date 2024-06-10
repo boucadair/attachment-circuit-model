@@ -69,7 +69,7 @@ informative:
 
 The document specifies a YANG module ("ietf-ac-glue", {{sec-glue}}) that updates existing service and
 network Virtual Private Network (VPN) modules with the required information to bind specific
-services to Attachment Circuits (ACs) that are created using the AC service model {{!I-D.ietf-opsawg-teas-attachment-circuit}}, specifically the following modules are augmented:
+services to Attachment Circuits (ACs) that are created using the AC service model {{!I-D.ietf-opsawg-teas-attachment-circuit}}. Specifically, the following modules are augmented:
 
 
 * The Layer 2 Service Model (L2SM) {{!RFC8466}}
@@ -85,8 +85,6 @@ Management Datastore Architecture (NMDA) defined in {{!RFC8342}}.
 An example to illustrate the use of the "ietf-ac-glue" model is provided in {{sec-example}}.
 
 # Conventions and Definitions
-
-{::boilerplate bcp14-tagged}
 
 The meanings of the symbols in the YANG tree diagrams are defined in {{?RFC8340}}.
 
@@ -142,7 +140,7 @@ ietf-ac-svc <--> ietf-bearer-svc        |
 Bearers managed using "ietf-bearer-svc" may be referenced in the service ACs managed using "ietf-ac-svc".
 Similarly, a bearer managed using "ietf-bearer-svc" may list the set of ACs that use that bearer.
 In order to ease correlation between an AC service requests and the actual AC provisioned in the network, "ietf-ac-ntw" uses the AC references exposed by "ietf-ac-svc".
-To bind Layer 2 VPN or Layer 3 VPN services with ACs, "ietf-ac-glue" augments the LxSM and LxNM with AC service references exposed by "ietf-ac-svc" and AC network references exposed bt "ietf-ac-ntw".
+To bind Layer 2 VPN or Layer 3 VPN services with ACs, "ietf-ac-glue" augments the LxSM and LxNM with AC service references exposed by "ietf-ac-svc" and AC network references exposed by "ietf-ac-ntw".
 
 # Sample Uses of the Data Models
 
@@ -156,9 +154,9 @@ To bind Layer 2 VPN or Layer 3 VPN services with ACs, "ietf-ac-glue" augments th
 
 * A network provider may bind a single AC to one or multiple peer SAPs (e.g., CE#1 and CE#2 are tagged as peer SAPs for the same AC). For example, and as discussed in {{?RFC4364}}, multiple CEs can be attached to a PE over the same attachment circuit. This scenario is typically implemented when the Layer 2 infrastructure between the CE and the network is a multipoint service.
 
-* A single CE may terminate multiple ACs, which can be associated with the same bearer or distinct bearers.
+* A single CE may terminate multiple ACs (e.g., CE#4), which can be associated with the same bearer or distinct bearers.
 
-* Customers may request protection schemes in which the ACs associated with their endpoints are terminated by the same PE (e.g., CE#3), distinct PEs (e.g., CE#34), etc. The network provider uses this request to decide where to terminate the AC in the network provider network and also whether to enable specific capabilities (e.g., Virtual Router Redundancy Protocol (VRRP)).
+* Customers may request protection schemes in which the ACs associated with their endpoints are terminated by the same PE (e.g., CE#3), distinct PEs (e.g., CE#4), etc. The network provider uses this request to decide where to terminate the AC in the provider network and also whether to enable specific capabilities (e.g., Virtual Router Redundancy Protocol (VRRP)).
 
 
 ~~~~ aasvg
@@ -198,6 +196,8 @@ When an AC is referenced within a specific network access, then that AC informat
 The "ietf-ac-glue" module includes provisions to reference ACs within or outside a VPN network access to accommodate deployment contexts where an AC reference may be created before or after a VPN instance is created. {{ref-within-access}} illustrates how an AC reference can be included as part of a specific VPN network access, while {{ref-outside-access}} shows how AC references can be indicated outside individual VPN network access entries.
 
 # The AC Glue ("ietf-ac-glue") YANG Module {#sec-glue}
+
+This modules augaments the L2SM {{!RFC8466}}, the L3SM {{!RFC8299}}, the L2NM {{!RFC9291}}, and the L3NM {{!RFC9182}}.
 
 This module uses references defined in {{!I-D.ietf-opsawg-teas-attachment-circuit}} and {{!I-D.ietf-opsawg-ntw-attachment-circuit}}.
 
@@ -355,3 +355,5 @@ The provisioned AC at PE1 can be retrieved using the AC network model {{!I-D.iet
 Thanks to Bo Wu and Qin Wu for the review and comments.
 
 Thanks to Martin Björklund for the yangdoctors review and Gyan Mishra for the rtg-dir review.
+
+Thanks to Mahesh Jethanandani for the AD review.
