@@ -221,7 +221,7 @@ The "ietf-ac-glue" module includes provisions to reference ACs within or outside
 
 # The AC Glue ("ietf-ac-glue") YANG Module {#sec-glue}
 
-This modules augaments the L2SM {{!RFC8466}}, the L3SM {{!RFC8299}}, the L2NM {{!RFC9291}}, and the L3NM {{!RFC9182}}.
+This modules augments the L2SM {{!RFC8466}}, the L3SM {{!RFC8299}}, the L2NM {{!RFC9291}}, and the L3NM {{!RFC9182}}.
 
 This module uses references defined in {{!I-D.ietf-opsawg-teas-attachment-circuit}} and {{!I-D.ietf-opsawg-ntw-attachment-circuit}}.
 
