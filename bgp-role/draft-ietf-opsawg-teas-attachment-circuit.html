@@ -2960,6 +2960,7 @@ a parent AC can be defined with a set of stable and common information, while
         |     |  |     +--rw local-as?         inet:as-number
         |     |  |     +--rw peer-as?          inet:as-number
         |     |  |     +--rw address-family?   identityref
+        |     |  |     +--rw role?             identityref
         |     |  |     +--rw local-address?    inet:ip-address
         |     |  |     +--rw bgp-max-prefix
         |     |  |     |  +--rw max-prefix?   uint32
@@ -2988,6 +2989,7 @@ a parent AC can be defined with a set of stable and common information, while
         |     |     +--rw local-as?           inet:as-number
         |     |     +--rw peer-as?            inet:as-number
         |     |     +--rw address-family?     identityref
+        |     |     +--rw role?               identityref
         |     |     +--rw bgp-max-prefix
         |     |     |  +--rw max-prefix?   uint32
         |     |     +--rw authentication
