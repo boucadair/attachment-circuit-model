@@ -256,6 +256,16 @@ module ietf-ac-common {
       "RFC 7911: Advertisement of Multiple Paths in BGP";
   }
 
+  identity bgp-role {
+    base bgp-capability;
+    description
+      "A capability that allows the advertisement of the BGP
+       role when establising a session.";
+    reference
+      "RFC 9234: Route Leak Prevention and Detection Using 
+                 Roles in UPDATE and OPEN Messages, Section 4.1";
+  }
+
   // AC Type
 
   identity role {
@@ -311,6 +321,45 @@ module ietf-ac-common {
       "This administrative status reflects that a request was
        rejected because, e.g., there are no sufficient resources
        or other reasons not covered by the other status types.";
+  }
+
+  identity bgp-role {
+    description
+      "Used to indicate BGP role when establishing a BGP session.";
+    reference
+      "RFC 9234: Route Leak Prevention and Detection Using 
+                 Roles in UPDATE and OPEN Messages, Section 4";
+  }
+
+  identity provider {
+    base bgp-role;
+    description
+      "The local AS is a transit provider of the remote AS.";
+  }
+
+  identity client {
+    base bgp-role;
+    description
+      "The local AS is a transit provider of the remote AS.";
+  }
+
+  identity rs {
+    base bgp-role;
+    description
+      "The local AS is a Route Server (RS).";
+  }
+
+  identity rs-client {
+    base bgp-role;
+    description
+      "The local AS is a client of an RS and the RS is the
+       remote AS.";
+  }
+
+  identity peer {
+    base bgp-role;
+    description
+      "The local and remote ASes have a peering relationship.";
   }
 
   /****************************Typedefs************************/
