@@ -1627,6 +1627,10 @@ Table of Contents
       configurations (e.g., unicast IPv4 MPLS L3VPN (AFI,SAFI = 1,128)
       as defined in Section 4.3.4 of [RFC4364]).
 
+   'role':  Specifies the BGP role a session (e.g., customer or
+      provider).  Role values are taken from the list defined in
+      Section 4 of [RFC9234].
+
    'local-address':  Specifies a provider's IP address to use when
       establishing the BGP transport session.
 
@@ -4256,6 +4260,12 @@ Table of Contents
               L. Geng, "A Framework for Automating Service and Network
               Management with YANG", RFC 8969, DOI 10.17487/RFC8969,
               January 2021, <https://www.rfc-editor.org/rfc/rfc8969>.
+
+   [RFC9234]  Azimov, A., Bogomazov, E., Bush, R., Patel, K., and K.
+              Sriram, "Route Leak Prevention and Detection Using Roles
+              in UPDATE and OPEN Messages", RFC 9234,
+              DOI 10.17487/RFC9234, May 2022,
+              <https://www.rfc-editor.org/rfc/rfc9234>.
 
    [RFC9543]  Farrel, A., Ed., Drake, J., Ed., Rokui, R., Homma, S.,
               Makhijani, K., Contreras, L., and J. Tantsura, "A
