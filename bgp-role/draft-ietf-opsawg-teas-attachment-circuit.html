@@ -32,17 +32,17 @@
 <meta content="draft-ietf-opsawg-teas-attachment-circuit-latest" name="ietf.draft">
 <!-- Generator version information:
   xml2rfc 3.21.0
-    Python 3.11.9
+    Python 3.12.3
     ConfigArgParse 1.7
     google-i18n-address 3.1.0
     intervaltree 3.1.0
-    Jinja2 3.1.2
-    lxml 4.9.3
-    platformdirs 4.2.1
+    Jinja2 3.1.4
+    lxml 4.9.4
+    platformdirs 4.2.2
     pycountry 22.3.5
     PyYAML 6.0.1
     requests 2.31.0
-    setuptools 68.2.2
+    setuptools 69.5.1
     six 1.16.0
     wcwidth 0.2.13
 -->
@@ -1043,11 +1043,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">ACaaS</td>
-<td class="right">May 2024</td>
+<td class="right">June 2024</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Boucadair, et al.</td>
-<td class="center">Expires 15 November 2024</td>
+<td class="center">Expires 28 December 2024</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1060,12 +1060,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-opsawg-teas-attachment-circuit-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2024-05-14" class="published">14 May 2024</time>
+<time datetime="2024-06-26" class="published">26 June 2024</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2024-11-15">15 November 2024</time></dd>
+<dd class="expires"><time datetime="2024-12-28">28 December 2024</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1129,7 +1129,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 15 November 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 28 December 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1174,6 +1174,9 @@ svg :is([fill="white"], [fill^="#fff"]) {
                     <p id="section-toc.1-1.1.2.2.2.2.1" class="keepWithNext"><a href="#section-1.2.2" class="auto internal xref">1.2.2</a>.  <a href="#name-why-not-use-the-l3sm-as-ref" class="internal xref">Why Not Use the L3SM as Reference Data Model for ACaaS?</a></p>
 </li>
                 </ul>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.1.2.3">
+                <p id="section-toc.1-1.1.2.3.1"><a href="#section-1.3" class="auto internal xref">1.3</a>.  <a href="#name-editorial-note-to-be-remove" class="internal xref">Editorial Note (To be removed by RFC Editor)</a></p>
 </li>
             </ul>
 </li>
@@ -1311,6 +1314,9 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </li>
                 </ul>
 </li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.12">
+                <p id="section-toc.1-1.10.2.12.1"><a href="#appendix-A.12" class="auto internal xref">A.12</a>. <a href="#name-bfd-and-static-addressing" class="internal xref">BFD and Static Addressing</a></p>
+</li>
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11">
@@ -1336,7 +1342,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         <h3 id="name-scope-and-intended-use">
 <a href="#section-1.1" class="section-number selfRef">1.1. </a><a href="#name-scope-and-intended-use" class="section-name selfRef">Scope and Intended Use</a>
         </h3>
-<p id="section-1.1-1">Connectivity services are provided by networks to customers via dedicated terminating points, such as Service Functions (SFs) <span>[<a href="#RFC7665" class="cite xref">RFC7665</a>]</span>, Customer Edges (CEs), peer Autonomous System Border Routers (ASBRs), data centers gateways, or Internet Exchange Points. A connectivity service is basically about ensuring data transfer received from or destined to a given terminating point to or from other terminating points within the same customer/service, an interconnection node, or an ancillary node. The objectives for the connectivity service can be negotiated and agreed upon between the customer and the network provider. To facilitate data transfer within the provider network, it is assumed that the appropriate setup is provisioned over the links that connect customer terminating points and a provider network (usually via a Provider Edge (PE)), allowing successfully data exchanged over these links. The required setup is referred to in this document as Attachment Circuits (ACs), while the underlying link is referred to as "bearers".<a href="#section-1.1-1" class="pilcrow">¶</a></p>
+<p id="section-1.1-1">Connectivity services are provided by networks to customers via dedicated terminating points, such as Service Functions (SFs) <span>[<a href="#RFC7665" class="cite xref">RFC7665</a>]</span>, Customer Edges (CEs), peer Autonomous System Border Routers (ASBRs), data centers gateways, or Internet Exchange Points. A connectivity service is basically about ensuring data transfer received from or destined to a given terminating point to or from other terminating points within the same customer/service, an interconnection node, or an ancillary node. The objectives for the connectivity service can be negotiated and agreed upon between the customer and the network provider. To facilitate data transfer within the provider network, it is assumed that the appropriate setup is provisioned over the links that connect customer terminating points and a provider network (usually via a Provider Edge (PE)), allowing successfully data exchanged over these links. The required setup is referred to in this document as Attachment Circuit (AC), while the underlying link is referred to as "bearer".<a href="#section-1.1-1" class="pilcrow">¶</a></p>
 <p id="section-1.1-2">This document adheres to the definition of an Attachment Circuit as provided in <span><a href="https://rfc-editor.org/rfc/rfc4364#section-1.2" class="relref">Section 1.2</a> of [<a href="#RFC4364" class="cite xref">RFC4364</a>]</span>, especially:<a href="#section-1.1-2" class="pilcrow">¶</a></p>
 <ul class="normal ulEmpty">
 <li class="normal ulEmpty" id="section-1.1-3.1">
@@ -1353,12 +1359,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </li>
         </ul>
 <p id="section-1.1-4">When a customer requests a new value-added service, the service can be bound to existing attachment circuits or trigger the instantiation of new attachment circuits. The provisioning of a value-added service should, thus, accommodate both deployments.<a href="#section-1.1-4" class="pilcrow">¶</a></p>
-<p id="section-1.1-5">Also, because the instantiation of an attachment circuit requires coordinating the provisioning of endpoints that might not belong to the same administrative entity (customer vs. provider or distinct operational teams within the same provider, etc.), providing programmatic means to expose 'attachment circuits'-as-a-service greatly simplifies the provisioning of value-added services delivered over an attachment circuit. For example, management systems of adjacent domains that need to connect via an AC will use such means to agree upon the resources that are required for the activation of both sides of an AC (e.g., Layer 2 tags, IP address family, or IP subnets).<a href="#section-1.1-5" class="pilcrow">¶</a></p>
-<p id="section-1.1-6">This document specifies a YANG service data model ("ietf-ac-svc") for managing attachment circuits that are exposed by a network to its customers, such as an enterprise site, an SF, a hosting infrastructure, or a peer network provider. The model can be used for the provisioning of ACs prior or during advanced service provisioning (e.g., Network Slice Service <span>[<a href="#RFC9543" class="cite xref">RFC9543</a>]</span>).<a href="#section-1.1-6" class="pilcrow">¶</a></p>
+<p id="section-1.1-5">Also, because the instantiation of an attachment circuit requires coordinating the provisioning of endpoints that might not belong to the same administrative entity (customer vs. provider or distinct operational teams within the same provider, etc.), providing programmatic means to expose 'Attachment Circuits'-as-a-Service (ACaaS) greatly simplifies the provisioning of value-added services delivered over an attachment circuit. For example, management systems of adjacent domains that need to connect via an AC will use such means to agree upon the resources that are required for the activation of both sides of an AC (e.g., Layer 2 tags, IP address family, or IP subnets).<a href="#section-1.1-5" class="pilcrow">¶</a></p>
+<p id="section-1.1-6">This document specifies a YANG service data model ("ietf-ac-svc") for managing attachment circuits that are exposed by a network to its customers, such as an enterprise site, an SF, a hosting infrastructure, or a peer network provider. The model can be used for the provisioning of ACs prior or during advanced service provisioning (e.g., IETF Network Slice Service <span>[<a href="#RFC9543" class="cite xref">RFC9543</a>]</span>).<a href="#section-1.1-6" class="pilcrow">¶</a></p>
 <p id="section-1.1-7">The "ietf-ac-svc" module (<a href="#sec-ac-module" class="auto internal xref">Section 6.2</a>) includes a set of reusable groupings. Whether a service model reuses structures defined in the "ietf-ac-svc" or simply includes an AC reference (that was communicated during AC service instantiation) is a design choice of these service models. Relying upon the AC service model to manage ACs over which services are delivered has the merit of decorrelating the management of the (core) service vs. upgrade the AC components to reflect recent AC technologies or new features (e.g., new encryption scheme, additional routing protocol). This document favors the approach of completely relying upon the AC service model instead of duplicating data nodes into specific modules of advanced services that are delivered over an Attachment Circuit.<a href="#section-1.1-7" class="pilcrow">¶</a></p>
 <p id="section-1.1-8">Since the provisioning of an AC requires a bearer to be in place, this document introduces a new module called "ietf-bearer-svc" that enables customers to manage their bearer requests (<a href="#sec-bearer-module" class="auto internal xref">Section 6.1</a>). The customers can then retrieve a provider-assigned bearer reference that they will include in their AC service requests. Likewise, a customer may retrieve whether their bearers support a synchronization mechanism such as Sync Ethernet (SyncE) <span>[<a href="#ITU-T-G.781" class="cite xref">ITU-T-G.781</a>]</span>. An example of retrieving a bearer reference is provided in <a href="#ex-create-bearer" class="auto internal xref">Appendix A.1</a>.<a href="#section-1.1-8" class="pilcrow">¶</a></p>
 <p id="section-1.1-9">An AC service request can provide a reference to a bearer or a set of peer Service Attachment Points (SAPs) <span>[<a href="#RFC9408" class="cite xref">RFC9408</a>]</span>. Both schemes are supported in the AC service model. When several bearers are available, the AC service request may filter them based on the bearer type, synchronization support, etc.<a href="#section-1.1-9" class="pilcrow">¶</a></p>
-<p id="section-1.1-10">Each AC is identified with a unique identifier within a (provider) domain. From a network provider standpoint, an AC can be bound to a single or multiple SAPs <span>[<a href="#RFC9408" class="cite xref">RFC9408</a>]</span>. Likewise, the same SAP can be bound to one or multiple ACs. However, the mapping between an AC and a PE in the provider network that terminates that AC is hidden to the application that makes use of the AC service model. Such mapping information is internal to the network controllers. As such, the details about the (node-specific) attachment interfaces are not exposed in the AC service model. However, these details are exposed at the network model per <span>[<a href="#I-D.ietf-opsawg-ntw-attachment-circuit" class="cite xref">I-D.ietf-opsawg-ntw-attachment-circuit</a>]</span>. <span>[<a href="#I-D.ietf-opsawg-ac-lxsm-lxnm-glue" class="cite xref">I-D.ietf-opsawg-ac-lxsm-lxnm-glue</a>]</span> specifies augmentations to the L2VPN Service Model (L2SM) <span>[<a href="#RFC8466" class="cite xref">RFC8466</a>]</span> and the L3VPN Service Model     (L3SM) <span>[<a href="#RFC8299" class="cite xref">RFC8299</a>]</span> to bind LxVPN services to ACs.<a href="#section-1.1-10" class="pilcrow">¶</a></p>
+<p id="section-1.1-10">Each AC is identified with a unique identifier within a provider domain. From a network provider standpoint, an AC can be bound to a single or multiple SAPs <span>[<a href="#RFC9408" class="cite xref">RFC9408</a>]</span>. Likewise, the same SAP can be bound to one or multiple ACs. However, the mapping between an AC and a PE in the provider network that terminates that AC is hidden to the application that makes use of the AC service model. Such mapping information is internal to the network controllers. As such, the details about the (node-specific) attachment interfaces are not exposed in the AC service model. However, these details are exposed at the network model per <span>[<a href="#I-D.ietf-opsawg-ntw-attachment-circuit" class="cite xref">I-D.ietf-opsawg-ntw-attachment-circuit</a>]</span>. <span>[<a href="#I-D.ietf-opsawg-ac-lxsm-lxnm-glue" class="cite xref">I-D.ietf-opsawg-ac-lxsm-lxnm-glue</a>]</span> specifies augmentations to the   L2VPN Service Model (L2SM) <span>[<a href="#RFC8466" class="cite xref">RFC8466</a>]</span> and the L3VPN Service Model     (L3SM) <span>[<a href="#RFC8299" class="cite xref">RFC8299</a>]</span> to bind LxVPN services to ACs.<a href="#section-1.1-10" class="pilcrow">¶</a></p>
 <p id="section-1.1-11">The AC service model does not make any assumptions about the internal structure or even the nature or the services that will be delivered over an attachment circuit or a set of attachment circuits. Customers do not have access to that network view other than the ACs that they ordered. For example, the AC service model can be used to provision a set of ACs to connect multiple sites (Site1, Site2, ..., SiteX) for customer who also requested VPN services. If the provisioning of these services requires specific configuration on ASBR nodes, such configuration is handled at the network level and is not exposed to the customer at the service level. However, the network controller will have access to such a view as the service points in these ASBRs will be exposed as SAPs with "role" set to "ietf-sap-ntw:nni" <span>[<a href="#RFC9408" class="cite xref">RFC9408</a>]</span>.<a href="#section-1.1-11" class="pilcrow">¶</a></p>
 <p id="section-1.1-12">The AC service model can be used in a variety of contexts, such as (but not limited to) those provided in <a href="#examples" class="auto internal xref">Appendix A</a>:<a href="#section-1.1-12" class="pilcrow">¶</a></p>
 <ul class="normal">
@@ -1418,6 +1424,24 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </div>
 </section>
 </div>
+<div id="editorial-note-to-be-removed-by-rfc-editor">
+<section id="section-1.3">
+        <h3 id="name-editorial-note-to-be-remove">
+<a href="#section-1.3" class="section-number selfRef">1.3. </a><a href="#name-editorial-note-to-be-remove" class="section-name selfRef">Editorial Note (To be removed by RFC Editor)</a>
+        </h3>
+<p id="section-1.3-1">Note to the RFC Editor: This section is to be removed prior to publication.<a href="#section-1.3-1" class="pilcrow">¶</a></p>
+<p id="section-1.3-2">This document contains placeholder values that need to be replaced with finalized values at the time of publication. This note summarizes all of the substitutions that are needed.<a href="#section-1.3-2" class="pilcrow">¶</a></p>
+<p id="section-1.3-3">Please apply the following replacements:<a href="#section-1.3-3" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-1.3-4.1">
+            <p id="section-1.3-4.1.1">XXXX --&gt; the assigned RFC number for this I-D<a href="#section-1.3-4.1.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-1.3-4.2">
+            <p id="section-1.3-4.2.1">2023-11-13 --&gt; the actual date of the publication of this document<a href="#section-1.3-4.2.1" class="pilcrow">¶</a></p>
+</li>
+        </ul>
+</section>
+</div>
 </section>
 </div>
 <div id="conventions-and-definitions">
@@ -1436,7 +1460,7 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 <span class="break"></span><dl class="dlParallel" id="section-2-6">
         <dt id="section-2-6.1">Bearer:</dt>
         <dd style="margin-left: 1.5em" id="section-2-6.2">
-          <p id="section-2-6.2.1">A physical or logical link that connects a customer node (or site) to a provider network. A bearer can be a wireless or wired link. One or multiple technologies can be used to build a bearer. The bearer type can be specified by a customer.<a href="#section-2-6.2.1" class="pilcrow">¶</a></p>
+          <p id="section-2-6.2.1">A physical or logical link that connects a customer node (or site) to a provider network. A bearer can be a wireless or wired link. One or multiple technologies can be used to build a bearer (e.g., Link Aggregation Group (LAG) <span>[<a href="#IEEE802.1AX" class="cite xref">IEEE802.1AX</a>]</span>). The bearer type can be specified by a customer.<a href="#section-2-6.2.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 <dt id="section-2-6.3"></dt>
@@ -1494,22 +1518,78 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
           <p id="section-2-6.24.1">NF and SF are used interchangeably.<a href="#section-2-6.24.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-2-6.25">Service orchestrator:</dt>
+<dt id="section-2-6.25">Parent Bearer:</dt>
         <dd style="margin-left: 1.5em" id="section-2-6.26">
-          <p id="section-2-6.26.1">Refers to a functional entity that interacts with the customer of a network service. The service orchestrator is typically responsible for the attachment circuits, the PE selection, and requesting the activation of the requested service to a network controller.<a href="#section-2-6.26.1" class="pilcrow">¶</a></p>
+          <p id="section-2-6.26.1">Refers to a bearer (e.g., LAG) that is used to build other bearers. These bearers (called, child bearers) inherit th parent bearer properties.<a href="#section-2-6.26.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-2-6.27">Service provider network:</dt>
+<dt id="section-2-6.27">Parent AC:</dt>
         <dd style="margin-left: 1.5em" id="section-2-6.28">
-          <p id="section-2-6.28.1">A network that is able to provide network services (e.g., Layer 2 VPN, Layer 3 VPN, or Network Slice Services).<a href="#section-2-6.28.1" class="pilcrow">¶</a></p>
+          <p id="section-2-6.28.1">Refers to an AC that is used to build other ACs. These ACs (called, child ACs) inherit th parent AC properties.<a href="#section-2-6.28.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-2-6.29">Service provider:</dt>
+<dt id="section-2-6.29">Service orchestrator:</dt>
         <dd style="margin-left: 1.5em" id="section-2-6.30">
-          <p id="section-2-6.30.1">A service provider that offers network services (e.g., Layer 2 VPN, Layer 3 VPN, or Network Slice Services).<a href="#section-2-6.30.1" class="pilcrow">¶</a></p>
+          <p id="section-2-6.30.1">Refers to a functional entity that interacts with the customer of a network service. The service orchestrator is typically responsible for the attachment circuits, the PE selection, and requesting the activation of the requested service to a network controller.<a href="#section-2-6.30.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-2-6.31">Service provider network:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-6.32">
+          <p id="section-2-6.32.1">A network that is able to provide network services (e.g., Layer 2 VPN, Layer 3 VPN, or Network Slice Services).<a href="#section-2-6.32.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-2-6.33">Service provider:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-6.34">
+          <p id="section-2-6.34.1">A service provider that offers network services (e.g., Layer 2 VPN, Layer 3 VPN, or Network Slice Services).<a href="#section-2-6.34.1" class="pilcrow">¶</a></p>
 </dd>
       <dd class="break"></dd>
 </dl>
+<p id="section-2-7">The names of data nodes are prefixed using the prefix associated with the corresponding imported YANG module as shown in <a href="#pref" class="auto internal xref">Table 1</a>:<a href="#section-2-7" class="pilcrow">¶</a></p>
+<span id="name-modules-and-their-associate"></span><div id="pref">
+<table class="center" id="table-1">
+        <caption>
+<a href="#table-1" class="selfRef">Table 1</a>:
+<a href="#name-modules-and-their-associate" class="selfRef">Modules and Their Associated Prefixes</a>
+        </caption>
+<thead>
+          <tr>
+            <th class="text-left" rowspan="1" colspan="1">Prefix</th>
+            <th class="text-left" rowspan="1" colspan="1">Module</th>
+            <th class="text-left" rowspan="1" colspan="1">Reference</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">inet</td>
+            <td class="text-left" rowspan="1" colspan="1">ietf-inet-types</td>
+            <td class="text-left" rowspan="1" colspan="1">
+              <span><a href="https://rfc-editor.org/rfc/rfc6991#section-4" class="relref">Section 4</a> of [<a href="#RFC6991" class="cite xref">RFC6991</a>]</span>
+</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">key-chain</td>
+            <td class="text-left" rowspan="1" colspan="1">ietf-key-chain</td>
+            <td class="text-left" rowspan="1" colspan="1">
+              <span>[<a href="#RFC8177" class="cite xref">RFC8177</a>]</span>
+</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">nacm</td>
+            <td class="text-left" rowspan="1" colspan="1">ietf-netconf-acm</td>
+            <td class="text-left" rowspan="1" colspan="1">
+              <span>[<a href="#RFC8341" class="cite xref">RFC8341</a>]</span>
+</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">vpn-common</td>
+            <td class="text-left" rowspan="1" colspan="1">ietf-vpn-common</td>
+            <td class="text-left" rowspan="1" colspan="1">
+              <span>[<a href="#RFC9181" class="cite xref">RFC9181</a>]</span>
+</td>
+          </tr>
+        </tbody>
+      </table>
+</div>
 </section>
 </div>
 <div id="relationship-to-other-ac-data-models">
@@ -1611,60 +1691,94 @@ To bind Layer 2 VPN or Layer 3 VPN services with ACs, "ietf-ac-glue" augments th
             <p id="section-4.1-2.5.1">A single CE may terminate multiple ACs, which can be associated with the same bearer or distinct bearers.<a href="#section-4.1-2.5.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-4.1-2.6">
-            <p id="section-4.1-2.6.1">Customers may request protection schemes in which the ACs associated with their endpoints are terminated by the same PE (e.g., CE#3), distinct PEs (e.g., CE#34), etc. The network provider uses this request to decide where to terminate the AC in the network provider network and also whether to enable specific capabilities (e.g., Virtual Router Redundancy Protocol (VRRP) <span>[<a href="#RFC9568" class="cite xref">RFC9568</a>]</span>). Note that placement constraints may also be requested during the instantiation of the underlying bearers (<a href="#sec-bearer" class="auto internal xref">Section 5.1</a>).<a href="#section-4.1-2.6.1" class="pilcrow">¶</a></p>
+            <p id="section-4.1-2.6.1">Customers may request protection schemes in which the ACs associated with their endpoints are terminated by the same PE (e.g., CE#3), distinct PEs (e.g., CE#34), etc. The network provider uses this request to decide where to terminate the AC in the provider network (i.e., select which PE(s) to use) and also whether to enable specific capabilities (e.g., Virtual Router Redundancy Protocol (VRRP) <span>[<a href="#RFC9568" class="cite xref">RFC9568</a>]</span>). Note that placement constraints may also be requested during the instantiation of the underlying bearers (<a href="#sec-bearer" class="auto internal xref">Section 5.1</a>).<a href="#section-4.1-2.6.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
 <span id="name-examples-of-acs"></span><div id="uc">
 <figure id="figure-2">
           <div id="section-4.1-3.1">
             <div class="alignCenter art-svg artwork" id="section-4.1-3.1.1">
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="224" width="528" viewBox="0 0 528 224" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
-                <path d="M 8,32 L 8,80" fill="none" stroke="black"></path>
-                <path d="M 8,112 L 8,160" fill="none" stroke="black"></path>
-                <path d="M 72,32 L 72,80" fill="none" stroke="black"></path>
-                <path d="M 72,112 L 72,160" fill="none" stroke="black"></path>
-                <path d="M 128,48 L 128,144" fill="none" stroke="black"></path>
-                <path d="M 208,32 L 208,176" fill="none" stroke="black"></path>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="272" width="512" viewBox="0 0 512 272" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
+                <path d="M 8,48 L 8,96" fill="none" stroke="black"></path>
+                <path d="M 8,128 L 8,176" fill="none" stroke="black"></path>
+                <path d="M 72,48 L 72,96" fill="none" stroke="black"></path>
+                <path d="M 72,128 L 72,176" fill="none" stroke="black"></path>
+                <path d="M 112,64 L 112,160" fill="none" stroke="black"></path>
+                <path d="M 176,96 L 176,128" fill="none" stroke="black"></path>
+                <path d="M 192,32 L 192,88" fill="none" stroke="black"></path>
+                <path d="M 192,136 L 192,192" fill="none" stroke="black"></path>
+                <path d="M 200,96 L 200,128" fill="none" stroke="black"></path>
+                <path d="M 280,176 L 280,208" fill="none" stroke="black"></path>
+                <path d="M 288,216 L 288,240" fill="none" stroke="black"></path>
                 <path d="M 304,176 L 304,208" fill="none" stroke="black"></path>
-                <path d="M 376,32 L 376,176" fill="none" stroke="black"></path>
-                <path d="M 456,32 L 456,80" fill="none" stroke="black"></path>
-                <path d="M 456,128 L 456,160" fill="none" stroke="black"></path>
-                <path d="M 496,160 L 496,208" fill="none" stroke="black"></path>
-                <path d="M 520,32 L 520,80" fill="none" stroke="black"></path>
-                <path d="M 520,128 L 520,160" fill="none" stroke="black"></path>
-                <path d="M 8,32 L 72,32" fill="none" stroke="black"></path>
-                <path d="M 208,32 L 376,32" fill="none" stroke="black"></path>
-                <path d="M 456,32 L 520,32" fill="none" stroke="black"></path>
-                <path d="M 72,48 L 128,48" fill="none" stroke="black"></path>
-                <path d="M 376,48 L 400,48" fill="none" stroke="black"></path>
-                <path d="M 424,48 L 456,48" fill="none" stroke="black"></path>
+                <path d="M 352,48 L 352,96" fill="none" stroke="black"></path>
+                <path d="M 352,128 L 352,176" fill="none" stroke="black"></path>
+                <path d="M 376,48 L 376,96" fill="none" stroke="black"></path>
+                <path d="M 376,128 L 376,176" fill="none" stroke="black"></path>
+                <path d="M 448,48 L 448,96" fill="none" stroke="black"></path>
+                <path d="M 448,128 L 448,176" fill="none" stroke="black"></path>
+                <path d="M 480,176 L 480,240" fill="none" stroke="black"></path>
+                <path d="M 504,48 L 504,96" fill="none" stroke="black"></path>
+                <path d="M 504,128 L 504,176" fill="none" stroke="black"></path>
+                <path d="M 192,32 L 360,32" fill="none" stroke="black"></path>
+                <path d="M 8,48 L 72,48" fill="none" stroke="black"></path>
+                <path d="M 352,48 L 376,48" fill="none" stroke="black"></path>
+                <path d="M 448,48 L 504,48" fill="none" stroke="black"></path>
+                <path d="M 72,64 L 112,64" fill="none" stroke="black"></path>
                 <path d="M 376,64 L 400,64" fill="none" stroke="black"></path>
-                <path d="M 424,64 L 456,64" fill="none" stroke="black"></path>
-                <path d="M 8,80 L 72,80" fill="none" stroke="black"></path>
-                <path d="M 456,80 L 520,80" fill="none" stroke="black"></path>
-                <path d="M 128,96 L 152,96" fill="none" stroke="black"></path>
-                <path d="M 176,96 L 208,96" fill="none" stroke="black"></path>
-                <path d="M 8,112 L 72,112" fill="none" stroke="black"></path>
-                <path d="M 456,128 L 520,128" fill="none" stroke="black"></path>
-                <path d="M 72,144 L 128,144" fill="none" stroke="black"></path>
+                <path d="M 424,64 L 448,64" fill="none" stroke="black"></path>
+                <path d="M 376,80 L 400,80" fill="none" stroke="black"></path>
+                <path d="M 424,80 L 448,80" fill="none" stroke="black"></path>
+                <path d="M 8,96 L 72,96" fill="none" stroke="black"></path>
+                <path d="M 176,96 L 200,96" fill="none" stroke="black"></path>
+                <path d="M 352,96 L 376,96" fill="none" stroke="black"></path>
+                <path d="M 448,96 L 504,96" fill="none" stroke="black"></path>
+                <path d="M 112,112 L 136,112" fill="none" stroke="black"></path>
+                <path d="M 160,112 L 176,112" fill="none" stroke="black"></path>
+                <path d="M 8,128 L 72,128" fill="none" stroke="black"></path>
+                <path d="M 176,128 L 200,128" fill="none" stroke="black"></path>
+                <path d="M 352,128 L 376,128" fill="none" stroke="black"></path>
+                <path d="M 448,128 L 504,128" fill="none" stroke="black"></path>
                 <path d="M 376,144 L 400,144" fill="none" stroke="black"></path>
-                <path d="M 424,144 L 456,144" fill="none" stroke="black"></path>
-                <path d="M 8,160 L 72,160" fill="none" stroke="black"></path>
-                <path d="M 456,160 L 520,160" fill="none" stroke="black"></path>
-                <path d="M 208,176 L 376,176" fill="none" stroke="black"></path>
-                <path d="M 304,208 L 392,208" fill="none" stroke="black"></path>
-                <path d="M 416,208 L 496,208" fill="none" stroke="black"></path>
+                <path d="M 424,144 L 448,144" fill="none" stroke="black"></path>
+                <path d="M 72,160 L 112,160" fill="none" stroke="black"></path>
+                <path d="M 376,160 L 400,160" fill="none" stroke="black"></path>
+                <path d="M 424,160 L 448,160" fill="none" stroke="black"></path>
+                <path d="M 8,176 L 72,176" fill="none" stroke="black"></path>
+                <path d="M 280,176 L 304,176" fill="none" stroke="black"></path>
+                <path d="M 352,176 L 376,176" fill="none" stroke="black"></path>
+                <path d="M 448,176 L 504,176" fill="none" stroke="black"></path>
+                <path d="M 192,192 L 280,192" fill="none" stroke="black"></path>
+                <path d="M 312,192 L 360,192" fill="none" stroke="black"></path>
+                <path d="M 280,208 L 304,208" fill="none" stroke="black"></path>
+                <path d="M 288,240 L 376,240" fill="none" stroke="black"></path>
+                <path d="M 400,240 L 480,240" fill="none" stroke="black"></path>
                 <g class="text">
-                  <text x="412" y="52">AC</text>
-                  <text x="36" y="68">CE#1</text>
+                  <text x="412" y="52">(b1)</text>
                   <text x="412" y="68">AC</text>
-                  <text x="484" y="68">CE#3</text>
-                  <text x="164" y="100">AC</text>
-                  <text x="280" y="100">Network</text>
-                  <text x="36" y="148">CE#2</text>
+                  <text x="40" y="84">CE1</text>
+                  <text x="364" y="84">PE</text>
+                  <text x="412" y="84">AC</text>
+                  <text x="480" y="84">CE3</text>
+                  <text x="412" y="100">(b2)</text>
+                  <text x="148" y="116">AC</text>
+                  <text x="188" y="116">PE</text>
+                  <text x="272" y="116">Network</text>
+                  <text x="360" y="116">|</text>
+                  <text x="412" y="132">(b3)</text>
                   <text x="412" y="148">AC</text>
-                  <text x="484" y="148">CE#4</text>
-                  <text x="404" y="212">AC</text>
+                  <text x="40" y="164">CE2</text>
+                  <text x="364" y="164">PE</text>
+                  <text x="412" y="164">AC</text>
+                  <text x="480" y="164">CE4</text>
+                  <text x="412" y="180">(b3)</text>
+                  <text x="292" y="196">PE</text>
+                  <text x="388" y="244">AC</text>
+                  <text x="20" y="260">(bx)</text>
+                  <text x="48" y="260">=</text>
+                  <text x="84" y="260">bearer</text>
+                  <text x="124" y="260">Id</text>
+                  <text x="144" y="260">x</text>
                 </g>
               </svg><a href="#section-4.1-3.1.1" class="pilcrow">¶</a>
 </div>
@@ -1680,109 +1794,109 @@ To bind Layer 2 VPN or Layer 3 VPN services with ACs, "ietf-ac-glue" augments th
         <h3 id="name-separate-ac-provisioning-vs">
 <a href="#section-4.2" class="section-number selfRef">4.2. </a><a href="#name-separate-ac-provisioning-vs" class="section-name selfRef">Separate AC Provisioning vs. Actual Service Provisioning</a>
         </h3>
-<p id="section-4.2-1">The procedure to provision a service in a service provider network may depend on the practices adopted by a service provider. This includes the flow put in place for the provisioning of network services and how they are bound to an attachment circuit. For example, a single attachment circuit may be used to host multiple connectivity services. In order to avoid service interference and redundant information in various locations, a service provider may expose an interface to manage ACs network-wide. Customers can then request a bearer or an attachment circuit to be put in place, and then refer to that bearer or AC when requesting services that are bound to the bearer or AC. <span>[<a href="#I-D.ietf-opsawg-ac-lxsm-lxnm-glue" class="cite xref">I-D.ietf-opsawg-ac-lxsm-lxnm-glue</a>]</span> specifies augmentations to the L2SM and the L3SM to bind LxVPN services to ACs.<a href="#section-4.2-1" class="pilcrow">¶</a></p>
-<p id="section-4.2-2"><a href="#_u-ex" class="auto internal xref">Figure 3</a> shows the positioning of the AC service model is the overall service delivery process.<a href="#section-4.2-2" class="pilcrow">¶</a></p>
+<p id="section-4.2-1">The procedure to provision a service in a service provider network may depend on the practices adopted by a service provider. This includes the workflow put in place for the provisioning of network services  and how they are bound to an attachment circuit. For example, a single attachment circuit may be used to host multiple connectivity services. In order to avoid service interference and redundant information in various locations, a service provider may expose an interface to manage ACs network-wide. Customers can then request a bearer or an attachment circuit to be put in place, and then refer to that bearer or AC when requesting services that are bound to the bearer or AC. <span>[<a href="#I-D.ietf-opsawg-ac-lxsm-lxnm-glue" class="cite xref">I-D.ietf-opsawg-ac-lxsm-lxnm-glue</a>]</span> specifies augmentations to the L2SM and the L3SM to bind LxVPN services to ACs.<a href="#section-4.2-1" class="pilcrow">¶</a></p>
+<p id="section-4.2-2"><a href="#_u-ex" class="auto internal xref">Figure 3</a> shows the positioning of the AC service model in the overall service delivery process.<a href="#section-4.2-2" class="pilcrow">¶</a></p>
 <span id="name-an-example-of-ac-model-usag"></span><div id="_u-ex">
 <figure id="figure-3">
           <div id="section-4.2-3.1">
             <div class="alignCenter art-svg artwork" id="section-4.2-3.1.1">
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="656" width="512" viewBox="0 0 512 656" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
-                <path d="M 8,560 L 8,592" fill="none" stroke="black"></path>
-                <path d="M 48,560 L 48,592" fill="none" stroke="black"></path>
-                <path d="M 96,432 L 96,480" fill="none" stroke="black"></path>
-                <path d="M 104,320 L 104,368" fill="none" stroke="black"></path>
-                <path d="M 120,544 L 120,608" fill="none" stroke="black"></path>
-                <path d="M 136,368 L 136,432" fill="none" stroke="black"></path>
-                <path d="M 136,480 L 136,536" fill="none" stroke="black"></path>
-                <path d="M 176,288 L 176,320" fill="none" stroke="black"></path>
-                <path d="M 176,432 L 176,480" fill="none" stroke="black"></path>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="688" width="512" viewBox="0 0 512 688" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
+                <path d="M 8,592 L 8,624" fill="none" stroke="black"></path>
+                <path d="M 48,592 L 48,624" fill="none" stroke="black"></path>
+                <path d="M 96,464 L 96,512" fill="none" stroke="black"></path>
+                <path d="M 104,352 L 104,400" fill="none" stroke="black"></path>
+                <path d="M 120,576 L 120,640" fill="none" stroke="black"></path>
+                <path d="M 136,400 L 136,464" fill="none" stroke="black"></path>
+                <path d="M 136,512 L 136,568" fill="none" stroke="black"></path>
+                <path d="M 176,320 L 176,352" fill="none" stroke="black"></path>
+                <path d="M 176,464 L 176,512" fill="none" stroke="black"></path>
                 <path d="M 208,32 L 208,64" fill="none" stroke="black"></path>
-                <path d="M 208,112 L 208,160" fill="none" stroke="black"></path>
-                <path d="M 208,208 L 208,256" fill="none" stroke="black"></path>
-                <path d="M 208,376 L 208,496" fill="none" stroke="black"></path>
-                <path d="M 232,320 L 232,368" fill="none" stroke="black"></path>
-                <path d="M 272,64 L 272,80" fill="none" stroke="black"></path>
-                <path d="M 272,160 L 272,208" fill="none" stroke="black"></path>
-                <path d="M 272,256 L 272,288" fill="none" stroke="black"></path>
-                <path d="M 296,320 L 296,368" fill="none" stroke="black"></path>
+                <path d="M 208,128 L 208,176" fill="none" stroke="black"></path>
+                <path d="M 208,240 L 208,288" fill="none" stroke="black"></path>
+                <path d="M 208,408 L 208,528" fill="none" stroke="black"></path>
+                <path d="M 232,352 L 232,400" fill="none" stroke="black"></path>
+                <path d="M 272,64 L 272,128" fill="none" stroke="black"></path>
+                <path d="M 272,176 L 272,240" fill="none" stroke="black"></path>
+                <path d="M 272,288 L 272,320" fill="none" stroke="black"></path>
+                <path d="M 296,352 L 296,400" fill="none" stroke="black"></path>
                 <path d="M 336,32 L 336,64" fill="none" stroke="black"></path>
-                <path d="M 336,112 L 336,160" fill="none" stroke="black"></path>
-                <path d="M 336,208 L 336,256" fill="none" stroke="black"></path>
-                <path d="M 368,288 L 368,320" fill="none" stroke="black"></path>
-                <path d="M 368,368 L 368,536" fill="none" stroke="black"></path>
-                <path d="M 384,544 L 384,608" fill="none" stroke="black"></path>
-                <path d="M 424,320 L 424,368" fill="none" stroke="black"></path>
-                <path d="M 456,560 L 456,592" fill="none" stroke="black"></path>
-                <path d="M 496,560 L 496,592" fill="none" stroke="black"></path>
+                <path d="M 336,128 L 336,176" fill="none" stroke="black"></path>
+                <path d="M 336,240 L 336,288" fill="none" stroke="black"></path>
+                <path d="M 368,320 L 368,352" fill="none" stroke="black"></path>
+                <path d="M 368,400 L 368,568" fill="none" stroke="black"></path>
+                <path d="M 384,576 L 384,640" fill="none" stroke="black"></path>
+                <path d="M 424,352 L 424,400" fill="none" stroke="black"></path>
+                <path d="M 456,592 L 456,624" fill="none" stroke="black"></path>
+                <path d="M 496,592 L 496,624" fill="none" stroke="black"></path>
                 <path d="M 208,32 L 336,32" fill="none" stroke="black"></path>
                 <path d="M 208,64 L 336,64" fill="none" stroke="black"></path>
-                <path d="M 208,112 L 336,112" fill="none" stroke="black"></path>
-                <path d="M 208,160 L 336,160" fill="none" stroke="black"></path>
-                <path d="M 208,208 L 336,208" fill="none" stroke="black"></path>
-                <path d="M 208,256 L 336,256" fill="none" stroke="black"></path>
-                <path d="M 176,288 L 368,288" fill="none" stroke="black"></path>
-                <path d="M 104,320 L 232,320" fill="none" stroke="black"></path>
-                <path d="M 296,320 L 424,320" fill="none" stroke="black"></path>
-                <path d="M 104,368 L 232,368" fill="none" stroke="black"></path>
-                <path d="M 296,368 L 424,368" fill="none" stroke="black"></path>
-                <path d="M 96,432 L 176,432" fill="none" stroke="black"></path>
-                <path d="M 96,480 L 176,480" fill="none" stroke="black"></path>
-                <path d="M 120,544 L 384,544" fill="none" stroke="black"></path>
-                <path d="M 8,560 L 48,560" fill="none" stroke="black"></path>
-                <path d="M 456,560 L 496,560" fill="none" stroke="black"></path>
-                <path d="M 48,576 L 120,576" fill="none" stroke="black"></path>
-                <path d="M 384,576 L 456,576" fill="none" stroke="black"></path>
+                <path d="M 208,128 L 336,128" fill="none" stroke="black"></path>
+                <path d="M 208,176 L 336,176" fill="none" stroke="black"></path>
+                <path d="M 208,240 L 336,240" fill="none" stroke="black"></path>
+                <path d="M 208,288 L 336,288" fill="none" stroke="black"></path>
+                <path d="M 176,320 L 368,320" fill="none" stroke="black"></path>
+                <path d="M 104,352 L 232,352" fill="none" stroke="black"></path>
+                <path d="M 296,352 L 424,352" fill="none" stroke="black"></path>
+                <path d="M 104,400 L 232,400" fill="none" stroke="black"></path>
+                <path d="M 296,400 L 424,400" fill="none" stroke="black"></path>
+                <path d="M 96,464 L 176,464" fill="none" stroke="black"></path>
+                <path d="M 96,512 L 176,512" fill="none" stroke="black"></path>
+                <path d="M 120,576 L 384,576" fill="none" stroke="black"></path>
                 <path d="M 8,592 L 48,592" fill="none" stroke="black"></path>
                 <path d="M 456,592 L 496,592" fill="none" stroke="black"></path>
-                <path d="M 120,608 L 384,608" fill="none" stroke="black"></path>
+                <path d="M 48,608 L 120,608" fill="none" stroke="black"></path>
+                <path d="M 384,608 L 456,608" fill="none" stroke="black"></path>
+                <path d="M 8,624 L 48,624" fill="none" stroke="black"></path>
+                <path d="M 456,624 L 496,624" fill="none" stroke="black"></path>
+                <path d="M 120,640 L 384,640" fill="none" stroke="black"></path>
                 <g class="text">
                   <text x="268" y="52">Customer</text>
                   <text x="108" y="84">Customer</text>
                   <text x="176" y="84">Service</text>
                   <text x="232" y="84">Model</text>
-                  <text x="44" y="100">l2vpn-svc,</text>
-                  <text x="132" y="100">l3vpn-svc,</text>
-                  <text x="216" y="100">ietf-nss,</text>
-                  <text x="288" y="100">ac-svc,</text>
-                  <text x="356" y="100">ac-glue,</text>
-                  <text x="408" y="100">and</text>
-                  <text x="468" y="100">bearer-svc</text>
-                  <text x="272" y="132">Service</text>
-                  <text x="272" y="148">Orchestration</text>
-                  <text x="112" y="180">Network</text>
-                  <text x="168" y="180">Model</text>
-                  <text x="92" y="196">l2vpn-ntw,</text>
-                  <text x="180" y="196">l3vpn-ntw,</text>
-                  <text x="244" y="196">sap,</text>
-                  <text x="316" y="196">ac-glue,</text>
-                  <text x="368" y="196">and</text>
-                  <text x="412" y="196">ac-ntw</text>
-                  <text x="264" y="228">Network</text>
-                  <text x="272" y="244">Orchestration</text>
-                  <text x="56" y="276">Network</text>
-                  <text x="144" y="276">Configuration</text>
-                  <text x="224" y="276">Model</text>
-                  <text x="164" y="340">Domain</text>
-                  <text x="364" y="340">Domain</text>
-                  <text x="168" y="356">Orchestration</text>
-                  <text x="360" y="356">Orchestration</text>
-                  <text x="36" y="388">Device</text>
-                  <text x="64" y="404">Configuration</text>
-                  <text x="32" y="420">Model</text>
-                  <text x="132" y="452">Config</text>
-                  <text x="136" y="468">Manager</text>
-                  <text x="256" y="516">NETCONF/CLI................</text>
-                  <text x="376" y="516">.</text>
-                  <text x="208" y="532">|</text>
-                  <text x="84" y="564">Bearer</text>
-                  <text x="420" y="564">Bearer</text>
-                  <text x="28" y="580">CE#1</text>
-                  <text x="248" y="580">Network</text>
-                  <text x="476" y="580">CE#2</text>
-                  <text x="28" y="628">Site</text>
-                  <text x="56" y="628">A</text>
-                  <text x="476" y="628">Site</text>
-                  <text x="504" y="628">B</text>
+                  <text x="72" y="100">ietf-l2vpn-svc,</text>
+                  <text x="200" y="100">ietf-l3vpn-svc,</text>
+                  <text x="392" y="100">ietf-network-slice-service,</text>
+                  <text x="100" y="116">ietf-ac-svc,</text>
+                  <text x="208" y="116">ietf-ac-glue,</text>
+                  <text x="296" y="116">and</text>
+                  <text x="376" y="116">ietf-bearer-svc</text>
+                  <text x="272" y="148">Service</text>
+                  <text x="272" y="164">Orchestration</text>
+                  <text x="112" y="196">Network</text>
+                  <text x="168" y="196">Model</text>
+                  <text x="72" y="212">ietf-l2vpn-ntw,</text>
+                  <text x="200" y="212">ietf-l3vpn-ntw,</text>
+                  <text x="336" y="212">ietf-sap-ntw,</text>
+                  <text x="448" y="212">ietf-ac-glue,</text>
+                  <text x="96" y="228">and</text>
+                  <text x="160" y="228">ietf-ac-ntw</text>
+                  <text x="264" y="260">Network</text>
+                  <text x="272" y="276">Orchestration</text>
+                  <text x="56" y="308">Network</text>
+                  <text x="144" y="308">Configuration</text>
+                  <text x="224" y="308">Model</text>
+                  <text x="164" y="372">Domain</text>
+                  <text x="364" y="372">Domain</text>
+                  <text x="168" y="388">Orchestration</text>
+                  <text x="360" y="388">Orchestration</text>
+                  <text x="36" y="420">Device</text>
+                  <text x="64" y="436">Configuration</text>
+                  <text x="32" y="452">Model</text>
+                  <text x="132" y="484">Config</text>
+                  <text x="136" y="500">Manager</text>
+                  <text x="256" y="548">NETCONF/CLI................</text>
+                  <text x="376" y="548">.</text>
+                  <text x="208" y="564">|</text>
+                  <text x="84" y="596">Bearer</text>
+                  <text x="420" y="596">Bearer</text>
+                  <text x="28" y="612">CE#1</text>
+                  <text x="248" y="612">Network</text>
+                  <text x="476" y="612">CE#2</text>
+                  <text x="28" y="660">Site</text>
+                  <text x="56" y="660">A</text>
+                  <text x="476" y="660">Site</text>
+                  <text x="504" y="660">B</text>
                 </g>
               </svg><a href="#section-4.2-3.1.1" class="pilcrow">¶</a>
 </div>
@@ -1806,7 +1920,7 @@ To bind Layer 2 VPN or Layer 3 VPN services with ACs, "ietf-ac-glue" augments th
         <h3 id="name-the-bearer-service-ietf-bea">
 <a href="#section-5.1" class="section-number selfRef">5.1. </a><a href="#name-the-bearer-service-ietf-bea" class="section-name selfRef">The Bearer Service ("ietf-bearer-svc") YANG Module</a>
         </h3>
-<p id="section-5.1-1"><a href="#bearer-st" class="auto internal xref">Figure 4</a> shows the tree for managing the bearers (that is, the properties of an attachment that are below Layer 3). A bearer can be a physical or logical link (e.g., Link Aggregation Group (LAG) <span>[<a href="#IEEE802.1AX" class="cite xref">IEEE802.1AX</a>]</span>). Also, a bearer can be a wireless or wired link. A reference to a bearer is generated by the operator.
+<p id="section-5.1-1"><a href="#bearer-st" class="auto internal xref">Figure 4</a> shows the tree for managing the bearers (that is, the properties of an attachment that are below Layer 3). A bearer can be a physical or logical link (e.g., LAG <span>[<a href="#IEEE802.1AX" class="cite xref">IEEE802.1AX</a>]</span>). Also, a bearer can be a wireless or wired link. A reference to a bearer is generated by the operator.
 Such a reference can be used, e.g., in a subsequent service request to create an AC. The anchoring of the AC can also be achieved by indicating (with or without a bearer reference), a peer SAP identifier (e.g., an identifier of an SF).<a href="#section-5.1-1" class="pilcrow">¶</a></p>
 <span id="name-bearer-service-tree-structu"></span><div id="bearer-st">
 <figure id="figure-4">
@@ -2071,7 +2185,7 @@ module: ietf-bearer-svc
         </h3>
 <p id="section-5.2-1">The full tree diagram of the module can be generated using, e.g., the
 "pyang" tool <span>[<a href="#PYANG" class="cite xref">PYANG</a>]</span>.  That tree is not included here because it is
-too long (<span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-netmod-rfc8407bis-11#section-3.4" class="relref">Section 3.4</a> of [<a href="#I-D.ietf-netmod-rfc8407bis" class="cite xref">I-D.ietf-netmod-rfc8407bis</a>]</span>).  Instead, subtrees are provided
+too long (<span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-netmod-rfc8407bis-12#section-3.4" class="relref">Section 3.4</a> of [<a href="#I-D.ietf-netmod-rfc8407bis" class="cite xref">I-D.ietf-netmod-rfc8407bis</a>]</span>).  Instead, subtrees are provided
 for the reader's convenience. The full tree of the 'ac-svc' is provided in <span>[<a href="#AC-svc-Tree" class="cite xref">AC-svc-Tree</a>]</span>.<a href="#section-5.2-1" class="pilcrow">¶</a></p>
 <div id="overall-structure">
 <section id="section-5.2.1">
@@ -2122,7 +2236,7 @@ for the reader's convenience. The full tree of the 'ac-svc' is provided in <span
 </li>
           </ul>
 <p id="section-5.2.1-5">Each AC is identified with a unique name ('../ac/name') within a domain. The mapping between this AC and a local PE that terminates the AC is hidden to the application that makes use of the AC service model. This information is internal to the Network controller. As such, the details about the (node-specific) attachment interfaces are not exposed in this service model.<a href="#section-5.2.1-5" class="pilcrow">¶</a></p>
-<p id="section-5.2.1-6">The AC service model uses groupings and types defined in the AC common model <span>[<a href="#I-D.ietf-opsawg-teas-common-ac" class="cite xref">I-D.ietf-opsawg-teas-common-ac</a>]</span>. Therefore, the description of these nodes are not reiterated in the following subsections.<a href="#section-5.2.1-6" class="pilcrow">¶</a></p>
+<p id="section-5.2.1-6">The AC service model uses groupings and types defined in the AC common model <span>[<a href="#I-D.ietf-opsawg-teas-common-ac" class="cite xref">I-D.ietf-opsawg-teas-common-ac</a>]</span> ('op-instructions', 'dot1q', 'qinq', 'priority-tagged', 'l2-tunnel-service', etc.). Therefore, the description of these nodes are not reiterated in the following subsections.<a href="#section-5.2.1-6" class="pilcrow">¶</a></p>
 <p id="section-5.2.1-7">Features are used to tag conditional protions of the model in order to accomodate various deployments (support of layer 2 ACs, Layer 3 ACs, IPv4, IPv6, routing protocols,  Bidirectional Forwarding Detection (BFD), etc.).<a href="#section-5.2.1-7" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -2306,8 +2420,8 @@ These adjusted values take precedence over the global values.  The structure of 
         +--ro actual-stop?         yang:date-and-time
         +--rw role?                identityref
         +--rw peer-sap-id*         string
-        +--rw ac-group-profile*    ac-group-reference
-        +--rw ac-parent-ref?       ac-svc:attachment-circuit-reference
+        +--rw ac-group-profile-ref*    ac-group-reference
+        +--rw ac-parent-ref*       ac-svc:attachment-circuit-reference
         +--ro child-ac-ref*        ac-svc:attachment-circuit-reference
         +--rw group* [group-id]
         |  +--rw group-id      string
@@ -2381,10 +2495,10 @@ These adjusted values take precedence over the global values.  The structure of 
             <dd class="break"></dd>
 <dt id="section-5.2.5-4.17">'peer-sap-id':</dt>
             <dd style="margin-left: 1.5em" id="section-5.2.5-4.18">
-              <p id="section-5.2.5-4.18.1">Includes references to the remote endpoints of an attachment circuit <span>[<a href="#RFC9408" class="cite xref">RFC9408</a>]</span>.<a href="#section-5.2.5-4.18.1" class="pilcrow">¶</a></p>
+              <p id="section-5.2.5-4.18.1">Includes references to the remote endpoints of an attachment circuit <span>[<a href="#RFC9408" class="cite xref">RFC9408</a>]</span>. 'peer' is drawn here from the perspective of the provider network. That is, a 'peer-sap' will refer to a customer node.<a href="#section-5.2.5-4.18.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
-<dt id="section-5.2.5-4.19">'ac-group-profile':</dt>
+<dt id="section-5.2.5-4.19">'ac-group-profile-ref':</dt>
             <dd style="margin-left: 1.5em" id="section-5.2.5-4.20">
               <p id="section-5.2.5-4.20.1">Indicates references to one or more profiles that are defined in <a href="#sec-acp" class="auto internal xref">Section 5.2.3</a>.<a href="#section-5.2.5-4.20.1" class="pilcrow">¶</a></p>
 </dd>
@@ -2406,64 +2520,69 @@ a parent AC can be defined with a set of stable and common information, while
               <p id="section-5.2.5-4.26.1">Whenever a parent AC is deleted, all its "child" ACs <span class="bcp14">MUST</span> be deleted.<a href="#section-5.2.5-4.26.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
-<dt id="section-5.2.5-4.27">'child-ac-ref':</dt>
+<dt id="section-5.2.5-4.27"></dt>
             <dd style="margin-left: 1.5em" id="section-5.2.5-4.28">
-              <p id="section-5.2.5-4.28.1">Lists one or more references of child ACs that rely upon this attachment circuit as a parent AC.<a href="#section-5.2.5-4.28.1" class="pilcrow">¶</a></p>
+              <p id="section-5.2.5-4.28.1">A "child" AC <span class="bcp14">MAY</span> rely upon more than one parent AC (e.g., parent Layer 2 AC and parent Layer 3 AC). In such cases, these ACs <span class="bcp14">MUST NOT</span> be overlapping. An example to illustrate the use of multiple parent ACs is provided in  <a href="#sec-bfd-static" class="auto internal xref">Appendix A.12</a>.<a href="#section-5.2.5-4.28.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
-<dt id="section-5.2.5-4.29">'group':</dt>
+<dt id="section-5.2.5-4.29">'child-ac-ref':</dt>
             <dd style="margin-left: 1.5em" id="section-5.2.5-4.30">
-              <p id="section-5.2.5-4.30.1">Lists the groups to which an AC belongs <span>[<a href="#RFC9181" class="cite xref">RFC9181</a>]</span>. For example, the 'group-id' is used to associate redundancy or protection constraints of ACs. An example is provided in <a href="#sec-ex-prec" class="auto internal xref">Appendix A.5</a>.<a href="#section-5.2.5-4.30.1" class="pilcrow">¶</a></p>
+              <p id="section-5.2.5-4.30.1">Lists one or more references of child ACs that rely upon this attachment circuit as a parent AC.<a href="#section-5.2.5-4.30.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
-<dt id="section-5.2.5-4.31">'service-ref':</dt>
+<dt id="section-5.2.5-4.31">'group':</dt>
             <dd style="margin-left: 1.5em" id="section-5.2.5-4.32">
-              <p id="section-5.2.5-4.32.1">Reports the set of services that are bound to the attachment circuit. The services are indexed by their type.<a href="#section-5.2.5-4.32.1" class="pilcrow">¶</a></p>
+              <p id="section-5.2.5-4.32.1">Lists the groups to which an AC belongs <span>[<a href="#RFC9181" class="cite xref">RFC9181</a>]</span>. For example, the 'group-id' is used to associate redundancy or protection constraints of ACs. An example is provided in <a href="#sec-ex-prec" class="auto internal xref">Appendix A.5</a>.<a href="#section-5.2.5-4.32.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
-<dt id="section-5.2.5-4.33">'server-reference':</dt>
+<dt id="section-5.2.5-4.33">'service-ref':</dt>
             <dd style="margin-left: 1.5em" id="section-5.2.5-4.34">
-              <p id="section-5.2.5-4.34.1">Reports the internal reference that is assigned by the provider for this AC. This reference is used to accomodate deployment contexts (e.g., <span><a href="https://rfc-editor.org/rfc/rfc8921#section-9.1.2" class="relref">Section 9.1.2</a> of [<a href="#RFC8921" class="cite xref">RFC8921</a>]</span>) where an identifier is generated by the provider to identify a service order locally.<a href="#section-5.2.5-4.34.1" class="pilcrow">¶</a></p>
+              <p id="section-5.2.5-4.34.1">Reports the set of services that are bound to the attachment circuit. The services are indexed by their type.<a href="#section-5.2.5-4.34.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
-<dt id="section-5.2.5-4.35">'name':</dt>
+<dt id="section-5.2.5-4.35">'server-reference':</dt>
             <dd style="margin-left: 1.5em" id="section-5.2.5-4.36">
-              <p id="section-5.2.5-4.36.1">Associates a name that uniquely identifies an AC within a service provider network.<a href="#section-5.2.5-4.36.1" class="pilcrow">¶</a></p>
+              <p id="section-5.2.5-4.36.1">Reports the internal reference that is assigned by the provider for this AC. This reference is used to accomodate deployment contexts (e.g., <span><a href="https://rfc-editor.org/rfc/rfc8921#section-9.1.2" class="relref">Section 9.1.2</a> of [<a href="#RFC8921" class="cite xref">RFC8921</a>]</span>) where an identifier is generated by the provider to identify a service order locally.<a href="#section-5.2.5-4.36.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
-<dt id="section-5.2.5-4.37">'service-profile':</dt>
+<dt id="section-5.2.5-4.37">'name':</dt>
             <dd style="margin-left: 1.5em" id="section-5.2.5-4.38">
-              <p id="section-5.2.5-4.38.1">References a set of service-specific profiles.<a href="#section-5.2.5-4.38.1" class="pilcrow">¶</a></p>
+              <p id="section-5.2.5-4.38.1">Associates a name that uniquely identifies an AC within a service provider network.<a href="#section-5.2.5-4.38.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
-<dt id="section-5.2.5-4.39">'l2-connection':</dt>
+<dt id="section-5.2.5-4.39">'service-profile':</dt>
             <dd style="margin-left: 1.5em" id="section-5.2.5-4.40">
-              <p id="section-5.2.5-4.40.1">See <a href="#sec-l2" class="auto internal xref">Section 5.2.5.1</a>.<a href="#section-5.2.5-4.40.1" class="pilcrow">¶</a></p>
+              <p id="section-5.2.5-4.40.1">References a set of service-specific profiles.<a href="#section-5.2.5-4.40.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
-<dt id="section-5.2.5-4.41">'ip-connection':</dt>
+<dt id="section-5.2.5-4.41">'l2-connection':</dt>
             <dd style="margin-left: 1.5em" id="section-5.2.5-4.42">
-              <p id="section-5.2.5-4.42.1">See <a href="#sec-l3" class="auto internal xref">Section 5.2.5.2</a>.<a href="#section-5.2.5-4.42.1" class="pilcrow">¶</a></p>
+              <p id="section-5.2.5-4.42.1">See <a href="#sec-l2" class="auto internal xref">Section 5.2.5.1</a>.<a href="#section-5.2.5-4.42.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
-<dt id="section-5.2.5-4.43">'routing':</dt>
+<dt id="section-5.2.5-4.43">'ip-connection':</dt>
             <dd style="margin-left: 1.5em" id="section-5.2.5-4.44">
-              <p id="section-5.2.5-4.44.1">See <a href="#sec-rtg" class="auto internal xref">Section 5.2.5.3</a>.<a href="#section-5.2.5-4.44.1" class="pilcrow">¶</a></p>
+              <p id="section-5.2.5-4.44.1">See <a href="#sec-l3" class="auto internal xref">Section 5.2.5.2</a>.<a href="#section-5.2.5-4.44.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
-<dt id="section-5.2.5-4.45">'oam':</dt>
+<dt id="section-5.2.5-4.45">'routing':</dt>
             <dd style="margin-left: 1.5em" id="section-5.2.5-4.46">
-              <p id="section-5.2.5-4.46.1">See <a href="#sec-oam" class="auto internal xref">Section 5.2.5.4</a>.<a href="#section-5.2.5-4.46.1" class="pilcrow">¶</a></p>
+              <p id="section-5.2.5-4.46.1">See <a href="#sec-rtg" class="auto internal xref">Section 5.2.5.3</a>.<a href="#section-5.2.5-4.46.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
-<dt id="section-5.2.5-4.47">'security':</dt>
+<dt id="section-5.2.5-4.47">'oam':</dt>
             <dd style="margin-left: 1.5em" id="section-5.2.5-4.48">
-              <p id="section-5.2.5-4.48.1">See <a href="#sec-sec" class="auto internal xref">Section 5.2.5.5</a>.<a href="#section-5.2.5-4.48.1" class="pilcrow">¶</a></p>
+              <p id="section-5.2.5-4.48.1">See <a href="#sec-oam" class="auto internal xref">Section 5.2.5.4</a>.<a href="#section-5.2.5-4.48.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
-<dt id="section-5.2.5-4.49">'service':</dt>
+<dt id="section-5.2.5-4.49">'security':</dt>
             <dd style="margin-left: 1.5em" id="section-5.2.5-4.50">
-              <p id="section-5.2.5-4.50.1">See <a href="#sec-bw" class="auto internal xref">Section 5.2.5.6</a>.<a href="#section-5.2.5-4.50.1" class="pilcrow">¶</a></p>
+              <p id="section-5.2.5-4.50.1">See <a href="#sec-sec" class="auto internal xref">Section 5.2.5.5</a>.<a href="#section-5.2.5-4.50.1" class="pilcrow">¶</a></p>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-5.2.5-4.51">'service':</dt>
+            <dd style="margin-left: 1.5em" id="section-5.2.5-4.52">
+              <p id="section-5.2.5-4.52.1">See <a href="#sec-bw" class="auto internal xref">Section 5.2.5.6</a>.<a href="#section-5.2.5-4.52.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
 </dl>
@@ -2587,8 +2706,8 @@ a parent AC can be defined with a set of stable and common information, while
         |  |           +--rw address-id          string
         |  |           +--rw customer-address?   inet:ipv4-address
         |  |           +--rw failure-detection-profile?
-        |  |                             failure-detection-profile-reference
-        |  |                             {vpn-common:bfd}?
+        |  |                      failure-detection-profile-reference
+        |  |                      {vpn-common:bfd}?
         |  +--rw ipv6 {vpn-common:ipv6}?
         |     ...
 </pre>
@@ -2641,8 +2760,8 @@ a parent AC can be defined with a set of stable and common information, while
         |              +--rw address-id          string
         |              +--rw customer-address?   inet:ipv6-address
         |              +--rw failure-detection-profile?
-        |                                failure-detection-profile-reference
-        |                                {vpn-common:bfd}?
+        |                         failure-detection-profile-reference
+        |                         {vpn-common:bfd}?
         | ...
 </pre>
 </div>
@@ -3342,9 +3461,10 @@ isn't any type of VRRP authentication at this time (see <span><a href="https://r
         |  ...
         +--rw oam
         |  +--rw bfd {vpn-common:bfd}?
-        |     +--rw session* [remote-address]
+        |     +--rw session* [id]
+        |        +--rw id                string
         |        +--rw local-address?    inet:ip-address
-        |        +--rw remote-address    inet:ip-address
+        |        +--rw remote-address?   inet:ip-address
         |        +--rw profile?
         |        |       failure-detection-profile-reference
         |        +--rw holdtime?         uint32
@@ -3367,29 +3487,34 @@ isn't any type of VRRP authentication at this time (see <span><a href="https://r
 </div>
 <p id="section-5.2.5.4-3">This version of the module supports BFD. The following BFD data nodes can be specified:<a href="#section-5.2.5.4-3" class="pilcrow">¶</a></p>
 <span class="break"></span><dl class="dlParallel" id="section-5.2.5.4-4">
-              <dt id="section-5.2.5.4-4.1">'local-address':</dt>
+              <dt id="section-5.2.5.4-4.1">'id':</dt>
               <dd style="margin-left: 1.5em" id="section-5.2.5.4-4.2">
-                <p id="section-5.2.5.4-4.2.1">Indicates the provider's IP address used for a BFD session.<a href="#section-5.2.5.4-4.2.1" class="pilcrow">¶</a></p>
+                <p id="section-5.2.5.4-4.2.1">An identifier that uniquely identifies a BFD session.<a href="#section-5.2.5.4-4.2.1" class="pilcrow">¶</a></p>
 </dd>
               <dd class="break"></dd>
-<dt id="section-5.2.5.4-4.3">'remote-address':</dt>
+<dt id="section-5.2.5.4-4.3">'local-address':</dt>
               <dd style="margin-left: 1.5em" id="section-5.2.5.4-4.4">
-                <p id="section-5.2.5.4-4.4.1">Indicates the customer's IP address used for a BFD session.<a href="#section-5.2.5.4-4.4.1" class="pilcrow">¶</a></p>
+                <p id="section-5.2.5.4-4.4.1">Indicates the provider's IP address used for a BFD session.<a href="#section-5.2.5.4-4.4.1" class="pilcrow">¶</a></p>
 </dd>
               <dd class="break"></dd>
-<dt id="section-5.2.5.4-4.5">'profile':</dt>
+<dt id="section-5.2.5.4-4.5">'remote-address':</dt>
               <dd style="margin-left: 1.5em" id="section-5.2.5.4-4.6">
-                <p id="section-5.2.5.4-4.6.1">Refers to a BFD profile.<a href="#section-5.2.5.4-4.6.1" class="pilcrow">¶</a></p>
+                <p id="section-5.2.5.4-4.6.1">Indicates the customer's IP address used for a BFD session.<a href="#section-5.2.5.4-4.6.1" class="pilcrow">¶</a></p>
 </dd>
               <dd class="break"></dd>
-<dt id="section-5.2.5.4-4.7">'holdtime':</dt>
+<dt id="section-5.2.5.4-4.7">'profile':</dt>
               <dd style="margin-left: 1.5em" id="section-5.2.5.4-4.8">
-                <p id="section-5.2.5.4-4.8.1">Used to indicate the expected BFD holddown time, in milliseconds.<a href="#section-5.2.5.4-4.8.1" class="pilcrow">¶</a></p>
+                <p id="section-5.2.5.4-4.8.1">Refers to a BFD profile.<a href="#section-5.2.5.4-4.8.1" class="pilcrow">¶</a></p>
 </dd>
               <dd class="break"></dd>
-<dt id="section-5.2.5.4-4.9">'status':</dt>
+<dt id="section-5.2.5.4-4.9">'holdtime':</dt>
               <dd style="margin-left: 1.5em" id="section-5.2.5.4-4.10">
-                <p id="section-5.2.5.4-4.10.1">Indicates the status of the BFD session.<a href="#section-5.2.5.4-4.10.1" class="pilcrow">¶</a></p>
+                <p id="section-5.2.5.4-4.10.1">Used to indicate the expected BFD holddown time, in milliseconds.<a href="#section-5.2.5.4-4.10.1" class="pilcrow">¶</a></p>
+</dd>
+              <dd class="break"></dd>
+<dt id="section-5.2.5.4-4.11">'status':</dt>
+              <dd style="margin-left: 1.5em" id="section-5.2.5.4-4.12">
+                <p id="section-5.2.5.4-4.12.1">Indicates the status of the BFD session.<a href="#section-5.2.5.4-4.12.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
 </dl>
@@ -5095,18 +5220,23 @@ module ietf-ac-svc {
         description
           "Container for BFD.";
         list session {
-          key "remote-address";
+          key "id";
           description
-            "List of IP sessions.";
-           leaf local-address {
-             type inet:ip-address;
+            "List of BFD sessions.";
+          leaf id {
+             type string;
              description
-               "Provider's IP address of the BFD session.";
+               "A unique identifer for the BFD session.";
+          }
+          leaf local-address {
+            type inet:ip-address;
+            description
+              "Provider's IP address of the BFD session.";
           }
           leaf remote-address {
-             type inet:ip-address;
-             description
-               "Customer's IP address of the BFD session.";
+            type inet:ip-address;
+            description
+              "Customer's IP address of the BFD session.";
           }
           leaf profile {
             type failure-detection-profile-reference;
@@ -5186,10 +5316,10 @@ module ietf-ac-svc {
   grouping ac-hierarchy {
     description
       "Container for parent and child AC references.";
-    leaf ac-parent-ref {
+    leaf-list ac-parent-ref {
       type ac-svc:attachment-circuit-reference;
       description
-        "Specifies the parent AC that is inherited by an AC.
+        "Specifies a parent AC that is inherited by an AC.
          In contexts where dynamic terminating points are
          bound to the same AC, a parent AC with stable
          information is created with a set of child ACs
@@ -5284,7 +5414,7 @@ module ietf-ac-svc {
         description
           "One or more peer SAPs can be indicated.";
       }
-      leaf-list ac-group-profile {
+      leaf-list ac-group-profile-ref {
         type ac-group-reference;
         description
           "A reference to an AC profile.";
@@ -5376,7 +5506,7 @@ sensitivities/vulnerabilities in the "ietf-bearer-svc" module:<a href="#section-
         <dd style="margin-left: 1.5em" id="section-7-5.6">
           <p id="section-7-5.6.1">In addition, an attacker could attempt to add a new bearer or
    delete existing ones. An attacker may also change the requested
-   type or the activation scheduling.<a href="#section-7-5.6.1" class="pilcrow">¶</a></p>
+   type, whether it is for test-only, or the activation scheduling.<a href="#section-7-5.6.1" class="pilcrow">¶</a></p>
 </dd>
       <dd class="break"></dd>
 </dl>
@@ -5511,7 +5641,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 <dl class="references">
 <dt id="I-D.ietf-opsawg-teas-common-ac">[I-D.ietf-opsawg-teas-common-ac]</dt>
         <dd>
-<span class="refAuthor">Boucadair, M.</span>, <span class="refAuthor">Roberts, R.</span>, <span class="refAuthor">de Dios, O. G.</span>, <span class="refAuthor">Barguil, S.</span>, and <span class="refAuthor">B. Wu</span>, <span class="refTitle">"A Common YANG Data Model for Attachment Circuits"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-opsawg-teas-common-ac-10</span>, <time datetime="2024-04-19" class="refDate">19 April 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-teas-common-ac-10">https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-teas-common-ac-10</a>&gt;</span>. </dd>
+<span class="refAuthor">Boucadair, M.</span>, <span class="refAuthor">Roberts, R.</span>, <span class="refAuthor">de Dios, O. G.</span>, <span class="refAuthor">Barguil, S.</span>, and <span class="refAuthor">B. Wu</span>, <span class="refTitle">"A Common YANG Data Model for Attachment Circuits"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-opsawg-teas-common-ac-11</span>, <time datetime="2024-05-14" class="refDate">14 May 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-teas-common-ac-11">https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-teas-common-ac-11</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC2119">[RFC2119]</dt>
         <dd>
@@ -5632,15 +5762,15 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 <dd class="break"></dd>
 <dt id="I-D.ietf-netmod-rfc8407bis">[I-D.ietf-netmod-rfc8407bis]</dt>
         <dd>
-<span class="refAuthor">Bierman, A.</span>, <span class="refAuthor">Boucadair, M.</span>, and <span class="refAuthor">Q. Wu</span>, <span class="refTitle">"Guidelines for Authors and Reviewers of Documents Containing YANG Data Models"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-netmod-rfc8407bis-11</span>, <time datetime="2024-04-18" class="refDate">18 April 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-netmod-rfc8407bis-11">https://datatracker.ietf.org/doc/html/draft-ietf-netmod-rfc8407bis-11</a>&gt;</span>. </dd>
+<span class="refAuthor">Bierman, A.</span>, <span class="refAuthor">Boucadair, M.</span>, and <span class="refAuthor">Q. Wu</span>, <span class="refTitle">"Guidelines for Authors and Reviewers of Documents Containing YANG Data Models"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-netmod-rfc8407bis-12</span>, <time datetime="2024-06-21" class="refDate">21 June 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-netmod-rfc8407bis-12">https://datatracker.ietf.org/doc/html/draft-ietf-netmod-rfc8407bis-12</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="I-D.ietf-opsawg-ac-lxsm-lxnm-glue">[I-D.ietf-opsawg-ac-lxsm-lxnm-glue]</dt>
         <dd>
-<span class="refAuthor">Boucadair, M.</span>, <span class="refAuthor">Roberts, R.</span>, <span class="refAuthor">Barguil, S.</span>, and <span class="refAuthor">O. G. de Dios</span>, <span class="refTitle">"A YANG Data Model for Augmenting VPN Service and Network Models with Attachment Circuits"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-opsawg-ac-lxsm-lxnm-glue-09</span>, <time datetime="2024-04-11" class="refDate">11 April 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-ac-lxsm-lxnm-glue-09">https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-ac-lxsm-lxnm-glue-09</a>&gt;</span>. </dd>
+<span class="refAuthor">Boucadair, M.</span>, <span class="refAuthor">Roberts, R.</span>, <span class="refAuthor">Barguil, S.</span>, and <span class="refAuthor">O. G. de Dios</span>, <span class="refTitle">"A YANG Data Model for Augmenting VPN Service and Network Models with Attachment Circuits"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-opsawg-ac-lxsm-lxnm-glue-10</span>, <time datetime="2024-06-10" class="refDate">10 June 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-ac-lxsm-lxnm-glue-10">https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-ac-lxsm-lxnm-glue-10</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="I-D.ietf-opsawg-ntw-attachment-circuit">[I-D.ietf-opsawg-ntw-attachment-circuit]</dt>
         <dd>
-<span class="refAuthor">Boucadair, M.</span>, <span class="refAuthor">Roberts, R.</span>, <span class="refAuthor">de Dios, O. G.</span>, <span class="refAuthor">Barguil, S.</span>, and <span class="refAuthor">B. Wu</span>, <span class="refTitle">"A Network YANG Data Model for Attachment Circuits"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-opsawg-ntw-attachment-circuit-09</span>, <time datetime="2024-04-19" class="refDate">19 April 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-ntw-attachment-circuit-09">https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-ntw-attachment-circuit-09</a>&gt;</span>. </dd>
+<span class="refAuthor">Boucadair, M.</span>, <span class="refAuthor">Roberts, R.</span>, <span class="refAuthor">de Dios, O. G.</span>, <span class="refAuthor">Barguil, S.</span>, and <span class="refAuthor">B. Wu</span>, <span class="refTitle">"A Network YANG Data Model for Attachment Circuits"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-opsawg-ntw-attachment-circuit-11</span>, <time datetime="2024-05-15" class="refDate">15 May 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-ntw-attachment-circuit-11">https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-ntw-attachment-circuit-11</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="I-D.ietf-teas-ietf-network-slice-nbi-yang">[I-D.ietf-teas-ietf-network-slice-nbi-yang]</dt>
         <dd>
@@ -5648,7 +5778,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 <dd class="break"></dd>
 <dt id="I-D.ramseyer-grow-peering-api">[I-D.ramseyer-grow-peering-api]</dt>
         <dd>
-<span class="refAuthor">Aguado, C.</span>, <span class="refAuthor">Griswold, M.</span>, <span class="refAuthor">Ramseyer, J.</span>, <span class="refAuthor">Servin, A. L.</span>, and <span class="refAuthor">T. Strickx</span>, <span class="refTitle">"Peering API"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ramseyer-grow-peering-api-04</span>, <time datetime="2024-03-16" class="refDate">16 March 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ramseyer-grow-peering-api-04">https://datatracker.ietf.org/doc/html/draft-ramseyer-grow-peering-api-04</a>&gt;</span>. </dd>
+<span class="refAuthor">Aguado, C.</span>, <span class="refAuthor">Griswold, M.</span>, <span class="refAuthor">Ramseyer, J.</span>, <span class="refAuthor">Servin, A. L.</span>, and <span class="refAuthor">T. Strickx</span>, <span class="refTitle">"Peering API"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ramseyer-grow-peering-api-05</span>, <time datetime="2024-05-30" class="refDate">30 May 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ramseyer-grow-peering-api-05">https://datatracker.ietf.org/doc/html/draft-ramseyer-grow-peering-api-05</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="IEEE802.1AB">[IEEE802.1AB]</dt>
         <dd>
@@ -6215,7 +6345,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
       {
         "name": "ac1",
         "description": "a first ac with a same peer node",
-        "ac-group-profile": ["simple-node-profile"],
+        "ac-group-profile-ref": ["simple-node-profile"],
         "l2-connection": {
           "encapsulation": {
             "type": "ietf-vpn-common:dot1q",
@@ -6228,7 +6358,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
       {
         "name": "ac2",
         "description": "a second ac with a same peer node",
-        "ac-group-profile": ["simple-node-profile"],
+        "ac-group-profile-ref": ["simple-node-profile"],
         "l2-connection": {
           "encapsulation": {
             "type": "ietf-vpn-common:dot1q",
@@ -6263,7 +6393,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
       {
         "name": "ac3",
         "description": "a third AC with a same peer node",
-        "ac-group-profile": [
+        "ac-group-profile-ref": [
           "simple-node-profile"
         ],
         "l2-connection": {
@@ -6459,7 +6589,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
       {
         "name": "ac1",
         "description": "First site",
-        "ac-group-profile": [
+        "ac-group-profile-ref": [
           "simple-profile"
         ],
         "l2-connection": {
@@ -6469,7 +6599,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
       {
         "name": "ac2",
         "description": "Second Site",
-        "ac-group-profile": [
+        "ac-group-profile-ref": [
           "simple-profile"
         ],
         "l2-connection": {
@@ -6479,7 +6609,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
       {
         "name": "ac3",
         "description": "Third site",
-        "ac-group-profile": [
+        "ac-group-profile-ref": [
           "simple-profile"
         ],
         "l2-connection": {
@@ -6489,7 +6619,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
       {
         "name": "ac4",
         "description": "Another site",
-        "ac-group-profile": [
+        "ac-group-profile-ref": [
           "simple-profile"
         ],
         "l2-connection": {
@@ -8003,179 +8133,61 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 <figure id="figure-58">
             <div id="appendix-A.11.2-2.1">
               <div class="alignLeft art-svg artwork" id="appendix-A.11.2-2.1.1">
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="368" width="552" viewBox="0 0 552 368" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
-                  <path d="M 376,48 L 432,48" fill="none" stroke="black"></path>
-                  <path d="M 128,80 L 312,80" fill="none" stroke="black"></path>
-                  <path d="M 376,80 L 432,80" fill="none" stroke="black"></path>
-                  <path d="M 376,96 L 432,96" fill="none" stroke="black"></path>
-                  <path d="M 464,96 L 520,96" fill="none" stroke="black"></path>
-                  <path d="M 376,128 L 432,128" fill="none" stroke="black"></path>
-                  <path d="M 464,128 L 520,128" fill="none" stroke="black"></path>
-                  <path d="M 376,144 L 432,144" fill="none" stroke="black"></path>
-                  <path d="M 464,144 L 520,144" fill="none" stroke="black"></path>
-                  <path d="M 128,160 L 312,160" fill="none" stroke="black"></path>
-                  <path d="M 376,176 L 432,176" fill="none" stroke="black"></path>
-                  <path d="M 464,176 L 520,176" fill="none" stroke="black"></path>
-                  <path d="M 376,192 L 432,192" fill="none" stroke="black"></path>
-                  <path d="M 376,224 L 432,224" fill="none" stroke="black"></path>
-                  <path d="M 128,304 L 312,304" fill="none" stroke="black"></path>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="384" width="544" viewBox="0 0 544 384" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
+                  <path d="M 8,48 L 8,192" fill="none" stroke="black"></path>
+                  <path d="M 8,272 L 8,336" fill="none" stroke="black"></path>
+                  <path d="M 112,48 L 112,192" fill="none" stroke="black"></path>
+                  <path d="M 112,272 L 112,336" fill="none" stroke="black"></path>
+                  <path d="M 312,32 L 312,352" fill="none" stroke="black"></path>
+                  <path d="M 360,48 L 360,224" fill="none" stroke="black"></path>
+                  <path d="M 432,48 L 432,224" fill="none" stroke="black"></path>
+                  <path d="M 448,96 L 448,176" fill="none" stroke="black"></path>
+                  <path d="M 520,96 L 520,176" fill="none" stroke="black"></path>
+                  <path d="M 536,32 L 536,352" fill="none" stroke="black"></path>
+                  <path d="M 312,32 L 536,32" fill="none" stroke="black"></path>
+                  <path d="M 8,48 L 112,48" fill="none" stroke="black"></path>
+                  <path d="M 360,48 L 432,48" fill="none" stroke="black"></path>
+                  <path d="M 120,80 L 304,80" fill="none" stroke="black"></path>
+                  <path d="M 360,80 L 432,80" fill="none" stroke="black"></path>
+                  <path d="M 360,96 L 432,96" fill="none" stroke="black"></path>
+                  <path d="M 448,96 L 520,96" fill="none" stroke="black"></path>
+                  <path d="M 8,112 L 112,112" fill="none" stroke="black"></path>
+                  <path d="M 8,128 L 112,128" fill="none" stroke="black"></path>
+                  <path d="M 360,128 L 432,128" fill="none" stroke="black"></path>
+                  <path d="M 448,128 L 520,128" fill="none" stroke="black"></path>
+                  <path d="M 360,144 L 432,144" fill="none" stroke="black"></path>
+                  <path d="M 448,144 L 520,144" fill="none" stroke="black"></path>
+                  <path d="M 120,160 L 304,160" fill="none" stroke="black"></path>
+                  <path d="M 360,176 L 432,176" fill="none" stroke="black"></path>
+                  <path d="M 448,176 L 520,176" fill="none" stroke="black"></path>
+                  <path d="M 8,192 L 112,192" fill="none" stroke="black"></path>
+                  <path d="M 360,192 L 432,192" fill="none" stroke="black"></path>
+                  <path d="M 360,224 L 432,224" fill="none" stroke="black"></path>
+                  <path d="M 8,272 L 112,272" fill="none" stroke="black"></path>
+                  <path d="M 120,304 L 304,304" fill="none" stroke="black"></path>
+                  <path d="M 8,336 L 112,336" fill="none" stroke="black"></path>
+                  <path d="M 312,352 L 536,352" fill="none" stroke="black"></path>
                   <g class="text">
-                    <text x="320" y="36">┌</text>
-                    <text x="336" y="36">-</text>
-                    <text x="352" y="36">-</text>
-                    <text x="368" y="36">-</text>
-                    <text x="384" y="36">-</text>
-                    <text x="400" y="36">-</text>
-                    <text x="416" y="36">-</text>
-                    <text x="432" y="36">-</text>
-                    <text x="448" y="36">-</text>
-                    <text x="464" y="36">-</text>
-                    <text x="480" y="36">-</text>
-                    <text x="496" y="36">-</text>
-                    <text x="512" y="36">-</text>
-                    <text x="528" y="36">-</text>
-                    <text x="544" y="36">┐</text>
-                    <text x="16" y="52">┌</text>
-                    <text x="32" y="52">-</text>
-                    <text x="48" y="52">-</text>
-                    <text x="64" y="52">-</text>
-                    <text x="80" y="52">-</text>
-                    <text x="96" y="52">-</text>
-                    <text x="112" y="52">-</text>
-                    <text x="204" y="52">bearer</text>
-                    <text x="240" y="52">=</text>
-                    <text x="368" y="52">┌</text>
-                    <text x="440" y="52">┐</text>
-                    <text x="120" y="68">|</text>
-                    <text x="216" y="68">compute-01-nic1</text>
-                    <text x="320" y="68">|</text>
-                    <text x="368" y="68">|</text>
-                    <text x="440" y="68">|</text>
-                    <text x="544" y="68">|</text>
-                    <text x="16" y="84">|</text>
-                    <text x="68" y="84">compute-01</text>
-                    <text x="368" y="84">└</text>
-                    <text x="440" y="84">┘</text>
-                    <text x="120" y="100">|</text>
-                    <text x="320" y="100">|</text>
-                    <text x="368" y="100">┌</text>
-                    <text x="440" y="100">┐</text>
-                    <text x="456" y="100">┌</text>
-                    <text x="528" y="100">┐</text>
-                    <text x="544" y="100">|</text>
-                    <text x="16" y="116">└</text>
-                    <text x="32" y="116">-</text>
-                    <text x="48" y="116">-</text>
-                    <text x="64" y="116">-</text>
-                    <text x="80" y="116">-</text>
-                    <text x="96" y="116">-</text>
-                    <text x="112" y="116">-</text>
-                    <text x="368" y="116">|</text>
-                    <text x="440" y="116">|</text>
-                    <text x="456" y="116">|</text>
-                    <text x="528" y="116">|</text>
-                    <text x="16" y="132">┌</text>
-                    <text x="32" y="132">-</text>
-                    <text x="48" y="132">-</text>
-                    <text x="64" y="132">-</text>
-                    <text x="80" y="132">-</text>
-                    <text x="96" y="132">-</text>
-                    <text x="112" y="132">-</text>
-                    <text x="204" y="132">bearer</text>
-                    <text x="240" y="132">=</text>
-                    <text x="320" y="132">|</text>
-                    <text x="368" y="132">└</text>
-                    <text x="440" y="132">┘</text>
-                    <text x="456" y="132">└</text>
-                    <text x="528" y="132">┘</text>
-                    <text x="544" y="132">|</text>
-                    <text x="120" y="148">|</text>
-                    <text x="216" y="148">compute-02-nic2</text>
-                    <text x="368" y="148">┌</text>
-                    <text x="440" y="148">┐</text>
-                    <text x="456" y="148">┌</text>
-                    <text x="528" y="148">┐</text>
-                    <text x="16" y="164">|</text>
-                    <text x="68" y="164">compute-02</text>
-                    <text x="320" y="164">|</text>
-                    <text x="368" y="164">|</text>
-                    <text x="440" y="164">|</text>
-                    <text x="456" y="164">|</text>
-                    <text x="528" y="164">|</text>
-                    <text x="544" y="164">|</text>
-                    <text x="120" y="180">|</text>
-                    <text x="368" y="180">└</text>
-                    <text x="440" y="180">┘</text>
-                    <text x="456" y="180">└</text>
-                    <text x="528" y="180">┘</text>
-                    <text x="16" y="196">└</text>
-                    <text x="32" y="196">-</text>
-                    <text x="48" y="196">-</text>
-                    <text x="64" y="196">-</text>
-                    <text x="80" y="196">-</text>
-                    <text x="96" y="196">-</text>
-                    <text x="112" y="196">-</text>
-                    <text x="320" y="196">|</text>
-                    <text x="368" y="196">┌</text>
-                    <text x="440" y="196">┐</text>
-                    <text x="544" y="196">|</text>
-                    <text x="368" y="212">|</text>
-                    <text x="440" y="212">|</text>
-                    <text x="216" y="228">[...]</text>
-                    <text x="320" y="228">|</text>
-                    <text x="368" y="228">└</text>
-                    <text x="440" y="228">┘</text>
-                    <text x="544" y="228">|</text>
-                    <text x="320" y="260">|</text>
-                    <text x="544" y="260">|</text>
-                    <text x="8" y="276">┌</text>
-                    <text x="24" y="276">-</text>
-                    <text x="40" y="276">-</text>
-                    <text x="56" y="276">-</text>
-                    <text x="72" y="276">-</text>
-                    <text x="88" y="276">-</text>
-                    <text x="104" y="276">-</text>
-                    <text x="120" y="276">┐</text>
-                    <text x="204" y="276">bearer</text>
-                    <text x="240" y="276">=</text>
-                    <text x="396" y="276">Provider</text>
-                    <text x="464" y="276">Network</text>
-                    <text x="216" y="292">compute-10-nic0</text>
-                    <text x="320" y="292">|</text>
-                    <text x="436" y="292">Infrastructure</text>
-                    <text x="544" y="292">|</text>
-                    <text x="8" y="308">|</text>
+                    <text x="196" y="52">bearer</text>
+                    <text x="232" y="52">=</text>
+                    <text x="208" y="68">compute-01-nic1</text>
+                    <text x="60" y="84">compute-01</text>
+                    <text x="196" y="132">bearer</text>
+                    <text x="232" y="132">=</text>
+                    <text x="208" y="148">compute-02-nic2</text>
+                    <text x="60" y="164">compute-02</text>
+                    <text x="208" y="228">[...]</text>
+                    <text x="196" y="276">bearer</text>
+                    <text x="232" y="276">=</text>
+                    <text x="388" y="276">Provider</text>
+                    <text x="456" y="276">Network</text>
+                    <text x="208" y="292">compute-10-nic0</text>
+                    <text x="428" y="292">Infrastructure</text>
                     <text x="60" y="308">compute-10</text>
-                    <text x="120" y="308">|</text>
-                    <text x="368" y="308">(IP</text>
-                    <text x="416" y="308">Fabric,</text>
-                    <text x="484" y="308">Gateways</text>
-                    <text x="320" y="324">|</text>
-                    <text x="440" y="324">etc.)</text>
-                    <text x="544" y="324">|</text>
-                    <text x="8" y="340">└</text>
-                    <text x="24" y="340">-</text>
-                    <text x="40" y="340">-</text>
-                    <text x="56" y="340">-</text>
-                    <text x="72" y="340">-</text>
-                    <text x="88" y="340">-</text>
-                    <text x="104" y="340">-</text>
-                    <text x="120" y="340">┘</text>
-                    <text x="320" y="356">└</text>
-                    <text x="336" y="356">-</text>
-                    <text x="352" y="356">-</text>
-                    <text x="368" y="356">-</text>
-                    <text x="384" y="356">-</text>
-                    <text x="400" y="356">-</text>
-                    <text x="416" y="356">-</text>
-                    <text x="432" y="356">-</text>
-                    <text x="448" y="356">-</text>
-                    <text x="464" y="356">-</text>
-                    <text x="480" y="356">-</text>
-                    <text x="496" y="356">-</text>
-                    <text x="512" y="356">-</text>
-                    <text x="528" y="356">-</text>
-                    <text x="544" y="356">┘</text>
+                    <text x="360" y="308">(IP</text>
+                    <text x="408" y="308">Fabric,</text>
+                    <text x="476" y="308">Gateways</text>
+                    <text x="432" y="324">etc.)</text>
                   </g>
                 </svg><a href="#appendix-A.11.2-2.1.1" class="pilcrow">¶</a>
 </div>
@@ -8585,12 +8597,12 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
                   {
                     "id": "gw2-cp1",
                     "remote-address": "192.0.2.101",
-                    "peer-group": "peer-nf-cp-vlan-100-gw1"
+                    "peer-group": "peer-nf-cp-vlan-100-gw2"
                   },
                   {
                     "id": "gw2-cp2",
                     "remote-address": "192.0.2.102",
-                    "peer-group": "peer-nf-cp-vlan-100-gw1"
+                    "peer-group": "peer-nf-cp-vlan-100-gw2"
                   }
                 ]
               }
@@ -8601,19 +8613,43 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
           "bfd": {
             "session": [
               {
+                "id": "bfd-gw1-nf-up1",
+                "local-address": "192.0.2.252",
                 "remote-address": "192.0.2.1",
                 "profile": "single-hop-bfd-user-plane"
               },
               {
+                "id": "bfd-gw2-nf-up1",
+                "local-address": "192.0.2.253",
+                "remote-address": "192.0.2.1",
+                "profile": "single-hop-bfd-user-plane"
+              },
+              {
+                "id": "bfd-gw1-nf-up2",
+                "local-address": "192.0.2.252",
                 "remote-address": "192.0.2.2",
                 "profile": "single-hop-bfd-user-plane"
               },
               {
-                "_comment": "192.0.2.3-192.0.2.9 sessions are not \
+                "id": "bfd-gw2-nf-up2",
+                "local-address": "192.0.2.253",
+                "remote-address": "192.0.2.2",
+                "profile": "single-hop-bfd-user-plane"
+              },
+              {
+                "_comment": "192.0.2.3-192.0.2.7 sessions are not \
                                                            displayed"
               },
               {
-                "remote-address": "192.0.2.10",
+                "id": "bfd-gw1-nf-up8",
+                "local-address": "192.0.2.252",
+                "remote-address": "192.0.2.8",
+                "profile": "single-hop-bfd-user-plane"
+              },
+              {
+                "id": "bfd-gw2-nf-up8",
+                "local-address": "192.0.2.253",
+                "remote-address": "192.0.2.8",
                 "profile": "single-hop-bfd-user-plane"
               }
             ]
@@ -8635,18 +8671,16 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
       },
       {
         "name": "ac-nf-up-01-vlan-100",
-        "description": "attachment to Network Function NF-up \
-                                             instance 1 in vlan 100",
-        "ac-parent-ref": "parent-vlan-100",
+        "description": "attachment to NF-up instance 1 in vlan 100",
+        "ac-parent-ref": ["parent-vlan-100"],
         "l2-connection": {
           "bearer-reference": "compute-01-nic1"
         }
       },
       {
         "name": "ac-nf-up-02-vlan-100",
-        "description": "attachment to Network Function NF-up \
-                                             instance 2 in vlan 100",
-        "ac-parent-ref": "parent-vlan-100",
+        "description": "attachment to NF-up instance 2 in vlan 100",
+        "ac-parent-ref": ["parent-vlan-100"],
         "l2-connection": {
           "bearer-reference": "compute-02-nic2"
         }
@@ -8657,18 +8691,16 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
       },
       {
         "name": "ac-nf-up-08-vlan-100",
-        "description": "attachment to Network Function NF-up \
-                                            instance 10 in vlan 100",
-        "ac-parent-ref": "parent-vlan-100",
+        "description": "attachment to NF-up instance 10 in vlan 100",
+        "ac-parent-ref": ["parent-vlan-100"],
         "l2-connection": {
           "bearer-reference": "compute-08-nic1"
         }
       },
       {
         "name": "ac-nf-cp-01-vlan-100",
-        "description": "attachment to Network Function NF-CP \
-                                             instance 1 in vlan 100",
-        "ac-parent-ref": "parent-vlan-100",
+        "description": "attachment to NF-CP instance 1 in vlan 100",
+        "ac-parent-ref": ["parent-vlan-100"],
         "l2-connection": {
           "bearer-reference": "compute-09-nic0"
         },
@@ -8686,9 +8718,8 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
       },
       {
         "name": "ac-nf-cp-02-vlan-100",
-        "description": "attachment to Network Function NF-CP \
-                                             instance 2 in vlan 100",
-        "ac-parent-ref": "parent-vlan-100",
+        "description": "attachment to NF-CP instance 2 in vlan 100",
+        "ac-parent-ref": ["parent-vlan-100"],
         "l2-connection": {
           "bearer-reference": "compute-10-nic0"
         },
@@ -8706,9 +8737,8 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
       },
       {
         "name": "ac-nf-up-1-vlan-200",
-        "description": "attachment to Network Function NF-up \
-                                             instance 1 in vlan 200",
-        "ac-parent-ref": "parent-vlan-200",
+        "description": "attachment to NF-up instance 1 in vlan 200",
+        "ac-parent-ref": ["parent-vlan-200"],
         "l2-connection": {
           "bearer-reference": "compute-01-nic1"
         }
@@ -8719,9 +8749,8 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
       },
       {
         "name": "ac-nf-cp-2-vlan-200",
-        "description": "attachment to Network Function NF-CP \
-                                             instance 2 in vlan 200",
-        "ac-parent-ref": "parent-vlan-200",
+        "description": "attachment to NF-CP instance 2 in vlan 200",
+        "ac-parent-ref": ["parent-vlan-200"],
         "l2-connection": {
           "bearer-reference": "compute-10-nic0"
         }
@@ -8732,7 +8761,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 </pre>
 </div>
 <figcaption><a href="#figure-60" class="selfRef">Figure 60</a>:
-<a href="#name-message-body-for-the-config" class="selfRef">Message Body for the Configuration of The NF ACs</a>
+<a href="#name-message-body-for-the-config" class="selfRef">Message Body for the Configuration of the NF ACs</a>
             </figcaption></figure>
 </div>
 </section>
@@ -8835,7 +8864,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
                     <text x="208" y="388">-</text>
                     <text x="224" y="388">&gt;</text>
                     <text x="412" y="388">compute-08</text>
-                    <text x="44" y="404">ng-up7</text>
+                    <text x="44" y="404">nf-up7</text>
                     <text x="188" y="404">vlan-100</text>
                     <text x="400" y="404">created</text>
                     <text x="448" y="404">for</text>
@@ -8855,6 +8884,247 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 </div>
 </section>
 </div>
+<div id="sec-bfd-static">
+<section id="appendix-A.12">
+        <h3 id="name-bfd-and-static-addressing">
+<a href="#appendix-A.12" class="section-number selfRef">A.12. </a><a href="#name-bfd-and-static-addressing" class="section-name selfRef">BFD and Static Addressing</a>
+        </h3>
+<p id="appendix-A.12-1"><a href="#ex-bfd-static" class="auto internal xref">Figure 62</a> shows a topology example of a set of CEs connected to a provider network via dedicated bearers. Each of these CE maintains two BFD sessions with the provider network.<a href="#appendix-A.12-1" class="pilcrow">¶</a></p>
+<span id="name-example-of-static-addressin"></span><div id="ex-bfd-static">
+<figure id="figure-62">
+          <div id="appendix-A.12-2.1">
+            <div class="alignLeft art-svg artwork" id="appendix-A.12-2.1.1">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="368" width="464" viewBox="0 0 464 368" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
+                <path d="M 8,48 L 8,80" fill="none" stroke="black"></path>
+                <path d="M 8,112 L 8,144" fill="none" stroke="black"></path>
+                <path d="M 8,208 L 8,240" fill="none" stroke="black"></path>
+                <path d="M 8,320 L 8,352" fill="none" stroke="black"></path>
+                <path d="M 80,48 L 80,80" fill="none" stroke="black"></path>
+                <path d="M 80,112 L 80,144" fill="none" stroke="black"></path>
+                <path d="M 80,208 L 80,240" fill="none" stroke="black"></path>
+                <path d="M 80,320 L 80,352" fill="none" stroke="black"></path>
+                <path d="M 184,32 L 184,272" fill="none" stroke="black"></path>
+                <path d="M 208,96 L 208,128" fill="none" stroke="black"></path>
+                <path d="M 208,160 L 208,176" fill="none" stroke="black"></path>
+                <path d="M 240,64 L 240,96" fill="none" stroke="black"></path>
+                <path d="M 248,176 L 248,224" fill="none" stroke="black"></path>
+                <path d="M 264,184 L 264,208" fill="none" stroke="black"></path>
+                <path d="M 280,96 L 280,128" fill="none" stroke="black"></path>
+                <path d="M 280,160 L 280,176" fill="none" stroke="black"></path>
+                <path d="M 312,96 L 312,144" fill="none" stroke="black"></path>
+                <path d="M 312,176 L 312,224" fill="none" stroke="black"></path>
+                <path d="M 400,96 L 400,144" fill="none" stroke="black"></path>
+                <path d="M 400,176 L 400,224" fill="none" stroke="black"></path>
+                <path d="M 416,32 L 416,272" fill="none" stroke="black"></path>
+                <path d="M 184,32 L 416,32" fill="none" stroke="black"></path>
+                <path d="M 8,48 L 80,48" fill="none" stroke="black"></path>
+                <path d="M 88,64 L 176,64" fill="none" stroke="black"></path>
+                <path d="M 192,64 L 240,64" fill="none" stroke="black"></path>
+                <path d="M 8,80 L 80,80" fill="none" stroke="black"></path>
+                <path d="M 208,96 L 280,96" fill="none" stroke="black"></path>
+                <path d="M 312,96 L 400,96" fill="none" stroke="black"></path>
+                <path d="M 8,112 L 80,112" fill="none" stroke="black"></path>
+                <path d="M 288,112 L 304,112" fill="none" stroke="black"></path>
+                <path d="M 88,128 L 176,128" fill="none" stroke="black"></path>
+                <path d="M 8,144 L 80,144" fill="none" stroke="black"></path>
+                <path d="M 312,144 L 400,144" fill="none" stroke="black"></path>
+                <path d="M 208,176 L 280,176" fill="none" stroke="black"></path>
+                <path d="M 312,176 L 400,176" fill="none" stroke="black"></path>
+                <path d="M 8,208 L 80,208" fill="none" stroke="black"></path>
+                <path d="M 264,208 L 312,208" fill="none" stroke="black"></path>
+                <path d="M 88,224 L 176,224" fill="none" stroke="black"></path>
+                <path d="M 192,224 L 248,224" fill="none" stroke="black"></path>
+                <path d="M 312,224 L 400,224" fill="none" stroke="black"></path>
+                <path d="M 8,240 L 80,240" fill="none" stroke="black"></path>
+                <path d="M 184,272 L 416,272" fill="none" stroke="black"></path>
+                <path d="M 8,320 L 80,320" fill="none" stroke="black"></path>
+                <path d="M 120,336 L 144,336" fill="none" stroke="black"></path>
+                <path d="M 176,336 L 200,336" fill="none" stroke="black"></path>
+                <path d="M 8,352 L 80,352" fill="none" stroke="black"></path>
+                <path d="M 120,352 L 144,352" fill="none" stroke="black"></path>
+                <path d="M 176,352 L 200,352" fill="none" stroke="black"></path>
+                <polygon class="arrowhead" points="208,352 196,346.4 196,357.6" fill="black" transform="rotate(0,200,352)"></polygon>
+                <polygon class="arrowhead" points="208,336 196,330.4 196,341.6" fill="black" transform="rotate(0,200,336)"></polygon>
+                <polygon class="arrowhead" points="128,352 116,346.4 116,357.6" fill="black" transform="rotate(180,120,352)"></polygon>
+                <polygon class="arrowhead" points="128,336 116,330.4 116,341.6" fill="black" transform="rotate(180,120,336)"></polygon>
+                <g class="text">
+                  <text x="100" y="52">.1</text>
+                  <text x="48" y="68">CE1</text>
+                  <text x="356" y="84">.252</text>
+                  <text x="100" y="116">.2</text>
+                  <text x="248" y="116">LAN</text>
+                  <text x="352" y="116">GW1</text>
+                  <text x="48" y="132">CE2</text>
+                  <text x="196" y="132">--</text>
+                  <text x="352" y="132">[bfd]</text>
+                  <text x="244" y="148">192.0.2/24</text>
+                  <text x="364" y="164">.253</text>
+                  <text x="16" y="180">...</text>
+                  <text x="352" y="196">GW2</text>
+                  <text x="104" y="212">.10</text>
+                  <text x="352" y="212">[bfd]</text>
+                  <text x="52" y="228">CE10</text>
+                  <text x="260" y="260">Provider</text>
+                  <text x="328" y="260">Network</text>
+                  <text x="20" y="308">Each</text>
+                  <text x="52" y="308">CE</text>
+                  <text x="80" y="308">has</text>
+                  <text x="104" y="308">a</text>
+                  <text x="128" y="308">BFD</text>
+                  <text x="176" y="308">session</text>
+                  <text x="220" y="308">to</text>
+                  <text x="252" y="308">each</text>
+                  <text x="304" y="308">gateway</text>
+                  <text x="352" y="308">for</text>
+                  <text x="416" y="308">redundancy:</text>
+                  <text x="48" y="340">CEx</text>
+                  <text x="100" y="340">.x</text>
+                  <text x="160" y="340">bfd</text>
+                  <text x="228" y="340">.252</text>
+                  <text x="160" y="356">bfd</text>
+                  <text x="228" y="356">.253</text>
+                </g>
+              </svg><a href="#appendix-A.12-2.1.1" class="pilcrow">¶</a>
+</div>
+</div>
+<figcaption><a href="#figure-62" class="selfRef">Figure 62</a>:
+<a href="#name-example-of-static-addressin" class="selfRef">Example of Static Addressing with BFD</a>
+          </figcaption></figure>
+</div>
+<p id="appendix-A.12-3"><a href="#ex-json-bfd-static" class="auto internal xref">Figure 63</a> shows the message body of the ACaaS configuration to enable the target architecture shown in <a href="#ex-bfd-static" class="auto internal xref">Figure 62</a>. This example uses an AC group profile to factorize common data between all involved ACs. It also uses child ACs that inherit the properties of two parent ACs; each terminating in a separate gateway in the provider network.<a href="#appendix-A.12-3" class="pilcrow">¶</a></p>
+<span id="name-message-body-for-the-configu"></span><div id="ex-json-bfd-static">
+<figure id="figure-63">
+          <div class="breakable lang-json sourcecode" id="appendix-A.12-4.1">
+<pre>
+=============== NOTE: '\' line wrapping per RFC 8792 ================
+
+{
+  "ietf-ac-svc:specific-provisioning-profiles": {
+    "valid-provider-identifiers": {
+      "failure-detection-profile-identifier": [
+        {
+          "id": "single-hop-bfd"
+        }
+      ]
+    }
+  },
+  "ietf-ac-svc:attachment-circuits": {
+    "ac-group-profile": [
+      {
+        "name": "profile-vlan-100",
+        "l2-connection": {
+          "encapsulation": {
+            "type": "ietf-vpn-common:dot1q",
+            "dot1q": {
+              "cvlan-id": 100
+            }
+          }
+        },
+        "ip-connection": {
+          "ipv4": {
+            "virtual-address": "192.0.2.254",
+            "prefix-length": 24,
+            "address": [
+              {
+                "address-id": "ce1",
+                "customer-address": "192.0.2.1",
+                "failure-detection-profile": "single-hop-bfd"
+              },
+              {
+                "address-id": "ce2",
+                "customer-address": "192.0.2.2",
+                "failure-detection-profile": "single-hop-bfd"
+              },
+              {
+                "_comment": "ce3 to ce9 are not displayed"
+              },
+              {
+                "address-id": "ce10",
+                "customer-address": "192.0.2.10",
+                "failure-detection-profile": "single-hop-bfd"
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "ac": [
+      {
+        "name": "parent-vlan-100-gw1",
+        "description": "This parent represents a bridge with Layer \
+                       3 interface (IRB) to connect NFs in VLAN 100",
+        "ac-group-profile-ref": [
+          "profile-vlan-100"
+        ],
+        "ip-connection": {
+          "ipv4": {
+            "local-address": "192.0.2.252",
+            "prefix-length": 24
+          }
+        }
+      },
+      {
+        "name": "parent-vlan-100-gw2",
+        "description": "This parent represents a bridge with Layer \
+                       3 interface (IRB) to connect NFs in VLAN 100",
+        "ac-group-profile-ref": [
+          "profile-vlan-100"
+        ],
+        "ip-connection": {
+          "ipv4": {
+            "local-address": "192.0.2.253",
+            "prefix-length": 24
+          }
+        }
+      },
+      {
+        "name": "ac-ce-01-vlan-100",
+        "description": "attachment to CE1 in VLAN 100",
+        "ac-parent-ref": [
+          "parent-vlan-100-gw1",
+          "parent-vlan-100-gw2"
+        ],
+        "l2-connection": {
+          "bearer-reference": "bearer--1"
+        }
+      },
+      {
+        "name": "ac-ce-02-vlan-100",
+        "description": "attachment to CE2 in VLAN 100",
+        "ac-parent-ref": [
+          "parent-vlan-100-gw1",
+          "parent-vlan-100-gw2"
+        ],
+        "l2-connection": {
+          "bearer-reference": "bearer--2"
+        }
+      },
+      {
+        "_comment": "ac-ce-03-vlan-100 to ac-ce-09-vlan-100 are \
+                                                              hidden"
+      },
+      {
+        "name": "ac-ce-10-vlan-100",
+        "description": "attachment to CE10 in VLAN 100",
+        "ac-parent-ref": [
+          "parent-vlan-100-gw1",
+          "parent-vlan-100-gw2"
+        ],
+        "l2-connection": {
+          "bearer-reference": "bearer--10"
+        }
+      }
+    ]
+  }
+}
+</pre>
+</div>
+<figcaption><a href="#figure-63" class="selfRef">Figure 63</a>:
+<a href="#name-message-body-for-the-configu" class="selfRef">Message Body for the Configuration of CEs with Static Addressing and BFD Protection</a>
+          </figcaption></figure>
+</div>
+</section>
+</div>
 </section>
 </div>
 <div id="acknowledgments">
@@ -8865,6 +9135,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 <p id="appendix-B-1">This document leverages <span>[<a href="#RFC9182" class="cite xref">RFC9182</a>]</span> and <span>[<a href="#RFC9291" class="cite xref">RFC9291</a>]</span>. Thanks to Gyan Mishra for the review.<a href="#appendix-B-1" class="pilcrow">¶</a></p>
 <p id="appendix-B-2">Thanks to Ebben Aries for the YANG Doctors review and for providing <span>[<a href="#Instance-Data" class="cite xref">Instance-Data</a>]</span>.<a href="#appendix-B-2" class="pilcrow">¶</a></p>
 <p id="appendix-B-3">Thanks to Donald Eastlake for the careful rtg-dir reviews.<a href="#appendix-B-3" class="pilcrow">¶</a></p>
+<p id="appendix-B-4">Thanks to Luis Miguel Contreras Murillo for the careful Shepherd review.<a href="#appendix-B-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="contributors">
