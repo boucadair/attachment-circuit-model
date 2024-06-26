@@ -1,3 +1,4 @@
+module: ietf-ac-svc
   +--rw specific-provisioning-profiles
   |  +--rw valid-provider-identifiers
   |     +--rw encryption-profile-identifier* [id]
@@ -174,6 +175,7 @@
      |  |     |  |     +--rw local-as?         inet:as-number
      |  |     |  |     +--rw peer-as?          inet:as-number
      |  |     |  |     +--rw address-family?   identityref
+     |  |     |  |     +--rw role?             identityref
      |  |     |  |     +--rw local-address?    inet:ip-address
      |  |     |  |     +--rw bgp-max-prefix
      |  |     |  |     |  +--rw max-prefix?   uint32
@@ -202,6 +204,7 @@
      |  |     |     +--rw local-as?                    inet:as-number
      |  |     |     +--rw peer-as?                     inet:as-number
      |  |     |     +--rw address-family?              identityref
+     |  |     |     +--rw role?                        identityref
      |  |     |     +--rw bgp-max-prefix
      |  |     |     |  +--rw max-prefix?   uint32
      |  |     |     +--rw authentication
@@ -407,28 +410,30 @@
      +--ro actual-start?            yang:date-and-time
      +--ro actual-stop?             yang:date-and-time
      +--rw ac* [name]
-        +--rw customer-name?       string
-        +--rw description?         string
-        +--rw test-only?           empty
-        +--rw requested-start?     yang:date-and-time
-        +--rw requested-stop?      yang:date-and-time
-        +--ro actual-start?        yang:date-and-time
-        +--ro actual-stop?         yang:date-and-time
-        +--rw role?                identityref
-        +--rw peer-sap-id*         string
-        +--rw ac-group-profile-ref*    ac-group-reference
-        +--rw ac-parent-ref*       ac-svc:attachment-circuit-reference
-        +--ro child-ac-ref*        ac-svc:attachment-circuit-reference
+        +--rw customer-name?          string
+        +--rw description?            string
+        +--rw test-only?              empty
+        +--rw requested-start?        yang:date-and-time
+        +--rw requested-stop?         yang:date-and-time
+        +--ro actual-start?           yang:date-and-time
+        +--ro actual-stop?            yang:date-and-time
+        +--rw role?                   identityref
+        +--rw peer-sap-id*            string
+        +--rw ac-group-profile-ref*   ac-group-reference
+        +--rw ac-parent-ref*
+        |       ac-svc:attachment-circuit-reference
+        +--ro child-ac-ref*
+        |       ac-svc:attachment-circuit-reference
         +--rw group* [group-id]
         |  +--rw group-id      string
         |  +--rw precedence?   identityref
         +--ro service-ref* [service-type service-id]
         |  +--ro service-type    identityref
         |  +--ro service-id      string
-        +--ro server-reference?    string
+        +--ro server-reference?       string
         |       {ac-common:server-assigned-reference}?
-        +--rw name                 string
-        +--rw service-profile*     service-profile-reference
+        +--rw name                    string
+        +--rw service-profile*        service-profile-reference
         +--rw l2-connection {ac-common:layer2-ac}?
         |  +--rw encapsulation
         |  |  +--rw type?              identityref
@@ -586,6 +591,7 @@
         |     |  |     +--rw local-as?         inet:as-number
         |     |  |     +--rw peer-as?          inet:as-number
         |     |  |     +--rw address-family?   identityref
+        |     |  |     +--rw role?             identityref
         |     |  |     +--rw local-address?    inet:ip-address
         |     |  |     +--rw bgp-max-prefix
         |     |  |     |  +--rw max-prefix?   uint32
@@ -614,6 +620,7 @@
         |     |     +--rw local-as?                    inet:as-number
         |     |     +--rw peer-as?                     inet:as-number
         |     |     +--rw address-family?              identityref
+        |     |     +--rw role?                        identityref
         |     |     +--rw bgp-max-prefix
         |     |     |  +--rw max-prefix?   uint32
         |     |     +--rw authentication
