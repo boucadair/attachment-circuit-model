@@ -1379,6 +1379,16 @@ module ietf-ac-common {
          'dual-stack' means that both IPv4 and IPv6 will be
          activated.";
     }
+    leaf role {
+      type identityref {
+        base ac-common:bgp-role;
+      }
+      description
+        "Specifies the BGP role (provider, customer, peer, etc.).";
+      reference
+        "RFC 9234: Route Leak Prevention and Detection Using 
+                   Roles in UPDATE and OPEN Messages, Section 4";
+    }
   }
 
   grouping bgp-peer-group-with-name {
