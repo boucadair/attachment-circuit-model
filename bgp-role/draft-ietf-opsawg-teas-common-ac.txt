@@ -623,11 +623,13 @@ Table of Contents
        +-- local-as?         inet:as-number
        +-- peer-as?          inet:as-number
        +-- address-family?   identityref
+       +-- role?             identityref
      grouping bgp-peer-group-with-name:
        +-- name?             string
        +-- local-as?         inet:as-number
        +-- peer-as?          inet:as-number
        +-- address-family?   identityref
+       +-- role?             identityref
      grouping ospf-basic:
        +-- address-family?   identityref
        +-- area-id           yang:dotted-quad
