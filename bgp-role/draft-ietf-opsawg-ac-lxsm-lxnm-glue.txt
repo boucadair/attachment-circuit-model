@@ -5,12 +5,12 @@
 OPSAWG                                                 M. Boucadair, Ed.
 Internet-Draft                                                    Orange
 Intended status: Standards Track                              R. Roberts
-Expires: 16 November 2024                                        Juniper
+Expires: 28 December 2024                                        Juniper
                                                            S. B. Giraldo
                                                                    Nokia
                                                            O. G. D. Dios
                                                               Telefonica
-                                                             15 May 2024
+                                                            26 June 2024
 
 
   A YANG Data Model for Augmenting VPN Service and Network Models with
@@ -21,11 +21,11 @@ Abstract
 
    The document specifies a module that updates existing service (i.e.,
    the Layer 2 Service Model (L2SM) and the Layer 3 Service Model
-   (L3SM)) and network ((i.e., the Layer 2 Network Model (L2NM) and the
-   Layer 3 Network Model (L3NM))) Virtual Private Network (VPN) modules
-   with the required information to bind specific VPN services to ACs
-   that are created using the Attachment Circuit (AC) service ("ietf-ac-
-   svc") and network ("ietf-ac-ntw") models.
+   (L3SM)) and network (i.e., the Layer 2 Network Model (L2NM) and the
+   Layer 3 Network Model (L3NM)) Virtual Private Network (VPN) modules
+   with the required information to bind specific VPN services to
+   Attachment Circuits (ACs) that are created using the AC service
+   ("ietf-ac-svc") and network ("ietf-ac-ntw") models.
 
 Discussion Venues
 
@@ -54,7 +54,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 16 November 2024.
+   This Internet-Draft will expire on 28 December 2024.
 
 Copyright Notice
 
@@ -73,6 +73,7 @@ Copyright Notice
 Table of Contents
 
    1.  Introduction
+     1.1.  Editorial Note (To be removed by RFC Editor)
    2.  Conventions and Definitions
    3.  Relationship to Other AC Data Models
    4.  Sample Uses of the Data Models
@@ -98,8 +99,8 @@ Table of Contents
    updates existing service and network Virtual Private Network (VPN)
    modules with the required information to bind specific services to
    Attachment Circuits (ACs) that are created using the AC service model
-   [I-D.ietf-opsawg-teas-attachment-circuit], specifically the following
-   modules are augmented:
+   [I-D.ietf-opsawg-teas-attachment-circuit].  Specifically, the
+   following modules are augmented:
 
    *  The Layer 2 Service Model (L2SM) [RFC8466]
 
@@ -119,13 +120,28 @@ Table of Contents
    An example to illustrate the use of the "ietf-ac-glue" model is
    provided in Appendix A.
 
-2.  Conventions and Definitions
+1.1.  Editorial Note (To be removed by RFC Editor)
 
-   The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
-   "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
-   "OPTIONAL" in this document are to be interpreted as described in
-   BCP 14 [RFC2119] [RFC8174] when, and only when, they appear in all
-   capitals, as shown here.
+   Note to the RFC Editor: This section is to be removed prior to
+   publication.
+
+   This document contains placeholder values that need to be replaced
+   with finalized values at the time of publication.  This note
+   summarizes all of the substitutions that are needed.
+
+   Please apply the following replacements:
+
+   *  XXXX --> the assigned RFC number for this I-D
+
+   *  SSSS --> the assigned RFC number for
+      [I-D.ietf-opsawg-teas-attachment-circuit]
+
+   *  NNNN --> the assigned RFC number for
+      [I-D.ietf-opsawg-ntw-attachment-circuit]
+
+   *  2023-11-13 --> the actual date of the publication of this document
+
+2.  Conventions and Definitions
 
    The meanings of the symbols in the YANG tree diagrams are defined in
    [RFC8340].
@@ -146,6 +162,27 @@ Table of Contents
    ref:  Reference
 
    svc:  Service
+
+   The names of data nodes are prefixed using the prefix associated with
+   the corresponding imported YANG module as shown in Table 1:
+
+         +===========+================+=========================+
+         | Prefix    | Module         | Reference               |
+         +===========+================+=========================+
+         | ac-svc    | ietf-ac-svc    | Section 5.2 of RFC SSSS |
+         +-----------+----------------+-------------------------+
+         | ac-ntw    | ietf-ac-ntw    | RFC NNNN                |
+         +-----------+----------------+-------------------------+
+         | l2nm      | ietf-l3vpn-ntw | [RFC9291]               |
+         +-----------+----------------+-------------------------+
+         | l2vpn-svc | ietf-l2vpn-svc | [RFC8466]               |
+         +-----------+----------------+-------------------------+
+         | l3nm      | ietf-l3vpn-ntw | [RFC9182]               |
+         +-----------+----------------+-------------------------+
+         | l3vpn-svc | ietf-l3vpn-svc | [RFC8299]               |
+         +-----------+----------------+-------------------------+
+
+              Table 1: Modules and Their Associated Prefixes
 
 3.  Relationship to Other AC Data Models
 
@@ -185,11 +222,11 @@ Table of Contents
    referenced in the service ACs managed using "ietf-ac-svc".
    Similarly, a bearer managed using "ietf-bearer-svc" may list the set
    of ACs that use that bearer.  In order to ease correlation between an
-   AC service requests and the actual AC provisioned in the network,
+   AC service request and the actual AC provisioned in the network,
    "ietf-ac-ntw" uses the AC references exposed by "ietf-ac-svc".  To
    bind Layer 2 VPN or Layer 3 VPN services with ACs, "ietf-ac-glue"
    augments the LxSM and LxNM with AC service references exposed by
-   "ietf-ac-svc" and AC network references exposed bt "ietf-ac-ntw".
+   "ietf-ac-svc" and AC network references exposed by "ietf-ac-ntw".
 
 4.  Sample Uses of the Data Models
 
@@ -209,34 +246,37 @@ Table of Contents
       service functions [RFC7665]).
 
    *  A network provider may bind a single AC to one or multiple peer
-      SAPs (e.g., CE#1 and CE#2 are tagged as peer SAPs for the same
-      AC).  For example, and as discussed in [RFC4364], multiple CEs can
-      be attached to a PE over the same attachment circuit.  This
-      scenario is typically implemented when the Layer 2 infrastructure
-      between the CE and the network is a multipoint service.
+      SAPs (e.g., CE1 and CE2 are tagged as peer SAPs for the same AC).
+      For example, and as discussed in [RFC4364], multiple CEs can be
+      attached to a PE over the same attachment circuit.  This scenario
+      is typically implemented when the Layer 2 infrastructure between
+      the CE and the network is a multipoint service.
 
    *  A single CE may terminate multiple ACs, which can be associated
-      with the same bearer or distinct bearers.
+      with the same bearer or distinct bearers (e.g., CE4).
 
    *  Customers may request protection schemes in which the ACs
       associated with their endpoints are terminated by the same PE
-      (e.g., CE#3), distinct PEs (e.g., CE#34), etc.  The network
-      provider uses this request to decide where to terminate the AC in
-      the network provider network and also whether to enable specific
+      (e.g., CE3), distinct PEs (e.g., CE4), etc.  The network provider
+      uses this request to decide where to terminate the AC in the
+      service provider network and also whether to enable specific
       capabilities (e.g., Virtual Router Redundancy Protocol (VRRP)).
 
-     .-------.                .--------------------.         .-------.
-     |       +------.         |                    +---AC----+       |
-     | CE#1  |      |         |                    +---AC----+ CE#3  |
-     '-------'      |         |                    |         '-------'
-                    +---AC----+     Network        |
-     .-------.      |         |                    |
-     |       |      |         |                    |         .-------.
-     | CE#2  +------'         |                    +---AC----+ CE#4  |
-     '-------'                |                    |         '----+--'
-                              '-----------+--------'              |
-                                          |                       |
-                                          '-----------AC----------'
+                             .--------------------.
+      .-------.              |                   .--.  (b1)  .------.
+      |       +----.         |                   |  +---AC---+      |
+      |  CE1  |    |         |                   |PE+---AC---+  CE3 |
+      '-------'    |       .--.                  '--'  (b2)  '------'
+                   +---AC--+PE|     Network       |
+      .-------.    |       '--'                  .--.  (b3)  .------.
+      |       |    |         |                   |  +---AC---+      |
+      |  CE2  +----'         |                   |PE+---AC---+  CE4 |
+      '-------'              |          .--.     '--'  (b3)  '---+--'
+                             '----------+PE|------'              |
+                                        '--'                     |
+                                         |                       |
+                                         '-----------AC----------'
+      (bx) = bearer Id x
 
                          Figure 2: Examples of ACs
 
@@ -247,14 +287,21 @@ Table of Contents
    includes the flow put in place for the provisioning of advanced
    network services and how they are bound to an attachment circuit.
    For example, a single attachment circuit may be used to host multiple
-   connectivity services (e.g., Layer 2 VPN, Layer 3 VPN, Network Slice
-   Service).  In order to avoid service interference and redundant
+   connectivity services (e.g., Layer 2 VPN ("ietf-l2vpn-svc"), Layer 3
+   VPN ("ietf-l3vpn-svc"), Network Slice Service ("ietf-network-slice-
+   service")).  In order to avoid service interference and redundant
    information in various locations, a service provider may expose an
    interface to manage ACs network-wide using
-   [I-D.ietf-opsawg-teas-attachment-circuit].  Customers can then
-   request a bearer or an attachment circuit to be put in place, and
-   then refer to that bearer or AC when requesting VPN services that are
-   bound to the bearer or AC.
+   [I-D.ietf-opsawg-teas-attachment-circuit].  Customers can request a
+   bearer ("ietf-bearer-svc") or an attachment circuit ("ietf-ac-svc")
+   to be put in place, and then refer to that bearer or AC when
+   requesting VPN services that are bound to the bearer or AC ("ietf-ac-
+   glue").
+
+   Also, internal references ("ietf-ac-ntw") used within a service
+   provider network to implement ACs can be used by network controllers
+   to glue the L2NM ("ietf-l2vpn-ntw") or the L3NM ("ietf-l3vpn-ntw")
+   services with relevant ACs.
 
    Figure 3 shows the positioning of the AC models in the overall
    service delivery process.
@@ -263,13 +310,15 @@ Table of Contents
                                |   Customer    |
                                '-------+-------'
                Customer Service Model  |
-      l2vpn-svc, l3vpn-svc, ietf-nss, ac-svc, ac-glue, and bearer-svc
+       ietf-l2vpn-svc, ietf-l3vpn-svc, | ietf-network-slice-service,
+            ietf-ac-svc, ietf-ac-glue, | and ietf-bearer-svc
                                .-------+-------.
                                |    Service    |
                                | Orchestration |
                                '-------+-------'
                 Network Model          |
-            l2vpn-ntw, l3vpn-ntw, sap, | ac-glue, and ac-ntw
+       ietf-l2vpn-ntw, ietf-l3vpn-ntw, | ietf-sap-ntw, ietf-ac-glue,
+                and ietf-ac-ntw        |
                                .-------+-------.
                                |   Network     |
                                | Orchestration |
@@ -393,6 +442,9 @@ Table of Contents
 
 6.  The AC Glue ("ietf-ac-glue") YANG Module
 
+   This modules augments the L2SM [RFC8466], the L3SM [RFC8299], the
+   L2NM [RFC9291], and the L3NM [RFC9182].
+
    This module uses references defined in
    [I-D.ietf-opsawg-teas-attachment-circuit] and
    [I-D.ietf-opsawg-ntw-attachment-circuit].
@@ -487,8 +539,8 @@ Table of Contents
        leaf ac-svc-ref {
          type ac-svc:attachment-circuit-reference;
          description
-           "A reference to the AC as exposed at the service that
-            was provisioned using the ACaaS module.";
+           "A reference to the AC as exposed at the service that was
+            provisioned using the ACaaS module.";
        }
      }
 
@@ -498,14 +550,14 @@ Table of Contents
        leaf ac-svc-ref {
          type ac-svc:attachment-circuit-reference;
          description
-           "A reference to the AC as exposed at the service that
-            was provisioned using the ACaaS module.";
+           "A reference to the AC as exposed at the service that was
+            provisioned using the ACaaS module.";
        }
        container ac-ntw-ref {
-         uses ac-ntw:attachment-circuit-reference;
          description
-           "A reference to the AC that  was provisioned
-            using the AC network module.";
+           "A reference to the AC that was provisioned using the AC
+            network module.";
+         uses ac-ntw:attachment-circuit-reference;
        }
      }
 
@@ -515,8 +567,8 @@ Table of Contents
        leaf-list ac-svc-ref {
          type ac-svc:attachment-circuit-reference;
          description
-           "A reference to the AC as exposed at the service that
-            was provisioned using the ACaaS module.";
+           "A reference to the AC as exposed at the service that was
+            provisioned using the ACaaS module.";
        }
      }
 
@@ -526,14 +578,14 @@ Table of Contents
        leaf-list ac-svc-ref {
          type ac-svc:attachment-circuit-reference;
          description
-           "A reference to the AC as exposed at the service that
-            was provisioned using the ACaaS module.";
+           "A reference to the AC as exposed at the service that was
+            provisioned using the ACaaS module.";
        }
        list ac-ntw-ref {
          key "ac-ref";
          description
-           "A reference to the AC that was provisioned
-            using the AC network module.";
+           "A reference to the AC that was provisioned using the AC
+            network module.";
          uses ac-ntw:attachment-circuit-reference;
        }
      }
@@ -542,9 +594,10 @@ Table of Contents
            + "/l2vpn-svc:sites/l2vpn-svc:site"
            + "/l2vpn-svc:site-network-accesses" {
        description
-         "Augments VPN site network access with AC provisioning
-          details.";
-
+         "Augments VPN site network accesses with AC provisioning
+          details. Concretely, it binds a site to a set of
+          attachment circuits with Layer 2 properties that were
+          created using the ACaaS module.";
        uses ac-svc-ref;
      }
 
@@ -554,9 +607,13 @@ Table of Contents
            + "/l2vpn-svc:site-network-access" {
        if-feature "ac-glue";
        description
-         "Augments VPN site network access with a reference to
-           a service AC.";
+         "Augments VPN site network access with AC provisioning
+          details. Concretely, it glues a 'site-network-access'
+          to an attachment circuit with Layer 2 properties that was
+          created using the ACaaS module.
 
+          The ACaaS information takes precedence over any overlapping
+          information that is also provided for a site network access.";
        uses single-ac-svc-ref;
      }
 
@@ -564,8 +621,10 @@ Table of Contents
            + "/l3vpn-svc:sites/l3vpn-svc:site"
            + "/l3vpn-svc:site-network-accesses" {
        description
-         "Augments VPN network access with AC provisioning details.";
-
+         "Augments VPN site network accesses with AC provisioning
+          details. Concretely, it binds a site to a set of attachment
+          circuits with both Layers 2 and 3 properties that were
+          created using the ACaaS module.";
        uses ac-svc-ref;
      }
 
@@ -575,9 +634,13 @@ Table of Contents
            + "/l3vpn-svc:site-network-access" {
        if-feature "ac-glue";
        description
-         "Augments VPN site network access with a reference to
-          a service AC.";
+         "Augments VPN site network access with AC provisioning
+          details. Concretely, it glues a 'site-network-access' to an
+          attachment circuit with both Layer 2 and Layer 3 properties
+          that was created using the ACaaS module.
 
+          The ACaaS information takes precedence over any overlapping
+          information that is also provided for a site network access.";
        uses single-ac-svc-ref;
      }
 
@@ -585,8 +648,12 @@ Table of Contents
            + "/l2nm:vpn-nodes/l2nm:vpn-node"
            + "/l2nm:vpn-network-accesses" {
        description
-         "Augments VPN network access with AC provisioning details.";
-
+         "Augments VPN network accesses with both service and network
+          AC provisioning details. Concretely, it binds a site to (1)
+          a set of attachment circuits with Layer 2 properties that were
+          created using the ACaaS module and (2) a set of attachment
+          circuits with Layer 2 properties that were provisioned using
+          the AC network model.";
        uses ac-svc-ntw-ref;
      }
 
@@ -597,8 +664,15 @@ Table of Contents
        if-feature "ac-glue";
        description
          "Augments VPN network access with service and network
-          references to an AC.";
+          references to an AC. Concretely, it glues a VPN network
+          access to (1) an attachment circuit with Layer 2 properties
+          that was created using the ACaaS module and (2) an attachment
+          circuit with Layer 2 properties that was created using the AC
+          network module.
 
+          The AC service and network information takes precedence over
+          any overlapping information that is also provided for a VPN
+          network access.";
        uses single-ac-svc-ntw-ref;
      }
 
@@ -606,8 +680,12 @@ Table of Contents
            + "/l3nm:vpn-nodes/l3nm:vpn-node"
            + "/l3nm:vpn-network-accesses" {
        description
-         "Augments VPN network access with AC provisioning details.";
-
+         "Augments VPN network accesses with both service and network
+          AC provisioning details. Concretely, it binds a site to (1)
+          a set of attachment circuits with both Layer 2 and Layer 3
+          properties that were created using the ACaaS module and (2)
+          a set of attachment circuits with both Layer 2 and Layer 3
+          properties that were provisioned using the AC network model.";
        uses ac-svc-ntw-ref;
      }
 
@@ -618,8 +696,15 @@ Table of Contents
        if-feature "ac-glue";
        description
          "Augments VPN network access with service and network
-          references to an AC.";
+          references to an AC. Concretely, it glues a VPN network
+          access to (1) an attachment circuit with both Layer 2 and
+          Layer 3 properties that was created using the ACaaS module
+          and (2) an attachment circuit with both Layer 2 and Layer 3
+          properties that was created using the AC network module.
 
+          The AC service and network information takes precedence over
+          any overlapping information that is also provided for a VPN
+          network access.";
        uses single-ac-svc-ntw-ref;
      }
    }
@@ -693,7 +778,7 @@ Table of Contents
       Namespace:  urn:ietf:params:xml:ns:yang:ietf-ac-glue
       Prefix:  ac-glue
       Maintained by IANA?  N
-      Reference:  RFC xxxx
+      Reference:  RFC XXXX
 
 9.  References
 
@@ -703,22 +788,17 @@ Table of Contents
               Boucadair, M., Roberts, R., de Dios, O. G., Barguil, S.,
               and B. Wu, "A Network YANG Data Model for Attachment
               Circuits", Work in Progress, Internet-Draft, draft-ietf-
-              opsawg-ntw-attachment-circuit-10, 14 May 2024,
+              opsawg-ntw-attachment-circuit-11, 15 May 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
-              ntw-attachment-circuit-10>.
+              ntw-attachment-circuit-11>.
 
    [I-D.ietf-opsawg-teas-attachment-circuit]
               Boucadair, M., Roberts, R., de Dios, O. G., Barguil, S.,
               and B. Wu, "YANG Data Models for Bearers and 'Attachment
               Circuits'-as-a-Service (ACaaS)", Work in Progress,
               Internet-Draft, draft-ietf-opsawg-teas-attachment-circuit-
-              12, 14 May 2024, <https://datatracker.ietf.org/doc/html/
-              draft-ietf-opsawg-teas-attachment-circuit-12>.
-
-   [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
-              Requirement Levels", BCP 14, RFC 2119,
-              DOI 10.17487/RFC2119, March 1997,
-              <https://www.rfc-editor.org/rfc/rfc2119>.
+              13, 29 May 2024, <https://datatracker.ietf.org/doc/html/
+              draft-ietf-opsawg-teas-attachment-circuit-13>.
 
    [RFC3688]  Mealling, M., "The IETF XML Registry", BCP 81, RFC 3688,
               DOI 10.17487/RFC3688, January 2004,
@@ -741,10 +821,6 @@ Table of Contents
    [RFC8040]  Bierman, A., Bjorklund, M., and K. Watsen, "RESTCONF
               Protocol", RFC 8040, DOI 10.17487/RFC8040, January 2017,
               <https://www.rfc-editor.org/rfc/rfc8040>.
-
-   [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
-              2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
-              May 2017, <https://www.rfc-editor.org/rfc/rfc8174>.
 
    [RFC8299]  Wu, Q., Ed., Litkowski, S., Tomotaki, L., and K. Ogaki,
               "YANG Data Model for L3VPN Service Delivery", RFC 8299,
@@ -786,9 +862,9 @@ Table of Contents
               Bierman, A., Boucadair, M., and Q. Wu, "Guidelines for
               Authors and Reviewers of Documents Containing YANG Data
               Models", Work in Progress, Internet-Draft, draft-ietf-
-              netmod-rfc8407bis-11, 18 April 2024,
+              netmod-rfc8407bis-12, 21 June 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-netmod-
-              rfc8407bis-11>.
+              rfc8407bis-12>.
 
    [I-D.ietf-opsawg-teas-common-ac]
               Boucadair, M., Roberts, R., de Dios, O. G., Barguil, S.,
@@ -1028,8 +1104,9 @@ A.2.  Network and Service AC References
 
    Let us consider the example depicted in Figure 7 with two customer
    terminating points (CE1 and CE2).  Let us also assume that the
-   bearers to attach these CEs to the provider network are already in
-   place.  References to identify these bearers are shown in the figure.
+   bearers to attach these CEs to the service provider network are
+   already in place.  References to identify these bearers are shown in
+   the figure.
 
                    .-----.   .--------------.   .-----.
        .----.      | PE1 +===+              +===+ PE2 |      .----.
@@ -1383,6 +1460,8 @@ Acknowledgments
 
    Thanks to Martin Björklund for the yangdoctors review and Gyan Mishra
    for the rtg-dir review.
+
+   Thanks to Mahesh Jethanandani for the AD review.
 
 Authors' Addresses
 

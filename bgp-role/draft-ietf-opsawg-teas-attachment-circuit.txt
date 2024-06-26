@@ -5,14 +5,14 @@
 OPSAWG                                                 M. Boucadair, Ed.
 Internet-Draft                                                    Orange
 Intended status: Standards Track                         R. Roberts, Ed.
-Expires: 15 November 2024                                        Juniper
+Expires: 28 December 2024                                        Juniper
                                                            O. G. D. Dios
                                                               Telefonica
                                                            S. B. Giraldo
                                                                    Nokia
                                                                    B. Wu
                                                      Huawei Technologies
-                                                             14 May 2024
+                                                            26 June 2024
 
 
   YANG Data Models for Bearers and 'Attachment Circuits'-as-a-Service
@@ -62,7 +62,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 15 November 2024.
+   This Internet-Draft will expire on 28 December 2024.
 
 Copyright Notice
 
@@ -85,6 +85,7 @@ Table of Contents
      1.2.  Positioning ACaaS vs. Other Data Models
        1.2.1.  Why Not Use the L2SM as Reference Data Model for ACaaS?
        1.2.2.  Why Not Use the L3SM as Reference Data Model for ACaaS?
+     1.3.  Editorial Note (To be removed by RFC Editor)
    2.  Conventions and Definitions
    3.  Relationship to Other AC Data Models
    4.  Sample Uses of the Data Models
@@ -126,6 +127,7 @@ Table of Contents
        A.11.2.  Physical Infrastructure
        A.11.3.  NFs Deployment
        A.11.4.  NF Failure and Scale-Out
+     A.12. BFD and Static Addressing
    Acknowledgments
    Contributors
    Authors' Addresses
@@ -148,8 +150,8 @@ Table of Contents
    is provisioned over the links that connect customer terminating
    points and a provider network (usually via a Provider Edge (PE)),
    allowing successfully data exchanged over these links.  The required
-   setup is referred to in this document as Attachment Circuits (ACs),
-   while the underlying link is referred to as "bearers".
+   setup is referred to in this document as Attachment Circuit (AC),
+   while the underlying link is referred to as "bearer".
 
    This document adheres to the definition of an Attachment Circuit as
    provided in Section 1.2 of [RFC4364], especially:
@@ -175,20 +177,20 @@ Table of Contents
    coordinating the provisioning of endpoints that might not belong to
    the same administrative entity (customer vs. provider or distinct
    operational teams within the same provider, etc.), providing
-   programmatic means to expose 'attachment circuits'-as-a-service
-   greatly simplifies the provisioning of value-added services delivered
-   over an attachment circuit.  For example, management systems of
-   adjacent domains that need to connect via an AC will use such means
-   to agree upon the resources that are required for the activation of
-   both sides of an AC (e.g., Layer 2 tags, IP address family, or IP
-   subnets).
+   programmatic means to expose 'Attachment Circuits'-as-a-Service
+   (ACaaS) greatly simplifies the provisioning of value-added services
+   delivered over an attachment circuit.  For example, management
+   systems of adjacent domains that need to connect via an AC will use
+   such means to agree upon the resources that are required for the
+   activation of both sides of an AC (e.g., Layer 2 tags, IP address
+   family, or IP subnets).
 
    This document specifies a YANG service data model ("ietf-ac-svc") for
    managing attachment circuits that are exposed by a network to its
    customers, such as an enterprise site, an SF, a hosting
    infrastructure, or a peer network provider.  The model can be used
    for the provisioning of ACs prior or during advanced service
-   provisioning (e.g., Network Slice Service [RFC9543]).
+   provisioning (e.g., IETF Network Slice Service [RFC9543]).
 
    The "ietf-ac-svc" module (Section 6.2) includes a set of reusable
    groupings.  Whether a service model reuses structures defined in the
@@ -218,7 +220,7 @@ Table of Contents
    available, the AC service request may filter them based on the bearer
    type, synchronization support, etc.
 
-   Each AC is identified with a unique identifier within a (provider)
+   Each AC is identified with a unique identifier within a provider
    domain.  From a network provider standpoint, an AC can be bound to a
    single or multiple SAPs [RFC9408].  Likewise, the same SAP can be
    bound to one or multiple ACs.  However, the mapping between an AC and
@@ -314,6 +316,21 @@ Table of Contents
    example, the L3SM does not provide the capability to provision
    multiple BGP peer groups over the same AC.
 
+1.3.  Editorial Note (To be removed by RFC Editor)
+
+   Note to the RFC Editor: This section is to be removed prior to
+   publication.
+
+   This document contains placeholder values that need to be replaced
+   with finalized values at the time of publication.  This note
+   summarizes all of the substitutions that are needed.
+
+   Please apply the following replacements:
+
+   *  XXXX --> the assigned RFC number for this I-D
+
+   *  2023-11-13 --> the actual date of the publication of this document
+
 2.  Conventions and Definitions
 
    The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
@@ -333,8 +350,9 @@ Table of Contents
 
    Bearer:  A physical or logical link that connects a customer node (or
       site) to a provider network.  A bearer can be a wireless or wired
-      link.  One or multiple technologies can be used to build a bearer.
-      The bearer type can be specified by a customer.
+      link.  One or multiple technologies can be used to build a bearer
+      (e.g., Link Aggregation Group (LAG) [IEEE802.1AX]).  The bearer
+      type can be specified by a customer.
 
       The operator allocates a unique bearer reference to identify a
       bearer within its network (e.g., customer line identifier).  Such
@@ -374,6 +392,13 @@ Table of Contents
 
       NF and SF are used interchangeably.
 
+   Parent Bearer:  Refers to a bearer (e.g., LAG) that is used to build
+      other bearers.  These bearers (called, child bearers) inherit th
+      parent bearer properties.
+
+   Parent AC:  Refers to an AC that is used to build other ACs.  These
+      ACs (called, child ACs) inherit th parent AC properties.
+
    Service orchestrator:  Refers to a functional entity that interacts
       with the customer of a network service.  The service orchestrator
       is typically responsible for the attachment circuits, the PE
@@ -386,6 +411,23 @@ Table of Contents
 
    Service provider:  A service provider that offers network services
       (e.g., Layer 2 VPN, Layer 3 VPN, or Network Slice Services).
+
+   The names of data nodes are prefixed using the prefix associated with
+   the corresponding imported YANG module as shown in Table 1:
+
+        +============+==================+========================+
+        | Prefix     | Module           | Reference              |
+        +============+==================+========================+
+        | inet       | ietf-inet-types  | Section 4 of [RFC6991] |
+        +------------+------------------+------------------------+
+        | key-chain  | ietf-key-chain   | [RFC8177]              |
+        +------------+------------------+------------------------+
+        | nacm       | ietf-netconf-acm | [RFC8341]              |
+        +------------+------------------+------------------------+
+        | vpn-common | ietf-vpn-common  | [RFC9181]              |
+        +------------+------------------+------------------------+
+
+              Table 1: Modules and Their Associated Prefixes
 
 3.  Relationship to Other AC Data Models
 
@@ -463,23 +505,27 @@ Table of Contents
       associated with their endpoints are terminated by the same PE
       (e.g., CE#3), distinct PEs (e.g., CE#34), etc.  The network
       provider uses this request to decide where to terminate the AC in
-      the network provider network and also whether to enable specific
-      capabilities (e.g., Virtual Router Redundancy Protocol (VRRP)
-      [RFC9568]).  Note that placement constraints may also be requested
-      during the instantiation of the underlying bearers (Section 5.1).
+      the provider network (i.e., select which PE(s) to use) and also
+      whether to enable specific capabilities (e.g., Virtual Router
+      Redundancy Protocol (VRRP) [RFC9568]).  Note that placement
+      constraints may also be requested during the instantiation of the
+      underlying bearers (Section 5.1).
 
-     .-------.                .--------------------.         .-------.
-     |       +------.         |                    +---AC----+       |
-     | CE#1  |      |         |                    +---AC----+ CE#3  |
-     '-------'      |         |                    |         '-------'
-                    +---AC----+     Network        |
-     .-------.      |         |                    |
-     |       |      |         |                    |         .-------.
-     | CE#2  +------'         |                    +---AC----+ CE#4  |
-     '-------'                |                    |         '----+--'
-                              '-----------+--------'              |
-                                          |                       |
-                                          '-----------AC----------'
+                             .--------------------.
+      .-------.              |                   .--.  (b1)  .------.
+      |       +----.         |                   |  +---AC---+      |
+      |  CE1  |    |         |                   |PE+---AC---+  CE3 |
+      '-------'    |       .--.                  '--'  (b2)  '------'
+                   +---AC--+PE|     Network       |
+      .-------.    |       '--'                  .--.  (b3)  .------.
+      |       |    |         |                   |  +---AC---+      |
+      |  CE2  +----'         |                   |PE+---AC---+  CE4 |
+      '-------'              |          .--.     '--'  (b3)  '---+--'
+                             '----------+PE|------'              |
+                                        '--'                     |
+                                         |                       |
+                                         '-----------AC----------'
+      (bx) = bearer Id x
 
                          Figure 2: Examples of ACs
 
@@ -487,7 +533,7 @@ Table of Contents
 
    The procedure to provision a service in a service provider network
    may depend on the practices adopted by a service provider.  This
-   includes the flow put in place for the provisioning of network
+   includes the workflow put in place for the provisioning of network
    services and how they are bound to an attachment circuit.  For
    example, a single attachment circuit may be used to host multiple
    connectivity services.  In order to avoid service interference and
@@ -499,20 +545,22 @@ Table of Contents
    specifies augmentations to the L2SM and the L3SM to bind LxVPN
    services to ACs.
 
-   Figure 3 shows the positioning of the AC service model is the overall
+   Figure 3 shows the positioning of the AC service model in the overall
    service delivery process.
 
                                .---------------.
                                |   Customer    |
                                '-------+-------'
                Customer Service Model  |
-      l2vpn-svc, l3vpn-svc, ietf-nss, ac-svc, ac-glue, and bearer-svc
+       ietf-l2vpn-svc, ietf-l3vpn-svc, | ietf-network-slice-service,
+            ietf-ac-svc, ietf-ac-glue, | and ietf-bearer-svc
                                .-------+-------.
                                |    Service    |
                                | Orchestration |
                                '-------+-------'
                 Network Model          |
-            l2vpn-ntw, l3vpn-ntw, sap, | ac-glue, and ac-ntw
+       ietf-l2vpn-ntw, ietf-l3vpn-ntw, | ietf-sap-ntw, ietf-ac-glue,
+                and ietf-ac-ntw        |
                                .-------+-------.
                                |   Network     |
                                | Orchestration |
@@ -557,13 +605,12 @@ Table of Contents
 
    Figure 4 shows the tree for managing the bearers (that is, the
    properties of an attachment that are below Layer 3).  A bearer can be
-   a physical or logical link (e.g., Link Aggregation Group (LAG)
-   [IEEE802.1AX]).  Also, a bearer can be a wireless or wired link.  A
-   reference to a bearer is generated by the operator.  Such a reference
-   can be used, e.g., in a subsequent service request to create an AC.
-   The anchoring of the AC can also be achieved by indicating (with or
-   without a bearer reference), a peer SAP identifier (e.g., an
-   identifier of an SF).
+   a physical or logical link (e.g., LAG [IEEE802.1AX]).  Also, a bearer
+   can be a wireless or wired link.  A reference to a bearer is
+   generated by the operator.  Such a reference can be used, e.g., in a
+   subsequent service request to create an AC.  The anchoring of the AC
+   can also be achieved by indicating (with or without a bearer
+   reference), a peer SAP identifier (e.g., an identifier of an SF).
 
     module: ietf-bearer-svc
 
@@ -868,9 +915,10 @@ Table of Contents
    not exposed in this service model.
 
    The AC service model uses groupings and types defined in the AC
-   common model [I-D.ietf-opsawg-teas-common-ac].  Therefore, the
-   description of these nodes are not reiterated in the following
-   subsections.
+   common model [I-D.ietf-opsawg-teas-common-ac] ('op-instructions',
+   'dot1q', 'qinq', 'priority-tagged', 'l2-tunnel-service', etc.).
+   Therefore, the description of these nodes are not reiterated in the
+   following subsections.
 
    Features are used to tag conditional protions of the model in order
    to accomodate various deployments (support of layer 2 ACs, Layer 3
@@ -1033,8 +1081,8 @@ Table of Contents
           +--ro actual-stop?         yang:date-and-time
           +--rw role?                identityref
           +--rw peer-sap-id*         string
-          +--rw ac-group-profile*    ac-group-reference
-          +--rw ac-parent-ref?       ac-svc:attachment-circuit-reference
+          +--rw ac-group-profile-ref*    ac-group-reference
+          +--rw ac-parent-ref*       ac-svc:attachment-circuit-reference
           +--ro child-ac-ref*        ac-svc:attachment-circuit-reference
           +--rw group* [group-id]
           |  +--rw group-id      string
@@ -1090,9 +1138,11 @@ Table of Contents
       Interface (UNI) or Network-to-Network Interface (NNI).
 
    'peer-sap-id':  Includes references to the remote endpoints of an
-      attachment circuit [RFC9408].
+      attachment circuit [RFC9408]. 'peer' is drawn here from the
+      perspective of the provider network.  That is, a 'peer-sap' will
+      refer to a customer node.
 
-   'ac-group-profile':  Indicates references to one or more profiles
+   'ac-group-profile-ref':  Indicates references to one or more profiles
       that are defined in Section 5.2.3.
 
    'ac-parent-ref':  Specifies an AC that is inherited by an attachment
@@ -1106,6 +1156,11 @@ Table of Contents
 
       Whenever a parent AC is deleted, all its "child" ACs MUST be
       deleted.
+
+      A "child" AC MAY rely upon more than one parent AC (e.g., parent
+      Layer 2 AC and parent Layer 3 AC).  In such cases, these ACs MUST
+      NOT be overlapping.  An example to illustrate the use of multiple
+      parent ACs is provided in Appendix A.12.
 
    'child-ac-ref':  Lists one or more references of child ACs that rely
       upon this attachment circuit as a parent AC.
@@ -1223,96 +1278,96 @@ Table of Contents
 
    Figure 10 shows the structure of the IPv4 connection.
 
-        | ...
-        +--rw ip-connection  {ac-common:layer3-ac}?
-        |  +--rw ipv4 {vpn-common:ipv4}?
-        |  |  +--rw local-address?
-        |  |  |       inet:ipv4-address
-        |  |  +--rw virtual-address?
-        |  |  |       inet:ipv4-address
-        |  |  +--rw prefix-length?                           uint8
-        |  |  +--rw address-allocation-type?
-        |  |  |       identityref
-        |  |  +--rw (allocation-type)?
-        |  |     +--:(dynamic)
-        |  |     |  +--rw (address-assign)?
-        |  |     |  |  +--:(number)
-        |  |     |  |  |  +--rw number-of-dynamic-address?   uint16
-        |  |     |  |  +--:(explicit)
-        |  |     |  |     +--rw customer-addresses
-        |  |     |  |        +--rw address-pool* [pool-id]
-        |  |     |  |           +--rw pool-id          string
-        |  |     |  |           +--rw start-address
-        |  |     |  |           |       inet:ipv4-address
-        |  |     |  |           +--rw end-address?
-        |  |     |  |                   inet:ipv4-address
-        |  |     |  +--rw (provider-dhcp)?
-        |  |     |  |  +--:(dhcp-service-type)
-        |  |     |  |     +--rw dhcp-service-type?
-        |  |     |  |             enumeration
-        |  |     |  +--rw (dhcp-relay)?
-        |  |     |     +--:(customer-dhcp-servers)
-        |  |     |        +--rw customer-dhcp-servers
-        |  |     |           +--rw server-ip-address*
-        |  |     |                   inet:ipv4-address
-        |  |     +--:(static-addresses)
-        |  |        +--rw address* [address-id]
-        |  |           +--rw address-id          string
-        |  |           +--rw customer-address?   inet:ipv4-address
-        |  |           +--rw failure-detection-profile?
-        |  |                             failure-detection-profile-reference
-        |  |                             {vpn-common:bfd}?
-        |  +--rw ipv6 {vpn-common:ipv6}?
-        |     ...
+           | ...
+           +--rw ip-connection  {ac-common:layer3-ac}?
+           |  +--rw ipv4 {vpn-common:ipv4}?
+           |  |  +--rw local-address?
+           |  |  |       inet:ipv4-address
+           |  |  +--rw virtual-address?
+           |  |  |       inet:ipv4-address
+           |  |  +--rw prefix-length?                           uint8
+           |  |  +--rw address-allocation-type?
+           |  |  |       identityref
+           |  |  +--rw (allocation-type)?
+           |  |     +--:(dynamic)
+           |  |     |  +--rw (address-assign)?
+           |  |     |  |  +--:(number)
+           |  |     |  |  |  +--rw number-of-dynamic-address?   uint16
+           |  |     |  |  +--:(explicit)
+           |  |     |  |     +--rw customer-addresses
+           |  |     |  |        +--rw address-pool* [pool-id]
+           |  |     |  |           +--rw pool-id          string
+           |  |     |  |           +--rw start-address
+           |  |     |  |           |       inet:ipv4-address
+           |  |     |  |           +--rw end-address?
+           |  |     |  |                   inet:ipv4-address
+           |  |     |  +--rw (provider-dhcp)?
+           |  |     |  |  +--:(dhcp-service-type)
+           |  |     |  |     +--rw dhcp-service-type?
+           |  |     |  |             enumeration
+           |  |     |  +--rw (dhcp-relay)?
+           |  |     |     +--:(customer-dhcp-servers)
+           |  |     |        +--rw customer-dhcp-servers
+           |  |     |           +--rw server-ip-address*
+           |  |     |                   inet:ipv4-address
+           |  |     +--:(static-addresses)
+           |  |        +--rw address* [address-id]
+           |  |           +--rw address-id          string
+           |  |           +--rw customer-address?   inet:ipv4-address
+           |  |           +--rw failure-detection-profile?
+           |  |                      failure-detection-profile-reference
+           |  |                      {vpn-common:bfd}?
+           |  +--rw ipv6 {vpn-common:ipv6}?
+           |     ...
 
-         Figure 10: Layer 3 Connection Tree Structure (IPv4)
+            Figure 10: Layer 3 Connection Tree Structure (IPv4)
 
    Figure 11 shows the structure of the IPv6 connection.
 
-        | ...
-        +--rw ip-connection  {ac-common:layer3-ac}?
-        |  +--rw ipv4 {vpn-common:ipv4}?
-        |  |  ...
-        |  +--rw ipv6 {vpn-common:ipv6}?
-        |     +--rw local-address?
-        |     |       inet:ipv6-address
-        |     +--rw virtual-address?
-        |     |       inet:ipv6-address
-        |     +--rw prefix-length?                           uint8
-        |     +--rw address-allocation-type?
-        |     |       identityref
-        |     +--rw (allocation-type)?
-        |        +--:(dynamic)
-        |        |  +--rw (address-assign)?
-        |        |  |  +--:(number)
-        |        |  |  |  +--rw number-of-dynamic-address?   uint16
-        |        |  |  +--:(explicit)
-        |        |  |     +--rw customer-addresses
-        |        |  |        +--rw address-pool* [pool-id]
-        |        |  |           +--rw pool-id          string
-        |        |  |           +--rw start-address
-        |        |  |           |       inet:ipv6-address
-        |        |  |           +--rw end-address?
-        |        |  |                   inet:ipv6-address
-        |        |  +--rw (provider-dhcp)?
-        |        |  |  +--:(dhcp-service-type)
-        |        |  |     +--rw dhcp-service-type?
-        |        |  |             enumeration
-        |        |  +--rw (dhcp-relay)?
-        |        |     +--:(customer-dhcp-servers)
-        |        |        +--rw customer-dhcp-servers
-        |        |           +--rw server-ip-address*
-        |        |                   inet:ipv6-address
-        |        +--:(static-addresses)
-        |           +--rw address* [address-id]
-        |              +--rw address-id          string
-        |              +--rw customer-address?   inet:ipv6-address
-        |              +--rw failure-detection-profile?
-        |                                failure-detection-profile-reference
-        |                                {vpn-common:bfd}?
-        | ...
+           | ...
+           +--rw ip-connection  {ac-common:layer3-ac}?
+           |  +--rw ipv4 {vpn-common:ipv4}?
+           |  |  ...
+           |  +--rw ipv6 {vpn-common:ipv6}?
+           |     +--rw local-address?
+           |     |       inet:ipv6-address
+           |     +--rw virtual-address?
+           |     |       inet:ipv6-address
+           |     +--rw prefix-length?                           uint8
+           |     +--rw address-allocation-type?
+           |     |       identityref
+           |     +--rw (allocation-type)?
+           |        +--:(dynamic)
+           |        |  +--rw (address-assign)?
+           |        |  |  +--:(number)
+           |        |  |  |  +--rw number-of-dynamic-address?   uint16
+           |        |  |  +--:(explicit)
+           |        |  |     +--rw customer-addresses
+           |        |  |        +--rw address-pool* [pool-id]
+           |        |  |           +--rw pool-id          string
+           |        |  |           +--rw start-address
+           |        |  |           |       inet:ipv6-address
+           |        |  |           +--rw end-address?
+           |        |  |                   inet:ipv6-address
+           |        |  +--rw (provider-dhcp)?
+           |        |  |  +--:(dhcp-service-type)
+           |        |  |     +--rw dhcp-service-type?
+           |        |  |             enumeration
+           |        |  +--rw (dhcp-relay)?
+           |        |     +--:(customer-dhcp-servers)
+           |        |        +--rw customer-dhcp-servers
+           |        |           +--rw server-ip-address*
+           |        |                   inet:ipv6-address
+           |        +--:(static-addresses)
+           |           +--rw address* [address-id]
+           |              +--rw address-id          string
+           |              +--rw customer-address?   inet:ipv6-address
+           |              +--rw failure-detection-profile?
+           |                         failure-detection-profile-reference
+           |                         {vpn-common:bfd}?
+           | ...
 
-         Figure 11: Layer 3 Connection Tree Structure (IPv6)
+            Figure 11: Layer 3 Connection Tree Structure (IPv6)
 
 5.2.5.3.  Routing
 
@@ -1867,9 +1922,10 @@ Table of Contents
               |  ...
               +--rw oam
               |  +--rw bfd {vpn-common:bfd}?
-              |     +--rw session* [remote-address]
+              |     +--rw session* [id]
+              |        +--rw id                string
               |        +--rw local-address?    inet:ip-address
-              |        +--rw remote-address    inet:ip-address
+              |        +--rw remote-address?   inet:ip-address
               |        +--rw profile?
               |        |       failure-detection-profile-reference
               |        +--rw holdtime?         uint32
@@ -1889,6 +1945,8 @@ Table of Contents
 
    This version of the module supports BFD.  The following BFD data
    nodes can be specified:
+
+   'id':  An identifier that uniquely identifies a BFD session.
 
    'local-address':  Indicates the provider's IP address used for a BFD
       session.
@@ -3552,18 +3610,23 @@ Table of Contents
            description
              "Container for BFD.";
            list session {
-             key "remote-address";
+             key "id";
              description
-               "List of IP sessions.";
-              leaf local-address {
-                type inet:ip-address;
+               "List of BFD sessions.";
+             leaf id {
+                type string;
                 description
-                  "Provider's IP address of the BFD session.";
+                  "A unique identifer for the BFD session.";
+             }
+             leaf local-address {
+               type inet:ip-address;
+               description
+                 "Provider's IP address of the BFD session.";
              }
              leaf remote-address {
-                type inet:ip-address;
-                description
-                  "Customer's IP address of the BFD session.";
+               type inet:ip-address;
+               description
+                 "Customer's IP address of the BFD session.";
              }
              leaf profile {
                type failure-detection-profile-reference;
@@ -3643,10 +3706,10 @@ Table of Contents
      grouping ac-hierarchy {
        description
          "Container for parent and child AC references.";
-       leaf ac-parent-ref {
+       leaf-list ac-parent-ref {
          type ac-svc:attachment-circuit-reference;
          description
-           "Specifies the parent AC that is inherited by an AC.
+           "Specifies a parent AC that is inherited by an AC.
             In contexts where dynamic terminating points are
             bound to the same AC, a parent AC with stable
             information is created with a set of child ACs
@@ -3741,7 +3804,7 @@ Table of Contents
            description
              "One or more peer SAPs can be indicated.";
          }
-         leaf-list ac-group-profile {
+         leaf-list ac-group-profile-ref {
            type ac-group-reference;
            description
              "A reference to an AC profile.";
@@ -3823,7 +3886,7 @@ Table of Contents
 
       In addition, an attacker could attempt to add a new bearer or
       delete existing ones.  An attacker may also change the requested
-      type or the activation scheduling.
+      type, whether it is for test-only, or the activation scheduling.
 
    The following subtrees and data nodes have particular sensitivities/
    vulnerabilities in the "ietf-ac-svc" module:
@@ -3921,9 +3984,9 @@ Table of Contents
               Boucadair, M., Roberts, R., de Dios, O. G., Barguil, S.,
               and B. Wu, "A Common YANG Data Model for Attachment
               Circuits", Work in Progress, Internet-Draft, draft-ietf-
-              opsawg-teas-common-ac-10, 19 April 2024,
+              opsawg-teas-common-ac-11, 14 May 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
-              teas-common-ac-10>.
+              teas-common-ac-11>.
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
@@ -4060,26 +4123,26 @@ Table of Contents
               Bierman, A., Boucadair, M., and Q. Wu, "Guidelines for
               Authors and Reviewers of Documents Containing YANG Data
               Models", Work in Progress, Internet-Draft, draft-ietf-
-              netmod-rfc8407bis-11, 18 April 2024,
+              netmod-rfc8407bis-12, 21 June 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-netmod-
-              rfc8407bis-11>.
+              rfc8407bis-12>.
 
    [I-D.ietf-opsawg-ac-lxsm-lxnm-glue]
               Boucadair, M., Roberts, R., Barguil, S., and O. G. de
               Dios, "A YANG Data Model for Augmenting VPN Service and
               Network Models with Attachment Circuits", Work in
               Progress, Internet-Draft, draft-ietf-opsawg-ac-lxsm-lxnm-
-              glue-09, 11 April 2024,
+              glue-10, 10 June 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
-              ac-lxsm-lxnm-glue-09>.
+              ac-lxsm-lxnm-glue-10>.
 
    [I-D.ietf-opsawg-ntw-attachment-circuit]
               Boucadair, M., Roberts, R., de Dios, O. G., Barguil, S.,
               and B. Wu, "A Network YANG Data Model for Attachment
               Circuits", Work in Progress, Internet-Draft, draft-ietf-
-              opsawg-ntw-attachment-circuit-09, 19 April 2024,
+              opsawg-ntw-attachment-circuit-11, 15 May 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
-              ntw-attachment-circuit-09>.
+              ntw-attachment-circuit-11>.
 
    [I-D.ietf-teas-ietf-network-slice-nbi-yang]
               Wu, B., Dhody, D., Rokui, R., Saad, T., and J. Mullooly,
@@ -4092,9 +4155,9 @@ Table of Contents
    [I-D.ramseyer-grow-peering-api]
               Aguado, C., Griswold, M., Ramseyer, J., Servin, A. L., and
               T. Strickx, "Peering API", Work in Progress, Internet-
-              Draft, draft-ramseyer-grow-peering-api-04, 16 March 2024,
+              Draft, draft-ramseyer-grow-peering-api-05, 30 May 2024,
               <https://datatracker.ietf.org/doc/html/draft-ramseyer-
-              grow-peering-api-04>.
+              grow-peering-api-05>.
 
    [IEEE802.1AB]
               IEEE, "IEEE Standard for Local and metropolitan area
@@ -4617,7 +4680,7 @@ A.4.  One CE, Two ACs
          {
            "name": "ac1",
            "description": "a first ac with a same peer node",
-           "ac-group-profile": ["simple-node-profile"],
+           "ac-group-profile-ref": ["simple-node-profile"],
            "l2-connection": {
              "encapsulation": {
                "type": "ietf-vpn-common:dot1q",
@@ -4630,7 +4693,7 @@ A.4.  One CE, Two ACs
          {
            "name": "ac2",
            "description": "a second ac with a same peer node",
-           "ac-group-profile": ["simple-node-profile"],
+           "ac-group-profile-ref": ["simple-node-profile"],
            "l2-connection": {
              "encapsulation": {
                "type": "ietf-vpn-common:dot1q",
@@ -4663,7 +4726,7 @@ A.4.  One CE, Two ACs
          {
            "name": "ac3",
            "description": "a third AC with a same peer node",
-           "ac-group-profile": [
+           "ac-group-profile-ref": [
              "simple-node-profile"
            ],
            "l2-connection": {
@@ -4785,7 +4848,7 @@ A.6.  Create Multiple ACs Bound to Multiple CEs
          {
            "name": "ac1",
            "description": "First site",
-           "ac-group-profile": [
+           "ac-group-profile-ref": [
              "simple-profile"
            ],
            "l2-connection": {
@@ -4795,7 +4858,7 @@ A.6.  Create Multiple ACs Bound to Multiple CEs
          {
            "name": "ac2",
            "description": "Second Site",
-           "ac-group-profile": [
+           "ac-group-profile-ref": [
              "simple-profile"
            ],
            "l2-connection": {
@@ -4805,7 +4868,7 @@ A.6.  Create Multiple ACs Bound to Multiple CEs
          {
            "name": "ac3",
            "description": "Third site",
-           "ac-group-profile": [
+           "ac-group-profile-ref": [
              "simple-profile"
            ],
            "l2-connection": {
@@ -4815,7 +4878,7 @@ A.6.  Create Multiple ACs Bound to Multiple CEs
          {
            "name": "ac4",
            "description": "Another site",
-           "ac-group-profile": [
+           "ac-group-profile-ref": [
              "simple-profile"
            ],
            "l2-connection": {
@@ -5925,27 +5988,27 @@ A.11.2.  Physical Infrastructure
    realized in multiple ways, such as IP Fabric, Layer 2/Layer 3 Edge
    Routers.  This document does not intend to detail these aspects.
 
-                                          ┌ - - - - - - - - - - - - - ┐
-    ┌ - - - - - -        bearer =               ┌--------┐
-                 |    compute-01-nic1     |     |        |            |
-    | compute-01  ------------------------      └--------┘
-                 |                        |     ┌--------┐ ┌--------┐ |
-    └ - - - - - -                               |        | |        |
-    ┌ - - - - - -        bearer =         |     └--------┘ └--------┘ |
-                 |    compute-02-nic2           ┌--------┐ ┌--------┐
-    | compute-02  ------------------------|     |        | |        | |
-                 |                              └--------┘ └--------┘
-    └ - - - - - -                         |     ┌--------┐            |
-                                                |        |
-                           [...]          |     └--------┘            |
-
+                                          .---------------------------.
+    .------------.       bearer =         |     .--------.            |
+    |            |    compute-01-nic1     |     |        |            |
+    | compute-01 |------------------------|     '--------'            |
+    |            |                        |     .--------. .--------. |
+    '------------'                        |     |        | |        | |
+    .------------.       bearer =         |     '--------' '--------' |
+    |            |    compute-02-nic2     |     .--------. .--------. |
+    | compute-02 |------------------------|     |        | |        | |
+    |            |                        |     '--------' '--------' |
+    '------------'                        |     .--------.            |
+                                          |     |        |            |
+                           [...]          |     '--------'            |
                                           |                           |
-   ┌ - - - - - - ┐       bearer =               Provider Network
-                      compute-10-nic0     |       Infrastructure      |
-   | compute-10  |------------------------     (IP Fabric, Gateways
-                                          |            etc.)          |
-   └ - - - - - - ┘
-                                          └ - - - - - - - - - - - - - ┘
+                                          |                           |
+    .------------.       bearer =         |     Provider Network      |
+    |            |    compute-10-nic0     |       Infrastructure      |
+    | compute-10 |------------------------|    (IP Fabric, Gateways   |
+    |            |                        |            etc.)          |
+    '------------'                        |                           |
+                                          '---------------------------'
 
          Figure 58: Example Physical Topology for Cloud Deployment
 
@@ -6173,12 +6236,12 @@ A.11.3.  NFs Deployment
                      {
                        "id": "gw2-cp1",
                        "remote-address": "192.0.2.101",
-                       "peer-group": "peer-nf-cp-vlan-100-gw1"
+                       "peer-group": "peer-nf-cp-vlan-100-gw2"
                      },
                      {
                        "id": "gw2-cp2",
                        "remote-address": "192.0.2.102",
-                       "peer-group": "peer-nf-cp-vlan-100-gw1"
+                       "peer-group": "peer-nf-cp-vlan-100-gw2"
                      }
                    ]
                  }
@@ -6189,19 +6252,43 @@ A.11.3.  NFs Deployment
              "bfd": {
                "session": [
                  {
+                   "id": "bfd-gw1-nf-up1",
+                   "local-address": "192.0.2.252",
                    "remote-address": "192.0.2.1",
                    "profile": "single-hop-bfd-user-plane"
                  },
                  {
+                   "id": "bfd-gw2-nf-up1",
+                   "local-address": "192.0.2.253",
+                   "remote-address": "192.0.2.1",
+                   "profile": "single-hop-bfd-user-plane"
+                 },
+                 {
+                   "id": "bfd-gw1-nf-up2",
+                   "local-address": "192.0.2.252",
                    "remote-address": "192.0.2.2",
                    "profile": "single-hop-bfd-user-plane"
                  },
                  {
-                   "_comment": "192.0.2.3-192.0.2.9 sessions are not \
+                   "id": "bfd-gw2-nf-up2",
+                   "local-address": "192.0.2.253",
+                   "remote-address": "192.0.2.2",
+                   "profile": "single-hop-bfd-user-plane"
+                 },
+                 {
+                   "_comment": "192.0.2.3-192.0.2.7 sessions are not \
                                                               displayed"
                  },
                  {
-                   "remote-address": "192.0.2.10",
+                   "id": "bfd-gw1-nf-up8",
+                   "local-address": "192.0.2.252",
+                   "remote-address": "192.0.2.8",
+                   "profile": "single-hop-bfd-user-plane"
+                 },
+                 {
+                   "id": "bfd-gw2-nf-up8",
+                   "local-address": "192.0.2.253",
+                   "remote-address": "192.0.2.8",
                    "profile": "single-hop-bfd-user-plane"
                  }
                ]
@@ -6223,18 +6310,16 @@ A.11.3.  NFs Deployment
          },
          {
            "name": "ac-nf-up-01-vlan-100",
-           "description": "attachment to Network Function NF-up \
-                                                instance 1 in vlan 100",
-           "ac-parent-ref": "parent-vlan-100",
+           "description": "attachment to NF-up instance 1 in vlan 100",
+           "ac-parent-ref": ["parent-vlan-100"],
            "l2-connection": {
              "bearer-reference": "compute-01-nic1"
            }
          },
          {
            "name": "ac-nf-up-02-vlan-100",
-           "description": "attachment to Network Function NF-up \
-                                                instance 2 in vlan 100",
-           "ac-parent-ref": "parent-vlan-100",
+           "description": "attachment to NF-up instance 2 in vlan 100",
+           "ac-parent-ref": ["parent-vlan-100"],
            "l2-connection": {
              "bearer-reference": "compute-02-nic2"
            }
@@ -6245,18 +6330,16 @@ A.11.3.  NFs Deployment
          },
          {
            "name": "ac-nf-up-08-vlan-100",
-           "description": "attachment to Network Function NF-up \
-                                               instance 10 in vlan 100",
-           "ac-parent-ref": "parent-vlan-100",
+           "description": "attachment to NF-up instance 10 in vlan 100",
+           "ac-parent-ref": ["parent-vlan-100"],
            "l2-connection": {
              "bearer-reference": "compute-08-nic1"
            }
          },
          {
            "name": "ac-nf-cp-01-vlan-100",
-           "description": "attachment to Network Function NF-CP \
-                                                instance 1 in vlan 100",
-           "ac-parent-ref": "parent-vlan-100",
+           "description": "attachment to NF-CP instance 1 in vlan 100",
+           "ac-parent-ref": ["parent-vlan-100"],
            "l2-connection": {
              "bearer-reference": "compute-09-nic0"
            },
@@ -6274,9 +6357,8 @@ A.11.3.  NFs Deployment
          },
          {
            "name": "ac-nf-cp-02-vlan-100",
-           "description": "attachment to Network Function NF-CP \
-                                                instance 2 in vlan 100",
-           "ac-parent-ref": "parent-vlan-100",
+           "description": "attachment to NF-CP instance 2 in vlan 100",
+           "ac-parent-ref": ["parent-vlan-100"],
            "l2-connection": {
              "bearer-reference": "compute-10-nic0"
            },
@@ -6294,9 +6376,8 @@ A.11.3.  NFs Deployment
          },
          {
            "name": "ac-nf-up-1-vlan-200",
-           "description": "attachment to Network Function NF-up \
-                                                instance 1 in vlan 200",
-           "ac-parent-ref": "parent-vlan-200",
+           "description": "attachment to NF-up instance 1 in vlan 200",
+           "ac-parent-ref": ["parent-vlan-200"],
            "l2-connection": {
              "bearer-reference": "compute-01-nic1"
            }
@@ -6307,9 +6388,8 @@ A.11.3.  NFs Deployment
          },
          {
            "name": "ac-nf-cp-2-vlan-200",
-           "description": "attachment to Network Function NF-CP \
-                                                instance 2 in vlan 200",
-           "ac-parent-ref": "parent-vlan-200",
+           "description": "attachment to NF-CP instance 2 in vlan 200",
+           "ac-parent-ref": ["parent-vlan-200"],
            "l2-connection": {
              "bearer-reference": "compute-10-nic0"
            }
@@ -6318,7 +6398,7 @@ A.11.3.  NFs Deployment
      }
    }
 
-        Figure 60: Message Body for the Configuration of The NF ACs
+        Figure 60: Message Body for the Configuration of the NF ACs
 
 A.11.4.  NF Failure and Scale-Out
 
@@ -6353,7 +6433,7 @@ A.11.4.  NF Failure and Scale-Out
     compute-07                               |                       |
     .--------.                               |     nf-up7 on         |
     |.------.|.7     < - bfd - >             |    compute-08         |
-    ||ng-up7||---------vlan-100--------------|    created for        |
+    ||nf-up7||---------vlan-100--------------|    created for        |
     ||      ||---------vlan-200--------------|     scale-out         |
     |'------'|                               |                       |
     compute-08                               '-----------------------'
@@ -6372,6 +6452,167 @@ A.11.4.  NF Failure and Scale-Out
    implemented, no API call involving the VPN model is needed for any
    modification in the cloud.
 
+A.12.  BFD and Static Addressing
+
+   Figure 62 shows a topology example of a set of CEs connected to a
+   provider network via dedicated bearers.  Each of these CE maintains
+   two BFD sessions with the provider network.
+
+                         +----------------------------+
+   +--------+ .1         |                            |
+   |   CE1  |------------|------+                     |
+   +--------+            |      |            .252     |
+                         |  +---+----+   +----------+ |
+   +--------+ .2         |  |   LAN  |---|   GW1    | |
+   |   CE2  |------------|--|        |   |  [bfd]   | |
+   +--------+            |  192.0.2/24   +----------+ |
+                         |  |        |        .253    |
+   ...                   |  +----+---+   +----------+ |
+                         |       | |     |   GW2    | |
+   +--------+ .10        |       | +-----+  [bfd]   | |
+   |   CE10 |------------|-------+       +----------+ |
+   +--------+            |                            |
+                         |     Provider Network       |
+                         +----------------------------+
+
+   Each CE has a BFD session to each gateway for redundancy:
+   +--------+
+   |   CEx  | .x <---bfd---> .252
+   +--------+    <---bfd---> .253
+
+              Figure 62: Example of Static Addressing with BFD
+
+   Figure 63 shows the message body of the ACaaS configuration to enable
+   the target architecture shown in Figure 62.  This example uses an AC
+   group profile to factorize common data between all involved ACs.  It
+   also uses child ACs that inherit the properties of two parent ACs;
+   each terminating in a separate gateway in the provider network.
+
+   =============== NOTE: '\' line wrapping per RFC 8792 ================
+
+   {
+     "ietf-ac-svc:specific-provisioning-profiles": {
+       "valid-provider-identifiers": {
+         "failure-detection-profile-identifier": [
+           {
+             "id": "single-hop-bfd"
+           }
+         ]
+       }
+     },
+     "ietf-ac-svc:attachment-circuits": {
+       "ac-group-profile": [
+         {
+           "name": "profile-vlan-100",
+           "l2-connection": {
+             "encapsulation": {
+               "type": "ietf-vpn-common:dot1q",
+               "dot1q": {
+                 "cvlan-id": 100
+               }
+             }
+           },
+           "ip-connection": {
+             "ipv4": {
+               "virtual-address": "192.0.2.254",
+               "prefix-length": 24,
+               "address": [
+                 {
+                   "address-id": "ce1",
+                   "customer-address": "192.0.2.1",
+                   "failure-detection-profile": "single-hop-bfd"
+                 },
+                 {
+                   "address-id": "ce2",
+                   "customer-address": "192.0.2.2",
+                   "failure-detection-profile": "single-hop-bfd"
+                 },
+                 {
+                   "_comment": "ce3 to ce9 are not displayed"
+                 },
+                 {
+                   "address-id": "ce10",
+                   "customer-address": "192.0.2.10",
+                   "failure-detection-profile": "single-hop-bfd"
+                 }
+               ]
+             }
+           }
+         }
+       ],
+       "ac": [
+         {
+           "name": "parent-vlan-100-gw1",
+           "description": "This parent represents a bridge with Layer \
+                          3 interface (IRB) to connect NFs in VLAN 100",
+           "ac-group-profile-ref": [
+             "profile-vlan-100"
+           ],
+           "ip-connection": {
+             "ipv4": {
+               "local-address": "192.0.2.252",
+               "prefix-length": 24
+             }
+           }
+         },
+         {
+           "name": "parent-vlan-100-gw2",
+           "description": "This parent represents a bridge with Layer \
+                          3 interface (IRB) to connect NFs in VLAN 100",
+           "ac-group-profile-ref": [
+             "profile-vlan-100"
+           ],
+           "ip-connection": {
+             "ipv4": {
+               "local-address": "192.0.2.253",
+               "prefix-length": 24
+             }
+           }
+         },
+         {
+           "name": "ac-ce-01-vlan-100",
+           "description": "attachment to CE1 in VLAN 100",
+           "ac-parent-ref": [
+             "parent-vlan-100-gw1",
+             "parent-vlan-100-gw2"
+           ],
+           "l2-connection": {
+             "bearer-reference": "bearer--1"
+           }
+         },
+         {
+           "name": "ac-ce-02-vlan-100",
+           "description": "attachment to CE2 in VLAN 100",
+           "ac-parent-ref": [
+             "parent-vlan-100-gw1",
+             "parent-vlan-100-gw2"
+           ],
+           "l2-connection": {
+             "bearer-reference": "bearer--2"
+           }
+         },
+         {
+           "_comment": "ac-ce-03-vlan-100 to ac-ce-09-vlan-100 are \
+                                                                 hidden"
+         },
+         {
+           "name": "ac-ce-10-vlan-100",
+           "description": "attachment to CE10 in VLAN 100",
+           "ac-parent-ref": [
+             "parent-vlan-100-gw1",
+             "parent-vlan-100-gw2"
+           ],
+           "l2-connection": {
+             "bearer-reference": "bearer--10"
+           }
+         }
+       ]
+     }
+   }
+
+      Figure 63: Message Body for the Configuration of CEs with Static
+                       Addressing and BFD Protection
+
 Acknowledgments
 
    This document leverages [RFC9182] and [RFC9291].  Thanks to Gyan
@@ -6381,6 +6622,9 @@ Acknowledgments
    [Instance-Data].
 
    Thanks to Donald Eastlake for the careful rtg-dir reviews.
+
+   Thanks to Luis Miguel Contreras Murillo for the careful Shepherd
+   review.
 
 Contributors
 

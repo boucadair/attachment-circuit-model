@@ -5,14 +5,14 @@
 Operations and Management Area Working Group           M. Boucadair, Ed.
 Internet-Draft                                                    Orange
 Intended status: Standards Track                              R. Roberts
-Expires: 14 November 2024                                        Juniper
+Expires: 28 December 2024                                        Juniper
                                                            O. G. D. Dios
                                                               Telefonica
                                                            S. B. Giraldo
                                                                    Nokia
                                                                    B. Wu
                                                      Huawei Technologies
-                                                             13 May 2024
+                                                            26 June 2024
 
 
            A Network YANG Data Model for Attachment Circuits
@@ -23,12 +23,13 @@ Abstract
    This document specifies a network model for attachment circuits.  The
    model can be used for the provisioning of attachment circuits prior
    or during service provisioning (e.g., VPN, Network Slice Service).  A
-   companion service model is specified in I-D.ietf-opsawg-teas-
-   attachment-circuit.
+   companion service model is specified in the YANG Data Models for
+   Bearers and 'Attachment Circuits'-as-a-Service (ACaaS) (I-D.ietf-
+   opsawg-teas-attachment-circuit).
 
-   The module augments the 'ietf-network' and the Service Attachment
-   Point (SAP) models with the detailed information for the provisioning
-   of attachment circuits in Provider Edges (PEs).
+   The module augments the base network ('ietf-network') and the Service
+   Attachment Point (SAP) models with the detailed information for the
+   provisioning of attachment circuits in Provider Edges (PEs).
 
 Discussion Venues
 
@@ -57,7 +58,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 14 November 2024.
+   This Internet-Draft will expire on 28 December 2024.
 
 Copyright Notice
 
@@ -76,6 +77,7 @@ Copyright Notice
 Table of Contents
 
    1.  Introduction
+     1.1.  Editorial Note (To be removed by RFC Editor)
    2.  Conventions and Definitions
    3.  Relationship to Other AC Data Models
    4.  Sample Uses of the Attachment Circuit Data Models
@@ -142,7 +144,7 @@ Table of Contents
    provisioning structure that uses data nodes that are defined in these
    RFCs.  Some refinements were introduced to cover, not only
    conventional service provider networks, but also specifics of other
-   target deployments (cloud, for example).
+   target deployments (cloud network, for example).
 
    The AC network model is designed as augmentations to both the 'ietf-
    network' model [RFC8345] and the Service Attachment Point (SAP) model
@@ -151,19 +153,20 @@ Table of Contents
    deployments where a SAP can be bound to one or multiple ACs (e.g., a
    parent AC and its child ACs).
 
-                      .---.
-                      |CE6|
-                      '-+-'
-                     ac |        .---.             .---.
-                        |        |CE5+------+------+CE2|
-                 .------+-----.  '---'      |      '---'
-                 |            |             |ac
-                 |            |             |
+                     .---.
+                     |CE6|
+                     '-+-'
+                    ac |         .---.             .---.
+                       |         |CE5+------+------+CE2|
+                 .-----+-----.   '---'      |      '---'
+                 |           |              |ac
+                 |           |              |
                .-+-.       .-+-.          .-+-.
              .-+sap+-------+sap+-.      .-+sap+-------------.
              | '---'       '---' |      | '---'             |
+             |        PE1        |      |        PE2        |
     .---.  .-+-.                 |      |                   |
-    |CE1+--+sap|      PE1        |      |         PE2       |
+    |CE1+--+sap|                 |      |                   |
     '---'ac'-+-'                 |      |                   |
              '-------------------'      '-------------------'
 
@@ -171,6 +174,7 @@ Table of Contents
              |                   |      |                 .-+-.ac.---.
              |         PE3       |      |        PE4      |sap+--+CE5|
              |                   |      |                 '---'  '---'
+             |                   |      |                   |
              |             .---. |      | .---. .---. .---. |
              '-------------+sap+-'      '-+sap+-+sap+-+sap+-'
                            '-+-'          '-+-' '-+-' '-+-'
@@ -188,6 +192,27 @@ Table of Contents
    Management Datastore Architecture (NMDA) defined in [RFC8342].
 
    Sample examples are provided in Appendix A.
+
+1.1.  Editorial Note (To be removed by RFC Editor)
+
+   Note to the RFC Editor: This section is to be removed prior to
+   publication.
+
+   This document contains placeholder values that need to be replaced
+   with finalized values at the time of publication.  This note
+   summarizes all of the substitutions that are needed.
+
+   Please apply the following replacements:
+
+   *  CCCC --> the assigned RFC number for
+      [I-D.ietf-opsawg-teas-common-ac]
+
+   *  SSSS --> the assigned RFC number for
+      [I-D.ietf-opsawg-teas-attachment-circuit]
+
+   *  XXXX --> the assigned RFC number for this I-D
+
+   *  2024-05-15 --> the actual date of the publication of this document
 
 2.  Conventions and Definitions
 
@@ -265,6 +290,39 @@ Table of Contents
    Service provider:  A service provider that offers network services
       (e.g., L2VPN, L3VPN, or Network Slice Services).
 
+   The names of data nodes are prefixed using the prefix associated with
+   the corresponding imported YANG module as shown in Table 1:
+
+      +=============+=====================+=========================+
+      | Prefix      | Module              | Reference               |
+      +=============+=====================+=========================+
+      | ac-common   | ietf-ac-common      | RFC CCCC                |
+      +-------------+---------------------+-------------------------+
+      | ac-svc      | ietf-ac-svc         | Section 5.2 of RFC SSSS |
+      +-------------+---------------------+-------------------------+
+      | dot1q-types | ieee802-dot1q-types | [IEEE802.1Qcp]          |
+      +-------------+---------------------+-------------------------+
+      | if          | ietf-interfaces     | [RFC8343]               |
+      +-------------+---------------------+-------------------------+
+      | inet        | ietf-inet-types     | Section 4 of [RFC6991]  |
+      +-------------+---------------------+-------------------------+
+      | key-chain   | ietf-key-chain      | [RFC8177]               |
+      +-------------+---------------------+-------------------------+
+      | nacm        | ietf-netconf-acm    | [RFC8341]               |
+      +-------------+---------------------+-------------------------+
+      | nw          | ietf-network        | [RFC8345]               |
+      +-------------+---------------------+-------------------------+
+      | rt-types    | ietf-routing-types  | [RFC8294]               |
+      +-------------+---------------------+-------------------------+
+      | rt-pol      | ietf-routing-policy | [RFC9067]               |
+      +-------------+---------------------+-------------------------+
+      | sap         | ietf-sap-ntw        | [RFC9408]               |
+      +-------------+---------------------+-------------------------+
+      | vpn-common  | ietf-vpn-common     | [RFC9181]               |
+      +-------------+---------------------+-------------------------+
+
+               Table 1: Modules and Their Associated Prefixes
+
 3.  Relationship to Other AC Data Models
 
    Figure 2 depicts the relationship between the various AC data models:
@@ -325,13 +383,15 @@ Table of Contents
                                |   Customer    |
                                '-------+-------'
                Customer Service Model  |
-      l2vpn-svc, l3vpn-svc, ietf-nss, ac-svc, ac-glue, and bearer-svc
+       ietf-l2vpn-svc, ietf-l3vpn-svc, | ietf-network-slice-service,
+            ietf-ac-svc, ietf-ac-glue, | and ietf-bearer-svc
                                .-------+-------.
                                |    Service    |
                                | Orchestration |
                                '-------+-------'
                 Network Model          |
-            l2vpn-ntw, l3vpn-ntw, sap, | ac-glue, and ac-ntw
+       ietf-l2vpn-ntw, ietf-l3vpn-ntw, | ietf-sap-ntw, ietf-ac-glue,
+                and ietf-ac-ntw        |
                                .-------+-------.
                                |   Network     |
                                | Orchestration |
@@ -365,17 +425,20 @@ Table of Contents
    Similar to [RFC9408], the 'ietf-ac-ntw' module can be used for both
    User-to-Network Interface (UNI) and Network-to-Network Interface
    (NNI).  For example, all the ACs shown in Figure 4 have a 'role' set
-   to 'ietf-sap-ntw:nni'.  Typically, AS Border Routers (ASBRs) of each
-   network is directly connected to an ASBR of a neighboring network via
-   one or multiple links (bearers).  ASBRs of "Network#1" behave as a PE
-   and treat the other adjacent ASBRs as if it were a CE.
+   to 'ietf-sap-ntw:nni'.  Typically, ASBRs of each network are directly
+   connected to ASBRs of a neighboring network via one or multiple links
+   (bearers).  ASBRs of "Network#1" behave as a PE and treat the other
+   adjacent ASBRs as if it were a CE.
 
               .--------------------.         .-------------.
               |                    +---AC----+             |
+              |                    |         |             |
               |                    +---AC----+  Network#2  |
               |                    |         |             |
               |     Network#1      |         '-------------'
+              |                    |
               |                    |         .-------------.
+              |                    |         |             |
               |                    |         |             |
               |                    +---AC----+  Network#3  |
               |                    |         |             |
@@ -386,16 +449,18 @@ Table of Contents
 
 5.  Description of the Attachment Circuit YANG Module
 
-   The full tree diagram of the module can be generated using the
-   "pyang" tool [PYANG].  That tree is not included here because it is
-   too long (Section 3.3 of [RFC8340]).  Instead, subtrees are provided
-   in the following subsections for the reader's convenience.
+   The full tree diagram of the 'ietf-ac-ntw' module can be generated
+   using the "pyang" tool [PYANG].  That tree is not included here
+   because it is too long (Section 3.4 of [RFC8340]).  Instead, subtrees
+   are provided in the following subsections for the reader's
+   convenience.
 
-   The full tree of the 'ac-ntw' is provided in [AC-Ntw-Tree].
+   The full tree of the 'ietf-ac-ntw' is provided in [AC-Ntw-Tree].
 
 5.1.  Overall Structure of the Module
 
-   The overall tree structure of the module is shown in Figure 5.
+   The overall tree structure of the 'ietf-ac-ntw' module is shown in
+   Figure 5.
 
    augment /nw:networks/nw:network:
      +--rw specific-provisioning-profiles
@@ -446,7 +511,7 @@ Table of Contents
                       Figure 5: Overall Tree Structure
 
    A node can host one or more SAPs.  Per [RFC9408], a SAP is an
-   abstraction of the network reference points (the PE side of an AC, in
+   abstraction of the network reference point (the PE side of an AC, in
    the context of this document) where network services can be delivered
    and/or are delivered to customers.  Each SAP terminates one or
    multiple ACs.  Each AC in turn may be terminated by one or more peer
@@ -460,15 +525,15 @@ Table of Contents
    textual description of the AC may be provided ('description').
 
    Also, in order to ease the correlation between the AC exposed at the
-   service layer and the one that is actually provisioned in the network
+   service layer and the AC that is actually provisioned in the network
    operation, a reference to the AC exposed to the customer ('ac-svc-
    ref') is stored in the 'ietf-ac-ntw' module.
 
-   ACs that are terminated by a SAP are listed in 'ac' under
-   '/nw:networks/nw:network/nw:node/sap:service/sap:sap'.  A controller
-   may indicate a filter based on the service type (e.g., Network Slice
-   or L3VPN) to retrieve the list of available SAPs, and thus ACs, for
-   that service.
+   ACs that are terminated by a SAP are listed in the 'ac' container
+   under '/nw:networks/nw:network/nw:node/sap:service/sap:sap'.  A
+   controller may indicate a filter based on the service type (e.g.,
+   Network Slice or L3VPN) to retrieve the list of available SAPs, and
+   thus ACs, for that service.
 
    In order to factorize common data that is provisioned for a group of
    ACs, a set of profiles (Section 5.3) can be defined at the network
@@ -486,9 +551,9 @@ Table of Contents
    *  Create individual ACs that are bound to the parent AC using 'ac-
       parent-ref'.
 
-   *  Indicate for each individual ACs one or a subset of the CEs as
-      peer SAPs.  All these individual ACs will inherit the properties
-      of the parent AC.
+   *  Indicate for each individual AC one or a subset of the CEs as peer
+      SAPs.  All these individual ACs will inherit the properties of the
+      parent AC.
 
    Whenever a parent AC is deleted, then all child ACs of that AC MUST
    be deleted.
@@ -621,12 +686,13 @@ Table of Contents
           |     |  +--rw area-id           yang:dotted-quad
           |     |  +--rw metric?           uint16
           |     |  +--rw max-lsa?          uint32
+          |     |  +--rw passive?          boolean
           |     +--rw isis
           |     |  +--rw address-family?   identityref
           |     |  +--rw area-address      area-address
           |     |  +--rw level?            identityref
-          |     |  +--rw metric?           uint16
-          |     |  +--rw mode?             enumeration
+          |     |  +--rw metric?           uint32
+          |     |  +--rw passive?          boolean
           |     +--rw rip
           |     |  +--rw address-family?   identityref
           |     |  +--rw timers
@@ -784,7 +850,8 @@ Table of Contents
    local bridge reference can be specified in 'local-bridge-reference'.
    Such a reference may be a local bridge domain.
 
-   A reference to the bearer is maintained using 'bearer-reference'.
+   A reference to the bearer used by this AC is maintained using
+   'bearer-reference'.
 
 5.5.  IP Connection
 
@@ -1506,6 +1573,7 @@ Table of Contents
           |     |  |     +--rw target-site    string
           |     |  |     +--rw metric?        uint16
           |     |  +--rw max-lsa?          uint32
+          |     |  +--rw passive?          boolean
           |     |  +--rw authentication
           |     |  |  +--rw enabled?            boolean
           |     |  |  +--rw keying-material
@@ -1560,6 +1628,8 @@ Table of Contents
    'max-lsa':  Sets the maximum number of Link State Advertisements
       (LSAs) that the OSPF instance will accept.
 
+   'passive':  Controls whether an OSPF interface is passive or active.
+
    'authentication':  Controls the authentication schemes to be enabled
       for the OSPF instance.  The following options are supported: IPsec
       for OSPFv3 authentication [RFC4552], and the Authentication
@@ -1587,8 +1657,8 @@ Table of Contents
           |     |  +--rw address-family?   identityref
           |     |  +--rw area-address      area-address
           |     |  +--rw level?            identityref
-          |     |  +--rw metric?           uint16
-          |     |  +--rw mode?             enumeration
+          |     |  +--rw metric?           uint32
+          |     |  +--rw passive?          boolean
           |     +--rw rip  {vpn-common:rtg-rip}?
           |     |  ...
           |     +--rw vrrp  {vpn-common:rtg-vrrp}?
@@ -1622,8 +1692,8 @@ Table of Contents
           |     |  +--rw address-family?   identityref
           |     |  +--rw area-address      area-address
           |     |  +--rw level?            identityref
-          |     |  +--rw metric?           uint16
-          |     |  +--rw mode?             enumeration
+          |     |  +--rw metric?           uint32
+          |     |  +--rw passive?          boolean
           |     |  +--rw authentication
           |     |  |  +--rw enabled?            boolean
           |     |  |  +--rw keying-material
@@ -1666,17 +1736,12 @@ Table of Contents
 
    'metric':  Associates a metric with IS-IS routes.
 
-   'mode':  Indicates the IS-IS interface mode type.  It can be set to
-      'active' (that is, send or receive IS-IS protocol control packets)
-      or 'passive' (that is, suppress the sending of IS-IS updates
-      through the interface).
+   'passive':  Controls whether an IS-IS interface is passive or active.
 
-      'authentication':
-
-      Controls the authentication schemes to be enabled for the IS-IS
-      instance.  Both the specification of a key chain [RFC8177] and the
-      direct specification of key and authentication algorithms are
-      supported.
+   'authentication':  Controls the authentication schemes to be enabled
+      for the IS-IS instance.  Both the specification of a key chain
+      [RFC8177] and the direct specification of key and authentication
+      algorithms are supported.
 
    'status':  Indicates the status of the IS-IS routing instance.
 
@@ -1876,7 +1941,7 @@ Table of Contents
    The following VRRP data nodes are supported:
 
    'address-family':  Indicates whether IPv4, IPv6, or both address
-      families are to be activated.  Note that VRRP version 3 [RFC5798]
+      families are to be activated.  Note that VRRP version 3 [RFC9568]
       supports both IPv4 and IPv6.
 
    'vrrp-group':  Used to identify the VRRP group.
@@ -1896,7 +1961,7 @@ Table of Contents
 
    Note that no authentication data node is included for VRRP, as there
    isn't any type of VRRP authentication at this time (see Section 9 of
-   [RFC5798]).
+   [RFC9568]).
 
 5.7.  OAM
 
@@ -2129,8 +2194,11 @@ Table of Contents
       provider).
 
       'svc-pe-to-ce-bandwidth' and 'svc-ce-to-pe-bandwidth' can be
-      represented using the Committed Information Rate (CIR), the Excess
-      Information Rate (EIR), or the Peak Information Rate (PIR).
+      represented using the Committed Information Rate (CIR), the
+      Committed Burst Size (CBS), the Excess Information Rate (EIR), the
+      Excess Burst Size (EBS), the Peak Information Rate (PIR), and the
+      Peak Burst Size (PBS).  CIR, EIR, and PIR are expressed in bps,
+      while CBS, EBS, and PBS are expressed in bytes.
 
       The following types, defined in [RFC9181], can be used to indicate
       the bandwidth type:
@@ -2156,7 +2224,7 @@ Table of Contents
    [RFC8343], [RFC9067], [RFC9181], [I-D.ietf-opsawg-teas-common-ac],
    and [IEEE802.1Qcp].
 
-   <CODE BEGINS> file "ietf-ac-ntw@2022-11-30.yang"
+   <CODE BEGINS> file "ietf-ac-ntw@2024-05-15.yang"
    module ietf-ac-ntw {
      yang-version 1.1;
      namespace "urn:ietf:params:xml:ns:yang:ietf-ac-ntw";
@@ -2256,7 +2324,7 @@ Table of Contents
         This version of this YANG module is part of RFC XXXX; see the
         RFC itself for full legal notices.";
 
-     revision 2023-11-13 {
+     revision 2024-05-15 {
        description
          "Initial revision.";
        reference
@@ -3374,6 +3442,14 @@ Table of Contents
                "Maximum number of allowed Link State Advertisements
                 (LSAs) that the OSPF instance will accept.";
            }
+           leaf passive {
+             type boolean;
+             description
+               "Enables when set to true a passive interface. It is
+                active when set to false. A passive interface's prefix
+                will be advertised, but no neighbor adjacencies will be
+                formed on the interface.";
+           }
          }
          container isis {
            when "derived-from-or-self(../type, "
@@ -3396,26 +3472,23 @@ Table of Contents
                           and Layer 3 VPNs";
            }
            leaf metric {
-             type uint16;
+             type uint32 {
+               range "0 .. 16777215";
+             }
              description
                "Metric of the AC. It is used in the routing state
                 calculation and path selection.";
            }
-           leaf mode {
-             type enumeration {
-               enum active {
-                 description
-                   "The interface sends or receives IS-IS protocol
-                    control packets.";
-               }
-               enum passive {
-                 description
-                   "Suppresses the sending of IS-IS updates through the
-                    specified interface.";
-               }
-             }
+           leaf passive {
+             type boolean;
              description
-               "IS-IS interface mode type.";
+               "When set to false, the interface is active. In such
+                mode, the interface sends or receives IS-IS protocol
+                control packets.
+
+                When set to true, the interface is passive. That is,
+                it suppresses the sending of IS-IS updates through the
+                specified interface.";
            }
          }
          container rip {
@@ -3440,7 +3513,7 @@ Table of Contents
            description
              "Configuration specific to VRRP.";
            reference
-             "RFC 5798: Virtual Router Redundancy Protocol (VRRP)
+             "RFC 9568: Virtual Router Redundancy Protocol (VRRP)
                         Version 3 for IPv4 and IPv6";
            leaf address-family {
              type identityref {
@@ -3712,7 +3785,7 @@ Table of Contents
            description
              "Configuration specific to VRRP.";
            reference
-             "RFC 5798: Virtual Router Redundancy Protocol (VRRP)
+             "RFC 9568: Virtual Router Redundancy Protocol (VRRP)
                         Version 3 for IPv4 and IPv6";
            leaf address-family {
              type identityref {
@@ -3740,7 +3813,7 @@ Table of Contents
                "Virtual IP addresses for a single VRRP
                 group.";
              reference
-               "RFC 5798: Virtual Router Redundancy Protocol (VRRP)
+               "RFC 9568: Virtual Router Redundancy Protocol (VRRP)
                           Version 3 for IPv4 and IPv6, Sections 1.2
                           and 1.3";
            }
@@ -4253,16 +4326,16 @@ Table of Contents
               and B. Wu, "YANG Data Models for Bearers and 'Attachment
               Circuits'-as-a-Service (ACaaS)", Work in Progress,
               Internet-Draft, draft-ietf-opsawg-teas-attachment-circuit-
-              11, 19 April 2024, <https://datatracker.ietf.org/doc/html/
-              draft-ietf-opsawg-teas-attachment-circuit-11>.
+              13, 29 May 2024, <https://datatracker.ietf.org/doc/html/
+              draft-ietf-opsawg-teas-attachment-circuit-13>.
 
    [I-D.ietf-opsawg-teas-common-ac]
               Boucadair, M., Roberts, R., de Dios, O. G., Barguil, S.,
               and B. Wu, "A Common YANG Data Model for Attachment
               Circuits", Work in Progress, Internet-Draft, draft-ietf-
-              opsawg-teas-common-ac-10, 19 April 2024,
+              opsawg-teas-common-ac-11, 14 May 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
-              teas-common-ac-10>.
+              teas-common-ac-11>.
 
    [IEEE802.1Qcp]
               IEEE, "IEEE Standard for Local and metropolitan area
@@ -4313,11 +4386,6 @@ Table of Contents
               Li, T., and R. Atkinson, "OSPFv2 HMAC-SHA Cryptographic
               Authentication", RFC 5709, DOI 10.17487/RFC5709, October
               2009, <https://www.rfc-editor.org/rfc/rfc5709>.
-
-   [RFC5798]  Nadas, S., Ed., "Virtual Router Redundancy Protocol (VRRP)
-              Version 3 for IPv4 and IPv6", RFC 5798,
-              DOI 10.17487/RFC5798, March 2010,
-              <https://www.rfc-editor.org/rfc/rfc5798>.
 
    [RFC5880]  Katz, D. and D. Ward, "Bidirectional Forwarding Detection
               (BFD)", RFC 5880, DOI 10.17487/RFC5880, June 2010,
@@ -4430,6 +4498,11 @@ Table of Contents
               Attachment Points (SAPs)", RFC 9408, DOI 10.17487/RFC9408,
               June 2023, <https://www.rfc-editor.org/rfc/rfc9408>.
 
+   [RFC9568]  Lindem, A. and A. Dogra, "Virtual Router Redundancy
+              Protocol (VRRP) Version 3 for IPv4 and IPv6", RFC 9568,
+              DOI 10.17487/RFC9568, April 2024,
+              <https://www.rfc-editor.org/rfc/rfc9568>.
+
 9.2.  Informative References
 
    [AC-Ntw-Tree]
@@ -4442,18 +4515,18 @@ Table of Contents
               Bierman, A., Boucadair, M., and Q. Wu, "Guidelines for
               Authors and Reviewers of Documents Containing YANG Data
               Models", Work in Progress, Internet-Draft, draft-ietf-
-              netmod-rfc8407bis-11, 18 April 2024,
+              netmod-rfc8407bis-12, 21 June 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-netmod-
-              rfc8407bis-11>.
+              rfc8407bis-12>.
 
    [I-D.ietf-opsawg-ac-lxsm-lxnm-glue]
               Boucadair, M., Roberts, R., Barguil, S., and O. G. de
               Dios, "A YANG Data Model for Augmenting VPN Service and
               Network Models with Attachment Circuits", Work in
               Progress, Internet-Draft, draft-ietf-opsawg-ac-lxsm-lxnm-
-              glue-09, 11 April 2024,
+              glue-10, 10 June 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
-              ac-lxsm-lxnm-glue-09>.
+              ac-lxsm-lxnm-glue-10>.
 
    [PYANG]    "pyang", 2023, <https://github.com/mbj4668/pyang>.
 
@@ -4827,6 +4900,8 @@ Acknowledgments
 
    Thanks to Martin Björklund for the yangdoctors review and Gyan Mishra
    for the rtg-dir review.
+
+   Thanks to Krzysztof Szarkowicz for the Shepherd review.
 
 Contributors
 
