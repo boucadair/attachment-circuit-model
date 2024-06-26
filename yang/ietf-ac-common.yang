@@ -256,7 +256,7 @@ module ietf-ac-common {
       "RFC 7911: Advertisement of Multiple Paths in BGP";
   }
 
-  identity bgp-role {
+  identity role {
     base bgp-capability;
     description
       "A capability that allows the advertisement of the BGP
