@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-06-25T00:39:25.217628+00:00",
+  "timestamp": "2024-06-27T00:39:59.633153+00:00",
   "repo": "boucadair/attachment-circuit-model",
   "labels": [
     {
@@ -8762,6 +8762,53 @@
       "mergeCommit": null,
       "comments": [],
       "reviews": []
+    },
+    {
+      "number": 227,
+      "id": "PR_kwDOIiAkrc5znosV",
+      "title": "BGP role",
+      "url": "https://github.com/boucadair/attachment-circuit-model/pull/227",
+      "state": "OPEN",
+      "author": "boucadair",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-06-26T11:13:35Z",
+      "updatedAt": "2024-06-26T11:57:32Z",
+      "baseRepository": "boucadair/attachment-circuit-model",
+      "baseRefName": "main",
+      "baseRefOid": "81c5702e3ba9949f1c9f6f583ab220752d586515",
+      "headRepository": "boucadair/attachment-circuit-model",
+      "headRefName": "bgp-role",
+      "headRefOid": "7cd2144d2a95f75a195e69672a770a27cc6aac6b",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIiAkrc5_pPlE",
+          "commit": {
+            "abbreviatedOid": "af45370"
+          },
+          "author": "boucadair",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-06-26T11:26:30Z",
+          "updatedAt": "2024-06-26T11:26:30Z",
+          "comments": [
+            {
+              "originalPosition": 4,
+              "body": "```suggestion\r\n  identity ebgp-role {\r\n```",
+              "createdAt": "2024-06-26T11:26:30Z",
+              "updatedAt": "2024-06-26T11:26:31Z"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
