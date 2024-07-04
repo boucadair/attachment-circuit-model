@@ -13,7 +13,7 @@
 <meta content="
        The document specifies a common Attachment Circuits (ACs) YANG module, which is designed with the intent to be reusable by other models. For example, this common model can be reused by service models to expose ACs as a service, service models that require binding a service to a set of ACs, network and device models to provision ACs, etc. 
     " name="description">
-<meta content="xml2rfc 3.21.0" name="generator">
+<meta content="xml2rfc 3.22.0" name="generator">
 <meta content="Slice Service" name="keyword">
 <meta content="L3VPN" name="keyword">
 <meta content="L2VPN" name="keyword">
@@ -30,19 +30,18 @@
 <meta content="Network Slicing" name="keyword">
 <meta content="draft-ietf-opsawg-teas-common-ac-latest" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.21.0
-    Python 3.11.9
+  xml2rfc 3.22.0
+    Python 3.12.3
     ConfigArgParse 1.7
     google-i18n-address 3.1.0
     intervaltree 3.1.0
-    Jinja2 3.1.2
-    lxml 4.9.3
-    platformdirs 4.2.1
+    Jinja2 3.1.4
+    lxml 4.9.4
+    platformdirs 4.2.2
     pycountry 22.3.5
     PyYAML 6.0.1
-    requests 2.31.0
-    setuptools 68.2.2
-    six 1.16.0
+    requests 2.32.3
+    setuptools 69.5.1
     wcwidth 0.2.13
 -->
 <link href="draft-ietf-opsawg-teas-common-ac.xml" rel="alternate" type="application/rfc+xml">
@@ -1042,11 +1041,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">Common Attachment Circuit YANG</td>
-<td class="right">June 2024</td>
+<td class="right">July 2024</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Boucadair, et al.</td>
-<td class="center">Expires 12 December 2024</td>
+<td class="center">Expires 5 January 2025</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1059,12 +1058,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-opsawg-teas-common-ac-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2024-06-10" class="published">10 June 2024</time>
+<time datetime="2024-07-04" class="published">4 July 2024</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2024-12-12">12 December 2024</time></dd>
+<dd class="expires"><time datetime="2025-01-05">5 January 2025</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1127,7 +1126,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 12 December 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 5 January 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1591,7 +1590,7 @@ for the reader's convenience.<a href="#section-4-1" class="pilcrow">¶</a></p>
           <dd class="break"></dd>
 <dt id="section-4.2-2.9">'bgp-capability':</dt>
           <dd style="margin-left: 1.5em" id="section-4.2-2.10">
-            <p id="section-4.2-2.10.1">Used to indicate a BGP capability <span>[<a href="#RFC5492" class="cite xref">RFC5492</a>]</span>. Examples of BGP capabilities are Multiprotocol extensions for BGP-4 <span>[<a href="#RFC4760" class="cite xref">RFC4760</a>]</span>, route refresh <span>[<a href="#RFC2918" class="cite xref">RFC2918</a>]</span>, graceful restart <span>[<a href="#RFC4724" class="cite xref">RFC4724</a>]</span>, or ADD-PATH <span>[<a href="#RFC7911" class="cite xref">RFC7911</a>]</span>.<a href="#section-4.2-2.10.1" class="pilcrow">¶</a></p>
+            <p id="section-4.2-2.10.1">Used to indicate a BGP capability <span>[<a href="#RFC5492" class="cite xref">RFC5492</a>]</span>. Examples of BGP capabilities are Multiprotocol extensions for BGP-4 <span>[<a href="#RFC4760" class="cite xref">RFC4760</a>]</span>, route refresh <span>[<a href="#RFC2918" class="cite xref">RFC2918</a>]</span>, graceful restart <span>[<a href="#RFC4724" class="cite xref">RFC4724</a>]</span>, ADD-PATH <span>[<a href="#RFC7911" class="cite xref">RFC7911</a>]</span>, or BGP Role <span>[<a href="#RFC9234" class="cite xref">RFC9234</a>]</span>}.<a href="#section-4.2-2.10.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
 <dt id="section-4.2-2.11">'role':</dt>
@@ -1898,11 +1897,13 @@ for the reader's convenience.<a href="#section-4-1" class="pilcrow">¶</a></p>
     +-- local-as?         inet:as-number
     +-- peer-as?          inet:as-number
     +-- address-family?   identityref
+    +-- role?             identityref
   grouping bgp-peer-group-with-name:
     +-- name?             string
     +-- local-as?         inet:as-number
     +-- peer-as?          inet:as-number
     +-- address-family?   identityref
+    +-- role?             identityref
   grouping ospf-basic:
     +-- address-family?   identityref
     +-- area-id           yang:dotted-quad
@@ -2301,6 +2302,16 @@ module ietf-ac-common {
       "RFC 7911: Advertisement of Multiple Paths in BGP";
   }
 
+  identity ebgp-role {
+    base bgp-capability;
+    description
+      "A capability that allows the advertisement of the BGP
+       role when establising a session.";
+    reference
+      "RFC 9234: Route Leak Prevention and Detection Using
+                 Roles in UPDATE and OPEN Messages, Section 4.1";
+  }
+
   // AC Type
 
   identity role {
@@ -2356,6 +2367,45 @@ module ietf-ac-common {
       "This administrative status reflects that a request was
        rejected because, e.g., there are no sufficient resources
        or other reasons not covered by the other status types.";
+  }
+
+  identity bgp-role {
+    description
+      "Used to indicate BGP role when establishing a BGP session.";
+    reference
+      "RFC 9234: Route Leak Prevention and Detection Using
+                 Roles in UPDATE and OPEN Messages, Section 4";
+  }
+
+  identity provider {
+    base bgp-role;
+    description
+      "The local AS is a transit provider of the remote AS.";
+  }
+
+  identity client {
+    base bgp-role;
+    description
+      "The local AS is a transit provider of the remote AS.";
+  }
+
+  identity rs {
+    base bgp-role;
+    description
+      "The local AS is a Route Server (RS).";
+  }
+
+  identity rs-client {
+    base bgp-role;
+    description
+      "The local AS is a client of an RS and the RS is the
+       remote AS.";
+  }
+
+  identity peer {
+    base bgp-role;
+    description
+      "The local and remote ASes have a peering relationship.";
   }
 
   /****************************Typedefs************************/
@@ -3375,6 +3425,16 @@ module ietf-ac-common {
          'dual-stack' means that both IPv4 and IPv6 will be
          activated.";
     }
+    leaf role {
+      type identityref {
+        base ac-common:bgp-role;
+      }
+      description
+        "Specifies the BGP role (provider, customer, peer, etc.).";
+      reference
+        "RFC 9234: Route Leak Prevention and Detection Using
+                   Roles in UPDATE and OPEN Messages, Section 4";
+    }
   }
 
   grouping bgp-peer-group-with-name {
@@ -3680,7 +3740,7 @@ module ietf-ac-common {
       <h2 id="name-security-considerations">
 <a href="#section-6" class="section-number selfRef">6. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
       </h2>
-<p id="section-6-1">This section uses the template described in <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-netmod-rfc8407bis-11#section-3.7" class="relref">Section 3.7</a> of [<a href="#I-D.ietf-netmod-rfc8407bis" class="cite xref">I-D.ietf-netmod-rfc8407bis</a>]</span>.<a href="#section-6-1" class="pilcrow">¶</a></p>
+<p id="section-6-1">This section uses the template described in <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-netmod-rfc8407bis-13#section-3.7" class="relref">Section 3.7</a> of [<a href="#I-D.ietf-netmod-rfc8407bis" class="cite xref">I-D.ietf-netmod-rfc8407bis</a>]</span>.<a href="#section-6-1" class="pilcrow">¶</a></p>
 <p id="section-6-2">The YANG module specified in this document defines schema for data
    that is designed to be accessed via network management protocols such
    as NETCONF <span>[<a href="#RFC6241" class="cite xref">RFC6241</a>]</span> or RESTCONF <span>[<a href="#RFC8040" class="cite xref">RFC8040</a>]</span>.  The lowest NETCONF layer
@@ -3857,7 +3917,7 @@ module ietf-ac-common {
 <dd class="break"></dd>
 <dt id="I-D.ietf-netmod-rfc8407bis">[I-D.ietf-netmod-rfc8407bis]</dt>
         <dd>
-<span class="refAuthor">Bierman, A.</span>, <span class="refAuthor">Boucadair, M.</span>, and <span class="refAuthor">Q. Wu</span>, <span class="refTitle">"Guidelines for Authors and Reviewers of Documents Containing YANG Data Models"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-netmod-rfc8407bis-11</span>, <time datetime="2024-04-18" class="refDate">18 April 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-netmod-rfc8407bis-11">https://datatracker.ietf.org/doc/html/draft-ietf-netmod-rfc8407bis-11</a>&gt;</span>. </dd>
+<span class="refAuthor">Bierman, A.</span>, <span class="refAuthor">Boucadair, M.</span>, and <span class="refAuthor">Q. Wu</span>, <span class="refTitle">"Guidelines for Authors and Reviewers of Documents Containing YANG Data Models"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-netmod-rfc8407bis-13</span>, <time datetime="2024-07-02" class="refDate">2 July 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-netmod-rfc8407bis-13">https://datatracker.ietf.org/doc/html/draft-ietf-netmod-rfc8407bis-13</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="I-D.ietf-opsawg-ac-lxsm-lxnm-glue">[I-D.ietf-opsawg-ac-lxsm-lxnm-glue]</dt>
         <dd>
@@ -3930,6 +3990,10 @@ module ietf-ac-common {
 <dt id="RFC9182">[RFC9182]</dt>
         <dd>
 <span class="refAuthor">Barguil, S.</span>, <span class="refAuthor">Gonzalez de Dios, O., Ed.</span>, <span class="refAuthor">Boucadair, M., Ed.</span>, <span class="refAuthor">Munoz, L.</span>, and <span class="refAuthor">A. Aguado</span>, <span class="refTitle">"A YANG Network Data Model for Layer 3 VPNs"</span>, <span class="seriesInfo">RFC 9182</span>, <span class="seriesInfo">DOI 10.17487/RFC9182</span>, <time datetime="2022-02" class="refDate">February 2022</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9182">https://www.rfc-editor.org/rfc/rfc9182</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC9234">[RFC9234]</dt>
+        <dd>
+<span class="refAuthor">Azimov, A.</span>, <span class="refAuthor">Bogomazov, E.</span>, <span class="refAuthor">Bush, R.</span>, <span class="refAuthor">Patel, K.</span>, and <span class="refAuthor">K. Sriram</span>, <span class="refTitle">"Route Leak Prevention and Detection Using Roles in UPDATE and OPEN Messages"</span>, <span class="seriesInfo">RFC 9234</span>, <span class="seriesInfo">DOI 10.17487/RFC9234</span>, <time datetime="2022-05" class="refDate">May 2022</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9234">https://www.rfc-editor.org/rfc/rfc9234</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC9291">[RFC9291]</dt>
         <dd>
