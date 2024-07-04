@@ -696,6 +696,9 @@ The following data nodes are supported for each BGP 'peer-group':
 : Indicates the address family of the peer. It can be set to 'ipv4', 'ipv6', or 'dual-stack'.
 : This address family might be used together with the service type that uses an AC (e.g., 'vpn-type' {{?RFC9182}}) to derive the appropriate Address Family Identifiers (AFIs) / Subsequent Address Family Identifiers (SAFIs) that will be part of the derived device configurations (e.g., unicast IPv4 MPLS L3VPN (AFI,SAFI = 1,128) as defined in {{Section 4.3.4 of !RFC4364}}).
 
+'role':
+: Specifies the BGP role in a session. Role values are taken from the list defined in {{Section 4 of ?RFC9234}}.
+
 'local-address':
 : Specifies a provider's IP address to use when establishing the BGP transport session.
 

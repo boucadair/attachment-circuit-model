@@ -1,3 +1,5 @@
+module: ietf-ac-ntw
+
   augment /nw:networks/nw:network:
     +--rw specific-provisioning-profiles
     |  +--rw valid-provider-identifiers
@@ -32,6 +34,7 @@
        |     |        +--rw local-as?                 inet:as-number
        |     |        +--rw peer-as                   inet:as-number
        |     |        +--rw address-family?           identityref
+       |     |        +--rw role?                     identityref
        |     |        +--rw multihop?                 uint8
        |     |        +--rw as-override?              boolean
        |     |        +--rw allow-own-as?             uint8
@@ -322,6 +325,7 @@
        |     |  |     +--rw local-as?                 inet:as-number
        |     |  |     +--rw peer-as                   inet:as-number
        |     |  |     +--rw address-family?           identityref
+       |     |  |     +--rw role?                     identityref
        |     |  |     +--rw multihop?                 uint8
        |     |  |     +--rw as-override?              boolean
        |     |  |     +--rw allow-own-as?             uint8
@@ -377,6 +381,7 @@
        |     |     +--rw local-as?                 inet:as-number
        |     |     +--rw peer-as                   inet:as-number
        |     |     +--rw address-family?           identityref
+       |     |     +--rw role?                     identityref
        |     |     +--rw multihop?                 uint8
        |     |     +--rw as-override?              boolean
        |     |     +--rw allow-own-as?             uint8
