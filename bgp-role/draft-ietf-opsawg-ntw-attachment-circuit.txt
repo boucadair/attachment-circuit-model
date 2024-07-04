@@ -1688,14 +1688,14 @@ Table of Contents
           |     |  ...
           |     +--rw ospf  {vpn-common:rtg-ospf}?
           |     |  ...
-          |     +--rw isis  {vpn-common:rtg-isis}?
+          |     +--rw isis {vpn-common:rtg-isis}?
           |     |  +--rw address-family?   identityref
           |     |  +--rw area-address      area-address
           |     |  +--rw level?            identityref
           |     |  +--rw metric?           uint32
           |     |  +--rw passive?          boolean
           |     |  +--rw authentication
-          |     |  |  +--rw enabled?            boolean
+          |     |  |  +--rw enabled?           boolean
           |     |  |  +--rw keying-material
           |     |  |     +--rw (option)?
           |     |  |        +--:(auth-key-chain)
