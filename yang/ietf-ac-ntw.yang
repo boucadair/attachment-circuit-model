@@ -815,28 +815,7 @@ module ietf-ac-ntw {
          of the description is local to an implementation.";
     }
     uses rt-pol:apply-policy-group;
-    leaf local-as {
-      type inet:as-number;
-      description
-        "Indicates a local AS Number (ASN), if an ASN distinct from
-         the ASN configured at the AC level is needed.";
-    }
-    leaf peer-as {
-      type inet:as-number;
-      mandatory true;
-      description
-        "Indicates the customer's ASN when the customer requests BGP
-         routing.";
-    }
-    leaf address-family {
-      type identityref {
-        base vpn-common:address-family;
-      }
-      description
-        "This node contains the address families to be activated.
-         'dual-stack' means that both IPv4 and IPv6 will be
-         activated.";
-    }
+    uses ac-common:bgp-peer-group-without-name;
     leaf multihop {
       type uint8;
       description
