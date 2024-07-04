@@ -2878,59 +2878,64 @@ module: ietf-ac-ntw
               <p id="section-5.6.2-4.16.1">This address family might be used together with the service type that uses an AC (e.g., 'vpn-type' <span>[<a href="#RFC9182" class="cite xref">RFC9182</a>]</span>) to derive the appropriate Address Family Identifiers (AFIs) / Subsequent Address Family Identifiers (SAFIs) that will be part of the derived device configurations (e.g., unicast IPv4 MPLS L3VPN (AFI,SAFI = 1,128) as defined in <span><a href="https://rfc-editor.org/rfc/rfc4364#section-4.3.4" class="relref">Section 4.3.4</a> of [<a href="#RFC4364" class="cite xref">RFC4364</a>]</span>).<a href="#section-5.6.2-4.16.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
-<dt id="section-5.6.2-4.17">'multihop':</dt>
+<dt id="section-5.6.2-4.17">'role':</dt>
             <dd style="margin-left: 1.5em" id="section-5.6.2-4.18">
-              <p id="section-5.6.2-4.18.1">Indicates the number of allowed IP hops to reach a BGP peer.<a href="#section-5.6.2-4.18.1" class="pilcrow">¶</a></p>
+              <p id="section-5.6.2-4.18.1">Specifies the BGP role in a session.  Role values are taken   from the list defined in <span><a href="https://rfc-editor.org/rfc/rfc9234#section-4" class="relref">Section 4</a> of [<a href="#RFC9234" class="cite xref">RFC9234</a>]</span>.<a href="#section-5.6.2-4.18.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
-<dt id="section-5.6.2-4.19">'as-override':</dt>
+<dt id="section-5.6.2-4.19">'multihop':</dt>
             <dd style="margin-left: 1.5em" id="section-5.6.2-4.20">
-              <p id="section-5.6.2-4.20.1">If set, this parameter indicates whether ASN override
+              <p id="section-5.6.2-4.20.1">Indicates the number of allowed IP hops to reach a BGP peer.<a href="#section-5.6.2-4.20.1" class="pilcrow">¶</a></p>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-5.6.2-4.21">'as-override':</dt>
+            <dd style="margin-left: 1.5em" id="section-5.6.2-4.22">
+              <p id="section-5.6.2-4.22.1">If set, this parameter indicates whether ASN override
    is enabled, i.e., replacing the ASN of the customer specified in
    the AS_PATH BGP attribute with the ASN identified in the 'local-
-   as' attribute.<a href="#section-5.6.2-4.20.1" class="pilcrow">¶</a></p>
+   as' attribute.<a href="#section-5.6.2-4.22.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
-<dt id="section-5.6.2-4.21">'allow-own-as':</dt>
-            <dd style="margin-left: 1.5em" id="section-5.6.2-4.22">
-              <p id="section-5.6.2-4.22.1">Used in some topologies (e.g., hub-and-spoke) to
+<dt id="section-5.6.2-4.23">'allow-own-as':</dt>
+            <dd style="margin-left: 1.5em" id="section-5.6.2-4.24">
+              <p id="section-5.6.2-4.24.1">Used in some topologies (e.g., hub-and-spoke) to
    allow the provider's ASN to be included in the AS_PATH BGP
    attribute received from a peer.  Loops are prevented by setting
    'allow-own-as' to a maximum number of the provider's ASN
    occurrences.  By default, this parameter is set to '0' (that is,
-   reject any AS_PATH attribute that includes the provider's ASN).<a href="#section-5.6.2-4.22.1" class="pilcrow">¶</a></p>
+   reject any AS_PATH attribute that includes the provider's ASN).<a href="#section-5.6.2-4.24.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
-<dt id="section-5.6.2-4.23">'prepend-global-as':</dt>
-            <dd style="margin-left: 1.5em" id="section-5.6.2-4.24">
-              <p id="section-5.6.2-4.24.1">When distinct ASNs are configured at the
+<dt id="section-5.6.2-4.25">'prepend-global-as':</dt>
+            <dd style="margin-left: 1.5em" id="section-5.6.2-4.26">
+              <p id="section-5.6.2-4.26.1">When distinct ASNs are configured at the
    node and AC levels, this parameter controls whether
    the ASN provided at the node level is prepended to the AS_PATH
-   attribute.<a href="#section-5.6.2-4.24.1" class="pilcrow">¶</a></p>
+   attribute.<a href="#section-5.6.2-4.26.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
-<dt id="section-5.6.2-4.25">'send-default-route':</dt>
-            <dd style="margin-left: 1.5em" id="section-5.6.2-4.26">
-              <p id="section-5.6.2-4.26.1">Controls whether default routes can be advertised to the peer.<a href="#section-5.6.2-4.26.1" class="pilcrow">¶</a></p>
-</dd>
-            <dd class="break"></dd>
-<dt id="section-5.6.2-4.27">'site-of-origin':</dt>
+<dt id="section-5.6.2-4.27">'send-default-route':</dt>
             <dd style="margin-left: 1.5em" id="section-5.6.2-4.28">
-              <p id="section-5.6.2-4.28.1">Meant to uniquely identify the set of routes
+              <p id="section-5.6.2-4.28.1">Controls whether default routes can be advertised to the peer.<a href="#section-5.6.2-4.28.1" class="pilcrow">¶</a></p>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-5.6.2-4.29">'site-of-origin':</dt>
+            <dd style="margin-left: 1.5em" id="section-5.6.2-4.30">
+              <p id="section-5.6.2-4.30.1">Meant to uniquely identify the set of routes
    learned from a site via a particular AC.  It is used
    to prevent routing loops (<span><a href="https://rfc-editor.org/rfc/rfc4364#section-7" class="relref">Section 7</a> of [<a href="#RFC4364" class="cite xref">RFC4364</a>]</span>).  The Site of
-   Origin attribute is encoded as a Route Origin Extended Community.<a href="#section-5.6.2-4.28.1" class="pilcrow">¶</a></p>
+   Origin attribute is encoded as a Route Origin Extended Community.<a href="#section-5.6.2-4.30.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
-<dt id="section-5.6.2-4.29">'ipv6-site-of-origin':</dt>
-            <dd style="margin-left: 1.5em" id="section-5.6.2-4.30">
-              <p id="section-5.6.2-4.30.1">Carries an IPv6 Address Specific BGP Extended
-    Community that is used to indicate the Site of Origin <span>[<a href="#RFC5701" class="cite xref">RFC5701</a>]</span>.  It is used to prevent routing loops.<a href="#section-5.6.2-4.30.1" class="pilcrow">¶</a></p>
-</dd>
-            <dd class="break"></dd>
-<dt id="section-5.6.2-4.31">'redistribute-connected':</dt>
+<dt id="section-5.6.2-4.31">'ipv6-site-of-origin':</dt>
             <dd style="margin-left: 1.5em" id="section-5.6.2-4.32">
-              <p id="section-5.6.2-4.32.1">Controls whether the AC is advertised to other PEs.<a href="#section-5.6.2-4.32.1" class="pilcrow">¶</a></p>
+              <p id="section-5.6.2-4.32.1">Carries an IPv6 Address Specific BGP Extended
+    Community that is used to indicate the Site of Origin <span>[<a href="#RFC5701" class="cite xref">RFC5701</a>]</span>.  It is used to prevent routing loops.<a href="#section-5.6.2-4.32.1" class="pilcrow">¶</a></p>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-5.6.2-4.33">'redistribute-connected':</dt>
+            <dd style="margin-left: 1.5em" id="section-5.6.2-4.34">
+              <p id="section-5.6.2-4.34.1">Controls whether the AC is advertised to other PEs.<a href="#section-5.6.2-4.34.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
 </dl>
@@ -6316,6 +6321,10 @@ be used to inject spoofed routing  advertisements.<a href="#section-7-7.6.1" cla
 <dt id="RFC9127">[RFC9127]</dt>
         <dd>
 <span class="refAuthor">Rahman, R., Ed.</span>, <span class="refAuthor">Zheng, L., Ed.</span>, <span class="refAuthor">Jethanandani, M., Ed.</span>, <span class="refAuthor">Pallagatti, S.</span>, and <span class="refAuthor">G. Mirsky</span>, <span class="refTitle">"YANG Data Model for Bidirectional Forwarding Detection (BFD)"</span>, <span class="seriesInfo">RFC 9127</span>, <span class="seriesInfo">DOI 10.17487/RFC9127</span>, <time datetime="2021-10" class="refDate">October 2021</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9127">https://www.rfc-editor.org/rfc/rfc9127</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC9234">[RFC9234]</dt>
+        <dd>
+<span class="refAuthor">Azimov, A.</span>, <span class="refAuthor">Bogomazov, E.</span>, <span class="refAuthor">Bush, R.</span>, <span class="refAuthor">Patel, K.</span>, and <span class="refAuthor">K. Sriram</span>, <span class="refTitle">"Route Leak Prevention and Detection Using Roles in UPDATE and OPEN Messages"</span>, <span class="seriesInfo">RFC 9234</span>, <span class="seriesInfo">DOI 10.17487/RFC9234</span>, <time datetime="2022-05" class="refDate">May 2022</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9234">https://www.rfc-editor.org/rfc/rfc9234</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC9543">[RFC9543]</dt>
       <dd>
