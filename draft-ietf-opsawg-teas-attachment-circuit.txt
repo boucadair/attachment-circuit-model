@@ -5,14 +5,14 @@
 OPSAWG                                                 M. Boucadair, Ed.
 Internet-Draft                                                    Orange
 Intended status: Standards Track                         R. Roberts, Ed.
-Expires: 12 December 2024                                        Juniper
+Expires: 5 January 2025                                          Juniper
                                                            O. G. D. Dios
                                                               Telefonica
                                                            S. B. Giraldo
                                                                    Nokia
                                                                    B. Wu
                                                      Huawei Technologies
-                                                            10 June 2024
+                                                             4 July 2024
 
 
   YANG Data Models for Bearers and 'Attachment Circuits'-as-a-Service
@@ -62,7 +62,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 12 December 2024.
+   This Internet-Draft will expire on 5 January 2025.
 
 Copyright Notice
 
@@ -1535,6 +1535,7 @@ Table of Contents
            |     |  |     +--rw local-as?         inet:as-number
            |     |  |     +--rw peer-as?          inet:as-number
            |     |  |     +--rw address-family?   identityref
+           |     |  |     +--rw role?             identityref
            |     |  |     +--rw local-address?    inet:ip-address
            |     |  |     +--rw bgp-max-prefix
            |     |  |     |  +--rw max-prefix?   uint32
@@ -1563,6 +1564,7 @@ Table of Contents
            |     |     +--rw local-as?           inet:as-number
            |     |     +--rw peer-as?            inet:as-number
            |     |     +--rw address-family?     identityref
+           |     |     +--rw role?               identityref
            |     |     +--rw bgp-max-prefix
            |     |     |  +--rw max-prefix?   uint32
            |     |     +--rw authentication
@@ -1624,6 +1626,9 @@ Table of Contents
       Family Identifiers (SAFIs) that will be part of the derived device
       configurations (e.g., unicast IPv4 MPLS L3VPN (AFI,SAFI = 1,128)
       as defined in Section 4.3.4 of [RFC4364]).
+
+   'role':  Specifies the BGP role in a session.  Role values are taken
+      from the list defined in Section 4 of [RFC9234].
 
    'local-address':  Specifies a provider's IP address to use when
       establishing the BGP transport session.
@@ -4123,9 +4128,9 @@ Table of Contents
               Bierman, A., Boucadair, M., and Q. Wu, "Guidelines for
               Authors and Reviewers of Documents Containing YANG Data
               Models", Work in Progress, Internet-Draft, draft-ietf-
-              netmod-rfc8407bis-11, 18 April 2024,
+              netmod-rfc8407bis-13, 2 July 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-netmod-
-              rfc8407bis-11>.
+              rfc8407bis-13>.
 
    [I-D.ietf-opsawg-ac-lxsm-lxnm-glue]
               Boucadair, M., Roberts, R., Barguil, S., and O. G. de
@@ -4254,6 +4259,12 @@ Table of Contents
               L. Geng, "A Framework for Automating Service and Network
               Management with YANG", RFC 8969, DOI 10.17487/RFC8969,
               January 2021, <https://www.rfc-editor.org/rfc/rfc8969>.
+
+   [RFC9234]  Azimov, A., Bogomazov, E., Bush, R., Patel, K., and K.
+              Sriram, "Route Leak Prevention and Detection Using Roles
+              in UPDATE and OPEN Messages", RFC 9234,
+              DOI 10.17487/RFC9234, May 2022,
+              <https://www.rfc-editor.org/rfc/rfc9234>.
 
    [RFC9543]  Farrel, A., Ed., Drake, J., Ed., Rokui, R., Homma, S.,
               Makhijani, K., Contreras, L., and J. Tantsura, "A

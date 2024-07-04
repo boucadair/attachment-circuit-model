@@ -5,14 +5,14 @@
 Operations and Management Area Working Group           M. Boucadair, Ed.
 Internet-Draft                                                    Orange
 Intended status: Standards Track                              R. Roberts
-Expires: 12 December 2024                                        Juniper
+Expires: 5 January 2025                                          Juniper
                                                            O. G. D. Dios
                                                               Telefonica
                                                            S. B. Giraldo
                                                                    Nokia
                                                                    B. Wu
                                                      Huawei Technologies
-                                                            10 June 2024
+                                                             4 July 2024
 
 
            A Network YANG Data Model for Attachment Circuits
@@ -58,7 +58,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 12 December 2024.
+   This Internet-Draft will expire on 5 January 2025.
 
 Copyright Notice
 
@@ -1208,6 +1208,7 @@ Table of Contents
           |     |        +--rw local-as?                 inet:as-number
           |     |        +--rw peer-as                   inet:as-number
           |     |        +--rw address-family?           identityref
+          |     |        +--rw role?                     identityref
           |     |        +--rw multihop?                 uint8
           |     |        +--rw as-override?              boolean
           |     |        +--rw allow-own-as?             uint8
@@ -1260,7 +1261,7 @@ Table of Contents
           |     |  +--rw type?                  identityref
           |     +--rw static
           |     |  ...
-          |     +--rw bgp  {vpn-common:rtg-bgp}?
+          |     +--rw bgp {vpn-common:rtg-bgp}?
           |     |  +--rw peer-groups
           |     |  |  +--rw peer-group* [name]
           |     |  |     +--rw name                      string
@@ -1276,6 +1277,7 @@ Table of Contents
           |     |  |     +--rw local-as?                 inet:as-number
           |     |  |     +--rw peer-as                   inet:as-number
           |     |  |     +--rw address-family?           identityref
+          |     |  |     +--rw role?                     identityref
           |     |  |     +--rw multihop?                 uint8
           |     |  |     +--rw as-override?              boolean
           |     |  |     +--rw allow-own-as?             uint8
@@ -1287,7 +1289,7 @@ Table of Contents
           |     |  |     |       rt-types:ipv6-route-origin
           |     |  |     +--rw redistribute-connected* [address-family]
           |     |  |     |  +--rw address-family    identityref
-          |     |  |     |  +--rw enabled?           boolean
+          |     |  |     |  +--rw enabled?          boolean
           |     |  |     +--rw bgp-max-prefix
           |     |  |     |  +--rw max-prefix?          uint32
           |     |  |     |  +--rw warning-threshold?   decimal64
@@ -1296,11 +1298,11 @@ Table of Contents
           |     |  |     +--rw bgp-timers
           |     |  |     |  +--rw keepalive?   uint16
           |     |  |     |  +--rw hold-time?   uint16
-          |     |  |     +--rw capability*        [address-family]
-          |     |  |     |   +--rw address-family    identityref
-          |     |  |     |   +--rw name              identityref
+          |     |  |     +--rw capability* [address-family]
+          |     |  |     |  +--rw address-family    identityref
+          |     |  |     |  +--rw name              identityref
           |     |  |     +--rw authentication
-          |     |  |        +--rw enabled?            boolean
+          |     |  |        +--rw enabled?           boolean
           |     |  |        +--rw keying-material
           |     |  |           +--rw (option)?
           |     |  |              +--:(ao)
@@ -1331,6 +1333,7 @@ Table of Contents
           |     |     +--rw local-as?                 inet:as-number
           |     |     +--rw peer-as                   inet:as-number
           |     |     +--rw address-family?           identityref
+          |     |     +--rw role?                     identityref
           |     |     +--rw multihop?                 uint8
           |     |     +--rw as-override?              boolean
           |     |     +--rw allow-own-as?             uint8
@@ -1342,7 +1345,7 @@ Table of Contents
           |     |     |       rt-types:ipv6-route-origin
           |     |     +--rw redistribute-connected* [address-family]
           |     |     |  +--rw address-family    identityref
-          |     |     |  +--rw enabled?           boolean
+          |     |     |  +--rw enabled?          boolean
           |     |     +--rw bgp-max-prefix
           |     |     |  +--rw max-prefix?          uint32
           |     |     |  +--rw warning-threshold?   decimal64
@@ -1351,16 +1354,16 @@ Table of Contents
           |     |     +--rw bgp-timers
           |     |     |  +--rw keepalive?   uint16
           |     |     |  +--rw hold-time?   uint16
-          |     |     +--rw capability*        [address-family]
-          |     |     |   +--rw address-family    identityref
-          |     |     |   +--rw name              identityref
+          |     |     +--rw capability* [address-family]
+          |     |     |  +--rw address-family    identityref
+          |     |     |  +--rw name              identityref
           |     |     +--rw bfd {vpn-common:bfd}?
-          |     |     |  +--rw enabled?            boolean
+          |     |     |  +--rw enabled?                         boolean
           |     |     |  +--rw failure-detection-profile-ref?   leafref
           |     |     |  +--rw network-ref?
           |     |     |          -> /nw:networks/network/network-id
           |     |     +--rw authentication
-          |     |     |  +--rw enabled?            boolean
+          |     |     |  +--rw enabled?           boolean
           |     |     |  +--rw keying-material
           |     |     |     +--rw (option)?
           |     |     |        +--:(ao)
@@ -1423,6 +1426,9 @@ Table of Contents
       Family Identifiers (SAFIs) that will be part of the derived device
       configurations (e.g., unicast IPv4 MPLS L3VPN (AFI,SAFI = 1,128)
       as defined in Section 4.3.4 of [RFC4364]).
+
+   'role':  Specifies the BGP role in a session.  Role values are taken
+      from the list defined in Section 4 of [RFC9234].
 
    'multihop':  Indicates the number of allowed IP hops to reach a BGP
       peer.
@@ -1564,7 +1570,7 @@ Table of Contents
           |     |  ...
           |     +--rw bgp  {vpn-common:rtg-bgp}?
           |     |  ...
-          |     +--rw ospf  {vpn-common:rtg-ospf}?
+          |     +--rw ospf {vpn-common:rtg-ospf}?
           |     |  +--rw address-family?   identityref
           |     |  +--rw area-id           yang:dotted-quad
           |     |  +--rw metric?           uint16
@@ -1575,7 +1581,7 @@ Table of Contents
           |     |  +--rw max-lsa?          uint32
           |     |  +--rw passive?          boolean
           |     |  +--rw authentication
-          |     |  |  +--rw enabled?            boolean
+          |     |  |  +--rw enabled?           boolean
           |     |  |  +--rw keying-material
           |     |  |     +--rw (option)?
           |     |  |        +--:(auth-key-chain)
@@ -1688,14 +1694,14 @@ Table of Contents
           |     |  ...
           |     +--rw ospf  {vpn-common:rtg-ospf}?
           |     |  ...
-          |     +--rw isis  {vpn-common:rtg-isis}?
+          |     +--rw isis {vpn-common:rtg-isis}?
           |     |  +--rw address-family?   identityref
           |     |  +--rw area-address      area-address
           |     |  +--rw level?            identityref
           |     |  +--rw metric?           uint32
           |     |  +--rw passive?          boolean
           |     |  +--rw authentication
-          |     |  |  +--rw enabled?            boolean
+          |     |  |  +--rw enabled?           boolean
           |     |  |  +--rw keying-material
           |     |  |     +--rw (option)?
           |     |  |        +--:(auth-key-chain)
@@ -3064,6 +3070,13 @@ Table of Contents
             'dual-stack' means that both IPv4 and IPv6 will be
             activated.";
        }
+       leaf role {
+         type identityref {
+           base ac-common:bgp-role;
+         }
+         description
+           "Specifies the BGP role (provider, customer, peer, etc.).";
+       }
        leaf multihop {
          type uint8;
          description
@@ -3710,6 +3723,14 @@ Table of Contents
                "Maximum number of allowed Link State Advertisements
                 (LSAs) that the OSPF instance will accept.";
            }
+           leaf passive {
+             type boolean;
+             description
+               "Enables when set to true a passive interface. It is
+                active when set to false. A passive interface's prefix
+                will be advertised, but no neighbor adjacencies will be
+                formed on the interface.";
+           }
            uses ac-common:ospf-authentication;
            uses ac-common:service-status;
          }
@@ -3717,8 +3738,7 @@ Table of Contents
            when "derived-from-or-self(../type, "
               + "'vpn-common:isis-routing')" {
              description
-               "Only applies when the protocol is
-                IS-IS.";
+               "Only applies when the protocol is IS-IS.";
            }
            if-feature "vpn-common:rtg-isis";
            description
@@ -3735,27 +3755,23 @@ Table of Contents
                           Layer 3 VPNs";
            }
            leaf metric {
-             type uint16;
-             description
-               "Metric of the PE-CE link. It is used in the routing
-                state calculation and path selection.";
-           }
-           leaf mode {
-             type enumeration {
-               enum active {
-                 description
-                   "The interface sends or receives
-                    IS-IS protocol control packets.";
-               }
-               enum passive {
-                 description
-                   "Suppresses the sending of IS-IS
-                    updates through the specified
-                    interface.";
-               }
+             type uint32 {
+               range "0 .. 16777215";
              }
              description
-               "IS-IS interface mode type.";
+               "Metric of the AC. It is used in the routing state
+                calculation and path selection.";
+           }
+           leaf passive {
+             type boolean;
+               description
+                 "When set to false, the interface is active. In such
+                  mode, the interface sends or receives IS-IS protocol
+                  control packets.
+
+                  When set to true, the interface is passive. That is,
+                  it suppresses the sending of IS-IS updates through the
+                  specified interface.";
            }
            uses ac-common:isis-authentication;
            uses ac-common:service-status;
@@ -4515,9 +4531,9 @@ Table of Contents
               Bierman, A., Boucadair, M., and Q. Wu, "Guidelines for
               Authors and Reviewers of Documents Containing YANG Data
               Models", Work in Progress, Internet-Draft, draft-ietf-
-              netmod-rfc8407bis-11, 18 April 2024,
+              netmod-rfc8407bis-13, 2 July 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-netmod-
-              rfc8407bis-11>.
+              rfc8407bis-13>.
 
    [I-D.ietf-opsawg-ac-lxsm-lxnm-glue]
               Boucadair, M., Roberts, R., Barguil, S., and O. G. de
@@ -4583,6 +4599,12 @@ Table of Contents
               Bidirectional Forwarding Detection (BFD)", RFC 9127,
               DOI 10.17487/RFC9127, October 2021,
               <https://www.rfc-editor.org/rfc/rfc9127>.
+
+   [RFC9234]  Azimov, A., Bogomazov, E., Bush, R., Patel, K., and K.
+              Sriram, "Route Leak Prevention and Detection Using Roles
+              in UPDATE and OPEN Messages", RFC 9234,
+              DOI 10.17487/RFC9234, May 2022,
+              <https://www.rfc-editor.org/rfc/rfc9234>.
 
    [RFC9543]  Farrel, A., Ed., Drake, J., Ed., Rokui, R., Homma, S.,
               Makhijani, K., Contreras, L., and J. Tantsura, "A
