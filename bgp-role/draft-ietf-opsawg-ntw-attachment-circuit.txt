@@ -1208,6 +1208,7 @@ Table of Contents
           |     |        +--rw local-as?                 inet:as-number
           |     |        +--rw peer-as                   inet:as-number
           |     |        +--rw address-family?           identityref
+          |     |        +--rw role?                     identityref
           |     |        +--rw multihop?                 uint8
           |     |        +--rw as-override?              boolean
           |     |        +--rw allow-own-as?             uint8
@@ -1260,7 +1261,7 @@ Table of Contents
           |     |  +--rw type?                  identityref
           |     +--rw static
           |     |  ...
-          |     +--rw bgp  {vpn-common:rtg-bgp}?
+          |     +--rw bgp {vpn-common:rtg-bgp}?
           |     |  +--rw peer-groups
           |     |  |  +--rw peer-group* [name]
           |     |  |     +--rw name                      string
@@ -1276,6 +1277,7 @@ Table of Contents
           |     |  |     +--rw local-as?                 inet:as-number
           |     |  |     +--rw peer-as                   inet:as-number
           |     |  |     +--rw address-family?           identityref
+          |     |  |     +--rw role?                     identityref
           |     |  |     +--rw multihop?                 uint8
           |     |  |     +--rw as-override?              boolean
           |     |  |     +--rw allow-own-as?             uint8
@@ -1287,7 +1289,7 @@ Table of Contents
           |     |  |     |       rt-types:ipv6-route-origin
           |     |  |     +--rw redistribute-connected* [address-family]
           |     |  |     |  +--rw address-family    identityref
-          |     |  |     |  +--rw enabled?           boolean
+          |     |  |     |  +--rw enabled?          boolean
           |     |  |     +--rw bgp-max-prefix
           |     |  |     |  +--rw max-prefix?          uint32
           |     |  |     |  +--rw warning-threshold?   decimal64
@@ -1296,11 +1298,11 @@ Table of Contents
           |     |  |     +--rw bgp-timers
           |     |  |     |  +--rw keepalive?   uint16
           |     |  |     |  +--rw hold-time?   uint16
-          |     |  |     +--rw capability*        [address-family]
-          |     |  |     |   +--rw address-family    identityref
-          |     |  |     |   +--rw name              identityref
+          |     |  |     +--rw capability* [address-family]
+          |     |  |     |  +--rw address-family    identityref
+          |     |  |     |  +--rw name              identityref
           |     |  |     +--rw authentication
-          |     |  |        +--rw enabled?            boolean
+          |     |  |        +--rw enabled?           boolean
           |     |  |        +--rw keying-material
           |     |  |           +--rw (option)?
           |     |  |              +--:(ao)
@@ -1331,6 +1333,7 @@ Table of Contents
           |     |     +--rw local-as?                 inet:as-number
           |     |     +--rw peer-as                   inet:as-number
           |     |     +--rw address-family?           identityref
+          |     |     +--rw role?                     identityref
           |     |     +--rw multihop?                 uint8
           |     |     +--rw as-override?              boolean
           |     |     +--rw allow-own-as?             uint8
@@ -1342,7 +1345,7 @@ Table of Contents
           |     |     |       rt-types:ipv6-route-origin
           |     |     +--rw redistribute-connected* [address-family]
           |     |     |  +--rw address-family    identityref
-          |     |     |  +--rw enabled?           boolean
+          |     |     |  +--rw enabled?          boolean
           |     |     +--rw bgp-max-prefix
           |     |     |  +--rw max-prefix?          uint32
           |     |     |  +--rw warning-threshold?   decimal64
@@ -1351,16 +1354,16 @@ Table of Contents
           |     |     +--rw bgp-timers
           |     |     |  +--rw keepalive?   uint16
           |     |     |  +--rw hold-time?   uint16
-          |     |     +--rw capability*        [address-family]
-          |     |     |   +--rw address-family    identityref
-          |     |     |   +--rw name              identityref
+          |     |     +--rw capability* [address-family]
+          |     |     |  +--rw address-family    identityref
+          |     |     |  +--rw name              identityref
           |     |     +--rw bfd {vpn-common:bfd}?
-          |     |     |  +--rw enabled?            boolean
+          |     |     |  +--rw enabled?                         boolean
           |     |     |  +--rw failure-detection-profile-ref?   leafref
           |     |     |  +--rw network-ref?
           |     |     |          -> /nw:networks/network/network-id
           |     |     +--rw authentication
-          |     |     |  +--rw enabled?            boolean
+          |     |     |  +--rw enabled?           boolean
           |     |     |  +--rw keying-material
           |     |     |     +--rw (option)?
           |     |     |        +--:(ao)
