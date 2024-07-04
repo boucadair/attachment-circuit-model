@@ -815,7 +815,35 @@ module ietf-ac-ntw {
          of the description is local to an implementation.";
     }
     uses rt-pol:apply-policy-group;
-    uses ac-common:bgp-peer-group-without-name;
+    leaf local-as {
+      type inet:as-number;
+      description
+        "Indicates a local AS Number (ASN), if an ASN distinct from
+         the ASN configured at the AC level is needed.";
+    }
+    leaf peer-as {
+      type inet:as-number;
+      mandatory true;
+      description
+        "Indicates the customer's ASN when the customer requests BGP
+         routing.";
+    }
+    leaf address-family {
+      type identityref {
+        base vpn-common:address-family;
+      }
+      description
+        "This node contains the address families to be activated.
+         'dual-stack' means that both IPv4 and IPv6 will be
+         activated.";
+    }
+    leaf role {
+      type identityref {
+        base ac-common:bgp-role;
+      }
+      description
+        "Specifies the BGP role (provider, customer, peer, etc.).";
+    }
     leaf multihop {
       type uint8;
       description
@@ -1469,8 +1497,7 @@ module ietf-ac-ntw {
         when "derived-from-or-self(../type, "
            + "'vpn-common:isis-routing')" {
           description
-            "Only applies when the protocol is
-             IS-IS.";
+            "Only applies when the protocol is IS-IS.";
         }
         if-feature "vpn-common:rtg-isis";
         description
@@ -1487,27 +1514,23 @@ module ietf-ac-ntw {
                        Layer 3 VPNs";
         }
         leaf metric {
-          type uint16;
-          description
-            "Metric of the PE-CE link. It is used in the routing 
-             state calculation and path selection.";
-        }
-        leaf mode {
-          type enumeration {
-            enum active {
-              description
-                "The interface sends or receives
-                 IS-IS protocol control packets.";
-            }
-            enum passive {
-              description
-                "Suppresses the sending of IS-IS
-                 updates through the specified
-                 interface.";
-            }
+          type uint32 {
+            range "0 .. 16777215";
           }
           description
-            "IS-IS interface mode type.";
+            "Metric of the AC. It is used in the routing state
+             calculation and path selection.";
+        }
+        leaf passive {
+          type boolean;
+            description
+              "When set to false, the interface is active. In such
+               mode, the interface sends or receives IS-IS protocol
+               control packets.
+
+               When set to true, the interface is passive. That is,
+               it suppresses the sending of IS-IS updates through the
+               specified interface.";
         }
         uses ac-common:isis-authentication;
         uses ac-common:service-status;
