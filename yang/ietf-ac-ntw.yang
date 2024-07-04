@@ -1490,6 +1490,14 @@ module ietf-ac-ntw {
             "Maximum number of allowed Link State Advertisements
              (LSAs) that the OSPF instance will accept.";
         }
+        leaf passive {
+          type boolean;
+          description
+            "Enables when set to true a passive interface. It is
+             active when set to false. A passive interface's prefix
+             will be advertised, but no neighbor adjacencies will be
+             formed on the interface.";
+        }
         uses ac-common:ospf-authentication;
         uses ac-common:service-status;
       }
