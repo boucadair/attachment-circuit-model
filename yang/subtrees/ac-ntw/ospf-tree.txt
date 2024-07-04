@@ -42,7 +42,7 @@ module: ietf-ac-ntw
        |     |  ...
        |     +--rw bgp  {vpn-common:rtg-bgp}?
        |     |  ...
-       |     +--rw ospf  {vpn-common:rtg-ospf}?
+       |     +--rw ospf {vpn-common:rtg-ospf}?
        |     |  +--rw address-family?   identityref
        |     |  +--rw area-id           yang:dotted-quad
        |     |  +--rw metric?           uint16
@@ -53,7 +53,7 @@ module: ietf-ac-ntw
        |     |  +--rw max-lsa?          uint32
        |     |  +--rw passive?          boolean
        |     |  +--rw authentication
-       |     |  |  +--rw enabled?            boolean
+       |     |  |  +--rw enabled?           boolean
        |     |  |  +--rw keying-material
        |     |  |     +--rw (option)?
        |     |  |        +--:(auth-key-chain)
