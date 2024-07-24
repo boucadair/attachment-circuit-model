@@ -5,12 +5,12 @@
 OPSAWG                                                 M. Boucadair, Ed.
 Internet-Draft                                                    Orange
 Intended status: Standards Track                              R. Roberts
-Expires: 12 December 2024                                        Juniper
+Expires: 25 January 2025                                         Juniper
                                                            S. B. Giraldo
                                                                    Nokia
                                                            O. G. D. Dios
                                                               Telefonica
-                                                            10 June 2024
+                                                            24 July 2024
 
 
   A YANG Data Model for Augmenting VPN Service and Network Models with
@@ -54,7 +54,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 12 December 2024.
+   This Internet-Draft will expire on 25 January 2025.
 
 Copyright Notice
 
@@ -862,9 +862,9 @@ Table of Contents
               Bierman, A., Boucadair, M., and Q. Wu, "Guidelines for
               Authors and Reviewers of Documents Containing YANG Data
               Models", Work in Progress, Internet-Draft, draft-ietf-
-              netmod-rfc8407bis-11, 18 April 2024,
+              netmod-rfc8407bis-14, 5 July 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-netmod-
-              rfc8407bis-11>.
+              rfc8407bis-14>.
 
    [I-D.ietf-opsawg-teas-common-ac]
               Boucadair, M., Roberts, R., de Dios, O. G., Barguil, S.,
@@ -1458,8 +1458,8 @@ Acknowledgments
 
    Thanks to Bo Wu and Qin Wu for the review and comments.
 
-   Thanks to Martin Björklund for the yangdoctors review and Gyan Mishra
-   for the rtg-dir review.
+   Thanks to Martin Björklund for the yangdoctors review, Gyan Mishra
+   for the rtg-dir review, and Ron Bonica for the opsdir review.
 
    Thanks to Mahesh Jethanandani for the AD review.
 

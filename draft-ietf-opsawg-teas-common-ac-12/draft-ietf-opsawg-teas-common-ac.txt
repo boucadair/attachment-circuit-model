@@ -5,14 +5,14 @@
 OPSAWG                                                 M. Boucadair, Ed.
 Internet-Draft                                                    Orange
 Intended status: Standards Track                         R. Roberts, Ed.
-Expires: 12 December 2024                                        Juniper
+Expires: 25 January 2025                                         Juniper
                                                            O. G. D. Dios
                                                               Telefonica
                                                            S. B. Giraldo
                                                                    Nokia
                                                                    B. Wu
                                                      Huawei Technologies
-                                                            10 June 2024
+                                                            24 July 2024
 
 
             A Common YANG Data Model for Attachment Circuits
@@ -54,7 +54,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 12 December 2024.
+   This Internet-Draft will expire on 25 January 2025.
 
 Copyright Notice
 
@@ -73,6 +73,7 @@ Copyright Notice
 Table of Contents
 
    1.  Introduction
+     1.1.  Editorial Note (To be removed by RFC Editor)
    2.  Conventions and Definitions
    3.  Relationship to Other AC Data Models
    4.  Description of the AC Common YANG Module
@@ -136,12 +137,12 @@ Table of Contents
    Virtual Private Network (VPN) or Layer 2 VPN) or host multiple
    services (e.g., Service Functions [RFC7665]).  A single AC (as seen
    by a network provider) may be bound to one or multiple peer SAPs
-   (e.g., "CE#1" and "CE#2").  For example, and as discussed in
-   [RFC4364], multiple CEs can be attached to a PE over the same
-   attachment circuit.  This is typically implemented if the Layer 2
-   infrastructure between the CE and the network provides a multipoint
-   service.  The same CE may terminate multiple ACs.  These ACs may be
-   over the same or distinct bearers.
+   (e.g., "CE1" and "CE2").  For example, and as discussed in [RFC4364],
+   multiple CEs can be attached to a PE over the same attachment
+   circuit.  This is typically implemented if the Layer 2 infrastructure
+   between the CE and the network provides a multipoint service.  The
+   same CE may terminate multiple ACs.  These ACs may be over the same
+   or distinct bearers.
 
                              .--------------------.
       .-------.              |                   .--.  (b1)  .------.
@@ -179,6 +180,21 @@ Table of Contents
    The YANG data model in this document conforms to the Network
    Management Datastore Architecture (NMDA) defined in [RFC8342].
 
+1.1.  Editorial Note (To be removed by RFC Editor)
+
+   Note to the RFC Editor: This section is to be removed prior to
+   publication.
+
+   This document contains placeholder values that need to be replaced
+   with finalized values at the time of publication.  This note
+   summarizes all of the substitutions that are needed.
+
+   Please apply the following replacements:
+
+   *  XXXX --> the assigned RFC number for this I-D
+
+   *  2023-11-13 --> the actual date of the publication of this document
+
 2.  Conventions and Definitions
 
    The meanings of the symbols in the YANG tree diagrams are defined in
@@ -190,7 +206,7 @@ Table of Contents
    LxNM refers to both the Layer 2 Network Model (L2NM) [RFC9291] and
    the Layer 3 Network Model (L3NM) [RFC9182].
 
-   This document uses the following terms:
+   This document uses the following term:
 
    Bearer:  A physical or logical link that connects a customer node (or
       site) to a provider network.
@@ -213,26 +229,24 @@ Table of Contents
       bearer (e.g., multiple Virtual Local Area Networks (VLANs) on the
       same bearer that is provided by a physical link).
 
-   Network controller:  Denotes a functional entity responsible for the
-      management of the service provider network.  One or multiple
-      network controllers can be deployed in a service provider network.
+   The names of data nodes are prefixed using the prefix associated with
+   the corresponding imported YANG module as shown in Table 1:
 
-   Service orchestrator:  Refers to a functional entity that interacts
-      with the customer of a network service.
+        +============+==================+========================+
+        | Prefix     | Module           | Reference              |
+        +============+==================+========================+
+        | inet       | ietf-inet-types  | Section 4 of [RFC6991] |
+        +------------+------------------+------------------------+
+        | key-chain  | ietf-key-chain   | [RFC8177]              |
+        +------------+------------------+------------------------+
+        | nacm       | ietf-netconf-acm | [RFC8341]              |
+        +------------+------------------+------------------------+
+        | vpn-common | ietf-vpn-common  | [RFC9181]              |
+        +------------+------------------+------------------------+
+        | yang       | ietf-yang-types  | Section 3 of [RFC6991] |
+        +------------+------------------+------------------------+
 
-      A service orchestrator is typically responsible for the attachment
-      circuits, the Provider Edge (PE) selection, and requesting the
-      activation of the requested services to a network controller.
-
-      A service orchestrator may interact with one or more network
-      controllers.
-
-   Service provider network:  A network that is able to provide network
-      services (e.g., L2VPN, L3VPN, or Network Slice Services
-      [RFC9543]).
-
-   Service provider:  A service provider that offers network services
-      (e.g., L2VPN, L3VPN, or Network Slice Services).
+              Table 1: Modules and Their Associated Prefixes
 
 3.  Relationship to Other AC Data Models
 
@@ -336,7 +350,7 @@ Table of Contents
    'bgp-capability':  Used to indicate a BGP capability [RFC5492].
       Examples of BGP capabilities are Multiprotocol extensions for
       BGP-4 [RFC4760], route refresh [RFC2918], graceful restart
-      [RFC4724], or ADD-PATH [RFC7911].
+      [RFC4724], ADD-PATH [RFC7911], or BGP Role [RFC9234]}.
 
    'role':  Used to indicate the type of an AC: User-to-Network
       Interface (UNI), Network-to-Network Interface (NNI), or public
@@ -609,11 +623,13 @@ Table of Contents
        +-- local-as?         inet:as-number
        +-- peer-as?          inet:as-number
        +-- address-family?   identityref
+       +-- role?             identityref
      grouping bgp-peer-group-with-name:
        +-- name?             string
        +-- local-as?         inet:as-number
        +-- peer-as?          inet:as-number
        +-- address-family?   identityref
+       +-- role?             identityref
      grouping ospf-basic:
        +-- address-family?   identityref
        +-- area-id           yang:dotted-quad
@@ -972,6 +988,16 @@ Table of Contents
          "RFC 7911: Advertisement of Multiple Paths in BGP";
      }
 
+     identity ebgp-role {
+       base bgp-capability;
+       description
+         "A capability that allows the advertisement of the BGP
+          role when establising a session.";
+       reference
+         "RFC 9234: Route Leak Prevention and Detection Using
+                    Roles in UPDATE and OPEN Messages, Section 4.1";
+     }
+
      // AC Type
 
      identity role {
@@ -1027,6 +1053,45 @@ Table of Contents
          "This administrative status reflects that a request was
           rejected because, e.g., there are no sufficient resources
           or other reasons not covered by the other status types.";
+     }
+
+     identity bgp-role {
+       description
+         "Used to indicate BGP role when establishing a BGP session.";
+       reference
+         "RFC 9234: Route Leak Prevention and Detection Using
+                    Roles in UPDATE and OPEN Messages, Section 4";
+     }
+
+     identity provider {
+       base bgp-role;
+       description
+         "The local AS is a transit provider of the remote AS.";
+     }
+
+     identity client {
+       base bgp-role;
+       description
+         "The local AS is a transit provider of the remote AS.";
+     }
+
+     identity rs {
+       base bgp-role;
+       description
+         "The local AS is a Route Server (RS).";
+     }
+
+     identity rs-client {
+       base bgp-role;
+       description
+         "The local AS is a client of an RS and the RS is the
+          remote AS.";
+     }
+
+     identity peer {
+       base bgp-role;
+       description
+         "The local and remote ASes have a peering relationship.";
      }
 
      /****************************Typedefs************************/
@@ -2046,6 +2111,16 @@ Table of Contents
             'dual-stack' means that both IPv4 and IPv6 will be
             activated.";
        }
+       leaf role {
+         type identityref {
+           base ac-common:bgp-role;
+         }
+         description
+           "Specifies the BGP role (provider, customer, peer, etc.).";
+         reference
+           "RFC 9234: Route Leak Prevention and Detection Using
+                      Roles in UPDATE and OPEN Messages, Section 4";
+       }
      }
 
      grouping bgp-peer-group-with-name {
@@ -2528,18 +2603,18 @@ Table of Contents
               Bierman, A., Boucadair, M., and Q. Wu, "Guidelines for
               Authors and Reviewers of Documents Containing YANG Data
               Models", Work in Progress, Internet-Draft, draft-ietf-
-              netmod-rfc8407bis-11, 18 April 2024,
+              netmod-rfc8407bis-14, 5 July 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-netmod-
-              rfc8407bis-11>.
+              rfc8407bis-14>.
 
    [I-D.ietf-opsawg-ac-lxsm-lxnm-glue]
               Boucadair, M., Roberts, R., Barguil, S., and O. G. de
               Dios, "A YANG Data Model for Augmenting VPN Service and
               Network Models with Attachment Circuits", Work in
               Progress, Internet-Draft, draft-ietf-opsawg-ac-lxsm-lxnm-
-              glue-09, 11 April 2024,
+              glue-10, 10 June 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
-              ac-lxsm-lxnm-glue-09>.
+              ac-lxsm-lxnm-glue-10>.
 
    [I-D.ietf-opsawg-ntw-attachment-circuit]
               Boucadair, M., Roberts, R., de Dios, O. G., Barguil, S.,
@@ -2629,6 +2704,12 @@ Table of Contents
               for Layer 3 VPNs", RFC 9182, DOI 10.17487/RFC9182,
               February 2022, <https://www.rfc-editor.org/rfc/rfc9182>.
 
+   [RFC9234]  Azimov, A., Bogomazov, E., Bush, R., Patel, K., and K.
+              Sriram, "Route Leak Prevention and Detection Using Roles
+              in UPDATE and OPEN Messages", RFC 9234,
+              DOI 10.17487/RFC9234, May 2022,
+              <https://www.rfc-editor.org/rfc/rfc9234>.
+
    [RFC9291]  Boucadair, M., Ed., Gonzalez de Dios, O., Ed., Barguil,
               S., and L. Munoz, "A YANG Network Data Model for Layer 2
               VPNs", RFC 9291, DOI 10.17487/RFC9291, September 2022,
@@ -2638,12 +2719,6 @@ Table of Contents
               Q., and V. Lopez, "A YANG Network Data Model for Service
               Attachment Points (SAPs)", RFC 9408, DOI 10.17487/RFC9408,
               June 2023, <https://www.rfc-editor.org/rfc/rfc9408>.
-
-   [RFC9543]  Farrel, A., Ed., Drake, J., Ed., Rokui, R., Homma, S.,
-              Makhijani, K., Contreras, L., and J. Tantsura, "A
-              Framework for Network Slices in Networks Built from IETF
-              Technologies", RFC 9543, DOI 10.17487/RFC9543, March 2024,
-              <https://www.rfc-editor.org/rfc/rfc9543>.
 
 Acknowledgments
 
