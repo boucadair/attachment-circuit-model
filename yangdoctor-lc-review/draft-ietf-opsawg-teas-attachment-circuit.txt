@@ -5595,7 +5595,7 @@ A.10.1.  Retrieve Interconnection Locations
        "peer-as": 65536,
        "location": [
          {
-           "location-name": "Location-X",
+           "name": "Location-X",
            "_comment": "other location attributes"
          },
          {
