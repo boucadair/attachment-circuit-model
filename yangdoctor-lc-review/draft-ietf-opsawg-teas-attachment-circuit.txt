@@ -619,8 +619,8 @@ Table of Contents
       |  +--rw role?            identityref
       |  +--rw local-as?        inet:as-number
       |  +--rw peer-as?         inet:as-number
-      |  +--ro location* [location-name]
-      |     +--ro location-name    string
+      |  +--ro location* [name]
+      |     +--ro name             string
       |     +--ro address?         string
       |     +--ro postal-code?     string
       |     +--ro state?           string
@@ -664,7 +664,7 @@ Table of Contents
             |  +--rw device
             |  |  +--rw device-id?   string
             |  |  +--rw location
-            |  |     +--rw location-name?   string
+            |  |     +--rw name?            string
             |  |     +--rw address?         string
             |  |     +--rw postal-code?     string
             |  |     +--rw state?           string
@@ -673,7 +673,7 @@ Table of Contents
             |  +--rw site
             |  |  +--rw site-id?    string
             |  |  +--rw location
-            |  |     +--rw location-name?   string
+            |  |     +--rw name?            string
             |  |     +--rw address?         string
             |  |     +--rw postal-code?     string
             |  |     +--rw state?           string
