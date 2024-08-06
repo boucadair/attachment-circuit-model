@@ -71,7 +71,7 @@
               <address-family
               xmlns:vpn-common="urn:ietf:params:xml:ns:yang:ietf-vpn-common">vpn-common:ipv4</address-family>
               <local-address>10.1.1.1</local-address> <authentication>
-                <enable>true</enable>
+                <enabled>true</enabled>
                 <keying-material>
                   <enable-ao>true</enable-ao>
                   <ao-keychain>KC1</ao-keychain>
@@ -81,6 +81,7 @@
           </peer-groups>
           <neighbor>
             <id>N1</id>
+            <server-reference>SR1</server-reference>
             <remote-address>10.2.2.2</remote-address>
             <local-address>10.1.1.1</local-address>
             <peer-group>PG1</peer-group>
@@ -99,23 +100,81 @@
           </neighbor>
         </bgp>
       </routing-protocol>
+      <routing-protocol>
+        <id>RP2</id>
+        <type
+        xmlns:vpn-common="urn:ietf:params:xml:ns:yang:ietf-vpn-common">vpn-common:vrrp-routing</type>
+        <vrrp>
+          <address-family
+          xmlns:vpn-common="urn:ietf:params:xml:ns:yang:ietf-vpn-common">vpn-common:ipv4</address-family>
+        </vrrp>
+      </routing-protocol>
+      <routing-protocol>
+        <id>RP3</id>
+        <type
+        xmlns:vpn-common="urn:ietf:params:xml:ns:yang:ietf-vpn-common">vpn-common:rip-routing</type>
+        <rip>
+          <address-family
+          xmlns:vpn-common="urn:ietf:params:xml:ns:yang:ietf-vpn-common">vpn-common:ipv4</address-family>
+        </rip>
+      </routing-protocol>
+      <routing-protocol>
+        <id>RP4</id>
+        <type
+        xmlns:vpn-common="urn:ietf:params:xml:ns:yang:ietf-vpn-common">vpn-common:isis-routing</type>
+        <isis>
+          <address-family
+          xmlns:vpn-common="urn:ietf:params:xml:ns:yang:ietf-vpn-common">vpn-common:ipv4</address-family>
+          <area-address>49.0000.0001.0000</area-address>
+        </isis>
+      </routing-protocol>
+      <routing-protocol>
+        <id>RP5</id>
+        <type
+        xmlns:vpn-common="urn:ietf:params:xml:ns:yang:ietf-vpn-common">vpn-common:ospf-routing</type>
+        <ospf>
+          <address-family
+          xmlns:vpn-common="urn:ietf:params:xml:ns:yang:ietf-vpn-common">vpn-common:ipv4</address-family>
+          <area-id>0.0.0.0</area-id> <metric>100</metric>
+        </ospf>
+      </routing-protocol>
+      <routing-protocol>
+        <id>RP6</id>
+        <type
+        xmlns:vpn-common="urn:ietf:params:xml:ns:yang:ietf-vpn-common">vpn-common:static-routing</type>
+        <static>
+          <cascaded-lan-prefixes>
+            <ipv6-lan-prefix>
+              <lan>2001:db8:1234:ffff::/64</lan>
+              <lan-tag>LT1</lan-tag>
+              <next-hop
+              xmlns:ac-common="urn:ietf:params:xml:ns:yang:ietf-ac-common">ac-common:local-link</next-hop>
+            </ipv6-lan-prefix>
+          </cascaded-lan-prefixes>
+        </static>
+      </routing-protocol>
     </routing-protocols>
     <oam>
       <bfd>
-        <profile>EPI3</profile>
-        <holdtime>180</holdtime>
-        <status>
-          <admin-status>
-            <status
-            xmlns:vpn-common="urn:ietf:params:xml:ns:yang:ietf-vpn-common">vpn-common:admin-up</status>
-            <last-change>2023-12-30T15:02:11.353Z</last-change>
-          </admin-status>
-          <oper-status>
-            <status
-            xmlns:vpn-common="urn:ietf:params:xml:ns:yang:ietf-vpn-common">vpn-common:op-up</status>
-            <last-change>2023-12-30T15:02:11.353Z</last-change>
-          </oper-status>
-        </status>
+        <session>
+          <id>SID1</id>
+          <local-address>10.1.1.1</local-address>
+          <remote-address>10.2.1.1</remote-address>
+          <profile>EPI3</profile>
+          <holdtime>180</holdtime>
+          <status>
+            <admin-status>
+              <status
+              xmlns:vpn-common="urn:ietf:params:xml:ns:yang:ietf-vpn-common">vpn-common:admin-up</status>
+              <last-change>2023-12-30T15:02:11.353Z</last-change>
+            </admin-status>
+            <oper-status>
+              <status
+              xmlns:vpn-common="urn:ietf:params:xml:ns:yang:ietf-vpn-common">vpn-common:op-up</status>
+              <last-change>2023-12-30T15:02:11.353Z</last-change>
+            </oper-status>
+          </status>
+        </session>
       </bfd>
     </oam>
     <security>
@@ -128,6 +187,7 @@
       </encryption-profile>
     </security>
     <service>
+      <mtu>9000</mtu>
       <svc-pe-to-ce-bandwidth>
         <bandwidth>
           <bw-type
@@ -156,10 +216,11 @@
     <requested-start>2023-12-30T14:52:51.353Z</requested-start>
     <requested-stop>2025-12-30T00:00:00.000Z</requested-stop>
     <actual-start>2023-12-30T15:02:10.003Z</actual-start>
+    <role
+    xmlns:ac-common="urn:ietf:params:xml:ns:yang:ietf-ac-common">ac-common:nni</role>
     <peer-sap-id>PSID1</peer-sap-id>
-    <ac-group-profile>AGP2</ac-group-profile>
-    <ac-parent-ref>AC2</ac-parent-ref>
-    <group>
+    <ac-group-profile-ref>AGP2</ac-group-profile-ref>
+    <ac-parent-ref>AC2</ac-parent-ref> <child-ac-ref>AC3</child-ac-ref> <group>
       <group-id>GID1</group-id>
       <precedence
       xmlns:ac-common="urn:ietf:params:xml:ns:yang:ietf-ac-common">ac-common:primary</precedence>
@@ -169,6 +230,7 @@
       xmlns:vpn-common="urn:ietf:params:xml:ns:yang:ietf-vpn-common">vpn-common:l3vpn</service-type>
       <service-id>SID1</service-id>
     </service-ref>
+    <server-reference>SAR1</server-reference>
     <service-profile>SPP1</service-profile>
     <ip-connection>
       <ipv6>
@@ -201,6 +263,9 @@
   <ac>
     <name>AC2</name>
   </ac>
+  <ac>
+    <name>AC3</name>
+  </ac>
 </attachment-circuits>
 <specific-provisioning-profiles xmlns="urn:ietf:params:xml:ns:yang:ietf-ac-svc">
   <valid-provider-identifiers>
@@ -210,9 +275,9 @@
     <qos-profile-identifier>
       <id>EPI2</id>
     </qos-profile-identifier>
-    <bfd-profile-identifier>
+    <failure-detection-profile-identifier>
       <id>EPI3</id>
-    </bfd-profile-identifier>
+    </failure-detection-profile-identifier>
     <forwarding-profile-identifier>
       <id>EPI4</id>
     </forwarding-profile-identifier>
@@ -229,6 +294,14 @@
     <id>SPP2</id>
   </service-profile-identifier>
 </service-provisioning-profiles>
+<locations xmlns="urn:ietf:params:xml:ns:yang:ietf-bearer-svc">
+  <customer-name>CN1</customer-name>
+  <role
+  xmlns:ac-common="urn:ietf:params:xml:ns:yang:ietf-ac-common">ac-common:nni</role>
+  <local-as>65000</local-as> <peer-as>1000</peer-as> <location>
+    <location-name>LOC1</location-name>
+  </location>
+</locations>
 <bearers xmlns="urn:ietf:params:xml:ns:yang:ietf-bearer-svc">
   <placement-constraints>
     <constraint>
@@ -255,7 +328,7 @@
     </constraint>
   </placement-constraints>
   <bearer>
-    <id>B1</id>
+    <name>B1</name>
     <description>Description for B1</description>
     <groups>
       <group>
@@ -263,6 +336,12 @@
       </group>
     </groups>
     <op-comment>Op comment</op-comment>
+    <bearer-parent-ref>B2</bearer-parent-ref>
+    <bearer-lag-member>B2</bearer-lag-member>
+    <sync-phy-capable>true</sync-phy-capable>
+    <sync-phy-enabled>true</sync-phy-enabled>
+    <sync-phy-type>syncE</sync-phy-type>
+    <provider-location-reference>LR1</provider-location-reference>
     <customer-point>
       <identified-by>site-and-device-id</identified-by>
       <device>
@@ -277,7 +356,7 @@
         </location>
       </device>
     </customer-point>
-    <requested-type>ethernet</requested-type>
+    <type>ethernet</type>
     <ac-svc-ref>AC1</ac-svc-ref>
     <requested-start>2023-12-30T14:52:51.353Z</requested-start>
     <requested-stop>2025-12-30T00:00:00.000Z</requested-stop>
@@ -294,5 +373,8 @@
         <last-change>2023-12-30T15:02:11.353Z</last-change>
       </oper-status>
     </status>
+  </bearer>
+  <bearer>
+    <name>B2</name>
   </bearer>
 </bearers>
