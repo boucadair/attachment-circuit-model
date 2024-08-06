@@ -1083,7 +1083,7 @@ Table of Contents
           +--rw peer-sap-id*         string
           +--rw ac-group-profile-ref*    ac-group-reference
           +--rw ac-parent-ref*       ac-svc:attachment-circuit-reference
-          +--ro child-ac-ref*        ac-svc:attachment-circuit-reference
+          +--ro ac-child-ref*        ac-svc:attachment-circuit-reference
           +--rw group* [group-id]
           |  +--rw group-id      string
           |  +--rw precedence?   identityref
