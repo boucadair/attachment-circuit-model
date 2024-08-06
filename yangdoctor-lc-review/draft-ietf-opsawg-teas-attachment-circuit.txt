@@ -2123,7 +2123,7 @@ Table of Contents
    This module uses types defined in [RFC6991], [RFC9181], and
    [I-D.ietf-opsawg-teas-common-ac].
 
-   <CODE BEGINS> file "ietf-bearer-svc@2023-11-13.yang"
+   <CODE BEGINS> file "ietf-bearer-svc@2024-08-06.yang"
    module ietf-bearer-svc {
      yang-version 1.1;
      namespace "urn:ietf:params:xml:ns:yang:ietf-bearer-svc";
@@ -2614,7 +2614,7 @@ Table of Contents
    This module uses types defined in [RFC6991], [RFC9181], [RFC8177],
    and [I-D.ietf-opsawg-teas-common-ac].
 
-   <CODE BEGINS> file "ietf-ac-svc@2023-11-13.yang"
+   <CODE BEGINS> file "ietf-ac-svc@2024-08-06.yang"
    module ietf-ac-svc {
      yang-version 1.1;
      namespace "urn:ietf:params:xml:ns:yang:ietf-ac-svc";
