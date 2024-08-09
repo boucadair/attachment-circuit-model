@@ -422,7 +422,7 @@ module: ietf-ac-svc
         +--rw ac-group-profile-ref*   ac-group-reference
         +--rw ac-parent-ref*
         |       ac-svc:attachment-circuit-reference
-        +--ro child-ac-ref*
+        +--ro ac-child-ref*
         |       ac-svc:attachment-circuit-reference
         +--rw group* [group-id]
         |  +--rw group-id      string

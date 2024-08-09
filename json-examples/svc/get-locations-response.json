@@ -5,7 +5,7 @@
     "peer-as": 65536,
     "location": [
       {
-        "location-name": "Location-X",
+        "name": "Location-X",
         "_comment": "other location attributes"        
       },
       {
