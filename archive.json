@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-08-08T00:41:56.542290+00:00",
+  "timestamp": "2024-08-11T00:46:13.059601+00:00",
   "repo": "boucadair/attachment-circuit-model",
   "labels": [
     {
@@ -8817,24 +8817,26 @@
       "id": "PR_kwDOIiAkrc53h_5r",
       "title": "Ebben's review",
       "url": "https://github.com/boucadair/attachment-circuit-model/pull/228",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "boucadair",
       "authorAssociation": "OWNER",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2024-08-06T07:17:06Z",
-      "updatedAt": "2024-08-06T08:00:53Z",
+      "updatedAt": "2024-08-09T06:58:54Z",
       "baseRepository": "boucadair/attachment-circuit-model",
       "baseRefName": "main",
       "baseRefOid": "62683f2357bffdc226e9f5ff70a0b17f89154090",
       "headRepository": "boucadair/attachment-circuit-model",
       "headRefName": "yangdoctor-lc-review",
       "headRefOid": "96beef429cb5b641a65dd7baca58248fa631caed",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2024-08-09T06:58:52Z",
+      "mergedAt": "2024-08-09T06:58:52Z",
+      "mergedBy": "boucadair",
+      "mergeCommit": {
+        "oid": "e9bde1e4a6ab95beb76b0bbfe5e0cbb7903a18ba"
+      },
       "comments": [],
       "reviews": []
     }
