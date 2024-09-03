@@ -1119,6 +1119,7 @@ module ietf-ac-ntw {
       description
         "Indicates the RIP timers.";
       reference
+        "RFC 2080: RIPng for IPv6";
         "RFC 2453: RIP Version 2";
       leaf update-interval {
         type uint16 {
