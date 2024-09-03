@@ -5,14 +5,14 @@
 Operations and Management Area Working Group           M. Boucadair, Ed.
 Internet-Draft                                                    Orange
 Intended status: Standards Track                              R. Roberts
-Expires: 25 January 2025                                         Juniper
+Expires: 7 March 2025                                            Juniper
                                                            O. G. D. Dios
                                                               Telefonica
                                                            S. B. Giraldo
                                                                    Nokia
                                                                    B. Wu
                                                      Huawei Technologies
-                                                            24 July 2024
+                                                        3 September 2024
 
 
            A Network YANG Data Model for Attachment Circuits
@@ -58,7 +58,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 25 January 2025.
+   This Internet-Draft will expire on 7 March 2025.
 
 Copyright Notice
 
@@ -4212,6 +4212,12 @@ Table of Contents
               information is required for each peer SAP.";
            uses ac-ntw:attachment-circuit-reference;
          }
+         container ac-child-ref {
+           description
+             "Specifies a child AC that relies upon a parent AC.";
+           config false;
+           uses ac-ntw:attachment-circuit-reference;
+         }
          leaf-list peer-sap-id {
            type string;
            description
@@ -4342,16 +4348,16 @@ Table of Contents
               and B. Wu, "YANG Data Models for Bearers and 'Attachment
               Circuits'-as-a-Service (ACaaS)", Work in Progress,
               Internet-Draft, draft-ietf-opsawg-teas-attachment-circuit-
-              13, 29 May 2024, <https://datatracker.ietf.org/doc/html/
-              draft-ietf-opsawg-teas-attachment-circuit-13>.
+              15, 9 August 2024, <https://datatracker.ietf.org/doc/html/
+              draft-ietf-opsawg-teas-attachment-circuit-15>.
 
    [I-D.ietf-opsawg-teas-common-ac]
               Boucadair, M., Roberts, R., de Dios, O. G., Barguil, S.,
               and B. Wu, "A Common YANG Data Model for Attachment
               Circuits", Work in Progress, Internet-Draft, draft-ietf-
-              opsawg-teas-common-ac-11, 14 May 2024,
+              opsawg-teas-common-ac-12, 24 July 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
-              teas-common-ac-11>.
+              teas-common-ac-12>.
 
    [IEEE802.1Qcp]
               IEEE, "IEEE Standard for Local and metropolitan area

@@ -14,7 +14,7 @@
        This document specifies a YANG service data model for Attachment Circuits (ACs). This model can be used for the provisioning of ACs before or during service provisioning (e.g., Network Slice Service). The document also specifies a service model for managing bearers over which ACs are established. 
        Also, the document specifies a set of reusable groupings. Whether other service models reuse structures defined in the AC models or simply include an AC reference is a design choice of these service models. Utilizing the AC service model to manage ACs over which a service is delivered has the advantage of decoupling service management from upgrading AC components to incorporate recent AC technologies or features. 
     " name="description">
-<meta content="xml2rfc 3.22.0" name="generator">
+<meta content="xml2rfc 3.23.0" name="generator">
 <meta content="Slice Service" name="keyword">
 <meta content="L3VPN" name="keyword">
 <meta content="L2VPN" name="keyword">
@@ -31,7 +31,7 @@
 <meta content="Network Slicing" name="keyword">
 <meta content="draft-ietf-opsawg-teas-attachment-circuit-latest" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.22.0
+  xml2rfc 3.23.0
     Python 3.12.3
     ConfigArgParse 1.7
     google-i18n-address 3.1.0
@@ -42,7 +42,7 @@
     pycountry 22.3.5
     PyYAML 6.0.1
     requests 2.32.3
-    setuptools 69.5.1
+    setuptools 70.3.0
     wcwidth 0.2.13
 -->
 <link href="draft-ietf-opsawg-teas-attachment-circuit.xml" rel="alternate" type="application/rfc+xml">
@@ -1042,11 +1042,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">ACaaS</td>
-<td class="right">July 2024</td>
+<td class="right">September 2024</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Boucadair, et al.</td>
-<td class="center">Expires 25 January 2025</td>
+<td class="center">Expires 7 March 2025</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1059,12 +1059,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-opsawg-teas-attachment-circuit-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2024-07-24" class="published">24 July 2024</time>
+<time datetime="2024-09-03" class="published">3 September 2024</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2025-01-25">25 January 2025</time></dd>
+<dd class="expires"><time datetime="2025-03-07">7 March 2025</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1128,7 +1128,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 25 January 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 7 March 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1932,8 +1932,8 @@ module: ietf-bearer-svc
   |  +--rw role?            identityref
   |  +--rw local-as?        inet:as-number
   |  +--rw peer-as?         inet:as-number
-  |  +--ro location* [location-name]
-  |     +--ro location-name    string
+  |  +--ro location* [name]
+  |     +--ro name             string
   |     +--ro address?         string
   |     +--ro postal-code?     string
   |     +--ro state?           string
@@ -1977,7 +1977,7 @@ module: ietf-bearer-svc
         |  +--rw device
         |  |  +--rw device-id?   string
         |  |  +--rw location
-        |  |     +--rw location-name?   string
+        |  |     +--rw name?            string
         |  |     +--rw address?         string
         |  |     +--rw postal-code?     string
         |  |     +--rw state?           string
@@ -1986,7 +1986,7 @@ module: ietf-bearer-svc
         |  +--rw site
         |  |  +--rw site-id?    string
         |  |  +--rw location
-        |  |     +--rw location-name?   string
+        |  |     +--rw name?            string
         |  |     +--rw address?         string
         |  |     +--rw postal-code?     string
         |  |     +--rw state?           string
@@ -2016,7 +2016,7 @@ module: ietf-bearer-svc
 <a href="#name-bearer-service-tree-structu" class="selfRef">Bearer Service Tree Structure</a>
           </figcaption></figure>
 </div>
-<p id="section-5.1-3">In some deployments, a customer may first retrieve a list of available presence locations before actually placing an order for a bearer creation. The request may be filtered based upon a customer name, role of the bearer, etc. The retrieved location name may be then referenced in the bearer creation request ("provider-location-reference").<a href="#section-5.1-3" class="pilcrow">¶</a></p>
+<p id="section-5.1-3">In some deployments, a customer may first retrieve a list of available presence locations before actually placing an order for a bearer creation. The request may be filtered based upon a customer name, role of the bearer, etc. The retrieved location name may be then referenced in the bearer creation request ("provider-location-reference"). See the example provided in <a href="#sec-ret-loc" class="auto internal xref">Appendix A.10.1</a>.<a href="#section-5.1-3" class="pilcrow">¶</a></p>
 <p id="section-5.1-4">The same customer site (CE, SF, etc.) can terminate one or multiple bearers; each of them uniquely identified by a reference that is assigned by the network provider. These bearers can terminate on the same or distinct network nodes. CEs that terminate multiple bearers are called multi-homed CEs.<a href="#section-5.1-4" class="pilcrow">¶</a></p>
 <p id="section-5.1-5">A bearer can be created, modified, or discovered from the network. For example, the following deployment options can be considered:<a href="#section-5.1-5" class="pilcrow">¶</a></p>
 <span class="break"></span><dl class="dlParallel" id="section-5.1-6">
@@ -2421,7 +2421,7 @@ These adjusted values take precedence over the global values.  The structure of 
         +--rw peer-sap-id*         string
         +--rw ac-group-profile-ref*    ac-group-reference
         +--rw ac-parent-ref*       ac-svc:attachment-circuit-reference
-        +--ro child-ac-ref*        ac-svc:attachment-circuit-reference
+        +--ro ac-child-ref*        ac-svc:attachment-circuit-reference
         +--rw group* [group-id]
         |  +--rw group-id      string
         |  +--rw precedence?   identityref
@@ -2524,7 +2524,7 @@ a parent AC can be defined with a set of stable and common information, while
               <p id="section-5.2.5-4.28.1">A "child" AC <span class="bcp14">MAY</span> rely upon more than one parent AC (e.g., parent Layer 2 AC and parent Layer 3 AC). In such cases, these ACs <span class="bcp14">MUST NOT</span> be overlapping. An example to illustrate the use of multiple parent ACs is provided in  <a href="#sec-bfd-static" class="auto internal xref">Appendix A.12</a>.<a href="#section-5.2.5-4.28.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
-<dt id="section-5.2.5-4.29">'child-ac-ref':</dt>
+<dt id="section-5.2.5-4.29">'ac-child-ref':</dt>
             <dd style="margin-left: 1.5em" id="section-5.2.5-4.30">
               <p id="section-5.2.5-4.30.1">Lists one or more references of child ACs that rely upon this attachment circuit as a parent AC.<a href="#section-5.2.5-4.30.1" class="pilcrow">¶</a></p>
 </dd>
@@ -3728,7 +3728,7 @@ Information Rate (EIR), or the Peak Information Rate (PIR). Both reuse the 'band
 <p id="section-6.1-1">This module uses types defined in <span>[<a href="#RFC6991" class="cite xref">RFC6991</a>]</span>, <span>[<a href="#RFC9181" class="cite xref">RFC9181</a>]</span>, and <span>[<a href="#I-D.ietf-opsawg-teas-common-ac" class="cite xref">I-D.ietf-opsawg-teas-common-ac</a>]</span>.<a href="#section-6.1-1" class="pilcrow">¶</a></p>
 <div class="breakable lang-yang sourcecode" id="section-6.1-2">
 <pre>
-&lt;CODE BEGINS&gt; file "ietf-bearer-svc@2023-11-13.yang"
+&lt;CODE BEGINS&gt; file "ietf-bearer-svc@2024-08-06.yang"
 module ietf-bearer-svc {
   yang-version 1.1;
   namespace "urn:ietf:params:xml:ns:yang:ietf-bearer-svc";
@@ -3790,7 +3790,7 @@ module ietf-bearer-svc {
      This version of this YANG module is part of RFC xxx; see the
      RFC itself for full legal notices.";
 
-  revision 2023-11-13 {
+  revision 2024-08-06 {
     description
       "Initial revision.";
     reference
@@ -3869,13 +3869,13 @@ module ietf-bearer-svc {
        is provided (e.g., geoproximity).";
   }
 
-  identity syncPHY-type {
+  identity sync-phy-type {
     description
       "Base identity for physical layer synchronization.";
   }
 
-  identity syncE {
-    base syncPHY-type;
+  identity sync-e {
+    base sync-phy-type;
     description
       "Sync Ethernet (SyncE).";
     reference
@@ -3883,13 +3883,13 @@ module ietf-bearer-svc {
                     synchronization based on the physical layer";
   }
 
-  // Reusabel groupings
+  // Reusable groupings
 
   grouping location-information {
     description
       "Basic location information";
 
-    leaf location-name {
+    leaf name {
       type string;
       description
         "Provides a location name. This data node can be mapped,
@@ -3992,8 +3992,8 @@ module ietf-bearer-svc {
 
   container locations {
     description
-      "Retrieves the list of available provider locations for
-       terminating bearers.";
+      "Retrieves the available provider locations for terminating
+       bearers for a given customer.";
     leaf customer-name {
       type string;
       description
@@ -4018,7 +4018,7 @@ module ietf-bearer-svc {
         "Indicates the customer's ASN.";
     }
     list location {
-      key "location-name";
+      key "name";
       config false;
       description
         "Reports the list of available locations.";
@@ -4102,7 +4102,7 @@ module ietf-bearer-svc {
       leaf sync-phy-type {
         when "../sync-phy-enabled='true'";
         type identityref {
-          base syncPHY-type;
+          base sync-phy-type;
         }
         description
           "Type of the physical layer synchronization.";
@@ -4225,7 +4225,7 @@ module ietf-bearer-svc {
 <p id="section-6.2-1">This module uses types defined in <span>[<a href="#RFC6991" class="cite xref">RFC6991</a>]</span>, <span>[<a href="#RFC9181" class="cite xref">RFC9181</a>]</span>, <span>[<a href="#RFC8177" class="cite xref">RFC8177</a>]</span>, and <span>[<a href="#I-D.ietf-opsawg-teas-common-ac" class="cite xref">I-D.ietf-opsawg-teas-common-ac</a>]</span>.<a href="#section-6.2-1" class="pilcrow">¶</a></p>
 <div class="breakable lang-yang sourcecode" id="section-6.2-2">
 <pre>
-&lt;CODE BEGINS&gt; file "ietf-ac-svc@2023-11-13.yang"
+&lt;CODE BEGINS&gt; file "ietf-ac-svc@2024-08-06.yang"
 module ietf-ac-svc {
   yang-version 1.1;
   namespace "urn:ietf:params:xml:ns:yang:ietf-ac-svc";
@@ -4291,7 +4291,7 @@ module ietf-ac-svc {
      This version of this YANG module is part of RFC XXXX; see the
      RFC itself for full legal notices.";
 
-  revision 2023-11-13 {
+  revision 2024-08-06 {
     description
       "Initial revision.";
     reference
@@ -5331,7 +5331,7 @@ module ietf-ac-svc {
          information is created with a set of child ACs
          to track dynamic AC information.";
     }
-    leaf-list child-ac-ref {
+    leaf-list ac-child-ref {
       type ac-svc:attachment-circuit-reference;
       config false;
       description
@@ -5648,7 +5648,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 <dl class="references">
 <dt id="I-D.ietf-opsawg-teas-common-ac">[I-D.ietf-opsawg-teas-common-ac]</dt>
         <dd>
-<span class="refAuthor">Boucadair, M.</span>, <span class="refAuthor">Roberts, R.</span>, <span class="refAuthor">de Dios, O. G.</span>, <span class="refAuthor">Barguil, S.</span>, and <span class="refAuthor">B. Wu</span>, <span class="refTitle">"A Common YANG Data Model for Attachment Circuits"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-opsawg-teas-common-ac-11</span>, <time datetime="2024-05-14" class="refDate">14 May 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-teas-common-ac-11">https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-teas-common-ac-11</a>&gt;</span>. </dd>
+<span class="refAuthor">Boucadair, M.</span>, <span class="refAuthor">Roberts, R.</span>, <span class="refAuthor">de Dios, O. G.</span>, <span class="refAuthor">Barguil, S.</span>, and <span class="refAuthor">B. Wu</span>, <span class="refTitle">"A Common YANG Data Model for Attachment Circuits"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-opsawg-teas-common-ac-12</span>, <time datetime="2024-07-24" class="refDate">24 July 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-teas-common-ac-12">https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-teas-common-ac-12</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC2119">[RFC2119]</dt>
         <dd>
@@ -5777,11 +5777,11 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 <dd class="break"></dd>
 <dt id="I-D.ietf-opsawg-ntw-attachment-circuit">[I-D.ietf-opsawg-ntw-attachment-circuit]</dt>
         <dd>
-<span class="refAuthor">Boucadair, M.</span>, <span class="refAuthor">Roberts, R.</span>, <span class="refAuthor">de Dios, O. G.</span>, <span class="refAuthor">Barguil, S.</span>, and <span class="refAuthor">B. Wu</span>, <span class="refTitle">"A Network YANG Data Model for Attachment Circuits"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-opsawg-ntw-attachment-circuit-11</span>, <time datetime="2024-05-15" class="refDate">15 May 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-ntw-attachment-circuit-11">https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-ntw-attachment-circuit-11</a>&gt;</span>. </dd>
+<span class="refAuthor">Boucadair, M.</span>, <span class="refAuthor">Roberts, R.</span>, <span class="refAuthor">de Dios, O. G.</span>, <span class="refAuthor">Barguil, S.</span>, and <span class="refAuthor">B. Wu</span>, <span class="refTitle">"A Network YANG Data Model for Attachment Circuits"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-opsawg-ntw-attachment-circuit-12</span>, <time datetime="2024-07-24" class="refDate">24 July 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-ntw-attachment-circuit-12">https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-ntw-attachment-circuit-12</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="I-D.ietf-teas-ietf-network-slice-nbi-yang">[I-D.ietf-teas-ietf-network-slice-nbi-yang]</dt>
         <dd>
-<span class="refAuthor">Wu, B.</span>, <span class="refAuthor">Dhody, D.</span>, <span class="refAuthor">Rokui, R.</span>, <span class="refAuthor">Saad, T.</span>, and <span class="refAuthor">J. Mullooly</span>, <span class="refTitle">"A YANG Data Model for the RFC 9543 Network Slice Service"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-teas-ietf-network-slice-nbi-yang-13</span>, <time datetime="2024-05-09" class="refDate">9 May 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-teas-ietf-network-slice-nbi-yang-13">https://datatracker.ietf.org/doc/html/draft-ietf-teas-ietf-network-slice-nbi-yang-13</a>&gt;</span>. </dd>
+<span class="refAuthor">Wu, B.</span>, <span class="refAuthor">Dhody, D.</span>, <span class="refAuthor">Rokui, R.</span>, <span class="refAuthor">Saad, T.</span>, and <span class="refAuthor">J. Mullooly</span>, <span class="refTitle">"A YANG Data Model for the RFC 9543 Network Slice Service"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-teas-ietf-network-slice-nbi-yang-16</span>, <time datetime="2024-08-28" class="refDate">28 August 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-teas-ietf-network-slice-nbi-yang-16">https://datatracker.ietf.org/doc/html/draft-ietf-teas-ietf-network-slice-nbi-yang-16</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="I-D.ramseyer-grow-peering-api">[I-D.ramseyer-grow-peering-api]</dt>
         <dd>
@@ -7637,7 +7637,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
         </h3>
 <p id="appendix-A.10-1">This section illustrates how to use the AC service model for interconnection purposes. To that aim, the document assumes a simplified Internet eXchange Point (IXP) configuration without zooming into IXP deployment specifics. Let us assume that networks are interconnected via a Layer 2 facility. BGP is used to exchange routing information and reachability announcements between those networks. The same approach can be used to negotiate interconnection between two networks and without involving an IXP.<a href="#appendix-A.10-1" class="pilcrow">¶</a></p>
 <p id="appendix-A.10-2">The following subsections exemplify a deployment flow, but BGP sessions can be managed without having to execute systematically all the steps detailed hereafter.<a href="#appendix-A.10-2" class="pilcrow">¶</a></p>
-<div id="retrieve-interconnection-locations">
+<div id="sec-ret-loc">
 <section id="appendix-A.10.1">
           <h4 id="name-retrieve-interconnection-lo">
 <a href="#appendix-A.10.1" class="section-number selfRef">A.10.1. </a><a href="#name-retrieve-interconnection-lo" class="section-name selfRef">Retrieve Interconnection Locations</a>
@@ -7672,7 +7672,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
     "peer-as": 65536,
     "location": [
       {
-        "location-name": "Location-X",
+        "name": "Location-X",
         "_comment": "other location attributes"
       },
       {
