@@ -1979,6 +1979,12 @@ module ietf-ac-ntw {
            information is required for each peer SAP.";
         uses ac-ntw:attachment-circuit-reference;
       }
+      container ac-child-ref {
+        description
+          "Specifies a child AC that relies upon a parent AC.";
+        config false;
+        uses ac-ntw:attachment-circuit-reference;
+      }
       leaf-list peer-sap-id {
         type string;
         description
