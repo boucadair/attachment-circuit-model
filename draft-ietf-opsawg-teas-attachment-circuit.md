@@ -468,7 +468,7 @@ Features are used to tag conditional protions of the model in order to accomodat
 
 ### Service Profiles {#sec-profiles}
 
-#### Description
+#### Description {#sec-profiles-desc}
 
 The 'specific-provisioning-profiles' container ({{gp-svc-tree}}) can be used by a service provider to maintain a set of reusable profiles. The profiles definitions are similar to those defined in {{!RFC9181}}, including: Quality of Service (QoS), BFD, forwarding, and routing profiles. The exact definition of the profiles is local to each service provider. The model only includes an identifier for these profiles in order to facilitate identifying and binding local policies when building an AC.
 
@@ -867,7 +867,7 @@ As shown in the tree depicted in {{sec-svc-tree}}, the 'security' container defi
 ~~~~
 {: #sec-svc-tree title="Security Tree Structure" artwork-align="center"}
 
-The 'security' container specifies the authentication and the encryption to be applied to traffic for a given AC. Tthe model can be used to directly control the encryption to be applied (e.g., Layer 2 or Layer 3 encryption) or invoke a local encryption profile.
+The 'security' container specifies a minimum set of encryption-related parameters that can be requested to be applied to traffic for a given AC. Typically, the model can be used to directly control the encryption to be applied (e.g., Layer 2 or Layer 3 encryption) or invoke a local encryption profile (see  {{sec-profiles-desc}}). For example, a service provide may use IPsec when a customer requests Layer 3 encryption for an AC.
 
 #### Service {#sec-bw}
 
@@ -991,9 +991,9 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:
    notification) to these data nodes. Specifically, the following subtrees and data nodes have particular
 sensitivities/vulnerabilities in the "ietf-bearer-svc" module:
 
-   'customer-point':
-   : An attacker can retrieve privacy-related information about location from where
-      the customer is connected. Disclosing such information may be used to infer
+   'customer-point' and 'locations':
+   : An attacker can retrieve privacy-related information about locations from where
+      the customer is connected or can be serviced. Disclosing such information may be used to infer
       the identity of the customer.
 
    The following subtrees and data nodes have particular
@@ -1498,6 +1498,6 @@ This document leverages {{!RFC9182}} and {{!RFC9291}}. Thanks to Gyan Mishra for
 
 Thanks to Ebben Aries for the YANG Doctors review and for providing {{Instance-Data}}.
 
-Thanks to Donald Eastlake for the careful rtg-dir reviews.
+Thanks to Donald Eastlake for the careful rtg-dir reviews and Tero Kivinen for the sec-dir review.
 
 Thanks to Luis Miguel Contreras Murillo for the careful Shepherd review.
