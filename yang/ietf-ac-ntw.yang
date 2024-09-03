@@ -1980,9 +1980,9 @@ module ietf-ac-ntw {
         uses ac-ntw:attachment-circuit-reference;
       }
       container ac-child-ref {
+        config false;
         description
           "Specifies a child AC that relies upon a parent AC.";
-        config false;
         uses ac-ntw:attachment-circuit-reference;
       }
       leaf-list peer-sap-id {
