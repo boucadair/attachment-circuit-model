@@ -301,7 +301,7 @@ augment /nw:networks/nw:network/nw:node:
      |  +--rw node-ref?      leafref
      |  +--rw network-ref?   -> /nw:networks/network/network-id
      +--ro ac-child-ref
-     |  +--ro ac-ref?        leafref
+     |  +--ro ac-ref*        leafref
      |  +--ro node-ref?      leafref
      |  +--ro network-ref?   -> /nw:networks/network/network-id
      +--rw peer-sap-id*         string
