@@ -1044,6 +1044,6 @@ This document builds on {{!RFC9182}} and {{!RFC9291}}.
 
 Thanks to Moti Morgenstern for the review and comments.
 
-Thanks to Martin Björklund for the yangdoctors review and Gyan Mishra for the rtg-dir review.
+Thanks to Martin Björklund for the yangdoctors review, Gyan Mishra for an early rtg-dir review, and Joel Halpern for the rtg-dir review.
 
 Thanks to Krzysztof Szarkowicz for the Shepherd review.
