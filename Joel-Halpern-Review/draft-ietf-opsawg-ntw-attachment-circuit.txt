@@ -478,6 +478,10 @@ Table of Contents
         |  +--rw ac-ref?        leafref
         |  +--rw node-ref?      leafref
         |  +--rw network-ref?   -> /nw:networks/network/network-id
+        +--ro ac-child-ref
+        |  +--ro ac-ref?        leafref
+        |  +--ro node-ref?      leafref
+        |  +--ro network-ref?   -> /nw:networks/network/network-id
         +--rw peer-sap-id*         string
         +--rw group* [group-id]
         |  +--rw group-id      string
@@ -556,7 +560,7 @@ Table of Contents
       parent AC.
 
    Whenever a parent AC is deleted, then all child ACs of that AC MUST
-   be deleted.
+   be deleted.  Child ACs are referenced using 'ac-child-ref'.
 
    An AC may belong to one or multiple groups [RFC9181].  For example,
    the 'group-id' is used to associate redundancy or protection

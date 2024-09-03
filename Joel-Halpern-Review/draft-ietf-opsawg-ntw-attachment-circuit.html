@@ -1918,6 +1918,10 @@ augment /nw:networks/nw:network/nw:node:
      |  +--rw ac-ref?        leafref
      |  +--rw node-ref?      leafref
      |  +--rw network-ref?   -&gt; /nw:networks/network/network-id
+     +--ro ac-child-ref
+     |  +--ro ac-ref?        leafref
+     |  +--ro node-ref?      leafref
+     |  +--ro network-ref?   -&gt; /nw:networks/network/network-id
      +--rw peer-sap-id*         string
      +--rw group* [group-id]
      |  +--rw group-id      string
@@ -1971,7 +1975,7 @@ reference point (the PE side of an AC, in the context of this document) where ne
             <p id="section-5.1-9.3.1">Indicate for each individual AC one or a subset of the CEs as peer SAPs. All these individual ACs will inherit the properties of the parent AC.<a href="#section-5.1-9.3.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
-<p id="section-5.1-10">Whenever a parent AC is deleted, then all child ACs of that AC <span class="bcp14">MUST</span> be deleted.<a href="#section-5.1-10" class="pilcrow">¶</a></p>
+<p id="section-5.1-10">Whenever a parent AC is deleted, then all child ACs of that AC <span class="bcp14">MUST</span> be deleted. Child ACs are referenced using 'ac-child-ref'.<a href="#section-5.1-10" class="pilcrow">¶</a></p>
 <p id="section-5.1-11">An AC may belong to one or multiple groups <span>[<a href="#RFC9181" class="cite xref">RFC9181</a>]</span>. For example, the 'group-id' is used to associate redundancy or protection constraints with ACs.<a href="#section-5.1-11" class="pilcrow">¶</a></p>
 <p id="section-5.1-12">The status of an AC can be tracked using 'status'. Both operational status and administrative status are maintained. A mismatch between the administrative status vs. the operational status can be used as a trigger to detect anomalies.<a href="#section-5.1-12" class="pilcrow">¶</a></p>
 <p id="section-5.1-13">An AC can be characterized using Layer 2 connectivity (<a href="#sec-l2" class="auto internal xref">Section 5.4</a>), Layer 3 connectivity (<a href="#sec-l3" class="auto internal xref">Section 5.5</a>), routing protocols (<a href="#sec-rtg" class="auto internal xref">Section 5.6</a>), Operations, Administration, and Maintenance (OAM) (<a href="#sec-oam" class="auto internal xref">Section 5.7</a>), security (<a href="#sec-sec" class="auto internal xref">Section 5.8</a>), and service (<a href="#sec-svc" class="auto internal xref">Section 5.9</a>) considerations. Features are used to tag conditional protions to accomodate various deployments (support of layer 2 ACs, Layer 3 ACs, IPv4, IPv6, routing protocols, BFD, etc.).<a href="#section-5.1-13" class="pilcrow">¶</a></p>
