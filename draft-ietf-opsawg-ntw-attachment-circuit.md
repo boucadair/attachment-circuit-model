@@ -725,8 +725,8 @@ The following RIP data nodes are supported:
 'address-family':
 :  Indicates whether IPv4, IPv6, or both address
       families are to be activated.  This parameter is used to determine
-      whether RIPv2 {{!RFC2453}}, RIP Next Generation (RIPng), or both are
-      to be enabled {{!RFC2080}}.
+      whether RIPv2 {{!RFC2453}}, RIP Next Generation (RIPng) {{!RFC2080}}, or both are
+      to be enabled.
 
 'timers':
 :  Indicates the following timers (expressed in seconds):
