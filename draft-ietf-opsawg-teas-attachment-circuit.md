@@ -867,7 +867,7 @@ As shown in the tree depicted in {{sec-svc-tree}}, the 'security' container defi
 ~~~~
 {: #sec-svc-tree title="Security Tree Structure" artwork-align="center"}
 
-The 'security' container specifies a minimum set of encryption-related parameters that can be requested to be applied to traffic for a given AC. Typically, the model can be used to directly control the encryption to be applied (e.g., Layer 2 or Layer 3 encryption) or invoke a local encryption profile (see  {{sec-profiles-desc}}). For example, a service provide may use IPsec when a customer requests Layer 3 encryption for an AC.
+The 'security' container specifies a minimum set of encryption-related parameters that can be requested to be applied to traffic for a given AC. Typically, the model can be used to directly control the encryption to be applied (e.g., Layer 2 or Layer 3 encryption) or invoke a local encryption profile (see  {{sec-profiles-desc}}). For example, a service provider may use IPsec when a customer requests Layer 3 encryption for an AC.
 
 #### Service {#sec-bw}
 
