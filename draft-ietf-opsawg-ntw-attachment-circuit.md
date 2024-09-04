@@ -300,6 +300,10 @@ augment /nw:networks/nw:network/nw:node:
      |  +--rw ac-ref?        leafref
      |  +--rw node-ref?      leafref
      |  +--rw network-ref?   -> /nw:networks/network/network-id
+     +--ro ac-child-ref
+     |  +--ro ac-ref*        leafref
+     |  +--ro node-ref?      leafref
+     |  +--ro network-ref?   -> /nw:networks/network/network-id
      +--rw peer-sap-id*         string
      +--rw group* [group-id]
      |  +--rw group-id      string
@@ -349,7 +353,7 @@ In contexts where the same AC is terminated by multiple peer SAPs (e.g., an AC w
 * Create individual ACs that are bound to the parent AC using 'ac-parent-ref'.
 * Indicate for each individual AC one or a subset of the CEs as peer SAPs. All these individual ACs will inherit the properties of the parent AC.
 
-Whenever a parent AC is deleted, then all child ACs of that AC MUST be deleted.
+Whenever a parent AC is deleted, then all child ACs of that AC MUST be deleted. Child ACs are referenced using 'ac-child-ref'.
 
 An AC may belong to one or multiple groups {{!RFC9181}}. For example, the 'group-id' is used to associate redundancy or protection constraints with ACs.
 
@@ -721,8 +725,8 @@ The following RIP data nodes are supported:
 'address-family':
 :  Indicates whether IPv4, IPv6, or both address
       families are to be activated.  This parameter is used to determine
-      whether RIPv2 {{!RFC2453}}, RIP Next Generation (RIPng), or both are
-      to be enabled {{!RFC2080}}.
+      whether RIPv2 {{!RFC2453}}, RIP Next Generation (RIPng) {{!RFC2080}}, or both are
+      to be enabled.
 
 'timers':
 :  Indicates the following timers (expressed in seconds):
@@ -1040,6 +1044,6 @@ This document builds on {{!RFC9182}} and {{!RFC9291}}.
 
 Thanks to Moti Morgenstern for the review and comments.
 
-Thanks to Martin Björklund for the yangdoctors review and Gyan Mishra for the rtg-dir review.
+Thanks to Martin Björklund for the yangdoctors review, Gyan Mishra for an early rtg-dir review, and Joel Halpern for the rtg-dir review.
 
 Thanks to Krzysztof Szarkowicz for the Shepherd review.
