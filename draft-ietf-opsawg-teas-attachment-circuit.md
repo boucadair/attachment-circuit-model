@@ -359,7 +359,7 @@ Greenfield creation:
 Auto-discovery using network protocols:
 : Devices can use specific protocols (e.g., Link Layer Discovery Protocol (LLDP) {{IEEE802.1AB}}) to automatically discover and connect to available network resources. A network controller can use such reported information to expose discovered bearers from the network using the same bearer data model structure.
 
-A request to create a bearer may include a set of constraints ("placement-constraints") that are used by a controller to decide the network terminating side of a bearer (e.g., PE selection, PE redundancy, or PoP selection). Future placement criteria ("constraint-type") may be defined in the future to accommodate specific deployment contexts.
+A request to earer may include a set of constraints ("placement-constraints") that are used by a controller to decide the network terminating side of a bearer (e.g., PE selection, PE redundancy, or PoP selection). Future placement criteria ("constraint-type") may be defined in the future to accommodate specific deployment contexts.
 
 
 The descriptions of the bearer data nodes are as follows:
@@ -1059,7 +1059,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:
 
 This section includes a non-exhaustive list of examples to illustrate the use of the service models defined in this document. An example instance data can also be found at {{Instance-Data}}.
 
-## Create A New Bearer {#ex-create-bearer}
+## Create a New Bearer {#ex-create-bearer}
 
 An example of a request message body to create a bearer is shown in {{create-bearer}}.
 
