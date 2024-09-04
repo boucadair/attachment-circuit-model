@@ -2468,7 +2468,7 @@ where multiple instances of the same routing protocol have to be configured on t
 The values of this attribute are those defined in <span>[<a href="#RFC9181" class="cite xref">RFC9181</a>]</span> (the
 'routing-protocol-type' identity). Specific data nodes are then provided
 as a function of the 'type'. See more details in the following subsections.<a href="#section-5.6-4" class="pilcrow">¶</a></p>
-<p id="section-5.6-5">One or multiple routing profiles ('routing-profiles') can be provided for
+<p id="section-5.6-5">One or multiple routing profiles ('routing-profile') can be provided for
 a given routing instance.<a href="#section-5.6-5" class="pilcrow">¶</a></p>
 <div id="sec-static-rtg">
 <section id="section-5.6.1">
@@ -3719,9 +3719,9 @@ isn't any type of VRRP authentication at this time (see <span><a href="https://r
             <p id="section-5.7-4.4.1">Specifies the local IP address or interface to use for the session. This data node is mapped to 'local-address' of BFD container in <span>[<a href="#I-D.ietf-opsawg-teas-attachment-circuit" class="cite xref">I-D.ietf-opsawg-teas-attachment-circuit</a>]</span>. 'source-address' is used here to ease the mapping with the underlying device model defind in <span>[<a href="#RFC9127" class="cite xref">RFC9127</a>]</span>.<a href="#section-5.7-4.4.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-5.7-4.5">'failure-detection-profile-profile-ref':</dt>
+<dt id="section-5.7-4.5">'failure-detection-profile-ref':</dt>
           <dd style="margin-left: 1.5em" id="section-5.7-4.6">
-            <p id="section-5.7-4.6.1">Refers to a BFD profile (<a href="#sec-profiles" class="auto internal xref">Section 5.3</a>).<a href="#section-5.7-4.6.1" class="pilcrow">¶</a></p>
+            <p id="section-5.7-4.6.1">Refers to BFD profiles in <a href="#sec-profiles" class="auto internal xref">Section 5.3</a>.<a href="#section-5.7-4.6.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
 <dt id="section-5.7-4.7">'network-ref':</dt>
@@ -3772,7 +3772,7 @@ isn't any type of VRRP authentication at this time (see <span><a href="https://r
         <h3 id="name-security">
 <a href="#section-5.8" class="section-number selfRef">5.8. </a><a href="#name-security" class="section-name selfRef">Security</a>
         </h3>
-<p id="section-5.8-1">The security subtree structure is shown in <a href="#sec-tree" class="auto internal xref">Figure 18</a>. The 'security' container specifies the authentication and the encryption to be applied to traffic for a given AC. Tthe model can be used to directly control the encryption to be applied (e.g., Layer 2 or Layer 3 encryption) or invoke a local encryption profile.<a href="#section-5.8-1" class="pilcrow">¶</a></p>
+<p id="section-5.8-1">The security subtree structure is shown in <a href="#sec-tree" class="auto internal xref">Figure 18</a>. The 'security' container specifies the the encryption to be applied to traffic for a given AC. The model can be used to directly control the encryption to be applied (e.g., Layer 2 or Layer 3 encryption) or invoke a local encryption profile.<a href="#section-5.8-1" class="pilcrow">¶</a></p>
 <span id="name-security-tree-structure"></span><div id="sec-tree">
 <figure id="figure-18">
           <div class="alignLeft art-text artwork" id="section-5.8-2.1">

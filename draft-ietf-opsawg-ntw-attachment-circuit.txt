@@ -1069,7 +1069,7 @@ Table of Contents
    type' identity).  Specific data nodes are then provided as a function
    of the 'type'.  See more details in the following subsections.
 
-   One or multiple routing profiles ('routing-profiles') can be provided
+   One or multiple routing profiles ('routing-profile') can be provided
    for a given routing instance.
 
 5.6.1.  Static Routing
@@ -2043,8 +2043,8 @@ Table of Contents
       'source-address' is used here to ease the mapping with the
       underlying device model defind in [RFC9127].
 
-   'failure-detection-profile-profile-ref':  Refers to a BFD profile
-      (Section 5.3).
+   'failure-detection-profile-ref':  Refers to BFD profiles in
+      Section 5.3.
 
    'network-ref':  Includes a network reference to uniquely identify a
       BFD profile.
@@ -2078,10 +2078,10 @@ Table of Contents
 5.8.  Security
 
    The security subtree structure is shown in Figure 18.  The 'security'
-   container specifies the authentication and the encryption to be
-   applied to traffic for a given AC.  Tthe model can be used to
-   directly control the encryption to be applied (e.g., Layer 2 or Layer
-   3 encryption) or invoke a local encryption profile.
+   container specifies the the encryption to be applied to traffic for a
+   given AC.  The model can be used to directly control the encryption
+   to be applied (e.g., Layer 2 or Layer 3 encryption) or invoke a local
+   encryption profile.
 
     augment /nw:networks/nw:network/nw:node:
       +--rw ac* [name]
