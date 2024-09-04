@@ -5,14 +5,14 @@
 OPSAWG                                                 M. Boucadair, Ed.
 Internet-Draft                                                    Orange
 Intended status: Standards Track                         R. Roberts, Ed.
-Expires: 7 March 2025                                            Juniper
+Expires: 8 March 2025                                            Juniper
                                                            O. G. D. Dios
                                                               Telefonica
                                                            S. B. Giraldo
                                                                    Nokia
                                                                    B. Wu
                                                      Huawei Technologies
-                                                        3 September 2024
+                                                        4 September 2024
 
 
   YANG Data Models for Bearers and 'Attachment Circuits'-as-a-Service
@@ -62,7 +62,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 7 March 2025.
+   This Internet-Draft will expire on 8 March 2025.
 
 Copyright Notice
 
@@ -2012,7 +2012,7 @@ Table of Contents
    a given AC.  Typically, the model can be used to directly control the
    encryption to be applied (e.g., Layer 2 or Layer 3 encryption) or
    invoke a local encryption profile (see Section 5.2.2.1).  For
-   example, a service provide may use IPsec when a customer requests
+   example, a service provider may use IPsec when a customer requests
    Layer 3 encryption for an AC.
 
 5.2.5.6.  Service
