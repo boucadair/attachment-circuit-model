@@ -155,7 +155,7 @@ When a customer requests a new value-added service, the service can be bound to 
 
 Also, because the instantiation of an attachment circuit requires coordinating the provisioning of endpoints that might not belong to the same administrative entity (customer vs. provider or distinct operational teams within the same provider, etc.), providing programmatic means to expose 'Attachment Circuits'-as-a-Service (ACaaS) greatly simplifies the provisioning of value-added services delivered over an attachment circuit. For example, management systems of adjacent domains that need to connect via an AC will use such means to agree upon the resources that are required for the activation of both sides of an AC (e.g., Layer 2 tags, IP address family, or IP subnets).
 
-This document specifies a YANG service data model ("ietf-ac-svc") for managing attachment circuits that are exposed by a network to its customers, such as an enterprise site, an SF, a hosting infrastructure, or a peer network provider. The model can be used for the provisioning of ACs prior or during advanced service provisioning (e.g., IETF Network Slice Service {{?RFC9543}}).
+This document specifies a YANG service data model ("ietf-ac-svc") for managing attachment circuits that are exposed by a network to its customers, such as an enterprise site, an SF, a hosting infrastructure, or a peer network provider. The model can be used for the provisioning of ACs prior or during advanced service provisioning (e.g., IETF Network Slice Service defined in "A Framework for Network Slices in Networks Built from IETF Technologies" {{?RFC9543}}).
 
 The "ietf-ac-svc" module ({{sec-ac-module}}) includes a set of reusable groupings. Whether a service model reuses structures defined in the "ietf-ac-svc" or simply includes an AC reference (that was communicated during AC service instantiation) is a design choice of these service models. Relying upon the AC service model to manage ACs over which services are delivered has the merit of decorrelating the management of the (core) service vs. upgrade the AC components to reflect recent AC technologies or new features (e.g., new encryption scheme, additional routing protocol). This document favors the approach of completely relying upon the AC service model instead of duplicating data nodes into specific modules of advanced services that are delivered over an Attachment Circuit.
 
@@ -176,7 +176,7 @@ The AC service model can be used in a variety of contexts, such as (but not limi
 * Create Multiple ACs bound to Multiple CEs ({{sec-multiple-ces}}).
 * Bind a slice service to a set of pre-provisioned attachment circuits ({{sec-ex-slice}}).
 * Connect a Cloud Infrastructure to a service provider network ({{sec-ex-cloud}}).
-* Interconnect provider networks (e.g., {{?RFC8921}} or {{?I-D.ramseyer-grow-peering-api}}). Such ACs are identified with a "role" set to "ac-common:nni" or "ac-common:public-nni". See {{sec-peering}} to illustrate the use of the AC model for peering.
+* Interconnect provider networks (e.g., {{?RFC8921}} or {{?I-D.ramseyer-grow-peering-api}}). Such ACs are identified with a "role" set to "ac-common:nni" or "ac-common:public-nni". See {{sec-peering}} to illustrate the use of the AC model for interconnection/peering.
 * Manage connectivity for complex containerized or virtualized functions in the cloud ({{sec-cloudified-nfs}}).
 
 The YANG data models in this document conform to the Network Management Datastore Architecture (NMDA) defined in {{!RFC8342}}.
@@ -185,7 +185,7 @@ The YANG data models in this document conform to the Network Management Datastor
 
 The AC model specified in this document is not a network model {{?RFC8969}}. As such, the model does not expose details related to specific nodes in the provider's network that terminate an AC (e.g., network node identifiers). The mapping between an AC as seen by a customer and the network implementation of an AC is maintained by the network controllers and is not exposed to the customer. This mapping can be maintained using a variety of network models, such as augmented SAP AC network model {{?I-D.ietf-opsawg-ntw-attachment-circuit}}.
 
-The AC service model is not a device model. A network provider may use a variety of device models (e.g., Routing management {{?RFC8349}} or BGP {{?I-D.ietf-idr-bgp-model}}) to provision an AC service in relevant network nodes.
+The AC service model is not a device model. A network provider may use a variety of device models (e.g., "A YANG Data Model for Routing Management (NMDA Version)" {{?RFC8349}} or "YANG Model for Border Gateway Protocol (BGP-4)" {{?I-D.ietf-idr-bgp-model}}) to provision an AC service in relevant network nodes.
 
 ### Why Not Use the L2SM as Reference Data Model for ACaaS?
 
@@ -210,7 +210,7 @@ Please apply the following replacements:
 
 {::boilerplate bcp14-tagged}
 
-The meanings of the symbols in the YANG tree diagrams are defined in {{?RFC8340}}.
+The meanings of the symbols in the YANG tree diagrams are defined in "YANG Tree Diagrams" {{?RFC8340}}.
 
 LxSM refers to both the L2SM and the L3SM.
 
@@ -502,7 +502,7 @@ All the above mentioned profiles are uniquely identified by the NETCONF/RESTCONF
 
 ### Attachment Circuits Profiles {#sec-acp}
 
-The 'ac-group-profile' defines reusable parameters for a set of ACs. Each profile is identified by 'name'. Some of the data nodes can be adjusted at the 'ac'.
+The 'ac-group-profile' defines reusable parameters for a set of ACs. Each profile is identified by 'name'. Some of the data nodes can be adjusted at the 'ac' level.
 These adjusted values take precedence over the global values.  The structure of 'ac-group-profile' is similar to the one used to model each 'ac' ({{ac-svc-tree}}).
 
 ### AC Placement Contraints {#sec-pc}
