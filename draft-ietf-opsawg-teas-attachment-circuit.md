@@ -138,7 +138,7 @@ Also, the document specifies a set of reusable groupings. Whether other service 
 
 Connectivity services are provided by networks to customers via dedicated terminating points, such as Service Functions (SFs) {{?RFC7665}}, Customer Edges (CEs), peer Autonomous System Border Routers (ASBRs), data centers gateways, or Internet Exchange Points. A connectivity service is basically about ensuring data transfer received from or destined to a given terminating point to or from other terminating points within the same customer/service, an interconnection node, or an ancillary node. The objectives for the connectivity service can be negotiated and agreed upon between the customer and the network provider. To facilitate data transfer within the provider network, it is assumed that the appropriate setup is provisioned over the links that connect customer terminating points and a provider network (usually via a Provider Edge (PE)), allowing successfully data exchanged over these links. The required setup is referred to in this document as Attachment Circuit (AC), while the underlying link is referred to as "bearer".
 
-This document adheres to the definition of an Attachment Circuit as provided in {{Section 1.2 of !RFC4364}}, especially:
+This document adheres to the definition of an Attachment Circuit as provided in "BGP/MPLS IP Virtual Private Networks (VPNs)" ({{Section 1.2 of !RFC4364}}), especially:
 
 > Routers can be attached to each other, or to end systems, in a
    variety of different ways: PPP connections, ATM Virtual Circuits
@@ -161,9 +161,9 @@ The "ietf-ac-svc" module ({{sec-ac-module}}) includes a set of reusable grouping
 
 Since the provisioning of an AC requires a bearer to be in place, this document introduces a new module called "ietf-bearer-svc" that enables customers to manage their bearer requests ({{sec-bearer-module}}). The customers can then retrieve a provider-assigned bearer reference that they will include in their AC service requests. Likewise, a customer may retrieve whether their bearers support a synchronization mechanism such as Sync Ethernet (SyncE) {{ITU-T-G.781}}. An example of retrieving a bearer reference is provided in {{ex-create-bearer}}.
 
-An AC service request can provide a reference to a bearer or a set of peer Service Attachment Points (SAPs) {{!RFC9408}}. Both schemes are supported in the AC service model. When several bearers are available, the AC service request may filter them based on the bearer type, synchronization support, etc.
+An AC service request can provide a reference to a bearer or a set of peer Service Attachment Points (SAPs) specified in "A YANG Network Data Model for Service Attachment Points (SAPs)" {{!RFC9408}}. Both schemes are supported in the AC service model. When several bearers are available, the AC service request may filter them based on the bearer type, synchronization support, etc.
 
-Each AC is identified with a unique identifier within a provider domain. From a network provider standpoint, an AC can be bound to a single or multiple SAPs {{!RFC9408}}. Likewise, the same SAP can be bound to one or multiple ACs. However, the mapping between an AC and a PE in the provider network that terminates that AC is hidden to the application that makes use of the AC service model. Such mapping information is internal to the network controllers. As such, the details about the (node-specific) attachment interfaces are not exposed in the AC service model. However, these details are exposed at the network model per {{?I-D.ietf-opsawg-ntw-attachment-circuit}}. {{?I-D.ietf-opsawg-ac-lxsm-lxnm-glue}} specifies augmentations to the	L2VPN Service Model (L2SM) {{?RFC8466}} and the L3VPN Service Model	(L3SM) {{?RFC8299}} to bind LxVPN services to ACs.
+Each AC is identified with a unique identifier within a provider domain. From a network provider standpoint, an AC can be bound to a single or multiple SAPs {{!RFC9408}}. Likewise, the same SAP can be bound to one or multiple ACs. However, the mapping between an AC and a PE in the provider network that terminates that AC is hidden to the application that makes use of the AC service model. Such mapping information is internal to the network controllers. As such, the details about the (node-specific) attachment interfaces are not exposed in the AC service model. However, these details are exposed at the network model per "A Network YANG Data Model for Attachment Circuits" specification {{?I-D.ietf-opsawg-ntw-attachment-circuit}}. "A YANG Data Model for Augmenting VPN Service and Network Models with Attachment Circuits" {{?I-D.ietf-opsawg-ac-lxsm-lxnm-glue}} specifies augmentations to the	L2VPN Service Model (L2SM) {{?RFC8466}} and the L3VPN Service Model	(L3SM) {{?RFC8299}} to bind LxVPN services to ACs.
 
 The AC service model does not make any assumptions about the internal structure or even the nature or the services that will be delivered over an attachment circuit or a set of attachment circuits. Customers do not have access to that network view other than the ACs that they ordered. For example, the AC service model can be used to provision a set of ACs to connect multiple sites (Site1, Site2, ..., SiteX) for customer who also requested VPN services. If the provisioning of these services requires specific configuration on ASBR nodes, such configuration is handled at the network level and is not exposed to the customer at the service level. However, the network controller will have access to such a view as the service points in these ASBRs will be exposed as SAPs with "role" set to "ietf-sap-ntw:nni" {{!RFC9408}}.
 
@@ -229,7 +229,7 @@ Customer Edge (CE):
 
 Provider Edge (PE):
 : Equipment owned and managed by the service provider that can support multiple services for different customers.
-: Per {{Section 5.2 of ?RFC4026}}, a PE is a device located at the edge of the service network with the functionality that is needed to interface with the customer.
+: Per "Provider Provisioned Virtual Private Network (VPN) Terminology" ({{Section 5.2 of ?RFC4026}}), a PE is a device located at the edge of the service network with the functionality that is needed to interface with the customer.
 : A PE is connected to one or more CEs via ACs.
 
 Network controller:
@@ -436,7 +436,7 @@ The descriptions of the bearer data nodes are as follows:
 
 : To assess the service delivery status for a given bearer comprehensively, it is recommended to consider both administrative and operational service status values in conjunction. This holistic approach  allows a network controller or operator to identify anomalies effectively.
 : For instance, when a bearer is administratively enabled but the "operational-status" of that bearer is reported as "op-down", it should be expected that the "oper-status" of services transported over that bearer is also down. These status values differing should trigger the detection of an anomaly condition.
-: See {{!RFC9181}} for more details.
+: See "A Common YANG Data Model for Layer 2 and Layer 3 VPNs" {{!RFC9181}} for more details.
 
 
 ## The Attachment Circuit Service ("ietf-ac-svc") YANG Module
@@ -707,7 +707,7 @@ The following data nodes are supported for each BGP 'peer-group':
 
 'authentication':
 : The module adheres to the recommendations in {{Section 13.2 of !RFC4364}}, as it allows enabling the TCP Authentication Option (TCP-AO) {{?RFC5925}} and accommodates the installed base that makes use of MD5. In addition, the module includes a provision for using IPsec.
-: Similar to {{?RFC9182}}, this version of the ACaaS assumes that parameters specific to the TCP-AO are preconfigured as part of the key chain that is referenced in the ACaaS. No assumption is made about how such a key chain is preconfigured. However, the structure of the key chain should cover data nodes beyond those in {{!RFC8177}}, mainly SendID and RecvID ({{Section 3.1 of ?RFC5925}}).
+: Similar to {{?RFC9182}}, this version of the ACaaS assumes that parameters specific to the TCP-AO are preconfigured as part of the key chain that is referenced in the ACaaS. No assumption is made about how such a key chain is preconfigured. However, the structure of the key chain should cover data nodes beyond those in "YANG Data Model for Key Chains" {{!RFC8177}}, mainly SendID and RecvID ({{Section 3.1 of ?RFC5925}}).
 
 For each neighbor, the following data nodes are supported in addition to similar parameters that are provided for a peer group:
 
@@ -804,7 +804,7 @@ The RIP tree structure is shown in {{rip-rtg-svc-tree}}.
 ~~~~
 {: #rip-rtg-svc-tree title="RIP Tree Structure" artwork-align="center"}
 
-'address-family' indicates whether IPv4, IPv6, or both address families are to be activated. For example, this parameter is used to determine whether RIPv2 {{?RFC2453}}, RIP Next Generation (RIPng), or both are to be enabled {{?RFC2080}}.
+'address-family' indicates whether IPv4, IPv6, or both address families are to be activated. For example, this parameter is used to determine whether RIPv2 {{?RFC2453}}, RIP Next Generation (RIPng) {{?RFC2080}}, or both are to be enabled.
 
 ##### VRRP {#sec-vrrp-rtg}
 
@@ -1077,7 +1077,7 @@ A "bearer-reference" is then generated by the controller for this bearer. {{get-
 
 Note that the response also indicates that Sync Phy mechanism is supported for this bearer.
 
-## Create An AC over An Existing Bearer {#ac-bearer-exist}
+## Create an AC over an Existing Bearer {#ac-bearer-exist}
 
 An example of a request message body to create a simple AC over an existing bearer is shown in {{ac-b}}. The bearer reference is assumed to be known to both the customer and the network provider. Such a reference can be retrieved, e.g., following the example described in {{ex-create-bearer}} or using other means (including, exchanged out-of-band or via proprietary APIs).
 
@@ -1093,7 +1093,7 @@ An example of a request message body to create a simple AC over an existing bear
 ~~~~
 {: #ac-br title="Example of a Message Body of a Response to Assign a CVLAN ID"}
 
-## Create An AC for a Known Peer SAP {#ac-no-bearer-peer-sap}
+## Create an AC for a Known Peer SAP {#ac-no-bearer-peer-sap}
 
 An example of a request to create a simple AC, when the peer SAP is known, is shown in {{ac-known-ps}}. In this example, the peer SAP identifier points to an identifier of an SF. The (topological) location of that SF is assumed to be known to the network controller. For example, this can be determined as part of an on-demand procedure to instantiate an SF in a cloud. That instantiated SF can be granted a connectivity service via the provider network.
 
@@ -1209,7 +1209,7 @@ When multiple ACs are requested by the same customer for the same site, the requ
 
 ## Binding Attachment Circuits to an IETF Network Slice {#sec-ex-slice}
 
-This example shows how the AC service model complements the IETF Network Slice model {{?I-D.ietf-teas-ietf-network-slice-nbi-yang}} to connect a site to a Slice Service.
+This example shows how the AC service model complements the model defined in "A YANG Data Model for the RFC 9543 Network Slice Service" {{?I-D.ietf-teas-ietf-network-slice-nbi-yang}} to connect a site to a Slice Service.
 
 First, {{slice-vlan-1}} describes the end-to-end network topology as well the orchestration scopes:
 
