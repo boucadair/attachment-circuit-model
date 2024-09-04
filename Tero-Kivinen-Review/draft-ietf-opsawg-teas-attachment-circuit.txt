@@ -108,7 +108,7 @@ Table of Contents
      9.1.  Normative References
      9.2.  Informative References
    Appendix A.  Examples
-     A.1.  Create A New Bearer
+     A.1.  Create a New Bearer
      A.2.  Create an AC over an Existing Bearer
      A.3.  Create an AC for a Known Peer SAP
      A.4.  One CE, Two ACs
@@ -741,12 +741,11 @@ Table of Contents
       information to expose discovered bearers from the network using
       the same bearer data model structure.
 
-   A request to create a bearer may include a set of constraints
-   ("placement-constraints") that are used by a controller to decide the
-   network terminating side of a bearer (e.g., PE selection, PE
-   redundancy, or PoP selection).  Future placement criteria
-   ("constraint-type") may be defined in the future to accommodate
-   specific deployment contexts.
+   A request to earer may include a set of constraints ("placement-
+   constraints") that are used by a controller to decide the network
+   terminating side of a bearer (e.g., PE selection, PE redundancy, or
+   PoP selection).  Future placement criteria ("constraint-type") may be
+   defined in the future to accommodate specific deployment contexts.
 
    The descriptions of the bearer data nodes are as follows:
 
@@ -4292,7 +4291,7 @@ Appendix A.  Examples
    the use of the service models defined in this document.  An example
    instance data can also be found at [Instance-Data].
 
-A.1.  Create A New Bearer
+A.1.  Create a New Bearer
 
    An example of a request message body to create a bearer is shown in
    Figure 22.
