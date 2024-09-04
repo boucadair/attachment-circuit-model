@@ -1046,7 +1046,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Boucadair, et al.</td>
-<td class="center">Expires 7 March 2025</td>
+<td class="center">Expires 8 March 2025</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1059,12 +1059,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-opsawg-ntw-attachment-circuit-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2024-09-03" class="published">3 September 2024</time>
+<time datetime="2024-09-04" class="published">4 September 2024</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2025-03-07">7 March 2025</time></dd>
+<dd class="expires"><time datetime="2025-03-08">8 March 2025</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1127,7 +1127,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 7 March 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 8 March 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1918,6 +1918,10 @@ augment /nw:networks/nw:network/nw:node:
      |  +--rw ac-ref?        leafref
      |  +--rw node-ref?      leafref
      |  +--rw network-ref?   -&gt; /nw:networks/network/network-id
+     +--ro ac-child-ref
+     |  +--ro ac-ref*        leafref
+     |  +--ro node-ref?      leafref
+     |  +--ro network-ref?   -&gt; /nw:networks/network/network-id
      +--rw peer-sap-id*         string
      +--rw group* [group-id]
      |  +--rw group-id      string
@@ -1971,7 +1975,7 @@ reference point (the PE side of an AC, in the context of this document) where ne
             <p id="section-5.1-9.3.1">Indicate for each individual AC one or a subset of the CEs as peer SAPs. All these individual ACs will inherit the properties of the parent AC.<a href="#section-5.1-9.3.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
-<p id="section-5.1-10">Whenever a parent AC is deleted, then all child ACs of that AC <span class="bcp14">MUST</span> be deleted.<a href="#section-5.1-10" class="pilcrow">¶</a></p>
+<p id="section-5.1-10">Whenever a parent AC is deleted, then all child ACs of that AC <span class="bcp14">MUST</span> be deleted. Child ACs are referenced using 'ac-child-ref'.<a href="#section-5.1-10" class="pilcrow">¶</a></p>
 <p id="section-5.1-11">An AC may belong to one or multiple groups <span>[<a href="#RFC9181" class="cite xref">RFC9181</a>]</span>. For example, the 'group-id' is used to associate redundancy or protection constraints with ACs.<a href="#section-5.1-11" class="pilcrow">¶</a></p>
 <p id="section-5.1-12">The status of an AC can be tracked using 'status'. Both operational status and administrative status are maintained. A mismatch between the administrative status vs. the operational status can be used as a trigger to detect anomalies.<a href="#section-5.1-12" class="pilcrow">¶</a></p>
 <p id="section-5.1-13">An AC can be characterized using Layer 2 connectivity (<a href="#sec-l2" class="auto internal xref">Section 5.4</a>), Layer 3 connectivity (<a href="#sec-l3" class="auto internal xref">Section 5.5</a>), routing protocols (<a href="#sec-rtg" class="auto internal xref">Section 5.6</a>), Operations, Administration, and Maintenance (OAM) (<a href="#sec-oam" class="auto internal xref">Section 5.7</a>), security (<a href="#sec-sec" class="auto internal xref">Section 5.8</a>), and service (<a href="#sec-svc" class="auto internal xref">Section 5.9</a>) considerations. Features are used to tag conditional protions to accomodate various deployments (support of layer 2 ACs, Layer 3 ACs, IPv4, IPv6, routing protocols, BFD, etc.).<a href="#section-5.1-13" class="pilcrow">¶</a></p>
@@ -3443,8 +3447,8 @@ module: ietf-ac-ntw
             <dd style="margin-left: 1.5em" id="section-5.6.5-4.2">
               <p id="section-5.6.5-4.2.1">Indicates whether IPv4, IPv6, or both address
    families are to be activated.  This parameter is used to determine
-   whether RIPv2 <span>[<a href="#RFC2453" class="cite xref">RFC2453</a>]</span>, RIP Next Generation (RIPng), or both are
-   to be enabled <span>[<a href="#RFC2080" class="cite xref">RFC2080</a>]</span>.<a href="#section-5.6.5-4.2.1" class="pilcrow">¶</a></p>
+   whether RIPv2 <span>[<a href="#RFC2453" class="cite xref">RFC2453</a>]</span>, RIP Next Generation (RIPng) <span>[<a href="#RFC2080" class="cite xref">RFC2080</a>]</span>, or both are
+   to be enabled.<a href="#section-5.6.5-4.2.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
 <dt id="section-5.6.5-4.3">'timers':</dt>
@@ -4085,6 +4089,23 @@ module ietf-ac-ntw {
       "This grouping can be used to reference an attachment circuit
        in a specific node.";
     leaf ac-ref {
+      type leafref {
+        path "/nw:networks/nw:network[nw:network-id=current()/../"
+          + "network-ref]/nw:node[nw:node-id=current()/../"
+          + "node-ref]/ac-ntw:ac/ac-ntw:name";
+        require-instance false;
+      }
+      description
+        "A type for an absolute reference to an attachment circuit.";
+    }
+    uses nw:node-ref;
+  }
+
+  grouping attachment-circuit-references {
+    description
+      "This grouping can be used to reference a list of attachment
+       circuits in a specific node.";
+    leaf-list ac-ref {
       type leafref {
         path "/nw:networks/nw:network[nw:network-id=current()/../"
           + "network-ref]/nw:node[nw:node-id=current()/../"
@@ -5091,7 +5112,8 @@ module ietf-ac-ntw {
       description
         "Indicates the RIP timers.";
       reference
-        "RFC 2453: RIP Version 2";
+        "RFC 2080: RIPng for IPv6
+         RFC 2453: RIP Version 2";
       leaf update-interval {
         type uint16 {
           range "1..32767";
@@ -5806,6 +5828,27 @@ module ietf-ac-ntw {
     }
   }
 
+  // Parent and Child ACs
+
+  grouping ac-hierarchy {
+    description
+      "Container for parent and child AC references.";
+    container ac-parent-ref {
+      description
+        "Specifies the parent AC that is inherited by an AC.
+         Parent ACs are used, e.g., in contexts where multiple
+         CEs are terminating the same AC, but some specific
+         information is required for each peer SAP.";
+      uses ac-ntw:attachment-circuit-reference;
+    }
+    container ac-child-ref {
+      config false;
+      description
+        "Specifies a child AC that relies upon a parent AC.";
+      uses ac-ntw:attachment-circuit-references;
+    }
+  }
+
   // AC network provisioning
 
   grouping ac {
@@ -5943,14 +5986,7 @@ module ietf-ac-ntw {
           "List of AC profiles.";
         uses ac-profile-reference;
       }
-      container ac-parent-ref {
-        description
-          "Specifies the parent AC that is inherited by an AC.
-           Parent ACs are used, e.g., in contexts where multiple
-           CEs are terminating the same AC, but some specific
-           information is required for each peer SAP.";
-        uses ac-ntw:attachment-circuit-reference;
-      }
+      uses ac-hierarchy;
       leaf-list peer-sap-id {
         type string;
         description
@@ -6683,7 +6719,7 @@ be used to inject spoofed routing  advertisements.<a href="#section-7-7.6.1" cla
       </h2>
 <p id="appendix-B-1">This document builds on <span>[<a href="#RFC9182" class="cite xref">RFC9182</a>]</span> and <span>[<a href="#RFC9291" class="cite xref">RFC9291</a>]</span>.<a href="#appendix-B-1" class="pilcrow">¶</a></p>
 <p id="appendix-B-2">Thanks to Moti Morgenstern for the review and comments.<a href="#appendix-B-2" class="pilcrow">¶</a></p>
-<p id="appendix-B-3">Thanks to Martin Björklund for the yangdoctors review and Gyan Mishra for the rtg-dir review.<a href="#appendix-B-3" class="pilcrow">¶</a></p>
+<p id="appendix-B-3">Thanks to Martin Björklund for the yangdoctors review, Gyan Mishra for an early rtg-dir review, and Joel Halpern for the rtg-dir review.<a href="#appendix-B-3" class="pilcrow">¶</a></p>
 <p id="appendix-B-4">Thanks to Krzysztof Szarkowicz for the Shepherd review.<a href="#appendix-B-4" class="pilcrow">¶</a></p>
 </section>
 </div>

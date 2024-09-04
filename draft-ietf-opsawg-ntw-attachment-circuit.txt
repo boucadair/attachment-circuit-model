@@ -5,14 +5,14 @@
 Operations and Management Area Working Group           M. Boucadair, Ed.
 Internet-Draft                                                    Orange
 Intended status: Standards Track                              R. Roberts
-Expires: 7 March 2025                                            Juniper
+Expires: 8 March 2025                                            Juniper
                                                            O. G. D. Dios
                                                               Telefonica
                                                            S. B. Giraldo
                                                                    Nokia
                                                                    B. Wu
                                                      Huawei Technologies
-                                                        3 September 2024
+                                                        4 September 2024
 
 
            A Network YANG Data Model for Attachment Circuits
@@ -58,7 +58,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 7 March 2025.
+   This Internet-Draft will expire on 8 March 2025.
 
 Copyright Notice
 
@@ -478,6 +478,10 @@ Table of Contents
         |  +--rw ac-ref?        leafref
         |  +--rw node-ref?      leafref
         |  +--rw network-ref?   -> /nw:networks/network/network-id
+        +--ro ac-child-ref
+        |  +--ro ac-ref*        leafref
+        |  +--ro node-ref?      leafref
+        |  +--ro network-ref?   -> /nw:networks/network/network-id
         +--rw peer-sap-id*         string
         +--rw group* [group-id]
         |  +--rw group-id      string
@@ -556,7 +560,7 @@ Table of Contents
       parent AC.
 
    Whenever a parent AC is deleted, then all child ACs of that AC MUST
-   be deleted.
+   be deleted.  Child ACs are referenced using 'ac-child-ref'.
 
    An AC may belong to one or multiple groups [RFC9181].  For example,
    the 'group-id' is used to associate redundancy or protection
@@ -1846,8 +1850,8 @@ Table of Contents
 
    'address-family':  Indicates whether IPv4, IPv6, or both address
       families are to be activated.  This parameter is used to determine
-      whether RIPv2 [RFC2453], RIP Next Generation (RIPng), or both are
-      to be enabled [RFC2080].
+      whether RIPv2 [RFC2453], RIP Next Generation (RIPng) [RFC2080], or
+      both are to be enabled.
 
    'timers':  Indicates the following timers (expressed in seconds):
 
@@ -2346,6 +2350,23 @@ Table of Contents
          "This grouping can be used to reference an attachment circuit
           in a specific node.";
        leaf ac-ref {
+         type leafref {
+           path "/nw:networks/nw:network[nw:network-id=current()/../"
+             + "network-ref]/nw:node[nw:node-id=current()/../"
+             + "node-ref]/ac-ntw:ac/ac-ntw:name";
+           require-instance false;
+         }
+         description
+           "A type for an absolute reference to an attachment circuit.";
+       }
+       uses nw:node-ref;
+     }
+
+     grouping attachment-circuit-references {
+       description
+         "This grouping can be used to reference a list of attachment
+          circuits in a specific node.";
+       leaf-list ac-ref {
          type leafref {
            path "/nw:networks/nw:network[nw:network-id=current()/../"
              + "network-ref]/nw:node[nw:node-id=current()/../"
@@ -3352,7 +3373,8 @@ Table of Contents
          description
            "Indicates the RIP timers.";
          reference
-           "RFC 2453: RIP Version 2";
+           "RFC 2080: RIPng for IPv6
+            RFC 2453: RIP Version 2";
          leaf update-interval {
            type uint16 {
              range "1..32767";
@@ -4067,6 +4089,27 @@ Table of Contents
        }
      }
 
+     // Parent and Child ACs
+
+     grouping ac-hierarchy {
+       description
+         "Container for parent and child AC references.";
+       container ac-parent-ref {
+         description
+           "Specifies the parent AC that is inherited by an AC.
+            Parent ACs are used, e.g., in contexts where multiple
+            CEs are terminating the same AC, but some specific
+            information is required for each peer SAP.";
+         uses ac-ntw:attachment-circuit-reference;
+       }
+       container ac-child-ref {
+         config false;
+         description
+           "Specifies a child AC that relies upon a parent AC.";
+         uses ac-ntw:attachment-circuit-references;
+       }
+     }
+
      // AC network provisioning
 
      grouping ac {
@@ -4204,14 +4247,7 @@ Table of Contents
              "List of AC profiles.";
            uses ac-profile-reference;
          }
-         container ac-parent-ref {
-           description
-             "Specifies the parent AC that is inherited by an AC.
-              Parent ACs are used, e.g., in contexts where multiple
-              CEs are terminating the same AC, but some specific
-              information is required for each peer SAP.";
-           uses ac-ntw:attachment-circuit-reference;
-         }
+         uses ac-hierarchy;
          leaf-list peer-sap-id {
            type string;
            description
@@ -4920,8 +4956,8 @@ Acknowledgments
 
    Thanks to Moti Morgenstern for the review and comments.
 
-   Thanks to Martin Björklund for the yangdoctors review and Gyan Mishra
-   for the rtg-dir review.
+   Thanks to Martin Björklund for the yangdoctors review, Gyan Mishra
+   for an early rtg-dir review, and Joel Halpern for the rtg-dir review.
 
    Thanks to Krzysztof Szarkowicz for the Shepherd review.
 
