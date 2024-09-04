@@ -191,7 +191,9 @@ Table of Contents
    customers, such as an enterprise site, an SF, a hosting
    infrastructure, or a peer network provider.  The model can be used
    for the provisioning of ACs prior or during advanced service
-   provisioning (e.g., IETF Network Slice Service [RFC9543]).
+   provisioning (e.g., IETF Network Slice Service defined in "A
+   Framework for Network Slices in Networks Built from IETF
+   Technologies" [RFC9543]).
 
    The "ietf-ac-svc" module (Section 6.2) includes a set of reusable
    groupings.  Whether a service model reuses structures defined in the
@@ -276,7 +278,8 @@ Table of Contents
    *  Interconnect provider networks (e.g., [RFC8921] or
       [I-D.ramseyer-grow-peering-api]).  Such ACs are identified with a
       "role" set to "ac-common:nni" or "ac-common:public-nni".  See
-      Appendix A.10 to illustrate the use of the AC model for peering.
+      Appendix A.10 to illustrate the use of the AC model for
+      interconnection/peering.
 
    *  Manage connectivity for complex containerized or virtualized
       functions in the cloud (Appendix A.11).
@@ -297,9 +300,10 @@ Table of Contents
    [I-D.ietf-opsawg-ntw-attachment-circuit].
 
    The AC service model is not a device model.  A network provider may
-   use a variety of device models (e.g., Routing management [RFC8349] or
-   BGP [I-D.ietf-idr-bgp-model]) to provision an AC service in relevant
-   network nodes.
+   use a variety of device models (e.g., "A YANG Data Model for Routing
+   Management (NMDA Version)" [RFC8349] or "YANG Model for Border
+   Gateway Protocol (BGP-4)" [I-D.ietf-idr-bgp-model]) to provision an
+   AC service in relevant network nodes.
 
 1.2.1.  Why Not Use the L2SM as Reference Data Model for ACaaS?
 
@@ -344,7 +348,7 @@ Table of Contents
    capitals, as shown here.
 
    The meanings of the symbols in the YANG tree diagrams are defined in
-   [RFC8340].
+   "YANG Tree Diagrams" [RFC8340].
 
    LxSM refers to both the L2SM and the L3SM.
 
@@ -1021,9 +1025,9 @@ Table of Contents
 
    The 'ac-group-profile' defines reusable parameters for a set of ACs.
    Each profile is identified by 'name'.  Some of the data nodes can be
-   adjusted at the 'ac'.  These adjusted values take precedence over the
-   global values.  The structure of 'ac-group-profile' is similar to the
-   one used to model each 'ac' (Figure 8).
+   adjusted at the 'ac' level.  These adjusted values take precedence
+   over the global values.  The structure of 'ac-group-profile' is
+   similar to the one used to model each 'ac' (Figure 8).
 
 5.2.4.  AC Placement Contraints
 
