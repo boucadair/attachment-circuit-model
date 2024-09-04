@@ -1995,6 +1995,10 @@ reference point (the PE side of an AC, in the context of this document) where ne
     +-- ac-ref?        leafref
     +-- node-ref?      leafref
     +-- network-ref?   -&gt; /nw:networks/network/network-id
+  grouping attachment-circuit-references:
+    +-- ac-ref*        leafref
+    +-- node-ref?      leafref
+    +-- network-ref?   -&gt; /nw:networks/network/network-id
   grouping ac-profile-reference:
     +-- ac-profile-ref?   leafref
     +-- network-ref?      -&gt; /nw:networks/network/network-id

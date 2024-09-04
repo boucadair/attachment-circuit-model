@@ -590,6 +590,10 @@ Table of Contents
        +-- ac-ref?        leafref
        +-- node-ref?      leafref
        +-- network-ref?   -> /nw:networks/network/network-id
+     grouping attachment-circuit-references:
+       +-- ac-ref*        leafref
+       +-- node-ref?      leafref
+       +-- network-ref?   -> /nw:networks/network/network-id
      grouping ac-profile-reference:
        +-- ac-profile-ref?   leafref
        +-- network-ref?      -> /nw:networks/network/network-id
