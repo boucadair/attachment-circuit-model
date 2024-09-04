@@ -109,8 +109,8 @@ Table of Contents
      9.2.  Informative References
    Appendix A.  Examples
      A.1.  Create A New Bearer
-     A.2.  Create An AC over An Existing Bearer
-     A.3.  Create An AC for a Known Peer SAP
+     A.2.  Create an AC over an Existing Bearer
+     A.3.  Create an AC for a Known Peer SAP
      A.4.  One CE, Two ACs
      A.5.  Control Precedence over Multiple ACs
      A.6.  Create Multiple ACs Bound to Multiple CEs
@@ -154,7 +154,8 @@ Table of Contents
    while the underlying link is referred to as "bearer".
 
    This document adheres to the definition of an Attachment Circuit as
-   provided in Section 1.2 of [RFC4364], especially:
+   provided in "BGP/MPLS IP Virtual Private Networks (VPNs)"
+   (Section 1.2 of [RFC4364]), especially:
 
       Routers can be attached to each other, or to end systems, in a
       variety of different ways: PPP connections, ATM Virtual Circuits
@@ -215,10 +216,11 @@ Table of Contents
    retrieving a bearer reference is provided in Appendix A.1.
 
    An AC service request can provide a reference to a bearer or a set of
-   peer Service Attachment Points (SAPs) [RFC9408].  Both schemes are
-   supported in the AC service model.  When several bearers are
-   available, the AC service request may filter them based on the bearer
-   type, synchronization support, etc.
+   peer Service Attachment Points (SAPs) specified in "A YANG Network
+   Data Model for Service Attachment Points (SAPs)" [RFC9408].  Both
+   schemes are supported in the AC service model.  When several bearers
+   are available, the AC service request may filter them based on the
+   bearer type, synchronization support, etc.
 
    Each AC is identified with a unique identifier within a provider
    domain.  From a network provider standpoint, an AC can be bound to a
@@ -229,10 +231,12 @@ Table of Contents
    information is internal to the network controllers.  As such, the
    details about the (node-specific) attachment interfaces are not
    exposed in the AC service model.  However, these details are exposed
-   at the network model per [I-D.ietf-opsawg-ntw-attachment-circuit].
-   [I-D.ietf-opsawg-ac-lxsm-lxnm-glue] specifies augmentations to the
-   L2VPN Service Model (L2SM) [RFC8466] and the L3VPN Service Model
-   (L3SM) [RFC8299] to bind LxVPN services to ACs.
+   at the network model per "A Network YANG Data Model for Attachment
+   Circuits" specification [I-D.ietf-opsawg-ntw-attachment-circuit].  "A
+   YANG Data Model for Augmenting VPN Service and Network Models with
+   Attachment Circuits" [I-D.ietf-opsawg-ac-lxsm-lxnm-glue] specifies
+   augmentations to the L2VPN Service Model (L2SM) [RFC8466] and the
+   L3VPN Service Model (L3SM) [RFC8299] to bind LxVPN services to ACs.
 
    The AC service model does not make any assumptions about the internal
    structure or even the nature or the services that will be delivered
@@ -375,9 +379,10 @@ Table of Contents
       provider that can support multiple services for different
       customers.
 
-      Per Section 5.2 of [RFC4026], a PE is a device located at the edge
-      of the service network with the functionality that is needed to
-      interface with the customer.
+      Per "Provider Provisioned Virtual Private Network (VPN)
+      Terminology" (Section 5.2 of [RFC4026]), a PE is a device located
+      at the edge of the service network with the functionality that is
+      needed to interface with the customer.
 
       A PE is connected to one or more CEs via ACs.
 
@@ -855,7 +860,8 @@ Table of Contents
       over that bearer is also down.  These status values differing
       should trigger the detection of an anomaly condition.
 
-      See [RFC9181] for more details.
+      See "A Common YANG Data Model for Layer 2 and Layer 3 VPNs"
+      [RFC9181] for more details.
 
 5.2.  The Attachment Circuit Service ("ietf-ac-svc") YANG Module
 
@@ -1647,7 +1653,8 @@ Table of Contents
       key chain that is referenced in the ACaaS.  No assumption is made
       about how such a key chain is preconfigured.  However, the
       structure of the key chain should cover data nodes beyond those in
-      [RFC8177], mainly SendID and RecvID (Section 3.1 of [RFC5925]).
+      "YANG Data Model for Key Chains" [RFC8177], mainly SendID and
+      RecvID (Section 3.1 of [RFC5925]).
 
    For each neighbor, the following data nodes are supported in addition
    to similar parameters that are provided for a peer group:
@@ -1853,8 +1860,8 @@ Table of Contents
 
    'address-family' indicates whether IPv4, IPv6, or both address
    families are to be activated.  For example, this parameter is used to
-   determine whether RIPv2 [RFC2453], RIP Next Generation (RIPng), or
-   both are to be enabled [RFC2080].
+   determine whether RIPv2 [RFC2453], RIP Next Generation (RIPng)
+   [RFC2080], or both are to be enabled.
 
 5.2.5.3.6.  VRRP
 
@@ -4336,7 +4343,7 @@ A.1.  Create A New Bearer
    Note that the response also indicates that Sync Phy mechanism is
    supported for this bearer.
 
-A.2.  Create An AC over An Existing Bearer
+A.2.  Create an AC over an Existing Bearer
 
    An example of a request message body to create a simple AC over an
    existing bearer is shown in Figure 24.  The bearer reference is
@@ -4395,7 +4402,7 @@ A.2.  Create An AC over An Existing Bearer
        Figure 25: Example of a Message Body of a Response to Assign a
                                   CVLAN ID
 
-A.3.  Create An AC for a Known Peer SAP
+A.3.  Create an AC for a Known Peer SAP
 
    An example of a request to create a simple AC, when the peer SAP is
    known, is shown in Figure 26.  In this example, the peer SAP
@@ -4908,9 +4915,10 @@ A.6.  Create Multiple ACs Bound to Multiple CEs
 
 A.7.  Binding Attachment Circuits to an IETF Network Slice
 
-   This example shows how the AC service model complements the IETF
-   Network Slice model [I-D.ietf-teas-ietf-network-slice-nbi-yang] to
-   connect a site to a Slice Service.
+   This example shows how the AC service model complements the model
+   defined in "A YANG Data Model for the RFC 9543 Network Slice Service"
+   [I-D.ietf-teas-ietf-network-slice-nbi-yang] to connect a site to a
+   Slice Service.
 
    First, Figure 37 describes the end-to-end network topology as well
    the orchestration scopes:
