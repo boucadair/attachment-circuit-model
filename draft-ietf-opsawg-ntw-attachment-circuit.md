@@ -460,7 +460,7 @@ The values of this attribute are those defined in {{!RFC9181}} (the
 'routing-protocol-type' identity). Specific data nodes are then provided
 as a function of the 'type'. See more details in the following subsections.
 
-One or multiple routing profiles ('routing-profiles') can be provided for
+One or multiple routing profiles ('routing-profile') can be provided for
 a given routing instance.
 
 ### Static Routing {#sec-static-rtg}
@@ -806,8 +806,8 @@ The following OAM data nodes can be specified for each BFD session:
 'source-address':
 : Specifies the local IP address or interface to use for the session. This data node is mapped to 'local-address' of BFD container in {{I-D.ietf-opsawg-teas-attachment-circuit}}. 'source-address' is used here to ease the mapping with the underlying device model defind in {{?RFC9127}}.
 
-'failure-detection-profile-profile-ref':
-: Refers to a BFD profile ({{sec-profiles}}).
+'failure-detection-profile-ref':
+: Refers to BFD profiles in {{sec-profiles}}.
 
 'network-ref':
 : Includes a network reference to uniquely identify a BFD profile.
@@ -836,7 +836,7 @@ The following OAM data nodes can be specified for each BFD session:
 
 ## Security {#sec-sec}
 
-The security subtree structure is shown in {{sec-tree}}. The 'security' container specifies the authentication and the encryption to be applied to traffic for a given AC. Tthe model can be used to directly control the encryption to be applied (e.g., Layer 2 or Layer 3 encryption) or invoke a local encryption profile.
+The security subtree structure is shown in {{sec-tree}}. The 'security' container specifies the the encryption to be applied to traffic for a given AC. The model can be used to directly control the encryption to be applied (e.g., Layer 2 or Layer 3 encryption) or invoke a local encryption profile.
 
 ~~~~
 {::include ./yang/subtrees/ac-ntw/security-tree.txt}
