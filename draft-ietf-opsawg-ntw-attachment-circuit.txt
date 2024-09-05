@@ -722,33 +722,37 @@ Table of Contents
 
                      Figure 7: Profiles Tree Structure
 
-   The exact definition of the specific provisioning profiles profiles
-   is local to each service provider.  The model only includes an
-   identifier for these profiles in order to ease identifying and
-   binding local policies when building an AC.  As shown in Figure 7,
-   the following identifiers can be included:
+   Similar to [RFC9182] and [RFC9291], the exact definition of the
+   specific provisioning profiles is local to each service provider.
+   The model only includes an identifier for these profiles in order to
+   ease identifying and binding local policies when building an AC.  As
+   shown in Figure 7, the following identifiers can be included:
 
    'encryption-profile-identifier':  An encryption profile refers to a
       set of policies related to the encryption schemes and setup that
-      can be applied on the AC.
+      can be applied on the AC.  See also Section 5.8.
 
    'qos-profile-identifier':  A Quality of Service (QoS) profile refers
       to a set of policies such as classification, marking, and actions
-      (e.g., [RFC3644]).
+      (e.g., [RFC3644]).  See also Section 5.9.
 
    'failure-detection-profile-identifier':  A failure detection profile
       refers to a set of failure detection policies such as
       Bidirectional Forwarding Detection (BFD) policies [RFC5880] that
-      can be invoked when building an AC.
+      can be invoked when building an AC.  Such a profile can be, for
+      example, referenced in static routes (Section 5.6.1) or under the
+      OAM level (Section 5.7).  The use of this profile is similar to
+      the detailed examples depicted in Appendices A.11.3 and A.12 of
+      [I-D.ietf-opsawg-teas-attachment-circuit].
 
    'forwarding-profile-identifier':  A forwarding profile refers to the
       policies that apply to the forwarding of packets conveyed over an
       AC.  Such policies may consist of, for example, applying Access
-      Control Lists (ACLs).
+      Control Lists (ACLs) as in Section 5.9.
 
    'routing-profile-identifier':  A routing profile refers to a set of
       routing policies that will be invoked (e.g., BGP policies) for an
-      AC.
+      AC.  Refer to Section 5.6.
 
 5.4.  L2 Connection
 
@@ -4961,7 +4965,8 @@ Acknowledgments
    Thanks to Moti Morgenstern for the review and comments.
 
    Thanks to Martin Björklund for the yangdoctors review, Gyan Mishra
-   for an early rtg-dir review, and Joel Halpern for the rtg-dir review.
+   for an early rtg-dir review, Joel Halpern for the rtg-dir review, and
+   Giuseppe Fioccola for the ops-dir review.
 
    Thanks to Krzysztof Szarkowicz for the Shepherd review.
 
