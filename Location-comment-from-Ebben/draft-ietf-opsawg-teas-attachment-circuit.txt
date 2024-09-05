@@ -2147,6 +2147,8 @@ Table of Contents
    [I-D.ietf-opsawg-teas-common-ac].
 
    <CODE BEGINS> file "ietf-bearer-svc@2024-08-06.yang"
+   =============== NOTE: '\' line wrapping per RFC 8792 ================
+
    module ietf-bearer-svc {
      yang-version 1.1;
      namespace "urn:ietf:params:xml:ns:yang:ietf-bearer-svc";
@@ -2214,16 +2216,6 @@ Table of Contents
        reference
          "RFC XXXX: YANG Data Models for Bearers and 'Attachment
                     Circuits'-as-a-Service (ACaaS)";
-     }
-
-     // Typedef to ease referencing cross-modules
-
-     typedef bearer-ref {
-       type leafref {
-         path "/bearer-svc:bearers/bearer-svc:bearer/bearer-svc:name";
-       }
-       description
-         "Defines a type to reference a bearer.";
      }
 
      // Identities
@@ -2301,12 +2293,38 @@ Table of Contents
                        synchronization based on the physical layer";
      }
 
+     identity location-filter {
+       description
+         "Base identity for filtering locations.";
+     }
+
+     identity customer-name {
+       base location-filter;
+       description
+         "Indicates that locations are grouped by customer name.";
+     }
+
+     identity customer-asn {
+       base location-filter;
+       description
+         "Indicates that locations are grouped by customer ASN.";
+     }
+
+     // Typedef to ease referencing cross-modules
+
+     typedef bearer-ref {
+       type leafref {
+         path "/bearer-svc:bearers/bearer-svc:bearer/bearer-svc:name";
+       }
+       description
+         "Defines a type to reference a bearer.";
+     }
+
      // Reusable groupings
 
      grouping location-information {
        description
          "Basic location information";
-
        leaf name {
          type string;
          description
@@ -2349,7 +2367,7 @@ Table of Contents
        description
          "Constraints related to placement of a bearer.";
        list constraint {
-         if-feature vpn-common:placement-diversity;
+         if-feature "vpn-common:placement-diversity";
          key "constraint-type";
          description
            "List of constraints.";
@@ -2358,11 +2376,11 @@ Table of Contents
              base vpn-common:placement-diversity;
            }
            must "not(derived-from-or-self(current(), "
-               + "'vpn-common:bearer-diverse') or "
-               + "derived-from-or-self(current(), "
-               + "'vpn-common:same-bearer'))" {
-                error-message "Only bearer-specific diversity"
-                            + "constraints must be provided.";
+              + "'vpn-common:bearer-diverse') or "
+              + "derived-from-or-self(current(), "
+              + "'vpn-common:same-bearer'))" {
+             error-message "Only bearer-specific diversity"
+                         + "constraints must be provided.";
            }
            description
              "Diversity constraint type for bearers.";
@@ -2381,26 +2399,26 @@ Table of Contents
                    "List of groups.";
                  leaf group-id {
                    type string;
-                    description
-                      "The constraint will apply against this
-                       particular group ID.";
-                  }
-                }
-              }
-              case all-bearers {
-                leaf all-other-bearers {
-                  type empty;
-                  description
-                    "The constraint will apply against all other
-                     bearers of a site.";
-                }
-              }
-              case all-groups {
-                leaf all-other-groups {
-                  type empty;
-                  description
-                    "The constraint will apply against all other
-                     groups managed by the customer.";
+                   description
+                     "The constraint will apply against this
+                      particular group ID.";
+                 }
+               }
+             }
+             case all-bearers {
+               leaf all-other-bearers {
+                 type empty;
+                 description
+                   "The constraint will apply against all other
+                    bearers of a site.";
+               }
+             }
+             case all-groups {
+               leaf all-other-groups {
+                 type empty;
+                 description
+                   "The constraint will apply against all other
+                    groups managed by the customer.";
                }
              }
            }
@@ -2411,43 +2429,75 @@ Table of Contents
      container locations {
        description
          "Retrieves the available provider locations for terminating
-          bearers for a given customer.";
-       leaf customer-name {
-         type string;
-         description
-           "Indicates the name of the customer that requested these
-            bearers.";
-       }
-       leaf role {
+          bearers for a given customer based on a set of filtering
+          criteria.";
+       leaf filtered-by {
          type identityref {
-           base ac-common:role;
+           base location-filter;
          }
          description
-           "Indicates whether this bearer is used as UNI, NNI, etc.";
+           "Specifies how the locations are filtered.";
        }
-       leaf local-as {
-         type inet:as-number;
-         description
-           "Indicates a provider AS Number (ASN).";
-       }
-       leaf peer-as {
-         type inet:as-number;
-         description
-           "Indicates the customer's ASN.";
-       }
-       list location {
+       list customer {
+         when "derived-from-or-self(../filtered-by, "
+            + "'bearer-svc:customer-name')" {
+           description
+             "Only applicable if locations are filtered by customer
+              name.";
+         }
          key "name";
-         config false;
          description
-           "Reports the list of available locations.";
-         uses location-information;
+           "List of locations per customer.";
+         leaf name {
+           type string;
+           description
+             "Indicates the name of the customer.";
+         }
+         leaf peer-as {
+           type inet:as-number;
+           description
+             "Indicates the customer's ASN.";
+         }
+         list location {
+           key "name";
+           config false;
+           description
+             "Reports the list of available locations.";
+           uses location-information;
+         }
+       }
+       list asn {
+         when "derived-from-or-self(../filtered-by, "
+            + "'bearer-svc:customer-asn')" {
+           description
+             "Only applicable if locations are filtered by customer
+              ASN.";
+         }
+         key "peer-as";
+         description
+           "List of locations per customer ASN.";
+         leaf customer-name {
+           type string;
+           description
+             "Indicates the name of the customer.";
+         }
+         leaf peer-as {
+           type inet:as-number;
+           description
+             "Indicates the customer's ASN.";
+         }
+         list location {
+           key "name";
+           config false;
+           description
+             "Reports the list of available locations.";
+           uses location-information;
+         }
        }
      }
-
      container bearers {
        description
          "Main container for the bearers.";
-
        leaf customer-name {
          type string;
          description
@@ -2506,16 +2556,17 @@ Table of Contents
            type boolean;
            config false;
            description
-            "Indicates when set to true that a mechanism for physical
-             layer synchronization is supported for this bearer. No such
-             mechanism is supported if set to false.";
+             "Indicates when set to true that a mechanism for physical
+              layer synchronization is supported for this bearer. No \
+                                                                    such
+              mechanism is supported if set to false.";
          }
          leaf sync-phy-enabled {
            type boolean;
            description
-            "Indicates when set to true that a mechanism for physical
-             layer synchronization is enabled for this bearer. No such
-             mechanism is enabled if set to false.";
+             "Indicates when set to true that a mechanism for physical
+              layer synchronization is enabled for this bearer. No such
+              mechanism is enabled if set to false.";
          }
          leaf sync-phy-type {
            when "../sync-phy-enabled='true'";
@@ -2532,20 +2583,19 @@ Table of Contents
          }
          container customer-point {
            description
-             "Base container to link the Bearer existence";
+             "Base container to link the Bearer existence.";
            leaf identified-by {
              type identityref {
                base identification-type;
              }
              description
-               "Attribute used to identify the bearer";
+               "Specifies how the customer point is identified.";
            }
            container device {
-             when
-               "derived-from-or-self(../identified-by, "
-             + "'bearer-svc:device-id') or "
-             + "derived-from-or-self(../identified-by, "
-             + "'bearer-svc:site-and-device-id')" {
+             when "derived-from-or-self(../identified-by, "
+                + "'bearer-svc:device-id') or "
+                + "derived-from-or-self(../identified-by, "
+                + "'bearer-svc:site-and-device-id')" {
                description
                  "Only applicable if identified-by is device.";
              }
@@ -2559,15 +2609,14 @@ Table of Contents
              container location {
                description
                  "Location of the node.";
-                uses location-information;
+               uses location-information;
              }
            }
            container site {
-             when
-               "derived-from-or-self(../identified-by, "
-             + "'bearer-svc:site-id') or "
-             + "derived-from-or-self(../identified-by, "
-             + "'bearer-svc:site-and-device-id')" {
+             when "derived-from-or-self(../identified-by, "
+                + "'bearer-svc:site-id') or "
+                + "derived-from-or-self(../identified-by, "
+                + "'bearer-svc:site-and-device-id')" {
                description
                  "Only applicable if identified-by is site.";
              }
@@ -2582,7 +2631,7 @@ Table of Contents
              container location {
                description
                  "Location of the node.";
-                uses location-information;
+               uses location-information;
              }
            }
            leaf custom-id {
@@ -2607,9 +2656,9 @@ Table of Contents
          leaf test-only {
            type empty;
            description
-            "When present, this indicates that this is a feasibility
-             check request. No resources are commited for such bearer
-             requests.";
+             "When present, this indicates that this is a feasibility
+              check request. No resources are commited for such bearer
+              requests.";
          }
          leaf bearer-reference {
            if-feature "ac-common:server-assigned-reference";
