@@ -7729,16 +7729,20 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 <pre>
 {
   "ietf-bearer-svc:locations": {
-    "customer-name": "a future peer",
-    "role": "ietf-ac-common:nni",
-    "peer-as": 65536,
-    "location": [
+    "filtered-by": "ietf-bearer-svc:customer-name",
+    "customer": [
       {
-        "name": "Location-X",
-        "_comment": "other location attributes"
-      },
-      {
-        "_comment": "other locations"
+        "name": "a future peer",
+        "peer-as": 65536,
+        "location": [
+          {
+            "name": "Location-X",
+            "_comment": "other location attributes"
+          },
+          {
+            "_comment": "other locations"
+          }
+        ]
       }
     ]
   }
