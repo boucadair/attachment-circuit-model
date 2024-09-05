@@ -347,7 +347,7 @@ Such a reference can be used, e.g., in a subsequent service request to create an
 ~~~~
 {: #bearer-st title="Bearer Service Tree Structure" artwork-align="center"}
 
-In some deployments, a customer may first retrieve a list of available presence locations before actually placing an order for a bearer creation. The request may be filtered based upon a customer name, role of the bearer, etc. The retrieved location name may be then referenced in the bearer creation request ("provider-location-reference"). See the example provided in {{sec-ret-loc}}.
+In some deployments, a customer may first retrieve a list of available presence locations before actually placing an order for a bearer creation. The request may be filtered based upon a customer name, an Autonomous System Number (ASN), etc. The retrieved location names may be then referenced in a bearer creation request ("provider-location-reference"). See the example provided in {{sec-ret-loc}}.
 
 The same customer site (CE, SF, etc.) can terminate one or multiple bearers; each of them uniquely identified by a reference that is assigned by the network provider. These bearers can terminate on the same or distinct network nodes. CEs that terminate multiple bearers are called multi-homed CEs.
 
@@ -1340,7 +1340,7 @@ The following subsections exemplify a deployment flow, but BGP sessions can be m
 
 ### Retrieve Interconnection Locations {#sec-ret-loc}
 
-{{ex-retrieve-locations}} shows an example a message body of a request to retrieve a list of interconnection locations. The request includes optional information such as customer name, peer ASN, etc. to filter out the locations.
+{{ex-retrieve-locations}} shows an example a message body of a request to retrieve a list of interconnection locations. The request includes a customer name to filter out the locations.
 
 ~~~~ json
 {::include-fold ./json-examples/svc/get-locations.json}
