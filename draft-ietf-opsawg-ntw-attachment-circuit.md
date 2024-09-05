@@ -385,22 +385,22 @@ The AC and specific provisioning profiles tree structure is shown in {{profiles-
 ~~~~
 {: #profiles-tree title="Profiles Tree Structure"}
 
-The exact definition of the specific provisioning profiles profiles is local to each service provider. The model only includes an identifier for these profiles in order to ease identifying and binding local policies when building an AC. As shown in {{profiles-tree}}, the following identifiers can be included:
+Similar to {{!RFC9182}} and {{!RFC9291}}, the exact definition of the specific provisioning profiles is local to each service provider. The model only includes an identifier for these profiles in order to ease identifying and binding local policies when building an AC. As shown in {{profiles-tree}}, the following identifiers can be included:
 
 'encryption-profile-identifier':
-: An encryption profile refers to a set of policies related to the encryption schemes and setup that can be applied on the AC.
+: An encryption profile refers to a set of policies related to the encryption schemes and setup that can be applied on the AC. See also {{sec-sec}}.
 
 'qos-profile-identifier':
-: A Quality of Service (QoS) profile refers to a set of policies such as classification, marking, and actions (e.g., {{?RFC3644}}).
+: A Quality of Service (QoS) profile refers to a set of policies such as classification, marking, and actions (e.g., {{?RFC3644}}). See also {{sec-svc}}.
 
 'failure-detection-profile-identifier':
-: A failure detection profile refers to a set of failure detection policies such as Bidirectional Forwarding Detection (BFD) policies {{!RFC5880}} that can be invoked when building an AC.
+: A failure detection profile refers to a set of failure detection policies such as Bidirectional Forwarding Detection (BFD) policies {{!RFC5880}} that can be invoked when building an AC. Such a profile can be, for example, referenced in static routes ({{sec-static-rtg}}) or under the OAM level ({{sec-oam}}). The use of this profile is similar to the detailed examples depicted in Appendices A.11.3 and A.12 of {{?I-D.ietf-opsawg-teas-attachment-circuit}}.
 
 'forwarding-profile-identifier':
-: A forwarding profile refers to the policies that apply to the forwarding of packets conveyed over an AC. Such policies may consist of, for example, applying Access Control Lists (ACLs).
+: A forwarding profile refers to the policies that apply to the forwarding of packets conveyed over an AC. Such policies may consist of, for example, applying Access Control Lists (ACLs) as in {{sec-svc}}.
 
 'routing-profile-identifier':
-: A routing profile refers to a set of routing policies that will be invoked (e.g., BGP policies) for an AC.
+: A routing profile refers to a set of routing policies that will be invoked (e.g., BGP policies) for an AC. Refer to {{sec-rtg}}.
 
 ## L2 Connection {#sec-l2}
 
@@ -1044,6 +1044,7 @@ This document builds on {{!RFC9182}} and {{!RFC9291}}.
 
 Thanks to Moti Morgenstern for the review and comments.
 
-Thanks to Martin Björklund for the yangdoctors review, Gyan Mishra for an early rtg-dir review, and Joel Halpern for the rtg-dir review.
+Thanks to Martin Björklund for the yangdoctors review, Gyan Mishra for an early rtg-dir review, Joel Halpern for the rtg-dir review,
+and Giuseppe Fioccola for the ops-dir review.
 
 Thanks to Krzysztof Szarkowicz for the Shepherd review.
