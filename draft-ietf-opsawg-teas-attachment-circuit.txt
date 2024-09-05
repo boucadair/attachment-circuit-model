@@ -5,14 +5,14 @@
 OPSAWG                                                 M. Boucadair, Ed.
 Internet-Draft                                                    Orange
 Intended status: Standards Track                         R. Roberts, Ed.
-Expires: 8 March 2025                                            Juniper
+Expires: 9 March 2025                                            Juniper
                                                            O. G. D. Dios
                                                               Telefonica
                                                            S. B. Giraldo
                                                                    Nokia
                                                                    B. Wu
                                                      Huawei Technologies
-                                                        4 September 2024
+                                                        5 September 2024
 
 
   YANG Data Models for Bearers and 'Attachment Circuits'-as-a-Service
@@ -62,7 +62,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 8 March 2025.
+   This Internet-Draft will expire on 9 March 2025.
 
 Copyright Notice
 
@@ -154,7 +154,8 @@ Table of Contents
    while the underlying link is referred to as "bearer".
 
    This document adheres to the definition of an Attachment Circuit as
-   provided in Section 1.2 of [RFC4364], especially:
+   provided in "BGP/MPLS IP Virtual Private Networks (VPNs)"
+   (Section 1.2 of [RFC4364]), especially:
 
       Routers can be attached to each other, or to end systems, in a
       variety of different ways: PPP connections, ATM Virtual Circuits
@@ -190,7 +191,9 @@ Table of Contents
    customers, such as an enterprise site, an SF, a hosting
    infrastructure, or a peer network provider.  The model can be used
    for the provisioning of ACs prior or during advanced service
-   provisioning (e.g., IETF Network Slice Service [RFC9543]).
+   provisioning (e.g., IETF Network Slice Service defined in "A
+   Framework for Network Slices in Networks Built from IETF
+   Technologies" [RFC9543]).
 
    The "ietf-ac-svc" module (Section 6.2) includes a set of reusable
    groupings.  Whether a service model reuses structures defined in the
@@ -215,10 +218,11 @@ Table of Contents
    retrieving a bearer reference is provided in Appendix A.1.
 
    An AC service request can provide a reference to a bearer or a set of
-   peer Service Attachment Points (SAPs) [RFC9408].  Both schemes are
-   supported in the AC service model.  When several bearers are
-   available, the AC service request may filter them based on the bearer
-   type, synchronization support, etc.
+   peer Service Attachment Points (SAPs) specified in "A YANG Network
+   Data Model for Service Attachment Points (SAPs)" [RFC9408].  Both
+   schemes are supported in the AC service model.  When several bearers
+   are available, the AC service request may filter them based on the
+   bearer type, synchronization support, etc.
 
    Each AC is identified with a unique identifier within a provider
    domain.  From a network provider standpoint, an AC can be bound to a
@@ -229,10 +233,12 @@ Table of Contents
    information is internal to the network controllers.  As such, the
    details about the (node-specific) attachment interfaces are not
    exposed in the AC service model.  However, these details are exposed
-   at the network model per [I-D.ietf-opsawg-ntw-attachment-circuit].
-   [I-D.ietf-opsawg-ac-lxsm-lxnm-glue] specifies augmentations to the
-   L2VPN Service Model (L2SM) [RFC8466] and the L3VPN Service Model
-   (L3SM) [RFC8299] to bind LxVPN services to ACs.
+   at the network model per "A Network YANG Data Model for Attachment
+   Circuits" specification [I-D.ietf-opsawg-ntw-attachment-circuit].  "A
+   YANG Data Model for Augmenting VPN Service and Network Models with
+   Attachment Circuits" [I-D.ietf-opsawg-ac-lxsm-lxnm-glue] specifies
+   augmentations to the L2VPN Service Model (L2SM) [RFC8466] and the
+   L3VPN Service Model (L3SM) [RFC8299] to bind LxVPN services to ACs.
 
    The AC service model does not make any assumptions about the internal
    structure or even the nature or the services that will be delivered
@@ -272,7 +278,8 @@ Table of Contents
    *  Interconnect provider networks (e.g., [RFC8921] or
       [I-D.ramseyer-grow-peering-api]).  Such ACs are identified with a
       "role" set to "ac-common:nni" or "ac-common:public-nni".  See
-      Appendix A.10 to illustrate the use of the AC model for peering.
+      Appendix A.10 to illustrate the use of the AC model for
+      interconnection/peering.
 
    *  Manage connectivity for complex containerized or virtualized
       functions in the cloud (Appendix A.11).
@@ -293,9 +300,10 @@ Table of Contents
    [I-D.ietf-opsawg-ntw-attachment-circuit].
 
    The AC service model is not a device model.  A network provider may
-   use a variety of device models (e.g., Routing management [RFC8349] or
-   BGP [I-D.ietf-idr-bgp-model]) to provision an AC service in relevant
-   network nodes.
+   use a variety of device models (e.g., "A YANG Data Model for Routing
+   Management (NMDA Version)" [RFC8349] or "YANG Model for Border
+   Gateway Protocol (BGP-4)" [I-D.ietf-idr-bgp-model]) to provision an
+   AC service in relevant network nodes.
 
 1.2.1.  Why Not Use the L2SM as Reference Data Model for ACaaS?
 
@@ -340,7 +348,7 @@ Table of Contents
    capitals, as shown here.
 
    The meanings of the symbols in the YANG tree diagrams are defined in
-   [RFC8340].
+   "YANG Tree Diagrams" [RFC8340].
 
    LxSM refers to both the L2SM and the L3SM.
 
@@ -375,9 +383,10 @@ Table of Contents
       provider that can support multiple services for different
       customers.
 
-      Per Section 5.2 of [RFC4026], a PE is a device located at the edge
-      of the service network with the functionality that is needed to
-      interface with the customer.
+      Per "Provider Provisioned Virtual Private Network (VPN)
+      Terminology" (Section 5.2 of [RFC4026]), a PE is a device located
+      at the edge of the service network with the functionality that is
+      needed to interface with the customer.
 
       A PE is connected to one or more CEs via ACs.
 
@@ -855,7 +864,8 @@ Table of Contents
       over that bearer is also down.  These status values differing
       should trigger the detection of an anomaly condition.
 
-      See [RFC9181] for more details.
+      See "A Common YANG Data Model for Layer 2 and Layer 3 VPNs"
+      [RFC9181] for more details.
 
 5.2.  The Attachment Circuit Service ("ietf-ac-svc") YANG Module
 
@@ -1015,9 +1025,9 @@ Table of Contents
 
    The 'ac-group-profile' defines reusable parameters for a set of ACs.
    Each profile is identified by 'name'.  Some of the data nodes can be
-   adjusted at the 'ac'.  These adjusted values take precedence over the
-   global values.  The structure of 'ac-group-profile' is similar to the
-   one used to model each 'ac' (Figure 8).
+   adjusted at the 'ac' level.  These adjusted values take precedence
+   over the global values.  The structure of 'ac-group-profile' is
+   similar to the one used to model each 'ac' (Figure 8).
 
 5.2.4.  AC Placement Contraints
 
@@ -1647,7 +1657,8 @@ Table of Contents
       key chain that is referenced in the ACaaS.  No assumption is made
       about how such a key chain is preconfigured.  However, the
       structure of the key chain should cover data nodes beyond those in
-      [RFC8177], mainly SendID and RecvID (Section 3.1 of [RFC5925]).
+      "YANG Data Model for Key Chains" [RFC8177], mainly SendID and
+      RecvID (Section 3.1 of [RFC5925]).
 
    For each neighbor, the following data nodes are supported in addition
    to similar parameters that are provided for a peer group:
@@ -1853,8 +1864,8 @@ Table of Contents
 
    'address-family' indicates whether IPv4, IPv6, or both address
    families are to be activated.  For example, this parameter is used to
-   determine whether RIPv2 [RFC2453], RIP Next Generation (RIPng), or
-   both are to be enabled [RFC2080].
+   determine whether RIPv2 [RFC2453], RIP Next Generation (RIPng)
+   [RFC2080], or both are to be enabled.
 
 5.2.5.3.6.  VRRP
 
@@ -2007,10 +2018,13 @@ Table of Contents
 
                      Figure 20: Security Tree Structure
 
-   The 'security' container specifies the authentication and the
-   encryption to be applied to traffic for a given AC.  Tthe model can
-   be used to directly control the encryption to be applied (e.g., Layer
-   2 or Layer 3 encryption) or invoke a local encryption profile.
+   The 'security' container specifies a minimum set of encryption-
+   related parameters that can be requested to be applied to traffic for
+   a given AC.  Typically, the model can be used to directly control the
+   encryption to be applied (e.g., Layer 2 or Layer 3 encryption) or
+   invoke a local encryption profile (see Section 5.2.2.1).  For
+   example, a service provider may use IPsec when a customer requests
+   Layer 3 encryption for an AC.
 
 5.2.5.6.  Service
 
@@ -3924,10 +3938,10 @@ Table of Contents
    subtrees and data nodes have particular sensitivities/vulnerabilities
    in the "ietf-bearer-svc" module:
 
-   'customer-point':  An attacker can retrieve privacy-related
-      information about location from where the customer is connected.
-      Disclosing such information may be used to infer the identity of
-      the customer.
+   'customer-point' and 'locations':  An attacker can retrieve privacy-
+      related information about locations from where the customer is
+      connected or can be serviced.  Disclosing such information may be
+      used to infer the identity of the customer.
 
    The following subtrees and data nodes have particular sensitivities/
    vulnerabilities in the "ietf-ac-svc" module:
@@ -4905,9 +4919,10 @@ A.6.  Create Multiple ACs Bound to Multiple CEs
 
 A.7.  Binding Attachment Circuits to an IETF Network Slice
 
-   This example shows how the AC service model complements the IETF
-   Network Slice model [I-D.ietf-teas-ietf-network-slice-nbi-yang] to
-   connect a site to a Slice Service.
+   This example shows how the AC service model complements the model
+   defined in "A YANG Data Model for the RFC 9543 Network Slice Service"
+   [I-D.ietf-teas-ietf-network-slice-nbi-yang] to connect a site to a
+   Slice Service.
 
    First, Figure 37 describes the end-to-end network topology as well
    the orchestration scopes:
@@ -6632,7 +6647,8 @@ Acknowledgments
    Thanks to Ebben Aries for the YANG Doctors review and for providing
    [Instance-Data].
 
-   Thanks to Donald Eastlake for the careful rtg-dir reviews.
+   Thanks to Donald Eastlake for the careful rtg-dir reviews and Tero
+   Kivinen for the sec-dir review.
 
    Thanks to Luis Miguel Contreras Murillo for the careful Shepherd
    review.

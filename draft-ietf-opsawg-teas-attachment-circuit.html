@@ -1046,7 +1046,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Boucadair, et al.</td>
-<td class="center">Expires 8 March 2025</td>
+<td class="center">Expires 9 March 2025</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1059,12 +1059,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-opsawg-teas-attachment-circuit-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2024-09-04" class="published">4 September 2024</time>
+<time datetime="2024-09-05" class="published">5 September 2024</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2025-03-08">8 March 2025</time></dd>
+<dd class="expires"><time datetime="2025-03-09">9 March 2025</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1128,7 +1128,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 8 March 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 9 March 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1342,7 +1342,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <a href="#section-1.1" class="section-number selfRef">1.1. </a><a href="#name-scope-and-intended-use" class="section-name selfRef">Scope and Intended Use</a>
         </h3>
 <p id="section-1.1-1">Connectivity services are provided by networks to customers via dedicated terminating points, such as Service Functions (SFs) <span>[<a href="#RFC7665" class="cite xref">RFC7665</a>]</span>, Customer Edges (CEs), peer Autonomous System Border Routers (ASBRs), data centers gateways, or Internet Exchange Points. A connectivity service is basically about ensuring data transfer received from or destined to a given terminating point to or from other terminating points within the same customer/service, an interconnection node, or an ancillary node. The objectives for the connectivity service can be negotiated and agreed upon between the customer and the network provider. To facilitate data transfer within the provider network, it is assumed that the appropriate setup is provisioned over the links that connect customer terminating points and a provider network (usually via a Provider Edge (PE)), allowing successfully data exchanged over these links. The required setup is referred to in this document as Attachment Circuit (AC), while the underlying link is referred to as "bearer".<a href="#section-1.1-1" class="pilcrow">¶</a></p>
-<p id="section-1.1-2">This document adheres to the definition of an Attachment Circuit as provided in <span><a href="https://rfc-editor.org/rfc/rfc4364#section-1.2" class="relref">Section 1.2</a> of [<a href="#RFC4364" class="cite xref">RFC4364</a>]</span>, especially:<a href="#section-1.1-2" class="pilcrow">¶</a></p>
+<p id="section-1.1-2">This document adheres to the definition of an Attachment Circuit as provided in "BGP/MPLS IP Virtual Private Networks (VPNs)" (<span><a href="https://rfc-editor.org/rfc/rfc4364#section-1.2" class="relref">Section 1.2</a> of [<a href="#RFC4364" class="cite xref">RFC4364</a>]</span>), especially:<a href="#section-1.1-2" class="pilcrow">¶</a></p>
 <ul class="normal ulEmpty">
 <li class="normal ulEmpty" id="section-1.1-3.1">
             <p id="section-1.1-3.1.1">Routers can be attached to each other, or to end systems, in a
@@ -1359,11 +1359,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
         </ul>
 <p id="section-1.1-4">When a customer requests a new value-added service, the service can be bound to existing attachment circuits or trigger the instantiation of new attachment circuits. The provisioning of a value-added service should, thus, accommodate both deployments.<a href="#section-1.1-4" class="pilcrow">¶</a></p>
 <p id="section-1.1-5">Also, because the instantiation of an attachment circuit requires coordinating the provisioning of endpoints that might not belong to the same administrative entity (customer vs. provider or distinct operational teams within the same provider, etc.), providing programmatic means to expose 'Attachment Circuits'-as-a-Service (ACaaS) greatly simplifies the provisioning of value-added services delivered over an attachment circuit. For example, management systems of adjacent domains that need to connect via an AC will use such means to agree upon the resources that are required for the activation of both sides of an AC (e.g., Layer 2 tags, IP address family, or IP subnets).<a href="#section-1.1-5" class="pilcrow">¶</a></p>
-<p id="section-1.1-6">This document specifies a YANG service data model ("ietf-ac-svc") for managing attachment circuits that are exposed by a network to its customers, such as an enterprise site, an SF, a hosting infrastructure, or a peer network provider. The model can be used for the provisioning of ACs prior or during advanced service provisioning (e.g., IETF Network Slice Service <span>[<a href="#RFC9543" class="cite xref">RFC9543</a>]</span>).<a href="#section-1.1-6" class="pilcrow">¶</a></p>
+<p id="section-1.1-6">This document specifies a YANG service data model ("ietf-ac-svc") for managing attachment circuits that are exposed by a network to its customers, such as an enterprise site, an SF, a hosting infrastructure, or a peer network provider. The model can be used for the provisioning of ACs prior or during advanced service provisioning (e.g., IETF Network Slice Service defined in "A Framework for Network Slices in Networks Built from IETF Technologies" <span>[<a href="#RFC9543" class="cite xref">RFC9543</a>]</span>).<a href="#section-1.1-6" class="pilcrow">¶</a></p>
 <p id="section-1.1-7">The "ietf-ac-svc" module (<a href="#sec-ac-module" class="auto internal xref">Section 6.2</a>) includes a set of reusable groupings. Whether a service model reuses structures defined in the "ietf-ac-svc" or simply includes an AC reference (that was communicated during AC service instantiation) is a design choice of these service models. Relying upon the AC service model to manage ACs over which services are delivered has the merit of decorrelating the management of the (core) service vs. upgrade the AC components to reflect recent AC technologies or new features (e.g., new encryption scheme, additional routing protocol). This document favors the approach of completely relying upon the AC service model instead of duplicating data nodes into specific modules of advanced services that are delivered over an Attachment Circuit.<a href="#section-1.1-7" class="pilcrow">¶</a></p>
 <p id="section-1.1-8">Since the provisioning of an AC requires a bearer to be in place, this document introduces a new module called "ietf-bearer-svc" that enables customers to manage their bearer requests (<a href="#sec-bearer-module" class="auto internal xref">Section 6.1</a>). The customers can then retrieve a provider-assigned bearer reference that they will include in their AC service requests. Likewise, a customer may retrieve whether their bearers support a synchronization mechanism such as Sync Ethernet (SyncE) <span>[<a href="#ITU-T-G.781" class="cite xref">ITU-T-G.781</a>]</span>. An example of retrieving a bearer reference is provided in <a href="#ex-create-bearer" class="auto internal xref">Appendix A.1</a>.<a href="#section-1.1-8" class="pilcrow">¶</a></p>
-<p id="section-1.1-9">An AC service request can provide a reference to a bearer or a set of peer Service Attachment Points (SAPs) <span>[<a href="#RFC9408" class="cite xref">RFC9408</a>]</span>. Both schemes are supported in the AC service model. When several bearers are available, the AC service request may filter them based on the bearer type, synchronization support, etc.<a href="#section-1.1-9" class="pilcrow">¶</a></p>
-<p id="section-1.1-10">Each AC is identified with a unique identifier within a provider domain. From a network provider standpoint, an AC can be bound to a single or multiple SAPs <span>[<a href="#RFC9408" class="cite xref">RFC9408</a>]</span>. Likewise, the same SAP can be bound to one or multiple ACs. However, the mapping between an AC and a PE in the provider network that terminates that AC is hidden to the application that makes use of the AC service model. Such mapping information is internal to the network controllers. As such, the details about the (node-specific) attachment interfaces are not exposed in the AC service model. However, these details are exposed at the network model per <span>[<a href="#I-D.ietf-opsawg-ntw-attachment-circuit" class="cite xref">I-D.ietf-opsawg-ntw-attachment-circuit</a>]</span>. <span>[<a href="#I-D.ietf-opsawg-ac-lxsm-lxnm-glue" class="cite xref">I-D.ietf-opsawg-ac-lxsm-lxnm-glue</a>]</span> specifies augmentations to the   L2VPN Service Model (L2SM) <span>[<a href="#RFC8466" class="cite xref">RFC8466</a>]</span> and the L3VPN Service Model     (L3SM) <span>[<a href="#RFC8299" class="cite xref">RFC8299</a>]</span> to bind LxVPN services to ACs.<a href="#section-1.1-10" class="pilcrow">¶</a></p>
+<p id="section-1.1-9">An AC service request can provide a reference to a bearer or a set of peer Service Attachment Points (SAPs) specified in "A YANG Network Data Model for Service Attachment Points (SAPs)" <span>[<a href="#RFC9408" class="cite xref">RFC9408</a>]</span>. Both schemes are supported in the AC service model. When several bearers are available, the AC service request may filter them based on the bearer type, synchronization support, etc.<a href="#section-1.1-9" class="pilcrow">¶</a></p>
+<p id="section-1.1-10">Each AC is identified with a unique identifier within a provider domain. From a network provider standpoint, an AC can be bound to a single or multiple SAPs <span>[<a href="#RFC9408" class="cite xref">RFC9408</a>]</span>. Likewise, the same SAP can be bound to one or multiple ACs. However, the mapping between an AC and a PE in the provider network that terminates that AC is hidden to the application that makes use of the AC service model. Such mapping information is internal to the network controllers. As such, the details about the (node-specific) attachment interfaces are not exposed in the AC service model. However, these details are exposed at the network model per "A Network YANG Data Model for Attachment Circuits" specification <span>[<a href="#I-D.ietf-opsawg-ntw-attachment-circuit" class="cite xref">I-D.ietf-opsawg-ntw-attachment-circuit</a>]</span>. "A YANG Data Model for Augmenting VPN Service and Network Models with Attachment Circuits" <span>[<a href="#I-D.ietf-opsawg-ac-lxsm-lxnm-glue" class="cite xref">I-D.ietf-opsawg-ac-lxsm-lxnm-glue</a>]</span> specifies augmentations to the      L2VPN Service Model (L2SM) <span>[<a href="#RFC8466" class="cite xref">RFC8466</a>]</span> and the L3VPN Service Model     (L3SM) <span>[<a href="#RFC8299" class="cite xref">RFC8299</a>]</span> to bind LxVPN services to ACs.<a href="#section-1.1-10" class="pilcrow">¶</a></p>
 <p id="section-1.1-11">The AC service model does not make any assumptions about the internal structure or even the nature or the services that will be delivered over an attachment circuit or a set of attachment circuits. Customers do not have access to that network view other than the ACs that they ordered. For example, the AC service model can be used to provision a set of ACs to connect multiple sites (Site1, Site2, ..., SiteX) for customer who also requested VPN services. If the provisioning of these services requires specific configuration on ASBR nodes, such configuration is handled at the network level and is not exposed to the customer at the service level. However, the network controller will have access to such a view as the service points in these ASBRs will be exposed as SAPs with "role" set to "ietf-sap-ntw:nni" <span>[<a href="#RFC9408" class="cite xref">RFC9408</a>]</span>.<a href="#section-1.1-11" class="pilcrow">¶</a></p>
 <p id="section-1.1-12">The AC service model can be used in a variety of contexts, such as (but not limited to) those provided in <a href="#examples" class="auto internal xref">Appendix A</a>:<a href="#section-1.1-12" class="pilcrow">¶</a></p>
 <ul class="normal">
@@ -1389,7 +1389,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
             <p id="section-1.1-13.7.1">Connect a Cloud Infrastructure to a service provider network (<a href="#sec-ex-cloud" class="auto internal xref">Appendix A.8</a>).<a href="#section-1.1-13.7.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-1.1-13.8">
-            <p id="section-1.1-13.8.1">Interconnect provider networks (e.g., <span>[<a href="#RFC8921" class="cite xref">RFC8921</a>]</span> or <span>[<a href="#I-D.ramseyer-grow-peering-api" class="cite xref">I-D.ramseyer-grow-peering-api</a>]</span>). Such ACs are identified with a "role" set to "ac-common:nni" or "ac-common:public-nni". See <a href="#sec-peering" class="auto internal xref">Appendix A.10</a> to illustrate the use of the AC model for peering.<a href="#section-1.1-13.8.1" class="pilcrow">¶</a></p>
+            <p id="section-1.1-13.8.1">Interconnect provider networks (e.g., <span>[<a href="#RFC8921" class="cite xref">RFC8921</a>]</span> or <span>[<a href="#I-D.ramseyer-grow-peering-api" class="cite xref">I-D.ramseyer-grow-peering-api</a>]</span>). Such ACs are identified with a "role" set to "ac-common:nni" or "ac-common:public-nni". See <a href="#sec-peering" class="auto internal xref">Appendix A.10</a> to illustrate the use of the AC model for interconnection/peering.<a href="#section-1.1-13.8.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-1.1-13.9">
             <p id="section-1.1-13.9.1">Manage connectivity for complex containerized or virtualized functions in the cloud (<a href="#sec-cloudified-nfs" class="auto internal xref">Appendix A.11</a>).<a href="#section-1.1-13.9.1" class="pilcrow">¶</a></p>
@@ -1404,7 +1404,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <a href="#section-1.2" class="section-number selfRef">1.2. </a><a href="#name-positioning-acaas-vs-other-" class="section-name selfRef">Positioning ACaaS vs. Other Data Models</a>
         </h3>
 <p id="section-1.2-1">The AC model specified in this document is not a network model <span>[<a href="#RFC8969" class="cite xref">RFC8969</a>]</span>. As such, the model does not expose details related to specific nodes in the provider's network that terminate an AC (e.g., network node identifiers). The mapping between an AC as seen by a customer and the network implementation of an AC is maintained by the network controllers and is not exposed to the customer. This mapping can be maintained using a variety of network models, such as augmented SAP AC network model <span>[<a href="#I-D.ietf-opsawg-ntw-attachment-circuit" class="cite xref">I-D.ietf-opsawg-ntw-attachment-circuit</a>]</span>.<a href="#section-1.2-1" class="pilcrow">¶</a></p>
-<p id="section-1.2-2">The AC service model is not a device model. A network provider may use a variety of device models (e.g., Routing management <span>[<a href="#RFC8349" class="cite xref">RFC8349</a>]</span> or BGP <span>[<a href="#I-D.ietf-idr-bgp-model" class="cite xref">I-D.ietf-idr-bgp-model</a>]</span>) to provision an AC service in relevant network nodes.<a href="#section-1.2-2" class="pilcrow">¶</a></p>
+<p id="section-1.2-2">The AC service model is not a device model. A network provider may use a variety of device models (e.g., "A YANG Data Model for Routing Management (NMDA Version)" <span>[<a href="#RFC8349" class="cite xref">RFC8349</a>]</span> or "YANG Model for Border Gateway Protocol (BGP-4)" <span>[<a href="#I-D.ietf-idr-bgp-model" class="cite xref">I-D.ietf-idr-bgp-model</a>]</span>) to provision an AC service in relevant network nodes.<a href="#section-1.2-2" class="pilcrow">¶</a></p>
 <div id="why-not-use-the-l2sm-as-reference-data-model-for-acaas">
 <section id="section-1.2.1">
           <h4 id="name-why-not-use-the-l2sm-as-ref">
@@ -1452,7 +1452,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 "<span class="bcp14">MAY</span>", and "<span class="bcp14">OPTIONAL</span>" in this document are to be interpreted as
 described in BCP 14 <span>[<a href="#RFC2119" class="cite xref">RFC2119</a>]</span> <span>[<a href="#RFC8174" class="cite xref">RFC8174</a>]</span> when, and only when, they
 appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶</a></p>
-<p id="section-2-2">The meanings of the symbols in the YANG tree diagrams are defined in <span>[<a href="#RFC8340" class="cite xref">RFC8340</a>]</span>.<a href="#section-2-2" class="pilcrow">¶</a></p>
+<p id="section-2-2">The meanings of the symbols in the YANG tree diagrams are defined in "YANG Tree Diagrams" <span>[<a href="#RFC8340" class="cite xref">RFC8340</a>]</span>.<a href="#section-2-2" class="pilcrow">¶</a></p>
 <p id="section-2-3">LxSM refers to both the L2SM and the L3SM.<a href="#section-2-3" class="pilcrow">¶</a></p>
 <p id="section-2-4">LxNM refers to both the L2NM and the L3NM.<a href="#section-2-4" class="pilcrow">¶</a></p>
 <p id="section-2-5">This document uses the following terms:<a href="#section-2-5" class="pilcrow">¶</a></p>
@@ -1489,7 +1489,7 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
         <dd class="break"></dd>
 <dt id="section-2-6.13"></dt>
         <dd style="margin-left: 1.5em" id="section-2-6.14">
-          <p id="section-2-6.14.1">Per <span><a href="https://rfc-editor.org/rfc/rfc4026#section-5.2" class="relref">Section 5.2</a> of [<a href="#RFC4026" class="cite xref">RFC4026</a>]</span>, a PE is a device located at the edge of the service network with the functionality that is needed to interface with the customer.<a href="#section-2-6.14.1" class="pilcrow">¶</a></p>
+          <p id="section-2-6.14.1">Per "Provider Provisioned Virtual Private Network (VPN) Terminology" (<span><a href="https://rfc-editor.org/rfc/rfc4026#section-5.2" class="relref">Section 5.2</a> of [<a href="#RFC4026" class="cite xref">RFC4026</a>]</span>), a PE is a device located at the edge of the service network with the functionality that is needed to interface with the customer.<a href="#section-2-6.14.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 <dt id="section-2-6.15"></dt>
@@ -2171,7 +2171,7 @@ module: ietf-bearer-svc
           <dd class="break"></dd>
 <dt id="section-5.1-9.55"></dt>
           <dd style="margin-left: 1.5em" id="section-5.1-9.56">
-            <p id="section-5.1-9.56.1">See <span>[<a href="#RFC9181" class="cite xref">RFC9181</a>]</span> for more details.<a href="#section-5.1-9.56.1" class="pilcrow">¶</a></p>
+            <p id="section-5.1-9.56.1">See "A Common YANG Data Model for Layer 2 and Layer 3 VPNs" <span>[<a href="#RFC9181" class="cite xref">RFC9181</a>]</span> for more details.<a href="#section-5.1-9.56.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 </dl>
@@ -2244,7 +2244,7 @@ for the reader's convenience. The full tree of the 'ac-svc' is provided in <span
           <h4 id="name-service-profiles">
 <a href="#section-5.2.2" class="section-number selfRef">5.2.2. </a><a href="#name-service-profiles" class="section-name selfRef">Service Profiles</a>
           </h4>
-<div id="description">
+<div id="sec-profiles-desc">
 <section id="section-5.2.2.1">
             <h5 id="name-description">
 <a href="#section-5.2.2.1" class="section-number selfRef">5.2.2.1. </a><a href="#name-description" class="section-name selfRef">Description</a>
@@ -2341,7 +2341,7 @@ module: ietf-ac-svc
           <h4 id="name-attachment-circuits-profile">
 <a href="#section-5.2.3" class="section-number selfRef">5.2.3. </a><a href="#name-attachment-circuits-profile" class="section-name selfRef">Attachment Circuits Profiles</a>
           </h4>
-<p id="section-5.2.3-1">The 'ac-group-profile' defines reusable parameters for a set of ACs. Each profile is identified by 'name'. Some of the data nodes can be adjusted at the 'ac'.
+<p id="section-5.2.3-1">The 'ac-group-profile' defines reusable parameters for a set of ACs. Each profile is identified by 'name'. Some of the data nodes can be adjusted at the 'ac' level.
 These adjusted values take precedence over the global values.  The structure of 'ac-group-profile' is similar to the one used to model each 'ac' (<a href="#ac-svc-tree" class="auto internal xref">Figure 8</a>).<a href="#section-5.2.3-1" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -3085,7 +3085,7 @@ a parent AC can be defined with a set of stable and common information, while
                 <dd class="break"></dd>
 <dt id="section-5.2.5.3.2-4.19"></dt>
                 <dd style="margin-left: 1.5em" id="section-5.2.5.3.2-4.20">
-                  <p id="section-5.2.5.3.2-4.20.1">Similar to <span>[<a href="#RFC9182" class="cite xref">RFC9182</a>]</span>, this version of the ACaaS assumes that parameters specific to the TCP-AO are preconfigured as part of the key chain that is referenced in the ACaaS. No assumption is made about how such a key chain is preconfigured. However, the structure of the key chain should cover data nodes beyond those in <span>[<a href="#RFC8177" class="cite xref">RFC8177</a>]</span>, mainly SendID and RecvID (<span><a href="https://rfc-editor.org/rfc/rfc5925#section-3.1" class="relref">Section 3.1</a> of [<a href="#RFC5925" class="cite xref">RFC5925</a>]</span>).<a href="#section-5.2.5.3.2-4.20.1" class="pilcrow">¶</a></p>
+                  <p id="section-5.2.5.3.2-4.20.1">Similar to <span>[<a href="#RFC9182" class="cite xref">RFC9182</a>]</span>, this version of the ACaaS assumes that parameters specific to the TCP-AO are preconfigured as part of the key chain that is referenced in the ACaaS. No assumption is made about how such a key chain is preconfigured. However, the structure of the key chain should cover data nodes beyond those in "YANG Data Model for Key Chains" <span>[<a href="#RFC8177" class="cite xref">RFC8177</a>]</span>, mainly SendID and RecvID (<span><a href="https://rfc-editor.org/rfc/rfc5925#section-3.1" class="relref">Section 3.1</a> of [<a href="#RFC5925" class="cite xref">RFC5925</a>]</span>).<a href="#section-5.2.5.3.2-4.20.1" class="pilcrow">¶</a></p>
 </dd>
               <dd class="break"></dd>
 </dl>
@@ -3371,7 +3371,7 @@ a parent AC can be defined with a set of stable and common information, while
 <a href="#name-rip-tree-structure" class="selfRef">RIP Tree Structure</a>
                 </figcaption></figure>
 </div>
-<p id="section-5.2.5.3.5-3">'address-family' indicates whether IPv4, IPv6, or both address families are to be activated. For example, this parameter is used to determine whether RIPv2 <span>[<a href="#RFC2453" class="cite xref">RFC2453</a>]</span>, RIP Next Generation (RIPng), or both are to be enabled <span>[<a href="#RFC2080" class="cite xref">RFC2080</a>]</span>.<a href="#section-5.2.5.3.5-3" class="pilcrow">¶</a></p>
+<p id="section-5.2.5.3.5-3">'address-family' indicates whether IPv4, IPv6, or both address families are to be activated. For example, this parameter is used to determine whether RIPv2 <span>[<a href="#RFC2453" class="cite xref">RFC2453</a>]</span>, RIP Next Generation (RIPng) <span>[<a href="#RFC2080" class="cite xref">RFC2080</a>]</span>, or both are to be enabled.<a href="#section-5.2.5.3.5-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sec-vrrp-rtg">
@@ -3575,7 +3575,7 @@ isn't any type of VRRP authentication at this time (see <span><a href="https://r
 <a href="#name-security-tree-structure" class="selfRef">Security Tree Structure</a>
               </figcaption></figure>
 </div>
-<p id="section-5.2.5.5-3">The 'security' container specifies the authentication and the encryption to be applied to traffic for a given AC. Tthe model can be used to directly control the encryption to be applied (e.g., Layer 2 or Layer 3 encryption) or invoke a local encryption profile.<a href="#section-5.2.5.5-3" class="pilcrow">¶</a></p>
+<p id="section-5.2.5.5-3">The 'security' container specifies a minimum set of encryption-related parameters that can be requested to be applied to traffic for a given AC. Typically, the model can be used to directly control the encryption to be applied (e.g., Layer 2 or Layer 3 encryption) or invoke a local encryption profile (see  <a href="#sec-profiles-desc" class="auto internal xref">Section 5.2.2.1</a>). For example, a service provider may use IPsec when a customer requests Layer 3 encryption for an AC.<a href="#section-5.2.5.5-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sec-bw">
@@ -5560,10 +5560,10 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-6"
    notification) to these data nodes. Specifically, the following subtrees and data nodes have particular
 sensitivities/vulnerabilities in the "ietf-bearer-svc" module:<a href="#section-7-8" class="pilcrow">¶</a></p>
 <span class="break"></span><dl class="dlParallel" id="section-7-9">
-        <dt id="section-7-9.1">'customer-point':</dt>
+        <dt id="section-7-9.1">'customer-point' and 'locations':</dt>
         <dd style="margin-left: 1.5em" id="section-7-9.2">
-          <p id="section-7-9.2.1">An attacker can retrieve privacy-related information about location from where
- the customer is connected. Disclosing such information may be used to infer
+          <p id="section-7-9.2.1">An attacker can retrieve privacy-related information about locations from where
+ the customer is connected or can be serviced. Disclosing such information may be used to infer
  the identity of the customer.<a href="#section-7-9.2.1" class="pilcrow">¶</a></p>
 </dd>
       <dd class="break"></dd>
@@ -6654,7 +6654,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
         <h3 id="name-binding-attachment-circuits">
 <a href="#appendix-A.7" class="section-number selfRef">A.7. </a><a href="#name-binding-attachment-circuits" class="section-name selfRef">Binding Attachment Circuits to an IETF Network Slice</a>
         </h3>
-<p id="appendix-A.7-1">This example shows how the AC service model complements the IETF Network Slice model <span>[<a href="#I-D.ietf-teas-ietf-network-slice-nbi-yang" class="cite xref">I-D.ietf-teas-ietf-network-slice-nbi-yang</a>]</span> to connect a site to a Slice Service.<a href="#appendix-A.7-1" class="pilcrow">¶</a></p>
+<p id="appendix-A.7-1">This example shows how the AC service model complements the model defined in "A YANG Data Model for the RFC 9543 Network Slice Service" <span>[<a href="#I-D.ietf-teas-ietf-network-slice-nbi-yang" class="cite xref">I-D.ietf-teas-ietf-network-slice-nbi-yang</a>]</span> to connect a site to a Slice Service.<a href="#appendix-A.7-1" class="pilcrow">¶</a></p>
 <p id="appendix-A.7-2">First, <a href="#slice-vlan-1" class="auto internal xref">Figure 37</a> describes the end-to-end network topology as well the orchestration scopes:<a href="#appendix-A.7-2" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="appendix-A.7-3.1">
@@ -9146,7 +9146,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
       </h2>
 <p id="appendix-B-1">This document leverages <span>[<a href="#RFC9182" class="cite xref">RFC9182</a>]</span> and <span>[<a href="#RFC9291" class="cite xref">RFC9291</a>]</span>. Thanks to Gyan Mishra for the review.<a href="#appendix-B-1" class="pilcrow">¶</a></p>
 <p id="appendix-B-2">Thanks to Ebben Aries for the YANG Doctors review and for providing <span>[<a href="#Instance-Data" class="cite xref">Instance-Data</a>]</span>.<a href="#appendix-B-2" class="pilcrow">¶</a></p>
-<p id="appendix-B-3">Thanks to Donald Eastlake for the careful rtg-dir reviews.<a href="#appendix-B-3" class="pilcrow">¶</a></p>
+<p id="appendix-B-3">Thanks to Donald Eastlake for the careful rtg-dir reviews and Tero Kivinen for the sec-dir review.<a href="#appendix-B-3" class="pilcrow">¶</a></p>
 <p id="appendix-B-4">Thanks to Luis Miguel Contreras Murillo for the careful Shepherd review.<a href="#appendix-B-4" class="pilcrow">¶</a></p>
 </section>
 </div>
