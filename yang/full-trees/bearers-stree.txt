@@ -1,19 +1,8 @@
 module: ietf-bearer-svc
   +--rw locations
-  |  +--rw filtered-by?   identityref
-  |  +--rw customer* [name]
-  |  |  +--rw name        string
-  |  |  +--rw peer-as?    inet:as-number
-  |  |  +--ro location* [name]
-  |  |     +--ro name            string
-  |  |     +--ro address?        string
-  |  |     +--ro postal-code?    string
-  |  |     +--ro state?          string
-  |  |     +--ro city?           string
-  |  |     +--ro country-code?   string
-  |  +--rw asn* [peer-as]
-  |     +--rw customer-name?   string
-  |     +--rw peer-as          inet:as-number
+  |  +--rw customer* [name peer-as]
+  |     +--rw name        string
+  |     +--rw peer-as     inet:as-number
   |     +--ro location* [name]
   |        +--ro name            string
   |        +--ro address?        string
