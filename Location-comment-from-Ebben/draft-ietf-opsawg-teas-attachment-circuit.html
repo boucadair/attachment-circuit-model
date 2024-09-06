@@ -2014,7 +2014,7 @@ module: ietf-bearer-svc
 <a href="#name-bearer-service-tree-structu" class="selfRef">Bearer Service Tree Structure</a>
           </figcaption></figure>
 </div>
-<p id="section-5.1-3">In some deployments, a customer may first retrieve a list of available presence locations before actually placing an order for a bearer creation. The request may be filtered based upon a customer name, an Autonomous System Number (ASN), etc. The retrieved location names may be then referenced in a bearer creation request ("provider-location-reference"). See the example provided in <a href="#sec-ret-loc" class="auto internal xref">Appendix A.10.1</a>.<a href="#section-5.1-3" class="pilcrow">¶</a></p>
+<p id="section-5.1-3">In some deployments, a customer may first retrieve a list of available presence locations before actually placing an order for a bearer creation. The request is filtered based upon a customer name and an Autonomous System Number (ASN). The reserved value "AS 0" <span>[<a href="#RFC7607" class="cite xref">RFC7607</a>]</span> is used for customers with no ASN. The retrieved location names may be then referenced in a bearer creation request ("provider-location-reference"). See the example provided in <a href="#sec-ret-loc" class="auto internal xref">Appendix A.10.1</a>.<a href="#section-5.1-3" class="pilcrow">¶</a></p>
 <p id="section-5.1-4">The same customer site (CE, SF, etc.) can terminate one or multiple bearers; each of them uniquely identified by a reference that is assigned by the network provider. These bearers can terminate on the same or distinct network nodes. CEs that terminate multiple bearers are called multi-homed CEs.<a href="#section-5.1-4" class="pilcrow">¶</a></p>
 <p id="section-5.1-5">A bearer can be created, modified, or discovered from the network. For example, the following deployment options can be considered:<a href="#section-5.1-5" class="pilcrow">¶</a></p>
 <span class="break"></span><dl class="dlParallel" id="section-5.1-6">
@@ -5824,6 +5824,10 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
         <dd>
 <span class="refAuthor">Jethanandani, M.</span>, <span class="refAuthor">Patel, K.</span>, and <span class="refAuthor">L. Zheng</span>, <span class="refTitle">"Analysis of BGP, LDP, PCEP, and MSDP Issues According to the Keying and Authentication for Routing Protocols (KARP) Design Guide"</span>, <span class="seriesInfo">RFC 6952</span>, <span class="seriesInfo">DOI 10.17487/RFC6952</span>, <time datetime="2013-05" class="refDate">May 2013</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc6952">https://www.rfc-editor.org/rfc/rfc6952</a>&gt;</span>. </dd>
 <dd class="break"></dd>
+<dt id="RFC7607">[RFC7607]</dt>
+        <dd>
+<span class="refAuthor">Kumari, W.</span>, <span class="refAuthor">Bush, R.</span>, <span class="refAuthor">Schiller, H.</span>, and <span class="refAuthor">K. Patel</span>, <span class="refTitle">"Codification of AS 0 Processing"</span>, <span class="seriesInfo">RFC 7607</span>, <span class="seriesInfo">DOI 10.17487/RFC7607</span>, <time datetime="2015-08" class="refDate">August 2015</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc7607">https://www.rfc-editor.org/rfc/rfc7607</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="RFC7665">[RFC7665]</dt>
         <dd>
 <span class="refAuthor">Halpern, J., Ed.</span> and <span class="refAuthor">C. Pignataro, Ed.</span>, <span class="refTitle">"Service Function Chaining (SFC) Architecture"</span>, <span class="seriesInfo">RFC 7665</span>, <span class="seriesInfo">DOI 10.17487/RFC7665</span>, <time datetime="2015-10" class="refDate">October 2015</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc7665">https://www.rfc-editor.org/rfc/rfc7665</a>&gt;</span>. </dd>
@@ -7631,7 +7635,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
           <h4 id="name-retrieve-interconnection-lo">
 <a href="#appendix-A.10.1" class="section-number selfRef">A.10.1. </a><a href="#name-retrieve-interconnection-lo" class="section-name selfRef">Retrieve Interconnection Locations</a>
           </h4>
-<p id="appendix-A.10.1-1"><a href="#ex-retrieve-locations" class="auto internal xref">Figure 48</a> shows an example a message body of a request to retrieve a list of interconnection locations. The request includes a customer name to filter out the locations.<a href="#appendix-A.10.1-1" class="pilcrow">¶</a></p>
+<p id="appendix-A.10.1-1"><a href="#ex-retrieve-locations" class="auto internal xref">Figure 48</a> shows an example a message body of a request to retrieve a list of interconnection locations. The request includes a customer name and an ASN to filter out the locations.<a href="#appendix-A.10.1-1" class="pilcrow">¶</a></p>
 <span id="name-message-body-of-a-request-to-r"></span><div id="ex-retrieve-locations">
 <figure id="figure-48">
             <div class="lang-json sourcecode" id="appendix-A.10.1-2.1">

@@ -709,8 +709,9 @@ Table of Contents
 
    In some deployments, a customer may first retrieve a list of
    available presence locations before actually placing an order for a
-   bearer creation.  The request may be filtered based upon a customer
-   name, an Autonomous System Number (ASN), etc.  The retrieved location
+   bearer creation.  The request is filtered based upon a customer name
+   and an Autonomous System Number (ASN).  The reserved value "AS 0"
+   [RFC7607] is used for customers with no ASN.  The retrieved location
    names may be then referenced in a bearer creation request ("provider-
    location-reference").  See the example provided in Appendix A.10.1.
 
@@ -4223,6 +4224,11 @@ Table of Contents
               Guide", RFC 6952, DOI 10.17487/RFC6952, May 2013,
               <https://www.rfc-editor.org/rfc/rfc6952>.
 
+   [RFC7607]  Kumari, W., Bush, R., Schiller, H., and K. Patel,
+              "Codification of AS 0 Processing", RFC 7607,
+              DOI 10.17487/RFC7607, August 2015,
+              <https://www.rfc-editor.org/rfc/rfc7607>.
+
    [RFC7665]  Halpern, J., Ed. and C. Pignataro, Ed., "Service Function
               Chaining (SFC) Architecture", RFC 7665,
               DOI 10.17487/RFC7665, October 2015,
@@ -5575,7 +5581,7 @@ A.10.1.  Retrieve Interconnection Locations
 
    Figure 48 shows an example a message body of a request to retrieve a
    list of interconnection locations.  The request includes a customer
-   name to filter out the locations.
+   name and an ASN to filter out the locations.
 
    {
      "ietf-bearer-svc:locations": {
