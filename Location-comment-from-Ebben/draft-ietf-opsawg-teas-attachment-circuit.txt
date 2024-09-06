@@ -2291,23 +2291,6 @@ Table of Contents
                        synchronization based on the physical layer";
      }
 
-     identity location-filter {
-       description
-         "Base identity for filtering locations.";
-     }
-
-     identity customer-name {
-       base location-filter;
-       description
-         "Indicates that locations are grouped by customer name.";
-     }
-
-     identity customer-asn {
-       base location-filter;
-       description
-         "Indicates that locations are grouped by customer ASN.";
-     }
-
      // Typedef to ease referencing cross-modules
 
      typedef bearer-ref {
@@ -2322,7 +2305,7 @@ Table of Contents
 
      grouping location-information {
        description
-         "Basic location information";
+         "Basic location information.";
        leaf name {
          type string;
          description
@@ -2427,23 +2410,10 @@ Table of Contents
      container locations {
        description
          "Retrieves the available provider locations for terminating
-          bearers for a given customer based on a set of filtering
-          criteria.";
-       leaf filtered-by {
-         type identityref {
-           base location-filter;
-         }
-         description
-           "Specifies how the locations are filtered.";
-       }
+          bearers for a given customer.";
+
        list customer {
-         when "derived-from-or-self(../filtered-by, "
-            + "'bearer-svc:customer-name')" {
-           description
-             "Only applicable if locations are filtered by customer
-              name.";
-         }
-         key "name";
+         key "name peer-as";
          description
            "List of locations per customer.";
          leaf name {
@@ -2454,35 +2424,10 @@ Table of Contents
          leaf peer-as {
            type inet:as-number;
            description
-             "Indicates the customer's ASN.";
-         }
-         list location {
-           key "name";
-           config false;
-           description
-             "Reports the list of available locations.";
-           uses location-information;
-         }
-       }
-       list asn {
-         when "derived-from-or-self(../filtered-by, "
-            + "'bearer-svc:customer-asn')" {
-           description
-             "Only applicable if locations are filtered by customer
-              ASN.";
-         }
-         key "peer-as";
-         description
-           "List of locations per customer ASN.";
-         leaf customer-name {
-           type string;
-           description
-             "Indicates the name of the customer.";
-         }
-         leaf peer-as {
-           type inet:as-number;
-           description
-             "Indicates the customer's ASN.";
+             "Indicates the customer's ASN.
+              0 is used when the customer does not have an ASN.";
+           reference
+             "RFC 7607: Codification of AS 0 Processing";
          }
          list location {
            key "name";
