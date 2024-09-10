@@ -1,7 +1,11 @@
 {
   "ietf-bearer-svc:locations": {
-    "customer-name": "a future peer",
-    "role": "ietf-ac-common:nni",
-    "peer-as": 65536
-  }  
+    "filtered-by": "ietf-bearer-svc:customer-name",
+    "customer": [
+      {
+        "name": "a future peer",
+        "peer-as": 65536
+      }
+    ]
+  }
 }

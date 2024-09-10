@@ -1,17 +1,15 @@
 module: ietf-bearer-svc
-
   +--rw locations
-  |  +--rw customer-name?   string
-  |  +--rw role?            identityref
-  |  +--rw local-as?        inet:as-number
-  |  +--rw peer-as?         inet:as-number
-  |  +--ro location* [name]
-  |     +--ro name             string
-  |     +--ro address?         string
-  |     +--ro postal-code?     string
-  |     +--ro state?           string
-  |     +--ro city?            string
-  |     +--ro country-code?    string
+  |  +--rw customer* [name peer-as]
+  |     +--rw name        string
+  |     +--rw peer-as     inet:as-number
+  |     +--ro location* [name]
+  |        +--ro name            string
+  |        +--ro address?        string
+  |        +--ro postal-code?    string
+  |        +--ro state?          string
+  |        +--ro city?           string
+  |        +--ro country-code?   string
   +--rw bearers
      +--rw customer-name?           string
      +--rw requested-start?         yang:date-and-time
@@ -50,21 +48,21 @@ module: ietf-bearer-svc
         |  +--rw device
         |  |  +--rw device-id?   string
         |  |  +--rw location
-        |  |     +--rw name?            string
-        |  |     +--rw address?         string
-        |  |     +--rw postal-code?     string
-        |  |     +--rw state?           string
-        |  |     +--rw city?            string
-        |  |     +--rw country-code?    string
+        |  |     +--rw name?           string
+        |  |     +--rw address?        string
+        |  |     +--rw postal-code?    string
+        |  |     +--rw state?          string
+        |  |     +--rw city?           string
+        |  |     +--rw country-code?   string
         |  +--rw site
         |  |  +--rw site-id?    string
         |  |  +--rw location
-        |  |     +--rw name?            string
-        |  |     +--rw address?         string
-        |  |     +--rw postal-code?     string
-        |  |     +--rw state?           string
-        |  |     +--rw city?            string
-        |  |     +--rw country-code?    string
+        |  |     +--rw name?           string
+        |  |     +--rw address?        string
+        |  |     +--rw postal-code?    string
+        |  |     +--rw state?          string
+        |  |     +--rw city?           string
+        |  |     +--rw country-code?   string
         |  +--rw custom-id?       string
         +--rw type?                          identityref
         +--rw test-only?                     empty
