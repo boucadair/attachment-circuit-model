@@ -1046,7 +1046,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Boucadair, et al.</td>
-<td class="center">Expires 9 March 2025</td>
+<td class="center">Expires 14 March 2025</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1059,12 +1059,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-opsawg-teas-attachment-circuit-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2024-09-05" class="published">5 September 2024</time>
+<time datetime="2024-09-10" class="published">10 September 2024</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2025-03-09">9 March 2025</time></dd>
+<dd class="expires"><time datetime="2025-03-14">14 March 2025</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1128,7 +1128,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 9 March 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 14 March 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1926,19 +1926,17 @@ Such a reference can be used, e.g., in a subsequent service request to create an
           <div class="alignCenter art-text artwork" id="section-5.1-2.1">
 <pre>
 module: ietf-bearer-svc
-
   +--rw locations
-  |  +--rw customer-name?   string
-  |  +--rw role?            identityref
-  |  +--rw local-as?        inet:as-number
-  |  +--rw peer-as?         inet:as-number
-  |  +--ro location* [name]
-  |     +--ro name             string
-  |     +--ro address?         string
-  |     +--ro postal-code?     string
-  |     +--ro state?           string
-  |     +--ro city?            string
-  |     +--ro country-code?    string
+  |  +--rw customer* [name peer-as]
+  |     +--rw name        string
+  |     +--rw peer-as     inet:as-number
+  |     +--ro location* [name]
+  |        +--ro name            string
+  |        +--ro address?        string
+  |        +--ro postal-code?    string
+  |        +--ro state?          string
+  |        +--ro city?           string
+  |        +--ro country-code?   string
   +--rw bearers
      +--rw customer-name?           string
      +--rw requested-start?         yang:date-and-time
@@ -1977,21 +1975,21 @@ module: ietf-bearer-svc
         |  +--rw device
         |  |  +--rw device-id?   string
         |  |  +--rw location
-        |  |     +--rw name?            string
-        |  |     +--rw address?         string
-        |  |     +--rw postal-code?     string
-        |  |     +--rw state?           string
-        |  |     +--rw city?            string
-        |  |     +--rw country-code?    string
+        |  |     +--rw name?           string
+        |  |     +--rw address?        string
+        |  |     +--rw postal-code?    string
+        |  |     +--rw state?          string
+        |  |     +--rw city?           string
+        |  |     +--rw country-code?   string
         |  +--rw site
         |  |  +--rw site-id?    string
         |  |  +--rw location
-        |  |     +--rw name?            string
-        |  |     +--rw address?         string
-        |  |     +--rw postal-code?     string
-        |  |     +--rw state?           string
-        |  |     +--rw city?            string
-        |  |     +--rw country-code?    string
+        |  |     +--rw name?           string
+        |  |     +--rw address?        string
+        |  |     +--rw postal-code?    string
+        |  |     +--rw state?          string
+        |  |     +--rw city?           string
+        |  |     +--rw country-code?   string
         |  +--rw custom-id?       string
         +--rw type?                          identityref
         +--rw test-only?                     empty
@@ -2016,7 +2014,7 @@ module: ietf-bearer-svc
 <a href="#name-bearer-service-tree-structu" class="selfRef">Bearer Service Tree Structure</a>
           </figcaption></figure>
 </div>
-<p id="section-5.1-3">In some deployments, a customer may first retrieve a list of available presence locations before actually placing an order for a bearer creation. The request may be filtered based upon a customer name, role of the bearer, etc. The retrieved location name may be then referenced in the bearer creation request ("provider-location-reference"). See the example provided in <a href="#sec-ret-loc" class="auto internal xref">Appendix A.10.1</a>.<a href="#section-5.1-3" class="pilcrow">¶</a></p>
+<p id="section-5.1-3">In some deployments, a customer may first retrieve a list of available presence locations before actually placing an order for a bearer creation. The request is filtered based upon a customer name and an Autonomous System Number (ASN). The reserved value "AS 0" <span>[<a href="#RFC7607" class="cite xref">RFC7607</a>]</span> is used for customers with no ASN. The retrieved location names may be then referenced in a bearer creation request ("provider-location-reference"). See the example provided in <a href="#sec-ret-loc" class="auto internal xref">Appendix A.10.1</a>.<a href="#section-5.1-3" class="pilcrow">¶</a></p>
 <p id="section-5.1-4">The same customer site (CE, SF, etc.) can terminate one or multiple bearers; each of them uniquely identified by a reference that is assigned by the network provider. These bearers can terminate on the same or distinct network nodes. CEs that terminate multiple bearers are called multi-homed CEs.<a href="#section-5.1-4" class="pilcrow">¶</a></p>
 <p id="section-5.1-5">A bearer can be created, modified, or discovered from the network. For example, the following deployment options can be considered:<a href="#section-5.1-5" class="pilcrow">¶</a></p>
 <span class="break"></span><dl class="dlParallel" id="section-5.1-6">
@@ -2184,7 +2182,7 @@ module: ietf-bearer-svc
         </h3>
 <p id="section-5.2-1">The full tree diagram of the module can be generated using, e.g., the
 "pyang" tool <span>[<a href="#PYANG" class="cite xref">PYANG</a>]</span>.  That tree is not included here because it is
-too long (<span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-netmod-rfc8407bis-14#section-3.4" class="relref">Section 3.4</a> of [<a href="#I-D.ietf-netmod-rfc8407bis" class="cite xref">I-D.ietf-netmod-rfc8407bis</a>]</span>).  Instead, subtrees are provided
+too long (<span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-netmod-rfc8407bis-15#section-3.4" class="relref">Section 3.4</a> of [<a href="#I-D.ietf-netmod-rfc8407bis" class="cite xref">I-D.ietf-netmod-rfc8407bis</a>]</span>).  Instead, subtrees are provided
 for the reader's convenience. The full tree of the 'ac-svc' is provided in <span>[<a href="#AC-svc-Tree" class="cite xref">AC-svc-Tree</a>]</span>.<a href="#section-5.2-1" class="pilcrow">¶</a></p>
 <div id="overall-structure">
 <section id="section-5.2.1">
@@ -3798,16 +3796,6 @@ module ietf-bearer-svc {
                  Circuits'-as-a-Service (ACaaS)";
   }
 
-  // Typedef to ease referencing cross-modules
-
-  typedef bearer-ref {
-    type leafref {
-      path "/bearer-svc:bearers/bearer-svc:bearer/bearer-svc:name";
-    }
-    description
-      "Defines a type to reference a bearer.";
-  }
-
   // Identities
 
   identity identification-type {
@@ -3883,12 +3871,21 @@ module ietf-bearer-svc {
                     synchronization based on the physical layer";
   }
 
+  // Typedef to ease referencing cross-modules
+
+  typedef bearer-ref {
+    type leafref {
+      path "/bearer-svc:bearers/bearer-svc:bearer/bearer-svc:name";
+    }
+    description
+      "Defines a type to reference a bearer.";
+  }
+
   // Reusable groupings
 
   grouping location-information {
     description
-      "Basic location information";
-
+      "Basic location information.";
     leaf name {
       type string;
       description
@@ -3931,7 +3928,7 @@ module ietf-bearer-svc {
     description
       "Constraints related to placement of a bearer.";
     list constraint {
-      if-feature vpn-common:placement-diversity;
+      if-feature "vpn-common:placement-diversity";
       key "constraint-type";
       description
         "List of constraints.";
@@ -3940,11 +3937,11 @@ module ietf-bearer-svc {
           base vpn-common:placement-diversity;
         }
         must "not(derived-from-or-self(current(), "
-            + "'vpn-common:bearer-diverse') or "
-            + "derived-from-or-self(current(), "
-            + "'vpn-common:same-bearer'))" {
-             error-message "Only bearer-specific diversity"
-                         + "constraints must be provided.";
+           + "'vpn-common:bearer-diverse') or "
+           + "derived-from-or-self(current(), "
+           + "'vpn-common:same-bearer'))" {
+          error-message "Only bearer-specific diversity"
+                      + "constraints must be provided.";
         }
         description
           "Diversity constraint type for bearers.";
@@ -3963,26 +3960,26 @@ module ietf-bearer-svc {
                 "List of groups.";
               leaf group-id {
                 type string;
-                 description
-                   "The constraint will apply against this
-                    particular group ID.";
-               }
-             }
-           }
-           case all-bearers {
-             leaf all-other-bearers {
-               type empty;
-               description
-                 "The constraint will apply against all other
-                  bearers of a site.";
-             }
-           }
-           case all-groups {
-             leaf all-other-groups {
-               type empty;
-               description
-                 "The constraint will apply against all other
-                  groups managed by the customer.";
+                description
+                  "The constraint will apply against this
+                   particular group ID.";
+              }
+            }
+          }
+          case all-bearers {
+            leaf all-other-bearers {
+              type empty;
+              description
+                "The constraint will apply against all other
+                 bearers of a site.";
+            }
+          }
+          case all-groups {
+            leaf all-other-groups {
+              type empty;
+              description
+                "The constraint will apply against all other
+                 groups managed by the customer.";
             }
           }
         }
@@ -3994,42 +3991,36 @@ module ietf-bearer-svc {
     description
       "Retrieves the available provider locations for terminating
        bearers for a given customer.";
-    leaf customer-name {
-      type string;
+
+    list customer {
+      key "name peer-as";
       description
-        "Indicates the name of the customer that requested these
-         bearers.";
-    }
-    leaf role {
-      type identityref {
-        base ac-common:role;
+        "List of locations per customer.";
+      leaf name {
+        type string;
+        description
+          "Indicates the name of the customer.";
       }
-      description
-        "Indicates whether this bearer is used as UNI, NNI, etc.";
-    }
-    leaf local-as {
-      type inet:as-number;
-      description
-        "Indicates a provider AS Number (ASN).";
-    }
-    leaf peer-as {
-      type inet:as-number;
-      description
-        "Indicates the customer's ASN.";
-    }
-    list location {
-      key "name";
-      config false;
-      description
-        "Reports the list of available locations.";
-      uses location-information;
+      leaf peer-as {
+        type inet:as-number;
+        description
+          "Indicates the customer's ASN.
+           0 is used when the customer does not have an ASN.";
+        reference
+          "RFC 7607: Codification of AS 0 Processing";
+      }
+      list location {
+        key "name";
+        config false;
+        description
+          "Reports the list of available locations.";
+        uses location-information;
+      }
     }
   }
-
   container bearers {
     description
       "Main container for the bearers.";
-
     leaf customer-name {
       type string;
       description
@@ -4088,16 +4079,16 @@ module ietf-bearer-svc {
         type boolean;
         config false;
         description
-         "Indicates when set to true that a mechanism for physical
-          layer synchronization is supported for this bearer. No such
-          mechanism is supported if set to false.";
+          "Indicates when set to true that a mechanism for physical
+           layer synchronization is supported for this bearer.
+           No such mechanism is supported if set to false.";
       }
       leaf sync-phy-enabled {
         type boolean;
         description
-         "Indicates when set to true that a mechanism for physical
-          layer synchronization is enabled for this bearer. No such
-          mechanism is enabled if set to false.";
+          "Indicates when set to true that a mechanism for physical
+           layer synchronization is enabled for this bearer. No such
+           mechanism is enabled if set to false.";
       }
       leaf sync-phy-type {
         when "../sync-phy-enabled='true'";
@@ -4114,20 +4105,19 @@ module ietf-bearer-svc {
       }
       container customer-point {
         description
-          "Base container to link the Bearer existence";
+          "Base container to link the Bearer existence.";
         leaf identified-by {
           type identityref {
             base identification-type;
           }
           description
-            "Attribute used to identify the bearer";
+            "Specifies how the customer point is identified.";
         }
         container device {
-          when
-            "derived-from-or-self(../identified-by, "
-          + "'bearer-svc:device-id') or "
-          + "derived-from-or-self(../identified-by, "
-          + "'bearer-svc:site-and-device-id')" {
+          when "derived-from-or-self(../identified-by, "
+             + "'bearer-svc:device-id') or "
+             + "derived-from-or-self(../identified-by, "
+             + "'bearer-svc:site-and-device-id')" {
             description
               "Only applicable if identified-by is device.";
           }
@@ -4141,15 +4131,14 @@ module ietf-bearer-svc {
           container location {
             description
               "Location of the node.";
-             uses location-information;
+            uses location-information;
           }
         }
         container site {
-          when
-            "derived-from-or-self(../identified-by, "
-          + "'bearer-svc:site-id') or "
-          + "derived-from-or-self(../identified-by, "
-          + "'bearer-svc:site-and-device-id')" {
+          when "derived-from-or-self(../identified-by, "
+             + "'bearer-svc:site-id') or "
+             + "derived-from-or-self(../identified-by, "
+             + "'bearer-svc:site-and-device-id')" {
             description
               "Only applicable if identified-by is site.";
           }
@@ -4164,7 +4153,7 @@ module ietf-bearer-svc {
           container location {
             description
               "Location of the node.";
-             uses location-information;
+            uses location-information;
           }
         }
         leaf custom-id {
@@ -4189,9 +4178,9 @@ module ietf-bearer-svc {
       leaf test-only {
         type empty;
         description
-         "When present, this indicates that this is a feasibility
-          check request. No resources are commited for such bearer
-          requests.";
+          "When present, this indicates that this is a feasibility
+           check request. No resources are commited for such bearer
+           requests.";
       }
       leaf bearer-reference {
         if-feature "ac-common:server-assigned-reference";
@@ -5769,7 +5758,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 <dd class="break"></dd>
 <dt id="I-D.ietf-netmod-rfc8407bis">[I-D.ietf-netmod-rfc8407bis]</dt>
         <dd>
-<span class="refAuthor">Bierman, A.</span>, <span class="refAuthor">Boucadair, M.</span>, and <span class="refAuthor">Q. Wu</span>, <span class="refTitle">"Guidelines for Authors and Reviewers of Documents Containing YANG Data Models"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-netmod-rfc8407bis-14</span>, <time datetime="2024-07-05" class="refDate">5 July 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-netmod-rfc8407bis-14">https://datatracker.ietf.org/doc/html/draft-ietf-netmod-rfc8407bis-14</a>&gt;</span>. </dd>
+<span class="refAuthor">Bierman, A.</span>, <span class="refAuthor">Boucadair, M.</span>, and <span class="refAuthor">Q. Wu</span>, <span class="refTitle">"Guidelines for Authors and Reviewers of Documents Containing YANG Data Models"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-netmod-rfc8407bis-15</span>, <time datetime="2024-09-10" class="refDate">10 September 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-netmod-rfc8407bis-15">https://datatracker.ietf.org/doc/html/draft-ietf-netmod-rfc8407bis-15</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="I-D.ietf-opsawg-ac-lxsm-lxnm-glue">[I-D.ietf-opsawg-ac-lxsm-lxnm-glue]</dt>
         <dd>
@@ -5777,7 +5766,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 <dd class="break"></dd>
 <dt id="I-D.ietf-opsawg-ntw-attachment-circuit">[I-D.ietf-opsawg-ntw-attachment-circuit]</dt>
         <dd>
-<span class="refAuthor">Boucadair, M.</span>, <span class="refAuthor">Roberts, R.</span>, <span class="refAuthor">de Dios, O. G.</span>, <span class="refAuthor">Barguil, S.</span>, and <span class="refAuthor">B. Wu</span>, <span class="refTitle">"A Network YANG Data Model for Attachment Circuits"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-opsawg-ntw-attachment-circuit-12</span>, <time datetime="2024-07-24" class="refDate">24 July 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-ntw-attachment-circuit-12">https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-ntw-attachment-circuit-12</a>&gt;</span>. </dd>
+<span class="refAuthor">Boucadair, M.</span>, <span class="refAuthor">Roberts, R.</span>, <span class="refAuthor">de Dios, O. G.</span>, <span class="refAuthor">Barguil, S.</span>, and <span class="refAuthor">B. Wu</span>, <span class="refTitle">"A Network YANG Data Model for Attachment Circuits"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-opsawg-ntw-attachment-circuit-13</span>, <time datetime="2024-09-05" class="refDate">5 September 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-ntw-attachment-circuit-13">https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-ntw-attachment-circuit-13</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="I-D.ietf-teas-ietf-network-slice-nbi-yang">[I-D.ietf-teas-ietf-network-slice-nbi-yang]</dt>
         <dd>
@@ -5834,6 +5823,10 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 <dt id="RFC6952">[RFC6952]</dt>
         <dd>
 <span class="refAuthor">Jethanandani, M.</span>, <span class="refAuthor">Patel, K.</span>, and <span class="refAuthor">L. Zheng</span>, <span class="refTitle">"Analysis of BGP, LDP, PCEP, and MSDP Issues According to the Keying and Authentication for Routing Protocols (KARP) Design Guide"</span>, <span class="seriesInfo">RFC 6952</span>, <span class="seriesInfo">DOI 10.17487/RFC6952</span>, <time datetime="2013-05" class="refDate">May 2013</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc6952">https://www.rfc-editor.org/rfc/rfc6952</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC7607">[RFC7607]</dt>
+        <dd>
+<span class="refAuthor">Kumari, W.</span>, <span class="refAuthor">Bush, R.</span>, <span class="refAuthor">Schiller, H.</span>, and <span class="refAuthor">K. Patel</span>, <span class="refTitle">"Codification of AS 0 Processing"</span>, <span class="seriesInfo">RFC 7607</span>, <span class="seriesInfo">DOI 10.17487/RFC7607</span>, <time datetime="2015-08" class="refDate">August 2015</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc7607">https://www.rfc-editor.org/rfc/rfc7607</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC7665">[RFC7665]</dt>
         <dd>
@@ -7642,16 +7635,20 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
           <h4 id="name-retrieve-interconnection-lo">
 <a href="#appendix-A.10.1" class="section-number selfRef">A.10.1. </a><a href="#name-retrieve-interconnection-lo" class="section-name selfRef">Retrieve Interconnection Locations</a>
           </h4>
-<p id="appendix-A.10.1-1"><a href="#ex-retrieve-locations" class="auto internal xref">Figure 48</a> shows an example a message body of a request to retrieve a list of interconnection locations. The request includes optional information such as customer name, peer ASN, etc. to filter out the locations.<a href="#appendix-A.10.1-1" class="pilcrow">¶</a></p>
+<p id="appendix-A.10.1-1"><a href="#ex-retrieve-locations" class="auto internal xref">Figure 48</a> shows an example a message body of a request to retrieve a list of interconnection locations. The request includes a customer name and an ASN to filter out the locations.<a href="#appendix-A.10.1-1" class="pilcrow">¶</a></p>
 <span id="name-message-body-of-a-request-to-r"></span><div id="ex-retrieve-locations">
 <figure id="figure-48">
             <div class="lang-json sourcecode" id="appendix-A.10.1-2.1">
 <pre>
 {
   "ietf-bearer-svc:locations": {
-    "customer-name": "a future peer",
-    "role": "ietf-ac-common:nni",
-    "peer-as": 65536
+    "filtered-by": "ietf-bearer-svc:customer-name",
+    "customer": [
+      {
+        "name": "a future peer",
+        "peer-as": 65536
+      }
+    ]
   }
 }
 </pre>
@@ -7667,16 +7664,20 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 <pre>
 {
   "ietf-bearer-svc:locations": {
-    "customer-name": "a future peer",
-    "role": "ietf-ac-common:nni",
-    "peer-as": 65536,
-    "location": [
+    "filtered-by": "ietf-bearer-svc:customer-name",
+    "customer": [
       {
-        "name": "Location-X",
-        "_comment": "other location attributes"
-      },
-      {
-        "_comment": "other locations"
+        "name": "a future peer",
+        "peer-as": 65536,
+        "location": [
+          {
+            "name": "Location-X",
+            "_comment": "other location attributes"
+          },
+          {
+            "_comment": "other locations"
+          }
+        ]
       }
     ]
   }

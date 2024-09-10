@@ -5,14 +5,14 @@
 OPSAWG                                                 M. Boucadair, Ed.
 Internet-Draft                                                    Orange
 Intended status: Standards Track                         R. Roberts, Ed.
-Expires: 9 March 2025                                            Juniper
+Expires: 14 March 2025                                           Juniper
                                                            O. G. D. Dios
                                                               Telefonica
                                                            S. B. Giraldo
                                                                    Nokia
                                                                    B. Wu
                                                      Huawei Technologies
-                                                        5 September 2024
+                                                       10 September 2024
 
 
   YANG Data Models for Bearers and 'Attachment Circuits'-as-a-Service
@@ -62,7 +62,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 9 March 2025.
+   This Internet-Draft will expire on 14 March 2025.
 
 Copyright Notice
 
@@ -622,19 +622,17 @@ Table of Contents
    reference), a peer SAP identifier (e.g., an identifier of an SF).
 
     module: ietf-bearer-svc
-
       +--rw locations
-      |  +--rw customer-name?   string
-      |  +--rw role?            identityref
-      |  +--rw local-as?        inet:as-number
-      |  +--rw peer-as?         inet:as-number
-      |  +--ro location* [name]
-      |     +--ro name             string
-      |     +--ro address?         string
-      |     +--ro postal-code?     string
-      |     +--ro state?           string
-      |     +--ro city?            string
-      |     +--ro country-code?    string
+      |  +--rw customer* [name peer-as]
+      |     +--rw name        string
+      |     +--rw peer-as     inet:as-number
+      |     +--ro location* [name]
+      |        +--ro name            string
+      |        +--ro address?        string
+      |        +--ro postal-code?    string
+      |        +--ro state?          string
+      |        +--ro city?           string
+      |        +--ro country-code?   string
       +--rw bearers
          +--rw customer-name?           string
          +--rw requested-start?         yang:date-and-time
@@ -673,21 +671,21 @@ Table of Contents
             |  +--rw device
             |  |  +--rw device-id?   string
             |  |  +--rw location
-            |  |     +--rw name?            string
-            |  |     +--rw address?         string
-            |  |     +--rw postal-code?     string
-            |  |     +--rw state?           string
-            |  |     +--rw city?            string
-            |  |     +--rw country-code?    string
+            |  |     +--rw name?           string
+            |  |     +--rw address?        string
+            |  |     +--rw postal-code?    string
+            |  |     +--rw state?          string
+            |  |     +--rw city?           string
+            |  |     +--rw country-code?   string
             |  +--rw site
             |  |  +--rw site-id?    string
             |  |  +--rw location
-            |  |     +--rw name?            string
-            |  |     +--rw address?         string
-            |  |     +--rw postal-code?     string
-            |  |     +--rw state?           string
-            |  |     +--rw city?            string
-            |  |     +--rw country-code?    string
+            |  |     +--rw name?           string
+            |  |     +--rw address?        string
+            |  |     +--rw postal-code?    string
+            |  |     +--rw state?          string
+            |  |     +--rw city?           string
+            |  |     +--rw country-code?   string
             |  +--rw custom-id?       string
             +--rw type?                          identityref
             +--rw test-only?                     empty
@@ -711,10 +709,11 @@ Table of Contents
 
    In some deployments, a customer may first retrieve a list of
    available presence locations before actually placing an order for a
-   bearer creation.  The request may be filtered based upon a customer
-   name, role of the bearer, etc.  The retrieved location name may be
-   then referenced in the bearer creation request ("provider-location-
-   reference").  See the example provided in Appendix A.10.1.
+   bearer creation.  The request is filtered based upon a customer name
+   and an Autonomous System Number (ASN).  The reserved value "AS 0"
+   [RFC7607] is used for customers with no ASN.  The retrieved location
+   names may be then referenced in a bearer creation request ("provider-
+   location-reference").  See the example provided in Appendix A.10.1.
 
    The same customer site (CE, SF, etc.) can terminate one or multiple
    bearers; each of them uniquely identified by a reference that is
@@ -2207,16 +2206,6 @@ Table of Contents
                     Circuits'-as-a-Service (ACaaS)";
      }
 
-     // Typedef to ease referencing cross-modules
-
-     typedef bearer-ref {
-       type leafref {
-         path "/bearer-svc:bearers/bearer-svc:bearer/bearer-svc:name";
-       }
-       description
-         "Defines a type to reference a bearer.";
-     }
-
      // Identities
 
      identity identification-type {
@@ -2292,12 +2281,21 @@ Table of Contents
                        synchronization based on the physical layer";
      }
 
+     // Typedef to ease referencing cross-modules
+
+     typedef bearer-ref {
+       type leafref {
+         path "/bearer-svc:bearers/bearer-svc:bearer/bearer-svc:name";
+       }
+       description
+         "Defines a type to reference a bearer.";
+     }
+
      // Reusable groupings
 
      grouping location-information {
        description
-         "Basic location information";
-
+         "Basic location information.";
        leaf name {
          type string;
          description
@@ -2340,7 +2338,7 @@ Table of Contents
        description
          "Constraints related to placement of a bearer.";
        list constraint {
-         if-feature vpn-common:placement-diversity;
+         if-feature "vpn-common:placement-diversity";
          key "constraint-type";
          description
            "List of constraints.";
@@ -2349,11 +2347,11 @@ Table of Contents
              base vpn-common:placement-diversity;
            }
            must "not(derived-from-or-self(current(), "
-               + "'vpn-common:bearer-diverse') or "
-               + "derived-from-or-self(current(), "
-               + "'vpn-common:same-bearer'))" {
-                error-message "Only bearer-specific diversity"
-                            + "constraints must be provided.";
+              + "'vpn-common:bearer-diverse') or "
+              + "derived-from-or-self(current(), "
+              + "'vpn-common:same-bearer'))" {
+             error-message "Only bearer-specific diversity"
+                         + "constraints must be provided.";
            }
            description
              "Diversity constraint type for bearers.";
@@ -2372,26 +2370,26 @@ Table of Contents
                    "List of groups.";
                  leaf group-id {
                    type string;
-                    description
-                      "The constraint will apply against this
-                       particular group ID.";
-                  }
-                }
-              }
-              case all-bearers {
-                leaf all-other-bearers {
-                  type empty;
-                  description
-                    "The constraint will apply against all other
-                     bearers of a site.";
-                }
-              }
-              case all-groups {
-                leaf all-other-groups {
-                  type empty;
-                  description
-                    "The constraint will apply against all other
-                     groups managed by the customer.";
+                   description
+                     "The constraint will apply against this
+                      particular group ID.";
+                 }
+               }
+             }
+             case all-bearers {
+               leaf all-other-bearers {
+                 type empty;
+                 description
+                   "The constraint will apply against all other
+                    bearers of a site.";
+               }
+             }
+             case all-groups {
+               leaf all-other-groups {
+                 type empty;
+                 description
+                   "The constraint will apply against all other
+                    groups managed by the customer.";
                }
              }
            }
@@ -2403,42 +2401,36 @@ Table of Contents
        description
          "Retrieves the available provider locations for terminating
           bearers for a given customer.";
-       leaf customer-name {
-         type string;
+
+       list customer {
+         key "name peer-as";
          description
-           "Indicates the name of the customer that requested these
-            bearers.";
-       }
-       leaf role {
-         type identityref {
-           base ac-common:role;
+           "List of locations per customer.";
+         leaf name {
+           type string;
+           description
+             "Indicates the name of the customer.";
          }
-         description
-           "Indicates whether this bearer is used as UNI, NNI, etc.";
-       }
-       leaf local-as {
-         type inet:as-number;
-         description
-           "Indicates a provider AS Number (ASN).";
-       }
-       leaf peer-as {
-         type inet:as-number;
-         description
-           "Indicates the customer's ASN.";
-       }
-       list location {
-         key "name";
-         config false;
-         description
-           "Reports the list of available locations.";
-         uses location-information;
+         leaf peer-as {
+           type inet:as-number;
+           description
+             "Indicates the customer's ASN.
+              0 is used when the customer does not have an ASN.";
+           reference
+             "RFC 7607: Codification of AS 0 Processing";
+         }
+         list location {
+           key "name";
+           config false;
+           description
+             "Reports the list of available locations.";
+           uses location-information;
+         }
        }
      }
-
      container bearers {
        description
          "Main container for the bearers.";
-
        leaf customer-name {
          type string;
          description
@@ -2497,16 +2489,16 @@ Table of Contents
            type boolean;
            config false;
            description
-            "Indicates when set to true that a mechanism for physical
-             layer synchronization is supported for this bearer. No such
-             mechanism is supported if set to false.";
+             "Indicates when set to true that a mechanism for physical
+              layer synchronization is supported for this bearer.
+              No such mechanism is supported if set to false.";
          }
          leaf sync-phy-enabled {
            type boolean;
            description
-            "Indicates when set to true that a mechanism for physical
-             layer synchronization is enabled for this bearer. No such
-             mechanism is enabled if set to false.";
+             "Indicates when set to true that a mechanism for physical
+              layer synchronization is enabled for this bearer. No such
+              mechanism is enabled if set to false.";
          }
          leaf sync-phy-type {
            when "../sync-phy-enabled='true'";
@@ -2523,20 +2515,19 @@ Table of Contents
          }
          container customer-point {
            description
-             "Base container to link the Bearer existence";
+             "Base container to link the Bearer existence.";
            leaf identified-by {
              type identityref {
                base identification-type;
              }
              description
-               "Attribute used to identify the bearer";
+               "Specifies how the customer point is identified.";
            }
            container device {
-             when
-               "derived-from-or-self(../identified-by, "
-             + "'bearer-svc:device-id') or "
-             + "derived-from-or-self(../identified-by, "
-             + "'bearer-svc:site-and-device-id')" {
+             when "derived-from-or-self(../identified-by, "
+                + "'bearer-svc:device-id') or "
+                + "derived-from-or-self(../identified-by, "
+                + "'bearer-svc:site-and-device-id')" {
                description
                  "Only applicable if identified-by is device.";
              }
@@ -2550,15 +2541,14 @@ Table of Contents
              container location {
                description
                  "Location of the node.";
-                uses location-information;
+               uses location-information;
              }
            }
            container site {
-             when
-               "derived-from-or-self(../identified-by, "
-             + "'bearer-svc:site-id') or "
-             + "derived-from-or-self(../identified-by, "
-             + "'bearer-svc:site-and-device-id')" {
+             when "derived-from-or-self(../identified-by, "
+                + "'bearer-svc:site-id') or "
+                + "derived-from-or-self(../identified-by, "
+                + "'bearer-svc:site-and-device-id')" {
                description
                  "Only applicable if identified-by is site.";
              }
@@ -2573,7 +2563,7 @@ Table of Contents
              container location {
                description
                  "Location of the node.";
-                uses location-information;
+               uses location-information;
              }
            }
            leaf custom-id {
@@ -2598,9 +2588,9 @@ Table of Contents
          leaf test-only {
            type empty;
            description
-            "When present, this indicates that this is a feasibility
-             check request. No resources are commited for such bearer
-             requests.";
+             "When present, this indicates that this is a feasibility
+              check request. No resources are commited for such bearer
+              requests.";
          }
          leaf bearer-reference {
            if-feature "ac-common:server-assigned-reference";
@@ -4142,9 +4132,9 @@ Table of Contents
               Bierman, A., Boucadair, M., and Q. Wu, "Guidelines for
               Authors and Reviewers of Documents Containing YANG Data
               Models", Work in Progress, Internet-Draft, draft-ietf-
-              netmod-rfc8407bis-14, 5 July 2024,
+              netmod-rfc8407bis-15, 10 September 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-netmod-
-              rfc8407bis-14>.
+              rfc8407bis-15>.
 
    [I-D.ietf-opsawg-ac-lxsm-lxnm-glue]
               Boucadair, M., Roberts, R., Barguil, S., and O. G. de
@@ -4159,9 +4149,9 @@ Table of Contents
               Boucadair, M., Roberts, R., de Dios, O. G., Barguil, S.,
               and B. Wu, "A Network YANG Data Model for Attachment
               Circuits", Work in Progress, Internet-Draft, draft-ietf-
-              opsawg-ntw-attachment-circuit-12, 24 July 2024,
+              opsawg-ntw-attachment-circuit-13, 5 September 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
-              ntw-attachment-circuit-12>.
+              ntw-attachment-circuit-13>.
 
    [I-D.ietf-teas-ietf-network-slice-nbi-yang]
               Wu, B., Dhody, D., Rokui, R., Saad, T., and J. Mullooly,
@@ -4233,6 +4223,11 @@ Table of Contents
               and Authentication for Routing Protocols (KARP) Design
               Guide", RFC 6952, DOI 10.17487/RFC6952, May 2013,
               <https://www.rfc-editor.org/rfc/rfc6952>.
+
+   [RFC7607]  Kumari, W., Bush, R., Schiller, H., and K. Patel,
+              "Codification of AS 0 Processing", RFC 7607,
+              DOI 10.17487/RFC7607, August 2015,
+              <https://www.rfc-editor.org/rfc/rfc7607>.
 
    [RFC7665]  Halpern, J., Ed. and C. Pignataro, Ed., "Service Function
               Chaining (SFC) Architecture", RFC 7665,
@@ -5585,15 +5580,18 @@ A.10.  Interconnection via Internet eXchange Points (IXPs)
 A.10.1.  Retrieve Interconnection Locations
 
    Figure 48 shows an example a message body of a request to retrieve a
-   list of interconnection locations.  The request includes optional
-   information such as customer name, peer ASN, etc. to filter out the
-   locations.
+   list of interconnection locations.  The request includes a customer
+   name and an ASN to filter out the locations.
 
    {
      "ietf-bearer-svc:locations": {
-       "customer-name": "a future peer",
-       "role": "ietf-ac-common:nni",
-       "peer-as": 65536
+       "filtered-by": "ietf-bearer-svc:customer-name",
+       "customer": [
+         {
+           "name": "a future peer",
+           "peer-as": 65536
+         }
+       ]
      }
    }
 
@@ -5605,16 +5603,20 @@ A.10.1.  Retrieve Interconnection Locations
 
    {
      "ietf-bearer-svc:locations": {
-       "customer-name": "a future peer",
-       "role": "ietf-ac-common:nni",
-       "peer-as": 65536,
-       "location": [
+       "filtered-by": "ietf-bearer-svc:customer-name",
+       "customer": [
          {
-           "name": "Location-X",
-           "_comment": "other location attributes"
-         },
-         {
-           "_comment": "other locations"
+           "name": "a future peer",
+           "peer-as": 65536,
+           "location": [
+             {
+               "name": "Location-X",
+               "_comment": "other location attributes"
+             },
+             {
+               "_comment": "other locations"
+             }
+           ]
          }
        ]
      }
