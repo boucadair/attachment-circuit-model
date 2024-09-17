@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-09-10T00:44:40.637273+00:00",
+  "timestamp": "2024-09-17T00:37:24.583540+00:00",
   "repo": "boucadair/attachment-circuit-model",
   "labels": [
     {
@@ -8970,24 +8970,26 @@
       "id": "PR_kwDOIiAkrc56gHvy",
       "title": "Location comment from Ebben",
       "url": "https://github.com/boucadair/attachment-circuit-model/pull/232",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "boucadair",
       "authorAssociation": "OWNER",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2024-09-05T10:01:07Z",
-      "updatedAt": "2024-09-06T08:54:54Z",
+      "updatedAt": "2024-09-10T12:21:29Z",
       "baseRepository": "boucadair/attachment-circuit-model",
       "baseRefName": "main",
       "baseRefOid": "358708962c7631517072b4b796498e84e539f373",
       "headRepository": "boucadair/attachment-circuit-model",
       "headRefName": "Location-comment-from-Ebben",
       "headRefOid": "9632c1a4e921881b7ffd65ce8fcc42d8ddeff9b2",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2024-09-10T12:21:28Z",
+      "mergedAt": "2024-09-10T12:21:28Z",
+      "mergedBy": "boucadair",
+      "mergeCommit": {
+        "oid": "82a1098412c58a573544a046c630b8cfe69dfd8f"
+      },
       "comments": [],
       "reviews": []
     },
