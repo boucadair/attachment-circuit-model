@@ -2937,9 +2937,9 @@ a parent AC can be defined with a set of stable and common information, while
               </h6>
 <p id="section-5.2.5.3.2-1">An AC service request with BGP routing <span class="bcp14">SHOULD</span> include at least the customer's AS Number (ASN) and an address family.
 Additional information can be supplied by a customer in a request or exposed by a provider in a response to a query request
-in order ease the process of automating the provisioning of BGP sessions (when a distinct address is used at the customer
-side to establish the underlying BGP session, communicate the provider's IP address used to establish the BGP session,
-authentication parameters, bind the session with a forwarding protection profile, etc.).<a href="#section-5.2.5.3.2-1" class="pilcrow">¶</a></p>
+in order ease the process of automating the provisioning of BGP sessions (the customer does not use the primary IP address
+to establish the underlying BGP session, communicate the provider's IP address used to establish the BGP session,
+share authentication parameters, bind the session to a forwarding protection profile, etc.).<a href="#section-5.2.5.3.2-1" class="pilcrow">¶</a></p>
 <p id="section-5.2.5.3.2-2">The BGP tree structure is shown in <a href="#bgp-rtg-svc-tree" class="auto internal xref">Figure 14</a>.<a href="#section-5.2.5.3.2-2" class="pilcrow">¶</a></p>
 <span id="name-bgp-tree-structure"></span><div id="bgp-rtg-svc-tree">
 <figure id="figure-14">
@@ -3039,7 +3039,7 @@ authentication parameters, bind the session with a forwarding protection profile
 <a href="#name-bgp-tree-structure" class="selfRef">BGP Tree Structure</a>
                 </figcaption></figure>
 </div>
-<p id="section-5.2.5.3.2-4">For deployment cases where an AC service request includes a list of neighors with shared information,
+<p id="section-5.2.5.3.2-4">For deployment cases where an AC service request includes a list of neighors with redundant information,
 the ACaaS allows to factorize shared data by means of 'peer-group'. The presence of "peer-groups" in a service request is thus optional.<a href="#section-5.2.5.3.2-4" class="pilcrow">¶</a></p>
 <p id="section-5.2.5.3.2-5">The following data nodes are supported for each BGP 'peer-group':<a href="#section-5.2.5.3.2-5" class="pilcrow">¶</a></p>
 <span class="break"></span><dl class="dlParallel" id="section-5.2.5.3.2-6">
