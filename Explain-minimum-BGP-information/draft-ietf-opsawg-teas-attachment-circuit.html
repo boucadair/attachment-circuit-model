@@ -2935,7 +2935,11 @@ a parent AC can be defined with a set of stable and common information, while
               <h6 id="name-bgp">
 <a href="#section-5.2.5.3.2" class="section-number selfRef">5.2.5.3.2. </a><a href="#name-bgp" class="section-name selfRef">BGP</a>
               </h6>
-<p id="section-5.2.5.3.2-1">An AC service request with BGP routing <span class="bcp14">SHOULD</span> include at least the customer's AS Number (ASN) and the address families. Additional information can be supplied by a customer in a request or exposed by a provider in a response to a query request to ease the process of automating the provisioning of BGP sessions.<a href="#section-5.2.5.3.2-1" class="pilcrow">¶</a></p>
+<p id="section-5.2.5.3.2-1">An AC service request with BGP routing <span class="bcp14">SHOULD</span> include at least the customer's AS Number (ASN) and an address family.
+Additional information can be supplied by a customer in a request or exposed by a provider in a response to a query request
+in order ease the process of automating the provisioning of BGP sessions (when a distinct address is used at the customer
+side to establish the underlying BGP session, communicate the provider's IP address used to establish the BGP session,
+authentication parameters, bind the session with a forwarding protection profile, etc.).<a href="#section-5.2.5.3.2-1" class="pilcrow">¶</a></p>
 <p id="section-5.2.5.3.2-2">The BGP tree structure is shown in <a href="#bgp-rtg-svc-tree" class="auto internal xref">Figure 14</a>.<a href="#section-5.2.5.3.2-2" class="pilcrow">¶</a></p>
 <span id="name-bgp-tree-structure"></span><div id="bgp-rtg-svc-tree">
 <figure id="figure-14">
@@ -3035,7 +3039,7 @@ a parent AC can be defined with a set of stable and common information, while
 <a href="#name-bgp-tree-structure" class="selfRef">BGP Tree Structure</a>
                 </figcaption></figure>
 </div>
-<p id="section-5.2.5.3.2-4">For deployment cases where a service request includes a list multiple neighors with shared information over the same AC,
+<p id="section-5.2.5.3.2-4">For deployment cases where an AC service request includes a list of neighors with shared information,
 the ACaaS allows to factorize shared data by means of 'peer-group'. The presence of "peer-groups" in a service request is thus optional.<a href="#section-5.2.5.3.2-4" class="pilcrow">¶</a></p>
 <p id="section-5.2.5.3.2-5">The following data nodes are supported for each BGP 'peer-group':<a href="#section-5.2.5.3.2-5" class="pilcrow">¶</a></p>
 <span class="break"></span><dl class="dlParallel" id="section-5.2.5.3.2-6">
@@ -3046,7 +3050,7 @@ the ACaaS allows to factorize shared data by means of 'peer-group'. The presence
                 <dd class="break"></dd>
 <dt id="section-5.2.5.3.2-6.3">'local-as':</dt>
                 <dd style="margin-left: 1.5em" id="section-5.2.5.3.2-6.4">
-                  <p id="section-5.2.5.3.2-6.4.1">Reports the provider's AS Number (ASN). This information is used at the customer side to configure the BGP session with the provider network.<a href="#section-5.2.5.3.2-6.4.1" class="pilcrow">¶</a></p>
+                  <p id="section-5.2.5.3.2-6.4.1">Reports the provider's ASN. This information is used at the customer side to configure the BGP session with the provider network.<a href="#section-5.2.5.3.2-6.4.1" class="pilcrow">¶</a></p>
 </dd>
                 <dd class="break"></dd>
 <dt id="section-5.2.5.3.2-6.5">'peer-as':</dt>
@@ -3066,27 +3070,32 @@ the ACaaS allows to factorize shared data by means of 'peer-group'. The presence
                 <dd class="break"></dd>
 <dt id="section-5.2.5.3.2-6.11">'role':</dt>
                 <dd style="margin-left: 1.5em" id="section-5.2.5.3.2-6.12">
-                  <p id="section-5.2.5.3.2-6.12.1">Specifies the BGP role in a session. Role values are taken from the list defined in <span><a href="https://rfc-editor.org/rfc/rfc9234#section-4" class="relref">Section 4</a> of [<a href="#RFC9234" class="cite xref">RFC9234</a>]</span>. This is an optional parameter.<a href="#section-5.2.5.3.2-6.12.1" class="pilcrow">¶</a></p>
+                  <p id="section-5.2.5.3.2-6.12.1">Specifies the BGP role in a session. Role values are taken from the list defined in <span><a href="https://rfc-editor.org/rfc/rfc9234#section-4" class="relref">Section 4</a> of [<a href="#RFC9234" class="cite xref">RFC9234</a>]</span>. This parameter is useful for interconnection scenarios.<a href="#section-5.2.5.3.2-6.12.1" class="pilcrow">¶</a></p>
 </dd>
                 <dd class="break"></dd>
-<dt id="section-5.2.5.3.2-6.13">'local-address':</dt>
+<dt id="section-5.2.5.3.2-6.13"></dt>
                 <dd style="margin-left: 1.5em" id="section-5.2.5.3.2-6.14">
-                  <p id="section-5.2.5.3.2-6.14.1">Reports a provider's IP address to use when establishing the BGP transport session.<a href="#section-5.2.5.3.2-6.14.1" class="pilcrow">¶</a></p>
+                  <p id="section-5.2.5.3.2-6.14.1">This is an optional parameter.<a href="#section-5.2.5.3.2-6.14.1" class="pilcrow">¶</a></p>
 </dd>
                 <dd class="break"></dd>
-<dt id="section-5.2.5.3.2-6.15">'bgp-max-prefix':</dt>
+<dt id="section-5.2.5.3.2-6.15">'local-address':</dt>
                 <dd style="margin-left: 1.5em" id="section-5.2.5.3.2-6.16">
-                  <p id="section-5.2.5.3.2-6.16.1">Indicates the maximum number of BGP prefixes allowed in a session for this group.<a href="#section-5.2.5.3.2-6.16.1" class="pilcrow">¶</a></p>
+                  <p id="section-5.2.5.3.2-6.16.1">Reports a provider's IP address to use to establish the BGP transport session.<a href="#section-5.2.5.3.2-6.16.1" class="pilcrow">¶</a></p>
 </dd>
                 <dd class="break"></dd>
-<dt id="section-5.2.5.3.2-6.17">'authentication':</dt>
+<dt id="section-5.2.5.3.2-6.17">'bgp-max-prefix':</dt>
                 <dd style="margin-left: 1.5em" id="section-5.2.5.3.2-6.18">
-                  <p id="section-5.2.5.3.2-6.18.1">The module adheres to the recommendations in <span><a href="https://rfc-editor.org/rfc/rfc4364#section-13.2" class="relref">Section 13.2</a> of [<a href="#RFC4364" class="cite xref">RFC4364</a>]</span>, as it allows enabling the TCP Authentication Option (TCP-AO) <span>[<a href="#RFC5925" class="cite xref">RFC5925</a>]</span> and accommodates the installed base that makes use of MD5. In addition, the module includes a provision for using IPsec.<a href="#section-5.2.5.3.2-6.18.1" class="pilcrow">¶</a></p>
+                  <p id="section-5.2.5.3.2-6.18.1">Indicates the maximum number of BGP prefixes allowed in a session for this group.<a href="#section-5.2.5.3.2-6.18.1" class="pilcrow">¶</a></p>
 </dd>
                 <dd class="break"></dd>
-<dt id="section-5.2.5.3.2-6.19"></dt>
+<dt id="section-5.2.5.3.2-6.19">'authentication':</dt>
                 <dd style="margin-left: 1.5em" id="section-5.2.5.3.2-6.20">
-                  <p id="section-5.2.5.3.2-6.20.1">Similar to <span>[<a href="#RFC9182" class="cite xref">RFC9182</a>]</span>, this version of the ACaaS assumes that parameters specific to the TCP-AO are preconfigured as part of the key chain that is referenced in the ACaaS. No assumption is made about how such a key chain is preconfigured. However, the structure of the key chain should cover data nodes beyond those in "YANG Data Model for Key Chains" <span>[<a href="#RFC8177" class="cite xref">RFC8177</a>]</span>, mainly SendID and RecvID (<span><a href="https://rfc-editor.org/rfc/rfc5925#section-3.1" class="relref">Section 3.1</a> of [<a href="#RFC5925" class="cite xref">RFC5925</a>]</span>).<a href="#section-5.2.5.3.2-6.20.1" class="pilcrow">¶</a></p>
+                  <p id="section-5.2.5.3.2-6.20.1">The module adheres to the recommendations in <span><a href="https://rfc-editor.org/rfc/rfc4364#section-13.2" class="relref">Section 13.2</a> of [<a href="#RFC4364" class="cite xref">RFC4364</a>]</span>, as it allows enabling the TCP Authentication Option (TCP-AO) <span>[<a href="#RFC5925" class="cite xref">RFC5925</a>]</span> and accommodates the installed base that makes use of MD5. In addition, the module includes a provision for using IPsec.<a href="#section-5.2.5.3.2-6.20.1" class="pilcrow">¶</a></p>
+</dd>
+                <dd class="break"></dd>
+<dt id="section-5.2.5.3.2-6.21"></dt>
+                <dd style="margin-left: 1.5em" id="section-5.2.5.3.2-6.22">
+                  <p id="section-5.2.5.3.2-6.22.1">Similar to <span>[<a href="#RFC9182" class="cite xref">RFC9182</a>]</span>, this version of the ACaaS assumes that parameters specific to the TCP-AO are preconfigured as part of the key chain that is referenced in the ACaaS. No assumption is made about how such a key chain is preconfigured. However, the structure of the key chain should cover data nodes beyond those in "YANG Data Model for Key Chains" <span>[<a href="#RFC8177" class="cite xref">RFC8177</a>]</span>, mainly SendID and RecvID (<span><a href="https://rfc-editor.org/rfc/rfc5925#section-3.1" class="relref">Section 3.1</a> of [<a href="#RFC5925" class="cite xref">RFC5925</a>]</span>).<a href="#section-5.2.5.3.2-6.22.1" class="pilcrow">¶</a></p>
 </dd>
               <dd class="break"></dd>
 </dl>
