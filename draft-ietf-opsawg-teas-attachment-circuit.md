@@ -676,9 +676,9 @@ As depicted in {{static-rtg-svc-tree}}, the following data nodes can be defined 
 
 An AC service request with BGP routing SHOULD include at least the customer's AS Number (ASN) and an address family.
 Additional information can be supplied by a customer in a request or exposed by a provider in a response to a query request
-in order ease the process of automating the provisioning of BGP sessions (when a distinct address is used at the customer
-side to establish the underlying BGP session, communicate the provider's IP address used to establish the BGP session,
-authentication parameters, bind the session with a forwarding protection profile, etc.).
+in order ease the process of automating the provisioning of BGP sessions (the customer does not use the primary IP address
+to establish the underlying BGP session, communicate the provider's IP address used to establish the BGP session,
+share authentication parameters, bind the session to a forwarding protection profile, etc.).
 
 The BGP tree structure is shown in {{bgp-rtg-svc-tree}}.
 
@@ -687,7 +687,7 @@ The BGP tree structure is shown in {{bgp-rtg-svc-tree}}.
 ~~~~
 {: #bgp-rtg-svc-tree title="BGP Tree Structure" artwork-align="center"}
 
-For deployment cases where an AC service request includes a list of neighors with shared information,
+For deployment cases where an AC service request includes a list of neighors with redundant information,
 the ACaaS allows to factorize shared data by means of 'peer-group'. The presence of "peer-groups" in a service request is thus optional.
 
 The following data nodes are supported for each BGP 'peer-group':
