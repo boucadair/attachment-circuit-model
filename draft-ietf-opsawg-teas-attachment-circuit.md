@@ -674,7 +674,11 @@ As depicted in {{static-rtg-svc-tree}}, the following data nodes can be defined 
 
 ##### BGP {#sec-bgp-rtg}
 
-An AC service request with BGP routing SHOULD include at least the customer's AS Number (ASN) and the address families. Additional information can be supplied by a customer in a request or exposed by a provider in a response to a query request to ease the process of automating the provisioning of BGP sessions.
+An AC service request with BGP routing SHOULD include at least the customer's AS Number (ASN) and an address family.
+Additional information can be supplied by a customer in a request or exposed by a provider in a response to a query request
+in order ease the process of automating the provisioning of BGP sessions (when a distinct address is used at the customer
+side to establish the underlying BGP session, communicate the provider's IP address used to establish the BGP session,
+authentication parameters, bind the session with a forwarding protection profile, etc.).
 
 The BGP tree structure is shown in {{bgp-rtg-svc-tree}}.
 
@@ -683,7 +687,7 @@ The BGP tree structure is shown in {{bgp-rtg-svc-tree}}.
 ~~~~
 {: #bgp-rtg-svc-tree title="BGP Tree Structure" artwork-align="center"}
 
-For deployment cases where a service request includes a list multiple neighors with shared information over the same AC,
+For deployment cases where an AC service request includes a list of neighors with shared information,
 the ACaaS allows to factorize shared data by means of 'peer-group'. The presence of "peer-groups" in a service request is thus optional.
 
 The following data nodes are supported for each BGP 'peer-group':
@@ -692,7 +696,7 @@ The following data nodes are supported for each BGP 'peer-group':
 : Defines a name for the peer group.
 
 'local-as':
-: Reports the provider's AS Number (ASN). This information is used at the customer side to configure the BGP session with the provider network.
+: Reports the provider's ASN. This information is used at the customer side to configure the BGP session with the provider network.
 
 'peer-as':
 : Indicates the customer's ASN. This information is used at the provide side to configure the BGP session with the customer equipment.
@@ -702,10 +706,11 @@ The following data nodes are supported for each BGP 'peer-group':
 : This address family might be used together with the service type that uses an AC (e.g., 'vpn-type' {{?RFC9182}}) to derive the appropriate Address Family Identifiers (AFIs) / Subsequent Address Family Identifiers (SAFIs) that will be part of the derived device configurations (e.g., unicast IPv4 MPLS L3VPN (AFI,SAFI = 1,128) as defined in {{Section 4.3.4 of !RFC4364}}).
 
 'role':
-: Specifies the BGP role in a session. Role values are taken from the list defined in {{Section 4 of ?RFC9234}}. This is an optional parameter.
+: Specifies the BGP role in a session. Role values are taken from the list defined in {{Section 4 of ?RFC9234}}. This parameter is useful for interconnection scenarios.
+: This is an optional parameter.
 
 'local-address':
-: Reports a provider's IP address to use when establishing the BGP transport session.
+: Reports a provider's IP address to use to establish the BGP transport session.
 
 'bgp-max-prefix':
 : Indicates the maximum number of BGP prefixes allowed in a session for this group.
