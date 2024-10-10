@@ -580,7 +580,7 @@ Table of Contents
     .----------v-----------.                     .---------v----------.
     |                      |========Bearer=======|                    |
     |    Customer Site     +----------AC---------|  Provider Network  |
-    |                      |========Bearer=======|                    |
+    |                      |=====================|                    |
     '----------------------'                     '--------------------'
 
        Figure 3: Example of Interaction Between Customer and Provider
@@ -5682,10 +5682,11 @@ A.10.  Interconnection via Internet eXchange Points (IXPs)
   Provisioning                 Provisioning                 Provisioning
        |                            |                            |
 .------v----.                 .-----v----.                .------v-----.
-|   ASBR    |======Bearer=====|          |=====Bearer=====|    ASBR    |
-|           +-----Base AC-----|    SW    +-----Base AC----|            |
+|   ASBR    |======Bearer=====| Layer 2  |=====Bearer=====|    ASBR    |
+|           +-----Base AC-----+ Facility +-----Base AC----|            |
+|           |                 |          |                |            |
 |           +..................BGP Session................+            |
-|           |=====Bearer======|          |=====Bearer=====|            |
+|           |=================|          |================|            |
 '-----------'                 '----------'                '------------'
 
                Figure 50: Recursive Deployment Example
