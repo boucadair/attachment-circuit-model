@@ -1578,8 +1578,8 @@ B2B C/S: Back-to-back Client/Server
 
 5.2.5.3.2.  BGP
 
-   An AC service request with BGP routing SHOULD include at least the
-   customer's AS Number (ASN) and an address family.  Additional
+   An AC service activation with BGP routing SHOULD include at least the
+   customer's AS Number (ASN) and the provider's ASN.  Additional
    information can be supplied by a customer in a request or exposed by
    a provider in a response to a query request in order ease the process
    of automating the provisioning of BGP sessions (the customer does not
