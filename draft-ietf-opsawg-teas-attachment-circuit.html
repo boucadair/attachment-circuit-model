@@ -1871,11 +1871,61 @@ To bind Layer 2 VPN or Layer 3 VPN services with ACs, "ietf-ac-glue" augments th
 <a href="#name-example-of-interaction-betw" class="selfRef">Example of Interaction Between Customer and Provider Orchestrations</a>
           </figcaption></figure>
 </div>
-<p id="section-4.2-4"><a href="#_u-ex" class="auto internal xref">Figure 4</a> shows the positioning of the AC service model in the overall service delivery process, with a focus the provider.<a href="#section-4.2-4" class="pilcrow">¶</a></p>
-<span id="name-an-example-of-ac-model-usag"></span><div id="_u-ex">
+<p id="section-4.2-4"><a href="#_u-ex-r" class="auto internal xref">Figure 4</a> shows an example to illustrate how the bearer/AC service models can be used in a recursive manner. In such deployment, the Service Broker
+exposes a server to a customer for the ordering of AC services, but it also acts as a client when communicating with the a provider. How the Service Broker
+decides to terminate a recursion for a given service request or create child service requests is deployment specific.<a href="#section-4.2-4" class="pilcrow">¶</a></p>
+<span id="name-example-of-recursive-deploy"></span><div id="_u-ex-r">
 <figure id="figure-4">
           <div id="section-4.2-5.1">
             <div class="alignCenter art-svg artwork" id="section-4.2-5.1.1">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="256" width="544" viewBox="0 0 544 256" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
+                <path d="M 8,32 L 8,96" fill="none" stroke="black"></path>
+                <path d="M 192,32 L 192,96" fill="none" stroke="black"></path>
+                <path d="M 368,32 L 368,96" fill="none" stroke="black"></path>
+                <path d="M 368,176 L 368,240" fill="none" stroke="black"></path>
+                <path d="M 448,96 L 448,112" fill="none" stroke="black"></path>
+                <path d="M 448,160 L 448,176" fill="none" stroke="black"></path>
+                <path d="M 536,32 L 536,96" fill="none" stroke="black"></path>
+                <path d="M 536,176 L 536,240" fill="none" stroke="black"></path>
+                <path d="M 8,32 L 192,32" fill="none" stroke="black"></path>
+                <path d="M 368,32 L 536,32" fill="none" stroke="black"></path>
+                <path d="M 208,64 L 352,64" fill="none" stroke="black"></path>
+                <path d="M 8,96 L 192,96" fill="none" stroke="black"></path>
+                <path d="M 368,96 L 440,96" fill="none" stroke="black"></path>
+                <path d="M 456,96 L 536,96" fill="none" stroke="black"></path>
+                <path d="M 368,176 L 440,176" fill="none" stroke="black"></path>
+                <path d="M 456,176 L 536,176" fill="none" stroke="black"></path>
+                <path d="M 368,240 L 536,240" fill="none" stroke="black"></path>
+                <polygon class="arrowhead" points="456,176 444,170.4 444,181.6" fill="black" transform="rotate(90,448,176)"></polygon>
+                <polygon class="arrowhead" points="456,96 444,90.4 444,101.6" fill="black" transform="rotate(270,448,96)"></polygon>
+                <polygon class="arrowhead" points="360,64 348,58.4 348,69.6" fill="black" transform="rotate(0,352,64)"></polygon>
+                <polygon class="arrowhead" points="216,64 204,58.4 204,69.6" fill="black" transform="rotate(180,208,64)"></polygon>
+                <g class="text">
+                  <text x="272" y="36">Bearer/AC</text>
+                  <text x="92" y="52">Customer</text>
+                  <text x="256" y="52">Service</text>
+                  <text x="316" y="52">Models</text>
+                  <text x="448" y="52">Service</text>
+                  <text x="64" y="68">Service</text>
+                  <text x="132" y="68">Ordering</text>
+                  <text x="452" y="68">Broker</text>
+                  <text x="448" y="132">Bearer/AC</text>
+                  <text x="424" y="148">Service</text>
+                  <text x="484" y="148">Models</text>
+                  <text x="460" y="212">Provider</text>
+                </g>
+              </svg><a href="#section-4.2-5.1.1" class="pilcrow">¶</a>
+</div>
+</div>
+<figcaption><a href="#figure-4" class="selfRef">Figure 4</a>:
+<a href="#name-example-of-recursive-deploy" class="selfRef">Example of Recursive Deployment</a>
+          </figcaption></figure>
+</div>
+<p id="section-4.2-6"><a href="#_u-ex" class="auto internal xref">Figure 5</a> shows the positioning of the AC service model in the overall service delivery process, with a focus the provider.<a href="#section-4.2-6" class="pilcrow">¶</a></p>
+<span id="name-an-example-of-ac-model-usag"></span><div id="_u-ex">
+<figure id="figure-5">
+          <div id="section-4.2-7.1">
+            <div class="alignCenter art-svg artwork" id="section-4.2-7.1.1">
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="688" width="512" viewBox="0 0 512 688" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
                 <path d="M 8,592 L 8,624" fill="none" stroke="black"></path>
                 <path d="M 48,592 L 48,624" fill="none" stroke="black"></path>
@@ -1974,14 +2024,14 @@ To bind Layer 2 VPN or Layer 3 VPN services with ACs, "ietf-ac-glue" augments th
                   <text x="476" y="660">Site</text>
                   <text x="504" y="660">B</text>
                 </g>
-              </svg><a href="#section-4.2-5.1.1" class="pilcrow">¶</a>
+              </svg><a href="#section-4.2-7.1.1" class="pilcrow">¶</a>
 </div>
 </div>
-<figcaption><a href="#figure-4" class="selfRef">Figure 4</a>:
+<figcaption><a href="#figure-5" class="selfRef">Figure 5</a>:
 <a href="#name-an-example-of-ac-model-usag" class="selfRef">An Example of AC Model Usage (Focus on the Provider's Internals)</a>
           </figcaption></figure>
 </div>
-<p id="section-4.2-6">In order to ease the mapping between the service model and underlying network models (e.g., the L3VPN Network Model (L3NM), SAP), the name conventions used in existing network data models are reused as much as possible. For example, "local-address" is used rather than "provider-address" (or similar) to refer to an IP address used in the provider network. This approach is consistent with the automation framework defined in <span>[<a href="#RFC8969" class="cite xref">RFC8969</a>]</span>.<a href="#section-4.2-6" class="pilcrow">¶</a></p>
+<p id="section-4.2-8">In order to ease the mapping between the service model and underlying network models (e.g., the L3VPN Network Model (L3NM), SAP), the name conventions used in existing network data models are reused as much as possible. For example, "local-address" is used rather than "provider-address" (or similar) to refer to an IP address used in the provider network. This approach is consistent with the automation framework defined in <span>[<a href="#RFC8969" class="cite xref">RFC8969</a>]</span>.<a href="#section-4.2-8" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -1996,10 +2046,10 @@ To bind Layer 2 VPN or Layer 3 VPN services with ACs, "ietf-ac-glue" augments th
         <h3 id="name-the-bearer-service-ietf-bea">
 <a href="#section-5.1" class="section-number selfRef">5.1. </a><a href="#name-the-bearer-service-ietf-bea" class="section-name selfRef">The Bearer Service ("ietf-bearer-svc") YANG Module</a>
         </h3>
-<p id="section-5.1-1"><a href="#bearer-st" class="auto internal xref">Figure 5</a> shows the tree for managing the bearers (that is, the properties of an attachment that are below Layer 3). A bearer can be a physical or logical link (e.g., LAG <span>[<a href="#IEEE802.1AX" class="cite xref">IEEE802.1AX</a>]</span>). Also, a bearer can be a wireless or wired link. A reference to a bearer is generated by the operator.
+<p id="section-5.1-1"><a href="#bearer-st" class="auto internal xref">Figure 6</a> shows the tree for managing the bearers (that is, the properties of an attachment that are below Layer 3). A bearer can be a physical or logical link (e.g., LAG <span>[<a href="#IEEE802.1AX" class="cite xref">IEEE802.1AX</a>]</span>). Also, a bearer can be a wireless or wired link. A reference to a bearer is generated by the operator.
 Such a reference can be used, e.g., in a subsequent service request to create an AC. The anchoring of the AC can also be achieved by indicating (with or without a bearer reference), a peer SAP identifier (e.g., an identifier of an SF).<a href="#section-5.1-1" class="pilcrow">¶</a></p>
 <span id="name-bearer-service-tree-structu"></span><div id="bearer-st">
-<figure id="figure-5">
+<figure id="figure-6">
           <div class="alignCenter art-text artwork" id="section-5.1-2.1">
 <pre>
 module: ietf-bearer-svc
@@ -2087,7 +2137,7 @@ module: ietf-bearer-svc
               +--ro last-change?   yang:date-and-time
 </pre>
 </div>
-<figcaption><a href="#figure-5" class="selfRef">Figure 5</a>:
+<figcaption><a href="#figure-6" class="selfRef">Figure 6</a>:
 <a href="#name-bearer-service-tree-structu" class="selfRef">Bearer Service Tree Structure</a>
           </figcaption></figure>
 </div>
@@ -2266,9 +2316,9 @@ for the reader's convenience. The full tree of the 'ac-svc' is provided in <span
           <h4 id="name-overall-structure">
 <a href="#section-5.2.1" class="section-number selfRef">5.2.1. </a><a href="#name-overall-structure" class="section-name selfRef">Overall Structure</a>
           </h4>
-<p id="section-5.2.1-1">The overall tree structure of the AC service module is shown in <a href="#o-svc-tree" class="auto internal xref">Figure 6</a>.<a href="#section-5.2.1-1" class="pilcrow">¶</a></p>
+<p id="section-5.2.1-1">The overall tree structure of the AC service module is shown in <a href="#o-svc-tree" class="auto internal xref">Figure 7</a>.<a href="#section-5.2.1-1" class="pilcrow">¶</a></p>
 <span id="name-overall-ac-service-tree-str"></span><div id="o-svc-tree">
-<figure id="figure-6">
+<figure id="figure-7">
             <div class="alignCenter art-text artwork" id="section-5.2.1-2.1">
 <pre>
   +--rw specific-provisioning-profiles
@@ -2296,7 +2346,7 @@ for the reader's convenience. The full tree of the 'ac-svc' is provided in <span
            ...
 </pre>
 </div>
-<figcaption><a href="#figure-6" class="selfRef">Figure 6</a>:
+<figcaption><a href="#figure-7" class="selfRef">Figure 7</a>:
 <a href="#name-overall-ac-service-tree-str" class="selfRef">Overall AC Service Tree Structure</a>
             </figcaption></figure>
 </div>
@@ -2324,9 +2374,9 @@ for the reader's convenience. The full tree of the 'ac-svc' is provided in <span
             <h5 id="name-description">
 <a href="#section-5.2.2.1" class="section-number selfRef">5.2.2.1. </a><a href="#name-description" class="section-name selfRef">Description</a>
             </h5>
-<p id="section-5.2.2.1-1">The 'specific-provisioning-profiles' container (<a href="#gp-svc-tree" class="auto internal xref">Figure 7</a>) can be used by a service provider to maintain a set of reusable profiles. The profiles definitions are similar to those defined in <span>[<a href="#RFC9181" class="cite xref">RFC9181</a>]</span>, including: Quality of Service (QoS), BFD, forwarding, and routing profiles. The exact definition of the profiles is local to each service provider. The model only includes an identifier for these profiles in order to facilitate identifying and binding local policies when building an AC.<a href="#section-5.2.2.1-1" class="pilcrow">¶</a></p>
+<p id="section-5.2.2.1-1">The 'specific-provisioning-profiles' container (<a href="#gp-svc-tree" class="auto internal xref">Figure 8</a>) can be used by a service provider to maintain a set of reusable profiles. The profiles definitions are similar to those defined in <span>[<a href="#RFC9181" class="cite xref">RFC9181</a>]</span>, including: Quality of Service (QoS), BFD, forwarding, and routing profiles. The exact definition of the profiles is local to each service provider. The model only includes an identifier for these profiles in order to facilitate identifying and binding local policies when building an AC.<a href="#section-5.2.2.1-1" class="pilcrow">¶</a></p>
 <span id="name-service-profiles-2"></span><div id="gp-svc-tree">
-<figure id="figure-7">
+<figure id="figure-8">
               <div class="alignCenter art-text artwork" id="section-5.2.2.1-2.1">
 <pre>
 module: ietf-ac-svc
@@ -2366,11 +2416,11 @@ module: ietf-ac-svc
            ...
 </pre>
 </div>
-<figcaption><a href="#figure-7" class="selfRef">Figure 7</a>:
+<figcaption><a href="#figure-8" class="selfRef">Figure 8</a>:
 <a href="#name-service-profiles-2" class="selfRef">Service Profiles</a>
               </figcaption></figure>
 </div>
-<p id="section-5.2.2.1-3">As shown in <a href="#gp-svc-tree" class="auto internal xref">Figure 7</a>, two profile types can be defined: 'specific-provisioning-profiles' and 'service-provisioning-profiles'. Whether only specific profiles, service profiles, or a combination thereof are used is local to each service provider.<a href="#section-5.2.2.1-3" class="pilcrow">¶</a></p>
+<p id="section-5.2.2.1-3">As shown in <a href="#gp-svc-tree" class="auto internal xref">Figure 8</a>, two profile types can be defined: 'specific-provisioning-profiles' and 'service-provisioning-profiles'. Whether only specific profiles, service profiles, or a combination thereof are used is local to each service provider.<a href="#section-5.2.2.1-3" class="pilcrow">¶</a></p>
 <p id="section-5.2.2.1-4">The following specific provisioning profiles can be defined:<a href="#section-5.2.2.1-4" class="pilcrow">¶</a></p>
 <span class="break"></span><dl class="dlParallel" id="section-5.2.2.1-5">
               <dt id="section-5.2.2.1-5.1">'encryption-profile-identifier':</dt>
@@ -2417,7 +2467,7 @@ module: ietf-ac-svc
 <a href="#section-5.2.3" class="section-number selfRef">5.2.3. </a><a href="#name-attachment-circuits-profile" class="section-name selfRef">Attachment Circuits Profiles</a>
           </h4>
 <p id="section-5.2.3-1">The 'ac-group-profile' defines reusable parameters for a set of ACs. Each profile is identified by 'name'. Some of the data nodes can be adjusted at the 'ac' level.
-These adjusted values take precedence over the global values.  The structure of 'ac-group-profile' is similar to the one used to model each 'ac' (<a href="#ac-svc-tree" class="auto internal xref">Figure 9</a>).<a href="#section-5.2.3-1" class="pilcrow">¶</a></p>
+These adjusted values take precedence over the global values.  The structure of 'ac-group-profile' is similar to the one used to model each 'ac' (<a href="#ac-svc-tree" class="auto internal xref">Figure 10</a>).<a href="#section-5.2.3-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sec-pc">
@@ -2426,9 +2476,9 @@ These adjusted values take precedence over the global values.  The structure of 
 <a href="#section-5.2.4" class="section-number selfRef">5.2.4. </a><a href="#name-ac-placement-contraints" class="section-name selfRef">AC Placement Contraints</a>
           </h4>
 <p id="section-5.2.4-1">The 'placement-constraints' specifies the placement constraints of an AC. For example, this container can be used to request avoidance of connecting two ACs to the same PE. The full set of supported constraints is defined in <span>[<a href="#RFC9181" class="cite xref">RFC9181</a>]</span> (see 'placement-diversity', in particular).<a href="#section-5.2.4-1" class="pilcrow">¶</a></p>
-<p id="section-5.2.4-2">The structure of 'placement-constraints' is shown in <a href="#precedence-tree" class="auto internal xref">Figure 8</a>.<a href="#section-5.2.4-2" class="pilcrow">¶</a></p>
+<p id="section-5.2.4-2">The structure of 'placement-constraints' is shown in <a href="#precedence-tree" class="auto internal xref">Figure 9</a>.<a href="#section-5.2.4-2" class="pilcrow">¶</a></p>
 <span id="name-placement-constraints-subtr"></span><div id="precedence-tree">
-<figure id="figure-8">
+<figure id="figure-9">
             <div class="alignCenter art-text artwork" id="section-5.2.4-3.1">
 <pre>
   +--rw specific-provisioning-profiles
@@ -2454,7 +2504,7 @@ These adjusted values take precedence over the global values.  The structure of 
         ...
 </pre>
 </div>
-<figcaption><a href="#figure-8" class="selfRef">Figure 8</a>:
+<figcaption><a href="#figure-9" class="selfRef">Figure 9</a>:
 <a href="#name-placement-constraints-subtr" class="selfRef">Placement Constraints Subtree Structure</a>
             </figcaption></figure>
 </div>
@@ -2465,9 +2515,9 @@ These adjusted values take precedence over the global values.  The structure of 
           <h4 id="name-attachment-circuits">
 <a href="#section-5.2.5" class="section-number selfRef">5.2.5. </a><a href="#name-attachment-circuits" class="section-name selfRef">Attachment Circuits</a>
           </h4>
-<p id="section-5.2.5-1">The structure of 'attachment-circuits' is shown in <a href="#ac-svc-tree" class="auto internal xref">Figure 9</a>.<a href="#section-5.2.5-1" class="pilcrow">¶</a></p>
+<p id="section-5.2.5-1">The structure of 'attachment-circuits' is shown in <a href="#ac-svc-tree" class="auto internal xref">Figure 10</a>.<a href="#section-5.2.5-1" class="pilcrow">¶</a></p>
 <span id="name-attachment-circuits-tree-st"></span><div id="ac-svc-tree">
-<figure id="figure-9">
+<figure id="figure-10">
             <div class="alignCenter art-text artwork" id="section-5.2.5-2.1">
 <pre>
   +--rw specific-provisioning-profiles
@@ -2521,7 +2571,7 @@ These adjusted values take precedence over the global values.  The structure of 
            ...
 </pre>
 </div>
-<figcaption><a href="#figure-9" class="selfRef">Figure 9</a>:
+<figcaption><a href="#figure-10" class="selfRef">Figure 10</a>:
 <a href="#name-attachment-circuits-tree-st" class="selfRef">Attachment Circuits Tree Structure</a>
             </figcaption></figure>
 </div>
@@ -2665,11 +2715,11 @@ a parent AC can be defined with a set of stable and common information, while
             <h5 id="name-layer-2-connection-structur">
 <a href="#section-5.2.5.1" class="section-number selfRef">5.2.5.1. </a><a href="#name-layer-2-connection-structur" class="section-name selfRef">Layer 2 Connection Structure</a>
             </h5>
-<p id="section-5.2.5.1-1">The 'l2-connection' container (<a href="#l2-svc-tree" class="auto internal xref">Figure 10</a>) is used to configure the relevant Layer 2 properties of an AC including: encapsulation details and tunnel terminations. For the encapsulation details, the model supports the definition of the type as well as the Identifiers (e.g., VLAN-IDs) of each of the encapsulation-type defined. For the second case, attributes for pseudowire, Virtual Private LAN Service (VPLS), and  Virtual eXtensible Local Area Network (VXLAN) tunnel terminations are included.<a href="#section-5.2.5.1-1" class="pilcrow">¶</a></p>
+<p id="section-5.2.5.1-1">The 'l2-connection' container (<a href="#l2-svc-tree" class="auto internal xref">Figure 11</a>) is used to configure the relevant Layer 2 properties of an AC including: encapsulation details and tunnel terminations. For the encapsulation details, the model supports the definition of the type as well as the Identifiers (e.g., VLAN-IDs) of each of the encapsulation-type defined. For the second case, attributes for pseudowire, Virtual Private LAN Service (VPLS), and  Virtual eXtensible Local Area Network (VXLAN) tunnel terminations are included.<a href="#section-5.2.5.1-1" class="pilcrow">¶</a></p>
 <p id="section-5.2.5.1-2">'bearer-reference' is used to link an AC with a bearer over which the AC is instantiated.<a href="#section-5.2.5.1-2" class="pilcrow">¶</a></p>
 <p id="section-5.2.5.1-3">This structure relies upon the common groupings defined in <span>[<a href="#I-D.ietf-opsawg-teas-common-ac" class="cite xref">I-D.ietf-opsawg-teas-common-ac</a>]</span>.<a href="#section-5.2.5.1-3" class="pilcrow">¶</a></p>
 <span id="name-layer-2-connection-tree-str"></span><div id="l2-svc-tree">
-<figure id="figure-10">
+<figure id="figure-11">
               <div class="alignCenter art-text artwork" id="section-5.2.5.1-4.1">
 <pre>
   +--rw specific-provisioning-profiles
@@ -2726,7 +2776,7 @@ a parent AC can be defined with a set of stable and common information, while
            ...
 </pre>
 </div>
-<figcaption><a href="#figure-10" class="selfRef">Figure 10</a>:
+<figcaption><a href="#figure-11" class="selfRef">Figure 11</a>:
 <a href="#name-layer-2-connection-tree-str" class="selfRef">Layer 2 Connection Tree Structure</a>
               </figcaption></figure>
 </div>
@@ -2738,9 +2788,9 @@ a parent AC can be defined with a set of stable and common information, while
 <a href="#section-5.2.5.2" class="section-number selfRef">5.2.5.2. </a><a href="#name-ip-connection-structure" class="section-name selfRef">IP Connection Structure</a>
             </h5>
 <p id="section-5.2.5.2-1">The 'ip-connection' container is used to configure the relevant IP properties of an AC. The model supports the usage of dynamic and static addressing. This structure relies upon the common groupings defined in <span>[<a href="#I-D.ietf-opsawg-teas-common-ac" class="cite xref">I-D.ietf-opsawg-teas-common-ac</a>]</span>. Both IPv4 and IPv6 parameters are supported.<a href="#section-5.2.5.2-1" class="pilcrow">¶</a></p>
-<p id="section-5.2.5.2-2"><a href="#ipv4-svc-tree" class="auto internal xref">Figure 11</a> shows the structure of the IPv4 connection.<a href="#section-5.2.5.2-2" class="pilcrow">¶</a></p>
+<p id="section-5.2.5.2-2"><a href="#ipv4-svc-tree" class="auto internal xref">Figure 12</a> shows the structure of the IPv4 connection.<a href="#section-5.2.5.2-2" class="pilcrow">¶</a></p>
 <span id="name-layer-3-connection-tree-str"></span><div id="ipv4-svc-tree">
-<figure id="figure-11">
+<figure id="figure-12">
               <div class="alignCenter art-text artwork" id="section-5.2.5.2-3.1">
 <pre>
         | ...
@@ -2786,13 +2836,13 @@ a parent AC can be defined with a set of stable and common information, while
         |     ...
 </pre>
 </div>
-<figcaption><a href="#figure-11" class="selfRef">Figure 11</a>:
+<figcaption><a href="#figure-12" class="selfRef">Figure 12</a>:
 <a href="#name-layer-3-connection-tree-str" class="selfRef">Layer 3 Connection Tree Structure (IPv4)</a>
               </figcaption></figure>
 </div>
-<p id="section-5.2.5.2-4"><a href="#ipv6-svc-tree" class="auto internal xref">Figure 12</a> shows the structure of the IPv6 connection.<a href="#section-5.2.5.2-4" class="pilcrow">¶</a></p>
+<p id="section-5.2.5.2-4"><a href="#ipv6-svc-tree" class="auto internal xref">Figure 13</a> shows the structure of the IPv6 connection.<a href="#section-5.2.5.2-4" class="pilcrow">¶</a></p>
 <span id="name-layer-3-connection-tree-stru"></span><div id="ipv6-svc-tree">
-<figure id="figure-12">
+<figure id="figure-13">
               <div class="alignCenter art-text artwork" id="section-5.2.5.2-5.1">
 <pre>
         | ...
@@ -2839,7 +2889,7 @@ a parent AC can be defined with a set of stable and common information, while
         | ...
 </pre>
 </div>
-<figcaption><a href="#figure-12" class="selfRef">Figure 12</a>:
+<figcaption><a href="#figure-13" class="selfRef">Figure 13</a>:
 <a href="#name-layer-3-connection-tree-stru" class="selfRef">Layer 3 Connection Tree Structure (IPv6)</a>
               </figcaption></figure>
 </div>
@@ -2850,10 +2900,10 @@ a parent AC can be defined with a set of stable and common information, while
             <h5 id="name-routing">
 <a href="#section-5.2.5.3" class="section-number selfRef">5.2.5.3. </a><a href="#name-routing" class="section-name selfRef">Routing</a>
             </h5>
-<p id="section-5.2.5.3-1">As shown in the tree depicted in <a href="#rtg-svc-tree" class="auto internal xref">Figure 13</a>, the 'routing-protocols' container defines the required parameters to enable the desired routing features for an AC. One or more routing protocols can be associated with an AC.  Such routing protocols will be then enabled between a PE and the customer terminating points. Each routing instance is uniquely identified by the combination of the 'id' and 'type' to accommodate scenarios where multiple instances of the same routing protocol have to be configured on the same link.<a href="#section-5.2.5.3-1" class="pilcrow">¶</a></p>
+<p id="section-5.2.5.3-1">As shown in the tree depicted in <a href="#rtg-svc-tree" class="auto internal xref">Figure 14</a>, the 'routing-protocols' container defines the required parameters to enable the desired routing features for an AC. One or more routing protocols can be associated with an AC.  Such routing protocols will be then enabled between a PE and the customer terminating points. Each routing instance is uniquely identified by the combination of the 'id' and 'type' to accommodate scenarios where multiple instances of the same routing protocol have to be configured on the same link.<a href="#section-5.2.5.3-1" class="pilcrow">¶</a></p>
 <p id="section-5.2.5.3-2">In addition to static routing (<a href="#sec-static-rtg" class="auto internal xref">Section 5.2.5.3.1</a>), the module supports BGP (<a href="#sec-bgp-rtg" class="auto internal xref">Section 5.2.5.3.2</a>), OSPF (<a href="#sec-ospf-rtg" class="auto internal xref">Section 5.2.5.3.3</a>), IS-IS (<a href="#sec-isis-rtg" class="auto internal xref">Section 5.2.5.3.4</a>), and RIP (<a href="#sec-rip-rtg" class="auto internal xref">Section 5.2.5.3.5</a>). It also includes a reference to the 'routing-profile-identifier' defined in <a href="#sec-profiles" class="auto internal xref">Section 5.2.2</a>, so that additional constraints can be applied to a specific instance of each routing protocol. Moreover, the module supports VRRP (<a href="#sec-vrrp-rtg" class="auto internal xref">Section 5.2.5.3.6</a>).<a href="#section-5.2.5.3-2" class="pilcrow">¶</a></p>
 <span id="name-routing-tree-structure"></span><div id="rtg-svc-tree">
-<figure id="figure-13">
+<figure id="figure-14">
               <div class="alignCenter art-text artwork" id="section-5.2.5.3-3.1">
 <pre>
   +--rw specific-provisioning-profiles
@@ -2898,7 +2948,7 @@ a parent AC can be defined with a set of stable and common information, while
            ...
 </pre>
 </div>
-<figcaption><a href="#figure-13" class="selfRef">Figure 13</a>:
+<figcaption><a href="#figure-14" class="selfRef">Figure 14</a>:
 <a href="#name-routing-tree-structure" class="selfRef">Routing Tree Structure</a>
               </figcaption></figure>
 </div>
@@ -2907,9 +2957,9 @@ a parent AC can be defined with a set of stable and common information, while
               <h6 id="name-static-routing">
 <a href="#section-5.2.5.3.1" class="section-number selfRef">5.2.5.3.1. </a><a href="#name-static-routing" class="section-name selfRef">Static Routing</a>
               </h6>
-<p id="section-5.2.5.3.1-1">The static tree structure is shown in <a href="#static-rtg-svc-tree" class="auto internal xref">Figure 14</a>.<a href="#section-5.2.5.3.1-1" class="pilcrow">¶</a></p>
+<p id="section-5.2.5.3.1-1">The static tree structure is shown in <a href="#static-rtg-svc-tree" class="auto internal xref">Figure 15</a>.<a href="#section-5.2.5.3.1-1" class="pilcrow">¶</a></p>
 <span id="name-static-routing-tree-structu"></span><div id="static-rtg-svc-tree">
-<figure id="figure-14">
+<figure id="figure-15">
                 <div class="alignCenter art-text artwork" id="section-5.2.5.3.1-2.1">
 <pre>
         |  ...
@@ -2968,11 +3018,11 @@ a parent AC can be defined with a set of stable and common information, while
         |        ...
 </pre>
 </div>
-<figcaption><a href="#figure-14" class="selfRef">Figure 14</a>:
+<figcaption><a href="#figure-15" class="selfRef">Figure 15</a>:
 <a href="#name-static-routing-tree-structu" class="selfRef">Static Routing Tree Structure</a>
                 </figcaption></figure>
 </div>
-<p id="section-5.2.5.3.1-3">As depicted in <a href="#static-rtg-svc-tree" class="auto internal xref">Figure 14</a>, the following data nodes can be defined for a given IP prefix:<a href="#section-5.2.5.3.1-3" class="pilcrow">¶</a></p>
+<p id="section-5.2.5.3.1-3">As depicted in <a href="#static-rtg-svc-tree" class="auto internal xref">Figure 15</a>, the following data nodes can be defined for a given IP prefix:<a href="#section-5.2.5.3.1-3" class="pilcrow">¶</a></p>
 <span class="break"></span><dl class="dlParallel" id="section-5.2.5.3.1-4">
                 <dt id="section-5.2.5.3.1-4.1">'lan-tag':</dt>
                 <dd style="margin-left: 1.5em" id="section-5.2.5.3.1-4.2">
@@ -3017,9 +3067,9 @@ Additional information can be supplied by a customer in a request or exposed by 
 in order ease the process of automating the provisioning of BGP sessions (the customer does not use the primary IP address
 to establish the underlying BGP session, communicate the provider's IP address used to establish the BGP session,
 share authentication parameters, bind the session to a forwarding protection profile, etc.).<a href="#section-5.2.5.3.2-1" class="pilcrow">¶</a></p>
-<p id="section-5.2.5.3.2-2">The BGP tree structure is shown in <a href="#bgp-rtg-svc-tree" class="auto internal xref">Figure 15</a>.<a href="#section-5.2.5.3.2-2" class="pilcrow">¶</a></p>
+<p id="section-5.2.5.3.2-2">The BGP tree structure is shown in <a href="#bgp-rtg-svc-tree" class="auto internal xref">Figure 16</a>.<a href="#section-5.2.5.3.2-2" class="pilcrow">¶</a></p>
 <span id="name-bgp-tree-structure"></span><div id="bgp-rtg-svc-tree">
-<figure id="figure-15">
+<figure id="figure-16">
                 <div class="alignCenter art-text artwork" id="section-5.2.5.3.2-3.1">
 <pre>
         |  ...
@@ -3112,7 +3162,7 @@ share authentication parameters, bind the session to a forwarding protection pro
         |        ...
 </pre>
 </div>
-<figcaption><a href="#figure-15" class="selfRef">Figure 15</a>:
+<figcaption><a href="#figure-16" class="selfRef">Figure 16</a>:
 <a href="#name-bgp-tree-structure" class="selfRef">BGP Tree Structure</a>
                 </figcaption></figure>
 </div>
@@ -3242,9 +3292,9 @@ customer IP address is used as remote IP address.<a href="#section-5.2.5.3.2-8.4
               <h6 id="name-ospf">
 <a href="#section-5.2.5.3.3" class="section-number selfRef">5.2.5.3.3. </a><a href="#name-ospf" class="section-name selfRef">OSPF</a>
               </h6>
-<p id="section-5.2.5.3.3-1">The OSPF tree structure is shown in <a href="#ospf-rtg-svc-tree" class="auto internal xref">Figure 16</a>.<a href="#section-5.2.5.3.3-1" class="pilcrow">¶</a></p>
+<p id="section-5.2.5.3.3-1">The OSPF tree structure is shown in <a href="#ospf-rtg-svc-tree" class="auto internal xref">Figure 17</a>.<a href="#section-5.2.5.3.3-1" class="pilcrow">¶</a></p>
 <span id="name-ospf-tree-structure"></span><div id="ospf-rtg-svc-tree">
-<figure id="figure-16">
+<figure id="figure-17">
                 <div class="alignCenter art-text artwork" id="section-5.2.5.3.3-2.1">
 <pre>
         |  ...
@@ -3289,7 +3339,7 @@ customer IP address is used as remote IP address.<a href="#section-5.2.5.3.2-8.4
         |        ...
 </pre>
 </div>
-<figcaption><a href="#figure-16" class="selfRef">Figure 16</a>:
+<figcaption><a href="#figure-17" class="selfRef">Figure 17</a>:
 <a href="#name-ospf-tree-structure" class="selfRef">OSPF Tree Structure</a>
                 </figcaption></figure>
 </div>
@@ -3333,9 +3383,9 @@ customer IP address is used as remote IP address.<a href="#section-5.2.5.3.2-8.4
               <h6 id="name-is-is">
 <a href="#section-5.2.5.3.4" class="section-number selfRef">5.2.5.3.4. </a><a href="#name-is-is" class="section-name selfRef">IS-IS</a>
               </h6>
-<p id="section-5.2.5.3.4-1">The IS-IS tree structure is shown in <a href="#isis-rtg-svc-tree" class="auto internal xref">Figure 17</a>.<a href="#section-5.2.5.3.4-1" class="pilcrow">¶</a></p>
+<p id="section-5.2.5.3.4-1">The IS-IS tree structure is shown in <a href="#isis-rtg-svc-tree" class="auto internal xref">Figure 18</a>.<a href="#section-5.2.5.3.4-1" class="pilcrow">¶</a></p>
 <span id="name-is-is-tree-structure"></span><div id="isis-rtg-svc-tree">
-<figure id="figure-17">
+<figure id="figure-18">
                 <div class="alignCenter art-text artwork" id="section-5.2.5.3.4-2.1">
 <pre>
         |  ...
@@ -3379,7 +3429,7 @@ customer IP address is used as remote IP address.<a href="#section-5.2.5.3.2-8.4
         |      ...
 </pre>
 </div>
-<figcaption><a href="#figure-17" class="selfRef">Figure 17</a>:
+<figcaption><a href="#figure-18" class="selfRef">Figure 18</a>:
 <a href="#name-is-is-tree-structure" class="selfRef">IS-IS Tree Structure</a>
                 </figcaption></figure>
 </div>
@@ -3416,9 +3466,9 @@ customer IP address is used as remote IP address.<a href="#section-5.2.5.3.2-8.4
               <h6 id="name-rip">
 <a href="#section-5.2.5.3.5" class="section-number selfRef">5.2.5.3.5. </a><a href="#name-rip" class="section-name selfRef">RIP</a>
               </h6>
-<p id="section-5.2.5.3.5-1">The RIP tree structure is shown in <a href="#rip-rtg-svc-tree" class="auto internal xref">Figure 18</a>.<a href="#section-5.2.5.3.5-1" class="pilcrow">¶</a></p>
+<p id="section-5.2.5.3.5-1">The RIP tree structure is shown in <a href="#rip-rtg-svc-tree" class="auto internal xref">Figure 19</a>.<a href="#section-5.2.5.3.5-1" class="pilcrow">¶</a></p>
 <span id="name-rip-tree-structure"></span><div id="rip-rtg-svc-tree">
-<figure id="figure-18">
+<figure id="figure-19">
                 <div class="alignCenter art-text artwork" id="section-5.2.5.3.5-2.1">
 <pre>
         |  ...
@@ -3460,7 +3510,7 @@ customer IP address is used as remote IP address.<a href="#section-5.2.5.3.2-8.4
         |      ...
 </pre>
 </div>
-<figcaption><a href="#figure-18" class="selfRef">Figure 18</a>:
+<figcaption><a href="#figure-19" class="selfRef">Figure 19</a>:
 <a href="#name-rip-tree-structure" class="selfRef">RIP Tree Structure</a>
                 </figcaption></figure>
 </div>
@@ -3472,9 +3522,9 @@ customer IP address is used as remote IP address.<a href="#section-5.2.5.3.2-8.4
               <h6 id="name-vrrp">
 <a href="#section-5.2.5.3.6" class="section-number selfRef">5.2.5.3.6. </a><a href="#name-vrrp" class="section-name selfRef">VRRP</a>
               </h6>
-<p id="section-5.2.5.3.6-1">The model supports the Virtual Router Redundancy Protocol (VRRP) <span>[<a href="#RFC9568" class="cite xref">RFC9568</a>]</span> on an AC (<a href="#vrrp-rtg-svc-tree" class="auto internal xref">Figure 19</a>).<a href="#section-5.2.5.3.6-1" class="pilcrow">¶</a></p>
+<p id="section-5.2.5.3.6-1">The model supports the Virtual Router Redundancy Protocol (VRRP) <span>[<a href="#RFC9568" class="cite xref">RFC9568</a>]</span> on an AC (<a href="#vrrp-rtg-svc-tree" class="auto internal xref">Figure 20</a>).<a href="#section-5.2.5.3.6-1" class="pilcrow">¶</a></p>
 <span id="name-vrrp-tree-structure"></span><div id="vrrp-rtg-svc-tree">
-<figure id="figure-19">
+<figure id="figure-20">
                 <div class="alignCenter art-text artwork" id="section-5.2.5.3.6-2.1">
 <pre>
         |  ...
@@ -3506,7 +3556,7 @@ customer IP address is used as remote IP address.<a href="#section-5.2.5.3.2-8.4
         |              +--ro last-change?   yang:date-and-time
 </pre>
 </div>
-<figcaption><a href="#figure-19" class="selfRef">Figure 19</a>:
+<figcaption><a href="#figure-20" class="selfRef">Figure 20</a>:
 <a href="#name-vrrp-tree-structure" class="selfRef">VRRP Tree Structure</a>
                 </figcaption></figure>
 </div>
@@ -3536,9 +3586,9 @@ isn't any type of VRRP authentication at this time (see <span><a href="https://r
             <h5 id="name-operations-administration-a">
 <a href="#section-5.2.5.4" class="section-number selfRef">5.2.5.4. </a><a href="#name-operations-administration-a" class="section-name selfRef">Operations, Administration, and Maintenance (OAM)</a>
             </h5>
-<p id="section-5.2.5.4-1">As shown in the tree depicted in <a href="#oam-svc-tree" class="auto internal xref">Figure 20</a>, the 'oam' container defines OAM-related parameters of an AC.<a href="#section-5.2.5.4-1" class="pilcrow">¶</a></p>
+<p id="section-5.2.5.4-1">As shown in the tree depicted in <a href="#oam-svc-tree" class="auto internal xref">Figure 21</a>, the 'oam' container defines OAM-related parameters of an AC.<a href="#section-5.2.5.4-1" class="pilcrow">¶</a></p>
 <span id="name-oam-tree-structure"></span><div id="oam-svc-tree">
-<figure id="figure-20">
+<figure id="figure-21">
               <div class="alignCenter art-text artwork" id="section-5.2.5.4-2.1">
 <pre>
   +--rw specific-provisioning-profiles
@@ -3580,7 +3630,7 @@ isn't any type of VRRP authentication at this time (see <span><a href="https://r
            ...
 </pre>
 </div>
-<figcaption><a href="#figure-20" class="selfRef">Figure 20</a>:
+<figcaption><a href="#figure-21" class="selfRef">Figure 21</a>:
 <a href="#name-oam-tree-structure" class="selfRef">OAM Tree Structure</a>
               </figcaption></figure>
 </div>
@@ -3624,9 +3674,9 @@ isn't any type of VRRP authentication at this time (see <span><a href="https://r
             <h5 id="name-security">
 <a href="#section-5.2.5.5" class="section-number selfRef">5.2.5.5. </a><a href="#name-security" class="section-name selfRef">Security</a>
             </h5>
-<p id="section-5.2.5.5-1">As shown in the tree depicted in <a href="#sec-svc-tree" class="auto internal xref">Figure 21</a>, the 'security' container defines a set of AC security parameters.<a href="#section-5.2.5.5-1" class="pilcrow">¶</a></p>
+<p id="section-5.2.5.5-1">As shown in the tree depicted in <a href="#sec-svc-tree" class="auto internal xref">Figure 22</a>, the 'security' container defines a set of AC security parameters.<a href="#section-5.2.5.5-1" class="pilcrow">¶</a></p>
 <span id="name-security-tree-structure"></span><div id="sec-svc-tree">
-<figure id="figure-21">
+<figure id="figure-22">
               <div class="alignCenter art-text artwork" id="section-5.2.5.5-2.1">
 <pre>
   +--rw specific-provisioning-profiles
@@ -3664,7 +3714,7 @@ isn't any type of VRRP authentication at this time (see <span><a href="https://r
            ...
 </pre>
 </div>
-<figcaption><a href="#figure-21" class="selfRef">Figure 21</a>:
+<figcaption><a href="#figure-22" class="selfRef">Figure 22</a>:
 <a href="#name-security-tree-structure" class="selfRef">Security Tree Structure</a>
               </figcaption></figure>
 </div>
@@ -3676,9 +3726,9 @@ isn't any type of VRRP authentication at this time (see <span><a href="https://r
             <h5 id="name-service">
 <a href="#section-5.2.5.6" class="section-number selfRef">5.2.5.6. </a><a href="#name-service" class="section-name selfRef">Service</a>
             </h5>
-<p id="section-5.2.5.6-1">The structure of the 'service' container is depicted in <a href="#bw-tree" class="auto internal xref">Figure 22</a>.<a href="#section-5.2.5.6-1" class="pilcrow">¶</a></p>
+<p id="section-5.2.5.6-1">The structure of the 'service' container is depicted in <a href="#bw-tree" class="auto internal xref">Figure 23</a>.<a href="#section-5.2.5.6-1" class="pilcrow">¶</a></p>
 <span id="name-bandwidth-tree-structure"></span><div id="bw-tree">
-<figure id="figure-22">
+<figure id="figure-23">
               <div class="alignCenter art-text artwork" id="section-5.2.5.6-2.1">
 <pre>
   +--rw specific-provisioning-profiles
@@ -3755,7 +3805,7 @@ isn't any type of VRRP authentication at this time (see <span><a href="https://r
                     +--rw profile    forwarding-profile-reference
 </pre>
 </div>
-<figcaption><a href="#figure-22" class="selfRef">Figure 22</a>:
+<figcaption><a href="#figure-23" class="selfRef">Figure 23</a>:
 <a href="#name-bandwidth-tree-structure" class="selfRef">Bandwidth Tree Structure</a>
               </figcaption></figure>
 </div>
@@ -5983,9 +6033,9 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
         <h3 id="name-create-a-new-bearer">
 <a href="#appendix-A.1" class="section-number selfRef">A.1. </a><a href="#name-create-a-new-bearer" class="section-name selfRef">Create a New Bearer</a>
         </h3>
-<p id="appendix-A.1-1">An example of a request message body to create a bearer is shown in <a href="#create-bearer" class="auto internal xref">Figure 23</a>.<a href="#appendix-A.1-1" class="pilcrow">¶</a></p>
+<p id="appendix-A.1-1">An example of a request message body to create a bearer is shown in <a href="#create-bearer" class="auto internal xref">Figure 24</a>.<a href="#appendix-A.1-1" class="pilcrow">¶</a></p>
 <span id="name-example-of-a-message-body-t"></span><div id="create-bearer">
-<figure id="figure-23">
+<figure id="figure-24">
           <div class="lang-json sourcecode" id="appendix-A.1-2.1">
 <pre>
 {
@@ -6007,13 +6057,13 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 }
 </pre>
 </div>
-<figcaption><a href="#figure-23" class="selfRef">Figure 23</a>:
+<figcaption><a href="#figure-24" class="selfRef">Figure 24</a>:
 <a href="#name-example-of-a-message-body-t" class="selfRef">Example of a Message Body to Create a New Bearer</a>
           </figcaption></figure>
 </div>
-<p id="appendix-A.1-3">A "bearer-reference" is then generated by the controller for this bearer. <a href="#get-bearer" class="auto internal xref">Figure 24</a> shows the example of a response message body that is sent by the controller to reply to a GET request:<a href="#appendix-A.1-3" class="pilcrow">¶</a></p>
+<p id="appendix-A.1-3">A "bearer-reference" is then generated by the controller for this bearer. <a href="#get-bearer" class="auto internal xref">Figure 25</a> shows the example of a response message body that is sent by the controller to reply to a GET request:<a href="#appendix-A.1-3" class="pilcrow">¶</a></p>
 <span id="name-example-of-a-response-messa"></span><div id="get-bearer">
-<figure id="figure-24">
+<figure id="figure-25">
           <div class="lang-json sourcecode" id="appendix-A.1-4.1">
 <pre>
 {
@@ -6038,7 +6088,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 
 </pre>
 </div>
-<figcaption><a href="#figure-24" class="selfRef">Figure 24</a>:
+<figcaption><a href="#figure-25" class="selfRef">Figure 25</a>:
 <a href="#name-example-of-a-response-messa" class="selfRef">Example of a Response Message Body with the Bearer Reference</a>
           </figcaption></figure>
 </div>
@@ -6050,9 +6100,9 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
         <h3 id="name-create-an-ac-over-an-existi">
 <a href="#appendix-A.2" class="section-number selfRef">A.2. </a><a href="#name-create-an-ac-over-an-existi" class="section-name selfRef">Create an AC over an Existing Bearer</a>
         </h3>
-<p id="appendix-A.2-1">An example of a request message body to create a simple AC over an existing bearer is shown in <a href="#ac-b" class="auto internal xref">Figure 25</a>. The bearer reference is assumed to be known to both the customer and the network provider. Such a reference can be retrieved, e.g., following the example described in <a href="#ex-create-bearer" class="auto internal xref">Appendix A.1</a> or using other means (including, exchanged out-of-band or via proprietary APIs).<a href="#appendix-A.2-1" class="pilcrow">¶</a></p>
+<p id="appendix-A.2-1">An example of a request message body to create a simple AC over an existing bearer is shown in <a href="#ac-b" class="auto internal xref">Figure 26</a>. The bearer reference is assumed to be known to both the customer and the network provider. Such a reference can be retrieved, e.g., following the example described in <a href="#ex-create-bearer" class="auto internal xref">Appendix A.1</a> or using other means (including, exchanged out-of-band or via proprietary APIs).<a href="#appendix-A.2-1" class="pilcrow">¶</a></p>
 <span id="name-example-of-a-message-body-to"></span><div id="ac-b">
-<figure id="figure-25">
+<figure id="figure-26">
           <div class="lang-json sourcecode" id="appendix-A.2-2.1">
 <pre>
 {
@@ -6074,13 +6124,13 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 }
 </pre>
 </div>
-<figcaption><a href="#figure-25" class="selfRef">Figure 25</a>:
+<figcaption><a href="#figure-26" class="selfRef">Figure 26</a>:
 <a href="#name-example-of-a-message-body-to" class="selfRef">Example of a Message Body to Request an AC over an Existing Bearer</a>
           </figcaption></figure>
 </div>
-<p id="appendix-A.2-3"><a href="#ac-br" class="auto internal xref">Figure 26</a> shows the message body of a GET response received from the controller and which indicates the "cvlan-id" that was assigned for the requested AC.<a href="#appendix-A.2-3" class="pilcrow">¶</a></p>
+<p id="appendix-A.2-3"><a href="#ac-br" class="auto internal xref">Figure 27</a> shows the message body of a GET response received from the controller and which indicates the "cvlan-id" that was assigned for the requested AC.<a href="#appendix-A.2-3" class="pilcrow">¶</a></p>
 <span id="name-example-of-a-message-body-o"></span><div id="ac-br">
-<figure id="figure-26">
+<figure id="figure-27">
           <div class="lang-json sourcecode" id="appendix-A.2-4.1">
 <pre>
 {
@@ -6106,7 +6156,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 }
 </pre>
 </div>
-<figcaption><a href="#figure-26" class="selfRef">Figure 26</a>:
+<figcaption><a href="#figure-27" class="selfRef">Figure 27</a>:
 <a href="#name-example-of-a-message-body-o" class="selfRef">Example of a Message Body of a Response to Assign a CVLAN ID</a>
           </figcaption></figure>
 </div>
@@ -6117,9 +6167,9 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
         <h3 id="name-create-an-ac-for-a-known-pe">
 <a href="#appendix-A.3" class="section-number selfRef">A.3. </a><a href="#name-create-an-ac-for-a-known-pe" class="section-name selfRef">Create an AC for a Known Peer SAP</a>
         </h3>
-<p id="appendix-A.3-1">An example of a request to create a simple AC, when the peer SAP is known, is shown in <a href="#ac-known-ps" class="auto internal xref">Figure 27</a>. In this example, the peer SAP identifier points to an identifier of an SF. The (topological) location of that SF is assumed to be known to the network controller. For example, this can be determined as part of an on-demand procedure to instantiate an SF in a cloud. That instantiated SF can be granted a connectivity service via the provider network.<a href="#appendix-A.3-1" class="pilcrow">¶</a></p>
+<p id="appendix-A.3-1">An example of a request to create a simple AC, when the peer SAP is known, is shown in <a href="#ac-known-ps" class="auto internal xref">Figure 28</a>. In this example, the peer SAP identifier points to an identifier of an SF. The (topological) location of that SF is assumed to be known to the network controller. For example, this can be determined as part of an on-demand procedure to instantiate an SF in a cloud. That instantiated SF can be granted a connectivity service via the provider network.<a href="#appendix-A.3-1" class="pilcrow">¶</a></p>
 <span id="name-example-of-a-message-body-to-"></span><div id="ac-known-ps">
-<figure id="figure-27">
+<figure id="figure-28">
           <div class="lang-json sourcecode" id="appendix-A.3-2.1">
 <pre>
 {
@@ -6138,13 +6188,13 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 }
 </pre>
 </div>
-<figcaption><a href="#figure-27" class="selfRef">Figure 27</a>:
+<figcaption><a href="#figure-28" class="selfRef">Figure 28</a>:
 <a href="#name-example-of-a-message-body-to-" class="selfRef">Example of a Message Body to Request an AC with a Peer SAP</a>
           </figcaption></figure>
 </div>
-<p id="appendix-A.3-3"><a href="#ac-known-ps-res" class="auto internal xref">Figure 28</a> shows the received GET response with the required informaiton to connect the SF.<a href="#appendix-A.3-3" class="pilcrow">¶</a></p>
+<p id="appendix-A.3-3"><a href="#ac-known-ps-res" class="auto internal xref">Figure 29</a> shows the received GET response with the required informaiton to connect the SF.<a href="#appendix-A.3-3" class="pilcrow">¶</a></p>
 <span id="name-example-of-a-message-body-of"></span><div id="ac-known-ps-res">
-<figure id="figure-28">
+<figure id="figure-29">
           <div class="lang-json sourcecode" id="appendix-A.3-4.1">
 <pre>
 {
@@ -6172,7 +6222,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 }
 </pre>
 </div>
-<figcaption><a href="#figure-28" class="selfRef">Figure 28</a>:
+<figcaption><a href="#figure-29" class="selfRef">Figure 29</a>:
 <a href="#name-example-of-a-message-body-of" class="selfRef">Example of a Message Body of a Response to Create an AC with a Peer SAP</a>
           </figcaption></figure>
 </div>
@@ -6183,9 +6233,9 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
         <h3 id="name-one-ce-two-acs">
 <a href="#appendix-A.4" class="section-number selfRef">A.4. </a><a href="#name-one-ce-two-acs" class="section-name selfRef">One CE, Two ACs</a>
         </h3>
-<p id="appendix-A.4-1">Let us consider the example of an eNodeB (CE) that is directly connected to the access routers of the mobile backhaul (see <a href="#enodeb" class="auto internal xref">Figure 29</a>). In this example, two ACs are needed to service the eNodeB (e.g., distinct VLANs for Control and User Planes).<a href="#appendix-A.4-1" class="pilcrow">¶</a></p>
+<p id="appendix-A.4-1">Let us consider the example of an eNodeB (CE) that is directly connected to the access routers of the mobile backhaul (see <a href="#enodeb" class="auto internal xref">Figure 30</a>). In this example, two ACs are needed to service the eNodeB (e.g., distinct VLANs for Control and User Planes).<a href="#appendix-A.4-1" class="pilcrow">¶</a></p>
 <span id="name-example-of-a-ce-pe-acs"></span><div id="enodeb">
-<figure id="figure-29">
+<figure id="figure-30">
           <div id="appendix-A.4-2.1">
             <div class="alignLeft art-svg artwork" id="appendix-A.4-2.1.1">
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="240" width="432" viewBox="0 0 432 240" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
@@ -6218,13 +6268,13 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
               </svg><a href="#appendix-A.4-2.1.1" class="pilcrow">¶</a>
 </div>
 </div>
-<figcaption><a href="#figure-29" class="selfRef">Figure 29</a>:
+<figcaption><a href="#figure-30" class="selfRef">Figure 30</a>:
 <a href="#name-example-of-a-ce-pe-acs" class="selfRef">Example of a CE-PE ACs</a>
           </figcaption></figure>
 </div>
-<p id="appendix-A.4-3">An example of a request to create the ACs to service the eNodeB is shown in <a href="#two-acs-same-ce" class="auto internal xref">Figure 30</a>. This example assumes that static addressing is used for both ACs.<a href="#appendix-A.4-3" class="pilcrow">¶</a></p>
+<p id="appendix-A.4-3">An example of a request to create the ACs to service the eNodeB is shown in <a href="#two-acs-same-ce" class="auto internal xref">Figure 31</a>. This example assumes that static addressing is used for both ACs.<a href="#appendix-A.4-3" class="pilcrow">¶</a></p>
 <span id="name-example-of-a-message-body-to-r"></span><div id="two-acs-same-ce">
-<figure id="figure-30">
+<figure id="figure-31">
           <div class="breakable lang-json sourcecode" id="appendix-A.4-4.1">
 <pre>
 =============== NOTE: '\' line wrapping per RFC 8792 ================
@@ -6293,13 +6343,13 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 }
 </pre>
 </div>
-<figcaption><a href="#figure-30" class="selfRef">Figure 30</a>:
+<figcaption><a href="#figure-31" class="selfRef">Figure 31</a>:
 <a href="#name-example-of-a-message-body-to-r" class="selfRef">Example of a Message Body to Request Two ACs on the Same Link (Not Recommended)</a>
           </figcaption></figure>
 </div>
-<p id="appendix-A.4-5"><a href="#two-acs-same-ce-res" class="auto internal xref">Figure 31</a> shows the message body of a GET response received from the controller.<a href="#appendix-A.4-5" class="pilcrow">¶</a></p>
+<p id="appendix-A.4-5"><a href="#two-acs-same-ce-res" class="auto internal xref">Figure 32</a> shows the message body of a GET response received from the controller.<a href="#appendix-A.4-5" class="pilcrow">¶</a></p>
 <span id="name-example-of-a-message-body-of-"></span><div id="two-acs-same-ce-res">
-<figure id="figure-31">
+<figure id="figure-32">
           <div class="breakable lang-json sourcecode" id="appendix-A.4-6.1">
 <pre>
 {
@@ -6396,13 +6446,13 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 }
 </pre>
 </div>
-<figcaption><a href="#figure-31" class="selfRef">Figure 31</a>:
+<figcaption><a href="#figure-32" class="selfRef">Figure 32</a>:
 <a href="#name-example-of-a-message-body-of-" class="selfRef">Example of a Message Body of a Response to Create Two ACs on the Same Link (Not Recommended)</a>
           </figcaption></figure>
 </div>
-<p id="appendix-A.4-7">The example shown <a href="#two-acs-same-ce-res" class="auto internal xref">Figure 31</a> is not optimal as it includes many redundant data. <a href="#two-acs-same-ce-node-profile" class="auto internal xref">Figure 32</a> shows a more compact request that factorizes all the redundant data.<a href="#appendix-A.4-7" class="pilcrow">¶</a></p>
+<p id="appendix-A.4-7">The example shown <a href="#two-acs-same-ce-res" class="auto internal xref">Figure 32</a> is not optimal as it includes many redundant data. <a href="#two-acs-same-ce-node-profile" class="auto internal xref">Figure 33</a> shows a more compact request that factorizes all the redundant data.<a href="#appendix-A.4-7" class="pilcrow">¶</a></p>
 <span id="name-example-of-a-message-body-to-re"></span><div id="two-acs-same-ce-node-profile">
-<figure id="figure-32">
+<figure id="figure-33">
           <div class="breakable lang-json sourcecode" id="appendix-A.4-8.1">
 <pre>
 {
@@ -6477,13 +6527,13 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 }
 </pre>
 </div>
-<figcaption><a href="#figure-32" class="selfRef">Figure 32</a>:
+<figcaption><a href="#figure-33" class="selfRef">Figure 33</a>:
 <a href="#name-example-of-a-message-body-to-re" class="selfRef">Example of a Message Body to Request Two ACs on the Same Link (Node Profile)</a>
           </figcaption></figure>
 </div>
-<p id="appendix-A.4-9">A customer may request adding a new AC by simply referring to an existing per-node AC profile as shown in <a href="#add-ac-same-ce-node-profile" class="auto internal xref">Figure 33</a>. This AC inherits all the data that was enclosed in the indicated per-node AC profile (IP addressing, routing, etc.).<a href="#appendix-A.4-9" class="pilcrow">¶</a></p>
+<p id="appendix-A.4-9">A customer may request adding a new AC by simply referring to an existing per-node AC profile as shown in <a href="#add-ac-same-ce-node-profile" class="auto internal xref">Figure 34</a>. This AC inherits all the data that was enclosed in the indicated per-node AC profile (IP addressing, routing, etc.).<a href="#appendix-A.4-9" class="pilcrow">¶</a></p>
 <span id="name-example-of-a-message-body-to-a"></span><div id="add-ac-same-ce-node-profile">
-<figure id="figure-33">
+<figure id="figure-34">
           <div class="lang-json sourcecode" id="appendix-A.4-10.1">
 <pre>
 {
@@ -6515,7 +6565,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 }
 </pre>
 </div>
-<figcaption><a href="#figure-33" class="selfRef">Figure 33</a>:
+<figcaption><a href="#figure-34" class="selfRef">Figure 34</a>:
 <a href="#name-example-of-a-message-body-to-a" class="selfRef">Example of a Message Body to Add a new AC over an existing link (Node Profile)</a>
           </figcaption></figure>
 </div>
@@ -6526,9 +6576,9 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
         <h3 id="name-control-precedence-over-mul">
 <a href="#appendix-A.5" class="section-number selfRef">A.5. </a><a href="#name-control-precedence-over-mul" class="section-name selfRef">Control Precedence over Multiple ACs</a>
         </h3>
-<p id="appendix-A.5-1">When multiple ACs are requested by the same customer for the same site, the request can tag one of these ACs as "primary" and the other ones as "secondary". An example of such a request is shown in <a href="#ac-precedence" class="auto internal xref">Figure 35</a>. In this example, both ACs are bound to the same "group-id", and the "precedence" data node is set as a function of the intended role of each AC (primary or secondary).<a href="#appendix-A.5-1" class="pilcrow">¶</a></p>
+<p id="appendix-A.5-1">When multiple ACs are requested by the same customer for the same site, the request can tag one of these ACs as "primary" and the other ones as "secondary". An example of such a request is shown in <a href="#ac-precedence" class="auto internal xref">Figure 36</a>. In this example, both ACs are bound to the same "group-id", and the "precedence" data node is set as a function of the intended role of each AC (primary or secondary).<a href="#appendix-A.5-1" class="pilcrow">¶</a></p>
 <span id="name-an-example-topology-for-ac-"></span><div id="multipleac">
-<figure id="figure-34">
+<figure id="figure-35">
           <div id="appendix-A.5-2.1">
             <div class="alignLeft art-svg artwork" id="appendix-A.5-2.1.1">
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="208" width="312" viewBox="0 0 312 208" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
@@ -6564,12 +6614,12 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
               </svg><a href="#appendix-A.5-2.1.1" class="pilcrow">¶</a>
 </div>
 </div>
-<figcaption><a href="#figure-34" class="selfRef">Figure 34</a>:
+<figcaption><a href="#figure-35" class="selfRef">Figure 35</a>:
 <a href="#name-an-example-topology-for-ac-" class="selfRef">An Example Topology for AC Precedence Enforcement</a>
           </figcaption></figure>
 </div>
 <span id="name-example-of-a-message-body-to-as"></span><div id="ac-precedence">
-<figure id="figure-35">
+<figure id="figure-36">
           <div class="lang-json sourcecode" id="appendix-A.5-3.1">
 <pre>
 =============== NOTE: '\' line wrapping per RFC 8792 ================
@@ -6610,7 +6660,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 }
 </pre>
 </div>
-<figcaption><a href="#figure-35" class="selfRef">Figure 35</a>:
+<figcaption><a href="#figure-36" class="selfRef">Figure 36</a>:
 <a href="#name-example-of-a-message-body-to-as" class="selfRef">Example of a Message Body to Associate a Precedence Level with ACs</a>
           </figcaption></figure>
 </div>
@@ -6621,9 +6671,9 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
         <h3 id="name-create-multiple-acs-bound-t">
 <a href="#appendix-A.6" class="section-number selfRef">A.6. </a><a href="#name-create-multiple-acs-bound-t" class="section-name selfRef">Create Multiple ACs Bound to Multiple CEs</a>
         </h3>
-<p id="appendix-A.6-1"><a href="#network-example" class="auto internal xref">Figure 36</a> shows an example of CEs that are interconnected by a service provider network.<a href="#appendix-A.6-1" class="pilcrow">¶</a></p>
+<p id="appendix-A.6-1"><a href="#network-example" class="auto internal xref">Figure 37</a> shows an example of CEs that are interconnected by a service provider network.<a href="#appendix-A.6-1" class="pilcrow">¶</a></p>
 <span id="name-network-topology-example"></span><div id="network-example">
-<figure id="figure-36">
+<figure id="figure-37">
           <div id="appendix-A.6-2.1">
             <div class="alignCenter art-svg artwork" id="appendix-A.6-2.1.1">
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="192" width="504" viewBox="0 0 504 192" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
@@ -6665,13 +6715,13 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
               </svg><a href="#appendix-A.6-2.1.1" class="pilcrow">¶</a>
 </div>
 </div>
-<figcaption><a href="#figure-36" class="selfRef">Figure 36</a>:
+<figcaption><a href="#figure-37" class="selfRef">Figure 37</a>:
 <a href="#name-network-topology-example" class="selfRef">Network Topology Example</a>
           </figcaption></figure>
 </div>
-<p id="appendix-A.6-3">Let's assume that a request to instantiate various ACs that are shown in <a href="#network-example" class="auto internal xref">Figure 36</a> is sent by the customer. <a href="#multiple-sites" class="auto internal xref">Figure 37</a> depicts the example of the message body of a GET response that is received from the controller.<a href="#appendix-A.6-3" class="pilcrow">¶</a></p>
+<p id="appendix-A.6-3">Let's assume that a request to instantiate various ACs that are shown in <a href="#network-example" class="auto internal xref">Figure 37</a> is sent by the customer. <a href="#multiple-sites" class="auto internal xref">Figure 38</a> depicts the example of the message body of a GET response that is received from the controller.<a href="#appendix-A.6-3" class="pilcrow">¶</a></p>
 <span id="name-example-of-a-message-body-of-a"></span><div id="multiple-sites">
-<figure id="figure-37">
+<figure id="figure-38">
           <div class="breakable lang-json sourcecode" id="appendix-A.6-4.1">
 <pre>
 {
@@ -6735,7 +6785,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 }
 </pre>
 </div>
-<figcaption><a href="#figure-37" class="selfRef">Figure 37</a>:
+<figcaption><a href="#figure-38" class="selfRef">Figure 38</a>:
 <a href="#name-example-of-a-message-body-of-a" class="selfRef">Example of a Message Body of a Request to Create Multiple ACs bound to Multiple CEs</a>
           </figcaption></figure>
 </div>
@@ -6747,7 +6797,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 <a href="#appendix-A.7" class="section-number selfRef">A.7. </a><a href="#name-binding-attachment-circuits" class="section-name selfRef">Binding Attachment Circuits to an IETF Network Slice</a>
         </h3>
 <p id="appendix-A.7-1">This example shows how the AC service model complements the model defined in "A YANG Data Model for the RFC 9543 Network Slice Service" <span>[<a href="#I-D.ietf-teas-ietf-network-slice-nbi-yang" class="cite xref">I-D.ietf-teas-ietf-network-slice-nbi-yang</a>]</span> to connect a site to a Slice Service.<a href="#appendix-A.7-1" class="pilcrow">¶</a></p>
-<p id="appendix-A.7-2">First, <a href="#slice-vlan-1" class="auto internal xref">Figure 38</a> describes the end-to-end network topology as well the orchestration scopes:<a href="#appendix-A.7-2" class="pilcrow">¶</a></p>
+<p id="appendix-A.7-2">First, <a href="#slice-vlan-1" class="auto internal xref">Figure 39</a> describes the end-to-end network topology as well the orchestration scopes:<a href="#appendix-A.7-2" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="appendix-A.7-3.1">
             <p id="appendix-A.7-3.1.1">The topology is made up of two sites ("site1" and "site2"), interconnected via a Transport Network (e.g., IP/MPLS network). An SF is deployed within each site in a dedicated IP subnet.<a href="#appendix-A.7-3.1.1" class="pilcrow">¶</a></p>
@@ -6761,7 +6811,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
         </ul>
 <p id="appendix-A.7-4">SFs are deployed within each site.<a href="#appendix-A.7-4" class="pilcrow">¶</a></p>
 <span id="name-an-example-of-a-network-top"></span><div id="slice-vlan-1">
-<figure id="figure-38">
+<figure id="figure-39">
           <div id="appendix-A.7-5.1">
             <div class="alignLeft art-svg artwork" id="appendix-A.7-5.1.1">
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="368" width="520" viewBox="0 0 520 368" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
@@ -6856,13 +6906,13 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
               </svg><a href="#appendix-A.7-5.1.1" class="pilcrow">¶</a>
 </div>
 </div>
-<figcaption><a href="#figure-38" class="selfRef">Figure 38</a>:
+<figcaption><a href="#figure-39" class="selfRef">Figure 39</a>:
 <a href="#name-an-example-of-a-network-top" class="selfRef">An Example of a Network Topology Used to Deploy Slices</a>
           </figcaption></figure>
 </div>
-<p id="appendix-A.7-6"><a href="#slice-vlan-2" class="auto internal xref">Figure 39</a> describes the logical connectivity enforced thanks to both IETF Network Slice and ACaaS models.<a href="#appendix-A.7-6" class="pilcrow">¶</a></p>
+<p id="appendix-A.7-6"><a href="#slice-vlan-2" class="auto internal xref">Figure 40</a> describes the logical connectivity enforced thanks to both IETF Network Slice and ACaaS models.<a href="#appendix-A.7-6" class="pilcrow">¶</a></p>
 <span id="name-logical-overview"></span><div id="slice-vlan-2">
-<figure id="figure-39">
+<figure id="figure-40">
           <div id="appendix-A.7-7.1">
             <div class="alignLeft art-svg artwork" id="appendix-A.7-7.1.1">
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="528" width="576" viewBox="0 0 576 528" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
@@ -7017,13 +7067,13 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
               </svg><a href="#appendix-A.7-7.1.1" class="pilcrow">¶</a>
 </div>
 </div>
-<figcaption><a href="#figure-39" class="selfRef">Figure 39</a>:
+<figcaption><a href="#figure-40" class="selfRef">Figure 40</a>:
 <a href="#name-logical-overview" class="selfRef">Logical Overview</a>
           </figcaption></figure>
 </div>
-<p id="appendix-A.7-8"><a href="#slice-acs" class="auto internal xref">Figure 40</a> shows the message body of the request to create the required ACs using the ACaaS module.<a href="#appendix-A.7-8" class="pilcrow">¶</a></p>
+<p id="appendix-A.7-8"><a href="#slice-acs" class="auto internal xref">Figure 41</a> shows the message body of the request to create the required ACs using the ACaaS module.<a href="#appendix-A.7-8" class="pilcrow">¶</a></p>
 <span id="name-message-body-of-a-request-t"></span><div id="slice-acs">
-<figure id="figure-40">
+<figure id="figure-41">
           <div class="breakable lang-json sourcecode" id="appendix-A.7-9.1">
 <pre>
 =============== NOTE: '\' line wrapping per RFC 8792 ================
@@ -7111,13 +7161,13 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 }
 </pre>
 </div>
-<figcaption><a href="#figure-40" class="selfRef">Figure 40</a>:
+<figcaption><a href="#figure-41" class="selfRef">Figure 41</a>:
 <a href="#name-message-body-of-a-request-t" class="selfRef">Message Body of a Request to Create Required ACs</a>
           </figcaption></figure>
 </div>
-<p id="appendix-A.7-10"><a href="#slice-acs-res" class="auto internal xref">Figure 41</a> shows the message body of a response to a GET request received from the controller.<a href="#appendix-A.7-10" class="pilcrow">¶</a></p>
+<p id="appendix-A.7-10"><a href="#slice-acs-res" class="auto internal xref">Figure 42</a> shows the message body of a response to a GET request received from the controller.<a href="#appendix-A.7-10" class="pilcrow">¶</a></p>
 <span id="name-example-of-a-message-body-of-a-"></span><div id="slice-acs-res">
-<figure id="figure-41">
+<figure id="figure-42">
           <div class="breakable lang-json sourcecode" id="appendix-A.7-11.1">
 <pre>
 {
@@ -7218,13 +7268,13 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 }
 </pre>
 </div>
-<figcaption><a href="#figure-41" class="selfRef">Figure 41</a>:
+<figcaption><a href="#figure-42" class="selfRef">Figure 42</a>:
 <a href="#name-example-of-a-message-body-of-a-" class="selfRef">Example of a Message Body of a Response Indicating the Creation of the ACs</a>
           </figcaption></figure>
 </div>
-<p id="appendix-A.7-12"><a href="#slice-prov" class="auto internal xref">Figure 42</a> shows the message body of the request to create a Slice Service bound to the ACs created using <a href="#slice-acs" class="auto internal xref">Figure 40</a>. Only references to these ACs are included in the Slice Service request.<a href="#appendix-A.7-12" class="pilcrow">¶</a></p>
+<p id="appendix-A.7-12"><a href="#slice-prov" class="auto internal xref">Figure 43</a> shows the message body of the request to create a Slice Service bound to the ACs created using <a href="#slice-acs" class="auto internal xref">Figure 41</a>. Only references to these ACs are included in the Slice Service request.<a href="#appendix-A.7-12" class="pilcrow">¶</a></p>
 <span id="name-message-body-of-a-request-to"></span><div id="slice-prov">
-<figure id="figure-42">
+<figure id="figure-43">
           <div class="lang-json sourcecode" id="appendix-A.7-13.1">
 <pre>
 =============== NOTE: '\' line wrapping per RFC 8792 ================
@@ -7268,7 +7318,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 }
 </pre>
 </div>
-<figcaption><a href="#figure-42" class="selfRef">Figure 42</a>:
+<figcaption><a href="#figure-43" class="selfRef">Figure 43</a>:
 <a href="#name-message-body-of-a-request-to" class="selfRef">Message Body of a Request to Create a Slice Service Referring to the ACs</a>
           </figcaption></figure>
 </div>
@@ -7279,7 +7329,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
         <h3 id="name-connecting-a-virtualized-en">
 <a href="#appendix-A.8" class="section-number selfRef">A.8. </a><a href="#name-connecting-a-virtualized-en" class="section-name selfRef">Connecting a Virtualized Environment Running in a Cloud Provider</a>
         </h3>
-<p id="appendix-A.8-1">This example (<a href="#cloud-provider-1" class="auto internal xref">Figure 43</a>) shows how the AC service model can be used to connect a Cloud Infrastructure to a service provider network. This example makes the following assumptions:<a href="#appendix-A.8-1" class="pilcrow">¶</a></p>
+<p id="appendix-A.8-1">This example (<a href="#cloud-provider-1" class="auto internal xref">Figure 44</a>) shows how the AC service model can be used to connect a Cloud Infrastructure to a service provider network. This example makes the following assumptions:<a href="#appendix-A.8-1" class="pilcrow">¶</a></p>
 <ol start="1" type="1" class="normal type-1" id="appendix-A.8-2">
 <li id="appendix-A.8-2.1">
             <p id="appendix-A.8-2.1.1">A customer (e.g., Mobile Network Team or partner) has a virtualized infrastructure running in a Cloud Provider. A simplistic deployment is represented here with a set of Virtual Machines running in a Virtual Private Environment. The deployment and management of this infrastructure is achieved via private APIs that are supported by the Cloud Provider: this realization is out of the scope of this document.<a href="#appendix-A.8-2.1.1" class="pilcrow">¶</a></p>
@@ -7292,7 +7342,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 </li>
         </ol>
 <span id="name-an-example-of-realization-f"></span><div id="cloud-provider-1">
-<figure id="figure-43">
+<figure id="figure-44">
           <div id="appendix-A.8-3.1">
             <div class="alignLeft art-svg artwork" id="appendix-A.8-3.1.1">
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="560" width="496" viewBox="0 0 496 560" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
@@ -7381,13 +7431,13 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
               </svg><a href="#appendix-A.8-3.1.1" class="pilcrow">¶</a>
 </div>
 </div>
-<figcaption><a href="#figure-43" class="selfRef">Figure 43</a>:
+<figcaption><a href="#figure-44" class="selfRef">Figure 44</a>:
 <a href="#name-an-example-of-realization-f" class="selfRef">An Example of Realization for Connecting a Cloud Site</a>
           </figcaption></figure>
 </div>
-<p id="appendix-A.8-4"><a href="#cloud-provider-2" class="auto internal xref">Figure 44</a> illustrates the pre-provisioning logic for the physical connection to the Cloud Provider. After this connection is delivered to the service provider, the network inventory is updated with "bearer-reference" set to the value of the "Connection Identifier".<a href="#appendix-A.8-4" class="pilcrow">¶</a></p>
+<p id="appendix-A.8-4"><a href="#cloud-provider-2" class="auto internal xref">Figure 45</a> illustrates the pre-provisioning logic for the physical connection to the Cloud Provider. After this connection is delivered to the service provider, the network inventory is updated with "bearer-reference" set to the value of the "Connection Identifier".<a href="#appendix-A.8-4" class="pilcrow">¶</a></p>
 <span id="name-illustration-of-pre-provisi"></span><div id="cloud-provider-2">
-<figure id="figure-44">
+<figure id="figure-45">
           <div id="appendix-A.8-5.1">
             <div class="alignLeft art-svg artwork" id="appendix-A.8-5.1.1">
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="288" width="584" viewBox="0 0 584 288" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
@@ -7435,7 +7485,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
               </svg><a href="#appendix-A.8-5.1.1" class="pilcrow">¶</a>
 </div>
 </div>
-<figcaption><a href="#figure-44" class="selfRef">Figure 44</a>:
+<figcaption><a href="#figure-45" class="selfRef">Figure 45</a>:
 <a href="#name-illustration-of-pre-provisi" class="selfRef">Illustration of Pre-provisioning</a>
           </figcaption></figure>
 </div>
@@ -7448,9 +7498,9 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
             <p id="appendix-A.8-7.2.1">The Service provider network via the ACaaS model. This request can be used in conjunction with additional requests based on the L3SM (VPN provisioning) or Network Slice Service model (5G hybrid Cloud deployment).<a href="#appendix-A.8-7.2.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
-<p id="appendix-A.8-8"><a href="#cloud-provider-ac" class="auto internal xref">Figure 45</a> shows the message body of the request to create the required ACs to connect the Cloud Provider Virtualized (VM) using the Attachment Circuit module.<a href="#appendix-A.8-8" class="pilcrow">¶</a></p>
+<p id="appendix-A.8-8"><a href="#cloud-provider-ac" class="auto internal xref">Figure 46</a> shows the message body of the request to create the required ACs to connect the Cloud Provider Virtualized (VM) using the Attachment Circuit module.<a href="#appendix-A.8-8" class="pilcrow">¶</a></p>
 <span id="name-message-body-of-a-request-to-"></span><div id="cloud-provider-ac">
-<figure id="figure-45">
+<figure id="figure-46">
           <div class="lang-json sourcecode" id="appendix-A.8-9.1">
 <pre>
 =============== NOTE: '\' line wrapping per RFC 8792 ================
@@ -7497,18 +7547,18 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 }
 </pre>
 </div>
-<figcaption><a href="#figure-45" class="selfRef">Figure 45</a>:
+<figcaption><a href="#figure-46" class="selfRef">Figure 46</a>:
 <a href="#name-message-body-of-a-request-to-" class="selfRef">Message Body of a Request to Create the ACs for Connecting to the Cloud Provider</a>
           </figcaption></figure>
 </div>
-<p id="appendix-A.8-10"><a href="#cloud-provider-ac-res" class="auto internal xref">Figure 46</a> shows the message body of the response received from the provider as a response to a query message. Note that this Cloud Provider mandates the use of MD5 authentication for establishing BGP connections.<a href="#appendix-A.8-10" class="pilcrow">¶</a></p>
+<p id="appendix-A.8-10"><a href="#cloud-provider-ac-res" class="auto internal xref">Figure 47</a> shows the message body of the response received from the provider as a response to a query message. Note that this Cloud Provider mandates the use of MD5 authentication for establishing BGP connections.<a href="#appendix-A.8-10" class="pilcrow">¶</a></p>
 <ul class="normal ulEmpty">
 <li class="normal ulEmpty" id="appendix-A.8-11.1">
             <p id="appendix-A.8-11.1.1">The module supports MD5 to basically accommodate the installed BGP base (including by some Cloud Providers). Note that MD5 suffers from the security weaknesses discussed in <span><a href="https://rfc-editor.org/rfc/rfc6151#section-2" class="relref">Section 2</a> of [<a href="#RFC6151" class="cite xref">RFC6151</a>]</span> and <span><a href="https://rfc-editor.org/rfc/rfc6952#section-2.1" class="relref">Section 2.1</a> of [<a href="#RFC6952" class="cite xref">RFC6952</a>]</span>.<a href="#appendix-A.8-11.1.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
 <span id="name-message-body-of-a-response-"></span><div id="cloud-provider-ac-res">
-<figure id="figure-46">
+<figure id="figure-47">
           <div class="breakable lang-json sourcecode" id="appendix-A.8-12.1">
 <pre>
 =============== NOTE: '\' line wrapping per RFC 8792 ================
@@ -7572,7 +7622,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 }
 </pre>
 </div>
-<figcaption><a href="#figure-46" class="selfRef">Figure 46</a>:
+<figcaption><a href="#figure-47" class="selfRef">Figure 47</a>:
 <a href="#name-message-body-of-a-response-" class="selfRef">Message Body of a Response to the Request to Create ACs for Connecting to the Cloud Provider</a>
           </figcaption></figure>
 </div>
@@ -7583,9 +7633,9 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
         <h3 id="name-connect-customer-network-th">
 <a href="#appendix-A.9" class="section-number selfRef">A.9. </a><a href="#name-connect-customer-network-th" class="section-name selfRef">Connect Customer Network Through BGP</a>
         </h3>
-<p id="appendix-A.9-1">CE-PE routing using BGP is a common scenario in the context of MPLS VPNs and is widely used in enterprise networks. In the example depicted in <a href="#provider-network" class="auto internal xref">Figure 47</a>, the CE routers are customer-owned devices belonging to an AS (ASN 65536). CEs are located at the edge of the provider's network (PE, or Provider Edge) and use point-to-point interfaces to establish BGP sessions. The point-to-point interfaces rely upon a physical bearer ("line-113") to reach the provider network.<a href="#appendix-A.9-1" class="pilcrow">¶</a></p>
+<p id="appendix-A.9-1">CE-PE routing using BGP is a common scenario in the context of MPLS VPNs and is widely used in enterprise networks. In the example depicted in <a href="#provider-network" class="auto internal xref">Figure 48</a>, the CE routers are customer-owned devices belonging to an AS (ASN 65536). CEs are located at the edge of the provider's network (PE, or Provider Edge) and use point-to-point interfaces to establish BGP sessions. The point-to-point interfaces rely upon a physical bearer ("line-113") to reach the provider network.<a href="#appendix-A.9-1" class="pilcrow">¶</a></p>
 <span id="name-illustration-of-provider-ne"></span><div id="provider-network">
-<figure id="figure-47">
+<figure id="figure-48">
           <div id="appendix-A.9-2.1">
             <div class="alignLeft art-svg artwork" id="appendix-A.9-2.1.1">
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="368" width="552" viewBox="0 0 552 368" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
@@ -7642,13 +7692,13 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
               </svg><a href="#appendix-A.9-2.1.1" class="pilcrow">¶</a>
 </div>
 </div>
-<figcaption><a href="#figure-47" class="selfRef">Figure 47</a>:
+<figcaption><a href="#figure-48" class="selfRef">Figure 48</a>:
 <a href="#name-illustration-of-provider-ne" class="selfRef">Illustration of Provider Network Scenario</a>
           </figcaption></figure>
 </div>
 <p id="appendix-A.9-3">The attachment circuit in this case use a SAP identifier to refer to the physical interface used for the connection between the PE and the CE. The attachment circuit includes all the additional logical attributes to describe the connection between the two ends, including VLAN information and IP addressing. Also, the configuration details of the BGP session makes use of peer group details instead of defining the entire configuration inside the 'neighbor' data node.<a href="#appendix-A.9-3" class="pilcrow">¶</a></p>
 <span id="name-message-body-of-a-request-to-c"></span><div id="add-attachment-circuit-bgp-routing">
-<figure id="figure-48">
+<figure id="figure-49">
           <div class="breakable lang-json sourcecode" id="appendix-A.9-4.1">
 <pre>
 {
@@ -7715,7 +7765,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 }
 </pre>
 </div>
-<figcaption><a href="#figure-48" class="selfRef">Figure 48</a>:
+<figcaption><a href="#figure-49" class="selfRef">Figure 49</a>:
 <a href="#name-message-body-of-a-request-to-c" class="selfRef">Message Body of a Request to Create ACs for Connecting CEs to a Provider Network</a>
           </figcaption></figure>
 </div>
@@ -7735,9 +7785,9 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
           <h4 id="name-retrieve-interconnection-lo">
 <a href="#appendix-A.10.1" class="section-number selfRef">A.10.1. </a><a href="#name-retrieve-interconnection-lo" class="section-name selfRef">Retrieve Interconnection Locations</a>
           </h4>
-<p id="appendix-A.10.1-1"><a href="#ex-retrieve-locations" class="auto internal xref">Figure 49</a> shows an example a message body of a request to retrieve a list of interconnection locations. The request includes a customer name and an ASN to filter out the locations.<a href="#appendix-A.10.1-1" class="pilcrow">¶</a></p>
+<p id="appendix-A.10.1-1"><a href="#ex-retrieve-locations" class="auto internal xref">Figure 50</a> shows an example a message body of a request to retrieve a list of interconnection locations. The request includes a customer name and an ASN to filter out the locations.<a href="#appendix-A.10.1-1" class="pilcrow">¶</a></p>
 <span id="name-message-body-of-a-request-to-r"></span><div id="ex-retrieve-locations">
-<figure id="figure-49">
+<figure id="figure-50">
             <div class="lang-json sourcecode" id="appendix-A.10.1-2.1">
 <pre>
 {
@@ -7753,13 +7803,13 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 }
 </pre>
 </div>
-<figcaption><a href="#figure-49" class="selfRef">Figure 49</a>:
+<figcaption><a href="#figure-50" class="selfRef">Figure 50</a>:
 <a href="#name-message-body-of-a-request-to-r" class="selfRef">Message Body of a Request to Retrieve Interconnection Locations</a>
             </figcaption></figure>
 </div>
-<p id="appendix-A.10.1-3"><a href="#ex-retrieve-locations-res" class="auto internal xref">Figure 50</a> provides an example of a response to a query received from the server with a list of available interconnection locations.<a href="#appendix-A.10.1-3" class="pilcrow">¶</a></p>
+<p id="appendix-A.10.1-3"><a href="#ex-retrieve-locations-res" class="auto internal xref">Figure 51</a> provides an example of a response to a query received from the server with a list of available interconnection locations.<a href="#appendix-A.10.1-3" class="pilcrow">¶</a></p>
 <span id="name-message-body-of-a-response-t"></span><div id="ex-retrieve-locations-res">
-<figure id="figure-50">
+<figure id="figure-51">
             <div class="lang-json sourcecode" id="appendix-A.10.1-4.1">
 <pre>
 {
@@ -7784,7 +7834,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 }
 </pre>
 </div>
-<figcaption><a href="#figure-50" class="selfRef">Figure 50</a>:
+<figcaption><a href="#figure-51" class="selfRef">Figure 51</a>:
 <a href="#name-message-body-of-a-response-t" class="selfRef">Message Body of a Response to Retrieve Interconnection Locations</a>
             </figcaption></figure>
 </div>
@@ -7795,9 +7845,9 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
           <h4 id="name-create-bearers-and-retrieve">
 <a href="#appendix-A.10.2" class="section-number selfRef">A.10.2. </a><a href="#name-create-bearers-and-retrieve" class="section-name selfRef">Create Bearers and Retrieve Bearer References</a>
           </h4>
-<p id="appendix-A.10.2-1">A peer can then use the location information and select the ones where it can request new bearers. As shown in <a href="#ex-create-bearer-parent-ref" class="auto internal xref">Figure 51</a>, the request includes a location reference which is known to the server (returned in <a href="#ex-retrieve-locations-res" class="auto internal xref">Figure 50</a>).<a href="#appendix-A.10.2-1" class="pilcrow">¶</a></p>
+<p id="appendix-A.10.2-1">A peer can then use the location information and select the ones where it can request new bearers. As shown in <a href="#ex-create-bearer-parent-ref" class="auto internal xref">Figure 52</a>, the request includes a location reference which is known to the server (returned in <a href="#ex-retrieve-locations-res" class="auto internal xref">Figure 51</a>).<a href="#appendix-A.10.2-1" class="pilcrow">¶</a></p>
 <span id="name-message-body-of-a-request-to-cr"></span><div id="ex-create-bearer-parent-ref">
-<figure id="figure-51">
+<figure id="figure-52">
             <div class="lang-json sourcecode" id="appendix-A.10.2-2.1">
 <pre>
 {
@@ -7819,13 +7869,13 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 }
 </pre>
 </div>
-<figcaption><a href="#figure-51" class="selfRef">Figure 51</a>:
+<figcaption><a href="#figure-52" class="selfRef">Figure 52</a>:
 <a href="#name-message-body-of-a-request-to-cr" class="selfRef">Message Body of a Request to Create a Bearer using a Provider-Assigned Reference</a>
             </figcaption></figure>
 </div>
-<p id="appendix-A.10.2-3">The bearer is then activated by the server as shown in <a href="#ex-create-bearer-parent-ref-res" class="auto internal xref">Figure 52</a>. A "bearer-reference" is also returned. That reference can be used for subsequent AC activation requests.<a href="#appendix-A.10.2-3" class="pilcrow">¶</a></p>
+<p id="appendix-A.10.2-3">The bearer is then activated by the server as shown in <a href="#ex-create-bearer-parent-ref-res" class="auto internal xref">Figure 53</a>. A "bearer-reference" is also returned. That reference can be used for subsequent AC activation requests.<a href="#appendix-A.10.2-3" class="pilcrow">¶</a></p>
 <span id="name-message-body-of-a-response-f"></span><div id="ex-create-bearer-parent-ref-res">
-<figure id="figure-52">
+<figure id="figure-53">
             <div class="lang-json sourcecode" id="appendix-A.10.2-4.1">
 <pre>
 {
@@ -7853,7 +7903,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 }
 </pre>
 </div>
-<figcaption><a href="#figure-52" class="selfRef">Figure 52</a>:
+<figcaption><a href="#figure-53" class="selfRef">Figure 53</a>:
 <a href="#name-message-body-of-a-response-f" class="selfRef">Message Body of a Response for a Bearer Created in a Specific Location</a>
             </figcaption></figure>
 </div>
@@ -7864,9 +7914,9 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
           <h4 id="name-manage-acs-and-bgp-sessions">
 <a href="#appendix-A.10.3" class="section-number selfRef">A.10.3. </a><a href="#name-manage-acs-and-bgp-sessions" class="section-name selfRef">Manage ACs and BGP Sessions</a>
           </h4>
-<p id="appendix-A.10.3-1">As depicted in <a href="#bgp-peer-network" class="auto internal xref">Figure 53</a>, each network connects to the IXP switch via a bearer over which an AC is created.<a href="#appendix-A.10.3-1" class="pilcrow">¶</a></p>
+<p id="appendix-A.10.3-1">As depicted in <a href="#bgp-peer-network" class="auto internal xref">Figure 54</a>, each network connects to the IXP switch via a bearer over which an AC is created.<a href="#appendix-A.10.3-1" class="pilcrow">¶</a></p>
 <span id="name-simple-interconnection-topo"></span><div id="bgp-peer-network">
-<figure id="figure-53">
+<figure id="figure-54">
             <div id="appendix-A.10.3-2.1">
               <div class="alignLeft art-svg artwork" id="appendix-A.10.3-2.1.1">
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="432" width="472" viewBox="0 0 472 432" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
@@ -7936,13 +7986,13 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
                 </svg><a href="#appendix-A.10.3-2.1.1" class="pilcrow">¶</a>
 </div>
 </div>
-<figcaption><a href="#figure-53" class="selfRef">Figure 53</a>:
+<figcaption><a href="#figure-54" class="selfRef">Figure 54</a>:
 <a href="#name-simple-interconnection-topo" class="selfRef">Simple Interconnection Topology</a>
             </figcaption></figure>
 </div>
-<p id="appendix-A.10.3-3">The AC configuration (<a href="#bgp-peer-network-add-attachment-circuit" class="auto internal xref">Figure 54</a>) includes parameters such as VLAN configuration, IP addresses, MTU, and any additional settings required for connectivity. The peering location is inferred from the "bearer-reference".<a href="#appendix-A.10.3-3" class="pilcrow">¶</a></p>
+<p id="appendix-A.10.3-3">The AC configuration (<a href="#bgp-peer-network-add-attachment-circuit" class="auto internal xref">Figure 55</a>) includes parameters such as VLAN configuration, IP addresses, MTU, and any additional settings required for connectivity. The peering location is inferred from the "bearer-reference".<a href="#appendix-A.10.3-3" class="pilcrow">¶</a></p>
 <span id="name-message-body-of-a-request-to-cre"></span><div id="bgp-peer-network-add-attachment-circuit">
-<figure id="figure-54">
+<figure id="figure-55">
             <div class="lang-json sourcecode" id="appendix-A.10.3-4.1">
 <pre>
 {
@@ -7968,13 +8018,13 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 }
 </pre>
 </div>
-<figcaption><a href="#figure-54" class="selfRef">Figure 54</a>:
+<figcaption><a href="#figure-55" class="selfRef">Figure 55</a>:
 <a href="#name-message-body-of-a-request-to-cre" class="selfRef">Message Body of a Request to Create an AC to Connect to an IXP</a>
             </figcaption></figure>
 </div>
-<p id="appendix-A.10.3-5"><a href="#bgp-peer-network-response" class="auto internal xref">Figure 55</a> shows the received response to a query with the required information for the activation of the AC.<a href="#appendix-A.10.3-5" class="pilcrow">¶</a></p>
+<p id="appendix-A.10.3-5"><a href="#bgp-peer-network-response" class="auto internal xref">Figure 56</a> shows the received response to a query with the required information for the activation of the AC.<a href="#appendix-A.10.3-5" class="pilcrow">¶</a></p>
 <span id="name-message-body-of-a-response-to"></span><div id="bgp-peer-network-response">
-<figure id="figure-55">
+<figure id="figure-56">
             <div class="lang-json sourcecode" id="appendix-A.10.3-6.1">
 <pre>
 {
@@ -8016,13 +8066,13 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 }
 </pre>
 </div>
-<figcaption><a href="#figure-55" class="selfRef">Figure 55</a>:
+<figcaption><a href="#figure-56" class="selfRef">Figure 56</a>:
 <a href="#name-message-body-of-a-response-to" class="selfRef">Message Body of a Response to an AC Request to Connect to an IXP</a>
             </figcaption></figure>
 </div>
-<p id="appendix-A.10.3-7">Once the ACs are established, BGP peering sessions can be configured between routers of the participating networks. BGP sessions can be established via a route server or between two networks. For the sake of illustration, let us assume that BGP sessions are established directly between two network. <a href="#bgp-peer-network-add-bgp-attachment-circuit" class="auto internal xref">Figure 56</a> shows an example of a request to add a BGP session to an existing AC. The properties of that AC are not repeated in this request because that information is already communicated during the creation of the AC.<a href="#appendix-A.10.3-7" class="pilcrow">¶</a></p>
+<p id="appendix-A.10.3-7">Once the ACs are established, BGP peering sessions can be configured between routers of the participating networks. BGP sessions can be established via a route server or between two networks. For the sake of illustration, let us assume that BGP sessions are established directly between two network. <a href="#bgp-peer-network-add-bgp-attachment-circuit" class="auto internal xref">Figure 57</a> shows an example of a request to add a BGP session to an existing AC. The properties of that AC are not repeated in this request because that information is already communicated during the creation of the AC.<a href="#appendix-A.10.3-7" class="pilcrow">¶</a></p>
 <span id="name-message-body-of-a-request-to-crea"></span><div id="bgp-peer-network-add-bgp-attachment-circuit">
-<figure id="figure-56">
+<figure id="figure-57">
             <div class="lang-json sourcecode" id="appendix-A.10.3-8.1">
 <pre>
 {
@@ -8067,13 +8117,13 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 }
 </pre>
 </div>
-<figcaption><a href="#figure-56" class="selfRef">Figure 56</a>:
+<figcaption><a href="#figure-57" class="selfRef">Figure 57</a>:
 <a href="#name-message-body-of-a-request-to-crea" class="selfRef">Message Body of a Request to Create a BGP Session over an AC</a>
             </figcaption></figure>
 </div>
-<p id="appendix-A.10.3-9"><a href="#bgp-awaiting-validation" class="auto internal xref">Figure 57</a> provides the example of a response which indicates that the request is awaiting validation. The response includes also a server-assigned reference for this BGP session.<a href="#appendix-A.10.3-9" class="pilcrow">¶</a></p>
+<p id="appendix-A.10.3-9"><a href="#bgp-awaiting-validation" class="auto internal xref">Figure 58</a> provides the example of a response which indicates that the request is awaiting validation. The response includes also a server-assigned reference for this BGP session.<a href="#appendix-A.10.3-9" class="pilcrow">¶</a></p>
 <span id="name-message-body-of-a-response-fo"></span><div id="bgp-awaiting-validation">
-<figure id="figure-57">
+<figure id="figure-58">
             <div class="lang-json sourcecode" id="appendix-A.10.3-10.1">
 <pre>
 =============== NOTE: '\' line wrapping per RFC 8792 ================
@@ -8124,13 +8174,13 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 }
 </pre>
 </div>
-<figcaption><a href="#figure-57" class="selfRef">Figure 57</a>:
+<figcaption><a href="#figure-58" class="selfRef">Figure 58</a>:
 <a href="#name-message-body-of-a-response-fo" class="selfRef">Message Body of a Response for a BGP Session Awaiting Validation</a>
             </figcaption></figure>
 </div>
 <p id="appendix-A.10.3-11">Once validation is accomplished, a status update is communicated back to the requestor. The BGP session can then be established over the AC. The BGP session configuration includes parameters such as neighbor IP addresses, ASNs, authentication settings (if required), etc. The configuration is triggered at each side of the BGP connection.<a href="#appendix-A.10.3-11" class="pilcrow">¶</a></p>
 <span id="name-message-body-of-a-response-to-"></span><div id="bgp-peering-all-sessions">
-<figure id="figure-58">
+<figure id="figure-59">
             <div class="breakable lang-json sourcecode" id="appendix-A.10.3-12.1">
 <pre>
 =============== NOTE: '\' line wrapping per RFC 8792 ================
@@ -8197,7 +8247,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 }
 </pre>
 </div>
-<figcaption><a href="#figure-58" class="selfRef">Figure 58</a>:
+<figcaption><a href="#figure-59" class="selfRef">Figure 59</a>:
 <a href="#name-message-body-of-a-response-to-" class="selfRef">Message Body of a Response to Report All Active BGP sessions over an AC</a>
             </figcaption></figure>
 </div>
@@ -8241,9 +8291,9 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
           <h4 id="name-physical-infrastructure">
 <a href="#appendix-A.11.2" class="section-number selfRef">A.11.2. </a><a href="#name-physical-infrastructure" class="section-name selfRef">Physical Infrastructure</a>
           </h4>
-<p id="appendix-A.11.2-1"><a href="#cloud-parent-infra" class="auto internal xref">Figure 59</a> describes the physical infrastructure. The compute nodes (customer) are attached to the provider infrastructure thanks to a set of physical links on which attachment circuits are provisioned (i.e., "compute-XX-nicY"). The provider infrastructure can be realized in multiple ways, such as IP Fabric, Layer 2/Layer 3 Edge Routers. This document does not intend to detail these aspects.<a href="#appendix-A.11.2-1" class="pilcrow">¶</a></p>
+<p id="appendix-A.11.2-1"><a href="#cloud-parent-infra" class="auto internal xref">Figure 60</a> describes the physical infrastructure. The compute nodes (customer) are attached to the provider infrastructure thanks to a set of physical links on which attachment circuits are provisioned (i.e., "compute-XX-nicY"). The provider infrastructure can be realized in multiple ways, such as IP Fabric, Layer 2/Layer 3 Edge Routers. This document does not intend to detail these aspects.<a href="#appendix-A.11.2-1" class="pilcrow">¶</a></p>
 <span id="name-example-physical-topology-f"></span><div id="cloud-parent-infra">
-<figure id="figure-59">
+<figure id="figure-60">
             <div id="appendix-A.11.2-2.1">
               <div class="alignLeft art-svg artwork" id="appendix-A.11.2-2.1.1">
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="384" width="544" viewBox="0 0 544 384" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
@@ -8305,7 +8355,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
                 </svg><a href="#appendix-A.11.2-2.1.1" class="pilcrow">¶</a>
 </div>
 </div>
-<figcaption><a href="#figure-59" class="selfRef">Figure 59</a>:
+<figcaption><a href="#figure-60" class="selfRef">Figure 60</a>:
 <a href="#name-example-physical-topology-f" class="selfRef">Example Physical Topology for Cloud Deployment</a>
             </figcaption></figure>
 </div>
@@ -8332,7 +8382,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 </li>
           </ul>
 <span id="name-logical-topology-of-the-nfs"></span><div id="cloud-parent-logical">
-<figure id="figure-60">
+<figure id="figure-61">
             <div id="appendix-A.11.3-3.1">
               <div class="alignLeft art-svg artwork" id="appendix-A.11.3-3.1.1">
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="1088" width="544" viewBox="0 0 544 1088" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
@@ -8588,14 +8638,14 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
                 </svg><a href="#appendix-A.11.3-3.1.1" class="pilcrow">¶</a>
 </div>
 </div>
-<figcaption><a href="#figure-60" class="selfRef">Figure 60</a>:
+<figcaption><a href="#figure-61" class="selfRef">Figure 61</a>:
 <a href="#name-logical-topology-of-the-nfs" class="selfRef">Logical Topology of the NFs Deployment</a>
             </figcaption></figure>
 </div>
-<p id="appendix-A.11.3-4">For readability the payload is displayed as single JSON file (<a href="#parent-profile" class="auto internal xref">Figure 61</a>). In practice, several API calls may take place to initialize these resources (e.g., GET requests from the customer to retrieve the IP address pools for NFs on "vlan 100" thanks to parent configuration and BGP configuration, and POST extra routes for user planes and BFD).<a href="#appendix-A.11.3-4" class="pilcrow">¶</a></p>
+<p id="appendix-A.11.3-4">For readability the payload is displayed as single JSON file (<a href="#parent-profile" class="auto internal xref">Figure 62</a>). In practice, several API calls may take place to initialize these resources (e.g., GET requests from the customer to retrieve the IP address pools for NFs on "vlan 100" thanks to parent configuration and BGP configuration, and POST extra routes for user planes and BFD).<a href="#appendix-A.11.3-4" class="pilcrow">¶</a></p>
 <p id="appendix-A.11.3-5">Note that no individual IP address is assigned in the data model for the NF user plane instances (i.e., no "customer-address" in the Child AC). The assignment of IP addresses to the NF endpoints is managed by the Cloud Infrastructure IPAM based on the customer-addresses IP address pool "192.0.2.1-200". Like in any standard LAN-facing scenario, it is assumed that the actual binding of IP endpoints to logical attachments (here Child ACs) relies on a dedicated protocol logic  (typically, ARP or NDP) and is not captured in the data model. Hence, the IP addresses displayed for NF user plane instances are simply examples of a realization approach. Note also that the Control Plane is defined with static IP address assignment on a given AC/bearer to illustrate another deployment alternative.<a href="#appendix-A.11.3-5" class="pilcrow">¶</a></p>
 <span id="name-message-body-for-the-config"></span><div id="parent-profile">
-<figure id="figure-61">
+<figure id="figure-62">
             <div class="breakable lang-json sourcecode" id="appendix-A.11.3-6.1">
 <pre>
 =============== NOTE: '\' line wrapping per RFC 8792 ================
@@ -8873,7 +8923,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 }
 </pre>
 </div>
-<figcaption><a href="#figure-61" class="selfRef">Figure 61</a>:
+<figcaption><a href="#figure-62" class="selfRef">Figure 62</a>:
 <a href="#name-message-body-for-the-config" class="selfRef">Message Body for the Configuration of the NF ACs</a>
             </figcaption></figure>
 </div>
@@ -8886,7 +8936,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
           </h4>
 <p id="appendix-A.11.4-1">Assuming a failure of "compute-01", the instance "nf-up-1" can be redeployed to "compute-07" by the NF/Cloud Orchestration. The NFs can be scaled-out thanks to the creation of an extra instance "nf-up7" on "compute-08". Since connectivity is pre-provisioned, these operations happen without any API calls. In other words, this redeployment is transparent from the perspective of the configuration of the provider network.<a href="#appendix-A.11.4-1" class="pilcrow">¶</a></p>
 <span id="name-example-of-compute-failure-"></span><div id="cloud-parent-nf-lcm">
-<figure id="figure-62">
+<figure id="figure-63">
             <div id="appendix-A.11.4-2.1">
               <div class="alignLeft art-svg artwork" id="appendix-A.11.4-2.1.1">
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="480" width="536" viewBox="0 0 536 480" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
@@ -8988,7 +9038,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
                 </svg><a href="#appendix-A.11.4-2.1.1" class="pilcrow">¶</a>
 </div>
 </div>
-<figcaption><a href="#figure-62" class="selfRef">Figure 62</a>:
+<figcaption><a href="#figure-63" class="selfRef">Figure 63</a>:
 <a href="#name-example-of-compute-failure-" class="selfRef">Example of Compute Failure and Scale-out</a>
             </figcaption></figure>
 </div>
@@ -9002,9 +9052,9 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
         <h3 id="name-bfd-and-static-addressing">
 <a href="#appendix-A.12" class="section-number selfRef">A.12. </a><a href="#name-bfd-and-static-addressing" class="section-name selfRef">BFD and Static Addressing</a>
         </h3>
-<p id="appendix-A.12-1"><a href="#ex-bfd-static" class="auto internal xref">Figure 63</a> shows a topology example of a set of CEs connected to a provider network via dedicated bearers. Each of these CE maintains two BFD sessions with the provider network.<a href="#appendix-A.12-1" class="pilcrow">¶</a></p>
+<p id="appendix-A.12-1"><a href="#ex-bfd-static" class="auto internal xref">Figure 64</a> shows a topology example of a set of CEs connected to a provider network via dedicated bearers. Each of these CE maintains two BFD sessions with the provider network.<a href="#appendix-A.12-1" class="pilcrow">¶</a></p>
 <span id="name-example-of-static-addressin"></span><div id="ex-bfd-static">
-<figure id="figure-63">
+<figure id="figure-64">
           <div id="appendix-A.12-2.1">
             <div class="alignLeft art-svg artwork" id="appendix-A.12-2.1.1">
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="368" width="464" viewBox="0 0 464 368" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
@@ -9100,13 +9150,13 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
               </svg><a href="#appendix-A.12-2.1.1" class="pilcrow">¶</a>
 </div>
 </div>
-<figcaption><a href="#figure-63" class="selfRef">Figure 63</a>:
+<figcaption><a href="#figure-64" class="selfRef">Figure 64</a>:
 <a href="#name-example-of-static-addressin" class="selfRef">Example of Static Addressing with BFD</a>
           </figcaption></figure>
 </div>
-<p id="appendix-A.12-3"><a href="#ex-json-bfd-static" class="auto internal xref">Figure 64</a> shows the message body of the ACaaS configuration to enable the target architecture shown in <a href="#ex-bfd-static" class="auto internal xref">Figure 63</a>. This example uses an AC group profile to factorize common data between all involved ACs. It also uses child ACs that inherit the properties of two parent ACs; each terminating in a separate gateway in the provider network.<a href="#appendix-A.12-3" class="pilcrow">¶</a></p>
+<p id="appendix-A.12-3"><a href="#ex-json-bfd-static" class="auto internal xref">Figure 65</a> shows the message body of the ACaaS configuration to enable the target architecture shown in <a href="#ex-bfd-static" class="auto internal xref">Figure 64</a>. This example uses an AC group profile to factorize common data between all involved ACs. It also uses child ACs that inherit the properties of two parent ACs; each terminating in a separate gateway in the provider network.<a href="#appendix-A.12-3" class="pilcrow">¶</a></p>
 <span id="name-message-body-for-the-configu"></span><div id="ex-json-bfd-static">
-<figure id="figure-64">
+<figure id="figure-65">
           <div class="breakable lang-json sourcecode" id="appendix-A.12-4.1">
 <pre>
 =============== NOTE: '\' line wrapping per RFC 8792 ================
@@ -9232,7 +9282,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 }
 </pre>
 </div>
-<figcaption><a href="#figure-64" class="selfRef">Figure 64</a>:
+<figcaption><a href="#figure-65" class="selfRef">Figure 65</a>:
 <a href="#name-message-body-for-the-configu" class="selfRef">Message Body for the Configuration of CEs with Static Addressing and BFD Protection</a>
           </figcaption></figure>
 </div>
