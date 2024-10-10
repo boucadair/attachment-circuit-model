@@ -699,7 +699,7 @@ The following data nodes are supported for each BGP 'peer-group':
 : Reports the provider's ASN. This information is used at the customer side to configure the BGP session with the provider network.
 
 'peer-as':
-: Indicates the customer's ASN. This information is used at the provide side to configure the BGP session with the customer equipment.
+: Indicates the customer's ASN. This information is used at the provider side to configure the BGP session with the customer equipment.
 
 'address-family':
 : Indicates the address family of the peer. It can be set to 'ipv4', 'ipv6', or 'dual-stack'.
