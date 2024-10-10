@@ -1386,9 +1386,9 @@ This scenario allows the provider to maintain a list of ACs belonging to the sam
 
 ## Interconnection via Internet eXchange Points (IXPs) {#sec-peering}
 
-This section illustrates how to use the AC service model for interconnection purposes. To that aim, the document assumes a simplified Internet eXchange Point (IXP) configuration without zooming into IXP deployment specifics. Let us assume that networks are interconnected via a Layer 2 facility. BGP is used to exchange routing information and reachability announcements between those networks.
+This section illustrates how to use the AC service model for interconnection purposes. To that aim, the document assumes a simplified Internet eXchange Point (IXP) configuration without zooming into IXP deployment specifics. Let us assume that networks are interconnected via a Layer 2 facility. Let us also assume a deployment context where selective peering is in place between these networks. BGP is used to exchange routing information and reachability announcements between those networks.
 
-The same approach can be used to negotiate interconnection between two networks and without involving an IXP.
+The same approach can be used to negotiate interconnection between two networks without involving an IXP.
 
 This example follows the recursive deployment model depicted in {{u-ex-r}}. Specifically, base bearer/AC service requests are handled locally by the IXP. However, binding BGP sessions to existing ACs involves a recursion step.
 
@@ -1463,7 +1463,7 @@ Once the ACs are established, BGP peering sessions can be configured between rou
 ~~~~
 {: #bgp-awaiting-validation title="Message Body of a Response for a BGP Session Awaiting Validation"}
 
-Once validation is accomplished, a status update is communicated back to the requestor. The BGP session can then be established over the AC. The BGP session configuration includes parameters such as neighbor IP addresses, ASNs, authentication settings (if required), etc. The configuration is triggered at each side of the BGP connection.
+Once validation is accomplished, a status update is communicated back to the requestor. The BGP session can then be established over the AC. The BGP session configuration includes parameters such as neighbor IP addresses, ASNs, authentication settings (if required), etc. The configuration is triggered at each side of the BGP connection (i.e., peer ASBRs).
 
 ~~~~ json
 {::include-fold ./json-examples/svc/bgp-peering-all-sessions.json}
