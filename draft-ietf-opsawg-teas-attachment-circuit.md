@@ -179,8 +179,8 @@ The AC service model can be used in a variety of contexts, such as (but not limi
 * Interconnect provider networks (e.g., {{?RFC8921}} or {{?I-D.ramseyer-grow-peering-api}}). Such ACs are identified with a "role" set to "ac-common:nni" or "ac-common:public-nni". See {{sec-peering}} to illustrate the use of the AC model for interconnection/peering.
 * Manage connectivity for complex containerized or virtualized functions in the cloud ({{sec-cloudified-nfs}}).
 
-The document adheres to the principles discussed in {{Section 3 of ?RFC8309}} for the encoding and communication protocols used
-for the interaction between a customer and a provider. Also, consistent with the "A Framework for Automating Service and Network Management with YANG" {{?RFC8969}}, the service models defined in the document can be used independently of NETCONF/RESTCONF.
+The document adheres to the principles discussed in "Service Models Explained" ({{Section 3 of ?RFC8309}}) for the encoding and communication protocols used
+for the interaction between a customer and a provider. Also, consistent with "A Framework for Automating Service and Network Management with YANG" {{?RFC8969}}, the service models defined in the document can be used independently of NETCONF/RESTCONF.
 
 The YANG data models in this document conform to the Network Management Datastore Architecture (NMDA) defined in {{!RFC8342}}.
 
@@ -983,13 +983,11 @@ This module uses types defined in {{!RFC6991}}, {{!RFC9181}}, {{!RFC8177}}, and 
 
 This section uses the template described in Section 3.7 of {{?I-D.ietf-netmod-rfc8407bis}}.
 
-   The YANG modules specified in this document define schema for data
-   that is designed to be accessed via network management protocols such
-   as NETCONF {{!RFC6241}} or RESTCONF {{!RFC8040}}.  The lowest NETCONF layer
-   is the secure transport layer, and the mandatory-to-implement secure
-   transport is Secure Shell (SSH) {{!RFC6242}}.  The lowest RESTCONF layer
-   is HTTPS, and the mandatory-to-implement secure transport is TLS
-   {{!RFC8446}}.
+   The YANG modules specified in this document defines a data model that is
+   designed to be accessed via YANG-based management protocols, such as
+   NETCONF {{?RFC6241}} and RESTCONF {{?RFC8040}}. These protocols have to
+   use a secure transport layer (e.g., SSH {{?RFC4252}}, TLS {{?RFC8446}}, and
+   QUIC {{?RFC9000}}) and have to use mutual authentication.
 
    The Network Configuration Access Control Model (NACM) {{!RFC8341}}
    provides the means to restrict access for particular NETCONF or
