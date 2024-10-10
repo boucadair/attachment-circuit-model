@@ -4399,7 +4399,7 @@ A.2.  Create an AC over an Existing Bearer
        Figure 24: Example of a Message Body to Request an AC over an
                               Existing Bearer
 
-   Figure 25 shows the message body of a response received from the
+   Figure 25 shows the message body of a GET response received from the
    controller and which indicates the "cvlan-id" that was assigned for
    the requested AC.
 
@@ -4455,8 +4455,8 @@ A.3.  Create an AC for a Known Peer SAP
 
    Figure 26: Example of a Message Body to Request an AC with a Peer SAP
 
-   Figure 27 shows the received response with the required informaiton
-   to connect the SF.
+   Figure 27 shows the received GET response with the required
+   informaiton to connect the SF.
 
    {
      "ietf-ac-svc:attachment-circuits": {
@@ -4580,7 +4580,7 @@ A.4.  One CE, Two ACs
        Figure 29: Example of a Message Body to Request Two ACs on the
                         Same Link (Not Recommended)
 
-   Figure 30 shows the message body of a response received from the
+   Figure 30 shows the message body of a GET response received from the
    controller.
 
    {
@@ -4873,8 +4873,10 @@ A.6.  Create Multiple ACs Bound to Multiple CEs
 
                     Figure 35: Network Topology Example
 
-   Figure 36 depicts an example of the message body of a response to a
-   request to instantiate the various ACs that are shown in Figure 35.
+   Let's assume that a request to instantiate various ACs that are shown
+   in Figure 35 is sent by the customer.  Figure 36 depicts the example
+   of the message body of a GET response that is received from the
+   controller.
 
    {
      "ietf-ac-svc:attachment-circuits": {
@@ -5112,8 +5114,8 @@ A.7.  Binding Attachment Circuits to an IETF Network Slice
 
         Figure 39: Message Body of a Request to Create Required ACs
 
-   Figure 40 shows the message body of a response received from the
-   controller.
+   Figure 40 shows the message body of a response to a GET request
+   received from the controller.
 
    {
      "ietf-ac-svc:attachment-circuits": {
@@ -5405,8 +5407,9 @@ Orchestration       DIRECT INTERCONNECTION ORDERING (API)       Provider
                       Connecting to the Cloud Provider
 
    Figure 45 shows the message body of the response received from the
-   provider.  Note that this Cloud Provider mandates the use of MD5
-   authentication for establishing BGP connections.
+   provider as a response to a query message.  Note that this Cloud
+   Provider mandates the use of MD5 authentication for establishing BGP
+   connections.
 
       The module supports MD5 to basically accommodate the installed BGP
       base (including by some Cloud Providers).  Note that MD5 suffers
@@ -5597,8 +5600,10 @@ A.10.  Interconnection via Internet eXchange Points (IXPs)
    zooming into IXP deployment specifics.  Let us assume that networks
    are interconnected via a Layer 2 facility.  BGP is used to exchange
    routing information and reachability announcements between those
-   networks.  The same approach can be used to negotiate interconnection
-   between two networks and without involving an IXP.
+   networks.
+
+   The same approach can be used to negotiate interconnection between
+   two networks and without involving an IXP.
 
    The following subsections exemplify a deployment flow, but BGP
    sessions can be managed without having to execute systematically all
@@ -5625,8 +5630,8 @@ A.10.1.  Retrieve Interconnection Locations
       Figure 48: Message Body of a Request to Retrieve Interconnection
                                  Locations
 
-   Figure 49 provides an example of a response received from the server
-   with a list of available interconnection locations.
+   Figure 49 provides an example of a response to a query received from
+   the server with a list of available interconnection locations.
 
    {
      "ietf-bearer-svc:locations": {
@@ -5708,7 +5713,7 @@ A.10.2.  Create Bearers and Retrieve Bearer References
      }
    }
 
-       Figure 51: Message Body of a Response to Create a Bearer in a
+      Figure 51: Message Body of a Response for a Bearer Created in a
                              Specific Location
 
 A.10.3.  Manage ACs and BGP Sessions
@@ -5774,8 +5779,8 @@ A.10.3.  Manage ACs and BGP Sessions
       Figure 53: Message Body of a Request to Create an AC to Connect
                                  to an IXP
 
-   Figure 54 shows the received response with the required information
-   for the activation of the AC.
+   Figure 54 shows the received response to a query with the required
+   information for the activation of the AC.
 
    {
      "ietf-ac-svc:attachment-circuits": {

@@ -5997,7 +5997,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 <a href="#name-example-of-a-message-body-to" class="selfRef">Example of a Message Body to Request an AC over an Existing Bearer</a>
           </figcaption></figure>
 </div>
-<p id="appendix-A.2-3"><a href="#ac-br" class="auto internal xref">Figure 25</a> shows the message body of a response received from the controller and which indicates the "cvlan-id" that was assigned for the requested AC.<a href="#appendix-A.2-3" class="pilcrow">¶</a></p>
+<p id="appendix-A.2-3"><a href="#ac-br" class="auto internal xref">Figure 25</a> shows the message body of a GET response received from the controller and which indicates the "cvlan-id" that was assigned for the requested AC.<a href="#appendix-A.2-3" class="pilcrow">¶</a></p>
 <span id="name-example-of-a-message-body-o"></span><div id="ac-br">
 <figure id="figure-25">
           <div class="lang-json sourcecode" id="appendix-A.2-4.1">
@@ -6061,7 +6061,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 <a href="#name-example-of-a-message-body-to-" class="selfRef">Example of a Message Body to Request an AC with a Peer SAP</a>
           </figcaption></figure>
 </div>
-<p id="appendix-A.3-3"><a href="#ac-known-ps-res" class="auto internal xref">Figure 27</a> shows the received response with the required informaiton to connect the SF.<a href="#appendix-A.3-3" class="pilcrow">¶</a></p>
+<p id="appendix-A.3-3"><a href="#ac-known-ps-res" class="auto internal xref">Figure 27</a> shows the received GET response with the required informaiton to connect the SF.<a href="#appendix-A.3-3" class="pilcrow">¶</a></p>
 <span id="name-example-of-a-message-body-of"></span><div id="ac-known-ps-res">
 <figure id="figure-27">
           <div class="lang-json sourcecode" id="appendix-A.3-4.1">
@@ -6216,7 +6216,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 <a href="#name-example-of-a-message-body-to-r" class="selfRef">Example of a Message Body to Request Two ACs on the Same Link (Not Recommended)</a>
           </figcaption></figure>
 </div>
-<p id="appendix-A.4-5"><a href="#two-acs-same-ce-res" class="auto internal xref">Figure 30</a> shows the message body of a response received from the controller.<a href="#appendix-A.4-5" class="pilcrow">¶</a></p>
+<p id="appendix-A.4-5"><a href="#two-acs-same-ce-res" class="auto internal xref">Figure 30</a> shows the message body of a GET response received from the controller.<a href="#appendix-A.4-5" class="pilcrow">¶</a></p>
 <span id="name-example-of-a-message-body-of-"></span><div id="two-acs-same-ce-res">
 <figure id="figure-30">
           <div class="breakable lang-json sourcecode" id="appendix-A.4-6.1">
@@ -6588,7 +6588,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 <a href="#name-network-topology-example" class="selfRef">Network Topology Example</a>
           </figcaption></figure>
 </div>
-<p id="appendix-A.6-3"><a href="#multiple-sites" class="auto internal xref">Figure 36</a> depicts an example of the message body of a response to a request to instantiate the various ACs that are shown in <a href="#network-example" class="auto internal xref">Figure 35</a>.<a href="#appendix-A.6-3" class="pilcrow">¶</a></p>
+<p id="appendix-A.6-3">Let's assume that a request to instantiate various ACs that are shown in <a href="#network-example" class="auto internal xref">Figure 35</a> is sent by the customer. <a href="#multiple-sites" class="auto internal xref">Figure 36</a> depicts the example of the message body of a GET response that is received from the controller.<a href="#appendix-A.6-3" class="pilcrow">¶</a></p>
 <span id="name-example-of-a-message-body-of-a"></span><div id="multiple-sites">
 <figure id="figure-36">
           <div class="breakable lang-json sourcecode" id="appendix-A.6-4.1">
@@ -7034,7 +7034,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 <a href="#name-message-body-of-a-request-t" class="selfRef">Message Body of a Request to Create Required ACs</a>
           </figcaption></figure>
 </div>
-<p id="appendix-A.7-10"><a href="#slice-acs-res" class="auto internal xref">Figure 40</a> shows the message body of a response received from the controller.<a href="#appendix-A.7-10" class="pilcrow">¶</a></p>
+<p id="appendix-A.7-10"><a href="#slice-acs-res" class="auto internal xref">Figure 40</a> shows the message body of a response to a GET request received from the controller.<a href="#appendix-A.7-10" class="pilcrow">¶</a></p>
 <span id="name-example-of-a-message-body-of-a-"></span><div id="slice-acs-res">
 <figure id="figure-40">
           <div class="breakable lang-json sourcecode" id="appendix-A.7-11.1">
@@ -7420,7 +7420,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 <a href="#name-message-body-of-a-request-to-" class="selfRef">Message Body of a Request to Create the ACs for Connecting to the Cloud Provider</a>
           </figcaption></figure>
 </div>
-<p id="appendix-A.8-10"><a href="#cloud-provider-ac-res" class="auto internal xref">Figure 45</a> shows the message body of the response received from the provider. Note that this Cloud Provider mandates the use of MD5 authentication for establishing BGP connections.<a href="#appendix-A.8-10" class="pilcrow">¶</a></p>
+<p id="appendix-A.8-10"><a href="#cloud-provider-ac-res" class="auto internal xref">Figure 45</a> shows the message body of the response received from the provider as a response to a query message. Note that this Cloud Provider mandates the use of MD5 authentication for establishing BGP connections.<a href="#appendix-A.8-10" class="pilcrow">¶</a></p>
 <ul class="normal ulEmpty">
 <li class="normal ulEmpty" id="appendix-A.8-11.1">
             <p id="appendix-A.8-11.1.1">The module supports MD5 to basically accommodate the installed BGP base (including by some Cloud Providers). Note that MD5 suffers from the security weaknesses discussed in <span><a href="https://rfc-editor.org/rfc/rfc6151#section-2" class="relref">Section 2</a> of [<a href="#RFC6151" class="cite xref">RFC6151</a>]</span> and <span><a href="https://rfc-editor.org/rfc/rfc6952#section-2.1" class="relref">Section 2.1</a> of [<a href="#RFC6952" class="cite xref">RFC6952</a>]</span>.<a href="#appendix-A.8-11.1.1" class="pilcrow">¶</a></p>
@@ -7646,8 +7646,9 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
         <h3 id="name-interconnection-via-interne">
 <a href="#appendix-A.10" class="section-number selfRef">A.10. </a><a href="#name-interconnection-via-interne" class="section-name selfRef">Interconnection via Internet eXchange Points (IXPs)</a>
         </h3>
-<p id="appendix-A.10-1">This section illustrates how to use the AC service model for interconnection purposes. To that aim, the document assumes a simplified Internet eXchange Point (IXP) configuration without zooming into IXP deployment specifics. Let us assume that networks are interconnected via a Layer 2 facility. BGP is used to exchange routing information and reachability announcements between those networks. The same approach can be used to negotiate interconnection between two networks and without involving an IXP.<a href="#appendix-A.10-1" class="pilcrow">¶</a></p>
-<p id="appendix-A.10-2">The following subsections exemplify a deployment flow, but BGP sessions can be managed without having to execute systematically all the steps detailed hereafter.<a href="#appendix-A.10-2" class="pilcrow">¶</a></p>
+<p id="appendix-A.10-1">This section illustrates how to use the AC service model for interconnection purposes. To that aim, the document assumes a simplified Internet eXchange Point (IXP) configuration without zooming into IXP deployment specifics. Let us assume that networks are interconnected via a Layer 2 facility. BGP is used to exchange routing information and reachability announcements between those networks.<a href="#appendix-A.10-1" class="pilcrow">¶</a></p>
+<p id="appendix-A.10-2">The same approach can be used to negotiate interconnection between two networks and without involving an IXP.<a href="#appendix-A.10-2" class="pilcrow">¶</a></p>
+<p id="appendix-A.10-3">The following subsections exemplify a deployment flow, but BGP sessions can be managed without having to execute systematically all the steps detailed hereafter.<a href="#appendix-A.10-3" class="pilcrow">¶</a></p>
 <div id="sec-ret-loc">
 <section id="appendix-A.10.1">
           <h4 id="name-retrieve-interconnection-lo">
@@ -7675,7 +7676,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 <a href="#name-message-body-of-a-request-to-r" class="selfRef">Message Body of a Request to Retrieve Interconnection Locations</a>
             </figcaption></figure>
 </div>
-<p id="appendix-A.10.1-3"><a href="#ex-retrieve-locations-res" class="auto internal xref">Figure 49</a> provides an example of a response received from the server with a list of available interconnection locations.<a href="#appendix-A.10.1-3" class="pilcrow">¶</a></p>
+<p id="appendix-A.10.1-3"><a href="#ex-retrieve-locations-res" class="auto internal xref">Figure 49</a> provides an example of a response to a query received from the server with a list of available interconnection locations.<a href="#appendix-A.10.1-3" class="pilcrow">¶</a></p>
 <span id="name-message-body-of-a-response-t"></span><div id="ex-retrieve-locations-res">
 <figure id="figure-49">
             <div class="lang-json sourcecode" id="appendix-A.10.1-4.1">
@@ -7742,7 +7743,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
             </figcaption></figure>
 </div>
 <p id="appendix-A.10.2-3">The bearer is then activated by the server as shown in <a href="#ex-create-bearer-parent-ref-res" class="auto internal xref">Figure 51</a>. A "bearer-reference" is also returned. That reference can be used for subsequent AC activation requests.<a href="#appendix-A.10.2-3" class="pilcrow">¶</a></p>
-<span id="name-message-body-of-a-response-to"></span><div id="ex-create-bearer-parent-ref-res">
+<span id="name-message-body-of-a-response-f"></span><div id="ex-create-bearer-parent-ref-res">
 <figure id="figure-51">
             <div class="lang-json sourcecode" id="appendix-A.10.2-4.1">
 <pre>
@@ -7772,7 +7773,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 </pre>
 </div>
 <figcaption><a href="#figure-51" class="selfRef">Figure 51</a>:
-<a href="#name-message-body-of-a-response-to" class="selfRef">Message Body of a Response to Create a Bearer in a Specific Location</a>
+<a href="#name-message-body-of-a-response-f" class="selfRef">Message Body of a Response for a Bearer Created in a Specific Location</a>
             </figcaption></figure>
 </div>
 </section>
@@ -7890,8 +7891,8 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 <a href="#name-message-body-of-a-request-to-cre" class="selfRef">Message Body of a Request to Create an AC to Connect to an IXP</a>
             </figcaption></figure>
 </div>
-<p id="appendix-A.10.3-5"><a href="#bgp-peer-network-response" class="auto internal xref">Figure 54</a> shows the received response with the required information for the activation of the AC.<a href="#appendix-A.10.3-5" class="pilcrow">¶</a></p>
-<span id="name-message-body-of-a-response-to-"></span><div id="bgp-peer-network-response">
+<p id="appendix-A.10.3-5"><a href="#bgp-peer-network-response" class="auto internal xref">Figure 54</a> shows the received response to a query with the required information for the activation of the AC.<a href="#appendix-A.10.3-5" class="pilcrow">¶</a></p>
+<span id="name-message-body-of-a-response-to"></span><div id="bgp-peer-network-response">
 <figure id="figure-54">
             <div class="lang-json sourcecode" id="appendix-A.10.3-6.1">
 <pre>
@@ -7935,7 +7936,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 </pre>
 </div>
 <figcaption><a href="#figure-54" class="selfRef">Figure 54</a>:
-<a href="#name-message-body-of-a-response-to-" class="selfRef">Message Body of a Response to an AC Request to Connect to an IXP</a>
+<a href="#name-message-body-of-a-response-to" class="selfRef">Message Body of a Response to an AC Request to Connect to an IXP</a>
             </figcaption></figure>
 </div>
 <p id="appendix-A.10.3-7">Once the ACs are established, BGP peering sessions can be configured between routers of the participating networks. BGP sessions can be established via a route server or between two networks. For the sake of illustration, let us assume that BGP sessions are established directly between two network. <a href="#bgp-peer-network-add-bgp-attachment-circuit" class="auto internal xref">Figure 55</a> shows an example of a request to add a BGP session to an existing AC. The properties of that AC are not repeated in this request because that information is already communicated during the creation of the AC.<a href="#appendix-A.10.3-7" class="pilcrow">¶</a></p>
@@ -7990,7 +7991,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
             </figcaption></figure>
 </div>
 <p id="appendix-A.10.3-9"><a href="#bgp-awaiting-validation" class="auto internal xref">Figure 56</a> provides the example of a response which indicates that the request is awaiting validation. The response includes also a server-assigned reference for this BGP session.<a href="#appendix-A.10.3-9" class="pilcrow">¶</a></p>
-<span id="name-message-body-of-a-response-f"></span><div id="bgp-awaiting-validation">
+<span id="name-message-body-of-a-response-fo"></span><div id="bgp-awaiting-validation">
 <figure id="figure-56">
             <div class="lang-json sourcecode" id="appendix-A.10.3-10.1">
 <pre>
@@ -8043,11 +8044,11 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 </pre>
 </div>
 <figcaption><a href="#figure-56" class="selfRef">Figure 56</a>:
-<a href="#name-message-body-of-a-response-f" class="selfRef">Message Body of a Response for a BGP Session Awaiting Validation</a>
+<a href="#name-message-body-of-a-response-fo" class="selfRef">Message Body of a Response for a BGP Session Awaiting Validation</a>
             </figcaption></figure>
 </div>
 <p id="appendix-A.10.3-11">Once validation is accomplished, a status update is communicated back to the requestor. The BGP session can then be established over the AC. The BGP session configuration includes parameters such as neighbor IP addresses, ASNs, authentication settings (if required), etc. The configuration is triggered at each side of the BGP connection.<a href="#appendix-A.10.3-11" class="pilcrow">¶</a></p>
-<span id="name-message-body-of-a-response-to-r"></span><div id="bgp-peering-all-sessions">
+<span id="name-message-body-of-a-response-to-"></span><div id="bgp-peering-all-sessions">
 <figure id="figure-57">
             <div class="breakable lang-json sourcecode" id="appendix-A.10.3-12.1">
 <pre>
@@ -8116,7 +8117,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 </pre>
 </div>
 <figcaption><a href="#figure-57" class="selfRef">Figure 57</a>:
-<a href="#name-message-body-of-a-response-to-r" class="selfRef">Message Body of a Response to Report All Active BGP sessions over an AC</a>
+<a href="#name-message-body-of-a-response-to-" class="selfRef">Message Body of a Response to Report All Active BGP sessions over an AC</a>
             </figcaption></figure>
 </div>
 </section>
