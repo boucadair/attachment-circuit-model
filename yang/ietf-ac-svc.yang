@@ -488,7 +488,7 @@ module ietf-ac-svc {
     leaf id {
       type string;
       description
-        "A neighbor identifier.";
+        "An identifier that uniquely identifiers a neighbor.";
     }
     uses ac-svc:bgp-neighbor-with-server-reference;
   }
