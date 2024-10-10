@@ -561,8 +561,30 @@ Table of Contents
    specifies augmentations to the L2SM and the L3SM to bind LxVPN
    services to ACs.
 
-   Figure 3 shows the positioning of the AC service model in the overall
-   service delivery process.
+   Figure 3 shows an example to illustrate how the bearer/AC service
+   models can be used between a customer and a provider.  Internals to
+   the provider orchestration domain (or customer orchestration domain)
+   are hidden to the customer (or provider).
+
+    .----------------------.     Bearer/AC       .--------------------.
+    |      Customer        |    Service Models   |     Provider       |
+    |   Service Ordering   | <-----------------> |   Service Order    |
+    |                      |                     |     Handling       |
+    '----------^-----------'                     '---------^----------'
+               |                                           |
+          Provisioning                                Provisioning
+               |                                           |
+    .----------v-----------.                     .---------v----------.
+    |                      |========Bearer=======|                    |
+    |    Customer Site     +----------AC---------|  Provider Network  |
+    |                      |========Bearers======|                    |
+    '----------------------'                     '--------------------'
+
+       Figure 3: Example of Interaction Between Customer and Provider
+                               Orchestrations
+
+   Figure 4 shows the positioning of the AC service model in the overall
+   service delivery process, with a focus the provider.
 
                                .---------------.
                                |   Customer    |
@@ -605,7 +627,8 @@ Table of Contents
                     '--------------------------------'
        Site A                                                  Site B
 
-                   Figure 3: An Example of AC Model Usage
+      Figure 4: An Example of AC Model Usage (Focus on the Provider's
+                                 Internals)
 
    In order to ease the mapping between the service model and underlying
    network models (e.g., the L3VPN Network Model (L3NM), SAP), the name
@@ -619,7 +642,7 @@ Table of Contents
 
 5.1.  The Bearer Service ("ietf-bearer-svc") YANG Module
 
-   Figure 4 shows the tree for managing the bearers (that is, the
+   Figure 5 shows the tree for managing the bearers (that is, the
    properties of an attachment that are below Layer 3).  A bearer can be
    a physical or logical link (e.g., LAG [IEEE802.1AX]).  Also, a bearer
    can be a wireless or wired link.  A reference to a bearer is
@@ -712,7 +735,7 @@ Table of Contents
                   +--ro status?        identityref
                   +--ro last-change?   yang:date-and-time
 
-                  Figure 4: Bearer Service Tree Structure
+                  Figure 5: Bearer Service Tree Structure
 
    In some deployments, a customer may first retrieve a list of
    available presence locations before actually placing an order for a
@@ -884,7 +907,7 @@ Table of Contents
 5.2.1.  Overall Structure
 
    The overall tree structure of the AC service module is shown in
-   Figure 5.
+   Figure 6.
 
               +--rw specific-provisioning-profiles
               |  ...
@@ -910,7 +933,7 @@ Table of Contents
                     +--rw service
                        ...
 
-                Figure 5: Overall AC Service Tree Structure
+                Figure 6: Overall AC Service Tree Structure
 
    The rationale for deciding whether a reusable grouping should be
    maintained in this document or be moved into the AC common module
@@ -945,7 +968,7 @@ Table of Contents
 
 5.2.2.1.  Description
 
-   The 'specific-provisioning-profiles' container (Figure 6) can be used
+   The 'specific-provisioning-profiles' container (Figure 7) can be used
    by a service provider to maintain a set of reusable profiles.  The
    profiles definitions are similar to those defined in [RFC9181],
    including: Quality of Service (QoS), BFD, forwarding, and routing
@@ -990,9 +1013,9 @@ Table of Contents
                  +--rw service
                     ...
 
-                         Figure 6: Service Profiles
+                         Figure 7: Service Profiles
 
-   As shown in Figure 6, two profile types can be defined: 'specific-
+   As shown in Figure 7, two profile types can be defined: 'specific-
    provisioning-profiles' and 'service-provisioning-profiles'.  Whether
    only specific profiles, service profiles, or a combination thereof
    are used is local to each service provider.
@@ -1033,7 +1056,7 @@ Table of Contents
    Each profile is identified by 'name'.  Some of the data nodes can be
    adjusted at the 'ac' level.  These adjusted values take precedence
    over the global values.  The structure of 'ac-group-profile' is
-   similar to the one used to model each 'ac' (Figure 8).
+   similar to the one used to model each 'ac' (Figure 9).
 
 5.2.4.  AC Placement Contraints
 
@@ -1043,7 +1066,7 @@ Table of Contents
    constraints is defined in [RFC9181] (see 'placement-diversity', in
    particular).
 
-   The structure of 'placement-constraints' is shown in Figure 7.
+   The structure of 'placement-constraints' is shown in Figure 8.
 
              +--rw specific-provisioning-profiles
              |  ...
@@ -1067,11 +1090,11 @@ Table of Contents
                 +--rw ac* [name]
                    ...
 
-             Figure 7: Placement Constraints Subtree Structure
+             Figure 8: Placement Constraints Subtree Structure
 
 5.2.5.  Attachment Circuits
 
-   The structure of 'attachment-circuits' is shown in Figure 8.
+   The structure of 'attachment-circuits' is shown in Figure 9.
 
     +--rw specific-provisioning-profiles
     |  ...
@@ -1123,7 +1146,7 @@ Table of Contents
           +--rw service
              ...
 
-               Figure 8: Attachment Circuits Tree Structure
+               Figure 9: Attachment Circuits Tree Structure
 
    The description of the data nodes is as follows:
 
@@ -1214,7 +1237,7 @@ Table of Contents
 
 5.2.5.1.  Layer 2 Connection Structure
 
-   The 'l2-connection' container (Figure 9) is used to configure the
+   The 'l2-connection' container (Figure 10) is used to configure the
    relevant Layer 2 properties of an AC including: encapsulation details
    and tunnel terminations.  For the encapsulation details, the model
    supports the definition of the type as well as the Identifiers (e.g.,
@@ -1282,7 +1305,7 @@ Table of Contents
               +--rw service
                  ...
 
-                Figure 9: Layer 2 Connection Tree Structure
+                Figure 10: Layer 2 Connection Tree Structure
 
 5.2.5.2.  IP Connection Structure
 
@@ -1292,7 +1315,7 @@ Table of Contents
    defined in [I-D.ietf-opsawg-teas-common-ac].  Both IPv4 and IPv6
    parameters are supported.
 
-   Figure 10 shows the structure of the IPv4 connection.
+   Figure 11 shows the structure of the IPv4 connection.
 
            | ...
            +--rw ip-connection  {ac-common:layer3-ac}?
@@ -1336,9 +1359,9 @@ Table of Contents
            |  +--rw ipv6 {vpn-common:ipv6}?
            |     ...
 
-            Figure 10: Layer 3 Connection Tree Structure (IPv4)
+            Figure 11: Layer 3 Connection Tree Structure (IPv4)
 
-   Figure 11 shows the structure of the IPv6 connection.
+   Figure 12 shows the structure of the IPv6 connection.
 
            | ...
            +--rw ip-connection  {ac-common:layer3-ac}?
@@ -1383,11 +1406,11 @@ Table of Contents
            |                         {vpn-common:bfd}?
            | ...
 
-            Figure 11: Layer 3 Connection Tree Structure (IPv6)
+            Figure 12: Layer 3 Connection Tree Structure (IPv6)
 
 5.2.5.3.  Routing
 
-   As shown in the tree depicted in Figure 12, the 'routing-protocols'
+   As shown in the tree depicted in Figure 13, the 'routing-protocols'
    container defines the required parameters to enable the desired
    routing features for an AC.  One or more routing protocols can be
    associated with an AC.  Such routing protocols will be then enabled
@@ -1445,11 +1468,11 @@ Table of Contents
                  +--rw service
                     ...
 
-                     Figure 12: Routing Tree Structure
+                     Figure 13: Routing Tree Structure
 
 5.2.5.3.1.  Static Routing
 
-   The static tree structure is shown in Figure 13.
+   The static tree structure is shown in Figure 14.
 
            |  ...
            +--rw routing-protocols
@@ -1506,9 +1529,9 @@ Table of Contents
            |     +--rw vrrp {vpn-common:rtg-vrrp}?
            |        ...
 
-                  Figure 13: Static Routing Tree Structure
+                  Figure 14: Static Routing Tree Structure
 
-   As depicted in Figure 13, the following data nodes can be defined for
+   As depicted in Figure 14, the following data nodes can be defined for
    a given IP prefix:
 
    'lan-tag':  Indicates a local tag (e.g., "myfavorite-lan") that is
@@ -1542,7 +1565,7 @@ Table of Contents
    session, share authentication parameters, bind the session to a
    forwarding protection profile, etc.).
 
-   The BGP tree structure is shown in Figure 14.
+   The BGP tree structure is shown in Figure 15.
 
            |  ...
            +--rw routing-protocols
@@ -1633,7 +1656,7 @@ Table of Contents
            |     +--rw vrrp {vpn-common:rtg-vrrp}?
            |        ...
 
-                       Figure 14: BGP Tree Structure
+                       Figure 15: BGP Tree Structure
 
    For deployment cases where an AC service request includes a list of
    neighors with redundant information, the ACaaS allows to factorize
@@ -1726,7 +1749,7 @@ Table of Contents
 
 5.2.5.3.3.  OSPF
 
-   The OSPF tree structure is shown in Figure 15.
+   The OSPF tree structure is shown in Figure 16.
 
             |  ...
             +--rw routing-protocols
@@ -1769,7 +1792,7 @@ Table of Contents
             |     +--rw vrrp {vpn-common:rtg-vrrp}?
             |        ...
 
-                       Figure 15: OSPF Tree Structure
+                       Figure 16: OSPF Tree Structure
 
    The following OSPF data nodes are supported:
 
@@ -1793,7 +1816,7 @@ Table of Contents
 
 5.2.5.3.4.  IS-IS
 
-   The IS-IS tree structure is shown in Figure 16.
+   The IS-IS tree structure is shown in Figure 17.
 
             |  ...
             +--rw routing-protocols
@@ -1835,7 +1858,7 @@ Table of Contents
             |     +--rw vrrp {vpn-common:rtg-vrrp}?
             |      ...
 
-                      Figure 16: IS-IS Tree Structure
+                      Figure 17: IS-IS Tree Structure
 
    The following IS-IS data nodes are supported:
 
@@ -1853,7 +1876,7 @@ Table of Contents
 
 5.2.5.3.5.  RIP
 
-   The RIP tree structure is shown in Figure 17.
+   The RIP tree structure is shown in Figure 18.
 
             |  ...
             +--rw routing-protocols
@@ -1893,7 +1916,7 @@ Table of Contents
             |     +--rw vrrp {vpn-common:rtg-vrrp}?
             |      ...
 
-                       Figure 17: RIP Tree Structure
+                       Figure 18: RIP Tree Structure
 
    'address-family' indicates whether IPv4, IPv6, or both address
    families are to be activated.  For example, this parameter is used to
@@ -1903,7 +1926,7 @@ Table of Contents
 5.2.5.3.6.  VRRP
 
    The model supports the Virtual Router Redundancy Protocol (VRRP)
-   [RFC9568] on an AC (Figure 18).
+   [RFC9568] on an AC (Figure 19).
 
               |  ...
               +--rw routing-protocols
@@ -1933,7 +1956,7 @@ Table of Contents
               |              +--ro status?        identityref
               |              +--ro last-change?   yang:date-and-time
 
-                       Figure 18: VRRP Tree Structure
+                       Figure 19: VRRP Tree Structure
 
    The following data nodes are supported:
 
@@ -1949,7 +1972,7 @@ Table of Contents
 
 5.2.5.4.  Operations, Administration, and Maintenance (OAM)
 
-   As shown in the tree depicted in Figure 19, the 'oam' container
+   As shown in the tree depicted in Figure 20, the 'oam' container
    defines OAM-related parameters of an AC.
 
         +--rw specific-provisioning-profiles
@@ -1990,7 +2013,7 @@ Table of Contents
               +--rw service
                  ...
 
-                       Figure 19: OAM Tree Structure
+                       Figure 20: OAM Tree Structure
 
    This version of the module supports BFD.  The following BFD data
    nodes can be specified:
@@ -2012,7 +2035,7 @@ Table of Contents
 
 5.2.5.5.  Security
 
-   As shown in the tree depicted in Figure 20, the 'security' container
+   As shown in the tree depicted in Figure 21, the 'security' container
    defines a set of AC security parameters.
 
            +--rw specific-provisioning-profiles
@@ -2049,7 +2072,7 @@ Table of Contents
                  +--rw service
                     ...
 
-                     Figure 20: Security Tree Structure
+                     Figure 21: Security Tree Structure
 
    The 'security' container specifies a minimum set of encryption-
    related parameters that can be requested to be applied to traffic for
@@ -2061,7 +2084,7 @@ Table of Contents
 
 5.2.5.6.  Service
 
-   The structure of the 'service' container is depicted in Figure 21.
+   The structure of the 'service' container is depicted in Figure 22.
 
        +--rw specific-provisioning-profiles
        |  ...
@@ -2136,7 +2159,7 @@ Table of Contents
                       +--rw acl-profile* [profile]
                          +--rw profile    forwarding-profile-reference
 
-                    Figure 21: Bandwidth Tree Structure
+                    Figure 22: Bandwidth Tree Structure
 
    The 'service' container defines the following data nodes:
 
@@ -4328,7 +4351,7 @@ Appendix A.  Examples
 A.1.  Create a New Bearer
 
    An example of a request message body to create a bearer is shown in
-   Figure 22.
+   Figure 23.
 
    {
      "ietf-bearer-svc:bearers": {
@@ -4348,10 +4371,10 @@ A.1.  Create a New Bearer
      }
    }
 
-        Figure 22: Example of a Message Body to Create a New Bearer
+        Figure 23: Example of a Message Body to Create a New Bearer
 
    A "bearer-reference" is then generated by the controller for this
-   bearer.  Figure 23 shows the example of a response message body that
+   bearer.  Figure 24 shows the example of a response message body that
    is sent by the controller to reply to a GET request:
 
    {
@@ -4374,7 +4397,7 @@ A.1.  Create a New Bearer
      }
    }
 
-       Figure 23: Example of a Response Message Body with the Bearer
+       Figure 24: Example of a Response Message Body with the Bearer
                                  Reference
 
    Note that the response also indicates that Sync Phy mechanism is
@@ -4383,7 +4406,7 @@ A.1.  Create a New Bearer
 A.2.  Create an AC over an Existing Bearer
 
    An example of a request message body to create a simple AC over an
-   existing bearer is shown in Figure 24.  The bearer reference is
+   existing bearer is shown in Figure 25.  The bearer reference is
    assumed to be known to both the customer and the network provider.
    Such a reference can be retrieved, e.g., following the example
    described in Appendix A.1 or using other means (including, exchanged
@@ -4407,10 +4430,10 @@ A.2.  Create an AC over an Existing Bearer
      }
    }
 
-       Figure 24: Example of a Message Body to Request an AC over an
+       Figure 25: Example of a Message Body to Request an AC over an
                               Existing Bearer
 
-   Figure 25 shows the message body of a GET response received from the
+   Figure 26 shows the message body of a GET response received from the
    controller and which indicates the "cvlan-id" that was assigned for
    the requested AC.
 
@@ -4436,13 +4459,13 @@ A.2.  Create an AC over an Existing Bearer
      }
    }
 
-       Figure 25: Example of a Message Body of a Response to Assign a
+       Figure 26: Example of a Message Body of a Response to Assign a
                                   CVLAN ID
 
 A.3.  Create an AC for a Known Peer SAP
 
    An example of a request to create a simple AC, when the peer SAP is
-   known, is shown in Figure 26.  In this example, the peer SAP
+   known, is shown in Figure 27.  In this example, the peer SAP
    identifier points to an identifier of an SF.  The (topological)
    location of that SF is assumed to be known to the network controller.
    For example, this can be determined as part of an on-demand procedure
@@ -4464,9 +4487,9 @@ A.3.  Create an AC for a Known Peer SAP
      }
    }
 
-   Figure 26: Example of a Message Body to Request an AC with a Peer SAP
+   Figure 27: Example of a Message Body to Request an AC with a Peer SAP
 
-   Figure 27 shows the received GET response with the required
+   Figure 28 shows the received GET response with the required
    informaiton to connect the SF.
 
    {
@@ -4493,14 +4516,14 @@ A.3.  Create an AC for a Known Peer SAP
      }
    }
 
-      Figure 27: Example of a Message Body of a Response to Create an
+      Figure 28: Example of a Message Body of a Response to Create an
                              AC with a Peer SAP
 
 A.4.  One CE, Two ACs
 
    Let us consider the example of an eNodeB (CE) that is directly
    connected to the access routers of the mobile backhaul (see
-   Figure 28).  In this example, two ACs are needed to service the
+   Figure 29).  In this example, two ACs are needed to service the
    eNodeB (e.g., distinct VLANs for Control and User Planes).
 
    .-------------.                  .------------------.
@@ -4517,10 +4540,10 @@ A.4.  One CE, Two ACs
                                     |                  |
                                     '------------------'
 
-                     Figure 28: Example of a CE-PE ACs
+                     Figure 29: Example of a CE-PE ACs
 
    An example of a request to create the ACs to service the eNodeB is
-   shown in Figure 29.  This example assumes that static addressing is
+   shown in Figure 30.  This example assumes that static addressing is
    used for both ACs.
 
    =============== NOTE: '\' line wrapping per RFC 8792 ================
@@ -4588,10 +4611,10 @@ A.4.  One CE, Two ACs
      }
    }
 
-       Figure 29: Example of a Message Body to Request Two ACs on the
+       Figure 30: Example of a Message Body to Request Two ACs on the
                         Same Link (Not Recommended)
 
-   Figure 30 shows the message body of a GET response received from the
+   Figure 31 shows the message body of a GET response received from the
    controller.
 
    {
@@ -4687,11 +4710,11 @@ A.4.  One CE, Two ACs
      }
    }
 
-      Figure 30: Example of a Message Body of a Response to Create Two
+      Figure 31: Example of a Message Body of a Response to Create Two
                    ACs on the Same Link (Not Recommended)
 
-   The example shown Figure 30 is not optimal as it includes many
-   redundant data.  Figure 31 shows a more compact request that
+   The example shown Figure 31 is not optimal as it includes many
+   redundant data.  Figure 32 shows a more compact request that
    factorizes all the redundant data.
 
    {
@@ -4765,11 +4788,11 @@ A.4.  One CE, Two ACs
      }
    }
 
-       Figure 31: Example of a Message Body to Request Two ACs on the
+       Figure 32: Example of a Message Body to Request Two ACs on the
                           Same Link (Node Profile)
 
    A customer may request adding a new AC by simply referring to an
-   existing per-node AC profile as shown in Figure 32.  This AC inherits
+   existing per-node AC profile as shown in Figure 33.  This AC inherits
    all the data that was enclosed in the indicated per-node AC profile
    (IP addressing, routing, etc.).
 
@@ -4801,7 +4824,7 @@ A.4.  One CE, Two ACs
      }
    }
 
-        Figure 32: Example of a Message Body to Add a new AC over an
+        Figure 33: Example of a Message Body to Add a new AC over an
                         existing link (Node Profile)
 
 A.5.  Control Precedence over Multiple ACs
@@ -4809,7 +4832,7 @@ A.5.  Control Precedence over Multiple ACs
    When multiple ACs are requested by the same customer for the same
    site, the request can tag one of these ACs as "primary" and the other
    ones as "secondary".  An example of such a request is shown in
-   Figure 34.  In this example, both ACs are bound to the same "group-
+   Figure 35.  In this example, both ACs are bound to the same "group-
    id", and the "precedence" data node is set as a function of the
    intended role of each AC (primary or secondary).
 
@@ -4825,7 +4848,7 @@ A.5.  Control Precedence over Multiple ACs
                     bearerY@site1   |   |
                                     '---'
 
-        Figure 33: An Example Topology for AC Precedence Enforcement
+        Figure 34: An Example Topology for AC Precedence Enforcement
 
    =============== NOTE: '\' line wrapping per RFC 8792 ================
 
@@ -4864,12 +4887,12 @@ A.5.  Control Precedence over Multiple ACs
      }
    }
 
-       Figure 34: Example of a Message Body to Associate a Precedence
+       Figure 35: Example of a Message Body to Associate a Precedence
                                Level with ACs
 
 A.6.  Create Multiple ACs Bound to Multiple CEs
 
-   Figure 35 shows an example of CEs that are interconnected by a
+   Figure 36 shows an example of CEs that are interconnected by a
    service provider network.
 
                       .----------------------------------.
@@ -4882,10 +4905,10 @@ A.6.  Create Multiple ACs Bound to Multiple CEs
          '----'       |                                  |       '----'
                       '----------------------------------'
 
-                    Figure 35: Network Topology Example
+                    Figure 36: Network Topology Example
 
    Let's assume that a request to instantiate various ACs that are shown
-   in Figure 35 is sent by the customer.  Figure 36 depicts the example
+   in Figure 36 is sent by the customer.  Figure 37 depicts the example
    of the message body of a GET response that is received from the
    controller.
 
@@ -4949,7 +4972,7 @@ A.6.  Create Multiple ACs Bound to Multiple CEs
      }
    }
 
-        Figure 36: Example of a Message Body of a Request to Create
+        Figure 37: Example of a Message Body of a Request to Create
                      Multiple ACs bound to Multiple CEs
 
 A.7.  Binding Attachment Circuits to an IETF Network Slice
@@ -4959,7 +4982,7 @@ A.7.  Binding Attachment Circuits to an IETF Network Slice
    [I-D.ietf-teas-ietf-network-slice-nbi-yang] to connect a site to a
    Slice Service.
 
-   First, Figure 37 describes the end-to-end network topology as well
+   First, Figure 38 describes the end-to-end network topology as well
    the orchestration scopes:
 
    *  The topology is made up of two sites ("site1" and "site2"),
@@ -4997,9 +5020,9 @@ A.7.  Binding Attachment Circuits to an IETF Network Slice
                Physical Link ID:           Physical Link ID:
                  bearerX@site1               bearerX@site2
 
-     Figure 37: An Example of a Network Topology Used to Deploy Slices
+     Figure 38: An Example of a Network Topology Used to Deploy Slices
 
-   Figure 38 describes the logical connectivity enforced thanks to both
+   Figure 39 describes the logical connectivity enforced thanks to both
    IETF Network Slice and ACaaS models.
 
                                 AS 65536  <----BGP--> AS 65550
@@ -5034,9 +5057,9 @@ A.7.  Binding Attachment Circuits to an IETF Network Slice
                    peer-as: 65550 (customer ASN)
                    remote-address: 192.0.2.5 (Customer address)
 
-                        Figure 38: Logical Overview
+                        Figure 39: Logical Overview
 
-   Figure 39 shows the message body of the request to create the
+   Figure 40 shows the message body of the request to create the
    required ACs using the ACaaS module.
 
    =============== NOTE: '\' line wrapping per RFC 8792 ================
@@ -5123,9 +5146,9 @@ A.7.  Binding Attachment Circuits to an IETF Network Slice
      }
    }
 
-        Figure 39: Message Body of a Request to Create Required ACs
+        Figure 40: Message Body of a Request to Create Required ACs
 
-   Figure 40 shows the message body of a response to a GET request
+   Figure 41 shows the message body of a response to a GET request
    received from the controller.
 
    {
@@ -5225,11 +5248,11 @@ A.7.  Binding Attachment Circuits to an IETF Network Slice
      }
    }
 
-     Figure 40: Example of a Message Body of a Response Indicating the
+     Figure 41: Example of a Message Body of a Response Indicating the
                             Creation of the ACs
 
-   Figure 41 shows the message body of the request to create a Slice
-   Service bound to the ACs created using Figure 39.  Only references to
+   Figure 42 shows the message body of the request to create a Slice
+   Service bound to the ACs created using Figure 40.  Only references to
    these ACs are included in the Slice Service request.
 
    =============== NOTE: '\' line wrapping per RFC 8792 ================
@@ -5272,12 +5295,12 @@ A.7.  Binding Attachment Circuits to an IETF Network Slice
      }
    }
 
-       Figure 41: Message Body of a Request to Create a Slice Service
+       Figure 42: Message Body of a Request to Create a Slice Service
                             Referring to the ACs
 
 A.8.  Connecting a Virtualized Environment Running in a Cloud Provider
 
-   This example (Figure 42) shows how the AC service model can be used
+   This example (Figure 43) shows how the AC service model can be used
    to connect a Cloud Infrastructure to a service provider network.
    This example makes the following assumptions:
 
@@ -5332,9 +5355,9 @@ A.8.  Connecting a Virtualized Environment Running in a Cloud Provider
        |                                                        |
        '--------------------------------------------------------'
 
-      Figure 42: An Example of Realization for Connecting a Cloud Site
+      Figure 43: An Example of Realization for Connecting a Cloud Site
 
-   Figure 43 illustrates the pre-provisioning logic for the physical
+   Figure 44 illustrates the pre-provisioning logic for the physical
    connection to the Cloud Provider.  After this connection is delivered
    to the service provider, the network inventory is updated with
    "bearer-reference" set to the value of the "Connection Identifier".
@@ -5356,7 +5379,7 @@ Orchestration       DIRECT INTERCONNECTION ORDERING (API)       Provider
        Network Inventory Updated with:
          bearer-reference: 1234-56789 for PE1/Interface "If-A"
 
-             Figure 43: Illustration of Pre-provisioning
+             Figure 44: Illustration of Pre-provisioning
 
    Next, API workflows can be initiated by:
 
@@ -5367,7 +5390,7 @@ Orchestration       DIRECT INTERCONNECTION ORDERING (API)       Provider
       L3SM (VPN provisioning) or Network Slice Service model (5G hybrid
       Cloud deployment).
 
-   Figure 44 shows the message body of the request to create the
+   Figure 45 shows the message body of the request to create the
    required ACs to connect the Cloud Provider Virtualized (VM) using the
    Attachment Circuit module.
 
@@ -5414,10 +5437,10 @@ Orchestration       DIRECT INTERCONNECTION ORDERING (API)       Provider
      }
    }
 
-         Figure 44: Message Body of a Request to Create the ACs for
+         Figure 45: Message Body of a Request to Create the ACs for
                       Connecting to the Cloud Provider
 
-   Figure 45 shows the message body of the response received from the
+   Figure 46 shows the message body of the response received from the
    provider as a response to a query message.  Note that this Cloud
    Provider mandates the use of MD5 authentication for establishing BGP
    connections.
@@ -5487,14 +5510,14 @@ Orchestration       DIRECT INTERCONNECTION ORDERING (API)       Provider
      }
    }
 
-       Figure 45: Message Body of a Response to the Request to Create
+       Figure 46: Message Body of a Response to the Request to Create
                   ACs for Connecting to the Cloud Provider
 
 A.9.  Connect Customer Network Through BGP
 
    CE-PE routing using BGP is a common scenario in the context of MPLS
    VPNs and is widely used in enterprise networks.  In the example
-   depicted in Figure 46, the CE routers are customer-owned devices
+   depicted in Figure 47, the CE routers are customer-owned devices
    belonging to an AS (ASN 65536).  CEs are located at the edge of the
    provider's network (PE, or Provider Edge) and use point-to-point
    interfaces to establish BGP sessions.  The point-to-point interfaces
@@ -5523,7 +5546,7 @@ A.9.  Connect Customer Network Through BGP
    |        '------------'  |
    '------------------------'
 
-            Figure 46: Illustration of Provider Network Scenario
+            Figure 47: Illustration of Provider Network Scenario
 
    The attachment circuit in this case use a SAP identifier to refer to
    the physical interface used for the connection between the PE and the
@@ -5596,7 +5619,7 @@ A.9.  Connect Customer Network Through BGP
      }
    }
 
-     Figure 47: Message Body of a Request to Create ACs for Connecting
+     Figure 48: Message Body of a Request to Create ACs for Connecting
                          CEs to a Provider Network
 
    This scenario allows the provider to maintain a list of ACs belonging
@@ -5622,7 +5645,7 @@ A.10.  Interconnection via Internet eXchange Points (IXPs)
 
 A.10.1.  Retrieve Interconnection Locations
 
-   Figure 48 shows an example a message body of a request to retrieve a
+   Figure 49 shows an example a message body of a request to retrieve a
    list of interconnection locations.  The request includes a customer
    name and an ASN to filter out the locations.
 
@@ -5638,10 +5661,10 @@ A.10.1.  Retrieve Interconnection Locations
      }
    }
 
-      Figure 48: Message Body of a Request to Retrieve Interconnection
+      Figure 49: Message Body of a Request to Retrieve Interconnection
                                  Locations
 
-   Figure 49 provides an example of a response to a query received from
+   Figure 50 provides an example of a response to a query received from
    the server with a list of available interconnection locations.
 
    {
@@ -5665,15 +5688,15 @@ A.10.1.  Retrieve Interconnection Locations
      }
    }
 
-     Figure 49: Message Body of a Response to Retrieve Interconnection
+     Figure 50: Message Body of a Response to Retrieve Interconnection
                                  Locations
 
 A.10.2.  Create Bearers and Retrieve Bearer References
 
    A peer can then use the location information and select the ones
-   where it can request new bearers.  As shown in Figure 50, the request
+   where it can request new bearers.  As shown in Figure 51, the request
    includes a location reference which is known to the server (returned
-   in Figure 49).
+   in Figure 50).
 
    {
      "ietf-bearer-svc:bearers": {
@@ -5693,10 +5716,10 @@ A.10.2.  Create Bearers and Retrieve Bearer References
      }
    }
 
-      Figure 50: Message Body of a Request to Create a Bearer using a
+      Figure 51: Message Body of a Request to Create a Bearer using a
                         Provider- Assigned Reference
 
-   The bearer is then activated by the server as shown in Figure 51.  A
+   The bearer is then activated by the server as shown in Figure 52.  A
    "bearer-reference" is also returned.  That reference can be used for
    subsequent AC activation requests.
 
@@ -5724,12 +5747,12 @@ A.10.2.  Create Bearers and Retrieve Bearer References
      }
    }
 
-      Figure 51: Message Body of a Response for a Bearer Created in a
+      Figure 52: Message Body of a Response for a Bearer Created in a
                              Specific Location
 
 A.10.3.  Manage ACs and BGP Sessions
 
-   As depicted in Figure 52, each network connects to the IXP switch via
+   As depicted in Figure 53, each network connects to the IXP switch via
    a bearer over which an AC is created.
 
    .----------------------.
@@ -5758,9 +5781,9 @@ A.10.3.  Manage ACs and BGP Sessions
    |                      |
    '----------------------'
 
-                 Figure 52: Simple Interconnection Topology
+                 Figure 53: Simple Interconnection Topology
 
-   The AC configuration (Figure 53) includes parameters such as VLAN
+   The AC configuration (Figure 54) includes parameters such as VLAN
    configuration, IP addresses, MTU, and any additional settings
    required for connectivity.  The peering location is inferred from the
    "bearer-reference".
@@ -5787,10 +5810,10 @@ A.10.3.  Manage ACs and BGP Sessions
      }
    }
 
-      Figure 53: Message Body of a Request to Create an AC to Connect
+      Figure 54: Message Body of a Request to Create an AC to Connect
                                  to an IXP
 
-   Figure 54 shows the received response to a query with the required
+   Figure 55 shows the received response to a query with the required
    information for the activation of the AC.
 
    {
@@ -5831,14 +5854,14 @@ A.10.3.  Manage ACs and BGP Sessions
      }
    }
 
-     Figure 54: Message Body of a Response to an AC Request to Connect
+     Figure 55: Message Body of a Response to an AC Request to Connect
                                  to an IXP
 
    Once the ACs are established, BGP peering sessions can be configured
    between routers of the participating networks.  BGP sessions can be
    established via a route server or between two networks.  For the sake
    of illustration, let us assume that BGP sessions are established
-   directly between two network.  Figure 55 shows an example of a
+   directly between two network.  Figure 56 shows an example of a
    request to add a BGP session to an existing AC.  The properties of
    that AC are not repeated in this request because that information is
    already communicated during the creation of the AC.
@@ -5884,10 +5907,10 @@ A.10.3.  Manage ACs and BGP Sessions
      }
    }
 
-     Figure 55: Message Body of a Request to Create a BGP Session over
+     Figure 56: Message Body of a Request to Create a BGP Session over
                                    an AC
 
-   Figure 56 provides the example of a response which indicates that the
+   Figure 57 provides the example of a response which indicates that the
    request is awaiting validation.  The response includes also a server-
    assigned reference for this BGP session.
 
@@ -5938,7 +5961,7 @@ A.10.3.  Manage ACs and BGP Sessions
      }
    }
 
-      Figure 56: Message Body of a Response for a BGP Session Awaiting
+      Figure 57: Message Body of a Response for a BGP Session Awaiting
                                  Validation
 
    Once validation is accomplished, a status update is communicated back
@@ -6011,7 +6034,7 @@ A.10.3.  Manage ACs and BGP Sessions
      }
    }
 
-       Figure 57: Message Body of a Response to Report All Active BGP
+       Figure 58: Message Body of a Response to Report All Active BGP
                             sessions over an AC
 
 A.11.  Connectivity of Cloud Network Functions
@@ -6052,7 +6075,7 @@ A.11.1.  Scope
 
 A.11.2.  Physical Infrastructure
 
-   Figure 58 describes the physical infrastructure.  The compute nodes
+   Figure 59 describes the physical infrastructure.  The compute nodes
    (customer) are attached to the provider infrastructure thanks to a
    set of physical links on which attachment circuits are provisioned
    (i.e., "compute-XX-nicY").  The provider infrastructure can be
@@ -6081,7 +6104,7 @@ A.11.2.  Physical Infrastructure
     '------------'                        |                           |
                                           '---------------------------'
 
-         Figure 58: Example Physical Topology for Cloud Deployment
+         Figure 59: Example Physical Topology for Cloud Deployment
 
 A.11.3.  NFs Deployment
 
@@ -6173,10 +6196,10 @@ A.11.3.  NFs Deployment
     |203.0.113.96/28, NH = 192.0.2.7    |
     '-----------------------------------'
 
-             Figure 59: Logical Topology of the NFs Deployment
+             Figure 60: Logical Topology of the NFs Deployment
 
    For readability the payload is displayed as single JSON file
-   (Figure 60).  In practice, several API calls may take place to
+   (Figure 61).  In practice, several API calls may take place to
    initialize these resources (e.g., GET requests from the customer to
    retrieve the IP address pools for NFs on "vlan 100" thanks to parent
    configuration and BGP configuration, and POST extra routes for user
@@ -6469,7 +6492,7 @@ A.11.3.  NFs Deployment
      }
    }
 
-        Figure 60: Message Body for the Configuration of the NF ACs
+        Figure 61: Message Body for the Configuration of the NF ACs
 
 A.11.4.  NF Failure and Scale-Out
 
@@ -6509,7 +6532,7 @@ A.11.4.  NF Failure and Scale-Out
     |'------'|                               |                       |
     compute-08                               '-----------------------'
 
-            Figure 61: Example of Compute Failure and Scale-out
+            Figure 62: Example of Compute Failure and Scale-out
 
    Finally, the addition or deletion of compute nodes in the deployment
    ("compute-11", "compute-12", etc.) involves merely changes on Child
@@ -6525,7 +6548,7 @@ A.11.4.  NF Failure and Scale-Out
 
 A.12.  BFD and Static Addressing
 
-   Figure 62 shows a topology example of a set of CEs connected to a
+   Figure 63 shows a topology example of a set of CEs connected to a
    provider network via dedicated bearers.  Each of these CE maintains
    two BFD sessions with the provider network.
 
@@ -6551,10 +6574,10 @@ A.12.  BFD and Static Addressing
    |   CEx  | .x <---bfd---> .252
    +--------+    <---bfd---> .253
 
-              Figure 62: Example of Static Addressing with BFD
+              Figure 63: Example of Static Addressing with BFD
 
-   Figure 63 shows the message body of the ACaaS configuration to enable
-   the target architecture shown in Figure 62.  This example uses an AC
+   Figure 64 shows the message body of the ACaaS configuration to enable
+   the target architecture shown in Figure 63.  This example uses an AC
    group profile to factorize common data between all involved ACs.  It
    also uses child ACs that inherit the properties of two parent ACs;
    each terminating in a separate gateway in the provider network.
@@ -6681,7 +6704,7 @@ A.12.  BFD and Static Addressing
      }
    }
 
-      Figure 63: Message Body for the Configuration of CEs with Static
+      Figure 64: Message Body for the Configuration of CEs with Static
                        Addressing and BFD Protection
 
 Acknowledgments
