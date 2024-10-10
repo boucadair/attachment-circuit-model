@@ -338,7 +338,7 @@ The procedure to provision a service in a service provider network may depend on
 '----------^-----------'                     '---------^----------'
            |                                           |
       Provisioning                                Provisioning
-           |                                           | 
+           |                                           |
 .----------v-----------.                     .---------v----------.
 |                      |========Bearer=======|                    |
 |    Customer Site     +----------AC---------|  Provider Network  |
