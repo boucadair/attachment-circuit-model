@@ -710,7 +710,7 @@ As depicted in {{static-rtg-svc-tree}}, the following data nodes can be defined 
 
 ##### BGP {#sec-bgp-rtg}
 
-An AC service request with BGP routing SHOULD include at least the customer's AS Number (ASN) and an address family.
+An AC service activation with BGP routing SHOULD include at least the customer's AS Number (ASN) and the provider's ASN.
 Additional information can be supplied by a customer in a request or exposed by a provider in a response to a query request
 in order ease the process of automating the provisioning of BGP sessions (the customer does not use the primary IP address
 to establish the underlying BGP session, communicate the provider's IP address used to establish the BGP session,
