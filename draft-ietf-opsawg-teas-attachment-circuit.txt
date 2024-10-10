@@ -580,7 +580,7 @@ Table of Contents
     .----------v-----------.                     .---------v----------.
     |                      |========Bearer=======|                    |
     |    Customer Site     +----------AC---------|  Provider Network  |
-    |                      |========Bearers======|                    |
+    |                      |========Bearer=======|                    |
     '----------------------'                     '--------------------'
 
        Figure 3: Example of Interaction Between Customer and Provider
@@ -594,22 +594,15 @@ Table of Contents
    for a given service request or create child service requests is
    deployment specific.
 
-    .----------------------.     Bearer/AC       .--------------------.
-    |      Customer        |    Service Models   |      Service       |
-    |   Service Ordering   | <-----------------> |       Broker       |
-    |                      |                     |                    |
-    '----------------------'                     '---------^----------'
-                                                           |
-                                                       Bearer/AC
-                                                     Service Models
-                                                           |
-                                                 .---------v----------.
-                                                 |                    |
-                                                 |       Provider     |
-                                                 |                    |
-                                                 '--------------------'
+.----------.   Bearer/AC    .----------.   Bearer/AC    .--------------.
+| Customer | Service Models | Service  | Service Model  |   Provider    |
+| Service  |<-------------->|  Broker  |<-------------->| Service Order |
+| Ordering |                |  B2B C/S |                |    Handling   |
+'----------'                '----------'                '---------------'
 
-                 Figure 4: Example of Recursive Deployment
+B2B C/S: Back-to-back Client/Server
+
+              Figure 4: Example of Recursive Deployment
 
    Figure 5 shows the positioning of the AC service model in the overall
    service delivery process, with a focus the provider.
@@ -5665,26 +5658,44 @@ A.10.  Interconnection via Internet eXchange Points (IXPs)
    zooming into IXP deployment specifics.  Let us assume that networks
    are interconnected via a Layer 2 facility.  Let us also assume a
    deployment context where selective peering is in place between these
-   networks.  BGP is used to exchange routing information and
-   reachability announcements between those networks.
-
-   The same approach can be used to negotiate interconnection between
-   two networks without involving an IXP.
+   networks.  Networks that are interested in establishing selective BGP
+   peerings expose a dedicated ACaaS server to the IXP.  BGP is used to
+   exchange routing information and reachability announcements between
+   those networks.
 
    This example follows the recursive deployment model depicted in
    Figure 4.  Specifically, base bearer/AC service requests are handled
    locally by the IXP.  However, binding BGP sessions to existing ACs
-   involves a recursion step.  Networks that are interested in
-   establishing selective BGP peerings exposes a a dedicated ACaaS
-   server to the IXP.
+   involves a recursion step.
+
+.----------.   Bearer/AC    .----------.       AC      .--------------.
+| Customer | Service Models |    IXP   | Service Model  |   Provider    |
+| Service  |<-------------->| Operator |<-------------->| Service Order |
+| Ordering |                |  B2B C/S |                |    Handling   |
+'-----^----'                '-----^----'                '-------^-------'
+      |                           |                             |
+      |                           |                             |
+ Provisioning                Provisioning                  Provisioning
+      |                           |                             |
+.-----v----.                .-----v----.                .-------v-------.
+|   ASBR   |=====Bearer=====|    IXP   |=====Bearer=====|     ASBR      |
+|          +----Parent AC---|    SW    +----Parent AC---|               |
+|          +------------------BGP Session---------------+               |
+|          |=====Bearer=====|          |=====Bearer=====|               |
+'----------'                '----------'                '---------------'
+
+               Figure 50: Recursive Deployment Example
 
    The following subsections exemplify a deployment flow, but BGP
    sessions can be managed without having to execute systematically all
    the steps detailed hereafter.
 
+   The bearer/AC service models can be used to establish interconnection
+   between two networks without involving an IXP.
+
 A.10.1.  Retrieve Interconnection Locations
 
-   Figure 50 shows an example a message body of a request to retrieve a
+   Figure 51 shows an example a message body of a request to retrieve a
    list of interconnection locations.  The request includes a customer
    name and an ASN to filter out the locations.
 
@@ -5700,10 +5711,10 @@ A.10.1.  Retrieve Interconnection Locations
      }
    }
 
-      Figure 50: Message Body of a Request to Retrieve Interconnection
+      Figure 51: Message Body of a Request to Retrieve Interconnection
                                  Locations
 
-   Figure 51 provides an example of a response to a query received from
+   Figure 52 provides an example of a response to a query received from
    the server with a list of available interconnection locations.
 
    {
@@ -5727,15 +5738,15 @@ A.10.1.  Retrieve Interconnection Locations
      }
    }
 
-     Figure 51: Message Body of a Response to Retrieve Interconnection
+     Figure 52: Message Body of a Response to Retrieve Interconnection
                                  Locations
 
 A.10.2.  Create Bearers and Retrieve Bearer References
 
    A peer can then use the location information and select the ones
-   where it can request new bearers.  As shown in Figure 52, the request
+   where it can request new bearers.  As shown in Figure 53, the request
    includes a location reference which is known to the server (returned
-   in Figure 51).
+   in Figure 52).
 
    {
      "ietf-bearer-svc:bearers": {
@@ -5755,10 +5766,10 @@ A.10.2.  Create Bearers and Retrieve Bearer References
      }
    }
 
-      Figure 52: Message Body of a Request to Create a Bearer using a
+      Figure 53: Message Body of a Request to Create a Bearer using a
                         Provider- Assigned Reference
 
-   The bearer is then activated by the server as shown in Figure 53.  A
+   The bearer is then activated by the server as shown in Figure 54.  A
    "bearer-reference" is also returned.  That reference can be used for
    subsequent AC activation requests.
 
@@ -5786,12 +5797,12 @@ A.10.2.  Create Bearers and Retrieve Bearer References
      }
    }
 
-      Figure 53: Message Body of a Response for a Bearer Created in a
+      Figure 54: Message Body of a Response for a Bearer Created in a
                              Specific Location
 
 A.10.3.  Manage ACs and BGP Sessions
 
-   As depicted in Figure 54, each network connects to the IXP switch via
+   As depicted in Figure 55, each network connects to the IXP switch via
    a bearer over which an AC is created.
 
    .----------------------.
@@ -5820,9 +5831,9 @@ A.10.3.  Manage ACs and BGP Sessions
    |                      |
    '----------------------'
 
-                 Figure 54: Simple Interconnection Topology
+                 Figure 55: Simple Interconnection Topology
 
-   The AC configuration (Figure 55) includes parameters such as VLAN
+   The AC configuration (Figure 56) includes parameters such as VLAN
    configuration, IP addresses, MTU, and any additional settings
    required for connectivity.  The peering location is inferred from the
    "bearer-reference".
@@ -5849,10 +5860,10 @@ A.10.3.  Manage ACs and BGP Sessions
      }
    }
 
-      Figure 55: Message Body of a Request to Create an AC to Connect
+      Figure 56: Message Body of a Request to Create an AC to Connect
                                  to an IXP
 
-   Figure 56 shows the received response to a query with the required
+   Figure 57 shows the received response to a query with the required
    information for the activation of the AC.
 
    {
@@ -5893,14 +5904,14 @@ A.10.3.  Manage ACs and BGP Sessions
      }
    }
 
-     Figure 56: Message Body of a Response to an AC Request to Connect
+     Figure 57: Message Body of a Response to an AC Request to Connect
                                  to an IXP
 
    Once the ACs are established, BGP peering sessions can be configured
    between routers of the participating networks.  BGP sessions can be
    established via a route server or between two networks.  For the sake
    of illustration, let us assume that BGP sessions are established
-   directly between two network.  Figure 57 shows an example of a
+   directly between two network.  Figure 58 shows an example of a
    request to add a BGP session to an existing AC.  The properties of
    that AC are not repeated in this request because that information is
    already communicated during the creation of the AC.
@@ -5946,10 +5957,10 @@ A.10.3.  Manage ACs and BGP Sessions
      }
    }
 
-     Figure 57: Message Body of a Request to Create a BGP Session over
+     Figure 58: Message Body of a Request to Create a BGP Session over
                                    an AC
 
-   Figure 58 provides the example of a response which indicates that the
+   Figure 59 provides the example of a response which indicates that the
    request is awaiting validation.  The response includes also a server-
    assigned reference for this BGP session.
 
@@ -6000,7 +6011,7 @@ A.10.3.  Manage ACs and BGP Sessions
      }
    }
 
-      Figure 58: Message Body of a Response for a BGP Session Awaiting
+      Figure 59: Message Body of a Response for a BGP Session Awaiting
                                  Validation
 
    Once validation is accomplished, a status update is communicated back
@@ -6073,7 +6084,7 @@ A.10.3.  Manage ACs and BGP Sessions
      }
    }
 
-       Figure 59: Message Body of a Response to Report All Active BGP
+       Figure 60: Message Body of a Response to Report All Active BGP
                             sessions over an AC
 
 A.11.  Connectivity of Cloud Network Functions
@@ -6114,7 +6125,7 @@ A.11.1.  Scope
 
 A.11.2.  Physical Infrastructure
 
-   Figure 60 describes the physical infrastructure.  The compute nodes
+   Figure 61 describes the physical infrastructure.  The compute nodes
    (customer) are attached to the provider infrastructure thanks to a
    set of physical links on which attachment circuits are provisioned
    (i.e., "compute-XX-nicY").  The provider infrastructure can be
@@ -6144,7 +6155,7 @@ A.11.2.  Physical Infrastructure
     '------------'                        |(IP Fabric, Gateways, etc.)|
                                           '---------------------------'
 
-         Figure 60: Example Physical Topology for Cloud Deployment
+         Figure 61: Example Physical Topology for Cloud Deployment
 
 A.11.3.  NFs Deployment
 
@@ -6236,10 +6247,10 @@ A.11.3.  NFs Deployment
     |203.0.113.96/28, NH = 192.0.2.7    |
     '-----------------------------------'
 
-             Figure 61: Logical Topology of the NFs Deployment
+             Figure 62: Logical Topology of the NFs Deployment
 
    For readability the payload is displayed as single JSON file
-   (Figure 62).  In practice, several API calls may take place to
+   (Figure 63).  In practice, several API calls may take place to
    initialize these resources (e.g., GET requests from the customer to
    retrieve the IP address pools for NFs on "vlan 100" thanks to parent
    configuration and BGP configuration, and POST extra routes for user
@@ -6532,7 +6543,7 @@ A.11.3.  NFs Deployment
      }
    }
 
-        Figure 62: Message Body for the Configuration of the NF ACs
+        Figure 63: Message Body for the Configuration of the NF ACs
 
 A.11.4.  NF Failure and Scale-Out
 
@@ -6572,7 +6583,7 @@ A.11.4.  NF Failure and Scale-Out
     |'------'|                               |                       |
     compute-08                               '-----------------------'
 
-            Figure 63: Example of Compute Failure and Scale-out
+            Figure 64: Example of Compute Failure and Scale-out
 
    Finally, the addition or deletion of compute nodes in the deployment
    ("compute-11", "compute-12", etc.) involves merely changes on Child
@@ -6588,7 +6599,7 @@ A.11.4.  NF Failure and Scale-Out
 
 A.12.  BFD and Static Addressing
 
-   Figure 64 shows a topology example of a set of CEs connected to a
+   Figure 65 shows a topology example of a set of CEs connected to a
    provider network via dedicated bearers.  Each of these CE maintains
    two BFD sessions with the provider network.
 
@@ -6614,10 +6625,10 @@ A.12.  BFD and Static Addressing
    |   CEx  | .x <---bfd---> .252
    +--------+    <---bfd---> .253
 
-              Figure 64: Example of Static Addressing with BFD
+              Figure 65: Example of Static Addressing with BFD
 
-   Figure 65 shows the message body of the ACaaS configuration to enable
-   the target architecture shown in Figure 64.  This example uses an AC
+   Figure 66 shows the message body of the ACaaS configuration to enable
+   the target architecture shown in Figure 65.  This example uses an AC
    group profile to factorize common data between all involved ACs.  It
    also uses child ACs that inherit the properties of two parent ACs;
    each terminating in a separate gateway in the provider network.
@@ -6744,7 +6755,7 @@ A.12.  BFD and Static Addressing
      }
    }
 
-      Figure 65: Message Body for the Configuration of CEs with Static
+      Figure 66: Message Body for the Configuration of CEs with Static
                        Addressing and BFD Protection
 
 Acknowledgments
