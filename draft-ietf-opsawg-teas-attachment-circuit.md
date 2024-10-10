@@ -1390,7 +1390,7 @@ This section illustrates how to use the AC service model for interconnection pur
 
 The same approach can be used to negotiate interconnection between two networks without involving an IXP.
 
-This example follows the recursive deployment model depicted in {{u-ex-r}}. Specifically, base bearer/AC service requests are handled locally by the IXP. However, binding BGP sessions to existing ACs involves a recursion step.
+This example follows the recursive deployment model depicted in {{u-ex-r}}. Specifically, base bearer/AC service requests are handled locally by the IXP. However, binding BGP sessions to existing ACs involves a recursion step. Networks that are interested in establishing selective BGP peerings exposes a a dedicated ACaaS server to the IXP.
 
 The following subsections exemplify a deployment flow, but BGP sessions can be managed without having to execute systematically all the steps detailed hereafter.
 
