@@ -5,14 +5,14 @@
 OPSAWG                                                 M. Boucadair, Ed.
 Internet-Draft                                                    Orange
 Intended status: Standards Track                         R. Roberts, Ed.
-Expires: 12 April 2025                                           Juniper
+Expires: 13 April 2025                                           Juniper
                                                            O. G. D. Dios
                                                               Telefonica
                                                            S. B. Giraldo
                                                                    Nokia
                                                                    B. Wu
                                                      Huawei Technologies
-                                                          9 October 2024
+                                                         10 October 2024
 
 
   YANG Data Models for Bearers and 'Attachment Circuits'-as-a-Service
@@ -62,7 +62,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 12 April 2025.
+   This Internet-Draft will expire on 13 April 2025.
 
 Copyright Notice
 
@@ -1642,8 +1642,8 @@ Table of Contents
       network.
 
    'peer-as':  Indicates the customer's ASN.  This information is used
-      at the provide side to configure the BGP session with the customer
-      equipment.
+      at the provider side to configure the BGP session with the
+      customer equipment.
 
    'address-family':  Indicates the address family of the peer.  It can
       be set to 'ipv4', 'ipv6', or 'dual-stack'.
