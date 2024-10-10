@@ -319,7 +319,6 @@ To bind Layer 2 VPN or Layer 3 VPN services with ACs, "ietf-ac-glue" augments th
 
 * Customers may request protection schemes in which the ACs associated with their endpoints are terminated by the same PE (e.g., CE#3), distinct PEs (e.g., CE#34), etc. The network provider uses this request to decide where to terminate the AC in the provider network (i.e., select which PE(s) to use) and also whether to enable specific capabilities (e.g., Virtual Router Redundancy Protocol (VRRP) {{?RFC9568}}). Note that placement constraints may also be requested during the instantiation of the underlying bearers ({{sec-bearer}}).
 
-
 ~~~~ aasvg
 {::include ./figures/acs-examples.txt}
 ~~~~
@@ -329,12 +328,32 @@ To bind Layer 2 VPN or Layer 3 VPN services with ACs, "ietf-ac-glue" augments th
 
 The procedure to provision a service in a service provider network may depend on the practices adopted by a service provider. This includes the workflow put in place for the provisioning of network services  and how they are bound to an attachment circuit. For example, a single attachment circuit may be used to host multiple connectivity services. In order to avoid service interference and redundant information in various locations, a service provider may expose an interface to manage ACs network-wide. Customers can then request a bearer or an attachment circuit to be put in place, and then refer to that bearer or AC when requesting services that are bound to the bearer or AC. {{?I-D.ietf-opsawg-ac-lxsm-lxnm-glue}} specifies augmentations to the L2SM and the L3SM to bind LxVPN services to ACs.
 
-{{u-ex}} shows the positioning of the AC service model in the overall service delivery process.
+{{u-ex-c}} shows an example to illustrate how the bearer/AC service models can be used between a customer and a provider. Internals to the provider orchestration domain (or customer orchestration domain) are hidden to the customer (or provider).
+
+~~~~ aasvg
+.----------------------.     Bearer/AC       .--------------------.
+|      Customer        |    Service Models   |     Provider       |
+|   Service Ordering   | <-----------------> |   Service Order    |
+|                      |                     |     Handling       |
+'----------^-----------'                     '---------^----------'
+           |                                           |
+      Provisioning                                Provisioning
+           |                                           | 
+.----------v-----------.                     .---------v----------.
+|                      |========Bearer=======|                    |
+|    Customer Site     +----------AC---------|  Provider Network  |
+|                      |========Bearers======|                    |
+'----------------------'                     '--------------------'
+~~~~
+{: #u-ex-c title="Example of Interaction Between Customer and Provider Orchestrations" artwork-align="center"}
+
+
+{{u-ex}} shows the positioning of the AC service model in the overall service delivery process, with a focus the provider.
 
 ~~~~ aasvg
 {::include ./figures/arch.txt}
 ~~~~
-{: #u-ex title="An Example of AC Model Usage" artwork-align="center"}
+{: #u-ex title="An Example of AC Model Usage (Focus on the Provider's Internals)" artwork-align="center"}
 
 In order to ease the mapping between the service model and underlying network models (e.g., the L3VPN Network Model (L3NM), SAP), the name conventions used in existing network data models are reused as much as possible. For example, "local-address" is used rather than "provider-address" (or similar) to refer to an IP address used in the provider network. This approach is consistent with the automation framework defined in {{?RFC8969}}.
 
