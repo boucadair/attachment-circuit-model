@@ -342,7 +342,7 @@ The procedure to provision a service in a service provider network may depend on
 .----------v-----------.                     .---------v----------.
 |                      |========Bearer=======|                    |
 |    Customer Site     +----------AC---------|  Provider Network  |
-|                      |========Bearer=======|                    |
+|                      |=====================|                    |
 '----------------------'                     '--------------------'
 ~~~~
 {: #u-ex-c title="Example of Interaction Between Customer and Provider Orchestrations" artwork-align="center"}
@@ -1394,10 +1394,11 @@ This example follows the recursive deployment model depicted in {{u-ex-r}}. Spec
   Provisioning                 Provisioning                 Provisioning
        |                            |                            |
 .------v----.                 .-----v----.                .------v-----.
-|   ASBR    |======Bearer=====|          |=====Bearer=====|    ASBR    |
-|           +-----Base AC-----|    SW    +-----Base AC----|            |
+|   ASBR    |======Bearer=====| Layer 2  |=====Bearer=====|    ASBR    |
+|           +-----Base AC-----+ Facility +-----Base AC----|            |
+|           |                 |          |                |            |
 |           +..................BGP Session................+            |
-|           |=====Bearer======|          |=====Bearer=====|            |
+|           |=================|          |================|            |
 '-----------'                 '----------'                '------------'
 ~~~~
 {: #u-ex-rb title="Recursive Deployment Example" artwork-align="center"}
