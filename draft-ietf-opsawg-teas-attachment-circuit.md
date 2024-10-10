@@ -342,7 +342,7 @@ The procedure to provision a service in a service provider network may depend on
 .----------v-----------.                     .---------v----------.
 |                      |========Bearer=======|                    |
 |    Customer Site     +----------AC---------|  Provider Network  |
-|                      |========Bearers======|                    |
+|                      |========Bearer=======|                    |
 '----------------------'                     '--------------------'
 ~~~~
 {: #u-ex-c title="Example of Interaction Between Customer and Provider Orchestrations" artwork-align="center"}
@@ -352,20 +352,13 @@ exposes a server to a customer for the ordering of AC services, but it also acts
 decides to terminate a recursion for a given service request or create child service requests is deployment specific.
 
 ~~~~ aasvg
-.----------------------.     Bearer/AC       .--------------------.
-|      Customer        |    Service Models   |      Service       |
-|   Service Ordering   | <-----------------> |       Broker       |
-|                      |                     |                    |
-'----------------------'                     '---------^----------'
-                                                       |
-                                                   Bearer/AC
-                                                 Service Models
-                                                       |
-                                             .---------v----------.
-                                             |                    |
-                                             |       Provider     |
-                                             |                    |
-                                             '--------------------'
+.----------.   Bearer/AC    .----------.   Bearer/AC    .--------------.
+| Customer | Service Models | Service  | Service Model  |   Provider    |
+| Service  |<-------------->|  Broker  |<-------------->| Service Order |
+| Ordering |                |  B2B C/S |                |    Handling   |
+'----------'                '----------'                '---------------'
+
+B2B C/S: Back-to-back Client/Server
 ~~~~
 {: #u-ex-r title="Example of Recursive Deployment" artwork-align="center"}
 
@@ -1386,13 +1379,32 @@ This scenario allows the provider to maintain a list of ACs belonging to the sam
 
 ## Interconnection via Internet eXchange Points (IXPs) {#sec-peering}
 
-This section illustrates how to use the AC service model for interconnection purposes. To that aim, the document assumes a simplified Internet eXchange Point (IXP) configuration without zooming into IXP deployment specifics. Let us assume that networks are interconnected via a Layer 2 facility. Let us also assume a deployment context where selective peering is in place between these networks. BGP is used to exchange routing information and reachability announcements between those networks.
+This section illustrates how to use the AC service model for interconnection purposes. To that aim, the document assumes a simplified Internet eXchange Point (IXP) configuration without zooming into IXP deployment specifics. Let us assume that networks are interconnected via a Layer 2 facility. Let us also assume a deployment context where selective peering is in place between these networks. Networks that are interested in establishing selective BGP peerings expose  a dedicated ACaaS server to the IXP. BGP is used to exchange routing information and reachability announcements between those networks.
 
-The same approach can be used to negotiate interconnection between two networks without involving an IXP.
+This example follows the recursive deployment model depicted in {{u-ex-r}}. Specifically, base bearer/AC service requests are handled locally by the IXP. However, binding BGP sessions to existing ACs involves a recursion step.
 
-This example follows the recursive deployment model depicted in {{u-ex-r}}. Specifically, base bearer/AC service requests are handled locally by the IXP. However, binding BGP sessions to existing ACs involves a recursion step. Networks that are interested in establishing selective BGP peerings exposes a a dedicated ACaaS server to the IXP.
+~~~~ aasvg
+.----------.   Bearer/AC    .----------.       AC      .--------------.
+| Customer | Service Models |    IXP   | Service Model  |   Provider    |
+| Service  |<-------------->| Operator |<-------------->| Service Order |
+| Ordering |                |  B2B C/S |                |    Handling   |
+'-----^----'                '-----^----'                '-------^-------'
+      |                           |                             |
+      |                           |                             |
+ Provisioning                Provisioning                  Provisioning
+      |                           |                             |
+.-----v----.                .-----v----.                .-------v-------.
+|   ASBR   |=====Bearer=====|    IXP   |=====Bearer=====|     ASBR      |
+|          +----Parent AC---|    SW    +----Parent AC---|               |
+|          +------------------BGP Session---------------+               |
+|          |=====Bearer=====|          |=====Bearer=====|               |
+'----------'                '----------'                '---------------'
+~~~~
+{: #u-ex-rb title="Recursive Deployment Example" artwork-align="center"}
 
 The following subsections exemplify a deployment flow, but BGP sessions can be managed without having to execute systematically all the steps detailed hereafter.
+
+The bearer/AC service models can be used to establish interconnection between two networks without involving an IXP.
 
 ### Retrieve Interconnection Locations {#sec-ret-loc}
 
