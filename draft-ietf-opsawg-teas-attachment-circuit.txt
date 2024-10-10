@@ -5661,10 +5661,11 @@ A.10.  Interconnection via Internet eXchange Points (IXPs)
    are interconnected via a Layer 2 facility.  Let us also assume a
    deployment context where selective peering is in place between these
    networks.  Networks that are interested in establishing selective BGP
-   peerings expose a dedicated ACaaS server to the IXP.  BGP is used to
-   exchange routing information and reachability announcements between
-   those networks.  Any provider connected to an IXP can behave as a
-   client (i.e., initiate a BGP peering request).
+   peerings expose a dedicated ACaaS server to the IXP to behave as an
+   ACaaS provider.  BGP is used to exchange routing information and
+   reachability announcements between those networks.  Any network
+   operator connected to an IXP can behave as a client (i.e., initiate a
+   BGP peering request).
 
    This example follows the recursive deployment model depicted in
    Figure 4.  Specifically, base AC service requests are handled locally
@@ -5672,8 +5673,8 @@ A.10.  Interconnection via Internet eXchange Points (IXPs)
    recursion step.
 
 .------------.       AC       .----------.       AC       .------------.
-| Provider A | Service Model  |    IXP   | Service Model  | Provider B |
-|            |<-------------->| Operator |<-------------->|            |
+|  Network   | Service Model  |    IXP   | Service Model  |   Network  |
+| Operator A |<-------------->| Operator |<-------------->| Operator B |
 |            |                |  B2B C/S |                |            |
 '------^-----'                '-----^----'                '------^-----'
        |                            |                            |
