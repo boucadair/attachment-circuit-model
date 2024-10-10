@@ -5664,6 +5664,11 @@ A.10.  Interconnection via Internet eXchange Points (IXPs)
    The same approach can be used to negotiate interconnection between
    two networks and without involving an IXP.
 
+   This example follows the recursive deployment model depicted in
+   Figure 4.  Specifically, base bearer/AC service requests are handled
+   locally by the IXP.  However, binding BGP sessions to existing ACs
+   involves a recursion step.
+
    The following subsections exemplify a deployment flow, but BGP
    sessions can be managed without having to execute systematically all
    the steps detailed hereafter.
