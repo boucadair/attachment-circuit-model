@@ -590,7 +590,7 @@ Table of Contents
                                Orchestrations
 
    Figure 4 shows an example to illustrate how the bearer/AC service
-   models which involve a third party.  This deployment model follows a
+   models that involve a third party.  This deployment model follows a
    recursive approach but other Client/Server alternative modes with a
    third party can be considered.  In a recursive deployment, the
    Service Broker exposes a server to a customer for the ordering of AC
