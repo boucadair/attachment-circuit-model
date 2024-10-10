@@ -91,6 +91,7 @@ Table of Contents
    4.  Sample Uses of the Data Models
      4.1.  ACs Terminated by One or Multiple Customer Edges (CEs)
      4.2.  Separate AC Provisioning vs. Actual Service Provisioning
+     4.3.  Sample Deployment Models
    5.  Description of the Data Models
      5.1.  The Bearer Service ("ietf-bearer-svc") YANG Module
      5.2.  The Attachment Circuit Service ("ietf-ac-svc") YANG Module
@@ -563,6 +564,8 @@ Table of Contents
    bound to the bearer or AC.  [I-D.ietf-opsawg-ac-lxsm-lxnm-glue]
    specifies augmentations to the L2SM and the L3SM to bind LxVPN
    services to ACs.
+
+4.3.  Sample Deployment Models
 
    Figure 3 shows an example to illustrate how the bearer/AC service
    models can be used between a customer and a provider.  Internals to
