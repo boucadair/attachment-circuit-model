@@ -1098,7 +1098,7 @@ An example of a request message body to create a simple AC over an existing bear
 ~~~~
 {: #ac-b title="Example of a Message Body to Request an AC over an Existing Bearer"}
 
-{{ac-br}} shows the message body of a response received from the controller and which indicates the "cvlan-id" that was assigned for the requested AC.
+{{ac-br}} shows the message body of a GET response received from the controller and which indicates the "cvlan-id" that was assigned for the requested AC.
 
 ~~~~ json
 {::include-fold ./json-examples/svc/simple-ac-existing-bearer-response.json}
@@ -1114,7 +1114,7 @@ An example of a request to create a simple AC, when the peer SAP is known, is sh
 ~~~~
 {: #ac-known-ps title="Example of a Message Body to Request an AC with a Peer SAP"}
 
-{{ac-known-ps-res}} shows the received response with the required informaiton to connect the SF.
+{{ac-known-ps-res}} shows the received GET response with the required informaiton to connect the SF.
 
 ~~~~ json
 {::include-fold ./json-examples/svc/simple-ac-known-peer-sap-response.json}
@@ -1149,7 +1149,7 @@ An example of a request to create the ACs to service the eNodeB is shown in {{tw
 ~~~~
 {: #two-acs-same-ce title="Example of a Message Body to Request Two ACs on the Same Link (Not Recommended)"}
 
-{{two-acs-same-ce-res}} shows the message body of a response received from the controller.
+{{two-acs-same-ce-res}} shows the message body of a GET response received from the controller.
 
 ~~~~ json
 {::include-fold ./json-examples/svc/two-acs-same-ce-response.json}
@@ -1212,7 +1212,7 @@ When multiple ACs are requested by the same customer for the same site, the requ
 ~~~~
 {: #network-example title="Network Topology Example" artwork-align="center"}
 
-{{multiple-sites}} depicts an example of the message body of a response to a request to instantiate the various ACs that are shown in {{network-example}}.
+Let's assume that a request to instantiate various ACs that are shown in {{network-example}} is sent by the customer. {{multiple-sites}} depicts the example of the message body of a GET response that is received from the controller.
 
 ~~~~ json
 {::include-fold ./json-examples/svc/multiple-ce-with-profile.json}
@@ -1250,7 +1250,7 @@ SFs are deployed within each site.
 ~~~~
 {: #slice-acs title="Message Body of a Request to Create Required ACs"}
 
-{{slice-acs-res}} shows the message body of a response received from the controller.
+{{slice-acs-res}} shows the message body of a response to a GET request received from the controller.
 
 ~~~~ json
 {::include-fold ./json-examples/svc/acs-for-slices-response.json}
@@ -1315,7 +1315,7 @@ Next, API workflows can be initiated by:
 ~~~~
 {: #cloud-provider-ac title="Message Body of a Request to Create the ACs for Connecting to the Cloud Provider"}
 
-{{cloud-provider-ac-res}} shows the message body of the response received from the provider. Note that this Cloud Provider mandates the use of MD5 authentication for establishing BGP connections.
+{{cloud-provider-ac-res}} shows the message body of the response received from the provider as a response to a query message. Note that this Cloud Provider mandates the use of MD5 authentication for establishing BGP connections.
 
 > The module supports MD5 to basically accommodate the installed BGP base (including by some Cloud Providers). Note that MD5 suffers from the security weaknesses discussed in {{Section 2 of ?RFC6151}} and {{Section 2.1 of ?RFC6952}}.
 
@@ -1343,10 +1343,11 @@ The attachment circuit in this case use a SAP identifier to refer to the physica
 
 This scenario allows the provider to maintain a list of ACs belonging to the same customer without requiring the full service configuration.
 
-
 ## Interconnection via Internet eXchange Points (IXPs) {#sec-peering}
 
-This section illustrates how to use the AC service model for interconnection purposes. To that aim, the document assumes a simplified Internet eXchange Point (IXP) configuration without zooming into IXP deployment specifics. Let us assume that networks are interconnected via a Layer 2 facility. BGP is used to exchange routing information and reachability announcements between those networks. The same approach can be used to negotiate interconnection between two networks and without involving an IXP.
+This section illustrates how to use the AC service model for interconnection purposes. To that aim, the document assumes a simplified Internet eXchange Point (IXP) configuration without zooming into IXP deployment specifics. Let us assume that networks are interconnected via a Layer 2 facility. BGP is used to exchange routing information and reachability announcements between those networks.
+
+The same approach can be used to negotiate interconnection between two networks and without involving an IXP.
 
 The following subsections exemplify a deployment flow, but BGP sessions can be managed without having to execute systematically all the steps detailed hereafter.
 
@@ -1359,7 +1360,7 @@ The following subsections exemplify a deployment flow, but BGP sessions can be m
 ~~~~
 {: #ex-retrieve-locations title="Message Body of a Request to Retrieve Interconnection Locations"}
 
-{{ex-retrieve-locations-res}} provides an example of a response received from the server with a list of available interconnection locations.
+{{ex-retrieve-locations-res}} provides an example of a response to a query received from the server with a list of available interconnection locations.
 
 ~~~~ json
 {::include-fold ./json-examples/svc/get-locations-response.json}
@@ -1380,7 +1381,7 @@ The bearer is then activated by the server as shown in {{ex-create-bearer-parent
 ~~~~ json
 {::include-fold ./json-examples/svc/simple-bearer-create-with-provider-ref-response.json}
 ~~~~
-{: #ex-create-bearer-parent-ref-res title="Message Body of a Response to Create a Bearer in a Specific Location"}
+{: #ex-create-bearer-parent-ref-res title="Message Body of a Response for a Bearer Created in a Specific Location"}
 
 ### Manage ACs and BGP Sessions {#sec-manage-ac-bgp}
 
@@ -1398,7 +1399,7 @@ The AC configuration ({{bgp-peer-network-add-attachment-circuit}}) includes para
 ~~~~
 {: #bgp-peer-network-add-attachment-circuit title="Message Body of a Request to Create an AC to Connect to an IXP"}
 
-{{bgp-peer-network-response}} shows the received response with the required information for the activation of the AC.
+{{bgp-peer-network-response}} shows the received response to a query with the required information for the activation of the AC.
 
 ~~~~ json
 {::include-fold ./json-examples/svc/bgp-peering-example-response.json}
