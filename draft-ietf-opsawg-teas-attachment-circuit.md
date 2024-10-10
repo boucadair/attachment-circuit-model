@@ -674,6 +674,12 @@ As depicted in {{static-rtg-svc-tree}}, the following data nodes can be defined 
 
 ##### BGP {#sec-bgp-rtg}
 
+An AC service request with BGP routing SHOULD include at least the customer's AS Number (ASN) and an address family.
+Additional information can be supplied by a customer in a request or exposed by a provider in a response to a query request
+in order ease the process of automating the provisioning of BGP sessions (the customer does not use the primary IP address
+to establish the underlying BGP session, communicate the provider's IP address used to establish the BGP session,
+share authentication parameters, bind the session to a forwarding protection profile, etc.).
+
 The BGP tree structure is shown in {{bgp-rtg-svc-tree}}.
 
 ~~~~
@@ -681,26 +687,30 @@ The BGP tree structure is shown in {{bgp-rtg-svc-tree}}.
 ~~~~
 {: #bgp-rtg-svc-tree title="BGP Tree Structure" artwork-align="center"}
 
+For deployment cases where an AC service request includes a list of neighors with redundant information,
+the ACaaS allows to factorize shared data by means of 'peer-group'. The presence of "peer-groups" in a service request is thus optional.
+
 The following data nodes are supported for each BGP 'peer-group':
 
 'name':
 : Defines a name for the peer group.
 
 'local-as':
-: Indicates the provider's AS Number (ASN).
+: Reports the provider's ASN. This information is used at the customer side to configure the BGP session with the provider network.
 
 'peer-as':
-: Indicates the customer's ASN.
+: Indicates the customer's ASN. This information is used at the provider side to configure the BGP session with the customer equipment.
 
 'address-family':
 : Indicates the address family of the peer. It can be set to 'ipv4', 'ipv6', or 'dual-stack'.
 : This address family might be used together with the service type that uses an AC (e.g., 'vpn-type' {{?RFC9182}}) to derive the appropriate Address Family Identifiers (AFIs) / Subsequent Address Family Identifiers (SAFIs) that will be part of the derived device configurations (e.g., unicast IPv4 MPLS L3VPN (AFI,SAFI = 1,128) as defined in {{Section 4.3.4 of !RFC4364}}).
 
 'role':
-: Specifies the BGP role in a session. Role values are taken from the list defined in {{Section 4 of ?RFC9234}}.
+: Specifies the BGP role in a session. Role values are taken from the list defined in {{Section 4 of ?RFC9234}}. This parameter is useful for interconnection scenarios.
+: This is an optional parameter.
 
 'local-address':
-: Specifies a provider's IP address to use when establishing the BGP transport session.
+: Reports a provider's IP address to use to establish the BGP transport session.
 
 'bgp-max-prefix':
 : Indicates the maximum number of BGP prefixes allowed in a session for this group.
@@ -712,10 +722,11 @@ The following data nodes are supported for each BGP 'peer-group':
 For each neighbor, the following data nodes are supported in addition to similar parameters that are provided for a peer group:
 
 'server-reference':
-: Reports the internal reference that is assigned by the provider for this BGP session.
+: Reports the internal reference that is assigned by the provider for this BGP session. This is an optional parameter.
 
 'remote-address':
-: Specifies the customer's IP address used to establishing this BGP session.
+: Specifies the customer's IP address used to establishing this BGP session. If not present, this means that the primary
+customer IP address is used as remote IP address.
 
 'requested-start':
 : Specifies the requested date and time when the BGP session is expected to be active.
@@ -735,9 +746,10 @@ For each neighbor, the following data nodes are supported in addition to similar
 'peer-group':
 : Specifies a name of a peer group.
 : Parameters that are provided at the 'neighbor' level takes precedence over the ones provided in the peer group.
+: This is an optional parameter.
 
 'failure-detection-profile':
-: Indicates a failure detection profile (BFD) that applies for a BGP neighbor.
+: Indicates a failure detection profile (BFD) that applies for a BGP neighbor. This is an optional parameter.
 
 ##### OSPF {#sec-ospf-rtg}
 
@@ -1501,3 +1513,5 @@ Thanks to Ebben Aries for the YANG Doctors review and for providing {{Instance-D
 Thanks to Donald Eastlake for the careful rtg-dir reviews and Tero Kivinen for the sec-dir review.
 
 Thanks to Luis Miguel Contreras Murillo for the careful Shepherd review.
+
+Thanks to Mahesh for the AD review.
