@@ -7785,7 +7785,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 <a href="#appendix-A.10" class="section-number selfRef">A.10. </a><a href="#name-interconnection-via-interne" class="section-name selfRef">Interconnection via Internet eXchange Points (IXPs)</a>
         </h3>
 <p id="appendix-A.10-1">This section illustrates how to use the AC service model for interconnection purposes. To that aim, the document assumes a simplified Internet eXchange Point (IXP) configuration without zooming into IXP deployment specifics. Let us assume that networks are interconnected via a Layer 2 facility. Let us also assume a deployment context where selective peering is in place between these networks. Networks that are interested in establishing selective BGP peerings expose a dedicated ACaaS server to the IXP. BGP is used to exchange routing information and reachability announcements between those networks. Any provider connected to an IXP can behave as a client (i.e., initiate a BGP peering request).<a href="#appendix-A.10-1" class="pilcrow">¶</a></p>
-<p id="appendix-A.10-2">This example follows the recursive deployment model depicted in <a href="#_u-ex-r" class="auto internal xref">Figure 4</a>. Specifically, base bearer/AC service requests are handled locally by the IXP. However, binding BGP sessions to existing ACs involves a recursion step.<a href="#appendix-A.10-2" class="pilcrow">¶</a></p>
+<p id="appendix-A.10-2">This example follows the recursive deployment model depicted in <a href="#_u-ex-r" class="auto internal xref">Figure 4</a>. Specifically, base AC service requests are handled locally by the IXP. However, binding BGP sessions to existing ACs involves a recursion step.<a href="#appendix-A.10-2" class="pilcrow">¶</a></p>
 <span id="name-recursive-deployment-exampl"></span><div id="_u-ex-rb">
 <figure id="figure-50">
           <div id="appendix-A.10-3.1">
@@ -7835,10 +7835,10 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
                 <path d="M 344,194 L 376,194" fill="none" stroke="black"></path>
                 <path d="M 432,190 L 464,190" fill="none" stroke="black"></path>
                 <path d="M 432,194 L 464,194" fill="none" stroke="black"></path>
-                <path d="M 104,208 L 136,208" fill="none" stroke="black"></path>
-                <path d="M 216,208 L 240,208" fill="none" stroke="black"></path>
-                <path d="M 336,208 L 368,208" fill="none" stroke="black"></path>
-                <path d="M 448,208 L 464,208" fill="none" stroke="black"></path>
+                <path d="M 104,208 L 144,208" fill="none" stroke="black"></path>
+                <path d="M 208,208 L 240,208" fill="none" stroke="black"></path>
+                <path d="M 336,208 L 376,208" fill="none" stroke="black"></path>
+                <path d="M 440,208 L 464,208" fill="none" stroke="black"></path>
                 <path d="M 112,238 L 144,238" fill="none" stroke="black"></path>
                 <path d="M 112,242 L 144,242" fill="none" stroke="black"></path>
                 <path d="M 200,238 L 240,238" fill="none" stroke="black"></path>
@@ -7861,12 +7861,12 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
                 <polygon class="arrowhead" points="72,176 60,170.4 60,181.6" fill="black" transform="rotate(90,64,176)"></polygon>
                 <polygon class="arrowhead" points="72,96 60,90.4 60,101.6" fill="black" transform="rotate(270,64,96)"></polygon>
                 <g class="text">
-                  <text x="176" y="36">Bearer/AC</text>
+                  <text x="180" y="36">AC</text>
                   <text x="404" y="36">AC</text>
                   <text x="52" y="52">Provider</text>
                   <text x="96" y="52">A</text>
                   <text x="152" y="52">Service</text>
-                  <text x="212" y="52">Models</text>
+                  <text x="208" y="52">Model</text>
                   <text x="296" y="52">IXP</text>
                   <text x="376" y="52">Service</text>
                   <text x="432" y="52">Model</text>
@@ -7882,11 +7882,11 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
                   <text x="180" y="196">Bearer</text>
                   <text x="404" y="196">Bearer</text>
                   <text x="524" y="196">ASBR</text>
-                  <text x="164" y="212">Parent</text>
-                  <text x="204" y="212">AC</text>
+                  <text x="164" y="212">Base</text>
+                  <text x="196" y="212">AC</text>
                   <text x="292" y="212">SW</text>
-                  <text x="396" y="212">Parent</text>
-                  <text x="436" y="212">AC</text>
+                  <text x="396" y="212">Base</text>
+                  <text x="428" y="212">AC</text>
                   <text x="176" y="228">.................</text>
                   <text x="264" y="228">BGP</text>
                   <text x="376" y="228">Session................</text>

@@ -5667,12 +5667,12 @@ A.10.  Interconnection via Internet eXchange Points (IXPs)
    client (i.e., initiate a BGP peering request).
 
    This example follows the recursive deployment model depicted in
-   Figure 4.  Specifically, base bearer/AC service requests are handled
-   locally by the IXP.  However, binding BGP sessions to existing ACs
-   involves a recursion step.
+   Figure 4.  Specifically, base AC service requests are handled locally
+   by the IXP.  However, binding BGP sessions to existing ACs involves a
+   recursion step.
 
-.------------.   Bearer/AC    .----------.       AC       .------------.
-| Provider A | Service Models |    IXP   | Service Model  | Provider B |
+.------------.       AC       .----------.       AC       .------------.
+| Provider A | Service Model  |    IXP   | Service Model  | Provider B |
 |            |<-------------->| Operator |<-------------->|            |
 |            |                |  B2B C/S |                |            |
 '------^-----'                '-----^----'                '------^-----'
@@ -5682,7 +5682,7 @@ A.10.  Interconnection via Internet eXchange Points (IXPs)
        |                            |                            |
 .------v----.                 .-----v----.                .------v-----.
 |   ASBR    |======Bearer=====|          |=====Bearer=====|    ASBR    |
-|           +----Parent AC----|    SW    +----Parent AC---|            |
+|           +-----Base AC-----|    SW    +-----Base AC----|            |
 |           +..................BGP Session................+            |
 |           |=====Bearer======|          |=====Bearer=====|            |
 '-----------'                 '----------'                '------------'
