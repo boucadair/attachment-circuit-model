@@ -32,7 +32,7 @@
 <meta content="draft-ietf-opsawg-teas-attachment-circuit-latest" name="ietf.draft">
 <!-- Generator version information:
   xml2rfc 3.23.2
-    Python 3.12.6
+    Python 3.12.7
     ConfigArgParse 1.7
     google-i18n-address 3.1.1
     intervaltree 3.1.0
@@ -1046,7 +1046,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Boucadair, et al.</td>
-<td class="center">Expires 11 April 2025</td>
+<td class="center">Expires 13 April 2025</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1059,12 +1059,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-opsawg-teas-attachment-circuit-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2024-10-08" class="published">8 October 2024</time>
+<time datetime="2024-10-10" class="published">10 October 2024</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2025-04-11">11 April 2025</time></dd>
+<dd class="expires"><time datetime="2025-04-13">13 April 2025</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1128,7 +1128,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 11 April 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 13 April 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -2935,10 +2935,15 @@ a parent AC can be defined with a set of stable and common information, while
               <h6 id="name-bgp">
 <a href="#section-5.2.5.3.2" class="section-number selfRef">5.2.5.3.2. </a><a href="#name-bgp" class="section-name selfRef">BGP</a>
               </h6>
-<p id="section-5.2.5.3.2-1">The BGP tree structure is shown in <a href="#bgp-rtg-svc-tree" class="auto internal xref">Figure 14</a>.<a href="#section-5.2.5.3.2-1" class="pilcrow">¶</a></p>
+<p id="section-5.2.5.3.2-1">An AC service request with BGP routing <span class="bcp14">SHOULD</span> include at least the customer's AS Number (ASN) and an address family.
+Additional information can be supplied by a customer in a request or exposed by a provider in a response to a query request
+in order ease the process of automating the provisioning of BGP sessions (the customer does not use the primary IP address
+to establish the underlying BGP session, communicate the provider's IP address used to establish the BGP session,
+share authentication parameters, bind the session to a forwarding protection profile, etc.).<a href="#section-5.2.5.3.2-1" class="pilcrow">¶</a></p>
+<p id="section-5.2.5.3.2-2">The BGP tree structure is shown in <a href="#bgp-rtg-svc-tree" class="auto internal xref">Figure 14</a>.<a href="#section-5.2.5.3.2-2" class="pilcrow">¶</a></p>
 <span id="name-bgp-tree-structure"></span><div id="bgp-rtg-svc-tree">
 <figure id="figure-14">
-                <div class="alignCenter art-text artwork" id="section-5.2.5.3.2-2.1">
+                <div class="alignCenter art-text artwork" id="section-5.2.5.3.2-3.1">
 <pre>
         |  ...
         +--rw routing-protocols
@@ -3034,109 +3039,122 @@ a parent AC can be defined with a set of stable and common information, while
 <a href="#name-bgp-tree-structure" class="selfRef">BGP Tree Structure</a>
                 </figcaption></figure>
 </div>
-<p id="section-5.2.5.3.2-3">The following data nodes are supported for each BGP 'peer-group':<a href="#section-5.2.5.3.2-3" class="pilcrow">¶</a></p>
-<span class="break"></span><dl class="dlParallel" id="section-5.2.5.3.2-4">
-                <dt id="section-5.2.5.3.2-4.1">'name':</dt>
-                <dd style="margin-left: 1.5em" id="section-5.2.5.3.2-4.2">
-                  <p id="section-5.2.5.3.2-4.2.1">Defines a name for the peer group.<a href="#section-5.2.5.3.2-4.2.1" class="pilcrow">¶</a></p>
+<p id="section-5.2.5.3.2-4">For deployment cases where an AC service request includes a list of neighors with redundant information,
+the ACaaS allows to factorize shared data by means of 'peer-group'. The presence of "peer-groups" in a service request is thus optional.<a href="#section-5.2.5.3.2-4" class="pilcrow">¶</a></p>
+<p id="section-5.2.5.3.2-5">The following data nodes are supported for each BGP 'peer-group':<a href="#section-5.2.5.3.2-5" class="pilcrow">¶</a></p>
+<span class="break"></span><dl class="dlParallel" id="section-5.2.5.3.2-6">
+                <dt id="section-5.2.5.3.2-6.1">'name':</dt>
+                <dd style="margin-left: 1.5em" id="section-5.2.5.3.2-6.2">
+                  <p id="section-5.2.5.3.2-6.2.1">Defines a name for the peer group.<a href="#section-5.2.5.3.2-6.2.1" class="pilcrow">¶</a></p>
 </dd>
                 <dd class="break"></dd>
-<dt id="section-5.2.5.3.2-4.3">'local-as':</dt>
-                <dd style="margin-left: 1.5em" id="section-5.2.5.3.2-4.4">
-                  <p id="section-5.2.5.3.2-4.4.1">Indicates the provider's AS Number (ASN).<a href="#section-5.2.5.3.2-4.4.1" class="pilcrow">¶</a></p>
+<dt id="section-5.2.5.3.2-6.3">'local-as':</dt>
+                <dd style="margin-left: 1.5em" id="section-5.2.5.3.2-6.4">
+                  <p id="section-5.2.5.3.2-6.4.1">Reports the provider's ASN. This information is used at the customer side to configure the BGP session with the provider network.<a href="#section-5.2.5.3.2-6.4.1" class="pilcrow">¶</a></p>
 </dd>
                 <dd class="break"></dd>
-<dt id="section-5.2.5.3.2-4.5">'peer-as':</dt>
-                <dd style="margin-left: 1.5em" id="section-5.2.5.3.2-4.6">
-                  <p id="section-5.2.5.3.2-4.6.1">Indicates the customer's ASN.<a href="#section-5.2.5.3.2-4.6.1" class="pilcrow">¶</a></p>
+<dt id="section-5.2.5.3.2-6.5">'peer-as':</dt>
+                <dd style="margin-left: 1.5em" id="section-5.2.5.3.2-6.6">
+                  <p id="section-5.2.5.3.2-6.6.1">Indicates the customer's ASN. This information is used at the provider side to configure the BGP session with the customer equipment.<a href="#section-5.2.5.3.2-6.6.1" class="pilcrow">¶</a></p>
 </dd>
                 <dd class="break"></dd>
-<dt id="section-5.2.5.3.2-4.7">'address-family':</dt>
-                <dd style="margin-left: 1.5em" id="section-5.2.5.3.2-4.8">
-                  <p id="section-5.2.5.3.2-4.8.1">Indicates the address family of the peer. It can be set to 'ipv4', 'ipv6', or 'dual-stack'.<a href="#section-5.2.5.3.2-4.8.1" class="pilcrow">¶</a></p>
+<dt id="section-5.2.5.3.2-6.7">'address-family':</dt>
+                <dd style="margin-left: 1.5em" id="section-5.2.5.3.2-6.8">
+                  <p id="section-5.2.5.3.2-6.8.1">Indicates the address family of the peer. It can be set to 'ipv4', 'ipv6', or 'dual-stack'.<a href="#section-5.2.5.3.2-6.8.1" class="pilcrow">¶</a></p>
 </dd>
                 <dd class="break"></dd>
-<dt id="section-5.2.5.3.2-4.9"></dt>
-                <dd style="margin-left: 1.5em" id="section-5.2.5.3.2-4.10">
-                  <p id="section-5.2.5.3.2-4.10.1">This address family might be used together with the service type that uses an AC (e.g., 'vpn-type' <span>[<a href="#RFC9182" class="cite xref">RFC9182</a>]</span>) to derive the appropriate Address Family Identifiers (AFIs) / Subsequent Address Family Identifiers (SAFIs) that will be part of the derived device configurations (e.g., unicast IPv4 MPLS L3VPN (AFI,SAFI = 1,128) as defined in <span><a href="https://rfc-editor.org/rfc/rfc4364#section-4.3.4" class="relref">Section 4.3.4</a> of [<a href="#RFC4364" class="cite xref">RFC4364</a>]</span>).<a href="#section-5.2.5.3.2-4.10.1" class="pilcrow">¶</a></p>
+<dt id="section-5.2.5.3.2-6.9"></dt>
+                <dd style="margin-left: 1.5em" id="section-5.2.5.3.2-6.10">
+                  <p id="section-5.2.5.3.2-6.10.1">This address family might be used together with the service type that uses an AC (e.g., 'vpn-type' <span>[<a href="#RFC9182" class="cite xref">RFC9182</a>]</span>) to derive the appropriate Address Family Identifiers (AFIs) / Subsequent Address Family Identifiers (SAFIs) that will be part of the derived device configurations (e.g., unicast IPv4 MPLS L3VPN (AFI,SAFI = 1,128) as defined in <span><a href="https://rfc-editor.org/rfc/rfc4364#section-4.3.4" class="relref">Section 4.3.4</a> of [<a href="#RFC4364" class="cite xref">RFC4364</a>]</span>).<a href="#section-5.2.5.3.2-6.10.1" class="pilcrow">¶</a></p>
 </dd>
                 <dd class="break"></dd>
-<dt id="section-5.2.5.3.2-4.11">'role':</dt>
-                <dd style="margin-left: 1.5em" id="section-5.2.5.3.2-4.12">
-                  <p id="section-5.2.5.3.2-4.12.1">Specifies the BGP role in a session. Role values are taken from the list defined in <span><a href="https://rfc-editor.org/rfc/rfc9234#section-4" class="relref">Section 4</a> of [<a href="#RFC9234" class="cite xref">RFC9234</a>]</span>.<a href="#section-5.2.5.3.2-4.12.1" class="pilcrow">¶</a></p>
+<dt id="section-5.2.5.3.2-6.11">'role':</dt>
+                <dd style="margin-left: 1.5em" id="section-5.2.5.3.2-6.12">
+                  <p id="section-5.2.5.3.2-6.12.1">Specifies the BGP role in a session. Role values are taken from the list defined in <span><a href="https://rfc-editor.org/rfc/rfc9234#section-4" class="relref">Section 4</a> of [<a href="#RFC9234" class="cite xref">RFC9234</a>]</span>. This parameter is useful for interconnection scenarios.<a href="#section-5.2.5.3.2-6.12.1" class="pilcrow">¶</a></p>
 </dd>
                 <dd class="break"></dd>
-<dt id="section-5.2.5.3.2-4.13">'local-address':</dt>
-                <dd style="margin-left: 1.5em" id="section-5.2.5.3.2-4.14">
-                  <p id="section-5.2.5.3.2-4.14.1">Specifies a provider's IP address to use when establishing the BGP transport session.<a href="#section-5.2.5.3.2-4.14.1" class="pilcrow">¶</a></p>
+<dt id="section-5.2.5.3.2-6.13"></dt>
+                <dd style="margin-left: 1.5em" id="section-5.2.5.3.2-6.14">
+                  <p id="section-5.2.5.3.2-6.14.1">This is an optional parameter.<a href="#section-5.2.5.3.2-6.14.1" class="pilcrow">¶</a></p>
 </dd>
                 <dd class="break"></dd>
-<dt id="section-5.2.5.3.2-4.15">'bgp-max-prefix':</dt>
-                <dd style="margin-left: 1.5em" id="section-5.2.5.3.2-4.16">
-                  <p id="section-5.2.5.3.2-4.16.1">Indicates the maximum number of BGP prefixes allowed in a session for this group.<a href="#section-5.2.5.3.2-4.16.1" class="pilcrow">¶</a></p>
+<dt id="section-5.2.5.3.2-6.15">'local-address':</dt>
+                <dd style="margin-left: 1.5em" id="section-5.2.5.3.2-6.16">
+                  <p id="section-5.2.5.3.2-6.16.1">Reports a provider's IP address to use to establish the BGP transport session.<a href="#section-5.2.5.3.2-6.16.1" class="pilcrow">¶</a></p>
 </dd>
                 <dd class="break"></dd>
-<dt id="section-5.2.5.3.2-4.17">'authentication':</dt>
-                <dd style="margin-left: 1.5em" id="section-5.2.5.3.2-4.18">
-                  <p id="section-5.2.5.3.2-4.18.1">The module adheres to the recommendations in <span><a href="https://rfc-editor.org/rfc/rfc4364#section-13.2" class="relref">Section 13.2</a> of [<a href="#RFC4364" class="cite xref">RFC4364</a>]</span>, as it allows enabling the TCP Authentication Option (TCP-AO) <span>[<a href="#RFC5925" class="cite xref">RFC5925</a>]</span> and accommodates the installed base that makes use of MD5. In addition, the module includes a provision for using IPsec.<a href="#section-5.2.5.3.2-4.18.1" class="pilcrow">¶</a></p>
+<dt id="section-5.2.5.3.2-6.17">'bgp-max-prefix':</dt>
+                <dd style="margin-left: 1.5em" id="section-5.2.5.3.2-6.18">
+                  <p id="section-5.2.5.3.2-6.18.1">Indicates the maximum number of BGP prefixes allowed in a session for this group.<a href="#section-5.2.5.3.2-6.18.1" class="pilcrow">¶</a></p>
 </dd>
                 <dd class="break"></dd>
-<dt id="section-5.2.5.3.2-4.19"></dt>
-                <dd style="margin-left: 1.5em" id="section-5.2.5.3.2-4.20">
-                  <p id="section-5.2.5.3.2-4.20.1">Similar to <span>[<a href="#RFC9182" class="cite xref">RFC9182</a>]</span>, this version of the ACaaS assumes that parameters specific to the TCP-AO are preconfigured as part of the key chain that is referenced in the ACaaS. No assumption is made about how such a key chain is preconfigured. However, the structure of the key chain should cover data nodes beyond those in "YANG Data Model for Key Chains" <span>[<a href="#RFC8177" class="cite xref">RFC8177</a>]</span>, mainly SendID and RecvID (<span><a href="https://rfc-editor.org/rfc/rfc5925#section-3.1" class="relref">Section 3.1</a> of [<a href="#RFC5925" class="cite xref">RFC5925</a>]</span>).<a href="#section-5.2.5.3.2-4.20.1" class="pilcrow">¶</a></p>
+<dt id="section-5.2.5.3.2-6.19">'authentication':</dt>
+                <dd style="margin-left: 1.5em" id="section-5.2.5.3.2-6.20">
+                  <p id="section-5.2.5.3.2-6.20.1">The module adheres to the recommendations in <span><a href="https://rfc-editor.org/rfc/rfc4364#section-13.2" class="relref">Section 13.2</a> of [<a href="#RFC4364" class="cite xref">RFC4364</a>]</span>, as it allows enabling the TCP Authentication Option (TCP-AO) <span>[<a href="#RFC5925" class="cite xref">RFC5925</a>]</span> and accommodates the installed base that makes use of MD5. In addition, the module includes a provision for using IPsec.<a href="#section-5.2.5.3.2-6.20.1" class="pilcrow">¶</a></p>
+</dd>
+                <dd class="break"></dd>
+<dt id="section-5.2.5.3.2-6.21"></dt>
+                <dd style="margin-left: 1.5em" id="section-5.2.5.3.2-6.22">
+                  <p id="section-5.2.5.3.2-6.22.1">Similar to <span>[<a href="#RFC9182" class="cite xref">RFC9182</a>]</span>, this version of the ACaaS assumes that parameters specific to the TCP-AO are preconfigured as part of the key chain that is referenced in the ACaaS. No assumption is made about how such a key chain is preconfigured. However, the structure of the key chain should cover data nodes beyond those in "YANG Data Model for Key Chains" <span>[<a href="#RFC8177" class="cite xref">RFC8177</a>]</span>, mainly SendID and RecvID (<span><a href="https://rfc-editor.org/rfc/rfc5925#section-3.1" class="relref">Section 3.1</a> of [<a href="#RFC5925" class="cite xref">RFC5925</a>]</span>).<a href="#section-5.2.5.3.2-6.22.1" class="pilcrow">¶</a></p>
 </dd>
               <dd class="break"></dd>
 </dl>
-<p id="section-5.2.5.3.2-5">For each neighbor, the following data nodes are supported in addition to similar parameters that are provided for a peer group:<a href="#section-5.2.5.3.2-5" class="pilcrow">¶</a></p>
-<span class="break"></span><dl class="dlParallel" id="section-5.2.5.3.2-6">
-                <dt id="section-5.2.5.3.2-6.1">'server-reference':</dt>
-                <dd style="margin-left: 1.5em" id="section-5.2.5.3.2-6.2">
-                  <p id="section-5.2.5.3.2-6.2.1">Reports the internal reference that is assigned by the provider for this BGP session.<a href="#section-5.2.5.3.2-6.2.1" class="pilcrow">¶</a></p>
+<p id="section-5.2.5.3.2-7">For each neighbor, the following data nodes are supported in addition to similar parameters that are provided for a peer group:<a href="#section-5.2.5.3.2-7" class="pilcrow">¶</a></p>
+<span class="break"></span><dl class="dlParallel" id="section-5.2.5.3.2-8">
+                <dt id="section-5.2.5.3.2-8.1">'server-reference':</dt>
+                <dd style="margin-left: 1.5em" id="section-5.2.5.3.2-8.2">
+                  <p id="section-5.2.5.3.2-8.2.1">Reports the internal reference that is assigned by the provider for this BGP session. This is an optional parameter.<a href="#section-5.2.5.3.2-8.2.1" class="pilcrow">¶</a></p>
 </dd>
                 <dd class="break"></dd>
-<dt id="section-5.2.5.3.2-6.3">'remote-address':</dt>
-                <dd style="margin-left: 1.5em" id="section-5.2.5.3.2-6.4">
-                  <p id="section-5.2.5.3.2-6.4.1">Specifies the customer's IP address used to establishing this BGP session.<a href="#section-5.2.5.3.2-6.4.1" class="pilcrow">¶</a></p>
+<dt id="section-5.2.5.3.2-8.3">'remote-address':</dt>
+                <dd style="margin-left: 1.5em" id="section-5.2.5.3.2-8.4">
+                  <p id="section-5.2.5.3.2-8.4.1">Specifies the customer's IP address used to establishing this BGP session. If not present, this means that the primary
+customer IP address is used as remote IP address.<a href="#section-5.2.5.3.2-8.4.1" class="pilcrow">¶</a></p>
 </dd>
                 <dd class="break"></dd>
-<dt id="section-5.2.5.3.2-6.5">'requested-start':</dt>
-                <dd style="margin-left: 1.5em" id="section-5.2.5.3.2-6.6">
-                  <p id="section-5.2.5.3.2-6.6.1">Specifies the requested date and time when the BGP session is expected to be active.<a href="#section-5.2.5.3.2-6.6.1" class="pilcrow">¶</a></p>
+<dt id="section-5.2.5.3.2-8.5">'requested-start':</dt>
+                <dd style="margin-left: 1.5em" id="section-5.2.5.3.2-8.6">
+                  <p id="section-5.2.5.3.2-8.6.1">Specifies the requested date and time when the BGP session is expected to be active.<a href="#section-5.2.5.3.2-8.6.1" class="pilcrow">¶</a></p>
 </dd>
                 <dd class="break"></dd>
-<dt id="section-5.2.5.3.2-6.7">'requested-stop':</dt>
-                <dd style="margin-left: 1.5em" id="section-5.2.5.3.2-6.8">
-                  <p id="section-5.2.5.3.2-6.8.1">Specifies the requested date and time when the BGP session is expected to be disabled.<a href="#section-5.2.5.3.2-6.8.1" class="pilcrow">¶</a></p>
+<dt id="section-5.2.5.3.2-8.7">'requested-stop':</dt>
+                <dd style="margin-left: 1.5em" id="section-5.2.5.3.2-8.8">
+                  <p id="section-5.2.5.3.2-8.8.1">Specifies the requested date and time when the BGP session is expected to be disabled.<a href="#section-5.2.5.3.2-8.8.1" class="pilcrow">¶</a></p>
 </dd>
                 <dd class="break"></dd>
-<dt id="section-5.2.5.3.2-6.9">'actual-start':</dt>
-                <dd style="margin-left: 1.5em" id="section-5.2.5.3.2-6.10">
-                  <p id="section-5.2.5.3.2-6.10.1">Reports the actual date and time when the BGP session actually was enabled.<a href="#section-5.2.5.3.2-6.10.1" class="pilcrow">¶</a></p>
+<dt id="section-5.2.5.3.2-8.9">'actual-start':</dt>
+                <dd style="margin-left: 1.5em" id="section-5.2.5.3.2-8.10">
+                  <p id="section-5.2.5.3.2-8.10.1">Reports the actual date and time when the BGP session actually was enabled.<a href="#section-5.2.5.3.2-8.10.1" class="pilcrow">¶</a></p>
 </dd>
                 <dd class="break"></dd>
-<dt id="section-5.2.5.3.2-6.11">'actual-stop':</dt>
-                <dd style="margin-left: 1.5em" id="section-5.2.5.3.2-6.12">
-                  <p id="section-5.2.5.3.2-6.12.1">Reports the actual date and time when the BGP session actually was disabled.<a href="#section-5.2.5.3.2-6.12.1" class="pilcrow">¶</a></p>
+<dt id="section-5.2.5.3.2-8.11">'actual-stop':</dt>
+                <dd style="margin-left: 1.5em" id="section-5.2.5.3.2-8.12">
+                  <p id="section-5.2.5.3.2-8.12.1">Reports the actual date and time when the BGP session actually was disabled.<a href="#section-5.2.5.3.2-8.12.1" class="pilcrow">¶</a></p>
 </dd>
                 <dd class="break"></dd>
-<dt id="section-5.2.5.3.2-6.13">'status':</dt>
-                <dd style="margin-left: 1.5em" id="section-5.2.5.3.2-6.14">
-                  <p id="section-5.2.5.3.2-6.14.1">Indicates the status of the BGP routing instance.<a href="#section-5.2.5.3.2-6.14.1" class="pilcrow">¶</a></p>
+<dt id="section-5.2.5.3.2-8.13">'status':</dt>
+                <dd style="margin-left: 1.5em" id="section-5.2.5.3.2-8.14">
+                  <p id="section-5.2.5.3.2-8.14.1">Indicates the status of the BGP routing instance.<a href="#section-5.2.5.3.2-8.14.1" class="pilcrow">¶</a></p>
 </dd>
                 <dd class="break"></dd>
-<dt id="section-5.2.5.3.2-6.15">'peer-group':</dt>
-                <dd style="margin-left: 1.5em" id="section-5.2.5.3.2-6.16">
-                  <p id="section-5.2.5.3.2-6.16.1">Specifies a name of a peer group.<a href="#section-5.2.5.3.2-6.16.1" class="pilcrow">¶</a></p>
+<dt id="section-5.2.5.3.2-8.15">'peer-group':</dt>
+                <dd style="margin-left: 1.5em" id="section-5.2.5.3.2-8.16">
+                  <p id="section-5.2.5.3.2-8.16.1">Specifies a name of a peer group.<a href="#section-5.2.5.3.2-8.16.1" class="pilcrow">¶</a></p>
 </dd>
                 <dd class="break"></dd>
-<dt id="section-5.2.5.3.2-6.17"></dt>
-                <dd style="margin-left: 1.5em" id="section-5.2.5.3.2-6.18">
-                  <p id="section-5.2.5.3.2-6.18.1">Parameters that are provided at the 'neighbor' level takes precedence over the ones provided in the peer group.<a href="#section-5.2.5.3.2-6.18.1" class="pilcrow">¶</a></p>
+<dt id="section-5.2.5.3.2-8.17"></dt>
+                <dd style="margin-left: 1.5em" id="section-5.2.5.3.2-8.18">
+                  <p id="section-5.2.5.3.2-8.18.1">Parameters that are provided at the 'neighbor' level takes precedence over the ones provided in the peer group.<a href="#section-5.2.5.3.2-8.18.1" class="pilcrow">¶</a></p>
 </dd>
                 <dd class="break"></dd>
-<dt id="section-5.2.5.3.2-6.19">'failure-detection-profile':</dt>
-                <dd style="margin-left: 1.5em" id="section-5.2.5.3.2-6.20">
-                  <p id="section-5.2.5.3.2-6.20.1">Indicates a failure detection profile (BFD) that applies for a BGP neighbor.<a href="#section-5.2.5.3.2-6.20.1" class="pilcrow">¶</a></p>
+<dt id="section-5.2.5.3.2-8.19"></dt>
+                <dd style="margin-left: 1.5em" id="section-5.2.5.3.2-8.20">
+                  <p id="section-5.2.5.3.2-8.20.1">This is an optional parameter.<a href="#section-5.2.5.3.2-8.20.1" class="pilcrow">¶</a></p>
+</dd>
+                <dd class="break"></dd>
+<dt id="section-5.2.5.3.2-8.21">'failure-detection-profile':</dt>
+                <dd style="margin-left: 1.5em" id="section-5.2.5.3.2-8.22">
+                  <p id="section-5.2.5.3.2-8.22.1">Indicates a failure detection profile (BFD) that applies for a BGP neighbor. This is an optional parameter.<a href="#section-5.2.5.3.2-8.22.1" class="pilcrow">¶</a></p>
 </dd>
               <dd class="break"></dd>
 </dl>
@@ -9149,6 +9167,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 <p id="appendix-B-2">Thanks to Ebben Aries for the YANG Doctors review and for providing <span>[<a href="#Instance-Data" class="cite xref">Instance-Data</a>]</span>.<a href="#appendix-B-2" class="pilcrow">¶</a></p>
 <p id="appendix-B-3">Thanks to Donald Eastlake for the careful rtg-dir reviews and Tero Kivinen for the sec-dir review.<a href="#appendix-B-3" class="pilcrow">¶</a></p>
 <p id="appendix-B-4">Thanks to Luis Miguel Contreras Murillo for the careful Shepherd review.<a href="#appendix-B-4" class="pilcrow">¶</a></p>
+<p id="appendix-B-5">Thanks to Mahesh for the AD review.<a href="#appendix-B-5" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="contributors">
