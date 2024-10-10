@@ -284,6 +284,13 @@ Table of Contents
    *  Manage connectivity for complex containerized or virtualized
       functions in the cloud (Appendix A.11).
 
+   The document adheres to the principles discussed in Section 3 of
+   [RFC8309] for the encoding and communication protocols used for the
+   interaction between a customer and a provider.  Also, consistent with
+   the "A Framework for Automating Service and Network Management with
+   YANG" [RFC8969], the service models defined in the document can be
+   used independently of NETCONF/RESTCONF.
+
    The YANG data models in this document conform to the Network
    Management Datastore Architecture (NMDA) defined in [RFC8342].
 
@@ -4265,6 +4272,10 @@ Table of Contents
               "YANG Data Model for L3VPN Service Delivery", RFC 8299,
               DOI 10.17487/RFC8299, January 2018,
               <https://www.rfc-editor.org/rfc/rfc8299>.
+
+   [RFC8309]  Wu, Q., Liu, W., and A. Farrel, "Service Models
+              Explained", RFC 8309, DOI 10.17487/RFC8309, January 2018,
+              <https://www.rfc-editor.org/rfc/rfc8309>.
 
    [RFC8340]  Bjorklund, M. and L. Berger, Ed., "YANG Tree Diagrams",
               BCP 215, RFC 8340, DOI 10.17487/RFC8340, March 2018,
