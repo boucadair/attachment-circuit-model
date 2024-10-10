@@ -179,7 +179,7 @@ The AC service model can be used in a variety of contexts, such as (but not limi
 * Interconnect provider networks (e.g., {{?RFC8921}} or {{?I-D.ramseyer-grow-peering-api}}). Such ACs are identified with a "role" set to "ac-common:nni" or "ac-common:public-nni". See {{sec-peering}} to illustrate the use of the AC model for interconnection/peering.
 * Manage connectivity for complex containerized or virtualized functions in the cloud ({{sec-cloudified-nfs}}).
 
-The document adheres to the principles discussed in {{?Section 3 of ?RFC8309}} for the encoding and communication protocols used
+The document adheres to the principles discussed in {{Section 3 of ?RFC8309}} for the encoding and communication protocols used
 for the interaction between a customer and a provider. Also, consistent with the "A Framework for Automating Service and Network Management with YANG" {{?RFC8969}}, the service models defined in the document can be used independently of NETCONF/RESTCONF.
 
 The YANG data models in this document conform to the Network Management Datastore Architecture (NMDA) defined in {{!RFC8342}}.
