@@ -5663,28 +5663,29 @@ A.10.  Interconnection via Internet eXchange Points (IXPs)
    networks.  Networks that are interested in establishing selective BGP
    peerings expose a dedicated ACaaS server to the IXP.  BGP is used to
    exchange routing information and reachability announcements between
-   those networks.
+   those networks.  Any provider connected to an IXP can behave as a
+   client (i.e., initiate a BGP peering request).
 
    This example follows the recursive deployment model depicted in
    Figure 4.  Specifically, base bearer/AC service requests are handled
    locally by the IXP.  However, binding BGP sessions to existing ACs
    involves a recursion step.
 
-.----------.   Bearer/AC    .----------.       AC      .--------------.
-| Customer | Service Models |    IXP   | Service Model  |   Provider    |
-| Service  |<-------------->| Operator |<-------------->| Service Order |
-| Ordering |                |  B2B C/S |                |    Handling   |
-'-----^----'                '-----^----'                '-------^-------'
-      |                           |                             |
-      |                           |                             |
- Provisioning                Provisioning                  Provisioning
-      |                           |                             |
-.-----v----.                .-----v----.                .-------v-------.
-|   ASBR   |=====Bearer=====|    IXP   |=====Bearer=====|     ASBR      |
-|          +----Parent AC---|    SW    +----Parent AC---|               |
-|          +------------------BGP Session---------------+               |
-|          |=====Bearer=====|          |=====Bearer=====|               |
-'----------'                '----------'                '---------------'
+.------------.   Bearer/AC    .----------.       AC       .------------.
+| Provider A | Service Models |    IXP   | Service Model  | Provider B |
+|            |<-------------->| Operator |<-------------->|            |
+|            |                |  B2B C/S |                |            |
+'------^-----'                '-----^----'                '------^-----'
+       |                            |                            |
+       |                            |                            |
+  Provisioning                 Provisioning                 Provisioning
+       |                            |                            |
+.------v----.                 .-----v----.                .------v-----.
+|   ASBR    |======Bearer=====|          |=====Bearer=====|    ASBR    |
+|           +----Parent AC----|    SW    +----Parent AC---|            |
+|           +..................BGP Session................+            |
+|           |=====Bearer======|          |=====Bearer=====|            |
+'-----------'                 '----------'                '------------'
 
                Figure 50: Recursive Deployment Example
 

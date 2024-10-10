@@ -7784,120 +7784,114 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
         <h3 id="name-interconnection-via-interne">
 <a href="#appendix-A.10" class="section-number selfRef">A.10. </a><a href="#name-interconnection-via-interne" class="section-name selfRef">Interconnection via Internet eXchange Points (IXPs)</a>
         </h3>
-<p id="appendix-A.10-1">This section illustrates how to use the AC service model for interconnection purposes. To that aim, the document assumes a simplified Internet eXchange Point (IXP) configuration without zooming into IXP deployment specifics. Let us assume that networks are interconnected via a Layer 2 facility. Let us also assume a deployment context where selective peering is in place between these networks. Networks that are interested in establishing selective BGP peerings expose  a dedicated ACaaS server to the IXP. BGP is used to exchange routing information and reachability announcements between those networks.<a href="#appendix-A.10-1" class="pilcrow">¶</a></p>
+<p id="appendix-A.10-1">This section illustrates how to use the AC service model for interconnection purposes. To that aim, the document assumes a simplified Internet eXchange Point (IXP) configuration without zooming into IXP deployment specifics. Let us assume that networks are interconnected via a Layer 2 facility. Let us also assume a deployment context where selective peering is in place between these networks. Networks that are interested in establishing selective BGP peerings expose a dedicated ACaaS server to the IXP. BGP is used to exchange routing information and reachability announcements between those networks. Any provider connected to an IXP can behave as a client (i.e., initiate a BGP peering request).<a href="#appendix-A.10-1" class="pilcrow">¶</a></p>
 <p id="appendix-A.10-2">This example follows the recursive deployment model depicted in <a href="#_u-ex-r" class="auto internal xref">Figure 4</a>. Specifically, base bearer/AC service requests are handled locally by the IXP. However, binding BGP sessions to existing ACs involves a recursion step.<a href="#appendix-A.10-2" class="pilcrow">¶</a></p>
 <span id="name-recursive-deployment-exampl"></span><div id="_u-ex-rb">
 <figure id="figure-50">
           <div id="appendix-A.10-3.1">
             <div class="alignCenter art-svg artwork" id="appendix-A.10-3.1.1">
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="272" width="592" viewBox="0 0 592 272" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="272" width="584" viewBox="0 0 584 272" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
                 <path d="M 8,32 L 8,96" fill="none" stroke="black"></path>
                 <path d="M 8,176 L 8,256" fill="none" stroke="black"></path>
-                <path d="M 56,96 L 56,128" fill="none" stroke="black"></path>
-                <path d="M 56,160 L 56,176" fill="none" stroke="black"></path>
-                <path d="M 96,32 L 96,96" fill="none" stroke="black"></path>
-                <path d="M 96,176 L 96,256" fill="none" stroke="black"></path>
-                <path d="M 232,32 L 232,96" fill="none" stroke="black"></path>
-                <path d="M 232,176 L 232,216" fill="none" stroke="black"></path>
-                <path d="M 232,232 L 232,256" fill="none" stroke="black"></path>
-                <path d="M 280,96 L 280,128" fill="none" stroke="black"></path>
-                <path d="M 280,160 L 280,176" fill="none" stroke="black"></path>
-                <path d="M 320,32 L 320,96" fill="none" stroke="black"></path>
-                <path d="M 320,176 L 320,208" fill="none" stroke="black"></path>
-                <path d="M 320,240 L 320,256" fill="none" stroke="black"></path>
-                <path d="M 456,40 L 456,96" fill="none" stroke="black"></path>
-                <path d="M 456,176 L 456,256" fill="none" stroke="black"></path>
-                <path d="M 520,96 L 520,128" fill="none" stroke="black"></path>
-                <path d="M 520,160 L 520,176" fill="none" stroke="black"></path>
-                <path d="M 584,48 L 584,96" fill="none" stroke="black"></path>
-                <path d="M 584,176 L 584,256" fill="none" stroke="black"></path>
-                <path d="M 8,32 L 96,32" fill="none" stroke="black"></path>
-                <path d="M 232,32 L 320,32" fill="none" stroke="black"></path>
-                <path d="M 448,32 L 568,32" fill="none" stroke="black"></path>
-                <path d="M 104,64 L 224,64" fill="none" stroke="black"></path>
-                <path d="M 328,64 L 448,64" fill="none" stroke="black"></path>
-                <path d="M 8,96 L 48,96" fill="none" stroke="black"></path>
-                <path d="M 64,96 L 96,96" fill="none" stroke="black"></path>
-                <path d="M 232,96 L 272,96" fill="none" stroke="black"></path>
-                <path d="M 288,96 L 320,96" fill="none" stroke="black"></path>
-                <path d="M 456,96 L 512,96" fill="none" stroke="black"></path>
-                <path d="M 528,96 L 584,96" fill="none" stroke="black"></path>
-                <path d="M 8,176 L 48,176" fill="none" stroke="black"></path>
-                <path d="M 64,176 L 96,176" fill="none" stroke="black"></path>
-                <path d="M 232,176 L 272,176" fill="none" stroke="black"></path>
-                <path d="M 288,176 L 320,176" fill="none" stroke="black"></path>
-                <path d="M 456,176 L 512,176" fill="none" stroke="black"></path>
-                <path d="M 528,176 L 584,176" fill="none" stroke="black"></path>
-                <path d="M 104,190 L 136,190" fill="none" stroke="black"></path>
-                <path d="M 104,194 L 136,194" fill="none" stroke="black"></path>
-                <path d="M 192,190 L 224,190" fill="none" stroke="black"></path>
-                <path d="M 192,194 L 224,194" fill="none" stroke="black"></path>
-                <path d="M 328,190 L 360,190" fill="none" stroke="black"></path>
-                <path d="M 328,194 L 360,194" fill="none" stroke="black"></path>
-                <path d="M 416,190 L 448,190" fill="none" stroke="black"></path>
-                <path d="M 416,194 L 448,194" fill="none" stroke="black"></path>
-                <path d="M 96,208 L 128,208" fill="none" stroke="black"></path>
-                <path d="M 208,208 L 224,208" fill="none" stroke="black"></path>
-                <path d="M 320,208 L 352,208" fill="none" stroke="black"></path>
-                <path d="M 432,208 L 448,208" fill="none" stroke="black"></path>
-                <path d="M 96,224 L 240,224" fill="none" stroke="black"></path>
-                <path d="M 336,224 L 456,224" fill="none" stroke="black"></path>
-                <path d="M 104,238 L 136,238" fill="none" stroke="black"></path>
-                <path d="M 104,242 L 136,242" fill="none" stroke="black"></path>
-                <path d="M 192,238 L 224,238" fill="none" stroke="black"></path>
-                <path d="M 192,242 L 224,242" fill="none" stroke="black"></path>
-                <path d="M 328,238 L 360,238" fill="none" stroke="black"></path>
-                <path d="M 328,242 L 360,242" fill="none" stroke="black"></path>
-                <path d="M 416,238 L 448,238" fill="none" stroke="black"></path>
-                <path d="M 416,242 L 448,242" fill="none" stroke="black"></path>
-                <path d="M 8,256 L 96,256" fill="none" stroke="black"></path>
-                <path d="M 232,256 L 320,256" fill="none" stroke="black"></path>
-                <path d="M 456,256 L 584,256" fill="none" stroke="black"></path>
-                <polygon class="arrowhead" points="528,176 516,170.4 516,181.6" fill="black" transform="rotate(90,520,176)"></polygon>
-                <polygon class="arrowhead" points="528,96 516,90.4 516,101.6" fill="black" transform="rotate(270,520,96)"></polygon>
-                <polygon class="arrowhead" points="456,64 444,58.4 444,69.6" fill="black" transform="rotate(0,448,64)"></polygon>
-                <polygon class="arrowhead" points="336,64 324,58.4 324,69.6" fill="black" transform="rotate(180,328,64)"></polygon>
-                <polygon class="arrowhead" points="288,176 276,170.4 276,181.6" fill="black" transform="rotate(90,280,176)"></polygon>
-                <polygon class="arrowhead" points="288,96 276,90.4 276,101.6" fill="black" transform="rotate(270,280,96)"></polygon>
-                <polygon class="arrowhead" points="232,64 220,58.4 220,69.6" fill="black" transform="rotate(0,224,64)"></polygon>
-                <polygon class="arrowhead" points="112,64 100,58.4 100,69.6" fill="black" transform="rotate(180,104,64)"></polygon>
-                <polygon class="arrowhead" points="64,176 52,170.4 52,181.6" fill="black" transform="rotate(90,56,176)"></polygon>
-                <polygon class="arrowhead" points="64,96 52,90.4 52,101.6" fill="black" transform="rotate(270,56,96)"></polygon>
+                <path d="M 64,96 L 64,128" fill="none" stroke="black"></path>
+                <path d="M 64,160 L 64,176" fill="none" stroke="black"></path>
+                <path d="M 104,176 L 104,256" fill="none" stroke="black"></path>
+                <path d="M 112,32 L 112,96" fill="none" stroke="black"></path>
+                <path d="M 248,32 L 248,96" fill="none" stroke="black"></path>
+                <path d="M 248,176 L 248,256" fill="none" stroke="black"></path>
+                <path d="M 296,96 L 296,128" fill="none" stroke="black"></path>
+                <path d="M 296,160 L 296,176" fill="none" stroke="black"></path>
+                <path d="M 336,32 L 336,96" fill="none" stroke="black"></path>
+                <path d="M 336,176 L 336,208" fill="none" stroke="black"></path>
+                <path d="M 336,240 L 336,256" fill="none" stroke="black"></path>
+                <path d="M 472,32 L 472,96" fill="none" stroke="black"></path>
+                <path d="M 472,176 L 472,256" fill="none" stroke="black"></path>
+                <path d="M 528,96 L 528,128" fill="none" stroke="black"></path>
+                <path d="M 528,160 L 528,176" fill="none" stroke="black"></path>
+                <path d="M 576,32 L 576,96" fill="none" stroke="black"></path>
+                <path d="M 576,176 L 576,256" fill="none" stroke="black"></path>
+                <path d="M 8,32 L 112,32" fill="none" stroke="black"></path>
+                <path d="M 248,32 L 336,32" fill="none" stroke="black"></path>
+                <path d="M 472,32 L 576,32" fill="none" stroke="black"></path>
+                <path d="M 120,64 L 240,64" fill="none" stroke="black"></path>
+                <path d="M 344,64 L 464,64" fill="none" stroke="black"></path>
+                <path d="M 8,96 L 56,96" fill="none" stroke="black"></path>
+                <path d="M 72,96 L 112,96" fill="none" stroke="black"></path>
+                <path d="M 248,96 L 288,96" fill="none" stroke="black"></path>
+                <path d="M 304,96 L 336,96" fill="none" stroke="black"></path>
+                <path d="M 472,96 L 520,96" fill="none" stroke="black"></path>
+                <path d="M 536,96 L 576,96" fill="none" stroke="black"></path>
+                <path d="M 8,176 L 56,176" fill="none" stroke="black"></path>
+                <path d="M 72,176 L 104,176" fill="none" stroke="black"></path>
+                <path d="M 248,176 L 288,176" fill="none" stroke="black"></path>
+                <path d="M 304,176 L 336,176" fill="none" stroke="black"></path>
+                <path d="M 472,176 L 520,176" fill="none" stroke="black"></path>
+                <path d="M 536,176 L 576,176" fill="none" stroke="black"></path>
+                <path d="M 112,190 L 152,190" fill="none" stroke="black"></path>
+                <path d="M 112,194 L 152,194" fill="none" stroke="black"></path>
+                <path d="M 208,190 L 240,190" fill="none" stroke="black"></path>
+                <path d="M 208,194 L 240,194" fill="none" stroke="black"></path>
+                <path d="M 344,190 L 376,190" fill="none" stroke="black"></path>
+                <path d="M 344,194 L 376,194" fill="none" stroke="black"></path>
+                <path d="M 432,190 L 464,190" fill="none" stroke="black"></path>
+                <path d="M 432,194 L 464,194" fill="none" stroke="black"></path>
+                <path d="M 104,208 L 136,208" fill="none" stroke="black"></path>
+                <path d="M 216,208 L 240,208" fill="none" stroke="black"></path>
+                <path d="M 336,208 L 368,208" fill="none" stroke="black"></path>
+                <path d="M 448,208 L 464,208" fill="none" stroke="black"></path>
+                <path d="M 112,238 L 144,238" fill="none" stroke="black"></path>
+                <path d="M 112,242 L 144,242" fill="none" stroke="black"></path>
+                <path d="M 200,238 L 240,238" fill="none" stroke="black"></path>
+                <path d="M 200,242 L 240,242" fill="none" stroke="black"></path>
+                <path d="M 344,238 L 376,238" fill="none" stroke="black"></path>
+                <path d="M 344,242 L 376,242" fill="none" stroke="black"></path>
+                <path d="M 432,238 L 464,238" fill="none" stroke="black"></path>
+                <path d="M 432,242 L 464,242" fill="none" stroke="black"></path>
+                <path d="M 8,256 L 104,256" fill="none" stroke="black"></path>
+                <path d="M 248,256 L 336,256" fill="none" stroke="black"></path>
+                <path d="M 472,256 L 576,256" fill="none" stroke="black"></path>
+                <polygon class="arrowhead" points="536,176 524,170.4 524,181.6" fill="black" transform="rotate(90,528,176)"></polygon>
+                <polygon class="arrowhead" points="536,96 524,90.4 524,101.6" fill="black" transform="rotate(270,528,96)"></polygon>
+                <polygon class="arrowhead" points="472,64 460,58.4 460,69.6" fill="black" transform="rotate(0,464,64)"></polygon>
+                <polygon class="arrowhead" points="352,64 340,58.4 340,69.6" fill="black" transform="rotate(180,344,64)"></polygon>
+                <polygon class="arrowhead" points="304,176 292,170.4 292,181.6" fill="black" transform="rotate(90,296,176)"></polygon>
+                <polygon class="arrowhead" points="304,96 292,90.4 292,101.6" fill="black" transform="rotate(270,296,96)"></polygon>
+                <polygon class="arrowhead" points="248,64 236,58.4 236,69.6" fill="black" transform="rotate(0,240,64)"></polygon>
+                <polygon class="arrowhead" points="128,64 116,58.4 116,69.6" fill="black" transform="rotate(180,120,64)"></polygon>
+                <polygon class="arrowhead" points="72,176 60,170.4 60,181.6" fill="black" transform="rotate(90,64,176)"></polygon>
+                <polygon class="arrowhead" points="72,96 60,90.4 60,101.6" fill="black" transform="rotate(270,64,96)"></polygon>
                 <g class="text">
-                  <text x="160" y="36">Bearer/AC</text>
-                  <text x="388" y="36">AC</text>
-                  <text x="52" y="52">Customer</text>
-                  <text x="136" y="52">Service</text>
-                  <text x="196" y="52">Models</text>
-                  <text x="280" y="52">IXP</text>
-                  <text x="360" y="52">Service</text>
-                  <text x="416" y="52">Model</text>
+                  <text x="176" y="36">Bearer/AC</text>
+                  <text x="404" y="36">AC</text>
+                  <text x="52" y="52">Provider</text>
+                  <text x="96" y="52">A</text>
+                  <text x="152" y="52">Service</text>
+                  <text x="212" y="52">Models</text>
+                  <text x="296" y="52">IXP</text>
+                  <text x="376" y="52">Service</text>
+                  <text x="432" y="52">Model</text>
                   <text x="516" y="52">Provider</text>
-                  <text x="48" y="68">Service</text>
-                  <text x="276" y="68">Operator</text>
-                  <text x="496" y="68">Service</text>
-                  <text x="552" y="68">Order</text>
-                  <text x="52" y="84">Ordering</text>
-                  <text x="264" y="84">B2B</text>
-                  <text x="296" y="84">C/S</text>
-                  <text x="524" y="84">Handling</text>
-                  <text x="60" y="148">Provisioning</text>
-                  <text x="284" y="148">Provisioning</text>
-                  <text x="524" y="148">Provisioning</text>
+                  <text x="560" y="52">B</text>
+                  <text x="292" y="68">Operator</text>
+                  <text x="280" y="84">B2B</text>
+                  <text x="312" y="84">C/S</text>
+                  <text x="68" y="148">Provisioning</text>
+                  <text x="300" y="148">Provisioning</text>
+                  <text x="532" y="148">Provisioning</text>
                   <text x="52" y="196">ASBR</text>
-                  <text x="164" y="196">Bearer</text>
-                  <text x="280" y="196">IXP</text>
-                  <text x="388" y="196">Bearer</text>
-                  <text x="516" y="196">ASBR</text>
-                  <text x="156" y="212">Parent</text>
-                  <text x="196" y="212">AC</text>
-                  <text x="276" y="212">SW</text>
-                  <text x="380" y="212">Parent</text>
-                  <text x="420" y="212">AC</text>
-                  <text x="256" y="228">BGP</text>
-                  <text x="304" y="228">Session</text>
-                  <text x="164" y="244">Bearer</text>
-                  <text x="388" y="244">Bearer</text>
+                  <text x="180" y="196">Bearer</text>
+                  <text x="404" y="196">Bearer</text>
+                  <text x="524" y="196">ASBR</text>
+                  <text x="164" y="212">Parent</text>
+                  <text x="204" y="212">AC</text>
+                  <text x="292" y="212">SW</text>
+                  <text x="396" y="212">Parent</text>
+                  <text x="436" y="212">AC</text>
+                  <text x="176" y="228">.................</text>
+                  <text x="264" y="228">BGP</text>
+                  <text x="376" y="228">Session................</text>
+                  <text x="172" y="244">Bearer</text>
+                  <text x="404" y="244">Bearer</text>
                 </g>
               </svg><a href="#appendix-A.10-3.1.1" class="pilcrow">¶</a>
 </div>
