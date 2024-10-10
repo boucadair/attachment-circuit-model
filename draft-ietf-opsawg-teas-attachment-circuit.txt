@@ -5663,12 +5663,13 @@ A.10.  Interconnection via Internet eXchange Points (IXPs)
    interconnection purposes.  To that aim, the document assumes a
    simplified Internet eXchange Point (IXP) configuration without
    zooming into IXP deployment specifics.  Let us assume that networks
-   are interconnected via a Layer 2 facility.  BGP is used to exchange
-   routing information and reachability announcements between those
-   networks.
+   are interconnected via a Layer 2 facility.  Let us also assume a
+   deployment context where selective peering is in place between these
+   networks.  BGP is used to exchange routing information and
+   reachability announcements between those networks.
 
    The same approach can be used to negotiate interconnection between
-   two networks and without involving an IXP.
+   two networks without involving an IXP.
 
    This example follows the recursive deployment model depicted in
    Figure 4.  Specifically, base bearer/AC service requests are handled
@@ -6005,7 +6006,7 @@ A.10.3.  Manage ACs and BGP Sessions
    AC.  The BGP session configuration includes parameters such as
    neighbor IP addresses, ASNs, authentication settings (if required),
    etc.  The configuration is triggered at each side of the BGP
-   connection.
+   connection (i.e., peer ASBRs).
 
    =============== NOTE: '\' line wrapping per RFC 8792 ================
 
