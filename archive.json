@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-10-08T00:47:17.694182+00:00",
+  "timestamp": "2024-10-10T00:47:09.189068+00:00",
   "repo": "boucadair/attachment-circuit-model",
   "labels": [
     {
@@ -9046,6 +9046,32 @@
       "mergeCommit": {
         "oid": "317c6247ff13a45c0b9be5ef2c7f3f731733b5e1"
       },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 235,
+      "id": "PR_kwDOIiAkrc5-EoSQ",
+      "title": "Explain minimum BGP information",
+      "url": "https://github.com/boucadair/attachment-circuit-model/pull/235",
+      "state": "OPEN",
+      "author": "boucadair",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-10-09T12:13:37Z",
+      "updatedAt": "2024-10-09T13:04:48Z",
+      "baseRepository": "boucadair/attachment-circuit-model",
+      "baseRefName": "main",
+      "baseRefOid": "794db01179350b0f593a820553fc6321fdc70cf5",
+      "headRepository": "boucadair/attachment-circuit-model",
+      "headRefName": "Explain-minimum-BGP-information",
+      "headRefOid": "d3eb9d7f5fa1ada653c0e35d0a7955345c9d740c",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
       "comments": [],
       "reviews": []
     }
