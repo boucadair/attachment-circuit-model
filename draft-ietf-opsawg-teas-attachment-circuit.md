@@ -347,7 +347,7 @@ The procedure to provision a service in a service provider network may depend on
 ~~~~
 {: #u-ex-c title="Example of Interaction Between Customer and Provider Orchestrations" artwork-align="center"}
 
-{{u-ex-r}} shows an example to illustrate how the bearer/AC service models can be used in a recursive manner. In such deployment, the Service Broker
+{{u-ex-r}} shows an example to illustrate how the bearer/AC service models which involve a third party. This deployment model follows a recursive approach but other Client/Server alternative modes with a third party can be considered. In a recursive deployment, the Service Broker
 exposes a server to a customer for the ordering of AC services, but it also acts as a client when communicating with the a provider. How the Service Broker
 decides to terminate a recursion for a given service request or create child service requests is deployment specific.
 
