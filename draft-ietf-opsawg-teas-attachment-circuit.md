@@ -1379,26 +1379,26 @@ This scenario allows the provider to maintain a list of ACs belonging to the sam
 
 ## Interconnection via Internet eXchange Points (IXPs) {#sec-peering}
 
-This section illustrates how to use the AC service model for interconnection purposes. To that aim, the document assumes a simplified Internet eXchange Point (IXP) configuration without zooming into IXP deployment specifics. Let us assume that networks are interconnected via a Layer 2 facility. Let us also assume a deployment context where selective peering is in place between these networks. Networks that are interested in establishing selective BGP peerings expose  a dedicated ACaaS server to the IXP. BGP is used to exchange routing information and reachability announcements between those networks.
+This section illustrates how to use the AC service model for interconnection purposes. To that aim, the document assumes a simplified Internet eXchange Point (IXP) configuration without zooming into IXP deployment specifics. Let us assume that networks are interconnected via a Layer 2 facility. Let us also assume a deployment context where selective peering is in place between these networks. Networks that are interested in establishing selective BGP peerings expose a dedicated ACaaS server to the IXP. BGP is used to exchange routing information and reachability announcements between those networks. Any provider connected to an IXP can behave as a client (i.e., initiate a BGP peering request).
 
 This example follows the recursive deployment model depicted in {{u-ex-r}}. Specifically, base bearer/AC service requests are handled locally by the IXP. However, binding BGP sessions to existing ACs involves a recursion step.
 
 ~~~~ aasvg
-.----------.   Bearer/AC    .----------.       AC      .--------------.
-| Customer | Service Models |    IXP   | Service Model  |   Provider    |
-| Service  |<-------------->| Operator |<-------------->| Service Order |
-| Ordering |                |  B2B C/S |                |    Handling   |
-'-----^----'                '-----^----'                '-------^-------'
-      |                           |                             |
-      |                           |                             |
- Provisioning                Provisioning                  Provisioning
-      |                           |                             |
-.-----v----.                .-----v----.                .-------v-------.
-|   ASBR   |=====Bearer=====|    IXP   |=====Bearer=====|     ASBR      |
-|          +----Parent AC---|    SW    +----Parent AC---|               |
-|          +------------------BGP Session---------------+               |
-|          |=====Bearer=====|          |=====Bearer=====|               |
-'----------'                '----------'                '---------------'
+.------------.   Bearer/AC    .----------.       AC       .------------.
+| Provider A | Service Models |    IXP   | Service Model  | Provider B |
+|            |<-------------->| Operator |<-------------->|            |
+|            |                |  B2B C/S |                |            |
+'------^-----'                '-----^----'                '------^-----'
+       |                            |                            |
+       |                            |                            |
+  Provisioning                 Provisioning                 Provisioning
+       |                            |                            |
+.------v----.                 .-----v----.                .------v-----.
+|   ASBR    |======Bearer=====|          |=====Bearer=====|    ASBR    |
+|           +----Parent AC----|    SW    +----Parent AC---|            |
+|           +..................BGP Session................+            |
+|           |=====Bearer======|          |=====Bearer=====|            |
+'-----------'                 '----------'                '------------'
 ~~~~
 {: #u-ex-rb title="Recursive Deployment Example" artwork-align="center"}
 
