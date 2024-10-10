@@ -4109,11 +4109,6 @@ B2B C/S: Back-to-back Client/Server
               DOI 10.17487/RFC6020, October 2010,
               <https://www.rfc-editor.org/rfc/rfc6020>.
 
-   [RFC6241]  Enns, R., Ed., Bjorklund, M., Ed., Schoenwaelder, J., Ed.,
-              and A. Bierman, Ed., "Network Configuration Protocol
-              (NETCONF)", RFC 6241, DOI 10.17487/RFC6241, June 2011,
-              <https://www.rfc-editor.org/rfc/rfc6241>.
-
    [RFC6565]  Pillay-Esnault, P., Moyer, P., Doyle, J., Ertekin, E., and
               M. Lundberg, "OSPFv3 as a Provider Edge to Customer Edge
               (PE-CE) Routing Protocol", RFC 6565, DOI 10.17487/RFC6565,
@@ -4285,6 +4280,11 @@ B2B C/S: Back-to-back Client/Server
               for the MD5 Message-Digest and the HMAC-MD5 Algorithms",
               RFC 6151, DOI 10.17487/RFC6151, March 2011,
               <https://www.rfc-editor.org/rfc/rfc6151>.
+
+   [RFC6241]  Enns, R., Ed., Bjorklund, M., Ed., Schoenwaelder, J., Ed.,
+              and A. Bierman, Ed., "Network Configuration Protocol
+              (NETCONF)", RFC 6241, DOI 10.17487/RFC6241, June 2011,
+              <https://www.rfc-editor.org/rfc/rfc6241>.
 
    [RFC6952]  Jethanandani, M., Patel, K., and L. Zheng, "Analysis of
               BGP, LDP, PCEP, and MSDP Issues According to the Keying
