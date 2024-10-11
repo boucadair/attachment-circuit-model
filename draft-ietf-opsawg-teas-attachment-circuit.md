@@ -332,6 +332,8 @@ The procedure to provision a service in a service provider network may depend on
 
 {{u-ex-c}} shows an example to illustrate how the bearer/AC service models can be used between a customer and a provider. Internals to the provider orchestration domain (or customer orchestration domain) are hidden to the customer (or provider).
 
+Resources that are needed to activate an AC (e.g., Layer 2 or Layer 3 identifiers) are typically imposed by the provider. However, the deployment model assumes that the customer may supply a specific identifier (e.g., selected from a pool that was pre-provisioned by the provider) in a service request. The provider may accept or reject such request.
+
 ~~~~ aasvg
 .----------------------.     Bearer/AC       .--------------------.
 |      Customer        |    Service Models   |     Provider       |
