@@ -350,7 +350,7 @@ The procedure to provision a service in a service provider network may depend on
 {: #u-ex-c title="Example of Interaction Between Customer and Provider Orchestrations" artwork-align="center"}
 
 {{u-ex-r}} shows an example to illustrate how the bearer/AC service models that involve a third party. This deployment model follows a recursive approach but other Client/Server alternative modes with a third party can be considered. In a recursive deployment, the Service Broker
-exposes a server to a customer for the ordering of AC services, but it also acts as a client when communicating with the a provider. How the Service Broker
+exposes a server to a customer for the ordering of AC services, but it also acts as a client when communicating with a provider. How the Service Broker
 decides to terminate a recursion for a given service request or create child service requests is deployment specific.
 
 ~~~~ aasvg
@@ -726,7 +726,7 @@ The BGP tree structure is shown in {{bgp-rtg-svc-tree}}.
 {: #bgp-rtg-svc-tree title="BGP Tree Structure" artwork-align="center"}
 
 For deployment cases where an AC service request includes a list of neighors with redundant information,
-the ACaaS allows to factorize shared data by means of 'peer-group'. The presence of "peer-groups" in a service request is thus optional.
+the ACaaS allows to factorize shared data by means of 'peer-group'. The presence of 'peer-groups' in a service request is thus optional.
 
 The following data nodes are supported for each BGP 'peer-group':
 
@@ -1163,12 +1163,12 @@ Let us consider the example of an eNodeB (CE) that is directly connected to the 
 
 ~~~~ aasvg
 .-------------.                  .------------------.
-|             |       ac1        | PE               |
-|             |==================|  192.0.2.1       |
+|             |                  | PE               |
+|             +--------ac1-------+  192.0.2.1       |
 |   eNodeB    |          VLAN 1  |  2001:db8::1     |
 |             |          VLAN 2  |                  |
-|             |==================|                  |
-|             |       ac2        |                  |
+|             +--------ac2-------+                  |
+|             |                  |                  |
 |             | Direct           |                  |
 '-------------' Routing          |                  |
                                  |                  |
@@ -1402,6 +1402,8 @@ This example follows the recursive deployment model depicted in {{u-ex-r}}. Spec
 |           +..................BGP Session................+            |
 |           |=================|          |================|            |
 '-----------'                 '----------'                '------------'
+
+B2B C/S: Back-to-back Client/Server
 ~~~~
 {: #u-ex-rb title="Recursive Deployment Example" artwork-align="center"}
 
@@ -1525,7 +1527,7 @@ The NFs are deployed on this infrastructure in the following way:
 
 For readability the payload is displayed as single JSON file ({{parent-profile}}). In practice, several API calls may take place to initialize these resources (e.g., GET requests from the customer to retrieve the IP address pools for NFs on "vlan 100" thanks to parent configuration and BGP configuration, and POST extra routes for user planes and BFD).
 
-Note that no individual IP address is assigned in the data model for the NF user plane instances (i.e., no "customer-address" in the Child AC). The assignment of IP addresses to the NF endpoints is managed by the Cloud Infrastructure IPAM based on the customer-addresses IP address pool "192.0.2.1-200". Like in any standard LAN-facing scenario, it is assumed that the actual binding of IP endpoints to logical attachments (here Child ACs) relies on a dedicated protocol logic  (typically, ARP or NDP) and is not captured in the data model. Hence, the IP addresses displayed for NF user plane instances are simply examples of a realization approach. Note also that the Control Plane is defined with static IP address assignment on a given AC/bearer to illustrate another deployment alternative.
+Note that no individual IP addresses are assigned for the NF user plane instances (i.e., no "customer-address" in the Child AC). The assignment of IP addresses to the NF endpoints is managed by the Cloud Infrastructure IPAM based on the 'customer-address' IP address pool "192.0.2.1-200". Like in any conventional LAN-facing scenario, it is assumed that the actual binding of IP endpoints to logical attachments (here Child ACs) relies on a dedicated protocol logic (typically, Address Resolution Protocol (ARP) {{?RFC0826}} or Neighbor Discovery {{?RFC4861}}) and is not captured in the data model. Hence, the IP addresses displayed for NF user plane instances are simply examples to illustrate a realization approach. Note also that the Control Plane is defined with static IP address assignments on a given AC/bearer to illustrate another deployment alternative.
 
 ~~~~ json
 {::include-fold ./json-examples/svc/ac-cloud-parent.json}
