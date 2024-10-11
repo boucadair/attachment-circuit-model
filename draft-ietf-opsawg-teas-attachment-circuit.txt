@@ -5,14 +5,14 @@
 OPSAWG                                                 M. Boucadair, Ed.
 Internet-Draft                                                    Orange
 Intended status: Standards Track                         R. Roberts, Ed.
-Expires: 13 April 2025                                           Juniper
+Expires: 14 April 2025                                           Juniper
                                                            O. G. D. Dios
                                                               Telefonica
                                                            S. B. Giraldo
                                                                    Nokia
                                                                    B. Wu
                                                      Huawei Technologies
-                                                         10 October 2024
+                                                         11 October 2024
 
 
   YANG Data Models for Bearers and 'Attachment Circuits'-as-a-Service
@@ -62,7 +62,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 13 April 2025.
+   This Internet-Draft will expire on 14 April 2025.
 
 Copyright Notice
 
@@ -594,7 +594,7 @@ Table of Contents
    recursive approach but other Client/Server alternative modes with a
    third party can be considered.  In a recursive deployment, the
    Service Broker exposes a server to a customer for the ordering of AC
-   services, but it also acts as a client when communicating with the a
+   services, but it also acts as a client when communicating with a
    provider.  How the Service Broker decides to terminate a recursion
    for a given service request or create child service requests is
    deployment specific.
@@ -1686,7 +1686,7 @@ B2B C/S: Back-to-back Client/Server
 
    For deployment cases where an AC service request includes a list of
    neighors with redundant information, the ACaaS allows to factorize
-   shared data by means of 'peer-group'.  The presence of "peer-groups"
+   shared data by means of 'peer-group'.  The presence of 'peer-groups'
    in a service request is thus optional.
 
    The following data nodes are supported for each BGP 'peer-group':
@@ -4255,6 +4255,12 @@ B2B C/S: Back-to-back Client/Server
 
    [PYANG]    "pyang", 2024, <https://github.com/mbj4668/pyang>.
 
+   [RFC0826]  Plummer, D., "An Ethernet Address Resolution Protocol: Or
+              Converting Network Protocol Addresses to 48.bit Ethernet
+              Address for Transmission on Ethernet Hardware", STD 37,
+              RFC 826, DOI 10.17487/RFC0826, November 1982,
+              <https://www.rfc-editor.org/rfc/rfc826>.
+
    [RFC2080]  Malkin, G. and R. Minnear, "RIPng for IPv6", RFC 2080,
               DOI 10.17487/RFC2080, January 1997,
               <https://www.rfc-editor.org/rfc/rfc2080>.
@@ -4276,6 +4282,11 @@ B2B C/S: Back-to-back Client/Server
    [RFC4252]  Ylonen, T. and C. Lonvick, Ed., "The Secure Shell (SSH)
               Authentication Protocol", RFC 4252, DOI 10.17487/RFC4252,
               January 2006, <https://www.rfc-editor.org/rfc/rfc4252>.
+
+   [RFC4861]  Narten, T., Nordmark, E., Simpson, W., and H. Soliman,
+              "Neighbor Discovery for IP version 6 (IPv6)", RFC 4861,
+              DOI 10.17487/RFC4861, September 2007,
+              <https://www.rfc-editor.org/rfc/rfc4861>.
 
    [RFC5925]  Touch, J., Mankin, A., and R. Bonica, "The TCP
               Authentication Option", RFC 5925, DOI 10.17487/RFC5925,
@@ -4556,12 +4567,12 @@ A.4.  One CE, Two ACs
    eNodeB (e.g., distinct VLANs for Control and User Planes).
 
    .-------------.                  .------------------.
-   |             |       ac1        | PE               |
-   |             |==================|  192.0.2.1       |
+   |             |                  | PE               |
+   |             +--------ac1-------+  192.0.2.1       |
    |   eNodeB    |          VLAN 1  |  2001:db8::1     |
    |             |          VLAN 2  |                  |
-   |             |==================|                  |
-   |             |       ac2        |                  |
+   |             +--------ac2-------+                  |
+   |             |                  |                  |
    |             | Direct           |                  |
    '-------------' Routing          |                  |
                                     |                  |
@@ -5692,6 +5703,8 @@ A.10.  Interconnection via Internet eXchange Points (IXPs)
 |           |=================|          |================|            |
 '-----------'                 '----------'                '------------'
 
+B2B C/S: Back-to-back Client/Server
+
                Figure 50: Recursive Deployment Example
 
    The following subsections exemplify a deployment flow, but BGP
@@ -6264,18 +6277,19 @@ A.11.3.  NFs Deployment
    configuration and BGP configuration, and POST extra routes for user
    planes and BFD).
 
-   Note that no individual IP address is assigned in the data model for
-   the NF user plane instances (i.e., no "customer-address" in the Child
-   AC).  The assignment of IP addresses to the NF endpoints is managed
-   by the Cloud Infrastructure IPAM based on the customer-addresses IP
-   address pool "192.0.2.1-200".  Like in any standard LAN-facing
-   scenario, it is assumed that the actual binding of IP endpoints to
-   logical attachments (here Child ACs) relies on a dedicated protocol
-   logic (typically, ARP or NDP) and is not captured in the data model.
-   Hence, the IP addresses displayed for NF user plane instances are
-   simply examples of a realization approach.  Note also that the
-   Control Plane is defined with static IP address assignment on a given
-   AC/bearer to illustrate another deployment alternative.
+   Note that no individual IP addresses are assigned for the NF user
+   plane instances (i.e., no "customer-address" in the Child AC).  The
+   assignment of IP addresses to the NF endpoints is managed by the
+   Cloud Infrastructure IPAM based on the 'customer-address' IP address
+   pool "192.0.2.1-200".  Like in any conventional LAN-facing scenario,
+   it is assumed that the actual binding of IP endpoints to logical
+   attachments (here Child ACs) relies on a dedicated protocol logic
+   (typically, Address Resolution Protocol (ARP) [RFC0826] or Neighbor
+   Discovery [RFC4861]) and is not captured in the data model.  Hence,
+   the IP addresses displayed for NF user plane instances are simply
+   examples to illustrate a realization approach.  Note also that the
+   Control Plane is defined with static IP address assignments on a
+   given AC/bearer to illustrate another deployment alternative.
 
    =============== NOTE: '\' line wrapping per RFC 8792 ================
 
