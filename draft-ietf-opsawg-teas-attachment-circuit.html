@@ -4750,7 +4750,7 @@ module ietf-ac-svc {
   grouping ipv4-static-rtg-with-bfd {
     description
       "Configuration specific to IPv4 static routing with
-       BFD.";
+       failure protection (e.g., BFD).";
     list ipv4-lan-prefix {
       if-feature "vpn-common:ipv4";
       key "lan next-hop";
@@ -4770,7 +4770,7 @@ module ietf-ac-svc {
   grouping ipv6-static-rtg-with-bfd {
     description
       "Configuration specific to IPv6 static routing with
-       BFD.";
+       failure protection (e.g., BFD).";
     list ipv6-lan-prefix {
       if-feature "vpn-common:ipv6";
       key "lan next-hop";
