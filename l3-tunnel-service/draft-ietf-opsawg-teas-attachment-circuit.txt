@@ -1348,6 +1348,11 @@ B2B C/S: Back-to-back Client/Server
    defined in [I-D.ietf-opsawg-teas-common-ac].  Both IPv4 and IPv6
    parameters are supported.
 
+   For ACs that require Layer 3 tunnel establishment ('l3-tunnel-
+   service'), the ACaaS includes a provision for future augmentations to
+   define tunnel-specific data nodes.  Such augmentations MUST be
+   conditional based on the tunnel type ('type').
+
    Figure 12 shows the structure of the IPv4 connection.
 
             | ...
