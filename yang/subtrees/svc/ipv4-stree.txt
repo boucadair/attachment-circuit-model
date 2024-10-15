@@ -1,5 +1,5 @@
         | ...
-        +--rw ip-connection  {ac-common:layer3-ac}?
+        +--rw ip-connection {ac-common:layer3-ac}?
         |  +--rw ipv4 {vpn-common:ipv4}?
         |  |  +--rw local-address?
         |  |  |       inet:ipv4-address
@@ -34,8 +34,12 @@
         |  |        +--rw address* [address-id]
         |  |           +--rw address-id          string
         |  |           +--rw customer-address?   inet:ipv4-address
-        |  |           +--rw failure-detection-profile? 
-        |  |                      failure-detection-profile-reference
-        |  |                      {vpn-common:bfd}?
+        |  |           +--rw failure-detection-profile?
+        |  |                   failure-detection-profile-reference
+        |  |                   {vpn-common:bfd}?
         |  +--rw ipv6 {vpn-common:ipv6}?
-        |     ...
+        |  |  ...
+        |  +--rw (l3-service)?
+        |     +--:(l3-tunnel-service)
+        |        +--rw l3-tunnel-service
+        |           +--rw type?   identityref

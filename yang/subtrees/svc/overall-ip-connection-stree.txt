@@ -12,11 +12,15 @@
         +--rw name                 string
         +--rw l2-connection  {ac-common:layer2-ac}?
         | ...
-        +--rw ip-connection  {ac-common:layer3-ac}?
+        +--rw ip-connection {ac-common:layer3-ac}?
         |  +--rw ipv4 {vpn-common:ipv4}?
         |  |  ...
         |  +--rw ipv6 {vpn-common:ipv6}?
-        |     ...
+        |  |  ...
+        |  +--rw (l3-service)?
+        |     +--:(l3-tunnel-service)
+        |        +--rw l3-tunnel-service
+        |           +--rw type?   identityref
         +--rw routing-protocols
         |  ...
         +--rw oam
