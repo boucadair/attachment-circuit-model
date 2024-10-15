@@ -660,6 +660,9 @@ This structure relies upon the common groupings defined in {{!I-D.ietf-opsawg-te
 
 The 'ip-connection' container is used to configure the relevant IP properties of an AC. The model supports the usage of dynamic and static addressing. This structure relies upon the common groupings defined in {{!I-D.ietf-opsawg-teas-common-ac}}. Both IPv4 and IPv6 parameters are supported.
 
+For ACs that require Layer 3 tunnel establishment ('l3-tunnel-service'), the ACaaS includes a provision for future augmentations to define
+tunnel-specific data nodes. Such augmentations MUST be conditional based on the tunnel type ('type').
+
 {{ipv4-svc-tree}} shows the structure of the IPv4 connection.
 
 ~~~~
