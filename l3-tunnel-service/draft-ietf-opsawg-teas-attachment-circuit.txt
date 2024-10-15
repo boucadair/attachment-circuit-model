@@ -3045,6 +3045,23 @@ B2B C/S: Back-to-back Client/Server
            }
          }
        }
+       choice l3-service {
+         description
+           "The Layer 3 connectivity service can be provided by
+            specifying a Layer 3 tunnel service.";
+         container l3-tunnel-service {
+           description
+             "Defines a Layer 3 tunnel termination.
+              It is only applicable when a tunnel is required.";
+           leaf type {
+             type identityref {
+               base ac-common:l3-tunnel-type;
+             }
+             description
+               "Selects the tunnel termination type for an AC.";
+           }
+         }
+       }
      }
 
      // Routing protocol list
