@@ -2811,7 +2811,7 @@ a parent AC can be defined with a set of stable and common information, while
               <div class="alignCenter art-text artwork" id="section-5.2.5.2-3.1">
 <pre>
         | ...
-        +--rw ip-connection  {ac-common:layer3-ac}?
+        +--rw ip-connection {ac-common:layer3-ac}?
         |  +--rw ipv4 {vpn-common:ipv4}?
         |  |  +--rw local-address?
         |  |  |       inet:ipv4-address
@@ -2847,10 +2847,14 @@ a parent AC can be defined with a set of stable and common information, while
         |  |           +--rw address-id          string
         |  |           +--rw customer-address?   inet:ipv4-address
         |  |           +--rw failure-detection-profile?
-        |  |                      failure-detection-profile-reference
-        |  |                      {vpn-common:bfd}?
+        |  |                   failure-detection-profile-reference
+        |  |                   {vpn-common:bfd}?
         |  +--rw ipv6 {vpn-common:ipv6}?
-        |     ...
+        |  |  ...
+        |  +--rw (l3-service)?
+        |     +--:(l3-tunnel-service)
+        |        +--rw l3-tunnel-service
+        |           +--rw type?   identityref
 </pre>
 </div>
 <figcaption><a href="#figure-12" class="selfRef">Figure 12</a>:
