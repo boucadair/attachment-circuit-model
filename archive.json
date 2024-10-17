@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-10-15T00:48:29.587167+00:00",
+  "timestamp": "2024-10-17T00:47:39.873655+00:00",
   "repo": "boucadair/attachment-circuit-model",
   "labels": [
     {
@@ -9074,6 +9074,32 @@
       "mergeCommit": {
         "oid": "999409e33af68ec27d739addb1a80d6f4e46e566"
       },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 236,
+      "id": "PR_kwDOIiAkrc5-pa_O",
+      "title": "l3-tunnel-service",
+      "url": "https://github.com/boucadair/attachment-circuit-model/pull/236",
+      "state": "OPEN",
+      "author": "boucadair",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-10-15T09:35:39Z",
+      "updatedAt": "2024-10-15T11:35:16Z",
+      "baseRepository": "boucadair/attachment-circuit-model",
+      "baseRefName": "main",
+      "baseRefOid": "9f55b7deb2c00cfbdece8c3b4cafa2da12eff4f3",
+      "headRepository": "boucadair/attachment-circuit-model",
+      "headRefName": "l3-tunnel-service",
+      "headRefOid": "4dc52cf149beb9d4e75a2e88af3c035d0633d992",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
       "comments": [],
       "reviews": []
     }
