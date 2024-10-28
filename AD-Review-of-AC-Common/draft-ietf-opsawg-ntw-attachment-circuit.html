@@ -2045,15 +2045,15 @@ augment /nw:networks/nw:network:
 augment /nw:networks/nw:network/nw:node:
   +--rw ac* [name]
      +--rw name                 string
-     +--rw ac-svc-ref?          ac-svc:attachment-circuit-reference
-     +--rw ac-profile* [ac-profile-ref]
+     +--rw svc-ref?             ac-svc:attachment-circuit-reference
+     +--rw profile* [ac-profile-ref]
      |  +--rw ac-profile-ref    leafref
      |  +--rw network-ref?      -&gt; /nw:networks/network/network-id
-     +--rw ac-parent-ref
+     +--rw parent-ref
      |  +--rw ac-ref?        leafref
      |  +--rw node-ref?      leafref
      |  +--rw network-ref?   -&gt; /nw:networks/network/network-id
-     +--ro ac-child-ref
+     +--ro child-ref
      |  +--ro ac-ref*        leafref
      |  +--ro node-ref?      leafref
      |  +--ro network-ref?   -&gt; /nw:networks/network/network-id
@@ -2095,7 +2095,7 @@ augment /nw:networks/nw:network/nw:node:
 <p id="section-5.1-3">A node can host one or more SAPs. Per <span>[<a href="#RFC9408" class="cite xref">RFC9408</a>]</span>, a SAP is an abstraction of the network
 reference point (the PE side of an AC, in the context of this document) where network services can be delivered and/or are delivered to customers. Each SAP terminates one or multiple ACs. Each AC in turn may be terminated by one or more peer SAPs ('peer-sap'). In order to expose such AC/SAP binding information, the SAP model <span>[<a href="#RFC9408" class="cite xref">RFC9408</a>]</span> is augmented with required AC-related information.<a href="#section-5.1-3" class="pilcrow">¶</a></p>
 <p id="section-5.1-4">Unlike the AC service model <span>[<a href="#I-D.ietf-opsawg-teas-attachment-circuit" class="cite xref">I-D.ietf-opsawg-teas-attachment-circuit</a>]</span>, an AC is uniquely identified by a name within the scope of a node, not a network. A textual description of the AC may be provided ('description').<a href="#section-5.1-4" class="pilcrow">¶</a></p>
-<p id="section-5.1-5">Also, in order to ease the correlation between the AC exposed at the service layer and the AC that is actually provisioned in the network operation, a reference to the AC exposed to the customer ('ac-svc-ref') is stored in the 'ietf-ac-ntw' module.<a href="#section-5.1-5" class="pilcrow">¶</a></p>
+<p id="section-5.1-5">Also, in order to ease the correlation between the AC exposed at the service layer and the AC that is actually provisioned in the network operation, a reference to the AC exposed to the customer ('svc-ref') is stored in the 'ietf-ac-ntw' module.<a href="#section-5.1-5" class="pilcrow">¶</a></p>
 <p id="section-5.1-6">ACs that are terminated by a SAP are listed in the 'ac' container under '/nw:networks/nw:network/nw:node/sap:service/sap:sap'. A controller may indicate a filter based on the service type (e.g., Network Slice or L3VPN) to retrieve the list of available SAPs, and thus ACs, for that service.<a href="#section-5.1-6" class="pilcrow">¶</a></p>
 <p id="section-5.1-7">In order to factorize common data that is provisioned for a group of ACs, a set of profiles (<a href="#sec-profiles" class="auto internal xref">Section 5.3</a>) can be defined at the network level, and then called under the node level. The information contained in a profile is thus inherited, unless the corresponding data node is refined at the AC level. In such a case, the value provided at the AC level takes precedence over the global one.<a href="#section-5.1-7" class="pilcrow">¶</a></p>
 <p id="section-5.1-8">In contexts where the same AC is terminated by multiple peer SAPs (e.g., an AC with multiple CEs) but a subset of them have specific information, the module allows operators to:<a href="#section-5.1-8" class="pilcrow">¶</a></p>
@@ -2104,13 +2104,13 @@ reference point (the PE side of an AC, in the context of this document) where ne
             <p id="section-5.1-9.1.1">Define a parent AC that may list all these CEs as peer SAPs.<a href="#section-5.1-9.1.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-5.1-9.2">
-            <p id="section-5.1-9.2.1">Create individual ACs that are bound to the parent AC using 'ac-parent-ref'.<a href="#section-5.1-9.2.1" class="pilcrow">¶</a></p>
+            <p id="section-5.1-9.2.1">Create individual ACs that are bound to the parent AC using 'parent-ref'.<a href="#section-5.1-9.2.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-5.1-9.3">
             <p id="section-5.1-9.3.1">Indicate for each individual AC one or a subset of the CEs as peer SAPs. All these individual ACs will inherit the properties of the parent AC.<a href="#section-5.1-9.3.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
-<p id="section-5.1-10">Whenever a parent AC is deleted, then all child ACs of that AC <span class="bcp14">MUST</span> be deleted. Child ACs are referenced using 'ac-child-ref'.<a href="#section-5.1-10" class="pilcrow">¶</a></p>
+<p id="section-5.1-10">Whenever a parent AC is deleted, then all child ACs of that AC <span class="bcp14">MUST</span> be deleted. Child ACs are referenced using 'child-ref'.<a href="#section-5.1-10" class="pilcrow">¶</a></p>
 <p id="section-5.1-11">An AC may belong to one or multiple groups <span>[<a href="#RFC9181" class="cite xref">RFC9181</a>]</span>. For example, the 'group-id' is used to associate redundancy or protection constraints with ACs.<a href="#section-5.1-11" class="pilcrow">¶</a></p>
 <p id="section-5.1-12">The status of an AC can be tracked using 'status'. Both operational status and administrative status are maintained. A mismatch between the administrative status vs. the operational status can be used as a trigger to detect anomalies.<a href="#section-5.1-12" class="pilcrow">¶</a></p>
 <p id="section-5.1-13">An AC can be characterized using Layer 2 connectivity (<a href="#sec-l2" class="auto internal xref">Section 5.4</a>), Layer 3 connectivity (<a href="#sec-l3" class="auto internal xref">Section 5.5</a>), routing protocols (<a href="#sec-rtg" class="auto internal xref">Section 5.6</a>), Operations, Administration, and Maintenance (OAM) (<a href="#sec-oam" class="auto internal xref">Section 5.7</a>), security (<a href="#sec-sec" class="auto internal xref">Section 5.8</a>), and service (<a href="#sec-svc" class="auto internal xref">Section 5.9</a>) considerations. Features are used to tag conditional protions to accomodate various deployments (support of layer 2 ACs, Layer 3 ACs, IPv4, IPv6, routing protocols, BFD, etc.).<a href="#section-5.1-13" class="pilcrow">¶</a></p>
@@ -2526,7 +2526,7 @@ reference point (the PE side of an AC, in the context of this document) where ne
 <p id="section-5.5-5">This container can include IPv4, IPv6, or both if dual-stack is enabled. For both IPv4 and IPv6, the IP connection supports three IP address assignment modes for customer addresses: provider DHCP, DHCP relay, and static addressing. Note that for the IPv6 case, Stateless Address Autoconfiguration (SLAAC) <span>[<a href="#RFC4862" class="cite xref">RFC4862</a>]</span> can be used.<a href="#section-5.5-5" class="pilcrow">¶</a></p>
 <p id="section-5.5-6">For both IPv4 and IPv6, 'address-allocation-type' is used to indicate the IP address allocation mode to activate for an AC. The allocated address represents the PE interface address configuration. When 'address-allocation-type' is set to 'provider-dhcp', DHCP assignments can be made locally or by an external DHCP server. Such behavior is controlled by setting 'dhcp-service-type'.<a href="#section-5.5-6" class="pilcrow">¶</a></p>
 <p id="section-5.5-7">For IPv6, if 'address-allocation-type' is set to 'slaac', the Prefix Information option of Router Advertisements that will be issued for SLAAC purposes will carry the IPv6 prefix that is determined by 'local-address' and 'prefix-length'. For example, if 'local-address' is set to '2001:db8:0:1::1' and 'prefix-length' is set to '64', the IPv6 prefix that will be used is '2001:db8:0:1::/64'.<a href="#section-5.5-7" class="pilcrow">¶</a></p>
-<p id="section-5.5-8">In some deployment contexts (e.g., network merging), multiple IP subnets may be used in a transition period. For such deployments, multiple ACs (typically, two) with overlapping information may be maintained during a transition period. The correlation between these ACs may rely upon the same 'ac-svc-ref'.<a href="#section-5.5-8" class="pilcrow">¶</a></p>
+<p id="section-5.5-8">In some deployment contexts (e.g., network merging), multiple IP subnets may be used in a transition period. For such deployments, multiple ACs (typically, two) with overlapping information may be maintained during a transition period. The correlation between these ACs may rely upon the same 'svc-ref'.<a href="#section-5.5-8" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sec-rtg">
