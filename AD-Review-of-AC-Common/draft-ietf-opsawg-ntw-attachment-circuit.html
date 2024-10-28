@@ -1172,6 +1172,14 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4">
             <p id="section-toc.1-1.4.1"><a href="#section-4" class="auto internal xref">4</a>.  <a href="#name-sample-uses-of-the-attachme" class="internal xref">Sample Uses of the Attachment Circuit Data Models</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.1">
+                <p id="section-toc.1-1.4.2.1.1"><a href="#section-4.1" class="auto internal xref">4.1</a>.  <a href="#name-acs-terminated-by-one-or-mu" class="internal xref">ACs Terminated by One or Multiple Customer Edges (CEs)</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.2">
+                <p id="section-toc.1-1.4.2.2.1"><a href="#section-4.2" class="auto internal xref">4.2</a>.  <a href="#name-positioning-the-ac-network-" class="internal xref">Positioning the AC Network Model in the Overall Service Delivery Process</a></p>
+</li>
+            </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5">
             <p id="section-toc.1-1.5.1"><a href="#section-5" class="auto internal xref">5</a>.  <a href="#name-description-of-the-attachme" class="internal xref">Description of the Attachment Circuit YANG Module</a></p>
@@ -1429,7 +1437,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         </figcaption></figure>
 </div>
 <p id="section-1-7">The AC network model uses the AC common model defined in <span>[<a href="#I-D.ietf-opsawg-teas-common-ac" class="cite xref">I-D.ietf-opsawg-teas-common-ac</a>]</span>.<a href="#section-1-7" class="pilcrow">¶</a></p>
-<p id="section-1-8">The YANG data model in this document conforms to the Network Management Datastore Architecture (NMDA) defined in <span>[<a href="#RFC8342" class="cite xref">RFC8342</a>]</span>.<a href="#section-1-8" class="pilcrow">¶</a></p>
+<p id="section-1-8">The a YANG 1.1 <span>[<a href="#RFC7950" class="cite xref">RFC7950</a>]</span> data model in this document conforms to the Network Management Datastore Architecture (NMDA) defined in <span>[<a href="#RFC8342" class="cite xref">RFC8342</a>]</span>.<a href="#section-1-8" class="pilcrow">¶</a></p>
 <p id="section-1-9">Sample examples are provided in <a href="#sec-examples" class="auto internal xref">Appendix A</a>.<a href="#section-1-9" class="pilcrow">¶</a></p>
 <div id="editorial-note-to-be-removed-by-rfc-editor">
 <section id="section-1.1">
@@ -1728,157 +1736,284 @@ To bind Layer 2 VPN or Layer 3 VPN services with ACs, "ietf-ac-glue" augments th
       <h2 id="name-sample-uses-of-the-attachme">
 <a href="#section-4" class="section-number selfRef">4. </a><a href="#name-sample-uses-of-the-attachme" class="section-name selfRef">Sample Uses of the Attachment Circuit Data Models</a>
       </h2>
-<p id="section-4-1"><a href="#_u-ex" class="auto internal xref">Figure 3</a> shows the positioning of the AC network model in the overall service delivery process. The 'ietf-ac-ntw' module is a network model which augments the SAP with a comprehensive set of parameters to reflect the attachment circuits that are in place in a network. The model also maintains the mapping with the service references that are used to expose these ACs to customers <span>[<a href="#I-D.ietf-opsawg-teas-attachment-circuit" class="cite xref">I-D.ietf-opsawg-teas-attachment-circuit</a>]</span>. Whether the same naming conventions to reference an AC are used in the service and network layers is deployment-specific.<a href="#section-4-1" class="pilcrow">¶</a></p>
-<span id="name-an-example-of-the-network-a"></span><div id="_u-ex">
+<div id="acs-terminated-by-one-or-multiple-customer-edges-ces">
+<section id="section-4.1">
+        <h3 id="name-acs-terminated-by-one-or-mu">
+<a href="#section-4.1" class="section-number selfRef">4.1. </a><a href="#name-acs-terminated-by-one-or-mu" class="section-name selfRef">ACs Terminated by One or Multiple Customer Edges (CEs)</a>
+        </h3>
+<p id="section-4.1-1"><a href="#uc" class="auto internal xref">Figure 3</a> depicts two target topology flavors that involve ACs. These topologies have the following characteristics:<a href="#section-4.1-1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-4.1-2.1">
+            <p id="section-4.1-2.1.1">A CE can be either a physical device or a logical entity. Such logical entity is typically a software component (e.g., a virtual service function that is hosted within the provider's network or a third-party infrastructure). A CE is seen by the network as a peer SAP <span>[<a href="#RFC9408" class="cite xref">RFC9408</a>]</span>.<a href="#section-4.1-2.1.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-4.1-2.2">
+            <p id="section-4.1-2.2.1">CEs may be either dedicated to one single connectivity service or host multiple connectivity services (e.g., CEs with roles of service functions <span>[<a href="#RFC7665" class="cite xref">RFC7665</a>]</span>).<a href="#section-4.1-2.2.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-4.1-2.3">
+            <p id="section-4.1-2.3.1">A network provider may bind a single AC to one or multiple peer SAPs (e.g., CE1 and CE2 are tagged as peer SAPs for the same AC). For example, and as discussed in <span>[<a href="#RFC4364" class="cite xref">RFC4364</a>]</span>, multiple CEs can be attached to a PE over the same attachment circuit. This scenario is typically implemented when the Layer 2 infrastructure between the CE and the network is a multipoint service.<a href="#section-4.1-2.3.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-4.1-2.4">
+            <p id="section-4.1-2.4.1">A single CE may terminate multiple ACs, which can be associated with the same bearer or distinct bearers (e.g., CE4).<a href="#section-4.1-2.4.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-4.1-2.5">
+            <p id="section-4.1-2.5.1">Customers may request protection schemes in which the ACs associated with their endpoints are terminated by the same PE (e.g., CE3), distinct PEs (e.g., CE4), etc. The network provider uses this request to decide where to terminate the AC in the service provider network and also whether to enable specific capabilities (e.g., Virtual Router Redundancy Protocol (VRRP)).<a href="#section-4.1-2.5.1" class="pilcrow">¶</a></p>
+</li>
+        </ul>
+<span id="name-examples-of-acs"></span><div id="uc">
 <figure id="figure-3">
-        <div id="section-4-2.1">
-          <div class="alignCenter art-svg artwork" id="section-4-2.1.1">
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="688" width="512" viewBox="0 0 512 688" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
-              <path d="M 8,592 L 8,624" fill="none" stroke="black"></path>
-              <path d="M 48,592 L 48,624" fill="none" stroke="black"></path>
-              <path d="M 96,464 L 96,512" fill="none" stroke="black"></path>
-              <path d="M 104,352 L 104,400" fill="none" stroke="black"></path>
-              <path d="M 120,576 L 120,640" fill="none" stroke="black"></path>
-              <path d="M 136,400 L 136,464" fill="none" stroke="black"></path>
-              <path d="M 136,512 L 136,568" fill="none" stroke="black"></path>
-              <path d="M 176,320 L 176,352" fill="none" stroke="black"></path>
-              <path d="M 176,464 L 176,512" fill="none" stroke="black"></path>
-              <path d="M 208,32 L 208,64" fill="none" stroke="black"></path>
-              <path d="M 208,128 L 208,176" fill="none" stroke="black"></path>
-              <path d="M 208,240 L 208,288" fill="none" stroke="black"></path>
-              <path d="M 208,408 L 208,528" fill="none" stroke="black"></path>
-              <path d="M 232,352 L 232,400" fill="none" stroke="black"></path>
-              <path d="M 272,64 L 272,128" fill="none" stroke="black"></path>
-              <path d="M 272,176 L 272,240" fill="none" stroke="black"></path>
-              <path d="M 272,288 L 272,320" fill="none" stroke="black"></path>
-              <path d="M 296,352 L 296,400" fill="none" stroke="black"></path>
-              <path d="M 336,32 L 336,64" fill="none" stroke="black"></path>
-              <path d="M 336,128 L 336,176" fill="none" stroke="black"></path>
-              <path d="M 336,240 L 336,288" fill="none" stroke="black"></path>
-              <path d="M 368,320 L 368,352" fill="none" stroke="black"></path>
-              <path d="M 368,400 L 368,568" fill="none" stroke="black"></path>
-              <path d="M 384,576 L 384,640" fill="none" stroke="black"></path>
-              <path d="M 424,352 L 424,400" fill="none" stroke="black"></path>
-              <path d="M 456,592 L 456,624" fill="none" stroke="black"></path>
-              <path d="M 496,592 L 496,624" fill="none" stroke="black"></path>
-              <path d="M 208,32 L 336,32" fill="none" stroke="black"></path>
-              <path d="M 208,64 L 336,64" fill="none" stroke="black"></path>
-              <path d="M 208,128 L 336,128" fill="none" stroke="black"></path>
-              <path d="M 208,176 L 336,176" fill="none" stroke="black"></path>
-              <path d="M 208,240 L 336,240" fill="none" stroke="black"></path>
-              <path d="M 208,288 L 336,288" fill="none" stroke="black"></path>
-              <path d="M 176,320 L 368,320" fill="none" stroke="black"></path>
-              <path d="M 104,352 L 232,352" fill="none" stroke="black"></path>
-              <path d="M 296,352 L 424,352" fill="none" stroke="black"></path>
-              <path d="M 104,400 L 232,400" fill="none" stroke="black"></path>
-              <path d="M 296,400 L 424,400" fill="none" stroke="black"></path>
-              <path d="M 96,464 L 176,464" fill="none" stroke="black"></path>
-              <path d="M 96,512 L 176,512" fill="none" stroke="black"></path>
-              <path d="M 120,576 L 384,576" fill="none" stroke="black"></path>
-              <path d="M 8,592 L 48,592" fill="none" stroke="black"></path>
-              <path d="M 456,592 L 496,592" fill="none" stroke="black"></path>
-              <path d="M 48,608 L 120,608" fill="none" stroke="black"></path>
-              <path d="M 384,608 L 456,608" fill="none" stroke="black"></path>
-              <path d="M 8,624 L 48,624" fill="none" stroke="black"></path>
-              <path d="M 456,624 L 496,624" fill="none" stroke="black"></path>
-              <path d="M 120,640 L 384,640" fill="none" stroke="black"></path>
-              <g class="text">
-                <text x="268" y="52">Customer</text>
-                <text x="108" y="84">Customer</text>
-                <text x="176" y="84">Service</text>
-                <text x="232" y="84">Model</text>
-                <text x="72" y="100">ietf-l2vpn-svc,</text>
-                <text x="200" y="100">ietf-l3vpn-svc,</text>
-                <text x="392" y="100">ietf-network-slice-service,</text>
-                <text x="100" y="116">ietf-ac-svc,</text>
-                <text x="208" y="116">ietf-ac-glue,</text>
-                <text x="296" y="116">and</text>
-                <text x="376" y="116">ietf-bearer-svc</text>
-                <text x="272" y="148">Service</text>
-                <text x="272" y="164">Orchestration</text>
-                <text x="112" y="196">Network</text>
-                <text x="168" y="196">Model</text>
-                <text x="72" y="212">ietf-l2vpn-ntw,</text>
-                <text x="200" y="212">ietf-l3vpn-ntw,</text>
-                <text x="336" y="212">ietf-sap-ntw,</text>
-                <text x="448" y="212">ietf-ac-glue,</text>
-                <text x="96" y="228">and</text>
-                <text x="160" y="228">ietf-ac-ntw</text>
-                <text x="264" y="260">Network</text>
-                <text x="272" y="276">Orchestration</text>
-                <text x="56" y="308">Network</text>
-                <text x="144" y="308">Configuration</text>
-                <text x="224" y="308">Model</text>
-                <text x="164" y="372">Domain</text>
-                <text x="364" y="372">Domain</text>
-                <text x="168" y="388">Orchestration</text>
-                <text x="360" y="388">Orchestration</text>
-                <text x="36" y="420">Device</text>
-                <text x="64" y="436">Configuration</text>
-                <text x="32" y="452">Model</text>
-                <text x="132" y="484">Config</text>
-                <text x="136" y="500">Manager</text>
-                <text x="256" y="548">NETCONF/CLI................</text>
-                <text x="376" y="548">.</text>
-                <text x="208" y="564">|</text>
-                <text x="84" y="596">Bearer</text>
-                <text x="420" y="596">Bearer</text>
-                <text x="28" y="612">CE#1</text>
-                <text x="248" y="612">Network</text>
-                <text x="476" y="612">CE#2</text>
-                <text x="28" y="660">Site</text>
-                <text x="56" y="660">A</text>
-                <text x="476" y="660">Site</text>
-                <text x="504" y="660">B</text>
-              </g>
-            </svg><a href="#section-4-2.1.1" class="pilcrow">¶</a>
+          <div id="section-4.1-3.1">
+            <div class="alignCenter art-svg artwork" id="section-4.1-3.1.1">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="304" width="512" viewBox="0 0 512 304" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
+                <path d="M 8,64 L 8,112" fill="none" stroke="black"></path>
+                <path d="M 8,144 L 8,192" fill="none" stroke="black"></path>
+                <path d="M 72,64 L 72,112" fill="none" stroke="black"></path>
+                <path d="M 72,144 L 72,192" fill="none" stroke="black"></path>
+                <path d="M 112,80 L 112,176" fill="none" stroke="black"></path>
+                <path d="M 176,112 L 176,144" fill="none" stroke="black"></path>
+                <path d="M 192,32 L 192,104" fill="none" stroke="black"></path>
+                <path d="M 192,152 L 192,224" fill="none" stroke="black"></path>
+                <path d="M 200,112 L 200,144" fill="none" stroke="black"></path>
+                <path d="M 280,208 L 280,240" fill="none" stroke="black"></path>
+                <path d="M 288,248 L 288,272" fill="none" stroke="black"></path>
+                <path d="M 304,208 L 304,240" fill="none" stroke="black"></path>
+                <path d="M 352,64 L 352,112" fill="none" stroke="black"></path>
+                <path d="M 352,144 L 352,192" fill="none" stroke="black"></path>
+                <path d="M 360,32 L 360,56" fill="none" stroke="black"></path>
+                <path d="M 360,200 L 360,224" fill="none" stroke="black"></path>
+                <path d="M 376,64 L 376,112" fill="none" stroke="black"></path>
+                <path d="M 376,144 L 376,192" fill="none" stroke="black"></path>
+                <path d="M 448,64 L 448,112" fill="none" stroke="black"></path>
+                <path d="M 448,144 L 448,192" fill="none" stroke="black"></path>
+                <path d="M 480,192 L 480,272" fill="none" stroke="black"></path>
+                <path d="M 504,64 L 504,112" fill="none" stroke="black"></path>
+                <path d="M 504,144 L 504,192" fill="none" stroke="black"></path>
+                <path d="M 192,32 L 360,32" fill="none" stroke="black"></path>
+                <path d="M 8,64 L 72,64" fill="none" stroke="black"></path>
+                <path d="M 352,64 L 376,64" fill="none" stroke="black"></path>
+                <path d="M 448,64 L 504,64" fill="none" stroke="black"></path>
+                <path d="M 72,80 L 112,80" fill="none" stroke="black"></path>
+                <path d="M 376,80 L 400,80" fill="none" stroke="black"></path>
+                <path d="M 424,80 L 448,80" fill="none" stroke="black"></path>
+                <path d="M 376,96 L 400,96" fill="none" stroke="black"></path>
+                <path d="M 424,96 L 448,96" fill="none" stroke="black"></path>
+                <path d="M 8,112 L 72,112" fill="none" stroke="black"></path>
+                <path d="M 176,112 L 200,112" fill="none" stroke="black"></path>
+                <path d="M 352,112 L 376,112" fill="none" stroke="black"></path>
+                <path d="M 448,112 L 504,112" fill="none" stroke="black"></path>
+                <path d="M 112,128 L 136,128" fill="none" stroke="black"></path>
+                <path d="M 160,128 L 176,128" fill="none" stroke="black"></path>
+                <path d="M 8,144 L 72,144" fill="none" stroke="black"></path>
+                <path d="M 176,144 L 200,144" fill="none" stroke="black"></path>
+                <path d="M 352,144 L 376,144" fill="none" stroke="black"></path>
+                <path d="M 448,144 L 504,144" fill="none" stroke="black"></path>
+                <path d="M 376,160 L 400,160" fill="none" stroke="black"></path>
+                <path d="M 424,160 L 448,160" fill="none" stroke="black"></path>
+                <path d="M 72,176 L 112,176" fill="none" stroke="black"></path>
+                <path d="M 376,176 L 400,176" fill="none" stroke="black"></path>
+                <path d="M 424,176 L 448,176" fill="none" stroke="black"></path>
+                <path d="M 8,192 L 72,192" fill="none" stroke="black"></path>
+                <path d="M 352,192 L 376,192" fill="none" stroke="black"></path>
+                <path d="M 448,192 L 504,192" fill="none" stroke="black"></path>
+                <path d="M 280,208 L 304,208" fill="none" stroke="black"></path>
+                <path d="M 192,224 L 280,224" fill="none" stroke="black"></path>
+                <path d="M 304,224 L 360,224" fill="none" stroke="black"></path>
+                <path d="M 280,240 L 304,240" fill="none" stroke="black"></path>
+                <path d="M 288,272 L 376,272" fill="none" stroke="black"></path>
+                <path d="M 400,272 L 480,272" fill="none" stroke="black"></path>
+                <g class="text">
+                  <text x="412" y="68">(b1)</text>
+                  <text x="412" y="84">AC</text>
+                  <text x="40" y="100">CE1</text>
+                  <text x="364" y="100">PE</text>
+                  <text x="412" y="100">AC</text>
+                  <text x="480" y="100">CE3</text>
+                  <text x="412" y="116">(b2)</text>
+                  <text x="148" y="132">AC</text>
+                  <text x="188" y="132">PE</text>
+                  <text x="272" y="132">Network</text>
+                  <text x="360" y="132">|</text>
+                  <text x="412" y="148">(b3)</text>
+                  <text x="412" y="164">AC</text>
+                  <text x="40" y="180">CE2</text>
+                  <text x="364" y="180">PE</text>
+                  <text x="412" y="180">AC</text>
+                  <text x="480" y="180">CE4</text>
+                  <text x="412" y="196">(b3)</text>
+                  <text x="292" y="228">PE</text>
+                  <text x="388" y="276">AC</text>
+                  <text x="20" y="292">(bx)</text>
+                  <text x="48" y="292">=</text>
+                  <text x="84" y="292">bearer</text>
+                  <text x="124" y="292">Id</text>
+                  <text x="144" y="292">x</text>
+                </g>
+              </svg><a href="#section-4.1-3.1.1" class="pilcrow">¶</a>
 </div>
 </div>
 <figcaption><a href="#figure-3" class="selfRef">Figure 3</a>:
-<a href="#name-an-example-of-the-network-a" class="selfRef">An Example of the Network AC Model Usage</a>
-        </figcaption></figure>
+<a href="#name-examples-of-acs" class="selfRef">Examples of ACs</a>
+          </figcaption></figure>
 </div>
-<p id="section-4-3">Similar to <span>[<a href="#RFC9408" class="cite xref">RFC9408</a>]</span>, the 'ietf-ac-ntw' module can be used for both User-to-Network Interface (UNI) and
-Network-to-Network Interface (NNI). For example, all the ACs shown in <a href="#fig-inter-pn" class="auto internal xref">Figure 4</a> have a 'role' set
-to 'ietf-sap-ntw:nni'. Typically, ASBRs of each network are directly
-connected to ASBRs of a neighboring network via one or multiple links (bearers). ASBRs of "Network#1" behave as a PE and treat the other adjacent ASBRs as if it were a CE.<a href="#section-4-3" class="pilcrow">¶</a></p>
-<span id="name-an-example-of-the-network-ac"></span><div id="fig-inter-pn">
+</section>
+</div>
+<div id="positioning-the-ac-network-model-in-the-overall-service-delivery-process">
+<section id="section-4.2">
+        <h3 id="name-positioning-the-ac-network-">
+<a href="#section-4.2" class="section-number selfRef">4.2. </a><a href="#name-positioning-the-ac-network-" class="section-name selfRef">Positioning the AC Network Model in the Overall Service Delivery Process</a>
+        </h3>
+<p id="section-4.2-1"><a href="#_u-ex" class="auto internal xref">Figure 4</a> shows the positioning of the AC network model in the overall service delivery process. The 'ietf-ac-ntw' module is a network model which augments the SAP with a comprehensive set of parameters to reflect the attachment circuits that are in place in a network. The model also maintains the mapping with the service references that are used to expose those ACs to customer using the 'ietf-ac-svc' module defined in <span>[<a href="#I-D.ietf-opsawg-teas-attachment-circuit" class="cite xref">I-D.ietf-opsawg-teas-attachment-circuit</a>]</span>. Whether the same naming conventions to reference an AC are used in the service and network layers is deployment-specific.<a href="#section-4.2-1" class="pilcrow">¶</a></p>
+<span id="name-an-example-of-the-network-a"></span><div id="_u-ex">
 <figure id="figure-4">
-        <div id="section-4-4.1">
-          <div class="alignCenter art-svg artwork" id="section-4-4.1.1">
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="240" width="376" viewBox="0 0 376 240" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
-              <path d="M 8,32 L 8,224" fill="none" stroke="black"></path>
-              <path d="M 176,32 L 176,224" fill="none" stroke="black"></path>
-              <path d="M 256,32 L 256,112" fill="none" stroke="black"></path>
-              <path d="M 256,144 L 256,224" fill="none" stroke="black"></path>
-              <path d="M 368,32 L 368,112" fill="none" stroke="black"></path>
-              <path d="M 368,144 L 368,224" fill="none" stroke="black"></path>
-              <path d="M 8,32 L 176,32" fill="none" stroke="black"></path>
-              <path d="M 256,32 L 368,32" fill="none" stroke="black"></path>
-              <path d="M 176,48 L 200,48" fill="none" stroke="black"></path>
-              <path d="M 224,48 L 256,48" fill="none" stroke="black"></path>
-              <path d="M 176,80 L 200,80" fill="none" stroke="black"></path>
-              <path d="M 224,80 L 256,80" fill="none" stroke="black"></path>
-              <path d="M 256,112 L 368,112" fill="none" stroke="black"></path>
-              <path d="M 256,144 L 368,144" fill="none" stroke="black"></path>
-              <path d="M 176,192 L 200,192" fill="none" stroke="black"></path>
-              <path d="M 224,192 L 256,192" fill="none" stroke="black"></path>
-              <path d="M 8,224 L 176,224" fill="none" stroke="black"></path>
-              <path d="M 256,224 L 368,224" fill="none" stroke="black"></path>
-              <g class="text">
-                <text x="212" y="52">AC</text>
-                <text x="212" y="84">AC</text>
-                <text x="312" y="84">Network#2</text>
-                <text x="88" y="116">Network#1</text>
-                <text x="212" y="196">AC</text>
-                <text x="312" y="196">Network#3</text>
-              </g>
-            </svg><a href="#section-4-4.1.1" class="pilcrow">¶</a>
+          <div id="section-4.2-2.1">
+            <div class="alignCenter art-svg artwork" id="section-4.2-2.1.1">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="688" width="512" viewBox="0 0 512 688" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
+                <path d="M 8,592 L 8,624" fill="none" stroke="black"></path>
+                <path d="M 48,592 L 48,624" fill="none" stroke="black"></path>
+                <path d="M 96,464 L 96,512" fill="none" stroke="black"></path>
+                <path d="M 104,352 L 104,400" fill="none" stroke="black"></path>
+                <path d="M 120,576 L 120,640" fill="none" stroke="black"></path>
+                <path d="M 136,400 L 136,464" fill="none" stroke="black"></path>
+                <path d="M 136,512 L 136,568" fill="none" stroke="black"></path>
+                <path d="M 176,320 L 176,352" fill="none" stroke="black"></path>
+                <path d="M 176,464 L 176,512" fill="none" stroke="black"></path>
+                <path d="M 208,32 L 208,64" fill="none" stroke="black"></path>
+                <path d="M 208,128 L 208,176" fill="none" stroke="black"></path>
+                <path d="M 208,240 L 208,288" fill="none" stroke="black"></path>
+                <path d="M 208,408 L 208,528" fill="none" stroke="black"></path>
+                <path d="M 232,352 L 232,400" fill="none" stroke="black"></path>
+                <path d="M 272,64 L 272,128" fill="none" stroke="black"></path>
+                <path d="M 272,176 L 272,240" fill="none" stroke="black"></path>
+                <path d="M 272,288 L 272,320" fill="none" stroke="black"></path>
+                <path d="M 296,352 L 296,400" fill="none" stroke="black"></path>
+                <path d="M 336,32 L 336,64" fill="none" stroke="black"></path>
+                <path d="M 336,128 L 336,176" fill="none" stroke="black"></path>
+                <path d="M 336,240 L 336,288" fill="none" stroke="black"></path>
+                <path d="M 368,320 L 368,352" fill="none" stroke="black"></path>
+                <path d="M 368,400 L 368,568" fill="none" stroke="black"></path>
+                <path d="M 384,576 L 384,640" fill="none" stroke="black"></path>
+                <path d="M 424,352 L 424,400" fill="none" stroke="black"></path>
+                <path d="M 456,592 L 456,624" fill="none" stroke="black"></path>
+                <path d="M 496,592 L 496,624" fill="none" stroke="black"></path>
+                <path d="M 208,32 L 336,32" fill="none" stroke="black"></path>
+                <path d="M 208,64 L 336,64" fill="none" stroke="black"></path>
+                <path d="M 208,128 L 336,128" fill="none" stroke="black"></path>
+                <path d="M 208,176 L 336,176" fill="none" stroke="black"></path>
+                <path d="M 208,240 L 336,240" fill="none" stroke="black"></path>
+                <path d="M 208,288 L 336,288" fill="none" stroke="black"></path>
+                <path d="M 176,320 L 368,320" fill="none" stroke="black"></path>
+                <path d="M 104,352 L 232,352" fill="none" stroke="black"></path>
+                <path d="M 296,352 L 424,352" fill="none" stroke="black"></path>
+                <path d="M 104,400 L 232,400" fill="none" stroke="black"></path>
+                <path d="M 296,400 L 424,400" fill="none" stroke="black"></path>
+                <path d="M 96,464 L 176,464" fill="none" stroke="black"></path>
+                <path d="M 96,512 L 176,512" fill="none" stroke="black"></path>
+                <path d="M 120,576 L 384,576" fill="none" stroke="black"></path>
+                <path d="M 8,592 L 48,592" fill="none" stroke="black"></path>
+                <path d="M 456,592 L 496,592" fill="none" stroke="black"></path>
+                <path d="M 48,608 L 120,608" fill="none" stroke="black"></path>
+                <path d="M 384,608 L 456,608" fill="none" stroke="black"></path>
+                <path d="M 8,624 L 48,624" fill="none" stroke="black"></path>
+                <path d="M 456,624 L 496,624" fill="none" stroke="black"></path>
+                <path d="M 120,640 L 384,640" fill="none" stroke="black"></path>
+                <g class="text">
+                  <text x="268" y="52">Customer</text>
+                  <text x="108" y="84">Customer</text>
+                  <text x="176" y="84">Service</text>
+                  <text x="232" y="84">Model</text>
+                  <text x="72" y="100">ietf-l2vpn-svc,</text>
+                  <text x="200" y="100">ietf-l3vpn-svc,</text>
+                  <text x="392" y="100">ietf-network-slice-service,</text>
+                  <text x="100" y="116">ietf-ac-svc,</text>
+                  <text x="208" y="116">ietf-ac-glue,</text>
+                  <text x="296" y="116">and</text>
+                  <text x="376" y="116">ietf-bearer-svc</text>
+                  <text x="272" y="148">Service</text>
+                  <text x="272" y="164">Orchestration</text>
+                  <text x="112" y="196">Network</text>
+                  <text x="168" y="196">Model</text>
+                  <text x="72" y="212">ietf-l2vpn-ntw,</text>
+                  <text x="200" y="212">ietf-l3vpn-ntw,</text>
+                  <text x="336" y="212">ietf-sap-ntw,</text>
+                  <text x="448" y="212">ietf-ac-glue,</text>
+                  <text x="96" y="228">and</text>
+                  <text x="160" y="228">ietf-ac-ntw</text>
+                  <text x="264" y="260">Network</text>
+                  <text x="272" y="276">Orchestration</text>
+                  <text x="56" y="308">Network</text>
+                  <text x="144" y="308">Configuration</text>
+                  <text x="224" y="308">Model</text>
+                  <text x="164" y="372">Domain</text>
+                  <text x="364" y="372">Domain</text>
+                  <text x="168" y="388">Orchestration</text>
+                  <text x="360" y="388">Orchestration</text>
+                  <text x="36" y="420">Device</text>
+                  <text x="64" y="436">Configuration</text>
+                  <text x="32" y="452">Model</text>
+                  <text x="132" y="484">Config</text>
+                  <text x="136" y="500">Manager</text>
+                  <text x="256" y="548">NETCONF/CLI................</text>
+                  <text x="376" y="548">.</text>
+                  <text x="208" y="564">|</text>
+                  <text x="84" y="596">Bearer</text>
+                  <text x="420" y="596">Bearer</text>
+                  <text x="28" y="612">CE#1</text>
+                  <text x="248" y="612">Network</text>
+                  <text x="476" y="612">CE#2</text>
+                  <text x="28" y="660">Site</text>
+                  <text x="56" y="660">A</text>
+                  <text x="476" y="660">Site</text>
+                  <text x="504" y="660">B</text>
+                </g>
+              </svg><a href="#section-4.2-2.1.1" class="pilcrow">¶</a>
 </div>
 </div>
 <figcaption><a href="#figure-4" class="selfRef">Figure 4</a>:
+<a href="#name-an-example-of-the-network-a" class="selfRef">An Example of the Network AC Model Usage</a>
+          </figcaption></figure>
+</div>
+<p id="section-4.2-3">Similar to <span>[<a href="#RFC9408" class="cite xref">RFC9408</a>]</span>, the 'ietf-ac-ntw' module can be used for both User-to-Network Interface (UNI) and
+Network-to-Network Interface (NNI). For example, all the ACs shown in <a href="#fig-inter-pn" class="auto internal xref">Figure 5</a> have a 'role' set
+to 'ietf-sap-ntw:nni'. Typically, ASBRs of each network are directly
+connected to ASBRs of a neighboring network via one or multiple links (bearers). ASBRs of "Network#1" behave as a PE and treat the other adjacent ASBRs as if it were a CE.<a href="#section-4.2-3" class="pilcrow">¶</a></p>
+<span id="name-an-example-of-the-network-ac"></span><div id="fig-inter-pn">
+<figure id="figure-5">
+          <div id="section-4.2-4.1">
+            <div class="alignCenter art-svg artwork" id="section-4.2-4.1.1">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="240" width="376" viewBox="0 0 376 240" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
+                <path d="M 8,32 L 8,224" fill="none" stroke="black"></path>
+                <path d="M 176,32 L 176,224" fill="none" stroke="black"></path>
+                <path d="M 256,32 L 256,112" fill="none" stroke="black"></path>
+                <path d="M 256,144 L 256,224" fill="none" stroke="black"></path>
+                <path d="M 368,32 L 368,112" fill="none" stroke="black"></path>
+                <path d="M 368,144 L 368,224" fill="none" stroke="black"></path>
+                <path d="M 8,32 L 176,32" fill="none" stroke="black"></path>
+                <path d="M 256,32 L 368,32" fill="none" stroke="black"></path>
+                <path d="M 176,48 L 200,48" fill="none" stroke="black"></path>
+                <path d="M 224,48 L 256,48" fill="none" stroke="black"></path>
+                <path d="M 176,80 L 200,80" fill="none" stroke="black"></path>
+                <path d="M 224,80 L 256,80" fill="none" stroke="black"></path>
+                <path d="M 256,112 L 368,112" fill="none" stroke="black"></path>
+                <path d="M 256,144 L 368,144" fill="none" stroke="black"></path>
+                <path d="M 176,192 L 200,192" fill="none" stroke="black"></path>
+                <path d="M 224,192 L 256,192" fill="none" stroke="black"></path>
+                <path d="M 8,224 L 176,224" fill="none" stroke="black"></path>
+                <path d="M 256,224 L 368,224" fill="none" stroke="black"></path>
+                <g class="text">
+                  <text x="212" y="52">AC</text>
+                  <text x="212" y="84">AC</text>
+                  <text x="312" y="84">Network#2</text>
+                  <text x="88" y="116">Network#1</text>
+                  <text x="212" y="196">AC</text>
+                  <text x="312" y="196">Network#3</text>
+                </g>
+              </svg><a href="#section-4.2-4.1.1" class="pilcrow">¶</a>
+</div>
+</div>
+<figcaption><a href="#figure-5" class="selfRef">Figure 5</a>:
 <a href="#name-an-example-of-the-network-ac" class="selfRef">An Example of the Network AC Model Usage Between Provider Networks</a>
-        </figcaption></figure>
+          </figcaption></figure>
+</div>
+</section>
 </div>
 </section>
 </div>
@@ -1897,9 +2032,9 @@ for the reader's convenience.<a href="#section-5-1" class="pilcrow">¶</a></p>
         <h3 id="name-overall-structure-of-the-mo">
 <a href="#section-5.1" class="section-number selfRef">5.1. </a><a href="#name-overall-structure-of-the-mo" class="section-name selfRef">Overall Structure of the Module</a>
         </h3>
-<p id="section-5.1-1">The overall tree structure of the 'ietf-ac-ntw' module is shown in <a href="#o-ntw-tree" class="auto internal xref">Figure 5</a>.<a href="#section-5.1-1" class="pilcrow">¶</a></p>
+<p id="section-5.1-1">The overall tree structure of the 'ietf-ac-ntw' module is shown in <a href="#o-ntw-tree" class="auto internal xref">Figure 6</a>.<a href="#section-5.1-1" class="pilcrow">¶</a></p>
 <span id="name-overall-tree-structure"></span><div id="o-ntw-tree">
-<figure id="figure-5">
+<figure id="figure-6">
           <div class="alignLeft art-text artwork" id="section-5.1-2.1">
 <pre>
 augment /nw:networks/nw:network:
@@ -1953,7 +2088,7 @@ augment /nw:networks/nw:network/nw:node:
        +--rw network-ref?   -&gt; /nw:networks/network/network-id
 </pre>
 </div>
-<figcaption><a href="#figure-5" class="selfRef">Figure 5</a>:
+<figcaption><a href="#figure-6" class="selfRef">Figure 6</a>:
 <a href="#name-overall-tree-structure" class="selfRef">Overall Tree Structure</a>
           </figcaption></figure>
 </div>
@@ -1986,9 +2121,9 @@ reference point (the PE side of an AC, in the context of this document) where ne
         <h3 id="name-references">
 <a href="#section-5.2" class="section-number selfRef">5.2. </a><a href="#name-references" class="section-name selfRef">References</a>
         </h3>
-<p id="section-5.2-1">The AC module defines a set of groupings depicted in <a href="#references-tree" class="auto internal xref">Figure 6</a> for referencing purposes. These references are used within or outside the AC network module. The use of such groupings is consistent with the design in <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span>.<a href="#section-5.2-1" class="pilcrow">¶</a></p>
+<p id="section-5.2-1">The AC module defines a set of groupings depicted in <a href="#references-tree" class="auto internal xref">Figure 7</a> for referencing purposes. These references are used within or outside the AC network module. The use of such groupings is consistent with the design in <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span>.<a href="#section-5.2-1" class="pilcrow">¶</a></p>
 <span id="name-references-groupings"></span><div id="references-tree">
-<figure id="figure-6">
+<figure id="figure-7">
           <div class="alignLeft art-text artwork" id="section-5.2-2.1">
 <pre>
   grouping attachment-circuit-reference:
@@ -2019,11 +2154,11 @@ reference point (the PE side of an AC, in the context of this document) where ne
     +-- network-ref?           -&gt; /nw:networks/network/network-id
 </pre>
 </div>
-<figcaption><a href="#figure-6" class="selfRef">Figure 6</a>:
+<figcaption><a href="#figure-7" class="selfRef">Figure 7</a>:
 <a href="#name-references-groupings" class="selfRef">References Groupings</a>
           </figcaption></figure>
 </div>
-<p id="section-5.2-3">The groupings shown in <a href="#references-tree" class="auto internal xref">Figure 6</a> contain the information necessary to reference:<a href="#section-5.2-3" class="pilcrow">¶</a></p>
+<p id="section-5.2-3">The groupings shown in <a href="#references-tree" class="auto internal xref">Figure 7</a> contain the information necessary to reference:<a href="#section-5.2-3" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-5.2-4.1">
             <p id="section-5.2-4.1.1">an attachment circuit that is terminated by a specific node in a given network,<a href="#section-5.2-4.1.1" class="pilcrow">¶</a></p>
@@ -2042,9 +2177,9 @@ reference point (the PE side of an AC, in the context of this document) where ne
         <h3 id="name-provisioning-profiles">
 <a href="#section-5.3" class="section-number selfRef">5.3. </a><a href="#name-provisioning-profiles" class="section-name selfRef">Provisioning Profiles</a>
         </h3>
-<p id="section-5.3-1">The AC and specific provisioning profiles tree structure is shown in <a href="#profiles-tree" class="auto internal xref">Figure 7</a>.<a href="#section-5.3-1" class="pilcrow">¶</a></p>
+<p id="section-5.3-1">The AC and specific provisioning profiles tree structure is shown in <a href="#profiles-tree" class="auto internal xref">Figure 8</a>.<a href="#section-5.3-1" class="pilcrow">¶</a></p>
 <span id="name-profiles-tree-structure"></span><div id="profiles-tree">
-<figure id="figure-7">
+<figure id="figure-8">
           <div class="alignLeft art-text artwork" id="section-5.3-2.1">
 <pre>
   augment /nw:networks/nw:network:
@@ -2136,11 +2271,11 @@ reference point (the PE side of an AC, in the context of this document) where ne
              +--rw holdtime?                   uint32
 </pre>
 </div>
-<figcaption><a href="#figure-7" class="selfRef">Figure 7</a>:
+<figcaption><a href="#figure-8" class="selfRef">Figure 8</a>:
 <a href="#name-profiles-tree-structure" class="selfRef">Profiles Tree Structure</a>
           </figcaption></figure>
 </div>
-<p id="section-5.3-3">Similar to <span>[<a href="#RFC9182" class="cite xref">RFC9182</a>]</span> and <span>[<a href="#RFC9291" class="cite xref">RFC9291</a>]</span>, the exact definition of the specific provisioning profiles is local to each service provider. The model only includes an identifier for these profiles in order to ease identifying and binding local policies when building an AC. As shown in <a href="#profiles-tree" class="auto internal xref">Figure 7</a>, the following identifiers can be included:<a href="#section-5.3-3" class="pilcrow">¶</a></p>
+<p id="section-5.3-3">Similar to <span>[<a href="#RFC9182" class="cite xref">RFC9182</a>]</span> and <span>[<a href="#RFC9291" class="cite xref">RFC9291</a>]</span>, the exact definition of the specific provisioning profiles is local to each service provider. The model only includes an identifier for these profiles in order to ease identifying and binding local policies when building an AC. As shown in <a href="#profiles-tree" class="auto internal xref">Figure 8</a>, the following identifiers can be included:<a href="#section-5.3-3" class="pilcrow">¶</a></p>
 <span class="break"></span><dl class="dlParallel" id="section-5.3-4">
           <dt id="section-5.3-4.1">'encryption-profile-identifier':</dt>
           <dd style="margin-left: 1.5em" id="section-5.3-4.2">
@@ -2175,9 +2310,9 @@ reference point (the PE side of an AC, in the context of this document) where ne
         <h3 id="name-l2-connection">
 <a href="#section-5.4" class="section-number selfRef">5.4. </a><a href="#name-l2-connection" class="section-name selfRef">L2 Connection</a>
         </h3>
-<p id="section-5.4-1">The 'l2-connection' container is used to manage the Layer 2 properties of an AC. The  Layer 2 connection tree structure is shown in <a href="#l2-tree" class="auto internal xref">Figure 8</a>.<a href="#section-5.4-1" class="pilcrow">¶</a></p>
+<p id="section-5.4-1">The 'l2-connection' container is used to manage the Layer 2 properties of an AC. The  Layer 2 connection tree structure is shown in <a href="#l2-tree" class="auto internal xref">Figure 9</a>.<a href="#section-5.4-1" class="pilcrow">¶</a></p>
 <span id="name-layer-2-connection-tree-str"></span><div id="l2-tree">
-<figure id="figure-8">
+<figure id="figure-9">
           <div class="alignLeft art-text artwork" id="section-5.4-2.1">
 <pre>
   augment /nw:networks/nw:network/nw:node:
@@ -2261,7 +2396,7 @@ reference point (the PE side of an AC, in the context of this document) where ne
           ...
 </pre>
 </div>
-<figcaption><a href="#figure-8" class="selfRef">Figure 8</a>:
+<figcaption><a href="#figure-9" class="selfRef">Figure 9</a>:
 <a href="#name-layer-2-connection-tree-str" class="selfRef">Layer 2 Connection Tree Structure</a>
           </figcaption></figure>
 </div>
@@ -2278,9 +2413,9 @@ reference point (the PE side of an AC, in the context of this document) where ne
 <a href="#section-5.5" class="section-number selfRef">5.5. </a><a href="#name-ip-connection" class="section-name selfRef">IP Connection</a>
         </h3>
 <p id="section-5.5-1">This 'ip-connection' container is used to group Layer 3 connectivity information, particularly the IP addressing information, of an AC.<a href="#section-5.5-1" class="pilcrow">¶</a></p>
-<p id="section-5.5-2">The  Layer 3 connection tree structure is shown in <a href="#l3-tree" class="auto internal xref">Figure 9</a>.<a href="#section-5.5-2" class="pilcrow">¶</a></p>
+<p id="section-5.5-2">The  Layer 3 connection tree structure is shown in <a href="#l3-tree" class="auto internal xref">Figure 10</a>.<a href="#section-5.5-2" class="pilcrow">¶</a></p>
 <span id="name-ip-connection-tree-structur"></span><div id="l3-tree">
-<figure id="figure-9">
+<figure id="figure-10">
           <div class="alignLeft art-text artwork" id="section-5.5-3.1">
 <pre>
   augment /nw:networks/nw:network/nw:node:
@@ -2383,7 +2518,7 @@ reference point (the PE side of an AC, in the context of this document) where ne
           ...
 </pre>
 </div>
-<figcaption><a href="#figure-9" class="selfRef">Figure 9</a>:
+<figcaption><a href="#figure-10" class="selfRef">Figure 10</a>:
 <a href="#name-ip-connection-tree-structur" class="selfRef">IP Connection Tree Structure</a>
           </figcaption></figure>
 </div>
@@ -2399,9 +2534,9 @@ reference point (the PE side of an AC, in the context of this document) where ne
         <h3 id="name-routing">
 <a href="#section-5.6" class="section-number selfRef">5.6. </a><a href="#name-routing" class="section-name selfRef">Routing</a>
         </h3>
-<p id="section-5.6-1">The overall routing subtree structure is shown in <a href="#rtg-tree" class="auto internal xref">Figure 10</a>.<a href="#section-5.6-1" class="pilcrow">¶</a></p>
+<p id="section-5.6-1">The overall routing subtree structure is shown in <a href="#rtg-tree" class="auto internal xref">Figure 11</a>.<a href="#section-5.6-1" class="pilcrow">¶</a></p>
 <span id="name-routing-tree-structure"></span><div id="rtg-tree">
-<figure id="figure-10">
+<figure id="figure-11">
           <div class="alignLeft art-text artwork" id="section-5.6-2.1">
 <pre>
 module: ietf-ac-ntw
@@ -2461,7 +2596,7 @@ module: ietf-ac-ntw
           ...
 </pre>
 </div>
-<figcaption><a href="#figure-10" class="selfRef">Figure 10</a>:
+<figcaption><a href="#figure-11" class="selfRef">Figure 11</a>:
 <a href="#name-routing-tree-structure" class="selfRef">Routing Tree Structure</a>
           </figcaption></figure>
 </div>
@@ -2479,9 +2614,9 @@ a given routing instance.<a href="#section-5.6-5" class="pilcrow">¶</a></p>
           <h4 id="name-static-routing">
 <a href="#section-5.6.1" class="section-number selfRef">5.6.1. </a><a href="#name-static-routing" class="section-name selfRef">Static Routing</a>
           </h4>
-<p id="section-5.6.1-1">The static routing subtree structure is shown in <a href="#static-tree" class="auto internal xref">Figure 11</a>.<a href="#section-5.6.1-1" class="pilcrow">¶</a></p>
+<p id="section-5.6.1-1">The static routing subtree structure is shown in <a href="#static-tree" class="auto internal xref">Figure 12</a>.<a href="#section-5.6.1-1" class="pilcrow">¶</a></p>
 <span id="name-static-routing-tree-structu"></span><div id="static-tree">
-<figure id="figure-11">
+<figure id="figure-12">
             <div class="alignLeft art-text artwork" id="section-5.6.1-2.1">
 <pre>
 module: ietf-ac-ntw
@@ -2565,7 +2700,7 @@ module: ietf-ac-ntw
           ...
 </pre>
 </div>
-<figcaption><a href="#figure-11" class="selfRef">Figure 11</a>:
+<figcaption><a href="#figure-12" class="selfRef">Figure 12</a>:
 <a href="#name-static-routing-tree-structu" class="selfRef">Static Routing Tree Structure</a>
             </figcaption></figure>
 </div>
@@ -2619,9 +2754,9 @@ module: ietf-ac-ntw
           <h4 id="name-bgp">
 <a href="#section-5.6.2" class="section-number selfRef">5.6.2. </a><a href="#name-bgp" class="section-name selfRef">BGP</a>
           </h4>
-<p id="section-5.6.2-1">The BGP routing subtree structure is shown in <a href="#bgp-tree" class="auto internal xref">Figure 12</a>.<a href="#section-5.6.2-1" class="pilcrow">¶</a></p>
+<p id="section-5.6.2-1">The BGP routing subtree structure is shown in <a href="#bgp-tree" class="auto internal xref">Figure 13</a>.<a href="#section-5.6.2-1" class="pilcrow">¶</a></p>
 <span id="name-bgp-routing-tree-structure"></span><div id="bgp-tree">
-<figure id="figure-12">
+<figure id="figure-13">
             <div class="alignLeft art-text artwork" id="section-5.6.2-2.1">
 <pre>
 module: ietf-ac-ntw
@@ -2839,7 +2974,7 @@ module: ietf-ac-ntw
           ...
 </pre>
 </div>
-<figcaption><a href="#figure-12" class="selfRef">Figure 12</a>:
+<figcaption><a href="#figure-13" class="selfRef">Figure 13</a>:
 <a href="#name-bgp-routing-tree-structure" class="selfRef">BGP Routing Tree Structure</a>
             </figcaption></figure>
 </div>
@@ -3051,9 +3186,9 @@ to be enabled per address family.<a href="#section-5.6.2-6.14.1" class="pilcrow"
           <h4 id="name-ospf">
 <a href="#section-5.6.3" class="section-number selfRef">5.6.3. </a><a href="#name-ospf" class="section-name selfRef">OSPF</a>
           </h4>
-<p id="section-5.6.3-1">The OSPF routing subtree structure is shown in <a href="#ospf-tree" class="auto internal xref">Figure 13</a>.<a href="#section-5.6.3-1" class="pilcrow">¶</a></p>
+<p id="section-5.6.3-1">The OSPF routing subtree structure is shown in <a href="#ospf-tree" class="auto internal xref">Figure 14</a>.<a href="#section-5.6.3-1" class="pilcrow">¶</a></p>
 <span id="name-ospf-routing-tree-structure"></span><div id="ospf-tree">
-<figure id="figure-13">
+<figure id="figure-14">
             <div class="alignLeft art-text artwork" id="section-5.6.3-2.1">
 <pre>
 module: ietf-ac-ntw
@@ -3142,7 +3277,7 @@ module: ietf-ac-ntw
           ...
 </pre>
 </div>
-<figcaption><a href="#figure-13" class="selfRef">Figure 13</a>:
+<figcaption><a href="#figure-14" class="selfRef">Figure 14</a>:
 <a href="#name-ospf-routing-tree-structure" class="selfRef">OSPF Routing Tree Structure</a>
             </figcaption></figure>
 </div>
@@ -3210,9 +3345,9 @@ module: ietf-ac-ntw
           <h4 id="name-is-is">
 <a href="#section-5.6.4" class="section-number selfRef">5.6.4. </a><a href="#name-is-is" class="section-name selfRef">IS-IS</a>
           </h4>
-<p id="section-5.6.4-1">The IS-IS routing subtree structure is shown in <a href="#isis-tree" class="auto internal xref">Figure 14</a>.<a href="#section-5.6.4-1" class="pilcrow">¶</a></p>
+<p id="section-5.6.4-1">The IS-IS routing subtree structure is shown in <a href="#isis-tree" class="auto internal xref">Figure 15</a>.<a href="#section-5.6.4-1" class="pilcrow">¶</a></p>
 <span id="name-is-is-routing-tree-structur"></span><div id="isis-tree">
-<figure id="figure-14">
+<figure id="figure-15">
             <div class="alignLeft art-text artwork" id="section-5.6.4-2.1">
 <pre>
 module: ietf-ac-ntw
@@ -3298,7 +3433,7 @@ module: ietf-ac-ntw
           ...
 </pre>
 </div>
-<figcaption><a href="#figure-14" class="selfRef">Figure 14</a>:
+<figcaption><a href="#figure-15" class="selfRef">Figure 15</a>:
 <a href="#name-is-is-routing-tree-structur" class="selfRef">IS-IS Routing Tree Structure</a>
             </figcaption></figure>
 </div>
@@ -3350,9 +3485,9 @@ algorithms are supported.<a href="#section-5.6.4-4.12.1" class="pilcrow">¶</a><
           <h4 id="name-rip">
 <a href="#section-5.6.5" class="section-number selfRef">5.6.5. </a><a href="#name-rip" class="section-name selfRef">RIP</a>
           </h4>
-<p id="section-5.6.5-1">The RIP routing subtree structure is shown in <a href="#rip-tree" class="auto internal xref">Figure 15</a>.<a href="#section-5.6.5-1" class="pilcrow">¶</a></p>
+<p id="section-5.6.5-1">The RIP routing subtree structure is shown in <a href="#rip-tree" class="auto internal xref">Figure 16</a>.<a href="#section-5.6.5-1" class="pilcrow">¶</a></p>
 <span id="name-rip-routing-tree-structure"></span><div id="rip-tree">
-<figure id="figure-15">
+<figure id="figure-16">
             <div class="alignLeft art-text artwork" id="section-5.6.5-2.1">
 <pre>
 module: ietf-ac-ntw
@@ -3441,7 +3576,7 @@ module: ietf-ac-ntw
           ...
 </pre>
 </div>
-<figcaption><a href="#figure-15" class="selfRef">Figure 15</a>:
+<figcaption><a href="#figure-16" class="selfRef">Figure 16</a>:
 <a href="#name-rip-routing-tree-structure" class="selfRef">RIP Routing Tree Structure</a>
             </figcaption></figure>
 </div>
@@ -3521,9 +3656,9 @@ module: ietf-ac-ntw
           <h4 id="name-vrrp">
 <a href="#section-5.6.6" class="section-number selfRef">5.6.6. </a><a href="#name-vrrp" class="section-name selfRef">VRRP</a>
           </h4>
-<p id="section-5.6.6-1">The VRRP subtree structure is shown in <a href="#vrrp-tree" class="auto internal xref">Figure 16</a>.<a href="#section-5.6.6-1" class="pilcrow">¶</a></p>
+<p id="section-5.6.6-1">The VRRP subtree structure is shown in <a href="#vrrp-tree" class="auto internal xref">Figure 17</a>.<a href="#section-5.6.6-1" class="pilcrow">¶</a></p>
 <span id="name-vrrp-tree-structure"></span><div id="vrrp-tree">
-<figure id="figure-16">
+<figure id="figure-17">
             <div class="alignLeft art-text artwork" id="section-5.6.6-2.1">
 <pre>
 module: ietf-ac-ntw
@@ -3596,7 +3731,7 @@ module: ietf-ac-ntw
           ...
 </pre>
 </div>
-<figcaption><a href="#figure-16" class="selfRef">Figure 16</a>:
+<figcaption><a href="#figure-17" class="selfRef">Figure 17</a>:
 <a href="#name-vrrp-tree-structure" class="selfRef">VRRP Tree Structure</a>
             </figcaption></figure>
 </div>
@@ -3651,9 +3786,9 @@ isn't any type of VRRP authentication at this time (see <span><a href="https://r
         <h3 id="name-oam">
 <a href="#section-5.7" class="section-number selfRef">5.7. </a><a href="#name-oam" class="section-name selfRef">OAM</a>
         </h3>
-<p id="section-5.7-1">The OAM subtree structure is shown in <a href="#oam-tree" class="auto internal xref">Figure 17</a>.<a href="#section-5.7-1" class="pilcrow">¶</a></p>
+<p id="section-5.7-1">The OAM subtree structure is shown in <a href="#oam-tree" class="auto internal xref">Figure 18</a>.<a href="#section-5.7-1" class="pilcrow">¶</a></p>
 <span id="name-oam-tree-structure"></span><div id="oam-tree">
-<figure id="figure-17">
+<figure id="figure-18">
           <div class="alignLeft art-text artwork" id="section-5.7-2.1">
 <pre>
   augment /nw:networks/nw:network:
@@ -3707,7 +3842,7 @@ isn't any type of VRRP authentication at this time (see <span><a href="https://r
           ...
 </pre>
 </div>
-<figcaption><a href="#figure-17" class="selfRef">Figure 17</a>:
+<figcaption><a href="#figure-18" class="selfRef">Figure 18</a>:
 <a href="#name-oam-tree-structure" class="selfRef">OAM Tree Structure</a>
           </figcaption></figure>
 </div>
@@ -3776,9 +3911,9 @@ isn't any type of VRRP authentication at this time (see <span><a href="https://r
         <h3 id="name-security">
 <a href="#section-5.8" class="section-number selfRef">5.8. </a><a href="#name-security" class="section-name selfRef">Security</a>
         </h3>
-<p id="section-5.8-1">The security subtree structure is shown in <a href="#sec-tree" class="auto internal xref">Figure 18</a>. The 'security' container specifies the the encryption to be applied to traffic for a given AC. The model can be used to directly control the encryption to be applied (e.g., Layer 2 or Layer 3 encryption) or invoke a local encryption profile.<a href="#section-5.8-1" class="pilcrow">¶</a></p>
+<p id="section-5.8-1">The security subtree structure is shown in <a href="#sec-tree" class="auto internal xref">Figure 19</a>. The 'security' container specifies the the encryption to be applied to traffic for a given AC. The model can be used to directly control the encryption to be applied (e.g., Layer 2 or Layer 3 encryption) or invoke a local encryption profile.<a href="#section-5.8-1" class="pilcrow">¶</a></p>
 <span id="name-security-tree-structure"></span><div id="sec-tree">
-<figure id="figure-18">
+<figure id="figure-19">
           <div class="alignLeft art-text artwork" id="section-5.8-2.1">
 <pre>
   augment /nw:networks/nw:network/nw:node:
@@ -3809,7 +3944,7 @@ isn't any type of VRRP authentication at this time (see <span><a href="https://r
           ...
 </pre>
 </div>
-<figcaption><a href="#figure-18" class="selfRef">Figure 18</a>:
+<figcaption><a href="#figure-19" class="selfRef">Figure 19</a>:
 <a href="#name-security-tree-structure" class="selfRef">Security Tree Structure</a>
           </figcaption></figure>
 </div>
@@ -3820,9 +3955,9 @@ isn't any type of VRRP authentication at this time (see <span><a href="https://r
         <h3 id="name-service">
 <a href="#section-5.9" class="section-number selfRef">5.9. </a><a href="#name-service" class="section-name selfRef">Service</a>
         </h3>
-<p id="section-5.9-1">The service subtree structure is shown in <a href="#svc-tree" class="auto internal xref">Figure 19</a>.<a href="#section-5.9-1" class="pilcrow">¶</a></p>
+<p id="section-5.9-1">The service subtree structure is shown in <a href="#svc-tree" class="auto internal xref">Figure 20</a>.<a href="#section-5.9-1" class="pilcrow">¶</a></p>
 <span id="name-service-tree-structure"></span><div id="svc-tree">
-<figure id="figure-19">
+<figure id="figure-20">
           <div class="alignLeft art-text artwork" id="section-5.9-2.1">
 <pre>
   augment /nw:networks/nw:network/nw:node:
@@ -3896,7 +4031,7 @@ isn't any type of VRRP authentication at this time (see <span><a href="https://r
                            -&gt; /nw:networks/network/network-id
 </pre>
 </div>
-<figcaption><a href="#figure-19" class="selfRef">Figure 19</a>:
+<figcaption><a href="#figure-20" class="selfRef">Figure 20</a>:
 <a href="#name-service-tree-structure" class="selfRef">Service Tree Structure</a>
           </figcaption></figure>
 </div>
@@ -6230,6 +6365,10 @@ be used to inject spoofed routing  advertisements.<a href="#section-7-7.6.1" cla
         <dd>
 <span class="refAuthor">Bhatia, M.</span>, <span class="refAuthor">Hartman, S.</span>, <span class="refAuthor">Zhang, D.</span>, and <span class="refAuthor">A. Lindem, Ed.</span>, <span class="refTitle">"Security Extension for OSPFv2 When Using Manual Key Management"</span>, <span class="seriesInfo">RFC 7474</span>, <span class="seriesInfo">DOI 10.17487/RFC7474</span>, <time datetime="2015-04" class="refDate">April 2015</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc7474">https://www.rfc-editor.org/rfc/rfc7474</a>&gt;</span>. </dd>
 <dd class="break"></dd>
+<dt id="RFC7950">[RFC7950]</dt>
+        <dd>
+<span class="refAuthor">Bjorklund, M., Ed.</span>, <span class="refTitle">"The YANG 1.1 Data Modeling Language"</span>, <span class="seriesInfo">RFC 7950</span>, <span class="seriesInfo">DOI 10.17487/RFC7950</span>, <time datetime="2016-08" class="refDate">August 2016</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc7950">https://www.rfc-editor.org/rfc/rfc7950</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="RFC8040">[RFC8040]</dt>
         <dd>
 <span class="refAuthor">Bierman, A.</span>, <span class="refAuthor">Bjorklund, M.</span>, and <span class="refAuthor">K. Watsen</span>, <span class="refTitle">"RESTCONF Protocol"</span>, <span class="seriesInfo">RFC 8040</span>, <span class="seriesInfo">DOI 10.17487/RFC8040</span>, <time datetime="2017-01" class="refDate">January 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8040">https://www.rfc-editor.org/rfc/rfc8040</a>&gt;</span>. </dd>
@@ -6386,9 +6525,9 @@ be used to inject spoofed routing  advertisements.<a href="#section-7-7.6.1" cla
         <h3 id="name-vpls">
 <a href="#appendix-A.1" class="section-number selfRef">A.1. </a><a href="#name-vpls" class="section-name selfRef">VPLS</a>
         </h3>
-<p id="appendix-A.1-1">Let us consider the example depicted in <a href="#ex-topo" class="auto internal xref">Figure 20</a> with two customer terminating points (CE1 and CE2). Let us also assume that the bearers to attach these CEs to the provider network are already in place. References to the identify these bearers are shown in the figure.<a href="#appendix-A.1-1" class="pilcrow">¶</a></p>
+<p id="appendix-A.1-1">Let us consider the example depicted in <a href="#ex-topo" class="auto internal xref">Figure 21</a> with two customer terminating points (CE1 and CE2). Let us also assume that the bearers to attach these CEs to the provider network are already in place. References to the identify these bearers are shown in the figure.<a href="#appendix-A.1-1" class="pilcrow">¶</a></p>
 <span id="name-topology-example"></span><div id="ex-topo">
-<figure id="figure-20">
+<figure id="figure-21">
           <div class="alignCenter art-text artwork" id="appendix-A.1-2.1">
 <pre>
             .-----.   .--------------.   .-----.
@@ -6399,13 +6538,13 @@ be used to inject spoofed routing  advertisements.<a href="#section-7-7.6.1" cla
     Bearer:1234       '--------------'         Bearer:5678
 </pre>
 </div>
-<figcaption><a href="#figure-20" class="selfRef">Figure 20</a>:
+<figcaption><a href="#figure-21" class="selfRef">Figure 21</a>:
 <a href="#name-topology-example" class="selfRef">Topology Example</a>
           </figcaption></figure>
 </div>
-<p id="appendix-A.1-3">The AC service model <span>[<a href="#I-D.ietf-opsawg-teas-attachment-circuit" class="cite xref">I-D.ietf-opsawg-teas-attachment-circuit</a>]</span> can be used by the provider to manage and expose the ACs over existing bearers as shown in <a href="#ex-ac" class="auto internal xref">Figure 21</a>.<a href="#appendix-A.1-3" class="pilcrow">¶</a></p>
+<p id="appendix-A.1-3">The AC service model <span>[<a href="#I-D.ietf-opsawg-teas-attachment-circuit" class="cite xref">I-D.ietf-opsawg-teas-attachment-circuit</a>]</span> can be used by the provider to manage and expose the ACs over existing bearers as shown in <a href="#ex-ac" class="auto internal xref">Figure 22</a>.<a href="#appendix-A.1-3" class="pilcrow">¶</a></p>
 <span id="name-acs-created-using-acaas"></span><div id="ex-ac">
-<figure id="figure-21">
+<figure id="figure-22">
           <div class="alignLeft art-text artwork" id="appendix-A.1-4.1">
 <pre>
 {
@@ -6479,13 +6618,13 @@ be used to inject spoofed routing  advertisements.<a href="#section-7-7.6.1" cla
 }
 </pre>
 </div>
-<figcaption><a href="#figure-21" class="selfRef">Figure 21</a>:
+<figcaption><a href="#figure-22" class="selfRef">Figure 22</a>:
 <a href="#name-acs-created-using-acaas" class="selfRef">ACs Created Using ACaaS</a>
           </figcaption></figure>
 </div>
-<p id="appendix-A.1-5">The provisioned AC at PE1 can be retrieved using the AC network model as depicted in <a href="#ex-acntw-query" class="auto internal xref">Figure 22</a>. A similar query can be used for the AC at PE2.<a href="#appendix-A.1-5" class="pilcrow">¶</a></p>
+<p id="appendix-A.1-5">The provisioned AC at PE1 can be retrieved using the AC network model as depicted in <a href="#ex-acntw-query" class="auto internal xref">Figure 23</a>. A similar query can be used for the AC at PE2.<a href="#appendix-A.1-5" class="pilcrow">¶</a></p>
 <span id="name-example-of-ac-network-respo"></span><div id="ex-acntw-query">
-<figure id="figure-22">
+<figure id="figure-23">
           <div class="alignLeft art-text artwork" id="appendix-A.1-6.1">
 <pre>
 {
@@ -6549,13 +6688,13 @@ be used to inject spoofed routing  advertisements.<a href="#section-7-7.6.1" cla
 }
 </pre>
 </div>
-<figcaption><a href="#figure-22" class="selfRef">Figure 22</a>:
+<figcaption><a href="#figure-23" class="selfRef">Figure 23</a>:
 <a href="#name-example-of-ac-network-respo" class="selfRef">Example of AC Network Response (Message Body)</a>
           </figcaption></figure>
 </div>
-<p id="appendix-A.1-7">Also, the AC network model can be used to retrieve the list of SAPs to which the ACs are bound as shown in <a href="#ex-acntw-query" class="auto internal xref">Figure 22</a>.<a href="#appendix-A.1-7" class="pilcrow">¶</a></p>
+<p id="appendix-A.1-7">Also, the AC network model can be used to retrieve the list of SAPs to which the ACs are bound as shown in <a href="#ex-acntw-query" class="auto internal xref">Figure 23</a>.<a href="#appendix-A.1-7" class="pilcrow">¶</a></p>
 <span id="name-example-of-ac-network-respon"></span><div id="ex-acntw-query-2">
-<figure id="figure-23">
+<figure id="figure-24">
           <div class="alignLeft art-text artwork" id="appendix-A.1-8.1">
 <pre>
 {
@@ -6601,7 +6740,7 @@ be used to inject spoofed routing  advertisements.<a href="#section-7-7.6.1" cla
 }
 </pre>
 </div>
-<figcaption><a href="#figure-23" class="selfRef">Figure 23</a>:
+<figcaption><a href="#figure-24" class="selfRef">Figure 24</a>:
 <a href="#name-example-of-ac-network-respon" class="selfRef">Example of AC Network Response to Retrieve the SAP (Message Body)</a>
           </figcaption></figure>
 </div>
@@ -6612,9 +6751,9 @@ be used to inject spoofed routing  advertisements.<a href="#section-7-7.6.1" cla
         <h3 id="name-parent-ac">
 <a href="#appendix-A.2" class="section-number selfRef">A.2. </a><a href="#name-parent-ac" class="section-name selfRef">Parent AC</a>
         </h3>
-<p id="appendix-A.2-1">In reference to the topology depicted in <a href="#sap-ac-ntw" class="auto internal xref">Figure 1</a>, PE2 has a SAP which terminates an AC with two peer SAPs (CE2 and CE5). In order to control data that is specific to each of these peer SAPs over the same AC, child ACs can be instantiated as depicted in <a href="#ex-parent-ac" class="auto internal xref">Figure 24</a>.<a href="#appendix-A.2-1" class="pilcrow">¶</a></p>
+<p id="appendix-A.2-1">In reference to the topology depicted in <a href="#sap-ac-ntw" class="auto internal xref">Figure 1</a>, PE2 has a SAP which terminates an AC with two peer SAPs (CE2 and CE5). In order to control data that is specific to each of these peer SAPs over the same AC, child ACs can be instantiated as depicted in <a href="#ex-parent-ac" class="auto internal xref">Figure 25</a>.<a href="#appendix-A.2-1" class="pilcrow">¶</a></p>
 <span id="name-example-of-child-acs"></span><div id="ex-parent-ac">
-<figure id="figure-24">
+<figure id="figure-25">
           <div class="alignLeft art-text artwork" id="appendix-A.2-2.1">
 <pre>
 {
@@ -6670,13 +6809,13 @@ be used to inject spoofed routing  advertisements.<a href="#section-7-7.6.1" cla
 }
 </pre>
 </div>
-<figcaption><a href="#figure-24" class="selfRef">Figure 24</a>:
+<figcaption><a href="#figure-25" class="selfRef">Figure 25</a>:
 <a href="#name-example-of-child-acs" class="selfRef">Example of Child ACs</a>
           </figcaption></figure>
 </div>
-<p id="appendix-A.2-3"><a href="#ex-parent-ac-sap" class="auto internal xref">Figure 25</a> shows how to bind the parent AC to a SAP.<a href="#appendix-A.2-3" class="pilcrow">¶</a></p>
+<p id="appendix-A.2-3"><a href="#ex-parent-ac-sap" class="auto internal xref">Figure 26</a> shows how to bind the parent AC to a SAP.<a href="#appendix-A.2-3" class="pilcrow">¶</a></p>
 <span id="name-example-of-binding-parent-a"></span><div id="ex-parent-ac-sap">
-<figure id="figure-25">
+<figure id="figure-26">
           <div class="alignLeft art-text artwork" id="appendix-A.2-4.1">
 <pre>
 {
@@ -6708,7 +6847,7 @@ be used to inject spoofed routing  advertisements.<a href="#section-7-7.6.1" cla
 }
 </pre>
 </div>
-<figcaption><a href="#figure-25" class="selfRef">Figure 25</a>:
+<figcaption><a href="#figure-26" class="selfRef">Figure 26</a>:
 <a href="#name-example-of-binding-parent-a" class="selfRef">Example of Binding Parent AC to SAPs</a>
           </figcaption></figure>
 </div>

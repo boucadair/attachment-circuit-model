@@ -81,6 +81,9 @@ Table of Contents
    2.  Conventions and Definitions
    3.  Relationship to Other AC Data Models
    4.  Sample Uses of the Attachment Circuit Data Models
+     4.1.  ACs Terminated by One or Multiple Customer Edges (CEs)
+     4.2.  Positioning the AC Network Model in the Overall Service
+           Delivery Process
    5.  Description of the Attachment Circuit YANG Module
      5.1.  Overall Structure of the Module
      5.2.  References
@@ -188,8 +191,9 @@ Table of Contents
    The AC network model uses the AC common model defined in
    [I-D.ietf-opsawg-teas-common-ac].
 
-   The YANG data model in this document conforms to the Network
-   Management Datastore Architecture (NMDA) defined in [RFC8342].
+   The a YANG 1.1 [RFC7950] data model in this document conforms to the
+   Network Management Datastore Architecture (NMDA) defined in
+   [RFC8342].
 
    Sample examples are provided in Appendix A.
 
@@ -369,15 +373,70 @@ Table of Contents
 
 4.  Sample Uses of the Attachment Circuit Data Models
 
-   Figure 3 shows the positioning of the AC network model in the overall
+4.1.  ACs Terminated by One or Multiple Customer Edges (CEs)
+
+   Figure 3 depicts two target topology flavors that involve ACs.  These
+   topologies have the following characteristics:
+
+   *  A CE can be either a physical device or a logical entity.  Such
+      logical entity is typically a software component (e.g., a virtual
+      service function that is hosted within the provider's network or a
+      third-party infrastructure).  A CE is seen by the network as a
+      peer SAP [RFC9408].
+
+   *  CEs may be either dedicated to one single connectivity service or
+      host multiple connectivity services (e.g., CEs with roles of
+      service functions [RFC7665]).
+
+   *  A network provider may bind a single AC to one or multiple peer
+      SAPs (e.g., CE1 and CE2 are tagged as peer SAPs for the same AC).
+      For example, and as discussed in [RFC4364], multiple CEs can be
+      attached to a PE over the same attachment circuit.  This scenario
+      is typically implemented when the Layer 2 infrastructure between
+      the CE and the network is a multipoint service.
+
+   *  A single CE may terminate multiple ACs, which can be associated
+      with the same bearer or distinct bearers (e.g., CE4).
+
+   *  Customers may request protection schemes in which the ACs
+      associated with their endpoints are terminated by the same PE
+      (e.g., CE3), distinct PEs (e.g., CE4), etc.  The network provider
+      uses this request to decide where to terminate the AC in the
+      service provider network and also whether to enable specific
+      capabilities (e.g., Virtual Router Redundancy Protocol (VRRP)).
+
+                             .--------------------.
+                             |                    |
+      .-------.              |                   .--.  (b1)  .------.
+      |       +----.         |                   |  +---AC---+      |
+      |  CE1  |    |         |                   |PE+---AC---+  CE3 |
+      '-------'    |       .--.                  '--'  (b2)  '------'
+                   +---AC--+PE|     Network       |
+      .-------.    |       '--'                  .--.  (b3)  .------.
+      |       |    |         |                   |  +---AC---+      |
+      |  CE2  +----'         |                   |PE+---AC---+  CE4 |
+      '-------'              |                   '--'  (b3)  '---+--'
+                             |          .--.      |              |
+                             '----------+PE+------'              |
+                                        '--'                     |
+                                         |                       |
+                                         '-----------AC----------'
+      (bx) = bearer Id x
+
+                         Figure 3: Examples of ACs
+
+4.2.  Positioning the AC Network Model in the Overall Service Delivery
+      Process
+
+   Figure 4 shows the positioning of the AC network model in the overall
    service delivery process.  The 'ietf-ac-ntw' module is a network
    model which augments the SAP with a comprehensive set of parameters
    to reflect the attachment circuits that are in place in a network.
    The model also maintains the mapping with the service references that
-   are used to expose these ACs to customers
-   [I-D.ietf-opsawg-teas-attachment-circuit].  Whether the same naming
-   conventions to reference an AC are used in the service and network
-   layers is deployment-specific.
+   are used to expose those ACs to customer using the 'ietf-ac-svc'
+   module defined in [I-D.ietf-opsawg-teas-attachment-circuit].  Whether
+   the same naming conventions to reference an AC are used in the
+   service and network layers is deployment-specific.
 
                                .---------------.
                                |   Customer    |
@@ -420,11 +479,11 @@ Table of Contents
                     '--------------------------------'
        Site A                                                  Site B
 
-             Figure 3: An Example of the Network AC Model Usage
+             Figure 4: An Example of the Network AC Model Usage
 
    Similar to [RFC9408], the 'ietf-ac-ntw' module can be used for both
    User-to-Network Interface (UNI) and Network-to-Network Interface
-   (NNI).  For example, all the ACs shown in Figure 4 have a 'role' set
+   (NNI).  For example, all the ACs shown in Figure 5 have a 'role' set
    to 'ietf-sap-ntw:nni'.  Typically, ASBRs of each network are directly
    connected to ASBRs of a neighboring network via one or multiple links
    (bearers).  ASBRs of "Network#1" behave as a PE and treat the other
@@ -444,7 +503,7 @@ Table of Contents
               |                    |         |             |
               '--------------------'         '-------------'
 
-         Figure 4: An Example of the Network AC Model Usage Between
+         Figure 5: An Example of the Network AC Model Usage Between
                              Provider Networks
 
 5.  Description of the Attachment Circuit YANG Module
@@ -460,7 +519,7 @@ Table of Contents
 5.1.  Overall Structure of the Module
 
    The overall tree structure of the 'ietf-ac-ntw' module is shown in
-   Figure 5.
+   Figure 6.
 
    augment /nw:networks/nw:network:
      +--rw specific-provisioning-profiles
@@ -512,7 +571,7 @@ Table of Contents
           +--rw node-ref?      leafref
           +--rw network-ref?   -> /nw:networks/network/network-id
 
-                      Figure 5: Overall Tree Structure
+                      Figure 6: Overall Tree Structure
 
    A node can host one or more SAPs.  Per [RFC9408], a SAP is an
    abstraction of the network reference point (the PE side of an AC, in
@@ -581,7 +640,7 @@ Table of Contents
 
 5.2.  References
 
-   The AC module defines a set of groupings depicted in Figure 6 for
+   The AC module defines a set of groupings depicted in Figure 7 for
    referencing purposes.  These references are used within or outside
    the AC network module.  The use of such groupings is consistent with
    the design in [RFC8345].
@@ -613,9 +672,9 @@ Table of Contents
        +-- routing-profile-ref?   leafref
        +-- network-ref?           -> /nw:networks/network/network-id
 
-                       Figure 6: References Groupings
+                       Figure 7: References Groupings
 
-   The groupings shown in Figure 6 contain the information necessary to
+   The groupings shown in Figure 7 contain the information necessary to
    reference:
 
    *  an attachment circuit that is terminated by a specific node in a
@@ -630,7 +689,7 @@ Table of Contents
 5.3.  Provisioning Profiles
 
    The AC and specific provisioning profiles tree structure is shown in
-   Figure 7.
+   Figure 8.
 
      augment /nw:networks/nw:network:
        +--rw specific-provisioning-profiles
@@ -720,13 +779,13 @@ Table of Contents
                 +--rw local-multiplier?           uint8
                 +--rw holdtime?                   uint32
 
-                     Figure 7: Profiles Tree Structure
+                     Figure 8: Profiles Tree Structure
 
    Similar to [RFC9182] and [RFC9291], the exact definition of the
    specific provisioning profiles is local to each service provider.
    The model only includes an identifier for these profiles in order to
    ease identifying and binding local policies when building an AC.  As
-   shown in Figure 7, the following identifiers can be included:
+   shown in Figure 8, the following identifiers can be included:
 
    'encryption-profile-identifier':  An encryption profile refers to a
       set of policies related to the encryption schemes and setup that
@@ -758,7 +817,7 @@ Table of Contents
 
    The 'l2-connection' container is used to manage the Layer 2
    properties of an AC.  The Layer 2 connection tree structure is shown
-   in Figure 8.
+   in Figure 9.
 
      augment /nw:networks/nw:network/nw:node:
        +--rw ac* [name]
@@ -840,7 +899,7 @@ Table of Contents
           +--rw service
              ...
 
-                Figure 8: Layer 2 Connection Tree Structure
+                Figure 9: Layer 2 Connection Tree Structure
 
    The 'encapsulation' container specifies the Layer 2 encapsulation to
    use (if any) and allows the configuration of the relevant tags.
@@ -870,7 +929,7 @@ Table of Contents
    This 'ip-connection' container is used to group Layer 3 connectivity
    information, particularly the IP addressing information, of an AC.
 
-   The Layer 3 connection tree structure is shown in Figure 9.
+   The Layer 3 connection tree structure is shown in Figure 10.
 
      augment /nw:networks/nw:network/nw:node:
        +--rw ac* [name]
@@ -971,7 +1030,7 @@ Table of Contents
           +--rw service
              ...
 
-                   Figure 9: IP Connection Tree Structure
+                  Figure 10: IP Connection Tree Structure
 
    A distinct Layer 3 interface other than the interface indicated under
    the 'l2-connection' container may be needed to terminate the Layer 3
@@ -1007,7 +1066,7 @@ Table of Contents
 
 5.6.  Routing
 
-   The overall routing subtree structure is shown in Figure 10.
+   The overall routing subtree structure is shown in Figure 11.
 
    module: ietf-ac-ntw
      augment /nw:networks/nw:network:
@@ -1065,7 +1124,7 @@ Table of Contents
           +--rw service
              ...
 
-                     Figure 10: Routing Tree Structure
+                     Figure 11: Routing Tree Structure
 
    Multiple routing instances ('routing-protocol') can be defined, each
    uniquely identified by an 'id'.  Specifically, each instance is
@@ -1082,7 +1141,7 @@ Table of Contents
 
 5.6.1.  Static Routing
 
-   The static routing subtree structure is shown in Figure 11.
+   The static routing subtree structure is shown in Figure 12.
 
    module: ietf-ac-ntw
              ...
@@ -1164,7 +1223,7 @@ Table of Contents
           +--rw service
              ...
 
-                  Figure 11: Static Routing Tree Structure
+                  Figure 12: Static Routing Tree Structure
 
    The following data nodes can be defined for a given IP prefix:
 
@@ -1195,7 +1254,7 @@ Table of Contents
 
 5.6.2.  BGP
 
-   The BGP routing subtree structure is shown in Figure 12.
+   The BGP routing subtree structure is shown in Figure 13.
 
    module: ietf-ac-ntw
      augment /nw:networks/nw:network:
@@ -1411,7 +1470,7 @@ Table of Contents
           +--rw service
              ...
 
-                   Figure 12: BGP Routing Tree Structure
+                   Figure 13: BGP Routing Tree Structure
 
    The following data nodes are supported for each 'peer-group':
 
@@ -1536,7 +1595,7 @@ Table of Contents
 
 5.6.3.  OSPF
 
-   The OSPF routing subtree structure is shown in Figure 13.
+   The OSPF routing subtree structure is shown in Figure 14.
 
    module: ietf-ac-ntw
      augment /nw:networks/nw:network:
@@ -1623,7 +1682,7 @@ Table of Contents
           +--rw service
              ...
 
-                   Figure 13: OSPF Routing Tree Structure
+                   Figure 14: OSPF Routing Tree Structure
 
    The following OSPF data nodes are supported:
 
@@ -1657,7 +1716,7 @@ Table of Contents
 
 5.6.4.  IS-IS
 
-   The IS-IS routing subtree structure is shown in Figure 14.
+   The IS-IS routing subtree structure is shown in Figure 15.
 
    module: ietf-ac-ntw
      augment /nw:networks/nw:network:
@@ -1741,7 +1800,7 @@ Table of Contents
           +--rw service
              ...
 
-                  Figure 14: IS-IS Routing Tree Structure
+                  Figure 15: IS-IS Routing Tree Structure
 
    The following IS-IS data nodes are supported:
 
@@ -1765,7 +1824,7 @@ Table of Contents
 
 5.6.5.  RIP
 
-   The RIP routing subtree structure is shown in Figure 15.
+   The RIP routing subtree structure is shown in Figure 16.
 
    module: ietf-ac-ntw
      augment /nw:networks/nw:network:
@@ -1852,7 +1911,7 @@ Table of Contents
           +--rw service
              ...
 
-                   Figure 15: RIP Routing Tree Structure
+                   Figure 16: RIP Routing Tree Structure
 
    The following RIP data nodes are supported:
 
@@ -1883,7 +1942,7 @@ Table of Contents
 
 5.6.6.  VRRP
 
-   The VRRP subtree structure is shown in Figure 16.
+   The VRRP subtree structure is shown in Figure 17.
 
    module: ietf-ac-ntw
      augment /nw:networks/nw:network:
@@ -1954,7 +2013,7 @@ Table of Contents
           +--rw service
              ...
 
-                       Figure 16: VRRP Tree Structure
+                       Figure 17: VRRP Tree Structure
 
    The following VRRP data nodes are supported:
 
@@ -1983,7 +2042,7 @@ Table of Contents
 
 5.7.  OAM
 
-   The OAM subtree structure is shown in Figure 17.
+   The OAM subtree structure is shown in Figure 18.
 
      augment /nw:networks/nw:network:
        +--rw ac-profile* [name]
@@ -2035,7 +2094,7 @@ Table of Contents
           +--rw service
              ...
 
-                       Figure 17: OAM Tree Structure
+                       Figure 18: OAM Tree Structure
 
    The following OAM data nodes can be specified for each BFD session:
 
@@ -2085,7 +2144,7 @@ Table of Contents
 
 5.8.  Security
 
-   The security subtree structure is shown in Figure 18.  The 'security'
+   The security subtree structure is shown in Figure 19.  The 'security'
    container specifies the the encryption to be applied to traffic for a
    given AC.  The model can be used to directly control the encryption
    to be applied (e.g., Layer 2 or Layer 3 encryption) or invoke a local
@@ -2118,11 +2177,11 @@ Table of Contents
          +--rw service
             ...
 
-                    Figure 18: Security Tree Structure
+                    Figure 19: Security Tree Structure
 
 5.9.  Service
 
-   The service subtree structure is shown in Figure 19.
+   The service subtree structure is shown in Figure 20.
 
      augment /nw:networks/nw:network/nw:node:
        +--rw ac* [name]
@@ -2194,7 +2253,7 @@ Table of Contents
                       +--rw network-ref?
                               -> /nw:networks/network/network-id
 
-                     Figure 19: Service Tree Structure
+                     Figure 20: Service Tree Structure
 
    The description of the service data nodes is as follows:
 
@@ -4489,6 +4548,10 @@ Table of Contents
               Management", RFC 7474, DOI 10.17487/RFC7474, April 2015,
               <https://www.rfc-editor.org/rfc/rfc7474>.
 
+   [RFC7950]  Bjorklund, M., Ed., "The YANG 1.1 Data Modeling Language",
+              RFC 7950, DOI 10.17487/RFC7950, August 2016,
+              <https://www.rfc-editor.org/rfc/rfc7950>.
+
    [RFC8040]  Bierman, A., Bjorklund, M., and K. Watsen, "RESTCONF
               Protocol", RFC 8040, DOI 10.17487/RFC8040, January 2017,
               <https://www.rfc-editor.org/rfc/rfc8040>.
@@ -4661,7 +4724,7 @@ Appendix A.  Examples
 
 A.1.  VPLS
 
-   Let us consider the example depicted in Figure 20 with two customer
+   Let us consider the example depicted in Figure 21 with two customer
    terminating points (CE1 and CE2).  Let us also assume that the
    bearers to attach these CEs to the provider network are already in
    place.  References to the identify these bearers are shown in the
@@ -4674,11 +4737,11 @@ A.1.  VPLS
                 |            |     Core     |             |
            Bearer:1234       '--------------'         Bearer:5678
 
-                        Figure 20: Topology Example
+                        Figure 21: Topology Example
 
    The AC service model [I-D.ietf-opsawg-teas-attachment-circuit] can be
    used by the provider to manage and expose the ACs over existing
-   bearers as shown in Figure 21.
+   bearers as shown in Figure 22.
 
    {
      "ietf-ac-svc:attachment-circuits": {
@@ -4750,10 +4813,10 @@ A.1.  VPLS
      }
    }
 
-                     Figure 21: ACs Created Using ACaaS
+                     Figure 22: ACs Created Using ACaaS
 
    The provisioned AC at PE1 can be retrieved using the AC network model
-   as depicted in Figure 22.  A similar query can be used for the AC at
+   as depicted in Figure 23.  A similar query can be used for the AC at
    PE2.
 
    {
@@ -4816,10 +4879,10 @@ A.1.  VPLS
       ]
    }
 
-          Figure 22: Example of AC Network Response (Message Body)
+          Figure 23: Example of AC Network Response (Message Body)
 
    Also, the AC network model can be used to retrieve the list of SAPs
-   to which the ACs are bound as shown in Figure 22.
+   to which the ACs are bound as shown in Figure 23.
 
    {
       "ietf-sap-ntw:service":[
@@ -4863,7 +4926,7 @@ A.1.  VPLS
       ]
    }
 
-       Figure 23: Example of AC Network Response to Retrieve the SAP
+       Figure 24: Example of AC Network Response to Retrieve the SAP
                                (Message Body)
 
 A.2.  Parent AC
@@ -4871,7 +4934,7 @@ A.2.  Parent AC
    In reference to the topology depicted in Figure 1, PE2 has a SAP
    which terminates an AC with two peer SAPs (CE2 and CE5).  In order to
    control data that is specific to each of these peer SAPs over the
-   same AC, child ACs can be instantiated as depicted in Figure 24.
+   same AC, child ACs can be instantiated as depicted in Figure 25.
 
    {
       "ietf-ac-ntw:ac":[
@@ -4925,9 +4988,9 @@ A.2.  Parent AC
       ]
    }
 
-                      Figure 24: Example of Child ACs
+                      Figure 25: Example of Child ACs
 
-   Figure 25 shows how to bind the parent AC to a SAP.
+   Figure 26 shows how to bind the parent AC to a SAP.
 
    {
       "ietf-sap-ntw:service":[
@@ -4957,7 +5020,7 @@ A.2.  Parent AC
       ]
    }
 
-              Figure 25: Example of Binding Parent AC to SAPs
+              Figure 26: Example of Binding Parent AC to SAPs
 
 Acknowledgments
 
