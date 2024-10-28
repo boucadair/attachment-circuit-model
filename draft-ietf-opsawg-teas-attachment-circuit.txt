@@ -2513,12 +2513,6 @@ B2B C/S: Back-to-back Client/Server
      container bearers {
        description
          "Main container for the bearers.";
-       leaf customer-name {
-         type string;
-         description
-           "Indicates the name of the customer that requested these
-            bearers.";
-       }
        uses ac-common:op-instructions;
        container placement-constraints {
          description
