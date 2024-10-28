@@ -10,7 +10,7 @@ date:
 consensus: true
 v: 3
 area: "Operations and Management"
-workgroup: "OPSAWG"
+workgroup: "Operations and Management Area Working Group"
 keyword:
  - Slice Service
  - L3VPN
@@ -107,7 +107,7 @@ The document specifies a common Attachment Circuits (ACs) YANG module, which is 
 
 # Introduction
 
-Connectivity services are provided by networks to customers via dedicated terminating points (e.g., Service Functions (SFs), Customer Premises Equipment (CPEs), Autonomous System Border Routers (ASBRs), data centers gateways, or Internet Exchange Points). A connectivity service is basically about ensuring data transfer received from (or destined to) a given terminating point to (or from) other terminating points that belong to the same customer/service, an interconnection node, or an ancillary node. A set of objectives for the connectivity service may eventually be negotiated and agreed upon between a customer a network provider. For that data transfer to take place within the provider network, it is assumed that adequate setup is provisioned over the links that connect customer terminating points and a provider network (a Provider Edge (PE), typically) so that data can be successfully exchanged over these links. The required setup is referred to in this document as Attachment Circuits (ACs), while the underlying link is referred to as "bearer".
+Connectivity services are provided by networks to customers via dedicated terminating points (e.g., Service Functions (SFs), Customer Premises Equipment (CPEs), Autonomous System Border Routers (ASBRs), data centers gateways, or Internet Exchange Points). A connectivity service is basically about ensuring data transfer received from (or destined to) a given terminating point to (or from) other terminating points that belong to the same customer/service, an interconnection node, or an ancillary node. A set of objectives for the connectivity service may eventually be negotiated and agreed upon between a customer and a network provider. For that data transfer to take place within the provider network, it is assumed that adequate setup is provisioned over the links that connect customer terminating points and a provider network (a Provider Edge (PE), typically) so that data can be successfully exchanged over these links. The required setup is referred to in this document as Attachment Circuits (ACs), while the underlying link is referred to as "bearer".
 
 This document adheres to the definition of an attachment circuit as provided in {{Section 1.2 of ?RFC4364}}, especially:
 
@@ -122,7 +122,7 @@ This document adheres to the definition of an attachment circuit as provided in 
    a tunnel of some sort; what matters is that it be possible for two
    devices to be network layer peers over the attachment circuit.
 
-When a customer requests a new value-added service, the service can be bound to existing attachment circuits or trigger the instantiation of new attachment circuits. Whether these attachment circuits are specific to a given service or be shared to deliver a variety of services is deployment-specific.
+When a customer requests a new value-added service, the service can be bound to existing attachment circuits or trigger the instantiation of new attachment circuits. Whether these attachment circuits are specific for a given service or are shared to deliver a variety of services is deployment-specific.
 
 An example of attachment circuits is depicted in {{uc}}. A Customer Edge (CE) may be a physical node or a logical entity. A CE is seen by the network as a peer Service Attachment Point (SAP) {{?RFC9408}}. CEs may be dedicated to one single service (e.g., Layer 3 Virtual Private Network (VPN) or Layer 2 VPN) or host multiple services (e.g., Service Functions {{?RFC7665}}). A single AC (as seen by a network provider) may be bound to one or multiple peer SAPs (e.g., "CE1" and "CE2"). For example, and as discussed in {{?RFC4364}}, multiple CEs can be attached to a PE over the same attachment circuit. This is typically implemented if the Layer 2 infrastructure between the CE and the network provides a multipoint service. The same CE may terminate multiple ACs. These ACs may be over the same or distinct bearers.
 
@@ -250,6 +250,7 @@ The module defines a set of identities, including the following:
 
 'bgp-capability':
 : Used to indicate a BGP capability {{!RFC5492}}. Examples of BGP capabilities are Multiprotocol extensions for BGP-4 {{?RFC4760}}, route refresh {{?RFC2918}}, graceful restart {{?RFC4724}}, ADD-PATH {{?RFC7911}}, or BGP Role {{?RFC9234}}}.
+: Only a subset of BGP capabilities might be useful for customization at the service/network AC levels. As such, this document does not use the full list defined in {{Section 7.3 of ?I-D.ietf-idr-bgp-model}}.
 
 'role':
 : Used to indicate the type of an AC: User-to-Network Interface (UNI), Network-to-Network Interface (NNI), or public NNI.
@@ -288,6 +289,8 @@ Layer 2 tunnel services  ({{l2-full-tree}}):
 
 Layer 3 address allocation ({{l3-full-tree}}):
 : Defines both IPv4 and IPv6 groupings to specify IP address allocation over an AC. Both dynamic and static address schemes are supported.
+: For both IPv4 and IPv6, 'address-allocation-type' is used to indicate the IP address allocation mode to activate. When 'address-allocation-type' is set to 'provider-dhcp', DHCP assignments can be made locally or by an external DHCP server. Such behavior is controlled by setting 'dhcp-service-type'.
+: Note that if 'address-allocation-type' is set to 'slaac', the Prefix Information option of Router Advertisements that will be issued for SLAAC purposes will carry the IPv6 prefix that is determined by 'local-address' and 'prefix-length'.
 
 IP connections ({{l3-full-tree}})::
 : Defines IPv4 and IPv6 groupings for managing Layer 3 connectivity over an AC. Both basic and more elaborated IP connection groupings are supported.
@@ -300,7 +303,7 @@ IP connections ({{l3-full-tree}})::
 Routing parameters & OAM ({{rtg-full-tree}}):
 : In addition to static routing, the module supports the following routing protocols: BGP {{!RFC4271}}, OSPF {{!RFC4577}} or {{!RFC6565}}, IS-IS {{ISO10589}}{{!RFC1195}}{{!RFC5308}}, and RIP {{!RFC2453}}. For all supported routing protocols, 'address-family' indicates whether IPv4, IPv6, or both address families are to be activated. For example, this parameter is used to determine whether RIPv2 {{!RFC2453}}, RIP Next Generation (RIPng), or both are to be enabled {{!RFC2080}}. More details about supported routing groupings are provided hereafter:
 
-  * Authentication: These groupings include the required information to manage the authentication of OSPF, IS-IS, BGP, and RIP. Similar to {{?RFC9182}}, this version of the common AC model assumes that parameters specific to the TCP-AO are preconfigured as part of the key chain that is referenced in the model. No assumption is made about how such a key chain is preconfigured. However, the structure of the key chain should cover data nodes beyond those in {{!RFC8177}}, mainly SendID and RecvID (Section 3.1 of {{!RFC5925}}).
+  * Authentication: These groupings include the required information to manage the authentication of OSPF, IS-IS, BGP, and RIP. The groupings support local specification of authentication keys and the associated authentication algorithm to accomodate legacy implementations that do not support key chains {{!RFC8177}}. Similar to {{?RFC9182}}, this version of the common AC model assumes that parameters specific to the TCP-AO are preconfigured as part of the key chain that is referenced in the model. No assumption is made about how such a key chain is preconfigured. However, the structure of the key chain should cover data nodes beyond those in {{!RFC8177}}, mainly SendID and RecvID (Section 3.1 of {{!RFC5925}}).
 
   * BGP peer groups: Includes a set of parameters to identify a BGP peer group. Such a group can be defined by providing a local AS Number (ASN), a customer's ASN, and the address families to be activated for this group. BGP peer groups can be identified by a name.
   * Basic parameters: These groupings include the minimal set of routing configuration that is required for the activation of OSPF, IS-IS, BGP, and RIP.
@@ -344,43 +347,42 @@ This module uses types defined in {{!RFC6991}}, {{!RFC8177}}, and  {{!RFC9181}}.
 
 # Security Considerations
 
-This section uses the template described in {{Section 3.7 of ?I-D.ietf-netmod-rfc8407bis}}.
+This section is modeled after the template described in {{Section 3.7 of ?I-D.ietf-netmod-rfc8407bis}}.
 
-   The YANG module specified in this document defines schema for data
-   that is designed to be accessed via network management protocols such
-   as NETCONF {{!RFC6241}} or RESTCONF {{!RFC8040}}.  The lowest NETCONF layer
-   is the secure transport layer, and the mandatory-to-implement secure
-   transport is Secure Shell (SSH) {{!RFC6242}}.  The lowest RESTCONF layer
-   is HTTPS, and the mandatory-to-implement secure transport is TLS
-   {{!RFC8446}}.
+The "ietf-ac-common" YANG module defines a data model that is 
+designed to be accessed via YANG-based management protocols, such as
+NETCONF {{?RFC6241}} and RESTCONF {{?RFC8040}}. These protocols have to
+use a secure transport layer (e.g., SSH {{?RFC4252}}, TLS {{?RFC8446}}, and
+QUIC {{?RFC9000}}) and have to use mutual authentication.
 
-   The Network Configuration Access Control Model (NACM) {{!RFC8341}}
-   provides the means to restrict access for particular NETCONF or
-   RESTCONF users to a preconfigured subset of all available NETCONF or
-   RESTCONF protocol operations and content.
+The Network Configuration Access Control Model (NACM) {{!RFC8341}}
+provides the means to restrict access for particular NETCONF or
+RESTCONF users to a preconfigured subset of all available NETCONF or
+RESTCONF protocol operations and content.
 
-   The "ietf-ac-common" module defines a set of identities, types, and
-   groupings.  These nodes are intended to be reused by other YANG
-   modules.  The module by itself does not expose any data nodes that
-   are writable, data nodes that contain read-only state, or RPCs.
+The YANG module defines a set of identities, types, and
+groupings. These nodes are intended to be reused by other YANG
+modules. The module by itself does not expose any data nodes that
+are writable, data nodes that contain read-only state, or RPCs.
+As such, there are no additional security issues related to 
+the YANG module that need to be considered.
 
-   YANG modules that use the groupings that are defined in this document
-   should identify the corresponding security considerations.  For
+Modules that use the groupings that are defined in this document
+should identify the corresponding security considerations. For
    example, reusing some of these groupings will expose privacy-related
    information (e.g., 'ipv6-lan-prefixes' or 'ipv4-lan-prefixes').  Disclosing such information may
    be considered a violation of the customer-provider trust
    relationship.
 
-   Several groupings ('bgp-authentication', 'ospf-authentication', 'isis-authentication', and 'rip-authentication') rely
+Several groupings ('bgp-authentication', 'ospf-authentication', 'isis-authentication', and 'rip-authentication') rely
    upon {{!RFC8177}} for authentication purposes.  As such, modules that will reuse these groupings
-   will inherit the security considerations discussed in Section 5 of
-   {{!RFC8177}}.  Also, these groupings support supplying explicit keys as
+   will inherit the security considerations discussed in
+   {{Section 5 of !RFC8177}}.  Also, these groupings support supplying explicit keys as
    strings in ASCII format.  The use of keys in hexadecimal string
    format would afford greater key entropy with the same number of key-
    string octets.  However, such a format is not included in this
    version of the common AC model, because it is not supported by the underlying
    device modules (e.g., {{?RFC8695}}).
-
 
 # IANA Considerations
 
@@ -416,3 +418,5 @@ Thanks to Ebben Aries for the YANG Doctors review, Andy Smith and Gyanh Mishra f
 rtg-dir reviews.
 
 Thanks to Reza Rokui for the Shepherd review.
+
+Thanks to Mahesh Jethanandani for the AD review.
