@@ -983,7 +983,7 @@ B2B C/S: Back-to-back Client/Server
    Therefore, the description of these nodes are not reiterated in the
    following subsections.
 
-   Features are used to tag conditional protions of the model in order
+   Features are used to tag conditional portions of the model in order
    to accomodate various deployments (support of layer 2 ACs, Layer 3
    ACs, IPv4, IPv6, routing protocols, Bidirectional Forwarding
    Detection (BFD), etc.).
@@ -1182,8 +1182,8 @@ B2B C/S: Back-to-back Client/Server
    'test-only':  Indicates that a request is only for test and not for
       setting, even if there are no errors.  This is used for
       feasibility checks.  This data node is applicable only when the
-      data model is used with protocols which do not natively support
-      such option.
+      data model is used with protocols which do not have built-in
+      support of such option.
 
    'requested-start':  Specifies the requested date and time when the
       attachment circuit is expected to be active.
@@ -3934,14 +3934,15 @@ B2B C/S: Back-to-back Client/Server
 
 7.  Security Considerations
 
-   This section uses the template described in Section 3.7 of
-   [I-D.ietf-netmod-rfc8407bis].
+   This section is modeled after the template described in in
+   Section 3.7 of [I-D.ietf-netmod-rfc8407bis].
 
-   The YANG modules specified in this document defines a data model that
-   is designed to be accessed via YANG-based management protocols, such
-   as NETCONF [RFC6241] and RESTCONF [RFC8040].  These protocols have to
-   use a secure transport layer (e.g., SSH [RFC4252], TLS [RFC8446], and
-   QUIC [RFC9000]) and have to use mutual authentication.
+   The "ietf-bearer-svc" and "ietf-ac-svc" YANG modules define data
+   models that are designed to be accessed via YANG-based management
+   protocols, such as NETCONF [RFC6241] and RESTCONF [RFC8040].  These
+   protocols have to use a secure transport layer (e.g., SSH [RFC4252],
+   TLS [RFC8446], and QUIC [RFC9000]) and have to use mutual
+   authentication.
 
    The Network Configuration Access Control Model (NACM) [RFC8341]
    provides the means to restrict access for particular NETCONF or
@@ -5580,7 +5581,7 @@ A.9.  Connect Customer Network Through BGP
 
             Figure 48: Illustration of Provider Network Scenario
 
-   The attachment circuit in this case use a SAP identifier to refer to
+   The attachment circuit in this case uses a SAP identifier to refer to
    the physical interface used for the connection between the PE and the
    CE.  The attachment circuit includes all the additional logical
    attributes to describe the connection between the two ends, including
@@ -6786,7 +6787,7 @@ Acknowledgments
    Thanks to Luis Miguel Contreras Murillo for the careful Shepherd
    review.
 
-   Thanks to Mahesh for the AD review.
+   Thanks to Mahesh Jethanandani for the AD review.
 
 Contributors
 

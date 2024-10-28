@@ -2375,7 +2375,7 @@ for the reader's convenience. The full tree of the 'ac-svc' is provided in <span
           </ul>
 <p id="section-5.2.1-5">Each AC is identified with a unique name ('../ac/name') within a domain. The mapping between this AC and a local PE that terminates the AC is hidden to the application that makes use of the AC service model. This information is internal to the Network controller. As such, the details about the (node-specific) attachment interfaces are not exposed in this service model.<a href="#section-5.2.1-5" class="pilcrow">¶</a></p>
 <p id="section-5.2.1-6">The AC service model uses groupings and types defined in the AC common model <span>[<a href="#I-D.ietf-opsawg-teas-common-ac" class="cite xref">I-D.ietf-opsawg-teas-common-ac</a>]</span> ('op-instructions', 'dot1q', 'qinq', 'priority-tagged', 'l2-tunnel-service', etc.). Therefore, the description of these nodes are not reiterated in the following subsections.<a href="#section-5.2.1-6" class="pilcrow">¶</a></p>
-<p id="section-5.2.1-7">Features are used to tag conditional protions of the model in order to accomodate various deployments (support of layer 2 ACs, Layer 3 ACs, IPv4, IPv6, routing protocols,  Bidirectional Forwarding Detection (BFD), etc.).<a href="#section-5.2.1-7" class="pilcrow">¶</a></p>
+<p id="section-5.2.1-7">Features are used to tag conditional portions of the model in order to accomodate various deployments (support of layer 2 ACs, Layer 3 ACs, IPv4, IPv6, routing protocols,  Bidirectional Forwarding Detection (BFD), etc.).<a href="#section-5.2.1-7" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sec-profiles">
@@ -2603,7 +2603,7 @@ These adjusted values take precedence over the global values.  The structure of 
             <dd class="break"></dd>
 <dt id="section-5.2.5-4.5">'test-only':</dt>
             <dd style="margin-left: 1.5em" id="section-5.2.5-4.6">
-              <p id="section-5.2.5-4.6.1">Indicates that a request is only for test and not for setting, even if there are no errors. This is used for feasibility checks. This data node is applicable only when the data model is used with protocols which do not natively support such option.<a href="#section-5.2.5-4.6.1" class="pilcrow">¶</a></p>
+              <p id="section-5.2.5-4.6.1">Indicates that a request is only for test and not for setting, even if there are no errors. This is used for feasibility checks. This data node is applicable only when the data model is used with protocols which do not have built-in support of such option.<a href="#section-5.2.5-4.6.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
 <dt id="section-5.2.5-4.7">'requested-start':</dt>
@@ -5616,9 +5616,9 @@ module ietf-ac-svc {
       <h2 id="name-security-considerations">
 <a href="#section-7" class="section-number selfRef">7. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
       </h2>
-<p id="section-7-1">This section uses the template described in Section 3.7 of <span>[<a href="#I-D.ietf-netmod-rfc8407bis" class="cite xref">I-D.ietf-netmod-rfc8407bis</a>]</span>.<a href="#section-7-1" class="pilcrow">¶</a></p>
-<p id="section-7-2">The YANG modules specified in this document defines a data model that is
-   designed to be accessed via YANG-based management protocols, such as
+<p id="section-7-1">This section is modeled after the template described in in <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-netmod-rfc8407bis-20#section-3.7" class="relref">Section 3.7</a> of [<a href="#I-D.ietf-netmod-rfc8407bis" class="cite xref">I-D.ietf-netmod-rfc8407bis</a>]</span>.<a href="#section-7-1" class="pilcrow">¶</a></p>
+<p id="section-7-2">The "ietf-bearer-svc" and "ietf-ac-svc" YANG modules define data models that are
+designed to be accessed via YANG-based management protocols, such as
    NETCONF <span>[<a href="#RFC6241" class="cite xref">RFC6241</a>]</span> and RESTCONF <span>[<a href="#RFC8040" class="cite xref">RFC8040</a>]</span>. These protocols have to
    use a secure transport layer (e.g., SSH <span>[<a href="#RFC4252" class="cite xref">RFC4252</a>]</span>, TLS <span>[<a href="#RFC8446" class="cite xref">RFC8446</a>]</span>, and
    QUIC <span>[<a href="#RFC9000" class="cite xref">RFC9000</a>]</span>) and have to use mutual authentication.<a href="#section-7-2" class="pilcrow">¶</a></p>
@@ -5729,8 +5729,8 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 </dl>
 <p id="section-7-12">Several data nodes ('bgp', 'ospf', 'isis', and 'rip') rely
    upon <span>[<a href="#RFC8177" class="cite xref">RFC8177</a>]</span> for authentication purposes.  As such, the AC service module
-   inherits the security considerations discussed in Section 5 of
-   <span>[<a href="#RFC8177" class="cite xref">RFC8177</a>]</span>.  Also, these data nodes support supplying explicit keys as
+   inherits the security considerations discussed in
+   <span><a href="https://rfc-editor.org/rfc/rfc8177#section-5" class="relref">Section 5</a> of [<a href="#RFC8177" class="cite xref">RFC8177</a>]</span>.  Also, these data nodes support supplying explicit keys as
    strings in ASCII format.  The use of keys in hexadecimal string
    format would afford greater key entropy with the same number of
    key-string octets.  However, such a format is not included in this
@@ -7710,7 +7710,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 <a href="#name-illustration-of-provider-ne" class="selfRef">Illustration of Provider Network Scenario</a>
           </figcaption></figure>
 </div>
-<p id="appendix-A.9-3">The attachment circuit in this case use a SAP identifier to refer to the physical interface used for the connection between the PE and the CE. The attachment circuit includes all the additional logical attributes to describe the connection between the two ends, including VLAN information and IP addressing. Also, the configuration details of the BGP session makes use of peer group details instead of defining the entire configuration inside the 'neighbor' data node.<a href="#appendix-A.9-3" class="pilcrow">¶</a></p>
+<p id="appendix-A.9-3">The attachment circuit in this case uses a SAP identifier to refer to the physical interface used for the connection between the PE and the CE. The attachment circuit includes all the additional logical attributes to describe the connection between the two ends, including VLAN information and IP addressing. Also, the configuration details of the BGP session makes use of peer group details instead of defining the entire configuration inside the 'neighbor' data node.<a href="#appendix-A.9-3" class="pilcrow">¶</a></p>
 <span id="name-message-body-of-a-request-to-c"></span><div id="add-attachment-circuit-bgp-routing">
 <figure id="figure-49">
           <div class="breakable lang-json sourcecode" id="appendix-A.9-4.1">
@@ -9442,7 +9442,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 <p id="appendix-B-2">Thanks to Ebben Aries for the YANG Doctors review and for providing <span>[<a href="#Instance-Data" class="cite xref">Instance-Data</a>]</span>.<a href="#appendix-B-2" class="pilcrow">¶</a></p>
 <p id="appendix-B-3">Thanks to Donald Eastlake for the careful rtg-dir reviews and Tero Kivinen for the sec-dir review.<a href="#appendix-B-3" class="pilcrow">¶</a></p>
 <p id="appendix-B-4">Thanks to Luis Miguel Contreras Murillo for the careful Shepherd review.<a href="#appendix-B-4" class="pilcrow">¶</a></p>
-<p id="appendix-B-5">Thanks to Mahesh for the AD review.<a href="#appendix-B-5" class="pilcrow">¶</a></p>
+<p id="appendix-B-5">Thanks to Mahesh Jethanandani for the AD review.<a href="#appendix-B-5" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="contributors">
