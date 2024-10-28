@@ -5,14 +5,14 @@
 OPSAWG                                                 M. Boucadair, Ed.
 Internet-Draft                                                    Orange
 Intended status: Standards Track                         R. Roberts, Ed.
-Expires: 14 April 2025                                           Juniper
+Expires: 1 May 2025                                              Juniper
                                                            O. G. D. Dios
                                                               Telefonica
                                                            S. B. Giraldo
                                                                    Nokia
                                                                    B. Wu
                                                      Huawei Technologies
-                                                         11 October 2024
+                                                         28 October 2024
 
 
   YANG Data Models for Bearers and 'Attachment Circuits'-as-a-Service
@@ -62,7 +62,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 14 April 2025.
+   This Internet-Draft will expire on 1 May 2025.
 
 Copyright Notice
 
@@ -4195,17 +4195,17 @@ B2B C/S: Back-to-back Client/Server
    [I-D.ietf-idr-bgp-model]
               Jethanandani, M., Patel, K., Hares, S., and J. Haas, "YANG
               Model for Border Gateway Protocol (BGP-4)", Work in
-              Progress, Internet-Draft, draft-ietf-idr-bgp-model-17, 5
-              July 2023, <https://datatracker.ietf.org/doc/html/draft-
-              ietf-idr-bgp-model-17>.
+              Progress, Internet-Draft, draft-ietf-idr-bgp-model-18, 21
+              October 2024, <https://datatracker.ietf.org/doc/html/
+              draft-ietf-idr-bgp-model-18>.
 
    [I-D.ietf-netmod-rfc8407bis]
               Bierman, A., Boucadair, M., and Q. Wu, "Guidelines for
               Authors and Reviewers of Documents Containing YANG Data
               Models", Work in Progress, Internet-Draft, draft-ietf-
-              netmod-rfc8407bis-17, 27 September 2024,
+              netmod-rfc8407bis-20, 21 October 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-netmod-
-              rfc8407bis-17>.
+              rfc8407bis-20>.
 
    [I-D.ietf-opsawg-ac-lxsm-lxnm-glue]
               Boucadair, M., Roberts, R., Barguil, S., and O. G. de

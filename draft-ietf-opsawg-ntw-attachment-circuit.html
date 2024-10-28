@@ -1046,7 +1046,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Boucadair, et al.</td>
-<td class="center">Expires 14 April 2025</td>
+<td class="center">Expires 1 May 2025</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1059,12 +1059,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-opsawg-ntw-attachment-circuit-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2024-10-11" class="published">11 October 2024</time>
+<time datetime="2024-10-28" class="published">28 October 2024</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2025-04-14">14 April 2025</time></dd>
+<dd class="expires"><time datetime="2025-05-01">1 May 2025</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1127,7 +1127,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 14 April 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 1 May 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1279,9 +1279,9 @@ svg :is([fill="white"], [fill^="#fff"]) {
    customer edges (CEs), peer Autonomous System Border Routers (ASBRs),
    data centers gateways, or Internet Exchange Points.<a href="#section-1-1" class="pilcrow">¶</a></p>
 <p id="section-1-2">The procedure to provision a service in a service provider network may depend on the practices adopted by a service provider, including the flow put in place for the provisioning of advanced network services and how they are bound to an Attachment Circuit (AC). For example, the same attachment circuit may host multiple services (e.g., Layer 2 Virtual Private Network (VPN), or Layer 3 VPN, or Network Slice Service <span>[<a href="#RFC9543" class="cite xref">RFC9543</a>]</span>). In order to avoid service interference and redundant information in various locations, a service provider may expose an interface to manage ACs network-wide. Customers can then request a standalone attachment circuit to be put in place, and then refer to that attachment circuit when requesting services to be bound to that AC. <span>[<a href="#I-D.ietf-opsawg-teas-attachment-circuit" class="cite xref">I-D.ietf-opsawg-teas-attachment-circuit</a>]</span> specifies a data model for managing attachment circuits as a service.<a href="#section-1-2" class="pilcrow">¶</a></p>
-<p id="section-1-3"><a href="#sec-module" class="auto internal xref">Section 6</a> specifies a network model for attachment circuits ('ietf-ac-ntw'). The model can be used for the provisioning of ACs prior or during service provisioning. For example, <span>[<a href="#I-D.ietf-opsawg-ac-lxsm-lxnm-glue" class="cite xref">I-D.ietf-opsawg-ac-lxsm-lxnm-glue</a>]</span> specifies augmentations to the L2VPN Network Model (L2NM) <span>[<a href="#RFC9291" class="cite xref">RFC9291</a>]</span> and the L3VPN Network Model (L3NM) <span>[<a href="#RFC9182" class="cite xref">RFC9182</a>]</span> to bind LxVPNs to ACs that are provisioned using the procedure defined in this document.<a href="#section-1-3" class="pilcrow">¶</a></p>
-<p id="section-1-4">The document leverages <span>[<a href="#RFC9182" class="cite xref">RFC9182</a>]</span> and <span>[<a href="#RFC9291" class="cite xref">RFC9291</a>]</span> by adopting an AC provisioning structure that uses data nodes that are defined in these RFCs. Some refinements were introduced to cover, not only conventional service provider networks, but also specifics of other target deployments (cloud network, for example).<a href="#section-1-4" class="pilcrow">¶</a></p>
-<p id="section-1-5">The AC network model is designed as augmentations to both the 'ietf-network' model <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span> and the Service Attachment Point (SAP) model <span>[<a href="#RFC9408" class="cite xref">RFC9408</a>]</span>. An attachment circuit can be bound to a single or multiple SAPs. Likewise, the model is designed to accommodate deployments where a SAP can be bound to one or multiple ACs (e.g., a parent AC and its child ACs).<a href="#section-1-5" class="pilcrow">¶</a></p>
+<p id="section-1-3"><a href="#sec-module" class="auto internal xref">Section 6</a> specifies a network model for attachment circuits ('ietf-ac-ntw'). The model can be used for the provisioning of ACs prior or during service provisioning. For example, <span>[<a href="#I-D.ietf-opsawg-ac-lxsm-lxnm-glue" class="cite xref">I-D.ietf-opsawg-ac-lxsm-lxnm-glue</a>]</span> specifies augmentations of the L2VPN Network Model (L2NM) <span>[<a href="#RFC9291" class="cite xref">RFC9291</a>]</span> and the L3VPN Network Model (L3NM) <span>[<a href="#RFC9182" class="cite xref">RFC9182</a>]</span> to bind LxVPNs to ACs that are provisioned using the procedure defined in this document.<a href="#section-1-3" class="pilcrow">¶</a></p>
+<p id="section-1-4">The document leverages <span>[<a href="#RFC9182" class="cite xref">RFC9182</a>]</span> and <span>[<a href="#RFC9291" class="cite xref">RFC9291</a>]</span> by adopting an AC provisioning structure that uses data nodes that are defined in those RFCs. Some refinements were introduced to cover not only conventional service provider networks, but also specifics of other target deployments (e.g., cloud network).<a href="#section-1-4" class="pilcrow">¶</a></p>
+<p id="section-1-5">The AC network model is designed as augmentations of both the 'ietf-network' model <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span> and the Service Attachment Point (SAP) model <span>[<a href="#RFC9408" class="cite xref">RFC9408</a>]</span>. An attachment circuit can be bound to a single or multiple SAPs. Likewise, the model is designed to accommodate deployments where a SAP can be bound to one or multiple ACs (e.g., a parent AC and its child ACs).<a href="#section-1-5" class="pilcrow">¶</a></p>
 <span id="name-attachment-circuits-example"></span><div id="sap-ac-ntw">
 <figure id="figure-1">
         <div id="section-1-6.1">
@@ -1663,10 +1663,10 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
           <p id="section-3-2.1.1">"ietf-ac-common" (<span>[<a href="#I-D.ietf-opsawg-teas-common-ac" class="cite xref">I-D.ietf-opsawg-teas-common-ac</a>]</span>)<a href="#section-3-2.1.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-3-2.2">
-          <p id="section-3-2.2.1">"ietf-bearer-svc" (<span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-teas-attachment-circuit-16#section-5.1" class="relref">Section 5.1</a> of [<a href="#I-D.ietf-opsawg-teas-attachment-circuit" class="cite xref">I-D.ietf-opsawg-teas-attachment-circuit</a>]</span>)<a href="#section-3-2.2.1" class="pilcrow">¶</a></p>
+          <p id="section-3-2.2.1">"ietf-bearer-svc" (<span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-teas-attachment-circuit-17#section-5.1" class="relref">Section 5.1</a> of [<a href="#I-D.ietf-opsawg-teas-attachment-circuit" class="cite xref">I-D.ietf-opsawg-teas-attachment-circuit</a>]</span>)<a href="#section-3-2.2.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-3-2.3">
-          <p id="section-3-2.3.1">"ietf-ac-svc" (<span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-teas-attachment-circuit-16#section-5.2" class="relref">Section 5.2</a> of [<a href="#I-D.ietf-opsawg-teas-attachment-circuit" class="cite xref">I-D.ietf-opsawg-teas-attachment-circuit</a>]</span>)<a href="#section-3-2.3.1" class="pilcrow">¶</a></p>
+          <p id="section-3-2.3.1">"ietf-ac-svc" (<span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-teas-attachment-circuit-17#section-5.2" class="relref">Section 5.2</a> of [<a href="#I-D.ietf-opsawg-teas-attachment-circuit" class="cite xref">I-D.ietf-opsawg-teas-attachment-circuit</a>]</span>)<a href="#section-3-2.3.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-3-2.4">
           <p id="section-3-2.4.1">"ietf-ac-ntw" (<a href="#sec-module" class="auto internal xref">Section 6</a>)<a href="#section-3-2.4.1" class="pilcrow">¶</a></p>
@@ -6144,7 +6144,7 @@ be used to inject spoofed routing  advertisements.<a href="#section-7-7.6.1" cla
 <dl class="references">
 <dt id="I-D.ietf-opsawg-teas-attachment-circuit">[I-D.ietf-opsawg-teas-attachment-circuit]</dt>
         <dd>
-<span class="refAuthor">Boucadair, M.</span>, <span class="refAuthor">Roberts, R.</span>, <span class="refAuthor">de Dios, O. G.</span>, <span class="refAuthor">Barguil, S.</span>, and <span class="refAuthor">B. Wu</span>, <span class="refTitle">"YANG Data Models for Bearers and 'Attachment Circuits'-as-a-Service (ACaaS)"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-opsawg-teas-attachment-circuit-16</span>, <time datetime="2024-09-10" class="refDate">10 September 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-teas-attachment-circuit-16">https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-teas-attachment-circuit-16</a>&gt;</span>. </dd>
+<span class="refAuthor">Boucadair, M.</span>, <span class="refAuthor">Roberts, R.</span>, <span class="refAuthor">de Dios, O. G.</span>, <span class="refAuthor">Barguil, S.</span>, and <span class="refAuthor">B. Wu</span>, <span class="refTitle">"YANG Data Models for Bearers and 'Attachment Circuits'-as-a-Service (ACaaS)"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-opsawg-teas-attachment-circuit-17</span>, <time datetime="2024-10-10" class="refDate">10 October 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-teas-attachment-circuit-17">https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-teas-attachment-circuit-17</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="I-D.ietf-opsawg-teas-common-ac">[I-D.ietf-opsawg-teas-common-ac]</dt>
         <dd>
@@ -6309,7 +6309,7 @@ be used to inject spoofed routing  advertisements.<a href="#section-7-7.6.1" cla
 <dd class="break"></dd>
 <dt id="I-D.ietf-netmod-rfc8407bis">[I-D.ietf-netmod-rfc8407bis]</dt>
         <dd>
-<span class="refAuthor">Bierman, A.</span>, <span class="refAuthor">Boucadair, M.</span>, and <span class="refAuthor">Q. Wu</span>, <span class="refTitle">"Guidelines for Authors and Reviewers of Documents Containing YANG Data Models"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-netmod-rfc8407bis-17</span>, <time datetime="2024-09-27" class="refDate">27 September 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-netmod-rfc8407bis-17">https://datatracker.ietf.org/doc/html/draft-ietf-netmod-rfc8407bis-17</a>&gt;</span>. </dd>
+<span class="refAuthor">Bierman, A.</span>, <span class="refAuthor">Boucadair, M.</span>, and <span class="refAuthor">Q. Wu</span>, <span class="refTitle">"Guidelines for Authors and Reviewers of Documents Containing YANG Data Models"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-netmod-rfc8407bis-20</span>, <time datetime="2024-10-21" class="refDate">21 October 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-netmod-rfc8407bis-20">https://datatracker.ietf.org/doc/html/draft-ietf-netmod-rfc8407bis-20</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="I-D.ietf-opsawg-ac-lxsm-lxnm-glue">[I-D.ietf-opsawg-ac-lxsm-lxnm-glue]</dt>
         <dd>

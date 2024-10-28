@@ -5,14 +5,14 @@
 Operations and Management Area Working Group           M. Boucadair, Ed.
 Internet-Draft                                                    Orange
 Intended status: Standards Track                              R. Roberts
-Expires: 14 April 2025                                           Juniper
+Expires: 1 May 2025                                              Juniper
                                                            O. G. D. Dios
                                                               Telefonica
                                                            S. B. Giraldo
                                                                    Nokia
                                                                    B. Wu
                                                      Huawei Technologies
-                                                         11 October 2024
+                                                         28 October 2024
 
 
            A Network YANG Data Model for Attachment Circuits
@@ -58,7 +58,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 14 April 2025.
+   This Internet-Draft will expire on 1 May 2025.
 
 Copyright Notice
 
@@ -135,18 +135,18 @@ Table of Contents
    Section 6 specifies a network model for attachment circuits ('ietf-
    ac-ntw').  The model can be used for the provisioning of ACs prior or
    during service provisioning.  For example,
-   [I-D.ietf-opsawg-ac-lxsm-lxnm-glue] specifies augmentations to the
+   [I-D.ietf-opsawg-ac-lxsm-lxnm-glue] specifies augmentations of the
    L2VPN Network Model (L2NM) [RFC9291] and the L3VPN Network Model
    (L3NM) [RFC9182] to bind LxVPNs to ACs that are provisioned using the
    procedure defined in this document.
 
    The document leverages [RFC9182] and [RFC9291] by adopting an AC
-   provisioning structure that uses data nodes that are defined in these
-   RFCs.  Some refinements were introduced to cover, not only
+   provisioning structure that uses data nodes that are defined in those
+   RFCs.  Some refinements were introduced to cover not only
    conventional service provider networks, but also specifics of other
-   target deployments (cloud network, for example).
+   target deployments (e.g., cloud network).
 
-   The AC network model is designed as augmentations to both the 'ietf-
+   The AC network model is designed as augmentations of both the 'ietf-
    network' model [RFC8345] and the Service Attachment Point (SAP) model
    [RFC9408].  An attachment circuit can be bound to a single or
    multiple SAPs.  Likewise, the model is designed to accommodate
@@ -4386,9 +4386,9 @@ Table of Contents
               and B. Wu, "YANG Data Models for Bearers and 'Attachment
               Circuits'-as-a-Service (ACaaS)", Work in Progress,
               Internet-Draft, draft-ietf-opsawg-teas-attachment-circuit-
-              16, 10 September 2024,
+              17, 10 October 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
-              teas-attachment-circuit-16>.
+              teas-attachment-circuit-17>.
 
    [I-D.ietf-opsawg-teas-common-ac]
               Boucadair, M., Roberts, R., de Dios, O. G., Barguil, S.,
@@ -4576,9 +4576,9 @@ Table of Contents
               Bierman, A., Boucadair, M., and Q. Wu, "Guidelines for
               Authors and Reviewers of Documents Containing YANG Data
               Models", Work in Progress, Internet-Draft, draft-ietf-
-              netmod-rfc8407bis-17, 27 September 2024,
+              netmod-rfc8407bis-20, 21 October 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-netmod-
-              rfc8407bis-17>.
+              rfc8407bis-20>.
 
    [I-D.ietf-opsawg-ac-lxsm-lxnm-glue]
               Boucadair, M., Roberts, R., Barguil, S., and O. G. de
