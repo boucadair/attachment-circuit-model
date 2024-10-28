@@ -27,14 +27,6 @@ Abstract
    The document also specifies a service model for managing bearers over
    which ACs are established.
 
-   Also, the document specifies a set of reusable groupings.  Whether
-   other service models reuse structures defined in the AC models or
-   simply include an AC reference is a design choice of these service
-   models.  Utilizing the AC service model to manage ACs over which a
-   service is delivered has the advantage of decoupling service
-   management from upgrading AC components to incorporate recent AC
-   technologies or features.
-
 Discussion Venues
 
    This note is to be removed before publishing as an RFC.
@@ -521,7 +513,7 @@ Table of Contents
 
    *  Customers may request protection schemes in which the ACs
       associated with their endpoints are terminated by the same PE
-      (e.g., CE#3), distinct PEs (e.g., CE#34), etc.  The network
+      (e.g., CE#3), distinct PEs (e.g., CE#4), etc.  The network
       provider uses this request to decide where to terminate the AC in
       the provider network (i.e., select which PE(s) to use) and also
       whether to enable specific capabilities (e.g., Virtual Router
