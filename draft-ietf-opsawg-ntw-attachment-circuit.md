@@ -424,7 +424,7 @@ Similar to {{!RFC9182}} and {{!RFC9291}}, the exact definition of the specific p
 
 ## L2 Connection {#sec-l2}
 
-The 'l2-connection' container is used to manage the Layer 2 properties of an AC. The  Layer 2 connection tree structure is shown in {{l2-tree}}.
+The 'l2-connection' container is used to manage the Layer 2 properties of an AC (mainly, the PE side of an AC). The  Layer 2 connection tree structure is shown in {{l2-tree}}.
 
 ~~~~
 {::include ./yang/subtrees/ac-ntw/l2-tree.txt}
