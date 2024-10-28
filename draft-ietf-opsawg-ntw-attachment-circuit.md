@@ -312,15 +312,15 @@ augment /nw:networks/nw:network:
 augment /nw:networks/nw:network/nw:node:
   +--rw ac* [name]
      +--rw name                 string
-     +--rw ac-svc-ref?          ac-svc:attachment-circuit-reference
-     +--rw ac-profile* [ac-profile-ref]
+     +--rw svc-ref?             ac-svc:attachment-circuit-reference
+     +--rw profile* [ac-profile-ref]
      |  +--rw ac-profile-ref    leafref
      |  +--rw network-ref?      -> /nw:networks/network/network-id
-     +--rw ac-parent-ref
+     +--rw parent-ref
      |  +--rw ac-ref?        leafref
      |  +--rw node-ref?      leafref
      |  +--rw network-ref?   -> /nw:networks/network/network-id
-     +--ro ac-child-ref
+     +--ro child-ref
      |  +--ro ac-ref*        leafref
      |  +--ro node-ref?      leafref
      |  +--ro network-ref?   -> /nw:networks/network/network-id
@@ -361,7 +361,7 @@ reference point (the PE side of an AC, in the context of this document) where ne
 
 Unlike the AC service model {{!I-D.ietf-opsawg-teas-attachment-circuit}}, an AC is uniquely identified by a name within the scope of a node, not a network. A textual description of the AC may be provided ('description').
 
-Also, in order to ease the correlation between the AC exposed at the service layer and the AC that is actually provisioned in the network operation, a reference to the AC exposed to the customer ('ac-svc-ref') is stored in the 'ietf-ac-ntw' module.
+Also, in order to ease the correlation between the AC exposed at the service layer and the AC that is actually provisioned in the network operation, a reference to the AC exposed to the customer ('svc-ref') is stored in the 'ietf-ac-ntw' module.
 
 ACs that are terminated by a SAP are listed in the 'ac' container under '/nw:networks/nw:network/nw:node/sap:service/sap:sap'. A controller may indicate a filter based on the service type (e.g., Network Slice or L3VPN) to retrieve the list of available SAPs, and thus ACs, for that service.
 
@@ -370,10 +370,10 @@ In order to factorize common data that is provisioned for a group of ACs, a set 
 In contexts where the same AC is terminated by multiple peer SAPs (e.g., an AC with multiple CEs) but a subset of them have specific information, the module allows operators to:
 
 * Define a parent AC that may list all these CEs as peer SAPs.
-* Create individual ACs that are bound to the parent AC using 'ac-parent-ref'.
+* Create individual ACs that are bound to the parent AC using 'parent-ref'.
 * Indicate for each individual AC one or a subset of the CEs as peer SAPs. All these individual ACs will inherit the properties of the parent AC.
 
-Whenever a parent AC is deleted, then all child ACs of that AC MUST be deleted. Child ACs are referenced using 'ac-child-ref'.
+Whenever a parent AC is deleted, then all child ACs of that AC MUST be deleted. Child ACs are referenced using 'child-ref'.
 
 An AC may belong to one or multiple groups {{!RFC9181}}. For example, the 'group-id' is used to associate redundancy or protection constraints with ACs.
 
@@ -460,7 +460,7 @@ For both IPv4 and IPv6, 'address-allocation-type' is used to indicate the IP add
 
 For IPv6, if 'address-allocation-type' is set to 'slaac', the Prefix Information option of Router Advertisements that will be issued for SLAAC purposes will carry the IPv6 prefix that is determined by 'local-address' and 'prefix-length'. For example, if 'local-address' is set to '2001:db8:0:1::1' and 'prefix-length' is set to '64', the IPv6 prefix that will be used is '2001:db8:0:1::/64'.
 
-In some deployment contexts (e.g., network merging), multiple IP subnets may be used in a transition period. For such deployments, multiple ACs (typically, two) with overlapping information may be maintained during a transition period. The correlation between these ACs may rely upon the same 'ac-svc-ref'.
+In some deployment contexts (e.g., network merging), multiple IP subnets may be used in a transition period. For such deployments, multiple ACs (typically, two) with overlapping information may be maintained during a transition period. The correlation between these ACs may rely upon the same 'svc-ref'.
 
 ## Routing {#sec-rtg}
 
