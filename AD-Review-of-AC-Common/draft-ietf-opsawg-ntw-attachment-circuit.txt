@@ -4161,7 +4161,7 @@ Table of Contents
      grouping ac-hierarchy {
        description
          "Container for parent and child AC references.";
-       container ac-parent-ref {
+       container parent-ref {
          description
            "Specifies the parent AC that is inherited by an AC.
             Parent ACs are used, e.g., in contexts where multiple
@@ -4169,7 +4169,7 @@ Table of Contents
             information is required for each peer SAP.";
          uses ac-ntw:attachment-circuit-reference;
        }
-       container ac-child-ref {
+       container child-ref {
          config false;
          description
            "Specifies a child AC that relies upon a parent AC.";
@@ -4303,12 +4303,12 @@ Table of Contents
            description
              "A name that identifies the AC locally.";
          }
-         leaf ac-svc-ref {
+         leaf svc-ref {
            type ac-svc:attachment-circuit-reference;
            description
              "A reference to the AC as exposed at the service level.";
          }
-         list ac-profile {
+         list profile {
            key "ac-profile-ref";
            description
              "List of AC profiles.";
