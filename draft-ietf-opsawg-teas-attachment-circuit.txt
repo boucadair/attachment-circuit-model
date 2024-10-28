@@ -689,7 +689,6 @@ B2B C/S: Back-to-back Client/Server
       |        +--ro city?           string
       |        +--ro country-code?   string
       +--rw bearers
-         +--rw customer-name?           string
          +--rw requested-start?         yang:date-and-time
          +--rw requested-stop?          yang:date-and-time
          +--ro actual-start?            yang:date-and-time
