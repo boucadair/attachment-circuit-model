@@ -349,7 +349,7 @@ This module uses types defined in {{!RFC6991}}, {{!RFC8177}}, and  {{!RFC9181}}.
 
 This section is modeled after the template described in {{Section 3.7 of ?I-D.ietf-netmod-rfc8407bis}}.
 
-The "ietf-ac-common" YANG module defines a data model that is 
+The "ietf-ac-common" YANG module defines a data model that is
 designed to be accessed via YANG-based management protocols, such as
 NETCONF {{?RFC6241}} and RESTCONF {{?RFC8040}}. These protocols have to
 use a secure transport layer (e.g., SSH {{?RFC4252}}, TLS {{?RFC8446}}, and
@@ -364,7 +364,7 @@ The YANG module defines a set of identities, types, and
 groupings. These nodes are intended to be reused by other YANG
 modules. The module by itself does not expose any data nodes that
 are writable, data nodes that contain read-only state, or RPCs.
-As such, there are no additional security issues related to 
+As such, there are no additional security issues related to
 the YANG module that need to be considered.
 
 Modules that use the groupings that are defined in this document
