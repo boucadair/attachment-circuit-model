@@ -816,8 +816,8 @@ Table of Contents
 5.4.  L2 Connection
 
    The 'l2-connection' container is used to manage the Layer 2
-   properties of an AC.  The Layer 2 connection tree structure is shown
-   in Figure 9.
+   properties of an AC (mainly, the PE side of an AC).  The Layer 2
+   connection tree structure is shown in Figure 9.
 
      augment /nw:networks/nw:network/nw:node:
        +--rw ac* [name]
