@@ -91,15 +91,15 @@ module: ietf-ac-ntw
   augment /nw:networks/nw:network/nw:node:
     +--rw ac* [name]
        +--rw name                 string
-       +--rw ac-svc-ref?          ac-svc:attachment-circuit-reference
-       +--rw ac-profile* [ac-profile-ref]
+       +--rw svc-ref?             ac-svc:attachment-circuit-reference
+       +--rw profile* [ac-profile-ref]
        |  +--rw ac-profile-ref    leafref
        |  +--rw network-ref?      -> /nw:networks/network/network-id
-       +--rw ac-parent-ref
+       +--rw parent-ref
        |  +--rw ac-ref?        leafref
        |  +--rw node-ref?      leafref
        |  +--rw network-ref?   -> /nw:networks/network/network-id
-       +--ro ac-child-ref
+       +--ro child-ref
        |  +--ro ac-ref*        leafref
        |  +--ro node-ref?      leafref
        |  +--ro network-ref?   -> /nw:networks/network/network-id
