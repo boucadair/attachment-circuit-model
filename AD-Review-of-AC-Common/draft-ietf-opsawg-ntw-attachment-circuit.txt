@@ -136,8 +136,8 @@ Table of Contents
    managing attachment circuits as a service.
 
    Section 6 specifies a network model for attachment circuits ('ietf-
-   ac-ntw').  The model can be used for the provisioning of ACs prior or
-   during service provisioning.  For example,
+   ac-ntw').  The model can be used for the provisioning of ACs in a
+   provider network prior or during service provisioning.  For example,
    [I-D.ietf-opsawg-ac-lxsm-lxnm-glue] specifies augmentations to the
    L2VPN Network Model (L2NM) [RFC9291] and the L3VPN Network Model
    (L3NM) [RFC9182] to bind LxVPNs to ACs that are provisioned using the
@@ -375,8 +375,10 @@ Table of Contents
 
 4.1.  ACs Terminated by One or Multiple Customer Edges (CEs)
 
-   Figure 3 depicts two target topology flavors that involve ACs.  These
-   topologies have the following characteristics:
+   Figure 3 depicts a sample target topology that involve ACs:
+
+   *  ACs are terminated by a SAP at the network side.  See Figure 1 for
+      an example of SAPs within a PE.
 
    *  A CE can be either a physical device or a logical entity.  Such
       logical entity is typically a software component (e.g., a virtual
@@ -404,6 +406,9 @@ Table of Contents
       uses this request to decide where to terminate the AC in the
       service provider network and also whether to enable specific
       capabilities (e.g., Virtual Router Redundancy Protocol (VRRP)).
+
+   The "ietf-ac-ntw" is a network model that is used to manage the PE
+   side of ACs at a provider network.
 
                              .--------------------.
                              |                    |

@@ -1287,7 +1287,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
    customer edges (CEs), peer Autonomous System Border Routers (ASBRs),
    data centers gateways, or Internet Exchange Points.<a href="#section-1-1" class="pilcrow">¶</a></p>
 <p id="section-1-2">The procedure to provision a service in a service provider network may depend on the practices adopted by a service provider, including the flow put in place for the provisioning of advanced network services and how they are bound to an Attachment Circuit (AC). For example, the same attachment circuit may host multiple services (e.g., Layer 2 Virtual Private Network (VPN), or Layer 3 VPN, or Network Slice Service <span>[<a href="#RFC9543" class="cite xref">RFC9543</a>]</span>). In order to avoid service interference and redundant information in various locations, a service provider may expose an interface to manage ACs network-wide. Customers can then request a standalone attachment circuit to be put in place, and then refer to that attachment circuit when requesting services to be bound to that AC. <span>[<a href="#I-D.ietf-opsawg-teas-attachment-circuit" class="cite xref">I-D.ietf-opsawg-teas-attachment-circuit</a>]</span> specifies a data model for managing attachment circuits as a service.<a href="#section-1-2" class="pilcrow">¶</a></p>
-<p id="section-1-3"><a href="#sec-module" class="auto internal xref">Section 6</a> specifies a network model for attachment circuits ('ietf-ac-ntw'). The model can be used for the provisioning of ACs prior or during service provisioning. For example, <span>[<a href="#I-D.ietf-opsawg-ac-lxsm-lxnm-glue" class="cite xref">I-D.ietf-opsawg-ac-lxsm-lxnm-glue</a>]</span> specifies augmentations to the L2VPN Network Model (L2NM) <span>[<a href="#RFC9291" class="cite xref">RFC9291</a>]</span> and the L3VPN Network Model (L3NM) <span>[<a href="#RFC9182" class="cite xref">RFC9182</a>]</span> to bind LxVPNs to ACs that are provisioned using the procedure defined in this document.<a href="#section-1-3" class="pilcrow">¶</a></p>
+<p id="section-1-3"><a href="#sec-module" class="auto internal xref">Section 6</a> specifies a network model for attachment circuits ('ietf-ac-ntw'). The model can be used for the provisioning of ACs in a provider network prior or during service provisioning. For example, <span>[<a href="#I-D.ietf-opsawg-ac-lxsm-lxnm-glue" class="cite xref">I-D.ietf-opsawg-ac-lxsm-lxnm-glue</a>]</span> specifies augmentations to the L2VPN Network Model (L2NM) <span>[<a href="#RFC9291" class="cite xref">RFC9291</a>]</span> and the L3VPN Network Model (L3NM) <span>[<a href="#RFC9182" class="cite xref">RFC9182</a>]</span> to bind LxVPNs to ACs that are provisioned using the procedure defined in this document.<a href="#section-1-3" class="pilcrow">¶</a></p>
 <p id="section-1-4">The document leverages <span>[<a href="#RFC9182" class="cite xref">RFC9182</a>]</span> and <span>[<a href="#RFC9291" class="cite xref">RFC9291</a>]</span> by adopting an AC provisioning structure that uses data nodes that are defined in these RFCs. Some refinements were introduced to cover, not only conventional service provider networks, but also specifics of other target deployments (cloud network, for example).<a href="#section-1-4" class="pilcrow">¶</a></p>
 <p id="section-1-5">The AC network model is designed as augmentations to both the 'ietf-network' model <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span> and the Service Attachment Point (SAP) model <span>[<a href="#RFC9408" class="cite xref">RFC9408</a>]</span>. An attachment circuit can be bound to a single or multiple SAPs. Likewise, the model is designed to accommodate deployments where a SAP can be bound to one or multiple ACs (e.g., a parent AC and its child ACs).<a href="#section-1-5" class="pilcrow">¶</a></p>
 <span id="name-attachment-circuits-example"></span><div id="sap-ac-ntw">
@@ -1741,28 +1741,32 @@ To bind Layer 2 VPN or Layer 3 VPN services with ACs, "ietf-ac-glue" augments th
         <h3 id="name-acs-terminated-by-one-or-mu">
 <a href="#section-4.1" class="section-number selfRef">4.1. </a><a href="#name-acs-terminated-by-one-or-mu" class="section-name selfRef">ACs Terminated by One or Multiple Customer Edges (CEs)</a>
         </h3>
-<p id="section-4.1-1"><a href="#uc" class="auto internal xref">Figure 3</a> depicts two target topology flavors that involve ACs. These topologies have the following characteristics:<a href="#section-4.1-1" class="pilcrow">¶</a></p>
+<p id="section-4.1-1"><a href="#uc" class="auto internal xref">Figure 3</a> depicts a sample target topology that involve ACs:<a href="#section-4.1-1" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-4.1-2.1">
-            <p id="section-4.1-2.1.1">A CE can be either a physical device or a logical entity. Such logical entity is typically a software component (e.g., a virtual service function that is hosted within the provider's network or a third-party infrastructure). A CE is seen by the network as a peer SAP <span>[<a href="#RFC9408" class="cite xref">RFC9408</a>]</span>.<a href="#section-4.1-2.1.1" class="pilcrow">¶</a></p>
+            <p id="section-4.1-2.1.1">ACs are terminated by a SAP at the network side. See <a href="#sap-ac-ntw" class="auto internal xref">Figure 1</a> for an example of SAPs within a PE.<a href="#section-4.1-2.1.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-4.1-2.2">
-            <p id="section-4.1-2.2.1">CEs may be either dedicated to one single connectivity service or host multiple connectivity services (e.g., CEs with roles of service functions <span>[<a href="#RFC7665" class="cite xref">RFC7665</a>]</span>).<a href="#section-4.1-2.2.1" class="pilcrow">¶</a></p>
+            <p id="section-4.1-2.2.1">A CE can be either a physical device or a logical entity. Such logical entity is typically a software component (e.g., a virtual service function that is hosted within the provider's network or a third-party infrastructure). A CE is seen by the network as a peer SAP <span>[<a href="#RFC9408" class="cite xref">RFC9408</a>]</span>.<a href="#section-4.1-2.2.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-4.1-2.3">
-            <p id="section-4.1-2.3.1">A network provider may bind a single AC to one or multiple peer SAPs (e.g., CE1 and CE2 are tagged as peer SAPs for the same AC). For example, and as discussed in <span>[<a href="#RFC4364" class="cite xref">RFC4364</a>]</span>, multiple CEs can be attached to a PE over the same attachment circuit. This scenario is typically implemented when the Layer 2 infrastructure between the CE and the network is a multipoint service.<a href="#section-4.1-2.3.1" class="pilcrow">¶</a></p>
+            <p id="section-4.1-2.3.1">CEs may be either dedicated to one single connectivity service or host multiple connectivity services (e.g., CEs with roles of service functions <span>[<a href="#RFC7665" class="cite xref">RFC7665</a>]</span>).<a href="#section-4.1-2.3.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-4.1-2.4">
-            <p id="section-4.1-2.4.1">A single CE may terminate multiple ACs, which can be associated with the same bearer or distinct bearers (e.g., CE4).<a href="#section-4.1-2.4.1" class="pilcrow">¶</a></p>
+            <p id="section-4.1-2.4.1">A network provider may bind a single AC to one or multiple peer SAPs (e.g., CE1 and CE2 are tagged as peer SAPs for the same AC). For example, and as discussed in <span>[<a href="#RFC4364" class="cite xref">RFC4364</a>]</span>, multiple CEs can be attached to a PE over the same attachment circuit. This scenario is typically implemented when the Layer 2 infrastructure between the CE and the network is a multipoint service.<a href="#section-4.1-2.4.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-4.1-2.5">
-            <p id="section-4.1-2.5.1">Customers may request protection schemes in which the ACs associated with their endpoints are terminated by the same PE (e.g., CE3), distinct PEs (e.g., CE4), etc. The network provider uses this request to decide where to terminate the AC in the service provider network and also whether to enable specific capabilities (e.g., Virtual Router Redundancy Protocol (VRRP)).<a href="#section-4.1-2.5.1" class="pilcrow">¶</a></p>
+            <p id="section-4.1-2.5.1">A single CE may terminate multiple ACs, which can be associated with the same bearer or distinct bearers (e.g., CE4).<a href="#section-4.1-2.5.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-4.1-2.6">
+            <p id="section-4.1-2.6.1">Customers may request protection schemes in which the ACs associated with their endpoints are terminated by the same PE (e.g., CE3), distinct PEs (e.g., CE4), etc. The network provider uses this request to decide where to terminate the AC in the service provider network and also whether to enable specific capabilities (e.g., Virtual Router Redundancy Protocol (VRRP)).<a href="#section-4.1-2.6.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
+<p id="section-4.1-3">The "ietf-ac-ntw" is a network model that is used to manage the PE side of ACs at a provider network.<a href="#section-4.1-3" class="pilcrow">¶</a></p>
 <span id="name-examples-of-acs"></span><div id="uc">
 <figure id="figure-3">
-          <div id="section-4.1-3.1">
-            <div class="alignCenter art-svg artwork" id="section-4.1-3.1.1">
+          <div id="section-4.1-4.1">
+            <div class="alignCenter art-svg artwork" id="section-4.1-4.1.1">
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="304" width="512" viewBox="0 0 512 304" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
                 <path d="M 8,64 L 8,112" fill="none" stroke="black"></path>
                 <path d="M 8,144 L 8,192" fill="none" stroke="black"></path>
@@ -1847,7 +1851,7 @@ To bind Layer 2 VPN or Layer 3 VPN services with ACs, "ietf-ac-glue" augments th
                   <text x="124" y="292">Id</text>
                   <text x="144" y="292">x</text>
                 </g>
-              </svg><a href="#section-4.1-3.1.1" class="pilcrow">¶</a>
+              </svg><a href="#section-4.1-4.1.1" class="pilcrow">¶</a>
 </div>
 </div>
 <figcaption><a href="#figure-3" class="selfRef">Figure 3</a>:
