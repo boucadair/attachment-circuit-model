@@ -4965,7 +4965,7 @@ A.2.  Parent AC
          },
          {
             "name":"ac-1-to-ce2",
-            "ac-parent-ref":{
+            "parent-ref":{
                "ac-ref":"ac-1",
                "node-ref":"example:pe2",
                "network-ref":"example:an-id"
@@ -4976,7 +4976,7 @@ A.2.  Parent AC
          },
          {
             "name":"ac-1-to-ce5",
-            "ac-parent-ref":{
+            "parent-ref":{
                "ac-ref":"ac-1",
                "node-ref":"example:pe2",
                "network-ref":"example:an-id"
