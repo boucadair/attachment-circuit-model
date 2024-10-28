@@ -502,7 +502,7 @@ Each AC is identified with a unique name ('../ac/name') within a domain. The map
 
 The AC service model uses groupings and types defined in the AC common model {{!I-D.ietf-opsawg-teas-common-ac}} ('op-instructions', 'dot1q', 'qinq', 'priority-tagged', 'l2-tunnel-service', etc.). Therefore, the description of these nodes are not reiterated in the following subsections.
 
-Features are used to tag conditional protions of the model in order to accomodate various deployments (support of layer 2 ACs, Layer 3 ACs, IPv4, IPv6, routing protocols,  Bidirectional Forwarding Detection (BFD), etc.).
+Features are used to tag conditional portions of the model in order to accomodate various deployments (support of layer 2 ACs, Layer 3 ACs, IPv4, IPv6, routing protocols,  Bidirectional Forwarding Detection (BFD), etc.).
 
 ### Service Profiles {#sec-profiles}
 
@@ -572,7 +572,7 @@ The description of the data nodes is as follows:
 : Includes a textual description of the AC.
 
 'test-only':
-: Indicates that a request is only for test and not for setting, even if there are no errors. This is used for feasibility checks. This data node is applicable only when the data model is used with protocols which do not natively support such option.
+: Indicates that a request is only for test and not for setting, even if there are no errors. This is used for feasibility checks. This data node is applicable only when the data model is used with protocols which do not have built-in support of such option.
 
 'requested-start':
 : Specifies the requested date and time when the attachment circuit is expected to be active.
@@ -976,10 +976,10 @@ This module uses types defined in {{!RFC6991}}, {{!RFC9181}}, {{!RFC8177}}, and 
 
 # Security Considerations
 
-This section uses the template described in Section 3.7 of {{?I-D.ietf-netmod-rfc8407bis}}.
+This section is modeled after the template described in in {{Section 3.7 of ?I-D.ietf-netmod-rfc8407bis}}.
 
-   The YANG modules specified in this document defines a data model that is
-   designed to be accessed via YANG-based management protocols, such as
+The "ietf-bearer-svc" and "ietf-ac-svc" YANG modules define data models that are
+designed to be accessed via YANG-based management protocols, such as
    NETCONF {{?RFC6241}} and RESTCONF {{?RFC8040}}. These protocols have to
    use a secure transport layer (e.g., SSH {{?RFC4252}}, TLS {{?RFC8446}}, and
    QUIC {{?RFC9000}}) and have to use mutual authentication.
@@ -1060,8 +1060,8 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:
 
    Several data nodes ('bgp', 'ospf', 'isis', and 'rip') rely
    upon {{!RFC8177}} for authentication purposes.  As such, the AC service module
-   inherits the security considerations discussed in Section 5 of
-   {{!RFC8177}}.  Also, these data nodes support supplying explicit keys as
+   inherits the security considerations discussed in
+   {{Section 5 of !RFC8177}}.  Also, these data nodes support supplying explicit keys as
    strings in ASCII format.  The use of keys in hexadecimal string
    format would afford greater key entropy with the same number of
    key-string octets.  However, such a format is not included in this
@@ -1370,7 +1370,7 @@ CE-PE routing using BGP is a common scenario in the context of MPLS VPNs and is 
 ~~~~
 {: #provider-network title="Illustration of Provider Network Scenario"}
 
-The attachment circuit in this case use a SAP identifier to refer to the physical interface used for the connection between the PE and the CE. The attachment circuit includes all the additional logical attributes to describe the connection between the two ends, including VLAN information and IP addressing. Also, the configuration details of the BGP session makes use of peer group details instead of defining the entire configuration inside the 'neighbor' data node.
+The attachment circuit in this case uses a SAP identifier to refer to the physical interface used for the connection between the PE and the CE. The attachment circuit includes all the additional logical attributes to describe the connection between the two ends, including VLAN information and IP addressing. Also, the configuration details of the BGP session makes use of peer group details instead of defining the entire configuration inside the 'neighbor' data node.
 
 ~~~~ json
 {::include-fold ./json-examples/svc/provider-network-interas-option-a.json}
@@ -1575,4 +1575,4 @@ Thanks to Donald Eastlake for the careful rtg-dir reviews and Tero Kivinen for t
 
 Thanks to Luis Miguel Contreras Murillo for the careful Shepherd review.
 
-Thanks to Mahesh for the AD review.
+Thanks to Mahesh Jethanandani for the AD review.
