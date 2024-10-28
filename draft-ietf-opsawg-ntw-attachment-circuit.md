@@ -118,7 +118,7 @@ Connectivity services are provided by networks to customers via
 
 The procedure to provision a service in a service provider network may depend on the practices adopted by a service provider, including the flow put in place for the provisioning of advanced network services and how they are bound to an Attachment Circuit (AC). For example, the same attachment circuit may host multiple services (e.g., Layer 2 Virtual Private Network (VPN), or Layer 3 VPN, or Network Slice Service {{?RFC9543}}). In order to avoid service interference and redundant information in various locations, a service provider may expose an interface to manage ACs network-wide. Customers can then request a standalone attachment circuit to be put in place, and then refer to that attachment circuit when requesting services to be bound to that AC. {{!I-D.ietf-opsawg-teas-attachment-circuit}} specifies a data model for managing attachment circuits as a service.
 
-{{sec-module}} specifies a network model for attachment circuits ('ietf-ac-ntw'). The model can be used for the provisioning of ACs prior or during service provisioning. For example, {{?I-D.ietf-opsawg-ac-lxsm-lxnm-glue}} specifies augmentations to the L2VPN Network Model (L2NM) {{!RFC9291}} and the L3VPN Network Model (L3NM) {{!RFC9182}} to bind LxVPNs to ACs that are provisioned using the procedure defined in this document.
+{{sec-module}} specifies a network model for attachment circuits ('ietf-ac-ntw'). The model can be used for the provisioning of ACs in a provider network prior or during service provisioning. For example, {{?I-D.ietf-opsawg-ac-lxsm-lxnm-glue}} specifies augmentations to the L2VPN Network Model (L2NM) {{!RFC9291}} and the L3VPN Network Model (L3NM) {{!RFC9182}} to bind LxVPNs to ACs that are provisioned using the procedure defined in this document.
 
 The document leverages {{!RFC9182}} and {{!RFC9291}} by adopting an AC provisioning structure that uses data nodes that are defined in these RFCs. Some refinements were introduced to cover, not only conventional service provider networks, but also specifics of other target deployments (cloud network, for example).
 
@@ -254,7 +254,9 @@ To bind Layer 2 VPN or Layer 3 VPN services with ACs, "ietf-ac-glue" augments th
 
 ## ACs Terminated by One or Multiple Customer Edges (CEs)
 
-{{uc}} depicts two target topology flavors that involve ACs. These topologies have the following characteristics:
+{{uc}} depicts a sample target topology that involve ACs:
+
+* ACs are terminated by a SAP at the network side. See {{sap-ac-ntw}} for an example of SAPs within a PE.
 
 * A CE can be either a physical device or a logical entity. Such logical entity is typically a software component (e.g., a virtual service function that is hosted within the provider's network or a third-party infrastructure). A CE is seen by the network as a peer SAP {{?RFC9408}}.
 
@@ -265,6 +267,8 @@ To bind Layer 2 VPN or Layer 3 VPN services with ACs, "ietf-ac-glue" augments th
 * A single CE may terminate multiple ACs, which can be associated with the same bearer or distinct bearers (e.g., CE4).
 
 * Customers may request protection schemes in which the ACs associated with their endpoints are terminated by the same PE (e.g., CE3), distinct PEs (e.g., CE4), etc. The network provider uses this request to decide where to terminate the AC in the service provider network and also whether to enable specific capabilities (e.g., Virtual Router Redundancy Protocol (VRRP)).
+
+The "ietf-ac-ntw" is a network model that is used to manage the PE side of ACs at a provider network. The 
 
 ~~~~ aasvg
 {::include ./figures/acs-examples.txt}
