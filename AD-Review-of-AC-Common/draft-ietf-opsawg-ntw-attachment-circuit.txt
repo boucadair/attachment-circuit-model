@@ -191,7 +191,7 @@ Table of Contents
    The AC network model uses the AC common model defined in
    [I-D.ietf-opsawg-teas-common-ac].
 
-   The a YANG 1.1 [RFC7950] data model in this document conforms to the
+   The YANG 1.1 [RFC7950] data model in this document conforms to the
    Network Management Datastore Architecture (NMDA) defined in
    [RFC8342].
 
