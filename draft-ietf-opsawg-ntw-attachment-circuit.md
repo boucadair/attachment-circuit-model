@@ -131,7 +131,7 @@ The AC network model is designed as augmentations to both the 'ietf-network' mod
 
 The AC network model uses the AC common model defined in {{!I-D.ietf-opsawg-teas-common-ac}}.
 
-The YANG data model in this document conforms to the Network Management Datastore Architecture (NMDA) defined in {{!RFC8342}}.
+The a YANG 1.1 {{!RFC7950}} data model in this document conforms to the Network Management Datastore Architecture (NMDA) defined in {{!RFC8342}}.
 
 Sample examples are provided in {{sec-examples}}.
 
@@ -252,7 +252,28 @@ To bind Layer 2 VPN or Layer 3 VPN services with ACs, "ietf-ac-glue" augments th
 
 # Sample Uses of the Attachment Circuit Data Models
 
-{{u-ex}} shows the positioning of the AC network model in the overall service delivery process. The 'ietf-ac-ntw' module is a network model which augments the SAP with a comprehensive set of parameters to reflect the attachment circuits that are in place in a network. The model also maintains the mapping with the service references that are used to expose these ACs to customers {{!I-D.ietf-opsawg-teas-attachment-circuit}}. Whether the same naming conventions to reference an AC are used in the service and network layers is deployment-specific.
+## ACs Terminated by One or Multiple Customer Edges (CEs)
+
+{{uc}} depicts two target topology flavors that involve ACs. These topologies have the following characteristics:
+
+* A CE can be either a physical device or a logical entity. Such logical entity is typically a software component (e.g., a virtual service function that is hosted within the provider's network or a third-party infrastructure). A CE is seen by the network as a peer SAP {{?RFC9408}}.
+
+* CEs may be either dedicated to one single connectivity service or host multiple connectivity services (e.g., CEs with roles of service functions {{?RFC7665}}).
+
+* A network provider may bind a single AC to one or multiple peer SAPs (e.g., CE1 and CE2 are tagged as peer SAPs for the same AC). For example, and as discussed in {{?RFC4364}}, multiple CEs can be attached to a PE over the same attachment circuit. This scenario is typically implemented when the Layer 2 infrastructure between the CE and the network is a multipoint service.
+
+* A single CE may terminate multiple ACs, which can be associated with the same bearer or distinct bearers (e.g., CE4).
+
+* Customers may request protection schemes in which the ACs associated with their endpoints are terminated by the same PE (e.g., CE3), distinct PEs (e.g., CE4), etc. The network provider uses this request to decide where to terminate the AC in the service provider network and also whether to enable specific capabilities (e.g., Virtual Router Redundancy Protocol (VRRP)).
+
+~~~~ aasvg
+{::include ./figures/acs-examples.txt}
+~~~~
+{: #uc title='Examples of ACs' artwork-align="center"}
+
+## Positioning the AC Network Model in the Overall Service Delivery Process
+
+{{u-ex}} shows the positioning of the AC network model in the overall service delivery process. The 'ietf-ac-ntw' module is a network model which augments the SAP with a comprehensive set of parameters to reflect the attachment circuits that are in place in a network. The model also maintains the mapping with the service references that are used to expose those ACs to customer using the 'ietf-ac-svc' module defined in {{!I-D.ietf-opsawg-teas-attachment-circuit}}. Whether the same naming conventions to reference an AC are used in the service and network layers is deployment-specific.
 
 ~~~~ aasvg
 {::include-fold ./figures/arch.txt}
@@ -268,7 +289,6 @@ connected to ASBRs of a neighboring network via one or multiple links (bearers).
 {::include-fold ./figures//ntw/inter-pn.txt}
 ~~~~
 {: #fig-inter-pn title="An Example of the Network AC Model Usage Between Provider Networks" artwork-align="center"}
-
 
 # Description of the Attachment Circuit YANG Module
 
