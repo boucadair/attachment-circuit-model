@@ -82,9 +82,9 @@ module ietf-ac-svc {
        by other modules.";
   }
 
-  typedef ac-group-reference {
+  typedef reference {
     type leafref {
-      path "/ac-svc:attachment-circuits/ac-svc:ac-group-profile"
+      path "/ac-svc:attachment-circuits/ac-svc:profile"
          + "/ac-svc:name";
     }
     description
@@ -1094,7 +1094,7 @@ module ietf-ac-svc {
   grouping ac-hierarchy {
     description
       "Container for parent and child AC references.";
-    leaf-list ac-parent-ref {
+    leaf-list parent-ref {
       type ac-svc:attachment-circuit-reference;
       description
         "Specifies a parent AC that is inherited by an AC.
@@ -1103,7 +1103,7 @@ module ietf-ac-svc {
          information is created with a set of child ACs
          to track dynamic AC information.";
     }
-    leaf-list ac-child-ref {
+    leaf-list child-ref {
       type ac-svc:attachment-circuit-reference;
       config false;
       description
@@ -1192,7 +1192,7 @@ module ietf-ac-svc {
         description
           "One or more peer SAPs can be indicated.";
       }
-      leaf-list ac-group-profile-ref {
+      leaf-list group-profile-ref {
         type ac-group-reference;
         description
           "A reference to an AC profile.";
