@@ -410,30 +410,28 @@ module: ietf-ac-svc
      +--ro actual-start?            yang:date-and-time
      +--ro actual-stop?             yang:date-and-time
      +--rw ac* [name]
-        +--rw customer-name?          string
-        +--rw description?            string
-        +--rw test-only?              empty
-        +--rw requested-start?        yang:date-and-time
-        +--rw requested-stop?         yang:date-and-time
-        +--ro actual-start?           yang:date-and-time
-        +--ro actual-stop?            yang:date-and-time
-        +--rw role?                   identityref
-        +--rw peer-sap-id*            string
-        +--rw ac-group-profile-ref*   ac-group-reference
-        +--rw ac-parent-ref*
-        |       ac-svc:attachment-circuit-reference
-        +--ro ac-child-ref*
-        |       ac-svc:attachment-circuit-reference
+        +--rw customer-name?       string
+        +--rw description?         string
+        +--rw test-only?           empty
+        +--rw requested-start?     yang:date-and-time
+        +--rw requested-stop?      yang:date-and-time
+        +--ro actual-start?        yang:date-and-time
+        +--ro actual-stop?         yang:date-and-time
+        +--rw role?                identityref
+        +--rw peer-sap-id*         string
+        +--rw group-profile-ref*   ac-group-reference
+        +--rw parent-ref*          ac-svc:attachment-circuit-reference
+        +--ro child-ref*           ac-svc:attachment-circuit-reference
         +--rw group* [group-id]
         |  +--rw group-id      string
         |  +--rw precedence?   identityref
         +--ro service-ref* [service-type service-id]
         |  +--ro service-type    identityref
         |  +--ro service-id      string
-        +--ro server-reference?       string
+        +--ro server-reference?    string
         |       {ac-common:server-assigned-reference}?
-        +--rw name                    string
-        +--rw service-profile*        service-profile-reference
+        +--rw name                 string
+        +--rw service-profile*     service-profile-reference
         +--rw l2-connection {ac-common:layer2-ac}?
         |  +--rw encapsulation
         |  |  +--rw type?              identityref
