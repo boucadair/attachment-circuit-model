@@ -6912,8 +6912,6 @@ be used to inject spoofed routing  advertisements.<a href="#section-7-7.6.1" cla
       </h2>
 <div class="alignLeft art-text artwork" id="appendix-B-1">
 <pre>
-=============== NOTE: '\' line wrapping per RFC 8792 ================
-
 module: ietf-ac-ntw
 
   augment /nw:networks/nw:network:
@@ -7446,8 +7444,7 @@ module: ietf-ac-ntw
        +--rw oam
        |  +--rw bfd {vpn-common:bfd}?
        |     +--rw session* [dest-addr]
-       |        +--rw dest-addr                        inet:ip-\
-                                                              address
+       |        +--rw dest-addr              inet:ip-address
        |        +--rw source-address?                  union
        |        +--rw failure-detection-profile-ref?   leafref
        |        +--rw network-ref?

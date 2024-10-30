@@ -5020,8 +5020,6 @@ A.2.  Parent AC
 
 Appendix B.  Full Tree
 
-   =============== NOTE: '\' line wrapping per RFC 8792 ================
-
    module: ietf-ac-ntw
 
      augment /nw:networks/nw:network:
@@ -5554,8 +5552,7 @@ Appendix B.  Full Tree
           +--rw oam
           |  +--rw bfd {vpn-common:bfd}?
           |     +--rw session* [dest-addr]
-          |        +--rw dest-addr                        inet:ip-\
-                                                                 address
+          |        +--rw dest-addr              inet:ip-address
           |        +--rw source-address?                  union
           |        +--rw failure-detection-profile-ref?   leafref
           |        +--rw network-ref?
