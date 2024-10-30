@@ -88,16 +88,6 @@ normative:
     date: 2002
     target: https://www.iso.org/standard/30932.html
 
-informative:
-  AC-Common-Tree:
-    title: Full Common Attachment Circuit Tree Structure
-    date: 2023
-    target: https://github.com/boucadair/attachment-circuit-model/blob/main/yang/full-trees/ac-common-with-groupings.txt
-
-  PYANG:
-    title: pyang
-    date: 2023
-    target: https://github.com/mbj4668/pyang
 
 --- abstract
 
@@ -211,12 +201,8 @@ To bind Layer 2 VPN or Layer 3 VPN services with ACs, "ietf-ac-glue" augments th
 
 # Description of the AC Common YANG Module
 
-The full tree diagram of the module can be generated using the
-"pyang" tool {{PYANG}} with "-f tree --tree-print-groupings" command-line parameters.  That tree is not included here because it is
-too long ({{Section 3.3 of ?RFC8340}}).  Instead, subtrees are provided
+The full tree diagram of the module is provided in {{AC-Common-Tree}}.  Subtrees are provided in the following subsections
 for the reader's convenience.
-
-> The full tree of the "ietf-ac-common" module is available at {{AC-Common-Tree}}.
 
 ## Features
 
@@ -407,6 +393,12 @@ Several groupings ('bgp-authentication', 'ospf-authentication', 'isis-authentica
 ~~~~
 
 --- back
+
+# Full Tree {#AC-Common-Tree}
+
+~~~~~~~~~~
+{::include-fold ./yang/full-trees/ac-common-with-groupings.txt}
+~~~~~~~~~~
 
 # Acknowledgments
 {:numbered="false"}
