@@ -136,8 +136,8 @@ Table of Contents
    [I-D.ietf-opsawg-teas-attachment-circuit] specifies a data model for
    managing attachment circuits as a service.
 
-   Section 6 specifies a network model for attachment circuits ('ietf-
-   ac-ntw').  The model can be used for the provisioning of ACs in a
+   Section 6 specifies a network model for attachment circuits ("ietf-
+   ac-ntw").  The model can be used for the provisioning of ACs in a
    provider network prior or during service provisioning.  For example,
    [I-D.ietf-opsawg-ac-lxsm-lxnm-glue] specifies augmentations to the
    L2VPN Network Model (L2NM) [RFC9291] and the L3VPN Network Model
@@ -435,7 +435,7 @@ Table of Contents
       Process
 
    Figure 4 shows the positioning of the AC network model in the overall
-   service delivery process.  The 'ietf-ac-ntw' module is a network
+   service delivery process.  The "ietf-ac-ntw" module is a network
    model which augments the SAP with a comprehensive set of parameters
    to reflect the attachment circuits that are in place in a network.
    The model also maintains the mapping with the service references that
@@ -487,7 +487,7 @@ Table of Contents
 
              Figure 4: An Example of the Network AC Model Usage
 
-   Similar to [RFC9408], the 'ietf-ac-ntw' module can be used for both
+   Similar to [RFC9408], the "ietf-ac-ntw" module can be used for both
    User-to-Network Interface (UNI) and Network-to-Network Interface
    (NNI).  For example, all the ACs shown in Figure 5 have a 'role' set
    to 'ietf-sap-ntw:nni'.  Typically, ASBRs of each network are directly
@@ -514,13 +514,13 @@ Table of Contents
 
 5.  Description of the Attachment Circuit YANG Module
 
-   The full tree diagram of the 'ietf-ac-ntw' module is provided in
+   The full tree diagram of the "ietf-ac-ntw" module is provided in
    Appendix B.  Subtrees are provided in the following subsections for
    the reader's convenience.
 
 5.1.  Overall Structure of the Module
 
-   The overall tree structure of the 'ietf-ac-ntw' module is shown in
+   The overall tree structure of the "ietf-ac-ntw" module is shown in
    Figure 6.
 
    augment /nw:networks/nw:network:
@@ -592,7 +592,7 @@ Table of Contents
    Also, in order to ease the correlation between the AC exposed at the
    service layer and the AC that is actually provisioned in the network
    operation, a reference to the AC exposed to the customer ('svc-ref')
-   is stored in the 'ietf-ac-ntw' module.
+   is stored in the "ietf-ac-ntw" module.
 
    ACs that are terminated by a SAP are listed in the 'ac' container
    under '/nw:networks/nw:network/nw:node/sap:service/sap:sap'.  A
