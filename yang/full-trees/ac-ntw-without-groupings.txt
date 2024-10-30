@@ -129,10 +129,10 @@ module: ietf-ac-ntw
        |  |  |     |  |  +--rw push?        empty
        |  |  |     |  +--:(translate)
        |  |  |     |     +--rw translate?   empty
-       |  |  |     +--rw tag-1?             dot1q-types:vlanid
-       |  |  |     +--rw tag-1-type?        dot1q-types:dot1q-tag-type
-       |  |  |     +--rw tag-2?             dot1q-types:vlanid
-       |  |  |     +--rw tag-2-type?        dot1q-types:dot1q-tag-type
+       |  |  |     +--rw tag-1?          dot1q-types:vlanid
+       |  |  |     +--rw tag-1-type?     dot1q-types:dot1q-tag-type
+       |  |  |     +--rw tag-2?          dot1q-types:vlanid
+       |  |  |     +--rw tag-2-type?     dot1q-types:dot1q-tag-type
        |  |  +--rw priority-tagged
        |  |  |  +--rw tag-type?   identityref
        |  |  +--rw qinq
@@ -147,10 +147,10 @@ module: ietf-ac-ntw
        |  |        |  |  +--rw push?        empty
        |  |        |  +--:(translate)
        |  |        |     +--rw translate?   uint8
-       |  |        +--rw tag-1?             dot1q-types:vlanid
-       |  |        +--rw tag-1-type?        dot1q-types:dot1q-tag-type
-       |  |        +--rw tag-2?             dot1q-types:vlanid
-       |  |        +--rw tag-2-type?        dot1q-types:dot1q-tag-type
+       |  |        +--rw tag-1?          dot1q-types:vlanid
+       |  |        +--rw tag-1-type?     dot1q-types:dot1q-tag-type
+       |  |        +--rw tag-2?          dot1q-types:vlanid
+       |  |        +--rw tag-2-type?     dot1q-types:dot1q-tag-type
        |  +--rw (l2-service)?
        |  |  +--:(l2-tunnel-service)
        |  |  |  +--rw l2-tunnel-service
