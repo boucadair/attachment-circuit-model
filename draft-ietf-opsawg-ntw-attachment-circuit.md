@@ -111,9 +111,9 @@ The procedure to provision a service in a service provider network may depend on
 
 {{sec-module}} specifies a network model for attachment circuits ('ietf-ac-ntw'). The model can be used for the provisioning of ACs in a provider network prior or during service provisioning. For example, {{?I-D.ietf-opsawg-ac-lxsm-lxnm-glue}} specifies augmentations to the L2VPN Network Model (L2NM) {{!RFC9291}} and the L3VPN Network Model (L3NM) {{!RFC9182}} to bind LxVPNs to ACs that are provisioned using the procedure defined in this document.
 
-The document leverages {{!RFC9182}} and {{!RFC9291}} by adopting an AC provisioning structure that uses data nodes that are defined in these RFCs. Some refinements were introduced to cover, not only conventional service provider networks, but also specifics of other target deployments (cloud network, for example).
+The document leverages {{!RFC9182}} and {{!RFC9291}} by adopting an AC provisioning structure that uses data nodes that are defined in those RFCs. Some refinements were introduced to cover not only conventional service provider networks, but also specifics of other target deployments (e.g., cloud network).
 
-The AC network model is designed as augmentations to both the 'ietf-network' model {{!RFC8345}} and the Service Attachment Point (SAP) model {{!RFC9408}}. An attachment circuit can be bound to a single or multiple SAPs. Likewise, the model is designed to accommodate deployments where a SAP can be bound to one or multiple ACs (e.g., a parent AC and its child ACs).
+The AC network model is designed as augmentations of both the 'ietf-network' model {{!RFC8345}} and the Service Attachment Point (SAP) model {{!RFC9408}}. An attachment circuit can be bound to a single or multiple SAPs. Likewise, the model is designed to accommodate deployments where a SAP can be bound to one or multiple ACs (e.g., a parent AC and its child ACs).
 
 ~~~~ aasvg
 {::include-fold ./figures/ac-ntw-example.txt}
