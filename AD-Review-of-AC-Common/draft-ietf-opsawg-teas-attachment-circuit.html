@@ -9486,8 +9486,6 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
       </h2>
 <div class="alignLeft art-text artwork" id="appendix-B-1">
 <pre>
-=============== NOTE: '\' line wrapping per RFC 8792 ================
-
 module: ietf-ac-svc
   +--rw specific-provisioning-profiles
   |  +--rw valid-provider-identifiers
@@ -9910,10 +9908,10 @@ module: ietf-ac-svc
         +--rw role?                identityref
         +--rw peer-sap-id*         string
         +--rw group-profile-ref*   ac-group-reference
-        +--rw parent-ref*          ac-svc:attachment-circuit-\
-                                                            reference
-        +--ro child-ref*           ac-svc:attachment-circuit-\
-                                                            reference
+        +--rw parent-ref*
+        |         ac-svc:attachment-circuit-reference
+        +--ro child-ref*
+        |         ac-svc:attachment-circuit-reference
         +--rw group* [group-id]
         |  +--rw group-id      string
         |  +--rw precedence?   identityref
@@ -10105,14 +10103,12 @@ module: ietf-ac-svc
         |     |     +--rw id                           string
         |     |     +--ro server-reference?            string
         |     |     |       {ac-common:server-assigned-reference}?
-        |     |     +--rw remote-address?              inet:ip-\
-                                                              address
-        |     |     +--rw local-address?               inet:ip-\
-                                                              address
-        |     |     +--rw local-as?                    inet:as-number
-        |     |     +--rw peer-as?                     inet:as-number
-        |     |     +--rw address-family?              identityref
-        |     |     +--rw role?                        identityref
+        |     |     +--rw remote-address?          inet:ip-address
+        |     |     +--rw local-address?           inet:ip-address
+        |     |     +--rw local-as?                inet:as-number
+        |     |     +--rw peer-as?                 inet:as-number
+        |     |     +--rw address-family?          identityref
+        |     |     +--rw role?                    identityref
         |     |     +--rw bgp-max-prefix
         |     |     |  +--rw max-prefix?   uint32
         |     |     +--rw authentication
