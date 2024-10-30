@@ -4955,7 +4955,7 @@ A.6.  Create Multiple ACs Bound to Multiple CEs
          {
            "name": "ac1",
            "description": "First site",
-           "ac-group-profile-ref": [
+           "group-profile-ref": [
              "simple-profile"
            ],
            "l2-connection": {
@@ -4965,7 +4965,7 @@ A.6.  Create Multiple ACs Bound to Multiple CEs
          {
            "name": "ac2",
            "description": "Second Site",
-           "ac-group-profile-ref": [
+           "group-profile-ref": [
              "simple-profile"
            ],
            "l2-connection": {
@@ -4975,7 +4975,7 @@ A.6.  Create Multiple ACs Bound to Multiple CEs
          {
            "name": "ac3",
            "description": "Third site",
-           "ac-group-profile-ref": [
+           "group-profile-ref": [
              "simple-profile"
            ],
            "l2-connection": {
@@ -4985,7 +4985,7 @@ A.6.  Create Multiple ACs Bound to Multiple CEs
          {
            "name": "ac4",
            "description": "Another site",
-           "ac-group-profile-ref": [
+           "group-profile-ref": [
              "simple-profile"
            ],
            "l2-connection": {
