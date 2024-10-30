@@ -89,17 +89,8 @@ normative:
     date: September 2018
     target: https://doi.org/10.1109/IEEESTD.2018.8467507
 
-
 informative:
-  AC-Ntw-Tree:
-    title: Full Network Attachment Circuit Tree Structure
-    date: 2023
-    target: https://github.com/boucadair/attachment-circuit-model/blob/main/yang/full-trees/ac-ntw-without-groupings.txt
 
-  PYANG:
-    title: pyang
-    date: 2023
-    target: https://github.com/mbj4668/pyang
 
 --- abstract
 
@@ -296,12 +287,8 @@ connected to ASBRs of a neighboring network via one or multiple links (bearers).
 
 # Description of the Attachment Circuit YANG Module
 
-The full tree diagram of the 'ietf-ac-ntw' module can be generated using the
-"pyang" tool {{PYANG}}.  That tree is not included here because it is
-too long ({{Section 3.4 of ?RFC8340}}).  Instead, subtrees are provided in the following subsections
+The full tree diagram of the 'ietf-ac-ntw' module is provided in {{AC-Ntw-Tree}}. Subtrees are provided in the following subsections
 for the reader's convenience.
-
-The full tree of the 'ietf-ac-ntw' is provided in {{AC-Ntw-Tree}}.
 
 ## Overall Structure of the Module
 
@@ -1058,6 +1045,13 @@ In reference to the topology depicted in {{sap-ac-ntw}}, PE2 has a SAP which ter
 {::include-fold ./json-examples/ntw/multiple-acs-same-sap.json}
 ~~~~~~~~~~
 {: #ex-parent-ac-sap title="Example of Binding Parent AC to SAPs"}
+
+# Full Tree {#AC-Ntw-Tree}
+
+~~~~~~~~~~
+{::include-fold ./yang/full-trees/ac-ntw-without-groupings.txt}
+~~~~~~~~~~
+
 
 # Acknowledgments
 {:numbered="false"}
