@@ -9689,14 +9689,12 @@ module: ietf-ac-svc
      |  |     |     +--rw id                           string
      |  |     |     +--ro server-reference?            string
      |  |     |     |       {ac-common:server-assigned-reference}?
-     |  |     |     +--rw remote-address?              inet:ip-\
-                                                              address
-     |  |     |     +--rw local-address?               inet:ip-\
-                                                              address
-     |  |     |     +--rw local-as?                    inet:as-number
-     |  |     |     +--rw peer-as?                     inet:as-number
-     |  |     |     +--rw address-family?              identityref
-     |  |     |     +--rw role?                        identityref
+     |  |     |     +--rw remote-address?          inet:ip-address
+     |  |     |     +--rw local-address?           inet:ip-address
+     |  |     |     +--rw local-as?                inet:as-number
+     |  |     |     +--rw peer-as?                 inet:as-number
+     |  |     |     +--rw address-family?          identityref
+     |  |     |     +--rw role?                    identityref
      |  |     |     +--rw bgp-max-prefix
      |  |     |     |  +--rw max-prefix?   uint32
      |  |     |     +--rw authentication
