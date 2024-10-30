@@ -11,15 +11,15 @@ module: ietf-ac-common
   grouping ac-profile-cfg:
     +-- valid-provider-identifiers
        +-- encryption-profile-identifier* [id]
-       |  +-- id?   string
+       |  +-- id   string
        +-- qos-profile-identifier* [id]
-       |  +-- id?   string
+       |  +-- id   string
        +-- failure-detection-profile-identifier* [id]
-       |  +-- id?   string
+       |  +-- id   string
        +-- forwarding-profile-identifier* [id]
-       |  +-- id?   string
+       |  +-- id   string
        +-- routing-profile-identifier* [id]
-          +-- id?   string
+          +-- id   string
   grouping op-instructions:
     +-- requested-start?   yang:date-and-time
     +-- requested-stop?    yang:date-and-time
@@ -99,7 +99,7 @@ module: ietf-ac-common
        |  |  +--:(explicit)
        |  |     +-- customer-addresses
        |  |        +-- address-pool* [pool-id]
-       |  |           +-- pool-id?         string
+       |  |           +-- pool-id          string
        |  |           +-- start-address    inet:ipv4-address
        |  |           +-- end-address?     inet:ipv4-address
        |  +-- (provider-dhcp)?
@@ -111,7 +111,7 @@ module: ietf-ac-common
        |           +-- server-ip-address*   inet:ipv4-address
        +--:(static-addresses)
           +-- address* [address-id]
-             +-- address-id?         string
+             +-- address-id          string
              +-- customer-address?   inet:ipv4-address
   grouping ipv6-connection:
     +-- local-address?                           inet:ipv6-address
@@ -126,7 +126,7 @@ module: ietf-ac-common
        |  |  +--:(explicit)
        |  |     +-- customer-addresses
        |  |        +-- address-pool* [pool-id]
-       |  |           +-- pool-id?         string
+       |  |           +-- pool-id          string
        |  |           +-- start-address    inet:ipv6-address
        |  |           +-- end-address?     inet:ipv6-address
        |  +-- (provider-dhcp)?
@@ -138,7 +138,7 @@ module: ietf-ac-common
        |           +-- server-ip-address*   inet:ipv6-address
        +--:(static-addresses)
           +-- address* [address-id]
-             +-- address-id?         string
+             +-- address-id          string
              +-- customer-address?   inet:ipv6-address
   grouping bgp-authentication:
     +-- authentication
@@ -211,9 +211,9 @@ module: ietf-ac-common
     +-- metric?     uint32
   grouping ipv4-static-rtg:
     +-- ipv4-lan-prefixes* [lan next-hop] {vpn-common:ipv4}?
-       +-- lan?        inet:ipv4-prefix
+       +-- lan         inet:ipv4-prefix
        +-- lan-tag?    string
-       +-- next-hop?   union
+       +-- next-hop    union
        +-- metric?     uint32
        +-- status
           +-- admin-status
@@ -229,9 +229,9 @@ module: ietf-ac-common
     +-- metric?     uint32
   grouping ipv6-static-rtg:
     +-- ipv6-lan-prefixes* [lan next-hop] {vpn-common:ipv6}?
-       +-- lan?        inet:ipv6-prefix
+       +-- lan         inet:ipv6-prefix
        +-- lan-tag?    string
-       +-- next-hop?   union
+       +-- next-hop    union
        +-- metric?     uint32
        +-- status
           +-- admin-status
@@ -255,11 +255,11 @@ module: ietf-ac-common
     +-- pbs?   uint64
   grouping bandwidth-per-type:
     +-- bandwidth* [bw-type]
-       +-- bw-type?     identityref
+       +-- bw-type      identityref
        +-- (type)?
           +--:(per-cos)
           |  +-- cos* [cos-id]
-          |     +-- cos-id?   uint8
+          |     +-- cos-id    uint8
           |     +-- cir?      uint64
           |     +-- cbs?      uint64
           |     +-- eir?      uint64
