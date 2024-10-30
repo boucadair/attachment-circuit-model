@@ -109,7 +109,7 @@ Connectivity services are provided by networks to customers via
 
 The procedure to provision a service in a service provider network may depend on the practices adopted by a service provider, including the flow put in place for the provisioning of advanced network services and how they are bound to an Attachment Circuit (AC). For example, the same attachment circuit may host multiple services (e.g., Layer 2 Virtual Private Network (VPN), or Layer 3 VPN, or Network Slice Service {{?RFC9543}}). In order to avoid service interference and redundant information in various locations, a service provider may expose an interface to manage ACs network-wide. Customers can then request a standalone attachment circuit to be put in place, and then refer to that attachment circuit when requesting services to be bound to that AC. {{!I-D.ietf-opsawg-teas-attachment-circuit}} specifies a data model for managing attachment circuits as a service.
 
-{{sec-module}} specifies a network model for attachment circuits ('ietf-ac-ntw'). The model can be used for the provisioning of ACs in a provider network prior or during service provisioning. For example, {{?I-D.ietf-opsawg-ac-lxsm-lxnm-glue}} specifies augmentations to the L2VPN Network Model (L2NM) {{!RFC9291}} and the L3VPN Network Model (L3NM) {{!RFC9182}} to bind LxVPNs to ACs that are provisioned using the procedure defined in this document.
+{{sec-module}} specifies a network model for attachment circuits ("ietf-ac-ntw"). The model can be used for the provisioning of ACs in a provider network prior or during service provisioning. For example, {{?I-D.ietf-opsawg-ac-lxsm-lxnm-glue}} specifies augmentations to the L2VPN Network Model (L2NM) {{!RFC9291}} and the L3VPN Network Model (L3NM) {{!RFC9182}} to bind LxVPNs to ACs that are provisioned using the procedure defined in this document.
 
 The document leverages {{!RFC9182}} and {{!RFC9291}} by adopting an AC provisioning structure that uses data nodes that are defined in those RFCs. Some refinements were introduced to cover not only conventional service provider networks, but also specifics of other target deployments (e.g., cloud network).
 
@@ -268,14 +268,14 @@ The "ietf-ac-ntw" is a network model that is used to manage the PE side of ACs a
 
 ## Positioning the AC Network Model in the Overall Service Delivery Process
 
-{{u-ex}} shows the positioning of the AC network model in the overall service delivery process. The 'ietf-ac-ntw' module is a network model which augments the SAP with a comprehensive set of parameters to reflect the attachment circuits that are in place in a network. The model also maintains the mapping with the service references that are used to expose those ACs to customer using the 'ietf-ac-svc' module defined in {{!I-D.ietf-opsawg-teas-attachment-circuit}}. Whether the same naming conventions to reference an AC are used in the service and network layers is deployment-specific.
+{{u-ex}} shows the positioning of the AC network model in the overall service delivery process. The "ietf-ac-ntw" module is a network model which augments the SAP with a comprehensive set of parameters to reflect the attachment circuits that are in place in a network. The model also maintains the mapping with the service references that are used to expose those ACs to customer using the 'ietf-ac-svc' module defined in {{!I-D.ietf-opsawg-teas-attachment-circuit}}. Whether the same naming conventions to reference an AC are used in the service and network layers is deployment-specific.
 
 ~~~~ aasvg
 {::include-fold ./figures/arch.txt}
 ~~~~
 {: #u-ex title="An Example of the Network AC Model Usage" artwork-align="center"}
 
-Similar to {{!RFC9408}}, the 'ietf-ac-ntw' module can be used for both User-to-Network Interface (UNI) and
+Similar to {{!RFC9408}}, the "ietf-ac-ntw" module can be used for both User-to-Network Interface (UNI) and
 Network-to-Network Interface (NNI). For example, all the ACs shown in {{fig-inter-pn}} have a 'role' set
 to 'ietf-sap-ntw:nni'. Typically, ASBRs of each network are directly
 connected to ASBRs of a neighboring network via one or multiple links (bearers). ASBRs of "Network#1" behave as a PE and treat the other adjacent ASBRs as if it were a CE.
@@ -287,12 +287,12 @@ connected to ASBRs of a neighboring network via one or multiple links (bearers).
 
 # Description of the Attachment Circuit YANG Module
 
-The full tree diagram of the 'ietf-ac-ntw' module is provided in {{AC-Ntw-Tree}}. Subtrees are provided in the following subsections
+The full tree diagram of the "ietf-ac-ntw" module is provided in {{AC-Ntw-Tree}}. Subtrees are provided in the following subsections
 for the reader's convenience.
 
 ## Overall Structure of the Module
 
-The overall tree structure of the 'ietf-ac-ntw' module is shown in {{o-ntw-tree}}.
+The overall tree structure of the "ietf-ac-ntw" module is shown in {{o-ntw-tree}}.
 
 ~~~~
 augment /nw:networks/nw:network:
@@ -352,7 +352,7 @@ reference point (the PE side of an AC, in the context of this document) where ne
 
 Unlike the AC service model {{!I-D.ietf-opsawg-teas-attachment-circuit}}, an AC is uniquely identified by a name within the scope of a node, not a network. A textual description of the AC may be provided ('description').
 
-Also, in order to ease the correlation between the AC exposed at the service layer and the AC that is actually provisioned in the network operation, a reference to the AC exposed to the customer ('svc-ref') is stored in the 'ietf-ac-ntw' module.
+Also, in order to ease the correlation between the AC exposed at the service layer and the AC that is actually provisioned in the network operation, a reference to the AC exposed to the customer ('svc-ref') is stored in the "ietf-ac-ntw" module.
 
 ACs that are terminated by a SAP are listed in the 'ac' container under '/nw:networks/nw:network/nw:node/sap:service/sap:sap'. A controller may indicate a filter based on the service type (e.g., Network Slice or L3VPN) to retrieve the list of available SAPs, and thus ACs, for that service.
 
