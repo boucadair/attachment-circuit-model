@@ -530,7 +530,7 @@ module: ietf-ac-ntw
        +--rw oam
        |  +--rw bfd {vpn-common:bfd}?
        |     +--rw session* [dest-addr]
-       |        +--rw dest-addr                        inet:ip-address
+       |        +--rw dest-addr              inet:ip-address
        |        +--rw source-address?                  union
        |        +--rw failure-detection-profile-ref?   leafref
        |        +--rw network-ref?
