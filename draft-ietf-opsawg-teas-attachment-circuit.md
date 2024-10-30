@@ -85,20 +85,10 @@ normative:
 
 informative:
 
-  AC-svc-Tree:
-    title: Full ACaaS Tree Structure
-    date: 2024
-    target: https://github.com/boucadair/attachment-circuit-model/blob/main/yang/full-trees/ac-svc-without-groupings.txt
-
   Instance-Data:
     title: Example of AC SVC Instance Data
     date: 2024
     target: https://github.com/boucadair/attachment-circuit-model/blob/main/xml-examples/svc-full-instance.xml
-
-  PYANG:
-    title: pyang
-    date: 2024
-    target: https://github.com/mbj4668/pyang
 
   IEEE802.1AB:
     title: "IEEE Standard for Local and metropolitan area networks - Station and Media Access Control Connectivity Discovery"
@@ -481,10 +471,8 @@ The descriptions of the bearer data nodes are as follows:
 
 ## The Attachment Circuit Service ("ietf-ac-svc") YANG Module
 
-The full tree diagram of the module can be generated using, e.g., the
-"pyang" tool {{PYANG}}.  That tree is not included here because it is
-too long ({{Section 3.4 of ?I-D.ietf-netmod-rfc8407bis}}).  Instead, subtrees are provided
-for the reader's convenience. The full tree of the 'ac-svc' is provided in {{AC-svc-Tree}}.
+The full tree diagram of the "ietf-ac-svc" module is provied in {{AC-svc-Tree}}. Subtrees are provided in the following subsections
+for the reader's convenience.
 
 ### Overall Structure
 
@@ -1563,8 +1551,11 @@ Finally, the addition or deletion of compute nodes in the deployment ("compute-1
 ~~~~
 {: #ex-json-bfd-static title="Message Body for the Configuration of CEs with Static Addressing and BFD Protection"}
 
+# Full Tree {#AC-svc-Tree}
 
-
+~~~~~~~~~~
+{::include-fold ./yang/full-trees/ac-svc-without-groupings.txt}
+~~~~~~~~~~
 
 # Acknowledgments
 {:numbered="false"}
