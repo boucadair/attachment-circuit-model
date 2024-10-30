@@ -2777,9 +2777,9 @@ B2B C/S: Back-to-back Client/Server
           by other modules.";
      }
 
-     typedef reference {
+     typedef ac-group-reference {
        type leafref {
-         path "/ac-svc:attachment-circuits/ac-svc:profile"
+         path "/ac-svc:attachment-circuits/ac-svc:ac-group-profile"
             + "/ac-svc:name";
        }
        description
