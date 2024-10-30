@@ -1204,10 +1204,10 @@ B2B C/S: Back-to-back Client/Server
       perspective of the provider network.  That is, a 'peer-sap' will
       refer to a customer node.
 
-   'ac-group-profile-ref':  Indicates references to one or more profiles
+   'group-profile-ref':  Indicates references to one or more profiles
       that are defined in Section 5.2.3.
 
-   'ac-parent-ref':  Specifies an AC that is inherited by an attachment
+   'parent-ref':  Specifies an AC that is inherited by an attachment
       circuit.
 
       In contexts where dynamic terminating points are managed for a
@@ -1224,7 +1224,7 @@ B2B C/S: Back-to-back Client/Server
       NOT be overlapping.  An example to illustrate the use of multiple
       parent ACs is provided in Appendix A.12.
 
-   'ac-child-ref':  Lists one or more references of child ACs that rely
+   'child-ref':  Lists one or more references of child ACs that rely
       upon this attachment circuit as a parent AC.
 
    'group':  Lists the groups to which an AC belongs [RFC9181].  For
