@@ -109,6 +109,7 @@ Table of Contents
    Appendix A.  Examples
      A.1.  VPLS
      A.2.  Parent AC
+   Appendix B.  Full Tree
    Acknowledgments
    Contributors
    Authors' Addresses
@@ -513,13 +514,9 @@ Table of Contents
 
 5.  Description of the Attachment Circuit YANG Module
 
-   The full tree diagram of the 'ietf-ac-ntw' module can be generated
-   using the "pyang" tool [PYANG].  That tree is not included here
-   because it is too long (Section 3.4 of [RFC8340]).  Instead, subtrees
-   are provided in the following subsections for the reader's
-   convenience.
-
-   The full tree of the 'ietf-ac-ntw' is provided in [AC-Ntw-Tree].
+   The full tree diagram of the 'ietf-ac-ntw' module is provided in
+   Appendix B.  Subtrees are provided in the following subsections for
+   the reader's convenience.
 
 5.1.  Overall Structure of the Module
 
@@ -4614,12 +4611,6 @@ Table of Contents
 
 9.2.  Informative References
 
-   [AC-Ntw-Tree]
-              "Full Network Attachment Circuit Tree Structure", 2023,
-              <https://github.com/boucadair/attachment-circuit-
-              model/blob/main/yang/full-trees/ac-ntw-without-
-              groupings.txt>.
-
    [I-D.ietf-netmod-rfc8407bis]
               Bierman, A., Boucadair, M., and Q. Wu, "Guidelines for
               Authors and Reviewers of Documents Containing YANG Data
@@ -4636,8 +4627,6 @@ Table of Contents
               glue-10, 10 June 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
               ac-lxsm-lxnm-glue-10>.
-
-   [PYANG]    "pyang", 2023, <https://github.com/mbj4668/pyang>.
 
    [RFC2918]  Chen, E., "Route Refresh Capability for BGP-4", RFC 2918,
               DOI 10.17487/RFC2918, September 2000,
@@ -5028,6 +5017,641 @@ A.2.  Parent AC
    }
 
               Figure 26: Example of Binding Parent AC to SAPs
+
+Appendix B.  Full Tree
+
+   =============== NOTE: '\' line wrapping per RFC 8792 ================
+
+   module: ietf-ac-ntw
+
+     augment /nw:networks/nw:network:
+       +--rw specific-provisioning-profiles
+       |  +--rw valid-provider-identifiers
+       |     +--rw encryption-profile-identifier* [id]
+       |     |  +--rw id    string
+       |     +--rw qos-profile-identifier* [id]
+       |     |  +--rw id    string
+       |     +--rw failure-detection-profile-identifier* [id]
+       |     |  +--rw id    string
+       |     +--rw forwarding-profile-identifier* [id]
+       |     |  +--rw id    string
+       |     +--rw routing-profile-identifier* [id]
+       |        +--rw id    string
+       +--rw ac-profile* [name]
+          +--rw name                 string
+          +--rw routing-protocols
+          |  +--rw routing-protocol* [id]
+          |     +--rw id      string
+          |     +--rw type?   identityref
+          |     +--rw bgp {vpn-common:rtg-bgp}?
+          |     |  +--rw peer-groups
+          |     |     +--rw peer-group* [name]
+          |     |        +--rw name                      string
+          |     |        +--rw description?              string
+          |     |        +--rw apply-policy
+          |     |        |  +--rw import-policy*           leafref
+          |     |        |  +--rw default-import-policy?
+          |     |        |  |       default-policy-type
+          |     |        |  +--rw export-policy*           leafref
+          |     |        |  +--rw default-export-policy?
+          |     |        |          default-policy-type
+          |     |        +--rw local-as?                 inet:as-number
+          |     |        +--rw peer-as                   inet:as-number
+          |     |        +--rw address-family?           identityref
+          |     |        +--rw role?                     identityref
+          |     |        +--rw multihop?                 uint8
+          |     |        +--rw as-override?              boolean
+          |     |        +--rw allow-own-as?             uint8
+          |     |        +--rw prepend-global-as?        boolean
+          |     |        +--rw send-default-route?       boolean
+          |     |        +--rw site-of-origin?
+          |     |        |       rt-types:route-origin
+          |     |        +--rw ipv6-site-of-origin?
+          |     |        |       rt-types:ipv6-route-origin
+          |     |        +--rw redistribute-connected* [address-family]
+          |     |        |  +--rw address-family    identityref
+          |     |        |  +--rw enabled?          boolean
+          |     |        +--rw bgp-max-prefix
+          |     |        |  +--rw max-prefix?          uint32
+          |     |        |  +--rw warning-threshold?   decimal64
+          |     |        |  +--rw violate-action?      enumeration
+          |     |        |  +--rw restart-timer?       uint32
+          |     |        +--rw bgp-timers
+          |     |        |  +--rw keepalive?   uint16
+          |     |        |  +--rw hold-time?   uint16
+          |     |        +--rw capability* [address-family]
+          |     |           +--rw address-family    identityref
+          |     |           +--rw name              identityref
+          |     +--rw ospf {vpn-common:rtg-ospf}?
+          |     |  +--rw address-family?   identityref
+          |     |  +--rw area-id           yang:dotted-quad
+          |     |  +--rw metric?           uint16
+          |     |  +--rw max-lsa?          uint32
+          |     |  +--rw passive?          boolean
+          |     +--rw isis {vpn-common:rtg-isis}?
+          |     |  +--rw address-family?   identityref
+          |     |  +--rw area-address      area-address
+          |     |  +--rw level?            identityref
+          |     |  +--rw metric?           uint32
+          |     |  +--rw passive?          boolean
+          |     +--rw rip {vpn-common:rtg-rip}?
+          |     |  +--rw address-family?   identityref
+          |     |  +--rw timers
+          |     |  |  +--rw update-interval?     uint16
+          |     |  |  +--rw invalid-interval?    uint16
+          |     |  |  +--rw holddown-interval?   uint16
+          |     |  |  +--rw flush-interval?      uint16
+          |     |  +--rw default-metric?   uint8
+          |     +--rw vrrp {vpn-common:rtg-vrrp}?
+          |        +--rw address-family?   identityref
+          |        +--rw ping-reply?       boolean
+          +--rw oam
+             +--rw bfd {vpn-common:bfd}?
+                +--rw session-type?               identityref
+                +--rw desired-min-tx-interval?    uint32
+                +--rw required-min-rx-interval?   uint32
+                +--rw local-multiplier?           uint8
+                +--rw holdtime?                   uint32
+     augment /nw:networks/nw:network/nw:node:
+       +--rw ac* [name]
+          +--rw name                 string
+          +--rw svc-ref?             ac-svc:attachment-circuit-reference
+          +--rw profile* [ac-profile-ref]
+          |  +--rw ac-profile-ref    leafref
+          |  +--rw network-ref?      -> /nw:networks/network/network-id
+          +--rw parent-ref
+          |  +--rw ac-ref?        leafref
+          |  +--rw node-ref?      leafref
+          |  +--rw network-ref?   -> /nw:networks/network/network-id
+          +--ro child-ref
+          |  +--ro ac-ref*        leafref
+          |  +--ro node-ref?      leafref
+          |  +--ro network-ref?   -> /nw:networks/network/network-id
+          +--rw peer-sap-id*         string
+          +--rw group* [group-id]
+          |  +--rw group-id      string
+          |  +--rw precedence?   identityref
+          +--rw status
+          |  +--rw admin-status
+          |  |  +--rw status?        identityref
+          |  |  +--ro last-change?   yang:date-and-time
+          |  +--ro oper-status
+          |     +--ro status?        identityref
+          |     +--ro last-change?   yang:date-and-time
+          +--rw description?         string
+          +--rw l2-connection {ac-common:layer2-ac}?
+          |  +--rw encapsulation
+          |  |  +--rw encap-type?        identityref
+          |  |  +--rw dot1q
+          |  |  |  +--rw tag-type?         identityref
+          |  |  |  +--rw cvlan-id?         uint16
+          |  |  |  +--rw tag-operations
+          |  |  |     +--rw (op-choice)?
+          |  |  |     |  +--:(pop)
+          |  |  |     |  |  +--rw pop?         empty
+          |  |  |     |  +--:(push)
+          |  |  |     |  |  +--rw push?        empty
+          |  |  |     |  +--:(translate)
+          |  |  |     |     +--rw translate?   empty
+          |  |  |     +--rw tag-1?             dot1q-types:vlanid
+          |  |  |     +--rw tag-1-type?        dot1q-types:dot1q-tag-\
+                                                                    type
+          |  |  |     +--rw tag-2?             dot1q-types:vlanid
+          |  |  |     +--rw tag-2-type?        dot1q-types:dot1q-tag-\
+                                                                    type
+          |  |  +--rw priority-tagged
+          |  |  |  +--rw tag-type?   identityref
+          |  |  +--rw qinq
+          |  |     +--rw tag-type?         identityref
+          |  |     +--rw svlan-id?         uint16
+          |  |     +--rw cvlan-id?         uint16
+          |  |     +--rw tag-operations
+          |  |        +--rw (op-choice)?
+          |  |        |  +--:(pop)
+          |  |        |  |  +--rw pop?         uint8
+          |  |        |  +--:(push)
+          |  |        |  |  +--rw push?        empty
+          |  |        |  +--:(translate)
+          |  |        |     +--rw translate?   uint8
+          |  |        +--rw tag-1?             dot1q-types:vlanid
+          |  |        +--rw tag-1-type?        dot1q-types:dot1q-tag-\
+                                                                    type
+          |  |        +--rw tag-2?             dot1q-types:vlanid
+          |  |        +--rw tag-2-type?        dot1q-types:dot1q-tag-\
+                                                                    type
+          |  +--rw (l2-service)?
+          |  |  +--:(l2-tunnel-service)
+          |  |  |  +--rw l2-tunnel-service
+          |  |  |     +--rw type?         identityref
+          |  |  |     +--rw pseudowire
+          |  |  |     |  +--rw vcid?      uint32
+          |  |  |     |  +--rw far-end?   union
+          |  |  |     +--rw vpls
+          |  |  |     |  +--rw vcid?      uint32
+          |  |  |     |  +--rw far-end*   union
+          |  |  |     +--rw vxlan
+          |  |  |        +--rw vni-id?            uint32
+          |  |  |        +--rw peer-mode?         identityref
+          |  |  |        +--rw peer-ip-address*   inet:ip-address
+          |  |  +--:(l2vpn)
+          |  |     +--rw l2vpn-id?            vpn-common:vpn-id
+          |  +--rw l2-termination-point?      string
+          |  +--rw local-bridge-reference?    string
+          |  +--rw bearer-reference?          string
+          |  |       {ac-common:server-assigned-reference}?
+          |  +--rw lag-interface {vpn-common:lag-interface}?
+          |     +--rw lag-interface-id?   string
+          |     +--rw member-link-list
+          |        +--rw member-link* [name]
+          |           +--rw name    string
+          +--rw ip-connection {ac-common:layer3-ac}?
+          |  +--rw l3-termination-point?   string
+          |  +--rw ipv4 {vpn-common:ipv4}?
+          |  |  +--rw local-address?
+          |  |  |       inet:ipv4-address
+          |  |  +--rw prefix-length?                           uint8
+          |  |  +--rw address-allocation-type?
+          |  |  |       identityref
+          |  |  +--rw (allocation-type)?
+          |  |     +--:(dynamic)
+          |  |     |  +--rw (address-assign)?
+          |  |     |  |  +--:(number)
+          |  |     |  |  |  +--rw number-of-dynamic-address?   uint16
+          |  |     |  |  +--:(explicit)
+          |  |     |  |     +--rw customer-addresses
+          |  |     |  |        +--rw address-pool* [pool-id]
+          |  |     |  |           +--rw pool-id          string
+          |  |     |  |           +--rw start-address
+          |  |     |  |           |       inet:ipv4-address
+          |  |     |  |           +--rw end-address?
+          |  |     |  |                   inet:ipv4-address
+          |  |     |  +--rw (provider-dhcp)?
+          |  |     |  |  +--:(dhcp-service-type)
+          |  |     |  |  |  +--rw dhcp-service-type?
+          |  |     |  |  |          enumeration
+          |  |     |  |  +--:(service-type)
+          |  |     |  |     +--rw (service-type)?
+          |  |     |  |        +--:(relay)
+          |  |     |  |           +--rw server-ip-address*
+          |  |     |  |                   inet:ipv4-address
+          |  |     |  +--rw (dhcp-relay)?
+          |  |     |     +--:(customer-dhcp-servers)
+          |  |     |        +--rw customer-dhcp-servers
+          |  |     |           +--rw server-ip-address*
+          |  |     |                   inet:ipv4-address
+          |  |     +--:(static-addresses)
+          |  |        +--rw address* [address-id]
+          |  |           +--rw address-id                       string
+          |  |           +--rw customer-address?
+          |  |           |       inet:ipv4-address
+          |  |           +--rw failure-detection-profile-ref?   leafref
+          |  |           +--rw network-ref?
+          |  |                   -> /nw:networks/network/network-id
+          |  +--rw ipv6 {vpn-common:ipv6}?
+          |     +--rw local-address?
+          |     |       inet:ipv6-address
+          |     +--rw prefix-length?                           uint8
+          |     +--rw address-allocation-type?
+          |     |       identityref
+          |     +--rw (allocation-type)?
+          |        +--:(dynamic)
+          |        |  +--rw (address-assign)?
+          |        |  |  +--:(number)
+          |        |  |  |  +--rw number-of-dynamic-address?   uint16
+          |        |  |  +--:(explicit)
+          |        |  |     +--rw customer-addresses
+          |        |  |        +--rw address-pool* [pool-id]
+          |        |  |           +--rw pool-id          string
+          |        |  |           +--rw start-address
+          |        |  |           |       inet:ipv6-address
+          |        |  |           +--rw end-address?
+          |        |  |                   inet:ipv6-address
+          |        |  +--rw (provider-dhcp)?
+          |        |  |  +--:(dhcp-service-type)
+          |        |  |  |  +--rw dhcp-service-type?
+          |        |  |  |          enumeration
+          |        |  |  +--:(service-type)
+          |        |  |     +--rw (service-type)?
+          |        |  |        +--:(relay)
+          |        |  |           +--rw server-ip-address*
+          |        |  |                   inet:ipv6-address
+          |        |  +--rw (dhcp-relay)?
+          |        |     +--:(customer-dhcp-servers)
+          |        |        +--rw customer-dhcp-servers
+          |        |           +--rw server-ip-address*
+          |        |                   inet:ipv6-address
+          |        +--:(static-addresses)
+          |           +--rw address* [address-id]
+          |              +--rw address-id                       string
+          |              +--rw customer-address?
+          |              |       inet:ipv6-address
+          |              +--rw failure-detection-profile-ref?   leafref
+          |              +--rw network-ref?
+          |                      -> /nw:networks/network/network-id
+          +--rw routing-protocols
+          |  +--rw routing-protocol* [id]
+          |     +--rw id                 string
+          |     +--rw type?              identityref
+          |     +--rw routing-profile* [routing-profile-ref]
+          |     |  +--rw routing-profile-ref    leafref
+          |     |  +--rw network-ref?
+          |     |  |       -> /nw:networks/network/network-id
+          |     |  +--rw type?                  identityref
+          |     +--rw static
+          |     |  +--rw cascaded-lan-prefixes
+          |     |     +--rw ipv4-lan-prefix* [lan next-hop]
+          |     |     |       {vpn-common:ipv4}?
+          |     |     |  +--rw lan           inet:ipv4-prefix
+          |     |     |  +--rw lan-tag?      string
+          |     |     |  +--rw next-hop      union
+          |     |     |  +--rw metric?       uint32
+          |     |     |  +--rw bfd {vpn-common:bfd}?
+          |     |     |  |  +--rw enabled?
+          |     |     |  |  |       boolean
+          |     |     |  |  +--rw failure-detection-profile-ref?
+          |     |     |  |  |       leafref
+          |     |     |  |  +--rw network-ref?
+          |     |     |  |          -> /nw:networks/network/network-id
+          |     |     |  +--rw preference?   uint32
+          |     |     |  +--rw status
+          |     |     |     +--rw admin-status
+          |     |     |     |  +--rw status?        identityref
+          |     |     |     |  +--ro last-change?   yang:date-and-time
+          |     |     |     +--ro oper-status
+          |     |     |        +--ro status?        identityref
+          |     |     |        +--ro last-change?   yang:date-and-time
+          |     |     +--rw ipv6-lan-prefix* [lan next-hop]
+          |     |             {vpn-common:ipv6}?
+          |     |        +--rw lan           inet:ipv6-prefix
+          |     |        +--rw lan-tag?      string
+          |     |        +--rw next-hop      union
+          |     |        +--rw metric?       uint32
+          |     |        +--rw bfd {vpn-common:bfd}?
+          |     |        |  +--rw enabled?
+          |     |        |  |       boolean
+          |     |        |  +--rw failure-detection-profile-ref?
+          |     |        |  |       leafref
+          |     |        |  +--rw network-ref?
+          |     |        |          -> /nw:networks/network/network-id
+          |     |        +--rw preference?   uint32
+          |     |        +--rw status
+          |     |           +--rw admin-status
+          |     |           |  +--rw status?        identityref
+          |     |           |  +--ro last-change?   yang:date-and-time
+          |     |           +--ro oper-status
+          |     |              +--ro status?        identityref
+          |     |              +--ro last-change?   yang:date-and-time
+          |     +--rw bgp {vpn-common:rtg-bgp}?
+          |     |  +--rw peer-groups
+          |     |  |  +--rw peer-group* [name]
+          |     |  |     +--rw name                      string
+          |     |  |     +--rw local-address?            union
+          |     |  |     +--rw description?              string
+          |     |  |     +--rw apply-policy
+          |     |  |     |  +--rw import-policy*           leafref
+          |     |  |     |  +--rw default-import-policy?
+          |     |  |     |  |       default-policy-type
+          |     |  |     |  +--rw export-policy*           leafref
+          |     |  |     |  +--rw default-export-policy?
+          |     |  |     |          default-policy-type
+          |     |  |     +--rw local-as?                 inet:as-number
+          |     |  |     +--rw peer-as                   inet:as-number
+          |     |  |     +--rw address-family?           identityref
+          |     |  |     +--rw role?                     identityref
+          |     |  |     +--rw multihop?                 uint8
+          |     |  |     +--rw as-override?              boolean
+          |     |  |     +--rw allow-own-as?             uint8
+          |     |  |     +--rw prepend-global-as?        boolean
+          |     |  |     +--rw send-default-route?       boolean
+          |     |  |     +--rw site-of-origin?
+          |     |  |     |       rt-types:route-origin
+          |     |  |     +--rw ipv6-site-of-origin?
+          |     |  |     |       rt-types:ipv6-route-origin
+          |     |  |     +--rw redistribute-connected* [address-family]
+          |     |  |     |  +--rw address-family    identityref
+          |     |  |     |  +--rw enabled?          boolean
+          |     |  |     +--rw bgp-max-prefix
+          |     |  |     |  +--rw max-prefix?          uint32
+          |     |  |     |  +--rw warning-threshold?   decimal64
+          |     |  |     |  +--rw violate-action?      enumeration
+          |     |  |     |  +--rw restart-timer?       uint32
+          |     |  |     +--rw bgp-timers
+          |     |  |     |  +--rw keepalive?   uint16
+          |     |  |     |  +--rw hold-time?   uint16
+          |     |  |     +--rw capability* [address-family]
+          |     |  |     |  +--rw address-family    identityref
+          |     |  |     |  +--rw name              identityref
+          |     |  |     +--rw authentication
+          |     |  |        +--rw enabled?           boolean
+          |     |  |        +--rw keying-material
+          |     |  |           +--rw (option)?
+          |     |  |              +--:(ao)
+          |     |  |              |  +--rw enable-ao?          boolean
+          |     |  |              |  +--rw ao-keychain?
+          |     |  |              |          key-chain:key-chain-ref
+          |     |  |              +--:(md5)
+          |     |  |              |  +--rw md5-keychain?
+          |     |  |              |          key-chain:key-chain-ref
+          |     |  |              +--:(explicit)
+          |     |  |                 +--rw key-id?             uint32
+          |     |  |                 +--rw key?                string
+          |     |  |                 +--rw crypto-algorithm?
+          |     |  |                         identityref
+          |     |  +--rw neighbor* [remote-address]
+          |     |     +--rw remote-address            inet:ip-address
+          |     |     +--rw local-address?            union
+          |     |     +--rw peer-group?
+          |     |     |       -> ../../peer-groups/peer-group/name
+          |     |     +--rw description?              string
+          |     |     +--rw apply-policy
+          |     |     |  +--rw import-policy*           leafref
+          |     |     |  +--rw default-import-policy?
+          |     |     |  |       default-policy-type
+          |     |     |  +--rw export-policy*           leafref
+          |     |     |  +--rw default-export-policy?
+          |     |     |          default-policy-type
+          |     |     +--rw local-as?                 inet:as-number
+          |     |     +--rw peer-as                   inet:as-number
+          |     |     +--rw address-family?           identityref
+          |     |     +--rw role?                     identityref
+          |     |     +--rw multihop?                 uint8
+          |     |     +--rw as-override?              boolean
+          |     |     +--rw allow-own-as?             uint8
+          |     |     +--rw prepend-global-as?        boolean
+          |     |     +--rw send-default-route?       boolean
+          |     |     +--rw site-of-origin?
+          |     |     |       rt-types:route-origin
+          |     |     +--rw ipv6-site-of-origin?
+          |     |     |       rt-types:ipv6-route-origin
+          |     |     +--rw redistribute-connected* [address-family]
+          |     |     |  +--rw address-family    identityref
+          |     |     |  +--rw enabled?          boolean
+          |     |     +--rw bgp-max-prefix
+          |     |     |  +--rw max-prefix?          uint32
+          |     |     |  +--rw warning-threshold?   decimal64
+          |     |     |  +--rw violate-action?      enumeration
+          |     |     |  +--rw restart-timer?       uint32
+          |     |     +--rw bgp-timers
+          |     |     |  +--rw keepalive?   uint16
+          |     |     |  +--rw hold-time?   uint16
+          |     |     +--rw capability* [address-family]
+          |     |     |  +--rw address-family    identityref
+          |     |     |  +--rw name              identityref
+          |     |     +--rw bfd {vpn-common:bfd}?
+          |     |     |  +--rw enabled?                         boolean
+          |     |     |  +--rw failure-detection-profile-ref?   leafref
+          |     |     |  +--rw network-ref?
+          |     |     |          -> /nw:networks/network/network-id
+          |     |     +--rw authentication
+          |     |     |  +--rw enabled?           boolean
+          |     |     |  +--rw keying-material
+          |     |     |     +--rw (option)?
+          |     |     |        +--:(ao)
+          |     |     |        |  +--rw enable-ao?          boolean
+          |     |     |        |  +--rw ao-keychain?
+          |     |     |        |          key-chain:key-chain-ref
+          |     |     |        +--:(md5)
+          |     |     |        |  +--rw md5-keychain?
+          |     |     |        |          key-chain:key-chain-ref
+          |     |     |        +--:(explicit)
+          |     |     |           +--rw key-id?             uint32
+          |     |     |           +--rw key?                string
+          |     |     |           +--rw crypto-algorithm?   identityref
+          |     |     +--rw status
+          |     |        +--rw admin-status
+          |     |        |  +--rw status?        identityref
+          |     |        |  +--ro last-change?   yang:date-and-time
+          |     |        +--ro oper-status
+          |     |           +--ro status?        identityref
+          |     |           +--ro last-change?   yang:date-and-time
+          |     +--rw ospf {vpn-common:rtg-ospf}?
+          |     |  +--rw address-family?   identityref
+          |     |  +--rw area-id           yang:dotted-quad
+          |     |  +--rw metric?           uint16
+          |     |  +--rw sham-links {vpn-common:rtg-ospf-sham-link}?
+          |     |  |  +--rw sham-link* [target-site]
+          |     |  |     +--rw target-site    string
+          |     |  |     +--rw metric?        uint16
+          |     |  +--rw max-lsa?          uint32
+          |     |  +--rw passive?          boolean
+          |     |  +--rw authentication
+          |     |  |  +--rw enabled?           boolean
+          |     |  |  +--rw keying-material
+          |     |  |     +--rw (option)?
+          |     |  |        +--:(auth-key-chain)
+          |     |  |        |  +--rw key-chain?
+          |     |  |        |          key-chain:key-chain-ref
+          |     |  |        +--:(auth-key-explicit)
+          |     |  |           +--rw key-id?             uint32
+          |     |  |           +--rw key?                string
+          |     |  |           +--rw crypto-algorithm?   identityref
+          |     |  +--rw status
+          |     |     +--rw admin-status
+          |     |     |  +--rw status?        identityref
+          |     |     |  +--ro last-change?   yang:date-and-time
+          |     |     +--ro oper-status
+          |     |        +--ro status?        identityref
+          |     |        +--ro last-change?   yang:date-and-time
+          |     +--rw isis {vpn-common:rtg-isis}?
+          |     |  +--rw address-family?   identityref
+          |     |  +--rw area-address      area-address
+          |     |  +--rw level?            identityref
+          |     |  +--rw metric?           uint32
+          |     |  +--rw passive?          boolean
+          |     |  +--rw authentication
+          |     |  |  +--rw enabled?           boolean
+          |     |  |  +--rw keying-material
+          |     |  |     +--rw (option)?
+          |     |  |        +--:(auth-key-chain)
+          |     |  |        |  +--rw key-chain?
+          |     |  |        |          key-chain:key-chain-ref
+          |     |  |        +--:(auth-key-explicit)
+          |     |  |           +--rw key-id?             uint32
+          |     |  |           +--rw key?                string
+          |     |  |           +--rw crypto-algorithm?   identityref
+          |     |  +--rw status
+          |     |     +--rw admin-status
+          |     |     |  +--rw status?        identityref
+          |     |     |  +--ro last-change?   yang:date-and-time
+          |     |     +--ro oper-status
+          |     |        +--ro status?        identityref
+          |     |        +--ro last-change?   yang:date-and-time
+          |     +--rw rip {vpn-common:rtg-rip}?
+          |     |  +--rw address-family?   identityref
+          |     |  +--rw timers
+          |     |  |  +--rw update-interval?     uint16
+          |     |  |  +--rw invalid-interval?    uint16
+          |     |  |  +--rw holddown-interval?   uint16
+          |     |  |  +--rw flush-interval?      uint16
+          |     |  +--rw default-metric?   uint8
+          |     |  +--rw authentication
+          |     |  |  +--rw enabled?           boolean
+          |     |  |  +--rw keying-material
+          |     |  |     +--rw (option)?
+          |     |  |        +--:(auth-key-chain)
+          |     |  |        |  +--rw key-chain?
+          |     |  |        |          key-chain:key-chain-ref
+          |     |  |        +--:(auth-key-explicit)
+          |     |  |           +--rw key?                string
+          |     |  |           +--rw crypto-algorithm?   identityref
+          |     |  +--rw status
+          |     |     +--rw admin-status
+          |     |     |  +--rw status?        identityref
+          |     |     |  +--ro last-change?   yang:date-and-time
+          |     |     +--ro oper-status
+          |     |        +--ro status?        identityref
+          |     |        +--ro last-change?   yang:date-and-time
+          |     +--rw vrrp {vpn-common:rtg-vrrp}?
+          |        +--rw address-family?       identityref
+          |        +--rw vrrp-group?           uint8
+          |        +--rw backup-peer?          inet:ip-address
+          |        +--rw virtual-ip-address*   inet:ip-address
+          |        +--rw priority?             uint8
+          |        +--rw ping-reply?           boolean
+          |        +--rw status
+          |           +--rw admin-status
+          |           |  +--rw status?        identityref
+          |           |  +--ro last-change?   yang:date-and-time
+          |           +--ro oper-status
+          |              +--ro status?        identityref
+          |              +--ro last-change?   yang:date-and-time
+          +--rw oam
+          |  +--rw bfd {vpn-common:bfd}?
+          |     +--rw session* [dest-addr]
+          |        +--rw dest-addr                        inet:ip-\
+                                                                 address
+          |        +--rw source-address?                  union
+          |        +--rw failure-detection-profile-ref?   leafref
+          |        +--rw network-ref?
+          |        |       -> /nw:networks/network/network-id
+          |        +--rw session-type?                    identityref
+          |        +--rw desired-min-tx-interval?         uint32
+          |        +--rw required-min-rx-interval?        uint32
+          |        +--rw local-multiplier?                uint8
+          |        +--rw holdtime?                        uint32
+          |        +--rw authentication!
+          |        |  +--rw key-chain?    key-chain:key-chain-ref
+          |        |  +--rw meticulous?   boolean
+          |        +--rw status
+          |           +--rw admin-status
+          |           |  +--rw status?        identityref
+          |           |  +--ro last-change?   yang:date-and-time
+          |           +--ro oper-status
+          |              +--ro status?        identityref
+          |              +--ro last-change?   yang:date-and-time
+          +--rw security
+          |  +--rw encryption {vpn-common:encryption}?
+          |  |  +--rw enabled?   boolean
+          |  |  +--rw layer?     enumeration
+          |  +--rw encryption-profile
+          |     +--rw (profile)?
+          |        +--:(provider-profile)
+          |        |  +--rw encryption-profile-ref?   leafref
+          |        |  +--rw network-ref?
+          |        |          -> /nw:networks/network/network-id
+          |        +--:(customer-profile)
+          |           +--rw customer-key-chain?
+          |                   key-chain:key-chain-ref
+          +--rw service
+             +--rw mtu?                      uint32
+             +--rw svc-pe-to-ce-bandwidth {vpn-common:inbound-bw}?
+             |  +--rw bandwidth* [bw-type]
+             |     +--rw bw-type      identityref
+             |     +--rw (type)?
+             |        +--:(per-cos)
+             |        |  +--rw cos* [cos-id]
+             |        |     +--rw cos-id    uint8
+             |        |     +--rw cir?      uint64
+             |        |     +--rw cbs?      uint64
+             |        |     +--rw eir?      uint64
+             |        |     +--rw ebs?      uint64
+             |        |     +--rw pir?      uint64
+             |        |     +--rw pbs?      uint64
+             |        +--:(other)
+             |           +--rw cir?   uint64
+             |           +--rw cbs?   uint64
+             |           +--rw eir?   uint64
+             |           +--rw ebs?   uint64
+             |           +--rw pir?   uint64
+             |           +--rw pbs?   uint64
+             +--rw svc-ce-to-pe-bandwidth {vpn-common:outbound-bw}?
+             |  +--rw bandwidth* [bw-type]
+             |     +--rw bw-type      identityref
+             |     +--rw (type)?
+             |        +--:(per-cos)
+             |        |  +--rw cos* [cos-id]
+             |        |     +--rw cos-id    uint8
+             |        |     +--rw cir?      uint64
+             |        |     +--rw cbs?      uint64
+             |        |     +--rw eir?      uint64
+             |        |     +--rw ebs?      uint64
+             |        |     +--rw pir?      uint64
+             |        |     +--rw pbs?      uint64
+             |        +--:(other)
+             |           +--rw cir?   uint64
+             |           +--rw cbs?   uint64
+             |           +--rw eir?   uint64
+             |           +--rw ebs?   uint64
+             |           +--rw pir?   uint64
+             |           +--rw pbs?   uint64
+             +--rw qos {vpn-common:qos}?
+             |  +--rw qos-profiles
+             |     +--rw qos-profile* [qos-profile-ref]
+             |        +--rw qos-profile-ref    leafref
+             |        +--rw network-ref?
+             |        |       -> /nw:networks/network/network-id
+             |        +--rw direction?         identityref
+             +--rw access-control-list
+                +--rw acl-profiles
+                   +--rw acl-profile* [forwarding-profile-ref]
+                      +--rw forwarding-profile-ref    leafref
+                      +--rw network-ref?
+                              -> /nw:networks/network/network-id
+     augment /nw:networks/nw:network/nw:node/sap:service/sap:sap:
+       +--rw ac* [ac-ref]
+          +--rw ac-ref         leafref
+          +--rw node-ref?      leafref
+          +--rw network-ref?   -> /nw:networks/network/network-id
 
 Acknowledgments
 
