@@ -145,12 +145,12 @@ Table of Contents
    procedure defined in this document.
 
    The document leverages [RFC9182] and [RFC9291] by adopting an AC
-   provisioning structure that uses data nodes that are defined in these
-   RFCs.  Some refinements were introduced to cover, not only
+   provisioning structure that uses data nodes that are defined in those
+   RFCs.  Some refinements were introduced to cover not only
    conventional service provider networks, but also specifics of other
-   target deployments (cloud network, for example).
+   target deployments (e.g., cloud network).
 
-   The AC network model is designed as augmentations to both the 'ietf-
+   The AC network model is designed as augmentations of both the 'ietf-
    network' model [RFC8345] and the Service Attachment Point (SAP) model
    [RFC9408].  An attachment circuit can be bound to a single or
    multiple SAPs.  Likewise, the model is designed to accommodate
