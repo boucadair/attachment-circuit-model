@@ -580,10 +580,10 @@ The description of the data nodes is as follows:
 'peer-sap-id':
 : Includes references to the remote endpoints of an attachment circuit {{!RFC9408}}. 'peer' is drawn here from the perspective of the provider network. That is, a 'peer-sap' will refer to a customer node.
 
-'ac-group-profile-ref':
+'group-profile-ref':
 : Indicates references to one or more profiles that are defined in {{sec-acp}}.
 
-'ac-parent-ref':
+'parent-ref':
 : Specifies an AC that is inherited by an attachment circuit.
 : In contexts where dynamic terminating points are managed for a given AC,
 a parent AC can be defined with a set of stable and common information, while
@@ -591,7 +591,7 @@ a parent AC can be defined with a set of stable and common information, while
 : Whenever a parent AC is deleted, all its "child" ACs MUST be deleted.
 : A "child" AC MAY rely upon more than one parent AC (e.g., parent Layer 2 AC and parent Layer 3 AC). In such cases, these ACs MUST NOT be overlapping. An example to illustrate the use of multiple parent ACs is provided in  {{sec-bfd-static}}.
 
-'ac-child-ref':
+'child-ref':
 : Lists one or more references of child ACs that rely upon this attachment circuit as a parent AC.
 
 'group':
