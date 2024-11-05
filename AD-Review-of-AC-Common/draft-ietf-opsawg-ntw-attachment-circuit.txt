@@ -5,14 +5,14 @@
 Operations and Management Area Working Group           M. Boucadair, Ed.
 Internet-Draft                                                    Orange
 Intended status: Standards Track                              R. Roberts
-Expires: 3 May 2025                                              Juniper
+Expires: 9 May 2025                                              Juniper
                                                            O. G. D. Dios
                                                               Telefonica
                                                            S. B. Giraldo
                                                                    Nokia
                                                                    B. Wu
                                                      Huawei Technologies
-                                                         30 October 2024
+                                                         5 November 2024
 
 
            A Network YANG Data Model for Attachment Circuits
@@ -58,7 +58,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 3 May 2025.
+   This Internet-Draft will expire on 9 May 2025.
 
 Copyright Notice
 
@@ -3345,26 +3345,6 @@ Table of Contents
            reference
              "RFC 4271: A Border Gateway Protocol 4 (BGP-4),
                         Section 4.2";
-         }
-       }
-       list capability {
-         key "address-family";
-         description
-           "Customized set of BGP capabilities per address family.";
-         leaf address-family {
-           type identityref {
-             base vpn-common:address-family;
-           }
-           description
-             "Indicates the address family.";
-         }
-         leaf name {
-           type identityref {
-             base ac-common:bgp-capability;
-           }
-           mandatory true;
-           description
-             "Indicates the name of BGP capability.";
          }
        }
      }

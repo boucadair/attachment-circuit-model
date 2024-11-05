@@ -5,14 +5,14 @@
 OPSAWG                                                 M. Boucadair, Ed.
 Internet-Draft                                                    Orange
 Intended status: Standards Track                         R. Roberts, Ed.
-Expires: 3 May 2025                                              Juniper
+Expires: 9 May 2025                                              Juniper
                                                            O. G. D. Dios
                                                               Telefonica
                                                            S. B. Giraldo
                                                                    Nokia
                                                                    B. Wu
                                                      Huawei Technologies
-                                                         30 October 2024
+                                                         5 November 2024
 
 
   YANG Data Models for Bearers and 'Attachment Circuits'-as-a-Service
@@ -54,7 +54,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 3 May 2025.
+   This Internet-Draft will expire on 9 May 2025.
 
 Copyright Notice
 
@@ -4212,11 +4212,11 @@ B2B C/S: Back-to-back Client/Server
               ietf-network-slice-nbi-yang-16>.
 
    [I-D.ramseyer-grow-peering-api]
-              Aguado, C., Griswold, M., Ramseyer, J., Servin, A. L., and
-              T. Strickx, "Peering API", Work in Progress, Internet-
-              Draft, draft-ramseyer-grow-peering-api-05, 30 May 2024,
+              Aguado, C., Griswold, M., Ramseyer, J., Servin, A., and T.
+              Strickx, "Peering API", Work in Progress, Internet-Draft,
+              draft-ramseyer-grow-peering-api-06, 4 November 2024,
               <https://datatracker.ietf.org/doc/html/draft-ramseyer-
-              grow-peering-api-05>.
+              grow-peering-api-06>.
 
    [IEEE802.1AB]
               IEEE, "IEEE Standard for Local and metropolitan area
