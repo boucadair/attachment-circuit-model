@@ -1639,36 +1639,26 @@ for the reader's convenience.<a href="#section-4-1" class="pilcrow">¶</a></p>
             <p id="section-4.2-2.8.1">Used to indicate the redundancy type when requesting ACs. For example, this identity can be used to tag primary and secondary ACs.<a href="#section-4.2-2.8.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.2-2.9">'bgp-capability':</dt>
+<dt id="section-4.2-2.9">'role':</dt>
           <dd style="margin-left: 1.5em" id="section-4.2-2.10">
-            <p id="section-4.2-2.10.1">Used to indicate a BGP capability <span>[<a href="#RFC5492" class="cite xref">RFC5492</a>]</span>. Examples of BGP capabilities are Multiprotocol extensions for BGP-4 <span>[<a href="#RFC4760" class="cite xref">RFC4760</a>]</span>, route refresh <span>[<a href="#RFC2918" class="cite xref">RFC2918</a>]</span>, graceful restart <span>[<a href="#RFC4724" class="cite xref">RFC4724</a>]</span>, ADD-PATH <span>[<a href="#RFC7911" class="cite xref">RFC7911</a>]</span>, or BGP Role <span>[<a href="#RFC9234" class="cite xref">RFC9234</a>]</span>}.<a href="#section-4.2-2.10.1" class="pilcrow">¶</a></p>
+            <p id="section-4.2-2.10.1">Used to indicate the type of an AC: User-to-Network Interface (UNI), Network-to-Network Interface (NNI), or public NNI.<a href="#section-4.2-2.10.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.2-2.11"></dt>
+<dt id="section-4.2-2.11">New administrative status types:</dt>
           <dd style="margin-left: 1.5em" id="section-4.2-2.12">
-            <p id="section-4.2-2.12.1">Only a subset of BGP capabilities might be useful for customization at the service/network AC levels. As such, this document does not use the full list defined in <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-idr-bgp-model-18#section-7.3" class="relref">Section 7.3</a> of [<a href="#I-D.ietf-idr-bgp-model" class="cite xref">I-D.ietf-idr-bgp-model</a>]</span>.<a href="#section-4.2-2.12.1" class="pilcrow">¶</a></p>
-</dd>
-          <dd class="break"></dd>
-<dt id="section-4.2-2.13">'role':</dt>
-          <dd style="margin-left: 1.5em" id="section-4.2-2.14">
-            <p id="section-4.2-2.14.1">Used to indicate the type of an AC: User-to-Network Interface (UNI), Network-to-Network Interface (NNI), or public NNI.<a href="#section-4.2-2.14.1" class="pilcrow">¶</a></p>
-</dd>
-          <dd class="break"></dd>
-<dt id="section-4.2-2.15">New administrative status types:</dt>
-          <dd style="margin-left: 1.5em" id="section-4.2-2.16">
-            <p id="section-4.2-2.16.1">In addition to the status types already defined in <span>[<a href="#RFC9181" class="cite xref">RFC9181</a>]</span>, this document defines:<a href="#section-4.2-2.16.1" class="pilcrow">¶</a></p>
+            <p id="section-4.2-2.12.1">In addition to the status types already defined in <span>[<a href="#RFC9181" class="cite xref">RFC9181</a>]</span>, this document defines:<a href="#section-4.2-2.12.1" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-4.2-2.16.2.1">
-                <p id="section-4.2-2.16.2.1.1">'awaiting-validation' to report that a request is pending an adiministrator approval.<a href="#section-4.2-2.16.2.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-4.2-2.12.2.1">
+                <p id="section-4.2-2.12.2.1.1">'awaiting-validation' to report that a request is pending an adiministrator approval.<a href="#section-4.2-2.12.2.1.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="normal" id="section-4.2-2.16.2.2">
-                <p id="section-4.2-2.16.2.2.1">'awaiting-processing' to report that a request was approved and validated, but is awaiting more processing before activation.<a href="#section-4.2-2.16.2.2.1" class="pilcrow">¶</a></p>
+              <li class="normal" id="section-4.2-2.12.2.2">
+                <p id="section-4.2-2.12.2.2.1">'awaiting-processing' to report that a request was approved and validated, but is awaiting more processing before activation.<a href="#section-4.2-2.12.2.2.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="normal" id="section-4.2-2.16.2.3">
-                <p id="section-4.2-2.16.2.3.1">'admin-prohibited' to report that a request cannot be handled because of administrative policies.<a href="#section-4.2-2.16.2.3.1" class="pilcrow">¶</a></p>
+              <li class="normal" id="section-4.2-2.12.2.3">
+                <p id="section-4.2-2.12.2.3.1">'admin-prohibited' to report that a request cannot be handled because of administrative policies.<a href="#section-4.2-2.12.2.3.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="normal" id="section-4.2-2.16.2.4">
-                <p id="section-4.2-2.16.2.4.1">'rejected' to report that a request was rejected reasons not covered by the other status types.<a href="#section-4.2-2.16.2.4.1" class="pilcrow">¶</a></p>
+              <li class="normal" id="section-4.2-2.12.2.4">
+                <p id="section-4.2-2.12.2.4.1">'rejected' to report that a request was rejected reasons not covered by the other status types.<a href="#section-4.2-2.12.2.4.1" class="pilcrow">¶</a></p>
 </li>
             </ul>
 </dd>
@@ -3856,10 +3846,6 @@ should identify the corresponding security considerations. For
         <dd>
 <span class="refAuthor">Hopps, C.</span>, <span class="refTitle">"Routing IPv6 with IS-IS"</span>, <span class="seriesInfo">RFC 5308</span>, <span class="seriesInfo">DOI 10.17487/RFC5308</span>, <time datetime="2008-10" class="refDate">October 2008</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc5308">https://www.rfc-editor.org/rfc/rfc5308</a>&gt;</span>. </dd>
 <dd class="break"></dd>
-<dt id="RFC5492">[RFC5492]</dt>
-        <dd>
-<span class="refAuthor">Scudder, J.</span> and <span class="refAuthor">R. Chandra</span>, <span class="refTitle">"Capabilities Advertisement with BGP-4"</span>, <span class="seriesInfo">RFC 5492</span>, <span class="seriesInfo">DOI 10.17487/RFC5492</span>, <time datetime="2009-02" class="refDate">February 2009</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc5492">https://www.rfc-editor.org/rfc/rfc5492</a>&gt;</span>. </dd>
-<dd class="break"></dd>
 <dt id="RFC5925">[RFC5925]</dt>
         <dd>
 <span class="refAuthor">Touch, J.</span>, <span class="refAuthor">Mankin, A.</span>, and <span class="refAuthor">R. Bonica</span>, <span class="refTitle">"The TCP Authentication Option"</span>, <span class="seriesInfo">RFC 5925</span>, <span class="seriesInfo">DOI 10.17487/RFC5925</span>, <time datetime="2010-06" class="refDate">June 2010</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc5925">https://www.rfc-editor.org/rfc/rfc5925</a>&gt;</span>. </dd>
@@ -3909,10 +3895,6 @@ should identify the corresponding security considerations. For
 <a href="#section-8.2" class="section-number selfRef">8.2. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
         </h3>
 <dl class="references">
-<dt id="I-D.ietf-idr-bgp-model">[I-D.ietf-idr-bgp-model]</dt>
-        <dd>
-<span class="refAuthor">Jethanandani, M.</span>, <span class="refAuthor">Patel, K.</span>, <span class="refAuthor">Hares, S.</span>, and <span class="refAuthor">J. Haas</span>, <span class="refTitle">"YANG Model for Border Gateway Protocol (BGP-4)"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-idr-bgp-model-18</span>, <time datetime="2024-10-21" class="refDate">21 October 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-idr-bgp-model-18">https://datatracker.ietf.org/doc/html/draft-ietf-idr-bgp-model-18</a>&gt;</span>. </dd>
-<dd class="break"></dd>
 <dt id="I-D.ietf-netmod-rfc8407bis">[I-D.ietf-netmod-rfc8407bis]</dt>
         <dd>
 <span class="refAuthor">Bierman, A.</span>, <span class="refAuthor">Boucadair, M.</span>, and <span class="refAuthor">Q. Wu</span>, <span class="refTitle">"Guidelines for Authors and Reviewers of Documents Containing YANG Data Models"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-netmod-rfc8407bis-20</span>, <time datetime="2024-10-21" class="refDate">21 October 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-netmod-rfc8407bis-20">https://datatracker.ietf.org/doc/html/draft-ietf-netmod-rfc8407bis-20</a>&gt;</span>. </dd>
@@ -3933,10 +3915,6 @@ should identify the corresponding security considerations. For
         <dd>
 <span class="refAuthor">Wu, B.</span>, <span class="refAuthor">Dhody, D.</span>, <span class="refAuthor">Rokui, R.</span>, <span class="refAuthor">Saad, T.</span>, and <span class="refAuthor">J. Mullooly</span>, <span class="refTitle">"A YANG Data Model for the RFC 9543 Network Slice Service"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-teas-ietf-network-slice-nbi-yang-16</span>, <time datetime="2024-08-28" class="refDate">28 August 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-teas-ietf-network-slice-nbi-yang-16">https://datatracker.ietf.org/doc/html/draft-ietf-teas-ietf-network-slice-nbi-yang-16</a>&gt;</span>. </dd>
 <dd class="break"></dd>
-<dt id="RFC2918">[RFC2918]</dt>
-        <dd>
-<span class="refAuthor">Chen, E.</span>, <span class="refTitle">"Route Refresh Capability for BGP-4"</span>, <span class="seriesInfo">RFC 2918</span>, <span class="seriesInfo">DOI 10.17487/RFC2918</span>, <time datetime="2000-09" class="refDate">September 2000</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc2918">https://www.rfc-editor.org/rfc/rfc2918</a>&gt;</span>. </dd>
-<dd class="break"></dd>
 <dt id="RFC4252">[RFC4252]</dt>
         <dd>
 <span class="refAuthor">Ylonen, T.</span> and <span class="refAuthor">C. Lonvick, Ed.</span>, <span class="refTitle">"The Secure Shell (SSH) Authentication Protocol"</span>, <span class="seriesInfo">RFC 4252</span>, <span class="seriesInfo">DOI 10.17487/RFC4252</span>, <time datetime="2006-01" class="refDate">January 2006</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc4252">https://www.rfc-editor.org/rfc/rfc4252</a>&gt;</span>. </dd>
@@ -3944,14 +3922,6 @@ should identify the corresponding security considerations. For
 <dt id="RFC4364">[RFC4364]</dt>
         <dd>
 <span class="refAuthor">Rosen, E.</span> and <span class="refAuthor">Y. Rekhter</span>, <span class="refTitle">"BGP/MPLS IP Virtual Private Networks (VPNs)"</span>, <span class="seriesInfo">RFC 4364</span>, <span class="seriesInfo">DOI 10.17487/RFC4364</span>, <time datetime="2006-02" class="refDate">February 2006</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc4364">https://www.rfc-editor.org/rfc/rfc4364</a>&gt;</span>. </dd>
-<dd class="break"></dd>
-<dt id="RFC4724">[RFC4724]</dt>
-        <dd>
-<span class="refAuthor">Sangli, S.</span>, <span class="refAuthor">Chen, E.</span>, <span class="refAuthor">Fernando, R.</span>, <span class="refAuthor">Scudder, J.</span>, and <span class="refAuthor">Y. Rekhter</span>, <span class="refTitle">"Graceful Restart Mechanism for BGP"</span>, <span class="seriesInfo">RFC 4724</span>, <span class="seriesInfo">DOI 10.17487/RFC4724</span>, <time datetime="2007-01" class="refDate">January 2007</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc4724">https://www.rfc-editor.org/rfc/rfc4724</a>&gt;</span>. </dd>
-<dd class="break"></dd>
-<dt id="RFC4760">[RFC4760]</dt>
-        <dd>
-<span class="refAuthor">Bates, T.</span>, <span class="refAuthor">Chandra, R.</span>, <span class="refAuthor">Katz, D.</span>, and <span class="refAuthor">Y. Rekhter</span>, <span class="refTitle">"Multiprotocol Extensions for BGP-4"</span>, <span class="seriesInfo">RFC 4760</span>, <span class="seriesInfo">DOI 10.17487/RFC4760</span>, <time datetime="2007-01" class="refDate">January 2007</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc4760">https://www.rfc-editor.org/rfc/rfc4760</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC4862">[RFC4862]</dt>
         <dd>
@@ -3964,10 +3934,6 @@ should identify the corresponding security considerations. For
 <dt id="RFC7665">[RFC7665]</dt>
         <dd>
 <span class="refAuthor">Halpern, J., Ed.</span> and <span class="refAuthor">C. Pignataro, Ed.</span>, <span class="refTitle">"Service Function Chaining (SFC) Architecture"</span>, <span class="seriesInfo">RFC 7665</span>, <span class="seriesInfo">DOI 10.17487/RFC7665</span>, <time datetime="2015-10" class="refDate">October 2015</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc7665">https://www.rfc-editor.org/rfc/rfc7665</a>&gt;</span>. </dd>
-<dd class="break"></dd>
-<dt id="RFC7911">[RFC7911]</dt>
-        <dd>
-<span class="refAuthor">Walton, D.</span>, <span class="refAuthor">Retana, A.</span>, <span class="refAuthor">Chen, E.</span>, and <span class="refAuthor">J. Scudder</span>, <span class="refTitle">"Advertisement of Multiple Paths in BGP"</span>, <span class="seriesInfo">RFC 7911</span>, <span class="seriesInfo">DOI 10.17487/RFC7911</span>, <time datetime="2016-07" class="refDate">July 2016</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc7911">https://www.rfc-editor.org/rfc/rfc7911</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC8040">[RFC8040]</dt>
         <dd>
@@ -4004,10 +3970,6 @@ should identify the corresponding security considerations. For
 <dt id="RFC9182">[RFC9182]</dt>
         <dd>
 <span class="refAuthor">Barguil, S.</span>, <span class="refAuthor">Gonzalez de Dios, O., Ed.</span>, <span class="refAuthor">Boucadair, M., Ed.</span>, <span class="refAuthor">Munoz, L.</span>, and <span class="refAuthor">A. Aguado</span>, <span class="refTitle">"A YANG Network Data Model for Layer 3 VPNs"</span>, <span class="seriesInfo">RFC 9182</span>, <span class="seriesInfo">DOI 10.17487/RFC9182</span>, <time datetime="2022-02" class="refDate">February 2022</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9182">https://www.rfc-editor.org/rfc/rfc9182</a>&gt;</span>. </dd>
-<dd class="break"></dd>
-<dt id="RFC9234">[RFC9234]</dt>
-        <dd>
-<span class="refAuthor">Azimov, A.</span>, <span class="refAuthor">Bogomazov, E.</span>, <span class="refAuthor">Bush, R.</span>, <span class="refAuthor">Patel, K.</span>, and <span class="refAuthor">K. Sriram</span>, <span class="refTitle">"Route Leak Prevention and Detection Using Roles in UPDATE and OPEN Messages"</span>, <span class="seriesInfo">RFC 9234</span>, <span class="seriesInfo">DOI 10.17487/RFC9234</span>, <time datetime="2022-05" class="refDate">May 2022</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9234">https://www.rfc-editor.org/rfc/rfc9234</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC9291">[RFC9291]</dt>
         <dd>

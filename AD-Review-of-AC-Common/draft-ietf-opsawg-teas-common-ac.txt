@@ -345,16 +345,6 @@ Table of Contents
       requesting ACs.  For example, this identity can be used to tag
       primary and secondary ACs.
 
-   'bgp-capability':  Used to indicate a BGP capability [RFC5492].
-      Examples of BGP capabilities are Multiprotocol extensions for
-      BGP-4 [RFC4760], route refresh [RFC2918], graceful restart
-      [RFC4724], ADD-PATH [RFC7911], or BGP Role [RFC9234]}.
-
-      Only a subset of BGP capabilities might be useful for
-      customization at the service/network AC levels.  As such, this
-      document does not use the full list defined in Section 7.3 of
-      [I-D.ietf-idr-bgp-model].
-
    'role':  Used to indicate the type of an AC: User-to-Network
       Interface (UNI), Network-to-Network Interface (NNI), or public
       NNI.
@@ -2484,10 +2474,6 @@ Table of Contents
               DOI 10.17487/RFC5308, October 2008,
               <https://www.rfc-editor.org/rfc/rfc5308>.
 
-   [RFC5492]  Scudder, J. and R. Chandra, "Capabilities Advertisement
-              with BGP-4", RFC 5492, DOI 10.17487/RFC5492, February
-              2009, <https://www.rfc-editor.org/rfc/rfc5492>.
-
    [RFC5925]  Touch, J., Mankin, A., and R. Bonica, "The TCP
               Authentication Option", RFC 5925, DOI 10.17487/RFC5925,
               June 2010, <https://www.rfc-editor.org/rfc/rfc5925>.
@@ -2540,13 +2526,6 @@ Table of Contents
 
 8.2.  Informative References
 
-   [I-D.ietf-idr-bgp-model]
-              Jethanandani, M., Patel, K., Hares, S., and J. Haas, "YANG
-              Model for Border Gateway Protocol (BGP-4)", Work in
-              Progress, Internet-Draft, draft-ietf-idr-bgp-model-18, 21
-              October 2024, <https://datatracker.ietf.org/doc/html/
-              draft-ietf-idr-bgp-model-18>.
-
    [I-D.ietf-netmod-rfc8407bis]
               Bierman, A., Boucadair, M., and Q. Wu, "Guidelines for
               Authors and Reviewers of Documents Containing YANG Data
@@ -2589,10 +2568,6 @@ Table of Contents
               <https://datatracker.ietf.org/doc/html/draft-ietf-teas-
               ietf-network-slice-nbi-yang-16>.
 
-   [RFC2918]  Chen, E., "Route Refresh Capability for BGP-4", RFC 2918,
-              DOI 10.17487/RFC2918, September 2000,
-              <https://www.rfc-editor.org/rfc/rfc2918>.
-
    [RFC4252]  Ylonen, T. and C. Lonvick, Ed., "The Secure Shell (SSH)
               Authentication Protocol", RFC 4252, DOI 10.17487/RFC4252,
               January 2006, <https://www.rfc-editor.org/rfc/rfc4252>.
@@ -2600,16 +2575,6 @@ Table of Contents
    [RFC4364]  Rosen, E. and Y. Rekhter, "BGP/MPLS IP Virtual Private
               Networks (VPNs)", RFC 4364, DOI 10.17487/RFC4364, February
               2006, <https://www.rfc-editor.org/rfc/rfc4364>.
-
-   [RFC4724]  Sangli, S., Chen, E., Fernando, R., Scudder, J., and Y.
-              Rekhter, "Graceful Restart Mechanism for BGP", RFC 4724,
-              DOI 10.17487/RFC4724, January 2007,
-              <https://www.rfc-editor.org/rfc/rfc4724>.
-
-   [RFC4760]  Bates, T., Chandra, R., Katz, D., and Y. Rekhter,
-              "Multiprotocol Extensions for BGP-4", RFC 4760,
-              DOI 10.17487/RFC4760, January 2007,
-              <https://www.rfc-editor.org/rfc/rfc4760>.
 
    [RFC4862]  Thomson, S., Narten, T., and T. Jinmei, "IPv6 Stateless
               Address Autoconfiguration", RFC 4862,
@@ -2625,11 +2590,6 @@ Table of Contents
               Chaining (SFC) Architecture", RFC 7665,
               DOI 10.17487/RFC7665, October 2015,
               <https://www.rfc-editor.org/rfc/rfc7665>.
-
-   [RFC7911]  Walton, D., Retana, A., Chen, E., and J. Scudder,
-              "Advertisement of Multiple Paths in BGP", RFC 7911,
-              DOI 10.17487/RFC7911, July 2016,
-              <https://www.rfc-editor.org/rfc/rfc7911>.
 
    [RFC8040]  Bierman, A., Bjorklund, M., and K. Watsen, "RESTCONF
               Protocol", RFC 8040, DOI 10.17487/RFC8040, January 2017,
@@ -2672,12 +2632,6 @@ Table of Contents
               Ed., Munoz, L., and A. Aguado, "A YANG Network Data Model
               for Layer 3 VPNs", RFC 9182, DOI 10.17487/RFC9182,
               February 2022, <https://www.rfc-editor.org/rfc/rfc9182>.
-
-   [RFC9234]  Azimov, A., Bogomazov, E., Bush, R., Patel, K., and K.
-              Sriram, "Route Leak Prevention and Detection Using Roles
-              in UPDATE and OPEN Messages", RFC 9234,
-              DOI 10.17487/RFC9234, May 2022,
-              <https://www.rfc-editor.org/rfc/rfc9234>.
 
    [RFC9291]  Boucadair, M., Ed., Gonzalez de Dios, O., Ed., Barguil,
               S., and L. Munoz, "A YANG Network Data Model for Layer 2
