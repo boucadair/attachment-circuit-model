@@ -234,10 +234,6 @@ The module defines a set of identities, including the following:
 'precedence-type':
 : Used to indicate the redundancy type when requesting ACs. For example, this identity can be used to tag primary and secondary ACs.
 
-'bgp-capability':
-: Used to indicate a BGP capability {{!RFC5492}}. Examples of BGP capabilities are Multiprotocol extensions for BGP-4 {{?RFC4760}}, route refresh {{?RFC2918}}, graceful restart {{?RFC4724}}, ADD-PATH {{?RFC7911}}, or BGP Role {{?RFC9234}}}.
-: Only a subset of BGP capabilities might be useful for customization at the service/network AC levels. As such, this document does not use the full list defined in {{Section 7.3 of ?I-D.ietf-idr-bgp-model}}.
-
 'role':
 : Used to indicate the type of an AC: User-to-Network Interface (UNI), Network-to-Network Interface (NNI), or public NNI.
 
