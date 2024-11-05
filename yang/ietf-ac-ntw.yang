@@ -1041,26 +1041,6 @@ module ietf-ac-ntw {
                      Section 4.2";
       }
     }
-    list capability {
-      key "address-family";
-      description
-        "Customized set of BGP capabilities per address family.";
-      leaf address-family {
-        type identityref {
-          base vpn-common:address-family;
-        }
-        description
-          "Indicates the address family.";
-      }
-      leaf name {
-        type identityref {
-          base ac-common:bgp-capability;
-        }
-        mandatory true;
-        description
-          "Indicates the name of BGP capability.";
-      }
-    }
   }
 
   grouping bgp-base-peer-group {
