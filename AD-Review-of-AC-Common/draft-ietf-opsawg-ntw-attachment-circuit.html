@@ -2858,11 +2858,8 @@ module: ietf-ac-ntw
        |     |        |  +--rw violate-action?      enumeration
        |     |        |  +--rw restart-timer?       uint32
        |     |        +--rw bgp-timers
-       |     |        |  +--rw keepalive?   uint16
-       |     |        |  +--rw hold-time?   uint16
-       |     |        +--rw capability* [address-family]
-       |     |           +--rw address-family    identityref
-       |     |           +--rw name              identityref
+       |     |           +--rw keepalive?   uint16
+       |     |           +--rw hold-time?   uint16
        |     +--rw ospf  {vpn-common:rtg-ospf}?
        |     |  ...
        |     +--rw isis  {vpn-common:rtg-isis}?
@@ -2929,9 +2926,6 @@ module: ietf-ac-ntw
        |     |  |     +--rw bgp-timers
        |     |  |     |  +--rw keepalive?   uint16
        |     |  |     |  +--rw hold-time?   uint16
-       |     |  |     +--rw capability* [address-family]
-       |     |  |     |  +--rw address-family    identityref
-       |     |  |     |  +--rw name              identityref
        |     |  |     +--rw authentication
        |     |  |        +--rw enabled?           boolean
        |     |  |        +--rw keying-material
@@ -2985,9 +2979,6 @@ module: ietf-ac-ntw
        |     |     +--rw bgp-timers
        |     |     |  +--rw keepalive?   uint16
        |     |     |  +--rw hold-time?   uint16
-       |     |     +--rw capability* [address-family]
-       |     |     |  +--rw address-family    identityref
-       |     |     |  +--rw name              identityref
        |     |     +--rw bfd {vpn-common:bfd}?
        |     |     |  +--rw enabled?                         boolean
        |     |     |  +--rw failure-detection-profile-ref?   leafref
