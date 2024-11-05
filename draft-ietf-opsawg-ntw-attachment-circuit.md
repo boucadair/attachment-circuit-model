@@ -610,10 +610,6 @@ The following data nodes are supported for each 'peer-group':
       KeepaliveTimer between a PE and a BGP peer ({{Section 4.4 of !RFC4271}}).
 :  Both timers are expressed in seconds.
 
-'capability':
-: Specifies a set of BGP capabilities (e.g., route refresh capability {{?RFC2918}})
-to be enabled per address family.
-
 'bfd':
 : Indicates whether BFD is enabled or disabled for this nighbor. A BFD profile to apply may also be provided.
 
