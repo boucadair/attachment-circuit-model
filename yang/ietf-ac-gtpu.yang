@@ -1,4 +1,4 @@
-module ietf-ac-glue {
+module ietf-ac-gtpu {
   yang-version 1.1;
   namespace "urn:ietf:params:xml:ns:yang:ietf-ac-gtpu";
   prefix ac-gtpu;
