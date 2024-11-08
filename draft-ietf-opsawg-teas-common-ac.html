@@ -2295,6 +2295,31 @@ module ietf-ac-common {
        termination for the AC.";
   }
 
+  // Layer 3 tunnel types
+
+  identity l3-tunnel-type {
+    description
+      "Base identity for Layer 3 tunnel selection for an AC.";
+  }
+
+  identity ip-in-ip {
+    base l3-tunnel-type;
+    description
+      "IP in IP Tunneling.";
+  }
+
+  identity ipsec {
+    base l3-tunnel-type;
+    description
+      "IP Security (IPsec).";
+  }
+
+  identity gre {
+    base l3-tunnel-type;
+    description
+      "Generic Routing Encapsulation (GRE).";
+  }
+
   // Tagging precedence
 
   identity precedence-type {

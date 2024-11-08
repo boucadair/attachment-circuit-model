@@ -2856,13 +2856,15 @@ a parent AC can be defined with a set of stable and common information, while
 <a href="#section-5.2.5.2" class="section-number selfRef">5.2.5.2. </a><a href="#name-ip-connection-structure" class="section-name selfRef">IP Connection Structure</a>
             </h5>
 <p id="section-5.2.5.2-1">The 'ip-connection' container is used to configure the relevant IP properties of an AC. The model supports the usage of dynamic and static addressing. This structure relies upon the common groupings defined in <span>[<a href="#I-D.ietf-opsawg-teas-common-ac" class="cite xref">I-D.ietf-opsawg-teas-common-ac</a>]</span>. Both IPv4 and IPv6 parameters are supported.<a href="#section-5.2.5.2-1" class="pilcrow">¶</a></p>
-<p id="section-5.2.5.2-2"><a href="#ipv4-svc-tree" class="auto internal xref">Figure 12</a> shows the structure of the IPv4 connection.<a href="#section-5.2.5.2-2" class="pilcrow">¶</a></p>
+<p id="section-5.2.5.2-2">For ACs that require Layer 3 tunnel establishment, the ACaaS includes a provision for future augmentations to define
+tunnel-specific data nodes ('l3-tunnel-service'). Such augmentations <span class="bcp14">MUST</span> be conditional based on the tunnel type ('type').<a href="#section-5.2.5.2-2" class="pilcrow">¶</a></p>
+<p id="section-5.2.5.2-3"><a href="#ipv4-svc-tree" class="auto internal xref">Figure 12</a> shows the structure of the IPv4 connection.<a href="#section-5.2.5.2-3" class="pilcrow">¶</a></p>
 <span id="name-layer-3-connection-tree-str"></span><div id="ipv4-svc-tree">
 <figure id="figure-12">
-              <div class="alignCenter art-text artwork" id="section-5.2.5.2-3.1">
+              <div class="alignCenter art-text artwork" id="section-5.2.5.2-4.1">
 <pre>
         | ...
-        +--rw ip-connection  {ac-common:layer3-ac}?
+        +--rw ip-connection {ac-common:layer3-ac}?
         |  +--rw ipv4 {vpn-common:ipv4}?
         |  |  +--rw local-address?
         |  |  |       inet:ipv4-address
@@ -2898,62 +2900,70 @@ a parent AC can be defined with a set of stable and common information, while
         |  |           +--rw address-id          string
         |  |           +--rw customer-address?   inet:ipv4-address
         |  |           +--rw failure-detection-profile?
-        |  |                      failure-detection-profile-reference
-        |  |                      {vpn-common:bfd}?
+        |  |                   failure-detection-profile-reference
+        |  |                   {vpn-common:bfd}?
         |  +--rw ipv6 {vpn-common:ipv6}?
-        |     ...
+        |  |  ...
+        |  +--rw (l3-service)?
+        |     +--:(l3-tunnel-service)
+        |        +--rw l3-tunnel-service
+        |           +--rw type?   identityref
 </pre>
 </div>
 <figcaption><a href="#figure-12" class="selfRef">Figure 12</a>:
 <a href="#name-layer-3-connection-tree-str" class="selfRef">Layer 3 Connection Tree Structure (IPv4)</a>
               </figcaption></figure>
 </div>
-<p id="section-5.2.5.2-4"><a href="#ipv6-svc-tree" class="auto internal xref">Figure 13</a> shows the structure of the IPv6 connection.<a href="#section-5.2.5.2-4" class="pilcrow">¶</a></p>
+<p id="section-5.2.5.2-5"><a href="#ipv6-svc-tree" class="auto internal xref">Figure 13</a> shows the structure of the IPv6 connection.<a href="#section-5.2.5.2-5" class="pilcrow">¶</a></p>
 <span id="name-layer-3-connection-tree-stru"></span><div id="ipv6-svc-tree">
 <figure id="figure-13">
-              <div class="alignCenter art-text artwork" id="section-5.2.5.2-5.1">
+              <div class="alignCenter art-text artwork" id="section-5.2.5.2-6.1">
 <pre>
         | ...
         +--rw ip-connection  {ac-common:layer3-ac}?
         |  +--rw ipv4 {vpn-common:ipv4}?
         |  |  ...
         |  +--rw ipv6 {vpn-common:ipv6}?
-        |     +--rw local-address?
-        |     |       inet:ipv6-address
-        |     +--rw virtual-address?
-        |     |       inet:ipv6-address
-        |     +--rw prefix-length?                           uint8
-        |     +--rw address-allocation-type?
-        |     |       identityref
-        |     +--rw (allocation-type)?
-        |        +--:(dynamic)
-        |        |  +--rw (address-assign)?
-        |        |  |  +--:(number)
-        |        |  |  |  +--rw number-of-dynamic-address?   uint16
-        |        |  |  +--:(explicit)
-        |        |  |     +--rw customer-addresses
-        |        |  |        +--rw address-pool* [pool-id]
-        |        |  |           +--rw pool-id          string
-        |        |  |           +--rw start-address
-        |        |  |           |       inet:ipv6-address
-        |        |  |           +--rw end-address?
-        |        |  |                   inet:ipv6-address
-        |        |  +--rw (provider-dhcp)?
-        |        |  |  +--:(dhcp-service-type)
-        |        |  |     +--rw dhcp-service-type?
-        |        |  |             enumeration
-        |        |  +--rw (dhcp-relay)?
-        |        |     +--:(customer-dhcp-servers)
-        |        |        +--rw customer-dhcp-servers
-        |        |           +--rw server-ip-address*
-        |        |                   inet:ipv6-address
-        |        +--:(static-addresses)
-        |           +--rw address* [address-id]
-        |              +--rw address-id          string
-        |              +--rw customer-address?   inet:ipv6-address
-        |              +--rw failure-detection-profile?
-        |                         failure-detection-profile-reference
-        |                         {vpn-common:bfd}?
+        |  |  +--rw local-address?
+        |  |  |       inet:ipv6-address
+        |  |  +--rw virtual-address?
+        |  |  |       inet:ipv6-address
+        |  |  +--rw prefix-length?                           uint8
+        |  |  +--rw address-allocation-type?
+        |  |  |       identityref
+        |  |  +--rw (allocation-type)?
+        |  |     +--:(dynamic)
+        |  |     |  +--rw (address-assign)?
+        |  |     |  |  +--:(number)
+        |  |     |  |  |  +--rw number-of-dynamic-address?   uint16
+        |  |     |  |  +--:(explicit)
+        |  |     |  |     +--rw customer-addresses
+        |  |     |  |        +--rw address-pool* [pool-id]
+        |  |     |  |           +--rw pool-id          string
+        |  |     |  |           +--rw start-address
+        |  |     |  |           |       inet:ipv6-address
+        |  |     |  |           +--rw end-address?
+        |  |     |  |                   inet:ipv6-address
+        |  |     |  +--rw (provider-dhcp)?
+        |  |     |  |  +--:(dhcp-service-type)
+        |  |     |  |     +--rw dhcp-service-type?
+        |  |     |  |             enumeration
+        |  |     |  +--rw (dhcp-relay)?
+        |  |     |     +--:(customer-dhcp-servers)
+        |  |     |        +--rw customer-dhcp-servers
+        |  |     |           +--rw server-ip-address*
+        |  |     |                   inet:ipv6-address
+        |  |     +--:(static-addresses)
+        |  |        +--rw address* [address-id]
+        |  |           +--rw address-id          string
+        |  |           +--rw customer-address?   inet:ipv6-address
+        |  |           +--rw failure-detection-profile?
+        |  |                   failure-detection-profile-reference
+        |  |                   {vpn-common:bfd}?
+        |  +--rw (l3-service)?
+        |     +--:(l3-tunnel-service)
+        |        +--rw l3-tunnel-service
+        |           +--rw type?   identityref
         | ...
 </pre>
 </div>
@@ -4755,6 +4765,23 @@ module ietf-ac-svc {
           }
           description
             "Adds a failure detection profile.";
+        }
+      }
+    }
+    choice l3-service {
+      description
+        "The Layer 3 connectivity service can be provided by
+         specifying a Layer 3 tunnel service.";
+      container l3-tunnel-service {
+        description
+          "Defines a Layer 3 tunnel termination.
+           It is only applicable when a tunnel is required.";
+        leaf type {
+          type identityref {
+            base ac-common:l3-tunnel-type;
+          }
+          description
+            "Selects the tunnel termination type for an AC.";
         }
       }
     }
@@ -9576,43 +9603,47 @@ module: ietf-ac-svc
      |  |  |                   failure-detection-profile-reference
      |  |  |                   {vpn-common:bfd}?
      |  |  +--rw ipv6 {vpn-common:ipv6}?
-     |  |     +--rw local-address?
-     |  |     |       inet:ipv6-address
-     |  |     +--rw virtual-address?
-     |  |     |       inet:ipv6-address
-     |  |     +--rw prefix-length?                           uint8
-     |  |     +--rw address-allocation-type?
-     |  |     |       identityref
-     |  |     +--rw (allocation-type)?
-     |  |        +--:(dynamic)
-     |  |        |  +--rw (address-assign)?
-     |  |        |  |  +--:(number)
-     |  |        |  |  |  +--rw number-of-dynamic-address?   uint16
-     |  |        |  |  +--:(explicit)
-     |  |        |  |     +--rw customer-addresses
-     |  |        |  |        +--rw address-pool* [pool-id]
-     |  |        |  |           +--rw pool-id          string
-     |  |        |  |           +--rw start-address
-     |  |        |  |           |       inet:ipv6-address
-     |  |        |  |           +--rw end-address?
-     |  |        |  |                   inet:ipv6-address
-     |  |        |  +--rw (provider-dhcp)?
-     |  |        |  |  +--:(dhcp-service-type)
-     |  |        |  |     +--rw dhcp-service-type?
-     |  |        |  |             enumeration
-     |  |        |  +--rw (dhcp-relay)?
-     |  |        |     +--:(customer-dhcp-servers)
-     |  |        |        +--rw customer-dhcp-servers
-     |  |        |           +--rw server-ip-address*
-     |  |        |                   inet:ipv6-address
-     |  |        +--:(static-addresses)
-     |  |           +--rw address* [address-id]
-     |  |              +--rw address-id                   string
-     |  |              +--rw customer-address?
-     |  |              |       inet:ipv6-address
-     |  |              +--rw failure-detection-profile?
-     |  |                      failure-detection-profile-reference
-     |  |                      {vpn-common:bfd}?
+     |  |  |  +--rw local-address?
+     |  |  |  |       inet:ipv6-address
+     |  |  |  +--rw virtual-address?
+     |  |  |  |       inet:ipv6-address
+     |  |  |  +--rw prefix-length?                           uint8
+     |  |  |  +--rw address-allocation-type?
+     |  |  |  |       identityref
+     |  |  |  +--rw (allocation-type)?
+     |  |  |     +--:(dynamic)
+     |  |  |     |  +--rw (address-assign)?
+     |  |  |     |  |  +--:(number)
+     |  |  |     |  |  |  +--rw number-of-dynamic-address?   uint16
+     |  |  |     |  |  +--:(explicit)
+     |  |  |     |  |     +--rw customer-addresses
+     |  |  |     |  |        +--rw address-pool* [pool-id]
+     |  |  |     |  |           +--rw pool-id          string
+     |  |  |     |  |           +--rw start-address
+     |  |  |     |  |           |       inet:ipv6-address
+     |  |  |     |  |           +--rw end-address?
+     |  |  |     |  |                   inet:ipv6-address
+     |  |  |     |  +--rw (provider-dhcp)?
+     |  |  |     |  |  +--:(dhcp-service-type)
+     |  |  |     |  |     +--rw dhcp-service-type?
+     |  |  |     |  |             enumeration
+     |  |  |     |  +--rw (dhcp-relay)?
+     |  |  |     |     +--:(customer-dhcp-servers)
+     |  |  |     |        +--rw customer-dhcp-servers
+     |  |  |     |           +--rw server-ip-address*
+     |  |  |     |                   inet:ipv6-address
+     |  |  |     +--:(static-addresses)
+     |  |  |        +--rw address* [address-id]
+     |  |  |           +--rw address-id                   string
+     |  |  |           +--rw customer-address?
+     |  |  |           |       inet:ipv6-address
+     |  |  |           +--rw failure-detection-profile?
+     |  |  |                   failure-detection-profile-reference
+     |  |  |                   {vpn-common:bfd}?
+     |  |  +--rw (l3-service)?
+     |  |     +--:(l3-tunnel-service)
+     |  |        +--rw l3-tunnel-service
+     |  |           +--rw type?   identityref
      |  +--rw routing-protocols
      |  |  +--rw routing-protocol* [id]
      |  |     +--rw id                  string
@@ -9992,43 +10023,47 @@ module: ietf-ac-svc
         |  |                   failure-detection-profile-reference
         |  |                   {vpn-common:bfd}?
         |  +--rw ipv6 {vpn-common:ipv6}?
-        |     +--rw local-address?
-        |     |       inet:ipv6-address
-        |     +--rw virtual-address?
-        |     |       inet:ipv6-address
-        |     +--rw prefix-length?                           uint8
-        |     +--rw address-allocation-type?
-        |     |       identityref
-        |     +--rw (allocation-type)?
-        |        +--:(dynamic)
-        |        |  +--rw (address-assign)?
-        |        |  |  +--:(number)
-        |        |  |  |  +--rw number-of-dynamic-address?   uint16
-        |        |  |  +--:(explicit)
-        |        |  |     +--rw customer-addresses
-        |        |  |        +--rw address-pool* [pool-id]
-        |        |  |           +--rw pool-id          string
-        |        |  |           +--rw start-address
-        |        |  |           |       inet:ipv6-address
-        |        |  |           +--rw end-address?
-        |        |  |                   inet:ipv6-address
-        |        |  +--rw (provider-dhcp)?
-        |        |  |  +--:(dhcp-service-type)
-        |        |  |     +--rw dhcp-service-type?
-        |        |  |             enumeration
-        |        |  +--rw (dhcp-relay)?
-        |        |     +--:(customer-dhcp-servers)
-        |        |        +--rw customer-dhcp-servers
-        |        |           +--rw server-ip-address*
-        |        |                   inet:ipv6-address
-        |        +--:(static-addresses)
-        |           +--rw address* [address-id]
-        |              +--rw address-id                   string
-        |              +--rw customer-address?
-        |              |       inet:ipv6-address
-        |              +--rw failure-detection-profile?
-        |                      failure-detection-profile-reference
-        |                      {vpn-common:bfd}?
+        |  |  +--rw local-address?
+        |  |  |       inet:ipv6-address
+        |  |  +--rw virtual-address?
+        |  |  |       inet:ipv6-address
+        |  |  +--rw prefix-length?                           uint8
+        |  |  +--rw address-allocation-type?
+        |  |  |       identityref
+        |  |  +--rw (allocation-type)?
+        |  |     +--:(dynamic)
+        |  |     |  +--rw (address-assign)?
+        |  |     |  |  +--:(number)
+        |  |     |  |  |  +--rw number-of-dynamic-address?   uint16
+        |  |     |  |  +--:(explicit)
+        |  |     |  |     +--rw customer-addresses
+        |  |     |  |        +--rw address-pool* [pool-id]
+        |  |     |  |           +--rw pool-id          string
+        |  |     |  |           +--rw start-address
+        |  |     |  |           |       inet:ipv6-address
+        |  |     |  |           +--rw end-address?
+        |  |     |  |                   inet:ipv6-address
+        |  |     |  +--rw (provider-dhcp)?
+        |  |     |  |  +--:(dhcp-service-type)
+        |  |     |  |     +--rw dhcp-service-type?
+        |  |     |  |             enumeration
+        |  |     |  +--rw (dhcp-relay)?
+        |  |     |     +--:(customer-dhcp-servers)
+        |  |     |        +--rw customer-dhcp-servers
+        |  |     |           +--rw server-ip-address*
+        |  |     |                   inet:ipv6-address
+        |  |     +--:(static-addresses)
+        |  |        +--rw address* [address-id]
+        |  |           +--rw address-id                   string
+        |  |           +--rw customer-address?
+        |  |           |       inet:ipv6-address
+        |  |           +--rw failure-detection-profile?
+        |  |                   failure-detection-profile-reference
+        |  |                   {vpn-common:bfd}?
+        |  +--rw (l3-service)?
+        |     +--:(l3-tunnel-service)
+        |        +--rw l3-tunnel-service
+        |           +--rw type?   identityref
         +--rw routing-protocols
         |  +--rw routing-protocol* [id]
         |     +--rw id                  string
