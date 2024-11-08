@@ -70,13 +70,13 @@ module ietf-ac-gtpu {
     description
       "Augments Layer 3 AC service with required data nodes for
        GTP-U support.";
-     choice udp-source-port {
+     choice udp-port {
        description
          "Choice of specifying the source port number or referring
           to a group of port numbers.";
-       container port-range-or-operator {
+       container source-port-range-or-operator {
          description
-            "Indicates a set of ports.";
+            "Indicates a set of source ports numbers.";
          uses packet-fields:port-range-or-operator;
       }
     }
