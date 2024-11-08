@@ -14,7 +14,7 @@
        This document specifies a network model for attachment circuits. The model can be used for the provisioning of attachment circuits prior or during service provisioning (e.g., VPN, Network Slice Service). A companion service model is specified in the YANG Data Models for Bearers and 'Attachment Circuits'-as-a-Service (ACaaS) (I-D.ietf-opsawg-teas-attachment-circuit). 
        The module augments the base network ('ietf-network') and the Service Attachment Point (SAP) models with the detailed information for the provisioning of attachment circuits in Provider Edges (PEs). 
     " name="description">
-<meta content="xml2rfc 3.23.2" name="generator">
+<meta content="xml2rfc 3.24.0" name="generator">
 <meta content="Slice Service" name="keyword">
 <meta content="L3VPN" name="keyword">
 <meta content="L2VPN" name="keyword">
@@ -31,13 +31,13 @@
 <meta content="Network Slicing" name="keyword">
 <meta content="draft-ietf-opsawg-ntw-attachment-circuit-latest" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.23.2
+  xml2rfc 3.24.0
     Python 3.12.7
     ConfigArgParse 1.7
     google-i18n-address 3.1.1
     intervaltree 3.1.0
     Jinja2 3.1.4
-    lxml 4.9.4
+    lxml 5.3.0
     platformdirs 4.3.6
     pycountry 22.3.5
     PyYAML 6.0.1
@@ -179,31 +179,6 @@
 }
 
 @font-face {
-  font-family: 'Cabin Condensed';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: local('Cabin Condensed SemiBold'), local('CabinCondensed-SemiBold'), url('https://martinthomson.github.io/rfc-css/fonts/cabincondensed-semibold-vietnamese.woff2') format('woff2');
-  unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
-}
-@font-face {
-  font-family: 'Cabin Condensed';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: local('Cabin Condensed SemiBold'), local('CabinCondensed-SemiBold'), url('https://martinthomson.github.io/rfc-css/fonts/cabincondensed-semibold-latin-ext.woff2') format('woff2');
-  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-@font-face {
-  font-family: 'Cabin Condensed';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: local('Cabin Condensed SemiBold'), local('CabinCondensed-SemiBold'), url('https://martinthomson.github.io/rfc-css/fonts/cabincondensed-semibold-latin.woff2') format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-
-@font-face {
   font-family: 'Oxygen Mono';
   font-style: normal;
   font-weight: 400;
@@ -220,6 +195,77 @@
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: italic;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-italic-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: italic;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-italic-cyrillic.woff2') format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: italic;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-italic-greek.woff2') format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: italic;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-italic-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: italic;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-italic-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: normal;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-regular-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: normal;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-regular-cyrillic.woff2') format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: normal;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-regular-greek.woff2') format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: normal;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-regular-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: normal;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-regular-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 :root {
   color-scheme: light dark;
   --background-color: #fff;
@@ -232,6 +278,7 @@
   --pilcrow-strong: #bbb;
   --small-font-size: 14.5px;
   --font-mono: 'Oxygen Mono', monospace;
+  --font-title: "Sofia Sans Semi Condensed", sans-serif;
   scrollbar-color: #bbb #eee;
 }
 body {
@@ -250,8 +297,8 @@ body {
 
 /* headings */
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Cabin Condensed", sans-serif;
-  font-weight: 600;
+  font-family: var(--font-title);
+  font-weight: 680;
   margin: 0.8em 0 0.3em;
   font-size-adjust: 0.5;
   color: var(--title-color);
@@ -659,6 +706,12 @@ sub, sup {
   padding: 0.75em 0 2em 0;
   margin-bottom: 1em;
 }
+@media screen {
+  #toc nav {
+    font-family: var(--font-title);
+    font-weight: 360;
+  }
+}
 #toc nav ul {
   margin: 0 0.5em 0 0;
   padding: 0;
@@ -1042,11 +1095,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">A YANG Network Model for ACs</td>
-<td class="right">October 2024</td>
+<td class="right">November 2024</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Boucadair, et al.</td>
-<td class="center">Expires 1 May 2025</td>
+<td class="center">Expires 12 May 2025</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1059,12 +1112,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-opsawg-ntw-attachment-circuit-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2024-10-28" class="published">28 October 2024</time>
+<time datetime="2024-11-08" class="published">8 November 2024</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2025-05-01">1 May 2025</time></dd>
+<dd class="expires"><time datetime="2025-05-12">12 May 2025</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1127,7 +1180,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 1 May 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 12 May 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1172,6 +1225,14 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4">
             <p id="section-toc.1-1.4.1"><a href="#section-4" class="auto internal xref">4</a>.  <a href="#name-sample-uses-of-the-attachme" class="internal xref">Sample Uses of the Attachment Circuit Data Models</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.1">
+                <p id="section-toc.1-1.4.2.1.1"><a href="#section-4.1" class="auto internal xref">4.1</a>.  <a href="#name-acs-terminated-by-one-or-mu" class="internal xref">ACs Terminated by One or Multiple Customer Edges (CEs)</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.2">
+                <p id="section-toc.1-1.4.2.2.1"><a href="#section-4.2" class="auto internal xref">4.2</a>.  <a href="#name-positioning-the-ac-network-" class="internal xref">Positioning the AC Network Model in the Overall Service Delivery Process</a></p>
+</li>
+            </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5">
             <p id="section-toc.1-1.5.1"><a href="#section-5" class="auto internal xref">5</a>.  <a href="#name-description-of-the-attachme" class="internal xref">Description of the Attachment Circuit YANG Module</a></p>
@@ -1257,13 +1318,16 @@ svg :is([fill="white"], [fill^="#fff"]) {
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11">
-            <p id="section-toc.1-1.11.1"><a href="#appendix-B" class="auto internal xref"></a><a href="#name-acknowledgments" class="internal xref">Acknowledgments</a></p>
+            <p id="section-toc.1-1.11.1"><a href="#appendix-B" class="auto internal xref">Appendix B</a>.  <a href="#name-full-tree" class="internal xref">Full Tree</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.12">
-            <p id="section-toc.1-1.12.1"><a href="#appendix-C" class="auto internal xref"></a><a href="#name-contributors" class="internal xref">Contributors</a></p>
+            <p id="section-toc.1-1.12.1"><a href="#appendix-C" class="auto internal xref"></a><a href="#name-acknowledgments" class="internal xref">Acknowledgments</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.13">
-            <p id="section-toc.1-1.13.1"><a href="#appendix-D" class="auto internal xref"></a><a href="#name-authors-addresses" class="internal xref">Authors' Addresses</a></p>
+            <p id="section-toc.1-1.13.1"><a href="#appendix-D" class="auto internal xref"></a><a href="#name-contributors" class="internal xref">Contributors</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.14">
+            <p id="section-toc.1-1.14.1"><a href="#appendix-E" class="auto internal xref"></a><a href="#name-authors-addresses" class="internal xref">Authors' Addresses</a></p>
 </li>
         </ul>
 </nav>
@@ -1279,7 +1343,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
    customer edges (CEs), peer Autonomous System Border Routers (ASBRs),
    data centers gateways, or Internet Exchange Points.<a href="#section-1-1" class="pilcrow">¶</a></p>
 <p id="section-1-2">The procedure to provision a service in a service provider network may depend on the practices adopted by a service provider, including the flow put in place for the provisioning of advanced network services and how they are bound to an Attachment Circuit (AC). For example, the same attachment circuit may host multiple services (e.g., Layer 2 Virtual Private Network (VPN), or Layer 3 VPN, or Network Slice Service <span>[<a href="#RFC9543" class="cite xref">RFC9543</a>]</span>). In order to avoid service interference and redundant information in various locations, a service provider may expose an interface to manage ACs network-wide. Customers can then request a standalone attachment circuit to be put in place, and then refer to that attachment circuit when requesting services to be bound to that AC. <span>[<a href="#I-D.ietf-opsawg-teas-attachment-circuit" class="cite xref">I-D.ietf-opsawg-teas-attachment-circuit</a>]</span> specifies a data model for managing attachment circuits as a service.<a href="#section-1-2" class="pilcrow">¶</a></p>
-<p id="section-1-3"><a href="#sec-module" class="auto internal xref">Section 6</a> specifies a network model for attachment circuits ('ietf-ac-ntw'). The model can be used for the provisioning of ACs prior or during service provisioning. For example, <span>[<a href="#I-D.ietf-opsawg-ac-lxsm-lxnm-glue" class="cite xref">I-D.ietf-opsawg-ac-lxsm-lxnm-glue</a>]</span> specifies augmentations of the L2VPN Network Model (L2NM) <span>[<a href="#RFC9291" class="cite xref">RFC9291</a>]</span> and the L3VPN Network Model (L3NM) <span>[<a href="#RFC9182" class="cite xref">RFC9182</a>]</span> to bind LxVPNs to ACs that are provisioned using the procedure defined in this document.<a href="#section-1-3" class="pilcrow">¶</a></p>
+<p id="section-1-3"><a href="#sec-module" class="auto internal xref">Section 6</a> specifies a network model for attachment circuits ("ietf-ac-ntw"). The model can be used for the provisioning of ACs in a provider network prior or during service provisioning. For example, <span>[<a href="#I-D.ietf-opsawg-ac-lxsm-lxnm-glue" class="cite xref">I-D.ietf-opsawg-ac-lxsm-lxnm-glue</a>]</span> specifies augmentations to the L2VPN Network Model (L2NM) <span>[<a href="#RFC9291" class="cite xref">RFC9291</a>]</span> and the L3VPN Network Model (L3NM) <span>[<a href="#RFC9182" class="cite xref">RFC9182</a>]</span> to bind LxVPNs to ACs that are provisioned using the procedure defined in this document.<a href="#section-1-3" class="pilcrow">¶</a></p>
 <p id="section-1-4">The document leverages <span>[<a href="#RFC9182" class="cite xref">RFC9182</a>]</span> and <span>[<a href="#RFC9291" class="cite xref">RFC9291</a>]</span> by adopting an AC provisioning structure that uses data nodes that are defined in those RFCs. Some refinements were introduced to cover not only conventional service provider networks, but also specifics of other target deployments (e.g., cloud network).<a href="#section-1-4" class="pilcrow">¶</a></p>
 <p id="section-1-5">The AC network model is designed as augmentations of both the 'ietf-network' model <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span> and the Service Attachment Point (SAP) model <span>[<a href="#RFC9408" class="cite xref">RFC9408</a>]</span>. An attachment circuit can be bound to a single or multiple SAPs. Likewise, the model is designed to accommodate deployments where a SAP can be bound to one or multiple ACs (e.g., a parent AC and its child ACs).<a href="#section-1-5" class="pilcrow">¶</a></p>
 <span id="name-attachment-circuits-example"></span><div id="sap-ac-ntw">
@@ -1429,7 +1493,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         </figcaption></figure>
 </div>
 <p id="section-1-7">The AC network model uses the AC common model defined in <span>[<a href="#I-D.ietf-opsawg-teas-common-ac" class="cite xref">I-D.ietf-opsawg-teas-common-ac</a>]</span>.<a href="#section-1-7" class="pilcrow">¶</a></p>
-<p id="section-1-8">The YANG data model in this document conforms to the Network Management Datastore Architecture (NMDA) defined in <span>[<a href="#RFC8342" class="cite xref">RFC8342</a>]</span>.<a href="#section-1-8" class="pilcrow">¶</a></p>
+<p id="section-1-8">The YANG 1.1 <span>[<a href="#RFC7950" class="cite xref">RFC7950</a>]</span> data model in this document conforms to the Network Management Datastore Architecture (NMDA) defined in <span>[<a href="#RFC8342" class="cite xref">RFC8342</a>]</span>.<a href="#section-1-8" class="pilcrow">¶</a></p>
 <p id="section-1-9">Sample examples are provided in <a href="#sec-examples" class="auto internal xref">Appendix A</a>.<a href="#section-1-9" class="pilcrow">¶</a></p>
 <div id="editorial-note-to-be-removed-by-rfc-editor">
 <section id="section-1.1">
@@ -1728,157 +1792,288 @@ To bind Layer 2 VPN or Layer 3 VPN services with ACs, "ietf-ac-glue" augments th
       <h2 id="name-sample-uses-of-the-attachme">
 <a href="#section-4" class="section-number selfRef">4. </a><a href="#name-sample-uses-of-the-attachme" class="section-name selfRef">Sample Uses of the Attachment Circuit Data Models</a>
       </h2>
-<p id="section-4-1"><a href="#_u-ex" class="auto internal xref">Figure 3</a> shows the positioning of the AC network model in the overall service delivery process. The 'ietf-ac-ntw' module is a network model which augments the SAP with a comprehensive set of parameters to reflect the attachment circuits that are in place in a network. The model also maintains the mapping with the service references that are used to expose these ACs to customers <span>[<a href="#I-D.ietf-opsawg-teas-attachment-circuit" class="cite xref">I-D.ietf-opsawg-teas-attachment-circuit</a>]</span>. Whether the same naming conventions to reference an AC are used in the service and network layers is deployment-specific.<a href="#section-4-1" class="pilcrow">¶</a></p>
-<span id="name-an-example-of-the-network-a"></span><div id="_u-ex">
+<div id="acs-terminated-by-one-or-multiple-customer-edges-ces">
+<section id="section-4.1">
+        <h3 id="name-acs-terminated-by-one-or-mu">
+<a href="#section-4.1" class="section-number selfRef">4.1. </a><a href="#name-acs-terminated-by-one-or-mu" class="section-name selfRef">ACs Terminated by One or Multiple Customer Edges (CEs)</a>
+        </h3>
+<p id="section-4.1-1"><a href="#uc" class="auto internal xref">Figure 3</a> depicts a sample target topology that involve ACs:<a href="#section-4.1-1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-4.1-2.1">
+            <p id="section-4.1-2.1.1">ACs are terminated by a SAP at the network side. See <a href="#sap-ac-ntw" class="auto internal xref">Figure 1</a> for an example of SAPs within a PE.<a href="#section-4.1-2.1.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-4.1-2.2">
+            <p id="section-4.1-2.2.1">A CE can be either a physical device or a logical entity. Such logical entity is typically a software component (e.g., a virtual service function that is hosted within the provider's network or a third-party infrastructure). A CE is seen by the network as a peer SAP <span>[<a href="#RFC9408" class="cite xref">RFC9408</a>]</span>.<a href="#section-4.1-2.2.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-4.1-2.3">
+            <p id="section-4.1-2.3.1">CEs may be either dedicated to one single connectivity service or host multiple connectivity services (e.g., CEs with roles of service functions <span>[<a href="#RFC7665" class="cite xref">RFC7665</a>]</span>).<a href="#section-4.1-2.3.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-4.1-2.4">
+            <p id="section-4.1-2.4.1">A network provider may bind a single AC to one or multiple peer SAPs (e.g., CE1 and CE2 are tagged as peer SAPs for the same AC). For example, and as discussed in <span>[<a href="#RFC4364" class="cite xref">RFC4364</a>]</span>, multiple CEs can be attached to a PE over the same attachment circuit. This scenario is typically implemented when the Layer 2 infrastructure between the CE and the network is a multipoint service.<a href="#section-4.1-2.4.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-4.1-2.5">
+            <p id="section-4.1-2.5.1">A single CE may terminate multiple ACs, which can be associated with the same bearer or distinct bearers (e.g., CE4).<a href="#section-4.1-2.5.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-4.1-2.6">
+            <p id="section-4.1-2.6.1">Customers may request protection schemes in which the ACs associated with their endpoints are terminated by the same PE (e.g., CE3), distinct PEs (e.g., CE4), etc. The network provider uses this request to decide where to terminate the AC in the service provider network and also whether to enable specific capabilities (e.g., Virtual Router Redundancy Protocol (VRRP)).<a href="#section-4.1-2.6.1" class="pilcrow">¶</a></p>
+</li>
+        </ul>
+<p id="section-4.1-3">The "ietf-ac-ntw" is a network model that is used to manage the PE side of ACs at a provider network.<a href="#section-4.1-3" class="pilcrow">¶</a></p>
+<span id="name-examples-of-acs"></span><div id="uc">
 <figure id="figure-3">
-        <div id="section-4-2.1">
-          <div class="alignCenter art-svg artwork" id="section-4-2.1.1">
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="688" width="512" viewBox="0 0 512 688" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
-              <path d="M 8,592 L 8,624" fill="none" stroke="black"></path>
-              <path d="M 48,592 L 48,624" fill="none" stroke="black"></path>
-              <path d="M 96,464 L 96,512" fill="none" stroke="black"></path>
-              <path d="M 104,352 L 104,400" fill="none" stroke="black"></path>
-              <path d="M 120,576 L 120,640" fill="none" stroke="black"></path>
-              <path d="M 136,400 L 136,464" fill="none" stroke="black"></path>
-              <path d="M 136,512 L 136,568" fill="none" stroke="black"></path>
-              <path d="M 176,320 L 176,352" fill="none" stroke="black"></path>
-              <path d="M 176,464 L 176,512" fill="none" stroke="black"></path>
-              <path d="M 208,32 L 208,64" fill="none" stroke="black"></path>
-              <path d="M 208,128 L 208,176" fill="none" stroke="black"></path>
-              <path d="M 208,240 L 208,288" fill="none" stroke="black"></path>
-              <path d="M 208,408 L 208,528" fill="none" stroke="black"></path>
-              <path d="M 232,352 L 232,400" fill="none" stroke="black"></path>
-              <path d="M 272,64 L 272,128" fill="none" stroke="black"></path>
-              <path d="M 272,176 L 272,240" fill="none" stroke="black"></path>
-              <path d="M 272,288 L 272,320" fill="none" stroke="black"></path>
-              <path d="M 296,352 L 296,400" fill="none" stroke="black"></path>
-              <path d="M 336,32 L 336,64" fill="none" stroke="black"></path>
-              <path d="M 336,128 L 336,176" fill="none" stroke="black"></path>
-              <path d="M 336,240 L 336,288" fill="none" stroke="black"></path>
-              <path d="M 368,320 L 368,352" fill="none" stroke="black"></path>
-              <path d="M 368,400 L 368,568" fill="none" stroke="black"></path>
-              <path d="M 384,576 L 384,640" fill="none" stroke="black"></path>
-              <path d="M 424,352 L 424,400" fill="none" stroke="black"></path>
-              <path d="M 456,592 L 456,624" fill="none" stroke="black"></path>
-              <path d="M 496,592 L 496,624" fill="none" stroke="black"></path>
-              <path d="M 208,32 L 336,32" fill="none" stroke="black"></path>
-              <path d="M 208,64 L 336,64" fill="none" stroke="black"></path>
-              <path d="M 208,128 L 336,128" fill="none" stroke="black"></path>
-              <path d="M 208,176 L 336,176" fill="none" stroke="black"></path>
-              <path d="M 208,240 L 336,240" fill="none" stroke="black"></path>
-              <path d="M 208,288 L 336,288" fill="none" stroke="black"></path>
-              <path d="M 176,320 L 368,320" fill="none" stroke="black"></path>
-              <path d="M 104,352 L 232,352" fill="none" stroke="black"></path>
-              <path d="M 296,352 L 424,352" fill="none" stroke="black"></path>
-              <path d="M 104,400 L 232,400" fill="none" stroke="black"></path>
-              <path d="M 296,400 L 424,400" fill="none" stroke="black"></path>
-              <path d="M 96,464 L 176,464" fill="none" stroke="black"></path>
-              <path d="M 96,512 L 176,512" fill="none" stroke="black"></path>
-              <path d="M 120,576 L 384,576" fill="none" stroke="black"></path>
-              <path d="M 8,592 L 48,592" fill="none" stroke="black"></path>
-              <path d="M 456,592 L 496,592" fill="none" stroke="black"></path>
-              <path d="M 48,608 L 120,608" fill="none" stroke="black"></path>
-              <path d="M 384,608 L 456,608" fill="none" stroke="black"></path>
-              <path d="M 8,624 L 48,624" fill="none" stroke="black"></path>
-              <path d="M 456,624 L 496,624" fill="none" stroke="black"></path>
-              <path d="M 120,640 L 384,640" fill="none" stroke="black"></path>
-              <g class="text">
-                <text x="268" y="52">Customer</text>
-                <text x="108" y="84">Customer</text>
-                <text x="176" y="84">Service</text>
-                <text x="232" y="84">Model</text>
-                <text x="72" y="100">ietf-l2vpn-svc,</text>
-                <text x="200" y="100">ietf-l3vpn-svc,</text>
-                <text x="392" y="100">ietf-network-slice-service,</text>
-                <text x="100" y="116">ietf-ac-svc,</text>
-                <text x="208" y="116">ietf-ac-glue,</text>
-                <text x="296" y="116">and</text>
-                <text x="376" y="116">ietf-bearer-svc</text>
-                <text x="272" y="148">Service</text>
-                <text x="272" y="164">Orchestration</text>
-                <text x="112" y="196">Network</text>
-                <text x="168" y="196">Model</text>
-                <text x="72" y="212">ietf-l2vpn-ntw,</text>
-                <text x="200" y="212">ietf-l3vpn-ntw,</text>
-                <text x="336" y="212">ietf-sap-ntw,</text>
-                <text x="448" y="212">ietf-ac-glue,</text>
-                <text x="96" y="228">and</text>
-                <text x="160" y="228">ietf-ac-ntw</text>
-                <text x="264" y="260">Network</text>
-                <text x="272" y="276">Orchestration</text>
-                <text x="56" y="308">Network</text>
-                <text x="144" y="308">Configuration</text>
-                <text x="224" y="308">Model</text>
-                <text x="164" y="372">Domain</text>
-                <text x="364" y="372">Domain</text>
-                <text x="168" y="388">Orchestration</text>
-                <text x="360" y="388">Orchestration</text>
-                <text x="36" y="420">Device</text>
-                <text x="64" y="436">Configuration</text>
-                <text x="32" y="452">Model</text>
-                <text x="132" y="484">Config</text>
-                <text x="136" y="500">Manager</text>
-                <text x="256" y="548">NETCONF/CLI................</text>
-                <text x="376" y="548">.</text>
-                <text x="208" y="564">|</text>
-                <text x="84" y="596">Bearer</text>
-                <text x="420" y="596">Bearer</text>
-                <text x="28" y="612">CE#1</text>
-                <text x="248" y="612">Network</text>
-                <text x="476" y="612">CE#2</text>
-                <text x="28" y="660">Site</text>
-                <text x="56" y="660">A</text>
-                <text x="476" y="660">Site</text>
-                <text x="504" y="660">B</text>
-              </g>
-            </svg><a href="#section-4-2.1.1" class="pilcrow">¶</a>
+          <div id="section-4.1-4.1">
+            <div class="alignCenter art-svg artwork" id="section-4.1-4.1.1">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="304" width="512" viewBox="0 0 512 304" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
+                <path d="M 8,64 L 8,112" fill="none" stroke="black"></path>
+                <path d="M 8,144 L 8,192" fill="none" stroke="black"></path>
+                <path d="M 72,64 L 72,112" fill="none" stroke="black"></path>
+                <path d="M 72,144 L 72,192" fill="none" stroke="black"></path>
+                <path d="M 112,80 L 112,176" fill="none" stroke="black"></path>
+                <path d="M 176,112 L 176,144" fill="none" stroke="black"></path>
+                <path d="M 192,32 L 192,104" fill="none" stroke="black"></path>
+                <path d="M 192,152 L 192,224" fill="none" stroke="black"></path>
+                <path d="M 200,112 L 200,144" fill="none" stroke="black"></path>
+                <path d="M 280,208 L 280,240" fill="none" stroke="black"></path>
+                <path d="M 288,248 L 288,272" fill="none" stroke="black"></path>
+                <path d="M 304,208 L 304,240" fill="none" stroke="black"></path>
+                <path d="M 352,64 L 352,112" fill="none" stroke="black"></path>
+                <path d="M 352,144 L 352,192" fill="none" stroke="black"></path>
+                <path d="M 360,32 L 360,56" fill="none" stroke="black"></path>
+                <path d="M 360,200 L 360,224" fill="none" stroke="black"></path>
+                <path d="M 376,64 L 376,112" fill="none" stroke="black"></path>
+                <path d="M 376,144 L 376,192" fill="none" stroke="black"></path>
+                <path d="M 448,64 L 448,112" fill="none" stroke="black"></path>
+                <path d="M 448,144 L 448,192" fill="none" stroke="black"></path>
+                <path d="M 480,192 L 480,272" fill="none" stroke="black"></path>
+                <path d="M 504,64 L 504,112" fill="none" stroke="black"></path>
+                <path d="M 504,144 L 504,192" fill="none" stroke="black"></path>
+                <path d="M 192,32 L 360,32" fill="none" stroke="black"></path>
+                <path d="M 8,64 L 72,64" fill="none" stroke="black"></path>
+                <path d="M 352,64 L 376,64" fill="none" stroke="black"></path>
+                <path d="M 448,64 L 504,64" fill="none" stroke="black"></path>
+                <path d="M 72,80 L 112,80" fill="none" stroke="black"></path>
+                <path d="M 376,80 L 400,80" fill="none" stroke="black"></path>
+                <path d="M 424,80 L 448,80" fill="none" stroke="black"></path>
+                <path d="M 376,96 L 400,96" fill="none" stroke="black"></path>
+                <path d="M 424,96 L 448,96" fill="none" stroke="black"></path>
+                <path d="M 8,112 L 72,112" fill="none" stroke="black"></path>
+                <path d="M 176,112 L 200,112" fill="none" stroke="black"></path>
+                <path d="M 352,112 L 376,112" fill="none" stroke="black"></path>
+                <path d="M 448,112 L 504,112" fill="none" stroke="black"></path>
+                <path d="M 112,128 L 136,128" fill="none" stroke="black"></path>
+                <path d="M 160,128 L 176,128" fill="none" stroke="black"></path>
+                <path d="M 8,144 L 72,144" fill="none" stroke="black"></path>
+                <path d="M 176,144 L 200,144" fill="none" stroke="black"></path>
+                <path d="M 352,144 L 376,144" fill="none" stroke="black"></path>
+                <path d="M 448,144 L 504,144" fill="none" stroke="black"></path>
+                <path d="M 376,160 L 400,160" fill="none" stroke="black"></path>
+                <path d="M 424,160 L 448,160" fill="none" stroke="black"></path>
+                <path d="M 72,176 L 112,176" fill="none" stroke="black"></path>
+                <path d="M 376,176 L 400,176" fill="none" stroke="black"></path>
+                <path d="M 424,176 L 448,176" fill="none" stroke="black"></path>
+                <path d="M 8,192 L 72,192" fill="none" stroke="black"></path>
+                <path d="M 352,192 L 376,192" fill="none" stroke="black"></path>
+                <path d="M 448,192 L 504,192" fill="none" stroke="black"></path>
+                <path d="M 280,208 L 304,208" fill="none" stroke="black"></path>
+                <path d="M 192,224 L 280,224" fill="none" stroke="black"></path>
+                <path d="M 304,224 L 360,224" fill="none" stroke="black"></path>
+                <path d="M 280,240 L 304,240" fill="none" stroke="black"></path>
+                <path d="M 288,272 L 376,272" fill="none" stroke="black"></path>
+                <path d="M 400,272 L 480,272" fill="none" stroke="black"></path>
+                <g class="text">
+                  <text x="412" y="68">(b1)</text>
+                  <text x="412" y="84">AC</text>
+                  <text x="40" y="100">CE1</text>
+                  <text x="364" y="100">PE</text>
+                  <text x="412" y="100">AC</text>
+                  <text x="480" y="100">CE3</text>
+                  <text x="412" y="116">(b2)</text>
+                  <text x="148" y="132">AC</text>
+                  <text x="188" y="132">PE</text>
+                  <text x="272" y="132">Network</text>
+                  <text x="360" y="132">|</text>
+                  <text x="412" y="148">(b3)</text>
+                  <text x="412" y="164">AC</text>
+                  <text x="40" y="180">CE2</text>
+                  <text x="364" y="180">PE</text>
+                  <text x="412" y="180">AC</text>
+                  <text x="480" y="180">CE4</text>
+                  <text x="412" y="196">(b3)</text>
+                  <text x="292" y="228">PE</text>
+                  <text x="388" y="276">AC</text>
+                  <text x="20" y="292">(bx)</text>
+                  <text x="48" y="292">=</text>
+                  <text x="84" y="292">bearer</text>
+                  <text x="124" y="292">Id</text>
+                  <text x="144" y="292">x</text>
+                </g>
+              </svg><a href="#section-4.1-4.1.1" class="pilcrow">¶</a>
 </div>
 </div>
 <figcaption><a href="#figure-3" class="selfRef">Figure 3</a>:
-<a href="#name-an-example-of-the-network-a" class="selfRef">An Example of the Network AC Model Usage</a>
-        </figcaption></figure>
+<a href="#name-examples-of-acs" class="selfRef">Examples of ACs</a>
+          </figcaption></figure>
 </div>
-<p id="section-4-3">Similar to <span>[<a href="#RFC9408" class="cite xref">RFC9408</a>]</span>, the 'ietf-ac-ntw' module can be used for both User-to-Network Interface (UNI) and
-Network-to-Network Interface (NNI). For example, all the ACs shown in <a href="#fig-inter-pn" class="auto internal xref">Figure 4</a> have a 'role' set
-to 'ietf-sap-ntw:nni'. Typically, ASBRs of each network are directly
-connected to ASBRs of a neighboring network via one or multiple links (bearers). ASBRs of "Network#1" behave as a PE and treat the other adjacent ASBRs as if it were a CE.<a href="#section-4-3" class="pilcrow">¶</a></p>
-<span id="name-an-example-of-the-network-ac"></span><div id="fig-inter-pn">
+</section>
+</div>
+<div id="positioning-the-ac-network-model-in-the-overall-service-delivery-process">
+<section id="section-4.2">
+        <h3 id="name-positioning-the-ac-network-">
+<a href="#section-4.2" class="section-number selfRef">4.2. </a><a href="#name-positioning-the-ac-network-" class="section-name selfRef">Positioning the AC Network Model in the Overall Service Delivery Process</a>
+        </h3>
+<p id="section-4.2-1"><a href="#_u-ex" class="auto internal xref">Figure 4</a> shows the positioning of the AC network model in the overall service delivery process. The "ietf-ac-ntw" module is a network model which augments the SAP with a comprehensive set of parameters to reflect the attachment circuits that are in place in a network. The model also maintains the mapping with the service references that are used to expose those ACs to customer using the 'ietf-ac-svc' module defined in <span>[<a href="#I-D.ietf-opsawg-teas-attachment-circuit" class="cite xref">I-D.ietf-opsawg-teas-attachment-circuit</a>]</span>. Whether the same naming conventions to reference an AC are used in the service and network layers is deployment-specific.<a href="#section-4.2-1" class="pilcrow">¶</a></p>
+<span id="name-an-example-of-the-network-a"></span><div id="_u-ex">
 <figure id="figure-4">
-        <div id="section-4-4.1">
-          <div class="alignCenter art-svg artwork" id="section-4-4.1.1">
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="240" width="376" viewBox="0 0 376 240" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
-              <path d="M 8,32 L 8,224" fill="none" stroke="black"></path>
-              <path d="M 176,32 L 176,224" fill="none" stroke="black"></path>
-              <path d="M 256,32 L 256,112" fill="none" stroke="black"></path>
-              <path d="M 256,144 L 256,224" fill="none" stroke="black"></path>
-              <path d="M 368,32 L 368,112" fill="none" stroke="black"></path>
-              <path d="M 368,144 L 368,224" fill="none" stroke="black"></path>
-              <path d="M 8,32 L 176,32" fill="none" stroke="black"></path>
-              <path d="M 256,32 L 368,32" fill="none" stroke="black"></path>
-              <path d="M 176,48 L 200,48" fill="none" stroke="black"></path>
-              <path d="M 224,48 L 256,48" fill="none" stroke="black"></path>
-              <path d="M 176,80 L 200,80" fill="none" stroke="black"></path>
-              <path d="M 224,80 L 256,80" fill="none" stroke="black"></path>
-              <path d="M 256,112 L 368,112" fill="none" stroke="black"></path>
-              <path d="M 256,144 L 368,144" fill="none" stroke="black"></path>
-              <path d="M 176,192 L 200,192" fill="none" stroke="black"></path>
-              <path d="M 224,192 L 256,192" fill="none" stroke="black"></path>
-              <path d="M 8,224 L 176,224" fill="none" stroke="black"></path>
-              <path d="M 256,224 L 368,224" fill="none" stroke="black"></path>
-              <g class="text">
-                <text x="212" y="52">AC</text>
-                <text x="212" y="84">AC</text>
-                <text x="312" y="84">Network#2</text>
-                <text x="88" y="116">Network#1</text>
-                <text x="212" y="196">AC</text>
-                <text x="312" y="196">Network#3</text>
-              </g>
-            </svg><a href="#section-4-4.1.1" class="pilcrow">¶</a>
+          <div id="section-4.2-2.1">
+            <div class="alignCenter art-svg artwork" id="section-4.2-2.1.1">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="688" width="512" viewBox="0 0 512 688" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
+                <path d="M 8,592 L 8,624" fill="none" stroke="black"></path>
+                <path d="M 48,592 L 48,624" fill="none" stroke="black"></path>
+                <path d="M 96,464 L 96,512" fill="none" stroke="black"></path>
+                <path d="M 104,352 L 104,400" fill="none" stroke="black"></path>
+                <path d="M 120,576 L 120,640" fill="none" stroke="black"></path>
+                <path d="M 136,400 L 136,464" fill="none" stroke="black"></path>
+                <path d="M 136,512 L 136,568" fill="none" stroke="black"></path>
+                <path d="M 176,320 L 176,352" fill="none" stroke="black"></path>
+                <path d="M 176,464 L 176,512" fill="none" stroke="black"></path>
+                <path d="M 208,32 L 208,64" fill="none" stroke="black"></path>
+                <path d="M 208,128 L 208,176" fill="none" stroke="black"></path>
+                <path d="M 208,240 L 208,288" fill="none" stroke="black"></path>
+                <path d="M 208,408 L 208,528" fill="none" stroke="black"></path>
+                <path d="M 232,352 L 232,400" fill="none" stroke="black"></path>
+                <path d="M 272,64 L 272,128" fill="none" stroke="black"></path>
+                <path d="M 272,176 L 272,240" fill="none" stroke="black"></path>
+                <path d="M 272,288 L 272,320" fill="none" stroke="black"></path>
+                <path d="M 296,352 L 296,400" fill="none" stroke="black"></path>
+                <path d="M 336,32 L 336,64" fill="none" stroke="black"></path>
+                <path d="M 336,128 L 336,176" fill="none" stroke="black"></path>
+                <path d="M 336,240 L 336,288" fill="none" stroke="black"></path>
+                <path d="M 368,320 L 368,352" fill="none" stroke="black"></path>
+                <path d="M 368,400 L 368,568" fill="none" stroke="black"></path>
+                <path d="M 384,576 L 384,640" fill="none" stroke="black"></path>
+                <path d="M 424,352 L 424,400" fill="none" stroke="black"></path>
+                <path d="M 456,592 L 456,624" fill="none" stroke="black"></path>
+                <path d="M 496,592 L 496,624" fill="none" stroke="black"></path>
+                <path d="M 208,32 L 336,32" fill="none" stroke="black"></path>
+                <path d="M 208,64 L 336,64" fill="none" stroke="black"></path>
+                <path d="M 208,128 L 336,128" fill="none" stroke="black"></path>
+                <path d="M 208,176 L 336,176" fill="none" stroke="black"></path>
+                <path d="M 208,240 L 336,240" fill="none" stroke="black"></path>
+                <path d="M 208,288 L 336,288" fill="none" stroke="black"></path>
+                <path d="M 176,320 L 368,320" fill="none" stroke="black"></path>
+                <path d="M 104,352 L 232,352" fill="none" stroke="black"></path>
+                <path d="M 296,352 L 424,352" fill="none" stroke="black"></path>
+                <path d="M 104,400 L 232,400" fill="none" stroke="black"></path>
+                <path d="M 296,400 L 424,400" fill="none" stroke="black"></path>
+                <path d="M 96,464 L 176,464" fill="none" stroke="black"></path>
+                <path d="M 96,512 L 176,512" fill="none" stroke="black"></path>
+                <path d="M 120,576 L 384,576" fill="none" stroke="black"></path>
+                <path d="M 8,592 L 48,592" fill="none" stroke="black"></path>
+                <path d="M 456,592 L 496,592" fill="none" stroke="black"></path>
+                <path d="M 48,608 L 120,608" fill="none" stroke="black"></path>
+                <path d="M 384,608 L 456,608" fill="none" stroke="black"></path>
+                <path d="M 8,624 L 48,624" fill="none" stroke="black"></path>
+                <path d="M 456,624 L 496,624" fill="none" stroke="black"></path>
+                <path d="M 120,640 L 384,640" fill="none" stroke="black"></path>
+                <g class="text">
+                  <text x="268" y="52">Customer</text>
+                  <text x="108" y="84">Customer</text>
+                  <text x="176" y="84">Service</text>
+                  <text x="232" y="84">Model</text>
+                  <text x="72" y="100">ietf-l2vpn-svc,</text>
+                  <text x="200" y="100">ietf-l3vpn-svc,</text>
+                  <text x="392" y="100">ietf-network-slice-service,</text>
+                  <text x="100" y="116">ietf-ac-svc,</text>
+                  <text x="208" y="116">ietf-ac-glue,</text>
+                  <text x="296" y="116">and</text>
+                  <text x="376" y="116">ietf-bearer-svc</text>
+                  <text x="272" y="148">Service</text>
+                  <text x="272" y="164">Orchestration</text>
+                  <text x="112" y="196">Network</text>
+                  <text x="168" y="196">Model</text>
+                  <text x="72" y="212">ietf-l2vpn-ntw,</text>
+                  <text x="200" y="212">ietf-l3vpn-ntw,</text>
+                  <text x="336" y="212">ietf-sap-ntw,</text>
+                  <text x="448" y="212">ietf-ac-glue,</text>
+                  <text x="96" y="228">and</text>
+                  <text x="160" y="228">ietf-ac-ntw</text>
+                  <text x="264" y="260">Network</text>
+                  <text x="272" y="276">Orchestration</text>
+                  <text x="56" y="308">Network</text>
+                  <text x="144" y="308">Configuration</text>
+                  <text x="224" y="308">Model</text>
+                  <text x="164" y="372">Domain</text>
+                  <text x="364" y="372">Domain</text>
+                  <text x="168" y="388">Orchestration</text>
+                  <text x="360" y="388">Orchestration</text>
+                  <text x="36" y="420">Device</text>
+                  <text x="64" y="436">Configuration</text>
+                  <text x="32" y="452">Model</text>
+                  <text x="132" y="484">Config</text>
+                  <text x="136" y="500">Manager</text>
+                  <text x="256" y="548">NETCONF/CLI................</text>
+                  <text x="376" y="548">.</text>
+                  <text x="208" y="564">|</text>
+                  <text x="84" y="596">Bearer</text>
+                  <text x="420" y="596">Bearer</text>
+                  <text x="28" y="612">CE#1</text>
+                  <text x="248" y="612">Network</text>
+                  <text x="476" y="612">CE#2</text>
+                  <text x="28" y="660">Site</text>
+                  <text x="56" y="660">A</text>
+                  <text x="476" y="660">Site</text>
+                  <text x="504" y="660">B</text>
+                </g>
+              </svg><a href="#section-4.2-2.1.1" class="pilcrow">¶</a>
 </div>
 </div>
 <figcaption><a href="#figure-4" class="selfRef">Figure 4</a>:
+<a href="#name-an-example-of-the-network-a" class="selfRef">An Example of the Network AC Model Usage</a>
+          </figcaption></figure>
+</div>
+<p id="section-4.2-3">Similar to <span>[<a href="#RFC9408" class="cite xref">RFC9408</a>]</span>, the "ietf-ac-ntw" module can be used for both User-to-Network Interface (UNI) and
+Network-to-Network Interface (NNI). For example, all the ACs shown in <a href="#fig-inter-pn" class="auto internal xref">Figure 5</a> have a 'role' set
+to 'ietf-sap-ntw:nni'. Typically, ASBRs of each network are directly
+connected to ASBRs of a neighboring network via one or multiple links (bearers). ASBRs of "Network#1" behave as a PE and treat the other adjacent ASBRs as if it were a CE.<a href="#section-4.2-3" class="pilcrow">¶</a></p>
+<span id="name-an-example-of-the-network-ac"></span><div id="fig-inter-pn">
+<figure id="figure-5">
+          <div id="section-4.2-4.1">
+            <div class="alignCenter art-svg artwork" id="section-4.2-4.1.1">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="240" width="376" viewBox="0 0 376 240" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
+                <path d="M 8,32 L 8,224" fill="none" stroke="black"></path>
+                <path d="M 176,32 L 176,224" fill="none" stroke="black"></path>
+                <path d="M 256,32 L 256,112" fill="none" stroke="black"></path>
+                <path d="M 256,144 L 256,224" fill="none" stroke="black"></path>
+                <path d="M 368,32 L 368,112" fill="none" stroke="black"></path>
+                <path d="M 368,144 L 368,224" fill="none" stroke="black"></path>
+                <path d="M 8,32 L 176,32" fill="none" stroke="black"></path>
+                <path d="M 256,32 L 368,32" fill="none" stroke="black"></path>
+                <path d="M 176,48 L 200,48" fill="none" stroke="black"></path>
+                <path d="M 224,48 L 256,48" fill="none" stroke="black"></path>
+                <path d="M 176,80 L 200,80" fill="none" stroke="black"></path>
+                <path d="M 224,80 L 256,80" fill="none" stroke="black"></path>
+                <path d="M 256,112 L 368,112" fill="none" stroke="black"></path>
+                <path d="M 256,144 L 368,144" fill="none" stroke="black"></path>
+                <path d="M 176,192 L 200,192" fill="none" stroke="black"></path>
+                <path d="M 224,192 L 256,192" fill="none" stroke="black"></path>
+                <path d="M 8,224 L 176,224" fill="none" stroke="black"></path>
+                <path d="M 256,224 L 368,224" fill="none" stroke="black"></path>
+                <g class="text">
+                  <text x="212" y="52">AC</text>
+                  <text x="212" y="84">AC</text>
+                  <text x="312" y="84">Network#2</text>
+                  <text x="88" y="116">Network#1</text>
+                  <text x="212" y="196">AC</text>
+                  <text x="312" y="196">Network#3</text>
+                </g>
+              </svg><a href="#section-4.2-4.1.1" class="pilcrow">¶</a>
+</div>
+</div>
+<figcaption><a href="#figure-5" class="selfRef">Figure 5</a>:
 <a href="#name-an-example-of-the-network-ac" class="selfRef">An Example of the Network AC Model Usage Between Provider Networks</a>
-        </figcaption></figure>
+          </figcaption></figure>
+</div>
+</section>
 </div>
 </section>
 </div>
@@ -1887,19 +2082,16 @@ connected to ASBRs of a neighboring network via one or multiple links (bearers).
       <h2 id="name-description-of-the-attachme">
 <a href="#section-5" class="section-number selfRef">5. </a><a href="#name-description-of-the-attachme" class="section-name selfRef">Description of the Attachment Circuit YANG Module</a>
       </h2>
-<p id="section-5-1">The full tree diagram of the 'ietf-ac-ntw' module can be generated using the
-"pyang" tool <span>[<a href="#PYANG" class="cite xref">PYANG</a>]</span>.  That tree is not included here because it is
-too long (<span><a href="https://rfc-editor.org/rfc/rfc8340#section-3.4" class="relref">Section 3.4</a> of [<a href="#RFC8340" class="cite xref">RFC8340</a>]</span>).  Instead, subtrees are provided in the following subsections
+<p id="section-5-1">The full tree diagram of the "ietf-ac-ntw" module is provided in <a href="#AC-Ntw-Tree" class="auto internal xref">Appendix B</a>. Subtrees are provided in the following subsections
 for the reader's convenience.<a href="#section-5-1" class="pilcrow">¶</a></p>
-<p id="section-5-2">The full tree of the 'ietf-ac-ntw' is provided in <span>[<a href="#AC-Ntw-Tree" class="cite xref">AC-Ntw-Tree</a>]</span>.<a href="#section-5-2" class="pilcrow">¶</a></p>
 <div id="overall-structure-of-the-module">
 <section id="section-5.1">
         <h3 id="name-overall-structure-of-the-mo">
 <a href="#section-5.1" class="section-number selfRef">5.1. </a><a href="#name-overall-structure-of-the-mo" class="section-name selfRef">Overall Structure of the Module</a>
         </h3>
-<p id="section-5.1-1">The overall tree structure of the 'ietf-ac-ntw' module is shown in <a href="#o-ntw-tree" class="auto internal xref">Figure 5</a>.<a href="#section-5.1-1" class="pilcrow">¶</a></p>
+<p id="section-5.1-1">The overall tree structure of the "ietf-ac-ntw" module is shown in <a href="#o-ntw-tree" class="auto internal xref">Figure 6</a>.<a href="#section-5.1-1" class="pilcrow">¶</a></p>
 <span id="name-overall-tree-structure"></span><div id="o-ntw-tree">
-<figure id="figure-5">
+<figure id="figure-6">
           <div class="alignLeft art-text artwork" id="section-5.1-2.1">
 <pre>
 augment /nw:networks/nw:network:
@@ -1910,15 +2102,15 @@ augment /nw:networks/nw:network:
 augment /nw:networks/nw:network/nw:node:
   +--rw ac* [name]
      +--rw name                 string
-     +--rw ac-svc-ref?          ac-svc:attachment-circuit-reference
-     +--rw ac-profile* [ac-profile-ref]
+     +--rw svc-ref?             ac-svc:attachment-circuit-reference
+     +--rw profile* [ac-profile-ref]
      |  +--rw ac-profile-ref    leafref
      |  +--rw network-ref?      -&gt; /nw:networks/network/network-id
-     +--rw ac-parent-ref
+     +--rw parent-ref
      |  +--rw ac-ref?        leafref
      |  +--rw node-ref?      leafref
      |  +--rw network-ref?   -&gt; /nw:networks/network/network-id
-     +--ro ac-child-ref
+     +--ro child-ref
      |  +--ro ac-ref*        leafref
      |  +--ro node-ref?      leafref
      |  +--ro network-ref?   -&gt; /nw:networks/network/network-id
@@ -1953,14 +2145,14 @@ augment /nw:networks/nw:network/nw:node:
        +--rw network-ref?   -&gt; /nw:networks/network/network-id
 </pre>
 </div>
-<figcaption><a href="#figure-5" class="selfRef">Figure 5</a>:
+<figcaption><a href="#figure-6" class="selfRef">Figure 6</a>:
 <a href="#name-overall-tree-structure" class="selfRef">Overall Tree Structure</a>
           </figcaption></figure>
 </div>
 <p id="section-5.1-3">A node can host one or more SAPs. Per <span>[<a href="#RFC9408" class="cite xref">RFC9408</a>]</span>, a SAP is an abstraction of the network
 reference point (the PE side of an AC, in the context of this document) where network services can be delivered and/or are delivered to customers. Each SAP terminates one or multiple ACs. Each AC in turn may be terminated by one or more peer SAPs ('peer-sap'). In order to expose such AC/SAP binding information, the SAP model <span>[<a href="#RFC9408" class="cite xref">RFC9408</a>]</span> is augmented with required AC-related information.<a href="#section-5.1-3" class="pilcrow">¶</a></p>
 <p id="section-5.1-4">Unlike the AC service model <span>[<a href="#I-D.ietf-opsawg-teas-attachment-circuit" class="cite xref">I-D.ietf-opsawg-teas-attachment-circuit</a>]</span>, an AC is uniquely identified by a name within the scope of a node, not a network. A textual description of the AC may be provided ('description').<a href="#section-5.1-4" class="pilcrow">¶</a></p>
-<p id="section-5.1-5">Also, in order to ease the correlation between the AC exposed at the service layer and the AC that is actually provisioned in the network operation, a reference to the AC exposed to the customer ('ac-svc-ref') is stored in the 'ietf-ac-ntw' module.<a href="#section-5.1-5" class="pilcrow">¶</a></p>
+<p id="section-5.1-5">Also, in order to ease the correlation between the AC exposed at the service layer and the AC that is actually provisioned in the network operation, a reference to the AC exposed to the customer ('svc-ref') is stored in the "ietf-ac-ntw" module.<a href="#section-5.1-5" class="pilcrow">¶</a></p>
 <p id="section-5.1-6">ACs that are terminated by a SAP are listed in the 'ac' container under '/nw:networks/nw:network/nw:node/sap:service/sap:sap'. A controller may indicate a filter based on the service type (e.g., Network Slice or L3VPN) to retrieve the list of available SAPs, and thus ACs, for that service.<a href="#section-5.1-6" class="pilcrow">¶</a></p>
 <p id="section-5.1-7">In order to factorize common data that is provisioned for a group of ACs, a set of profiles (<a href="#sec-profiles" class="auto internal xref">Section 5.3</a>) can be defined at the network level, and then called under the node level. The information contained in a profile is thus inherited, unless the corresponding data node is refined at the AC level. In such a case, the value provided at the AC level takes precedence over the global one.<a href="#section-5.1-7" class="pilcrow">¶</a></p>
 <p id="section-5.1-8">In contexts where the same AC is terminated by multiple peer SAPs (e.g., an AC with multiple CEs) but a subset of them have specific information, the module allows operators to:<a href="#section-5.1-8" class="pilcrow">¶</a></p>
@@ -1969,13 +2161,13 @@ reference point (the PE side of an AC, in the context of this document) where ne
             <p id="section-5.1-9.1.1">Define a parent AC that may list all these CEs as peer SAPs.<a href="#section-5.1-9.1.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-5.1-9.2">
-            <p id="section-5.1-9.2.1">Create individual ACs that are bound to the parent AC using 'ac-parent-ref'.<a href="#section-5.1-9.2.1" class="pilcrow">¶</a></p>
+            <p id="section-5.1-9.2.1">Create individual ACs that are bound to the parent AC using 'parent-ref'.<a href="#section-5.1-9.2.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-5.1-9.3">
             <p id="section-5.1-9.3.1">Indicate for each individual AC one or a subset of the CEs as peer SAPs. All these individual ACs will inherit the properties of the parent AC.<a href="#section-5.1-9.3.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
-<p id="section-5.1-10">Whenever a parent AC is deleted, then all child ACs of that AC <span class="bcp14">MUST</span> be deleted. Child ACs are referenced using 'ac-child-ref'.<a href="#section-5.1-10" class="pilcrow">¶</a></p>
+<p id="section-5.1-10">Whenever a parent AC is deleted, then all child ACs of that AC <span class="bcp14">MUST</span> be deleted. Child ACs are referenced using 'child-ref'.<a href="#section-5.1-10" class="pilcrow">¶</a></p>
 <p id="section-5.1-11">An AC may belong to one or multiple groups <span>[<a href="#RFC9181" class="cite xref">RFC9181</a>]</span>. For example, the 'group-id' is used to associate redundancy or protection constraints with ACs.<a href="#section-5.1-11" class="pilcrow">¶</a></p>
 <p id="section-5.1-12">The status of an AC can be tracked using 'status'. Both operational status and administrative status are maintained. A mismatch between the administrative status vs. the operational status can be used as a trigger to detect anomalies.<a href="#section-5.1-12" class="pilcrow">¶</a></p>
 <p id="section-5.1-13">An AC can be characterized using Layer 2 connectivity (<a href="#sec-l2" class="auto internal xref">Section 5.4</a>), Layer 3 connectivity (<a href="#sec-l3" class="auto internal xref">Section 5.5</a>), routing protocols (<a href="#sec-rtg" class="auto internal xref">Section 5.6</a>), Operations, Administration, and Maintenance (OAM) (<a href="#sec-oam" class="auto internal xref">Section 5.7</a>), security (<a href="#sec-sec" class="auto internal xref">Section 5.8</a>), and service (<a href="#sec-svc" class="auto internal xref">Section 5.9</a>) considerations. Features are used to tag conditional protions to accomodate various deployments (support of layer 2 ACs, Layer 3 ACs, IPv4, IPv6, routing protocols, BFD, etc.).<a href="#section-5.1-13" class="pilcrow">¶</a></p>
@@ -1986,9 +2178,9 @@ reference point (the PE side of an AC, in the context of this document) where ne
         <h3 id="name-references">
 <a href="#section-5.2" class="section-number selfRef">5.2. </a><a href="#name-references" class="section-name selfRef">References</a>
         </h3>
-<p id="section-5.2-1">The AC module defines a set of groupings depicted in <a href="#references-tree" class="auto internal xref">Figure 6</a> for referencing purposes. These references are used within or outside the AC network module. The use of such groupings is consistent with the design in <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span>.<a href="#section-5.2-1" class="pilcrow">¶</a></p>
+<p id="section-5.2-1">The AC module defines a set of groupings depicted in <a href="#references-tree" class="auto internal xref">Figure 7</a> for referencing purposes. These references are used within or outside the AC network module. The use of such groupings is consistent with the design in <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span>.<a href="#section-5.2-1" class="pilcrow">¶</a></p>
 <span id="name-references-groupings"></span><div id="references-tree">
-<figure id="figure-6">
+<figure id="figure-7">
           <div class="alignLeft art-text artwork" id="section-5.2-2.1">
 <pre>
   grouping attachment-circuit-reference:
@@ -2019,11 +2211,11 @@ reference point (the PE side of an AC, in the context of this document) where ne
     +-- network-ref?           -&gt; /nw:networks/network/network-id
 </pre>
 </div>
-<figcaption><a href="#figure-6" class="selfRef">Figure 6</a>:
+<figcaption><a href="#figure-7" class="selfRef">Figure 7</a>:
 <a href="#name-references-groupings" class="selfRef">References Groupings</a>
           </figcaption></figure>
 </div>
-<p id="section-5.2-3">The groupings shown in <a href="#references-tree" class="auto internal xref">Figure 6</a> contain the information necessary to reference:<a href="#section-5.2-3" class="pilcrow">¶</a></p>
+<p id="section-5.2-3">The groupings shown in <a href="#references-tree" class="auto internal xref">Figure 7</a> contain the information necessary to reference:<a href="#section-5.2-3" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-5.2-4.1">
             <p id="section-5.2-4.1.1">an attachment circuit that is terminated by a specific node in a given network,<a href="#section-5.2-4.1.1" class="pilcrow">¶</a></p>
@@ -2042,9 +2234,9 @@ reference point (the PE side of an AC, in the context of this document) where ne
         <h3 id="name-provisioning-profiles">
 <a href="#section-5.3" class="section-number selfRef">5.3. </a><a href="#name-provisioning-profiles" class="section-name selfRef">Provisioning Profiles</a>
         </h3>
-<p id="section-5.3-1">The AC and specific provisioning profiles tree structure is shown in <a href="#profiles-tree" class="auto internal xref">Figure 7</a>.<a href="#section-5.3-1" class="pilcrow">¶</a></p>
+<p id="section-5.3-1">The AC and specific provisioning profiles tree structure is shown in <a href="#profiles-tree" class="auto internal xref">Figure 8</a>.<a href="#section-5.3-1" class="pilcrow">¶</a></p>
 <span id="name-profiles-tree-structure"></span><div id="profiles-tree">
-<figure id="figure-7">
+<figure id="figure-8">
           <div class="alignLeft art-text artwork" id="section-5.3-2.1">
 <pre>
   augment /nw:networks/nw:network:
@@ -2136,11 +2328,11 @@ reference point (the PE side of an AC, in the context of this document) where ne
              +--rw holdtime?                   uint32
 </pre>
 </div>
-<figcaption><a href="#figure-7" class="selfRef">Figure 7</a>:
+<figcaption><a href="#figure-8" class="selfRef">Figure 8</a>:
 <a href="#name-profiles-tree-structure" class="selfRef">Profiles Tree Structure</a>
           </figcaption></figure>
 </div>
-<p id="section-5.3-3">Similar to <span>[<a href="#RFC9182" class="cite xref">RFC9182</a>]</span> and <span>[<a href="#RFC9291" class="cite xref">RFC9291</a>]</span>, the exact definition of the specific provisioning profiles is local to each service provider. The model only includes an identifier for these profiles in order to ease identifying and binding local policies when building an AC. As shown in <a href="#profiles-tree" class="auto internal xref">Figure 7</a>, the following identifiers can be included:<a href="#section-5.3-3" class="pilcrow">¶</a></p>
+<p id="section-5.3-3">Similar to <span>[<a href="#RFC9182" class="cite xref">RFC9182</a>]</span> and <span>[<a href="#RFC9291" class="cite xref">RFC9291</a>]</span>, the exact definition of the specific provisioning profiles is local to each service provider. The model only includes an identifier for these profiles in order to ease identifying and binding local policies when building an AC. As shown in <a href="#profiles-tree" class="auto internal xref">Figure 8</a>, the following identifiers can be included:<a href="#section-5.3-3" class="pilcrow">¶</a></p>
 <span class="break"></span><dl class="dlParallel" id="section-5.3-4">
           <dt id="section-5.3-4.1">'encryption-profile-identifier':</dt>
           <dd style="margin-left: 1.5em" id="section-5.3-4.2">
@@ -2175,9 +2367,9 @@ reference point (the PE side of an AC, in the context of this document) where ne
         <h3 id="name-l2-connection">
 <a href="#section-5.4" class="section-number selfRef">5.4. </a><a href="#name-l2-connection" class="section-name selfRef">L2 Connection</a>
         </h3>
-<p id="section-5.4-1">The 'l2-connection' container is used to manage the Layer 2 properties of an AC. The  Layer 2 connection tree structure is shown in <a href="#l2-tree" class="auto internal xref">Figure 8</a>.<a href="#section-5.4-1" class="pilcrow">¶</a></p>
+<p id="section-5.4-1">The 'l2-connection' container is used to manage the Layer 2 properties of an AC (mainly, the PE side of an AC). The  Layer 2 connection tree structure is shown in <a href="#l2-tree" class="auto internal xref">Figure 9</a>.<a href="#section-5.4-1" class="pilcrow">¶</a></p>
 <span id="name-layer-2-connection-tree-str"></span><div id="l2-tree">
-<figure id="figure-8">
+<figure id="figure-9">
           <div class="alignLeft art-text artwork" id="section-5.4-2.1">
 <pre>
   augment /nw:networks/nw:network/nw:node:
@@ -2261,7 +2453,7 @@ reference point (the PE side of an AC, in the context of this document) where ne
           ...
 </pre>
 </div>
-<figcaption><a href="#figure-8" class="selfRef">Figure 8</a>:
+<figcaption><a href="#figure-9" class="selfRef">Figure 9</a>:
 <a href="#name-layer-2-connection-tree-str" class="selfRef">Layer 2 Connection Tree Structure</a>
           </figcaption></figure>
 </div>
@@ -2278,9 +2470,9 @@ reference point (the PE side of an AC, in the context of this document) where ne
 <a href="#section-5.5" class="section-number selfRef">5.5. </a><a href="#name-ip-connection" class="section-name selfRef">IP Connection</a>
         </h3>
 <p id="section-5.5-1">This 'ip-connection' container is used to group Layer 3 connectivity information, particularly the IP addressing information, of an AC.<a href="#section-5.5-1" class="pilcrow">¶</a></p>
-<p id="section-5.5-2">The  Layer 3 connection tree structure is shown in <a href="#l3-tree" class="auto internal xref">Figure 9</a>.<a href="#section-5.5-2" class="pilcrow">¶</a></p>
+<p id="section-5.5-2">The  Layer 3 connection tree structure is shown in <a href="#l3-tree" class="auto internal xref">Figure 10</a>.<a href="#section-5.5-2" class="pilcrow">¶</a></p>
 <span id="name-ip-connection-tree-structur"></span><div id="l3-tree">
-<figure id="figure-9">
+<figure id="figure-10">
           <div class="alignLeft art-text artwork" id="section-5.5-3.1">
 <pre>
   augment /nw:networks/nw:network/nw:node:
@@ -2383,7 +2575,7 @@ reference point (the PE side of an AC, in the context of this document) where ne
           ...
 </pre>
 </div>
-<figcaption><a href="#figure-9" class="selfRef">Figure 9</a>:
+<figcaption><a href="#figure-10" class="selfRef">Figure 10</a>:
 <a href="#name-ip-connection-tree-structur" class="selfRef">IP Connection Tree Structure</a>
           </figcaption></figure>
 </div>
@@ -2391,7 +2583,7 @@ reference point (the PE side of an AC, in the context of this document) where ne
 <p id="section-5.5-5">This container can include IPv4, IPv6, or both if dual-stack is enabled. For both IPv4 and IPv6, the IP connection supports three IP address assignment modes for customer addresses: provider DHCP, DHCP relay, and static addressing. Note that for the IPv6 case, Stateless Address Autoconfiguration (SLAAC) <span>[<a href="#RFC4862" class="cite xref">RFC4862</a>]</span> can be used.<a href="#section-5.5-5" class="pilcrow">¶</a></p>
 <p id="section-5.5-6">For both IPv4 and IPv6, 'address-allocation-type' is used to indicate the IP address allocation mode to activate for an AC. The allocated address represents the PE interface address configuration. When 'address-allocation-type' is set to 'provider-dhcp', DHCP assignments can be made locally or by an external DHCP server. Such behavior is controlled by setting 'dhcp-service-type'.<a href="#section-5.5-6" class="pilcrow">¶</a></p>
 <p id="section-5.5-7">For IPv6, if 'address-allocation-type' is set to 'slaac', the Prefix Information option of Router Advertisements that will be issued for SLAAC purposes will carry the IPv6 prefix that is determined by 'local-address' and 'prefix-length'. For example, if 'local-address' is set to '2001:db8:0:1::1' and 'prefix-length' is set to '64', the IPv6 prefix that will be used is '2001:db8:0:1::/64'.<a href="#section-5.5-7" class="pilcrow">¶</a></p>
-<p id="section-5.5-8">In some deployment contexts (e.g., network merging), multiple IP subnets may be used in a transition period. For such deployments, multiple ACs (typically, two) with overlapping information may be maintained during a transition period. The correlation between these ACs may rely upon the same 'ac-svc-ref'.<a href="#section-5.5-8" class="pilcrow">¶</a></p>
+<p id="section-5.5-8">In some deployment contexts (e.g., network merging), multiple IP subnets may be used in a transition period. For such deployments, multiple ACs (typically, two) with overlapping information may be maintained during a transition period. The correlation between these ACs may rely upon the same 'svc-ref'.<a href="#section-5.5-8" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sec-rtg">
@@ -2399,9 +2591,9 @@ reference point (the PE side of an AC, in the context of this document) where ne
         <h3 id="name-routing">
 <a href="#section-5.6" class="section-number selfRef">5.6. </a><a href="#name-routing" class="section-name selfRef">Routing</a>
         </h3>
-<p id="section-5.6-1">The overall routing subtree structure is shown in <a href="#rtg-tree" class="auto internal xref">Figure 10</a>.<a href="#section-5.6-1" class="pilcrow">¶</a></p>
+<p id="section-5.6-1">The overall routing subtree structure is shown in <a href="#rtg-tree" class="auto internal xref">Figure 11</a>.<a href="#section-5.6-1" class="pilcrow">¶</a></p>
 <span id="name-routing-tree-structure"></span><div id="rtg-tree">
-<figure id="figure-10">
+<figure id="figure-11">
           <div class="alignLeft art-text artwork" id="section-5.6-2.1">
 <pre>
 module: ietf-ac-ntw
@@ -2461,7 +2653,7 @@ module: ietf-ac-ntw
           ...
 </pre>
 </div>
-<figcaption><a href="#figure-10" class="selfRef">Figure 10</a>:
+<figcaption><a href="#figure-11" class="selfRef">Figure 11</a>:
 <a href="#name-routing-tree-structure" class="selfRef">Routing Tree Structure</a>
           </figcaption></figure>
 </div>
@@ -2479,9 +2671,9 @@ a given routing instance.<a href="#section-5.6-5" class="pilcrow">¶</a></p>
           <h4 id="name-static-routing">
 <a href="#section-5.6.1" class="section-number selfRef">5.6.1. </a><a href="#name-static-routing" class="section-name selfRef">Static Routing</a>
           </h4>
-<p id="section-5.6.1-1">The static routing subtree structure is shown in <a href="#static-tree" class="auto internal xref">Figure 11</a>.<a href="#section-5.6.1-1" class="pilcrow">¶</a></p>
+<p id="section-5.6.1-1">The static routing subtree structure is shown in <a href="#static-tree" class="auto internal xref">Figure 12</a>.<a href="#section-5.6.1-1" class="pilcrow">¶</a></p>
 <span id="name-static-routing-tree-structu"></span><div id="static-tree">
-<figure id="figure-11">
+<figure id="figure-12">
             <div class="alignLeft art-text artwork" id="section-5.6.1-2.1">
 <pre>
 module: ietf-ac-ntw
@@ -2565,7 +2757,7 @@ module: ietf-ac-ntw
           ...
 </pre>
 </div>
-<figcaption><a href="#figure-11" class="selfRef">Figure 11</a>:
+<figcaption><a href="#figure-12" class="selfRef">Figure 12</a>:
 <a href="#name-static-routing-tree-structu" class="selfRef">Static Routing Tree Structure</a>
             </figcaption></figure>
 </div>
@@ -2619,9 +2811,9 @@ module: ietf-ac-ntw
           <h4 id="name-bgp">
 <a href="#section-5.6.2" class="section-number selfRef">5.6.2. </a><a href="#name-bgp" class="section-name selfRef">BGP</a>
           </h4>
-<p id="section-5.6.2-1">The BGP routing subtree structure is shown in <a href="#bgp-tree" class="auto internal xref">Figure 12</a>.<a href="#section-5.6.2-1" class="pilcrow">¶</a></p>
+<p id="section-5.6.2-1">The BGP routing subtree structure is shown in <a href="#bgp-tree" class="auto internal xref">Figure 13</a>.<a href="#section-5.6.2-1" class="pilcrow">¶</a></p>
 <span id="name-bgp-routing-tree-structure"></span><div id="bgp-tree">
-<figure id="figure-12">
+<figure id="figure-13">
             <div class="alignLeft art-text artwork" id="section-5.6.2-2.1">
 <pre>
 module: ietf-ac-ntw
@@ -2666,11 +2858,8 @@ module: ietf-ac-ntw
        |     |        |  +--rw violate-action?      enumeration
        |     |        |  +--rw restart-timer?       uint32
        |     |        +--rw bgp-timers
-       |     |        |  +--rw keepalive?   uint16
-       |     |        |  +--rw hold-time?   uint16
-       |     |        +--rw capability* [address-family]
-       |     |           +--rw address-family    identityref
-       |     |           +--rw name              identityref
+       |     |           +--rw keepalive?   uint16
+       |     |           +--rw hold-time?   uint16
        |     +--rw ospf  {vpn-common:rtg-ospf}?
        |     |  ...
        |     +--rw isis  {vpn-common:rtg-isis}?
@@ -2737,9 +2926,6 @@ module: ietf-ac-ntw
        |     |  |     +--rw bgp-timers
        |     |  |     |  +--rw keepalive?   uint16
        |     |  |     |  +--rw hold-time?   uint16
-       |     |  |     +--rw capability* [address-family]
-       |     |  |     |  +--rw address-family    identityref
-       |     |  |     |  +--rw name              identityref
        |     |  |     +--rw authentication
        |     |  |        +--rw enabled?           boolean
        |     |  |        +--rw keying-material
@@ -2793,9 +2979,6 @@ module: ietf-ac-ntw
        |     |     +--rw bgp-timers
        |     |     |  +--rw keepalive?   uint16
        |     |     |  +--rw hold-time?   uint16
-       |     |     +--rw capability* [address-family]
-       |     |     |  +--rw address-family    identityref
-       |     |     |  +--rw name              identityref
        |     |     +--rw bfd {vpn-common:bfd}?
        |     |     |  +--rw enabled?                         boolean
        |     |     |  +--rw failure-detection-profile-ref?   leafref
@@ -2839,7 +3022,7 @@ module: ietf-ac-ntw
           ...
 </pre>
 </div>
-<figcaption><a href="#figure-12" class="selfRef">Figure 12</a>:
+<figcaption><a href="#figure-13" class="selfRef">Figure 13</a>:
 <a href="#name-bgp-routing-tree-structure" class="selfRef">BGP Routing Tree Structure</a>
             </figcaption></figure>
 </div>
@@ -2990,34 +3173,28 @@ module: ietf-ac-ntw
               <p id="section-5.6.2-6.12.1">Both timers are expressed in seconds.<a href="#section-5.6.2-6.12.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
-<dt id="section-5.6.2-6.13">'capability':</dt>
+<dt id="section-5.6.2-6.13">'bfd':</dt>
             <dd style="margin-left: 1.5em" id="section-5.6.2-6.14">
-              <p id="section-5.6.2-6.14.1">Specifies a set of BGP capabilities (e.g., route refresh capability <span>[<a href="#RFC2918" class="cite xref">RFC2918</a>]</span>)
-to be enabled per address family.<a href="#section-5.6.2-6.14.1" class="pilcrow">¶</a></p>
+              <p id="section-5.6.2-6.14.1">Indicates whether BFD is enabled or disabled for this nighbor. A BFD profile to apply may also be provided.<a href="#section-5.6.2-6.14.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
-<dt id="section-5.6.2-6.15">'bfd':</dt>
+<dt id="section-5.6.2-6.15">'authentication':</dt>
             <dd style="margin-left: 1.5em" id="section-5.6.2-6.16">
-              <p id="section-5.6.2-6.16.1">Indicates whether BFD is enabled or disabled for this nighbor. A BFD profile to apply may also be provided.<a href="#section-5.6.2-6.16.1" class="pilcrow">¶</a></p>
-</dd>
-            <dd class="break"></dd>
-<dt id="section-5.6.2-6.17">'authentication':</dt>
-            <dd style="margin-left: 1.5em" id="section-5.6.2-6.18">
-              <p id="section-5.6.2-6.18.1">The module adheres to the recommendations in
+              <p id="section-5.6.2-6.16.1">The module adheres to the recommendations in
    <span><a href="https://rfc-editor.org/rfc/rfc4364#section-13.2" class="relref">Section 13.2</a> of [<a href="#RFC4364" class="cite xref">RFC4364</a>]</span>, as it allows enabling the TCP
    Authentication Option (TCP-AO) <span>[<a href="#RFC5925" class="cite xref">RFC5925</a>]</span> and accommodates the
    installed base that makes use of MD5.  In addition, the module
-   includes a provision for using IPsec.<a href="#section-5.6.2-6.18.1" class="pilcrow">¶</a></p>
+   includes a provision for using IPsec.<a href="#section-5.6.2-6.16.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
-<dt id="section-5.6.2-6.19"></dt>
-            <dd style="margin-left: 1.5em" id="section-5.6.2-6.20">
-              <p id="section-5.6.2-6.20.1">This version of the model assumes that parameters specific to the
+<dt id="section-5.6.2-6.17"></dt>
+            <dd style="margin-left: 1.5em" id="section-5.6.2-6.18">
+              <p id="section-5.6.2-6.18.1">This version of the model assumes that parameters specific to the
     TCP-AO are preconfigured as part of the key chain that is
     referenced in the model.  No assumption is made about how such a
     key chain is preconfigured.  However, the structure of the key
     chain should cover data nodes beyond those in <span>[<a href="#RFC8177" class="cite xref">RFC8177</a>]</span>, mainly
-    SendID and RecvID (<span><a href="https://rfc-editor.org/rfc/rfc5925#section-3.1" class="relref">Section 3.1</a> of [<a href="#RFC5925" class="cite xref">RFC5925</a>]</span>).<a href="#section-5.6.2-6.20.1" class="pilcrow">¶</a></p>
+    SendID and RecvID (<span><a href="https://rfc-editor.org/rfc/rfc5925#section-3.1" class="relref">Section 3.1</a> of [<a href="#RFC5925" class="cite xref">RFC5925</a>]</span>).<a href="#section-5.6.2-6.18.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
 </dl>
@@ -3051,9 +3228,9 @@ to be enabled per address family.<a href="#section-5.6.2-6.14.1" class="pilcrow"
           <h4 id="name-ospf">
 <a href="#section-5.6.3" class="section-number selfRef">5.6.3. </a><a href="#name-ospf" class="section-name selfRef">OSPF</a>
           </h4>
-<p id="section-5.6.3-1">The OSPF routing subtree structure is shown in <a href="#ospf-tree" class="auto internal xref">Figure 13</a>.<a href="#section-5.6.3-1" class="pilcrow">¶</a></p>
+<p id="section-5.6.3-1">The OSPF routing subtree structure is shown in <a href="#ospf-tree" class="auto internal xref">Figure 14</a>.<a href="#section-5.6.3-1" class="pilcrow">¶</a></p>
 <span id="name-ospf-routing-tree-structure"></span><div id="ospf-tree">
-<figure id="figure-13">
+<figure id="figure-14">
             <div class="alignLeft art-text artwork" id="section-5.6.3-2.1">
 <pre>
 module: ietf-ac-ntw
@@ -3142,7 +3319,7 @@ module: ietf-ac-ntw
           ...
 </pre>
 </div>
-<figcaption><a href="#figure-13" class="selfRef">Figure 13</a>:
+<figcaption><a href="#figure-14" class="selfRef">Figure 14</a>:
 <a href="#name-ospf-routing-tree-structure" class="selfRef">OSPF Routing Tree Structure</a>
             </figcaption></figure>
 </div>
@@ -3210,9 +3387,9 @@ module: ietf-ac-ntw
           <h4 id="name-is-is">
 <a href="#section-5.6.4" class="section-number selfRef">5.6.4. </a><a href="#name-is-is" class="section-name selfRef">IS-IS</a>
           </h4>
-<p id="section-5.6.4-1">The IS-IS routing subtree structure is shown in <a href="#isis-tree" class="auto internal xref">Figure 14</a>.<a href="#section-5.6.4-1" class="pilcrow">¶</a></p>
+<p id="section-5.6.4-1">The IS-IS routing subtree structure is shown in <a href="#isis-tree" class="auto internal xref">Figure 15</a>.<a href="#section-5.6.4-1" class="pilcrow">¶</a></p>
 <span id="name-is-is-routing-tree-structur"></span><div id="isis-tree">
-<figure id="figure-14">
+<figure id="figure-15">
             <div class="alignLeft art-text artwork" id="section-5.6.4-2.1">
 <pre>
 module: ietf-ac-ntw
@@ -3298,7 +3475,7 @@ module: ietf-ac-ntw
           ...
 </pre>
 </div>
-<figcaption><a href="#figure-14" class="selfRef">Figure 14</a>:
+<figcaption><a href="#figure-15" class="selfRef">Figure 15</a>:
 <a href="#name-is-is-routing-tree-structur" class="selfRef">IS-IS Routing Tree Structure</a>
             </figcaption></figure>
 </div>
@@ -3350,9 +3527,9 @@ algorithms are supported.<a href="#section-5.6.4-4.12.1" class="pilcrow">¶</a><
           <h4 id="name-rip">
 <a href="#section-5.6.5" class="section-number selfRef">5.6.5. </a><a href="#name-rip" class="section-name selfRef">RIP</a>
           </h4>
-<p id="section-5.6.5-1">The RIP routing subtree structure is shown in <a href="#rip-tree" class="auto internal xref">Figure 15</a>.<a href="#section-5.6.5-1" class="pilcrow">¶</a></p>
+<p id="section-5.6.5-1">The RIP routing subtree structure is shown in <a href="#rip-tree" class="auto internal xref">Figure 16</a>.<a href="#section-5.6.5-1" class="pilcrow">¶</a></p>
 <span id="name-rip-routing-tree-structure"></span><div id="rip-tree">
-<figure id="figure-15">
+<figure id="figure-16">
             <div class="alignLeft art-text artwork" id="section-5.6.5-2.1">
 <pre>
 module: ietf-ac-ntw
@@ -3441,7 +3618,7 @@ module: ietf-ac-ntw
           ...
 </pre>
 </div>
-<figcaption><a href="#figure-15" class="selfRef">Figure 15</a>:
+<figcaption><a href="#figure-16" class="selfRef">Figure 16</a>:
 <a href="#name-rip-routing-tree-structure" class="selfRef">RIP Routing Tree Structure</a>
             </figcaption></figure>
 </div>
@@ -3521,9 +3698,9 @@ module: ietf-ac-ntw
           <h4 id="name-vrrp">
 <a href="#section-5.6.6" class="section-number selfRef">5.6.6. </a><a href="#name-vrrp" class="section-name selfRef">VRRP</a>
           </h4>
-<p id="section-5.6.6-1">The VRRP subtree structure is shown in <a href="#vrrp-tree" class="auto internal xref">Figure 16</a>.<a href="#section-5.6.6-1" class="pilcrow">¶</a></p>
+<p id="section-5.6.6-1">The VRRP subtree structure is shown in <a href="#vrrp-tree" class="auto internal xref">Figure 17</a>.<a href="#section-5.6.6-1" class="pilcrow">¶</a></p>
 <span id="name-vrrp-tree-structure"></span><div id="vrrp-tree">
-<figure id="figure-16">
+<figure id="figure-17">
             <div class="alignLeft art-text artwork" id="section-5.6.6-2.1">
 <pre>
 module: ietf-ac-ntw
@@ -3596,7 +3773,7 @@ module: ietf-ac-ntw
           ...
 </pre>
 </div>
-<figcaption><a href="#figure-16" class="selfRef">Figure 16</a>:
+<figcaption><a href="#figure-17" class="selfRef">Figure 17</a>:
 <a href="#name-vrrp-tree-structure" class="selfRef">VRRP Tree Structure</a>
             </figcaption></figure>
 </div>
@@ -3651,9 +3828,9 @@ isn't any type of VRRP authentication at this time (see <span><a href="https://r
         <h3 id="name-oam">
 <a href="#section-5.7" class="section-number selfRef">5.7. </a><a href="#name-oam" class="section-name selfRef">OAM</a>
         </h3>
-<p id="section-5.7-1">The OAM subtree structure is shown in <a href="#oam-tree" class="auto internal xref">Figure 17</a>.<a href="#section-5.7-1" class="pilcrow">¶</a></p>
+<p id="section-5.7-1">The OAM subtree structure is shown in <a href="#oam-tree" class="auto internal xref">Figure 18</a>.<a href="#section-5.7-1" class="pilcrow">¶</a></p>
 <span id="name-oam-tree-structure"></span><div id="oam-tree">
-<figure id="figure-17">
+<figure id="figure-18">
           <div class="alignLeft art-text artwork" id="section-5.7-2.1">
 <pre>
   augment /nw:networks/nw:network:
@@ -3707,7 +3884,7 @@ isn't any type of VRRP authentication at this time (see <span><a href="https://r
           ...
 </pre>
 </div>
-<figcaption><a href="#figure-17" class="selfRef">Figure 17</a>:
+<figcaption><a href="#figure-18" class="selfRef">Figure 18</a>:
 <a href="#name-oam-tree-structure" class="selfRef">OAM Tree Structure</a>
           </figcaption></figure>
 </div>
@@ -3776,9 +3953,9 @@ isn't any type of VRRP authentication at this time (see <span><a href="https://r
         <h3 id="name-security">
 <a href="#section-5.8" class="section-number selfRef">5.8. </a><a href="#name-security" class="section-name selfRef">Security</a>
         </h3>
-<p id="section-5.8-1">The security subtree structure is shown in <a href="#sec-tree" class="auto internal xref">Figure 18</a>. The 'security' container specifies the the encryption to be applied to traffic for a given AC. The model can be used to directly control the encryption to be applied (e.g., Layer 2 or Layer 3 encryption) or invoke a local encryption profile.<a href="#section-5.8-1" class="pilcrow">¶</a></p>
+<p id="section-5.8-1">The security subtree structure is shown in <a href="#sec-tree" class="auto internal xref">Figure 19</a>. The 'security' container specifies the the encryption to be applied to traffic for a given AC. The model can be used to directly control the encryption to be applied (e.g., Layer 2 or Layer 3 encryption) or invoke a local encryption profile.<a href="#section-5.8-1" class="pilcrow">¶</a></p>
 <span id="name-security-tree-structure"></span><div id="sec-tree">
-<figure id="figure-18">
+<figure id="figure-19">
           <div class="alignLeft art-text artwork" id="section-5.8-2.1">
 <pre>
   augment /nw:networks/nw:network/nw:node:
@@ -3809,7 +3986,7 @@ isn't any type of VRRP authentication at this time (see <span><a href="https://r
           ...
 </pre>
 </div>
-<figcaption><a href="#figure-18" class="selfRef">Figure 18</a>:
+<figcaption><a href="#figure-19" class="selfRef">Figure 19</a>:
 <a href="#name-security-tree-structure" class="selfRef">Security Tree Structure</a>
           </figcaption></figure>
 </div>
@@ -3820,9 +3997,9 @@ isn't any type of VRRP authentication at this time (see <span><a href="https://r
         <h3 id="name-service">
 <a href="#section-5.9" class="section-number selfRef">5.9. </a><a href="#name-service" class="section-name selfRef">Service</a>
         </h3>
-<p id="section-5.9-1">The service subtree structure is shown in <a href="#svc-tree" class="auto internal xref">Figure 19</a>.<a href="#section-5.9-1" class="pilcrow">¶</a></p>
+<p id="section-5.9-1">The service subtree structure is shown in <a href="#svc-tree" class="auto internal xref">Figure 20</a>.<a href="#section-5.9-1" class="pilcrow">¶</a></p>
 <span id="name-service-tree-structure"></span><div id="svc-tree">
-<figure id="figure-19">
+<figure id="figure-20">
           <div class="alignLeft art-text artwork" id="section-5.9-2.1">
 <pre>
   augment /nw:networks/nw:network/nw:node:
@@ -3896,7 +4073,7 @@ isn't any type of VRRP authentication at this time (see <span><a href="https://r
                            -&gt; /nw:networks/network/network-id
 </pre>
 </div>
-<figcaption><a href="#figure-19" class="selfRef">Figure 19</a>:
+<figcaption><a href="#figure-20" class="selfRef">Figure 20</a>:
 <a href="#name-service-tree-structure" class="selfRef">Service Tree Structure</a>
           </figcaption></figure>
 </div>
@@ -4100,7 +4277,7 @@ module ietf-ac-ntw {
         require-instance false;
       }
       description
-        "A type for an absolute reference to an attachment circuit.";
+        "An absolute reference to an attachment circuit.";
     }
     uses nw:node-ref;
   }
@@ -4117,7 +4294,7 @@ module ietf-ac-ntw {
         require-instance false;
       }
       description
-        "A type for an absolute reference to an attachment circuit.";
+        "An absolute reference to an attachment circuit.";
     }
     uses nw:node-ref;
   }
@@ -4133,7 +4310,7 @@ module ietf-ac-ntw {
         require-instance false;
       }
       description
-        "A type for an absolute reference to an attachment circuit.";
+        "An absolute reference to an attachment circuit.";
     }
     uses nw:network-ref;
   }
@@ -4152,7 +4329,7 @@ module ietf-ac-ntw {
         require-instance false;
       }
       description
-        "A type for an absolute reference to an encryption profile.";
+        "An absolute reference to an encryption profile.";
     }
     uses nw:network-ref;
   }
@@ -4170,7 +4347,7 @@ module ietf-ac-ntw {
         require-instance false;
       }
       description
-        "Type for an absolute reference to a QoS profile.";
+        "An absolute reference to a QoS profile.";
     }
     uses nw:network-ref;
   }
@@ -4189,8 +4366,7 @@ module ietf-ac-ntw {
         require-instance false;
       }
       description
-        "Type for an absolute reference to a failure detection
-         profile.";
+        "An absolute reference to a failure detection profile.";
     }
     uses nw:network-ref;
   }
@@ -4208,7 +4384,7 @@ module ietf-ac-ntw {
         require-instance false;
       }
       description
-        "A type for an absolute reference to a forwarding profile.";
+        "An absolute reference to a forwarding profile.";
     }
     uses nw:network-ref;
   }
@@ -4226,7 +4402,7 @@ module ietf-ac-ntw {
         require-instance false;
       }
       description
-        "A type for an absolute reference to a routing profile.";
+        "An absolute reference to a routing profile.";
     }
     uses nw:network-ref;
   }
@@ -4236,7 +4412,7 @@ module ietf-ac-ntw {
   grouping l2-connection {
     description
       "Defines Layer 2 protocols and parameters that are required to
-       enable AC connectivity.";
+       enable AC connectivity on the network side.";
     container encapsulation {
       description
         "Container for Layer 2 encapsulation.";
@@ -5020,26 +5196,6 @@ module ietf-ac-ntw {
         reference
           "RFC 4271: A Border Gateway Protocol 4 (BGP-4),
                      Section 4.2";
-      }
-    }
-    list capability {
-      key "address-family";
-      description
-        "Customized set of BGP capabilities per address family.";
-      leaf address-family {
-        type identityref {
-          base vpn-common:address-family;
-        }
-        description
-          "Indicates the address family.";
-      }
-      leaf name {
-        type identityref {
-          base ac-common:bgp-capability;
-        }
-        mandatory true;
-        description
-          "Indicates the name of BGP capability.";
       }
     }
   }
@@ -5837,7 +5993,7 @@ module ietf-ac-ntw {
   grouping ac-hierarchy {
     description
       "Container for parent and child AC references.";
-    container ac-parent-ref {
+    container parent-ref {
       description
         "Specifies the parent AC that is inherited by an AC.
          Parent ACs are used, e.g., in contexts where multiple
@@ -5845,7 +6001,7 @@ module ietf-ac-ntw {
          information is required for each peer SAP.";
       uses ac-ntw:attachment-circuit-reference;
     }
-    container ac-child-ref {
+    container child-ref {
       config false;
       description
         "Specifies a child AC that relies upon a parent AC.";
@@ -5979,12 +6135,12 @@ module ietf-ac-ntw {
         description
           "A name that identifies the AC locally.";
       }
-      leaf ac-svc-ref {
+      leaf svc-ref {
         type ac-svc:attachment-circuit-reference;
         description
           "A reference to the AC as exposed at the service level.";
       }
-      list ac-profile {
+      list profile {
         key "ac-profile-ref";
         description
           "List of AC profiles.";
@@ -6028,14 +6184,12 @@ module ietf-ac-ntw {
       <h2 id="name-security-considerations">
 <a href="#section-7" class="section-number selfRef">7. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
       </h2>
-<p id="section-7-1">This section uses the template described in Section 3.7 of <span>[<a href="#I-D.ietf-netmod-rfc8407bis" class="cite xref">I-D.ietf-netmod-rfc8407bis</a>]</span>.<a href="#section-7-1" class="pilcrow">¶</a></p>
-<p id="section-7-2">The YANG module specified in this document defines a schema for data
-   that is designed to be accessed via network management protocols such
-   as NETCONF <span>[<a href="#RFC6241" class="cite xref">RFC6241</a>]</span> or RESTCONF <span>[<a href="#RFC8040" class="cite xref">RFC8040</a>]</span>.  The lowest NETCONF layer
-   is the secure transport layer, and the mandatory-to-implement secure
-   transport is Secure Shell (SSH) <span>[<a href="#RFC6242" class="cite xref">RFC6242</a>]</span>.  The lowest RESTCONF layer
-   is HTTPS, and the mandatory-to-implement secure transport is TLS
-   <span>[<a href="#RFC8446" class="cite xref">RFC8446</a>]</span>.<a href="#section-7-2" class="pilcrow">¶</a></p>
+<p id="section-7-1">This section is modeled after the template described in in <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-netmod-rfc8407bis-20#section-3.7" class="relref">Section 3.7</a> of [<a href="#I-D.ietf-netmod-rfc8407bis" class="cite xref">I-D.ietf-netmod-rfc8407bis</a>]</span>.<a href="#section-7-1" class="pilcrow">¶</a></p>
+<p id="section-7-2">The "ietf-ac-ntw" YANG module defines a data model that is
+designed to be accessed via YANG-based management protocols, such as
+   NETCONF <span>[<a href="#RFC6241" class="cite xref">RFC6241</a>]</span> and RESTCONF <span>[<a href="#RFC8040" class="cite xref">RFC8040</a>]</span>. These protocols have to
+   use a secure transport layer (e.g., SSH <span>[<a href="#RFC4252" class="cite xref">RFC4252</a>]</span>, TLS <span>[<a href="#RFC8446" class="cite xref">RFC8446</a>]</span>, and
+   QUIC <span>[<a href="#RFC9000" class="cite xref">RFC9000</a>]</span>) and have to use mutual authentication.<a href="#section-7-2" class="pilcrow">¶</a></p>
 <p id="section-7-3">The Network Configuration Access Control Model (NACM) <span>[<a href="#RFC8341" class="cite xref">RFC8341</a>]</span>
    provides the means to restrict access for particular NETCONF or
    RESTCONF users to a preconfigured subset of all available NETCONF or
@@ -6101,7 +6255,7 @@ be used to inject spoofed routing  advertisements.<a href="#section-7-7.6.1" cla
 </dd>
       <dd class="break"></dd>
 </dl>
-<p id="section-7-8">Several data nodes ('bgp', 'ospf', 'isis', and 'rip') rely upon <span>[<a href="#RFC8177" class="cite xref">RFC8177</a>]</span> for authentication purposes. As such, the AC network module inherits the security considerations discussed in Section 5 of <span>[<a href="#RFC8177" class="cite xref">RFC8177</a>]</span>. Also, these data nodes support supplying explicit keys as strings in ASCII format. The use of keys in hexadecimal string format would afford greater key entropy with the same number of key-string octets. However, such a format is not included in this version of the AC network model, because it is not supported by the underlying device modules (e.g., <span>[<a href="#RFC8695" class="cite xref">RFC8695</a>]</span>).<a href="#section-7-8" class="pilcrow">¶</a></p>
+<p id="section-7-8">Several data nodes ('bgp', 'ospf', 'isis', and 'rip') rely upon <span>[<a href="#RFC8177" class="cite xref">RFC8177</a>]</span> for authentication purposes. As such, the AC network module inherits the security considerations discussed in <span><a href="https://rfc-editor.org/rfc/rfc8177#section-5" class="relref">Section 5</a> of [<a href="#RFC8177" class="cite xref">RFC8177</a>]</span>. Also, these data nodes support supplying explicit keys as strings in ASCII format. The use of keys in hexadecimal string format would afford greater key entropy with the same number of key-string octets. However, such a format is not included in this version of the AC network model, because it is not supported by the underlying device modules (e.g., <span>[<a href="#RFC8695" class="cite xref">RFC8695</a>]</span>).<a href="#section-7-8" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="iana-considerations">
@@ -6206,14 +6360,6 @@ be used to inject spoofed routing  advertisements.<a href="#section-7-7.6.1" cla
         <dd>
 <span class="refAuthor">Bjorklund, M., Ed.</span>, <span class="refTitle">"YANG - A Data Modeling Language for the Network Configuration Protocol (NETCONF)"</span>, <span class="seriesInfo">RFC 6020</span>, <span class="seriesInfo">DOI 10.17487/RFC6020</span>, <time datetime="2010-10" class="refDate">October 2010</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc6020">https://www.rfc-editor.org/rfc/rfc6020</a>&gt;</span>. </dd>
 <dd class="break"></dd>
-<dt id="RFC6241">[RFC6241]</dt>
-        <dd>
-<span class="refAuthor">Enns, R., Ed.</span>, <span class="refAuthor">Bjorklund, M., Ed.</span>, <span class="refAuthor">Schoenwaelder, J., Ed.</span>, and <span class="refAuthor">A. Bierman, Ed.</span>, <span class="refTitle">"Network Configuration Protocol (NETCONF)"</span>, <span class="seriesInfo">RFC 6241</span>, <span class="seriesInfo">DOI 10.17487/RFC6241</span>, <time datetime="2011-06" class="refDate">June 2011</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc6241">https://www.rfc-editor.org/rfc/rfc6241</a>&gt;</span>. </dd>
-<dd class="break"></dd>
-<dt id="RFC6242">[RFC6242]</dt>
-        <dd>
-<span class="refAuthor">Wasserman, M.</span>, <span class="refTitle">"Using the NETCONF Protocol over Secure Shell (SSH)"</span>, <span class="seriesInfo">RFC 6242</span>, <span class="seriesInfo">DOI 10.17487/RFC6242</span>, <time datetime="2011-06" class="refDate">June 2011</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc6242">https://www.rfc-editor.org/rfc/rfc6242</a>&gt;</span>. </dd>
-<dd class="break"></dd>
 <dt id="RFC6565">[RFC6565]</dt>
         <dd>
 <span class="refAuthor">Pillay-Esnault, P.</span>, <span class="refAuthor">Moyer, P.</span>, <span class="refAuthor">Doyle, J.</span>, <span class="refAuthor">Ertekin, E.</span>, and <span class="refAuthor">M. Lundberg</span>, <span class="refTitle">"OSPFv3 as a Provider Edge to Customer Edge (PE-CE) Routing Protocol"</span>, <span class="seriesInfo">RFC 6565</span>, <span class="seriesInfo">DOI 10.17487/RFC6565</span>, <time datetime="2012-06" class="refDate">June 2012</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc6565">https://www.rfc-editor.org/rfc/rfc6565</a>&gt;</span>. </dd>
@@ -6230,9 +6376,9 @@ be used to inject spoofed routing  advertisements.<a href="#section-7-7.6.1" cla
         <dd>
 <span class="refAuthor">Bhatia, M.</span>, <span class="refAuthor">Hartman, S.</span>, <span class="refAuthor">Zhang, D.</span>, and <span class="refAuthor">A. Lindem, Ed.</span>, <span class="refTitle">"Security Extension for OSPFv2 When Using Manual Key Management"</span>, <span class="seriesInfo">RFC 7474</span>, <span class="seriesInfo">DOI 10.17487/RFC7474</span>, <time datetime="2015-04" class="refDate">April 2015</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc7474">https://www.rfc-editor.org/rfc/rfc7474</a>&gt;</span>. </dd>
 <dd class="break"></dd>
-<dt id="RFC8040">[RFC8040]</dt>
+<dt id="RFC7950">[RFC7950]</dt>
         <dd>
-<span class="refAuthor">Bierman, A.</span>, <span class="refAuthor">Bjorklund, M.</span>, and <span class="refAuthor">K. Watsen</span>, <span class="refTitle">"RESTCONF Protocol"</span>, <span class="seriesInfo">RFC 8040</span>, <span class="seriesInfo">DOI 10.17487/RFC8040</span>, <time datetime="2017-01" class="refDate">January 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8040">https://www.rfc-editor.org/rfc/rfc8040</a>&gt;</span>. </dd>
+<span class="refAuthor">Bjorklund, M., Ed.</span>, <span class="refTitle">"The YANG 1.1 Data Modeling Language"</span>, <span class="seriesInfo">RFC 7950</span>, <span class="seriesInfo">DOI 10.17487/RFC7950</span>, <time datetime="2016-08" class="refDate">August 2016</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc7950">https://www.rfc-editor.org/rfc/rfc7950</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC8077">[RFC8077]</dt>
         <dd>
@@ -6265,10 +6411,6 @@ be used to inject spoofed routing  advertisements.<a href="#section-7-7.6.1" cla
 <dt id="RFC8345">[RFC8345]</dt>
         <dd>
 <span class="refAuthor">Clemm, A.</span>, <span class="refAuthor">Medved, J.</span>, <span class="refAuthor">Varga, R.</span>, <span class="refAuthor">Bahadur, N.</span>, <span class="refAuthor">Ananthakrishnan, H.</span>, and <span class="refAuthor">X. Liu</span>, <span class="refTitle">"A YANG Data Model for Network Topologies"</span>, <span class="seriesInfo">RFC 8345</span>, <span class="seriesInfo">DOI 10.17487/RFC8345</span>, <time datetime="2018-03" class="refDate">March 2018</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8345">https://www.rfc-editor.org/rfc/rfc8345</a>&gt;</span>. </dd>
-<dd class="break"></dd>
-<dt id="RFC8446">[RFC8446]</dt>
-        <dd>
-<span class="refAuthor">Rescorla, E.</span>, <span class="refTitle">"The Transport Layer Security (TLS) Protocol Version 1.3"</span>, <span class="seriesInfo">RFC 8446</span>, <span class="seriesInfo">DOI 10.17487/RFC8446</span>, <time datetime="2018-08" class="refDate">August 2018</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8446">https://www.rfc-editor.org/rfc/rfc8446</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC9067">[RFC9067]</dt>
         <dd>
@@ -6303,10 +6445,6 @@ be used to inject spoofed routing  advertisements.<a href="#section-7-7.6.1" cla
 <a href="#section-9.2" class="section-number selfRef">9.2. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
         </h3>
 <dl class="references">
-<dt id="AC-Ntw-Tree">[AC-Ntw-Tree]</dt>
-        <dd>
-<span class="refTitle">"Full Network Attachment Circuit Tree Structure"</span>, <time datetime="2023" class="refDate">2023</time>, <span>&lt;<a href="https://github.com/boucadair/attachment-circuit-model/blob/main/yang/full-trees/ac-ntw-without-groupings.txt">https://github.com/boucadair/attachment-circuit-model/blob/main/yang/full-trees/ac-ntw-without-groupings.txt</a>&gt;</span>. </dd>
-<dd class="break"></dd>
 <dt id="I-D.ietf-netmod-rfc8407bis">[I-D.ietf-netmod-rfc8407bis]</dt>
         <dd>
 <span class="refAuthor">Bierman, A.</span>, <span class="refAuthor">Boucadair, M.</span>, and <span class="refAuthor">Q. Wu</span>, <span class="refTitle">"Guidelines for Authors and Reviewers of Documents Containing YANG Data Models"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-netmod-rfc8407bis-20</span>, <time datetime="2024-10-21" class="refDate">21 October 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-netmod-rfc8407bis-20">https://datatracker.ietf.org/doc/html/draft-ietf-netmod-rfc8407bis-20</a>&gt;</span>. </dd>
@@ -6315,21 +6453,21 @@ be used to inject spoofed routing  advertisements.<a href="#section-7-7.6.1" cla
         <dd>
 <span class="refAuthor">Boucadair, M.</span>, <span class="refAuthor">Roberts, R.</span>, <span class="refAuthor">Barguil, S.</span>, and <span class="refAuthor">O. G. de Dios</span>, <span class="refTitle">"A YANG Data Model for Augmenting VPN Service and Network Models with Attachment Circuits"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-opsawg-ac-lxsm-lxnm-glue-10</span>, <time datetime="2024-06-10" class="refDate">10 June 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-ac-lxsm-lxnm-glue-10">https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-ac-lxsm-lxnm-glue-10</a>&gt;</span>. </dd>
 <dd class="break"></dd>
-<dt id="PYANG">[PYANG]</dt>
-        <dd>
-<span class="refTitle">"pyang"</span>, <time datetime="2023" class="refDate">2023</time>, <span>&lt;<a href="https://github.com/mbj4668/pyang">https://github.com/mbj4668/pyang</a>&gt;</span>. </dd>
-<dd class="break"></dd>
-<dt id="RFC2918">[RFC2918]</dt>
-        <dd>
-<span class="refAuthor">Chen, E.</span>, <span class="refTitle">"Route Refresh Capability for BGP-4"</span>, <span class="seriesInfo">RFC 2918</span>, <span class="seriesInfo">DOI 10.17487/RFC2918</span>, <time datetime="2000-09" class="refDate">September 2000</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc2918">https://www.rfc-editor.org/rfc/rfc2918</a>&gt;</span>. </dd>
-<dd class="break"></dd>
 <dt id="RFC3644">[RFC3644]</dt>
         <dd>
 <span class="refAuthor">Snir, Y.</span>, <span class="refAuthor">Ramberg, Y.</span>, <span class="refAuthor">Strassner, J.</span>, <span class="refAuthor">Cohen, R.</span>, and <span class="refAuthor">B. Moore</span>, <span class="refTitle">"Policy Quality of Service (QoS) Information Model"</span>, <span class="seriesInfo">RFC 3644</span>, <span class="seriesInfo">DOI 10.17487/RFC3644</span>, <time datetime="2003-11" class="refDate">November 2003</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc3644">https://www.rfc-editor.org/rfc/rfc3644</a>&gt;</span>. </dd>
 <dd class="break"></dd>
+<dt id="RFC4252">[RFC4252]</dt>
+        <dd>
+<span class="refAuthor">Ylonen, T.</span> and <span class="refAuthor">C. Lonvick, Ed.</span>, <span class="refTitle">"The Secure Shell (SSH) Authentication Protocol"</span>, <span class="seriesInfo">RFC 4252</span>, <span class="seriesInfo">DOI 10.17487/RFC4252</span>, <time datetime="2006-01" class="refDate">January 2006</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc4252">https://www.rfc-editor.org/rfc/rfc4252</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="RFC4862">[RFC4862]</dt>
         <dd>
 <span class="refAuthor">Thomson, S.</span>, <span class="refAuthor">Narten, T.</span>, and <span class="refAuthor">T. Jinmei</span>, <span class="refTitle">"IPv6 Stateless Address Autoconfiguration"</span>, <span class="seriesInfo">RFC 4862</span>, <span class="seriesInfo">DOI 10.17487/RFC4862</span>, <time datetime="2007-09" class="refDate">September 2007</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc4862">https://www.rfc-editor.org/rfc/rfc4862</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC6241">[RFC6241]</dt>
+        <dd>
+<span class="refAuthor">Enns, R., Ed.</span>, <span class="refAuthor">Bjorklund, M., Ed.</span>, <span class="refAuthor">Schoenwaelder, J., Ed.</span>, and <span class="refAuthor">A. Bierman, Ed.</span>, <span class="refTitle">"Network Configuration Protocol (NETCONF)"</span>, <span class="seriesInfo">RFC 6241</span>, <span class="seriesInfo">DOI 10.17487/RFC6241</span>, <time datetime="2011-06" class="refDate">June 2011</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc6241">https://www.rfc-editor.org/rfc/rfc6241</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC7665">[RFC7665]</dt>
         <dd>
@@ -6339,6 +6477,10 @@ be used to inject spoofed routing  advertisements.<a href="#section-7-7.6.1" cla
         <dd>
 <span class="refAuthor">Pignataro, C.</span>, <span class="refAuthor">Ward, D.</span>, <span class="refAuthor">Akiya, N.</span>, <span class="refAuthor">Bhatia, M.</span>, and <span class="refAuthor">S. Pallagatti</span>, <span class="refTitle">"Seamless Bidirectional Forwarding Detection (S-BFD)"</span>, <span class="seriesInfo">RFC 7880</span>, <span class="seriesInfo">DOI 10.17487/RFC7880</span>, <time datetime="2016-07" class="refDate">July 2016</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc7880">https://www.rfc-editor.org/rfc/rfc7880</a>&gt;</span>. </dd>
 <dd class="break"></dd>
+<dt id="RFC8040">[RFC8040]</dt>
+        <dd>
+<span class="refAuthor">Bierman, A.</span>, <span class="refAuthor">Bjorklund, M.</span>, and <span class="refAuthor">K. Watsen</span>, <span class="refTitle">"RESTCONF Protocol"</span>, <span class="seriesInfo">RFC 8040</span>, <span class="seriesInfo">DOI 10.17487/RFC8040</span>, <time datetime="2017-01" class="refDate">January 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8040">https://www.rfc-editor.org/rfc/rfc8040</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="RFC8299">[RFC8299]</dt>
         <dd>
 <span class="refAuthor">Wu, Q., Ed.</span>, <span class="refAuthor">Litkowski, S.</span>, <span class="refAuthor">Tomotaki, L.</span>, and <span class="refAuthor">K. Ogaki</span>, <span class="refTitle">"YANG Data Model for L3VPN Service Delivery"</span>, <span class="seriesInfo">RFC 8299</span>, <span class="seriesInfo">DOI 10.17487/RFC8299</span>, <time datetime="2018-01" class="refDate">January 2018</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8299">https://www.rfc-editor.org/rfc/rfc8299</a>&gt;</span>. </dd>
@@ -6346,6 +6488,10 @@ be used to inject spoofed routing  advertisements.<a href="#section-7-7.6.1" cla
 <dt id="RFC8340">[RFC8340]</dt>
         <dd>
 <span class="refAuthor">Bjorklund, M.</span> and <span class="refAuthor">L. Berger, Ed.</span>, <span class="refTitle">"YANG Tree Diagrams"</span>, <span class="seriesInfo">BCP 215</span>, <span class="seriesInfo">RFC 8340</span>, <span class="seriesInfo">DOI 10.17487/RFC8340</span>, <time datetime="2018-03" class="refDate">March 2018</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8340">https://www.rfc-editor.org/rfc/rfc8340</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC8446">[RFC8446]</dt>
+        <dd>
+<span class="refAuthor">Rescorla, E.</span>, <span class="refTitle">"The Transport Layer Security (TLS) Protocol Version 1.3"</span>, <span class="seriesInfo">RFC 8446</span>, <span class="seriesInfo">DOI 10.17487/RFC8446</span>, <time datetime="2018-08" class="refDate">August 2018</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8446">https://www.rfc-editor.org/rfc/rfc8446</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC8466">[RFC8466]</dt>
         <dd>
@@ -6358,6 +6504,10 @@ be used to inject spoofed routing  advertisements.<a href="#section-7-7.6.1" cla
 <dt id="RFC8969">[RFC8969]</dt>
         <dd>
 <span class="refAuthor">Wu, Q., Ed.</span>, <span class="refAuthor">Boucadair, M., Ed.</span>, <span class="refAuthor">Lopez, D.</span>, <span class="refAuthor">Xie, C.</span>, and <span class="refAuthor">L. Geng</span>, <span class="refTitle">"A Framework for Automating Service and Network Management with YANG"</span>, <span class="seriesInfo">RFC 8969</span>, <span class="seriesInfo">DOI 10.17487/RFC8969</span>, <time datetime="2021-01" class="refDate">January 2021</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8969">https://www.rfc-editor.org/rfc/rfc8969</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC9000">[RFC9000]</dt>
+        <dd>
+<span class="refAuthor">Iyengar, J., Ed.</span> and <span class="refAuthor">M. Thomson, Ed.</span>, <span class="refTitle">"QUIC: A UDP-Based Multiplexed and Secure Transport"</span>, <span class="seriesInfo">RFC 9000</span>, <span class="seriesInfo">DOI 10.17487/RFC9000</span>, <time datetime="2021-05" class="refDate">May 2021</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9000">https://www.rfc-editor.org/rfc/rfc9000</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC9127">[RFC9127]</dt>
         <dd>
@@ -6386,9 +6536,9 @@ be used to inject spoofed routing  advertisements.<a href="#section-7-7.6.1" cla
         <h3 id="name-vpls">
 <a href="#appendix-A.1" class="section-number selfRef">A.1. </a><a href="#name-vpls" class="section-name selfRef">VPLS</a>
         </h3>
-<p id="appendix-A.1-1">Let us consider the example depicted in <a href="#ex-topo" class="auto internal xref">Figure 20</a> with two customer terminating points (CE1 and CE2). Let us also assume that the bearers to attach these CEs to the provider network are already in place. References to the identify these bearers are shown in the figure.<a href="#appendix-A.1-1" class="pilcrow">¶</a></p>
+<p id="appendix-A.1-1">Let us consider the example depicted in <a href="#ex-topo" class="auto internal xref">Figure 21</a> with two customer terminating points (CE1 and CE2). Let us also assume that the bearers to attach these CEs to the provider network are already in place. References to the identify these bearers are shown in the figure.<a href="#appendix-A.1-1" class="pilcrow">¶</a></p>
 <span id="name-topology-example"></span><div id="ex-topo">
-<figure id="figure-20">
+<figure id="figure-21">
           <div class="alignCenter art-text artwork" id="appendix-A.1-2.1">
 <pre>
             .-----.   .--------------.   .-----.
@@ -6399,13 +6549,13 @@ be used to inject spoofed routing  advertisements.<a href="#section-7-7.6.1" cla
     Bearer:1234       '--------------'         Bearer:5678
 </pre>
 </div>
-<figcaption><a href="#figure-20" class="selfRef">Figure 20</a>:
+<figcaption><a href="#figure-21" class="selfRef">Figure 21</a>:
 <a href="#name-topology-example" class="selfRef">Topology Example</a>
           </figcaption></figure>
 </div>
-<p id="appendix-A.1-3">The AC service model <span>[<a href="#I-D.ietf-opsawg-teas-attachment-circuit" class="cite xref">I-D.ietf-opsawg-teas-attachment-circuit</a>]</span> can be used by the provider to manage and expose the ACs over existing bearers as shown in <a href="#ex-ac" class="auto internal xref">Figure 21</a>.<a href="#appendix-A.1-3" class="pilcrow">¶</a></p>
+<p id="appendix-A.1-3">The AC service model <span>[<a href="#I-D.ietf-opsawg-teas-attachment-circuit" class="cite xref">I-D.ietf-opsawg-teas-attachment-circuit</a>]</span> can be used by the provider to manage and expose the ACs over existing bearers as shown in <a href="#ex-ac" class="auto internal xref">Figure 22</a>.<a href="#appendix-A.1-3" class="pilcrow">¶</a></p>
 <span id="name-acs-created-using-acaas"></span><div id="ex-ac">
-<figure id="figure-21">
+<figure id="figure-22">
           <div class="alignLeft art-text artwork" id="appendix-A.1-4.1">
 <pre>
 {
@@ -6479,20 +6629,20 @@ be used to inject spoofed routing  advertisements.<a href="#section-7-7.6.1" cla
 }
 </pre>
 </div>
-<figcaption><a href="#figure-21" class="selfRef">Figure 21</a>:
+<figcaption><a href="#figure-22" class="selfRef">Figure 22</a>:
 <a href="#name-acs-created-using-acaas" class="selfRef">ACs Created Using ACaaS</a>
           </figcaption></figure>
 </div>
-<p id="appendix-A.1-5">The provisioned AC at PE1 can be retrieved using the AC network model as depicted in <a href="#ex-acntw-query" class="auto internal xref">Figure 22</a>. A similar query can be used for the AC at PE2.<a href="#appendix-A.1-5" class="pilcrow">¶</a></p>
+<p id="appendix-A.1-5">The provisioned AC at PE1 can be retrieved using the AC network model as depicted in <a href="#ex-acntw-query" class="auto internal xref">Figure 23</a>. A similar query can be used for the AC at PE2.<a href="#appendix-A.1-5" class="pilcrow">¶</a></p>
 <span id="name-example-of-ac-network-respo"></span><div id="ex-acntw-query">
-<figure id="figure-22">
+<figure id="figure-23">
           <div class="alignLeft art-text artwork" id="appendix-A.1-6.1">
 <pre>
 {
    "ietf-ac-ntw:ac":[
       {
          "name":"ac-11",
-         "ac-svc-ref":"ac-1",
+         "svc-ref":"ac-1",
          "peer-sap-id":[
             "ce-1"
          ],
@@ -6549,13 +6699,13 @@ be used to inject spoofed routing  advertisements.<a href="#section-7-7.6.1" cla
 }
 </pre>
 </div>
-<figcaption><a href="#figure-22" class="selfRef">Figure 22</a>:
+<figcaption><a href="#figure-23" class="selfRef">Figure 23</a>:
 <a href="#name-example-of-ac-network-respo" class="selfRef">Example of AC Network Response (Message Body)</a>
           </figcaption></figure>
 </div>
-<p id="appendix-A.1-7">Also, the AC network model can be used to retrieve the list of SAPs to which the ACs are bound as shown in <a href="#ex-acntw-query" class="auto internal xref">Figure 22</a>.<a href="#appendix-A.1-7" class="pilcrow">¶</a></p>
+<p id="appendix-A.1-7">Also, the AC network model can be used to retrieve the list of SAPs to which the ACs are bound as shown in <a href="#ex-acntw-query" class="auto internal xref">Figure 23</a>.<a href="#appendix-A.1-7" class="pilcrow">¶</a></p>
 <span id="name-example-of-ac-network-respon"></span><div id="ex-acntw-query-2">
-<figure id="figure-23">
+<figure id="figure-24">
           <div class="alignLeft art-text artwork" id="appendix-A.1-8.1">
 <pre>
 {
@@ -6601,7 +6751,7 @@ be used to inject spoofed routing  advertisements.<a href="#section-7-7.6.1" cla
 }
 </pre>
 </div>
-<figcaption><a href="#figure-23" class="selfRef">Figure 23</a>:
+<figcaption><a href="#figure-24" class="selfRef">Figure 24</a>:
 <a href="#name-example-of-ac-network-respon" class="selfRef">Example of AC Network Response to Retrieve the SAP (Message Body)</a>
           </figcaption></figure>
 </div>
@@ -6612,9 +6762,9 @@ be used to inject spoofed routing  advertisements.<a href="#section-7-7.6.1" cla
         <h3 id="name-parent-ac">
 <a href="#appendix-A.2" class="section-number selfRef">A.2. </a><a href="#name-parent-ac" class="section-name selfRef">Parent AC</a>
         </h3>
-<p id="appendix-A.2-1">In reference to the topology depicted in <a href="#sap-ac-ntw" class="auto internal xref">Figure 1</a>, PE2 has a SAP which terminates an AC with two peer SAPs (CE2 and CE5). In order to control data that is specific to each of these peer SAPs over the same AC, child ACs can be instantiated as depicted in <a href="#ex-parent-ac" class="auto internal xref">Figure 24</a>.<a href="#appendix-A.2-1" class="pilcrow">¶</a></p>
+<p id="appendix-A.2-1">In reference to the topology depicted in <a href="#sap-ac-ntw" class="auto internal xref">Figure 1</a>, PE2 has a SAP which terminates an AC with two peer SAPs (CE2 and CE5). In order to control data that is specific to each of these peer SAPs over the same AC, child ACs can be instantiated as depicted in <a href="#ex-parent-ac" class="auto internal xref">Figure 25</a>.<a href="#appendix-A.2-1" class="pilcrow">¶</a></p>
 <span id="name-example-of-child-acs"></span><div id="ex-parent-ac">
-<figure id="figure-24">
+<figure id="figure-25">
           <div class="alignLeft art-text artwork" id="appendix-A.2-2.1">
 <pre>
 {
@@ -6646,7 +6796,7 @@ be used to inject spoofed routing  advertisements.<a href="#section-7-7.6.1" cla
       },
       {
          "name":"ac-1-to-ce2",
-         "ac-parent-ref":{
+         "parent-ref":{
             "ac-ref":"ac-1",
             "node-ref":"example:pe2",
             "network-ref":"example:an-id"
@@ -6657,7 +6807,7 @@ be used to inject spoofed routing  advertisements.<a href="#section-7-7.6.1" cla
       },
       {
          "name":"ac-1-to-ce5",
-         "ac-parent-ref":{
+         "parent-ref":{
             "ac-ref":"ac-1",
             "node-ref":"example:pe2",
             "network-ref":"example:an-id"
@@ -6670,13 +6820,13 @@ be used to inject spoofed routing  advertisements.<a href="#section-7-7.6.1" cla
 }
 </pre>
 </div>
-<figcaption><a href="#figure-24" class="selfRef">Figure 24</a>:
+<figcaption><a href="#figure-25" class="selfRef">Figure 25</a>:
 <a href="#name-example-of-child-acs" class="selfRef">Example of Child ACs</a>
           </figcaption></figure>
 </div>
-<p id="appendix-A.2-3"><a href="#ex-parent-ac-sap" class="auto internal xref">Figure 25</a> shows how to bind the parent AC to a SAP.<a href="#appendix-A.2-3" class="pilcrow">¶</a></p>
+<p id="appendix-A.2-3"><a href="#ex-parent-ac-sap" class="auto internal xref">Figure 26</a> shows how to bind the parent AC to a SAP.<a href="#appendix-A.2-3" class="pilcrow">¶</a></p>
 <span id="name-example-of-binding-parent-a"></span><div id="ex-parent-ac-sap">
-<figure id="figure-25">
+<figure id="figure-26">
           <div class="alignLeft art-text artwork" id="appendix-A.2-4.1">
 <pre>
 {
@@ -6708,7 +6858,7 @@ be used to inject spoofed routing  advertisements.<a href="#section-7-7.6.1" cla
 }
 </pre>
 </div>
-<figcaption><a href="#figure-25" class="selfRef">Figure 25</a>:
+<figcaption><a href="#figure-26" class="selfRef">Figure 26</a>:
 <a href="#name-example-of-binding-parent-a" class="selfRef">Example of Binding Parent AC to SAPs</a>
           </figcaption></figure>
 </div>
@@ -6716,20 +6866,648 @@ be used to inject spoofed routing  advertisements.<a href="#section-7-7.6.1" cla
 </div>
 </section>
 </div>
-<div id="acknowledgments">
+<div id="AC-Ntw-Tree">
 <section id="appendix-B">
+      <h2 id="name-full-tree">
+<a href="#appendix-B" class="section-number selfRef">Appendix B. </a><a href="#name-full-tree" class="section-name selfRef">Full Tree</a>
+      </h2>
+<div class="alignLeft art-text artwork" id="appendix-B-1">
+<pre>
+module: ietf-ac-ntw
+
+  augment /nw:networks/nw:network:
+    +--rw specific-provisioning-profiles
+    |  +--rw valid-provider-identifiers
+    |     +--rw encryption-profile-identifier* [id]
+    |     |  +--rw id    string
+    |     +--rw qos-profile-identifier* [id]
+    |     |  +--rw id    string
+    |     +--rw failure-detection-profile-identifier* [id]
+    |     |  +--rw id    string
+    |     +--rw forwarding-profile-identifier* [id]
+    |     |  +--rw id    string
+    |     +--rw routing-profile-identifier* [id]
+    |        +--rw id    string
+    +--rw ac-profile* [name]
+       +--rw name                 string
+       +--rw routing-protocols
+       |  +--rw routing-protocol* [id]
+       |     +--rw id      string
+       |     +--rw type?   identityref
+       |     +--rw bgp {vpn-common:rtg-bgp}?
+       |     |  +--rw peer-groups
+       |     |     +--rw peer-group* [name]
+       |     |        +--rw name                      string
+       |     |        +--rw description?              string
+       |     |        +--rw apply-policy
+       |     |        |  +--rw import-policy*           leafref
+       |     |        |  +--rw default-import-policy?
+       |     |        |  |       default-policy-type
+       |     |        |  +--rw export-policy*           leafref
+       |     |        |  +--rw default-export-policy?
+       |     |        |          default-policy-type
+       |     |        +--rw local-as?                 inet:as-number
+       |     |        +--rw peer-as                   inet:as-number
+       |     |        +--rw address-family?           identityref
+       |     |        +--rw role?                     identityref
+       |     |        +--rw multihop?                 uint8
+       |     |        +--rw as-override?              boolean
+       |     |        +--rw allow-own-as?             uint8
+       |     |        +--rw prepend-global-as?        boolean
+       |     |        +--rw send-default-route?       boolean
+       |     |        +--rw site-of-origin?
+       |     |        |       rt-types:route-origin
+       |     |        +--rw ipv6-site-of-origin?
+       |     |        |       rt-types:ipv6-route-origin
+       |     |        +--rw redistribute-connected* [address-family]
+       |     |        |  +--rw address-family    identityref
+       |     |        |  +--rw enabled?          boolean
+       |     |        +--rw bgp-max-prefix
+       |     |        |  +--rw max-prefix?          uint32
+       |     |        |  +--rw warning-threshold?   decimal64
+       |     |        |  +--rw violate-action?      enumeration
+       |     |        |  +--rw restart-timer?       uint32
+       |     |        +--rw bgp-timers
+       |     |           +--rw keepalive?   uint16
+       |     |           +--rw hold-time?   uint16
+       |     +--rw ospf {vpn-common:rtg-ospf}?
+       |     |  +--rw address-family?   identityref
+       |     |  +--rw area-id           yang:dotted-quad
+       |     |  +--rw metric?           uint16
+       |     |  +--rw max-lsa?          uint32
+       |     |  +--rw passive?          boolean
+       |     +--rw isis {vpn-common:rtg-isis}?
+       |     |  +--rw address-family?   identityref
+       |     |  +--rw area-address      area-address
+       |     |  +--rw level?            identityref
+       |     |  +--rw metric?           uint32
+       |     |  +--rw passive?          boolean
+       |     +--rw rip {vpn-common:rtg-rip}?
+       |     |  +--rw address-family?   identityref
+       |     |  +--rw timers
+       |     |  |  +--rw update-interval?     uint16
+       |     |  |  +--rw invalid-interval?    uint16
+       |     |  |  +--rw holddown-interval?   uint16
+       |     |  |  +--rw flush-interval?      uint16
+       |     |  +--rw default-metric?   uint8
+       |     +--rw vrrp {vpn-common:rtg-vrrp}?
+       |        +--rw address-family?   identityref
+       |        +--rw ping-reply?       boolean
+       +--rw oam
+          +--rw bfd {vpn-common:bfd}?
+             +--rw session-type?               identityref
+             +--rw desired-min-tx-interval?    uint32
+             +--rw required-min-rx-interval?   uint32
+             +--rw local-multiplier?           uint8
+             +--rw holdtime?                   uint32
+  augment /nw:networks/nw:network/nw:node:
+    +--rw ac* [name]
+       +--rw name                 string
+       +--rw svc-ref?             ac-svc:attachment-circuit-reference
+       +--rw profile* [ac-profile-ref]
+       |  +--rw ac-profile-ref    leafref
+       |  +--rw network-ref?      -&gt; /nw:networks/network/network-id
+       +--rw parent-ref
+       |  +--rw ac-ref?        leafref
+       |  +--rw node-ref?      leafref
+       |  +--rw network-ref?   -&gt; /nw:networks/network/network-id
+       +--ro child-ref
+       |  +--ro ac-ref*        leafref
+       |  +--ro node-ref?      leafref
+       |  +--ro network-ref?   -&gt; /nw:networks/network/network-id
+       +--rw peer-sap-id*         string
+       +--rw group* [group-id]
+       |  +--rw group-id      string
+       |  +--rw precedence?   identityref
+       +--rw status
+       |  +--rw admin-status
+       |  |  +--rw status?        identityref
+       |  |  +--ro last-change?   yang:date-and-time
+       |  +--ro oper-status
+       |     +--ro status?        identityref
+       |     +--ro last-change?   yang:date-and-time
+       +--rw description?         string
+       +--rw l2-connection {ac-common:layer2-ac}?
+       |  +--rw encapsulation
+       |  |  +--rw encap-type?        identityref
+       |  |  +--rw dot1q
+       |  |  |  +--rw tag-type?         identityref
+       |  |  |  +--rw cvlan-id?         uint16
+       |  |  |  +--rw tag-operations
+       |  |  |     +--rw (op-choice)?
+       |  |  |     |  +--:(pop)
+       |  |  |     |  |  +--rw pop?         empty
+       |  |  |     |  +--:(push)
+       |  |  |     |  |  +--rw push?        empty
+       |  |  |     |  +--:(translate)
+       |  |  |     |     +--rw translate?   empty
+       |  |  |     +--rw tag-1?          dot1q-types:vlanid
+       |  |  |     +--rw tag-1-type?     dot1q-types:dot1q-tag-type
+       |  |  |     +--rw tag-2?          dot1q-types:vlanid
+       |  |  |     +--rw tag-2-type?     dot1q-types:dot1q-tag-type
+       |  |  +--rw priority-tagged
+       |  |  |  +--rw tag-type?   identityref
+       |  |  +--rw qinq
+       |  |     +--rw tag-type?         identityref
+       |  |     +--rw svlan-id?         uint16
+       |  |     +--rw cvlan-id?         uint16
+       |  |     +--rw tag-operations
+       |  |        +--rw (op-choice)?
+       |  |        |  +--:(pop)
+       |  |        |  |  +--rw pop?         uint8
+       |  |        |  +--:(push)
+       |  |        |  |  +--rw push?        empty
+       |  |        |  +--:(translate)
+       |  |        |     +--rw translate?   uint8
+       |  |        +--rw tag-1?          dot1q-types:vlanid
+       |  |        +--rw tag-1-type?     dot1q-types:dot1q-tag-type
+       |  |        +--rw tag-2?          dot1q-types:vlanid
+       |  |        +--rw tag-2-type?     dot1q-types:dot1q-tag-type
+       |  +--rw (l2-service)?
+       |  |  +--:(l2-tunnel-service)
+       |  |  |  +--rw l2-tunnel-service
+       |  |  |     +--rw type?         identityref
+       |  |  |     +--rw pseudowire
+       |  |  |     |  +--rw vcid?      uint32
+       |  |  |     |  +--rw far-end?   union
+       |  |  |     +--rw vpls
+       |  |  |     |  +--rw vcid?      uint32
+       |  |  |     |  +--rw far-end*   union
+       |  |  |     +--rw vxlan
+       |  |  |        +--rw vni-id?            uint32
+       |  |  |        +--rw peer-mode?         identityref
+       |  |  |        +--rw peer-ip-address*   inet:ip-address
+       |  |  +--:(l2vpn)
+       |  |     +--rw l2vpn-id?            vpn-common:vpn-id
+       |  +--rw l2-termination-point?      string
+       |  +--rw local-bridge-reference?    string
+       |  +--rw bearer-reference?          string
+       |  |       {ac-common:server-assigned-reference}?
+       |  +--rw lag-interface {vpn-common:lag-interface}?
+       |     +--rw lag-interface-id?   string
+       |     +--rw member-link-list
+       |        +--rw member-link* [name]
+       |           +--rw name    string
+       +--rw ip-connection {ac-common:layer3-ac}?
+       |  +--rw l3-termination-point?   string
+       |  +--rw ipv4 {vpn-common:ipv4}?
+       |  |  +--rw local-address?
+       |  |  |       inet:ipv4-address
+       |  |  +--rw prefix-length?                           uint8
+       |  |  +--rw address-allocation-type?
+       |  |  |       identityref
+       |  |  +--rw (allocation-type)?
+       |  |     +--:(dynamic)
+       |  |     |  +--rw (address-assign)?
+       |  |     |  |  +--:(number)
+       |  |     |  |  |  +--rw number-of-dynamic-address?   uint16
+       |  |     |  |  +--:(explicit)
+       |  |     |  |     +--rw customer-addresses
+       |  |     |  |        +--rw address-pool* [pool-id]
+       |  |     |  |           +--rw pool-id          string
+       |  |     |  |           +--rw start-address
+       |  |     |  |           |       inet:ipv4-address
+       |  |     |  |           +--rw end-address?
+       |  |     |  |                   inet:ipv4-address
+       |  |     |  +--rw (provider-dhcp)?
+       |  |     |  |  +--:(dhcp-service-type)
+       |  |     |  |  |  +--rw dhcp-service-type?
+       |  |     |  |  |          enumeration
+       |  |     |  |  +--:(service-type)
+       |  |     |  |     +--rw (service-type)?
+       |  |     |  |        +--:(relay)
+       |  |     |  |           +--rw server-ip-address*
+       |  |     |  |                   inet:ipv4-address
+       |  |     |  +--rw (dhcp-relay)?
+       |  |     |     +--:(customer-dhcp-servers)
+       |  |     |        +--rw customer-dhcp-servers
+       |  |     |           +--rw server-ip-address*
+       |  |     |                   inet:ipv4-address
+       |  |     +--:(static-addresses)
+       |  |        +--rw address* [address-id]
+       |  |           +--rw address-id                       string
+       |  |           +--rw customer-address?
+       |  |           |       inet:ipv4-address
+       |  |           +--rw failure-detection-profile-ref?   leafref
+       |  |           +--rw network-ref?
+       |  |                   -&gt; /nw:networks/network/network-id
+       |  +--rw ipv6 {vpn-common:ipv6}?
+       |     +--rw local-address?
+       |     |       inet:ipv6-address
+       |     +--rw prefix-length?                           uint8
+       |     +--rw address-allocation-type?
+       |     |       identityref
+       |     +--rw (allocation-type)?
+       |        +--:(dynamic)
+       |        |  +--rw (address-assign)?
+       |        |  |  +--:(number)
+       |        |  |  |  +--rw number-of-dynamic-address?   uint16
+       |        |  |  +--:(explicit)
+       |        |  |     +--rw customer-addresses
+       |        |  |        +--rw address-pool* [pool-id]
+       |        |  |           +--rw pool-id          string
+       |        |  |           +--rw start-address
+       |        |  |           |       inet:ipv6-address
+       |        |  |           +--rw end-address?
+       |        |  |                   inet:ipv6-address
+       |        |  +--rw (provider-dhcp)?
+       |        |  |  +--:(dhcp-service-type)
+       |        |  |  |  +--rw dhcp-service-type?
+       |        |  |  |          enumeration
+       |        |  |  +--:(service-type)
+       |        |  |     +--rw (service-type)?
+       |        |  |        +--:(relay)
+       |        |  |           +--rw server-ip-address*
+       |        |  |                   inet:ipv6-address
+       |        |  +--rw (dhcp-relay)?
+       |        |     +--:(customer-dhcp-servers)
+       |        |        +--rw customer-dhcp-servers
+       |        |           +--rw server-ip-address*
+       |        |                   inet:ipv6-address
+       |        +--:(static-addresses)
+       |           +--rw address* [address-id]
+       |              +--rw address-id                       string
+       |              +--rw customer-address?
+       |              |       inet:ipv6-address
+       |              +--rw failure-detection-profile-ref?   leafref
+       |              +--rw network-ref?
+       |                      -&gt; /nw:networks/network/network-id
+       +--rw routing-protocols
+       |  +--rw routing-protocol* [id]
+       |     +--rw id                 string
+       |     +--rw type?              identityref
+       |     +--rw routing-profile* [routing-profile-ref]
+       |     |  +--rw routing-profile-ref    leafref
+       |     |  +--rw network-ref?
+       |     |  |       -&gt; /nw:networks/network/network-id
+       |     |  +--rw type?                  identityref
+       |     +--rw static
+       |     |  +--rw cascaded-lan-prefixes
+       |     |     +--rw ipv4-lan-prefix* [lan next-hop]
+       |     |     |       {vpn-common:ipv4}?
+       |     |     |  +--rw lan           inet:ipv4-prefix
+       |     |     |  +--rw lan-tag?      string
+       |     |     |  +--rw next-hop      union
+       |     |     |  +--rw metric?       uint32
+       |     |     |  +--rw bfd {vpn-common:bfd}?
+       |     |     |  |  +--rw enabled?
+       |     |     |  |  |       boolean
+       |     |     |  |  +--rw failure-detection-profile-ref?
+       |     |     |  |  |       leafref
+       |     |     |  |  +--rw network-ref?
+       |     |     |  |          -&gt; /nw:networks/network/network-id
+       |     |     |  +--rw preference?   uint32
+       |     |     |  +--rw status
+       |     |     |     +--rw admin-status
+       |     |     |     |  +--rw status?        identityref
+       |     |     |     |  +--ro last-change?   yang:date-and-time
+       |     |     |     +--ro oper-status
+       |     |     |        +--ro status?        identityref
+       |     |     |        +--ro last-change?   yang:date-and-time
+       |     |     +--rw ipv6-lan-prefix* [lan next-hop]
+       |     |             {vpn-common:ipv6}?
+       |     |        +--rw lan           inet:ipv6-prefix
+       |     |        +--rw lan-tag?      string
+       |     |        +--rw next-hop      union
+       |     |        +--rw metric?       uint32
+       |     |        +--rw bfd {vpn-common:bfd}?
+       |     |        |  +--rw enabled?
+       |     |        |  |       boolean
+       |     |        |  +--rw failure-detection-profile-ref?
+       |     |        |  |       leafref
+       |     |        |  +--rw network-ref?
+       |     |        |          -&gt; /nw:networks/network/network-id
+       |     |        +--rw preference?   uint32
+       |     |        +--rw status
+       |     |           +--rw admin-status
+       |     |           |  +--rw status?        identityref
+       |     |           |  +--ro last-change?   yang:date-and-time
+       |     |           +--ro oper-status
+       |     |              +--ro status?        identityref
+       |     |              +--ro last-change?   yang:date-and-time
+       |     +--rw bgp {vpn-common:rtg-bgp}?
+       |     |  +--rw peer-groups
+       |     |  |  +--rw peer-group* [name]
+       |     |  |     +--rw name                      string
+       |     |  |     +--rw local-address?            union
+       |     |  |     +--rw description?              string
+       |     |  |     +--rw apply-policy
+       |     |  |     |  +--rw import-policy*           leafref
+       |     |  |     |  +--rw default-import-policy?
+       |     |  |     |  |       default-policy-type
+       |     |  |     |  +--rw export-policy*           leafref
+       |     |  |     |  +--rw default-export-policy?
+       |     |  |     |          default-policy-type
+       |     |  |     +--rw local-as?                 inet:as-number
+       |     |  |     +--rw peer-as                   inet:as-number
+       |     |  |     +--rw address-family?           identityref
+       |     |  |     +--rw role?                     identityref
+       |     |  |     +--rw multihop?                 uint8
+       |     |  |     +--rw as-override?              boolean
+       |     |  |     +--rw allow-own-as?             uint8
+       |     |  |     +--rw prepend-global-as?        boolean
+       |     |  |     +--rw send-default-route?       boolean
+       |     |  |     +--rw site-of-origin?
+       |     |  |     |       rt-types:route-origin
+       |     |  |     +--rw ipv6-site-of-origin?
+       |     |  |     |       rt-types:ipv6-route-origin
+       |     |  |     +--rw redistribute-connected* [address-family]
+       |     |  |     |  +--rw address-family    identityref
+       |     |  |     |  +--rw enabled?          boolean
+       |     |  |     +--rw bgp-max-prefix
+       |     |  |     |  +--rw max-prefix?          uint32
+       |     |  |     |  +--rw warning-threshold?   decimal64
+       |     |  |     |  +--rw violate-action?      enumeration
+       |     |  |     |  +--rw restart-timer?       uint32
+       |     |  |     +--rw bgp-timers
+       |     |  |     |  +--rw keepalive?   uint16
+       |     |  |     |  +--rw hold-time?   uint16
+       |     |  |     +--rw authentication
+       |     |  |        +--rw enabled?           boolean
+       |     |  |        +--rw keying-material
+       |     |  |           +--rw (option)?
+       |     |  |              +--:(ao)
+       |     |  |              |  +--rw enable-ao?          boolean
+       |     |  |              |  +--rw ao-keychain?
+       |     |  |              |          key-chain:key-chain-ref
+       |     |  |              +--:(md5)
+       |     |  |              |  +--rw md5-keychain?
+       |     |  |              |          key-chain:key-chain-ref
+       |     |  |              +--:(explicit)
+       |     |  |                 +--rw key-id?             uint32
+       |     |  |                 +--rw key?                string
+       |     |  |                 +--rw crypto-algorithm?
+       |     |  |                         identityref
+       |     |  +--rw neighbor* [remote-address]
+       |     |     +--rw remote-address            inet:ip-address
+       |     |     +--rw local-address?            union
+       |     |     +--rw peer-group?
+       |     |     |       -&gt; ../../peer-groups/peer-group/name
+       |     |     +--rw description?              string
+       |     |     +--rw apply-policy
+       |     |     |  +--rw import-policy*           leafref
+       |     |     |  +--rw default-import-policy?
+       |     |     |  |       default-policy-type
+       |     |     |  +--rw export-policy*           leafref
+       |     |     |  +--rw default-export-policy?
+       |     |     |          default-policy-type
+       |     |     +--rw local-as?                 inet:as-number
+       |     |     +--rw peer-as                   inet:as-number
+       |     |     +--rw address-family?           identityref
+       |     |     +--rw role?                     identityref
+       |     |     +--rw multihop?                 uint8
+       |     |     +--rw as-override?              boolean
+       |     |     +--rw allow-own-as?             uint8
+       |     |     +--rw prepend-global-as?        boolean
+       |     |     +--rw send-default-route?       boolean
+       |     |     +--rw site-of-origin?
+       |     |     |       rt-types:route-origin
+       |     |     +--rw ipv6-site-of-origin?
+       |     |     |       rt-types:ipv6-route-origin
+       |     |     +--rw redistribute-connected* [address-family]
+       |     |     |  +--rw address-family    identityref
+       |     |     |  +--rw enabled?          boolean
+       |     |     +--rw bgp-max-prefix
+       |     |     |  +--rw max-prefix?          uint32
+       |     |     |  +--rw warning-threshold?   decimal64
+       |     |     |  +--rw violate-action?      enumeration
+       |     |     |  +--rw restart-timer?       uint32
+       |     |     +--rw bgp-timers
+       |     |     |  +--rw keepalive?   uint16
+       |     |     |  +--rw hold-time?   uint16
+       |     |     +--rw bfd {vpn-common:bfd}?
+       |     |     |  +--rw enabled?                         boolean
+       |     |     |  +--rw failure-detection-profile-ref?   leafref
+       |     |     |  +--rw network-ref?
+       |     |     |          -&gt; /nw:networks/network/network-id
+       |     |     +--rw authentication
+       |     |     |  +--rw enabled?           boolean
+       |     |     |  +--rw keying-material
+       |     |     |     +--rw (option)?
+       |     |     |        +--:(ao)
+       |     |     |        |  +--rw enable-ao?          boolean
+       |     |     |        |  +--rw ao-keychain?
+       |     |     |        |          key-chain:key-chain-ref
+       |     |     |        +--:(md5)
+       |     |     |        |  +--rw md5-keychain?
+       |     |     |        |          key-chain:key-chain-ref
+       |     |     |        +--:(explicit)
+       |     |     |           +--rw key-id?             uint32
+       |     |     |           +--rw key?                string
+       |     |     |           +--rw crypto-algorithm?   identityref
+       |     |     +--rw status
+       |     |        +--rw admin-status
+       |     |        |  +--rw status?        identityref
+       |     |        |  +--ro last-change?   yang:date-and-time
+       |     |        +--ro oper-status
+       |     |           +--ro status?        identityref
+       |     |           +--ro last-change?   yang:date-and-time
+       |     +--rw ospf {vpn-common:rtg-ospf}?
+       |     |  +--rw address-family?   identityref
+       |     |  +--rw area-id           yang:dotted-quad
+       |     |  +--rw metric?           uint16
+       |     |  +--rw sham-links {vpn-common:rtg-ospf-sham-link}?
+       |     |  |  +--rw sham-link* [target-site]
+       |     |  |     +--rw target-site    string
+       |     |  |     +--rw metric?        uint16
+       |     |  +--rw max-lsa?          uint32
+       |     |  +--rw passive?          boolean
+       |     |  +--rw authentication
+       |     |  |  +--rw enabled?           boolean
+       |     |  |  +--rw keying-material
+       |     |  |     +--rw (option)?
+       |     |  |        +--:(auth-key-chain)
+       |     |  |        |  +--rw key-chain?
+       |     |  |        |          key-chain:key-chain-ref
+       |     |  |        +--:(auth-key-explicit)
+       |     |  |           +--rw key-id?             uint32
+       |     |  |           +--rw key?                string
+       |     |  |           +--rw crypto-algorithm?   identityref
+       |     |  +--rw status
+       |     |     +--rw admin-status
+       |     |     |  +--rw status?        identityref
+       |     |     |  +--ro last-change?   yang:date-and-time
+       |     |     +--ro oper-status
+       |     |        +--ro status?        identityref
+       |     |        +--ro last-change?   yang:date-and-time
+       |     +--rw isis {vpn-common:rtg-isis}?
+       |     |  +--rw address-family?   identityref
+       |     |  +--rw area-address      area-address
+       |     |  +--rw level?            identityref
+       |     |  +--rw metric?           uint32
+       |     |  +--rw passive?          boolean
+       |     |  +--rw authentication
+       |     |  |  +--rw enabled?           boolean
+       |     |  |  +--rw keying-material
+       |     |  |     +--rw (option)?
+       |     |  |        +--:(auth-key-chain)
+       |     |  |        |  +--rw key-chain?
+       |     |  |        |          key-chain:key-chain-ref
+       |     |  |        +--:(auth-key-explicit)
+       |     |  |           +--rw key-id?             uint32
+       |     |  |           +--rw key?                string
+       |     |  |           +--rw crypto-algorithm?   identityref
+       |     |  +--rw status
+       |     |     +--rw admin-status
+       |     |     |  +--rw status?        identityref
+       |     |     |  +--ro last-change?   yang:date-and-time
+       |     |     +--ro oper-status
+       |     |        +--ro status?        identityref
+       |     |        +--ro last-change?   yang:date-and-time
+       |     +--rw rip {vpn-common:rtg-rip}?
+       |     |  +--rw address-family?   identityref
+       |     |  +--rw timers
+       |     |  |  +--rw update-interval?     uint16
+       |     |  |  +--rw invalid-interval?    uint16
+       |     |  |  +--rw holddown-interval?   uint16
+       |     |  |  +--rw flush-interval?      uint16
+       |     |  +--rw default-metric?   uint8
+       |     |  +--rw authentication
+       |     |  |  +--rw enabled?           boolean
+       |     |  |  +--rw keying-material
+       |     |  |     +--rw (option)?
+       |     |  |        +--:(auth-key-chain)
+       |     |  |        |  +--rw key-chain?
+       |     |  |        |          key-chain:key-chain-ref
+       |     |  |        +--:(auth-key-explicit)
+       |     |  |           +--rw key?                string
+       |     |  |           +--rw crypto-algorithm?   identityref
+       |     |  +--rw status
+       |     |     +--rw admin-status
+       |     |     |  +--rw status?        identityref
+       |     |     |  +--ro last-change?   yang:date-and-time
+       |     |     +--ro oper-status
+       |     |        +--ro status?        identityref
+       |     |        +--ro last-change?   yang:date-and-time
+       |     +--rw vrrp {vpn-common:rtg-vrrp}?
+       |        +--rw address-family?       identityref
+       |        +--rw vrrp-group?           uint8
+       |        +--rw backup-peer?          inet:ip-address
+       |        +--rw virtual-ip-address*   inet:ip-address
+       |        +--rw priority?             uint8
+       |        +--rw ping-reply?           boolean
+       |        +--rw status
+       |           +--rw admin-status
+       |           |  +--rw status?        identityref
+       |           |  +--ro last-change?   yang:date-and-time
+       |           +--ro oper-status
+       |              +--ro status?        identityref
+       |              +--ro last-change?   yang:date-and-time
+       +--rw oam
+       |  +--rw bfd {vpn-common:bfd}?
+       |     +--rw session* [dest-addr]
+       |        +--rw dest-addr              inet:ip-address
+       |        +--rw source-address?                  union
+       |        +--rw failure-detection-profile-ref?   leafref
+       |        +--rw network-ref?
+       |        |       -&gt; /nw:networks/network/network-id
+       |        +--rw session-type?                    identityref
+       |        +--rw desired-min-tx-interval?         uint32
+       |        +--rw required-min-rx-interval?        uint32
+       |        +--rw local-multiplier?                uint8
+       |        +--rw holdtime?                        uint32
+       |        +--rw authentication!
+       |        |  +--rw key-chain?    key-chain:key-chain-ref
+       |        |  +--rw meticulous?   boolean
+       |        +--rw status
+       |           +--rw admin-status
+       |           |  +--rw status?        identityref
+       |           |  +--ro last-change?   yang:date-and-time
+       |           +--ro oper-status
+       |              +--ro status?        identityref
+       |              +--ro last-change?   yang:date-and-time
+       +--rw security
+       |  +--rw encryption {vpn-common:encryption}?
+       |  |  +--rw enabled?   boolean
+       |  |  +--rw layer?     enumeration
+       |  +--rw encryption-profile
+       |     +--rw (profile)?
+       |        +--:(provider-profile)
+       |        |  +--rw encryption-profile-ref?   leafref
+       |        |  +--rw network-ref?
+       |        |          -&gt; /nw:networks/network/network-id
+       |        +--:(customer-profile)
+       |           +--rw customer-key-chain?
+       |                   key-chain:key-chain-ref
+       +--rw service
+          +--rw mtu?                      uint32
+          +--rw svc-pe-to-ce-bandwidth {vpn-common:inbound-bw}?
+          |  +--rw bandwidth* [bw-type]
+          |     +--rw bw-type      identityref
+          |     +--rw (type)?
+          |        +--:(per-cos)
+          |        |  +--rw cos* [cos-id]
+          |        |     +--rw cos-id    uint8
+          |        |     +--rw cir?      uint64
+          |        |     +--rw cbs?      uint64
+          |        |     +--rw eir?      uint64
+          |        |     +--rw ebs?      uint64
+          |        |     +--rw pir?      uint64
+          |        |     +--rw pbs?      uint64
+          |        +--:(other)
+          |           +--rw cir?   uint64
+          |           +--rw cbs?   uint64
+          |           +--rw eir?   uint64
+          |           +--rw ebs?   uint64
+          |           +--rw pir?   uint64
+          |           +--rw pbs?   uint64
+          +--rw svc-ce-to-pe-bandwidth {vpn-common:outbound-bw}?
+          |  +--rw bandwidth* [bw-type]
+          |     +--rw bw-type      identityref
+          |     +--rw (type)?
+          |        +--:(per-cos)
+          |        |  +--rw cos* [cos-id]
+          |        |     +--rw cos-id    uint8
+          |        |     +--rw cir?      uint64
+          |        |     +--rw cbs?      uint64
+          |        |     +--rw eir?      uint64
+          |        |     +--rw ebs?      uint64
+          |        |     +--rw pir?      uint64
+          |        |     +--rw pbs?      uint64
+          |        +--:(other)
+          |           +--rw cir?   uint64
+          |           +--rw cbs?   uint64
+          |           +--rw eir?   uint64
+          |           +--rw ebs?   uint64
+          |           +--rw pir?   uint64
+          |           +--rw pbs?   uint64
+          +--rw qos {vpn-common:qos}?
+          |  +--rw qos-profiles
+          |     +--rw qos-profile* [qos-profile-ref]
+          |        +--rw qos-profile-ref    leafref
+          |        +--rw network-ref?
+          |        |       -&gt; /nw:networks/network/network-id
+          |        +--rw direction?         identityref
+          +--rw access-control-list
+             +--rw acl-profiles
+                +--rw acl-profile* [forwarding-profile-ref]
+                   +--rw forwarding-profile-ref    leafref
+                   +--rw network-ref?
+                           -&gt; /nw:networks/network/network-id
+  augment /nw:networks/nw:network/nw:node/sap:service/sap:sap:
+    +--rw ac* [ac-ref]
+       +--rw ac-ref         leafref
+       +--rw node-ref?      leafref
+       +--rw network-ref?   -&gt; /nw:networks/network/network-id
+</pre><a href="#appendix-B-1" class="pilcrow">¶</a>
+</div>
+</section>
+</div>
+<div id="acknowledgments">
+<section id="appendix-C">
       <h2 id="name-acknowledgments">
 <a href="#name-acknowledgments" class="section-name selfRef">Acknowledgments</a>
       </h2>
-<p id="appendix-B-1">This document builds on <span>[<a href="#RFC9182" class="cite xref">RFC9182</a>]</span> and <span>[<a href="#RFC9291" class="cite xref">RFC9291</a>]</span>.<a href="#appendix-B-1" class="pilcrow">¶</a></p>
-<p id="appendix-B-2">Thanks to Moti Morgenstern for the review and comments.<a href="#appendix-B-2" class="pilcrow">¶</a></p>
-<p id="appendix-B-3">Thanks to Martin Björklund for the yangdoctors review, Gyan Mishra for an early rtg-dir review, Joel Halpern for the rtg-dir review,
-and Giuseppe Fioccola for the ops-dir review.<a href="#appendix-B-3" class="pilcrow">¶</a></p>
-<p id="appendix-B-4">Thanks to Krzysztof Szarkowicz for the Shepherd review.<a href="#appendix-B-4" class="pilcrow">¶</a></p>
+<p id="appendix-C-1">This document builds on <span>[<a href="#RFC9182" class="cite xref">RFC9182</a>]</span> and <span>[<a href="#RFC9291" class="cite xref">RFC9291</a>]</span>.<a href="#appendix-C-1" class="pilcrow">¶</a></p>
+<p id="appendix-C-2">Thanks to Moti Morgenstern for the review and comments.<a href="#appendix-C-2" class="pilcrow">¶</a></p>
+<p id="appendix-C-3">Thanks to Martin Björklund for the yangdoctors review, Gyan Mishra for an early rtg-dir review, Joel Halpern for the rtg-dir review,
+and Giuseppe Fioccola for the ops-dir review.<a href="#appendix-C-3" class="pilcrow">¶</a></p>
+<p id="appendix-C-4">Thanks to Krzysztof Szarkowicz for the Shepherd review.<a href="#appendix-C-4" class="pilcrow">¶</a></p>
+<p id="appendix-C-5">Thanks for Mahesh Jethanandani for the AD review.<a href="#appendix-C-5" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="contributors">
-<section id="appendix-C">
+<section id="appendix-D">
       <h2 id="name-contributors">
 <a href="#name-contributors" class="section-name selfRef">Contributors</a>
       </h2>
@@ -6776,7 +7554,7 @@ and Giuseppe Fioccola for the ops-dir review.<a href="#appendix-B-3" class="pilc
 </section>
 </div>
 <div id="authors-addresses">
-<section id="appendix-D">
+<section id="appendix-E">
       <h2 id="name-authors-addresses">
 <a href="#name-authors-addresses" class="section-name selfRef">Authors' Addresses</a>
       </h2>

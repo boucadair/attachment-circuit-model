@@ -5,14 +5,14 @@
 OPSAWG                                                 M. Boucadair, Ed.
 Internet-Draft                                                    Orange
 Intended status: Standards Track                         R. Roberts, Ed.
-Expires: 1 May 2025                                              Juniper
+Expires: 12 May 2025                                             Juniper
                                                            O. G. D. Dios
                                                               Telefonica
                                                            S. B. Giraldo
                                                                    Nokia
                                                                    B. Wu
                                                      Huawei Technologies
-                                                         28 October 2024
+                                                         8 November 2024
 
 
   YANG Data Models for Bearers and 'Attachment Circuits'-as-a-Service
@@ -54,7 +54,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 1 May 2025.
+   This Internet-Draft will expire on 12 May 2025.
 
 Copyright Notice
 
@@ -121,6 +121,7 @@ Table of Contents
        A.11.3.  NFs Deployment
        A.11.4.  NF Failure and Scale-Out
      A.12. BFD and Static Addressing
+   Appendix B.  Full Tree
    Acknowledgments
    Contributors
    Authors' Addresses
@@ -922,11 +923,9 @@ B2B C/S: Back-to-back Client/Server
 
 5.2.  The Attachment Circuit Service ("ietf-ac-svc") YANG Module
 
-   The full tree diagram of the module can be generated using, e.g., the
-   "pyang" tool [PYANG].  That tree is not included here because it is
-   too long (Section 3.4 of [I-D.ietf-netmod-rfc8407bis]).  Instead,
-   subtrees are provided for the reader's convenience.  The full tree of
-   the 'ac-svc' is provided in [AC-svc-Tree].
+   The full tree diagram of the "ietf-ac-svc" module is provied in
+   Appendix B.  Subtrees are provided in the following subsections for
+   the reader's convenience.
 
 5.2.1.  Overall Structure
 
@@ -1120,57 +1119,57 @@ B2B C/S: Back-to-back Client/Server
 
    The structure of 'attachment-circuits' is shown in Figure 10.
 
-    +--rw specific-provisioning-profiles
-    |  ...
-    +--rw service-provisioning-profiles
-    |  ...
-    +--rw attachment-circuits
-       +--rw ac-group-profile* [name]
-       |  ...
-       +--rw placement-constraints
-       |  ...
-       +--rw customer-name?           string
-       +--rw requested-start?         yang:date-and-time
-       +--rw requested-stop?          yang:date-and-time
-       +--ro actual-start?            yang:date-and-time
-       +--ro actual-stop?             yang:date-and-time
-       +--rw ac* [name]
-          +--rw customer-name?       string
-          +--rw description?         string
-          +--rw test-only?           empty
-          +--rw requested-start?     yang:date-and-time
-          +--rw requested-stop?      yang:date-and-time
-          +--ro actual-start?        yang:date-and-time
-          +--ro actual-stop?         yang:date-and-time
-          +--rw role?                identityref
-          +--rw peer-sap-id*         string
-          +--rw ac-group-profile-ref*    ac-group-reference
-          +--rw ac-parent-ref*       ac-svc:attachment-circuit-reference
-          +--ro ac-child-ref*        ac-svc:attachment-circuit-reference
-          +--rw group* [group-id]
-          |  +--rw group-id      string
-          |  +--rw precedence?   identityref
-          +--ro service-ref* [service-type service-id]
-          |  +--ro service-type    identityref
-          |  +--ro service-id      string
-          +--ro server-reference?    string
-          |       {ac-common:server-assigned-reference}?
-          +--rw name                 string
-          +--rw service-profile*     service-profile-reference
-          +--rw l2-connection  {ac-common:layer2-ac}?
-          |  ...
-          +--rw ip-connection  {ac-common:layer3-ac}?
-          |  ...
-          +--rw routing-protocols
-          |  ...
-          +--rw oam
-          |  ...
-          +--rw security
-          |  ...
-          +--rw service
-             ...
+      +--rw specific-provisioning-profiles
+      |  ...
+      +--rw service-provisioning-profiles
+      |  ...
+      +--rw attachment-circuits
+         +--rw ac-group-profile* [name]
+         |  ...
+         +--rw placement-constraints
+         |  ...
+         +--rw customer-name?           string
+         +--rw requested-start?         yang:date-and-time
+         +--rw requested-stop?          yang:date-and-time
+         +--ro actual-start?            yang:date-and-time
+         +--ro actual-stop?             yang:date-and-time
+         +--rw ac* [name]
+            +--rw customer-name?       string
+            +--rw description?         string
+            +--rw test-only?           empty
+            +--rw requested-start?     yang:date-and-time
+            +--rw requested-stop?      yang:date-and-time
+            +--ro actual-start?        yang:date-and-time
+            +--ro actual-stop?         yang:date-and-time
+            +--rw role?                identityref
+            +--rw peer-sap-id*         string
+            +--rw group-profile-ref*    ac-group-reference
+            +--rw parent-ref*       ac-svc:attachment-circuit-reference
+            +--ro child-ref*        ac-svc:attachment-circuit-reference
+            +--rw group* [group-id]
+            |  +--rw group-id      string
+            |  +--rw precedence?   identityref
+            +--ro service-ref* [service-type service-id]
+            |  +--ro service-type    identityref
+            |  +--ro service-id      string
+            +--ro server-reference?    string
+            |       {ac-common:server-assigned-reference}?
+            +--rw name                 string
+            +--rw service-profile*     service-profile-reference
+            +--rw l2-connection  {ac-common:layer2-ac}?
+            |  ...
+            +--rw ip-connection  {ac-common:layer3-ac}?
+            |  ...
+            +--rw routing-protocols
+            |  ...
+            +--rw oam
+            |  ...
+            +--rw security
+            |  ...
+            +--rw service
+               ...
 
-              Figure 10: Attachment Circuits Tree Structure
+               Figure 10: Attachment Circuits Tree Structure
 
    The description of the data nodes is as follows:
 
@@ -1205,10 +1204,10 @@ B2B C/S: Back-to-back Client/Server
       perspective of the provider network.  That is, a 'peer-sap' will
       refer to a customer node.
 
-   'ac-group-profile-ref':  Indicates references to one or more profiles
+   'group-profile-ref':  Indicates references to one or more profiles
       that are defined in Section 5.2.3.
 
-   'ac-parent-ref':  Specifies an AC that is inherited by an attachment
+   'parent-ref':  Specifies an AC that is inherited by an attachment
       circuit.
 
       In contexts where dynamic terminating points are managed for a
@@ -1225,7 +1224,7 @@ B2B C/S: Back-to-back Client/Server
       NOT be overlapping.  An example to illustrate the use of multiple
       parent ACs is provided in Appendix A.12.
 
-   'ac-child-ref':  Lists one or more references of child ACs that rely
+   'child-ref':  Lists one or more references of child ACs that rely
       upon this attachment circuit as a parent AC.
 
    'group':  Lists the groups to which an AC belongs [RFC9181].  For
@@ -3790,7 +3789,7 @@ B2B C/S: Back-to-back Client/Server
      grouping ac-hierarchy {
        description
          "Container for parent and child AC references.";
-       leaf-list ac-parent-ref {
+       leaf-list parent-ref {
          type ac-svc:attachment-circuit-reference;
          description
            "Specifies a parent AC that is inherited by an AC.
@@ -3799,7 +3798,7 @@ B2B C/S: Back-to-back Client/Server
             information is created with a set of child ACs
             to track dynamic AC information.";
        }
-       leaf-list ac-child-ref {
+       leaf-list child-ref {
          type ac-svc:attachment-circuit-reference;
          config false;
          description
@@ -3888,7 +3887,7 @@ B2B C/S: Back-to-back Client/Server
            description
              "One or more peer SAPs can be indicated.";
          }
-         leaf-list ac-group-profile-ref {
+         leaf-list group-profile-ref {
            type ac-group-reference;
            description
              "A reference to an AC profile.";
@@ -4172,12 +4171,6 @@ B2B C/S: Back-to-back Client/Server
 
 9.2.  Informative References
 
-   [AC-svc-Tree]
-              "Full ACaaS Tree Structure", 2024,
-              <https://github.com/boucadair/attachment-circuit-
-              model/blob/main/yang/full-trees/ac-svc-without-
-              groupings.txt>.
-
    [I-D.ietf-idr-bgp-model]
               Jethanandani, M., Patel, K., Hares, S., and J. Haas, "YANG
               Model for Border Gateway Protocol (BGP-4)", Work in
@@ -4219,11 +4212,11 @@ B2B C/S: Back-to-back Client/Server
               ietf-network-slice-nbi-yang-16>.
 
    [I-D.ramseyer-grow-peering-api]
-              Aguado, C., Griswold, M., Ramseyer, J., Servin, A. L., and
-              T. Strickx, "Peering API", Work in Progress, Internet-
-              Draft, draft-ramseyer-grow-peering-api-05, 30 May 2024,
+              Aguado, C., Griswold, M., Ramseyer, J., Servin, A., and T.
+              Strickx, "Peering API", Work in Progress, Internet-Draft,
+              draft-ramseyer-grow-peering-api-06, 4 November 2024,
               <https://datatracker.ietf.org/doc/html/draft-ramseyer-
-              grow-peering-api-05>.
+              grow-peering-api-06>.
 
    [IEEE802.1AB]
               IEEE, "IEEE Standard for Local and metropolitan area
@@ -4245,8 +4238,6 @@ B2B C/S: Back-to-back Client/Server
               ITU-T, "Synchronization layer functions for frequency
               synchronization based on the physical layer", January
               2024, <https://www.itu.int/rec/T-REC-G.781>.
-
-   [PYANG]    "pyang", 2024, <https://github.com/mbj4668/pyang>.
 
    [RFC0826]  Plummer, D., "An Ethernet Address Resolution Protocol: Or
               Converting Network Protocol Addresses to 48.bit Ethernet
@@ -4794,7 +4785,7 @@ A.4.  One CE, Two ACs
          {
            "name": "ac1",
            "description": "a first ac with a same peer node",
-           "ac-group-profile-ref": ["simple-node-profile"],
+           "group-profile-ref": ["simple-node-profile"],
            "l2-connection": {
              "encapsulation": {
                "type": "ietf-vpn-common:dot1q",
@@ -4807,7 +4798,7 @@ A.4.  One CE, Two ACs
          {
            "name": "ac2",
            "description": "a second ac with a same peer node",
-           "ac-group-profile-ref": ["simple-node-profile"],
+           "group-profile-ref": ["simple-node-profile"],
            "l2-connection": {
              "encapsulation": {
                "type": "ietf-vpn-common:dot1q",
@@ -4840,7 +4831,7 @@ A.4.  One CE, Two ACs
          {
            "name": "ac3",
            "description": "a third AC with a same peer node",
-           "ac-group-profile-ref": [
+           "group-profile-ref": [
              "simple-node-profile"
            ],
            "l2-connection": {
@@ -4964,7 +4955,7 @@ A.6.  Create Multiple ACs Bound to Multiple CEs
          {
            "name": "ac1",
            "description": "First site",
-           "ac-group-profile-ref": [
+           "group-profile-ref": [
              "simple-profile"
            ],
            "l2-connection": {
@@ -4974,7 +4965,7 @@ A.6.  Create Multiple ACs Bound to Multiple CEs
          {
            "name": "ac2",
            "description": "Second Site",
-           "ac-group-profile-ref": [
+           "group-profile-ref": [
              "simple-profile"
            ],
            "l2-connection": {
@@ -4984,7 +4975,7 @@ A.6.  Create Multiple ACs Bound to Multiple CEs
          {
            "name": "ac3",
            "description": "Third site",
-           "ac-group-profile-ref": [
+           "group-profile-ref": [
              "simple-profile"
            ],
            "l2-connection": {
@@ -4994,7 +4985,7 @@ A.6.  Create Multiple ACs Bound to Multiple CEs
          {
            "name": "ac4",
            "description": "Another site",
-           "ac-group-profile-ref": [
+           "group-profile-ref": [
              "simple-profile"
            ],
            "l2-connection": {
@@ -6471,7 +6462,7 @@ A.11.3.  NFs Deployment
          {
            "name": "ac-nf-up-01-vlan-100",
            "description": "attachment to NF-up instance 1 in vlan 100",
-           "ac-parent-ref": ["parent-vlan-100"],
+           "parent-ref": ["parent-vlan-100"],
            "l2-connection": {
              "bearer-reference": "compute-01-nic1"
            }
@@ -6479,7 +6470,7 @@ A.11.3.  NFs Deployment
          {
            "name": "ac-nf-up-02-vlan-100",
            "description": "attachment to NF-up instance 2 in vlan 100",
-           "ac-parent-ref": ["parent-vlan-100"],
+           "parent-ref": ["parent-vlan-100"],
            "l2-connection": {
              "bearer-reference": "compute-02-nic2"
            }
@@ -6491,7 +6482,7 @@ A.11.3.  NFs Deployment
          {
            "name": "ac-nf-up-08-vlan-100",
            "description": "attachment to NF-up instance 10 in vlan 100",
-           "ac-parent-ref": ["parent-vlan-100"],
+           "parent-ref": ["parent-vlan-100"],
            "l2-connection": {
              "bearer-reference": "compute-08-nic1"
            }
@@ -6499,7 +6490,7 @@ A.11.3.  NFs Deployment
          {
            "name": "ac-nf-cp-01-vlan-100",
            "description": "attachment to NF-CP instance 1 in vlan 100",
-           "ac-parent-ref": ["parent-vlan-100"],
+           "parent-ref": ["parent-vlan-100"],
            "l2-connection": {
              "bearer-reference": "compute-09-nic0"
            },
@@ -6518,7 +6509,7 @@ A.11.3.  NFs Deployment
          {
            "name": "ac-nf-cp-02-vlan-100",
            "description": "attachment to NF-CP instance 2 in vlan 100",
-           "ac-parent-ref": ["parent-vlan-100"],
+           "parent-ref": ["parent-vlan-100"],
            "l2-connection": {
              "bearer-reference": "compute-10-nic0"
            },
@@ -6537,7 +6528,7 @@ A.11.3.  NFs Deployment
          {
            "name": "ac-nf-up-1-vlan-200",
            "description": "attachment to NF-up instance 1 in vlan 200",
-           "ac-parent-ref": ["parent-vlan-200"],
+           "parent-ref": ["parent-vlan-200"],
            "l2-connection": {
              "bearer-reference": "compute-01-nic1"
            }
@@ -6549,7 +6540,7 @@ A.11.3.  NFs Deployment
          {
            "name": "ac-nf-cp-2-vlan-200",
            "description": "attachment to NF-CP instance 2 in vlan 200",
-           "ac-parent-ref": ["parent-vlan-200"],
+           "parent-ref": ["parent-vlan-200"],
            "l2-connection": {
              "bearer-reference": "compute-10-nic0"
            }
@@ -6705,7 +6696,7 @@ A.12.  BFD and Static Addressing
            "name": "parent-vlan-100-gw1",
            "description": "This parent represents a bridge with Layer \
                           3 interface (IRB) to connect NFs in VLAN 100",
-           "ac-group-profile-ref": [
+           "group-profile-ref": [
              "profile-vlan-100"
            ],
            "ip-connection": {
@@ -6719,7 +6710,7 @@ A.12.  BFD and Static Addressing
            "name": "parent-vlan-100-gw2",
            "description": "This parent represents a bridge with Layer \
                           3 interface (IRB) to connect NFs in VLAN 100",
-           "ac-group-profile-ref": [
+           "group-profile-ref": [
              "profile-vlan-100"
            ],
            "ip-connection": {
@@ -6732,7 +6723,7 @@ A.12.  BFD and Static Addressing
          {
            "name": "ac-ce-01-vlan-100",
            "description": "attachment to CE1 in VLAN 100",
-           "ac-parent-ref": [
+           "parent-ref": [
              "parent-vlan-100-gw1",
              "parent-vlan-100-gw2"
            ],
@@ -6743,7 +6734,7 @@ A.12.  BFD and Static Addressing
          {
            "name": "ac-ce-02-vlan-100",
            "description": "attachment to CE2 in VLAN 100",
-           "ac-parent-ref": [
+           "parent-ref": [
              "parent-vlan-100-gw1",
              "parent-vlan-100-gw2"
            ],
@@ -6758,7 +6749,7 @@ A.12.  BFD and Static Addressing
          {
            "name": "ac-ce-10-vlan-100",
            "description": "attachment to CE10 in VLAN 100",
-           "ac-parent-ref": [
+           "parent-ref": [
              "parent-vlan-100-gw1",
              "parent-vlan-100-gw2"
            ],
@@ -6772,6 +6763,819 @@ A.12.  BFD and Static Addressing
 
       Figure 66: Message Body for the Configuration of CEs with Static
                        Addressing and BFD Protection
+
+Appendix B.  Full Tree
+
+   module: ietf-ac-svc
+     +--rw specific-provisioning-profiles
+     |  +--rw valid-provider-identifiers
+     |     +--rw encryption-profile-identifier* [id]
+     |     |  +--rw id    string
+     |     +--rw qos-profile-identifier* [id]
+     |     |  +--rw id    string
+     |     +--rw failure-detection-profile-identifier* [id]
+     |     |  +--rw id    string
+     |     +--rw forwarding-profile-identifier* [id]
+     |     |  +--rw id    string
+     |     +--rw routing-profile-identifier* [id]
+     |        +--rw id    string
+     +--rw service-provisioning-profiles
+     |  +--rw service-profile-identifier* [id]
+     |     +--rw id    string
+     +--rw attachment-circuits
+        +--rw ac-group-profile* [name]
+        |  +--rw name                 string
+        |  +--rw service-profile*     service-profile-reference
+        |  +--rw l2-connection {ac-common:layer2-ac}?
+        |  |  +--rw encapsulation
+        |  |  |  +--rw type?              identityref
+        |  |  |  +--rw dot1q
+        |  |  |  |  +--rw tag-type?   identityref
+        |  |  |  |  +--rw cvlan-id?   uint16
+        |  |  |  +--rw priority-tagged
+        |  |  |  |  +--rw tag-type?   identityref
+        |  |  |  +--rw qinq
+        |  |  |     +--rw tag-type?   identityref
+        |  |  |     +--rw svlan-id?   uint16
+        |  |  |     +--rw cvlan-id?   uint16
+        |  |  +--rw (l2-service)?
+        |  |  |  +--:(l2-tunnel-service)
+        |  |  |  |  +--rw l2-tunnel-service
+        |  |  |  |     +--rw type?         identityref
+        |  |  |  |     +--rw pseudowire
+        |  |  |  |     |  +--rw vcid?      uint32
+        |  |  |  |     |  +--rw far-end?   union
+        |  |  |  |     +--rw vpls
+        |  |  |  |     |  +--rw vcid?      uint32
+        |  |  |  |     |  +--rw far-end*   union
+        |  |  |  |     +--rw vxlan
+        |  |  |  |        +--rw vni-id?            uint32
+        |  |  |  |        +--rw peer-mode?         identityref
+        |  |  |  |        +--rw peer-ip-address*   inet:ip-address
+        |  |  |  +--:(l2vpn)
+        |  |  |     +--rw l2vpn-id?            vpn-common:vpn-id
+        |  |  +--rw bearer-reference?          string
+        |  |          {ac-common:server-assigned-reference}?
+        |  +--rw ip-connection {ac-common:layer3-ac}?
+        |  |  +--rw ipv4 {vpn-common:ipv4}?
+        |  |  |  +--rw local-address?
+        |  |  |  |       inet:ipv4-address
+        |  |  |  +--rw virtual-address?
+        |  |  |  |       inet:ipv4-address
+        |  |  |  +--rw prefix-length?                           uint8
+        |  |  |  +--rw address-allocation-type?
+        |  |  |  |       identityref
+        |  |  |  +--rw (allocation-type)?
+        |  |  |     +--:(dynamic)
+        |  |  |     |  +--rw (address-assign)?
+        |  |  |     |  |  +--:(number)
+        |  |  |     |  |  |  +--rw number-of-dynamic-address?   uint16
+        |  |  |     |  |  +--:(explicit)
+        |  |  |     |  |     +--rw customer-addresses
+        |  |  |     |  |        +--rw address-pool* [pool-id]
+        |  |  |     |  |           +--rw pool-id          string
+        |  |  |     |  |           +--rw start-address
+        |  |  |     |  |           |       inet:ipv4-address
+        |  |  |     |  |           +--rw end-address?
+        |  |  |     |  |                   inet:ipv4-address
+        |  |  |     |  +--rw (provider-dhcp)?
+        |  |  |     |  |  +--:(dhcp-service-type)
+        |  |  |     |  |     +--rw dhcp-service-type?
+        |  |  |     |  |             enumeration
+        |  |  |     |  +--rw (dhcp-relay)?
+        |  |  |     |     +--:(customer-dhcp-servers)
+        |  |  |     |        +--rw customer-dhcp-servers
+        |  |  |     |           +--rw server-ip-address*
+        |  |  |     |                   inet:ipv4-address
+        |  |  |     +--:(static-addresses)
+        |  |  |        +--rw address* [address-id]
+        |  |  |           +--rw address-id                   string
+        |  |  |           +--rw customer-address?
+        |  |  |           |       inet:ipv4-address
+        |  |  |           +--rw failure-detection-profile?
+        |  |  |                   failure-detection-profile-reference
+        |  |  |                   {vpn-common:bfd}?
+        |  |  +--rw ipv6 {vpn-common:ipv6}?
+        |  |     +--rw local-address?
+        |  |     |       inet:ipv6-address
+        |  |     +--rw virtual-address?
+        |  |     |       inet:ipv6-address
+        |  |     +--rw prefix-length?                           uint8
+        |  |     +--rw address-allocation-type?
+        |  |     |       identityref
+        |  |     +--rw (allocation-type)?
+        |  |        +--:(dynamic)
+        |  |        |  +--rw (address-assign)?
+        |  |        |  |  +--:(number)
+        |  |        |  |  |  +--rw number-of-dynamic-address?   uint16
+        |  |        |  |  +--:(explicit)
+        |  |        |  |     +--rw customer-addresses
+        |  |        |  |        +--rw address-pool* [pool-id]
+        |  |        |  |           +--rw pool-id          string
+        |  |        |  |           +--rw start-address
+        |  |        |  |           |       inet:ipv6-address
+        |  |        |  |           +--rw end-address?
+        |  |        |  |                   inet:ipv6-address
+        |  |        |  +--rw (provider-dhcp)?
+        |  |        |  |  +--:(dhcp-service-type)
+        |  |        |  |     +--rw dhcp-service-type?
+        |  |        |  |             enumeration
+        |  |        |  +--rw (dhcp-relay)?
+        |  |        |     +--:(customer-dhcp-servers)
+        |  |        |        +--rw customer-dhcp-servers
+        |  |        |           +--rw server-ip-address*
+        |  |        |                   inet:ipv6-address
+        |  |        +--:(static-addresses)
+        |  |           +--rw address* [address-id]
+        |  |              +--rw address-id                   string
+        |  |              +--rw customer-address?
+        |  |              |       inet:ipv6-address
+        |  |              +--rw failure-detection-profile?
+        |  |                      failure-detection-profile-reference
+        |  |                      {vpn-common:bfd}?
+        |  +--rw routing-protocols
+        |  |  +--rw routing-protocol* [id]
+        |  |     +--rw id                  string
+        |  |     +--rw type?               identityref
+        |  |     +--rw routing-profiles* [id]
+        |  |     |  +--rw id      routing-profile-reference
+        |  |     |  +--rw type?   identityref
+        |  |     +--rw static
+        |  |     |  +--rw cascaded-lan-prefixes
+        |  |     |     +--rw ipv4-lan-prefix* [lan next-hop]
+        |  |     |     |       {vpn-common:ipv4}?
+        |  |     |     |  +--rw lan
+        |  |     |     |  |       inet:ipv4-prefix
+        |  |     |     |  +--rw lan-tag?                     string
+        |  |     |     |  +--rw next-hop                     union
+        |  |     |     |  +--rw metric?                      uint32
+        |  |     |     |  +--rw failure-detection-profile?
+        |  |     |     |  |       failure-detection-profile-reference
+        |  |     |     |  |       {vpn-common:bfd}?
+        |  |     |     |  +--rw status
+        |  |     |     |     +--rw admin-status
+        |  |     |     |     |  +--rw status?        identityref
+        |  |     |     |     |  +--ro last-change?   yang:date-and-time
+        |  |     |     |     +--ro oper-status
+        |  |     |     |        +--ro status?        identityref
+        |  |     |     |        +--ro last-change?   yang:date-and-time
+        |  |     |     +--rw ipv6-lan-prefix* [lan next-hop]
+        |  |     |             {vpn-common:ipv6}?
+        |  |     |        +--rw lan
+        |  |     |        |       inet:ipv6-prefix
+        |  |     |        +--rw lan-tag?                     string
+        |  |     |        +--rw next-hop                     union
+        |  |     |        +--rw metric?                      uint32
+        |  |     |        +--rw failure-detection-profile?
+        |  |     |        |       failure-detection-profile-reference
+        |  |     |        |       {vpn-common:bfd}?
+        |  |     |        +--rw status
+        |  |     |           +--rw admin-status
+        |  |     |           |  +--rw status?        identityref
+        |  |     |           |  +--ro last-change?   yang:date-and-time
+        |  |     |           +--ro oper-status
+        |  |     |              +--ro status?        identityref
+        |  |     |              +--ro last-change?   yang:date-and-time
+        |  |     +--rw bgp {vpn-common:rtg-bgp}?
+        |  |     |  +--rw peer-groups
+        |  |     |  |  +--rw peer-group* [name]
+        |  |     |  |     +--rw name              string
+        |  |     |  |     +--rw local-as?         inet:as-number
+        |  |     |  |     +--rw peer-as?          inet:as-number
+        |  |     |  |     +--rw address-family?   identityref
+        |  |     |  |     +--rw role?             identityref
+        |  |     |  |     +--rw local-address?    inet:ip-address
+        |  |     |  |     +--rw bgp-max-prefix
+        |  |     |  |     |  +--rw max-prefix?   uint32
+        |  |     |  |     +--rw authentication
+        |  |     |  |        +--rw enabled?           boolean
+        |  |     |  |        +--rw keying-material
+        |  |     |  |           +--rw (option)?
+        |  |     |  |              +--:(ao)
+        |  |     |  |              |  +--rw enable-ao?          boolean
+        |  |     |  |              |  +--rw ao-keychain?
+        |  |     |  |              |          key-chain:key-chain-ref
+        |  |     |  |              +--:(md5)
+        |  |     |  |              |  +--rw md5-keychain?
+        |  |     |  |              |          key-chain:key-chain-ref
+        |  |     |  |              +--:(explicit)
+        |  |     |  |                 +--rw key-id?             uint32
+        |  |     |  |                 +--rw key?                string
+        |  |     |  |                 +--rw crypto-algorithm?
+        |  |     |  |                         identityref
+        |  |     |  +--rw neighbor* [id]
+        |  |     |     +--rw id                           string
+        |  |     |     +--ro server-reference?            string
+        |  |     |     |       {ac-common:server-assigned-reference}?
+        |  |     |     +--rw remote-address?          inet:ip-address
+        |  |     |     +--rw local-address?           inet:ip-address
+        |  |     |     +--rw local-as?                inet:as-number
+        |  |     |     +--rw peer-as?                 inet:as-number
+        |  |     |     +--rw address-family?          identityref
+        |  |     |     +--rw role?                    identityref
+        |  |     |     +--rw bgp-max-prefix
+        |  |     |     |  +--rw max-prefix?   uint32
+        |  |     |     +--rw authentication
+        |  |     |     |  +--rw enabled?           boolean
+        |  |     |     |  +--rw keying-material
+        |  |     |     |     +--rw (option)?
+        |  |     |     |        +--:(ao)
+        |  |     |     |        |  +--rw enable-ao?          boolean
+        |  |     |     |        |  +--rw ao-keychain?
+        |  |     |     |        |          key-chain:key-chain-ref
+        |  |     |     |        +--:(md5)
+        |  |     |     |        |  +--rw md5-keychain?
+        |  |     |     |        |          key-chain:key-chain-ref
+        |  |     |     |        +--:(explicit)
+        |  |     |     |           +--rw key-id?             uint32
+        |  |     |     |           +--rw key?                string
+        |  |     |     |           +--rw crypto-algorithm?   identityref
+        |  |     |     +--rw requested-start?
+        |  |     |     |       yang:date-and-time
+        |  |     |     +--rw requested-stop?
+        |  |     |     |       yang:date-and-time
+        |  |     |     +--ro actual-start?
+        |  |     |     |       yang:date-and-time
+        |  |     |     +--ro actual-stop?
+        |  |     |     |       yang:date-and-time
+        |  |     |     +--rw status
+        |  |     |     |  +--rw admin-status
+        |  |     |     |  |  +--rw status?        identityref
+        |  |     |     |  |  +--ro last-change?   yang:date-and-time
+        |  |     |     |  +--ro oper-status
+        |  |     |     |     +--ro status?        identityref
+        |  |     |     |     +--ro last-change?   yang:date-and-time
+        |  |     |     +--rw peer-group?
+        |  |     |     |       -> ../../peer-groups/peer-group/name
+        |  |     |     +--rw failure-detection-profile?
+        |  |     |             failure-detection-profile-reference
+        |  |     |             {vpn-common:bfd}?
+        |  |     +--rw ospf {vpn-common:rtg-ospf}?
+        |  |     |  +--rw address-family?   identityref
+        |  |     |  +--rw area-id           yang:dotted-quad
+        |  |     |  +--rw metric?           uint16
+        |  |     |  +--rw authentication
+        |  |     |  |  +--rw enabled?           boolean
+        |  |     |  |  +--rw keying-material
+        |  |     |  |     +--rw (option)?
+        |  |     |  |        +--:(auth-key-chain)
+        |  |     |  |        |  +--rw key-chain?
+        |  |     |  |        |          key-chain:key-chain-ref
+        |  |     |  |        +--:(auth-key-explicit)
+        |  |     |  |           +--rw key-id?             uint32
+        |  |     |  |           +--rw key?                string
+        |  |     |  |           +--rw crypto-algorithm?   identityref
+        |  |     |  +--rw status
+        |  |     |     +--rw admin-status
+        |  |     |     |  +--rw status?        identityref
+        |  |     |     |  +--ro last-change?   yang:date-and-time
+        |  |     |     +--ro oper-status
+        |  |     |        +--ro status?        identityref
+        |  |     |        +--ro last-change?   yang:date-and-time
+        |  |     +--rw isis {vpn-common:rtg-isis}?
+        |  |     |  +--rw address-family?   identityref
+        |  |     |  +--rw area-address      area-address
+        |  |     |  +--rw authentication
+        |  |     |  |  +--rw enabled?           boolean
+        |  |     |  |  +--rw keying-material
+        |  |     |  |     +--rw (option)?
+        |  |     |  |        +--:(auth-key-chain)
+        |  |     |  |        |  +--rw key-chain?
+        |  |     |  |        |          key-chain:key-chain-ref
+        |  |     |  |        +--:(auth-key-explicit)
+        |  |     |  |           +--rw key-id?             uint32
+        |  |     |  |           +--rw key?                string
+        |  |     |  |           +--rw crypto-algorithm?   identityref
+        |  |     |  +--rw status
+        |  |     |     +--rw admin-status
+        |  |     |     |  +--rw status?        identityref
+        |  |     |     |  +--ro last-change?   yang:date-and-time
+        |  |     |     +--ro oper-status
+        |  |     |        +--ro status?        identityref
+        |  |     |        +--ro last-change?   yang:date-and-time
+        |  |     +--rw rip {vpn-common:rtg-rip}?
+        |  |     |  +--rw address-family?   identityref
+        |  |     |  +--rw authentication
+        |  |     |  |  +--rw enabled?           boolean
+        |  |     |  |  +--rw keying-material
+        |  |     |  |     +--rw (option)?
+        |  |     |  |        +--:(auth-key-chain)
+        |  |     |  |        |  +--rw key-chain?
+        |  |     |  |        |          key-chain:key-chain-ref
+        |  |     |  |        +--:(auth-key-explicit)
+        |  |     |  |           +--rw key?                string
+        |  |     |  |           +--rw crypto-algorithm?   identityref
+        |  |     |  +--rw status
+        |  |     |     +--rw admin-status
+        |  |     |     |  +--rw status?        identityref
+        |  |     |     |  +--ro last-change?   yang:date-and-time
+        |  |     |     +--ro oper-status
+        |  |     |        +--ro status?        identityref
+        |  |     |        +--ro last-change?   yang:date-and-time
+        |  |     +--rw vrrp {vpn-common:rtg-vrrp}?
+        |  |        +--rw address-family?   identityref
+        |  |        +--rw status
+        |  |           +--rw admin-status
+        |  |           |  +--rw status?        identityref
+        |  |           |  +--ro last-change?   yang:date-and-time
+        |  |           +--ro oper-status
+        |  |              +--ro status?        identityref
+        |  |              +--ro last-change?   yang:date-and-time
+        |  +--rw oam
+        |  |  +--rw bfd {vpn-common:bfd}?
+        |  |     +--rw session* [id]
+        |  |        +--rw id                string
+        |  |        +--rw local-address?    inet:ip-address
+        |  |        +--rw remote-address?   inet:ip-address
+        |  |        +--rw profile?
+        |  |        |       failure-detection-profile-reference
+        |  |        +--rw holdtime?         uint32
+        |  |        +--rw status
+        |  |           +--rw admin-status
+        |  |           |  +--rw status?        identityref
+        |  |           |  +--ro last-change?   yang:date-and-time
+        |  |           +--ro oper-status
+        |  |              +--ro status?        identityref
+        |  |              +--ro last-change?   yang:date-and-time
+        |  +--rw security
+        |  |  +--rw encryption {vpn-common:encryption}?
+        |  |  |  +--rw enabled?   boolean
+        |  |  |  +--rw layer?     enumeration
+        |  |  +--rw encryption-profile
+        |  |     +--rw (profile)?
+        |  |        +--:(provider-profile)
+        |  |        |  +--rw provider-profile?
+        |  |        |          encryption-profile-reference
+        |  |        +--:(customer-profile)
+        |  |           +--rw customer-key-chain?
+        |  |                   key-chain:key-chain-ref
+        |  +--rw service
+        |     +--rw mtu?                      uint32
+        |     +--rw svc-pe-to-ce-bandwidth {vpn-common:inbound-bw}?
+        |     |  +--rw bandwidth* [bw-type]
+        |     |     +--rw bw-type      identityref
+        |     |     +--rw (type)?
+        |     |        +--:(per-cos)
+        |     |        |  +--rw cos* [cos-id]
+        |     |        |     +--rw cos-id    uint8
+        |     |        |     +--rw cir?      uint64
+        |     |        |     +--rw cbs?      uint64
+        |     |        |     +--rw eir?      uint64
+        |     |        |     +--rw ebs?      uint64
+        |     |        |     +--rw pir?      uint64
+        |     |        |     +--rw pbs?      uint64
+        |     |        +--:(other)
+        |     |           +--rw cir?   uint64
+        |     |           +--rw cbs?   uint64
+        |     |           +--rw eir?   uint64
+        |     |           +--rw ebs?   uint64
+        |     |           +--rw pir?   uint64
+        |     |           +--rw pbs?   uint64
+        |     +--rw svc-ce-to-pe-bandwidth {vpn-common:outbound-bw}?
+        |     |  +--rw bandwidth* [bw-type]
+        |     |     +--rw bw-type      identityref
+        |     |     +--rw (type)?
+        |     |        +--:(per-cos)
+        |     |        |  +--rw cos* [cos-id]
+        |     |        |     +--rw cos-id    uint8
+        |     |        |     +--rw cir?      uint64
+        |     |        |     +--rw cbs?      uint64
+        |     |        |     +--rw eir?      uint64
+        |     |        |     +--rw ebs?      uint64
+        |     |        |     +--rw pir?      uint64
+        |     |        |     +--rw pbs?      uint64
+        |     |        +--:(other)
+        |     |           +--rw cir?   uint64
+        |     |           +--rw cbs?   uint64
+        |     |           +--rw eir?   uint64
+        |     |           +--rw ebs?   uint64
+        |     |           +--rw pir?   uint64
+        |     |           +--rw pbs?   uint64
+        |     +--rw qos {vpn-common:qos}?
+        |     |  +--rw qos-profiles
+        |     |     +--rw qos-profile* [profile]
+        |     |        +--rw profile      qos-profile-reference
+        |     |        +--rw direction?   identityref
+        |     +--rw access-control-list
+        |        +--rw acl-profiles
+        |           +--rw acl-profile* [profile]
+        |              +--rw profile    forwarding-profile-reference
+        +--rw placement-constraints
+        |  +--rw constraint* [constraint-type]
+        |     +--rw constraint-type    identityref
+        |     +--rw target
+        |        +--rw (target-flavor)?
+        |           +--:(id)
+        |           |  +--rw group* [group-id]
+        |           |     +--rw group-id    string
+        |           +--:(all-accesses)
+        |           |  +--rw all-other-accesses?   empty
+        |           +--:(all-groups)
+        |              +--rw all-other-groups?     empty
+        +--rw customer-name?           string
+        +--rw requested-start?         yang:date-and-time
+        +--rw requested-stop?          yang:date-and-time
+        +--ro actual-start?            yang:date-and-time
+        +--ro actual-stop?             yang:date-and-time
+        +--rw ac* [name]
+           +--rw customer-name?       string
+           +--rw description?         string
+           +--rw test-only?           empty
+           +--rw requested-start?     yang:date-and-time
+           +--rw requested-stop?      yang:date-and-time
+           +--ro actual-start?        yang:date-and-time
+           +--ro actual-stop?         yang:date-and-time
+           +--rw role?                identityref
+           +--rw peer-sap-id*         string
+           +--rw group-profile-ref*   ac-group-reference
+           +--rw parent-ref*
+           |         ac-svc:attachment-circuit-reference
+           +--ro child-ref*
+           |         ac-svc:attachment-circuit-reference
+           +--rw group* [group-id]
+           |  +--rw group-id      string
+           |  +--rw precedence?   identityref
+           +--ro service-ref* [service-type service-id]
+           |  +--ro service-type    identityref
+           |  +--ro service-id      string
+           +--ro server-reference?    string
+           |       {ac-common:server-assigned-reference}?
+           +--rw name                 string
+           +--rw service-profile*     service-profile-reference
+           +--rw l2-connection {ac-common:layer2-ac}?
+           |  +--rw encapsulation
+           |  |  +--rw type?              identityref
+           |  |  +--rw dot1q
+           |  |  |  +--rw tag-type?   identityref
+           |  |  |  +--rw cvlan-id?   uint16
+           |  |  +--rw priority-tagged
+           |  |  |  +--rw tag-type?   identityref
+           |  |  +--rw qinq
+           |  |     +--rw tag-type?   identityref
+           |  |     +--rw svlan-id?   uint16
+           |  |     +--rw cvlan-id?   uint16
+           |  +--rw (l2-service)?
+           |  |  +--:(l2-tunnel-service)
+           |  |  |  +--rw l2-tunnel-service
+           |  |  |     +--rw type?         identityref
+           |  |  |     +--rw pseudowire
+           |  |  |     |  +--rw vcid?      uint32
+           |  |  |     |  +--rw far-end?   union
+           |  |  |     +--rw vpls
+           |  |  |     |  +--rw vcid?      uint32
+           |  |  |     |  +--rw far-end*   union
+           |  |  |     +--rw vxlan
+           |  |  |        +--rw vni-id?            uint32
+           |  |  |        +--rw peer-mode?         identityref
+           |  |  |        +--rw peer-ip-address*   inet:ip-address
+           |  |  +--:(l2vpn)
+           |  |     +--rw l2vpn-id?            vpn-common:vpn-id
+           |  +--rw bearer-reference?          string
+           |          {ac-common:server-assigned-reference}?
+           +--rw ip-connection {ac-common:layer3-ac}?
+           |  +--rw ipv4 {vpn-common:ipv4}?
+           |  |  +--rw local-address?
+           |  |  |       inet:ipv4-address
+           |  |  +--rw virtual-address?
+           |  |  |       inet:ipv4-address
+           |  |  +--rw prefix-length?                           uint8
+           |  |  +--rw address-allocation-type?
+           |  |  |       identityref
+           |  |  +--rw (allocation-type)?
+           |  |     +--:(dynamic)
+           |  |     |  +--rw (address-assign)?
+           |  |     |  |  +--:(number)
+           |  |     |  |  |  +--rw number-of-dynamic-address?   uint16
+           |  |     |  |  +--:(explicit)
+           |  |     |  |     +--rw customer-addresses
+           |  |     |  |        +--rw address-pool* [pool-id]
+           |  |     |  |           +--rw pool-id          string
+           |  |     |  |           +--rw start-address
+           |  |     |  |           |       inet:ipv4-address
+           |  |     |  |           +--rw end-address?
+           |  |     |  |                   inet:ipv4-address
+           |  |     |  +--rw (provider-dhcp)?
+           |  |     |  |  +--:(dhcp-service-type)
+           |  |     |  |     +--rw dhcp-service-type?
+           |  |     |  |             enumeration
+           |  |     |  +--rw (dhcp-relay)?
+           |  |     |     +--:(customer-dhcp-servers)
+           |  |     |        +--rw customer-dhcp-servers
+           |  |     |           +--rw server-ip-address*
+           |  |     |                   inet:ipv4-address
+           |  |     +--:(static-addresses)
+           |  |        +--rw address* [address-id]
+           |  |           +--rw address-id                   string
+           |  |           +--rw customer-address?
+           |  |           |       inet:ipv4-address
+           |  |           +--rw failure-detection-profile?
+           |  |                   failure-detection-profile-reference
+           |  |                   {vpn-common:bfd}?
+           |  +--rw ipv6 {vpn-common:ipv6}?
+           |     +--rw local-address?
+           |     |       inet:ipv6-address
+           |     +--rw virtual-address?
+           |     |       inet:ipv6-address
+           |     +--rw prefix-length?                           uint8
+           |     +--rw address-allocation-type?
+           |     |       identityref
+           |     +--rw (allocation-type)?
+           |        +--:(dynamic)
+           |        |  +--rw (address-assign)?
+           |        |  |  +--:(number)
+           |        |  |  |  +--rw number-of-dynamic-address?   uint16
+           |        |  |  +--:(explicit)
+           |        |  |     +--rw customer-addresses
+           |        |  |        +--rw address-pool* [pool-id]
+           |        |  |           +--rw pool-id          string
+           |        |  |           +--rw start-address
+           |        |  |           |       inet:ipv6-address
+           |        |  |           +--rw end-address?
+           |        |  |                   inet:ipv6-address
+           |        |  +--rw (provider-dhcp)?
+           |        |  |  +--:(dhcp-service-type)
+           |        |  |     +--rw dhcp-service-type?
+           |        |  |             enumeration
+           |        |  +--rw (dhcp-relay)?
+           |        |     +--:(customer-dhcp-servers)
+           |        |        +--rw customer-dhcp-servers
+           |        |           +--rw server-ip-address*
+           |        |                   inet:ipv6-address
+           |        +--:(static-addresses)
+           |           +--rw address* [address-id]
+           |              +--rw address-id                   string
+           |              +--rw customer-address?
+           |              |       inet:ipv6-address
+           |              +--rw failure-detection-profile?
+           |                      failure-detection-profile-reference
+           |                      {vpn-common:bfd}?
+           +--rw routing-protocols
+           |  +--rw routing-protocol* [id]
+           |     +--rw id                  string
+           |     +--rw type?               identityref
+           |     +--rw routing-profiles* [id]
+           |     |  +--rw id      routing-profile-reference
+           |     |  +--rw type?   identityref
+           |     +--rw static
+           |     |  +--rw cascaded-lan-prefixes
+           |     |     +--rw ipv4-lan-prefix* [lan next-hop]
+           |     |     |       {vpn-common:ipv4}?
+           |     |     |  +--rw lan
+           |     |     |  |       inet:ipv4-prefix
+           |     |     |  +--rw lan-tag?                     string
+           |     |     |  +--rw next-hop                     union
+           |     |     |  +--rw metric?                      uint32
+           |     |     |  +--rw failure-detection-profile?
+           |     |     |  |       failure-detection-profile-reference
+           |     |     |  |       {vpn-common:bfd}?
+           |     |     |  +--rw status
+           |     |     |     +--rw admin-status
+           |     |     |     |  +--rw status?        identityref
+           |     |     |     |  +--ro last-change?   yang:date-and-time
+           |     |     |     +--ro oper-status
+           |     |     |        +--ro status?        identityref
+           |     |     |        +--ro last-change?   yang:date-and-time
+           |     |     +--rw ipv6-lan-prefix* [lan next-hop]
+           |     |             {vpn-common:ipv6}?
+           |     |        +--rw lan
+           |     |        |       inet:ipv6-prefix
+           |     |        +--rw lan-tag?                     string
+           |     |        +--rw next-hop                     union
+           |     |        +--rw metric?                      uint32
+           |     |        +--rw failure-detection-profile?
+           |     |        |       failure-detection-profile-reference
+           |     |        |       {vpn-common:bfd}?
+           |     |        +--rw status
+           |     |           +--rw admin-status
+           |     |           |  +--rw status?        identityref
+           |     |           |  +--ro last-change?   yang:date-and-time
+           |     |           +--ro oper-status
+           |     |              +--ro status?        identityref
+           |     |              +--ro last-change?   yang:date-and-time
+           |     +--rw bgp {vpn-common:rtg-bgp}?
+           |     |  +--rw peer-groups
+           |     |  |  +--rw peer-group* [name]
+           |     |  |     +--rw name              string
+           |     |  |     +--rw local-as?         inet:as-number
+           |     |  |     +--rw peer-as?          inet:as-number
+           |     |  |     +--rw address-family?   identityref
+           |     |  |     +--rw role?             identityref
+           |     |  |     +--rw local-address?    inet:ip-address
+           |     |  |     +--rw bgp-max-prefix
+           |     |  |     |  +--rw max-prefix?   uint32
+           |     |  |     +--rw authentication
+           |     |  |        +--rw enabled?           boolean
+           |     |  |        +--rw keying-material
+           |     |  |           +--rw (option)?
+           |     |  |              +--:(ao)
+           |     |  |              |  +--rw enable-ao?          boolean
+           |     |  |              |  +--rw ao-keychain?
+           |     |  |              |          key-chain:key-chain-ref
+           |     |  |              +--:(md5)
+           |     |  |              |  +--rw md5-keychain?
+           |     |  |              |          key-chain:key-chain-ref
+           |     |  |              +--:(explicit)
+           |     |  |                 +--rw key-id?             uint32
+           |     |  |                 +--rw key?                string
+           |     |  |                 +--rw crypto-algorithm?
+           |     |  |                         identityref
+           |     |  +--rw neighbor* [id]
+           |     |     +--rw id                           string
+           |     |     +--ro server-reference?            string
+           |     |     |       {ac-common:server-assigned-reference}?
+           |     |     +--rw remote-address?          inet:ip-address
+           |     |     +--rw local-address?           inet:ip-address
+           |     |     +--rw local-as?                inet:as-number
+           |     |     +--rw peer-as?                 inet:as-number
+           |     |     +--rw address-family?          identityref
+           |     |     +--rw role?                    identityref
+           |     |     +--rw bgp-max-prefix
+           |     |     |  +--rw max-prefix?   uint32
+           |     |     +--rw authentication
+           |     |     |  +--rw enabled?           boolean
+           |     |     |  +--rw keying-material
+           |     |     |     +--rw (option)?
+           |     |     |        +--:(ao)
+           |     |     |        |  +--rw enable-ao?          boolean
+           |     |     |        |  +--rw ao-keychain?
+           |     |     |        |          key-chain:key-chain-ref
+           |     |     |        +--:(md5)
+           |     |     |        |  +--rw md5-keychain?
+           |     |     |        |          key-chain:key-chain-ref
+           |     |     |        +--:(explicit)
+           |     |     |           +--rw key-id?             uint32
+           |     |     |           +--rw key?                string
+           |     |     |           +--rw crypto-algorithm?   identityref
+           |     |     +--rw requested-start?
+           |     |     |       yang:date-and-time
+           |     |     +--rw requested-stop?
+           |     |     |       yang:date-and-time
+           |     |     +--ro actual-start?
+           |     |     |       yang:date-and-time
+           |     |     +--ro actual-stop?
+           |     |     |       yang:date-and-time
+           |     |     +--rw status
+           |     |     |  +--rw admin-status
+           |     |     |  |  +--rw status?        identityref
+           |     |     |  |  +--ro last-change?   yang:date-and-time
+           |     |     |  +--ro oper-status
+           |     |     |     +--ro status?        identityref
+           |     |     |     +--ro last-change?   yang:date-and-time
+           |     |     +--rw peer-group?
+           |     |     |       -> ../../peer-groups/peer-group/name
+           |     |     +--rw failure-detection-profile?
+           |     |             failure-detection-profile-reference
+           |     |             {vpn-common:bfd}?
+           |     +--rw ospf {vpn-common:rtg-ospf}?
+           |     |  +--rw address-family?   identityref
+           |     |  +--rw area-id           yang:dotted-quad
+           |     |  +--rw metric?           uint16
+           |     |  +--rw authentication
+           |     |  |  +--rw enabled?           boolean
+           |     |  |  +--rw keying-material
+           |     |  |     +--rw (option)?
+           |     |  |        +--:(auth-key-chain)
+           |     |  |        |  +--rw key-chain?
+           |     |  |        |          key-chain:key-chain-ref
+           |     |  |        +--:(auth-key-explicit)
+           |     |  |           +--rw key-id?             uint32
+           |     |  |           +--rw key?                string
+           |     |  |           +--rw crypto-algorithm?   identityref
+           |     |  +--rw status
+           |     |     +--rw admin-status
+           |     |     |  +--rw status?        identityref
+           |     |     |  +--ro last-change?   yang:date-and-time
+           |     |     +--ro oper-status
+           |     |        +--ro status?        identityref
+           |     |        +--ro last-change?   yang:date-and-time
+           |     +--rw isis {vpn-common:rtg-isis}?
+           |     |  +--rw address-family?   identityref
+           |     |  +--rw area-address      area-address
+           |     |  +--rw authentication
+           |     |  |  +--rw enabled?           boolean
+           |     |  |  +--rw keying-material
+           |     |  |     +--rw (option)?
+           |     |  |        +--:(auth-key-chain)
+           |     |  |        |  +--rw key-chain?
+           |     |  |        |          key-chain:key-chain-ref
+           |     |  |        +--:(auth-key-explicit)
+           |     |  |           +--rw key-id?             uint32
+           |     |  |           +--rw key?                string
+           |     |  |           +--rw crypto-algorithm?   identityref
+           |     |  +--rw status
+           |     |     +--rw admin-status
+           |     |     |  +--rw status?        identityref
+           |     |     |  +--ro last-change?   yang:date-and-time
+           |     |     +--ro oper-status
+           |     |        +--ro status?        identityref
+           |     |        +--ro last-change?   yang:date-and-time
+           |     +--rw rip {vpn-common:rtg-rip}?
+           |     |  +--rw address-family?   identityref
+           |     |  +--rw authentication
+           |     |  |  +--rw enabled?           boolean
+           |     |  |  +--rw keying-material
+           |     |  |     +--rw (option)?
+           |     |  |        +--:(auth-key-chain)
+           |     |  |        |  +--rw key-chain?
+           |     |  |        |          key-chain:key-chain-ref
+           |     |  |        +--:(auth-key-explicit)
+           |     |  |           +--rw key?                string
+           |     |  |           +--rw crypto-algorithm?   identityref
+           |     |  +--rw status
+           |     |     +--rw admin-status
+           |     |     |  +--rw status?        identityref
+           |     |     |  +--ro last-change?   yang:date-and-time
+           |     |     +--ro oper-status
+           |     |        +--ro status?        identityref
+           |     |        +--ro last-change?   yang:date-and-time
+           |     +--rw vrrp {vpn-common:rtg-vrrp}?
+           |        +--rw address-family?   identityref
+           |        +--rw status
+           |           +--rw admin-status
+           |           |  +--rw status?        identityref
+           |           |  +--ro last-change?   yang:date-and-time
+           |           +--ro oper-status
+           |              +--ro status?        identityref
+           |              +--ro last-change?   yang:date-and-time
+           +--rw oam
+           |  +--rw bfd {vpn-common:bfd}?
+           |     +--rw session* [id]
+           |        +--rw id                string
+           |        +--rw local-address?    inet:ip-address
+           |        +--rw remote-address?   inet:ip-address
+           |        +--rw profile?
+           |        |       failure-detection-profile-reference
+           |        +--rw holdtime?         uint32
+           |        +--rw status
+           |           +--rw admin-status
+           |           |  +--rw status?        identityref
+           |           |  +--ro last-change?   yang:date-and-time
+           |           +--ro oper-status
+           |              +--ro status?        identityref
+           |              +--ro last-change?   yang:date-and-time
+           +--rw security
+           |  +--rw encryption {vpn-common:encryption}?
+           |  |  +--rw enabled?   boolean
+           |  |  +--rw layer?     enumeration
+           |  +--rw encryption-profile
+           |     +--rw (profile)?
+           |        +--:(provider-profile)
+           |        |  +--rw provider-profile?
+           |        |          encryption-profile-reference
+           |        +--:(customer-profile)
+           |           +--rw customer-key-chain?
+           |                   key-chain:key-chain-ref
+           +--rw service
+              +--rw mtu?                      uint32
+              +--rw svc-pe-to-ce-bandwidth {vpn-common:inbound-bw}?
+              |  +--rw bandwidth* [bw-type]
+              |     +--rw bw-type      identityref
+              |     +--rw (type)?
+              |        +--:(per-cos)
+              |        |  +--rw cos* [cos-id]
+              |        |     +--rw cos-id    uint8
+              |        |     +--rw cir?      uint64
+              |        |     +--rw cbs?      uint64
+              |        |     +--rw eir?      uint64
+              |        |     +--rw ebs?      uint64
+              |        |     +--rw pir?      uint64
+              |        |     +--rw pbs?      uint64
+              |        +--:(other)
+              |           +--rw cir?   uint64
+              |           +--rw cbs?   uint64
+              |           +--rw eir?   uint64
+              |           +--rw ebs?   uint64
+              |           +--rw pir?   uint64
+              |           +--rw pbs?   uint64
+              +--rw svc-ce-to-pe-bandwidth {vpn-common:outbound-bw}?
+              |  +--rw bandwidth* [bw-type]
+              |     +--rw bw-type      identityref
+              |     +--rw (type)?
+              |        +--:(per-cos)
+              |        |  +--rw cos* [cos-id]
+              |        |     +--rw cos-id    uint8
+              |        |     +--rw cir?      uint64
+              |        |     +--rw cbs?      uint64
+              |        |     +--rw eir?      uint64
+              |        |     +--rw ebs?      uint64
+              |        |     +--rw pir?      uint64
+              |        |     +--rw pbs?      uint64
+              |        +--:(other)
+              |           +--rw cir?   uint64
+              |           +--rw cbs?   uint64
+              |           +--rw eir?   uint64
+              |           +--rw ebs?   uint64
+              |           +--rw pir?   uint64
+              |           +--rw pbs?   uint64
+              +--rw qos {vpn-common:qos}?
+              |  +--rw qos-profiles
+              |     +--rw qos-profile* [profile]
+              |        +--rw profile      qos-profile-reference
+              |        +--rw direction?   identityref
+              +--rw access-control-list
+                 +--rw acl-profiles
+                    +--rw acl-profile* [profile]
+                       +--rw profile    forwarding-profile-reference
 
 Acknowledgments
 
