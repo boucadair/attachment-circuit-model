@@ -1,0 +1,16 @@
+module: ietf-ac-gtpu
+
+  augment /ac-svc:attachment-circuits/ac-svc:ac/ac-svc:ip-connection
+          /ac-svc:l3-service/ac-svc:l3-tunnel-service
+          /ac-svc:l3-tunnel-service:
+
+    +--rw (udp-port)?
+       +--:(port-range-or-operator)
+          +--rw source-port-range-or-operator
+             +--rw (port-range-or-operator)?
+                +--:(range)
+                |  +--rw lower-port    inet:port-number
+                |  +--rw upper-port    inet:port-number
+                +--:(operator)
+                   +--rw operator?     operator
+                   +--rw port          inet:port-number
