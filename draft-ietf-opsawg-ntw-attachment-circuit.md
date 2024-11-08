@@ -89,17 +89,8 @@ normative:
     date: September 2018
     target: https://doi.org/10.1109/IEEESTD.2018.8467507
 
-
 informative:
-  AC-Ntw-Tree:
-    title: Full Network Attachment Circuit Tree Structure
-    date: 2023
-    target: https://github.com/boucadair/attachment-circuit-model/blob/main/yang/full-trees/ac-ntw-without-groupings.txt
 
-  PYANG:
-    title: pyang
-    date: 2023
-    target: https://github.com/mbj4668/pyang
 
 --- abstract
 
@@ -118,7 +109,7 @@ Connectivity services are provided by networks to customers via
 
 The procedure to provision a service in a service provider network may depend on the practices adopted by a service provider, including the flow put in place for the provisioning of advanced network services and how they are bound to an Attachment Circuit (AC). For example, the same attachment circuit may host multiple services (e.g., Layer 2 Virtual Private Network (VPN), or Layer 3 VPN, or Network Slice Service {{?RFC9543}}). In order to avoid service interference and redundant information in various locations, a service provider may expose an interface to manage ACs network-wide. Customers can then request a standalone attachment circuit to be put in place, and then refer to that attachment circuit when requesting services to be bound to that AC. {{!I-D.ietf-opsawg-teas-attachment-circuit}} specifies a data model for managing attachment circuits as a service.
 
-{{sec-module}} specifies a network model for attachment circuits ('ietf-ac-ntw'). The model can be used for the provisioning of ACs prior or during service provisioning. For example, {{?I-D.ietf-opsawg-ac-lxsm-lxnm-glue}} specifies augmentations of the L2VPN Network Model (L2NM) {{!RFC9291}} and the L3VPN Network Model (L3NM) {{!RFC9182}} to bind LxVPNs to ACs that are provisioned using the procedure defined in this document.
+{{sec-module}} specifies a network model for attachment circuits ("ietf-ac-ntw"). The model can be used for the provisioning of ACs in a provider network prior or during service provisioning. For example, {{?I-D.ietf-opsawg-ac-lxsm-lxnm-glue}} specifies augmentations to the L2VPN Network Model (L2NM) {{!RFC9291}} and the L3VPN Network Model (L3NM) {{!RFC9182}} to bind LxVPNs to ACs that are provisioned using the procedure defined in this document.
 
 The document leverages {{!RFC9182}} and {{!RFC9291}} by adopting an AC provisioning structure that uses data nodes that are defined in those RFCs. Some refinements were introduced to cover not only conventional service provider networks, but also specifics of other target deployments (e.g., cloud network).
 
@@ -131,7 +122,7 @@ The AC network model is designed as augmentations of both the 'ietf-network' mod
 
 The AC network model uses the AC common model defined in {{!I-D.ietf-opsawg-teas-common-ac}}.
 
-The YANG data model in this document conforms to the Network Management Datastore Architecture (NMDA) defined in {{!RFC8342}}.
+The YANG 1.1 {{!RFC7950}} data model in this document conforms to the Network Management Datastore Architecture (NMDA) defined in {{!RFC8342}}.
 
 Sample examples are provided in {{sec-examples}}.
 
@@ -252,14 +243,39 @@ To bind Layer 2 VPN or Layer 3 VPN services with ACs, "ietf-ac-glue" augments th
 
 # Sample Uses of the Attachment Circuit Data Models
 
-{{u-ex}} shows the positioning of the AC network model in the overall service delivery process. The 'ietf-ac-ntw' module is a network model which augments the SAP with a comprehensive set of parameters to reflect the attachment circuits that are in place in a network. The model also maintains the mapping with the service references that are used to expose these ACs to customers {{!I-D.ietf-opsawg-teas-attachment-circuit}}. Whether the same naming conventions to reference an AC are used in the service and network layers is deployment-specific.
+## ACs Terminated by One or Multiple Customer Edges (CEs)
+
+{{uc}} depicts a sample target topology that involve ACs:
+
+* ACs are terminated by a SAP at the network side. See {{sap-ac-ntw}} for an example of SAPs within a PE.
+
+* A CE can be either a physical device or a logical entity. Such logical entity is typically a software component (e.g., a virtual service function that is hosted within the provider's network or a third-party infrastructure). A CE is seen by the network as a peer SAP {{?RFC9408}}.
+
+* CEs may be either dedicated to one single connectivity service or host multiple connectivity services (e.g., CEs with roles of service functions {{?RFC7665}}).
+
+* A network provider may bind a single AC to one or multiple peer SAPs (e.g., CE1 and CE2 are tagged as peer SAPs for the same AC). For example, and as discussed in {{?RFC4364}}, multiple CEs can be attached to a PE over the same attachment circuit. This scenario is typically implemented when the Layer 2 infrastructure between the CE and the network is a multipoint service.
+
+* A single CE may terminate multiple ACs, which can be associated with the same bearer or distinct bearers (e.g., CE4).
+
+* Customers may request protection schemes in which the ACs associated with their endpoints are terminated by the same PE (e.g., CE3), distinct PEs (e.g., CE4), etc. The network provider uses this request to decide where to terminate the AC in the service provider network and also whether to enable specific capabilities (e.g., Virtual Router Redundancy Protocol (VRRP)).
+
+The "ietf-ac-ntw" is a network model that is used to manage the PE side of ACs at a provider network.
+
+~~~~ aasvg
+{::include ./figures/acs-examples.txt}
+~~~~
+{: #uc title='Examples of ACs' artwork-align="center"}
+
+## Positioning the AC Network Model in the Overall Service Delivery Process
+
+{{u-ex}} shows the positioning of the AC network model in the overall service delivery process. The "ietf-ac-ntw" module is a network model which augments the SAP with a comprehensive set of parameters to reflect the attachment circuits that are in place in a network. The model also maintains the mapping with the service references that are used to expose those ACs to customer using the 'ietf-ac-svc' module defined in {{!I-D.ietf-opsawg-teas-attachment-circuit}}. Whether the same naming conventions to reference an AC are used in the service and network layers is deployment-specific.
 
 ~~~~ aasvg
 {::include-fold ./figures/arch.txt}
 ~~~~
 {: #u-ex title="An Example of the Network AC Model Usage" artwork-align="center"}
 
-Similar to {{!RFC9408}}, the 'ietf-ac-ntw' module can be used for both User-to-Network Interface (UNI) and
+Similar to {{!RFC9408}}, the "ietf-ac-ntw" module can be used for both User-to-Network Interface (UNI) and
 Network-to-Network Interface (NNI). For example, all the ACs shown in {{fig-inter-pn}} have a 'role' set
 to 'ietf-sap-ntw:nni'. Typically, ASBRs of each network are directly
 connected to ASBRs of a neighboring network via one or multiple links (bearers). ASBRs of "Network#1" behave as a PE and treat the other adjacent ASBRs as if it were a CE.
@@ -269,19 +285,14 @@ connected to ASBRs of a neighboring network via one or multiple links (bearers).
 ~~~~
 {: #fig-inter-pn title="An Example of the Network AC Model Usage Between Provider Networks" artwork-align="center"}
 
-
 # Description of the Attachment Circuit YANG Module
 
-The full tree diagram of the 'ietf-ac-ntw' module can be generated using the
-"pyang" tool {{PYANG}}.  That tree is not included here because it is
-too long ({{Section 3.4 of ?RFC8340}}).  Instead, subtrees are provided in the following subsections
+The full tree diagram of the "ietf-ac-ntw" module is provided in {{AC-Ntw-Tree}}. Subtrees are provided in the following subsections
 for the reader's convenience.
-
-The full tree of the 'ietf-ac-ntw' is provided in {{AC-Ntw-Tree}}.
 
 ## Overall Structure of the Module
 
-The overall tree structure of the 'ietf-ac-ntw' module is shown in {{o-ntw-tree}}.
+The overall tree structure of the "ietf-ac-ntw" module is shown in {{o-ntw-tree}}.
 
 ~~~~
 augment /nw:networks/nw:network:
@@ -292,15 +303,15 @@ augment /nw:networks/nw:network:
 augment /nw:networks/nw:network/nw:node:
   +--rw ac* [name]
      +--rw name                 string
-     +--rw ac-svc-ref?          ac-svc:attachment-circuit-reference
-     +--rw ac-profile* [ac-profile-ref]
+     +--rw svc-ref?             ac-svc:attachment-circuit-reference
+     +--rw profile* [ac-profile-ref]
      |  +--rw ac-profile-ref    leafref
      |  +--rw network-ref?      -> /nw:networks/network/network-id
-     +--rw ac-parent-ref
+     +--rw parent-ref
      |  +--rw ac-ref?        leafref
      |  +--rw node-ref?      leafref
      |  +--rw network-ref?   -> /nw:networks/network/network-id
-     +--ro ac-child-ref
+     +--ro child-ref
      |  +--ro ac-ref*        leafref
      |  +--ro node-ref?      leafref
      |  +--ro network-ref?   -> /nw:networks/network/network-id
@@ -341,7 +352,7 @@ reference point (the PE side of an AC, in the context of this document) where ne
 
 Unlike the AC service model {{!I-D.ietf-opsawg-teas-attachment-circuit}}, an AC is uniquely identified by a name within the scope of a node, not a network. A textual description of the AC may be provided ('description').
 
-Also, in order to ease the correlation between the AC exposed at the service layer and the AC that is actually provisioned in the network operation, a reference to the AC exposed to the customer ('ac-svc-ref') is stored in the 'ietf-ac-ntw' module.
+Also, in order to ease the correlation between the AC exposed at the service layer and the AC that is actually provisioned in the network operation, a reference to the AC exposed to the customer ('svc-ref') is stored in the "ietf-ac-ntw" module.
 
 ACs that are terminated by a SAP are listed in the 'ac' container under '/nw:networks/nw:network/nw:node/sap:service/sap:sap'. A controller may indicate a filter based on the service type (e.g., Network Slice or L3VPN) to retrieve the list of available SAPs, and thus ACs, for that service.
 
@@ -350,10 +361,10 @@ In order to factorize common data that is provisioned for a group of ACs, a set 
 In contexts where the same AC is terminated by multiple peer SAPs (e.g., an AC with multiple CEs) but a subset of them have specific information, the module allows operators to:
 
 * Define a parent AC that may list all these CEs as peer SAPs.
-* Create individual ACs that are bound to the parent AC using 'ac-parent-ref'.
+* Create individual ACs that are bound to the parent AC using 'parent-ref'.
 * Indicate for each individual AC one or a subset of the CEs as peer SAPs. All these individual ACs will inherit the properties of the parent AC.
 
-Whenever a parent AC is deleted, then all child ACs of that AC MUST be deleted. Child ACs are referenced using 'ac-child-ref'.
+Whenever a parent AC is deleted, then all child ACs of that AC MUST be deleted. Child ACs are referenced using 'child-ref'.
 
 An AC may belong to one or multiple groups {{!RFC9181}}. For example, the 'group-id' is used to associate redundancy or protection constraints with ACs.
 
@@ -404,7 +415,7 @@ Similar to {{!RFC9182}} and {{!RFC9291}}, the exact definition of the specific p
 
 ## L2 Connection {#sec-l2}
 
-The 'l2-connection' container is used to manage the Layer 2 properties of an AC. The  Layer 2 connection tree structure is shown in {{l2-tree}}.
+The 'l2-connection' container is used to manage the Layer 2 properties of an AC (mainly, the PE side of an AC). The  Layer 2 connection tree structure is shown in {{l2-tree}}.
 
 ~~~~
 {::include ./yang/subtrees/ac-ntw/l2-tree.txt}
@@ -440,7 +451,7 @@ For both IPv4 and IPv6, 'address-allocation-type' is used to indicate the IP add
 
 For IPv6, if 'address-allocation-type' is set to 'slaac', the Prefix Information option of Router Advertisements that will be issued for SLAAC purposes will carry the IPv6 prefix that is determined by 'local-address' and 'prefix-length'. For example, if 'local-address' is set to '2001:db8:0:1::1' and 'prefix-length' is set to '64', the IPv6 prefix that will be used is '2001:db8:0:1::/64'.
 
-In some deployment contexts (e.g., network merging), multiple IP subnets may be used in a transition period. For such deployments, multiple ACs (typically, two) with overlapping information may be maintained during a transition period. The correlation between these ACs may rely upon the same 'ac-svc-ref'.
+In some deployment contexts (e.g., network merging), multiple IP subnets may be used in a transition period. For such deployments, multiple ACs (typically, two) with overlapping information may be maintained during a transition period. The correlation between these ACs may rely upon the same 'svc-ref'.
 
 ## Routing {#sec-rtg}
 
@@ -598,10 +609,6 @@ The following data nodes are supported for each 'peer-group':
       session and (2) 'keepalive', which is the time interval for the
       KeepaliveTimer between a PE and a BGP peer ({{Section 4.4 of !RFC4271}}).
 :  Both timers are expressed in seconds.
-
-'capability':
-: Specifies a set of BGP capabilities (e.g., route refresh capability {{?RFC2918}})
-to be enabled per address family.
 
 'bfd':
 : Indicates whether BFD is enabled or disabled for this nighbor. A BFD profile to apply may also be provided.
@@ -899,15 +906,13 @@ This module uses types defined in {{!RFC6991}}, {{!RFC8177}}, {{!RFC8294}}, {{!R
 
 # Security Considerations
 
-This section uses the template described in Section 3.7 of {{?I-D.ietf-netmod-rfc8407bis}}.
+This section is modeled after the template described in in {{Section 3.7 of ?I-D.ietf-netmod-rfc8407bis}}.
 
-   The YANG module specified in this document defines a schema for data
-   that is designed to be accessed via network management protocols such
-   as NETCONF {{!RFC6241}} or RESTCONF {{!RFC8040}}.  The lowest NETCONF layer
-   is the secure transport layer, and the mandatory-to-implement secure
-   transport is Secure Shell (SSH) {{!RFC6242}}.  The lowest RESTCONF layer
-   is HTTPS, and the mandatory-to-implement secure transport is TLS
-   {{!RFC8446}}.
+The "ietf-ac-ntw" YANG module defines a data model that is
+designed to be accessed via YANG-based management protocols, such as
+   NETCONF {{?RFC6241}} and RESTCONF {{?RFC8040}}. These protocols have to
+   use a secure transport layer (e.g., SSH {{?RFC4252}}, TLS {{?RFC8446}}, and
+   QUIC {{?RFC9000}}) and have to use mutual authentication.
 
    The Network Configuration Access Control Model (NACM) {{!RFC8341}}
    provides the means to restrict access for particular NETCONF or
@@ -963,7 +968,7 @@ subtrees and data nodes have particular sensitivities/vulnerabilities:
       protecting an AC (routing, in particular). These keys could
       be used to inject spoofed routing  advertisements.
 
-Several data nodes ('bgp', 'ospf', 'isis', and 'rip') rely upon {{!RFC8177}} for authentication purposes. As such, the AC network module inherits the security considerations discussed in Section 5 of {{!RFC8177}}. Also, these data nodes support supplying explicit keys as strings in ASCII format. The use of keys in hexadecimal string format would afford greater key entropy with the same number of key-string octets. However, such a format is not included in this version of the AC network model, because it is not supported by the underlying device modules (e.g., {{?RFC8695}}).
+Several data nodes ('bgp', 'ospf', 'isis', and 'rip') rely upon {{!RFC8177}} for authentication purposes. As such, the AC network module inherits the security considerations discussed in {{Section 5 of !RFC8177}}. Also, these data nodes support supplying explicit keys as strings in ASCII format. The use of keys in hexadecimal string format would afford greater key entropy with the same number of key-string octets. However, such a format is not included in this version of the AC network model, because it is not supported by the underlying device modules (e.g., {{?RFC8695}}).
 
 # IANA Considerations
 
@@ -1037,6 +1042,13 @@ In reference to the topology depicted in {{sap-ac-ntw}}, PE2 has a SAP which ter
 ~~~~~~~~~~
 {: #ex-parent-ac-sap title="Example of Binding Parent AC to SAPs"}
 
+# Full Tree {#AC-Ntw-Tree}
+
+~~~~~~~~~~
+{::include-fold ./yang/full-trees/ac-ntw-without-groupings.txt}
+~~~~~~~~~~
+
+
 # Acknowledgments
 {:numbered="false"}
 
@@ -1048,3 +1060,5 @@ Thanks to Martin Björklund for the yangdoctors review, Gyan Mishra for an early
 and Giuseppe Fioccola for the ops-dir review.
 
 Thanks to Krzysztof Szarkowicz for the Shepherd review.
+
+Thanks for Mahesh Jethanandani for the AD review.

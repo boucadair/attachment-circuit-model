@@ -40,7 +40,7 @@
       {
         "name": "ac1",
         "description": "a first ac with a same peer node",
-        "ac-group-profile-ref": [
+        "group-profile-ref": [
           "bgp-simple-profile"
         ],
         "l2-connection": {
@@ -78,7 +78,7 @@
       {
         "name": "ac2",
         "description": "a second ac with a same peer node",
-        "ac-group-profile-ref": [
+        "group-profile-ref": [
           "bgp-simple-profile"
         ],
         "l2-connection": {

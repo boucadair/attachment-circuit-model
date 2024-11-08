@@ -52,7 +52,7 @@
       {
         "name": "parent-vlan-100-gw1",
         "description": "This parent represents a bridge with Layer 3 interface (IRB) to connect NFs in VLAN 100",
-        "ac-group-profile-ref": [
+        "group-profile-ref": [
           "profile-vlan-100"
         ],
         "ip-connection": {
@@ -65,7 +65,7 @@
       {
         "name": "parent-vlan-100-gw2",
         "description": "This parent represents a bridge with Layer 3 interface (IRB) to connect NFs in VLAN 100",
-        "ac-group-profile-ref": [
+        "group-profile-ref": [
           "profile-vlan-100"
         ],
         "ip-connection": {
@@ -78,7 +78,7 @@
       {
         "name": "ac-ce-01-vlan-100",
         "description": "attachment to CE1 in VLAN 100",
-        "ac-parent-ref": [
+        "parent-ref": [
           "parent-vlan-100-gw1",
           "parent-vlan-100-gw2"
         ],
@@ -89,7 +89,7 @@
       {
         "name": "ac-ce-02-vlan-100",
         "description": "attachment to CE2 in VLAN 100",
-        "ac-parent-ref": [
+        "parent-ref": [
           "parent-vlan-100-gw1",
           "parent-vlan-100-gw2"
         ],
@@ -103,7 +103,7 @@
       {
         "name": "ac-ce-10-vlan-100",
         "description": "attachment to CE10 in VLAN 100",
-        "ac-parent-ref": [
+        "parent-ref": [
           "parent-vlan-100-gw1",
           "parent-vlan-100-gw2"
         ],

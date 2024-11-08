@@ -53,11 +53,8 @@ module: ietf-ac-ntw
        |     |        |  +--rw violate-action?      enumeration
        |     |        |  +--rw restart-timer?       uint32
        |     |        +--rw bgp-timers
-       |     |        |  +--rw keepalive?   uint16
-       |     |        |  +--rw hold-time?   uint16
-       |     |        +--rw capability* [address-family]
-       |     |           +--rw address-family    identityref
-       |     |           +--rw name              identityref
+       |     |           +--rw keepalive?   uint16
+       |     |           +--rw hold-time?   uint16
        |     +--rw ospf {vpn-common:rtg-ospf}?
        |     |  +--rw address-family?   identityref
        |     |  +--rw area-id           yang:dotted-quad
@@ -91,15 +88,15 @@ module: ietf-ac-ntw
   augment /nw:networks/nw:network/nw:node:
     +--rw ac* [name]
        +--rw name                 string
-       +--rw ac-svc-ref?          ac-svc:attachment-circuit-reference
-       +--rw ac-profile* [ac-profile-ref]
+       +--rw svc-ref?             ac-svc:attachment-circuit-reference
+       +--rw profile* [ac-profile-ref]
        |  +--rw ac-profile-ref    leafref
        |  +--rw network-ref?      -> /nw:networks/network/network-id
-       +--rw ac-parent-ref
+       +--rw parent-ref
        |  +--rw ac-ref?        leafref
        |  +--rw node-ref?      leafref
        |  +--rw network-ref?   -> /nw:networks/network/network-id
-       +--ro ac-child-ref
+       +--ro child-ref
        |  +--ro ac-ref*        leafref
        |  +--ro node-ref?      leafref
        |  +--ro network-ref?   -> /nw:networks/network/network-id
@@ -129,10 +126,10 @@ module: ietf-ac-ntw
        |  |  |     |  |  +--rw push?        empty
        |  |  |     |  +--:(translate)
        |  |  |     |     +--rw translate?   empty
-       |  |  |     +--rw tag-1?             dot1q-types:vlanid
-       |  |  |     +--rw tag-1-type?        dot1q-types:dot1q-tag-type
-       |  |  |     +--rw tag-2?             dot1q-types:vlanid
-       |  |  |     +--rw tag-2-type?        dot1q-types:dot1q-tag-type
+       |  |  |     +--rw tag-1?          dot1q-types:vlanid
+       |  |  |     +--rw tag-1-type?     dot1q-types:dot1q-tag-type
+       |  |  |     +--rw tag-2?          dot1q-types:vlanid
+       |  |  |     +--rw tag-2-type?     dot1q-types:dot1q-tag-type
        |  |  +--rw priority-tagged
        |  |  |  +--rw tag-type?   identityref
        |  |  +--rw qinq
@@ -147,10 +144,10 @@ module: ietf-ac-ntw
        |  |        |  |  +--rw push?        empty
        |  |        |  +--:(translate)
        |  |        |     +--rw translate?   uint8
-       |  |        +--rw tag-1?             dot1q-types:vlanid
-       |  |        +--rw tag-1-type?        dot1q-types:dot1q-tag-type
-       |  |        +--rw tag-2?             dot1q-types:vlanid
-       |  |        +--rw tag-2-type?        dot1q-types:dot1q-tag-type
+       |  |        +--rw tag-1?          dot1q-types:vlanid
+       |  |        +--rw tag-1-type?     dot1q-types:dot1q-tag-type
+       |  |        +--rw tag-2?          dot1q-types:vlanid
+       |  |        +--rw tag-2-type?     dot1q-types:dot1q-tag-type
        |  +--rw (l2-service)?
        |  |  +--:(l2-tunnel-service)
        |  |  |  +--rw l2-tunnel-service
@@ -350,9 +347,6 @@ module: ietf-ac-ntw
        |     |  |     +--rw bgp-timers
        |     |  |     |  +--rw keepalive?   uint16
        |     |  |     |  +--rw hold-time?   uint16
-       |     |  |     +--rw capability* [address-family]
-       |     |  |     |  +--rw address-family    identityref
-       |     |  |     |  +--rw name              identityref
        |     |  |     +--rw authentication
        |     |  |        +--rw enabled?           boolean
        |     |  |        +--rw keying-material
@@ -406,9 +400,6 @@ module: ietf-ac-ntw
        |     |     +--rw bgp-timers
        |     |     |  +--rw keepalive?   uint16
        |     |     |  +--rw hold-time?   uint16
-       |     |     +--rw capability* [address-family]
-       |     |     |  +--rw address-family    identityref
-       |     |     |  +--rw name              identityref
        |     |     +--rw bfd {vpn-common:bfd}?
        |     |     |  +--rw enabled?                         boolean
        |     |     |  +--rw failure-detection-profile-ref?   leafref
@@ -530,7 +521,7 @@ module: ietf-ac-ntw
        +--rw oam
        |  +--rw bfd {vpn-common:bfd}?
        |     +--rw session* [dest-addr]
-       |        +--rw dest-addr                        inet:ip-address
+       |        +--rw dest-addr              inet:ip-address
        |        +--rw source-address?                  union
        |        +--rw failure-detection-profile-ref?   leafref
        |        +--rw network-ref?
