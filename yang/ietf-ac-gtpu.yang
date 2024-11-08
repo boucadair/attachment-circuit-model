@@ -61,7 +61,7 @@ module ietf-ac-gtpu {
   }
 
   augment "/ietf-ac-svc:attachment-circuits"
-        + "/ietf-ac-svc:ac//ietf-ac-svc:ip-connection/"
+        + "/ietf-ac-svc:ac/ietf-ac-svc:ip-connection"
         + "/ietf-ac-svc:l3-tunnel-service" {
     when "derived-from-or-self(../type, 'gtpu')" {
       description
