@@ -5,14 +5,14 @@
 OPSAWG                                                 M. Boucadair, Ed.
 Internet-Draft                                                    Orange
 Intended status: Standards Track                         R. Roberts, Ed.
-Expires: 16 May 2025                                             Juniper
+Expires: 17 May 2025                                             Juniper
                                                            O. G. D. Dios
                                                               Telefonica
                                                            S. B. Giraldo
                                                                    Nokia
                                                                    B. Wu
                                                      Huawei Technologies
-                                                        12 November 2024
+                                                        13 November 2024
 
 
   YANG Data Models for Bearers and 'Attachment Circuits'-as-a-Service
@@ -54,7 +54,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 16 May 2025.
+   This Internet-Draft will expire on 17 May 2025.
 
 Copyright Notice
 
@@ -446,9 +446,9 @@ Table of Contents
 
    *  "ietf-ac-common" ([I-D.ietf-opsawg-teas-common-ac])
 
-   *  "ietf-bearer-svc" (Section 6.2)
+   *  "ietf-bearer-svc" (Section 6.1)
 
-   *  "ietf-ac-svc" (Section 6.1)
+   *  "ietf-ac-svc" (Section 6.2)
 
    *  "ietf-ac-ntw" ([I-D.ietf-opsawg-ntw-attachment-circuit])
 
