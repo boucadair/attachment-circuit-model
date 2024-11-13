@@ -260,8 +260,8 @@ The names of data nodes are prefixed using the prefix associated with the corres
 {{ac-overview}} depicts the relationship between the various AC data models:
 
 * "ietf-ac-common" ({{!I-D.ietf-opsawg-teas-common-ac}})
-* "ietf-bearer-svc" ({{sec-ac-module}})
-* "ietf-ac-svc" ({{sec-bearer-module}})
+* "ietf-bearer-svc" ({{sec-bearer-module}})
+* "ietf-ac-svc" ({{sec-ac-module}})
 * "ietf-ac-ntw" ({{?I-D.ietf-opsawg-ntw-attachment-circuit}})
 * "ietf-ac-glue" ({{?I-D.ietf-opsawg-ac-lxsm-lxnm-glue}})
 
