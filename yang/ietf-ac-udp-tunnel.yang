@@ -1,7 +1,7 @@
-module ietf-ac-gtpu {
+module ietf-ac-udp-tunnel {
   yang-version 1.1;
-  namespace "urn:ietf:params:xml:ns:yang:ietf-ac-gtpu";
-  prefix ac-gtpu;
+  namespace "urn:ietf:params:xml:ns:yang:ietf-ac-udp-tunnel";
+  prefix ac-udpt;
 
   import ietf-ac-common {
     prefix ac-common;
@@ -32,7 +32,7 @@ module ietf-ac-gtpu {
                <mailto:mohamed.boucadair@orange.com>";
   description
     "This YANG module defines a YANG model for augmenting the ACaaS
-     service model with GTP-U as Layer 3 tunnel service.
+     service model with UDP Encapsulation as Layer 3 tunnel service.
 
      Copyright (c) 2024 IETF Trust and the persons identified as
      authors of the code.  All rights reserved.
@@ -54,22 +54,24 @@ module ietf-ac-gtpu {
       "RFC XXXX: Mobility-aware Transport Network Slicing for 5G";
   }
 
-  identity gtp-u {
+  identity udp {
     base ac-common:l3-tunnel-type;
     description
-      "GPRS Tunneling Protocol - User plane.";
+      "UDP Encapsulation.";
+    reference
+      "RFC 8085: UDP Usage Guidelines, Section 3.1.11";
   }
 
   augment "/ac-svc:attachment-circuits/ac-svc:ac"
         + "/ac-svc:ip-connection/ac-svc:l3-service"
         + "/ac-svc:l3-tunnel-service/ac-svc:l3-tunnel-service" {
-    when "derived-from-or-self(./type, 'ac-gtpu:gtpu')" {
+    when "derived-from-or-self(./type, 'ac-udpt:udp')" {
       description
-        "Only applicable if l3 service type is GTP-U.";
+        "Only applicable if l3 service type is UDP encapsualtion.";
     }
     description
       "Augments Layer 3 AC service with required data nodes for
-       GTP-U support.";
+       UDP encapsulation support.";
      choice udp-port {
        description
          "Choice of specifying the source port number or referring
