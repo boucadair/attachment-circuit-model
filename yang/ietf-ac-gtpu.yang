@@ -63,7 +63,7 @@ module ietf-ac-gtpu {
   augment "/ac-svc:attachment-circuits/ac-svc:ac"
         + "/ac-svc:ip-connection/ac-svc:l3-service"
         + "/ac-svc:l3-tunnel-service/ac-svc:l3-tunnel-service" {
-    when "derived-from-or-self(./type, 'gtpu')" {
+    when "derived-from-or-self(./type, 'ac-gtpu:gtpu')" {
       description
         "Only applicable if l3 service type is GTP-U.";
     }
