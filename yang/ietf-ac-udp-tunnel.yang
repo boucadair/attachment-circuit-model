@@ -67,7 +67,7 @@ module ietf-ac-udp-tunnel {
         + "/ac-svc:l3-tunnel-service/ac-svc:l3-tunnel-service" {
     when "derived-from-or-self(./type, 'ac-udpt:udp')" {
       description
-        "Only applicable if l3 service type is UDP encapsualtion.";
+        "Only applicable if L3 service type is UDP encapsualtion.";
     }
     description
       "Augments Layer 3 AC service with required data nodes for
