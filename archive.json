@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-11-14T00:47:36.312932+00:00",
+  "timestamp": "2024-11-17T00:54:22.514472+00:00",
   "repo": "boucadair/attachment-circuit-model",
   "labels": [
     {
@@ -9129,6 +9129,34 @@
       "mergedBy": "boucadair",
       "mergeCommit": {
         "oid": "ae6baf18a4c7f874305634eb5267581e4017c5f3"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 238,
+      "id": "PR_kwDOIiAkrc6B5WMX",
+      "title": "fix prefix",
+      "url": "https://github.com/boucadair/attachment-circuit-model/pull/238",
+      "state": "MERGED",
+      "author": "boucadair",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-11-14T09:47:43Z",
+      "updatedAt": "2024-11-14T10:05:24Z",
+      "baseRepository": "boucadair/attachment-circuit-model",
+      "baseRefName": "main",
+      "baseRefOid": "63b4655557ef8f7e5e8410c44f11207191c17268",
+      "headRepository": "boucadair/attachment-circuit-model",
+      "headRefName": "fix-prefix",
+      "headRefOid": "113b1af0156b15cad62e98965d62ae793599800e",
+      "closedAt": "2024-11-14T10:05:22Z",
+      "mergedAt": "2024-11-14T10:05:22Z",
+      "mergedBy": "boucadair",
+      "mergeCommit": {
+        "oid": "8637d387d21ccbd18c6ec0ce3923d3ec7cecc5e5"
       },
       "comments": [],
       "reviews": []
