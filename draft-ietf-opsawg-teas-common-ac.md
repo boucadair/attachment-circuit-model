@@ -403,7 +403,7 @@ The document reuses many of the structures that were defined
 in {{!RFC9181}} and {{?RFC9182}}.
 
 Thanks to Ebben Aries for the YANG Doctors review, Andy Smith and Gyanh Mishra for the
-rtg-dir reviews.
+rtg-dir reviews, and Watson Ladd for the sec-dir review.
 
 Thanks to Reza Rokui for the Shepherd review.
 
