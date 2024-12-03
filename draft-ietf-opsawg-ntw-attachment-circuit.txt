@@ -5,14 +5,14 @@
 Operations and Management Area Working Group           M. Boucadair, Ed.
 Internet-Draft                                                    Orange
 Intended status: Standards Track                              R. Roberts
-Expires: 5 June 2025                                             Juniper
+Expires: 6 June 2025                                             Juniper
                                                            O. G. D. Dios
                                                               Telefonica
                                                            S. B. Giraldo
                                                                    Nokia
                                                                    B. Wu
                                                      Huawei Technologies
-                                                         2 December 2024
+                                                         3 December 2024
 
 
            A Network YANG Data Model for Attachment Circuits
@@ -58,7 +58,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 5 June 2025.
+   This Internet-Draft will expire on 6 June 2025.
 
 Copyright Notice
 
@@ -5608,8 +5608,9 @@ Acknowledgments
    Thanks to Moti Morgenstern for the review and comments.
 
    Thanks to Martin Björklund for the yangdoctors review, Gyan Mishra
-   for an early rtg-dir review, Joel Halpern for the rtg-dir review, and
-   Giuseppe Fioccola for the ops-dir review.
+   for an early rtg-dir review, Joel Halpern for the rtg-dir review,
+   Giuseppe Fioccola for the ops-dir review, and Russ Housley for the
+   sec-dir review.
 
    Thanks to Krzysztof Szarkowicz for the Shepherd review.
 
