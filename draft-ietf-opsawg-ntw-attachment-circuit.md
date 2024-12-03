@@ -1057,7 +1057,7 @@ This document builds on {{!RFC9182}} and {{!RFC9291}}.
 Thanks to Moti Morgenstern for the review and comments.
 
 Thanks to Martin Björklund for the yangdoctors review, Gyan Mishra for an early rtg-dir review, Joel Halpern for the rtg-dir review,
-and Giuseppe Fioccola for the ops-dir review.
+Giuseppe Fioccola for the ops-dir review, and Russ Housley for the sec-dir review.
 
 Thanks to Krzysztof Szarkowicz for the Shepherd review.
 
