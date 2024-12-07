@@ -67,10 +67,16 @@ informative:
 
 # Introduction
 
+To facilitate data transfer within the provider network, it is assumed that the appropriate setup
+   is provisioned over the links that connect customer terminating
+   points and a provider network (usually via a Provider Edge (PE)),
+   allowing successfully data exchanged over these links.  The required
+   setup is referred to in this document as Attachment Circuit (AC),
+   while the underlying link is referred to as "bearer".
+
 The document specifies a YANG module ("ietf-ac-glue", {{sec-glue}}) that updates existing service and
 network Virtual Private Network (VPN) modules with the required information to bind specific
 services to Attachment Circuits (ACs) that are created using the AC service model {{!I-D.ietf-opsawg-teas-attachment-circuit}}. Specifically, the following modules are augmented:
-
 
 * The Layer 2 Service Model (L2SM) {{!RFC8466}}
 * The Layer 3 Service Model (L3SM) {{!RFC8299}}
@@ -78,6 +84,8 @@ services to Attachment Circuits (ACs) that are created using the AC service mode
 * The Layer 3 Network Model (L3NM) {{!RFC9182}}
 
 Likewise, the document augments the L2NM and L3NM with references to the ACs that are managed using the AC network model {{!I-D.ietf-opsawg-ntw-attachment-circuit}}.
+
+This approach allows to separate AC provisioning from actual VPN service provisioning as further discussed in {{sep}}.
 
 The YANG data model in this document conforms to the Network
 Management Datastore Architecture (NMDA) defined in {{!RFC8342}}.
@@ -187,9 +195,11 @@ To bind Layer 2 VPN or Layer 3 VPN services with ACs, "ietf-ac-glue" augments th
 ~~~~
 {: #uc title='Examples of ACs' artwork-align="center"}
 
-## Separate AC Provisioning From Actual VPN Service Provisioning
+These ACs can be referrenced in VPN services.
 
-The procedure to provision a service in a service provider network may depend on the practices adopted by a service provider. This includes the flow put in place for the provisioning of advanced network services and how they are bound to an attachment circuit. For example, a single attachment circuit may be used to host multiple connectivity services (e.g., Layer 2 VPN ("ietf-l2vpn-svc"), Layer 3 VPN ("ietf-l3vpn-svc"), Network Slice Service ("ietf-network-slice-service")). In order to avoid service interference and redundant information in various locations, a service provider may expose an interface to manage ACs network-wide using {{!I-D.ietf-opsawg-teas-attachment-circuit}}. Customers can request a bearer ("ietf-bearer-svc") or an attachment circuit ("ietf-ac-svc") to be put in place, and then refer to that bearer or AC when requesting VPN services that are bound to the bearer or AC ("ietf-ac-glue").
+## Separate AC Provisioning From Actual VPN Service Provisioning {#sep}
+
+The procedure to provision a service in a service provider network may depend on the practices adopted by a service provider. This includes the flow put in place for the provisioning of advanced network services and how they are bound to an attachment circuit. For example, a single attachment circuit may be used to host multiple connectivity services (e.g., Layer 2 VPN ("ietf-l2vpn-svc"), Layer 3 VPN ("ietf-l3vpn-svc"), Network Slice Service ("ietf-network-slice-service")). In order to avoid service interference and redundant information in various locations, a service provider may expose an interface to manage ACs network-wide using {{!I-D.ietf-opsawg-teas-attachment-circuit}}. Customers can request an attachment circuit ("ietf-ac-svc") to be put in place, and then refer to that AC when requesting VPN services that are bound to the AC ("ietf-ac-glue").
 
 Also, internal references ("ietf-ac-ntw") used within a service provider network to implement ACs can be used by network controllers to glue the L2NM ("ietf-l2vpn-ntw") or the L3NM ("ietf-l3vpn-ntw") services with relevant ACs.
 
@@ -377,6 +387,7 @@ The provisioned AC at PE1 can be retrieved using the AC network model {{!I-D.iet
 
 Thanks to Bo Wu and Qin Wu for the review and comments.
 
-Thanks to Martin Björklund for the yangdoctors review, Gyan Mishra for the rtg-dir review, and Ron Bonica for the opsdir review.
+Thanks to Martin Björklund for the yangdoctors review, Gyan Mishra for the rtg-dir review, Ron Bonica for the opsdir review,
+and Reese Enghardt for the genart review.
 
 Thanks to Mahesh Jethanandani for the AD review.
