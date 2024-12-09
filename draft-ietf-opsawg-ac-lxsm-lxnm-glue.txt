@@ -95,6 +95,14 @@ Table of Contents
 
 1.  Introduction
 
+   To facilitate data transfer within the provider network, it is
+   assumed that the appropriate setup is provisioned over the links that
+   connect customer terminating points and a provider network (usually
+   via a Provider Edge (PE)), allowing successfully data exchanged over
+   these links.  The required setup is referred to in this document as
+   Attachment Circuit (AC), while the underlying link is referred to as
+   "bearer".
+
    The document specifies a YANG module ("ietf-ac-glue", Section 6) that
    updates existing service and network Virtual Private Network (VPN)
    modules with the required information to bind specific services to
@@ -113,6 +121,9 @@ Table of Contents
    Likewise, the document augments the L2NM and L3NM with references to
    the ACs that are managed using the AC network model
    [I-D.ietf-opsawg-ntw-attachment-circuit].
+
+   This approach allows to separate AC provisioning from actual VPN
+   service provisioning as further discussed in Section 4.2.
 
    The YANG data model in this document conforms to the Network
    Management Datastore Architecture (NMDA) defined in [RFC8342].
@@ -282,6 +293,8 @@ Table of Contents
 
                          Figure 2: Examples of ACs
 
+   These ACs can be referrenced in VPN services.
+
 4.2.  Separate AC Provisioning From Actual VPN Service Provisioning
 
    The procedure to provision a service in a service provider network
@@ -294,11 +307,10 @@ Table of Contents
    service")).  In order to avoid service interference and redundant
    information in various locations, a service provider may expose an
    interface to manage ACs network-wide using
-   [I-D.ietf-opsawg-teas-attachment-circuit].  Customers can request a
-   bearer ("ietf-bearer-svc") or an attachment circuit ("ietf-ac-svc")
-   to be put in place, and then refer to that bearer or AC when
-   requesting VPN services that are bound to the bearer or AC ("ietf-ac-
-   glue").
+   [I-D.ietf-opsawg-teas-attachment-circuit].  Customers can request an
+   attachment circuit ("ietf-ac-svc") to be put in place, and then refer
+   to that AC when requesting VPN services that are bound to the AC
+   ("ietf-ac-glue").
 
    Also, internal references ("ietf-ac-ntw") used within a service
    provider network to implement ACs can be used by network controllers
@@ -1465,7 +1477,8 @@ Acknowledgments
    Thanks to Bo Wu and Qin Wu for the review and comments.
 
    Thanks to Martin Björklund for the yangdoctors review, Gyan Mishra
-   for the rtg-dir review, and Ron Bonica for the opsdir review.
+   for the rtg-dir review, Ron Bonica for the opsdir review, and Reese
+   Enghardt for the genart review.
 
    Thanks to Mahesh Jethanandani for the AD review.
 
