@@ -1565,7 +1565,8 @@ This document leverages {{!RFC9182}} and {{!RFC9291}}. Thanks to Gyan Mishra for
 
 Thanks to Ebben Aries for the YANG Doctors review and for providing {{Instance-Data}}.
 
-Thanks to Donald Eastlake for the careful rtg-dir reviews and Tero Kivinen for the sec-dir review.
+Thanks to Donald Eastlake for the careful rtg-dir reviews, Tero Kivinen for the sec-dir review, and
+Gyan Mishra for the genart review.
 
 Thanks to Luis Miguel Contreras Murillo for the careful Shepherd review.
 
