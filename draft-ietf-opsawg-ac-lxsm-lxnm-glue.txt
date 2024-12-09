@@ -129,7 +129,7 @@ Table of Contents
    The YANG data model in this document conforms to the Network
    Management Datastore Architecture (NMDA) defined in [RFC8342].
 
-   An example to illustrate the use of the "ietf-ac-glue" model is
+   Examples to illustrate the use of the "ietf-ac-glue" model are
    provided in Appendix A.
 
 1.1.  Editorial Note (To be removed by RFC Editor)
@@ -295,7 +295,8 @@ Table of Contents
                          Figure 2: Examples of ACs
 
    These ACs can be referenced when creating VPN services.  Refer to the
-   example depicted in Appendix A.
+   examples provided in Appendix A to illustrate how VPN services can be
+   bound to ACs.
 
 4.2.  Separate AC Provisioning From Actual VPN Service Provisioning
 
