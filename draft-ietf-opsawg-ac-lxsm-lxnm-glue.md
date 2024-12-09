@@ -90,7 +90,7 @@ This approach allows operators to separate AC provisioning from actual VPN servi
 The YANG data model in this document conforms to the Network
 Management Datastore Architecture (NMDA) defined in {{!RFC8342}}.
 
-An example to illustrate the use of the "ietf-ac-glue" model is provided in {{sec-example}}.
+Examples to illustrate the use of the "ietf-ac-glue" model are provided in {{sec-example}}.
 
 ## Editorial Note (To be removed by RFC Editor)
 
@@ -195,7 +195,7 @@ To bind Layer 2 VPN or Layer 3 VPN services with ACs, "ietf-ac-glue" augments th
 ~~~~
 {: #uc title='Examples of ACs' artwork-align="center"}
 
-These ACs can be referenced when creating VPN services. Refer to the example depicted in {{sec-example}}.
+These ACs can be referenced when creating VPN services. Refer to the examples provided in {{sec-example}} to illustrate how VPN services can be bound to ACs.
 
 ## Separate AC Provisioning From Actual VPN Service Provisioning {#sep}
 
