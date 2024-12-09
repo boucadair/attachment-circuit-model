@@ -106,7 +106,7 @@ Table of Contents
    The document specifies a YANG module ("ietf-ac-glue", Section 6) that
    updates existing service and network Virtual Private Network (VPN)
    modules with the required information to bind specific services to
-   Attachment Circuits (ACs) that are created using the AC service model
+   ACs that are created using the AC service model
    [I-D.ietf-opsawg-teas-attachment-circuit].  Specifically, the
    following modules are augmented:
 
@@ -122,8 +122,9 @@ Table of Contents
    the ACs that are managed using the AC network model
    [I-D.ietf-opsawg-ntw-attachment-circuit].
 
-   This approach allows to separate AC provisioning from actual VPN
-   service provisioning as further discussed in Section 4.2.
+   This approach allows operators to separate AC provisioning from
+   actual VPN service provisioning.  Refer to Section 4.2 for more
+   discussion.
 
    The YANG data model in this document conforms to the Network
    Management Datastore Architecture (NMDA) defined in [RFC8342].
@@ -293,7 +294,8 @@ Table of Contents
 
                          Figure 2: Examples of ACs
 
-   These ACs can be referrenced in VPN services.
+   These ACs can be referenced when creating VPN services.  Refer to the
+   example depicted in Appendix A.
 
 4.2.  Separate AC Provisioning From Actual VPN Service Provisioning
 
