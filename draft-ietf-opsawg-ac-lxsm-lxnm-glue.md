@@ -76,7 +76,7 @@ To facilitate data transfer within the provider network, it is assumed that the 
 
 The document specifies a YANG module ("ietf-ac-glue", {{sec-glue}}) that updates existing service and
 network Virtual Private Network (VPN) modules with the required information to bind specific
-services to Attachment Circuits (ACs) that are created using the AC service model {{!I-D.ietf-opsawg-teas-attachment-circuit}}. Specifically, the following modules are augmented:
+services to ACs that are created using the AC service model {{!I-D.ietf-opsawg-teas-attachment-circuit}}. Specifically, the following modules are augmented:
 
 * The Layer 2 Service Model (L2SM) {{!RFC8466}}
 * The Layer 3 Service Model (L3SM) {{!RFC8299}}
@@ -85,7 +85,7 @@ services to Attachment Circuits (ACs) that are created using the AC service mode
 
 Likewise, the document augments the L2NM and L3NM with references to the ACs that are managed using the AC network model {{!I-D.ietf-opsawg-ntw-attachment-circuit}}.
 
-This approach allows to separate AC provisioning from actual VPN service provisioning as further discussed in {{sep}}.
+This approach allows operators to separate AC provisioning from actual VPN service provisioning. Refer to {{sep}} for more discussion.
 
 The YANG data model in this document conforms to the Network
 Management Datastore Architecture (NMDA) defined in {{!RFC8342}}.
@@ -195,7 +195,7 @@ To bind Layer 2 VPN or Layer 3 VPN services with ACs, "ietf-ac-glue" augments th
 ~~~~
 {: #uc title='Examples of ACs' artwork-align="center"}
 
-These ACs can be referrenced in VPN services.
+These ACs can be referenced when creating VPN services. Refer to the example depicted in {{sec-example}}.
 
 ## Separate AC Provisioning From Actual VPN Service Provisioning {#sep}
 
