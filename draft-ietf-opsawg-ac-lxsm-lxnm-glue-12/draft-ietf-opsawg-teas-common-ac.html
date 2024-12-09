@@ -1,0 +1,4377 @@
+<!DOCTYPE html>
+<html lang="en" class="Internet-Draft">
+<head>
+<meta charset="utf-8">
+<meta content="Common,Latin" name="scripts">
+<meta content="initial-scale=1.0" name="viewport">
+<title>A Common YANG Data Model for Attachment Circuits</title>
+<meta content="Mohamed Boucadair" name="author">
+<meta content="Richard Roberts" name="author">
+<meta content="Oscar Gonzalez de Dios" name="author">
+<meta content="Samier Barguil Giraldo" name="author">
+<meta content="Bo Wu" name="author">
+<meta content="
+       The document specifies a common Attachment Circuits (ACs) YANG module, which is designed with the intent to be reusable by other models. For example, this common model can be reused by service models to expose ACs as a service, service models that require binding a service to a set of ACs, network and device models to provision ACs, etc. 
+    " name="description">
+<meta content="xml2rfc 3.25.0" name="generator">
+<meta content="Slice Service" name="keyword">
+<meta content="L3VPN" name="keyword">
+<meta content="L2VPN" name="keyword">
+<meta content="Automation" name="keyword">
+<meta content="Network Automation" name="keyword">
+<meta content="Orchestration" name="keyword">
+<meta content="service delivery" name="keyword">
+<meta content="Service provisioning" name="keyword">
+<meta content="service segmentation" name="keyword">
+<meta content="service flexibility" name="keyword">
+<meta content="service simplification" name="keyword">
+<meta content="Network Service" name="keyword">
+<meta content="3GPP" name="keyword">
+<meta content="Network Slicing" name="keyword">
+<meta content="draft-ietf-opsawg-teas-common-ac-latest" name="ietf.draft">
+<!-- Generator version information:
+  xml2rfc 3.25.0
+    Python 3.12.7
+    ConfigArgParse 1.7
+    google-i18n-address 3.1.1
+    intervaltree 3.1.0
+    Jinja2 3.1.4
+    lxml 5.3.0
+    platformdirs 4.3.6
+    pycountry 22.3.5
+    PyYAML 6.0.1
+    requests 2.32.3
+    setuptools 70.3.0
+    wcwidth 0.2.13
+-->
+<link href="draft-ietf-opsawg-teas-common-ac.xml" rel="alternate" type="application/rfc+xml">
+<link href="#copyright" rel="license">
+<style type="text/css">@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Italic'), local('Lora-Italic'), url('https://martinthomson.github.io/rfc-css/fonts/lora-italic-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Italic'), local('Lora-Italic'), url('https://martinthomson.github.io/rfc-css/fonts/lora-italic-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Italic'), local('Lora-Italic'), url('https://martinthomson.github.io/rfc-css/fonts/lora-italic-vietnamese.woff2') format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Italic'), local('Lora-Italic'), url('https://martinthomson.github.io/rfc-css/fonts/lora-italic-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Italic'), local('Lora-Italic'), url('https://martinthomson.github.io/rfc-css/fonts/lora-italic-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Regular'), local('Lora-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/lora-regular-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Regular'), local('Lora-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/lora-regular-cyrillic.woff2') format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Regular'), local('Lora-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/lora-regular-vietnamese.woff2') format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Regular'), local('Lora-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/lora-regular-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Regular'), local('Lora-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/lora-regular-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Lora Bold'), local('Lora-Bold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-bold-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Lora Bold'), local('Lora-Bold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-bold-cyrillic.woff2') format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Lora Bold'), local('Lora-Bold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-bold-vietnamese.woff2') format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Lora Bold'), local('Lora-Bold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-bold-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Lora Bold'), local('Lora-Bold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-bold-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: local('Lora SemiBold'), local('Lora-SemiBold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-semibold-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Oxygen Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Oxygen Mono'), local('OxygenMono-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/oxygenmono-regular-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Oxygen Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Oxygen Mono'), local('OxygenMono-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/oxygenmono-regular-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: italic;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-italic-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: italic;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-italic-cyrillic.woff2') format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: italic;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-italic-greek.woff2') format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: italic;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-italic-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: italic;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-italic-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: normal;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-regular-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: normal;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-regular-cyrillic.woff2') format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: normal;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-regular-greek.woff2') format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: normal;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-regular-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: normal;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-regular-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+:root {
+  color-scheme: light dark;
+  --background-color: #fff;
+  --text-color: #222;
+  --title-color: #191919;
+  --link-color: #2a6496;
+  --highlight-color: #f9f9f9;
+  --line-color: #eee;
+  --pilcrow-weak: #ddd;
+  --pilcrow-strong: #bbb;
+  --small-font-size: 14.5px;
+  --font-mono: 'Oxygen Mono', monospace;
+  --font-title: "Sofia Sans Semi Condensed", sans-serif;
+  scrollbar-color: #bbb #eee;
+}
+body {
+  max-width: 600px;
+  margin: 75px auto;
+  padding: 0 5px;
+  color: var(--text-color);
+  background-color: var(--background-color);
+  font: 16px/22px "Lora", serif;
+  scroll-behavior: smooth;
+}
+
+.ears {
+  display: none;
+}
+
+/* headings */
+section {
+  clear: both;
+}
+.section-number {
+  padding-right: 0.5em;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-title);
+  font-weight: 680;
+  margin: 0.8em 0 0.3em;
+  font-size-adjust: 0.5;
+  color: var(--title-color);
+}
+h1#title {
+  font-size: 32px;
+  line-height: 40px;
+  clear: both;
+}
+h1#title, h1#rfcnum {
+  margin: 1.5em 0 0.2em;
+}
+h1#rfcnum + h1#title {
+  margin: 0.2em 0;
+}
+
+h1, h2, h3 {
+  font-size: 22px;
+  line-height: 27px;
+}
+h4, h5, h6 {
+  font-size: 20px;
+  line-height: 24px;
+}
+
+/* general structure */
+.author {
+  padding-bottom: 0.3em;
+  vertical-align: top;
+}
+#abstract+p {
+  font-size: 18px;
+  line-height: 24px;
+}
+#abstract+p code, #abstract+p samp, #abstract+p tt {
+  font-size: 16px;
+  line-height: 0;
+}
+
+p {
+  padding: 0;
+  margin: 0.5em 0;
+  text-align: left;
+}
+div {
+  margin: 0;
+}
+.alignRight.art-text {
+  background-color: var(--highlight-color);
+  border: 1px solid var(--line-color);
+  border-radius: 3px;
+  padding: 0.5em 1em 0;
+  margin-bottom: 0.5em;
+}
+.alignRight.art-text pre {
+  padding: 0;
+  width: auto;
+}
+.alignRight {
+  margin: 1em 0;
+}
+.alignRight > *:first-child {
+  border: none;
+  margin: 0;
+  float: right;
+  clear: both;
+}
+.alignRight > *:nth-child(2) {
+  clear: both;
+  display: block;
+  border: none;
+}
+svg {
+  display: block;
+}
+/* font-family isn't space-separated, but =~ will have to do */
+svg[font-family~="monospace" i], svg [font-family~="monospace" i] {
+  font-family: var(--font-mono);
+}
+.alignCenter.art-text {
+  background-color: var(--highlight-color);
+  border: 1px solid var(--line-color);
+  border-radius: 3px;
+  padding: 0.5em 1em 0;
+  margin-bottom: 0.5em;
+}
+.alignCenter.art-text pre {
+  padding: 0;
+  width: auto;
+}
+.alignCenter {
+  margin: 1em 0;
+}
+.alignCenter > *:first-child {
+  border: none;
+  /* this isn't optimal, but it's an existence proof.  PrinceXML doesn't
+     support flexbox yet.
+  */
+  display: table;
+  margin: 0 auto;
+}
+
+/* lists */
+ol, ul {
+  padding: 0;
+  margin: 0 0 0.5em 2em;
+  & :is(ol, ul) {
+    margin-left: 1em;
+  }
+}
+li {
+  margin: 0 0 0.25em 0;
+}
+ul.empty, .ulEmpty {
+  list-style-type: none;
+  & li {
+    margin-top: 0.5em;
+  }
+}
+:is(ul, ol).compact, .ulCompact, .olCompact {
+  margin: 0 0 0 2em;
+  & li {
+    margin: 0;
+    & :first-child { margin-top: 0; }
+    & :last-child { margin-bottom: 0; }
+  }
+}
+
+/* definition lists */
+dl {
+  clear: left;
+  --indent: 3ch;
+  /* --indent: attr(indent ch); not supported in any browser, but we can dream */
+  &.olPercent {
+    --indent: 5ch;
+    & > dt {
+      min-width: calc(var(--indent) - 2ch);
+    }
+  }
+  &.olPercent > dt {
+    float: none;
+  }
+
+  dl > dd > & {
+    margin-top: 0.5em;
+    margin-bottom: 0;
+  }
+}
+dl > dt {
+  float: left;
+  margin-right: 2ch;
+  min-width: 8ch;
+}
+dl > dd {
+  margin-bottom: .8em;
+  margin-left: var(--indent) !important; /* stupid element overrides */
+  min-height: 2ex;
+}
+:is(dl.compact, .dlCompact) > dd {
+  margin-bottom: 0;
+  & > :is(:first-child, .break:first-child + *) {
+    margin-top: 0;
+  }
+  & > :is(:last-child) {
+    margin-bottom: 0;
+  }
+}
+:is(dd, span).break {
+  display: none;
+}
+
+/* links */
+a, a[href].selfRef:hover {
+  text-decoration: none;
+}
+a[href] {
+  color: var(--link-color);
+}
+a[href].selfRef, .iref + a[href].internal {
+  color: var(--text-color);
+}
+a[href]:hover {
+  text-decoration: underline;
+}
+a[href].selfRef:hover {
+  background-color: var(--highlight-color);
+}
+a.xref:is(.cite, .auto), :is(#status-of-memo, #copyright) a {
+  white-space: nowrap;
+}
+
+/* Figures */
+tt, code, pre {
+  background-color: var(--highlight-color);
+  font: 14px/22px var(--font-mono);
+}
+tt, code {
+  /* changing the font for inline elements leads to different ascender
+     and descender heights; as we want to retain baseline alignment,
+     remove leading to avoid altering the final height of lines
+     note: this fails if these blocks take an entire line,
+     a different solution would be great */
+  line-height: 0;
+}
+:is(h1, h2, h3, h4, h5, h6) :is(tt, code) {
+  font-size: 84%;
+}
+pre {
+  border: 1px solid var(--line-color);
+  font-size: 13.5px;
+  line-height: 16px;
+  letter-spacing: -0.2px;
+  margin: 5px;
+  padding: 5px;
+}
+img {
+  max-width: 100%;
+}
+figure {
+  margin: 0.5em 0;
+  padding: 0;
+}
+figure blockquote {
+  margin: 0.8em 0.4em 0.4em;
+}
+figcaption, caption {
+  font-style: italic;
+  margin: 0.5em 1.5em;
+  text-align: left;
+  caption-side: bottom;
+}
+@media screen {
+  /* Auto-collapse boilerplate. */
+  :is(#status-of-memo, #copyright) p {
+    margin: -2px 0;
+    max-height: 0;
+    transition: max-height 2s ease, margin 0.5s ease 0.5s;
+    overflow: hidden;
+  }
+  :is(#status-of-memo, #copyright):hover p,
+  :is(#status-of-memo, #copyright) h2:target ~ p {
+    margin: 0.5em 0;
+    max-height: 500px;
+    overflow: auto;
+  }
+  pre, svg {
+    display: inline-block;
+    overflow-x: auto;
+  }
+  pre {
+    max-width: 100%;
+    width: calc(100% - 22px - 1em);
+  }
+  svg {
+    max-width: calc(100% - 22px - 1em);
+  }
+  figure pre {
+    display: block;
+    width: calc(100% - 25px);
+  }
+  :is(pre, svg) + .pilcrow {
+    display: inline-block;
+    vertical-align: text-bottom;
+    padding-bottom: 8px;
+  }
+}
+
+/* aside, blockquote */
+aside, blockquote {
+  margin-left: 0;
+  padding: 0 2em;
+  font-style: italic;
+}
+blockquote {
+  margin: 1em 0;
+}
+cite {
+  display: block;
+  text-align: right;
+  font-style: italic;
+}
+
+/* tables */
+table {
+  width: auto;
+  max-width: 100%;
+  margin: 0 0 1em;
+  border-collapse: collapse;
+}
+table.right {
+  margin-left: auto;
+}
+table.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+table.left {
+  margin-right: auto;
+}
+table .text-left {
+  text-align: left;
+}
+table .text-center {
+  text-align: center;
+}
+table .text-right {
+  text-align: right;
+}
+
+thead, tbody {
+  border: 1px solid var(--line-color);
+}
+th, td {
+  text-align: left;
+  vertical-align: top;
+  padding: 5px 10px;
+}
+th {
+  background-color: var(--line-color);
+}
+:is(tr:nth-child(2n), thead+tbody > tr:nth-child(2n+1)) > td {
+  background-color: var(--background-color);
+}
+:is(tr:nth-child(2n+1), thead+tbody > tr:nth-child(2n)) > td {
+  background-color: var(--highlight-color);
+}
+table caption {
+  margin: 0;
+  padding: 3px 0 3px 1em;
+}
+table p {
+  margin: 0;
+}
+
+/* pilcrow */
+a.pilcrow {
+  margin-left: 3px;
+  opacity: 0.2;
+  user-select: none;
+  &[href] {
+    color: var(--pilcrow-weak);
+    &:hover { text-decoration: none; }
+  }
+}
+@media not print {
+  :hover > a.pilcrow {
+    opacity: 1;
+  }
+  a.pilcrow[href]:hover {
+    color: var(--pilcrow-strong);
+    background-color: transparent;
+  }
+}
+@media print {
+  a.pilcrow {
+    display: none;
+  }
+}
+
+/* misc */
+hr {
+  border: 0;
+  border-top: 1px solid var(--line-color);
+}
+.bcp14 {
+  font-variant: small-caps;
+  font-weight: 600;
+  font-size: var(--small-font-size);
+}
+.role {
+  font-variant: all-small-caps;
+}
+sub, sup {
+  line-height: 1;
+  font-size: 80%;
+}
+
+/* info block */
+#identifiers {
+  margin: 0;
+  font-size: var(--small-font-size);
+  line-height: 18px;
+  --identifier-width: 15ch;
+  & dt {
+    width: var(--identifier-width);
+    min-width: var(--identifier-width);
+    clear: left;
+    float: left;
+    text-align: right;
+    margin-right: 1ch;
+  }
+  & dd {
+    margin: 0;
+    margin-left: calc(1em + var(--identifier-width)) !important;
+    min-width: 5em;
+  }
+  & .authors {
+    & .author {
+      display: inline-block;
+      margin-right: 1.5em;
+    }
+    & .org {
+      font-style: italic;
+    }
+  }
+}
+
+/* The prepared/rendered info at the very bottom of the page */
+.docInfo {
+  color: #999;
+  font-size: 0.9em;
+  font-style: italic;
+  margin-top: 2em;
+}
+.docInfo .prepared {
+  float: right;
+}
+
+/* table of contents */
+#toc {
+  padding: 0.75em 0 2em 0;
+  margin-bottom: 1em;
+
+  & nav {
+    & ul {
+      margin: 0 0.5em 0 0;
+      padding: 0;
+      list-style: none;
+    }
+    & li {
+      line-height: 1.3em;
+      margin: 2px 0;
+      padding-left: 1.2em;
+      text-indent: -1.2em;
+    }
+  }
+  & a.xref {
+    white-space: normal;
+  }
+}
+
+.references {
+  & > dt {
+    text-align: right;
+    font-weight: bold;
+    min-width: 10ch;
+    margin-right: 1.5ch;
+    &:target::before {
+      content: "⇒";
+      margin: 0 10px 0 -25px;
+    }
+  }
+  & > dd {
+    margin-left: 12ch !important;
+    overflow: visible;
+    & .refInstance {
+      margin-bottom: 0.8em;
+    }
+    & .ascii {
+      margin-bottom: 0.25em;
+    }
+  }
+}
+
+#rfc\.index\.index + ul {
+  margin-left: 0;
+}
+
+/* authors */
+address.vcard {
+  font-style: normal;
+  max-width: 20em;
+  margin: 1em auto 1em 0;
+
+  & .nameRole {
+    font-weight: 700;
+    margin-left: 0;
+  }
+  & .label {
+    margin: 0.5em 0;
+  }
+  & .type {
+    display: none;
+  }
+  & .alternative-contact {
+    margin: 0.5em 0 0.25em 0;
+  }
+  & .non-ascii {
+    margin: 0 0 0 2em;
+  }
+  & div.left {
+    text-align: left;
+  }
+  & div.right {
+    text-align: right;
+  }
+}
+
+hr.addr {
+  border-top: 1px dashed;
+  margin: 0;
+  color: #ddd;
+  max-width: calc(100% - 16px);
+}
+@media (min-width: 500px) {
+  #authors-addresses > section {
+    column-count: 2;
+    column-gap: 20px;
+  }
+  #authors-addresses > section > h2 {
+    column-span: all;
+  }
+  /* hack for break-inside: avoid-column */
+  #authors-addresses address {
+    display: inline-block;
+    break-inside: avoid-column;
+  }
+}
+
+/* Comments */
+.rfcEditorRemove p:first-of-type {
+  font-style: italic;
+}
+.cref {
+  background-color: rgba(249, 232, 105, 0.3);
+  padding: 2px 4px;
+}
+.crefSource {
+  font-style: italic;
+}
+
+@media screen {
+  #toc nav {
+    font-family: var(--font-title);
+    font-weight: 360;
+    & > ul { margin-bottom: 2em; }
+    & ul {
+      margin: 0 0 0 4px;
+      & :is(p, li) {
+        margin: 2px 0;
+      }
+    }
+  }
+  #toc a.toplink {
+    float: right;
+  }
+}
+@media not screen {
+  #toc a.toplink {
+    display: none;
+  }
+}
+
+
+/* TOC layout for smaller screens */
+@media screen and (max-width: 929px) {
+  #toc {
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    right: 0;
+    padding: 1px 0 0 0;
+    margin: 0;
+    border-bottom: 1px solid #ccc;
+    opacity: 0.6;
+  }
+  #toc h2 {
+    margin: 0;
+    padding: 2px 0 2px 6px;
+    padding-right: 1em;
+    font-size: 18px;
+    line-height: 24px;
+    min-width: 190px;
+    text-align: right;
+    background-color: #444;
+    color: white;
+    cursor: pointer;
+    &::before { /* css hamburger */
+      float: right;
+      position: relative;
+      width: 1em;
+      height: 1px;
+      left: -164px;
+      margin: 8px 0 0 0;
+      background: white none repeat scroll 0 0;
+      box-shadow: 0 4px 0 0 white, 0 8px 0 0 white;
+      content: "";
+    }
+  }
+  #toc nav {
+    display: none;
+    background-color: var(--background-color);
+    padding: 0.5em 1em 1em;
+    overflow: auto;
+    overscroll-behavior: contain;
+    height: calc(100vh - 48px);
+    border-left: 1px solid #ddd;
+  }
+  #toc.active {
+    opacity: 1;
+    & nav { display: block; }
+  }
+  /* Make the collapsed ToC header render white on gray also when it's a link */
+  #toc h2 a,
+  #toc h2 a:is(:link, :focus, :hover),
+  #toc a.toplink,
+  #toc a.toplink:hover {
+    color: white;
+    background-color: #444;
+    text-decoration: none;
+  }
+  #toc a.toplink {
+    margin: 2px 0.5em 0;
+  }
+}
+
+/* TOC layout for wide screens */
+@media screen and (min-width: 930px) {
+  body {
+    padding-right: 360px;
+    padding-right: calc(min(180px + 20%, 500px));
+  }
+  #toc {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    right: calc(50vw - 480px);
+    width: 312px;
+    margin: 0;
+    padding: 0;
+    z-index: 1;
+  }
+  #toc h2 {
+    margin: 0;
+    padding: 0.25em 1em 1em 0;
+  }
+  #toc nav {
+    display: block;
+    height: calc(90vh - 84px);
+    bottom: 0;
+    padding: 0.5em 0 2em;
+    overflow: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+  }
+  img { /* future proofing */
+    max-width: 100%;
+    height: auto;
+  }
+  #toc a.toplink {
+    margin: 8px 0.5em 0;
+  }
+}
+
+/* pagination */
+@media print {
+  body {
+    width: 100%;
+  }
+  p {
+    orphans: 3;
+    widows: 3;
+  }
+  #n-copyright-notice {
+    border-bottom: none;
+  }
+  #toc, #n-introduction {
+    page-break-before: always;
+  }
+  #toc {
+    border-top: none;
+    padding-top: 0;
+  }
+  figure, pre, .vcard {
+    page-break-inside: avoid;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    page-break-after: avoid;
+  }
+  :is(h2, h3, h4, h5, h6)+*, dd {
+    page-break-before: avoid;
+  }
+  pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-size: 10pt;
+  }
+  table {
+    border: 1px solid #ddd;
+  }
+  td {
+    border-top: 1px solid #ddd;
+  }
+}
+
+@page :first {
+  padding-top: 0;
+  @top-left {
+    content: normal;
+    border: none;
+  }
+  @top-center {
+    content: normal;
+    border: none;
+  }
+  @top-right {
+    content: normal;
+    border: none;
+  }
+}
+
+@page {
+  size: A4;
+  margin-bottom: 45mm;
+  padding-top: 20px;
+}
+
+/* Dark mode. */
+@media (prefers-color-scheme: dark) {
+:root {
+  --background-color: #121212;
+  --text-color: #f0f0f0;
+  --title-color: #fff;
+  --link-color: #4da4f0;
+  --highlight-color: #282828;
+  --line-color: #444;
+  --pilcrow-weak: #444;
+  --pilcrow-strong: #666;
+  scrollbar-color: #777 #333;
+}
+}
+
+/* SVG Trick: a prefix match works because only black and white are allowed */
+svg :is([stroke="black"], [stroke^="#000"]) {
+  stroke: var(--text-color);
+}
+svg :is([stroke="white"], [stroke^="#fff"]) {
+  stroke: var(--background-color);
+}
+svg :is([fill="black"], [fill^="#000"], :not([fill])) {
+  fill: var(--text-color);
+}
+svg :is([fill="white"], [fill^="#fff"]) {
+  fill: var(--background-color);
+}
+</style>
+
+</head>
+<body class="xml2rfc">
+<table class="ears">
+<thead><tr>
+<td class="left">Internet-Draft</td>
+<td class="center">Common Attachment Circuit YANG</td>
+<td class="right">December 2024</td>
+</tr></thead>
+<tfoot><tr>
+<td class="left">Boucadair, et al.</td>
+<td class="center">Expires 12 June 2025</td>
+<td class="right">[Page]</td>
+</tr></tfoot>
+</table>
+<div id="external-metadata" class="document-information"></div>
+<div id="internal-metadata" class="document-information">
+<dl id="identifiers">
+<dt class="label-workgroup">Workgroup:</dt>
+<dd class="workgroup">Operations and Management Area Working Group</dd>
+<dt class="label-internet-draft">Internet-Draft:</dt>
+<dd class="internet-draft">draft-ietf-opsawg-teas-common-ac-latest</dd>
+<dt class="label-published">Published:</dt>
+<dd class="published">
+<time datetime="2024-12-09" class="published">9 December 2024</time>
+    </dd>
+<dt class="label-intended-status">Intended Status:</dt>
+<dd class="intended-status">Standards Track</dd>
+<dt class="label-expires">Expires:</dt>
+<dd class="expires"><time datetime="2025-06-12">12 June 2025</time></dd>
+<dt class="label-authors">Authors:</dt>
+<dd class="authors">
+<div class="author">
+      <div class="author-name">M. Boucadair, <span class="editor">Ed.</span>
+</div>
+<div class="org">Orange</div>
+</div>
+<div class="author">
+      <div class="author-name">R. Roberts, <span class="editor">Ed.</span>
+</div>
+<div class="org">Juniper</div>
+</div>
+<div class="author">
+      <div class="author-name">O. G. D. Dios</div>
+<div class="org">Telefonica</div>
+</div>
+<div class="author">
+      <div class="author-name">S. B. Giraldo</div>
+<div class="org">Nokia</div>
+</div>
+<div class="author">
+      <div class="author-name">B. Wu</div>
+<div class="org">Huawei Technologies</div>
+</div>
+</dd>
+</dl>
+</div>
+<h1 id="title">A Common YANG Data Model for Attachment Circuits</h1>
+<section id="section-abstract">
+      <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
+<p id="section-abstract-1">The document specifies a common Attachment Circuits (ACs) YANG module, which is designed with the intent to be reusable by other models. For example, this common model can be reused by service models to expose ACs as a service, service models that require binding a service to a set of ACs, network and device models to provision ACs, etc.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
+</section>
+<section class="note rfcEditorRemove" id="section-note.1">
+      <h2 id="name-discussion-venues">
+<a href="#name-discussion-venues" class="section-name selfRef">Discussion Venues</a>
+      </h2>
+<p id="section-note.1-1">This note is to be removed before publishing as an RFC.<a href="#section-note.1-1" class="pilcrow">¶</a></p>
+<p id="section-note.1-2">Discussion of this document takes place on the
+    Operations and Management Area Working Group Working Group mailing list (opsawg@ietf.org),
+    which is archived at <span><a href="https://mailarchive.ietf.org/arch/browse/opsawg/">https://mailarchive.ietf.org/arch/browse/opsawg/</a></span>.<a href="#section-note.1-2" class="pilcrow">¶</a></p>
+<p id="section-note.1-3">Source for this draft and an issue tracker can be found at
+    <span><a href="https://github.com/boucadair/attachment-circuit-model">https://github.com/boucadair/attachment-circuit-model</a></span>.<a href="#section-note.1-3" class="pilcrow">¶</a></p>
+</section>
+<div id="status-of-memo">
+<section id="section-boilerplate.1">
+        <h2 id="name-status-of-this-memo">
+<a href="#name-status-of-this-memo" class="section-name selfRef">Status of This Memo</a>
+        </h2>
+<p id="section-boilerplate.1-1">
+        This Internet-Draft is submitted in full conformance with the
+        provisions of BCP 78 and BCP 79.<a href="#section-boilerplate.1-1" class="pilcrow">¶</a></p>
+<p id="section-boilerplate.1-2">
+        Internet-Drafts are working documents of the Internet Engineering Task
+        Force (IETF). Note that other groups may also distribute working
+        documents as Internet-Drafts. The list of current Internet-Drafts is
+        at <span><a href="https://datatracker.ietf.org/drafts/current/">https://datatracker.ietf.org/drafts/current/</a></span>.<a href="#section-boilerplate.1-2" class="pilcrow">¶</a></p>
+<p id="section-boilerplate.1-3">
+        Internet-Drafts are draft documents valid for a maximum of six months
+        and may be updated, replaced, or obsoleted by other documents at any
+        time. It is inappropriate to use Internet-Drafts as reference
+        material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
+<p id="section-boilerplate.1-4">
+        This Internet-Draft will expire on 12 June 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="copyright">
+<section id="section-boilerplate.2">
+        <h2 id="name-copyright-notice">
+<a href="#name-copyright-notice" class="section-name selfRef">Copyright Notice</a>
+        </h2>
+<p id="section-boilerplate.2-1">
+            Copyright (c) 2024 IETF Trust and the persons identified as the
+            document authors. All rights reserved.<a href="#section-boilerplate.2-1" class="pilcrow">¶</a></p>
+<p id="section-boilerplate.2-2">
+            This document is subject to BCP 78 and the IETF Trust's Legal
+            Provisions Relating to IETF Documents
+            (<span><a href="https://trustee.ietf.org/license-info">https://trustee.ietf.org/license-info</a></span>) in effect on the date of
+            publication of this document. Please review these documents
+            carefully, as they describe your rights and restrictions with
+            respect to this document. Code Components extracted from this
+            document must include Revised BSD License text as described in
+            Section 4.e of the Trust Legal Provisions and are provided without
+            warranty as described in the Revised BSD License.<a href="#section-boilerplate.2-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="toc">
+<section id="section-toc.1">
+        <a href="#" onclick="scroll(0,0)" class="toplink">▲</a><h2 id="name-table-of-contents">
+<a href="#name-table-of-contents" class="section-name selfRef">Table of Contents</a>
+        </h2>
+<nav class="toc"><ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.1">
+            <p id="section-toc.1-1.1.1" class="keepWithNext"><a href="#section-1" class="auto internal xref">1</a>.  <a href="#name-introduction" class="internal xref">Introduction</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.1.2.1">
+                <p id="section-toc.1-1.1.2.1.1" class="keepWithNext"><a href="#section-1.1" class="auto internal xref">1.1</a>.  <a href="#name-editorial-note-to-be-remove" class="internal xref">Editorial Note (To be removed by RFC Editor)</a></p>
+</li>
+            </ul>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2">
+            <p id="section-toc.1-1.2.1" class="keepWithNext"><a href="#section-2" class="auto internal xref">2</a>.  <a href="#name-conventions-and-definitions" class="internal xref">Conventions and Definitions</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3">
+            <p id="section-toc.1-1.3.1"><a href="#section-3" class="auto internal xref">3</a>.  <a href="#name-relationship-to-other-ac-da" class="internal xref">Relationship to Other AC Data Models</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4">
+            <p id="section-toc.1-1.4.1"><a href="#section-4" class="auto internal xref">4</a>.  <a href="#name-description-of-the-ac-commo" class="internal xref">Description of the AC Common YANG Module</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.1">
+                <p id="section-toc.1-1.4.2.1.1"><a href="#section-4.1" class="auto internal xref">4.1</a>.  <a href="#name-features" class="internal xref">Features</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.2">
+                <p id="section-toc.1-1.4.2.2.1"><a href="#section-4.2" class="auto internal xref">4.2</a>.  <a href="#name-identities" class="internal xref">Identities</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.3">
+                <p id="section-toc.1-1.4.2.3.1"><a href="#section-4.3" class="auto internal xref">4.3</a>.  <a href="#name-reusable-groupings" class="internal xref">Reusable Groupings</a></p>
+</li>
+            </ul>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5">
+            <p id="section-toc.1-1.5.1"><a href="#section-5" class="auto internal xref">5</a>.  <a href="#name-common-attachment-circuit-y" class="internal xref">Common Attachment Circuit YANG Module</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6">
+            <p id="section-toc.1-1.6.1"><a href="#section-6" class="auto internal xref">6</a>.  <a href="#name-security-considerations" class="internal xref">Security Considerations</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7">
+            <p id="section-toc.1-1.7.1"><a href="#section-7" class="auto internal xref">7</a>.  <a href="#name-iana-considerations" class="internal xref">IANA Considerations</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8">
+            <p id="section-toc.1-1.8.1"><a href="#section-8" class="auto internal xref">8</a>.  <a href="#name-references" class="internal xref">References</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.1">
+                <p id="section-toc.1-1.8.2.1.1"><a href="#section-8.1" class="auto internal xref">8.1</a>.  <a href="#name-normative-references" class="internal xref">Normative References</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.2">
+                <p id="section-toc.1-1.8.2.2.1"><a href="#section-8.2" class="auto internal xref">8.2</a>.  <a href="#name-informative-references" class="internal xref">Informative References</a></p>
+</li>
+            </ul>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9">
+            <p id="section-toc.1-1.9.1"><a href="#appendix-A" class="auto internal xref">Appendix A</a>.  <a href="#name-full-tree" class="internal xref">Full Tree</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10">
+            <p id="section-toc.1-1.10.1"><a href="#appendix-B" class="auto internal xref"></a><a href="#name-acknowledgments" class="internal xref">Acknowledgments</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11">
+            <p id="section-toc.1-1.11.1"><a href="#appendix-C" class="auto internal xref"></a><a href="#name-contributors" class="internal xref">Contributors</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.12">
+            <p id="section-toc.1-1.12.1"><a href="#appendix-D" class="auto internal xref"></a><a href="#name-authors-addresses" class="internal xref">Authors' Addresses</a></p>
+</li>
+        </ul>
+</nav>
+</section>
+</div>
+<div id="introduction">
+<section id="section-1">
+      <h2 id="name-introduction">
+<a href="#section-1" class="section-number selfRef">1. </a><a href="#name-introduction" class="section-name selfRef">Introduction</a>
+      </h2>
+<p id="section-1-1">Connectivity services are provided by networks to customers via dedicated terminating points (e.g., Service Functions (SFs), Customer Premises Equipment (CPEs), Autonomous System Border Routers (ASBRs), data centers gateways, or Internet Exchange Points). A connectivity service is basically about ensuring data transfer received from (or destined to) a given terminating point to (or from) other terminating points that belong to the same customer/service, an interconnection node, or an ancillary node. A set of objectives for the connectivity service may eventually be negotiated and agreed upon between a customer and a network provider. For that data transfer to take place within the provider network, it is assumed that adequate setup is provisioned over the links that connect customer terminating points and a provider network (a Provider Edge (PE), typically) so that data can be successfully exchanged over these links. The required setup is referred to in this document as Attachment Circuits (ACs), while the underlying link is referred to as "bearer".<a href="#section-1-1" class="pilcrow">¶</a></p>
+<p id="section-1-2">This document adheres to the definition of an attachment circuit as provided in <span><a href="https://rfc-editor.org/rfc/rfc4364#section-1.2" class="relref">Section 1.2</a> of [<a href="#RFC4364" class="cite xref">RFC4364</a>]</span>, especially:<a href="#section-1-2" class="pilcrow">¶</a></p>
+<ul class="normal ulEmpty">
+<li class="normal ulEmpty" id="section-1-3.1">
+          <p id="section-1-3.1.1">Routers can be attached to each other, or to end systems, in a
+   variety of different ways: PPP connections, ATM Virtual Circuits
+   (VCs), Frame Relay VCs, ethernet interfaces, Virtual Local Area
+   Networks (VLANs) on ethernet interfaces, GRE tunnels, Layer 2
+   Tunneling Protocol (L2TP) tunnels, IPsec tunnels, etc.  We will use
+   the term "attachment circuit" to refer generally to some such means
+   of attaching to a router.  An attachment circuit may be the sort of
+   connection that is usually thought of as a "data link", or it may be
+   a tunnel of some sort; what matters is that it be possible for two
+   devices to be network layer peers over the attachment circuit.<a href="#section-1-3.1.1" class="pilcrow">¶</a></p>
+</li>
+      </ul>
+<p id="section-1-4">When a customer requests a new value-added service, the service can be bound to existing attachment circuits or trigger the instantiation of new attachment circuits. Whether these attachment circuits are specific for a given service or are shared to deliver a variety of services is deployment-specific.<a href="#section-1-4" class="pilcrow">¶</a></p>
+<p id="section-1-5">An example of attachment circuits is depicted in <a href="#uc" class="auto internal xref">Figure 1</a>. A Customer Edge (CE) may be a physical node or a logical entity. A CE is seen by the network as a peer Service Attachment Point (SAP) <span>[<a href="#RFC9408" class="cite xref">RFC9408</a>]</span>. CEs may be dedicated to one single service (e.g., Layer 3 Virtual Private Network (VPN) or Layer 2 VPN) or host multiple services (e.g., Service Functions <span>[<a href="#RFC7665" class="cite xref">RFC7665</a>]</span>). A single AC (as seen by a network provider) may be bound to one or multiple peer SAPs (e.g., "CE1" and "CE2"). For example, and as discussed in <span>[<a href="#RFC4364" class="cite xref">RFC4364</a>]</span>, multiple CEs can be attached to a PE over the same attachment circuit. This is typically implemented if the Layer 2 infrastructure between the CE and the network provides a multipoint service. The same CE may terminate multiple ACs. These ACs may be over the same or distinct bearers.<a href="#section-1-5" class="pilcrow">¶</a></p>
+<span id="name-examples-of-acs"></span><div id="uc">
+<figure id="figure-1">
+        <div id="section-1-6.1">
+          <div class="alignCenter art-svg artwork" id="section-1-6.1.1">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="304" width="512" viewBox="0 0 512 304" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
+              <path d="M 8,64 L 8,112" fill="none" stroke="black"></path>
+              <path d="M 8,144 L 8,192" fill="none" stroke="black"></path>
+              <path d="M 72,64 L 72,112" fill="none" stroke="black"></path>
+              <path d="M 72,144 L 72,192" fill="none" stroke="black"></path>
+              <path d="M 112,80 L 112,176" fill="none" stroke="black"></path>
+              <path d="M 176,112 L 176,144" fill="none" stroke="black"></path>
+              <path d="M 192,32 L 192,104" fill="none" stroke="black"></path>
+              <path d="M 192,152 L 192,224" fill="none" stroke="black"></path>
+              <path d="M 200,112 L 200,144" fill="none" stroke="black"></path>
+              <path d="M 280,208 L 280,240" fill="none" stroke="black"></path>
+              <path d="M 288,248 L 288,272" fill="none" stroke="black"></path>
+              <path d="M 304,208 L 304,240" fill="none" stroke="black"></path>
+              <path d="M 352,64 L 352,112" fill="none" stroke="black"></path>
+              <path d="M 352,144 L 352,192" fill="none" stroke="black"></path>
+              <path d="M 360,32 L 360,56" fill="none" stroke="black"></path>
+              <path d="M 360,200 L 360,224" fill="none" stroke="black"></path>
+              <path d="M 376,64 L 376,112" fill="none" stroke="black"></path>
+              <path d="M 376,144 L 376,192" fill="none" stroke="black"></path>
+              <path d="M 448,64 L 448,112" fill="none" stroke="black"></path>
+              <path d="M 448,144 L 448,192" fill="none" stroke="black"></path>
+              <path d="M 480,192 L 480,272" fill="none" stroke="black"></path>
+              <path d="M 504,64 L 504,112" fill="none" stroke="black"></path>
+              <path d="M 504,144 L 504,192" fill="none" stroke="black"></path>
+              <path d="M 192,32 L 360,32" fill="none" stroke="black"></path>
+              <path d="M 8,64 L 72,64" fill="none" stroke="black"></path>
+              <path d="M 352,64 L 376,64" fill="none" stroke="black"></path>
+              <path d="M 448,64 L 504,64" fill="none" stroke="black"></path>
+              <path d="M 72,80 L 112,80" fill="none" stroke="black"></path>
+              <path d="M 376,80 L 400,80" fill="none" stroke="black"></path>
+              <path d="M 424,80 L 448,80" fill="none" stroke="black"></path>
+              <path d="M 376,96 L 400,96" fill="none" stroke="black"></path>
+              <path d="M 424,96 L 448,96" fill="none" stroke="black"></path>
+              <path d="M 8,112 L 72,112" fill="none" stroke="black"></path>
+              <path d="M 176,112 L 200,112" fill="none" stroke="black"></path>
+              <path d="M 352,112 L 376,112" fill="none" stroke="black"></path>
+              <path d="M 448,112 L 504,112" fill="none" stroke="black"></path>
+              <path d="M 112,128 L 136,128" fill="none" stroke="black"></path>
+              <path d="M 160,128 L 176,128" fill="none" stroke="black"></path>
+              <path d="M 8,144 L 72,144" fill="none" stroke="black"></path>
+              <path d="M 176,144 L 200,144" fill="none" stroke="black"></path>
+              <path d="M 352,144 L 376,144" fill="none" stroke="black"></path>
+              <path d="M 448,144 L 504,144" fill="none" stroke="black"></path>
+              <path d="M 376,160 L 400,160" fill="none" stroke="black"></path>
+              <path d="M 424,160 L 448,160" fill="none" stroke="black"></path>
+              <path d="M 72,176 L 112,176" fill="none" stroke="black"></path>
+              <path d="M 376,176 L 400,176" fill="none" stroke="black"></path>
+              <path d="M 424,176 L 448,176" fill="none" stroke="black"></path>
+              <path d="M 8,192 L 72,192" fill="none" stroke="black"></path>
+              <path d="M 352,192 L 376,192" fill="none" stroke="black"></path>
+              <path d="M 448,192 L 504,192" fill="none" stroke="black"></path>
+              <path d="M 280,208 L 304,208" fill="none" stroke="black"></path>
+              <path d="M 192,224 L 280,224" fill="none" stroke="black"></path>
+              <path d="M 304,224 L 360,224" fill="none" stroke="black"></path>
+              <path d="M 280,240 L 304,240" fill="none" stroke="black"></path>
+              <path d="M 288,272 L 376,272" fill="none" stroke="black"></path>
+              <path d="M 400,272 L 480,272" fill="none" stroke="black"></path>
+              <g class="text">
+                <text x="412" y="68">(b1)</text>
+                <text x="412" y="84">AC</text>
+                <text x="40" y="100">CE1</text>
+                <text x="364" y="100">PE</text>
+                <text x="412" y="100">AC</text>
+                <text x="480" y="100">CE3</text>
+                <text x="412" y="116">(b2)</text>
+                <text x="148" y="132">AC</text>
+                <text x="188" y="132">PE</text>
+                <text x="272" y="132">Network</text>
+                <text x="360" y="132">|</text>
+                <text x="412" y="148">(b3)</text>
+                <text x="412" y="164">AC</text>
+                <text x="40" y="180">CE2</text>
+                <text x="364" y="180">PE</text>
+                <text x="412" y="180">AC</text>
+                <text x="480" y="180">CE4</text>
+                <text x="412" y="196">(b3)</text>
+                <text x="292" y="228">PE</text>
+                <text x="388" y="276">AC</text>
+                <text x="20" y="292">(bx)</text>
+                <text x="48" y="292">=</text>
+                <text x="84" y="292">bearer</text>
+                <text x="124" y="292">Id</text>
+                <text x="144" y="292">x</text>
+              </g>
+            </svg><a href="#section-1-6.1.1" class="pilcrow">¶</a>
+</div>
+</div>
+<figcaption><a href="#figure-1" class="selfRef">Figure 1</a>:
+<a href="#name-examples-of-acs" class="selfRef">Examples of ACs</a>
+        </figcaption></figure>
+</div>
+<p id="section-1-7">This document specifies a common module ("ietf-ac-common") for attachment circuits (<a href="#sec-module" class="auto internal xref">Section 5</a>). The model is designed with the intent to be reusable by other models and, therefore, ensure consistent AC structures among modules that manipulate ACs. For example, the common model can be reused by service models to expose AC-as-a-Service (ACaaS) (e.g., <span>[<a href="#I-D.ietf-opsawg-teas-attachment-circuit" class="cite xref">I-D.ietf-opsawg-teas-attachment-circuit</a>]</span>), service models that require binding a service to a set of ACs (e.g., Network Slice Service <span>[<a href="#I-D.ietf-teas-ietf-network-slice-nbi-yang" class="cite xref">I-D.ietf-teas-ietf-network-slice-nbi-yang</a>]</span>)), network models to provision ACs (e.g., <span>[<a href="#I-D.ietf-opsawg-ntw-attachment-circuit" class="cite xref">I-D.ietf-opsawg-ntw-attachment-circuit</a>]</span>), device models, etc.<a href="#section-1-7" class="pilcrow">¶</a></p>
+<p id="section-1-8">The common AC module eases data inheritance between modules (e.g., from service to network models as per <span>[<a href="#RFC8969" class="cite xref">RFC8969</a>]</span>).<a href="#section-1-8" class="pilcrow">¶</a></p>
+<p id="section-1-9">The YANG data model in this document conforms to the Network Management Datastore Architecture (NMDA) defined in <span>[<a href="#RFC8342" class="cite xref">RFC8342</a>]</span>.<a href="#section-1-9" class="pilcrow">¶</a></p>
+<div id="editorial-note-to-be-removed-by-rfc-editor">
+<section id="section-1.1">
+        <h3 id="name-editorial-note-to-be-remove">
+<a href="#section-1.1" class="section-number selfRef">1.1. </a><a href="#name-editorial-note-to-be-remove" class="section-name selfRef">Editorial Note (To be removed by RFC Editor)</a>
+        </h3>
+<p id="section-1.1-1">Note to the RFC Editor: This section is to be removed prior to publication.<a href="#section-1.1-1" class="pilcrow">¶</a></p>
+<p id="section-1.1-2">This document contains placeholder values that need to be replaced with finalized values at the time of publication. This note summarizes all of the substitutions that are needed.<a href="#section-1.1-2" class="pilcrow">¶</a></p>
+<p id="section-1.1-3">Please apply the following replacements:<a href="#section-1.1-3" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-1.1-4.1">
+            <p id="section-1.1-4.1.1">XXXX --&gt; the assigned RFC number for this I-D<a href="#section-1.1-4.1.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-1.1-4.2">
+            <p id="section-1.1-4.2.1">2023-11-13 --&gt; the actual date of the publication of this document<a href="#section-1.1-4.2.1" class="pilcrow">¶</a></p>
+</li>
+        </ul>
+</section>
+</div>
+</section>
+</div>
+<div id="conventions-and-definitions">
+<section id="section-2">
+      <h2 id="name-conventions-and-definitions">
+<a href="#section-2" class="section-number selfRef">2. </a><a href="#name-conventions-and-definitions" class="section-name selfRef">Conventions and Definitions</a>
+      </h2>
+<p id="section-2-1">The meanings of the symbols in the YANG tree diagrams are defined in <span>[<a href="#RFC8340" class="cite xref">RFC8340</a>]</span>.<a href="#section-2-1" class="pilcrow">¶</a></p>
+<p id="section-2-2">LxSM refers to both the Layer 2 Service Model (L2SM) <span>[<a href="#RFC8466" class="cite xref">RFC8466</a>]</span> and the Layer 3 Service Model (L3SM) <span>[<a href="#RFC8299" class="cite xref">RFC8299</a>]</span>.<a href="#section-2-2" class="pilcrow">¶</a></p>
+<p id="section-2-3">LxNM refers to both the Layer 2 Network Model (L2NM) <span>[<a href="#RFC9291" class="cite xref">RFC9291</a>]</span> and the Layer 3 Network Model (L3NM) <span>[<a href="#RFC9182" class="cite xref">RFC9182</a>]</span>.<a href="#section-2-3" class="pilcrow">¶</a></p>
+<p id="section-2-4">This document uses the following term:<a href="#section-2-4" class="pilcrow">¶</a></p>
+<span class="break"></span><dl class="dlParallel" id="section-2-5">
+        <dt id="section-2-5.1">Bearer:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-5.2">
+          <p id="section-2-5.2.1">A physical or logical link that connects a customer node (or site) to a provider network.<a href="#section-2-5.2.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-2-5.3"></dt>
+        <dd style="margin-left: 1.5em" id="section-2-5.4">
+          <p id="section-2-5.4.1">A bearer can be a wireless or wired link. One or multiple technologies can be used to build a bearer. The bearer type can be specified by a customer.<a href="#section-2-5.4.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-2-5.5"></dt>
+        <dd style="margin-left: 1.5em" id="section-2-5.6">
+          <p id="section-2-5.6.1">The operator allocates a unique bearer reference to identify a bearer within its network (e.g., customer line identifier). Such a reference can be retrieved by a customer and then used in subsequent service placement requests to unambiguously identify where a service is to be bound.<a href="#section-2-5.6.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-2-5.7"></dt>
+        <dd style="margin-left: 1.5em" id="section-2-5.8">
+          <p id="section-2-5.8.1">The concept of bearer can be generalized to refer to the required underlying connection for the provisioning of an attachment circuit.<a href="#section-2-5.8.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-2-5.9"></dt>
+        <dd style="margin-left: 1.5em" id="section-2-5.10">
+          <p id="section-2-5.10.1">One or multiple attachment circuits may be hosted over the same bearer (e.g., multiple Virtual Local Area Networks (VLANs) on the same bearer that is provided by a physical link).<a href="#section-2-5.10.1" class="pilcrow">¶</a></p>
+</dd>
+      <dd class="break"></dd>
+</dl>
+<p id="section-2-6">The names of data nodes are prefixed using the prefix associated with the corresponding imported YANG module as shown in <a href="#pref" class="auto internal xref">Table 1</a>:<a href="#section-2-6" class="pilcrow">¶</a></p>
+<span id="name-modules-and-their-associate"></span><div id="pref">
+<table class="center" id="table-1">
+        <caption>
+<a href="#table-1" class="selfRef">Table 1</a>:
+<a href="#name-modules-and-their-associate" class="selfRef">Modules and Their Associated Prefixes</a>
+        </caption>
+<thead>
+          <tr>
+            <th class="text-left" rowspan="1" colspan="1">Prefix</th>
+            <th class="text-left" rowspan="1" colspan="1">Module</th>
+            <th class="text-left" rowspan="1" colspan="1">Reference</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">inet</td>
+            <td class="text-left" rowspan="1" colspan="1">ietf-inet-types</td>
+            <td class="text-left" rowspan="1" colspan="1">
+              <span><a href="https://rfc-editor.org/rfc/rfc6991#section-4" class="relref">Section 4</a> of [<a href="#RFC6991" class="cite xref">RFC6991</a>]</span>
+</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">key-chain</td>
+            <td class="text-left" rowspan="1" colspan="1">ietf-key-chain</td>
+            <td class="text-left" rowspan="1" colspan="1">
+              <span>[<a href="#RFC8177" class="cite xref">RFC8177</a>]</span>
+</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">nacm</td>
+            <td class="text-left" rowspan="1" colspan="1">ietf-netconf-acm</td>
+            <td class="text-left" rowspan="1" colspan="1">
+              <span>[<a href="#RFC8341" class="cite xref">RFC8341</a>]</span>
+</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">vpn-common</td>
+            <td class="text-left" rowspan="1" colspan="1">ietf-vpn-common</td>
+            <td class="text-left" rowspan="1" colspan="1">
+              <span>[<a href="#RFC9181" class="cite xref">RFC9181</a>]</span>
+</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">yang</td>
+            <td class="text-left" rowspan="1" colspan="1">ietf-yang-types</td>
+            <td class="text-left" rowspan="1" colspan="1">
+              <span><a href="https://rfc-editor.org/rfc/rfc6991#section-3" class="relref">Section 3</a> of [<a href="#RFC6991" class="cite xref">RFC6991</a>]</span>
+</td>
+          </tr>
+        </tbody>
+      </table>
+</div>
+</section>
+</div>
+<div id="relationship-to-other-ac-data-models">
+<section id="section-3">
+      <h2 id="name-relationship-to-other-ac-da">
+<a href="#section-3" class="section-number selfRef">3. </a><a href="#name-relationship-to-other-ac-da" class="section-name selfRef">Relationship to Other AC Data Models</a>
+      </h2>
+<p id="section-3-1"><a href="#ac-overview" class="auto internal xref">Figure 2</a> depicts the relationship between the various AC data models:<a href="#section-3-1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-3-2.1">
+          <p id="section-3-2.1.1">"ietf-ac-common" (<a href="#sec-module" class="auto internal xref">Section 5</a>)<a href="#section-3-2.1.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-3-2.2">
+          <p id="section-3-2.2.1">"ietf-bearer-svc" (<span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-teas-attachment-circuit-18#section-5.1" class="relref">Section 5.1</a> of [<a href="#I-D.ietf-opsawg-teas-attachment-circuit" class="cite xref">I-D.ietf-opsawg-teas-attachment-circuit</a>]</span>)<a href="#section-3-2.2.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-3-2.3">
+          <p id="section-3-2.3.1">"ietf-ac-svc" (<span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-teas-attachment-circuit-18#section-5.2" class="relref">Section 5.2</a> of [<a href="#I-D.ietf-opsawg-teas-attachment-circuit" class="cite xref">I-D.ietf-opsawg-teas-attachment-circuit</a>]</span>)<a href="#section-3-2.3.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-3-2.4">
+          <p id="section-3-2.4.1">"ietf-ac-ntw" (<span>[<a href="#I-D.ietf-opsawg-ntw-attachment-circuit" class="cite xref">I-D.ietf-opsawg-ntw-attachment-circuit</a>]</span>)<a href="#section-3-2.4.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-3-2.5">
+          <p id="section-3-2.5.1">"ietf-ac-glue" (<span>[<a href="#I-D.ietf-opsawg-ac-lxsm-lxnm-glue" class="cite xref">I-D.ietf-opsawg-ac-lxsm-lxnm-glue</a>]</span>)<a href="#section-3-2.5.1" class="pilcrow">¶</a></p>
+</li>
+      </ul>
+<span id="name-ac-data-models"></span><div id="ac-overview">
+<figure id="figure-2">
+        <div id="section-3-3.1">
+          <div class="alignCenter art-svg artwork" id="section-3-3.1.1">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="256" width="368" viewBox="0 0 368 256" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
+              <path d="M 32,144 L 32,240" fill="none" stroke="black"></path>
+              <path d="M 56,80 L 56,112" fill="none" stroke="black"></path>
+              <path d="M 72,144 L 72,176" fill="none" stroke="black"></path>
+              <path d="M 144,48 L 144,80" fill="none" stroke="black"></path>
+              <path d="M 192,40 L 192,112" fill="none" stroke="black"></path>
+              <path d="M 240,48 L 240,80" fill="none" stroke="black"></path>
+              <path d="M 328,80 L 328,160" fill="none" stroke="black"></path>
+              <path d="M 328,192 L 328,240" fill="none" stroke="black"></path>
+              <path d="M 56,80 L 144,80" fill="none" stroke="black"></path>
+              <path d="M 240,80 L 328,80" fill="none" stroke="black"></path>
+              <path d="M 104,128 L 128,128" fill="none" stroke="black"></path>
+              <path d="M 72,176 L 264,176" fill="none" stroke="black"></path>
+              <path d="M 32,240 L 120,240" fill="none" stroke="black"></path>
+              <path d="M 240,240 L 328,240" fill="none" stroke="black"></path>
+              <polygon class="arrowhead" points="336,192 324,186.4 324,197.6" fill="black" transform="rotate(270,328,192)"></polygon>
+              <polygon class="arrowhead" points="248,48 236,42.4 236,53.6" fill="black" transform="rotate(270,240,48)"></polygon>
+              <polygon class="arrowhead" points="200,40 188,34.4 188,45.6" fill="black" transform="rotate(270,192,40)"></polygon>
+              <polygon class="arrowhead" points="152,48 140,42.4 140,53.6" fill="black" transform="rotate(270,144,48)"></polygon>
+              <polygon class="arrowhead" points="136,128 124,122.4 124,133.6" fill="black" transform="rotate(0,128,128)"></polygon>
+              <polygon class="arrowhead" points="112,128 100,122.4 100,133.6" fill="black" transform="rotate(180,104,128)"></polygon>
+              <polygon class="arrowhead" points="80,144 68,138.4 68,149.6" fill="black" transform="rotate(270,72,144)"></polygon>
+              <polygon class="arrowhead" points="40,144 28,138.4 28,149.6" fill="black" transform="rotate(270,32,144)"></polygon>
+              <g class="text">
+                <text x="188" y="36">ietf-ac-common</text>
+                <text x="48" y="132">ietf-ac-svc</text>
+                <text x="200" y="132">ietf-bearer-svc</text>
+                <text x="320" y="180">ietf-ac-ntw</text>
+                <text x="180" y="244">ietf-ac-glue</text>
+              </g>
+            </svg><a href="#section-3-3.1.1" class="pilcrow">¶</a>
+</div>
+</div>
+<figcaption><a href="#figure-2" class="selfRef">Figure 2</a>:
+<a href="#name-ac-data-models" class="selfRef">AC Data Models</a>
+        </figcaption></figure>
+</div>
+<p id="section-3-4">"ietf-ac-common" is imported  by "ietf-bearer-svc", "ietf-ac-svc", and "ietf-ac-ntw".
+Bearers managed using "ietf-bearer-svc" may be referenced in the service ACs managed using "ietf-ac-svc".
+Similarly, a bearer managed using "ietf-bearer-svc" may list the set of ACs that use that bearer.
+In order to ease correlation between an AC service requests and the actual AC provisioned in the network, "ietf-ac-ntw" uses the AC references exposed by "ietf-ac-svc".
+To bind Layer 2 VPN or Layer 3 VPN services with ACs, "ietf-ac-glue" augments the LxSM and LxNM with AC service references exposed by "ietf-ac-svc" and AC network references exposed by "ietf-ac-ntw".<a href="#section-3-4" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="description-of-the-ac-common-yang-module">
+<section id="section-4">
+      <h2 id="name-description-of-the-ac-commo">
+<a href="#section-4" class="section-number selfRef">4. </a><a href="#name-description-of-the-ac-commo" class="section-name selfRef">Description of the AC Common YANG Module</a>
+      </h2>
+<p id="section-4-1">The full tree diagram of the module is provided in <a href="#AC-Common-Tree" class="auto internal xref">Appendix A</a>.  Subtrees are provided in the following subsections
+for the reader's convenience.<a href="#section-4-1" class="pilcrow">¶</a></p>
+<div id="features">
+<section id="section-4.1">
+        <h3 id="name-features">
+<a href="#section-4.1" class="section-number selfRef">4.1. </a><a href="#name-features" class="section-name selfRef">Features</a>
+        </h3>
+<p id="section-4.1-1">The module defines the following features:<a href="#section-4.1-1" class="pilcrow">¶</a></p>
+<span class="break"></span><dl class="dlParallel" id="section-4.1-2">
+          <dt id="section-4.1-2.1">'layer2-ac':</dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-2.2">
+            <p id="section-4.1-2.2.1">Used to indicate support of ACs with Layer 2 properties.<a href="#section-4.1-2.2.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.1-2.3">'layer3-ac':</dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-2.4">
+            <p id="section-4.1-2.4.1">Used to indicate support of ACs with Layer 3 properties.<a href="#section-4.1-2.4.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.1-2.5">'server-assigned-reference':</dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-2.6">
+            <p id="section-4.1-2.6.1">Used to indicate support of server-generated references to access relevant resources.<a href="#section-4.1-2.6.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.1-2.7"></dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-2.8">
+            <p id="section-4.1-2.8.1">For example, a bearer request is first created using a name which is assigned by the client, but if this feature is supported, the request will also include a server-generated reference. That reference can be used when requesting the creating of an AC over the existing bearer.<a href="#section-4.1-2.8.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+</dl>
+</section>
+</div>
+<div id="identities">
+<section id="section-4.2">
+        <h3 id="name-identities">
+<a href="#section-4.2" class="section-number selfRef">4.2. </a><a href="#name-identities" class="section-name selfRef">Identities</a>
+        </h3>
+<p id="section-4.2-1">The module defines a set of identities, including the following:<a href="#section-4.2-1" class="pilcrow">¶</a></p>
+<span class="break"></span><dl class="dlParallel" id="section-4.2-2">
+          <dt id="section-4.2-2.1">'address-allocation-type':</dt>
+          <dd style="margin-left: 1.5em" id="section-4.2-2.2">
+            <p id="section-4.2-2.2.1">Used to specify the IP address allocation type in an AC. For example, this identity can used to indicate whether the provider network provides DHCP service, DHCP relay, or static addressing. Note that for the IPv6 case, Stateless Address Autoconfiguration (SLAAC) <span>[<a href="#RFC4862" class="cite xref">RFC4862</a>]</span> can be used.<a href="#section-4.2-2.2.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.2-2.3">'local-defined-next-hop':</dt>
+          <dd style="margin-left: 1.5em" id="section-4.2-2.4">
+            <p id="section-4.2-2.4.1">Used to specify next hop actions. For example, this identity can be used to indicate an action to discard traffic for a given destination or treat traffic towards addresses within the specified next-hop prefix as though they are connected to a local link.<a href="#section-4.2-2.4.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.2-2.5">'l2-tunnel-type':</dt>
+          <dd style="margin-left: 1.5em" id="section-4.2-2.6">
+            <p id="section-4.2-2.6.1">Uses to control the Layer 2 tunnel selection for an AC. The current version supports indicating pseudowire, Virtual Private LAN Service (VPLS), and Virtual eXtensible Local Area Network (VXLAN).<a href="#section-4.2-2.6.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.2-2.7">'precedence-type':</dt>
+          <dd style="margin-left: 1.5em" id="section-4.2-2.8">
+            <p id="section-4.2-2.8.1">Used to indicate the redundancy type when requesting ACs. For example, this identity can be used to tag primary and secondary ACs.<a href="#section-4.2-2.8.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.2-2.9">'role':</dt>
+          <dd style="margin-left: 1.5em" id="section-4.2-2.10">
+            <p id="section-4.2-2.10.1">Used to indicate the type of an AC: User-to-Network Interface (UNI), Network-to-Network Interface (NNI), or public NNI.<a href="#section-4.2-2.10.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.2-2.11">New administrative status types:</dt>
+          <dd style="margin-left: 1.5em" id="section-4.2-2.12">
+            <p id="section-4.2-2.12.1">In addition to the status types already defined in <span>[<a href="#RFC9181" class="cite xref">RFC9181</a>]</span>, this document defines:<a href="#section-4.2-2.12.1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-4.2-2.12.2.1">
+                <p id="section-4.2-2.12.2.1.1">'awaiting-validation' to report that a request is pending an adiministrator approval.<a href="#section-4.2-2.12.2.1.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="section-4.2-2.12.2.2">
+                <p id="section-4.2-2.12.2.2.1">'awaiting-processing' to report that a request was approved and validated, but is awaiting more processing before activation.<a href="#section-4.2-2.12.2.2.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="section-4.2-2.12.2.3">
+                <p id="section-4.2-2.12.2.3.1">'admin-prohibited' to report that a request cannot be handled because of administrative policies.<a href="#section-4.2-2.12.2.3.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="section-4.2-2.12.2.4">
+                <p id="section-4.2-2.12.2.4.1">'rejected' to report that a request was rejected reasons not covered by the other status types.<a href="#section-4.2-2.12.2.4.1" class="pilcrow">¶</a></p>
+</li>
+            </ul>
+</dd>
+        <dd class="break"></dd>
+</dl>
+</section>
+</div>
+<div id="reusable-groupings">
+<section id="section-4.3">
+        <h3 id="name-reusable-groupings">
+<a href="#section-4.3" class="section-number selfRef">4.3. </a><a href="#name-reusable-groupings" class="section-name selfRef">Reusable Groupings</a>
+        </h3>
+<p id="section-4.3-1">The module also defines a set of reusable groupings, including the following:<a href="#section-4.3-1" class="pilcrow">¶</a></p>
+<span class="break"></span><dl class="dlParallel" id="section-4.3-2">
+          <dt id="section-4.3-2.1">'op-instructions' (<a href="#op-full-tree" class="auto internal xref">Figure 3</a>):</dt>
+          <dd style="margin-left: 1.5em" id="section-4.3-2.2">
+            <p id="section-4.3-2.2.1">Defines a set of parameters to specify scheduling instructions and report related events for a service request (e.g., AC or bearer).<a href="#section-4.3-2.2.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+</dl>
+<span id="name-operational-instructions-gr"></span><div id="op-full-tree">
+<figure id="figure-3">
+          <div class="alignLeft art-text artwork" id="section-4.3-3.1">
+<pre>
+  grouping service-status:
+    +-- status
+       +-- admin-status
+       |  +-- status?        identityref
+       |  +--ro last-change?   yang:date-and-time
+       +--ro oper-status
+          +--ro status?        identityref
+          +--ro last-change?   yang:date-and-time
+  grouping op-instructions:
+    +-- requested-start?   yang:date-and-time
+    +-- requested-stop?    yang:date-and-time
+    +--ro actual-start?      yang:date-and-time
+    +--ro actual-stop?       yang:date-and-time
+
+</pre>
+</div>
+<figcaption><a href="#figure-3" class="selfRef">Figure 3</a>:
+<a href="#name-operational-instructions-gr" class="selfRef">Operational Instructions Grouping</a>
+          </figcaption></figure>
+</div>
+<span class="break"></span><dl class="dlParallel" id="section-4.3-4">
+          <dt id="section-4.3-4.1">Layer 2 encapsulations (<a href="#l2-full-tree" class="auto internal xref">Figure 4</a>):</dt>
+          <dd style="margin-left: 1.5em" id="section-4.3-4.2">
+            <p id="section-4.3-4.2.1">Groupings for the following encapsulation schemes are supported: dot1Q, QinQ, and priority-tagged.<a href="#section-4.3-4.2.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.3-4.3">Layer 2 tunnel services  (<a href="#l2-full-tree" class="auto internal xref">Figure 4</a>):</dt>
+          <dd style="margin-left: 1.5em" id="section-4.3-4.4">
+            <p id="section-4.3-4.4.1">These groupings are used to define Layer 2 tunnel services that may be needed for the activation of an AC. Examples of supported Layer 2 services are the pseudowire
+(<span><a href="https://rfc-editor.org/rfc/rfc8077#section-6.1" class="relref">Section 6.1</a> of [<a href="#RFC8077" class="cite xref">RFC8077</a>]</span>), VPLS, or VXLAN <span>[<a href="#RFC7348" class="cite xref">RFC7348</a>]</span>.<a href="#section-4.3-4.4.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+</dl>
+<span id="name-layer-2-connection-grouping"></span><div id="l2-full-tree">
+<figure id="figure-4">
+          <div class="alignLeft art-text artwork" id="section-4.3-5.1">
+<pre>
+  grouping dot1q:
+    +-- tag-type?   identityref
+    +-- cvlan-id?   uint16
+  grouping priority-tagged:
+    +-- tag-type?   identityref
+  grouping qinq:
+    +-- tag-type?   identityref
+    +-- svlan-id?   uint16
+    +-- cvlan-id?   uint16
+  grouping pseudowire:
+    +-- vcid?      uint32
+    +-- far-end?   union
+  grouping vpls:
+    +-- vcid?      uint32
+    +-- far-end*   union
+  grouping vxlan:
+    +-- vni-id?            uint32
+    +-- peer-mode?         identityref
+    +-- peer-ip-address*   inet:ip-address
+  grouping l2-tunnel-service:
+    +-- type?         identityref
+    +-- pseudowire
+    |  +-- vcid?      uint32
+    |  +-- far-end?   union
+    +-- vpls
+    |  +-- vcid?      uint32
+    |  +-- far-end*   union
+    +-- vxlan
+       +-- vni-id?            uint32
+       +-- peer-mode?         identityref
+       +-- peer-ip-address*   inet:ip-address
+</pre>
+</div>
+<figcaption><a href="#figure-4" class="selfRef">Figure 4</a>:
+<a href="#name-layer-2-connection-grouping" class="selfRef">Layer 2 Connection Groupings</a>
+          </figcaption></figure>
+</div>
+<span class="break"></span><dl class="dlParallel" id="section-4.3-6">
+          <dt id="section-4.3-6.1">Layer 3 address allocation (<a href="#l3-full-tree" class="auto internal xref">Figure 5</a>):</dt>
+          <dd style="margin-left: 1.5em" id="section-4.3-6.2">
+            <p id="section-4.3-6.2.1">Defines both IPv4 and IPv6 groupings to specify IP address allocation over an AC. Both dynamic and static address schemes are supported.<a href="#section-4.3-6.2.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.3-6.3"></dt>
+          <dd style="margin-left: 1.5em" id="section-4.3-6.4">
+            <p id="section-4.3-6.4.1">For both IPv4 and IPv6, 'address-allocation-type' is used to indicate the IP address allocation mode to activate. When 'address-allocation-type' is set to 'provider-dhcp', DHCP assignments can be made locally or by an external DHCP server. Such behavior is controlled by setting 'dhcp-service-type'.<a href="#section-4.3-6.4.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.3-6.5"></dt>
+          <dd style="margin-left: 1.5em" id="section-4.3-6.6">
+            <p id="section-4.3-6.6.1">Note that if 'address-allocation-type' is set to 'slaac', the Prefix Information option of Router Advertisements that will be issued for SLAAC purposes will carry the IPv6 prefix that is determined by 'local-address' and 'prefix-length'.<a href="#section-4.3-6.6.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.3-6.7">IP connections (<a href="#l3-full-tree" class="auto internal xref">Figure 5</a>)::</dt>
+          <dd style="margin-left: 1.5em" id="section-4.3-6.8">
+            <p id="section-4.3-6.8.1">Defines IPv4 and IPv6 groupings for managing Layer 3 connectivity over an AC. Both basic and more elaborated IP connection groupings are supported.<a href="#section-4.3-6.8.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+</dl>
+<span id="name-layer-3-connection-grouping"></span><div id="l3-full-tree">
+<figure id="figure-5">
+          <div class="alignLeft art-text artwork" id="section-4.3-7.1">
+<pre>
+  grouping ipv4-allocation-type:
+    +-- prefix-length?             uint8
+    +-- address-allocation-type?   identityref
+  grouping ipv6-allocation-type:
+    +-- prefix-length?             uint8
+    +-- address-allocation-type?   identityref
+  grouping ipv4-connection-basic:
+    +-- prefix-length?                       uint8
+    +-- address-allocation-type?             identityref
+    +-- (allocation-type)?
+       +--:(dynamic)
+          +-- (provider-dhcp)?
+          |  +--:(dhcp-service-type)
+          |     +-- dhcp-service-type?       enumeration
+          +-- (dhcp-relay)?
+             +--:(customer-dhcp-servers)
+                +-- customer-dhcp-servers
+                   +-- server-ip-address*   inet:ipv4-address
+  grouping ipv6-connection-basic:
+    +-- prefix-length?                       uint8
+    +-- address-allocation-type?             identityref
+    +-- (allocation-type)?
+       +--:(dynamic)
+          +-- (provider-dhcp)?
+          |  +--:(dhcp-service-type)
+          |     +-- dhcp-service-type?       enumeration
+          +-- (dhcp-relay)?
+             +--:(customer-dhcp-servers)
+                +-- customer-dhcp-servers
+                   +-- server-ip-address*   inet:ipv6-address
+  grouping ipv4-connection:
+    +-- local-address?                           inet:ipv4-address
+    +-- virtual-address?                         inet:ipv4-address
+    +-- prefix-length?                           uint8
+    +-- address-allocation-type?                 identityref
+    +-- (allocation-type)?
+       +--:(dynamic)
+       |  +-- (address-assign)?
+       |  |  +--:(number)
+       |  |  |  +-- number-of-dynamic-address?   uint16
+       |  |  +--:(explicit)
+       |  |     +-- customer-addresses
+       |  |        +-- address-pool* [pool-id]
+       |  |           +-- pool-id          string
+       |  |           +-- start-address    inet:ipv4-address
+       |  |           +-- end-address?     inet:ipv4-address
+       |  +-- (provider-dhcp)?
+       |  |  +--:(dhcp-service-type)
+       |  |     +-- dhcp-service-type?           enumeration
+       |  +-- (dhcp-relay)?
+       |     +--:(customer-dhcp-servers)
+       |        +-- customer-dhcp-servers
+       |           +-- server-ip-address*   inet:ipv4-address
+       +--:(static-addresses)
+          +-- address* [address-id]
+             +-- address-id          string
+             +-- customer-address?   inet:ipv4-address
+  grouping ipv6-connection:
+    +-- local-address?                           inet:ipv6-address
+    +-- virtual-address?                         inet:ipv6-address
+    +-- prefix-length?                           uint8
+    +-- address-allocation-type?                 identityref
+    +-- (allocation-type)?
+       +--:(dynamic)
+       |  +-- (address-assign)?
+       |  |  +--:(number)
+       |  |  |  +-- number-of-dynamic-address?   uint16
+       |  |  +--:(explicit)
+       |  |     +-- customer-addresses
+       |  |        +-- address-pool* [pool-id]
+       |  |           +-- pool-id          string
+       |  |           +-- start-address    inet:ipv6-address
+       |  |           +-- end-address?     inet:ipv6-address
+       |  +-- (provider-dhcp)?
+       |  |  +--:(dhcp-service-type)
+       |  |     +-- dhcp-service-type?           enumeration
+       |  +-- (dhcp-relay)?
+       |     +--:(customer-dhcp-servers)
+       |        +-- customer-dhcp-servers
+       |           +-- server-ip-address*   inet:ipv6-address
+       +--:(static-addresses)
+          +-- address* [address-id]
+             +-- address-id          string
+             +-- customer-address?   inet:ipv6-address
+</pre>
+</div>
+<figcaption><a href="#figure-5" class="selfRef">Figure 5</a>:
+<a href="#name-layer-3-connection-grouping" class="selfRef">Layer 3 Connection Groupings</a>
+          </figcaption></figure>
+</div>
+<span class="break"></span><dl class="dlParallel" id="section-4.3-8">
+          <dt id="section-4.3-8.1">Routing parameters &amp; OAM (<a href="#rtg-full-tree" class="auto internal xref">Figure 6</a>):</dt>
+          <dd style="margin-left: 1.5em" id="section-4.3-8.2">
+            <p id="section-4.3-8.2.1">In addition to static routing, the module supports the following routing protocols: BGP <span>[<a href="#RFC4271" class="cite xref">RFC4271</a>]</span>, OSPF <span>[<a href="#RFC4577" class="cite xref">RFC4577</a>]</span> or <span>[<a href="#RFC6565" class="cite xref">RFC6565</a>]</span>, IS-IS <span>[<a href="#ISO10589" class="cite xref">ISO10589</a>]</span><span>[<a href="#RFC1195" class="cite xref">RFC1195</a>]</span><span>[<a href="#RFC5308" class="cite xref">RFC5308</a>]</span>, and RIP <span>[<a href="#RFC2453" class="cite xref">RFC2453</a>]</span>. For all supported routing protocols, 'address-family' indicates whether IPv4, IPv6, or both address families are to be activated. For example, this parameter is used to determine whether RIPv2 <span>[<a href="#RFC2453" class="cite xref">RFC2453</a>]</span>, RIP Next Generation (RIPng), or both are to be enabled <span>[<a href="#RFC2080" class="cite xref">RFC2080</a>]</span>. More details about supported routing groupings are provided hereafter:<a href="#section-4.3-8.2.1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-4.3-8.2.2.1">
+                <p id="section-4.3-8.2.2.1.1">Authentication: These groupings include the required information to manage the authentication of OSPF, IS-IS, BGP, and RIP. The groupings support local specification of authentication keys and the associated authentication algorithm to accomodate legacy implementations that do not support key chains <span>[<a href="#RFC8177" class="cite xref">RFC8177</a>]</span>. Similar to <span>[<a href="#RFC9182" class="cite xref">RFC9182</a>]</span>, this version of the common AC model assumes that parameters specific to the TCP-AO are preconfigured as part of the key chain that is referenced in the model. No assumption is made about how such a key chain is preconfigured. However, the structure of the key chain should cover data nodes beyond those in <span>[<a href="#RFC8177" class="cite xref">RFC8177</a>]</span>, mainly SendID and RecvID (Section 3.1 of <span>[<a href="#RFC5925" class="cite xref">RFC5925</a>]</span>).<a href="#section-4.3-8.2.2.1.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="section-4.3-8.2.2.2">
+                <p id="section-4.3-8.2.2.2.1">BGP peer groups: Includes a set of parameters to identify a BGP peer group. Such a group can be defined by providing a local AS Number (ASN), a customer's ASN, and the address families to be activated for this group. BGP peer groups can be identified by a name.<a href="#section-4.3-8.2.2.2.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="section-4.3-8.2.2.3">
+                <p id="section-4.3-8.2.2.3.1">Basic parameters: These groupings include the minimal set of routing configuration that is required for the activation of OSPF, IS-IS, BGP, and RIP.<a href="#section-4.3-8.2.2.3.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="section-4.3-8.2.2.4">
+                <p id="section-4.3-8.2.2.4.1">Static routing: Parameters to configure an entry of a list of IP static routing entries.<a href="#section-4.3-8.2.2.4.1" class="pilcrow">¶</a></p>
+</li>
+            </ul>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.3-8.3"></dt>
+          <dd style="margin-left: 1.5em" id="section-4.3-8.4">
+            <p id="section-4.3-8.4.1">The 'redundancy-group' grouping lists the groups to which an AC belongs <span>[<a href="#RFC9181" class="cite xref">RFC9181</a>]</span>. For example, the 'group-id' is used to associate redundancy or protection constraints of ACs.<a href="#section-4.3-8.4.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+</dl>
+<span id="name-layer-3-connection-groupings"></span><div id="rtg-full-tree">
+<figure id="figure-6">
+          <div class="alignLeft art-text artwork" id="section-4.3-9.1">
+<pre>
+ grouping bgp-authentication:
+    +-- authentication
+       +-- enabled?           boolean
+       +-- keying-material
+          +-- (option)?
+             +--:(ao)
+             |  +-- enable-ao?          boolean
+             |  +-- ao-keychain?        key-chain:key-chain-ref
+             +--:(md5)
+             |  +-- md5-keychain?       key-chain:key-chain-ref
+             +--:(explicit)
+                +-- key-id?             uint32
+                +-- key?                string
+                +-- crypto-algorithm?   identityref
+  grouping ospf-authentication:
+    +-- authentication
+       +-- enabled?           boolean
+       +-- keying-material
+          +-- (option)?
+             +--:(auth-key-chain)
+             |  +-- key-chain?          key-chain:key-chain-ref
+             +--:(auth-key-explicit)
+                +-- key-id?             uint32
+                +-- key?                string
+                +-- crypto-algorithm?   identityref
+  grouping isis-authentication:
+    +-- authentication
+       +-- enabled?           boolean
+       +-- keying-material
+          +-- (option)?
+             +--:(auth-key-chain)
+             |  +-- key-chain?          key-chain:key-chain-ref
+             +--:(auth-key-explicit)
+                +-- key-id?             uint32
+                +-- key?                string
+                +-- crypto-algorithm?   identityref
+  grouping rip-authentication:
+    +-- authentication
+       +-- enabled?           boolean
+       +-- keying-material
+          +-- (option)?
+             +--:(auth-key-chain)
+             |  +-- key-chain?          key-chain:key-chain-ref
+             +--:(auth-key-explicit)
+                +-- key?                string
+                +-- crypto-algorithm?   identityref
+  grouping bgp-peer-group-without-name:
+    +-- local-as?         inet:as-number
+    +-- peer-as?          inet:as-number
+    +-- address-family?   identityref
+    +-- role?             identityref
+  grouping bgp-peer-group-with-name:
+    +-- name?             string
+    +-- local-as?         inet:as-number
+    +-- peer-as?          inet:as-number
+    +-- address-family?   identityref
+    +-- role?             identityref
+  grouping ospf-basic:
+    +-- address-family?   identityref
+    +-- area-id           yang:dotted-quad
+    +-- metric?           uint16
+  grouping isis-basic:
+    +-- address-family?   identityref
+    +-- area-address      area-address
+  grouping ipv4-static-rtg-entry:
+    +-- lan?        inet:ipv4-prefix
+    +-- lan-tag?    string
+    +-- next-hop?   union
+    +-- metric?     uint32
+  grouping ipv4-static-rtg:
+    +-- ipv4-lan-prefixes* [lan next-hop] {vpn-common:ipv4}?
+       +-- lan         inet:ipv4-prefix
+       +-- lan-tag?    string
+       +-- next-hop    union
+       +-- metric?     uint32
+       +-- status
+          +-- admin-status
+          |  +-- status?        identityref
+          |  +--ro last-change?   yang:date-and-time
+          +--ro oper-status
+             +--ro status?        identityref
+             +--ro last-change?   yang:date-and-time
+  grouping ipv6-static-rtg-entry:
+    +-- lan?        inet:ipv6-prefix
+    +-- lan-tag?    string
+    +-- next-hop?   union
+    +-- metric?     uint32
+  grouping ipv6-static-rtg:
+    +-- ipv6-lan-prefixes* [lan next-hop] {vpn-common:ipv6}?
+       +-- lan         inet:ipv6-prefix
+       +-- lan-tag?    string
+       +-- next-hop    union
+       +-- metric?     uint32
+       +-- status
+          +-- admin-status
+          |  +-- status?        identityref
+          |  +--ro last-change?   yang:date-and-time
+          +--ro oper-status
+             +--ro status?        identityref
+             +--ro last-change?   yang:date-and-time
+  grouping bfd:
+    +-- holdtime?   uint32
+  grouping redundancy-group:
+    +-- group* [group-id]
+       +-- group-id?     string
+       +-- precedence?   identityref
+</pre>
+</div>
+<figcaption><a href="#figure-6" class="selfRef">Figure 6</a>:
+<a href="#name-layer-3-connection-groupings" class="selfRef">Layer 3 Connection Groupings</a>
+          </figcaption></figure>
+</div>
+<span class="break"></span><dl class="dlParallel" id="section-4.3-10">
+          <dt id="section-4.3-10.1">Bandwidth parameters (<a href="#bw-full-tree" class="auto internal xref">Figure 7</a>):</dt>
+          <dd style="margin-left: 1.5em" id="section-4.3-10.2">
+            <p id="section-4.3-10.2.1">Bandwidth parameters can be represented using the Committed
+Information Rate (CIR), the Excess Information Rate (EIR), or the Peak
+Information Rate (PIR).<a href="#section-4.3-10.2.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.3-10.3"></dt>
+          <dd style="margin-left: 1.5em" id="section-4.3-10.4">
+            <p id="section-4.3-10.4.1">These parameters can be provided per bandwidth type. Type values are
+taken from <span>[<a href="#RFC9181" class="cite xref">RFC9181</a>]</span>, e.g.,:<a href="#section-4.3-10.4.1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-4.3-10.4.2.1">
+                <span class="break"></span><dl class="dlParallel" id="section-4.3-10.4.2.1.1">
+                  <dt id="section-4.3-10.4.2.1.1.1">'bw-per-cos':</dt>
+                  <dd style="margin-left: 1.5em" id="section-4.3-10.4.2.1.1.2">
+                    <p id="section-4.3-10.4.2.1.1.2.1">The bandwidth is per Class of Service (CoS).<a href="#section-4.3-10.4.2.1.1.2.1" class="pilcrow">¶</a></p>
+</dd>
+                <dd class="break"></dd>
+</dl>
+</li>
+              <li class="normal" id="section-4.3-10.4.2.2">
+                <span class="break"></span><dl class="dlParallel" id="section-4.3-10.4.2.2.1">
+                  <dt id="section-4.3-10.4.2.2.1.1">'bw-per-site':</dt>
+                  <dd style="margin-left: 1.5em" id="section-4.3-10.4.2.2.1.2">
+                    <p id="section-4.3-10.4.2.2.1.2.1">The bandwidth is to all ACs that belong to the same site.<a href="#section-4.3-10.4.2.2.1.2.1" class="pilcrow">¶</a></p>
+</dd>
+                <dd class="break"></dd>
+</dl>
+</li>
+            </ul>
+</dd>
+        <dd class="break"></dd>
+</dl>
+<span id="name-bandwidth-groupings"></span><div id="bw-full-tree">
+<figure id="figure-7">
+          <div class="alignLeft art-text artwork" id="section-4.3-11.1">
+<pre>
+  grouping bandwidth-parameters:
+    +-- cir?   uint64
+    +-- cbs?   uint64
+    +-- eir?   uint64
+    +-- ebs?   uint64
+    +-- pir?   uint64
+    +-- pbs?   uint64
+  grouping bandwidth-per-type:
+    +-- bandwidth* [bw-type]
+       +-- bw-type      identityref
+       +-- (type)?
+          +--:(per-cos)
+          |  +-- cos* [cos-id]
+          |     +-- cos-id    uint8
+          |     +-- cir?      uint64
+          |     +-- cbs?      uint64
+          |     +-- eir?      uint64
+          |     +-- ebs?      uint64
+          |     +-- pir?      uint64
+          |     +-- pbs?      uint64
+          +--:(other)
+             +-- cir?   uint64
+             +-- cbs?   uint64
+             +-- eir?   uint64
+             +-- ebs?   uint64
+             +-- pir?   uint64
+             +-- pbs?   uint64
+</pre>
+</div>
+<figcaption><a href="#figure-7" class="selfRef">Figure 7</a>:
+<a href="#name-bandwidth-groupings" class="selfRef">Bandwidth Groupings</a>
+          </figcaption></figure>
+</div>
+</section>
+</div>
+</section>
+</div>
+<div id="sec-module">
+<section id="section-5">
+      <h2 id="name-common-attachment-circuit-y">
+<a href="#section-5" class="section-number selfRef">5. </a><a href="#name-common-attachment-circuit-y" class="section-name selfRef">Common Attachment Circuit YANG Module</a>
+      </h2>
+<p id="section-5-1">This module uses types defined in <span>[<a href="#RFC6991" class="cite xref">RFC6991</a>]</span>, <span>[<a href="#RFC8177" class="cite xref">RFC8177</a>]</span>, and  <span>[<a href="#RFC9181" class="cite xref">RFC9181</a>]</span>.<a href="#section-5-1" class="pilcrow">¶</a></p>
+<div class="breakable sourcecode" id="section-5-2">
+<pre>&lt;CODE BEGINS&gt; file "ietf-ac-common@2023-11-13.yang"
+
+module ietf-ac-common {
+  yang-version 1.1;
+  namespace "urn:ietf:params:xml:ns:yang:ietf-ac-common";
+  prefix ac-common;
+
+  import ietf-vpn-common {
+    prefix vpn-common;
+    reference
+      "RFC 9181: A Common YANG Data Model for Layer 2 and Layer 3
+                 VPNs";
+  }
+  import ietf-netconf-acm {
+    prefix nacm;
+    reference
+      "RFC 8341: Network Configuration Access Control Model";
+  }
+  import ietf-inet-types {
+    prefix inet;
+    reference
+      "RFC 6991: Common YANG Data Types, Section 4";
+  }
+  import ietf-yang-types {
+    prefix yang;
+    reference
+      "RFC 6991: Common YANG Data Types, Section 3";
+  }
+  import ietf-key-chain {
+    prefix key-chain;
+    reference
+      "RFC 8177: YANG Data Model for Key Chains";
+  }
+
+  organization
+    "IETF OPSAWG (Operations and Management Area Working Group)";
+  contact
+    "WG Web:   &lt;https://datatracker.ietf.org/wg/opsawg/&gt;
+     WG List:  &lt;mailto:opsawg@ietf.org&gt;
+
+     Editor:   Mohamed Boucadair
+               &lt;mailto:mohamed.boucadair@orange.com&gt;
+     Author:   Richard Roberts
+               &lt;mailto:rroberts@juniper.net&gt;
+     Author:   Oscar Gonzalez de Dios
+               &lt;mailto:oscar.gonzalezdedios@telefonica.com&gt;
+     Author:   Samier Barguil
+               &lt;mailto:ssamier.barguil_giraldo@nokia.com&gt;
+     Author:   Bo Wu
+               &lt;mailto:lana.wubo@huawei.com&gt;";
+  description
+    "This YANG module defines a common attachment circuit (AC)
+     YANG model.
+
+     Copyright (c) 2024 IETF Trust and the persons identified as
+     authors of the code.  All rights reserved.
+
+     Redistribution and use in source and binary forms, with or
+     without modification, is permitted pursuant to, and subject
+     to the license terms contained in, the Revised BSD License
+     set forth in Section 4.c of the IETF Trust's Legal Provisions
+     Relating to IETF Documents
+     (https://trustee.ietf.org/license-info).
+
+     This version of this YANG module is part of RFC XXXX; see the
+     RFC itself for full legal notices.";
+
+  revision 2023-11-13 {
+    description
+      "Initial revision.";
+    reference
+      "RFC XXXX: A Common YANG Data Model for Attachment Circuits";
+  }
+
+  /****************************Features************************/
+
+  feature layer2-ac {
+    description
+      "Indicates support of Layer 2 ACs.";
+  }
+
+  feature layer3-ac {
+    description
+      "Indicates support of Layer 3 ACs.";
+  }
+
+  feature server-assigned-reference {
+    description
+      "This feature indicates support for server-generated references
+       and use of such references to access related resources.";
+  }
+
+  /****************************Identities************************/
+  // IP address allocation types
+
+  identity address-allocation-type {
+    description
+      "Base identity for address allocation type in the AC.";
+  }
+
+  identity provider-dhcp {
+    base address-allocation-type;
+    description
+      "The provider's network provides a DHCP service to the
+       customer.";
+  }
+
+  identity provider-dhcp-relay {
+    base address-allocation-type;
+    description
+      "The provider's network provides a DHCP relay service to the
+       customer.";
+  }
+
+  identity provider-dhcp-slaac {
+    if-feature "vpn-common:ipv6";
+    base address-allocation-type;
+    description
+      "The provider's network provides a DHCP service to the customer
+       as well as IPv6 Stateless Address Autoconfiguration (SLAAC).";
+    reference
+      "RFC 4862: IPv6 Stateless Address Autoconfiguration";
+  }
+
+  identity static-address {
+    base address-allocation-type;
+    description
+      "The provider's network provides static IP addressing to the
+       customer.";
+  }
+
+  identity slaac {
+    if-feature "vpn-common:ipv6";
+    base address-allocation-type;
+    description
+      "The provider's network uses IPv6 SLAAC to provide addressing
+       to the customer.";
+    reference
+      "RFC 4862: IPv6 Stateless Address Autoconfiguration";
+  }
+
+  identity dynamic-infra {
+    base address-allocation-type;
+    description
+      "The IP address is dynamically allocated by the hosting
+       infrastrcture.";
+  }
+
+  // next-hop actions
+
+  identity local-defined-next-hop {
+    description
+      "Base identity of local defined next hops.";
+  }
+
+  identity discard {
+    base local-defined-next-hop;
+    description
+      "Indicates an action to discard traffic for the corresponding
+       destination. For example, this can be used to black-hole
+       traffic.";
+  }
+
+  identity local-link {
+    base local-defined-next-hop;
+    description
+      "Treat traffic towards addresses within the specified next-hop
+       prefix as though they are connected to a local link.";
+  }
+
+  // Layer 2 tunnel types
+
+  identity l2-tunnel-type {
+    description
+      "Base identity for Layer 2 tunnel selection for an AC.";
+  }
+
+  identity pseudowire {
+    base l2-tunnel-type;
+    description
+      "Pseudowire tunnel termination for the AC.";
+  }
+
+  identity vpls {
+    base l2-tunnel-type;
+    description
+      "Virtual Private LAN Service (VPLS) tunnel termination for
+       the AC.";
+  }
+
+  identity vxlan {
+    base l2-tunnel-type;
+    description
+      "Virtual eXtensible Local Area Network (VXLAN) tunnel
+       termination for the AC.";
+  }
+
+  // Layer 3 tunnel types
+
+  identity l3-tunnel-type {
+    description
+      "Base identity for Layer 3 tunnel selection for an AC.";
+  }
+
+  identity ip-in-ip {
+    base l3-tunnel-type;
+    description
+      "IP in IP Tunneling.";
+  }
+
+  identity ipsec {
+    base l3-tunnel-type;
+    description
+      "IP Security (IPsec).";
+  }
+
+  identity gre {
+    base l3-tunnel-type;
+    description
+      "Generic Routing Encapsulation (GRE).";
+  }
+
+  // Tagging precedence
+
+  identity precedence-type {
+    description
+      "Redundancy type. The service can be created with primary and
+       secondary tagging.";
+  }
+
+  identity primary {
+    base precedence-type;
+    description
+      "Identifies the main attachment circuit.";
+  }
+
+  identity secondary {
+    base precedence-type;
+    description
+      "Identifies the secondary attachment circuit.";
+  }
+
+  // AC Type
+
+  identity role {
+    description
+      "Base identity for the network role of an AC.";
+  }
+
+  identity uni {
+    base role;
+      description
+        "User-to-Network Interface (UNI).";
+  }
+
+  identity nni {
+    base role;
+    description
+      "Network-to-Network Interface (NNI).";
+  }
+
+  identity public-nni {
+    base role;
+    description
+      "Public peering.";
+  }
+
+  // More Admin status types
+
+  identity awaiting-validation {
+    base vpn-common:administrative-status;
+    description
+      "This administrative status reflects that a request is
+       pending an adiministrator approval.";
+  }
+
+  identity awaiting-processing {
+    base vpn-common:administrative-status;
+    description
+      "This administrative status reflects that a request was
+       approved and validated, but is awaiting more processing
+       before activation.";
+  }
+
+  identity admin-prohibited {
+    base vpn-common:administrative-status;
+    description
+      "This administrative status reflects that a request cannot
+       be handled because of administrative policies.";
+  }
+
+  identity rejected {
+    base vpn-common:administrative-status;
+    description
+      "This administrative status reflects that a request was
+       rejected because, e.g., there are no sufficient resources
+       or other reasons not covered by the other status types.";
+  }
+
+  identity bgp-role {
+    description
+      "Used to indicate BGP role when establishing a BGP session.";
+    reference
+      "RFC 9234: Route Leak Prevention and Detection Using
+                 Roles in UPDATE and OPEN Messages, Section 4";
+  }
+
+  identity provider {
+    base bgp-role;
+    description
+      "The local AS is a transit provider of the remote AS.";
+  }
+
+  identity client {
+    base bgp-role;
+    description
+      "The local AS is a transit provider of the remote AS.";
+  }
+
+  identity rs {
+    base bgp-role;
+    description
+      "The local AS is a Route Server (RS).";
+  }
+
+  identity rs-client {
+    base bgp-role;
+    description
+      "The local AS is a client of an RS and the RS is the
+       remote AS.";
+  }
+
+  identity peer {
+    base bgp-role;
+    description
+      "The local and remote ASes have a peering relationship.";
+  }
+
+  /****************************Typedefs************************/
+
+  typedef predefined-next-hop {
+    type identityref {
+      base local-defined-next-hop;
+    }
+    description
+      "Predefined next-hop designation for locally generated
+       routes.";
+  }
+
+  typedef area-address {
+    type string {
+      pattern '[0-9A-Fa-f]{2}(\.[0-9A-Fa-f]{4}){0,6}';
+    }
+    description
+      "This type defines the area address format.";
+  }
+
+  /************************Reusable groupings********************/
+  /**** Service Status ****/
+
+  grouping service-status {
+    description
+      "Service status grouping.";
+    container status {
+      description
+        "Service status.";
+      container admin-status {
+        description
+          "Administrative service status.";
+        leaf status {
+          type identityref {
+            base vpn-common:administrative-status;
+          }
+          description
+            "Administrative service status.";
+        }
+        leaf last-change {
+          type yang:date-and-time;
+          config false;
+          description
+            "Indicates the actual date and time of the service
+             status change.";
+        }
+      }
+      container oper-status {
+        config false;
+        description
+          "Operational service status.";
+        uses vpn-common:oper-status-timestamp;
+      }
+    }
+  }
+
+
+  /**** A set of profiles ****/
+
+  grouping ac-profile-cfg {
+    description
+      "Grouping for AC profile configuration.";
+    container valid-provider-identifiers {
+      description
+        "Container for valid provider profile identifiers.
+         The profiles only have significance within the service
+         provider's administrative domain.";
+      list encryption-profile-identifier {
+        key "id";
+        description
+          "List of encryption profile identifiers.";
+        leaf id {
+          type string;
+          description
+            "Identification of the encryption profile to be used.";
+        }
+      }
+      list qos-profile-identifier {
+        key "id";
+        description
+          "List of QoS profile identifiers.";
+        leaf id {
+          type string;
+          description
+            "Identification of the QoS profile to be used.";
+        }
+      }
+      list failure-detection-profile-identifier {
+        key "id";
+        description
+          "List of BFD profile identifiers.";
+        leaf id {
+          type string;
+          description
+            "Identification of the a failure detection (e.g., BFD)
+             profile to be used.";
+        }
+      }
+      list forwarding-profile-identifier {
+        key "id";
+        description
+          "List of forwarding profile identifiers.";
+        leaf id {
+          type string;
+          description
+            "Identification of the forwarding profile to be used.";
+        }
+      }
+      list routing-profile-identifier {
+        key "id";
+        description
+          "List of routing profile identifiers.";
+        leaf id {
+          type string;
+          description
+            "Identification of the routing profile to be used by
+             the routing protocols over an AC.";
+        }
+      }
+      nacm:default-deny-write;
+    }
+  }
+
+  /**** Operational instructions ****/
+
+  grouping op-instructions {
+    description
+      "Scheduling instructions.";
+    leaf requested-start {
+      type yang:date-and-time;
+      description
+        "Indicates the requested date and time when the service is
+         expected to be active.";
+    }
+    leaf requested-stop {
+      type yang:date-and-time;
+      description
+        "Indicates the requested date and time when the service is
+         expected to be disabled.";
+    }
+    leaf actual-start {
+      type yang:date-and-time;
+      config false;
+      description
+        "Indicates the actual date and time when the service
+         actually was enabled.";
+    }
+    leaf actual-stop {
+      type yang:date-and-time;
+      config false;
+      description
+        "Indicates the actual date and time when the service
+         actually was disabled.";
+    }
+  }
+
+  /**** Layer 2 encapsulations ****/
+  // Dot1q
+
+  grouping dot1q {
+    description
+      "Defines a grouping for tagged interfaces.";
+    leaf tag-type {
+      type identityref {
+        base vpn-common:tag-type;
+      }
+      description
+        "Tag type.";
+    }
+    leaf cvlan-id {
+      type uint16 {
+        range "1..4094";
+      }
+      description
+        "VLAN identifier.";
+    }
+  }
+
+  // priority-tagged
+
+  grouping priority-tagged {
+    description
+      "Priority tagged.";
+    leaf tag-type {
+      type identityref {
+        base vpn-common:tag-type;
+      }
+      description
+        "Tag type.";
+    }
+  }
+
+  // QinQ
+
+  grouping qinq {
+    description
+      "Includes QinQ parameters.";
+    leaf tag-type {
+      type identityref {
+        base vpn-common:tag-type;
+      }
+      description
+        "Tag type.";
+    }
+    leaf svlan-id {
+      type uint16 {
+        range "1..4094";
+      }
+      description
+        "Service VLAN (S-VLAN) identifier.";
+    }
+    leaf cvlan-id {
+      type uint16 {
+        range "1..4094";
+      }
+      description
+        "Customer VLAN (C-VLAN) identifier.";
+    }
+  }
+
+  /**** Layer 2 tunnel services ****/
+  // pseudowire (PW)
+
+  grouping pseudowire {
+    description
+      "Includes pseudowire termination parameters.";
+    leaf vcid {
+      type uint32;
+      description
+        "Indicates a PW or virtual circuit (VC) identifier.";
+    }
+    leaf far-end {
+      type union {
+        type uint32;
+        type inet:ip-address;
+      }
+      description
+        "Neighbor reference.";
+      reference
+        "RFC 8077: Pseudowire Setup and Maintenance Using the Label
+                   Distribution Protocol (LDP), Section 6.1";
+    }
+  }
+
+  // VPLS
+
+  grouping vpls {
+    description
+      "VPLS termination parameters.";
+    leaf vcid {
+      type uint32;
+      description
+        "VC identifier.";
+    }
+    leaf-list far-end {
+      type union {
+        type uint32;
+        type inet:ip-address;
+      }
+      description
+        "Neighbor reference.";
+    }
+  }
+
+  // VXLAN
+
+  grouping vxlan {
+    description
+      "VXLAN termination parameters.";
+    leaf vni-id {
+      type uint32;
+      description
+        "VXLAN Network Identifier (VNI).";
+    }
+    leaf peer-mode {
+      type identityref {
+        base vpn-common:vxlan-peer-mode;
+      }
+      description
+        "Specifies the VXLAN access mode. By default,
+         the peer mode is set to 'static-mode'.";
+    }
+    leaf-list peer-ip-address {
+      type inet:ip-address;
+      description
+        "List of a peer's IP addresses.";
+    }
+  }
+
+  // Layer 2 Tunnel service
+
+  grouping l2-tunnel-service {
+    description
+      "Defines a Layer 2 tunnel termination.";
+    leaf type {
+      type identityref {
+        base l2-tunnel-type;
+      }
+      description
+        "Selects the tunnel termination type for an AC.";
+    }
+    container pseudowire {
+      when "derived-from-or-self(../type, 'ac-common:pseudowire')" {
+        description
+          "Only applies when the Layer 2 service type is
+           'pseudowire'.";
+      }
+      description
+        "Includes pseudowire termination parameters.";
+      uses pseudowire;
+    }
+    container vpls {
+      when "derived-from-or-self(../type, 'ac-common:vpls')" {
+        description
+          "Only applies when the Layer 2 service type is 'vpls'.";
+      }
+      description
+        "VPLS termination parameters.";
+      uses vpls;
+    }
+    container vxlan {
+      when "derived-from-or-self(../type, 'ac-common:vxlan')" {
+        description
+          "Only applies when the Layer 2 service type is 'vxlan'.";
+      }
+      description
+        "VXLAN termination parameters.";
+      uses vxlan;
+    }
+  }
+
+  /**** Layer 3 connection *****/
+  // IPv4 allocation type
+
+  grouping ipv4-allocation-type {
+    description
+      "IPv4-specific parameters.";
+    leaf prefix-length {
+      type uint8 {
+        range "0..32";
+      }
+      description
+        "Subnet prefix length expressed in bits. It is applied to
+         both local and customer addresses.";
+    }
+    leaf address-allocation-type {
+      type identityref {
+        base address-allocation-type;
+      }
+      must "not(derived-from-or-self(current(), 'ac-common:slaac') "
+         + "or derived-from-or-self(current(), "
+         + "'ac-common:provider-dhcp-slaac'))" {
+        error-message "SLAAC is only applicable to IPv6.";
+      }
+      description
+        "Defines how IPv4 addresses are allocated to the peer site.";
+    }
+  }
+
+  // IPv6 allocation type
+
+  grouping ipv6-allocation-type {
+    description
+      "IPv6-specific parameters.";
+    leaf prefix-length {
+      type uint8 {
+        range "0..128";
+      }
+      description
+        "Subnet prefix length expressed in bits. It is applied to
+          both local and customer addresses.";
+    }
+    leaf address-allocation-type {
+      type identityref {
+        base address-allocation-type;
+      }
+      description
+        "Defines how IPv6 addresses are allocated to the peer site.";
+    }
+  }
+
+  // Basic parameters for IPv4 connection
+
+  grouping ipv4-connection-basic {
+    description
+      "Basic set fof IPv4-specific parameters for the connection.";
+    uses ipv4-allocation-type;
+    choice allocation-type {
+      description
+        "Choice of the IPv4 address allocation.";
+      case dynamic {
+        description
+          "When the addresses are allocated by DHCP or other dynamic
+           means local to the infrastructure.";
+        choice provider-dhcp {
+          description
+            "Parameters related to DHCP-allocated addresses. IP
+             addresses are allocated by DHCP, that is provided by
+             the operator.";
+          leaf dhcp-service-type {
+            type enumeration {
+              enum server {
+                description
+                  "Local DHCP server.";
+              }
+              enum relay {
+                description
+                  "Local DHCP relay.  DHCP requests are relayed to
+                   a provider's server.";
+              }
+            }
+            description
+              "Indicates the type of DHCP service to be enabled on
+               an AC.";
+          }
+        }
+        choice dhcp-relay {
+          description
+            "The DHCP relay is provided by the operator.";
+          container customer-dhcp-servers {
+            description
+              "Container for a list of the customer's DHCP servers.";
+            leaf-list server-ip-address {
+              type inet:ipv4-address;
+              description
+                "IPv4 addresses of the customer's DHCP server.";
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // Basic parameters for IPv6 connection
+
+  grouping ipv6-connection-basic {
+    description
+      "Basic set fof IPv6-specific parameters for the connection.";
+    uses ipv6-allocation-type;
+    choice allocation-type {
+      description
+        "Choice of the IPv6 address allocation.";
+      case dynamic {
+        description
+          "When the addresses are allocated by DHCP or other dynamic
+           means local to the infrastructure.";
+        choice provider-dhcp {
+          description
+            "Parameters related to DHCP-allocated addresses.
+             IP addresses are allocated by DHCP, that is provided
+             by the operator.";
+          leaf dhcp-service-type {
+            type enumeration {
+              enum server {
+                description
+                  "Local DHCP server.";
+              }
+              enum relay {
+                description
+                  "Local DHCP relay.  DHCP requests are relayed to a
+                   provider's server.";
+              }
+            }
+            description
+              "Indicates the type of DHCP service to be enabled on
+               the AC.";
+          }
+        }
+        choice dhcp-relay {
+          description
+            "The DHCP relay is provided by the operator.";
+          container customer-dhcp-servers {
+            description
+              "Container for a list of the customer's DHCP servers.";
+            leaf-list server-ip-address {
+              type inet:ipv6-address;
+              description
+                "IPv6 addresses of the customer's DHCP server.";
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // Full parameters for the IPv4 connection
+
+  grouping ipv4-connection {
+    description
+      "IPv4-specific parameters.";
+    leaf local-address {
+      type inet:ipv4-address;
+      description
+        "The IP address used at the provider's interface.";
+    }
+    leaf virtual-address {
+      type inet:ipv4-address;
+      description
+        "This addresss may be used for redundancy purposes.";
+    }
+    uses ipv4-allocation-type;
+    choice allocation-type {
+      description
+        "Choice of the IPv4 address allocation.";
+      case dynamic {
+        description
+          "When the addresses are allocated by DHCP or other
+           dynamic means local to the infrastructure.";
+        choice address-assign {
+          description
+            "A choice for how IPv4 addresses are assigned.";
+          case number {
+            leaf number-of-dynamic-address {
+              type uint16;
+              description
+                "Specifies the number of IP addresses to be assigned
+                 to the customer on the AC.";
+            }
+          }
+          case explicit {
+            container customer-addresses {
+              description
+                "Container for customer addresses to be allocated
+                 using DHCP.";
+              list address-pool {
+                key "pool-id";
+                description
+                  "Describes IP addresses to be dyncamically
+                   allocated.
+
+                   When only 'start-address' is present, it
+                   represents a single address.
+
+                   When both 'start-address' and 'end-address' are
+                   specified, it implies a range inclusive of both
+                   addresses.";
+                leaf pool-id {
+                  type string;
+                  description
+                    "A pool identifier for the address range from
+                     'start-address' to 'end-address'.";
+                }
+                leaf start-address {
+                  type inet:ipv4-address;
+                  mandatory true;
+                  description
+                    "Indicates the first address in the pool.";
+                }
+                leaf end-address {
+                  type inet:ipv4-address;
+                  description
+                    "Indicates the last address in the pool.";
+                }
+              }
+            }
+          }
+        }
+        choice provider-dhcp {
+          description
+            "Parameters related to DHCP-allocated addresses. IP
+             addresses are allocated by DHCP, which is provided by
+             the operator.";
+          leaf dhcp-service-type {
+            type enumeration {
+              enum server {
+                description
+                  "Local DHCP server.";
+              }
+              enum relay {
+                description
+                  "Local DHCP relay.  DHCP requests are relayed to
+                   a provider's server.";
+              }
+            }
+            description
+              "Indicates the type of DHCP service to be enabled on
+               this AC.";
+          }
+        }
+        choice dhcp-relay {
+          description
+            "The DHCP relay is provided by the operator.";
+          container customer-dhcp-servers {
+            description
+              "Container for a list of the customer's DHCP servers.";
+            leaf-list server-ip-address {
+              type inet:ipv4-address;
+              description
+                "IPv4 addresses of the customer's DHCP server.";
+            }
+          }
+        }
+      }
+      case static-addresses {
+        description
+          "Lists the IPv4 addresses that are used.";
+        list address {
+          key "address-id";
+          ordered-by user;
+          description
+            "Lists the IPv4 addresses that are used. The first
+             address of the list is the primary address of the
+             connection.";
+          leaf address-id {
+            type string;
+            description
+              "An identifier of the static IPv4 address.";
+          }
+          leaf customer-address {
+            type inet:ipv4-address;
+            description
+              "An IPv4 address of the customer side.";
+          }
+        }
+      }
+    }
+  }
+
+  // Full parameters for the IPv6 connection
+
+  grouping ipv6-connection {
+    description
+      "IPv6-specific parameters.";
+    leaf local-address {
+      type inet:ipv6-address;
+      description
+        "IPv6 address of the provider side.";
+    }
+    leaf virtual-address {
+      type inet:ipv6-address;
+      description
+        "This addresss may be used for redundancy purposes.";
+    }
+    uses ipv6-allocation-type;
+    choice allocation-type {
+      description
+        "Choice of the IPv6 address allocation.";
+      case dynamic {
+        description
+          "When the addresses are allocated by DHCP or other
+           dynamic means local to the infrastructure.";
+        choice address-assign {
+          description
+            "A choice for how IPv6 addresses are assigned.";
+          case number {
+            leaf number-of-dynamic-address {
+              type uint16;
+              description
+                "Specifies the number of IP addresses to be
+                 assigned to the customer on this access.";
+            }
+          }
+          case explicit {
+            container customer-addresses {
+              description
+                "Container for customer addresses to be allocated
+                 using DHCP.";
+              list address-pool {
+                key "pool-id";
+                description
+                  "Describes IP addresses to be dyncamically
+                   allocated.
+
+                   When only 'start-address' is present, it
+                   represents a single address.
+
+                   When both 'start-address' and 'end-address' are
+                   specified, it implies a range inclusive of both
+                   addresses.";
+                leaf pool-id {
+                  type string;
+                  description
+                    "A pool identifier for the address range from
+                     'start-address' to 'end-address'.";
+                }
+                leaf start-address {
+                  type inet:ipv6-address;
+                  mandatory true;
+                  description
+                    "Indicates the first address in the pool.";
+                }
+                leaf end-address {
+                  type inet:ipv6-address;
+                  description
+                    "Indicates the last address in the pool.";
+                }
+              }
+            }
+          }
+        }
+        choice provider-dhcp {
+          description
+            "Parameters related to DHCP-allocated addresses.
+             IP addresses are allocated by DHCP, which is provided
+             by the operator.";
+          leaf dhcp-service-type {
+            type enumeration {
+              enum server {
+                description
+                  "Local DHCP server.";
+              }
+              enum relay {
+                description
+                  "Local DHCP relay.  DHCP requests are relayed
+                   to a provider's server.";
+              }
+            }
+            description
+              "Indicates the type of DHCP service to
+               be enabled on this access.";
+          }
+        }
+        choice dhcp-relay {
+          description
+            "The DHCP relay is provided by the operator.";
+          container customer-dhcp-servers {
+            description
+              "Container for a list of the customer's DHCP servers.";
+            leaf-list server-ip-address {
+              type inet:ipv6-address;
+              description
+                "IPv6 addresses of the customer's DHCP server.";
+            }
+          }
+        }
+      }
+      case static-addresses {
+        description
+          "Lists the IPv6 addresses that are used.";
+        list address {
+          key "address-id";
+          ordered-by user;
+          description
+            "Lists the IPv6 addresses that are used. The first
+             address of the list is the primary IP address of
+             the connection.";
+          leaf address-id {
+            type string;
+            description
+              "An identifier of the static IPv6 address.";
+          }
+          leaf customer-address {
+            type inet:ipv6-address;
+            description
+              "An IPv6 address of the customer side.";
+          }
+        }
+      }
+    }
+  }
+
+  /**** Routing ****/
+  // Routing authentication
+
+  grouping bgp-authentication {
+    description
+      "Grouping for BGP authentication parameters.";
+    container authentication {
+      description
+        "Container for BGP authentication  parameters.";
+      leaf enabled {
+        type boolean;
+        description
+          "Enables or disables authentication.";
+      }
+      container keying-material {
+        when "../enabled = 'true'";
+        description
+          "Container for describing how a BGP routing session is to
+           be secured on an AC.";
+        choice option {
+          description
+            "Choice of authentication options.";
+          case ao {
+            description
+              "Uses the TCP Authentication Option (TCP-AO).";
+            reference
+              "RFC 5925: The TCP Authentication Option";
+            leaf enable-ao {
+              type boolean;
+              description
+                "Enables the TCP-AO.";
+            }
+            leaf ao-keychain {
+              type key-chain:key-chain-ref;
+              description
+                "Reference to the TCP-AO key chain.";
+              reference
+                "RFC 8177: YANG Data Model for Key Chains";
+            }
+          }
+          case md5 {
+            description
+              "Uses MD5 to secure the session.";
+            reference
+              "RFC 4364: BGP/MPLS IP Virtual Private Networks
+                         (VPNs), Section 13.2";
+            leaf md5-keychain {
+              type key-chain:key-chain-ref;
+              description
+                "Reference to the MD5 key chain.";
+              reference
+                "RFC 8177: YANG Data Model for Key Chains";
+            }
+          }
+          case explicit {
+            leaf key-id {
+              type uint32;
+              description
+                "Key identifier.";
+            }
+            leaf key {
+              type string;
+              description
+                "BGP authentication key.
+
+                 This model only supports the subset of keys that
+                 are representable as ASCII strings.";
+            }
+            leaf crypto-algorithm {
+              type identityref {
+                base key-chain:crypto-algorithm;
+              }
+              description
+                "Indicates the cryptographic algorithm associated
+                 with the key.";
+            }
+          }
+        }
+      }
+    }
+  }
+
+  grouping ospf-authentication {
+    description
+      "Authentication configuration.";
+    container authentication {
+      description
+        "Container for OSPF authentication  parameters.";
+      leaf enabled {
+        type boolean;
+        description
+          "Enables or disables authentication.";
+      }
+      container keying-material {
+        when "../enabled = 'true'";
+        description
+          "Container for describing how an OSPF session is to be
+           secured for this AC.";
+        choice option {
+          description
+            "Options for OSPF authentication.";
+          case auth-key-chain {
+            leaf key-chain {
+              type key-chain:key-chain-ref;
+              description
+                "Name of the key chain.";
+            }
+          }
+          case auth-key-explicit {
+            leaf key-id {
+              type uint32;
+              description
+                "Key identifier.";
+            }
+            leaf key {
+              type string;
+              description
+                "OSPF authentication key.
+
+                 This model only supports the subset of keys that
+                 are representable as ASCII strings.";
+            }
+            leaf crypto-algorithm {
+              type identityref {
+                base key-chain:crypto-algorithm;
+              }
+              description
+                "Indicates the cryptographic algorithm associated
+                 with the key.";
+            }
+          }
+        }
+      }
+    }
+  }
+
+  grouping isis-authentication {
+    description
+      "IS-IS authentication configuration.";
+    container authentication {
+      description
+        "Container for IS-IS authentication  parameters.";
+      leaf enabled {
+        type boolean;
+        description
+          "Enables or disables authentication.";
+      }
+      container keying-material {
+        when "../enabled = 'true'";
+        description
+          "Container for describing how an IS-IS session is secured
+           over an AC.";
+        choice option {
+          description
+            "Options for IS-IS authentication.";
+          case auth-key-chain {
+            leaf key-chain {
+              type key-chain:key-chain-ref;
+              description
+                "Name of the key chain.";
+            }
+          }
+          case auth-key-explicit {
+            leaf key-id {
+              type uint32;
+              description
+                "Key identifier.";
+            }
+            leaf key {
+              type string;
+              description
+                "IS-IS authentication key.
+
+                 This model only supports the subset of keys that
+                 are representable as ASCII strings.";
+            }
+            leaf crypto-algorithm {
+              type identityref {
+                base key-chain:crypto-algorithm;
+              }
+              description
+                "Indicates the cryptographic algorithm associated
+                 with the key.";
+            }
+          }
+        }
+      }
+    }
+  }
+
+  grouping rip-authentication {
+    description
+      "RIP authentication configuration.";
+    container authentication {
+      description
+        "Container for RIP authentication  parameters.";
+      leaf enabled {
+        type boolean;
+        description
+          "Enables or disables authentication.";
+      }
+      container keying-material {
+        when "../enabled = 'true'";
+        description
+          "Container for describing how a RIP session is to be
+           secured on this AC.";
+        choice option {
+          description
+            "Specifies the authentication
+             scheme.";
+          case auth-key-chain {
+            leaf key-chain {
+              type key-chain:key-chain-ref;
+              description
+                "Name of the key chain.";
+            }
+          }
+          case auth-key-explicit {
+            leaf key {
+              type string;
+              description
+                "RIP authentication key.
+
+                 This model only supports the subset of keys that
+                 are representable as ASCII strings.";
+            }
+            leaf crypto-algorithm {
+              type identityref {
+                base key-chain:crypto-algorithm;
+              }
+              description
+                "Indicates the cryptographic algorithm associated
+                 with the key.";
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // Basic routing parameters
+
+  grouping bgp-peer-group-without-name {
+    description
+      "Identifies a BGP peer-group configured on the local system.";
+    leaf local-as {
+      type inet:as-number;
+      description
+        "Indicates a local AS Number (ASN). This ASN is exposed
+         to a customer so that it knows which ASN to use
+         to set up a BGP session.";
+    }
+    leaf peer-as {
+      type inet:as-number;
+      description
+        "Indicates the customer's ASN when the customer
+         requests BGP routing.";
+    }
+    leaf address-family {
+      type identityref {
+        base vpn-common:address-family;
+      }
+      description
+        "This node contains the address families to be activated.
+         'dual-stack' means that both IPv4 and IPv6 will be
+         activated.";
+    }
+    leaf role {
+      type identityref {
+        base ac-common:bgp-role;
+      }
+      description
+        "Specifies the BGP role (provider, customer, peer, etc.).";
+      reference
+        "RFC 9234: Route Leak Prevention and Detection Using
+                   Roles in UPDATE and OPEN Messages, Section 4";
+    }
+  }
+
+  grouping bgp-peer-group-with-name {
+    description
+      "Identifies a BGP peer-group configured on the local system -
+       identified by a peer-group name.";
+    leaf name {
+      type string;
+      description
+        "Name of the BGP peer-group.";
+    }
+    uses bgp-peer-group-without-name;
+  }
+
+  grouping ospf-basic {
+    description
+      "Configuration specific to OSPF.";
+    leaf address-family {
+      type identityref {
+        base vpn-common:address-family;
+      }
+      description
+        "Indicates whether IPv4, IPv6, or both are to be activated.";
+    }
+    leaf area-id {
+      type yang:dotted-quad;
+      mandatory true;
+      description
+        "Area ID.";
+      reference
+        "RFC 4577: OSPF as the Provider/Customer Edge Protocol
+                   for BGP/MPLS IP Virtual Private Networks
+                   (VPNs), Section 4.2.3
+         RFC 6565: OSPFv3 as a Provider Edge to Customer Edge
+                   (PE-CE) Routing Protocol, Section 4.2";
+    }
+    leaf metric {
+      type uint16;
+      description
+        "Metric of the AC.  It is used in the routing state
+         calculation and path selection.";
+    }
+  }
+
+  grouping isis-basic {
+    description
+      "Basic configuration specific to IS-IS.";
+    leaf address-family {
+      type identityref {
+        base vpn-common:address-family;
+      }
+      description
+        "Indicates whether IPv4, IPv6, or both are to be activated.";
+    }
+    leaf area-address {
+      type area-address;
+      mandatory true;
+      description
+        "Area address.";
+    }
+  }
+
+  // Static routing
+
+  grouping ipv4-static-rtg-entry {
+    description
+      "Paramters to configure a specific IPv4 static routing entry.";
+    leaf lan {
+      type inet:ipv4-prefix;
+      description
+        "LAN prefix.";
+    }
+    leaf lan-tag {
+      type string;
+      description
+        "Internal tag to be used in service policies.";
+    }
+    leaf next-hop {
+      type union {
+        type inet:ip-address;
+        type predefined-next-hop;
+      }
+      description
+        "The next hop that is to be used for the static route.
+         This may be specified as an IP address or a
+         predefined next-hop type (e.g., 'discard' or
+         'local-link').";
+    }
+    leaf metric {
+      type uint32;
+      description
+        "Indicates the metric associated with the static route.";
+    }
+  }
+
+  grouping ipv4-static-rtg {
+    description
+      "Configuration specific to IPv4 static routing.";
+    list ipv4-lan-prefixes {
+      if-feature "vpn-common:ipv4";
+      key "lan next-hop";
+      description
+        "List of LAN prefixes for the site.";
+      uses ipv4-static-rtg-entry;
+      uses ac-common:service-status;
+    }
+  }
+
+  grouping ipv6-static-rtg-entry {
+    description
+      "Paramters to configure a specific IPv6 static routing entry.";
+    leaf lan {
+      type inet:ipv6-prefix;
+      description
+        "LAN prefixes.";
+    }
+    leaf lan-tag {
+      type string;
+      description
+        "Internal tag to be used in service (e.g., VPN) policies.";
+    }
+    leaf next-hop {
+      type union {
+        type inet:ip-address;
+        type predefined-next-hop;
+      }
+      description
+        "The next hop that is to be used for the static route.
+         This may be specified as an IP address or a predefined
+         next-hop type (e.g., 'discard' or 'local-link').";
+    }
+    leaf metric {
+      type uint32;
+      description
+        "Indicates the metric associated with the static route.";
+    }
+  }
+
+  grouping ipv6-static-rtg {
+    description
+      "Configuration specific to IPv6 static routing.";
+    list ipv6-lan-prefixes {
+      if-feature "vpn-common:ipv6";
+      key "lan next-hop";
+      description
+        "List of LAN prefixes for the site.";
+      uses ipv6-static-rtg-entry;
+      uses ac-common:service-status;
+    }
+  }
+
+  // OAM
+
+  grouping bfd {
+    description
+      "A grouping for basic BFD.";
+    leaf holdtime {
+      type uint32;
+      units "milliseconds";
+      description
+        "Expected BFD holdtime.
+         The customer may impose some fixed values
+         for the holdtime period if the provider allows
+         the customer to use this function.
+         If the provider doesn't allow the customer to
+         use this function, fixed values will not be set.";
+      reference
+        "RFC 5880: Bidirectional Forwarding Detection (BFD),
+                   Section 6.8.18";
+    }
+  }
+
+  // redundancy
+
+  grouping redundancy-group {
+    description
+      "A grouping for redundancy group.";
+    list group {
+       key "group-id";
+       description
+         "List of group-ids.";
+       leaf group-id {
+         type string;
+         description
+           "Indicates the group-id to which the AC belongs.";
+       }
+       leaf precedence {
+         type identityref {
+           base ac-common:precedence-type;
+         }
+         description
+           "Defines redundancy of an AC.";
+       }
+     }
+   }
+
+  // QoS
+
+  grouping bandwidth-parameters {
+    description
+      "A grouping for bandwidth parameters.";
+    leaf cir {
+      type uint64;
+      units "bps";
+      description
+        "Committed Information Rate (CIR). The maximum number of bits
+         that a port can receive or send during one second over
+         an interface.";
+    }
+    leaf cbs {
+      type uint64;
+      units "bytes";
+      description
+        "Committed Burst Size (CBS). CBS controls the bursty nature
+         of the traffic.  Traffic that does not use the configured
+         CIR accumulates credits until the credits reach the
+         configured CBS.";
+    }
+    leaf eir {
+      type uint64;
+      units "bps";
+      description
+        "Excess Information Rate (EIR), i.e., excess frame delivery
+         allowed not subject to a Service Level Agreement (SLA).
+         The traffic rate can be limited by EIR.";
+    }
+    leaf ebs {
+      type uint64;
+      units "bytes";
+      description
+        "Excess Burst Size (EBS).  The bandwidth available for burst
+         traffic from the EBS is subject to the amount of bandwidth
+         that is accumulated during periods when traffic allocated
+         by the EIR policy is not used.";
+    }
+    leaf pir {
+      type uint64;
+      units "bps";
+      description
+        "Peak Information Rate (PIR), i.e., maximum frame delivery
+         allowed. It is equal to or less than sum of CIR and EIR.";
+    }
+    leaf pbs {
+      type uint64;
+      units "bytes";
+      description
+        "Peak Burst Size (PBS).";
+    }
+  }
+
+  grouping bandwidth-per-type {
+    description
+      "Grouping for bandwidth per type.";
+    list bandwidth {
+      key "bw-type";
+      description
+        "List for bandwidth per type data nodes.";
+      leaf bw-type {
+        type identityref {
+          base vpn-common:bw-type;
+        }
+        description
+          "Indicates the bandwidth type.";
+      }
+      choice type {
+        description
+          "Choice based upon bandwidth type.";
+        case per-cos {
+          description
+            "Bandwidth per CoS.";
+          list cos {
+            key "cos-id";
+            description
+              "List of Class of Services.";
+            leaf cos-id {
+              type uint8;
+              description
+                "Identifier of the CoS, indicated by a Differentiated
+                 Services Code Point (DSCP) or a CE-CLAN CoS (802.1p)
+                 value in the service frame.";
+              reference
+                "IEEE Std 802.1Q: Bridges and Bridged Networks";
+            }
+            uses bandwidth-parameters;
+          }
+        }
+        case other {
+          description
+            "Other bandwidth types.";
+          uses bandwidth-parameters;
+        }
+      }
+    }
+  }
+}
+
+&lt;CODE ENDS&gt;</pre><a href="#section-5-2" class="pilcrow">¶</a>
+</div>
+</section>
+</div>
+<div id="security-considerations">
+<section id="section-6">
+      <h2 id="name-security-considerations">
+<a href="#section-6" class="section-number selfRef">6. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
+      </h2>
+<p id="section-6-1">This section is modeled after the template described in <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-netmod-rfc8407bis-21#section-3.7" class="relref">Section 3.7</a> of [<a href="#I-D.ietf-netmod-rfc8407bis" class="cite xref">I-D.ietf-netmod-rfc8407bis</a>]</span>.<a href="#section-6-1" class="pilcrow">¶</a></p>
+<p id="section-6-2">The "ietf-ac-common" YANG module defines a data model that is
+designed to be accessed via YANG-based management protocols, such as
+NETCONF <span>[<a href="#RFC6241" class="cite xref">RFC6241</a>]</span> and RESTCONF <span>[<a href="#RFC8040" class="cite xref">RFC8040</a>]</span>. These protocols have to
+use a secure transport layer (e.g., SSH <span>[<a href="#RFC4252" class="cite xref">RFC4252</a>]</span>, TLS <span>[<a href="#RFC8446" class="cite xref">RFC8446</a>]</span>, and
+QUIC <span>[<a href="#RFC9000" class="cite xref">RFC9000</a>]</span>) and have to use mutual authentication.<a href="#section-6-2" class="pilcrow">¶</a></p>
+<p id="section-6-3">The Network Configuration Access Control Model (NACM) <span>[<a href="#RFC8341" class="cite xref">RFC8341</a>]</span>
+provides the means to restrict access for particular NETCONF or
+RESTCONF users to a preconfigured subset of all available NETCONF or
+RESTCONF protocol operations and content.<a href="#section-6-3" class="pilcrow">¶</a></p>
+<p id="section-6-4">The YANG module defines a set of identities, types, and
+groupings. These nodes are intended to be reused by other YANG
+modules. The module by itself does not expose any data nodes that
+are writable, data nodes that contain read-only state, or RPCs.
+As such, there are no additional security issues related to
+the YANG module that need to be considered.<a href="#section-6-4" class="pilcrow">¶</a></p>
+<p id="section-6-5">Modules that use the groupings that are defined in this document
+should identify the corresponding security considerations. For
+   example, reusing some of these groupings will expose privacy-related
+   information (e.g., 'ipv6-lan-prefixes' or 'ipv4-lan-prefixes').  Disclosing such information may
+   be considered a violation of the customer-provider trust
+   relationship.<a href="#section-6-5" class="pilcrow">¶</a></p>
+<p id="section-6-6">Several groupings ('bgp-authentication', 'ospf-authentication', 'isis-authentication', and 'rip-authentication') rely
+   upon <span>[<a href="#RFC8177" class="cite xref">RFC8177</a>]</span> for authentication purposes.  As such, modules that will reuse these groupings
+   will inherit the security considerations discussed in
+   <span><a href="https://rfc-editor.org/rfc/rfc8177#section-5" class="relref">Section 5</a> of [<a href="#RFC8177" class="cite xref">RFC8177</a>]</span>.  Also, these groupings support supplying explicit keys as
+   strings in ASCII format.  The use of keys in hexadecimal string
+   format would afford greater key entropy with the same number of key-
+   string octets.  However, such a format is not included in this
+   version of the common AC model, because it is not supported by the underlying
+   device modules (e.g., <span>[<a href="#RFC8695" class="cite xref">RFC8695</a>]</span>).<a href="#section-6-6" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="iana-considerations">
+<section id="section-7">
+      <h2 id="name-iana-considerations">
+<a href="#section-7" class="section-number selfRef">7. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
+      </h2>
+<p id="section-7-1">IANA is requested to register the following URI in the "ns" subregistry within
+   the "IETF XML Registry" <span>[<a href="#RFC3688" class="cite xref">RFC3688</a>]</span>:<a href="#section-7-1" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-7-2">
+<pre>
+   URI:  urn:ietf:params:xml:ns:yang:ietf-ac-common
+   Registrant Contact:  The IESG.
+   XML:  N/A; the requested URI is an XML namespace.
+</pre><a href="#section-7-2" class="pilcrow">¶</a>
+</div>
+<p id="section-7-3">IANA is requested to register the following YANG module in the "YANG Module
+   Names" subregistry <span>[<a href="#RFC6020" class="cite xref">RFC6020</a>]</span> within the "YANG Parameters" registry:<a href="#section-7-3" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-7-4">
+<pre>
+   Name:  ietf-ac-common
+   Namespace:  urn:ietf:params:xml:ns:yang:ietf-ac-common
+   Prefix:  ac-common
+   Maintained by IANA?  N
+   Reference:  RFC XXXX
+</pre><a href="#section-7-4" class="pilcrow">¶</a>
+</div>
+</section>
+</div>
+<div id="sec-combined-references">
+<section id="section-8">
+      <h2 id="name-references">
+<a href="#section-8" class="section-number selfRef">8. </a><a href="#name-references" class="section-name selfRef">References</a>
+      </h2>
+<div id="sec-normative-references">
+<section id="section-8.1">
+        <h3 id="name-normative-references">
+<a href="#section-8.1" class="section-number selfRef">8.1. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
+        </h3>
+<dl class="references">
+<dt id="ISO10589">[ISO10589]</dt>
+        <dd>
+<span class="refAuthor">ISO</span>, <span class="refTitle">"Information technology - Telecommunications and information exchange between systems - Intermediate System to Intermediate System intra-domain routeing information exchange protocol for use in conjunction with the protocol for providing the connectionless-mode network service (ISO8473)"</span>, <time datetime="2002" class="refDate">2002</time>, <span>&lt;<a href="https://www.iso.org/standard/30932.html">https://www.iso.org/standard/30932.html</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC1195">[RFC1195]</dt>
+        <dd>
+<span class="refAuthor">Callon, R.</span>, <span class="refTitle">"Use of OSI IS-IS for routing in TCP/IP and dual environments"</span>, <span class="seriesInfo">RFC 1195</span>, <span class="seriesInfo">DOI 10.17487/RFC1195</span>, <time datetime="1990-12" class="refDate">December 1990</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc1195">https://www.rfc-editor.org/rfc/rfc1195</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC2080">[RFC2080]</dt>
+        <dd>
+<span class="refAuthor">Malkin, G.</span> and <span class="refAuthor">R. Minnear</span>, <span class="refTitle">"RIPng for IPv6"</span>, <span class="seriesInfo">RFC 2080</span>, <span class="seriesInfo">DOI 10.17487/RFC2080</span>, <time datetime="1997-01" class="refDate">January 1997</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc2080">https://www.rfc-editor.org/rfc/rfc2080</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC2453">[RFC2453]</dt>
+        <dd>
+<span class="refAuthor">Malkin, G.</span>, <span class="refTitle">"RIP Version 2"</span>, <span class="seriesInfo">STD 56</span>, <span class="seriesInfo">RFC 2453</span>, <span class="seriesInfo">DOI 10.17487/RFC2453</span>, <time datetime="1998-11" class="refDate">November 1998</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc2453">https://www.rfc-editor.org/rfc/rfc2453</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC3688">[RFC3688]</dt>
+        <dd>
+<span class="refAuthor">Mealling, M.</span>, <span class="refTitle">"The IETF XML Registry"</span>, <span class="seriesInfo">BCP 81</span>, <span class="seriesInfo">RFC 3688</span>, <span class="seriesInfo">DOI 10.17487/RFC3688</span>, <time datetime="2004-01" class="refDate">January 2004</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc3688">https://www.rfc-editor.org/rfc/rfc3688</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC4271">[RFC4271]</dt>
+        <dd>
+<span class="refAuthor">Rekhter, Y., Ed.</span>, <span class="refAuthor">Li, T., Ed.</span>, and <span class="refAuthor">S. Hares, Ed.</span>, <span class="refTitle">"A Border Gateway Protocol 4 (BGP-4)"</span>, <span class="seriesInfo">RFC 4271</span>, <span class="seriesInfo">DOI 10.17487/RFC4271</span>, <time datetime="2006-01" class="refDate">January 2006</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc4271">https://www.rfc-editor.org/rfc/rfc4271</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC4577">[RFC4577]</dt>
+        <dd>
+<span class="refAuthor">Rosen, E.</span>, <span class="refAuthor">Psenak, P.</span>, and <span class="refAuthor">P. Pillay-Esnault</span>, <span class="refTitle">"OSPF as the Provider/Customer Edge Protocol for BGP/MPLS IP Virtual Private Networks (VPNs)"</span>, <span class="seriesInfo">RFC 4577</span>, <span class="seriesInfo">DOI 10.17487/RFC4577</span>, <time datetime="2006-06" class="refDate">June 2006</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc4577">https://www.rfc-editor.org/rfc/rfc4577</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC5308">[RFC5308]</dt>
+        <dd>
+<span class="refAuthor">Hopps, C.</span>, <span class="refTitle">"Routing IPv6 with IS-IS"</span>, <span class="seriesInfo">RFC 5308</span>, <span class="seriesInfo">DOI 10.17487/RFC5308</span>, <time datetime="2008-10" class="refDate">October 2008</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc5308">https://www.rfc-editor.org/rfc/rfc5308</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC5925">[RFC5925]</dt>
+        <dd>
+<span class="refAuthor">Touch, J.</span>, <span class="refAuthor">Mankin, A.</span>, and <span class="refAuthor">R. Bonica</span>, <span class="refTitle">"The TCP Authentication Option"</span>, <span class="seriesInfo">RFC 5925</span>, <span class="seriesInfo">DOI 10.17487/RFC5925</span>, <time datetime="2010-06" class="refDate">June 2010</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc5925">https://www.rfc-editor.org/rfc/rfc5925</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC6020">[RFC6020]</dt>
+        <dd>
+<span class="refAuthor">Bjorklund, M., Ed.</span>, <span class="refTitle">"YANG - A Data Modeling Language for the Network Configuration Protocol (NETCONF)"</span>, <span class="seriesInfo">RFC 6020</span>, <span class="seriesInfo">DOI 10.17487/RFC6020</span>, <time datetime="2010-10" class="refDate">October 2010</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc6020">https://www.rfc-editor.org/rfc/rfc6020</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC6565">[RFC6565]</dt>
+        <dd>
+<span class="refAuthor">Pillay-Esnault, P.</span>, <span class="refAuthor">Moyer, P.</span>, <span class="refAuthor">Doyle, J.</span>, <span class="refAuthor">Ertekin, E.</span>, and <span class="refAuthor">M. Lundberg</span>, <span class="refTitle">"OSPFv3 as a Provider Edge to Customer Edge (PE-CE) Routing Protocol"</span>, <span class="seriesInfo">RFC 6565</span>, <span class="seriesInfo">DOI 10.17487/RFC6565</span>, <time datetime="2012-06" class="refDate">June 2012</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc6565">https://www.rfc-editor.org/rfc/rfc6565</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC6991">[RFC6991]</dt>
+        <dd>
+<span class="refAuthor">Schoenwaelder, J., Ed.</span>, <span class="refTitle">"Common YANG Data Types"</span>, <span class="seriesInfo">RFC 6991</span>, <span class="seriesInfo">DOI 10.17487/RFC6991</span>, <time datetime="2013-07" class="refDate">July 2013</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc6991">https://www.rfc-editor.org/rfc/rfc6991</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC7348">[RFC7348]</dt>
+        <dd>
+<span class="refAuthor">Mahalingam, M.</span>, <span class="refAuthor">Dutt, D.</span>, <span class="refAuthor">Duda, K.</span>, <span class="refAuthor">Agarwal, P.</span>, <span class="refAuthor">Kreeger, L.</span>, <span class="refAuthor">Sridhar, T.</span>, <span class="refAuthor">Bursell, M.</span>, and <span class="refAuthor">C. Wright</span>, <span class="refTitle">"Virtual eXtensible Local Area Network (VXLAN): A Framework for Overlaying Virtualized Layer 2 Networks over Layer 3 Networks"</span>, <span class="seriesInfo">RFC 7348</span>, <span class="seriesInfo">DOI 10.17487/RFC7348</span>, <time datetime="2014-08" class="refDate">August 2014</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc7348">https://www.rfc-editor.org/rfc/rfc7348</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC8077">[RFC8077]</dt>
+        <dd>
+<span class="refAuthor">Martini, L., Ed.</span> and <span class="refAuthor">G. Heron, Ed.</span>, <span class="refTitle">"Pseudowire Setup and Maintenance Using the Label Distribution Protocol (LDP)"</span>, <span class="seriesInfo">STD 84</span>, <span class="seriesInfo">RFC 8077</span>, <span class="seriesInfo">DOI 10.17487/RFC8077</span>, <time datetime="2017-02" class="refDate">February 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8077">https://www.rfc-editor.org/rfc/rfc8077</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC8177">[RFC8177]</dt>
+        <dd>
+<span class="refAuthor">Lindem, A., Ed.</span>, <span class="refAuthor">Qu, Y.</span>, <span class="refAuthor">Yeung, D.</span>, <span class="refAuthor">Chen, I.</span>, and <span class="refAuthor">J. Zhang</span>, <span class="refTitle">"YANG Data Model for Key Chains"</span>, <span class="seriesInfo">RFC 8177</span>, <span class="seriesInfo">DOI 10.17487/RFC8177</span>, <time datetime="2017-06" class="refDate">June 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8177">https://www.rfc-editor.org/rfc/rfc8177</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC8341">[RFC8341]</dt>
+        <dd>
+<span class="refAuthor">Bierman, A.</span> and <span class="refAuthor">M. Bjorklund</span>, <span class="refTitle">"Network Configuration Access Control Model"</span>, <span class="seriesInfo">STD 91</span>, <span class="seriesInfo">RFC 8341</span>, <span class="seriesInfo">DOI 10.17487/RFC8341</span>, <time datetime="2018-03" class="refDate">March 2018</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8341">https://www.rfc-editor.org/rfc/rfc8341</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC8342">[RFC8342]</dt>
+        <dd>
+<span class="refAuthor">Bjorklund, M.</span>, <span class="refAuthor">Schoenwaelder, J.</span>, <span class="refAuthor">Shafer, P.</span>, <span class="refAuthor">Watsen, K.</span>, and <span class="refAuthor">R. Wilton</span>, <span class="refTitle">"Network Management Datastore Architecture (NMDA)"</span>, <span class="seriesInfo">RFC 8342</span>, <span class="seriesInfo">DOI 10.17487/RFC8342</span>, <time datetime="2018-03" class="refDate">March 2018</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8342">https://www.rfc-editor.org/rfc/rfc8342</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC9181">[RFC9181]</dt>
+      <dd>
+<span class="refAuthor">Barguil, S.</span>, <span class="refAuthor">Gonzalez de Dios, O., Ed.</span>, <span class="refAuthor">Boucadair, M., Ed.</span>, and <span class="refAuthor">Q. Wu</span>, <span class="refTitle">"A Common YANG Data Model for Layer 2 and Layer 3 VPNs"</span>, <span class="seriesInfo">RFC 9181</span>, <span class="seriesInfo">DOI 10.17487/RFC9181</span>, <time datetime="2022-02" class="refDate">February 2022</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9181">https://www.rfc-editor.org/rfc/rfc9181</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+</dl>
+</section>
+</div>
+<div id="sec-informative-references">
+<section id="section-8.2">
+        <h3 id="name-informative-references">
+<a href="#section-8.2" class="section-number selfRef">8.2. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
+        </h3>
+<dl class="references">
+<dt id="I-D.ietf-netmod-rfc8407bis">[I-D.ietf-netmod-rfc8407bis]</dt>
+        <dd>
+<span class="refAuthor">Bierman, A.</span>, <span class="refAuthor">Boucadair, M.</span>, and <span class="refAuthor">Q. Wu</span>, <span class="refTitle">"Guidelines for Authors and Reviewers of Documents Containing YANG Data Models"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-netmod-rfc8407bis-21</span>, <time datetime="2024-11-13" class="refDate">13 November 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-netmod-rfc8407bis-21">https://datatracker.ietf.org/doc/html/draft-ietf-netmod-rfc8407bis-21</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="I-D.ietf-opsawg-ac-lxsm-lxnm-glue">[I-D.ietf-opsawg-ac-lxsm-lxnm-glue]</dt>
+        <dd>
+<span class="refAuthor">Boucadair, M.</span>, <span class="refAuthor">Roberts, R.</span>, <span class="refAuthor">Barguil, S.</span>, and <span class="refAuthor">O. G. de Dios</span>, <span class="refTitle">"A YANG Data Model for Augmenting VPN Service and Network Models with Attachment Circuits"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-opsawg-ac-lxsm-lxnm-glue-11</span>, <time datetime="2024-11-07" class="refDate">7 November 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-ac-lxsm-lxnm-glue-11">https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-ac-lxsm-lxnm-glue-11</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="I-D.ietf-opsawg-ntw-attachment-circuit">[I-D.ietf-opsawg-ntw-attachment-circuit]</dt>
+        <dd>
+<span class="refAuthor">Boucadair, M.</span>, <span class="refAuthor">Roberts, R.</span>, <span class="refAuthor">de Dios, O. G.</span>, <span class="refAuthor">Barguil, S.</span>, and <span class="refAuthor">B. Wu</span>, <span class="refTitle">"A Network YANG Data Model for Attachment Circuits"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-opsawg-ntw-attachment-circuit-14</span>, <time datetime="2024-11-07" class="refDate">7 November 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-ntw-attachment-circuit-14">https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-ntw-attachment-circuit-14</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="I-D.ietf-opsawg-teas-attachment-circuit">[I-D.ietf-opsawg-teas-attachment-circuit]</dt>
+        <dd>
+<span class="refAuthor">Boucadair, M.</span>, <span class="refAuthor">Roberts, R.</span>, <span class="refAuthor">de Dios, O. G.</span>, <span class="refAuthor">Barguil, S.</span>, and <span class="refAuthor">B. Wu</span>, <span class="refTitle">"YANG Data Models for Bearers and 'Attachment Circuits'-as-a-Service (ACaaS)"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-opsawg-teas-attachment-circuit-18</span>, <time datetime="2024-11-07" class="refDate">7 November 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-teas-attachment-circuit-18">https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-teas-attachment-circuit-18</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="I-D.ietf-teas-ietf-network-slice-nbi-yang">[I-D.ietf-teas-ietf-network-slice-nbi-yang]</dt>
+        <dd>
+<span class="refAuthor">Wu, B.</span>, <span class="refAuthor">Dhody, D.</span>, <span class="refAuthor">Rokui, R.</span>, <span class="refAuthor">Saad, T.</span>, and <span class="refAuthor">J. Mullooly</span>, <span class="refTitle">"A YANG Data Model for the RFC 9543 Network Slice Service"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-teas-ietf-network-slice-nbi-yang-16</span>, <time datetime="2024-08-28" class="refDate">28 August 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-teas-ietf-network-slice-nbi-yang-16">https://datatracker.ietf.org/doc/html/draft-ietf-teas-ietf-network-slice-nbi-yang-16</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC4252">[RFC4252]</dt>
+        <dd>
+<span class="refAuthor">Ylonen, T.</span> and <span class="refAuthor">C. Lonvick, Ed.</span>, <span class="refTitle">"The Secure Shell (SSH) Authentication Protocol"</span>, <span class="seriesInfo">RFC 4252</span>, <span class="seriesInfo">DOI 10.17487/RFC4252</span>, <time datetime="2006-01" class="refDate">January 2006</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc4252">https://www.rfc-editor.org/rfc/rfc4252</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC4364">[RFC4364]</dt>
+        <dd>
+<span class="refAuthor">Rosen, E.</span> and <span class="refAuthor">Y. Rekhter</span>, <span class="refTitle">"BGP/MPLS IP Virtual Private Networks (VPNs)"</span>, <span class="seriesInfo">RFC 4364</span>, <span class="seriesInfo">DOI 10.17487/RFC4364</span>, <time datetime="2006-02" class="refDate">February 2006</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc4364">https://www.rfc-editor.org/rfc/rfc4364</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC4862">[RFC4862]</dt>
+        <dd>
+<span class="refAuthor">Thomson, S.</span>, <span class="refAuthor">Narten, T.</span>, and <span class="refAuthor">T. Jinmei</span>, <span class="refTitle">"IPv6 Stateless Address Autoconfiguration"</span>, <span class="seriesInfo">RFC 4862</span>, <span class="seriesInfo">DOI 10.17487/RFC4862</span>, <time datetime="2007-09" class="refDate">September 2007</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc4862">https://www.rfc-editor.org/rfc/rfc4862</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC6241">[RFC6241]</dt>
+        <dd>
+<span class="refAuthor">Enns, R., Ed.</span>, <span class="refAuthor">Bjorklund, M., Ed.</span>, <span class="refAuthor">Schoenwaelder, J., Ed.</span>, and <span class="refAuthor">A. Bierman, Ed.</span>, <span class="refTitle">"Network Configuration Protocol (NETCONF)"</span>, <span class="seriesInfo">RFC 6241</span>, <span class="seriesInfo">DOI 10.17487/RFC6241</span>, <time datetime="2011-06" class="refDate">June 2011</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc6241">https://www.rfc-editor.org/rfc/rfc6241</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC7665">[RFC7665]</dt>
+        <dd>
+<span class="refAuthor">Halpern, J., Ed.</span> and <span class="refAuthor">C. Pignataro, Ed.</span>, <span class="refTitle">"Service Function Chaining (SFC) Architecture"</span>, <span class="seriesInfo">RFC 7665</span>, <span class="seriesInfo">DOI 10.17487/RFC7665</span>, <time datetime="2015-10" class="refDate">October 2015</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc7665">https://www.rfc-editor.org/rfc/rfc7665</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC8040">[RFC8040]</dt>
+        <dd>
+<span class="refAuthor">Bierman, A.</span>, <span class="refAuthor">Bjorklund, M.</span>, and <span class="refAuthor">K. Watsen</span>, <span class="refTitle">"RESTCONF Protocol"</span>, <span class="seriesInfo">RFC 8040</span>, <span class="seriesInfo">DOI 10.17487/RFC8040</span>, <time datetime="2017-01" class="refDate">January 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8040">https://www.rfc-editor.org/rfc/rfc8040</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC8299">[RFC8299]</dt>
+        <dd>
+<span class="refAuthor">Wu, Q., Ed.</span>, <span class="refAuthor">Litkowski, S.</span>, <span class="refAuthor">Tomotaki, L.</span>, and <span class="refAuthor">K. Ogaki</span>, <span class="refTitle">"YANG Data Model for L3VPN Service Delivery"</span>, <span class="seriesInfo">RFC 8299</span>, <span class="seriesInfo">DOI 10.17487/RFC8299</span>, <time datetime="2018-01" class="refDate">January 2018</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8299">https://www.rfc-editor.org/rfc/rfc8299</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC8340">[RFC8340]</dt>
+        <dd>
+<span class="refAuthor">Bjorklund, M.</span> and <span class="refAuthor">L. Berger, Ed.</span>, <span class="refTitle">"YANG Tree Diagrams"</span>, <span class="seriesInfo">BCP 215</span>, <span class="seriesInfo">RFC 8340</span>, <span class="seriesInfo">DOI 10.17487/RFC8340</span>, <time datetime="2018-03" class="refDate">March 2018</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8340">https://www.rfc-editor.org/rfc/rfc8340</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC8446">[RFC8446]</dt>
+        <dd>
+<span class="refAuthor">Rescorla, E.</span>, <span class="refTitle">"The Transport Layer Security (TLS) Protocol Version 1.3"</span>, <span class="seriesInfo">RFC 8446</span>, <span class="seriesInfo">DOI 10.17487/RFC8446</span>, <time datetime="2018-08" class="refDate">August 2018</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8446">https://www.rfc-editor.org/rfc/rfc8446</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC8466">[RFC8466]</dt>
+        <dd>
+<span class="refAuthor">Wen, B.</span>, <span class="refAuthor">Fioccola, G., Ed.</span>, <span class="refAuthor">Xie, C.</span>, and <span class="refAuthor">L. Jalil</span>, <span class="refTitle">"A YANG Data Model for Layer 2 Virtual Private Network (L2VPN) Service Delivery"</span>, <span class="seriesInfo">RFC 8466</span>, <span class="seriesInfo">DOI 10.17487/RFC8466</span>, <time datetime="2018-10" class="refDate">October 2018</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8466">https://www.rfc-editor.org/rfc/rfc8466</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC8695">[RFC8695]</dt>
+        <dd>
+<span class="refAuthor">Liu, X.</span>, <span class="refAuthor">Sarda, P.</span>, and <span class="refAuthor">V. Choudhary</span>, <span class="refTitle">"A YANG Data Model for the Routing Information Protocol (RIP)"</span>, <span class="seriesInfo">RFC 8695</span>, <span class="seriesInfo">DOI 10.17487/RFC8695</span>, <time datetime="2020-02" class="refDate">February 2020</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8695">https://www.rfc-editor.org/rfc/rfc8695</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC8969">[RFC8969]</dt>
+        <dd>
+<span class="refAuthor">Wu, Q., Ed.</span>, <span class="refAuthor">Boucadair, M., Ed.</span>, <span class="refAuthor">Lopez, D.</span>, <span class="refAuthor">Xie, C.</span>, and <span class="refAuthor">L. Geng</span>, <span class="refTitle">"A Framework for Automating Service and Network Management with YANG"</span>, <span class="seriesInfo">RFC 8969</span>, <span class="seriesInfo">DOI 10.17487/RFC8969</span>, <time datetime="2021-01" class="refDate">January 2021</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8969">https://www.rfc-editor.org/rfc/rfc8969</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC9000">[RFC9000]</dt>
+        <dd>
+<span class="refAuthor">Iyengar, J., Ed.</span> and <span class="refAuthor">M. Thomson, Ed.</span>, <span class="refTitle">"QUIC: A UDP-Based Multiplexed and Secure Transport"</span>, <span class="seriesInfo">RFC 9000</span>, <span class="seriesInfo">DOI 10.17487/RFC9000</span>, <time datetime="2021-05" class="refDate">May 2021</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9000">https://www.rfc-editor.org/rfc/rfc9000</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC9182">[RFC9182]</dt>
+        <dd>
+<span class="refAuthor">Barguil, S.</span>, <span class="refAuthor">Gonzalez de Dios, O., Ed.</span>, <span class="refAuthor">Boucadair, M., Ed.</span>, <span class="refAuthor">Munoz, L.</span>, and <span class="refAuthor">A. Aguado</span>, <span class="refTitle">"A YANG Network Data Model for Layer 3 VPNs"</span>, <span class="seriesInfo">RFC 9182</span>, <span class="seriesInfo">DOI 10.17487/RFC9182</span>, <time datetime="2022-02" class="refDate">February 2022</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9182">https://www.rfc-editor.org/rfc/rfc9182</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC9291">[RFC9291]</dt>
+        <dd>
+<span class="refAuthor">Boucadair, M., Ed.</span>, <span class="refAuthor">Gonzalez de Dios, O., Ed.</span>, <span class="refAuthor">Barguil, S.</span>, and <span class="refAuthor">L. Munoz</span>, <span class="refTitle">"A YANG Network Data Model for Layer 2 VPNs"</span>, <span class="seriesInfo">RFC 9291</span>, <span class="seriesInfo">DOI 10.17487/RFC9291</span>, <time datetime="2022-09" class="refDate">September 2022</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9291">https://www.rfc-editor.org/rfc/rfc9291</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC9408">[RFC9408]</dt>
+      <dd>
+<span class="refAuthor">Boucadair, M., Ed.</span>, <span class="refAuthor">Gonzalez de Dios, O.</span>, <span class="refAuthor">Barguil, S.</span>, <span class="refAuthor">Wu, Q.</span>, and <span class="refAuthor">V. Lopez</span>, <span class="refTitle">"A YANG Network Data Model for Service Attachment Points (SAPs)"</span>, <span class="seriesInfo">RFC 9408</span>, <span class="seriesInfo">DOI 10.17487/RFC9408</span>, <time datetime="2023-06" class="refDate">June 2023</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9408">https://www.rfc-editor.org/rfc/rfc9408</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+</dl>
+</section>
+</div>
+</section>
+</div>
+<div id="AC-Common-Tree">
+<section id="appendix-A">
+      <h2 id="name-full-tree">
+<a href="#appendix-A" class="section-number selfRef">Appendix A. </a><a href="#name-full-tree" class="section-name selfRef">Full Tree</a>
+      </h2>
+<div class="alignLeft art-text artwork" id="appendix-A-1">
+<pre>
+module: ietf-ac-common
+
+  grouping service-status:
+    +-- status
+       +-- admin-status
+       |  +-- status?        identityref
+       |  +--ro last-change?   yang:date-and-time
+       +--ro oper-status
+          +--ro status?        identityref
+          +--ro last-change?   yang:date-and-time
+  grouping ac-profile-cfg:
+    +-- valid-provider-identifiers
+       +-- encryption-profile-identifier* [id]
+       |  +-- id   string
+       +-- qos-profile-identifier* [id]
+       |  +-- id   string
+       +-- failure-detection-profile-identifier* [id]
+       |  +-- id   string
+       +-- forwarding-profile-identifier* [id]
+       |  +-- id   string
+       +-- routing-profile-identifier* [id]
+          +-- id   string
+  grouping op-instructions:
+    +-- requested-start?   yang:date-and-time
+    +-- requested-stop?    yang:date-and-time
+    +--ro actual-start?      yang:date-and-time
+    +--ro actual-stop?       yang:date-and-time
+  grouping dot1q:
+    +-- tag-type?   identityref
+    +-- cvlan-id?   uint16
+  grouping priority-tagged:
+    +-- tag-type?   identityref
+  grouping qinq:
+    +-- tag-type?   identityref
+    +-- svlan-id    uint16
+    +-- cvlan-id    uint16
+  grouping pseudowire:
+    +-- vcid?      uint32
+    +-- far-end?   union
+  grouping vpls:
+    +-- vcid?      uint32
+    +-- far-end*   union
+  grouping vxlan:
+    +-- vni-id             uint32
+    +-- peer-mode?         identityref
+    +-- peer-ip-address*   inet:ip-address
+  grouping l2-tunnel-service:
+    +-- type?         identityref
+    +-- pseudowire
+    |  +-- vcid?      uint32
+    |  +-- far-end?   union
+    +-- vpls
+    |  +-- vcid?      uint32
+    |  +-- far-end*   union
+    +-- vxlan
+       +-- vni-id             uint32
+       +-- peer-mode?         identityref
+       +-- peer-ip-address*   inet:ip-address
+  grouping ipv4-allocation-type:
+    +-- prefix-length?             uint8
+    +-- address-allocation-type?   identityref
+  grouping ipv6-allocation-type:
+    +-- prefix-length?             uint8
+    +-- address-allocation-type?   identityref
+  grouping ipv4-connection-basic:
+    +-- prefix-length?                       uint8
+    +-- address-allocation-type?             identityref
+    +-- (allocation-type)?
+       +--:(dynamic)
+          +-- (provider-dhcp)?
+          |  +--:(dhcp-service-type)
+          |     +-- dhcp-service-type?       enumeration
+          +-- (dhcp-relay)?
+             +--:(customer-dhcp-servers)
+                +-- customer-dhcp-servers
+                   +-- server-ip-address*   inet:ipv4-address
+  grouping ipv6-connection-basic:
+    +-- prefix-length?                       uint8
+    +-- address-allocation-type?             identityref
+    +-- (allocation-type)?
+       +--:(dynamic)
+          +-- (provider-dhcp)?
+          |  +--:(dhcp-service-type)
+          |     +-- dhcp-service-type?       enumeration
+          +-- (dhcp-relay)?
+             +--:(customer-dhcp-servers)
+                +-- customer-dhcp-servers
+                   +-- server-ip-address*   inet:ipv6-address
+  grouping ipv4-connection:
+    +-- local-address?                           inet:ipv4-address
+    +-- virtual-address?                         inet:ipv4-address
+    +-- prefix-length?                           uint8
+    +-- address-allocation-type?                 identityref
+    +-- (allocation-type)?
+       +--:(dynamic)
+       |  +-- (address-assign)?
+       |  |  +--:(number)
+       |  |  |  +-- number-of-dynamic-address?   uint16
+       |  |  +--:(explicit)
+       |  |     +-- customer-addresses
+       |  |        +-- address-pool* [pool-id]
+       |  |           +-- pool-id          string
+       |  |           +-- start-address    inet:ipv4-address
+       |  |           +-- end-address?     inet:ipv4-address
+       |  +-- (provider-dhcp)?
+       |  |  +--:(dhcp-service-type)
+       |  |     +-- dhcp-service-type?           enumeration
+       |  +-- (dhcp-relay)?
+       |     +--:(customer-dhcp-servers)
+       |        +-- customer-dhcp-servers
+       |           +-- server-ip-address*   inet:ipv4-address
+       +--:(static-addresses)
+          +-- address* [address-id]
+             +-- address-id          string
+             +-- customer-address?   inet:ipv4-address
+  grouping ipv6-connection:
+    +-- local-address?                           inet:ipv6-address
+    +-- virtual-address?                         inet:ipv6-address
+    +-- prefix-length?                           uint8
+    +-- address-allocation-type?                 identityref
+    +-- (allocation-type)?
+       +--:(dynamic)
+       |  +-- (address-assign)?
+       |  |  +--:(number)
+       |  |  |  +-- number-of-dynamic-address?   uint16
+       |  |  +--:(explicit)
+       |  |     +-- customer-addresses
+       |  |        +-- address-pool* [pool-id]
+       |  |           +-- pool-id          string
+       |  |           +-- start-address    inet:ipv6-address
+       |  |           +-- end-address?     inet:ipv6-address
+       |  +-- (provider-dhcp)?
+       |  |  +--:(dhcp-service-type)
+       |  |     +-- dhcp-service-type?           enumeration
+       |  +-- (dhcp-relay)?
+       |     +--:(customer-dhcp-servers)
+       |        +-- customer-dhcp-servers
+       |           +-- server-ip-address*   inet:ipv6-address
+       +--:(static-addresses)
+          +-- address* [address-id]
+             +-- address-id          string
+             +-- customer-address?   inet:ipv6-address
+  grouping bgp-authentication:
+    +-- authentication
+       +-- enabled?           boolean
+       +-- keying-material
+          +-- (option)?
+             +--:(ao)
+             |  +-- enable-ao?          boolean
+             |  +-- ao-keychain?        key-chain:key-chain-ref
+             +--:(md5)
+             |  +-- md5-keychain?       key-chain:key-chain-ref
+             +--:(explicit)
+                +-- key-id?             uint32
+                +-- key?                string
+                +-- crypto-algorithm?   identityref
+  grouping ospf-authentication:
+    +-- authentication
+       +-- enabled?           boolean
+       +-- keying-material
+          +-- (option)?
+             +--:(auth-key-chain)
+             |  +-- key-chain?          key-chain:key-chain-ref
+             +--:(auth-key-explicit)
+                +-- key-id?             uint32
+                +-- key?                string
+                +-- crypto-algorithm?   identityref
+  grouping isis-authentication:
+    +-- authentication
+       +-- enabled?           boolean
+       +-- keying-material
+          +-- (option)?
+             +--:(auth-key-chain)
+             |  +-- key-chain?          key-chain:key-chain-ref
+             +--:(auth-key-explicit)
+                +-- key-id?             uint32
+                +-- key?                string
+                +-- crypto-algorithm?   identityref
+  grouping rip-authentication:
+    +-- authentication
+       +-- enabled?           boolean
+       +-- keying-material
+          +-- (option)?
+             +--:(auth-key-chain)
+             |  +-- key-chain?          key-chain:key-chain-ref
+             +--:(auth-key-explicit)
+                +-- key?                string
+                +-- crypto-algorithm?   identityref
+  grouping bgp-peer-group-without-name:
+    +-- local-as?         inet:as-number
+    +-- peer-as?          inet:as-number
+    +-- address-family?   identityref
+    +-- role?             identityref
+  grouping bgp-peer-group-with-name:
+    +-- name?             string
+    +-- local-as?         inet:as-number
+    +-- peer-as?          inet:as-number
+    +-- address-family?   identityref
+    +-- role?             identityref
+  grouping ospf-basic:
+    +-- address-family?   identityref
+    +-- area-id           yang:dotted-quad
+    +-- metric?           uint16
+  grouping isis-basic:
+    +-- address-family?   identityref
+    +-- area-address      area-address
+  grouping ipv4-static-rtg-entry:
+    +-- lan?        inet:ipv4-prefix
+    +-- lan-tag?    string
+    +-- next-hop?   union
+    +-- metric?     uint32
+  grouping ipv4-static-rtg:
+    +-- ipv4-lan-prefixes* [lan next-hop] {vpn-common:ipv4}?
+       +-- lan         inet:ipv4-prefix
+       +-- lan-tag?    string
+       +-- next-hop    union
+       +-- metric?     uint32
+       +-- status
+          +-- admin-status
+          |  +-- status?        identityref
+          |  +--ro last-change?   yang:date-and-time
+          +--ro oper-status
+             +--ro status?        identityref
+             +--ro last-change?   yang:date-and-time
+  grouping ipv6-static-rtg-entry:
+    +-- lan?        inet:ipv6-prefix
+    +-- lan-tag?    string
+    +-- next-hop?   union
+    +-- metric?     uint32
+  grouping ipv6-static-rtg:
+    +-- ipv6-lan-prefixes* [lan next-hop] {vpn-common:ipv6}?
+       +-- lan         inet:ipv6-prefix
+       +-- lan-tag?    string
+       +-- next-hop    union
+       +-- metric?     uint32
+       +-- status
+          +-- admin-status
+          |  +-- status?        identityref
+          |  +--ro last-change?   yang:date-and-time
+          +--ro oper-status
+             +--ro status?        identityref
+             +--ro last-change?   yang:date-and-time
+  grouping bfd:
+    +-- holdtime?   uint32
+  grouping redundancy-group:
+    +-- group* [group-id]
+       +-- group-id      string
+       +-- precedence?   identityref
+  grouping bandwidth-parameters:
+    +-- cir?   uint64
+    +-- cbs?   uint64
+    +-- eir?   uint64
+    +-- ebs?   uint64
+    +-- pir?   uint64
+    +-- pbs?   uint64
+  grouping bandwidth-per-type:
+    +-- bandwidth* [bw-type]
+       +-- bw-type      identityref
+       +-- (type)?
+          +--:(per-cos)
+          |  +-- cos* [cos-id]
+          |     +-- cos-id    uint8
+          |     +-- cir?      uint64
+          |     +-- cbs?      uint64
+          |     +-- eir?      uint64
+          |     +-- ebs?      uint64
+          |     +-- pir?      uint64
+          |     +-- pbs?      uint64
+          +--:(other)
+             +-- cir?   uint64
+             +-- cbs?   uint64
+             +-- eir?   uint64
+             +-- ebs?   uint64
+             +-- pir?   uint64
+             +-- pbs?   uint64
+</pre><a href="#appendix-A-1" class="pilcrow">¶</a>
+</div>
+</section>
+</div>
+<div id="acknowledgments">
+<section id="appendix-B">
+      <h2 id="name-acknowledgments">
+<a href="#name-acknowledgments" class="section-name selfRef">Acknowledgments</a>
+      </h2>
+<p id="appendix-B-1">The document reuses many of the structures that were defined
+in <span>[<a href="#RFC9181" class="cite xref">RFC9181</a>]</span> and <span>[<a href="#RFC9182" class="cite xref">RFC9182</a>]</span>.<a href="#appendix-B-1" class="pilcrow">¶</a></p>
+<p id="appendix-B-2">Thanks to Ebben Aries for the YANG Doctors review, Andy Smith and Gyanh Mishra for the
+rtg-dir reviews, Watson Ladd for the sec-dir review, and Behcet Sarikaya for the genart review.<a href="#appendix-B-2" class="pilcrow">¶</a></p>
+<p id="appendix-B-3">Thanks to Reza Rokui for the Shepherd review.<a href="#appendix-B-3" class="pilcrow">¶</a></p>
+<p id="appendix-B-4">Thanks to Mahesh Jethanandani for the AD review.<a href="#appendix-B-4" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="contributors">
+<section id="appendix-C">
+      <h2 id="name-contributors">
+<a href="#name-contributors" class="section-name selfRef">Contributors</a>
+      </h2>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Victor Lopez</span></div>
+<div dir="auto" class="left"><span class="org">Nokia</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:victor.lopez@nokia.com" class="email">victor.lopez@nokia.com</a>
+</div>
+</address>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Ivan Bykov</span></div>
+<div dir="auto" class="left"><span class="org">Ribbon Communications</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:Ivan.Bykov@rbbn.com" class="email">Ivan.Bykov@rbbn.com</a>
+</div>
+</address>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Qin Wu</span></div>
+<div dir="auto" class="left"><span class="org">Huawei</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:bill.wu@huawei.com" class="email">bill.wu@huawei.com</a>
+</div>
+</address>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Kenichi Ogaki</span></div>
+<div dir="auto" class="left"><span class="org">KDDI</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:ke-oogaki@kddi.com" class="email">ke-oogaki@kddi.com</a>
+</div>
+</address>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Luis Angel Munoz</span></div>
+<div dir="auto" class="left"><span class="org">Vodafone</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:luis-angel.munoz@vodafone.com" class="email">luis-angel.munoz@vodafone.com</a>
+</div>
+</address>
+</section>
+</div>
+<div id="authors-addresses">
+<section id="appendix-D">
+      <h2 id="name-authors-addresses">
+<a href="#name-authors-addresses" class="section-name selfRef">Authors' Addresses</a>
+      </h2>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Mohamed Boucadair (<span class="role">editor</span>)</span></div>
+<div dir="auto" class="left"><span class="org">Orange</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:mohamed.boucadair@orange.com" class="email">mohamed.boucadair@orange.com</a>
+</div>
+</address>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Richard Roberts (<span class="role">editor</span>)</span></div>
+<div dir="auto" class="left"><span class="org">Juniper</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:rroberts@juniper.net" class="email">rroberts@juniper.net</a>
+</div>
+</address>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Oscar Gonzalez de Dios</span></div>
+<div dir="auto" class="left"><span class="org">Telefonica</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:oscar.gonzalezdedios@telefonica.com" class="email">oscar.gonzalezdedios@telefonica.com</a>
+</div>
+</address>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Samier Barguil Giraldo</span></div>
+<div dir="auto" class="left"><span class="org">Nokia</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:samier.barguil_giraldo@nokia.com" class="email">samier.barguil_giraldo@nokia.com</a>
+</div>
+</address>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Bo Wu</span></div>
+<div dir="auto" class="left"><span class="org">Huawei Technologies</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:lana.wubo@huawei.com" class="email">lana.wubo@huawei.com</a>
+</div>
+</address>
+</section>
+</div>
+<script>const toc = document.getElementById("toc");
+toc.querySelector("h2").addEventListener("click", e => {
+  toc.classList.toggle("active");
+});
+toc.querySelector("nav").addEventListener("click", e => {
+  toc.classList.remove("active");
+});
+</script>
+</body>
+</html>
