@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-12-08T00:57:30.141428+00:00",
+  "timestamp": "2024-12-10T00:54:16.115178+00:00",
   "repo": "boucadair/attachment-circuit-model",
   "labels": [
     {
@@ -9166,24 +9166,26 @@
       "id": "PR_kwDOIiAkrc6EZq97",
       "title": "reese review",
       "url": "https://github.com/boucadair/attachment-circuit-model/pull/239",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "boucadair",
       "authorAssociation": "OWNER",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2024-12-07T07:40:53Z",
-      "updatedAt": "2024-12-07T07:40:53Z",
+      "updatedAt": "2024-12-09T06:27:39Z",
       "baseRepository": "boucadair/attachment-circuit-model",
       "baseRefName": "main",
       "baseRefOid": "9139fe333e070872744d147ba1aac697e7684f02",
       "headRepository": "boucadair/attachment-circuit-model",
       "headRefName": "reese-review",
       "headRefOid": "039241b5776477f14e7a569ce139d6e62bb8b104",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2024-12-09T06:27:37Z",
+      "mergedAt": "2024-12-09T06:27:37Z",
+      "mergedBy": "boucadair",
+      "mergeCommit": {
+        "oid": "b63867deba3662ded530a0c93e07be17a101736e"
+      },
       "comments": [],
       "reviews": []
     }
