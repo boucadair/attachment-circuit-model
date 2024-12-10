@@ -67,7 +67,7 @@ module ietf-ac-glue {
      This version of this YANG module is part of RFC XXXX; see the
      RFC itself for full legal notices.";
 
-  revision 2023-11-13 {
+  revision 2024-11-13 {
     description
       "Initial revision.";
     reference
