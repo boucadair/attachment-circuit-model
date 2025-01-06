@@ -5,12 +5,12 @@
 OPSAWG                                                 M. Boucadair, Ed.
 Internet-Draft                                                    Orange
 Intended status: Standards Track                              R. Roberts
-Expires: 10 June 2025                                            Juniper
+Expires: 10 July 2025                                            Juniper
                                                            S. B. Giraldo
                                                                    Nokia
                                                            O. G. D. Dios
                                                               Telefonica
-                                                         7 December 2024
+                                                          6 January 2025
 
 
   A YANG Data Model for Augmenting VPN Service and Network Models with
@@ -54,11 +54,11 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 10 June 2025.
+   This Internet-Draft will expire on 10 July 2025.
 
 Copyright Notice
 
-   Copyright (c) 2024 IETF Trust and the persons identified as the
+   Copyright (c) 2025 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -106,7 +106,7 @@ Table of Contents
    The document specifies a YANG module ("ietf-ac-glue", Section 6) that
    updates existing service and network Virtual Private Network (VPN)
    modules with the required information to bind specific services to
-   Attachment Circuits (ACs) that are created using the AC service model
+   ACs that are created using the AC service model
    [I-D.ietf-opsawg-teas-attachment-circuit].  Specifically, the
    following modules are augmented:
 
@@ -122,13 +122,14 @@ Table of Contents
    the ACs that are managed using the AC network model
    [I-D.ietf-opsawg-ntw-attachment-circuit].
 
-   This approach allows to separate AC provisioning from actual VPN
-   service provisioning as further discussed in Section 4.2.
+   This approach allows operators to separate AC provisioning from
+   actual VPN service provisioning.  Refer to Section 4.2 for more
+   discussion.
 
    The YANG data model in this document conforms to the Network
    Management Datastore Architecture (NMDA) defined in [RFC8342].
 
-   An example to illustrate the use of the "ietf-ac-glue" model is
+   Examples to illustrate the use of the "ietf-ac-glue" model are
    provided in Appendix A.
 
 1.1.  Editorial Note (To be removed by RFC Editor)
@@ -293,7 +294,9 @@ Table of Contents
 
                          Figure 2: Examples of ACs
 
-   These ACs can be referrenced in VPN services.
+   These ACs can be referenced when creating VPN services.  Refer to the
+   examples provided in Appendix A to illustrate how VPN services can be
+   bound to ACs.
 
 4.2.  Separate AC Provisioning From Actual VPN Service Provisioning
 
@@ -874,9 +877,9 @@ Table of Contents
               Wu, B., Dhody, D., Rokui, R., Saad, T., and J. Mullooly,
               "A YANG Data Model for the RFC 9543 Network Slice
               Service", Work in Progress, Internet-Draft, draft-ietf-
-              teas-ietf-network-slice-nbi-yang-16, 28 August 2024,
+              teas-ietf-network-slice-nbi-yang-17, 20 December 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-teas-
-              ietf-network-slice-nbi-yang-16>.
+              ietf-network-slice-nbi-yang-17>.
 
    [RFC4252]  Ylonen, T. and C. Lonvick, Ed., "The Secure Shell (SSH)
               Authentication Protocol", RFC 4252, DOI 10.17487/RFC4252,
@@ -1477,8 +1480,9 @@ Acknowledgments
    Thanks to Bo Wu and Qin Wu for the review and comments.
 
    Thanks to Martin Björklund for the yangdoctors review, Gyan Mishra
-   for the rtg-dir review, Ron Bonica for the opsdir review, and Reese
-   Enghardt for the genart review.
+   for the rtg-dir review, Ron Bonica for the opsdir review, Reese
+   Enghardt for the genart review, and Prachi Jain for the sec-dir
+   review.
 
    Thanks to Mahesh Jethanandani for the AD review.
 
