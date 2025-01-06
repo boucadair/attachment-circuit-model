@@ -11,10 +11,6 @@ module: ietf-bearer-svc
   |        +--ro state?          string
   |        +--ro country-code?   string
   +--rw bearers
-     +--rw requested-start?         yang:date-and-time
-     +--rw requested-stop?          yang:date-and-time
-     +--ro actual-start?            yang:date-and-time
-     +--ro actual-stop?             yang:date-and-time
      +--rw placement-constraints
      |  +--rw constraint* [constraint-type]
      |          {vpn-common:placement-diversity}?
