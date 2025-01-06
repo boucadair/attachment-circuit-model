@@ -168,6 +168,11 @@ module ietf-bearer-svc {
       description
         "Address (number and street) of the device/site.";
     }
+    leaf city {
+      type string;
+      description
+        "City of the device/site.";
+    }
     leaf postal-code {
       type string;
       description
@@ -179,11 +184,6 @@ module ietf-bearer-svc {
         "State of the device/site.  This leaf can also be
          used to describe a region for a country that
          does not have states.";
-    }
-    leaf city {
-      type string;
-      description
-        "City of the device/site.";
     }
     leaf country-code {
       type string {
