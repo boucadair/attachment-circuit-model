@@ -6,9 +6,9 @@ module: ietf-bearer-svc
   |     +--ro location* [name]
   |        +--ro name            string
   |        +--ro address?        string
+  |        +--ro city?           string
   |        +--ro postal-code?    string
   |        +--ro state?          string
-  |        +--ro city?           string
   |        +--ro country-code?   string
   +--rw bearers
      +--rw requested-start?         yang:date-and-time
@@ -49,18 +49,18 @@ module: ietf-bearer-svc
         |  |  +--rw location
         |  |     +--rw name?           string
         |  |     +--rw address?        string
+        |  |     +--rw city?           string
         |  |     +--rw postal-code?    string
         |  |     +--rw state?          string
-        |  |     +--rw city?           string
         |  |     +--rw country-code?   string
         |  +--rw site
         |  |  +--rw site-id?    string
         |  |  +--rw location
         |  |     +--rw name?           string
         |  |     +--rw address?        string
+        |  |     +--rw city?           string
         |  |     +--rw postal-code?    string
         |  |     +--rw state?          string
-        |  |     +--rw city?           string
         |  |     +--rw country-code?   string
         |  +--rw custom-id?       string
         +--rw type?                          identityref
