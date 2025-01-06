@@ -116,7 +116,7 @@ informative:
 
 --- abstract
 
-This document specifies a YANG service data model for Attachment Circuits (ACs). This model can be used for the provisioning of ACs before or during service provisioning (e.g., Network Slice Service). The document also specifies a service model for managing bearers over which ACs are established.
+This document specifies a YANG service data model for attachment circuits (ACs). This model can be used for the provisioning of ACs before or during service provisioning (e.g., Network Slice Service). The document also specifies a YANG service model for managing bearers over which ACs are established.
 
 --- middle
 
@@ -124,30 +124,17 @@ This document specifies a YANG service data model for Attachment Circuits (ACs).
 
 ## Scope and Intended Use
 
-Connectivity services are provided by networks to customers via dedicated terminating points, such as Service Functions (SFs) {{?RFC7665}}, Customer Edges (CEs), peer Autonomous System Border Routers (ASBRs), data centers gateways, or Internet Exchange Points. A connectivity service is basically about ensuring data transfer received from or destined to a given terminating point to or from other terminating points within the same customer/service, an interconnection node, or an ancillary node. The objectives for the connectivity service can be negotiated and agreed upon between the customer and the network provider. To facilitate data transfer within the provider network, it is assumed that the appropriate setup is provisioned over the links that connect customer terminating points and a provider network (usually via a Provider Edge (PE)), allowing successfully data exchanged over these links. The required setup is referred to in this document as Attachment Circuit (AC), while the underlying link is referred to as "bearer".
+Connectivity services are provided by networks to customers via dedicated termination points, such as Service Functions (SFs) {{?RFC7665}}, Customer Edges (CEs), peer Autonomous System Border Routers (ASBRs), data centers gateways, or Internet Exchange Points. A connectivity service is basically about ensuring data transfer received from or destined to a given termination point to or from other termination points within the same customer/service, an interconnection node, or an ancillary node. The objectives for the connectivity service can be negotiated and agreed upon between the customer and the network provider. To facilitate data transfer within the provider network, it is assumed that the appropriate setup is provisioned over the links that connect customer termination points and a provider network (usually via a Provider Edge (PE)), allowing successfully data exchanged over these links. The required setup is referred to in this document as an attachment circuit (AC), while the underlying link is referred to as "bearer".
 
-This document adheres to the definition of an Attachment Circuit as provided in "BGP/MPLS IP Virtual Private Networks (VPNs)" ({{Section 1.2 of !RFC4364}}), especially:
+When a customer requests a new service, the service can be bound to existing attachment circuits or trigger the instantiation of new attachment circuits. The provisioning of a service should, thus, accommodate both deployments.
 
-> Routers can be attached to each other, or to end systems, in a
-   variety of different ways: PPP connections, ATM Virtual Circuits
-   (VCs), Frame Relay VCs, ethernet interfaces, Virtual Local Area
-   Networks (VLANs) on ethernet interfaces, GRE tunnels, Layer 2
-   Tunneling Protocol (L2TP) tunnels, IPsec tunnels, etc.  We will use
-   the term "attachment circuit" to refer generally to some such means
-   of attaching to a router.  An attachment circuit may be the sort of
-   connection that is usually thought of as a "data link", or it may be
-   a tunnel of some sort; what matters is that it be possible for two
-   devices to be network layer peers over the attachment circuit.
+Also, because the instantiation of an attachment circuit requires coordinating the provisioning of endpoints that might not belong to the same administrative entity (customer vs. provider or distinct operational teams within the same provider, etc.), providing programmatic means to expose 'Attachment Circuits'-as-a-Service (ACaaS) greatly simplifies the provisioning of services delivered over an attachment circuit. For example, management systems of adjacent domains that need to connect via an AC will use such means to agree upon the resources that are required for the activation of both sides of an AC (e.g., Layer 2 tags, IP address family, or IP subnets).
 
-When a customer requests a new value-added service, the service can be bound to existing attachment circuits or trigger the instantiation of new attachment circuits. The provisioning of a value-added service should, thus, accommodate both deployments.
+This document specifies a YANG service data model ("ietf-ac-svc") for managing attachment circuits that are exposed by a network to its customers, such as an enterprise site, an SF, a hosting infrastructure, or a peer network provider. The model can be used for the provisioning of ACs prior to or during advanced service provisioning (e.g., IETF Network Slice Service defined in "A Framework for Network Slices in Networks Built from IETF Technologies" {{?RFC9543}}).
 
-Also, because the instantiation of an attachment circuit requires coordinating the provisioning of endpoints that might not belong to the same administrative entity (customer vs. provider or distinct operational teams within the same provider, etc.), providing programmatic means to expose 'Attachment Circuits'-as-a-Service (ACaaS) greatly simplifies the provisioning of value-added services delivered over an attachment circuit. For example, management systems of adjacent domains that need to connect via an AC will use such means to agree upon the resources that are required for the activation of both sides of an AC (e.g., Layer 2 tags, IP address family, or IP subnets).
+The "ietf-ac-svc" module ({{sec-ac-module}}) includes a set of reusable groupings. Whether a service model reuses structures defined in the "ietf-ac-svc" or simply includes an AC reference (that was communicated during AC service instantiation) is a design choice of these service models. Relying upon the AC service model to manage ACs over which services are delivered has the merit of decorrelating the management of the (core) service from the ACs.  This allows upgrades (to reflect recent AC technologies or new features such as new encryption schemes, or additional routing protocols) to be done in just one place rather than in each (core) service model. This document favors the approach of completely relying upon the AC service model instead of duplicating data nodes into specific modules of advanced services that are delivered over an attachment circuit.
 
-This document specifies a YANG service data model ("ietf-ac-svc") for managing attachment circuits that are exposed by a network to its customers, such as an enterprise site, an SF, a hosting infrastructure, or a peer network provider. The model can be used for the provisioning of ACs prior or during advanced service provisioning (e.g., IETF Network Slice Service defined in "A Framework for Network Slices in Networks Built from IETF Technologies" {{?RFC9543}}).
-
-The "ietf-ac-svc" module ({{sec-ac-module}}) includes a set of reusable groupings. Whether a service model reuses structures defined in the "ietf-ac-svc" or simply includes an AC reference (that was communicated during AC service instantiation) is a design choice of these service models. Relying upon the AC service model to manage ACs over which services are delivered has the merit of decorrelating the management of the (core) service vs. upgrade the AC components to reflect recent AC technologies or new features (e.g., new encryption scheme, additional routing protocol). This document favors the approach of completely relying upon the AC service model instead of duplicating data nodes into specific modules of advanced services that are delivered over an Attachment Circuit.
-
-Since the provisioning of an AC requires a bearer to be in place, this document introduces a new module called "ietf-bearer-svc" that enables customers to manage their bearer requests ({{sec-bearer-module}}). The customers can then retrieve a provider-assigned bearer reference that they will include in their AC service requests. Likewise, a customer may retrieve whether their bearers support a synchronization mechanism such as Sync Ethernet (SyncE) {{ITU-T-G.781}}. An example of retrieving a bearer reference is provided in {{ex-create-bearer}}.
+Since the provisioning of an AC requires a bearer to be in place, this document introduces a new module called "ietf-bearer-svc" that enables customers to manage their bearers ({{sec-bearer-module}}). The customers can then retrieve a provider-assigned bearer reference that they will include in their AC service requests. Likewise, a customer may retrieve whether their bearers support a synchronization mechanism such as Sync Ethernet (SyncE) {{ITU-T-G.781}}. An example of retrieving a bearer reference is provided in {{ex-create-bearer}}.
 
 An AC service request can provide a reference to a bearer or a set of peer Service Attachment Points (SAPs) specified in "A YANG Network Data Model for Service Attachment Points (SAPs)" {{!RFC9408}}. Both schemes are supported in the AC service model. When several bearers are available, the AC service request may filter them based on the bearer type, synchronization support, etc.
 
@@ -163,9 +150,11 @@ The AC service model can be used in a variety of contexts, such as (but not limi
 * Control the precedence over multiple attachment circuits ({{sec-ex-prec}}).
 * Create Multiple ACs bound to Multiple CEs ({{sec-multiple-ces}}).
 * Bind a slice service to a set of pre-provisioned attachment circuits ({{sec-ex-slice}}).
+* Connect an enterprise network to a provider network using BGP  ({{sec-cus-bgp}}).
 * Connect a Cloud Infrastructure to a service provider network ({{sec-ex-cloud}}).
 * Interconnect provider networks (e.g., {{?RFC8921}} or {{?I-D.ramseyer-grow-peering-api}}). Such ACs are identified with a "role" set to "ac-common:nni" or "ac-common:public-nni". See {{sec-peering}} to illustrate the use of the AC model for interconnection/peering.
 * Manage connectivity for complex containerized or virtualized functions in the cloud ({{sec-cloudified-nfs}}).
+* Manage AC redundancy with static addressing ({{sec-bfd-static}}).
 
 The document adheres to the principles discussed in "Service Models Explained" ({{Section 3 of ?RFC8309}}) for the encoding and communication protocols used
 for the interaction between a customer and a provider. Also, consistent with "A Framework for Automating Service and Network Management with YANG" {{?RFC8969}}, the service models defined in the document can be used independently of NETCONF/RESTCONF.
@@ -194,8 +183,9 @@ This document contains placeholder values that need to be replaced with finalize
 
 Please apply the following replacements:
 
+* CCCC --> the assigned RFC number for {{!I-D.ietf-opsawg-teas-common-ac}}
 * XXXX --> the assigned RFC number for this I-D
-* 2023-11-13 --> the actual date of the publication of this document
+* 2024-08-06 --> the actual date of the publication of this document
 
 # Conventions and Definitions
 
@@ -206,6 +196,8 @@ The meanings of the symbols in the YANG tree diagrams are defined in "YANG Tree 
 LxSM refers to both the L2SM and the L3SM.
 
 LxNM refers to both the L2NM and the L3NM.
+
+LxVPN refers to both L2VPN and L3VPN.
 
 This document uses the following terms:
 
@@ -232,7 +224,7 @@ Network Function (NF):
 : NF and SF are used interchangeably.
 
 Parent Bearer:
-: Refers to a bearer (e.g., LAG) that is used to build other bearers. These bearers (called, child bearers) inherit th parent bearer properties.
+: Refers to a bearer (e.g., LAG) that is used to build other bearers. These bearers (called, child bearers) inherit the parent bearer properties.
 
 Parent AC:
 : Refers to an AC that is used to build other ACs. These ACs (called, child ACs) inherit th parent AC properties.
@@ -244,7 +236,7 @@ Service provider network:
 : A network that is able to provide network services (e.g., Layer 2 VPN, Layer 3 VPN, or Network Slice Services).
 
 Service provider:
-: A service provider that offers network services (e.g., Layer 2 VPN, Layer 3 VPN, or Network Slice Services).
+: An entity that offers network services (e.g., Layer 2 VPN, Layer 3 VPN, or Network Slice Services).
 
 The names of data nodes are prefixed using the prefix associated with the corresponding imported YANG module as shown in {{pref}}:
 
@@ -287,7 +279,7 @@ ietf-ac-svc <--> ietf-bearer-svc        |
 Bearers managed using "ietf-bearer-svc" may be referenced in the service ACs managed using "ietf-ac-svc".
 Similarly, a bearer managed using "ietf-bearer-svc" may list the set of ACs that use that bearer.
 In order to ease correlation between an AC service requests and the actual AC provisioned in the network, "ietf-ac-ntw" uses the AC references exposed by "ietf-ac-svc".
-To bind Layer 2 VPN or Layer 3 VPN services with ACs, "ietf-ac-glue" augments the LxSM and LxNM with AC service references exposed by "ietf-ac-svc" and AC network references exposed bt "ietf-ac-ntw".
+To bind Layer 2 VPN or Layer 3 VPN services with ACs, "ietf-ac-glue" augments the LxSM and LxNM with AC service references exposed by "ietf-ac-svc" and AC network references exposed by "ietf-ac-ntw".
 
 # Sample Uses of the Data Models
 
@@ -426,7 +418,7 @@ The descriptions of the bearer data nodes are as follows:
 : Indicates a location identified by a provider-assigned reference.
 
 'customer-point':
-: Specifies the customer terminating point for the bearer. A bearer request can indicate a device, a site, a combination thereof, or a custom information when requesting a bearer. All these schemes are supported in the model.
+: Specifies the customer termination point for the bearer. A bearer request can indicate a device, a site, a combination thereof, or a custom information when requesting a bearer. All these schemes are supported in the model.
 
 'type':
 : Specifies the bearer type (Ethernet, wireless, LAG, etc.).
@@ -585,7 +577,7 @@ The description of the data nodes is as follows:
 
 'parent-ref':
 : Specifies an AC that is inherited by an attachment circuit.
-: In contexts where dynamic terminating points are managed for a given AC,
+: In contexts where dynamic termination points are managed for a given AC,
 a parent AC can be defined with a set of stable and common information, while
 "child" ACs are defined to track dynamic information. These "child" ACs are bound to the parent AC, which is exposed to services (as a stable reference).
 : Whenever a parent AC is deleted, all its "child" ACs MUST be deleted.
@@ -665,7 +657,7 @@ tunnel-specific data nodes ('l3-tunnel-service'). Such augmentations MUST be con
 
 #### Routing {#sec-rtg}
 
-As shown in the tree depicted in {{rtg-svc-tree}}, the 'routing-protocols' container defines the required parameters to enable the desired routing features for an AC. One or more routing protocols can be associated with an AC.  Such routing protocols will be then enabled between a PE and the customer terminating points. Each routing instance is uniquely identified by the combination of the 'id' and 'type' to accommodate scenarios where multiple instances of the same routing protocol have to be configured on the same link.
+As shown in the tree depicted in {{rtg-svc-tree}}, the 'routing-protocols' container defines the required parameters to enable the desired routing features for an AC. One or more routing protocols can be associated with an AC.  Such routing protocols will be then enabled between a PE and the customer termination points. Each routing instance is uniquely identified by the combination of the 'id' and 'type' to accommodate scenarios where multiple instances of the same routing protocol have to be configured on the same link.
 
 In addition to static routing ({{sec-static-rtg}}), the module supports BGP ({{sec-bgp-rtg}}), OSPF ({{sec-ospf-rtg}}), IS-IS ({{sec-isis-rtg}}), and RIP ({{sec-rip-rtg}}). It also includes a reference to the 'routing-profile-identifier' defined in {{sec-profiles}}, so that additional constraints can be applied to a specific instance of each routing protocol. Moreover, the module supports VRRP ({{sec-vrrp-rtg}}).
 
@@ -957,7 +949,8 @@ This module uses types defined in {{!RFC6991}}, {{!RFC9181}}, and {{!I-D.ietf-op
 
 ## The AC Service ("ietf-ac-svc") YANG Module {#sec-ac-module}
 
-This module uses types defined in {{!RFC6991}}, {{!RFC9181}}, {{!RFC8177}}, and {{!I-D.ietf-opsawg-teas-common-ac}}.
+This module uses types defined in {{!RFC6991}}, {{!RFC9181}}, {{!RFC8177}}, and {{!I-D.ietf-opsawg-teas-common-ac}}. Also, the module uses
+the extensions defined in {{!RFC8341}}.
 
 ~~~~~~~~~~ yang
 <CODE BEGINS> file "ietf-ac-svc@2024-08-06.yang"
@@ -1083,13 +1076,13 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:
    Maintained by IANA?  N
    Namespace:  urn:ietf:params:xml:ns:yang:ietf-bearer-svc
    Prefix:  bearer-svc
-   Reference:  RFC xxxx
+   Reference:  RFC XXXX
 
    Name:  ietf-ac-svc
    Maintained by IANA?  N
    Namespace:  urn:ietf:params:xml:ns:yang:ietf-ac-svc
    Prefix:  ac-svc
-   Reference:  RFC xxxx
+   Reference:  RFC XXXX
 ~~~~
 
 --- back
@@ -1097,6 +1090,8 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:
 # Examples {#examples}
 
 This section includes a non-exhaustive list of examples to illustrate the use of the service models defined in this document. An example instance data can also be found at {{Instance-Data}}.
+
+Some of the examples below use line wrapping per {{!RFC8792}}.
 
 ## Create a New Bearer {#ex-create-bearer}
 
@@ -1335,7 +1330,7 @@ Next, API workflows can be initiated by:
 * The Cloud Provider for the configuration per Step (3) above.
 * The Service provider network via the ACaaS model. This request can be used in conjunction with additional requests based on the L3SM (VPN provisioning) or Network Slice Service model (5G hybrid Cloud deployment).
 
-{{cloud-provider-ac}} shows the message body of the request to create the required ACs to connect the Cloud Provider Virtualized (VM) using the Attachment Circuit module.
+{{cloud-provider-ac}} shows the message body of the request to create the required ACs to connect the Cloud Provider Virtualized (VM) using the ACaaS module.
 
 ~~~~ json
 {::include-fold ./json-examples/svc/cloud-provider.json}
@@ -1352,7 +1347,7 @@ Next, API workflows can be initiated by:
 {: #cloud-provider-ac-res title="Message Body of a Response to the Request to Create ACs for Connecting to the Cloud Provider"}
 
 
-## Connect Customer Network Through BGP
+## Connect Customer Network Through BGP {#sec-cus-bgp}
 
 CE-PE routing using BGP is a common scenario in the context of MPLS VPNs and is widely used in enterprise networks. In the example depicted in {{provider-network}}, the CE routers are customer-owned devices belonging to an AS (ASN 65536). CEs are located at the edge of the provider's network (PE, or Provider Edge) and use point-to-point interfaces to establish BGP sessions. The point-to-point interfaces rely upon a physical bearer ("line-113") to reach the provider network.
 
@@ -1565,8 +1560,8 @@ This document leverages {{!RFC9182}} and {{!RFC9291}}. Thanks to Gyan Mishra for
 
 Thanks to Ebben Aries for the YANG Doctors review and for providing {{Instance-Data}}.
 
-Thanks to Donald Eastlake for the careful rtg-dir reviews, Tero Kivinen for the sec-dir review, and
-Gyan Mishra for the genart review.
+Thanks to Donald Eastlake for the careful rtg-dir reviews, Tero Kivinen for the sec-dir review,
+Gyan Mishra for the genart review, and Adrian Farrel for the opsdir review.
 
 Thanks to Luis Miguel Contreras Murillo for the careful Shepherd review.
 
