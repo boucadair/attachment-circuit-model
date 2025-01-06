@@ -4265,7 +4265,7 @@ module ietf-bearer-svc {
            mechanism is enabled if set to false.";
       }
       leaf sync-phy-type {
-        when "../sync-phy-capable='true'";
+        when "../sync-phy-enabled='true'";
         type identityref {
           base sync-phy-type;
         }
