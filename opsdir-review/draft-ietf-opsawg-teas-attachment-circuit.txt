@@ -2515,7 +2515,6 @@ B2B C/S: Back-to-back Client/Server
      container bearers {
        description
          "Main container for the bearers.";
-       uses ac-common:op-instructions;
        container placement-constraints {
          description
            "Diversity constraint type.";
@@ -2567,19 +2566,19 @@ B2B C/S: Back-to-back Client/Server
            type boolean;
            config false;
            description
-             "Indicates when set to true that a mechanism for physical
+             "Indicates, when set to true, that a mechanism for physical
               layer synchronization is supported for this bearer.
               No such mechanism is supported if set to false.";
          }
          leaf sync-phy-enabled {
            type boolean;
            description
-             "Indicates when set to true that a mechanism for physical
+             "Indicates, when set to true, that a mechanism for physical
               layer synchronization is enabled for this bearer. No such
               mechanism is enabled if set to false.";
          }
          leaf sync-phy-type {
-           when "../sync-phy-enabled='true'";
+           when "../sync-phy-capable='true'";
            type identityref {
              base sync-phy-type;
            }
