@@ -3842,7 +3842,7 @@ B2B C/S: Back-to-back Client/Server
          type ac-svc:attachment-circuit-reference;
          description
            "Specifies a parent AC that is inherited by an AC.
-            In contexts where dynamic terminating points are
+            In contexts where dynamic termination points are
             bound to the same AC, a parent AC with stable
             information is created with a set of child ACs
             to track dynamic AC information.";
