@@ -2695,7 +2695,7 @@ B2B C/S: Back-to-back Client/Server
            type empty;
            description
              "When present, this indicates that this is a feasibility
-              check request. No resources are commited for such bearer
+              check request. No resources are committed for such bearer
               requests.";
          }
          leaf bearer-reference {
