@@ -5567,7 +5567,10 @@ module ietf-ac-svc {
   }
   container attachment-circuits {
     description
-      "Main container for the attachment circuits.";
+      "Main container for the attachment circuits.
+       The timing constraints   indicated at the 'ac' lavel take
+       precedence over the values indicated at the
+       'attachment-circuits' level.";
     list ac-group-profile {
       key "name";
       description
@@ -5590,7 +5593,7 @@ module ietf-ac-svc {
     list ac {
       key "name";
       description
-        "Global provisioning of attachment circuits.";
+        "Provisioning of an attachment circuit.";
       leaf customer-name {
         type string;
         description
