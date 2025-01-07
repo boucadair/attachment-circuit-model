@@ -2201,7 +2201,7 @@ module: ietf-bearer-svc
 </dd>
         <dd class="break"></dd>
 </dl>
-<p id="section-5.1-7">A request to create a bearer may include a set of constraints ("placement-constraints") that are used by a controller to decide the network terminating side of a bearer (e.g., PE selection, PE redundancy, or PoP selection). Future placement criteria ("constraint-type") may be defined in the future to accommodate specific deployment contexts.<a href="#section-5.1-7" class="pilcrow">¶</a></p>
+<p id="section-5.1-7">A request to create a bearer may include a set of constraints ('placement-constraints') that are used by a controller to decide the network terminating side of a bearer (e.g., PE selection, PE redundancy, or PoP selection). Future placement criteria ('constraint-type') may be defined in the future to accommodate specific deployment contexts. A request may also include some timing constraints ('requested-start', 'requested-stop') that are applicable for a set of bearers. The timing constraints can be adjusted at the 'bearer' level. These adjusted values take precedence over the global values.<a href="#section-5.1-7" class="pilcrow">¶</a></p>
 <p id="section-5.1-8">The descriptions of the bearer data nodes are as follows:<a href="#section-5.1-8" class="pilcrow">¶</a></p>
 <span class="break"></span><dl class="dlParallel" id="section-5.1-9">
           <dt id="section-5.1-9.1">'name':</dt>
@@ -2618,138 +2618,139 @@ These adjusted values take precedence over the global values.  The structure of 
 <a href="#name-attachment-circuits-tree-st" class="selfRef">Attachment Circuits Tree Structure</a>
             </figcaption></figure>
 </div>
-<p id="section-5.2.5-3">The description of the data nodes is as follows:<a href="#section-5.2.5-3" class="pilcrow">¶</a></p>
-<span class="break"></span><dl class="dlParallel" id="section-5.2.5-4">
-            <dt id="section-5.2.5-4.1">'customer-name':</dt>
-            <dd style="margin-left: 1.5em" id="section-5.2.5-4.2">
-              <p id="section-5.2.5-4.2.1">Indicates the name of the customer who ordered the AC or a set of ACs.<a href="#section-5.2.5-4.2.1" class="pilcrow">¶</a></p>
+<p id="section-5.2.5-3">A request may also include some timing constraints ('requested-start', 'requested-stop') that are applicable for a set of ACs. The timing constraints can be adjusted at the 'ac' level. These adjusted values take precedence over the global values.<a href="#section-5.2.5-3" class="pilcrow">¶</a></p>
+<p id="section-5.2.5-4">The description of the 'ac' data nodes is as follows:<a href="#section-5.2.5-4" class="pilcrow">¶</a></p>
+<span class="break"></span><dl class="dlParallel" id="section-5.2.5-5">
+            <dt id="section-5.2.5-5.1">'customer-name':</dt>
+            <dd style="margin-left: 1.5em" id="section-5.2.5-5.2">
+              <p id="section-5.2.5-5.2.1">Indicates the name of the customer who ordered the AC or a set of ACs.<a href="#section-5.2.5-5.2.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
-<dt id="section-5.2.5-4.3">'description':</dt>
-            <dd style="margin-left: 1.5em" id="section-5.2.5-4.4">
-              <p id="section-5.2.5-4.4.1">Includes a textual description of the AC.<a href="#section-5.2.5-4.4.1" class="pilcrow">¶</a></p>
+<dt id="section-5.2.5-5.3">'description':</dt>
+            <dd style="margin-left: 1.5em" id="section-5.2.5-5.4">
+              <p id="section-5.2.5-5.4.1">Includes a textual description of the AC.<a href="#section-5.2.5-5.4.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
-<dt id="section-5.2.5-4.5">'test-only':</dt>
-            <dd style="margin-left: 1.5em" id="section-5.2.5-4.6">
-              <p id="section-5.2.5-4.6.1">Indicates that a request is only for test and not for setting, even if there are no errors. This is used for feasibility checks. This data node is applicable only when the data model is used with protocols which do not have built-in support of such option.<a href="#section-5.2.5-4.6.1" class="pilcrow">¶</a></p>
+<dt id="section-5.2.5-5.5">'test-only':</dt>
+            <dd style="margin-left: 1.5em" id="section-5.2.5-5.6">
+              <p id="section-5.2.5-5.6.1">Indicates that a request is only for test and not for setting, even if there are no errors. This is used for feasibility checks. This data node is applicable only when the data model is used with protocols which do not have built-in support of such option.<a href="#section-5.2.5-5.6.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
-<dt id="section-5.2.5-4.7">'requested-start':</dt>
-            <dd style="margin-left: 1.5em" id="section-5.2.5-4.8">
-              <p id="section-5.2.5-4.8.1">Specifies the requested date and time when the attachment circuit is expected to be active.<a href="#section-5.2.5-4.8.1" class="pilcrow">¶</a></p>
+<dt id="section-5.2.5-5.7">'requested-start':</dt>
+            <dd style="margin-left: 1.5em" id="section-5.2.5-5.8">
+              <p id="section-5.2.5-5.8.1">Specifies the requested date and time when the attachment circuit is expected to be active.<a href="#section-5.2.5-5.8.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
-<dt id="section-5.2.5-4.9">'requested-stop':</dt>
-            <dd style="margin-left: 1.5em" id="section-5.2.5-4.10">
-              <p id="section-5.2.5-4.10.1">Specifies the requested date and time when the attachment circuit is expected to be disabled.<a href="#section-5.2.5-4.10.1" class="pilcrow">¶</a></p>
+<dt id="section-5.2.5-5.9">'requested-stop':</dt>
+            <dd style="margin-left: 1.5em" id="section-5.2.5-5.10">
+              <p id="section-5.2.5-5.10.1">Specifies the requested date and time when the attachment circuit is expected to be disabled.<a href="#section-5.2.5-5.10.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
-<dt id="section-5.2.5-4.11">'actual-start':</dt>
-            <dd style="margin-left: 1.5em" id="section-5.2.5-4.12">
-              <p id="section-5.2.5-4.12.1">Reports the actual date and time when the attachment circuit actually was enabled.<a href="#section-5.2.5-4.12.1" class="pilcrow">¶</a></p>
+<dt id="section-5.2.5-5.11">'actual-start':</dt>
+            <dd style="margin-left: 1.5em" id="section-5.2.5-5.12">
+              <p id="section-5.2.5-5.12.1">Reports the actual date and time when the attachment circuit actually was enabled.<a href="#section-5.2.5-5.12.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
-<dt id="section-5.2.5-4.13">'actual-stop':</dt>
-            <dd style="margin-left: 1.5em" id="section-5.2.5-4.14">
-              <p id="section-5.2.5-4.14.1">Reports the actual date and time when the attachment circuit actually was disabled.<a href="#section-5.2.5-4.14.1" class="pilcrow">¶</a></p>
+<dt id="section-5.2.5-5.13">'actual-stop':</dt>
+            <dd style="margin-left: 1.5em" id="section-5.2.5-5.14">
+              <p id="section-5.2.5-5.14.1">Reports the actual date and time when the attachment circuit actually was disabled.<a href="#section-5.2.5-5.14.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
-<dt id="section-5.2.5-4.15">'role':</dt>
-            <dd style="margin-left: 1.5em" id="section-5.2.5-4.16">
-              <p id="section-5.2.5-4.16.1">Specifies whether an AC is used, e.g., as User-to-Network Interface (UNI) or Network-to-Network Interface (NNI).<a href="#section-5.2.5-4.16.1" class="pilcrow">¶</a></p>
+<dt id="section-5.2.5-5.15">'role':</dt>
+            <dd style="margin-left: 1.5em" id="section-5.2.5-5.16">
+              <p id="section-5.2.5-5.16.1">Specifies whether an AC is used, e.g., as User-to-Network Interface (UNI) or Network-to-Network Interface (NNI).<a href="#section-5.2.5-5.16.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
-<dt id="section-5.2.5-4.17">'peer-sap-id':</dt>
-            <dd style="margin-left: 1.5em" id="section-5.2.5-4.18">
-              <p id="section-5.2.5-4.18.1">Includes references to the remote endpoints of an attachment circuit <span>[<a href="#RFC9408" class="cite xref">RFC9408</a>]</span>. 'peer' is drawn here from the perspective of the provider network. That is, a 'peer-sap' will refer to a customer node.<a href="#section-5.2.5-4.18.1" class="pilcrow">¶</a></p>
+<dt id="section-5.2.5-5.17">'peer-sap-id':</dt>
+            <dd style="margin-left: 1.5em" id="section-5.2.5-5.18">
+              <p id="section-5.2.5-5.18.1">Includes references to the remote endpoints of an attachment circuit <span>[<a href="#RFC9408" class="cite xref">RFC9408</a>]</span>. 'peer' is drawn here from the perspective of the provider network. That is, a 'peer-sap' will refer to a customer node.<a href="#section-5.2.5-5.18.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
-<dt id="section-5.2.5-4.19">'group-profile-ref':</dt>
-            <dd style="margin-left: 1.5em" id="section-5.2.5-4.20">
-              <p id="section-5.2.5-4.20.1">Indicates references to one or more profiles that are defined in <a href="#sec-acp" class="auto internal xref">Section 5.2.3</a>.<a href="#section-5.2.5-4.20.1" class="pilcrow">¶</a></p>
+<dt id="section-5.2.5-5.19">'group-profile-ref':</dt>
+            <dd style="margin-left: 1.5em" id="section-5.2.5-5.20">
+              <p id="section-5.2.5-5.20.1">Indicates references to one or more profiles that are defined in <a href="#sec-acp" class="auto internal xref">Section 5.2.3</a>.<a href="#section-5.2.5-5.20.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
-<dt id="section-5.2.5-4.21">'parent-ref':</dt>
-            <dd style="margin-left: 1.5em" id="section-5.2.5-4.22">
-              <p id="section-5.2.5-4.22.1">Specifies an AC that is inherited by an attachment circuit.<a href="#section-5.2.5-4.22.1" class="pilcrow">¶</a></p>
+<dt id="section-5.2.5-5.21">'parent-ref':</dt>
+            <dd style="margin-left: 1.5em" id="section-5.2.5-5.22">
+              <p id="section-5.2.5-5.22.1">Specifies an AC that is inherited by an attachment circuit.<a href="#section-5.2.5-5.22.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
-<dt id="section-5.2.5-4.23"></dt>
-            <dd style="margin-left: 1.5em" id="section-5.2.5-4.24">
-              <p id="section-5.2.5-4.24.1">In contexts where dynamic termination points are managed for a given AC,
+<dt id="section-5.2.5-5.23"></dt>
+            <dd style="margin-left: 1.5em" id="section-5.2.5-5.24">
+              <p id="section-5.2.5-5.24.1">In contexts where dynamic termination points are managed for a given AC,
 a parent AC can be defined with a set of stable and common information, while
-"child" ACs are defined to track dynamic information. These "child" ACs are bound to the parent AC, which is exposed to services (as a stable reference).<a href="#section-5.2.5-4.24.1" class="pilcrow">¶</a></p>
+"child" ACs are defined to track dynamic information. These "child" ACs are bound to the parent AC, which is exposed to services (as a stable reference).<a href="#section-5.2.5-5.24.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
-<dt id="section-5.2.5-4.25"></dt>
-            <dd style="margin-left: 1.5em" id="section-5.2.5-4.26">
-              <p id="section-5.2.5-4.26.1">Whenever a parent AC is deleted, all its "child" ACs <span class="bcp14">MUST</span> be deleted.<a href="#section-5.2.5-4.26.1" class="pilcrow">¶</a></p>
+<dt id="section-5.2.5-5.25"></dt>
+            <dd style="margin-left: 1.5em" id="section-5.2.5-5.26">
+              <p id="section-5.2.5-5.26.1">Whenever a parent AC is deleted, all its "child" ACs <span class="bcp14">MUST</span> be deleted.<a href="#section-5.2.5-5.26.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
-<dt id="section-5.2.5-4.27"></dt>
-            <dd style="margin-left: 1.5em" id="section-5.2.5-4.28">
-              <p id="section-5.2.5-4.28.1">A "child" AC <span class="bcp14">MAY</span> rely upon more than one parent AC (e.g., parent Layer 2 AC and parent Layer 3 AC). In such cases, these ACs <span class="bcp14">MUST NOT</span> be overlapping. An example to illustrate the use of multiple parent ACs is provided in  <a href="#sec-bfd-static" class="auto internal xref">Appendix A.12</a>.<a href="#section-5.2.5-4.28.1" class="pilcrow">¶</a></p>
+<dt id="section-5.2.5-5.27"></dt>
+            <dd style="margin-left: 1.5em" id="section-5.2.5-5.28">
+              <p id="section-5.2.5-5.28.1">A "child" AC <span class="bcp14">MAY</span> rely upon more than one parent AC (e.g., parent Layer 2 AC and parent Layer 3 AC). In such cases, these ACs <span class="bcp14">MUST NOT</span> be overlapping. An example to illustrate the use of multiple parent ACs is provided in  <a href="#sec-bfd-static" class="auto internal xref">Appendix A.12</a>.<a href="#section-5.2.5-5.28.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
-<dt id="section-5.2.5-4.29">'child-ref':</dt>
-            <dd style="margin-left: 1.5em" id="section-5.2.5-4.30">
-              <p id="section-5.2.5-4.30.1">Lists one or more references of child ACs that rely upon this attachment circuit as a parent AC.<a href="#section-5.2.5-4.30.1" class="pilcrow">¶</a></p>
+<dt id="section-5.2.5-5.29">'child-ref':</dt>
+            <dd style="margin-left: 1.5em" id="section-5.2.5-5.30">
+              <p id="section-5.2.5-5.30.1">Lists one or more references of child ACs that rely upon this attachment circuit as a parent AC.<a href="#section-5.2.5-5.30.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
-<dt id="section-5.2.5-4.31">'group':</dt>
-            <dd style="margin-left: 1.5em" id="section-5.2.5-4.32">
-              <p id="section-5.2.5-4.32.1">Lists the groups to which an AC belongs <span>[<a href="#RFC9181" class="cite xref">RFC9181</a>]</span>. For example, the 'group-id' is used to associate redundancy or protection constraints of ACs. An example is provided in <a href="#sec-ex-prec" class="auto internal xref">Appendix A.5</a>.<a href="#section-5.2.5-4.32.1" class="pilcrow">¶</a></p>
+<dt id="section-5.2.5-5.31">'group':</dt>
+            <dd style="margin-left: 1.5em" id="section-5.2.5-5.32">
+              <p id="section-5.2.5-5.32.1">Lists the groups to which an AC belongs <span>[<a href="#RFC9181" class="cite xref">RFC9181</a>]</span>. For example, the 'group-id' is used to associate redundancy or protection constraints of ACs. An example is provided in <a href="#sec-ex-prec" class="auto internal xref">Appendix A.5</a>.<a href="#section-5.2.5-5.32.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
-<dt id="section-5.2.5-4.33">'service-ref':</dt>
-            <dd style="margin-left: 1.5em" id="section-5.2.5-4.34">
-              <p id="section-5.2.5-4.34.1">Reports the set of services that are bound to the attachment circuit. The services are indexed by their type.<a href="#section-5.2.5-4.34.1" class="pilcrow">¶</a></p>
+<dt id="section-5.2.5-5.33">'service-ref':</dt>
+            <dd style="margin-left: 1.5em" id="section-5.2.5-5.34">
+              <p id="section-5.2.5-5.34.1">Reports the set of services that are bound to the attachment circuit. The services are indexed by their type.<a href="#section-5.2.5-5.34.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
-<dt id="section-5.2.5-4.35">'server-reference':</dt>
-            <dd style="margin-left: 1.5em" id="section-5.2.5-4.36">
-              <p id="section-5.2.5-4.36.1">Reports the internal reference that is assigned by the provider for this AC. This reference is used to accomodate deployment contexts (e.g., <span><a href="https://rfc-editor.org/rfc/rfc8921#section-9.1.2" class="relref">Section 9.1.2</a> of [<a href="#RFC8921" class="cite xref">RFC8921</a>]</span>) where an identifier is generated by the provider to identify a service order locally.<a href="#section-5.2.5-4.36.1" class="pilcrow">¶</a></p>
+<dt id="section-5.2.5-5.35">'server-reference':</dt>
+            <dd style="margin-left: 1.5em" id="section-5.2.5-5.36">
+              <p id="section-5.2.5-5.36.1">Reports the internal reference that is assigned by the provider for this AC. This reference is used to accomodate deployment contexts (e.g., <span><a href="https://rfc-editor.org/rfc/rfc8921#section-9.1.2" class="relref">Section 9.1.2</a> of [<a href="#RFC8921" class="cite xref">RFC8921</a>]</span>) where an identifier is generated by the provider to identify a service order locally.<a href="#section-5.2.5-5.36.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
-<dt id="section-5.2.5-4.37">'name':</dt>
-            <dd style="margin-left: 1.5em" id="section-5.2.5-4.38">
-              <p id="section-5.2.5-4.38.1">Associates a name that uniquely identifies an AC within a service provider network.<a href="#section-5.2.5-4.38.1" class="pilcrow">¶</a></p>
+<dt id="section-5.2.5-5.37">'name':</dt>
+            <dd style="margin-left: 1.5em" id="section-5.2.5-5.38">
+              <p id="section-5.2.5-5.38.1">Associates a name that uniquely identifies an AC within a service provider network.<a href="#section-5.2.5-5.38.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
-<dt id="section-5.2.5-4.39">'service-profile':</dt>
-            <dd style="margin-left: 1.5em" id="section-5.2.5-4.40">
-              <p id="section-5.2.5-4.40.1">References a set of service-specific profiles.<a href="#section-5.2.5-4.40.1" class="pilcrow">¶</a></p>
+<dt id="section-5.2.5-5.39">'service-profile':</dt>
+            <dd style="margin-left: 1.5em" id="section-5.2.5-5.40">
+              <p id="section-5.2.5-5.40.1">References a set of service-specific profiles.<a href="#section-5.2.5-5.40.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
-<dt id="section-5.2.5-4.41">'l2-connection':</dt>
-            <dd style="margin-left: 1.5em" id="section-5.2.5-4.42">
-              <p id="section-5.2.5-4.42.1">See <a href="#sec-l2" class="auto internal xref">Section 5.2.5.1</a>.<a href="#section-5.2.5-4.42.1" class="pilcrow">¶</a></p>
+<dt id="section-5.2.5-5.41">'l2-connection':</dt>
+            <dd style="margin-left: 1.5em" id="section-5.2.5-5.42">
+              <p id="section-5.2.5-5.42.1">See <a href="#sec-l2" class="auto internal xref">Section 5.2.5.1</a>.<a href="#section-5.2.5-5.42.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
-<dt id="section-5.2.5-4.43">'ip-connection':</dt>
-            <dd style="margin-left: 1.5em" id="section-5.2.5-4.44">
-              <p id="section-5.2.5-4.44.1">See <a href="#sec-l3" class="auto internal xref">Section 5.2.5.2</a>.<a href="#section-5.2.5-4.44.1" class="pilcrow">¶</a></p>
+<dt id="section-5.2.5-5.43">'ip-connection':</dt>
+            <dd style="margin-left: 1.5em" id="section-5.2.5-5.44">
+              <p id="section-5.2.5-5.44.1">See <a href="#sec-l3" class="auto internal xref">Section 5.2.5.2</a>.<a href="#section-5.2.5-5.44.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
-<dt id="section-5.2.5-4.45">'routing':</dt>
-            <dd style="margin-left: 1.5em" id="section-5.2.5-4.46">
-              <p id="section-5.2.5-4.46.1">See <a href="#sec-rtg" class="auto internal xref">Section 5.2.5.3</a>.<a href="#section-5.2.5-4.46.1" class="pilcrow">¶</a></p>
+<dt id="section-5.2.5-5.45">'routing':</dt>
+            <dd style="margin-left: 1.5em" id="section-5.2.5-5.46">
+              <p id="section-5.2.5-5.46.1">See <a href="#sec-rtg" class="auto internal xref">Section 5.2.5.3</a>.<a href="#section-5.2.5-5.46.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
-<dt id="section-5.2.5-4.47">'oam':</dt>
-            <dd style="margin-left: 1.5em" id="section-5.2.5-4.48">
-              <p id="section-5.2.5-4.48.1">See <a href="#sec-oam" class="auto internal xref">Section 5.2.5.4</a>.<a href="#section-5.2.5-4.48.1" class="pilcrow">¶</a></p>
+<dt id="section-5.2.5-5.47">'oam':</dt>
+            <dd style="margin-left: 1.5em" id="section-5.2.5-5.48">
+              <p id="section-5.2.5-5.48.1">See <a href="#sec-oam" class="auto internal xref">Section 5.2.5.4</a>.<a href="#section-5.2.5-5.48.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
-<dt id="section-5.2.5-4.49">'security':</dt>
-            <dd style="margin-left: 1.5em" id="section-5.2.5-4.50">
-              <p id="section-5.2.5-4.50.1">See <a href="#sec-sec" class="auto internal xref">Section 5.2.5.5</a>.<a href="#section-5.2.5-4.50.1" class="pilcrow">¶</a></p>
+<dt id="section-5.2.5-5.49">'security':</dt>
+            <dd style="margin-left: 1.5em" id="section-5.2.5-5.50">
+              <p id="section-5.2.5-5.50.1">See <a href="#sec-sec" class="auto internal xref">Section 5.2.5.5</a>.<a href="#section-5.2.5-5.50.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
-<dt id="section-5.2.5-4.51">'service':</dt>
-            <dd style="margin-left: 1.5em" id="section-5.2.5-4.52">
-              <p id="section-5.2.5-4.52.1">See <a href="#sec-bw" class="auto internal xref">Section 5.2.5.6</a>.<a href="#section-5.2.5-4.52.1" class="pilcrow">¶</a></p>
+<dt id="section-5.2.5-5.51">'service':</dt>
+            <dd style="margin-left: 1.5em" id="section-5.2.5-5.52">
+              <p id="section-5.2.5-5.52.1">See <a href="#sec-bw" class="auto internal xref">Section 5.2.5.6</a>.<a href="#section-5.2.5-5.52.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
 </dl>
@@ -4218,7 +4219,9 @@ module ietf-bearer-svc {
   }
   container bearers {
     description
-      "Main container for the bearers.";
+      "Main container for the bearers. The timing constraints
+       indicated at the bearer lavel take precedence over the
+       global values indicated at the bearers level.";
     uses ac-common:op-instructions;
     container placement-constraints {
       description

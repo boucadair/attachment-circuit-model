@@ -803,11 +803,15 @@ B2B C/S: Back-to-back Client/Server
       the same bearer data model structure.
 
    A request to create a bearer may include a set of constraints
-   ("placement-constraints") that are used by a controller to decide the
+   ('placement-constraints') that are used by a controller to decide the
    network terminating side of a bearer (e.g., PE selection, PE
    redundancy, or PoP selection).  Future placement criteria
-   ("constraint-type") may be defined in the future to accommodate
-   specific deployment contexts.
+   ('constraint-type') may be defined in the future to accommodate
+   specific deployment contexts.  A request may also include some timing
+   constraints ('requested-start', 'requested-stop') that are applicable
+   for a set of bearers.  The timing constraints can be adjusted at the
+   'bearer' level.  These adjusted values take precedence over the
+   global values.
 
    The descriptions of the bearer data nodes are as follows:
 
@@ -1178,7 +1182,12 @@ B2B C/S: Back-to-back Client/Server
 
                Figure 10: Attachment Circuits Tree Structure
 
-   The description of the data nodes is as follows:
+   A request may also include some timing constraints ('requested-
+   start', 'requested-stop') that are applicable for a set of ACs.  The
+   timing constraints can be adjusted at the 'ac' level.  These adjusted
+   values take precedence over the global values.
+
+   The description of the 'ac' data nodes is as follows:
 
    'customer-name':  Indicates the name of the customer who ordered the
       AC or a set of ACs.
@@ -2530,7 +2539,9 @@ B2B C/S: Back-to-back Client/Server
      }
      container bearers {
        description
-         "Main container for the bearers.";
+         "Main container for the bearers. The timing constraints
+          indicated at the bearer lavel take precedence over the
+          global values indicated at the bearers level.";
        uses ac-common:op-instructions;
        container placement-constraints {
          description
