@@ -1245,27 +1245,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <a href="#section-1" class="section-number selfRef">1. </a><a href="#name-introduction" class="section-name selfRef">Introduction</a>
       </h2>
 <p id="section-1-1">Connectivity services are provided by networks to customers via dedicated terminating points (e.g., Service Functions (SFs), Customer Premises Equipment (CPEs), Autonomous System Border Routers (ASBRs), data centers gateways, or Internet Exchange Points). A connectivity service is basically about ensuring data transfer received from (or destined to) a given terminating point to (or from) other terminating points that belong to the same customer/service, an interconnection node, or an ancillary node. A set of objectives for the connectivity service may eventually be negotiated and agreed upon between a customer and a network provider. For that data transfer to take place within the provider network, it is assumed that adequate setup is provisioned over the links that connect customer terminating points and a provider network (a Provider Edge (PE), typically) so that data can be successfully exchanged over these links. The required setup is referred to in this document as Attachment Circuits (ACs), while the underlying link is referred to as "bearer".<a href="#section-1-1" class="pilcrow">¶</a></p>
-<p id="section-1-2">This document adheres to the definition of an attachment circuit as provided in <span><a href="https://rfc-editor.org/rfc/rfc4364#section-1.2" class="relref">Section 1.2</a> of [<a href="#RFC4364" class="cite xref">RFC4364</a>]</span>, especially:<a href="#section-1-2" class="pilcrow">¶</a></p>
-<ul class="normal ulEmpty">
-<li class="normal ulEmpty" id="section-1-3.1">
-          <p id="section-1-3.1.1">Routers can be attached to each other, or to end systems, in a
-   variety of different ways: PPP connections, ATM Virtual Circuits
-   (VCs), Frame Relay VCs, ethernet interfaces, Virtual Local Area
-   Networks (VLANs) on ethernet interfaces, GRE tunnels, Layer 2
-   Tunneling Protocol (L2TP) tunnels, IPsec tunnels, etc.  We will use
-   the term "attachment circuit" to refer generally to some such means
-   of attaching to a router.  An attachment circuit may be the sort of
-   connection that is usually thought of as a "data link", or it may be
-   a tunnel of some sort; what matters is that it be possible for two
-   devices to be network layer peers over the attachment circuit.<a href="#section-1-3.1.1" class="pilcrow">¶</a></p>
-</li>
-      </ul>
-<p id="section-1-4">When a customer requests a new value-added service, the service can be bound to existing attachment circuits or trigger the instantiation of new attachment circuits. Whether these attachment circuits are specific for a given service or are shared to deliver a variety of services is deployment-specific.<a href="#section-1-4" class="pilcrow">¶</a></p>
-<p id="section-1-5">An example of attachment circuits is depicted in <a href="#uc" class="auto internal xref">Figure 1</a>. A Customer Edge (CE) may be a physical node or a logical entity. A CE is seen by the network as a peer Service Attachment Point (SAP) <span>[<a href="#RFC9408" class="cite xref">RFC9408</a>]</span>. CEs may be dedicated to one single service (e.g., Layer 3 Virtual Private Network (VPN) or Layer 2 VPN) or host multiple services (e.g., Service Functions <span>[<a href="#RFC7665" class="cite xref">RFC7665</a>]</span>). A single AC (as seen by a network provider) may be bound to one or multiple peer SAPs (e.g., "CE1" and "CE2"). For example, and as discussed in <span>[<a href="#RFC4364" class="cite xref">RFC4364</a>]</span>, multiple CEs can be attached to a PE over the same attachment circuit. This is typically implemented if the Layer 2 infrastructure between the CE and the network provides a multipoint service. The same CE may terminate multiple ACs. These ACs may be over the same or distinct bearers.<a href="#section-1-5" class="pilcrow">¶</a></p>
+<p id="section-1-2">When a customer requests a new service, the service can be bound to existing attachment circuits or trigger the instantiation of new attachment circuits. Whether these attachment circuits are specific for a given service or are shared to deliver a variety of services is deployment-specific.<a href="#section-1-2" class="pilcrow">¶</a></p>
+<p id="section-1-3">An example of attachment circuits is depicted in <a href="#uc" class="auto internal xref">Figure 1</a>. A Customer Edge (CE) may be a physical node or a logical entity. A CE is seen by the network as a peer Service Attachment Point (SAP) <span>[<a href="#RFC9408" class="cite xref">RFC9408</a>]</span>. CEs may be dedicated to one single service (e.g., Layer 3 Virtual Private Network (VPN) or Layer 2 VPN) or host multiple services (e.g., Service Functions <span>[<a href="#RFC7665" class="cite xref">RFC7665</a>]</span>). A single AC (as seen by a network provider) may be bound to one or multiple peer SAPs (e.g., "CE1" and "CE2"). For example, and as discussed in <span>[<a href="#RFC4364" class="cite xref">RFC4364</a>]</span>, multiple CEs can be attached to a PE over the same attachment circuit. This is typically implemented if the Layer 2 infrastructure between the CE and the network provides a multipoint service. The same CE may terminate multiple ACs. These ACs may be over the same or distinct bearers.<a href="#section-1-3" class="pilcrow">¶</a></p>
 <span id="name-examples-of-acs"></span><div id="uc">
 <figure id="figure-1">
-        <div id="section-1-6.1">
-          <div class="alignCenter art-svg artwork" id="section-1-6.1.1">
+        <div id="section-1-4.1">
+          <div class="alignCenter art-svg artwork" id="section-1-4.1.1">
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="304" width="512" viewBox="0 0 512 304" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
               <path d="M 8,64 L 8,112" fill="none" stroke="black"></path>
               <path d="M 8,144 L 8,192" fill="none" stroke="black"></path>
@@ -1350,16 +1335,16 @@ svg :is([fill="white"], [fill^="#fff"]) {
                 <text x="124" y="292">Id</text>
                 <text x="144" y="292">x</text>
               </g>
-            </svg><a href="#section-1-6.1.1" class="pilcrow">¶</a>
+            </svg><a href="#section-1-4.1.1" class="pilcrow">¶</a>
 </div>
 </div>
 <figcaption><a href="#figure-1" class="selfRef">Figure 1</a>:
 <a href="#name-examples-of-acs" class="selfRef">Examples of ACs</a>
         </figcaption></figure>
 </div>
-<p id="section-1-7">This document specifies a common module ("ietf-ac-common") for attachment circuits (<a href="#sec-module" class="auto internal xref">Section 5</a>). The model is designed with the intent to be reusable by other models and, therefore, ensure consistent AC structures among modules that manipulate ACs. For example, the common model can be reused by service models to expose AC-as-a-Service (ACaaS) (e.g., <span>[<a href="#I-D.ietf-opsawg-teas-attachment-circuit" class="cite xref">I-D.ietf-opsawg-teas-attachment-circuit</a>]</span>), service models that require binding a service to a set of ACs (e.g., Network Slice Service <span>[<a href="#I-D.ietf-teas-ietf-network-slice-nbi-yang" class="cite xref">I-D.ietf-teas-ietf-network-slice-nbi-yang</a>]</span>)), network models to provision ACs (e.g., <span>[<a href="#I-D.ietf-opsawg-ntw-attachment-circuit" class="cite xref">I-D.ietf-opsawg-ntw-attachment-circuit</a>]</span>), device models, etc.<a href="#section-1-7" class="pilcrow">¶</a></p>
-<p id="section-1-8">The common AC module eases data inheritance between modules (e.g., from service to network models as per <span>[<a href="#RFC8969" class="cite xref">RFC8969</a>]</span>).<a href="#section-1-8" class="pilcrow">¶</a></p>
-<p id="section-1-9">The YANG data model in this document conforms to the Network Management Datastore Architecture (NMDA) defined in <span>[<a href="#RFC8342" class="cite xref">RFC8342</a>]</span>.<a href="#section-1-9" class="pilcrow">¶</a></p>
+<p id="section-1-5">This document specifies a common module ("ietf-ac-common") for attachment circuits (<a href="#sec-module" class="auto internal xref">Section 5</a>). The model is designed with the intent to be reusable by other models and, therefore, ensure consistent AC structures among modules that manipulate ACs. For example, the common model can be reused by service models to expose AC-as-a-Service (ACaaS) (e.g., <span>[<a href="#I-D.ietf-opsawg-teas-attachment-circuit" class="cite xref">I-D.ietf-opsawg-teas-attachment-circuit</a>]</span>), service models that require binding a service to a set of ACs (e.g., Network Slice Service <span>[<a href="#I-D.ietf-teas-ietf-network-slice-nbi-yang" class="cite xref">I-D.ietf-teas-ietf-network-slice-nbi-yang</a>]</span>)), network models to provision ACs (e.g., <span>[<a href="#I-D.ietf-opsawg-ntw-attachment-circuit" class="cite xref">I-D.ietf-opsawg-ntw-attachment-circuit</a>]</span>), device models, etc.<a href="#section-1-5" class="pilcrow">¶</a></p>
+<p id="section-1-6">The common AC module eases data inheritance between modules (e.g., from service to network models as per <span>[<a href="#RFC8969" class="cite xref">RFC8969</a>]</span>).<a href="#section-1-6" class="pilcrow">¶</a></p>
+<p id="section-1-7">The YANG data model in this document conforms to the Network Management Datastore Architecture (NMDA) defined in <span>[<a href="#RFC8342" class="cite xref">RFC8342</a>]</span>.<a href="#section-1-7" class="pilcrow">¶</a></p>
 <div id="editorial-note-to-be-removed-by-rfc-editor">
 <section id="section-1.1">
         <h3 id="name-editorial-note-to-be-remove">
@@ -1498,7 +1483,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <figure id="figure-2">
         <div id="section-3-3.1">
           <div class="alignCenter art-svg artwork" id="section-3-3.1.1">
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="256" width="368" viewBox="0 0 368 256" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="288" width="368" viewBox="0 0 368 288" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
               <path d="M 32,144 L 32,240" fill="none" stroke="black"></path>
               <path d="M 56,80 L 56,112" fill="none" stroke="black"></path>
               <path d="M 72,144 L 72,176" fill="none" stroke="black"></path>
@@ -1513,13 +1498,14 @@ svg :is([fill="white"], [fill^="#fff"]) {
               <path d="M 72,176 L 264,176" fill="none" stroke="black"></path>
               <path d="M 32,240 L 120,240" fill="none" stroke="black"></path>
               <path d="M 240,240 L 328,240" fill="none" stroke="black"></path>
+              <path d="M 24,272 L 40,272" fill="none" stroke="black"></path>
               <polygon class="arrowhead" points="336,192 324,186.4 324,197.6" fill="black" transform="rotate(270,328,192)"></polygon>
               <polygon class="arrowhead" points="248,48 236,42.4 236,53.6" fill="black" transform="rotate(270,240,48)"></polygon>
               <polygon class="arrowhead" points="200,40 188,34.4 188,45.6" fill="black" transform="rotate(270,192,40)"></polygon>
               <polygon class="arrowhead" points="152,48 140,42.4 140,53.6" fill="black" transform="rotate(270,144,48)"></polygon>
-              <polygon class="arrowhead" points="136,128 124,122.4 124,133.6" fill="black" transform="rotate(0,128,128)"></polygon>
               <polygon class="arrowhead" points="112,128 100,122.4 100,133.6" fill="black" transform="rotate(180,104,128)"></polygon>
               <polygon class="arrowhead" points="80,144 68,138.4 68,149.6" fill="black" transform="rotate(270,72,144)"></polygon>
+              <polygon class="arrowhead" points="48,272 36,266.4 36,277.6" fill="black" transform="rotate(0,40,272)"></polygon>
               <polygon class="arrowhead" points="40,144 28,138.4 28,149.6" fill="black" transform="rotate(270,32,144)"></polygon>
               <g class="text">
                 <text x="188" y="36">ietf-ac-common</text>
@@ -1527,6 +1513,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
                 <text x="200" y="132">ietf-bearer-svc</text>
                 <text x="320" y="180">ietf-ac-ntw</text>
                 <text x="180" y="244">ietf-ac-glue</text>
+                <text x="8" y="276">X</text>
+                <text x="60" y="276">Y:</text>
+                <text x="80" y="276">X</text>
+                <text x="120" y="276">imports</text>
+                <text x="160" y="276">Y</text>
               </g>
             </svg><a href="#section-3-3.1.1" class="pilcrow">¶</a>
 </div>

@@ -174,10 +174,11 @@ Table of Contents
    Technologies" [RFC9543]).
 
    The "ietf-ac-svc" module (Section 6.2) includes a set of reusable
-   groupings.  Whether a service model reuses structures defined in the
-   "ietf-ac-svc" or simply includes an AC reference (that was
-   communicated during AC service instantiation) is a design choice of
-   these service models.  Relying upon the AC service model to manage
+   groupings.  Whether a service model that wants to describe the
+   attachment circuits associated with the service reuses structures
+   defined in the "ietf-ac-svc" or simply includes an AC reference (that
+   was communicated during AC service instantiation) is a design choice
+   of these service models.  Relying upon the AC service model to manage
    ACs over which services are delivered has the merit of decorrelating
    the management of the (core) service from the ACs.  This allows
    upgrades (to reflect recent AC technologies or new features such as
@@ -455,7 +456,7 @@ Table of Contents
                      +----------+     |     +----------+
                      |                |                |
                      |                |                |
-               ietf-ac-svc <--> ietf-bearer-svc        |
+               ietf-ac-svc <--- ietf-bearer-svc        |
                   ^    ^                               |
                   |    |                               |
                   |    +------------------------ ietf-ac-ntw
@@ -463,6 +464,8 @@ Table of Contents
                   |                                    |
                   |                                    |
                   +----------- ietf-ac-glue -----------+
+
+               X --> Y: X imports Y
 
                           Figure 1: AC Data Models
 

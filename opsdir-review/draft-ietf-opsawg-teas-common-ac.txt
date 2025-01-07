@@ -110,26 +110,11 @@ Table of Contents
    required setup is referred to in this document as Attachment Circuits
    (ACs), while the underlying link is referred to as "bearer".
 
-   This document adheres to the definition of an attachment circuit as
-   provided in Section 1.2 of [RFC4364], especially:
-
-      Routers can be attached to each other, or to end systems, in a
-      variety of different ways: PPP connections, ATM Virtual Circuits
-      (VCs), Frame Relay VCs, ethernet interfaces, Virtual Local Area
-      Networks (VLANs) on ethernet interfaces, GRE tunnels, Layer 2
-      Tunneling Protocol (L2TP) tunnels, IPsec tunnels, etc.  We will
-      use the term "attachment circuit" to refer generally to some such
-      means of attaching to a router.  An attachment circuit may be the
-      sort of connection that is usually thought of as a "data link", or
-      it may be a tunnel of some sort; what matters is that it be
-      possible for two devices to be network layer peers over the
-      attachment circuit.
-
-   When a customer requests a new value-added service, the service can
-   be bound to existing attachment circuits or trigger the instantiation
-   of new attachment circuits.  Whether these attachment circuits are
-   specific for a given service or are shared to deliver a variety of
-   services is deployment-specific.
+   When a customer requests a new service, the service can be bound to
+   existing attachment circuits or trigger the instantiation of new
+   attachment circuits.  Whether these attachment circuits are specific
+   for a given service or are shared to deliver a variety of services is
+   deployment-specific.
 
    An example of attachment circuits is depicted in Figure 1.  A
    Customer Edge (CE) may be a physical node or a logical entity.  A CE
@@ -273,7 +258,7 @@ Table of Contents
                      +----------+     |     +----------+
                      |                |                |
                      |                |                |
-               ietf-ac-svc <--> ietf-bearer-svc        |
+               ietf-ac-svc <--- ietf-bearer-svc        |
                   ^    ^                               |
                   |    |                               |
                   |    +------------------------ ietf-ac-ntw
@@ -281,6 +266,8 @@ Table of Contents
                   |                                    |
                   |                                    |
                   +----------- ietf-ac-glue -----------+
+
+               X --> Y: X imports Y
 
                           Figure 2: AC Data Models
 

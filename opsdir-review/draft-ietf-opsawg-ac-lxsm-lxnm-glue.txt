@@ -218,7 +218,7 @@ Table of Contents
                      +----------+     |     +----------+
                      |                |                |
                      |                |                |
-               ietf-ac-svc <--> ietf-bearer-svc        |
+               ietf-ac-svc <--- ietf-bearer-svc        |
                   ^    ^                               |
                   |    |                               |
                   |    +------------------------ ietf-ac-ntw
@@ -226,6 +226,8 @@ Table of Contents
                   |                                    |
                   |                                    |
                   +----------- ietf-ac-glue -----------+
+
+               X --> Y: X imports Y
 
                           Figure 1: AC Data Models
 
