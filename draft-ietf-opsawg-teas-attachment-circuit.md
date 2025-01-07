@@ -145,7 +145,7 @@ An AC service request can provide a reference to a bearer or a set of peer Servi
 
 Each AC is identified with a unique identifier within a provider domain. From a network provider standpoint, an AC can be bound to a single or multiple SAPs {{!RFC9408}}. Likewise, the same SAP can be bound to one or multiple ACs. However, the mapping between an AC and a PE in the provider network that terminates that AC is hidden to the application that makes use of the AC service model. Such mapping information is internal to the network controllers. As such, the details about the (node-specific) attachment interfaces are not exposed in the AC service model. However, these details are exposed at the network model per "A Network YANG Data Model for Attachment Circuits" specification {{?I-D.ietf-opsawg-ntw-attachment-circuit}}. "A YANG Data Model for Augmenting VPN Service and Network Models with Attachment Circuits" {{?I-D.ietf-opsawg-ac-lxsm-lxnm-glue}} specifies augmentations to the	L2VPN Service Model (L2SM) {{?RFC8466}} and the L3VPN Service Model	(L3SM) {{?RFC8299}} to bind LxVPN services to ACs.
 
-The AC service model does not make any assumptions about the internal structure or even the nature or the services that will be delivered over an attachment circuit or a set of attachment circuits. Customers do not have access to that network view other than the ACs that they ordered. For example, the AC service model can be used to provision a set of ACs to connect multiple sites (Site1, Site2, ..., SiteX) for customer who also requested VPN services. If the provisioning of these services requires specific configuration on ASBR nodes, such configuration is handled at the network level and is not exposed to the customer at the service level. However, the network controller will have access to such a view as the service points in these ASBRs will be exposed as SAPs with "role" set to "ietf-sap-ntw:nni" {{!RFC9408}}.
+The AC service model does not make any assumptions about the internal structure or even the nature or the services that will be delivered over an attachment circuit or a set of attachment circuits. Customers do not have access to that network view other than the ACs that they ordered. For example, the AC service model can be used to provision a set of ACs to connect multiple sites (Site1, Site2, ..., SiteX) for customer who also requested VPN services. If the provisioning of these services requires specific configuration on ASBR nodes, such configuration is handled at the network level and is not exposed to the customer at the service level. However, the network controller will have access to such a view as the service points in these ASBRs will be exposed as SAPs with 'role' set to 'ietf-sap-ntw:nni' {{!RFC9408}}.
 
 The AC service model can be used in a variety of contexts, such as (but not limited to) those provided in {{examples}}:
 
@@ -157,7 +157,7 @@ The AC service model can be used in a variety of contexts, such as (but not limi
 * Bind a slice service to a set of pre-provisioned attachment circuits ({{sec-ex-slice}}).
 * Connect an enterprise network to a provider network using BGP  ({{sec-cus-bgp}}).
 * Connect a Cloud Infrastructure to a service provider network ({{sec-ex-cloud}}).
-* Interconnect provider networks (e.g., {{?RFC8921}} or {{?I-D.ietf-grow-peering-api}}). Such ACs are identified with a "role" set to "ac-common:nni" or "ac-common:public-nni". See {{sec-peering}} to illustrate the use of the AC model for interconnection/peering.
+* Interconnect provider networks (e.g., {{?RFC8921}} or {{?I-D.ietf-grow-peering-api}}). Such ACs are identified with a 'role' set to 'ac-common:nni' or 'ac-common:public-nni'. See {{sec-peering}} to illustrate the use of the AC model for interconnection/peering.
 * Manage connectivity for complex containerized or virtualized functions in the cloud ({{sec-cloudified-nfs}}).
 * Manage AC redundancy with static addressing ({{sec-bfd-static}}).
 
@@ -172,7 +172,7 @@ The AC model specified in this document is not a network model {{?RFC8969}}. As 
 
 The AC service model is not a device model. A network provider may use a variety of device models (e.g., "A YANG Data Model for Routing Management (NMDA Version)" {{?RFC8349}} or "YANG Model for Border Gateway Protocol (BGP-4)" {{?I-D.ietf-idr-bgp-model}}) to provision an AC service in relevant network nodes.
 
-The AC service model reuses common types and structures defined in {{!RFC9181}}.
+The AC service model reuses common types and structures defined in "A Common YANG Data Model for Layer 2 and Layer 3 VPNs" {{!RFC9181}}.
 
 ### Why Not Use the L2SM as Reference Data Model for ACaaS?
 
@@ -362,7 +362,7 @@ B2B C/S: Back-to-back Client/Server
 ~~~~
 {: #u-ex title="An Example of AC Model Usage (Focus on the Provider's Internals)" artwork-align="center"}
 
-In order to ease the mapping between the service model and underlying network models (e.g., the L3VPN Network Model (L3NM), SAP), the name conventions used in existing network data models are reused as much as possible. For example, "local-address" is used rather than "provider-address" (or similar) to refer to an IP address used in the provider network. This approach is consistent with the automation framework defined in {{?RFC8969}}.
+In order to ease the mapping between the service model and underlying network models (e.g., the L3VPN Network Model (L3NM), SAP), the name conventions used in existing network data models are reused as much as possible. For example, 'local-address' is used rather than 'provider-address' (or similar) to refer to an IP address used in the provider network. This approach is consistent with the automation framework defined in {{?RFC8969}}.
 
 # Description of the Data Models
 
@@ -376,7 +376,7 @@ Such a reference can be used, e.g., in a subsequent service request to create an
 ~~~~
 {: #bearer-st title="Bearer Service Tree Structure" artwork-align="center"}
 
-In some deployments, a customer may first retrieve a list of available presence locations before actually placing an order for a bearer creation. The request is filtered based upon a customer name and an Autonomous System Number (ASN). The reserved value "AS 0" {{?RFC7607}} is used for customers with no ASN. The retrieved location names may be then referenced in a bearer creation request ("provider-location-reference"). See the example provided in {{sec-ret-loc}}.
+In some deployments, a customer may first retrieve a list of available presence locations before actually placing an order for a bearer creation. The request is filtered based upon a customer name and an Autonomous System Number (ASN). The reserved value "AS 0" {{?RFC7607}} is used for customers with no ASN. The retrieved location names may be then referenced in a bearer creation request ('provider-location-reference'). See the example provided in {{sec-ret-loc}}.
 
 The same customer site (CE, SF, etc.) can terminate one or multiple bearers; each of them uniquely identified by a reference that is assigned by the network provider. These bearers can terminate on the same or distinct network nodes. CEs that terminate multiple bearers are called multi-homed CEs.
 
@@ -456,14 +456,14 @@ The descriptions of the bearer data nodes are as follows:
 'status':
 : Used to track the overall status of a given bearer. Both operational and administrative status are maintained together with a timestamp.
 
-: The "admin-status" attribute is typically configured by a network operator to indicate whether the service is enabled, disabled, or subjected to additional testing or pre-deployment checks. These additional options, such as 'admin-testing' and 'admin-pre-deployment', provide the operators the flexibility to conduct additional validations on the bearer before deploying services over that connection.
+: The 'admin-status' attribute is typically configured by a network operator to indicate whether the service is enabled, disabled, or subjected to additional testing or pre-deployment checks. These additional options, such as 'admin-testing' and 'admin-pre-deployment', provide the operators the flexibility to conduct additional validations on the bearer before deploying services over that connection.
 
 'oper-status':
-: The "oper-status" of a bearer reflects its operational state as observed. As a bearer can contain multiple services, the operational status should only reflect the status of the bearer connection. To obtain network-level service status, specific network models such as those in {{Section 7.3 of !RFC9182}}  or {{Section 7.3 of !RFC9291}} should be consulted.
-: It is important to note that the "admin-status" attribute should remain independent of the "oper-status". In other words, the setting of the intended administrative state (e.g., whether "admin-up" or "admin-testing") MUST NOT be influenced by the current operational state. If the bearer is administratively set to 'admin-down', it is expected that the bearer will also be operationally 'op-down' as a result of this administrative decision.
+: The 'oper-status' of a bearer reflects its operational state as observed. As a bearer can contain multiple services, the operational status should only reflect the status of the bearer connection. To obtain network-level service status, specific network models such as those in {{Section 7.3 of !RFC9182}}  or {{Section 7.3 of !RFC9291}} should be consulted.
+: It is important to note that the 'admin-status' attribute should remain independent of the 'oper-status'. In other words, the setting of the intended administrative state (e.g., whether 'admin-up' or 'admin-testing') MUST NOT be influenced by the current operational state. If the bearer is administratively set to 'admin-down', it is expected that the bearer will also be operationally 'op-down' as a result of this administrative decision.
 
 : To assess the service delivery status for a given bearer comprehensively, it is recommended to consider both administrative and operational service status values in conjunction. This holistic approach  allows a network controller or operator to identify anomalies effectively.
-: For instance, when a bearer is administratively enabled but the "operational-status" of that bearer is reported as "op-down", it should be expected that the "oper-status" of services transported over that bearer is also down. These status values differing should trigger the detection of an anomaly condition.
+: For instance, when a bearer is administratively enabled but the 'operational-status' of that bearer is reported as 'op-down', it should be expected that the 'oper-status' of services transported over that bearer is also down. These status values differing should trigger the detection of an anomaly condition.
 : See "A Common YANG Data Model for Layer 2 and Layer 3 VPNs" {{!RFC9181}} for more details.
 
 
@@ -514,7 +514,7 @@ The following specific provisioning profiles can be defined:
 : Refers to a set of policies, such as classification, marking, and actions (e.g., {{?RFC3644}}).
 
 'failure-detection-profile-identifier':
-: Refers to a set of failure detection policies (e.g., Bidirectional Forwarding Detection (BFD) policies {{!RFC5880}}) that can be invoked when building an AC.
+: Refers to a set of failure detection policies (e.g., BFD policies {{!RFC5880}}) that can be invoked when building an AC.
 
 'forwarding-profile-identifier':
 : Refers to the policies that apply to the forwarding of packets conveyed within an AC. Such policies may consist, for example, of applying Access Control Lists (ACLs).
@@ -1113,7 +1113,7 @@ An example of a request message body to create a bearer is shown in {{create-bea
 ~~~~
 {: #create-bearer title="Example of a Message Body to Create a New Bearer"}
 
-A "bearer-reference" is then generated by the controller for this bearer. {{get-bearer}} shows the example of a response message body that is sent by the controller to reply to a GET request:
+A 'bearer-reference' is then generated by the controller for this bearer. {{get-bearer}} shows the example of a response message body that is sent by the controller to reply to a GET request:
 
 ~~~~ json
 {::include-fold ./json-examples/svc/get-bearer-reference.json}
@@ -1131,7 +1131,7 @@ An example of a request message body to create a simple AC over an existing bear
 ~~~~
 {: #ac-b title="Example of a Message Body to Request an AC over an Existing Bearer"}
 
-{{ac-br}} shows the message body of a GET response received from the controller and which indicates the "cvlan-id" that was assigned for the requested AC.
+{{ac-br}} shows the message body of a GET response received from the controller and which indicates the 'cvlan-id' that was assigned for the requested AC.
 
 ~~~~ json
 {::include-fold ./json-examples/svc/simple-ac-existing-bearer-response.json}
@@ -1206,7 +1206,7 @@ A customer may request adding a new AC by simply referring to an existing per-no
 
 ## Control Precedence over Multiple ACs {#sec-ex-prec}
 
-When multiple ACs are requested by the same customer for the same site, the request can tag one of these ACs as "primary" and the other ones as "secondary". An example of such a request is shown in {{ac-precedence}}. In this example, both ACs are bound to the same "group-id", and the "precedence" data node is set as a function of the intended role of each AC (primary or secondary).
+When multiple ACs are requested by the same customer for the same site, the request can tag one of these ACs as 'primary' and the other ones as 'secondary'. An example of such a request is shown in {{ac-precedence}}. In this example, both ACs are bound to the same 'group-id', and the 'precedence' data node is set as a function of the intended role of each AC (primary or secondary).
 
 ~~~~ aasvg
                                  .---.
@@ -1314,7 +1314,7 @@ This example ({{cloud-provider-1}}) shows how the AC service model can be used t
 ~~~~
 {: #cloud-provider-1 title="An Example of Realization for Connecting a Cloud Site"}
 
-{{cloud-provider-2}} illustrates the pre-provisioning logic for the physical connection to the Cloud Provider. After this connection is delivered to the service provider, the network inventory is updated with "bearer-reference" set to the value of the "Connection Identifier".
+{{cloud-provider-2}} illustrates the pre-provisioning logic for the physical connection to the Cloud Provider. After this connection is delivered to the service provider, the network inventory is updated with 'bearer-reference' set to the value of the Connection Identifier.
 
 ~~~~ aasvg
   Customer                                                       Cloud
@@ -1433,7 +1433,7 @@ A peer can then use the location information and select the ones where it can re
 ~~~~
 {: #ex-create-bearer-parent-ref title="Message Body of a Request to Create a Bearer using a Provider-Assigned Reference"}
 
-The bearer is then activated by the server as shown in {{ex-create-bearer-parent-ref-res}}. A "bearer-reference" is also returned. That reference can be used for subsequent AC activation requests.
+The bearer is then activated by the server as shown in {{ex-create-bearer-parent-ref-res}}. A 'bearer-reference' is also returned. That reference can be used for subsequent AC activation requests.
 
 ~~~~ json
 {::include-fold ./json-examples/svc/simple-bearer-create-with-provider-ref-response.json}
@@ -1449,7 +1449,7 @@ As depicted in {{bgp-peer-network}}, each network connects to the IXP switch via
 ~~~~
 {: #bgp-peer-network title="Simple Interconnection Topology"}
 
-The AC configuration ({{bgp-peer-network-add-attachment-circuit}}) includes parameters such as VLAN configuration, IP addresses, MTU, and any additional settings required for connectivity. The peering location is inferred from the "bearer-reference".
+The AC configuration ({{bgp-peer-network-add-attachment-circuit}}) includes parameters such as VLAN configuration, IP addresses, MTU, and any additional settings required for connectivity. The peering location is inferred from the 'bearer-reference'.
 
 ~~~~ json
 {::include-fold ./json-examples/svc/bgp-peering-example.json}
@@ -1524,7 +1524,7 @@ The NFs are deployed on this infrastructure in the following way:
 
 For readability the payload is displayed as single JSON file ({{parent-profile}}). In practice, several API calls may take place to initialize these resources (e.g., GET requests from the customer to retrieve the IP address pools for NFs on "vlan 100" thanks to parent configuration and BGP configuration, and POST extra routes for user planes and BFD).
 
-Note that no individual IP addresses are assigned for the NF user plane instances (i.e., no "customer-address" in the Child AC). The assignment of IP addresses to the NF endpoints is managed by the Cloud Infrastructure IPAM based on the 'customer-address' IP address pool "192.0.2.1-200". Like in any conventional LAN-facing scenario, it is assumed that the actual binding of IP endpoints to logical attachments (here Child ACs) relies on a dedicated protocol logic (typically, Address Resolution Protocol (ARP) {{?RFC0826}} or Neighbor Discovery {{?RFC4861}}) and is not captured in the data model. Hence, the IP addresses displayed for NF user plane instances are simply examples to illustrate a realization approach. Note also that the Control Plane is defined with static IP address assignments on a given AC/bearer to illustrate another deployment alternative.
+Note that no individual IP addresses are assigned for the NF user plane instances (i.e., no 'customer-address' in the Child AC). The assignment of IP addresses to the NF endpoints is managed by the Cloud Infrastructure IPAM based on the 'customer-address' IP address pool "192.0.2.1-200". Like in any conventional LAN-facing scenario, it is assumed that the actual binding of IP endpoints to logical attachments (here Child ACs) relies on a dedicated protocol logic (typically, Address Resolution Protocol (ARP) {{?RFC0826}} or Neighbor Discovery {{?RFC4861}}) and is not captured in the data model. Hence, the IP addresses displayed for NF user plane instances are simply examples to illustrate a realization approach. Note also that the Control Plane is defined with static IP address assignments on a given AC/bearer to illustrate another deployment alternative.
 
 ~~~~ json
 {::include-fold ./json-examples/svc/ac-cloud-parent.json}
