@@ -157,7 +157,7 @@ The AC service model can be used in a variety of contexts, such as (but not limi
 * Bind a slice service to a set of pre-provisioned attachment circuits ({{sec-ex-slice}}).
 * Connect an enterprise network to a provider network using BGP  ({{sec-cus-bgp}}).
 * Connect a Cloud Infrastructure to a service provider network ({{sec-ex-cloud}}).
-* Interconnect provider networks (e.g., {{?RFC8921}} or {{?I-D.ramseyer-grow-peering-api}}). Such ACs are identified with a "role" set to "ac-common:nni" or "ac-common:public-nni". See {{sec-peering}} to illustrate the use of the AC model for interconnection/peering.
+* Interconnect provider networks (e.g., {{?RFC8921}} or {{?I-D.ietf-grow-peering-api}}). Such ACs are identified with a "role" set to "ac-common:nni" or "ac-common:public-nni". See {{sec-peering}} to illustrate the use of the AC model for interconnection/peering.
 * Manage connectivity for complex containerized or virtualized functions in the cloud ({{sec-cloudified-nfs}}).
 * Manage AC redundancy with static addressing ({{sec-bfd-static}}).
 
