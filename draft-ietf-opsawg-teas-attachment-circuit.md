@@ -388,7 +388,7 @@ Greenfield creation:
 Auto-discovery using network protocols:
 : Devices can use specific protocols (e.g., Link Layer Discovery Protocol (LLDP) {{IEEE802.1AB}}) to automatically discover and connect to available network resources. A network controller can use such reported information to expose discovered bearers from the network using the same bearer data model structure.
 
-A request to create a bearer may include a set of constraints ('placement-constraints') that are used by a controller to decide the network terminating side of a bearer (e.g., PE selection, PE redundancy, or PoP selection). Future placement criteria ('constraint-type') may be defined in the future to accommodate specific deployment contexts. A request may also include some timing constraints ('requested-start', 'requested-stop') that are applicable for a set of bearers. The timing constraints can be adjusted at the 'bearer' level. These adjusted values take precedence over the global values.  
+A request to create a bearer may include a set of constraints ('placement-constraints') that are used by a controller to decide the network terminating side of a bearer (e.g., PE selection, PE redundancy, or PoP selection). Future placement criteria ('constraint-type') may be defined in the future to accommodate specific deployment contexts. A request may also include some timing constraints ('requested-start', 'requested-stop') that are applicable for a set of bearers. The timing constraints can be adjusted at the 'bearer' level. These adjusted values take precedence over the global values.
 
 The descriptions of the bearer data nodes are as follows:
 
