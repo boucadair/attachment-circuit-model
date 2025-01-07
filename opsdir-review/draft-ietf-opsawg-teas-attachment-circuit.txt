@@ -2294,7 +2294,7 @@ B2B C/S: Back-to-back Client/Server
        "This YANG module defines a generic YANG model for exposing
         network bearers as a service.
 
-        Copyright (c) 2024 IETF Trust and the persons identified as
+        Copyright (c) 2025 IETF Trust and the persons identified as
         authors of the code.  All rights reserved.
 
         Redistribution and use in source and binary forms, with or
@@ -2307,7 +2307,7 @@ B2B C/S: Back-to-back Client/Server
         This version of this YANG module is part of RFC xxx; see the
         RFC itself for full legal notices.";
 
-     revision 2024-08-06 {
+     revision 2025-01-07 {
        description
          "Initial revision.";
        reference
@@ -2540,7 +2540,7 @@ B2B C/S: Back-to-back Client/Server
      container bearers {
        description
          "Main container for the bearers. The timing constraints
-          indicated at the bearer lavel take precedence over the
+          indicated at the bearer level take precedence over the
           global values indicated at the bearers level.";
        uses ac-common:op-instructions;
        container placement-constraints {
