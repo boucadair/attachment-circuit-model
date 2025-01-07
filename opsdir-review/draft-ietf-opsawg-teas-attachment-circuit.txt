@@ -237,8 +237,8 @@ Table of Contents
    ASBR nodes, such configuration is handled at the network level and is
    not exposed to the customer at the service level.  However, the
    network controller will have access to such a view as the service
-   points in these ASBRs will be exposed as SAPs with "role" set to
-   "ietf-sap-ntw:nni" [RFC9408].
+   points in these ASBRs will be exposed as SAPs with 'role' set to
+   'ietf-sap-ntw:nni' [RFC9408].
 
    The AC service model can be used in a variety of contexts, such as
    (but not limited to) those provided in Appendix A:
@@ -266,7 +266,7 @@ Table of Contents
 
    *  Interconnect provider networks (e.g., [RFC8921] or
       [I-D.ietf-grow-peering-api]).  Such ACs are identified with a
-      "role" set to "ac-common:nni" or "ac-common:public-nni".  See
+      'role' set to 'ac-common:nni' or 'ac-common:public-nni'.  See
       Appendix A.10 to illustrate the use of the AC model for
       interconnection/peering.
 
@@ -304,8 +304,8 @@ Table of Contents
    Gateway Protocol (BGP-4)" [I-D.ietf-idr-bgp-model]) to provision an
    AC service in relevant network nodes.
 
-   The AC service model reuses common types and structures defined in
-   [RFC9181].
+   The AC service model reuses common types and structures defined in "A
+   Common YANG Data Model for Layer 2 and Layer 3 VPNs" [RFC9181].
 
 1.2.1.  Why Not Use the L2SM as Reference Data Model for ACaaS?
 
@@ -666,8 +666,8 @@ B2B C/S: Back-to-back Client/Server
    In order to ease the mapping between the service model and underlying
    network models (e.g., the L3VPN Network Model (L3NM), SAP), the name
    conventions used in existing network data models are reused as much
-   as possible.  For example, "local-address" is used rather than
-   "provider-address" (or similar) to refer to an IP address used in the
+   as possible.  For example, 'local-address' is used rather than
+   'provider-address' (or similar) to refer to an IP address used in the
    provider network.  This approach is consistent with the automation
    framework defined in [RFC8969].
 
@@ -774,8 +774,8 @@ B2B C/S: Back-to-back Client/Server
    bearer creation.  The request is filtered based upon a customer name
    and an Autonomous System Number (ASN).  The reserved value "AS 0"
    [RFC7607] is used for customers with no ASN.  The retrieved location
-   names may be then referenced in a bearer creation request ("provider-
-   location-reference").  See the example provided in Appendix A.10.1.
+   names may be then referenced in a bearer creation request ('provider-
+   location-reference').  See the example provided in Appendix A.10.1.
 
    The same customer site (CE, SF, etc.) can terminate one or multiple
    bearers; each of them uniquely identified by a reference that is
@@ -893,7 +893,7 @@ B2B C/S: Back-to-back Client/Server
       operational and administrative status are maintained together with
       a timestamp.
 
-      The "admin-status" attribute is typically configured by a network
+      The 'admin-status' attribute is typically configured by a network
       operator to indicate whether the service is enabled, disabled, or
       subjected to additional testing or pre-deployment checks.  These
       additional options, such as 'admin-testing' and 'admin-pre-
@@ -901,17 +901,17 @@ B2B C/S: Back-to-back Client/Server
       additional validations on the bearer before deploying services
       over that connection.
 
-   'oper-status':  The "oper-status" of a bearer reflects its
+   'oper-status':  The 'oper-status' of a bearer reflects its
       operational state as observed.  As a bearer can contain multiple
       services, the operational status should only reflect the status of
       the bearer connection.  To obtain network-level service status,
       specific network models such as those in Section 7.3 of [RFC9182]
       or Section 7.3 of [RFC9291] should be consulted.
 
-      It is important to note that the "admin-status" attribute should
-      remain independent of the "oper-status".  In other words, the
+      It is important to note that the 'admin-status' attribute should
+      remain independent of the 'oper-status'.  In other words, the
       setting of the intended administrative state (e.g., whether
-      "admin-up" or "admin-testing") MUST NOT be influenced by the
+      'admin-up' or 'admin-testing') MUST NOT be influenced by the
       current operational state.  If the bearer is administratively set
       to 'admin-down', it is expected that the bearer will also be
       operationally 'op-down' as a result of this administrative
@@ -924,8 +924,8 @@ B2B C/S: Back-to-back Client/Server
       identify anomalies effectively.
 
       For instance, when a bearer is administratively enabled but the
-      "operational-status" of that bearer is reported as "op-down", it
-      should be expected that the "oper-status" of services transported
+      'operational-status' of that bearer is reported as 'op-down', it
+      should be expected that the 'oper-status' of services transported
       over that bearer is also down.  These status values differing
       should trigger the detection of an anomaly condition.
 
@@ -1064,8 +1064,8 @@ B2B C/S: Back-to-back Client/Server
       classification, marking, and actions (e.g., [RFC3644]).
 
    'failure-detection-profile-identifier':  Refers to a set of failure
-      detection policies (e.g., Bidirectional Forwarding Detection (BFD)
-      policies [RFC5880]) that can be invoked when building an AC.
+      detection policies (e.g., BFD policies [RFC5880]) that can be
+      invoked when building an AC.
 
    'forwarding-profile-identifier':  Refers to the policies that apply
       to the forwarding of packets conveyed within an AC.  Such policies
@@ -4459,7 +4459,7 @@ A.1.  Create a New Bearer
 
         Figure 24: Example of a Message Body to Create a New Bearer
 
-   A "bearer-reference" is then generated by the controller for this
+   A 'bearer-reference' is then generated by the controller for this
    bearer.  Figure 25 shows the example of a response message body that
    is sent by the controller to reply to a GET request:
 
@@ -4520,7 +4520,7 @@ A.2.  Create an AC over an Existing Bearer
                               Existing Bearer
 
    Figure 27 shows the message body of a GET response received from the
-   controller and which indicates the "cvlan-id" that was assigned for
+   controller and which indicates the 'cvlan-id' that was assigned for
    the requested AC.
 
    {
@@ -4916,10 +4916,10 @@ A.4.  One CE, Two ACs
 A.5.  Control Precedence over Multiple ACs
 
    When multiple ACs are requested by the same customer for the same
-   site, the request can tag one of these ACs as "primary" and the other
-   ones as "secondary".  An example of such a request is shown in
-   Figure 36.  In this example, both ACs are bound to the same "group-
-   id", and the "precedence" data node is set as a function of the
+   site, the request can tag one of these ACs as 'primary' and the other
+   ones as 'secondary'.  An example of such a request is shown in
+   Figure 36.  In this example, both ACs are bound to the same 'group-
+   id', and the 'precedence' data node is set as a function of the
    intended role of each AC (primary or secondary).
 
                                     .---.
@@ -5446,7 +5446,7 @@ A.8.  Connecting a Virtualized Environment Running in a Cloud Provider
    Figure 45 illustrates the pre-provisioning logic for the physical
    connection to the Cloud Provider.  After this connection is delivered
    to the service provider, the network inventory is updated with
-   "bearer-reference" set to the value of the "Connection Identifier".
+   'bearer-reference' set to the value of the Connection Identifier.
 
   Customer                                                       Cloud
 Orchestration       DIRECT INTERCONNECTION ORDERING (API)       Provider
@@ -5837,7 +5837,7 @@ A.10.2.  Create Bearers and Retrieve Bearer References
                         Provider- Assigned Reference
 
    The bearer is then activated by the server as shown in Figure 54.  A
-   "bearer-reference" is also returned.  That reference can be used for
+   'bearer-reference' is also returned.  That reference can be used for
    subsequent AC activation requests.
 
    {
@@ -5903,7 +5903,7 @@ A.10.3.  Manage ACs and BGP Sessions
    The AC configuration (Figure 56) includes parameters such as VLAN
    configuration, IP addresses, MTU, and any additional settings
    required for connectivity.  The peering location is inferred from the
-   "bearer-reference".
+   'bearer-reference'.
 
    {
      "ietf-ac-svc:attachment-circuits": {
@@ -6324,7 +6324,7 @@ A.11.3.  NFs Deployment
    planes and BFD).
 
    Note that no individual IP addresses are assigned for the NF user
-   plane instances (i.e., no "customer-address" in the Child AC).  The
+   plane instances (i.e., no 'customer-address' in the Child AC).  The
    assignment of IP addresses to the NF endpoints is managed by the
    Cloud Infrastructure IPAM based on the 'customer-address' IP address
    pool "192.0.2.1-200".  Like in any conventional LAN-facing scenario,
