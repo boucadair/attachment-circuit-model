@@ -264,7 +264,7 @@ The names of data nodes are prefixed using the prefix associated with the corres
       +----------+     |     +----------+
       |                |                |
       |                |                |
-ietf-ac-svc <--> ietf-bearer-svc        |
+ietf-ac-svc <--- ietf-bearer-svc        |
    ^    ^                               |
    |    |                               |
    |    +------------------------ ietf-ac-ntw
@@ -272,6 +272,8 @@ ietf-ac-svc <--> ietf-bearer-svc        |
    |                                    |
    |                                    |
    +----------- ietf-ac-glue -----------+
+
+X --> Y: X imports Y 
 ~~~~
 {: #ac-overview title="AC Data Models" artwork-align="center"}
 
