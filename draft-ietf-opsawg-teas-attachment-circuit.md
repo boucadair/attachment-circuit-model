@@ -192,7 +192,7 @@ Please apply the following replacements:
 
 * CCCC --> the assigned RFC number for {{!I-D.ietf-opsawg-teas-common-ac}}
 * XXXX --> the assigned RFC number for this I-D
-* 2024-08-06 --> the actual date of the publication of this document
+* 2025-01-07 --> the actual date of the publication of this document
 
 # Conventions and Definitions
 
@@ -952,7 +952,7 @@ Information Rate (EIR), or the Peak Information Rate (PIR). Both reuse the 'band
 This module uses types defined in {{!RFC6991}}, {{!RFC9181}}, and {{!I-D.ietf-opsawg-teas-common-ac}}.
 
 ~~~~~~~~~~ yang
-<CODE BEGINS> file "ietf-bearer-svc@2024-08-06.yang"
+<CODE BEGINS> file "ietf-bearer-svc@2025-01-07.yang"
 {::include-fold ./yang/ietf-bearer-svc.yang}
 <CODE ENDS>
 ~~~~~~~~~~
@@ -963,7 +963,7 @@ This module uses types defined in {{!RFC6991}}, {{!RFC9181}}, {{!RFC8177}}, and 
 the extensions defined in {{!RFC8341}}.
 
 ~~~~~~~~~~ yang
-<CODE BEGINS> file "ietf-ac-svc@2024-08-06.yang"
+<CODE BEGINS> file "ietf-ac-svc@2025-01-07.yang"
 {::include-fold ./yang/ietf-ac-svc.yang}
 <CODE ENDS>
 ~~~~~~~~~~
