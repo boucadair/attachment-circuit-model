@@ -132,7 +132,8 @@ Also, because the instantiation of an attachment circuit requires coordinating t
 
 This document specifies a YANG service data model ("ietf-ac-svc") for managing attachment circuits that are exposed by a network to its customers, such as an enterprise site, an SF, a hosting infrastructure, or a peer network provider. The model can be used for the provisioning of ACs prior to or during advanced service provisioning (e.g., IETF Network Slice Service defined in "A Framework for Network Slices in Networks Built from IETF Technologies" {{?RFC9543}}).
 
-The "ietf-ac-svc" module ({{sec-ac-module}}) includes a set of reusable groupings. Whether a service model reuses structures defined in the "ietf-ac-svc" or simply includes an AC reference (that was communicated during AC service instantiation) is a design choice of these service models. Relying upon the AC service model to manage ACs over which services are delivered has the merit of decorrelating the management of the (core) service from the ACs.  This allows upgrades (to reflect recent AC technologies or new features such as new encryption schemes, or additional routing protocols) to be done in just one place rather than in each (core) service model. This document favors the approach of completely relying upon the AC service model instead of duplicating data nodes into specific modules of advanced services that are delivered over an attachment circuit.
+The "ietf-ac-svc" module ({{sec-ac-module}}) includes a set of reusable groupings. Whether a service model that wants to describe the
+attachment circuits associated with the service reuses structures defined in the "ietf-ac-svc" or simply includes an AC reference (that was communicated during AC service instantiation) is a design choice of these service models. Relying upon the AC service model to manage ACs over which services are delivered has the merit of decorrelating the management of the (core) service from the ACs.  This allows upgrades (to reflect recent AC technologies or new features such as new encryption schemes, or additional routing protocols) to be done in just one place rather than in each (core) service model. This document favors the approach of completely relying upon the AC service model instead of duplicating data nodes into specific modules of advanced services that are delivered over an attachment circuit.
 
 Since the provisioning of an AC requires a bearer to be in place, this document introduces a new module called "ietf-bearer-svc" that enables customers to manage their bearers ({{sec-bearer-module}}). The customers can then retrieve a provider-assigned bearer reference that they will include in their AC service requests. Likewise, a customer may retrieve whether their bearers support a synchronization mechanism such as Sync Ethernet (SyncE) {{ITU-T-G.781}}. An example of retrieving a bearer reference is provided in {{ex-create-bearer}}.
 
@@ -273,7 +274,7 @@ ietf-ac-svc <--- ietf-bearer-svc        |
    |                                    |
    +----------- ietf-ac-glue -----------+
 
-X --> Y: X imports Y 
+X --> Y: X imports Y
 ~~~~
 {: #ac-overview title="AC Data Models" artwork-align="center"}
 
