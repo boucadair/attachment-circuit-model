@@ -99,20 +99,7 @@ The document specifies a common Attachment Circuits (ACs) YANG module, which is 
 
 Connectivity services are provided by networks to customers via dedicated terminating points (e.g., Service Functions (SFs), Customer Premises Equipment (CPEs), Autonomous System Border Routers (ASBRs), data centers gateways, or Internet Exchange Points). A connectivity service is basically about ensuring data transfer received from (or destined to) a given terminating point to (or from) other terminating points that belong to the same customer/service, an interconnection node, or an ancillary node. A set of objectives for the connectivity service may eventually be negotiated and agreed upon between a customer and a network provider. For that data transfer to take place within the provider network, it is assumed that adequate setup is provisioned over the links that connect customer terminating points and a provider network (a Provider Edge (PE), typically) so that data can be successfully exchanged over these links. The required setup is referred to in this document as Attachment Circuits (ACs), while the underlying link is referred to as "bearer".
 
-This document adheres to the definition of an attachment circuit as provided in {{Section 1.2 of ?RFC4364}}, especially:
-
-> Routers can be attached to each other, or to end systems, in a
-   variety of different ways: PPP connections, ATM Virtual Circuits
-   (VCs), Frame Relay VCs, ethernet interfaces, Virtual Local Area
-   Networks (VLANs) on ethernet interfaces, GRE tunnels, Layer 2
-   Tunneling Protocol (L2TP) tunnels, IPsec tunnels, etc.  We will use
-   the term "attachment circuit" to refer generally to some such means
-   of attaching to a router.  An attachment circuit may be the sort of
-   connection that is usually thought of as a "data link", or it may be
-   a tunnel of some sort; what matters is that it be possible for two
-   devices to be network layer peers over the attachment circuit.
-
-When a customer requests a new value-added service, the service can be bound to existing attachment circuits or trigger the instantiation of new attachment circuits. Whether these attachment circuits are specific for a given service or are shared to deliver a variety of services is deployment-specific.
+When a customer requests a new service, the service can be bound to existing attachment circuits or trigger the instantiation of new attachment circuits. Whether these attachment circuits are specific for a given service or are shared to deliver a variety of services is deployment-specific.
 
 An example of attachment circuits is depicted in {{uc}}. A Customer Edge (CE) may be a physical node or a logical entity. A CE is seen by the network as a peer Service Attachment Point (SAP) {{?RFC9408}}. CEs may be dedicated to one single service (e.g., Layer 3 Virtual Private Network (VPN) or Layer 2 VPN) or host multiple services (e.g., Service Functions {{?RFC7665}}). A single AC (as seen by a network provider) may be bound to one or multiple peer SAPs (e.g., "CE1" and "CE2"). For example, and as discussed in {{?RFC4364}}, multiple CEs can be attached to a PE over the same attachment circuit. This is typically implemented if the Layer 2 infrastructure between the CE and the network provides a multipoint service. The same CE may terminate multiple ACs. These ACs may be over the same or distinct bearers.
 
@@ -182,7 +169,7 @@ The names of data nodes are prefixed using the prefix associated with the corres
       +----------+     |     +----------+
       |                |                |
       |                |                |
-ietf-ac-svc <--> ietf-bearer-svc        |
+ietf-ac-svc <--- ietf-bearer-svc        |
    ^    ^                               |
    |    |                               |
    |    +------------------------ ietf-ac-ntw
@@ -190,6 +177,8 @@ ietf-ac-svc <--> ietf-bearer-svc        |
    |                                    |
    |                                    |
    +----------- ietf-ac-glue -----------+
+
+X --> Y: X imports Y
 ~~~~
 {: #ac-overview title="AC Data Models" artwork-align="center"}
 
