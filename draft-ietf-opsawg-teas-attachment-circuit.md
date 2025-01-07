@@ -124,7 +124,7 @@ This document specifies a YANG service data model for attachment circuits (ACs).
 
 ## Scope and Intended Use
 
-Connectivity services are provided by networks to customers via dedicated termination points, such as Service Functions (SFs) {{?RFC7665}}, Customer Edges (CEs), peer Autonomous System Border Routers (ASBRs), data centers gateways, or Internet Exchange Points. A connectivity service is basically about ensuring data transfer received from or destined to a given termination point to or from other termination points within the same customer/service, an interconnection node, or an ancillary node. The objectives for the connectivity service can be negotiated and agreed upon between the customer and the network provider. To facilitate data transfer within the provider network, it is assumed that the appropriate setup is provisioned over the links that connect customer termination points and a provider network (usually via a Provider Edge (PE)), allowing successfully data exchanged over these links. The required setup is referred to in this document as an attachment circuit (AC), while the underlying link is referred to as "bearer".
+Connectivity services are provided by networks to customers via dedicated termination points, such as Service Functions (SFs) {{?RFC7665}}, Customer Edges (CEs), peer Autonomous System Border Routers (ASBRs), data centers gateways, or Internet Exchange Points. A connectivity service is basically about ensuring data transfer received from or destined to a given termination point to or from other termination points. The objectives for the connectivity service can be negotiated and agreed upon between the customer and the network provider. To facilitate data transfer within the provider network, it is assumed that the appropriate setup is provisioned over the links that connect customer termination points and a provider network (usually via a Provider Edge (PE)), allowing successfully data exchanged over these links. The required setup is referred to in this document as an attachment circuit (AC), while the underlying link is referred to as "bearer".
 
 When a customer requests a new service, the service can be bound to existing attachment circuits or trigger the instantiation of new attachment circuits. The provisioning of a service should, thus, accommodate both deployments.
 
@@ -167,6 +167,8 @@ The YANG data models in this document conform to the Network Management Datastor
 The AC model specified in this document is not a network model {{?RFC8969}}. As such, the model does not expose details related to specific nodes in the provider's network that terminate an AC (e.g., network node identifiers). The mapping between an AC as seen by a customer and the network implementation of an AC is maintained by the network controllers and is not exposed to the customer. This mapping can be maintained using a variety of network models, such as augmented SAP AC network model {{?I-D.ietf-opsawg-ntw-attachment-circuit}}.
 
 The AC service model is not a device model. A network provider may use a variety of device models (e.g., "A YANG Data Model for Routing Management (NMDA Version)" {{?RFC8349}} or "YANG Model for Border Gateway Protocol (BGP-4)" {{?I-D.ietf-idr-bgp-model}}) to provision an AC service in relevant network nodes.
+
+The AC service model reuses common types and structures defined in {{!RFC9181}}.
 
 ### Why Not Use the L2SM as Reference Data Model for ACaaS?
 
