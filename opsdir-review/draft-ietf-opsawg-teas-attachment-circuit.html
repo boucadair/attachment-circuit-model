@@ -2186,7 +2186,7 @@ module: ietf-bearer-svc
 <a href="#name-bearer-service-tree-structu" class="selfRef">Bearer Service Tree Structure</a>
           </figcaption></figure>
 </div>
-<p id="section-5.1-3">In some deployments, a customer may first retrieve a list of available presence locations before actually placing an order for a bearer creation. The request is filtered based upon a customer name and an Autonomous System Number (ASN). The reserved value "AS 0" <span>[<a href="#RFC7607" class="cite xref">RFC7607</a>]</span> is used for customers with no ASN. The retrieved location names may be then referenced in a bearer creation request ('provider-location-reference'). See the example provided in <a href="#sec-ret-loc" class="auto internal xref">Appendix A.10.1</a>.<a href="#section-5.1-3" class="pilcrow">¶</a></p>
+<p id="section-5.1-3">In some deployments, a customer may first retrieve a list of available presence locations before placing an order for a bearer creation. The request is filtered based upon a customer name and an Autonomous System Number (ASN). The reserved value "AS 0" <span>[<a href="#RFC7607" class="cite xref">RFC7607</a>]</span> is used for customers with no ASN. The retrieved location names may be then referenced in a bearer creation request ('provider-location-reference'). See the example provided in <a href="#sec-ret-loc" class="auto internal xref">Appendix A.10.1</a>.<a href="#section-5.1-3" class="pilcrow">¶</a></p>
 <p id="section-5.1-4">The same customer site (CE, SF, etc.) can terminate one or multiple bearers; each of them uniquely identified by a reference that is assigned by the network provider. These bearers can terminate on the same or distinct network nodes. CEs that terminate multiple bearers are called multi-homed CEs.<a href="#section-5.1-4" class="pilcrow">¶</a></p>
 <p id="section-5.1-5">A bearer can be created, modified, or discovered from the network. For example, the following deployment options can be considered:<a href="#section-5.1-5" class="pilcrow">¶</a></p>
 <span class="break"></span><dl class="dlParallel" id="section-5.1-6">
@@ -2221,7 +2221,7 @@ module: ietf-bearer-svc
           <dd class="break"></dd>
 <dt id="section-5.1-9.7">'group':</dt>
           <dd style="margin-left: 1.5em" id="section-5.1-9.8">
-            <p id="section-5.1-9.8.1">Tags a bearer with one ore more identifiers that are used to group a set of bearers.<a href="#section-5.1-9.8.1" class="pilcrow">¶</a></p>
+            <p id="section-5.1-9.8.1">Tags a bearer with one or more identifiers that are used to group a set of bearers.<a href="#section-5.1-9.8.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
 <dt id="section-5.1-9.9">'op-comment':</dt>
@@ -2352,7 +2352,7 @@ module: ietf-bearer-svc
         <h3 id="name-the-attachment-circuit-serv">
 <a href="#section-5.2" class="section-number selfRef">5.2. </a><a href="#name-the-attachment-circuit-serv" class="section-name selfRef">The Attachment Circuit Service ("ietf-ac-svc") YANG Module</a>
         </h3>
-<p id="section-5.2-1">The full tree diagram of the "ietf-ac-svc" module is provied in <a href="#AC-svc-Tree" class="auto internal xref">Appendix B</a>. Subtrees are provided in the following subsections
+<p id="section-5.2-1">The full tree diagram of the "ietf-ac-svc" module is provided in <a href="#AC-svc-Tree" class="auto internal xref">Appendix B</a>. Subtrees are provided in the following subsections
 for the reader's convenience.<a href="#section-5.2-1" class="pilcrow">¶</a></p>
 <div id="overall-structure">
 <section id="section-5.2.1">
@@ -2403,8 +2403,8 @@ for the reader's convenience.<a href="#section-5.2-1" class="pilcrow">¶</a></p>
 </li>
           </ul>
 <p id="section-5.2.1-5">Each AC is identified with a unique name ('../ac/name') within a domain. The mapping between this AC and a local PE that terminates the AC is hidden to the application that makes use of the AC service model. This information is internal to the Network controller. As such, the details about the (node-specific) attachment interfaces are not exposed in this service model.<a href="#section-5.2.1-5" class="pilcrow">¶</a></p>
-<p id="section-5.2.1-6">The AC service model uses groupings and types defined in the AC common model <span>[<a href="#I-D.ietf-opsawg-teas-common-ac" class="cite xref">I-D.ietf-opsawg-teas-common-ac</a>]</span> ('op-instructions', 'dot1q', 'qinq', 'priority-tagged', 'l2-tunnel-service', etc.). Therefore, the description of these nodes are not reiterated in the following subsections.<a href="#section-5.2.1-6" class="pilcrow">¶</a></p>
-<p id="section-5.2.1-7">Features are used to tag conditional portions of the model in order to accomodate various deployments (support of layer 2 ACs, Layer 3 ACs, IPv4, IPv6, routing protocols,  Bidirectional Forwarding Detection (BFD), etc.).<a href="#section-5.2.1-7" class="pilcrow">¶</a></p>
+<p id="section-5.2.1-6">The AC service model uses groupings and types defined in the AC common model <span>[<a href="#I-D.ietf-opsawg-teas-common-ac" class="cite xref">I-D.ietf-opsawg-teas-common-ac</a>]</span> ('op-instructions', 'dot1q', 'qinq', 'priority-tagged', 'l2-tunnel-service', etc.). Therefore, the descriptions of these nodes are not reiterated in the following subsections.<a href="#section-5.2.1-6" class="pilcrow">¶</a></p>
+<p id="section-5.2.1-7">Features are used to tag conditional portions of the model in order to accommodate  various deployments (support of layer 2 ACs, Layer 3 ACs, IPv4, IPv6, routing protocols,  Bidirectional Forwarding Detection (BFD), etc.).<a href="#section-5.2.1-7" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sec-profiles">
@@ -2710,7 +2710,7 @@ a parent AC can be defined with a set of stable and common information, while
             <dd class="break"></dd>
 <dt id="section-5.2.5-5.35">'server-reference':</dt>
             <dd style="margin-left: 1.5em" id="section-5.2.5-5.36">
-              <p id="section-5.2.5-5.36.1">Reports the internal reference that is assigned by the provider for this AC. This reference is used to accomodate deployment contexts (e.g., <span><a href="https://rfc-editor.org/rfc/rfc8921#section-9.1.2" class="relref">Section 9.1.2</a> of [<a href="#RFC8921" class="cite xref">RFC8921</a>]</span>) where an identifier is generated by the provider to identify a service order locally.<a href="#section-5.2.5-5.36.1" class="pilcrow">¶</a></p>
+              <p id="section-5.2.5-5.36.1">Reports the internal reference that is assigned by the provider for this AC. This reference is used to accommodate deployment contexts (e.g., <span><a href="https://rfc-editor.org/rfc/rfc8921#section-9.1.2" class="relref">Section 9.1.2</a> of [<a href="#RFC8921" class="cite xref">RFC8921</a>]</span>) where an identifier is generated by the provider to identify a service order locally.<a href="#section-5.2.5-5.36.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
 <dt id="section-5.2.5-5.37">'name':</dt>
@@ -3220,7 +3220,7 @@ share authentication parameters, bind the session to a forwarding protection pro
 <a href="#name-bgp-tree-structure" class="selfRef">BGP Tree Structure</a>
                 </figcaption></figure>
 </div>
-<p id="section-5.2.5.3.2-4">For deployment cases where an AC service request includes a list of neighors with redundant information,
+<p id="section-5.2.5.3.2-4">For deployment cases where an AC service request includes a list of neighbors with redundant information,
 the ACaaS allows to factorize shared data by means of 'peer-group'. The presence of 'peer-groups' in a service request is thus optional.<a href="#section-5.2.5.3.2-4" class="pilcrow">¶</a></p>
 <p id="section-5.2.5.3.2-5">The following data nodes are supported for each BGP 'peer-group':<a href="#section-5.2.5.3.2-5" class="pilcrow">¶</a></p>
 <span class="break"></span><dl class="dlParallel" id="section-5.2.5.3.2-6">
