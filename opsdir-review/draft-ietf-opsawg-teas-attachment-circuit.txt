@@ -342,7 +342,7 @@ Table of Contents
 
    *  XXXX --> the assigned RFC number for this I-D
 
-   *  2024-08-06 --> the actual date of the publication of this document
+   *  2025-01-07 --> the actual date of the publication of this document
 
 2.  Conventions and Definitions
 
@@ -2245,7 +2245,7 @@ B2B C/S: Back-to-back Client/Server
    This module uses types defined in [RFC6991], [RFC9181], and
    [I-D.ietf-opsawg-teas-common-ac].
 
-   <CODE BEGINS> file "ietf-bearer-svc@2024-08-06.yang"
+   <CODE BEGINS> file "ietf-bearer-svc@2025-01-07.yang"
    module ietf-bearer-svc {
      yang-version 1.1;
      namespace "urn:ietf:params:xml:ns:yang:ietf-bearer-svc";
@@ -2724,7 +2724,7 @@ B2B C/S: Back-to-back Client/Server
    and [I-D.ietf-opsawg-teas-common-ac].  Also, the module uses the
    extensions defined in [RFC8341].
 
-   <CODE BEGINS> file "ietf-ac-svc@2024-08-06.yang"
+   <CODE BEGINS> file "ietf-ac-svc@2025-01-07.yang"
    module ietf-ac-svc {
      yang-version 1.1;
      namespace "urn:ietf:params:xml:ns:yang:ietf-ac-svc";
