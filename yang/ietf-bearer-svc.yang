@@ -292,6 +292,7 @@ module ietf-bearer-svc {
   container bearers {
     description
       "Main container for the bearers.";
+    uses ac-common:op-instructions;
     container placement-constraints {
       description
         "Diversity constraint type.";
