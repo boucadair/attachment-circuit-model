@@ -118,7 +118,7 @@ informative:
 
 Delivery of network services assumes that appropriate setup is provisioned over the links that connect customer termination points and a provider network. The required setup to allow successful data exchange over these links is referred to as an attachment circuit (AC), while the underlying link is referred to as "bearer".
 
-This document specifies a YANG service data model for attachment circuits (ACs). This model can be used for the provisioning of ACs before or during service provisioning (e.g., Network Slice Service).
+This document specifies a YANG service data model for ACs. This model can be used for the provisioning of ACs before or during service provisioning (e.g., Network Slice Service).
 
 The document also specifies a YANG service model for managing bearers over which ACs are established.
 
