@@ -47,7 +47,7 @@ module ietf-bearer-svc {
      network bearers as a service.
 
      Copyright (c) 2025 IETF Trust and the persons identified as
-     authors of the code.  All rights reserved.
+     authors of the code. All rights reserved.
 
      Redistribution and use in source and binary forms, with or
      without modification, is permitted pursuant to, and subject
@@ -181,9 +181,9 @@ module ietf-bearer-svc {
     leaf state {
       type string;
       description
-        "State of the device/site.  This leaf can also be
-         used to describe a region for a country that
-         does not have states.";
+        "State of the device/site. This leaf can also be used to
+         describe a region for a country that does not have
+         states.";
     }
     leaf country-code {
       type string {
@@ -363,7 +363,8 @@ module ietf-bearer-svc {
           base sync-phy-type;
         }
         description
-          "Type of the physical layer synchronization.";
+          "Type of the physical layer synchronization that is enabled
+           for this bearer.";
       }
       leaf provider-location-reference {
         type string;
@@ -432,7 +433,7 @@ module ietf-bearer-svc {
           type string;
           description
             "The semantic of this identifier is shared between the
-              customer/provider using out-of-band means.";
+             customer/provider using out-of-band means.";
         }
       }
       leaf type {
