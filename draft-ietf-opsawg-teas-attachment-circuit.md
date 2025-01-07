@@ -1032,7 +1032,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:
    notification) to these data nodes. Specifically, the following subtrees and data nodes have particular
 sensitivities/vulnerabilities in the "ietf-bearer-svc" module:
 
-   'customer-point' and 'locations':
+   'customer-name', 'customer-point' and 'locations':
    : An attacker can retrieve privacy-related information about locations from where
       the customer is connected or can be serviced. Disclosing such information may be used to infer
       the identity of the customer.
@@ -1051,7 +1051,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:
       particular).  These keys could be used to inject spoofed routing
       advertisements.
 
-   Several data nodes ('bgp', 'ospf', 'isis', and 'rip') rely
+   Several data nodes ('bgp', 'ospf', 'isis', 'rip', and 'customer-key-chain') rely
    upon {{!RFC8177}} for authentication purposes.  As such, the AC service module
    inherits the security considerations discussed in
    {{Section 5 of !RFC8177}}.  Also, these data nodes support supplying explicit keys as
@@ -1061,6 +1061,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:
    version of the AC service model because it is not supported by the underlying
    device modules (e.g., {{?RFC8695}}).
 
+{{sec-sec}} specifies a set of encryption-related parameters that can be applied to traffic for a given AC.
 
 # IANA Considerations
 
