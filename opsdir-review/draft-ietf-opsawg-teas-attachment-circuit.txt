@@ -265,7 +265,7 @@ Table of Contents
       (Appendix A.8).
 
    *  Interconnect provider networks (e.g., [RFC8921] or
-      [I-D.ramseyer-grow-peering-api]).  Such ACs are identified with a
+      [I-D.ietf-grow-peering-api]).  Such ACs are identified with a
       "role" set to "ac-common:nni" or "ac-common:public-nni".  See
       Appendix A.10 to illustrate the use of the AC model for
       interconnection/peering.
@@ -4228,6 +4228,13 @@ B2B C/S: Back-to-back Client/Server
 
 9.2.  Informative References
 
+   [I-D.ietf-grow-peering-api]
+              Aguado, C., Griswold, M., Ramseyer, J., Servin, A., and T.
+              Strickx, "Peering API", Work in Progress, Internet-Draft,
+              draft-ietf-grow-peering-api-00, 7 December 2024,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-grow-
+              peering-api-00>.
+
    [I-D.ietf-idr-bgp-model]
               Jethanandani, M., Patel, K., Hares, S., and J. Haas, "YANG
               Model for Border Gateway Protocol (BGP-4)", Work in
@@ -4267,13 +4274,6 @@ B2B C/S: Back-to-back Client/Server
               teas-ietf-network-slice-nbi-yang-17, 20 December 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-teas-
               ietf-network-slice-nbi-yang-17>.
-
-   [I-D.ramseyer-grow-peering-api]
-              Aguado, C., Griswold, M., Ramseyer, J., Servin, A., and T.
-              Strickx, "Peering API", Work in Progress, Internet-Draft,
-              draft-ramseyer-grow-peering-api-06, 4 November 2024,
-              <https://datatracker.ietf.org/doc/html/draft-ramseyer-
-              grow-peering-api-06>.
 
    [IEEE802.1AB]
               IEEE, "IEEE Standard for Local and metropolitan area
