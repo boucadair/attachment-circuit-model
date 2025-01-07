@@ -291,7 +291,9 @@ module ietf-bearer-svc {
   }
   container bearers {
     description
-      "Main container for the bearers.";
+      "Main container for the bearers. The timing constraints
+       indicated at the bearer lavel take precedence over the
+       global values indicated at the bearers level.";
     uses ac-common:op-instructions;
     container placement-constraints {
       description
