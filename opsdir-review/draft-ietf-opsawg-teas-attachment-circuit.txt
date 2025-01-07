@@ -2779,7 +2779,7 @@ B2B C/S: Back-to-back Client/Server
         attachment circuits as a service (ACaaS).
 
         Copyright (c) 2025 IETF Trust and the persons identified as
-        authors of the code.  All rights reserved.
+        authors of the code. All rights reserved.
 
         Redistribution and use in source and binary forms, with or
         without modification, is permitted pursuant to, and subject
@@ -3248,8 +3248,7 @@ B2B C/S: Back-to-back Client/Server
            key "name";
            description
              "List of BGP peer-groups configured on the local
-              system - uniquely identified by peer-group
-              name.";
+              system - uniquely identified by peer-group name.";
            uses ac-common:bgp-peer-group-with-name;
            leaf local-address {
              type inet:ip-address;
@@ -3418,8 +3417,7 @@ B2B C/S: Back-to-back Client/Server
               + "'vpn-common:rip-routing')" {
              description
                "Only applies when the protocol is RIP.
-                For IPv4, the model assumes that RIP
-                version 2 is used.";
+                For IPv4, the model assumes that RIP version 2 is used.";
            }
            if-feature "vpn-common:rtg-rip";
            description
@@ -3429,16 +3427,16 @@ B2B C/S: Back-to-back Client/Server
                base vpn-common:address-family;
              }
              description
-               "Indicates whether IPv4, IPv6, or both
-                address families are to be activated.";
+               "Indicates whether IPv4, IPv6, or both address families
+                are to be activated.";
            }
          }
          container vrrp {
            when "derived-from-or-self(../type, "
               + "'vpn-common:vrrp-routing')" {
              description
-               "Only applies when the protocol is the
-                Virtual Router Redundancy Protocol (VRRP).";
+               "Only applies when the protocol is the Virtual Router
+                Redundancy Protocol (VRRP).";
            }
            if-feature "vpn-common:rtg-vrrp";
            description
@@ -3474,8 +3472,7 @@ B2B C/S: Back-to-back Client/Server
            when "derived-from-or-self(../type, "
               + "'vpn-common:static-routing')" {
              description
-               "Only applies when the protocol is static routing
-                protocol.";
+               "Only applies when the protocol is static routing protocol.";
            }
            description
              "Configuration specific to static routing.";
@@ -3524,8 +3521,7 @@ B2B C/S: Back-to-back Client/Server
               + "'vpn-common:rip-routing')" {
              description
                "Only applies when the protocol is RIP.
-                For IPv4, the model assumes that RIP version 2 is
-                used.";
+                For IPv4, the model assumes that RIP version 2 is used.";
            }
            if-feature "vpn-common:rtg-rip";
            description
@@ -3585,7 +3581,7 @@ B2B C/S: Back-to-back Client/Server
            type boolean;
            description
              "If set to 'true', traffic encryption on the connection
-              is required.  Otherwise, it is disabled.";
+              is required. Otherwise, it is disabled.";
          }
          leaf layer {
            when "../enabled = 'true'" {
@@ -3619,7 +3615,7 @@ B2B C/S: Back-to-back Client/Server
        }
      }
 
-     // Bandwith parameters
+     // Bandwidth parameters
 
      grouping bandwidth {
        description
@@ -3688,7 +3684,7 @@ B2B C/S: Back-to-back Client/Server
        }
        container service {
          description
-           "AC-specific bandwith parameters.";
+           "AC-specific bandwidth parameters.";
          leaf mtu {
            type uint32;
            units "bytes";
@@ -3709,8 +3705,7 @@ B2B C/S: Back-to-back Client/Server
          type string;
          description
            "A name of the AC. Data models that need to reference
-            an attachment circuit should use
-            attachment-circuit-reference.";
+            an AC should use 'attachment-circuit-reference'.";
        }
        leaf-list service-profile {
          type service-profile-reference;
@@ -3749,7 +3744,7 @@ B2B C/S: Back-to-back Client/Server
              leaf id {
                 type string;
                 description
-                  "A unique identifer for the BFD session.";
+                  "A unique identifier for the BFD session.";
              }
              leaf local-address {
                type inet:ip-address;
@@ -3778,7 +3773,7 @@ B2B C/S: Back-to-back Client/Server
        }
        container service {
          description
-           "AC-specific bandwith parameters.";
+           "AC-specific bandwidth parameters.";
          leaf mtu {
            type uint32;
            units "bytes";
@@ -3807,8 +3802,7 @@ B2B C/S: Back-to-back Client/Server
                    base vpn-common:qos-profile-direction;
                  }
                  description
-                   "The direction to which the QoS profile
-                    is applied.";
+                   "The direction to which the QoS profile is applied.";
                }
              }
            }
@@ -3924,7 +3918,7 @@ B2B C/S: Back-to-back Client/Server
            type empty;
            description
             "When present, this indicates that this is a feasibility
-             check request. No resources are commited for such AC
+             check request. No resources are committed for such AC
              requests.";
          }
          uses ac-common:op-instructions;
