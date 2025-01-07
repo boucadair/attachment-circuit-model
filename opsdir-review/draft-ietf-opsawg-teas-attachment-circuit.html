@@ -5752,7 +5752,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-6"
    notification) to these data nodes. Specifically, the following subtrees and data nodes have particular
 sensitivities/vulnerabilities in the "ietf-bearer-svc" module:<a href="#section-7-8" class="pilcrow">¶</a></p>
 <span class="break"></span><dl class="dlParallel" id="section-7-9">
-        <dt id="section-7-9.1">'customer-point' and 'locations':</dt>
+        <dt id="section-7-9.1">'customer-name', 'customer-point' and 'locations':</dt>
         <dd style="margin-left: 1.5em" id="section-7-9.2">
           <p id="section-7-9.2.1">An attacker can retrieve privacy-related information about locations from where
  the customer is connected or can be serviced. Disclosing such information may be used to infer
@@ -5779,7 +5779,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 </dd>
       <dd class="break"></dd>
 </dl>
-<p id="section-7-12">Several data nodes ('bgp', 'ospf', 'isis', and 'rip') rely
+<p id="section-7-12">Several data nodes ('bgp', 'ospf', 'isis', 'rip', and 'customer-key-chain') rely
    upon <span>[<a href="#RFC8177" class="cite xref">RFC8177</a>]</span> for authentication purposes.  As such, the AC service module
    inherits the security considerations discussed in
    <span><a href="https://rfc-editor.org/rfc/rfc8177#section-5" class="relref">Section 5</a> of [<a href="#RFC8177" class="cite xref">RFC8177</a>]</span>.  Also, these data nodes support supplying explicit keys as
@@ -5788,6 +5788,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
    key-string octets.  However, such a format is not included in this
    version of the AC service model because it is not supported by the underlying
    device modules (e.g., <span>[<a href="#RFC8695" class="cite xref">RFC8695</a>]</span>).<a href="#section-7-12" class="pilcrow">¶</a></p>
+<p id="section-7-13"><a href="#sec-sec" class="auto internal xref">Section 5.2.5.5</a> specifies a set of encryption-related parameters that can be applied to traffic for a given AC.<a href="#section-7-13" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="iana-considerations">

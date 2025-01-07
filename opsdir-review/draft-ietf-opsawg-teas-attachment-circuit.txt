@@ -4034,10 +4034,10 @@ B2B C/S: Back-to-back Client/Server
    subtrees and data nodes have particular sensitivities/vulnerabilities
    in the "ietf-bearer-svc" module:
 
-   'customer-point' and 'locations':  An attacker can retrieve privacy-
-      related information about locations from where the customer is
-      connected or can be serviced.  Disclosing such information may be
-      used to infer the identity of the customer.
+   'customer-name', 'customer-point' and 'locations':  An attacker can
+      retrieve privacy-related information about locations from where
+      the customer is connected or can be serviced.  Disclosing such
+      information may be used to infer the identity of the customer.
 
    The following subtrees and data nodes have particular sensitivities/
    vulnerabilities in the "ietf-ac-svc" module:
@@ -4052,15 +4052,18 @@ B2B C/S: Back-to-back Client/Server
       particular).  These keys could be used to inject spoofed routing
       advertisements.
 
-   Several data nodes ('bgp', 'ospf', 'isis', and 'rip') rely upon
-   [RFC8177] for authentication purposes.  As such, the AC service
-   module inherits the security considerations discussed in Section 5 of
-   [RFC8177].  Also, these data nodes support supplying explicit keys as
-   strings in ASCII format.  The use of keys in hexadecimal string
-   format would afford greater key entropy with the same number of key-
-   string octets.  However, such a format is not included in this
-   version of the AC service model because it is not supported by the
-   underlying device modules (e.g., [RFC8695]).
+   Several data nodes ('bgp', 'ospf', 'isis', 'rip', and 'customer-key-
+   chain') rely upon [RFC8177] for authentication purposes.  As such,
+   the AC service module inherits the security considerations discussed
+   in Section 5 of [RFC8177].  Also, these data nodes support supplying
+   explicit keys as strings in ASCII format.  The use of keys in
+   hexadecimal string format would afford greater key entropy with the
+   same number of key-string octets.  However, such a format is not
+   included in this version of the AC service model because it is not
+   supported by the underlying device modules (e.g., [RFC8695]).
+
+   Section 5.2.5.5 specifies a set of encryption-related parameters that
+   can be applied to traffic for a given AC.
 
 8.  IANA Considerations
 
