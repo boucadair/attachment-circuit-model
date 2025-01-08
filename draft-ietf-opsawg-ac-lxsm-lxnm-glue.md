@@ -61,17 +61,17 @@ informative:
 
    The document specifies a module that updates existing service (i.e., the Layer 2 Service Model (L2SM) and the Layer 3 Service Model (L3SM)) and
    network (i.e., the Layer 2 Network Model (L2NM) and the Layer 3 Network Model (L3NM)) Virtual Private Network (VPN) modules with the required information to bind specific
-   VPN services to Attachment Circuits (ACs) that are created using the AC service ("ietf-ac-svc") and network ("ietf-ac-ntw") models.
+   VPN services to attachment circuits (ACs) that are created using the AC service ("ietf-ac-svc") and network ("ietf-ac-ntw") models.
 
 --- middle
 
 # Introduction
 
 To facilitate data transfer within the provider network, it is assumed that the appropriate setup
-   is provisioned over the links that connect customer terminating
+   is provisioned over the links that connect customer termination
    points and a provider network (usually via a Provider Edge (PE)),
    allowing successfully data exchanged over these links.  The required
-   setup is referred to in this document as Attachment Circuit (AC),
+   setup is referred to in this document as an attachment circuit (AC),
    while the underlying link is referred to as "bearer".
 
 The document specifies a YANG module ("ietf-ac-glue", {{sec-glue}}) that updates existing service and
@@ -103,7 +103,7 @@ Please apply the following replacements:
   * XXXX --> the assigned RFC number for this I-D
   * SSSS --> the assigned RFC number for {{!I-D.ietf-opsawg-teas-attachment-circuit}}
   * NNNN --> the assigned RFC number for {{!I-D.ietf-opsawg-ntw-attachment-circuit}}
-  * 2023-11-13 --> the actual date of the publication of this document
+  * 2025-01-07 --> the actual date of the publication of this document
 
 # Conventions and Definitions
 
@@ -216,10 +216,10 @@ Also, internal references ("ietf-ac-ntw") used within a service provider network
 # Module Tree Structure
 
 {{!RFC8299}} specifies that a 'site-network-access' attachment is achieved through a
-'bearer' with an 'ip-connection' on top. From that standpoint, a 'site-network-access' is mapped to an attachment circuit with both Layers 2 and 3 properties as per {{!I-D.ietf-opsawg-teas-attachment-circuit}}. {{!RFC8466}} specifies that a 'site-network-access' represents a logical Layer 2 connection to a site. A 'site-network-access' can thus be mapped to an attachment circuit with  Layer 2 properties {{!I-D.ietf-opsawg-teas-attachment-circuit}}. Similarly, 'vpn-network-access' defined in both {{!RFC9182}} and {{!RFC9291}} is mapped to an attachment circuit as per {{!I-D.ietf-opsawg-teas-attachment-circuit}} or {{!I-D.ietf-opsawg-ntw-attachment-circuit}}.
+'bearer' with an 'ip-connection' on top. From that standpoint, a 'site-network-access' is mapped to an attachment circuit with both Layers 2 and 3 properties per {{!I-D.ietf-opsawg-teas-attachment-circuit}}. {{!RFC8466}} specifies that a 'site-network-access' represents a logical Layer 2 connection to a site. A 'site-network-access' can thus be mapped to an attachment circuit with  Layer 2 properties {{!I-D.ietf-opsawg-teas-attachment-circuit}}. Similarly, 'vpn-network-access' defined in both {{!RFC9182}} and {{!RFC9291}} is mapped to an attachment circuit per {{!I-D.ietf-opsawg-teas-attachment-circuit}} or {{!I-D.ietf-opsawg-ntw-attachment-circuit}}.
 
 As such, ACs created using the "ietf-ac-svc" module {{!I-D.ietf-opsawg-teas-attachment-circuit}} can be referenced in other
-VPN-related modules (e.g., L2SM, L3SM, L2NM, and L3NM). Also, ACs managed using the "ietf-ac-ntw" module {{!I-D.ietf-opsawg-ntw-attachment-circuit}} can be referenced in VPN-related network modules (mainly, the L2NM and the L3NM). The required augmentations to that aim are shown in {{tree}}.
+VPN-related modules (e.g., LxSM, and LxNM). Also, ACs managed using the "ietf-ac-ntw" module {{!I-D.ietf-opsawg-ntw-attachment-circuit}} can be referenced in VPN-related network modules (mainly, the LxNM). The required augmentations to that aim are shown in {{tree}}.
 
 ~~~~~~~~~~
 {::include ./yang/full-trees/ac-glue-tree.txt}
@@ -239,7 +239,7 @@ This modules augments the L2SM {{!RFC8466}}, the L3SM {{!RFC8299}}, the L2NM {{!
 This module uses references defined in {{!I-D.ietf-opsawg-teas-attachment-circuit}} and {{!I-D.ietf-opsawg-ntw-attachment-circuit}}.
 
 ~~~~~~~~~~
-<CODE BEGINS> file "ietf-ac-glue@2023-11-13.yang"
+<CODE BEGINS> file "ietf-ac-glue@2025-01-07.yang"
 {::include-fold ./yang/ietf-ac-glue.yang}
 <CODE ENDS>
 ~~~~~~~~~~
@@ -326,7 +326,7 @@ Let us consider the example depicted in {{ex-vpws}} which is inspired from {{Sec
 ~~~~~~~~~~
 {: #ex-vpws title="VPWS Topology Example" artwork-align="center"}
 
-As shown in {{ex-vpws-query}}, the service AC references can be explicitly indicated in the L2NM query for the realization of the Virtual Private Wire Service (VPWS) {{Section 3.1.1 of ?RFC4664}}).
+As shown in {{ex-vpws-query}}, the service AC references can be explicitly indicated in the L2NM query for the realization of the Virtual Private Wire Service (VPWS) ({{Section 3.1.1 of ?RFC4664}}).
 
 ~~~~~~~~~~
 {::include-fold ./json-examples/glue/example-vpws.json}
@@ -335,7 +335,7 @@ As shown in {{ex-vpws-query}}, the service AC references can be explicitly indic
 
 ## Network and Service AC References {#ref-outside-access}
 
-Let us consider the example depicted in {{ex-topo}} with two customer terminating points (CE1 and CE2). Let us also assume that the bearers to attach these CEs to the service provider network are already in place. References to identify these bearers are shown in the figure.
+Let us consider the example depicted in {{ex-topo}} with two customer termination points (CE1 and CE2). Let us also assume that the bearers to attach these CEs to the service provider network are already in place. References to identify these bearers are shown in the figure.
 
 ~~~~~~~~~~
 {::include ./figures/glue/ex-topo.txt}
