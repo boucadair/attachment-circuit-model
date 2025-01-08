@@ -107,7 +107,7 @@ Connectivity services are provided by networks to customers via
    customer edges (CEs), peer Autonomous System Border Routers (ASBRs),
    data centers gateways, or Internet Exchange Points.
 
-The procedure to provision a service in a service provider network may depend on the practices adopted by a service provider, including the flow put in place for the provisioning of advanced network services and how they are bound to an Attachment Circuit (AC). For example, the same attachment circuit may host multiple services (e.g., Layer 2 Virtual Private Network (VPN), or Layer 3 VPN, or Network Slice Service {{?RFC9543}}). In order to avoid service interference and redundant information in various locations, a service provider may expose an interface to manage ACs network-wide. Customers can then request a standalone attachment circuit to be put in place, and then refer to that attachment circuit when requesting services to be bound to that AC. {{!I-D.ietf-opsawg-teas-attachment-circuit}} specifies a data model for managing attachment circuits as a service.
+The procedure to provision a service in a service provider network may depend on the practices adopted by a service provider, including the flow put in place for the provisioning of advanced network services and how they are bound to an attachment circuit (AC). For example, the same attachment circuit may host multiple services (e.g., Layer 2 Virtual Private Network (VPN), or Layer 3 VPN, or Network Slice Service {{?RFC9543}}). In order to avoid service interference and redundant information in various locations, a service provider may expose an interface to manage ACs network-wide. Customers can then request a standalone attachment circuit to be put in place, and then refer to that attachment circuit when requesting services to be bound to that AC. {{!I-D.ietf-opsawg-teas-attachment-circuit}} specifies a data model for managing attachment circuits as a service.
 
 {{sec-module}} specifies a network model for attachment circuits ("ietf-ac-ntw"). The model can be used for the provisioning of ACs in a provider network prior or during service provisioning. For example, {{?I-D.ietf-opsawg-ac-lxsm-lxnm-glue}} specifies augmentations to the L2VPN Network Model (L2NM) {{!RFC9291}} and the L3VPN Network Model (L3NM) {{!RFC9182}} to bind LxVPNs to ACs that are provisioned using the procedure defined in this document.
 
@@ -137,7 +137,7 @@ Please apply the following replacements:
 * CCCC --> the assigned RFC number for {{!I-D.ietf-opsawg-teas-common-ac}}
 * SSSS --> the assigned RFC number for {{!I-D.ietf-opsawg-teas-attachment-circuit}}
 * XXXX --> the assigned RFC number for this I-D
-* 2024-05-15 --> the actual date of the publication of this document
+* 2025-01-07 --> the actual date of the publication of this document
 
 # Conventions and Definitions
 
@@ -152,6 +152,8 @@ The meanings of the symbols in the YANG tree diagrams are defined in {{?RFC8340}
 LxSM refers to both the Layer 2 Service Model (L2SM) {{?RFC8466}} and the Layer 3 Service Model (L3SM) {{?RFC8299}}.
 
 LxNM refers to both the L2VPN Network Model (L2NM) {{!RFC9291}} and the L3VPN Network Model (L3NM) {{!RFC9182}}.
+
+LxVPN refers to both L2VPN and L3VPN.
 
 The following are used in the module prefixes:
 
@@ -185,10 +187,10 @@ Service orchestrator:
 : A service orchestrator may interact with one or more network controllers.
 
 Service provider network:
-: A network that is able to provide network services (e.g., L2VPN, L3VPN, or Network Slice Services).
+: A network that is able to provide network services (e.g., LxVPN or Network Slice Services).
 
 Service provider:
-: A service provider that offers network services (e.g., L2VPN, L3VPN, or Network Slice Services).
+: An entity that offers network services (e.g., LxVPN or Network Slice Services).
 
 The names of data nodes are prefixed using the prefix associated with the corresponding imported YANG module as shown in {{pref}}:
 
@@ -900,7 +902,7 @@ The description of the service data nodes is as follows:
 This module uses types defined in {{!RFC6991}}, {{!RFC8177}}, {{!RFC8294}}, {{!RFC8343}}, {{!RFC9067}}, {{!RFC9181}}, {{!I-D.ietf-opsawg-teas-common-ac}}, and {{IEEE802.1Qcp}}.
 
 ~~~~ yang
-<CODE BEGINS> file "ietf-ac-ntw@2024-05-15.yang"
+<CODE BEGINS> file "ietf-ac-ntw@2025-01-07.yang"
 {::include-fold ./yang/ietf-ac-ntw.yang}
 <CODE ENDS>
 ~~~~
@@ -965,12 +967,14 @@ subtrees and data nodes have particular sensitivities/vulnerabilities:
       customer.  Disclosing such information may be considered a
       violation of the customer-provider trust relationship.
 
-   'keying-material':
+   'keying-material' and 'customer-key-chain':
    :  An attacker can retrieve the cryptographic keys
       protecting an AC (routing, in particular). These keys could
       be used to inject spoofed routing  advertisements.
 
-Several data nodes ('bgp', 'ospf', 'isis', and 'rip') rely upon {{!RFC8177}} for authentication purposes. As such, the AC network module inherits the security considerations discussed in {{Section 5 of !RFC8177}}. Also, these data nodes support supplying explicit keys as strings in ASCII format. The use of keys in hexadecimal string format would afford greater key entropy with the same number of key-string octets. However, such a format is not included in this version of the AC network model, because it is not supported by the underlying device modules (e.g., {{?RFC8695}}).
+Several data nodes ('bgp', 'ospf', 'isis', 'rip', and 'customer-key-chain') rely upon {{!RFC8177}} for authentication purposes. As such, the AC network module inherits the security considerations discussed in {{Section 5 of !RFC8177}}. Also, these data nodes support supplying explicit keys as strings in ASCII format. The use of keys in hexadecimal string format would afford greater key entropy with the same number of key-string octets. However, such a format is not included in this version of the AC network model, because it is not supported by the underlying device modules (e.g., {{?RFC8695}}).
+
+{{sec-sec}} specifies the the encryption to be applied to traffic for a given AC.
 
 # IANA Considerations
 
