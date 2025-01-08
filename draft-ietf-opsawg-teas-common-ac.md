@@ -91,13 +91,13 @@ normative:
 
 --- abstract
 
-The document specifies a common Attachment Circuits (ACs) YANG module, which is designed with the intent to be reusable by other models. For example, this common model can be reused by service models to expose ACs as a service, service models that require binding a service to a set of ACs, network and device models to provision ACs, etc.
+The document specifies a common attachment circuits (ACs) YANG module, which is designed with the intent to be reusable by other models. For example, this common model can be reused by service models to expose ACs as a service, service models that require binding a service to a set of ACs, network and device models to provision ACs, etc.
 
 --- middle
 
 # Introduction
 
-Connectivity services are provided by networks to customers via dedicated terminating points (e.g., Service Functions (SFs), Customer Premises Equipment (CPEs), Autonomous System Border Routers (ASBRs), data centers gateways, or Internet Exchange Points). A connectivity service is basically about ensuring data transfer received from (or destined to) a given terminating point to (or from) other terminating points that belong to the same customer/service, an interconnection node, or an ancillary node. A set of objectives for the connectivity service may eventually be negotiated and agreed upon between a customer and a network provider. For that data transfer to take place within the provider network, it is assumed that adequate setup is provisioned over the links that connect customer terminating points and a provider network (a Provider Edge (PE), typically) so that data can be successfully exchanged over these links. The required setup is referred to in this document as Attachment Circuits (ACs), while the underlying link is referred to as "bearer".
+Connectivity services are provided by networks to customers via dedicated terminating points (e.g., Service Functions (SFs), Customer Premises Equipment (CPEs), Autonomous System Border Routers (ASBRs), data centers gateways, or Internet Exchange Points). A connectivity service is basically about ensuring data transfer received from (or destined to) a given terminating point to (or from) other terminating points that belong to the same customer/service, an interconnection node, or an ancillary node. A set of objectives for the connectivity service may eventually be negotiated and agreed upon between a customer and a network provider. For that data transfer to take place within the provider network, it is assumed that adequate setup is provisioned over the links that connect customer terminating points and a provider network (a Provider Edge (PE), typically) so that data can be successfully exchanged over these links. The required setup is referred to in this document as an attachment circuits (ACs), while the underlying link is referred to as "bearer".
 
 When a customer requests a new service, the service can be bound to existing attachment circuits or trigger the instantiation of new attachment circuits. Whether these attachment circuits are specific for a given service or are shared to deliver a variety of services is deployment-specific.
 
@@ -123,7 +123,7 @@ This document contains placeholder values that need to be replaced with finalize
 Please apply the following replacements:
 
 * XXXX --> the assigned RFC number for this I-D
-* 2023-11-13 --> the actual date of the publication of this document
+* 2025-01-07 --> the actual date of the publication of this document
 
 # Conventions and Definitions
 
@@ -311,7 +311,7 @@ Bandwidth parameters ({{bw-full-tree}}):
 This module uses types defined in {{!RFC6991}}, {{!RFC8177}}, and  {{!RFC9181}}.
 
 ~~~~~~~~~~
-<CODE BEGINS> file "ietf-ac-common@2023-11-13.yang"
+<CODE BEGINS> file "ietf-ac-common@2025-01-07.yang"
 {::include-fold ./yang/ietf-ac-common.yang}
 <CODE ENDS>
 ~~~~~~~~~~
