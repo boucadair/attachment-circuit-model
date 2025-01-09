@@ -724,8 +724,6 @@ Table of Contents
    [RFC9181].
 
    <CODE BEGINS> file "ietf-ac-common@2025-01-07.yang"
-   =============== NOTE: '\' line wrapping per RFC 8792 ================
-
    module ietf-ac-common {
      yang-version 1.1;
      namespace "urn:ietf:params:xml:ns:yang:ietf-ac-common";
@@ -1155,9 +1153,8 @@ Table of Contents
            leaf id {
              type string;
              description
-               "Identification of the failure detection (e.g., BFD) \
-                                                                 profile
-                to be used.";
+               "Identification of the failure detection (e.g., BFD)
+                profile to be used.";
            }
          }
          list forwarding-profile-identifier {
@@ -1610,14 +1607,12 @@ Table of Contents
                      type inet:ipv4-address;
                      mandatory true;
                      description
-                       "Indicates the first address in the address pool\
-                                                                     .";
+                       "Indicates the first address in the pool.";
                    }
                    leaf end-address {
                      type inet:ipv4-address;
                      description
-                       "Indicates the last address in the address pool.\
-                                                                      ";
+                       "Indicates the last address in the pool.";
                    }
                  }
                }
@@ -1745,14 +1740,12 @@ Table of Contents
                      type inet:ipv6-address;
                      mandatory true;
                      description
-                       "Indicates the first address in the address pool\
-                                                                     .";
+                       "Indicates the first address in the pool.";
                    }
                    leaf end-address {
                      type inet:ipv6-address;
                      description
-                       "Indicates the last address in the address pool.\
-                                                                      ";
+                       "Indicates the last address in the pool.";
                    }
                  }
                }
@@ -2161,8 +2154,8 @@ Table of Contents
 
      grouping ipv4-static-rtg-entry {
        description
-         "Parameters to configure a specific IPv4 static routing entry.\
-                                                                      ";
+         "Parameters to configure a specific IPv4 static routing
+          entry.";
        leaf lan {
          type inet:ipv4-prefix;
          description
@@ -2205,8 +2198,8 @@ Table of Contents
 
      grouping ipv6-static-rtg-entry {
        description
-         "Parameters to configure a specific IPv6 static routing entry.\
-                                                                      ";
+         "Parameters to configure a specific IPv6 static routing
+          entry.";
        leaf lan {
          type inet:ipv6-prefix;
          description
