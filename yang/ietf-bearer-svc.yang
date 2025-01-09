@@ -46,8 +46,8 @@ module ietf-bearer-svc {
     "This YANG module defines a generic YANG model for exposing
      network bearers as a service.
 
-     Copyright (c) 2024 IETF Trust and the persons identified as
-     authors of the code.  All rights reserved.
+     Copyright (c) 2025 IETF Trust and the persons identified as
+     authors of the code. All rights reserved.
 
      Redistribution and use in source and binary forms, with or
      without modification, is permitted pursuant to, and subject
@@ -59,7 +59,7 @@ module ietf-bearer-svc {
      This version of this YANG module is part of RFC xxx; see the
      RFC itself for full legal notices.";
 
-  revision 2024-08-06 {
+  revision 2025-01-07 {
     description
       "Initial revision.";
     reference
@@ -168,6 +168,11 @@ module ietf-bearer-svc {
       description
         "Address (number and street) of the device/site.";
     }
+    leaf city {
+      type string;
+      description
+        "City of the device/site.";
+    }
     leaf postal-code {
       type string;
       description
@@ -176,14 +181,9 @@ module ietf-bearer-svc {
     leaf state {
       type string;
       description
-        "State of the device/site.  This leaf can also be
-         used to describe a region for a country that
-         does not have states.";
-    }
-    leaf city {
-      type string;
-      description
-        "City of the device/site.";
+        "State of the device/site. This leaf can also be used to
+         describe a region for a country that does not have
+         states.";
     }
     leaf country-code {
       type string {
@@ -291,7 +291,9 @@ module ietf-bearer-svc {
   }
   container bearers {
     description
-      "Main container for the bearers.";
+      "Main container for the bearers. The timing constraints
+       indicated at the bearer level take precedence over the
+       global values indicated at the bearers level.";
     uses ac-common:op-instructions;
     container placement-constraints {
       description
@@ -344,14 +346,14 @@ module ietf-bearer-svc {
         type boolean;
         config false;
         description
-          "Indicates when set to true that a mechanism for physical
+          "Indicates, when set to true, that a mechanism for physical
            layer synchronization is supported for this bearer. 
            No such mechanism is supported if set to false.";
       }
       leaf sync-phy-enabled {
         type boolean;
         description
-          "Indicates when set to true that a mechanism for physical
+          "Indicates, when set to true, that a mechanism for physical
            layer synchronization is enabled for this bearer. No such
            mechanism is enabled if set to false.";
       }
@@ -361,7 +363,8 @@ module ietf-bearer-svc {
           base sync-phy-type;
         }
         description
-          "Type of the physical layer synchronization.";
+          "Type of the physical layer synchronization that is enabled
+           for this bearer.";
       }
       leaf provider-location-reference {
         type string;
@@ -430,7 +433,7 @@ module ietf-bearer-svc {
           type string;
           description
             "The semantic of this identifier is shared between the
-              customer/provider using out-of-band means.";
+             customer/provider using out-of-band means.";
         }
       }
       leaf type {
@@ -444,7 +447,7 @@ module ietf-bearer-svc {
         type empty;
         description
           "When present, this indicates that this is a feasibility
-           check request. No resources are commited for such bearer
+           check request. No resources are committed for such bearer
            requests.";
       }
       leaf bearer-reference {

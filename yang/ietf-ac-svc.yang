@@ -50,8 +50,8 @@ module ietf-ac-svc {
     "This YANG module defines a YANG model for exposing
      attachment circuits as a service (ACaaS).
 
-     Copyright (c) 2024 IETF Trust and the persons identified as
-     authors of the code.  All rights reserved.
+     Copyright (c) 2025 IETF Trust and the persons identified as
+     authors of the code. All rights reserved.
 
      Redistribution and use in source and binary forms, with or
      without modification, is permitted pursuant to, and subject
@@ -63,7 +63,7 @@ module ietf-ac-svc {
      This version of this YANG module is part of RFC XXXX; see the
      RFC itself for full legal notices.";
 
-  revision 2024-08-06 {
+  revision 2025-01-07 {
     description
       "Initial revision.";
     reference
@@ -520,8 +520,7 @@ module ietf-ac-svc {
         key "name";
         description
           "List of BGP peer-groups configured on the local 
-           system - uniquely identified by peer-group
-           name.";
+           system - uniquely identified by peer-group name.";
         uses ac-common:bgp-peer-group-with-name;
         leaf local-address {
           type inet:ip-address;
@@ -690,8 +689,7 @@ module ietf-ac-svc {
            + "'vpn-common:rip-routing')" {
           description
             "Only applies when the protocol is RIP.
-             For IPv4, the model assumes that RIP
-             version 2 is used.";
+             For IPv4, the model assumes that RIP version 2 is used.";
         }
         if-feature "vpn-common:rtg-rip";
         description
@@ -701,16 +699,16 @@ module ietf-ac-svc {
             base vpn-common:address-family;
           }
           description
-            "Indicates whether IPv4, IPv6, or both
-             address families are to be activated.";
+            "Indicates whether IPv4, IPv6, or both address families
+             are to be activated.";
         }
       }
       container vrrp {
         when "derived-from-or-self(../type, "
            + "'vpn-common:vrrp-routing')" {
           description
-            "Only applies when the protocol is the
-             Virtual Router Redundancy Protocol (VRRP).";
+            "Only applies when the protocol is the Virtual Router
+             Redundancy Protocol (VRRP).";
         }
         if-feature "vpn-common:rtg-vrrp";
         description
@@ -746,8 +744,7 @@ module ietf-ac-svc {
         when "derived-from-or-self(../type, "
            + "'vpn-common:static-routing')" {
           description
-            "Only applies when the protocol is static routing
-             protocol.";
+            "Only applies when the protocol is static routing protocol.";
         }
         description
           "Configuration specific to static routing.";
@@ -796,8 +793,7 @@ module ietf-ac-svc {
            + "'vpn-common:rip-routing')" {
           description
             "Only applies when the protocol is RIP.
-             For IPv4, the model assumes that RIP version 2 is
-             used.";
+             For IPv4, the model assumes that RIP version 2 is used.";
         }
         if-feature "vpn-common:rtg-rip";
         description
@@ -857,7 +853,7 @@ module ietf-ac-svc {
         type boolean;
         description
           "If set to 'true', traffic encryption on the connection
-           is required.  Otherwise, it is disabled.";
+           is required. Otherwise, it is disabled.";
       }
       leaf layer {
         when "../enabled = 'true'" {
@@ -891,7 +887,7 @@ module ietf-ac-svc {
     }
   }
 
-  // Bandwith parameters
+  // Bandwidth parameters
 
   grouping bandwidth {
     description
@@ -960,7 +956,7 @@ module ietf-ac-svc {
     }
     container service {
       description
-        "AC-specific bandwith parameters.";
+        "AC-specific bandwidth parameters.";
       leaf mtu {
         type uint32;
         units "bytes";
@@ -980,9 +976,8 @@ module ietf-ac-svc {
     leaf name {
       type string;
       description
-        "A name of the AC. Data models that need to reference  
-         an attachment circuit should use 
-         attachment-circuit-reference.";
+        "A name of the AC. Data models that need to reference
+         an AC should use 'attachment-circuit-reference'.";
     }
     leaf-list service-profile {
       type service-profile-reference;
@@ -1021,7 +1016,7 @@ module ietf-ac-svc {
           leaf id {
              type string;
              description
-               "A unique identifer for the BFD session.";
+               "A unique identifier for the BFD session.";
           }
           leaf local-address {
             type inet:ip-address;
@@ -1050,7 +1045,7 @@ module ietf-ac-svc {
     }
     container service {
       description
-        "AC-specific bandwith parameters.";
+        "AC-specific bandwidth parameters.";
       leaf mtu {
         type uint32;
         units "bytes";
@@ -1079,8 +1074,7 @@ module ietf-ac-svc {
                 base vpn-common:qos-profile-direction;
               }
               description
-                "The direction to which the QoS profile
-                 is applied.";
+                "The direction to which the QoS profile is applied.";
             }
           }
         }
@@ -1115,7 +1109,7 @@ module ietf-ac-svc {
       type ac-svc:attachment-circuit-reference;
       description
         "Specifies a parent AC that is inherited by an AC.
-         In contexts where dynamic terminating points are 
+         In contexts where dynamic termination points are 
          bound to the same AC, a parent AC with stable
          information is created with a set of child ACs
          to track dynamic AC information.";
@@ -1154,7 +1148,10 @@ module ietf-ac-svc {
   }
   container attachment-circuits {
     description
-      "Main container for the attachment circuits.";
+      "Main container for the attachment circuits.
+       The timing constraints	indicated at the 'ac' level take
+       precedence over the values indicated at the
+       'attachment-circuits' level.";
     list ac-group-profile {
       key "name";
       description
@@ -1177,7 +1174,7 @@ module ietf-ac-svc {
     list ac {
       key "name";
       description
-        "Global provisioning of attachment circuits.";
+        "Provisioning of an attachment circuit.";
       leaf customer-name {
         type string;
         description
@@ -1193,7 +1190,7 @@ module ietf-ac-svc {
         type empty;
         description
          "When present, this indicates that this is a feasibility
-          check request. No resources are commited for such AC 
+          check request. No resources are committed for such AC 
           requests.";
       }
       uses ac-common:op-instructions;
