@@ -423,7 +423,7 @@ module ietf-ac-ntw {
             when 'not(../pop)';
             type dot1q-types:vlanid;
             description
-              "Specifies a second tag to be used for push or translate 
+              "A second tag to be used for push or translate 
                operations.";
           }
           leaf tag-2-type {
