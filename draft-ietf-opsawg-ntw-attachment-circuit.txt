@@ -2296,8 +2296,6 @@ Table of Contents
    and [IEEE802.1Qcp].
 
    <CODE BEGINS> file "ietf-ac-ntw@2025-01-07.yang"
-   =============== NOTE: '\' line wrapping per RFC 8792 ================
-
    module ietf-ac-ntw {
      yang-version 1.1;
      namespace "urn:ietf:params:xml:ns:yang:ietf-ac-ntw";
@@ -2723,8 +2721,7 @@ Table of Contents
                when 'not(../pop)';
                type dot1q-types:vlanid;
                description
-                 "Specifies a second tag to be used for push or \
-                                                              translate
+                 "A second tag to be used for push or translate
                   operations.";
              }
              leaf tag-2-type {
