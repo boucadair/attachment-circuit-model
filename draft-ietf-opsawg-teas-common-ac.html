@@ -2058,6 +2058,8 @@ taken from <span>[<a href="#RFC9181" class="cite xref">RFC9181</a>]</span>, e.g.
 <div class="breakable sourcecode" id="section-5-2">
 <pre>&lt;CODE BEGINS&gt; file "ietf-ac-common@2025-01-07.yang"
 
+=============== NOTE: '\' line wrapping per RFC 8792 ================
+
 module ietf-ac-common {
   yang-version 1.1;
   namespace "urn:ietf:params:xml:ns:yang:ietf-ac-common";
@@ -2144,8 +2146,8 @@ module ietf-ac-common {
 
   feature server-assigned-reference {
     description
-      "This feature indicates support for server-generated references
-       and use of such references to access related resources.";
+      "Indicates support for server-generated references and use
+       of such references to access related resources.";
   }
 
   /****************************Identities************************/
@@ -2153,7 +2155,7 @@ module ietf-ac-common {
 
   identity address-allocation-type {
     description
-      "Base identity for address allocation type in the AC.";
+      "Base identity for address allocation type on the AC.";
   }
 
   identity provider-dhcp {
@@ -2201,7 +2203,7 @@ module ietf-ac-common {
     base address-allocation-type;
     description
       "The IP address is dynamically allocated by the hosting
-       infrastrcture.";
+       infrastructure.";
   }
 
   // next-hop actions
@@ -2295,7 +2297,7 @@ module ietf-ac-common {
   identity secondary {
     base precedence-type;
     description
-      "Identifies the secondary attachment circuit.";
+      "Identifies a secondary attachment circuit.";
   }
 
   // AC Type
@@ -2329,7 +2331,7 @@ module ietf-ac-common {
     base vpn-common:administrative-status;
     description
       "This administrative status reflects that a request is
-       pending an adiministrator approval.";
+       pending an administrator approval.";
   }
 
   identity awaiting-processing {
@@ -2372,7 +2374,7 @@ module ietf-ac-common {
   identity client {
     base bgp-role;
     description
-      "The local AS is a transit provider of the remote AS.";
+      "The local AS is a transit customer of the remote AS.";
   }
 
   identity rs {
@@ -2436,8 +2438,8 @@ module ietf-ac-common {
           type yang:date-and-time;
           config false;
           description
-            "Indicates the actual date and time of the service
-             status change.";
+            "Indicates the actual date and time of the service status
+             change.";
         }
       }
       container oper-status {
@@ -2487,8 +2489,9 @@ module ietf-ac-common {
         leaf id {
           type string;
           description
-            "Identification of the a failure detection (e.g., BFD)
-             profile to be used.";
+            "Identification of the failure detection (e.g., BFD) \
+                                                              profile
+             to be used.";
         }
       }
       list forwarding-profile-identifier {
@@ -2672,8 +2675,8 @@ module ietf-ac-common {
         base vpn-common:vxlan-peer-mode;
       }
       description
-        "Specifies the VXLAN access mode. By default,
-         the peer mode is set to 'static-mode'.";
+        "Specifies the VXLAN access mode. By default, the peer mode
+         is set to 'static-mode'.";
     }
     leaf-list peer-ip-address {
       type inet:ip-address;
@@ -2748,7 +2751,8 @@ module ietf-ac-common {
         error-message "SLAAC is only applicable to IPv6.";
       }
       description
-        "Defines how IPv4 addresses are allocated to the peer site.";
+        "Defines how IPv4 addresses are allocated to the peer
+         termination points.";
     }
   }
 
@@ -2763,14 +2767,15 @@ module ietf-ac-common {
       }
       description
         "Subnet prefix length expressed in bits. It is applied to
-          both local and customer addresses.";
+         both local and customer addresses.";
     }
     leaf address-allocation-type {
       type identityref {
         base address-allocation-type;
       }
       description
-        "Defines how IPv6 addresses are allocated to the peer site.";
+        "Defines how IPv6 addresses are allocated to the peer
+         termination points.";
     }
   }
 
@@ -2778,7 +2783,7 @@ module ietf-ac-common {
 
   grouping ipv4-connection-basic {
     description
-      "Basic set fof IPv4-specific parameters for the connection.";
+      "Basic set for IPv4-specific parameters for the connection.";
     uses ipv4-allocation-type;
     choice allocation-type {
       description
@@ -2800,7 +2805,7 @@ module ietf-ac-common {
               }
               enum relay {
                 description
-                  "Local DHCP relay.  DHCP requests are relayed to
+                  "Local DHCP relay. DHCP requests are relayed to
                    a provider's server.";
               }
             }
@@ -2830,7 +2835,7 @@ module ietf-ac-common {
 
   grouping ipv6-connection-basic {
     description
-      "Basic set fof IPv6-specific parameters for the connection.";
+      "Basic set for IPv6-specific parameters for the connection.";
     uses ipv6-allocation-type;
     choice allocation-type {
       description
@@ -2852,7 +2857,7 @@ module ietf-ac-common {
               }
               enum relay {
                 description
-                  "Local DHCP relay.  DHCP requests are relayed to a
+                  "Local DHCP relay. DHCP requests are relayed to a
                    provider's server.";
               }
             }
@@ -2882,7 +2887,7 @@ module ietf-ac-common {
 
   grouping ipv4-connection {
     description
-      "IPv4-specific parameters.";
+      "IPv4-specific connection parameters.";
     leaf local-address {
       type inet:ipv4-address;
       description
@@ -2891,7 +2896,7 @@ module ietf-ac-common {
     leaf virtual-address {
       type inet:ipv4-address;
       description
-        "This addresss may be used for redundancy purposes.";
+        "This address may be used for redundancy purposes.";
     }
     uses ipv4-allocation-type;
     choice allocation-type {
@@ -2920,7 +2925,7 @@ module ietf-ac-common {
               list address-pool {
                 key "pool-id";
                 description
-                  "Describes IP addresses to be dyncamically
+                  "Describes IP addresses to be dynamically
                    allocated.
 
                    When only 'start-address' is present, it
@@ -2939,12 +2944,14 @@ module ietf-ac-common {
                   type inet:ipv4-address;
                   mandatory true;
                   description
-                    "Indicates the first address in the pool.";
+                    "Indicates the first address in the address pool\
+                                                                  .";
                 }
                 leaf end-address {
                   type inet:ipv4-address;
                   description
-                    "Indicates the last address in the pool.";
+                    "Indicates the last address in the address pool.\
+                                                                   ";
                 }
               }
             }
@@ -3024,7 +3031,7 @@ module ietf-ac-common {
     leaf virtual-address {
       type inet:ipv6-address;
       description
-        "This addresss may be used for redundancy purposes.";
+        "This address may be used for redundancy purposes.";
     }
     uses ipv6-allocation-type;
     choice allocation-type {
@@ -3053,7 +3060,7 @@ module ietf-ac-common {
               list address-pool {
                 key "pool-id";
                 description
-                  "Describes IP addresses to be dyncamically
+                  "Describes IP addresses to be dynamically
                    allocated.
 
                    When only 'start-address' is present, it
@@ -3072,12 +3079,14 @@ module ietf-ac-common {
                   type inet:ipv6-address;
                   mandatory true;
                   description
-                    "Indicates the first address in the pool.";
+                    "Indicates the first address in the address pool\
+                                                                  .";
                 }
                 leaf end-address {
                   type inet:ipv6-address;
                   description
-                    "Indicates the last address in the pool.";
+                    "Indicates the last address in the address pool.\
+                                                                   ";
                 }
               }
             }
@@ -3096,13 +3105,13 @@ module ietf-ac-common {
               }
               enum relay {
                 description
-                  "Local DHCP relay.  DHCP requests are relayed
+                  "Local DHCP relay. DHCP requests are relayed
                    to a provider's server.";
               }
             }
             description
-              "Indicates the type of DHCP service to
-               be enabled on this access.";
+              "Indicates the type of DHCP service to be enabled
+               on this access.";
           }
         }
         choice dhcp-relay {
@@ -3121,7 +3130,7 @@ module ietf-ac-common {
       }
       case static-addresses {
         description
-          "Lists the IPv6 addresses that are used.";
+          "Lists the IPv6 addresses that are used by the customer.";
         list address {
           key "address-id";
           ordered-by user;
@@ -3152,7 +3161,7 @@ module ietf-ac-common {
       "Grouping for BGP authentication parameters.";
     container authentication {
       description
-        "Container for BGP authentication  parameters.";
+        "Container for BGP authentication parameters.";
       leaf enabled {
         type boolean;
         description
@@ -3193,7 +3202,7 @@ module ietf-ac-common {
             leaf md5-keychain {
               type key-chain:key-chain-ref;
               description
-                "Reference to the MD5 key chain.";
+                "Specifies a reference to the MD5 key chain.";
               reference
                 "RFC 8177: YANG Data Model for Key Chains";
             }
@@ -3231,7 +3240,7 @@ module ietf-ac-common {
       "Authentication configuration.";
     container authentication {
       description
-        "Container for OSPF authentication  parameters.";
+        "Container for OSPF authentication parameters.";
       leaf enabled {
         type boolean;
         description
@@ -3285,7 +3294,7 @@ module ietf-ac-common {
       "IS-IS authentication configuration.";
     container authentication {
       description
-        "Container for IS-IS authentication  parameters.";
+        "Container for IS-IS authentication parameters.";
       leaf enabled {
         type boolean;
         description
@@ -3339,7 +3348,7 @@ module ietf-ac-common {
       "RIP authentication configuration.";
     container authentication {
       description
-        "Container for RIP authentication  parameters.";
+        "Container for RIP authentication parameters.";
       leaf enabled {
         type boolean;
         description
@@ -3352,8 +3361,7 @@ module ietf-ac-common {
            secured on this AC.";
         choice option {
           description
-            "Specifies the authentication
-             scheme.";
+            "Specifies the authentication scheme.";
           case auth-key-chain {
             leaf key-chain {
               type key-chain:key-chain-ref;
@@ -3399,8 +3407,8 @@ module ietf-ac-common {
     leaf peer-as {
       type inet:as-number;
       description
-        "Indicates the customer's ASN when the customer
-         requests BGP routing.";
+        "Indicates the customer's ASN when the customer requests
+         BGP routing.";
     }
     leaf address-family {
       type identityref {
@@ -3487,7 +3495,8 @@ module ietf-ac-common {
 
   grouping ipv4-static-rtg-entry {
     description
-      "Paramters to configure a specific IPv4 static routing entry.";
+      "Parameters to configure a specific IPv4 static routing entry.\
+                                                                   ";
     leaf lan {
       type inet:ipv4-prefix;
       description
@@ -3505,9 +3514,8 @@ module ietf-ac-common {
       }
       description
         "The next hop that is to be used for the static route.
-         This may be specified as an IP address or a
-         predefined next-hop type (e.g., 'discard' or
-         'local-link').";
+         This may be specified as an IP address or a predefined
+         next-hop type (e.g., 'discard' or 'local-link').";
     }
     leaf metric {
       type uint32;
@@ -3518,7 +3526,7 @@ module ietf-ac-common {
 
   grouping ipv4-static-rtg {
     description
-      "Configuration specific to IPv4 static routing.";
+      "A set of parameters specific to IPv4 static routing.";
     list ipv4-lan-prefixes {
       if-feature "vpn-common:ipv4";
       key "lan next-hop";
@@ -3531,7 +3539,8 @@ module ietf-ac-common {
 
   grouping ipv6-static-rtg-entry {
     description
-      "Paramters to configure a specific IPv6 static routing entry.";
+      "Parameters to configure a specific IPv6 static routing entry.\
+                                                                   ";
     leaf lan {
       type inet:ipv6-prefix;
       description
@@ -3561,12 +3570,12 @@ module ietf-ac-common {
 
   grouping ipv6-static-rtg {
     description
-      "Configuration specific to IPv6 static routing.";
+      "A set of parameters specific to IPv6 static routing.";
     list ipv6-lan-prefixes {
       if-feature "vpn-common:ipv6";
       key "lan next-hop";
       description
-        "List of LAN prefixes for the site.";
+        "List of LAN prefixes for the customer terminating points.";
       uses ipv6-static-rtg-entry;
       uses ac-common:service-status;
     }
@@ -3582,11 +3591,11 @@ module ietf-ac-common {
       units "milliseconds";
       description
         "Expected BFD holdtime.
-         The customer may impose some fixed values
-         for the holdtime period if the provider allows
-         the customer to use this function.
-         If the provider doesn't allow the customer to
-         use this function, fixed values will not be set.";
+         The customer may impose some fixed values for the
+         holdtime period if the provider allows the customer
+         to use this function.
+         If the provider doesn't allow the customer to use
+         this function, fixed values will not be set.";
       reference
         "RFC 5880: Bidirectional Forwarding Detection (BFD),
                    Section 6.8.18";
@@ -3605,7 +3614,7 @@ module ietf-ac-common {
        leaf group-id {
          type string;
          description
-           "Indicates the group-id to which the AC belongs.";
+           "Indicates the group-id to which an AC belongs.";
        }
        leaf precedence {
          type identityref {
@@ -3651,7 +3660,7 @@ module ietf-ac-common {
       type uint64;
       units "bytes";
       description
-        "Excess Burst Size (EBS).  The bandwidth available for burst
+        "Excess Burst Size (EBS). The bandwidth available for burst
          traffic from the EBS is subject to the amount of bandwidth
          that is accumulated during periods when traffic allocated
          by the EIR policy is not used.";
@@ -3690,11 +3699,11 @@ module ietf-ac-common {
           "Choice based upon bandwidth type.";
         case per-cos {
           description
-            "Bandwidth per CoS.";
+            "Bandwidth per Class of Service (CoS).";
           list cos {
             key "cos-id";
             description
-              "List of Class of Services.";
+              "List of CoSes.";
             leaf cos-id {
               type uint8;
               description
