@@ -5,12 +5,12 @@
 OPSAWG                                                 M. Boucadair, Ed.
 Internet-Draft                                                    Orange
 Intended status: Standards Track                              R. Roberts
-Expires: 12 June 2025                                            Juniper
+Expires: 13 July 2025                                            Juniper
                                                            S. B. Giraldo
                                                                    Nokia
                                                            O. G. D. Dios
                                                               Telefonica
-                                                         9 December 2024
+                                                          9 January 2025
 
 
   A YANG Data Model for Augmenting VPN Service and Network Models with
@@ -24,7 +24,7 @@ Abstract
    (L3SM)) and network (i.e., the Layer 2 Network Model (L2NM) and the
    Layer 3 Network Model (L3NM)) Virtual Private Network (VPN) modules
    with the required information to bind specific VPN services to
-   Attachment Circuits (ACs) that are created using the AC service
+   attachment circuits (ACs) that are created using the AC service
    ("ietf-ac-svc") and network ("ietf-ac-ntw") models.
 
 Discussion Venues
@@ -54,11 +54,11 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 12 June 2025.
+   This Internet-Draft will expire on 13 July 2025.
 
 Copyright Notice
 
-   Copyright (c) 2024 IETF Trust and the persons identified as the
+   Copyright (c) 2025 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -97,11 +97,11 @@ Table of Contents
 
    To facilitate data transfer within the provider network, it is
    assumed that the appropriate setup is provisioned over the links that
-   connect customer terminating points and a provider network (usually
+   connect customer termination points and a provider network (usually
    via a Provider Edge (PE)), allowing successfully data exchanged over
    these links.  The required setup is referred to in this document as
-   Attachment Circuit (AC), while the underlying link is referred to as
-   "bearer".
+   an attachment circuit (AC), while the underlying link is referred to
+   as "bearer".
 
    The document specifies a YANG module ("ietf-ac-glue", Section 6) that
    updates existing service and network Virtual Private Network (VPN)
@@ -151,7 +151,7 @@ Table of Contents
    *  NNNN --> the assigned RFC number for
       [I-D.ietf-opsawg-ntw-attachment-circuit]
 
-   *  2023-11-13 --> the actual date of the publication of this document
+   *  2025-01-07 --> the actual date of the publication of this document
 
 2.  Conventions and Definitions
 
@@ -218,7 +218,7 @@ Table of Contents
                      +----------+     |     +----------+
                      |                |                |
                      |                |                |
-               ietf-ac-svc <--> ietf-bearer-svc        |
+               ietf-ac-svc <--- ietf-bearer-svc        |
                   ^    ^                               |
                   |    |                               |
                   |    +------------------------ ietf-ac-ntw
@@ -226,6 +226,8 @@ Table of Contents
                   |                                    |
                   |                                    |
                   +----------- ietf-ac-glue -----------+
+
+               X --> Y: X imports Y
 
                           Figure 1: AC Data Models
 
@@ -355,7 +357,7 @@ Table of Contents
                  | Manager |   |                   |
                  '----+----'   |                   |
                       |        |                   |
-                      | NETCONF/CLI..................
+                   NETCONF/CLI.......................
                       |        |                   |
                     .--------------------------------.
       .----. Bearer |                                | Bearer .----.
@@ -371,22 +373,21 @@ Table of Contents
    [RFC8299] specifies that a 'site-network-access' attachment is
    achieved through a 'bearer' with an 'ip-connection' on top.  From
    that standpoint, a 'site-network-access' is mapped to an attachment
-   circuit with both Layers 2 and 3 properties as per
+   circuit with both Layers 2 and 3 properties per
    [I-D.ietf-opsawg-teas-attachment-circuit].  [RFC8466] specifies that
    a 'site-network-access' represents a logical Layer 2 connection to a
    site.  A 'site-network-access' can thus be mapped to an attachment
    circuit with Layer 2 properties
    [I-D.ietf-opsawg-teas-attachment-circuit].  Similarly, 'vpn-network-
    access' defined in both [RFC9182] and [RFC9291] is mapped to an
-   attachment circuit as per [I-D.ietf-opsawg-teas-attachment-circuit]
-   or [I-D.ietf-opsawg-ntw-attachment-circuit].
+   attachment circuit per [I-D.ietf-opsawg-teas-attachment-circuit] or
+   [I-D.ietf-opsawg-ntw-attachment-circuit].
 
    As such, ACs created using the "ietf-ac-svc" module
    [I-D.ietf-opsawg-teas-attachment-circuit] can be referenced in other
-   VPN-related modules (e.g., L2SM, L3SM, L2NM, and L3NM).  Also, ACs
-   managed using the "ietf-ac-ntw" module
-   [I-D.ietf-opsawg-ntw-attachment-circuit] can be referenced in VPN-
-   related network modules (mainly, the L2NM and the L3NM).  The
+   VPN-related modules (e.g., LxSM, and LxNM).  Also, ACs managed using
+   the "ietf-ac-ntw" module [I-D.ietf-opsawg-ntw-attachment-circuit] can
+   be referenced in VPN-related network modules (mainly, the LxNM).  The
    required augmentations to that aim are shown in Figure 4.
 
   module: ietf-ac-glue
@@ -466,7 +467,7 @@ Table of Contents
    [I-D.ietf-opsawg-teas-attachment-circuit] and
    [I-D.ietf-opsawg-ntw-attachment-circuit].
 
-   <CODE BEGINS> file "ietf-ac-glue@2023-11-13.yang"
+   <CODE BEGINS> file "ietf-ac-glue@2025-01-07.yang"
    module ietf-ac-glue {
      yang-version 1.1;
      namespace "urn:ietf:params:xml:ns:yang:ietf-ac-glue";
@@ -523,7 +524,7 @@ Table of Contents
        "This YANG module defines a YANG model for augmenting the LxSM
         and the LxNM with attachment circuit references.
 
-        Copyright (c) 2024 IETF Trust and the persons identified as
+        Copyright (c) 2025 IETF Trust and the persons identified as
         authors of the code.  All rights reserved.
 
         Redistribution and use in source and binary forms, with or
@@ -536,7 +537,7 @@ Table of Contents
         This version of this YANG module is part of RFC XXXX; see the
         RFC itself for full legal notices.";
 
-     revision 2023-11-13 {
+     revision 2025-01-07 {
        description
          "Initial revision.";
        reference
@@ -877,9 +878,9 @@ Table of Contents
               Wu, B., Dhody, D., Rokui, R., Saad, T., and J. Mullooly,
               "A YANG Data Model for the RFC 9543 Network Slice
               Service", Work in Progress, Internet-Draft, draft-ietf-
-              teas-ietf-network-slice-nbi-yang-16, 28 August 2024,
+              teas-ietf-network-slice-nbi-yang-17, 20 December 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-teas-
-              ietf-network-slice-nbi-yang-16>.
+              ietf-network-slice-nbi-yang-17>.
 
    [RFC4252]  Ylonen, T. and C. Lonvick, Ed., "The Secure Shell (SSH)
               Authentication Protocol", RFC 4252, DOI 10.17487/RFC4252,
@@ -953,7 +954,7 @@ A.1.  A Service AC Reference within The VPN Network Access
 
    As shown in Figure 6, the service AC references can be explicitly
    indicated in the L2NM query for the realization of the Virtual
-   Private Wire Service (VPWS) Section 3.1.1 of [RFC4664]).
+   Private Wire Service (VPWS) (Section 3.1.1 of [RFC4664]).
 
    =============== NOTE: '\' line wrapping per RFC 8792 ================
 
@@ -1124,7 +1125,7 @@ A.1.  A Service AC Reference within The VPN Network Access
 A.2.  Network and Service AC References
 
    Let us consider the example depicted in Figure 7 with two customer
-   terminating points (CE1 and CE2).  Let us also assume that the
+   termination points (CE1 and CE2).  Let us also assume that the
    bearers to attach these CEs to the service provider network are
    already in place.  References to identify these bearers are shown in
    the figure.

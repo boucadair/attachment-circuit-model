@@ -5,14 +5,14 @@
 Operations and Management Area Working Group           M. Boucadair, Ed.
 Internet-Draft                                                    Orange
 Intended status: Standards Track                         R. Roberts, Ed.
-Expires: 12 June 2025                                            Juniper
+Expires: 13 July 2025                                            Juniper
                                                            O. G. D. Dios
                                                               Telefonica
                                                            S. B. Giraldo
                                                                    Nokia
                                                                    B. Wu
                                                      Huawei Technologies
-                                                         9 December 2024
+                                                          9 January 2025
 
 
             A Common YANG Data Model for Attachment Circuits
@@ -20,7 +20,7 @@ Expires: 12 June 2025                                            Juniper
 
 Abstract
 
-   The document specifies a common Attachment Circuits (ACs) YANG
+   The document specifies a common attachment circuits (ACs) YANG
    module, which is designed with the intent to be reusable by other
    models.  For example, this common model can be reused by service
    models to expose ACs as a service, service models that require
@@ -54,11 +54,11 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 12 June 2025.
+   This Internet-Draft will expire on 13 July 2025.
 
 Copyright Notice
 
-   Copyright (c) 2024 IETF Trust and the persons identified as the
+   Copyright (c) 2025 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -107,29 +107,14 @@ Table of Contents
    is provisioned over the links that connect customer terminating
    points and a provider network (a Provider Edge (PE), typically) so
    that data can be successfully exchanged over these links.  The
-   required setup is referred to in this document as Attachment Circuits
-   (ACs), while the underlying link is referred to as "bearer".
+   required setup is referred to in this document as an attachment
+   circuits (ACs), while the underlying link is referred to as "bearer".
 
-   This document adheres to the definition of an attachment circuit as
-   provided in Section 1.2 of [RFC4364], especially:
-
-      Routers can be attached to each other, or to end systems, in a
-      variety of different ways: PPP connections, ATM Virtual Circuits
-      (VCs), Frame Relay VCs, ethernet interfaces, Virtual Local Area
-      Networks (VLANs) on ethernet interfaces, GRE tunnels, Layer 2
-      Tunneling Protocol (L2TP) tunnels, IPsec tunnels, etc.  We will
-      use the term "attachment circuit" to refer generally to some such
-      means of attaching to a router.  An attachment circuit may be the
-      sort of connection that is usually thought of as a "data link", or
-      it may be a tunnel of some sort; what matters is that it be
-      possible for two devices to be network layer peers over the
-      attachment circuit.
-
-   When a customer requests a new value-added service, the service can
-   be bound to existing attachment circuits or trigger the instantiation
-   of new attachment circuits.  Whether these attachment circuits are
-   specific for a given service or are shared to deliver a variety of
-   services is deployment-specific.
+   When a customer requests a new service, the service can be bound to
+   existing attachment circuits or trigger the instantiation of new
+   attachment circuits.  Whether these attachment circuits are specific
+   for a given service or are shared to deliver a variety of services is
+   deployment-specific.
 
    An example of attachment circuits is depicted in Figure 1.  A
    Customer Edge (CE) may be a physical node or a logical entity.  A CE
@@ -196,7 +181,7 @@ Table of Contents
 
    *  XXXX --> the assigned RFC number for this I-D
 
-   *  2023-11-13 --> the actual date of the publication of this document
+   *  2025-01-07 --> the actual date of the publication of this document
 
 2.  Conventions and Definitions
 
@@ -273,7 +258,7 @@ Table of Contents
                      +----------+     |     +----------+
                      |                |                |
                      |                |                |
-               ietf-ac-svc <--> ietf-bearer-svc        |
+               ietf-ac-svc <--- ietf-bearer-svc        |
                   ^    ^                               |
                   |    |                               |
                   |    +------------------------ ietf-ac-ntw
@@ -281,6 +266,8 @@ Table of Contents
                   |                                    |
                   |                                    |
                   +----------- ietf-ac-glue -----------+
+
+               X --> Y: X imports Y
 
                           Figure 2: AC Data Models
 
@@ -736,7 +723,7 @@ Table of Contents
    This module uses types defined in [RFC6991], [RFC8177], and
    [RFC9181].
 
-   <CODE BEGINS> file "ietf-ac-common@2023-11-13.yang"
+   <CODE BEGINS> file "ietf-ac-common@2025-01-07.yang"
    module ietf-ac-common {
      yang-version 1.1;
      namespace "urn:ietf:params:xml:ns:yang:ietf-ac-common";
@@ -789,7 +776,7 @@ Table of Contents
        "This YANG module defines a common attachment circuit (AC)
         YANG model.
 
-        Copyright (c) 2024 IETF Trust and the persons identified as
+        Copyright (c) 2025 IETF Trust and the persons identified as
         authors of the code.  All rights reserved.
 
         Redistribution and use in source and binary forms, with or
@@ -802,7 +789,7 @@ Table of Contents
         This version of this YANG module is part of RFC XXXX; see the
         RFC itself for full legal notices.";
 
-     revision 2023-11-13 {
+     revision 2025-01-07 {
        description
          "Initial revision.";
        reference
@@ -2564,9 +2551,9 @@ Table of Contents
               Dios, "A YANG Data Model for Augmenting VPN Service and
               Network Models with Attachment Circuits", Work in
               Progress, Internet-Draft, draft-ietf-opsawg-ac-lxsm-lxnm-
-              glue-11, 7 November 2024,
+              glue-12, 9 December 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
-              ac-lxsm-lxnm-glue-11>.
+              ac-lxsm-lxnm-glue-12>.
 
    [I-D.ietf-opsawg-ntw-attachment-circuit]
               Boucadair, M., Roberts, R., de Dios, O. G., Barguil, S.,
@@ -2589,9 +2576,9 @@ Table of Contents
               Wu, B., Dhody, D., Rokui, R., Saad, T., and J. Mullooly,
               "A YANG Data Model for the RFC 9543 Network Slice
               Service", Work in Progress, Internet-Draft, draft-ietf-
-              teas-ietf-network-slice-nbi-yang-16, 28 August 2024,
+              teas-ietf-network-slice-nbi-yang-17, 20 December 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-teas-
-              ietf-network-slice-nbi-yang-16>.
+              ietf-network-slice-nbi-yang-17>.
 
    [RFC4252]  Ylonen, T. and C. Lonvick, Ed., "The Secure Shell (SSH)
               Authentication Protocol", RFC 4252, DOI 10.17487/RFC4252,

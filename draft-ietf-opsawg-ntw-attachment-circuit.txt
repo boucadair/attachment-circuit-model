@@ -5,14 +5,14 @@
 Operations and Management Area Working Group           M. Boucadair, Ed.
 Internet-Draft                                                    Orange
 Intended status: Standards Track                              R. Roberts
-Expires: 12 June 2025                                            Juniper
+Expires: 13 July 2025                                            Juniper
                                                            O. G. D. Dios
                                                               Telefonica
                                                            S. B. Giraldo
                                                                    Nokia
                                                                    B. Wu
                                                      Huawei Technologies
-                                                         9 December 2024
+                                                          9 January 2025
 
 
            A Network YANG Data Model for Attachment Circuits
@@ -58,11 +58,11 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 12 June 2025.
+   This Internet-Draft will expire on 13 July 2025.
 
 Copyright Notice
 
-   Copyright (c) 2024 IETF Trust and the persons identified as the
+   Copyright (c) 2025 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -124,7 +124,7 @@ Table of Contents
    The procedure to provision a service in a service provider network
    may depend on the practices adopted by a service provider, including
    the flow put in place for the provisioning of advanced network
-   services and how they are bound to an Attachment Circuit (AC).  For
+   services and how they are bound to an attachment circuit (AC).  For
    example, the same attachment circuit may host multiple services
    (e.g., Layer 2 Virtual Private Network (VPN), or Layer 3 VPN, or
    Network Slice Service [RFC9543]).  In order to avoid service
@@ -217,7 +217,7 @@ Table of Contents
 
    *  XXXX --> the assigned RFC number for this I-D
 
-   *  2024-05-15 --> the actual date of the publication of this document
+   *  2025-01-07 --> the actual date of the publication of this document
 
 2.  Conventions and Definitions
 
@@ -241,6 +241,8 @@ Table of Contents
 
    LxNM refers to both the L2VPN Network Model (L2NM) [RFC9291] and the
    L3VPN Network Model (L3NM) [RFC9182].
+
+   LxVPN refers to both L2VPN and L3VPN.
 
    The following are used in the module prefixes:
 
@@ -290,10 +292,10 @@ Table of Contents
       controllers.
 
    Service provider network:  A network that is able to provide network
-      services (e.g., L2VPN, L3VPN, or Network Slice Services).
+      services (e.g., LxVPN or Network Slice Services).
 
-   Service provider:  A service provider that offers network services
-      (e.g., L2VPN, L3VPN, or Network Slice Services).
+   Service provider:  An entity that offers network services (e.g.,
+      LxVPN or Network Slice Services).
 
    The names of data nodes are prefixed using the prefix associated with
    the corresponding imported YANG module as shown in Table 1:
@@ -350,7 +352,7 @@ Table of Contents
                      +----------+     |     +----------+
                      |                |                |
                      |                |                |
-               ietf-ac-svc <--> ietf-bearer-svc        |
+               ietf-ac-svc <--- ietf-bearer-svc        |
                   ^    ^                               |
                   |    |                               |
                   |    +------------------------ ietf-ac-ntw
@@ -358,6 +360,8 @@ Table of Contents
                   |                                    |
                   |                                    |
                   +----------- ietf-ac-glue -----------+
+
+               X --> Y: X imports Y
 
                           Figure 2: AC Data Models
 
@@ -476,7 +480,7 @@ Table of Contents
                  | Manager |   |                   |
                  '----+----'   |                   |
                       |        |                   |
-                      | NETCONF/CLI..................
+                   NETCONF/CLI.......................
                       |        |                   |
                     .--------------------------------.
       .----. Bearer |                                | Bearer .----.
@@ -2291,7 +2295,7 @@ Table of Contents
    [RFC8343], [RFC9067], [RFC9181], [I-D.ietf-opsawg-teas-common-ac],
    and [IEEE802.1Qcp].
 
-   <CODE BEGINS> file "ietf-ac-ntw@2024-05-15.yang"
+   <CODE BEGINS> file "ietf-ac-ntw@2025-01-07.yang"
    module ietf-ac-ntw {
      yang-version 1.1;
      namespace "urn:ietf:params:xml:ns:yang:ietf-ac-ntw";
@@ -2378,7 +2382,7 @@ Table of Contents
        "This YANG module defines a YANG network model for the management
         of attachment circuits.
 
-        Copyright (c) 2024 IETF Trust and the persons identified as
+        Copyright (c) 2025 IETF Trust and the persons identified as
         authors of the code.  All rights reserved.
 
         Redistribution and use in source and binary forms, with or
@@ -2391,7 +2395,7 @@ Table of Contents
         This version of this YANG module is part of RFC XXXX; see the
         RFC itself for full legal notices.";
 
-     revision 2024-05-15 {
+     revision 2025-01-07 {
        description
          "Initial revision.";
        reference
@@ -4370,19 +4374,22 @@ Table of Contents
       customer.  Disclosing such information may be considered a
       violation of the customer-provider trust relationship.
 
-   'keying-material':  An attacker can retrieve the cryptographic keys
-      protecting an AC (routing, in particular).  These keys could be
-      used to inject spoofed routing advertisements.
+   'keying-material' and 'customer-key-chain':  An attacker can retrieve
+      the cryptographic keys protecting an AC (routing, in particular).
+      These keys could be used to inject spoofed routing advertisements.
 
-   Several data nodes ('bgp', 'ospf', 'isis', and 'rip') rely upon
-   [RFC8177] for authentication purposes.  As such, the AC network
-   module inherits the security considerations discussed in Section 5 of
-   [RFC8177].  Also, these data nodes support supplying explicit keys as
-   strings in ASCII format.  The use of keys in hexadecimal string
-   format would afford greater key entropy with the same number of key-
-   string octets.  However, such a format is not included in this
-   version of the AC network model, because it is not supported by the
-   underlying device modules (e.g., [RFC8695]).
+   Several data nodes ('bgp', 'ospf', 'isis', 'rip', and 'customer-key-
+   chain') rely upon [RFC8177] for authentication purposes.  As such,
+   the AC network module inherits the security considerations discussed
+   in Section 5 of [RFC8177].  Also, these data nodes support supplying
+   explicit keys as strings in ASCII format.  The use of keys in
+   hexadecimal string format would afford greater key entropy with the
+   same number of key-string octets.  However, such a format is not
+   included in this version of the AC network model, because it is not
+   supported by the underlying device modules (e.g., [RFC8695]).
+
+   Section 5.8 specifies the the encryption to be applied to traffic for
+   a given AC.
 
 8.  IANA Considerations
 
@@ -4592,9 +4599,9 @@ Table of Contents
               Dios, "A YANG Data Model for Augmenting VPN Service and
               Network Models with Attachment Circuits", Work in
               Progress, Internet-Draft, draft-ietf-opsawg-ac-lxsm-lxnm-
-              glue-11, 7 November 2024,
+              glue-12, 9 December 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
-              ac-lxsm-lxnm-glue-11>.
+              ac-lxsm-lxnm-glue-12>.
 
    [RFC3644]  Snir, Y., Ramberg, Y., Strassner, J., Cohen, R., and B.
               Moore, "Policy Quality of Service (QoS) Information
