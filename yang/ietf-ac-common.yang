@@ -427,8 +427,8 @@ module ietf-ac-common {
         leaf id {
           type string;
           description
-            "Identification of the failure detection (e.g., BFD) profile
-             to be used.";
+            "Identification of the failure detection (e.g., BFD)
+             profile to be used.";
         }
       }
       list forwarding-profile-identifier {
@@ -881,12 +881,12 @@ module ietf-ac-common {
                   type inet:ipv4-address;
                   mandatory true;
                   description
-                    "Indicates the first address in the address pool.";
+                    "Indicates the first address in the pool.";
                 }
                 leaf end-address {
                   type inet:ipv4-address;
                   description
-                    "Indicates the last address in the address pool.";
+                    "Indicates the last address in the pool.";
                 }
               }
             }
@@ -1014,12 +1014,12 @@ module ietf-ac-common {
                   type inet:ipv6-address;
                   mandatory true;
                   description
-                    "Indicates the first address in the address pool.";
+                    "Indicates the first address in the pool.";
                 }
                 leaf end-address {
                   type inet:ipv6-address;
                   description
-                    "Indicates the last address in the address pool.";
+                    "Indicates the last address in the pool.";
                 }
               }
             }
@@ -1428,7 +1428,8 @@ module ietf-ac-common {
 
   grouping ipv4-static-rtg-entry {
     description
-      "Parameters to configure a specific IPv4 static routing entry.";
+      "Parameters to configure a specific IPv4 static routing
+       entry.";
     leaf lan {
       type inet:ipv4-prefix;
       description
@@ -1471,7 +1472,8 @@ module ietf-ac-common {
 
   grouping ipv6-static-rtg-entry {
     description
-      "Parameters to configure a specific IPv6 static routing entry.";
+      "Parameters to configure a specific IPv6 static routing
+       entry.";
     leaf lan {
       type inet:ipv6-prefix;
       description
