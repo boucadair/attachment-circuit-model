@@ -4119,9 +4119,9 @@ B2B C/S: Back-to-back Client/Server
               Boucadair, M., Roberts, R., de Dios, O. G., Barguil, S.,
               and B. Wu, "A Common YANG Data Model for Attachment
               Circuits", Work in Progress, Internet-Draft, draft-ietf-
-              opsawg-teas-common-ac-13, 7 November 2024,
+              opsawg-teas-common-ac-14, 9 January 2025,
               <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
-              teas-common-ac-13>.
+              teas-common-ac-14>.
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
@@ -4256,9 +4256,9 @@ B2B C/S: Back-to-back Client/Server
               Dios, "A YANG Data Model for Augmenting VPN Service and
               Network Models with Attachment Circuits", Work in
               Progress, Internet-Draft, draft-ietf-opsawg-ac-lxsm-lxnm-
-              glue-12, 9 December 2024,
+              glue-13, 9 January 2025,
               <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
-              ac-lxsm-lxnm-glue-12>.
+              ac-lxsm-lxnm-glue-13>.
 
    [I-D.ietf-opsawg-ntw-attachment-circuit]
               Boucadair, M., Roberts, R., de Dios, O. G., Barguil, S.,

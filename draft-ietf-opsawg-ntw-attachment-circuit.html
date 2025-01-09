@@ -1695,10 +1695,10 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
           <p id="section-3-2.1.1">"ietf-ac-common" (<span>[<a href="#I-D.ietf-opsawg-teas-common-ac" class="cite xref">I-D.ietf-opsawg-teas-common-ac</a>]</span>)<a href="#section-3-2.1.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-3-2.2">
-          <p id="section-3-2.2.1">"ietf-bearer-svc" (<span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-teas-attachment-circuit-18#section-5.1" class="relref">Section 5.1</a> of [<a href="#I-D.ietf-opsawg-teas-attachment-circuit" class="cite xref">I-D.ietf-opsawg-teas-attachment-circuit</a>]</span>)<a href="#section-3-2.2.1" class="pilcrow">¶</a></p>
+          <p id="section-3-2.2.1">"ietf-bearer-svc" (<span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-teas-attachment-circuit-19#section-5.1" class="relref">Section 5.1</a> of [<a href="#I-D.ietf-opsawg-teas-attachment-circuit" class="cite xref">I-D.ietf-opsawg-teas-attachment-circuit</a>]</span>)<a href="#section-3-2.2.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-3-2.3">
-          <p id="section-3-2.3.1">"ietf-ac-svc" (<span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-teas-attachment-circuit-18#section-5.2" class="relref">Section 5.2</a> of [<a href="#I-D.ietf-opsawg-teas-attachment-circuit" class="cite xref">I-D.ietf-opsawg-teas-attachment-circuit</a>]</span>)<a href="#section-3-2.3.1" class="pilcrow">¶</a></p>
+          <p id="section-3-2.3.1">"ietf-ac-svc" (<span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-teas-attachment-circuit-19#section-5.2" class="relref">Section 5.2</a> of [<a href="#I-D.ietf-opsawg-teas-attachment-circuit" class="cite xref">I-D.ietf-opsawg-teas-attachment-circuit</a>]</span>)<a href="#section-3-2.3.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-3-2.4">
           <p id="section-3-2.4.1">"ietf-ac-ntw" (<a href="#sec-module" class="auto internal xref">Section 6</a>)<a href="#section-3-2.4.1" class="pilcrow">¶</a></p>
@@ -4214,7 +4214,7 @@ module ietf-ac-ntw {
                &lt;mailto:lana.wubo@huawei.com&gt;";
   description
     "This YANG module defines a YANG network model for the management
-     of attachment circuits.
+     of attachment circuits (ACs).
 
      Copyright (c) 2025 IETF Trust and the persons identified as
      authors of the code.  All rights reserved.
@@ -4382,7 +4382,7 @@ module ietf-ac-ntw {
     uses nw:network-ref;
   }
 
-  // L2 conenction
+  // L2 connection
 
   grouping l2-connection {
     description
@@ -4431,7 +4431,7 @@ module ietf-ac-ntw {
                 "Pushes one or two tags defined by the tag-1 and
                  tag-2 leaves.  It is assumed that, absent any
                  policy, the default value of 0 will be used for
-                 the PCP  setting.";
+                 the Priority Code Point (PCP) setting.";
             }
             leaf translate {
               type empty;
@@ -4590,7 +4590,7 @@ module ietf-ac-ntw {
 
   grouping l2-connection-if-ref {
     description
-      "Specifies Layer 2 connection paramters with interface
+      "Specifies Layer 2 connection parameters with interface
        references.";
     uses l2-connection;
     leaf l2-termination-point {
@@ -4644,11 +4644,11 @@ module ietf-ac-ntw {
 
   grouping ipv4-connection {
     description
-      "IPv4-specific parameters.";
+      "IPv4-specific connection parameters.";
     leaf local-address {
       type inet:ipv4-address;
       description
-        "The IP address used at the provider's interface.";
+        "The IPv4 address used at the provider's interface.";
     }
     uses ac-common:ipv4-allocation-type;
     choice allocation-type {
@@ -4677,7 +4677,7 @@ module ietf-ac-ntw {
               list address-pool {
                 key "pool-id";
                 description
-                  "Describes IP addresses to be dyncamically
+                  "Describes IP addresses to be dynamically
                    allocated.
 
                    When only 'start-address' is present, it
@@ -4720,7 +4720,7 @@ module ietf-ac-ntw {
               }
               enum relay {
                 description
-                  "Local DHCP relay.  DHCP requests are relayed to a
+                  "Local DHCP relay. DHCP requests are relayed to a
                    provider's server.";
               }
             }
@@ -4760,7 +4760,7 @@ module ietf-ac-ntw {
       }
       case static-addresses {
         description
-          "Lists the IPv4 addresses that are used.";
+          "Lists the static IPv4 addresses that are used.";
         list address {
           key "address-id";
           ordered-by user;
@@ -4786,7 +4786,7 @@ module ietf-ac-ntw {
 
   grouping ipv6-connection {
     description
-      "IPv6-specific parameters.";
+      "IPv6-specific connection parameters.";
     leaf local-address {
       type inet:ipv6-address;
       description
@@ -4819,7 +4819,7 @@ module ietf-ac-ntw {
               list address-pool {
                 key "pool-id";
                 description
-                  "Describes IP addresses to be dyncamically
+                  "Describes IP addresses to be dynamically
                    allocated.
 
                    When only 'start-address' is present, it
@@ -4902,7 +4902,7 @@ module ietf-ac-ntw {
       }
       case static-addresses {
         description
-          "Lists the IPv4 addresses that are used.";
+          "Lists the static IPv6 addresses that are used.";
         list address {
           key "address-id";
           ordered-by user;
@@ -4913,7 +4913,7 @@ module ietf-ac-ntw {
           leaf address-id {
             type string;
             description
-              "An identifier of the static IPv4 address.";
+              "An identifier of the static IPv6 address.";
           }
           leaf customer-address {
             type inet:ipv6-address;
@@ -5181,7 +5181,7 @@ module ietf-ac-ntw {
     leaf name {
       type string;
       description
-        "Name of the BGP peer-group";
+        "Name of the BGP peer-group.";
     }
     uses bgp-base;
   }
@@ -5211,9 +5211,9 @@ module ietf-ac-ntw {
         type if:interface-ref;
       }
     description
-      "Sets the local IP address to use for the BGP
-       transport session. This may be expressed as either
-       an IP address or a reference to an interface.";
+      "Sets the local IP address to use for the BGP transport
+       session. This may be expressed as either an IP address
+       or a reference to an interface.";
     }
     uses bgp-base;
     uses ac-common:bgp-authentication;
@@ -5297,11 +5297,11 @@ module ietf-ac-ntw {
     }
   }
 
-  // routing profile
+  // Routing profile
 
   grouping routing-profile {
     description
-      "Defines routing protocols.";
+      "Defines profiles for routing protocols.";
     list routing-protocol {
       key "id";
       description
@@ -5547,10 +5547,9 @@ module ietf-ac-ntw {
               type if:interface-ref;
             }
             description
-              "Sets the local IP address to use for
-               the BGP transport session.  This may be
-               expressed as either an IP address or a
-               reference to an interface.";
+              "Sets the local IP address to use for the BGP transport
+               session. This may be expressed as either an IP address
+               or a reference to an interface.";
           }
           leaf peer-group {
             type leafref {
@@ -5589,8 +5588,7 @@ module ietf-ac-ntw {
           list sham-link {
             key "target-site";
             description
-              "Creates a sham link with another
-               site.";
+              "Creates a sham link with another site.";
             leaf target-site {
               type string;
               description
@@ -5677,8 +5675,8 @@ module ietf-ac-ntw {
            + "'vpn-common:rip-routing')" {
           description
             "Only applies when the protocol is RIP.
-             For IPv4, the model assumes that RIP
-             version 2 is used.";
+             For IPv4, the model assumes that RIP version 2
+             is used.";
         }
         if-feature "vpn-common:rtg-rip";
         description
@@ -5722,8 +5720,7 @@ module ietf-ac-ntw {
         leaf-list virtual-ip-address {
           type inet:ip-address;
           description
-            "Virtual IP addresses for a single VRRP
-             group.";
+            "Virtual IP addresses for a single VRRP group.";
           reference
             "RFC 9568: Virtual Router Redundancy Protocol (VRRP)
                        Version 3 for IPv4 and IPv6, Sections 1.2
@@ -5816,7 +5813,7 @@ module ietf-ac-ntw {
     container bfd {
       if-feature "vpn-common:bfd";
       description
-        "BFD control for this nighbor.";
+        "BFD control for this neighbor.";
       leaf enabled {
         type boolean;
         description
@@ -5852,9 +5849,9 @@ module ietf-ac-ntw {
             type if:interface-ref;
            }
            description
-             "Sets the local IP address to use for the BFD
-              session. This may be expressed as either
-              an IP address or a reference to an interface.";
+             "Sets the local IP address to use for the BFD session.
+              This may be expressed as either an IP address
+              or a reference to an interface.";
         }
         uses failure-detection-profile-reference;
         uses bfd;
@@ -5881,7 +5878,7 @@ module ietf-ac-ntw {
     }
   }
 
-  // security
+  // Security
 
   grouping security {
     description
@@ -6024,7 +6021,7 @@ module ietf-ac-ntw {
     }
     container service {
       description
-        "AC-specific bandwith parameters.";
+        "AC-specific bandwidth parameters.";
       leaf mtu {
         type uint32;
         units "bytes";
@@ -6049,8 +6046,7 @@ module ietf-ac-ntw {
                 base vpn-common:qos-profile-direction;
               }
               description
-                "The direction to which the QoS profile
-                 is applied.";
+                "The direction to which the QoS profile is applied.";
             }
           }
         }
@@ -6274,11 +6270,11 @@ be used to inject spoofed routing  advertisements.<a href="#section-7-7.6.1" cla
 <dl class="references">
 <dt id="I-D.ietf-opsawg-teas-attachment-circuit">[I-D.ietf-opsawg-teas-attachment-circuit]</dt>
         <dd>
-<span class="refAuthor">Boucadair, M.</span>, <span class="refAuthor">Roberts, R.</span>, <span class="refAuthor">de Dios, O. G.</span>, <span class="refAuthor">Barguil, S.</span>, and <span class="refAuthor">B. Wu</span>, <span class="refTitle">"YANG Data Models for Bearers and 'Attachment Circuits'-as-a-Service (ACaaS)"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-opsawg-teas-attachment-circuit-18</span>, <time datetime="2024-11-07" class="refDate">7 November 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-teas-attachment-circuit-18">https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-teas-attachment-circuit-18</a>&gt;</span>. </dd>
+<span class="refAuthor">Boucadair, M.</span>, <span class="refAuthor">Roberts, R.</span>, <span class="refAuthor">de Dios, O. G.</span>, <span class="refAuthor">Barguil, S.</span>, and <span class="refAuthor">B. Wu</span>, <span class="refTitle">"YANG Data Models for Bearers and 'Attachment Circuits'-as-a-Service (ACaaS)"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-opsawg-teas-attachment-circuit-19</span>, <time datetime="2025-01-09" class="refDate">9 January 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-teas-attachment-circuit-19">https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-teas-attachment-circuit-19</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="I-D.ietf-opsawg-teas-common-ac">[I-D.ietf-opsawg-teas-common-ac]</dt>
         <dd>
-<span class="refAuthor">Boucadair, M.</span>, <span class="refAuthor">Roberts, R.</span>, <span class="refAuthor">de Dios, O. G.</span>, <span class="refAuthor">Barguil, S.</span>, and <span class="refAuthor">B. Wu</span>, <span class="refTitle">"A Common YANG Data Model for Attachment Circuits"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-opsawg-teas-common-ac-13</span>, <time datetime="2024-11-07" class="refDate">7 November 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-teas-common-ac-13">https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-teas-common-ac-13</a>&gt;</span>. </dd>
+<span class="refAuthor">Boucadair, M.</span>, <span class="refAuthor">Roberts, R.</span>, <span class="refAuthor">de Dios, O. G.</span>, <span class="refAuthor">Barguil, S.</span>, and <span class="refAuthor">B. Wu</span>, <span class="refTitle">"A Common YANG Data Model for Attachment Circuits"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-opsawg-teas-common-ac-14</span>, <time datetime="2025-01-09" class="refDate">9 January 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-teas-common-ac-14">https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-teas-common-ac-14</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="IEEE802.1Qcp">[IEEE802.1Qcp]</dt>
         <dd>
@@ -6427,7 +6423,7 @@ be used to inject spoofed routing  advertisements.<a href="#section-7-7.6.1" cla
 <dd class="break"></dd>
 <dt id="I-D.ietf-opsawg-ac-lxsm-lxnm-glue">[I-D.ietf-opsawg-ac-lxsm-lxnm-glue]</dt>
         <dd>
-<span class="refAuthor">Boucadair, M.</span>, <span class="refAuthor">Roberts, R.</span>, <span class="refAuthor">Barguil, S.</span>, and <span class="refAuthor">O. G. de Dios</span>, <span class="refTitle">"A YANG Data Model for Augmenting VPN Service and Network Models with Attachment Circuits"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-opsawg-ac-lxsm-lxnm-glue-12</span>, <time datetime="2024-12-09" class="refDate">9 December 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-ac-lxsm-lxnm-glue-12">https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-ac-lxsm-lxnm-glue-12</a>&gt;</span>. </dd>
+<span class="refAuthor">Boucadair, M.</span>, <span class="refAuthor">Roberts, R.</span>, <span class="refAuthor">Barguil, S.</span>, and <span class="refAuthor">O. G. de Dios</span>, <span class="refTitle">"A YANG Data Model for Augmenting VPN Service and Network Models with Attachment Circuits"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-opsawg-ac-lxsm-lxnm-glue-13</span>, <time datetime="2025-01-09" class="refDate">9 January 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-ac-lxsm-lxnm-glue-13">https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-ac-lxsm-lxnm-glue-13</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC3644">[RFC3644]</dt>
         <dd>

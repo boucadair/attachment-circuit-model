@@ -2553,9 +2553,9 @@ Table of Contents
               Dios, "A YANG Data Model for Augmenting VPN Service and
               Network Models with Attachment Circuits", Work in
               Progress, Internet-Draft, draft-ietf-opsawg-ac-lxsm-lxnm-
-              glue-12, 9 December 2024,
+              glue-13, 9 January 2025,
               <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
-              ac-lxsm-lxnm-glue-12>.
+              ac-lxsm-lxnm-glue-13>.
 
    [I-D.ietf-opsawg-ntw-attachment-circuit]
               Boucadair, M., Roberts, R., de Dios, O. G., Barguil, S.,
@@ -2570,9 +2570,9 @@ Table of Contents
               and B. Wu, "YANG Data Models for Bearers and 'Attachment
               Circuits'-as-a-Service (ACaaS)", Work in Progress,
               Internet-Draft, draft-ietf-opsawg-teas-attachment-circuit-
-              18, 7 November 2024,
+              19, 9 January 2025,
               <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
-              teas-attachment-circuit-18>.
+              teas-attachment-circuit-19>.
 
    [I-D.ietf-teas-ietf-network-slice-nbi-yang]
               Wu, B., Dhody, D., Rokui, R., Saad, T., and J. Mullooly,
