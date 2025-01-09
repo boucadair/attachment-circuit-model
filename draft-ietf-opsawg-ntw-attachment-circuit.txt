@@ -2296,6 +2296,8 @@ Table of Contents
    and [IEEE802.1Qcp].
 
    <CODE BEGINS> file "ietf-ac-ntw@2025-01-07.yang"
+   =============== NOTE: '\' line wrapping per RFC 8792 ================
+
    module ietf-ac-ntw {
      yang-version 1.1;
      namespace "urn:ietf:params:xml:ns:yang:ietf-ac-ntw";
@@ -2548,7 +2550,7 @@ Table of Contents
        uses nw:network-ref;
      }
 
-     // L2 connection
+     // Layer connection
 
      grouping l2-connection {
        description
@@ -2721,7 +2723,8 @@ Table of Contents
                when 'not(../pop)';
                type dot1q-types:vlanid;
                description
-                 "A second tag to be used for push or translate
+                 "Specifies a second tag to be used for push or \
+                                                              translate
                   operations.";
              }
              leaf tag-2-type {
@@ -2806,7 +2809,7 @@ Table of Contents
        }
      }
 
-     // IPv4 connection groupings
+     // IPv4 connection
 
      grouping ipv4-connection {
        description
@@ -2985,7 +2988,7 @@ Table of Contents
                  list address-pool {
                    key "pool-id";
                    description
-                     "Describes IP addresses to be dynamically
+                     "Describes IPv6 addresses to be dynamically
                       allocated.
 
                       When only 'start-address' is present, it
@@ -3033,8 +3036,8 @@ Table of Contents
                  }
                }
                description
-                 "Indicates the type of DHCP service to
-                  be enabled on this access.";
+                 "Indicates the type of DHCP service to be enabled on
+                  this access.";
              }
              choice service-type {
                description
@@ -3061,7 +3064,7 @@ Table of Contents
                leaf-list server-ip-address {
                  type inet:ipv6-address;
                  description
-                   "IPv6 addresses of the customer's DHCP server.";
+                   "IPv6 addresses of the customer's DHCP servers.";
                }
              }
            }
@@ -3073,9 +3076,9 @@ Table of Contents
              key "address-id";
              ordered-by user;
              description
-               "Lists the IPv6 addresses that are used. The first
-                address of the list is the primary address of
-                the connection.";
+               "Lists the IPv6 addresses that are used. The first \
+                                                                address
+                of the list is the primary address of the connection.";
              leaf address-id {
                type string;
                description
@@ -3104,13 +3107,13 @@ Table of Contents
        container ipv4 {
          if-feature "vpn-common:ipv4";
          description
-           "IPv4-specific parameters.";
+           "IPv4-specific connection parameters.";
          uses ipv4-connection;
        }
        container ipv6 {
          if-feature "vpn-common:ipv6";
          description
-           "IPv6-specific parameters.";
+           "IPv6-specific connection parameters.";
          uses ipv6-connection;
        }
      }
@@ -3193,7 +3196,8 @@ Table of Contents
          type boolean;
          description
            "Defines whether default routes can be advertised to a peer.
-            If set, the default routes are advertised to a peer.";
+            If set to ‘true’, the default routes are advertised to
+            a peer.";
        }
        leaf site-of-origin {
          when "derived-from-or-self(../address-family, "
@@ -3241,7 +3245,8 @@ Table of Contents
          leaf enabled {
            type boolean;
            description
-             "Enables the redistribution of connected routes.";
+             "Enables, when set to ‘true’, the redistribution of
+              Connected routes.";
          }
        }
        container bgp-max-prefix {
@@ -3369,7 +3374,7 @@ Table of Contents
        leaf name {
          type string;
          description
-           "Name of the BGP peer-group";
+           "Name of the BGP peer group";
        }
        leaf local-address {
          type union {
@@ -3440,8 +3445,7 @@ Table of Contents
            }
            units "seconds";
            description
-             "Specifies the interval before better routes are
-              released.";
+             "Specifies the interval before better routes released.";
          }
          leaf flush-interval {
            type uint16 {
@@ -3520,8 +3524,8 @@ Table of Contents
            leaf passive {
              type boolean;
              description
-               "Enables when set to true a passive interface. It is
-                active when set to false. A passive interface's prefix
+               "Enables when set to ‘true’ a passive interface. It is
+                active when set to ‘false’. A passive interface's prefix
                 will be advertised, but no neighbor adjacencies will be
                 formed on the interface.";
            }
@@ -3557,11 +3561,11 @@ Table of Contents
            leaf passive {
              type boolean;
              description
-               "When set to false, the interface is active. In such
+               "When set to ‘false’, the interface is active. In such
                 mode, the interface sends or receives IS-IS protocol
                 control packets.
 
-                When set to true, the interface is passive. That is,
+                When set to ‘true’, the interface is passive. That is,
                 it suppresses the sending of IS-IS updates through the
                 specified interface.";
            }
@@ -3602,7 +3606,7 @@ Table of Contents
              type boolean;
              description
                "Controls whether the VRRP speaker should reply to ping
-                requests.";
+                requests. Such behavior is enabled, if set to 'true'.";
            }
          }
        }
@@ -3644,8 +3648,7 @@ Table of Contents
            when "derived-from-or-self(../type, "
               + "'vpn-common:static-routing')" {
              description
-               "Only applies when the protocol is a static routing
-                protocol.";
+               "Only applies when the protocol is static routing.";
            }
            description
              "Configuration specific to static routing.";
@@ -3695,7 +3698,7 @@ Table of Contents
              "Configuration specific to BGP.";
            container peer-groups {
              description
-               "Configuration for BGP peer-groups";
+               "Configuration for BGP peer groups";
              uses bgp-peer-group-list;
            }
            list neighbor {
@@ -3786,8 +3789,8 @@ Table of Contents
            leaf passive {
              type boolean;
              description
-               "Enables when set to true a passive interface. It is
-                active when set to false. A passive interface's prefix
+               "Enables when set to ‘true’ a passive interface. It is
+                active when set to ‘false’. A passive interface's prefix
                 will be advertised, but no neighbor adjacencies will be
                 formed on the interface.";
            }
@@ -3825,11 +3828,11 @@ Table of Contents
            leaf passive {
              type boolean;
                description
-                 "When set to false, the interface is active. In such
+                 "When set to ‘false’, the interface is active. In such
                   mode, the interface sends or receives IS-IS protocol
                   control packets.
 
-                  When set to true, the interface is passive. That is,
+                  When set to ‘true’, the interface is passive. That is,
                   it suppresses the sending of IS-IS updates through the
                   specified interface.";
            }
@@ -3983,14 +3986,12 @@ Table of Contents
          leaf enabled {
            type boolean;
            description
-             "Enables BFD if set to true. BFD is disabled of set to
-              false.";
+             "Enables BFD if set to ‘true’. BFD is disabled of set to
+              ‘false’.";
          }
          uses failure-detection-profile-reference;
        }
      }
-
-     // OAM
 
      grouping oam {
        description
@@ -4016,8 +4017,8 @@ Table of Contents
               }
               description
                 "Sets the local IP address to use for the BFD session.
-                 This may be expressed as either an IP address
-                 or a reference to an interface.";
+                 This may be expressed as either an IP address or
+                 a reference to an interface.";
            }
            uses failure-detection-profile-reference;
            uses bfd;
@@ -4033,7 +4034,7 @@ Table of Contents
              leaf meticulous {
                type boolean;
                description
-                 "Enables meticulous mode.";
+                 "Enables meticulous mode, if set to 'true'.";
                reference
                  "RFC 5880: Bidirectional Forwarding Detection (BFD),
                             Section 6.7";
