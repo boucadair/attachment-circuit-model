@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-01-07T00:49:28.357662+00:00",
+  "timestamp": "2025-01-09T00:48:36.742145+00:00",
   "repo": "boucadair/attachment-circuit-model",
   "labels": [
     {
@@ -9227,13 +9227,13 @@
       "labels": [],
       "body": "",
       "createdAt": "2025-01-06T14:14:38Z",
-      "updatedAt": "2025-01-06T16:04:18Z",
+      "updatedAt": "2025-01-08T17:02:16Z",
       "baseRepository": "boucadair/attachment-circuit-model",
       "baseRefName": "main",
       "baseRefOid": "3963665fa466b0fc1e69426116618ab9f008913d",
       "headRepository": "boucadair/attachment-circuit-model",
       "headRefName": "opsdir-review",
-      "headRefOid": "0a890cd7098f5b109c095c6347c165c430a63cf8",
+      "headRefOid": "64cf38fd39850a2f4f7b74799f5d828eb71a503c",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
