@@ -978,6 +978,9 @@ designed to be accessed via YANG-based management protocols, such as
    use a secure transport layer (e.g., SSH {{?RFC4252}}, TLS {{?RFC8446}}, and
    QUIC {{?RFC9000}}) and have to use mutual authentication.
 
+   Servers MUST verify that requesting clients are entitled to access
+   and manipulate a given bearer or AC. For example, a given customer must have access only to its
+   bearers/ACs and be discarded access to bearers/ACs of other customers.
    The Network Configuration Access Control Model (NACM) {{!RFC8341}}
    provides the means to restrict access for particular NETCONF or
    RESTCONF users to a preconfigured subset of all available NETCONF or
