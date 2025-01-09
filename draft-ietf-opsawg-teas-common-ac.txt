@@ -774,7 +774,8 @@ Table of Contents
                   <mailto:lana.wubo@huawei.com>";
      description
        "This YANG module defines a common attachment circuit (AC)
-        YANG model.
+        YANG model with a set of reusable features, types,
+        identities, and groupings.
 
         Copyright (c) 2025 IETF Trust and the persons identified as
         authors of the code.  All rights reserved.
@@ -948,8 +949,8 @@ Table of Contents
 
      identity precedence-type {
        description
-         "Redundancy type. The service can be created with primary and
-          secondary tagging.";
+         "Redundancy type. Attachment to a network can be created
+          with primary and secondary tagging.";
      }
 
      identity primary {
@@ -1114,7 +1115,6 @@ Table of Contents
          }
        }
      }
-
 
      /**** A set of profiles ****/
 
@@ -1631,7 +1631,7 @@ Table of Contents
                  }
                  enum relay {
                    description
-                     "Local DHCP relay.  DHCP requests are relayed to
+                     "Local DHCP relay. DHCP requests are relayed to
                       a provider's server.";
                  }
                }
@@ -1683,7 +1683,7 @@ Table of Contents
 
      grouping ipv6-connection {
        description
-         "IPv6-specific parameters.";
+         "IPv6-specific connection parameters.";
        leaf local-address {
          type inet:ipv6-address;
          description
@@ -2059,9 +2059,9 @@ Table of Contents
        leaf local-as {
          type inet:as-number;
          description
-           "Indicates a local AS Number (ASN). This ASN is exposed
-            to a customer so that it knows which ASN to use
-            to set up a BGP session.";
+           "Indicates a local AS Number (ASN). This ASN is exposed to
+            a customer so that it knows which ASN to use to set up
+            a BGP session.";
        }
        leaf peer-as {
          type inet:as-number;
