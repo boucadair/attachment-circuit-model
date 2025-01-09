@@ -4384,7 +4384,7 @@ module ietf-ac-ntw {
     uses nw:network-ref;
   }
 
-  // Layer connection
+  // Layer 2 connection
 
   grouping l2-connection {
     description
@@ -4910,9 +4910,9 @@ module ietf-ac-ntw {
           key "address-id";
           ordered-by user;
           description
-            "Lists the IPv6 addresses that are used. The first \
-                                                             address
-             of the list is the primary address of the connection.";
+            "Lists the IPv6 addresses that are used. The first
+             address of the list is the primary address of
+             the connection.";
           leaf address-id {
             type string;
             description
@@ -5030,7 +5030,7 @@ module ietf-ac-ntw {
       type boolean;
       description
         "Defines whether default routes can be advertised to a peer.
-         If set to ‘true’, the default routes are advertised to
+         If set to 'true', the default routes are advertised to
          a peer.";
     }
     leaf site-of-origin {
@@ -5079,7 +5079,7 @@ module ietf-ac-ntw {
       leaf enabled {
         type boolean;
         description
-          "Enables, when set to ‘true’, the redistribution of
+          "Enables, when set to 'true', the redistribution of
            Connected routes.";
       }
     }
@@ -5186,7 +5186,7 @@ module ietf-ac-ntw {
     leaf name {
       type string;
       description
-        "Name of the BGP peer-group.";
+        "Name of the BGP peer group.";
     }
     uses bgp-base;
   }
@@ -5358,8 +5358,8 @@ module ietf-ac-ntw {
         leaf passive {
           type boolean;
           description
-            "Enables when set to ‘true’ a passive interface. It is
-             active when set to ‘false’. A passive interface's prefix
+            "Enables when set to 'true' a passive interface. It is
+             active when set to 'false'. A passive interface's prefix
              will be advertised, but no neighbor adjacencies will be
              formed on the interface.";
         }
@@ -5395,11 +5395,11 @@ module ietf-ac-ntw {
         leaf passive {
           type boolean;
           description
-            "When set to ‘false’, the interface is active. In such
+            "When set to 'false', the interface is active. In such
              mode, the interface sends or receives IS-IS protocol
              control packets.
 
-             When set to ‘true’, the interface is passive. That is,
+             When set to 'true', the interface is passive. That is,
              it suppresses the sending of IS-IS updates through the
              specified interface.";
         }
@@ -5559,7 +5559,7 @@ module ietf-ac-ntw {
               path "../../peer-groups/peer-group/name";
             }
             description
-              "The peer-group with which this neighbor is
+              "The peer group with which this neighbor is
                associated.";
           }
           uses bgp-base;
@@ -5623,8 +5623,8 @@ module ietf-ac-ntw {
         leaf passive {
           type boolean;
           description
-            "Enables when set to ‘true’ a passive interface. It is
-             active when set to ‘false’. A passive interface's prefix
+            "Enables when set to 'true' a passive interface. It is
+             active when set to 'false'. A passive interface's prefix
              will be advertised, but no neighbor adjacencies will be
              formed on the interface.";
         }
@@ -5662,11 +5662,11 @@ module ietf-ac-ntw {
         leaf passive {
           type boolean;
             description
-              "When set to ‘false’, the interface is active. In such
+              "When set to 'false', the interface is active. In such
                mode, the interface sends or receives IS-IS protocol
                control packets.
 
-               When set to ‘true’, the interface is passive. That is,
+               When set to 'true', the interface is passive. That is,
                it suppresses the sending of IS-IS updates through the
                specified interface.";
         }
@@ -5820,8 +5820,8 @@ module ietf-ac-ntw {
       leaf enabled {
         type boolean;
         description
-          "Enables BFD if set to ‘true’. BFD is disabled of set to
-           ‘false’.";
+          "Enables BFD if set to 'true'. BFD is disabled of set to
+           'false'.";
       }
       uses failure-detection-profile-reference;
     }
