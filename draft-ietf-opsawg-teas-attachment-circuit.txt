@@ -3990,10 +3990,13 @@ B2B C/S: Back-to-back Client/Server
    TLS [RFC8446], and QUIC [RFC9000]) and have to use mutual
    authentication.
 
-   The Network Configuration Access Control Model (NACM) [RFC8341]
-   provides the means to restrict access for particular NETCONF or
-   RESTCONF users to a preconfigured subset of all available NETCONF or
-   RESTCONF protocol operations and content.
+   Servers MUST verify that requesting clients are entitled to access
+   and manipulate a given bearer or AC.  For example, a given customer
+   must have access only to its bearers/ACs and be discarded access to
+   bearers/ACs of other customers.  The Network Configuration Access
+   Control Model (NACM) [RFC8341] provides the means to restrict access
+   for particular NETCONF or RESTCONF users to a preconfigured subset of
+   all available NETCONF or RESTCONF protocol operations and content.
 
    There are a number of data nodes defined in these YANG modules that
    are writable/creatable/deletable (i.e., config true, which is the
