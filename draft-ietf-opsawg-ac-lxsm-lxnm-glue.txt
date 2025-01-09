@@ -385,7 +385,7 @@ Table of Contents
 
    As such, ACs created using the "ietf-ac-svc" module
    [I-D.ietf-opsawg-teas-attachment-circuit] can be referenced in other
-   VPN-related modules (e.g., LxSM, and LxNM).  Also, ACs managed using
+   VPN-related modules (e.g., LxSM and LxNM).  Also, ACs managed using
    the "ietf-ac-ntw" module [I-D.ietf-opsawg-ntw-attachment-circuit] can
    be referenced in VPN-related network modules (mainly, the LxNM).  The
    required augmentations to that aim are shown in Figure 4.
