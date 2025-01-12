@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-01-09T00:48:36.742145+00:00",
+  "timestamp": "2025-01-12T00:54:14.798698+00:00",
   "repo": "boucadair/attachment-circuit-model",
   "labels": [
     {
@@ -9220,24 +9220,26 @@
       "id": "PR_kwDOIiAkrc6G0-i3",
       "title": "opsdir review (Adrian Farrel)",
       "url": "https://github.com/boucadair/attachment-circuit-model/pull/241",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "boucadair",
       "authorAssociation": "OWNER",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2025-01-06T14:14:38Z",
-      "updatedAt": "2025-01-08T17:02:16Z",
+      "updatedAt": "2025-01-09T07:11:59Z",
       "baseRepository": "boucadair/attachment-circuit-model",
       "baseRefName": "main",
       "baseRefOid": "3963665fa466b0fc1e69426116618ab9f008913d",
       "headRepository": "boucadair/attachment-circuit-model",
       "headRefName": "opsdir-review",
       "headRefOid": "64cf38fd39850a2f4f7b74799f5d828eb71a503c",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2025-01-09T07:11:57Z",
+      "mergedAt": "2025-01-09T07:11:56Z",
+      "mergedBy": "boucadair",
+      "mergeCommit": {
+        "oid": "a83342c3f106e310e3435c2696a7f7f7621a0efb"
+      },
       "comments": [],
       "reviews": []
     }
