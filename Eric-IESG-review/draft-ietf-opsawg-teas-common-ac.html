@@ -1559,7 +1559,7 @@ for the reader's convenience.<a href="#section-4-1" class="pilcrow">¶</a></p>
           <dd class="break"></dd>
 <dt id="section-4.1-2.5">'server-assigned-reference':</dt>
           <dd style="margin-left: 1.5em" id="section-4.1-2.6">
-            <p id="section-4.1-2.6.1">Used to indicate support of server-generated references to access relevant resources.<a href="#section-4.1-2.6.1" class="pilcrow">¶</a></p>
+            <p id="section-4.1-2.6.1">Used to indicate support of server-generated references to access relevant resources. For example, a server can be a network controller or a router in a provider network.<a href="#section-4.1-2.6.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
 <dt id="section-4.1-2.7"></dt>
@@ -1847,7 +1847,7 @@ for the reader's convenience.<a href="#section-4-1" class="pilcrow">¶</a></p>
             <p id="section-4.3-8.2.1">In addition to static routing, the module supports the following routing protocols: BGP <span>[<a href="#RFC4271" class="cite xref">RFC4271</a>]</span>, OSPF <span>[<a href="#RFC4577" class="cite xref">RFC4577</a>]</span> or <span>[<a href="#RFC6565" class="cite xref">RFC6565</a>]</span>, IS-IS <span>[<a href="#ISO10589" class="cite xref">ISO10589</a>]</span><span>[<a href="#RFC1195" class="cite xref">RFC1195</a>]</span><span>[<a href="#RFC5308" class="cite xref">RFC5308</a>]</span>, and RIP <span>[<a href="#RFC2453" class="cite xref">RFC2453</a>]</span>. For all supported routing protocols, 'address-family' indicates whether IPv4, IPv6, or both address families are to be activated. For example, this parameter is used to determine whether RIPv2 <span>[<a href="#RFC2453" class="cite xref">RFC2453</a>]</span>, RIP Next Generation (RIPng), or both are to be enabled <span>[<a href="#RFC2080" class="cite xref">RFC2080</a>]</span>. More details about supported routing groupings are provided hereafter:<a href="#section-4.3-8.2.1" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-4.3-8.2.2.1">
-                <p id="section-4.3-8.2.2.1.1">Authentication: These groupings include the required information to manage the authentication of OSPF, IS-IS, BGP, and RIP. The groupings support local specification of authentication keys and the associated authentication algorithm to accomodate legacy implementations that do not support key chains <span>[<a href="#RFC8177" class="cite xref">RFC8177</a>]</span>. Similar to <span>[<a href="#RFC9182" class="cite xref">RFC9182</a>]</span>, this version of the common AC model assumes that parameters specific to the TCP-AO are preconfigured as part of the key chain that is referenced in the model. No assumption is made about how such a key chain is preconfigured. However, the structure of the key chain should cover data nodes beyond those in <span>[<a href="#RFC8177" class="cite xref">RFC8177</a>]</span>, mainly SendID and RecvID (Section 3.1 of <span>[<a href="#RFC5925" class="cite xref">RFC5925</a>]</span>).<a href="#section-4.3-8.2.2.1.1" class="pilcrow">¶</a></p>
+                <p id="section-4.3-8.2.2.1.1">Authentication: These groupings include the required information to manage the authentication of OSPF, IS-IS, BGP, and RIP. The groupings support local specification of authentication keys and the associated authentication algorithm to accomodate legacy implementations that do not support key chains <span>[<a href="#RFC8177" class="cite xref">RFC8177</a>]</span>. Note that this version of the common AC model covers authentication options that are common to both OSPFv2 <span>[<a href="#RFC2328" class="cite xref">RFC2328</a>]</span> and OSPFv3 <span>[<a href="#RFC5340" class="cite xref">RFC5340</a>]</span>; as such, the model does not support <span>[<a href="#RFC4552" class="cite xref">RFC4552</a>]</span>. Similar to <span>[<a href="#RFC9182" class="cite xref">RFC9182</a>]</span>, this version of the common AC model assumes that parameters specific to the TCP-AO are preconfigured as part of the key chain that is referenced in the model. No assumption is made about how such a key chain is preconfigured. However, the structure of the key chain should cover data nodes beyond those in <span>[<a href="#RFC8177" class="cite xref">RFC8177</a>]</span>, mainly SendID and RecvID (Section 3.1 of <span>[<a href="#RFC5925" class="cite xref">RFC5925</a>]</span>).<a href="#section-4.3-8.2.2.1.1" class="pilcrow">¶</a></p>
 </li>
               <li class="normal" id="section-4.3-8.2.2.2">
                 <p id="section-4.3-8.2.2.2.1">BGP peer groups: Includes a set of parameters to identify a BGP peer group. Such a group can be defined by providing a local AS Number (ASN), a customer's ASN, and the address families to be activated for this group. BGP peer groups can be identified by a name.<a href="#section-4.3-8.2.2.2.1" class="pilcrow">¶</a></p>
@@ -3821,6 +3821,10 @@ should identify the corresponding security considerations. For
         <dd>
 <span class="refAuthor">Malkin, G.</span> and <span class="refAuthor">R. Minnear</span>, <span class="refTitle">"RIPng for IPv6"</span>, <span class="seriesInfo">RFC 2080</span>, <span class="seriesInfo">DOI 10.17487/RFC2080</span>, <time datetime="1997-01" class="refDate">January 1997</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc2080">https://www.rfc-editor.org/rfc/rfc2080</a>&gt;</span>. </dd>
 <dd class="break"></dd>
+<dt id="RFC2328">[RFC2328]</dt>
+        <dd>
+<span class="refAuthor">Moy, J.</span>, <span class="refTitle">"OSPF Version 2"</span>, <span class="seriesInfo">STD 54</span>, <span class="seriesInfo">RFC 2328</span>, <span class="seriesInfo">DOI 10.17487/RFC2328</span>, <time datetime="1998-04" class="refDate">April 1998</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc2328">https://www.rfc-editor.org/rfc/rfc2328</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="RFC2453">[RFC2453]</dt>
         <dd>
 <span class="refAuthor">Malkin, G.</span>, <span class="refTitle">"RIP Version 2"</span>, <span class="seriesInfo">STD 56</span>, <span class="seriesInfo">RFC 2453</span>, <span class="seriesInfo">DOI 10.17487/RFC2453</span>, <time datetime="1998-11" class="refDate">November 1998</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc2453">https://www.rfc-editor.org/rfc/rfc2453</a>&gt;</span>. </dd>
@@ -3840,6 +3844,10 @@ should identify the corresponding security considerations. For
 <dt id="RFC5308">[RFC5308]</dt>
         <dd>
 <span class="refAuthor">Hopps, C.</span>, <span class="refTitle">"Routing IPv6 with IS-IS"</span>, <span class="seriesInfo">RFC 5308</span>, <span class="seriesInfo">DOI 10.17487/RFC5308</span>, <time datetime="2008-10" class="refDate">October 2008</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc5308">https://www.rfc-editor.org/rfc/rfc5308</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC5340">[RFC5340]</dt>
+        <dd>
+<span class="refAuthor">Coltun, R.</span>, <span class="refAuthor">Ferguson, D.</span>, <span class="refAuthor">Moy, J.</span>, and <span class="refAuthor">A. Lindem</span>, <span class="refTitle">"OSPF for IPv6"</span>, <span class="seriesInfo">RFC 5340</span>, <span class="seriesInfo">DOI 10.17487/RFC5340</span>, <time datetime="2008-07" class="refDate">July 2008</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc5340">https://www.rfc-editor.org/rfc/rfc5340</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC5925">[RFC5925]</dt>
         <dd>
@@ -3941,6 +3949,10 @@ should identify the corresponding security considerations. For
 <dt id="RFC4364">[RFC4364]</dt>
         <dd>
 <span class="refAuthor">Rosen, E.</span> and <span class="refAuthor">Y. Rekhter</span>, <span class="refTitle">"BGP/MPLS IP Virtual Private Networks (VPNs)"</span>, <span class="seriesInfo">RFC 4364</span>, <span class="seriesInfo">DOI 10.17487/RFC4364</span>, <time datetime="2006-02" class="refDate">February 2006</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc4364">https://www.rfc-editor.org/rfc/rfc4364</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC4552">[RFC4552]</dt>
+        <dd>
+<span class="refAuthor">Gupta, M.</span> and <span class="refAuthor">N. Melam</span>, <span class="refTitle">"Authentication/Confidentiality for OSPFv3"</span>, <span class="seriesInfo">RFC 4552</span>, <span class="seriesInfo">DOI 10.17487/RFC4552</span>, <time datetime="2006-06" class="refDate">June 2006</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc4552">https://www.rfc-editor.org/rfc/rfc4552</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC4862">[RFC4862]</dt>
         <dd>

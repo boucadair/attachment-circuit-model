@@ -298,7 +298,9 @@ Table of Contents
       properties.
 
    'server-assigned-reference':  Used to indicate support of server-
-      generated references to access relevant resources.
+      generated references to access relevant resources.  For example, a
+      server can be a network controller or a router in a provider
+      network.
 
       For example, a bearer request is first created using a name which
       is assigned by the client, but if this feature is supported, the
@@ -550,13 +552,16 @@ Table of Contents
          and RIP.  The groupings support local specification of
          authentication keys and the associated authentication algorithm
          to accomodate legacy implementations that do not support key
-         chains [RFC8177].  Similar to [RFC9182], this version of the
-         common AC model assumes that parameters specific to the TCP-AO
-         are preconfigured as part of the key chain that is referenced
-         in the model.  No assumption is made about how such a key chain
-         is preconfigured.  However, the structure of the key chain
-         should cover data nodes beyond those in [RFC8177], mainly
-         SendID and RecvID (Section 3.1 of [RFC5925]).
+         chains [RFC8177].  Note that this version of the common AC
+         model covers authentication options that are common to both
+         OSPFv2 [RFC2328] and OSPFv3 [RFC5340]; as such, the model does
+         not support [RFC4552].  Similar to [RFC9182], this version of
+         the common AC model assumes that parameters specific to the
+         TCP-AO are preconfigured as part of the key chain that is
+         referenced in the model.  No assumption is made about how such
+         a key chain is preconfigured.  However, the structure of the
+         key chain should cover data nodes beyond those in [RFC8177],
+         mainly SendID and RecvID (Section 3.1 of [RFC5925]).
 
       *  BGP peer groups: Includes a set of parameters to identify a BGP
          peer group.  Such a group can be defined by providing a local
@@ -2474,6 +2479,10 @@ Table of Contents
               DOI 10.17487/RFC2080, January 1997,
               <https://www.rfc-editor.org/rfc/rfc2080>.
 
+   [RFC2328]  Moy, J., "OSPF Version 2", STD 54, RFC 2328,
+              DOI 10.17487/RFC2328, April 1998,
+              <https://www.rfc-editor.org/rfc/rfc2328>.
+
    [RFC2453]  Malkin, G., "RIP Version 2", STD 56, RFC 2453,
               DOI 10.17487/RFC2453, November 1998,
               <https://www.rfc-editor.org/rfc/rfc2453>.
@@ -2495,6 +2504,10 @@ Table of Contents
    [RFC5308]  Hopps, C., "Routing IPv6 with IS-IS", RFC 5308,
               DOI 10.17487/RFC5308, October 2008,
               <https://www.rfc-editor.org/rfc/rfc5308>.
+
+   [RFC5340]  Coltun, R., Ferguson, D., Moy, J., and A. Lindem, "OSPF
+              for IPv6", RFC 5340, DOI 10.17487/RFC5340, July 2008,
+              <https://www.rfc-editor.org/rfc/rfc5340>.
 
    [RFC5925]  Touch, J., Mankin, A., and R. Bonica, "The TCP
               Authentication Option", RFC 5925, DOI 10.17487/RFC5925,
@@ -2625,6 +2638,10 @@ Table of Contents
    [RFC4364]  Rosen, E. and Y. Rekhter, "BGP/MPLS IP Virtual Private
               Networks (VPNs)", RFC 4364, DOI 10.17487/RFC4364, February
               2006, <https://www.rfc-editor.org/rfc/rfc4364>.
+
+   [RFC4552]  Gupta, M. and N. Melam, "Authentication/Confidentiality
+              for OSPFv3", RFC 4552, DOI 10.17487/RFC4552, June 2006,
+              <https://www.rfc-editor.org/rfc/rfc4552>.
 
    [RFC4862]  Thomson, S., Narten, T., and T. Jinmei, "IPv6 Stateless
               Address Autoconfiguration", RFC 4862,
