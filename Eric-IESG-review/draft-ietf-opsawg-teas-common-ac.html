@@ -11,7 +11,7 @@
 <meta content="Samier Barguil Giraldo" name="author">
 <meta content="Bo Wu" name="author">
 <meta content="
-       The document specifies a common Attachment Circuits (ACs) YANG module, which is designed with the intent to be reusable by other models. For example, this common model can be reused by service models to expose ACs as a service, service models that require binding a service to a set of ACs, network and device models to provision ACs, etc. 
+       The document specifies a common attachment circuits (ACs) YANG model, which is designed with the intent to be reusable by other models. For example, this common model can be reused by service models to expose ACs as a service, service models that require binding a service to a set of ACs, network and device models to provision ACs, etc. 
     " name="description">
 <meta content="xml2rfc 3.25.0" name="generator">
 <meta content="Slice Service" name="keyword">
@@ -31,15 +31,15 @@
 <meta content="draft-ietf-opsawg-teas-common-ac-latest" name="ietf.draft">
 <!-- Generator version information:
   xml2rfc 3.25.0
-    Python 3.12.7
+    Python 3.12.8
     ConfigArgParse 1.7
     google-i18n-address 3.1.1
     intervaltree 3.1.0
-    Jinja2 3.1.4
+    Jinja2 3.1.5
     lxml 5.3.0
     platformdirs 4.3.6
-    pycountry 22.3.5
-    PyYAML 6.0.1
+    pycountry 24.6.1
+    PyYAML 6.0.2
     requests 2.32.3
     setuptools 70.3.0
     wcwidth 0.2.13
@@ -1061,11 +1061,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">Common Attachment Circuit YANG</td>
-<td class="right">December 2024</td>
+<td class="right">January 2025</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Boucadair, et al.</td>
-<td class="center">Expires 13 June 2025</td>
+<td class="center">Expires 18 July 2025</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1078,12 +1078,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-opsawg-teas-common-ac-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2024-12-10" class="published">10 December 2024</time>
+<time datetime="2025-01-14" class="published">14 January 2025</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2025-06-13">13 June 2025</time></dd>
+<dd class="expires"><time datetime="2025-07-18">18 July 2025</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1114,7 +1114,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <h1 id="title">A Common YANG Data Model for Attachment Circuits</h1>
 <section id="section-abstract">
       <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
-<p id="section-abstract-1">The document specifies a common Attachment Circuits (ACs) YANG module, which is designed with the intent to be reusable by other models. For example, this common model can be reused by service models to expose ACs as a service, service models that require binding a service to a set of ACs, network and device models to provision ACs, etc.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
+<p id="section-abstract-1">The document specifies a common attachment circuits (ACs) YANG model, which is designed with the intent to be reusable by other models. For example, this common model can be reused by service models to expose ACs as a service, service models that require binding a service to a set of ACs, network and device models to provision ACs, etc.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
 </section>
 <section class="note rfcEditorRemove" id="section-note.1">
       <h2 id="name-discussion-venues">
@@ -1146,7 +1146,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 13 June 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 18 July 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1155,7 +1155,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <a href="#name-copyright-notice" class="section-name selfRef">Copyright Notice</a>
         </h2>
 <p id="section-boilerplate.2-1">
-            Copyright (c) 2024 IETF Trust and the persons identified as the
+            Copyright (c) 2025 IETF Trust and the persons identified as the
             document authors. All rights reserved.<a href="#section-boilerplate.2-1" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.2-2">
             This document is subject to BCP 78 and the IETF Trust's Legal
@@ -1244,28 +1244,13 @@ svg :is([fill="white"], [fill^="#fff"]) {
       <h2 id="name-introduction">
 <a href="#section-1" class="section-number selfRef">1. </a><a href="#name-introduction" class="section-name selfRef">Introduction</a>
       </h2>
-<p id="section-1-1">Connectivity services are provided by networks to customers via dedicated terminating points (e.g., Service Functions (SFs), Customer Premises Equipment (CPEs), Autonomous System Border Routers (ASBRs), data centers gateways, or Internet Exchange Points). A connectivity service is basically about ensuring data transfer received from (or destined to) a given terminating point to (or from) other terminating points that belong to the same customer/service, an interconnection node, or an ancillary node. A set of objectives for the connectivity service may eventually be negotiated and agreed upon between a customer and a network provider. For that data transfer to take place within the provider network, it is assumed that adequate setup is provisioned over the links that connect customer terminating points and a provider network (a Provider Edge (PE), typically) so that data can be successfully exchanged over these links. The required setup is referred to in this document as Attachment Circuits (ACs), while the underlying link is referred to as "bearer".<a href="#section-1-1" class="pilcrow">¶</a></p>
-<p id="section-1-2">This document adheres to the definition of an attachment circuit as provided in <span><a href="https://rfc-editor.org/rfc/rfc4364#section-1.2" class="relref">Section 1.2</a> of [<a href="#RFC4364" class="cite xref">RFC4364</a>]</span>, especially:<a href="#section-1-2" class="pilcrow">¶</a></p>
-<ul class="normal ulEmpty">
-<li class="normal ulEmpty" id="section-1-3.1">
-          <p id="section-1-3.1.1">Routers can be attached to each other, or to end systems, in a
-   variety of different ways: PPP connections, ATM Virtual Circuits
-   (VCs), Frame Relay VCs, ethernet interfaces, Virtual Local Area
-   Networks (VLANs) on ethernet interfaces, GRE tunnels, Layer 2
-   Tunneling Protocol (L2TP) tunnels, IPsec tunnels, etc.  We will use
-   the term "attachment circuit" to refer generally to some such means
-   of attaching to a router.  An attachment circuit may be the sort of
-   connection that is usually thought of as a "data link", or it may be
-   a tunnel of some sort; what matters is that it be possible for two
-   devices to be network layer peers over the attachment circuit.<a href="#section-1-3.1.1" class="pilcrow">¶</a></p>
-</li>
-      </ul>
-<p id="section-1-4">When a customer requests a new value-added service, the service can be bound to existing attachment circuits or trigger the instantiation of new attachment circuits. Whether these attachment circuits are specific for a given service or are shared to deliver a variety of services is deployment-specific.<a href="#section-1-4" class="pilcrow">¶</a></p>
-<p id="section-1-5">An example of attachment circuits is depicted in <a href="#uc" class="auto internal xref">Figure 1</a>. A Customer Edge (CE) may be a physical node or a logical entity. A CE is seen by the network as a peer Service Attachment Point (SAP) <span>[<a href="#RFC9408" class="cite xref">RFC9408</a>]</span>. CEs may be dedicated to one single service (e.g., Layer 3 Virtual Private Network (VPN) or Layer 2 VPN) or host multiple services (e.g., Service Functions <span>[<a href="#RFC7665" class="cite xref">RFC7665</a>]</span>). A single AC (as seen by a network provider) may be bound to one or multiple peer SAPs (e.g., "CE1" and "CE2"). For example, and as discussed in <span>[<a href="#RFC4364" class="cite xref">RFC4364</a>]</span>, multiple CEs can be attached to a PE over the same attachment circuit. This is typically implemented if the Layer 2 infrastructure between the CE and the network provides a multipoint service. The same CE may terminate multiple ACs. These ACs may be over the same or distinct bearers.<a href="#section-1-5" class="pilcrow">¶</a></p>
+<p id="section-1-1">Connectivity services are provided by networks to customers via dedicated terminating points (e.g., Service Functions (SFs), Customer Premises Equipment (CPEs), Autonomous System Border Routers (ASBRs), data centers gateways, or Internet Exchange Points). A connectivity service is basically about ensuring data transfer received from (or destined to) a given terminating point to (or from) other terminating points. A set of objectives for the connectivity service may eventually be negotiated and agreed upon between a customer and a network provider. For that data transfer to take place within the provider network, it is assumed that adequate setup is provisioned over the links that connect customer terminating points and a provider network (a Provider Edge (PE), typically) so that data can be successfully exchanged over these links. The required setup is referred to in this document as an attachment circuits (ACs), while the underlying link is referred to as "bearer".<a href="#section-1-1" class="pilcrow">¶</a></p>
+<p id="section-1-2">When a customer requests a new service, the service can be bound to existing attachment circuits or trigger the instantiation of new attachment circuits. Whether these attachment circuits are specific for a given service or are shared to deliver a variety of services is deployment-specific.<a href="#section-1-2" class="pilcrow">¶</a></p>
+<p id="section-1-3">An example of attachment circuits is depicted in <a href="#uc" class="auto internal xref">Figure 1</a>. A Customer Edge (CE) may be a physical node or a logical entity. A CE is seen by the network as a peer Service Attachment Point (SAP) <span>[<a href="#RFC9408" class="cite xref">RFC9408</a>]</span>. CEs may be dedicated to one single service (e.g., Layer 3 Virtual Private Network (VPN) or Layer 2 VPN) or host multiple services (e.g., Service Functions <span>[<a href="#RFC7665" class="cite xref">RFC7665</a>]</span>). A single AC (as seen by a network provider) may be bound to one or multiple peer SAPs (e.g., "CE1" and "CE2"). For example, and as discussed in <span>[<a href="#RFC4364" class="cite xref">RFC4364</a>]</span>, multiple CEs can be attached to a PE over the same attachment circuit. This is typically implemented if the Layer 2 infrastructure between the CE and the network provides a multipoint service. The same CE may terminate multiple ACs (e.g., "CE3" and "CE4"). These ACs may be over the same or distinct bearers.<a href="#section-1-3" class="pilcrow">¶</a></p>
 <span id="name-examples-of-acs"></span><div id="uc">
 <figure id="figure-1">
-        <div id="section-1-6.1">
-          <div class="alignCenter art-svg artwork" id="section-1-6.1.1">
+        <div id="section-1-4.1">
+          <div class="alignCenter art-svg artwork" id="section-1-4.1.1">
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="304" width="512" viewBox="0 0 512 304" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
               <path d="M 8,64 L 8,112" fill="none" stroke="black"></path>
               <path d="M 8,144 L 8,192" fill="none" stroke="black"></path>
@@ -1350,16 +1335,16 @@ svg :is([fill="white"], [fill^="#fff"]) {
                 <text x="124" y="292">Id</text>
                 <text x="144" y="292">x</text>
               </g>
-            </svg><a href="#section-1-6.1.1" class="pilcrow">¶</a>
+            </svg><a href="#section-1-4.1.1" class="pilcrow">¶</a>
 </div>
 </div>
 <figcaption><a href="#figure-1" class="selfRef">Figure 1</a>:
 <a href="#name-examples-of-acs" class="selfRef">Examples of ACs</a>
         </figcaption></figure>
 </div>
-<p id="section-1-7">This document specifies a common module ("ietf-ac-common") for attachment circuits (<a href="#sec-module" class="auto internal xref">Section 5</a>). The model is designed with the intent to be reusable by other models and, therefore, ensure consistent AC structures among modules that manipulate ACs. For example, the common model can be reused by service models to expose AC-as-a-Service (ACaaS) (e.g., <span>[<a href="#I-D.ietf-opsawg-teas-attachment-circuit" class="cite xref">I-D.ietf-opsawg-teas-attachment-circuit</a>]</span>), service models that require binding a service to a set of ACs (e.g., Network Slice Service <span>[<a href="#I-D.ietf-teas-ietf-network-slice-nbi-yang" class="cite xref">I-D.ietf-teas-ietf-network-slice-nbi-yang</a>]</span>)), network models to provision ACs (e.g., <span>[<a href="#I-D.ietf-opsawg-ntw-attachment-circuit" class="cite xref">I-D.ietf-opsawg-ntw-attachment-circuit</a>]</span>), device models, etc.<a href="#section-1-7" class="pilcrow">¶</a></p>
-<p id="section-1-8">The common AC module eases data inheritance between modules (e.g., from service to network models as per <span>[<a href="#RFC8969" class="cite xref">RFC8969</a>]</span>).<a href="#section-1-8" class="pilcrow">¶</a></p>
-<p id="section-1-9">The YANG data model in this document conforms to the Network Management Datastore Architecture (NMDA) defined in <span>[<a href="#RFC8342" class="cite xref">RFC8342</a>]</span>.<a href="#section-1-9" class="pilcrow">¶</a></p>
+<p id="section-1-5">This document specifies a common module ("ietf-ac-common") for attachment circuits (<a href="#sec-module" class="auto internal xref">Section 5</a>). The model is designed with the intent to be reusable by other models and, therefore, ensure consistent AC structures among modules that manipulate ACs. For example, the common model can be reused by service models to expose AC-as-a-Service (ACaaS) (e.g., <span>[<a href="#I-D.ietf-opsawg-teas-attachment-circuit" class="cite xref">I-D.ietf-opsawg-teas-attachment-circuit</a>]</span>), service models that require binding a service to a set of ACs (e.g., Network Slice Service <span>[<a href="#I-D.ietf-teas-ietf-network-slice-nbi-yang" class="cite xref">I-D.ietf-teas-ietf-network-slice-nbi-yang</a>]</span>)), network models to provision ACs (e.g., <span>[<a href="#I-D.ietf-opsawg-ntw-attachment-circuit" class="cite xref">I-D.ietf-opsawg-ntw-attachment-circuit</a>]</span>), device models, etc.<a href="#section-1-5" class="pilcrow">¶</a></p>
+<p id="section-1-6">The common AC module eases data inheritance between modules (e.g., from service to network models as per <span>[<a href="#RFC8969" class="cite xref">RFC8969</a>]</span>).<a href="#section-1-6" class="pilcrow">¶</a></p>
+<p id="section-1-7">The YANG data model in this document conforms to the Network Management Datastore Architecture (NMDA) defined in <span>[<a href="#RFC8342" class="cite xref">RFC8342</a>]</span>.<a href="#section-1-7" class="pilcrow">¶</a></p>
 <div id="editorial-note-to-be-removed-by-rfc-editor">
 <section id="section-1.1">
         <h3 id="name-editorial-note-to-be-remove">
@@ -1373,7 +1358,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
             <p id="section-1.1-4.1.1">XXXX --&gt; the assigned RFC number for this I-D<a href="#section-1.1-4.1.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-1.1-4.2">
-            <p id="section-1.1-4.2.1">2023-11-13 --&gt; the actual date of the publication of this document<a href="#section-1.1-4.2.1" class="pilcrow">¶</a></p>
+            <p id="section-1.1-4.2.1">2025-01-07 --&gt; the actual date of the publication of this document<a href="#section-1.1-4.2.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
 </section>
@@ -1392,7 +1377,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <span class="break"></span><dl class="dlParallel" id="section-2-5">
         <dt id="section-2-5.1">Bearer:</dt>
         <dd style="margin-left: 1.5em" id="section-2-5.2">
-          <p id="section-2-5.2.1">A physical or logical link that connects a customer node (or site) to a provider network.<a href="#section-2-5.2.1" class="pilcrow">¶</a></p>
+          <p id="section-2-5.2.1">A physical or logical link that connects a CE (or site) to a provider network.<a href="#section-2-5.2.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 <dt id="section-2-5.3"></dt>
@@ -1482,10 +1467,10 @@ svg :is([fill="white"], [fill^="#fff"]) {
           <p id="section-3-2.1.1">"ietf-ac-common" (<a href="#sec-module" class="auto internal xref">Section 5</a>)<a href="#section-3-2.1.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-3-2.2">
-          <p id="section-3-2.2.1">"ietf-bearer-svc" (<span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-teas-attachment-circuit-18#section-5.1" class="relref">Section 5.1</a> of [<a href="#I-D.ietf-opsawg-teas-attachment-circuit" class="cite xref">I-D.ietf-opsawg-teas-attachment-circuit</a>]</span>)<a href="#section-3-2.2.1" class="pilcrow">¶</a></p>
+          <p id="section-3-2.2.1">"ietf-bearer-svc" (<span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-teas-attachment-circuit-19#section-5.1" class="relref">Section 5.1</a> of [<a href="#I-D.ietf-opsawg-teas-attachment-circuit" class="cite xref">I-D.ietf-opsawg-teas-attachment-circuit</a>]</span>)<a href="#section-3-2.2.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-3-2.3">
-          <p id="section-3-2.3.1">"ietf-ac-svc" (<span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-teas-attachment-circuit-18#section-5.2" class="relref">Section 5.2</a> of [<a href="#I-D.ietf-opsawg-teas-attachment-circuit" class="cite xref">I-D.ietf-opsawg-teas-attachment-circuit</a>]</span>)<a href="#section-3-2.3.1" class="pilcrow">¶</a></p>
+          <p id="section-3-2.3.1">"ietf-ac-svc" (<span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-teas-attachment-circuit-19#section-5.2" class="relref">Section 5.2</a> of [<a href="#I-D.ietf-opsawg-teas-attachment-circuit" class="cite xref">I-D.ietf-opsawg-teas-attachment-circuit</a>]</span>)<a href="#section-3-2.3.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-3-2.4">
           <p id="section-3-2.4.1">"ietf-ac-ntw" (<span>[<a href="#I-D.ietf-opsawg-ntw-attachment-circuit" class="cite xref">I-D.ietf-opsawg-ntw-attachment-circuit</a>]</span>)<a href="#section-3-2.4.1" class="pilcrow">¶</a></p>
@@ -1498,7 +1483,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <figure id="figure-2">
         <div id="section-3-3.1">
           <div class="alignCenter art-svg artwork" id="section-3-3.1.1">
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="256" width="368" viewBox="0 0 368 256" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="288" width="368" viewBox="0 0 368 288" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
               <path d="M 32,144 L 32,240" fill="none" stroke="black"></path>
               <path d="M 56,80 L 56,112" fill="none" stroke="black"></path>
               <path d="M 72,144 L 72,176" fill="none" stroke="black"></path>
@@ -1513,13 +1498,14 @@ svg :is([fill="white"], [fill^="#fff"]) {
               <path d="M 72,176 L 264,176" fill="none" stroke="black"></path>
               <path d="M 32,240 L 120,240" fill="none" stroke="black"></path>
               <path d="M 240,240 L 328,240" fill="none" stroke="black"></path>
+              <path d="M 24,272 L 40,272" fill="none" stroke="black"></path>
               <polygon class="arrowhead" points="336,192 324,186.4 324,197.6" fill="black" transform="rotate(270,328,192)"></polygon>
               <polygon class="arrowhead" points="248,48 236,42.4 236,53.6" fill="black" transform="rotate(270,240,48)"></polygon>
               <polygon class="arrowhead" points="200,40 188,34.4 188,45.6" fill="black" transform="rotate(270,192,40)"></polygon>
               <polygon class="arrowhead" points="152,48 140,42.4 140,53.6" fill="black" transform="rotate(270,144,48)"></polygon>
-              <polygon class="arrowhead" points="136,128 124,122.4 124,133.6" fill="black" transform="rotate(0,128,128)"></polygon>
               <polygon class="arrowhead" points="112,128 100,122.4 100,133.6" fill="black" transform="rotate(180,104,128)"></polygon>
               <polygon class="arrowhead" points="80,144 68,138.4 68,149.6" fill="black" transform="rotate(270,72,144)"></polygon>
+              <polygon class="arrowhead" points="48,272 36,266.4 36,277.6" fill="black" transform="rotate(0,40,272)"></polygon>
               <polygon class="arrowhead" points="40,144 28,138.4 28,149.6" fill="black" transform="rotate(270,32,144)"></polygon>
               <g class="text">
                 <text x="188" y="36">ietf-ac-common</text>
@@ -1527,6 +1513,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
                 <text x="200" y="132">ietf-bearer-svc</text>
                 <text x="320" y="180">ietf-ac-ntw</text>
                 <text x="180" y="244">ietf-ac-glue</text>
+                <text x="8" y="276">X</text>
+                <text x="60" y="276">Y:</text>
+                <text x="80" y="276">X</text>
+                <text x="120" y="276">imports</text>
+                <text x="160" y="276">Y</text>
               </g>
             </svg><a href="#section-3-3.1.1" class="pilcrow">¶</a>
 </div>
@@ -1601,31 +1592,41 @@ for the reader's convenience.<a href="#section-4-1" class="pilcrow">¶</a></p>
             <p id="section-4.2-2.6.1">Uses to control the Layer 2 tunnel selection for an AC. The current version supports indicating pseudowire, Virtual Private LAN Service (VPLS), and Virtual eXtensible Local Area Network (VXLAN).<a href="#section-4.2-2.6.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.2-2.7">'precedence-type':</dt>
+<dt id="section-4.2-2.7">'l3-tunnel-type':</dt>
           <dd style="margin-left: 1.5em" id="section-4.2-2.8">
-            <p id="section-4.2-2.8.1">Used to indicate the redundancy type when requesting ACs. For example, this identity can be used to tag primary and secondary ACs.<a href="#section-4.2-2.8.1" class="pilcrow">¶</a></p>
+            <p id="section-4.2-2.8.1">Uses to control the Layer 3 tunnel selection for an AC. Examples of such type are: IP-in-IP <span>[<a href="#RFC2003" class="cite xref">RFC2003</a>]</span>, IPsec <span>[<a href="#RFC4301" class="cite xref">RFC4301</a>]</span>, and Generic Routing Encapsulation (GRE) <span>[<a href="#RFC1701" class="cite xref">RFC1701</a>]</span><span>[<a href="#RFC1702" class="cite xref">RFC1702</a>]</span><span>[<a href="#RFC7676" class="cite xref">RFC7676</a>]</span>.<a href="#section-4.2-2.8.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.2-2.9">'role':</dt>
+<dt id="section-4.2-2.9">'precedence-type':</dt>
           <dd style="margin-left: 1.5em" id="section-4.2-2.10">
-            <p id="section-4.2-2.10.1">Used to indicate the type of an AC: User-to-Network Interface (UNI), Network-to-Network Interface (NNI), or public NNI.<a href="#section-4.2-2.10.1" class="pilcrow">¶</a></p>
+            <p id="section-4.2-2.10.1">Used to indicate the redundancy type when requesting ACs. For example, this identity can be used to tag primary and secondary ACs.<a href="#section-4.2-2.10.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.2-2.11">New administrative status types:</dt>
+<dt id="section-4.2-2.11">'role':</dt>
           <dd style="margin-left: 1.5em" id="section-4.2-2.12">
-            <p id="section-4.2-2.12.1">In addition to the status types already defined in <span>[<a href="#RFC9181" class="cite xref">RFC9181</a>]</span>, this document defines:<a href="#section-4.2-2.12.1" class="pilcrow">¶</a></p>
+            <p id="section-4.2-2.12.1">Used to indicate the type of an AC: User-to-Network Interface (UNI), Network-to-Network Interface (NNI), or public NNI.<a href="#section-4.2-2.12.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.2-2.13"></dt>
+          <dd style="margin-left: 1.5em" id="section-4.2-2.14">
+            <p id="section-4.2-2.14.1">The reader may refer to <span>[<a href="#MEF6" class="cite xref">MEF6</a>]</span>, <span>[<a href="#MEF17" class="cite xref">MEF17</a>]</span>, <span>[<a href="#RFC6004" class="cite xref">RFC6004</a>]</span>, or <span>[<a href="#RFC6215" class="cite xref">RFC6215</a>]</span> for examples of discussions regarding the use of UNI and NNI reference points.<a href="#section-4.2-2.14.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.2-2.15">New administrative status types:</dt>
+          <dd style="margin-left: 1.5em" id="section-4.2-2.16">
+            <p id="section-4.2-2.16.1">In addition to the status types already defined in <span>[<a href="#RFC9181" class="cite xref">RFC9181</a>]</span>, this document defines:<a href="#section-4.2-2.16.1" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-4.2-2.12.2.1">
-                <p id="section-4.2-2.12.2.1.1">'awaiting-validation' to report that a request is pending an adiministrator approval.<a href="#section-4.2-2.12.2.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-4.2-2.16.2.1">
+                <p id="section-4.2-2.16.2.1.1">'awaiting-validation' to report that a request is pending an adiministrator approval.<a href="#section-4.2-2.16.2.1.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="normal" id="section-4.2-2.12.2.2">
-                <p id="section-4.2-2.12.2.2.1">'awaiting-processing' to report that a request was approved and validated, but is awaiting more processing before activation.<a href="#section-4.2-2.12.2.2.1" class="pilcrow">¶</a></p>
+              <li class="normal" id="section-4.2-2.16.2.2">
+                <p id="section-4.2-2.16.2.2.1">'awaiting-processing' to report that a request was approved and validated, but is awaiting more processing before activation.<a href="#section-4.2-2.16.2.2.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="normal" id="section-4.2-2.12.2.3">
-                <p id="section-4.2-2.12.2.3.1">'admin-prohibited' to report that a request cannot be handled because of administrative policies.<a href="#section-4.2-2.12.2.3.1" class="pilcrow">¶</a></p>
+              <li class="normal" id="section-4.2-2.16.2.3">
+                <p id="section-4.2-2.16.2.3.1">'admin-prohibited' to report that a request cannot be handled because of administrative policies.<a href="#section-4.2-2.16.2.3.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="normal" id="section-4.2-2.12.2.4">
-                <p id="section-4.2-2.12.2.4.1">'rejected' to report that a request was rejected reasons not covered by the other status types.<a href="#section-4.2-2.12.2.4.1" class="pilcrow">¶</a></p>
+              <li class="normal" id="section-4.2-2.16.2.4">
+                <p id="section-4.2-2.16.2.4.1">'rejected' to report that a request was rejected reasons not covered by the other status types.<a href="#section-4.2-2.16.2.4.1" class="pilcrow">¶</a></p>
 </li>
             </ul>
 </dd>
@@ -2065,7 +2066,7 @@ taken from <span>[<a href="#RFC9181" class="cite xref">RFC9181</a>]</span>, e.g.
       </h2>
 <p id="section-5-1">This module uses types defined in <span>[<a href="#RFC6991" class="cite xref">RFC6991</a>]</span>, <span>[<a href="#RFC8177" class="cite xref">RFC8177</a>]</span>, and  <span>[<a href="#RFC9181" class="cite xref">RFC9181</a>]</span>.<a href="#section-5-1" class="pilcrow">¶</a></p>
 <div class="breakable sourcecode" id="section-5-2">
-<pre>&lt;CODE BEGINS&gt; file "ietf-ac-common@2023-11-13.yang"
+<pre>&lt;CODE BEGINS&gt; file "ietf-ac-common@2025-01-07.yang"
 
 module ietf-ac-common {
   yang-version 1.1;
@@ -2117,9 +2118,10 @@ module ietf-ac-common {
                &lt;mailto:lana.wubo@huawei.com&gt;";
   description
     "This YANG module defines a common attachment circuit (AC)
-     YANG model.
+     YANG model with a set of reusable features, types,
+     identities, and groupings.
 
-     Copyright (c) 2024 IETF Trust and the persons identified as
+     Copyright (c) 2025 IETF Trust and the persons identified as
      authors of the code.  All rights reserved.
 
      Redistribution and use in source and binary forms, with or
@@ -2132,7 +2134,7 @@ module ietf-ac-common {
      This version of this YANG module is part of RFC XXXX; see the
      RFC itself for full legal notices.";
 
-  revision 2023-11-13 {
+  revision 2025-01-07 {
     description
       "Initial revision.";
     reference
@@ -2153,8 +2155,8 @@ module ietf-ac-common {
 
   feature server-assigned-reference {
     description
-      "This feature indicates support for server-generated references
-       and use of such references to access related resources.";
+      "Indicates support for server-generated references and use
+       of such references to access related resources.";
   }
 
   /****************************Identities************************/
@@ -2162,7 +2164,7 @@ module ietf-ac-common {
 
   identity address-allocation-type {
     description
-      "Base identity for address allocation type in the AC.";
+      "Base identity for address allocation type on the AC.";
   }
 
   identity provider-dhcp {
@@ -2210,7 +2212,7 @@ module ietf-ac-common {
     base address-allocation-type;
     description
       "The IP address is dynamically allocated by the hosting
-       infrastrcture.";
+       infrastructure.";
   }
 
   // next-hop actions
@@ -2291,8 +2293,8 @@ module ietf-ac-common {
 
   identity precedence-type {
     description
-      "Redundancy type. The service can be created with primary and
-       secondary tagging.";
+      "Redundancy type. Attachment to a network can be created
+       with primary and secondary tagging.";
   }
 
   identity primary {
@@ -2304,7 +2306,7 @@ module ietf-ac-common {
   identity secondary {
     base precedence-type;
     description
-      "Identifies the secondary attachment circuit.";
+      "Identifies a secondary attachment circuit.";
   }
 
   // AC Type
@@ -2338,7 +2340,7 @@ module ietf-ac-common {
     base vpn-common:administrative-status;
     description
       "This administrative status reflects that a request is
-       pending an adiministrator approval.";
+       pending an administrator approval.";
   }
 
   identity awaiting-processing {
@@ -2381,7 +2383,7 @@ module ietf-ac-common {
   identity client {
     base bgp-role;
     description
-      "The local AS is a transit provider of the remote AS.";
+      "The local AS is a transit customer of the remote AS.";
   }
 
   identity rs {
@@ -2445,8 +2447,8 @@ module ietf-ac-common {
           type yang:date-and-time;
           config false;
           description
-            "Indicates the actual date and time of the service
-             status change.";
+            "Indicates the actual date and time of the service status
+             change.";
         }
       }
       container oper-status {
@@ -2457,7 +2459,6 @@ module ietf-ac-common {
       }
     }
   }
-
 
   /**** A set of profiles ****/
 
@@ -2496,7 +2497,7 @@ module ietf-ac-common {
         leaf id {
           type string;
           description
-            "Identification of the a failure detection (e.g., BFD)
+            "Identification of the failure detection (e.g., BFD)
              profile to be used.";
         }
       }
@@ -2681,8 +2682,8 @@ module ietf-ac-common {
         base vpn-common:vxlan-peer-mode;
       }
       description
-        "Specifies the VXLAN access mode. By default,
-         the peer mode is set to 'static-mode'.";
+        "Specifies the VXLAN access mode. By default, the peer mode
+         is set to 'static-mode'.";
     }
     leaf-list peer-ip-address {
       type inet:ip-address;
@@ -2757,7 +2758,8 @@ module ietf-ac-common {
         error-message "SLAAC is only applicable to IPv6.";
       }
       description
-        "Defines how IPv4 addresses are allocated to the peer site.";
+        "Defines how IPv4 addresses are allocated to the peer
+         termination points.";
     }
   }
 
@@ -2772,14 +2774,15 @@ module ietf-ac-common {
       }
       description
         "Subnet prefix length expressed in bits. It is applied to
-          both local and customer addresses.";
+         both local and customer addresses.";
     }
     leaf address-allocation-type {
       type identityref {
         base address-allocation-type;
       }
       description
-        "Defines how IPv6 addresses are allocated to the peer site.";
+        "Defines how IPv6 addresses are allocated to the peer
+         termination points.";
     }
   }
 
@@ -2787,7 +2790,7 @@ module ietf-ac-common {
 
   grouping ipv4-connection-basic {
     description
-      "Basic set fof IPv4-specific parameters for the connection.";
+      "Basic set for IPv4-specific parameters for the connection.";
     uses ipv4-allocation-type;
     choice allocation-type {
       description
@@ -2809,7 +2812,7 @@ module ietf-ac-common {
               }
               enum relay {
                 description
-                  "Local DHCP relay.  DHCP requests are relayed to
+                  "Local DHCP relay. DHCP requests are relayed to
                    a provider's server.";
               }
             }
@@ -2839,7 +2842,7 @@ module ietf-ac-common {
 
   grouping ipv6-connection-basic {
     description
-      "Basic set fof IPv6-specific parameters for the connection.";
+      "Basic set for IPv6-specific parameters for the connection.";
     uses ipv6-allocation-type;
     choice allocation-type {
       description
@@ -2861,7 +2864,7 @@ module ietf-ac-common {
               }
               enum relay {
                 description
-                  "Local DHCP relay.  DHCP requests are relayed to a
+                  "Local DHCP relay. DHCP requests are relayed to a
                    provider's server.";
               }
             }
@@ -2891,7 +2894,7 @@ module ietf-ac-common {
 
   grouping ipv4-connection {
     description
-      "IPv4-specific parameters.";
+      "IPv4-specific connection parameters.";
     leaf local-address {
       type inet:ipv4-address;
       description
@@ -2900,7 +2903,7 @@ module ietf-ac-common {
     leaf virtual-address {
       type inet:ipv4-address;
       description
-        "This addresss may be used for redundancy purposes.";
+        "This address may be used for redundancy purposes.";
     }
     uses ipv4-allocation-type;
     choice allocation-type {
@@ -2929,7 +2932,7 @@ module ietf-ac-common {
               list address-pool {
                 key "pool-id";
                 description
-                  "Describes IP addresses to be dyncamically
+                  "Describes IP addresses to be dynamically
                    allocated.
 
                    When only 'start-address' is present, it
@@ -2972,7 +2975,7 @@ module ietf-ac-common {
               }
               enum relay {
                 description
-                  "Local DHCP relay.  DHCP requests are relayed to
+                  "Local DHCP relay. DHCP requests are relayed to
                    a provider's server.";
               }
             }
@@ -3024,7 +3027,7 @@ module ietf-ac-common {
 
   grouping ipv6-connection {
     description
-      "IPv6-specific parameters.";
+      "IPv6-specific connection parameters.";
     leaf local-address {
       type inet:ipv6-address;
       description
@@ -3033,7 +3036,7 @@ module ietf-ac-common {
     leaf virtual-address {
       type inet:ipv6-address;
       description
-        "This addresss may be used for redundancy purposes.";
+        "This address may be used for redundancy purposes.";
     }
     uses ipv6-allocation-type;
     choice allocation-type {
@@ -3062,7 +3065,7 @@ module ietf-ac-common {
               list address-pool {
                 key "pool-id";
                 description
-                  "Describes IP addresses to be dyncamically
+                  "Describes IP addresses to be dynamically
                    allocated.
 
                    When only 'start-address' is present, it
@@ -3105,13 +3108,13 @@ module ietf-ac-common {
               }
               enum relay {
                 description
-                  "Local DHCP relay.  DHCP requests are relayed
+                  "Local DHCP relay. DHCP requests are relayed
                    to a provider's server.";
               }
             }
             description
-              "Indicates the type of DHCP service to
-               be enabled on this access.";
+              "Indicates the type of DHCP service to be enabled
+               on this access.";
           }
         }
         choice dhcp-relay {
@@ -3130,7 +3133,7 @@ module ietf-ac-common {
       }
       case static-addresses {
         description
-          "Lists the IPv6 addresses that are used.";
+          "Lists the IPv6 addresses that are used by the customer.";
         list address {
           key "address-id";
           ordered-by user;
@@ -3161,7 +3164,7 @@ module ietf-ac-common {
       "Grouping for BGP authentication parameters.";
     container authentication {
       description
-        "Container for BGP authentication  parameters.";
+        "Container for BGP authentication parameters.";
       leaf enabled {
         type boolean;
         description
@@ -3202,7 +3205,7 @@ module ietf-ac-common {
             leaf md5-keychain {
               type key-chain:key-chain-ref;
               description
-                "Reference to the MD5 key chain.";
+                "Specifies a reference to the MD5 key chain.";
               reference
                 "RFC 8177: YANG Data Model for Key Chains";
             }
@@ -3240,7 +3243,7 @@ module ietf-ac-common {
       "Authentication configuration.";
     container authentication {
       description
-        "Container for OSPF authentication  parameters.";
+        "Container for OSPF authentication parameters.";
       leaf enabled {
         type boolean;
         description
@@ -3294,7 +3297,7 @@ module ietf-ac-common {
       "IS-IS authentication configuration.";
     container authentication {
       description
-        "Container for IS-IS authentication  parameters.";
+        "Container for IS-IS authentication parameters.";
       leaf enabled {
         type boolean;
         description
@@ -3348,7 +3351,7 @@ module ietf-ac-common {
       "RIP authentication configuration.";
     container authentication {
       description
-        "Container for RIP authentication  parameters.";
+        "Container for RIP authentication parameters.";
       leaf enabled {
         type boolean;
         description
@@ -3361,8 +3364,7 @@ module ietf-ac-common {
            secured on this AC.";
         choice option {
           description
-            "Specifies the authentication
-             scheme.";
+            "Specifies the authentication scheme.";
           case auth-key-chain {
             leaf key-chain {
               type key-chain:key-chain-ref;
@@ -3401,15 +3403,15 @@ module ietf-ac-common {
     leaf local-as {
       type inet:as-number;
       description
-        "Indicates a local AS Number (ASN). This ASN is exposed
-         to a customer so that it knows which ASN to use
-         to set up a BGP session.";
+        "Indicates a local AS Number (ASN). This ASN is exposed to
+         a customer so that it knows which ASN to use to set up
+         a BGP session.";
     }
     leaf peer-as {
       type inet:as-number;
       description
-        "Indicates the customer's ASN when the customer
-         requests BGP routing.";
+        "Indicates the customer's ASN when the customer requests
+         BGP routing.";
     }
     leaf address-family {
       type identityref {
@@ -3496,7 +3498,8 @@ module ietf-ac-common {
 
   grouping ipv4-static-rtg-entry {
     description
-      "Paramters to configure a specific IPv4 static routing entry.";
+      "Parameters to configure a specific IPv4 static routing
+       entry.";
     leaf lan {
       type inet:ipv4-prefix;
       description
@@ -3514,9 +3517,8 @@ module ietf-ac-common {
       }
       description
         "The next hop that is to be used for the static route.
-         This may be specified as an IP address or a
-         predefined next-hop type (e.g., 'discard' or
-         'local-link').";
+         This may be specified as an IP address or a predefined
+         next-hop type (e.g., 'discard' or 'local-link').";
     }
     leaf metric {
       type uint32;
@@ -3527,7 +3529,7 @@ module ietf-ac-common {
 
   grouping ipv4-static-rtg {
     description
-      "Configuration specific to IPv4 static routing.";
+      "A set of parameters specific to IPv4 static routing.";
     list ipv4-lan-prefixes {
       if-feature "vpn-common:ipv4";
       key "lan next-hop";
@@ -3540,7 +3542,8 @@ module ietf-ac-common {
 
   grouping ipv6-static-rtg-entry {
     description
-      "Paramters to configure a specific IPv6 static routing entry.";
+      "Parameters to configure a specific IPv6 static routing
+       entry.";
     leaf lan {
       type inet:ipv6-prefix;
       description
@@ -3570,12 +3573,12 @@ module ietf-ac-common {
 
   grouping ipv6-static-rtg {
     description
-      "Configuration specific to IPv6 static routing.";
+      "A set of parameters specific to IPv6 static routing.";
     list ipv6-lan-prefixes {
       if-feature "vpn-common:ipv6";
       key "lan next-hop";
       description
-        "List of LAN prefixes for the site.";
+        "List of LAN prefixes for the customer terminating points.";
       uses ipv6-static-rtg-entry;
       uses ac-common:service-status;
     }
@@ -3591,11 +3594,11 @@ module ietf-ac-common {
       units "milliseconds";
       description
         "Expected BFD holdtime.
-         The customer may impose some fixed values
-         for the holdtime period if the provider allows
-         the customer to use this function.
-         If the provider doesn't allow the customer to
-         use this function, fixed values will not be set.";
+         The customer may impose some fixed values for the
+         holdtime period if the provider allows the customer
+         to use this function.
+         If the provider doesn't allow the customer to use
+         this function, fixed values will not be set.";
       reference
         "RFC 5880: Bidirectional Forwarding Detection (BFD),
                    Section 6.8.18";
@@ -3614,7 +3617,7 @@ module ietf-ac-common {
        leaf group-id {
          type string;
          description
-           "Indicates the group-id to which the AC belongs.";
+           "Indicates the group-id to which an AC belongs.";
        }
        leaf precedence {
          type identityref {
@@ -3660,7 +3663,7 @@ module ietf-ac-common {
       type uint64;
       units "bytes";
       description
-        "Excess Burst Size (EBS).  The bandwidth available for burst
+        "Excess Burst Size (EBS). The bandwidth available for burst
          traffic from the EBS is subject to the amount of bandwidth
          that is accumulated during periods when traffic allocated
          by the EIR policy is not used.";
@@ -3699,11 +3702,11 @@ module ietf-ac-common {
           "Choice based upon bandwidth type.";
         case per-cos {
           description
-            "Bandwidth per CoS.";
+            "Bandwidth per Class of Service (CoS).";
           list cos {
             key "cos-id";
             description
-              "List of Class of Services.";
+              "List of CoSes.";
             leaf cos-id {
               type uint8;
               description
@@ -3893,23 +3896,47 @@ should identify the corresponding security considerations. For
 <dd class="break"></dd>
 <dt id="I-D.ietf-opsawg-ac-lxsm-lxnm-glue">[I-D.ietf-opsawg-ac-lxsm-lxnm-glue]</dt>
         <dd>
-<span class="refAuthor">Boucadair, M.</span>, <span class="refAuthor">Roberts, R.</span>, <span class="refAuthor">Barguil, S.</span>, and <span class="refAuthor">O. G. de Dios</span>, <span class="refTitle">"A YANG Data Model for Augmenting VPN Service and Network Models with Attachment Circuits"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-opsawg-ac-lxsm-lxnm-glue-12</span>, <time datetime="2024-12-09" class="refDate">9 December 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-ac-lxsm-lxnm-glue-12">https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-ac-lxsm-lxnm-glue-12</a>&gt;</span>. </dd>
+<span class="refAuthor">Boucadair, M.</span>, <span class="refAuthor">Roberts, R.</span>, <span class="refAuthor">Barguil, S.</span>, and <span class="refAuthor">O. G. de Dios</span>, <span class="refTitle">"A YANG Data Model for Augmenting VPN Service and Network Models with Attachment Circuits"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-opsawg-ac-lxsm-lxnm-glue-13</span>, <time datetime="2025-01-09" class="refDate">9 January 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-ac-lxsm-lxnm-glue-13">https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-ac-lxsm-lxnm-glue-13</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="I-D.ietf-opsawg-ntw-attachment-circuit">[I-D.ietf-opsawg-ntw-attachment-circuit]</dt>
         <dd>
-<span class="refAuthor">Boucadair, M.</span>, <span class="refAuthor">Roberts, R.</span>, <span class="refAuthor">de Dios, O. G.</span>, <span class="refAuthor">Barguil, S.</span>, and <span class="refAuthor">B. Wu</span>, <span class="refTitle">"A Network YANG Data Model for Attachment Circuits"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-opsawg-ntw-attachment-circuit-14</span>, <time datetime="2024-11-07" class="refDate">7 November 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-ntw-attachment-circuit-14">https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-ntw-attachment-circuit-14</a>&gt;</span>. </dd>
+<span class="refAuthor">Boucadair, M.</span>, <span class="refAuthor">Roberts, R.</span>, <span class="refAuthor">de Dios, O. G.</span>, <span class="refAuthor">Barguil, S.</span>, and <span class="refAuthor">B. Wu</span>, <span class="refTitle">"A Network YANG Data Model for Attachment Circuits"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-opsawg-ntw-attachment-circuit-15</span>, <time datetime="2025-01-09" class="refDate">9 January 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-ntw-attachment-circuit-15">https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-ntw-attachment-circuit-15</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="I-D.ietf-opsawg-teas-attachment-circuit">[I-D.ietf-opsawg-teas-attachment-circuit]</dt>
         <dd>
-<span class="refAuthor">Boucadair, M.</span>, <span class="refAuthor">Roberts, R.</span>, <span class="refAuthor">de Dios, O. G.</span>, <span class="refAuthor">Barguil, S.</span>, and <span class="refAuthor">B. Wu</span>, <span class="refTitle">"YANG Data Models for Bearers and 'Attachment Circuits'-as-a-Service (ACaaS)"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-opsawg-teas-attachment-circuit-18</span>, <time datetime="2024-11-07" class="refDate">7 November 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-teas-attachment-circuit-18">https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-teas-attachment-circuit-18</a>&gt;</span>. </dd>
+<span class="refAuthor">Boucadair, M.</span>, <span class="refAuthor">Roberts, R.</span>, <span class="refAuthor">de Dios, O. G.</span>, <span class="refAuthor">Barguil, S.</span>, and <span class="refAuthor">B. Wu</span>, <span class="refTitle">"YANG Data Models for Bearers and 'Attachment Circuits'-as-a-Service (ACaaS)"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-opsawg-teas-attachment-circuit-19</span>, <time datetime="2025-01-09" class="refDate">9 January 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-teas-attachment-circuit-19">https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-teas-attachment-circuit-19</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="I-D.ietf-teas-ietf-network-slice-nbi-yang">[I-D.ietf-teas-ietf-network-slice-nbi-yang]</dt>
         <dd>
-<span class="refAuthor">Wu, B.</span>, <span class="refAuthor">Dhody, D.</span>, <span class="refAuthor">Rokui, R.</span>, <span class="refAuthor">Saad, T.</span>, and <span class="refAuthor">J. Mullooly</span>, <span class="refTitle">"A YANG Data Model for the RFC 9543 Network Slice Service"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-teas-ietf-network-slice-nbi-yang-16</span>, <time datetime="2024-08-28" class="refDate">28 August 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-teas-ietf-network-slice-nbi-yang-16">https://datatracker.ietf.org/doc/html/draft-ietf-teas-ietf-network-slice-nbi-yang-16</a>&gt;</span>. </dd>
+<span class="refAuthor">Wu, B.</span>, <span class="refAuthor">Dhody, D.</span>, <span class="refAuthor">Rokui, R.</span>, <span class="refAuthor">Saad, T.</span>, and <span class="refAuthor">J. Mullooly</span>, <span class="refTitle">"A YANG Data Model for the RFC 9543 Network Slice Service"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-teas-ietf-network-slice-nbi-yang-17</span>, <time datetime="2024-12-20" class="refDate">20 December 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-teas-ietf-network-slice-nbi-yang-17">https://datatracker.ietf.org/doc/html/draft-ietf-teas-ietf-network-slice-nbi-yang-17</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="MEF17">[MEF17]</dt>
+        <dd>
+<span class="refAuthor">The Metro Ethernet Forum</span>, <span class="refTitle">"Technical Specification MEF 17, Service OAM Requirements &amp; Framework - Phase 1"</span>, <time datetime="2007-04" class="refDate">April 2007</time>, <span>&lt;<a href="https://www.mef.net/wp-content/uploads/2015/04/MEF-17.pdf">https://www.mef.net/wp-content/uploads/2015/04/MEF-17.pdf</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="MEF6">[MEF6]</dt>
+        <dd>
+<span class="refAuthor">The Metro Ethernet Forum</span>, <span class="refTitle">"Technical Specification MEF 6, Ethernet Services Definitions - Phase I"</span>, <time datetime="2004-06" class="refDate">June 2004</time>, <span>&lt;<a href="https://www.mef.net/Assets/Technical_Specifications/PDF/MEF_6.pdf">https://www.mef.net/Assets/Technical_Specifications/PDF/MEF_6.pdf</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC1701">[RFC1701]</dt>
+        <dd>
+<span class="refAuthor">Hanks, S.</span>, <span class="refAuthor">Li, T.</span>, <span class="refAuthor">Farinacci, D.</span>, and <span class="refAuthor">P. Traina</span>, <span class="refTitle">"Generic Routing Encapsulation (GRE)"</span>, <span class="seriesInfo">RFC 1701</span>, <span class="seriesInfo">DOI 10.17487/RFC1701</span>, <time datetime="1994-10" class="refDate">October 1994</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc1701">https://www.rfc-editor.org/rfc/rfc1701</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC1702">[RFC1702]</dt>
+        <dd>
+<span class="refAuthor">Hanks, S.</span>, <span class="refAuthor">Li, T.</span>, <span class="refAuthor">Farinacci, D.</span>, and <span class="refAuthor">P. Traina</span>, <span class="refTitle">"Generic Routing Encapsulation over IPv4 networks"</span>, <span class="seriesInfo">RFC 1702</span>, <span class="seriesInfo">DOI 10.17487/RFC1702</span>, <time datetime="1994-10" class="refDate">October 1994</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc1702">https://www.rfc-editor.org/rfc/rfc1702</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC2003">[RFC2003]</dt>
+        <dd>
+<span class="refAuthor">Perkins, C.</span>, <span class="refTitle">"IP Encapsulation within IP"</span>, <span class="seriesInfo">RFC 2003</span>, <span class="seriesInfo">DOI 10.17487/RFC2003</span>, <time datetime="1996-10" class="refDate">October 1996</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc2003">https://www.rfc-editor.org/rfc/rfc2003</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC4252">[RFC4252]</dt>
         <dd>
 <span class="refAuthor">Ylonen, T.</span> and <span class="refAuthor">C. Lonvick, Ed.</span>, <span class="refTitle">"The Secure Shell (SSH) Authentication Protocol"</span>, <span class="seriesInfo">RFC 4252</span>, <span class="seriesInfo">DOI 10.17487/RFC4252</span>, <time datetime="2006-01" class="refDate">January 2006</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc4252">https://www.rfc-editor.org/rfc/rfc4252</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC4301">[RFC4301]</dt>
+        <dd>
+<span class="refAuthor">Kent, S.</span> and <span class="refAuthor">K. Seo</span>, <span class="refTitle">"Security Architecture for the Internet Protocol"</span>, <span class="seriesInfo">RFC 4301</span>, <span class="seriesInfo">DOI 10.17487/RFC4301</span>, <time datetime="2005-12" class="refDate">December 2005</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc4301">https://www.rfc-editor.org/rfc/rfc4301</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC4364">[RFC4364]</dt>
         <dd>
@@ -3919,6 +3946,14 @@ should identify the corresponding security considerations. For
         <dd>
 <span class="refAuthor">Thomson, S.</span>, <span class="refAuthor">Narten, T.</span>, and <span class="refAuthor">T. Jinmei</span>, <span class="refTitle">"IPv6 Stateless Address Autoconfiguration"</span>, <span class="seriesInfo">RFC 4862</span>, <span class="seriesInfo">DOI 10.17487/RFC4862</span>, <time datetime="2007-09" class="refDate">September 2007</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc4862">https://www.rfc-editor.org/rfc/rfc4862</a>&gt;</span>. </dd>
 <dd class="break"></dd>
+<dt id="RFC6004">[RFC6004]</dt>
+        <dd>
+<span class="refAuthor">Berger, L.</span> and <span class="refAuthor">D. Fedyk</span>, <span class="refTitle">"Generalized MPLS (GMPLS) Support for Metro Ethernet Forum and G.8011 Ethernet Service Switching"</span>, <span class="seriesInfo">RFC 6004</span>, <span class="seriesInfo">DOI 10.17487/RFC6004</span>, <time datetime="2010-10" class="refDate">October 2010</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc6004">https://www.rfc-editor.org/rfc/rfc6004</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC6215">[RFC6215]</dt>
+        <dd>
+<span class="refAuthor">Bocci, M.</span>, <span class="refAuthor">Levrau, L.</span>, and <span class="refAuthor">D. Frost</span>, <span class="refTitle">"MPLS Transport Profile User-to-Network and Network-to-Network Interfaces"</span>, <span class="seriesInfo">RFC 6215</span>, <span class="seriesInfo">DOI 10.17487/RFC6215</span>, <time datetime="2011-04" class="refDate">April 2011</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc6215">https://www.rfc-editor.org/rfc/rfc6215</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="RFC6241">[RFC6241]</dt>
         <dd>
 <span class="refAuthor">Enns, R., Ed.</span>, <span class="refAuthor">Bjorklund, M., Ed.</span>, <span class="refAuthor">Schoenwaelder, J., Ed.</span>, and <span class="refAuthor">A. Bierman, Ed.</span>, <span class="refTitle">"Network Configuration Protocol (NETCONF)"</span>, <span class="seriesInfo">RFC 6241</span>, <span class="seriesInfo">DOI 10.17487/RFC6241</span>, <time datetime="2011-06" class="refDate">June 2011</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc6241">https://www.rfc-editor.org/rfc/rfc6241</a>&gt;</span>. </dd>
@@ -3926,6 +3961,10 @@ should identify the corresponding security considerations. For
 <dt id="RFC7665">[RFC7665]</dt>
         <dd>
 <span class="refAuthor">Halpern, J., Ed.</span> and <span class="refAuthor">C. Pignataro, Ed.</span>, <span class="refTitle">"Service Function Chaining (SFC) Architecture"</span>, <span class="seriesInfo">RFC 7665</span>, <span class="seriesInfo">DOI 10.17487/RFC7665</span>, <time datetime="2015-10" class="refDate">October 2015</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc7665">https://www.rfc-editor.org/rfc/rfc7665</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC7676">[RFC7676]</dt>
+        <dd>
+<span class="refAuthor">Pignataro, C.</span>, <span class="refAuthor">Bonica, R.</span>, and <span class="refAuthor">S. Krishnan</span>, <span class="refTitle">"IPv6 Support for Generic Routing Encapsulation (GRE)"</span>, <span class="seriesInfo">RFC 7676</span>, <span class="seriesInfo">DOI 10.17487/RFC7676</span>, <time datetime="2015-10" class="refDate">October 2015</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc7676">https://www.rfc-editor.org/rfc/rfc7676</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC8040">[RFC8040]</dt>
         <dd>
@@ -4273,6 +4312,7 @@ in <span>[<a href="#RFC9181" class="cite xref">RFC9181</a>]</span> and <span>[<a
 rtg-dir reviews, Watson Ladd for the sec-dir review, and Behcet Sarikaya for the genart review.<a href="#appendix-B-2" class="pilcrow">¶</a></p>
 <p id="appendix-B-3">Thanks to Reza Rokui for the Shepherd review.<a href="#appendix-B-3" class="pilcrow">¶</a></p>
 <p id="appendix-B-4">Thanks to Mahesh Jethanandani for the AD review.<a href="#appendix-B-4" class="pilcrow">¶</a></p>
+<p id="appendix-B-5">Thanks to Éric Vyncke for the IESG review.<a href="#appendix-B-5" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="contributors">

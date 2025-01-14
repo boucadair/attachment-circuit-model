@@ -5,14 +5,14 @@
 Operations and Management Area Working Group           M. Boucadair, Ed.
 Internet-Draft                                                    Orange
 Intended status: Standards Track                         R. Roberts, Ed.
-Expires: 13 June 2025                                            Juniper
+Expires: 18 July 2025                                            Juniper
                                                            O. G. D. Dios
                                                               Telefonica
                                                            S. B. Giraldo
                                                                    Nokia
                                                                    B. Wu
                                                      Huawei Technologies
-                                                        10 December 2024
+                                                         14 January 2025
 
 
             A Common YANG Data Model for Attachment Circuits
@@ -20,12 +20,12 @@ Expires: 13 June 2025                                            Juniper
 
 Abstract
 
-   The document specifies a common Attachment Circuits (ACs) YANG
-   module, which is designed with the intent to be reusable by other
-   models.  For example, this common model can be reused by service
-   models to expose ACs as a service, service models that require
-   binding a service to a set of ACs, network and device models to
-   provision ACs, etc.
+   The document specifies a common attachment circuits (ACs) YANG model,
+   which is designed with the intent to be reusable by other models.
+   For example, this common model can be reused by service models to
+   expose ACs as a service, service models that require binding a
+   service to a set of ACs, network and device models to provision ACs,
+   etc.
 
 Discussion Venues
 
@@ -54,11 +54,11 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 13 June 2025.
+   This Internet-Draft will expire on 18 July 2025.
 
 Copyright Notice
 
-   Copyright (c) 2024 IETF Trust and the persons identified as the
+   Copyright (c) 2025 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -99,37 +99,21 @@ Table of Contents
    data centers gateways, or Internet Exchange Points).  A connectivity
    service is basically about ensuring data transfer received from (or
    destined to) a given terminating point to (or from) other terminating
-   points that belong to the same customer/service, an interconnection
-   node, or an ancillary node.  A set of objectives for the connectivity
-   service may eventually be negotiated and agreed upon between a
-   customer and a network provider.  For that data transfer to take
-   place within the provider network, it is assumed that adequate setup
-   is provisioned over the links that connect customer terminating
-   points and a provider network (a Provider Edge (PE), typically) so
-   that data can be successfully exchanged over these links.  The
-   required setup is referred to in this document as Attachment Circuits
-   (ACs), while the underlying link is referred to as "bearer".
+   points.  A set of objectives for the connectivity service may
+   eventually be negotiated and agreed upon between a customer and a
+   network provider.  For that data transfer to take place within the
+   provider network, it is assumed that adequate setup is provisioned
+   over the links that connect customer terminating points and a
+   provider network (a Provider Edge (PE), typically) so that data can
+   be successfully exchanged over these links.  The required setup is
+   referred to in this document as an attachment circuits (ACs), while
+   the underlying link is referred to as "bearer".
 
-   This document adheres to the definition of an attachment circuit as
-   provided in Section 1.2 of [RFC4364], especially:
-
-      Routers can be attached to each other, or to end systems, in a
-      variety of different ways: PPP connections, ATM Virtual Circuits
-      (VCs), Frame Relay VCs, ethernet interfaces, Virtual Local Area
-      Networks (VLANs) on ethernet interfaces, GRE tunnels, Layer 2
-      Tunneling Protocol (L2TP) tunnels, IPsec tunnels, etc.  We will
-      use the term "attachment circuit" to refer generally to some such
-      means of attaching to a router.  An attachment circuit may be the
-      sort of connection that is usually thought of as a "data link", or
-      it may be a tunnel of some sort; what matters is that it be
-      possible for two devices to be network layer peers over the
-      attachment circuit.
-
-   When a customer requests a new value-added service, the service can
-   be bound to existing attachment circuits or trigger the instantiation
-   of new attachment circuits.  Whether these attachment circuits are
-   specific for a given service or are shared to deliver a variety of
-   services is deployment-specific.
+   When a customer requests a new service, the service can be bound to
+   existing attachment circuits or trigger the instantiation of new
+   attachment circuits.  Whether these attachment circuits are specific
+   for a given service or are shared to deliver a variety of services is
+   deployment-specific.
 
    An example of attachment circuits is depicted in Figure 1.  A
    Customer Edge (CE) may be a physical node or a logical entity.  A CE
@@ -142,8 +126,8 @@ Table of Contents
    multiple CEs can be attached to a PE over the same attachment
    circuit.  This is typically implemented if the Layer 2 infrastructure
    between the CE and the network provides a multipoint service.  The
-   same CE may terminate multiple ACs.  These ACs may be over the same
-   or distinct bearers.
+   same CE may terminate multiple ACs (e.g., "CE3" and "CE4").  These
+   ACs may be over the same or distinct bearers.
 
                              .--------------------.
                              |                    |
@@ -196,7 +180,7 @@ Table of Contents
 
    *  XXXX --> the assigned RFC number for this I-D
 
-   *  2023-11-13 --> the actual date of the publication of this document
+   *  2025-01-07 --> the actual date of the publication of this document
 
 2.  Conventions and Definitions
 
@@ -211,8 +195,8 @@ Table of Contents
 
    This document uses the following term:
 
-   Bearer:  A physical or logical link that connects a customer node (or
-      site) to a provider network.
+   Bearer:  A physical or logical link that connects a CE (or site) to a
+      provider network.
 
       A bearer can be a wireless or wired link.  One or multiple
       technologies can be used to build a bearer.  The bearer type can
@@ -273,7 +257,7 @@ Table of Contents
                      +----------+     |     +----------+
                      |                |                |
                      |                |                |
-               ietf-ac-svc <--> ietf-bearer-svc        |
+               ietf-ac-svc <--- ietf-bearer-svc        |
                   ^    ^                               |
                   |    |                               |
                   |    +------------------------ ietf-ac-ntw
@@ -281,6 +265,8 @@ Table of Contents
                   |                                    |
                   |                                    |
                   +----------- ietf-ac-glue -----------+
+
+               X --> Y: X imports Y
 
                           Figure 2: AC Data Models
 
@@ -341,6 +327,11 @@ Table of Contents
       Virtual Private LAN Service (VPLS), and Virtual eXtensible Local
       Area Network (VXLAN).
 
+   'l3-tunnel-type':  Uses to control the Layer 3 tunnel selection for
+      an AC.  Examples of such type are: IP-in-IP [RFC2003], IPsec
+      [RFC4301], and Generic Routing Encapsulation (GRE)
+      [RFC1701][RFC1702][RFC7676].
+
    'precedence-type':  Used to indicate the redundancy type when
       requesting ACs.  For example, this identity can be used to tag
       primary and secondary ACs.
@@ -348,6 +339,10 @@ Table of Contents
    'role':  Used to indicate the type of an AC: User-to-Network
       Interface (UNI), Network-to-Network Interface (NNI), or public
       NNI.
+
+      The reader may refer to [MEF6], [MEF17], [RFC6004], or [RFC6215]
+      for examples of discussions regarding the use of UNI and NNI
+      reference points.
 
    New administrative status types:  In addition to the status types
       already defined in [RFC9181], this document defines:
@@ -736,7 +731,7 @@ Table of Contents
    This module uses types defined in [RFC6991], [RFC8177], and
    [RFC9181].
 
-   <CODE BEGINS> file "ietf-ac-common@2023-11-13.yang"
+   <CODE BEGINS> file "ietf-ac-common@2025-01-07.yang"
    module ietf-ac-common {
      yang-version 1.1;
      namespace "urn:ietf:params:xml:ns:yang:ietf-ac-common";
@@ -787,9 +782,10 @@ Table of Contents
                   <mailto:lana.wubo@huawei.com>";
      description
        "This YANG module defines a common attachment circuit (AC)
-        YANG model.
+        YANG model with a set of reusable features, types,
+        identities, and groupings.
 
-        Copyright (c) 2024 IETF Trust and the persons identified as
+        Copyright (c) 2025 IETF Trust and the persons identified as
         authors of the code.  All rights reserved.
 
         Redistribution and use in source and binary forms, with or
@@ -802,7 +798,7 @@ Table of Contents
         This version of this YANG module is part of RFC XXXX; see the
         RFC itself for full legal notices.";
 
-     revision 2023-11-13 {
+     revision 2025-01-07 {
        description
          "Initial revision.";
        reference
@@ -823,8 +819,8 @@ Table of Contents
 
      feature server-assigned-reference {
        description
-         "This feature indicates support for server-generated references
-          and use of such references to access related resources.";
+         "Indicates support for server-generated references and use
+          of such references to access related resources.";
      }
 
      /****************************Identities************************/
@@ -832,7 +828,7 @@ Table of Contents
 
      identity address-allocation-type {
        description
-         "Base identity for address allocation type in the AC.";
+         "Base identity for address allocation type on the AC.";
      }
 
      identity provider-dhcp {
@@ -880,7 +876,7 @@ Table of Contents
        base address-allocation-type;
        description
          "The IP address is dynamically allocated by the hosting
-          infrastrcture.";
+          infrastructure.";
      }
 
      // next-hop actions
@@ -961,8 +957,8 @@ Table of Contents
 
      identity precedence-type {
        description
-         "Redundancy type. The service can be created with primary and
-          secondary tagging.";
+         "Redundancy type. Attachment to a network can be created
+          with primary and secondary tagging.";
      }
 
      identity primary {
@@ -974,7 +970,7 @@ Table of Contents
      identity secondary {
        base precedence-type;
        description
-         "Identifies the secondary attachment circuit.";
+         "Identifies a secondary attachment circuit.";
      }
 
      // AC Type
@@ -1008,7 +1004,7 @@ Table of Contents
        base vpn-common:administrative-status;
        description
          "This administrative status reflects that a request is
-          pending an adiministrator approval.";
+          pending an administrator approval.";
      }
 
      identity awaiting-processing {
@@ -1051,7 +1047,7 @@ Table of Contents
      identity client {
        base bgp-role;
        description
-         "The local AS is a transit provider of the remote AS.";
+         "The local AS is a transit customer of the remote AS.";
      }
 
      identity rs {
@@ -1115,8 +1111,8 @@ Table of Contents
              type yang:date-and-time;
              config false;
              description
-               "Indicates the actual date and time of the service
-                status change.";
+               "Indicates the actual date and time of the service status
+                change.";
            }
          }
          container oper-status {
@@ -1127,7 +1123,6 @@ Table of Contents
          }
        }
      }
-
 
      /**** A set of profiles ****/
 
@@ -1166,7 +1161,7 @@ Table of Contents
            leaf id {
              type string;
              description
-               "Identification of the a failure detection (e.g., BFD)
+               "Identification of the failure detection (e.g., BFD)
                 profile to be used.";
            }
          }
@@ -1351,8 +1346,8 @@ Table of Contents
            base vpn-common:vxlan-peer-mode;
          }
          description
-           "Specifies the VXLAN access mode. By default,
-            the peer mode is set to 'static-mode'.";
+           "Specifies the VXLAN access mode. By default, the peer mode
+            is set to 'static-mode'.";
        }
        leaf-list peer-ip-address {
          type inet:ip-address;
@@ -1427,7 +1422,8 @@ Table of Contents
            error-message "SLAAC is only applicable to IPv6.";
          }
          description
-           "Defines how IPv4 addresses are allocated to the peer site.";
+           "Defines how IPv4 addresses are allocated to the peer
+            termination points.";
        }
      }
 
@@ -1442,14 +1438,15 @@ Table of Contents
          }
          description
            "Subnet prefix length expressed in bits. It is applied to
-             both local and customer addresses.";
+            both local and customer addresses.";
        }
        leaf address-allocation-type {
          type identityref {
            base address-allocation-type;
          }
          description
-           "Defines how IPv6 addresses are allocated to the peer site.";
+           "Defines how IPv6 addresses are allocated to the peer
+            termination points.";
        }
      }
 
@@ -1457,7 +1454,7 @@ Table of Contents
 
      grouping ipv4-connection-basic {
        description
-         "Basic set fof IPv4-specific parameters for the connection.";
+         "Basic set for IPv4-specific parameters for the connection.";
        uses ipv4-allocation-type;
        choice allocation-type {
          description
@@ -1479,7 +1476,7 @@ Table of Contents
                  }
                  enum relay {
                    description
-                     "Local DHCP relay.  DHCP requests are relayed to
+                     "Local DHCP relay. DHCP requests are relayed to
                       a provider's server.";
                  }
                }
@@ -1509,7 +1506,7 @@ Table of Contents
 
      grouping ipv6-connection-basic {
        description
-         "Basic set fof IPv6-specific parameters for the connection.";
+         "Basic set for IPv6-specific parameters for the connection.";
        uses ipv6-allocation-type;
        choice allocation-type {
          description
@@ -1531,7 +1528,7 @@ Table of Contents
                  }
                  enum relay {
                    description
-                     "Local DHCP relay.  DHCP requests are relayed to a
+                     "Local DHCP relay. DHCP requests are relayed to a
                       provider's server.";
                  }
                }
@@ -1561,7 +1558,7 @@ Table of Contents
 
      grouping ipv4-connection {
        description
-         "IPv4-specific parameters.";
+         "IPv4-specific connection parameters.";
        leaf local-address {
          type inet:ipv4-address;
          description
@@ -1570,7 +1567,7 @@ Table of Contents
        leaf virtual-address {
          type inet:ipv4-address;
          description
-           "This addresss may be used for redundancy purposes.";
+           "This address may be used for redundancy purposes.";
        }
        uses ipv4-allocation-type;
        choice allocation-type {
@@ -1599,7 +1596,7 @@ Table of Contents
                  list address-pool {
                    key "pool-id";
                    description
-                     "Describes IP addresses to be dyncamically
+                     "Describes IP addresses to be dynamically
                       allocated.
 
                       When only 'start-address' is present, it
@@ -1642,7 +1639,7 @@ Table of Contents
                  }
                  enum relay {
                    description
-                     "Local DHCP relay.  DHCP requests are relayed to
+                     "Local DHCP relay. DHCP requests are relayed to
                       a provider's server.";
                  }
                }
@@ -1694,7 +1691,7 @@ Table of Contents
 
      grouping ipv6-connection {
        description
-         "IPv6-specific parameters.";
+         "IPv6-specific connection parameters.";
        leaf local-address {
          type inet:ipv6-address;
          description
@@ -1703,7 +1700,7 @@ Table of Contents
        leaf virtual-address {
          type inet:ipv6-address;
          description
-           "This addresss may be used for redundancy purposes.";
+           "This address may be used for redundancy purposes.";
        }
        uses ipv6-allocation-type;
        choice allocation-type {
@@ -1732,7 +1729,7 @@ Table of Contents
                  list address-pool {
                    key "pool-id";
                    description
-                     "Describes IP addresses to be dyncamically
+                     "Describes IP addresses to be dynamically
                       allocated.
 
                       When only 'start-address' is present, it
@@ -1775,13 +1772,13 @@ Table of Contents
                  }
                  enum relay {
                    description
-                     "Local DHCP relay.  DHCP requests are relayed
+                     "Local DHCP relay. DHCP requests are relayed
                       to a provider's server.";
                  }
                }
                description
-                 "Indicates the type of DHCP service to
-                  be enabled on this access.";
+                 "Indicates the type of DHCP service to be enabled
+                  on this access.";
              }
            }
            choice dhcp-relay {
@@ -1800,7 +1797,7 @@ Table of Contents
          }
          case static-addresses {
            description
-             "Lists the IPv6 addresses that are used.";
+             "Lists the IPv6 addresses that are used by the customer.";
            list address {
              key "address-id";
              ordered-by user;
@@ -1831,7 +1828,7 @@ Table of Contents
          "Grouping for BGP authentication parameters.";
        container authentication {
          description
-           "Container for BGP authentication  parameters.";
+           "Container for BGP authentication parameters.";
          leaf enabled {
            type boolean;
            description
@@ -1872,7 +1869,7 @@ Table of Contents
                leaf md5-keychain {
                  type key-chain:key-chain-ref;
                  description
-                   "Reference to the MD5 key chain.";
+                   "Specifies a reference to the MD5 key chain.";
                  reference
                    "RFC 8177: YANG Data Model for Key Chains";
                }
@@ -1910,7 +1907,7 @@ Table of Contents
          "Authentication configuration.";
        container authentication {
          description
-           "Container for OSPF authentication  parameters.";
+           "Container for OSPF authentication parameters.";
          leaf enabled {
            type boolean;
            description
@@ -1964,7 +1961,7 @@ Table of Contents
          "IS-IS authentication configuration.";
        container authentication {
          description
-           "Container for IS-IS authentication  parameters.";
+           "Container for IS-IS authentication parameters.";
          leaf enabled {
            type boolean;
            description
@@ -2018,7 +2015,7 @@ Table of Contents
          "RIP authentication configuration.";
        container authentication {
          description
-           "Container for RIP authentication  parameters.";
+           "Container for RIP authentication parameters.";
          leaf enabled {
            type boolean;
            description
@@ -2031,8 +2028,7 @@ Table of Contents
               secured on this AC.";
            choice option {
              description
-               "Specifies the authentication
-                scheme.";
+               "Specifies the authentication scheme.";
              case auth-key-chain {
                leaf key-chain {
                  type key-chain:key-chain-ref;
@@ -2071,15 +2067,15 @@ Table of Contents
        leaf local-as {
          type inet:as-number;
          description
-           "Indicates a local AS Number (ASN). This ASN is exposed
-            to a customer so that it knows which ASN to use
-            to set up a BGP session.";
+           "Indicates a local AS Number (ASN). This ASN is exposed to
+            a customer so that it knows which ASN to use to set up
+            a BGP session.";
        }
        leaf peer-as {
          type inet:as-number;
          description
-           "Indicates the customer's ASN when the customer
-            requests BGP routing.";
+           "Indicates the customer's ASN when the customer requests
+            BGP routing.";
        }
        leaf address-family {
          type identityref {
@@ -2166,7 +2162,8 @@ Table of Contents
 
      grouping ipv4-static-rtg-entry {
        description
-         "Paramters to configure a specific IPv4 static routing entry.";
+         "Parameters to configure a specific IPv4 static routing
+          entry.";
        leaf lan {
          type inet:ipv4-prefix;
          description
@@ -2184,9 +2181,8 @@ Table of Contents
          }
          description
            "The next hop that is to be used for the static route.
-            This may be specified as an IP address or a
-            predefined next-hop type (e.g., 'discard' or
-            'local-link').";
+            This may be specified as an IP address or a predefined
+            next-hop type (e.g., 'discard' or 'local-link').";
        }
        leaf metric {
          type uint32;
@@ -2197,7 +2193,7 @@ Table of Contents
 
      grouping ipv4-static-rtg {
        description
-         "Configuration specific to IPv4 static routing.";
+         "A set of parameters specific to IPv4 static routing.";
        list ipv4-lan-prefixes {
          if-feature "vpn-common:ipv4";
          key "lan next-hop";
@@ -2210,7 +2206,8 @@ Table of Contents
 
      grouping ipv6-static-rtg-entry {
        description
-         "Paramters to configure a specific IPv6 static routing entry.";
+         "Parameters to configure a specific IPv6 static routing
+          entry.";
        leaf lan {
          type inet:ipv6-prefix;
          description
@@ -2240,12 +2237,12 @@ Table of Contents
 
      grouping ipv6-static-rtg {
        description
-         "Configuration specific to IPv6 static routing.";
+         "A set of parameters specific to IPv6 static routing.";
        list ipv6-lan-prefixes {
          if-feature "vpn-common:ipv6";
          key "lan next-hop";
          description
-           "List of LAN prefixes for the site.";
+           "List of LAN prefixes for the customer terminating points.";
          uses ipv6-static-rtg-entry;
          uses ac-common:service-status;
        }
@@ -2261,11 +2258,11 @@ Table of Contents
          units "milliseconds";
          description
            "Expected BFD holdtime.
-            The customer may impose some fixed values
-            for the holdtime period if the provider allows
-            the customer to use this function.
-            If the provider doesn't allow the customer to
-            use this function, fixed values will not be set.";
+            The customer may impose some fixed values for the
+            holdtime period if the provider allows the customer
+            to use this function.
+            If the provider doesn't allow the customer to use
+            this function, fixed values will not be set.";
          reference
            "RFC 5880: Bidirectional Forwarding Detection (BFD),
                       Section 6.8.18";
@@ -2284,7 +2281,7 @@ Table of Contents
           leaf group-id {
             type string;
             description
-              "Indicates the group-id to which the AC belongs.";
+              "Indicates the group-id to which an AC belongs.";
           }
           leaf precedence {
             type identityref {
@@ -2330,7 +2327,7 @@ Table of Contents
          type uint64;
          units "bytes";
          description
-           "Excess Burst Size (EBS).  The bandwidth available for burst
+           "Excess Burst Size (EBS). The bandwidth available for burst
             traffic from the EBS is subject to the amount of bandwidth
             that is accumulated during periods when traffic allocated
             by the EIR policy is not used.";
@@ -2369,11 +2366,11 @@ Table of Contents
              "Choice based upon bandwidth type.";
            case per-cos {
              description
-               "Bandwidth per CoS.";
+               "Bandwidth per Class of Service (CoS).";
              list cos {
                key "cos-id";
                description
-                 "List of Class of Services.";
+                 "List of CoSes.";
                leaf cos-id {
                  type uint8;
                  description
@@ -2564,38 +2561,66 @@ Table of Contents
               Dios, "A YANG Data Model for Augmenting VPN Service and
               Network Models with Attachment Circuits", Work in
               Progress, Internet-Draft, draft-ietf-opsawg-ac-lxsm-lxnm-
-              glue-12, 9 December 2024,
+              glue-13, 9 January 2025,
               <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
-              ac-lxsm-lxnm-glue-12>.
+              ac-lxsm-lxnm-glue-13>.
 
    [I-D.ietf-opsawg-ntw-attachment-circuit]
               Boucadair, M., Roberts, R., de Dios, O. G., Barguil, S.,
               and B. Wu, "A Network YANG Data Model for Attachment
               Circuits", Work in Progress, Internet-Draft, draft-ietf-
-              opsawg-ntw-attachment-circuit-14, 7 November 2024,
+              opsawg-ntw-attachment-circuit-15, 9 January 2025,
               <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
-              ntw-attachment-circuit-14>.
+              ntw-attachment-circuit-15>.
 
    [I-D.ietf-opsawg-teas-attachment-circuit]
               Boucadair, M., Roberts, R., de Dios, O. G., Barguil, S.,
               and B. Wu, "YANG Data Models for Bearers and 'Attachment
               Circuits'-as-a-Service (ACaaS)", Work in Progress,
               Internet-Draft, draft-ietf-opsawg-teas-attachment-circuit-
-              18, 7 November 2024,
+              19, 9 January 2025,
               <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
-              teas-attachment-circuit-18>.
+              teas-attachment-circuit-19>.
 
    [I-D.ietf-teas-ietf-network-slice-nbi-yang]
               Wu, B., Dhody, D., Rokui, R., Saad, T., and J. Mullooly,
               "A YANG Data Model for the RFC 9543 Network Slice
               Service", Work in Progress, Internet-Draft, draft-ietf-
-              teas-ietf-network-slice-nbi-yang-16, 28 August 2024,
+              teas-ietf-network-slice-nbi-yang-17, 20 December 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-teas-
-              ietf-network-slice-nbi-yang-16>.
+              ietf-network-slice-nbi-yang-17>.
+
+   [MEF17]    The Metro Ethernet Forum, "Technical Specification MEF 17,
+              Service OAM Requirements & Framework - Phase 1", April
+              2007, <https://www.mef.net/wp-content/uploads/2015/04/MEF-
+              17.pdf>.
+
+   [MEF6]     The Metro Ethernet Forum, "Technical Specification MEF 6,
+              Ethernet Services Definitions - Phase I", June 2004,
+              <https://www.mef.net/Assets/Technical_Specifications/PDF/
+              MEF_6.pdf>.
+
+   [RFC1701]  Hanks, S., Li, T., Farinacci, D., and P. Traina, "Generic
+              Routing Encapsulation (GRE)", RFC 1701,
+              DOI 10.17487/RFC1701, October 1994,
+              <https://www.rfc-editor.org/rfc/rfc1701>.
+
+   [RFC1702]  Hanks, S., Li, T., Farinacci, D., and P. Traina, "Generic
+              Routing Encapsulation over IPv4 networks", RFC 1702,
+              DOI 10.17487/RFC1702, October 1994,
+              <https://www.rfc-editor.org/rfc/rfc1702>.
+
+   [RFC2003]  Perkins, C., "IP Encapsulation within IP", RFC 2003,
+              DOI 10.17487/RFC2003, October 1996,
+              <https://www.rfc-editor.org/rfc/rfc2003>.
 
    [RFC4252]  Ylonen, T. and C. Lonvick, Ed., "The Secure Shell (SSH)
               Authentication Protocol", RFC 4252, DOI 10.17487/RFC4252,
               January 2006, <https://www.rfc-editor.org/rfc/rfc4252>.
+
+   [RFC4301]  Kent, S. and K. Seo, "Security Architecture for the
+              Internet Protocol", RFC 4301, DOI 10.17487/RFC4301,
+              December 2005, <https://www.rfc-editor.org/rfc/rfc4301>.
 
    [RFC4364]  Rosen, E. and Y. Rekhter, "BGP/MPLS IP Virtual Private
               Networks (VPNs)", RFC 4364, DOI 10.17487/RFC4364, February
@@ -2606,6 +2631,16 @@ Table of Contents
               DOI 10.17487/RFC4862, September 2007,
               <https://www.rfc-editor.org/rfc/rfc4862>.
 
+   [RFC6004]  Berger, L. and D. Fedyk, "Generalized MPLS (GMPLS) Support
+              for Metro Ethernet Forum and G.8011 Ethernet Service
+              Switching", RFC 6004, DOI 10.17487/RFC6004, October 2010,
+              <https://www.rfc-editor.org/rfc/rfc6004>.
+
+   [RFC6215]  Bocci, M., Levrau, L., and D. Frost, "MPLS Transport
+              Profile User-to-Network and Network-to-Network
+              Interfaces", RFC 6215, DOI 10.17487/RFC6215, April 2011,
+              <https://www.rfc-editor.org/rfc/rfc6215>.
+
    [RFC6241]  Enns, R., Ed., Bjorklund, M., Ed., Schoenwaelder, J., Ed.,
               and A. Bierman, Ed., "Network Configuration Protocol
               (NETCONF)", RFC 6241, DOI 10.17487/RFC6241, June 2011,
@@ -2615,6 +2650,11 @@ Table of Contents
               Chaining (SFC) Architecture", RFC 7665,
               DOI 10.17487/RFC7665, October 2015,
               <https://www.rfc-editor.org/rfc/rfc7665>.
+
+   [RFC7676]  Pignataro, C., Bonica, R., and S. Krishnan, "IPv6 Support
+              for Generic Routing Encapsulation (GRE)", RFC 7676,
+              DOI 10.17487/RFC7676, October 2015,
+              <https://www.rfc-editor.org/rfc/rfc7676>.
 
    [RFC8040]  Bierman, A., Bjorklund, M., and K. Watsen, "RESTCONF
               Protocol", RFC 8040, DOI 10.17487/RFC8040, January 2017,
@@ -2958,6 +2998,8 @@ Acknowledgments
    Thanks to Reza Rokui for the Shepherd review.
 
    Thanks to Mahesh Jethanandani for the AD review.
+
+   Thanks to Éric Vyncke for the IESG review.
 
 Contributors
 

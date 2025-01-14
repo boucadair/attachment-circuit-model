@@ -5,14 +5,14 @@
 Operations and Management Area Working Group           M. Boucadair, Ed.
 Internet-Draft                                                    Orange
 Intended status: Standards Track                              R. Roberts
-Expires: 13 June 2025                                            Juniper
+Expires: 18 July 2025                                            Juniper
                                                            O. G. D. Dios
                                                               Telefonica
                                                            S. B. Giraldo
                                                                    Nokia
                                                                    B. Wu
                                                      Huawei Technologies
-                                                        10 December 2024
+                                                         14 January 2025
 
 
            A Network YANG Data Model for Attachment Circuits
@@ -58,11 +58,11 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 13 June 2025.
+   This Internet-Draft will expire on 18 July 2025.
 
 Copyright Notice
 
-   Copyright (c) 2024 IETF Trust and the persons identified as the
+   Copyright (c) 2025 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -124,7 +124,7 @@ Table of Contents
    The procedure to provision a service in a service provider network
    may depend on the practices adopted by a service provider, including
    the flow put in place for the provisioning of advanced network
-   services and how they are bound to an Attachment Circuit (AC).  For
+   services and how they are bound to an attachment circuit (AC).  For
    example, the same attachment circuit may host multiple services
    (e.g., Layer 2 Virtual Private Network (VPN), or Layer 3 VPN, or
    Network Slice Service [RFC9543]).  In order to avoid service
@@ -217,7 +217,7 @@ Table of Contents
 
    *  XXXX --> the assigned RFC number for this I-D
 
-   *  2024-05-15 --> the actual date of the publication of this document
+   *  2025-01-07 --> the actual date of the publication of this document
 
 2.  Conventions and Definitions
 
@@ -241,6 +241,8 @@ Table of Contents
 
    LxNM refers to both the L2VPN Network Model (L2NM) [RFC9291] and the
    L3VPN Network Model (L3NM) [RFC9182].
+
+   LxVPN refers to both L2VPN and L3VPN.
 
    The following are used in the module prefixes:
 
@@ -290,10 +292,10 @@ Table of Contents
       controllers.
 
    Service provider network:  A network that is able to provide network
-      services (e.g., L2VPN, L3VPN, or Network Slice Services).
+      services (e.g., LxVPN or Network Slice Services).
 
-   Service provider:  A service provider that offers network services
-      (e.g., L2VPN, L3VPN, or Network Slice Services).
+   Service provider:  An entity that offers network services (e.g.,
+      LxVPN or Network Slice Services).
 
    The names of data nodes are prefixed using the prefix associated with
    the corresponding imported YANG module as shown in Table 1:
@@ -350,7 +352,7 @@ Table of Contents
                      +----------+     |     +----------+
                      |                |                |
                      |                |                |
-               ietf-ac-svc <--> ietf-bearer-svc        |
+               ietf-ac-svc <--- ietf-bearer-svc        |
                   ^    ^                               |
                   |    |                               |
                   |    +------------------------ ietf-ac-ntw
@@ -358,6 +360,8 @@ Table of Contents
                   |                                    |
                   |                                    |
                   +----------- ietf-ac-glue -----------+
+
+               X --> Y: X imports Y
 
                           Figure 2: AC Data Models
 
@@ -476,7 +480,7 @@ Table of Contents
                  | Manager |   |                   |
                  '----+----'   |                   |
                       |        |                   |
-                      | NETCONF/CLI..................
+                   NETCONF/CLI.......................
                       |        |                   |
                     .--------------------------------.
       .----. Bearer |                                | Bearer .----.
@@ -2291,7 +2295,7 @@ Table of Contents
    [RFC8343], [RFC9067], [RFC9181], [I-D.ietf-opsawg-teas-common-ac],
    and [IEEE802.1Qcp].
 
-   <CODE BEGINS> file "ietf-ac-ntw@2024-05-15.yang"
+   <CODE BEGINS> file "ietf-ac-ntw@2025-01-07.yang"
    module ietf-ac-ntw {
      yang-version 1.1;
      namespace "urn:ietf:params:xml:ns:yang:ietf-ac-ntw";
@@ -2376,9 +2380,9 @@ Table of Contents
                   <mailto:lana.wubo@huawei.com>";
      description
        "This YANG module defines a YANG network model for the management
-        of attachment circuits.
+        of attachment circuits (ACs).
 
-        Copyright (c) 2024 IETF Trust and the persons identified as
+        Copyright (c) 2025 IETF Trust and the persons identified as
         authors of the code.  All rights reserved.
 
         Redistribution and use in source and binary forms, with or
@@ -2391,7 +2395,7 @@ Table of Contents
         This version of this YANG module is part of RFC XXXX; see the
         RFC itself for full legal notices.";
 
-     revision 2024-05-15 {
+     revision 2025-01-07 {
        description
          "Initial revision.";
        reference
@@ -2544,7 +2548,7 @@ Table of Contents
        uses nw:network-ref;
      }
 
-     // L2 conenction
+     // Layer 2 connection
 
      grouping l2-connection {
        description
@@ -2593,7 +2597,7 @@ Table of Contents
                    "Pushes one or two tags defined by the tag-1 and
                     tag-2 leaves.  It is assumed that, absent any
                     policy, the default value of 0 will be used for
-                    the PCP  setting.";
+                    the Priority Code Point (PCP) setting.";
                }
                leaf translate {
                  type empty;
@@ -2752,7 +2756,7 @@ Table of Contents
 
      grouping l2-connection-if-ref {
        description
-         "Specifies Layer 2 connection paramters with interface
+         "Specifies Layer 2 connection parameters with interface
           references.";
        uses l2-connection;
        leaf l2-termination-point {
@@ -2802,15 +2806,15 @@ Table of Contents
        }
      }
 
-     // IPv4 connection groupings
+     // IPv4 connection
 
      grouping ipv4-connection {
        description
-         "IPv4-specific parameters.";
+         "IPv4-specific connection parameters.";
        leaf local-address {
          type inet:ipv4-address;
          description
-           "The IP address used at the provider's interface.";
+           "The IPv4 address used at the provider's interface.";
        }
        uses ac-common:ipv4-allocation-type;
        choice allocation-type {
@@ -2839,7 +2843,7 @@ Table of Contents
                  list address-pool {
                    key "pool-id";
                    description
-                     "Describes IP addresses to be dyncamically
+                     "Describes IP addresses to be dynamically
                       allocated.
 
                       When only 'start-address' is present, it
@@ -2882,7 +2886,7 @@ Table of Contents
                  }
                  enum relay {
                    description
-                     "Local DHCP relay.  DHCP requests are relayed to a
+                     "Local DHCP relay. DHCP requests are relayed to a
                       provider's server.";
                  }
                }
@@ -2922,7 +2926,7 @@ Table of Contents
          }
          case static-addresses {
            description
-             "Lists the IPv4 addresses that are used.";
+             "Lists the static IPv4 addresses that are used.";
            list address {
              key "address-id";
              ordered-by user;
@@ -2948,7 +2952,7 @@ Table of Contents
 
      grouping ipv6-connection {
        description
-         "IPv6-specific parameters.";
+         "IPv6-specific connection parameters.";
        leaf local-address {
          type inet:ipv6-address;
          description
@@ -2981,7 +2985,7 @@ Table of Contents
                  list address-pool {
                    key "pool-id";
                    description
-                     "Describes IP addresses to be dyncamically
+                     "Describes IPv6 addresses to be dynamically
                       allocated.
 
                       When only 'start-address' is present, it
@@ -3029,8 +3033,8 @@ Table of Contents
                  }
                }
                description
-                 "Indicates the type of DHCP service to
-                  be enabled on this access.";
+                 "Indicates the type of DHCP service to be enabled on
+                  this access.";
              }
              choice service-type {
                description
@@ -3057,14 +3061,14 @@ Table of Contents
                leaf-list server-ip-address {
                  type inet:ipv6-address;
                  description
-                   "IPv6 addresses of the customer's DHCP server.";
+                   "IPv6 addresses of the customer's DHCP servers.";
                }
              }
            }
          }
          case static-addresses {
            description
-             "Lists the IPv4 addresses that are used.";
+             "Lists the static IPv6 addresses that are used.";
            list address {
              key "address-id";
              ordered-by user;
@@ -3075,7 +3079,7 @@ Table of Contents
              leaf address-id {
                type string;
                description
-                 "An identifier of the static IPv4 address.";
+                 "An identifier of the static IPv6 address.";
              }
              leaf customer-address {
                type inet:ipv6-address;
@@ -3100,13 +3104,13 @@ Table of Contents
        container ipv4 {
          if-feature "vpn-common:ipv4";
          description
-           "IPv4-specific parameters.";
+           "IPv4-specific connection parameters.";
          uses ipv4-connection;
        }
        container ipv6 {
          if-feature "vpn-common:ipv6";
          description
-           "IPv6-specific parameters.";
+           "IPv6-specific connection parameters.";
          uses ipv6-connection;
        }
      }
@@ -3189,7 +3193,8 @@ Table of Contents
          type boolean;
          description
            "Defines whether default routes can be advertised to a peer.
-            If set, the default routes are advertised to a peer.";
+            If set to 'true', the default routes are advertised to
+            a peer.";
        }
        leaf site-of-origin {
          when "derived-from-or-self(../address-family, "
@@ -3237,7 +3242,8 @@ Table of Contents
          leaf enabled {
            type boolean;
            description
-             "Enables the redistribution of connected routes.";
+             "Enables, when set to 'true', the redistribution of
+              Connected routes.";
          }
        }
        container bgp-max-prefix {
@@ -3343,7 +3349,7 @@ Table of Contents
        leaf name {
          type string;
          description
-           "Name of the BGP peer-group";
+           "Name of the BGP peer group.";
        }
        uses bgp-base;
      }
@@ -3365,7 +3371,7 @@ Table of Contents
        leaf name {
          type string;
          description
-           "Name of the BGP peer-group";
+           "Name of the BGP peer group";
        }
        leaf local-address {
          type union {
@@ -3373,9 +3379,9 @@ Table of Contents
            type if:interface-ref;
          }
        description
-         "Sets the local IP address to use for the BGP
-          transport session. This may be expressed as either
-          an IP address or a reference to an interface.";
+         "Sets the local IP address to use for the BGP transport
+          session. This may be expressed as either an IP address
+          or a reference to an interface.";
        }
        uses bgp-base;
        uses ac-common:bgp-authentication;
@@ -3436,8 +3442,7 @@ Table of Contents
            }
            units "seconds";
            description
-             "Specifies the interval before better routes are
-              released.";
+             "Specifies the interval before better routes released.";
          }
          leaf flush-interval {
            type uint16 {
@@ -3459,11 +3464,11 @@ Table of Contents
        }
      }
 
-     // routing profile
+     // Routing profile
 
      grouping routing-profile {
        description
-         "Defines routing protocols.";
+         "Defines profiles for routing protocols.";
        list routing-protocol {
          key "id";
          description
@@ -3516,8 +3521,8 @@ Table of Contents
            leaf passive {
              type boolean;
              description
-               "Enables when set to true a passive interface. It is
-                active when set to false. A passive interface's prefix
+               "Enables when set to 'true' a passive interface. It is
+                active when set to 'false'. A passive interface's prefix
                 will be advertised, but no neighbor adjacencies will be
                 formed on the interface.";
            }
@@ -3553,11 +3558,11 @@ Table of Contents
            leaf passive {
              type boolean;
              description
-               "When set to false, the interface is active. In such
+               "When set to 'false', the interface is active. In such
                 mode, the interface sends or receives IS-IS protocol
                 control packets.
 
-                When set to true, the interface is passive. That is,
+                When set to 'true', the interface is passive. That is,
                 it suppresses the sending of IS-IS updates through the
                 specified interface.";
            }
@@ -3598,7 +3603,7 @@ Table of Contents
              type boolean;
              description
                "Controls whether the VRRP speaker should reply to ping
-                requests.";
+                requests. Such behavior is enabled, if set to 'true'.";
            }
          }
        }
@@ -3640,8 +3645,7 @@ Table of Contents
            when "derived-from-or-self(../type, "
               + "'vpn-common:static-routing')" {
              description
-               "Only applies when the protocol is a static routing
-                protocol.";
+               "Only applies when the protocol is static routing.";
            }
            description
              "Configuration specific to static routing.";
@@ -3691,7 +3695,7 @@ Table of Contents
              "Configuration specific to BGP.";
            container peer-groups {
              description
-               "Configuration for BGP peer-groups";
+               "Configuration for BGP peer groups";
              uses bgp-peer-group-list;
            }
            list neighbor {
@@ -3709,17 +3713,16 @@ Table of Contents
                  type if:interface-ref;
                }
                description
-                 "Sets the local IP address to use for
-                  the BGP transport session.  This may be
-                  expressed as either an IP address or a
-                  reference to an interface.";
+                 "Sets the local IP address to use for the BGP transport
+                  session. This may be expressed as either an IP address
+                  or a reference to an interface.";
              }
              leaf peer-group {
                type leafref {
                  path "../../peer-groups/peer-group/name";
                }
                description
-                 "The peer-group with which this neighbor is
+                 "The peer group with which this neighbor is
                   associated.";
              }
              uses bgp-base;
@@ -3751,8 +3754,7 @@ Table of Contents
              list sham-link {
                key "target-site";
                description
-                 "Creates a sham link with another
-                  site.";
+                 "Creates a sham link with another site.";
                leaf target-site {
                  type string;
                  description
@@ -3784,8 +3786,8 @@ Table of Contents
            leaf passive {
              type boolean;
              description
-               "Enables when set to true a passive interface. It is
-                active when set to false. A passive interface's prefix
+               "Enables when set to 'true' a passive interface. It is
+                active when set to 'false'. A passive interface's prefix
                 will be advertised, but no neighbor adjacencies will be
                 formed on the interface.";
            }
@@ -3823,11 +3825,11 @@ Table of Contents
            leaf passive {
              type boolean;
                description
-                 "When set to false, the interface is active. In such
+                 "When set to 'false', the interface is active. In such
                   mode, the interface sends or receives IS-IS protocol
                   control packets.
 
-                  When set to true, the interface is passive. That is,
+                  When set to 'true', the interface is passive. That is,
                   it suppresses the sending of IS-IS updates through the
                   specified interface.";
            }
@@ -3839,8 +3841,8 @@ Table of Contents
               + "'vpn-common:rip-routing')" {
              description
                "Only applies when the protocol is RIP.
-                For IPv4, the model assumes that RIP
-                version 2 is used.";
+                For IPv4, the model assumes that RIP version 2
+                is used.";
            }
            if-feature "vpn-common:rtg-rip";
            description
@@ -3884,8 +3886,7 @@ Table of Contents
            leaf-list virtual-ip-address {
              type inet:ip-address;
              description
-               "Virtual IP addresses for a single VRRP
-                group.";
+               "Virtual IP addresses for a single VRRP group.";
              reference
                "RFC 9568: Virtual Router Redundancy Protocol (VRRP)
                           Version 3 for IPv4 and IPv6, Sections 1.2
@@ -3978,18 +3979,16 @@ Table of Contents
        container bfd {
          if-feature "vpn-common:bfd";
          description
-           "BFD control for this nighbor.";
+           "BFD control for this neighbor.";
          leaf enabled {
            type boolean;
            description
-             "Enables BFD if set to true. BFD is disabled of set to
-              false.";
+             "Enables BFD if set to 'true'. BFD is disabled of set to
+              'false'.";
          }
          uses failure-detection-profile-reference;
        }
      }
-
-     // OAM
 
      grouping oam {
        description
@@ -4014,9 +4013,9 @@ Table of Contents
                type if:interface-ref;
               }
               description
-                "Sets the local IP address to use for the BFD
-                 session. This may be expressed as either
-                 an IP address or a reference to an interface.";
+                "Sets the local IP address to use for the BFD session.
+                 This may be expressed as either an IP address or
+                 a reference to an interface.";
            }
            uses failure-detection-profile-reference;
            uses bfd;
@@ -4032,7 +4031,7 @@ Table of Contents
              leaf meticulous {
                type boolean;
                description
-                 "Enables meticulous mode.";
+                 "Enables meticulous mode, if set to 'true'.";
                reference
                  "RFC 5880: Bidirectional Forwarding Detection (BFD),
                             Section 6.7";
@@ -4043,7 +4042,7 @@ Table of Contents
        }
      }
 
-     // security
+     // Security
 
      grouping security {
        description
@@ -4186,7 +4185,7 @@ Table of Contents
        }
        container service {
          description
-           "AC-specific bandwith parameters.";
+           "AC-specific bandwidth parameters.";
          leaf mtu {
            type uint32;
            units "bytes";
@@ -4211,8 +4210,7 @@ Table of Contents
                    base vpn-common:qos-profile-direction;
                  }
                  description
-                   "The direction to which the QoS profile
-                    is applied.";
+                   "The direction to which the QoS profile is applied.";
                }
              }
            }
@@ -4370,19 +4368,22 @@ Table of Contents
       customer.  Disclosing such information may be considered a
       violation of the customer-provider trust relationship.
 
-   'keying-material':  An attacker can retrieve the cryptographic keys
-      protecting an AC (routing, in particular).  These keys could be
-      used to inject spoofed routing advertisements.
+   'keying-material' and 'customer-key-chain':  An attacker can retrieve
+      the cryptographic keys protecting an AC (routing, in particular).
+      These keys could be used to inject spoofed routing advertisements.
 
-   Several data nodes ('bgp', 'ospf', 'isis', and 'rip') rely upon
-   [RFC8177] for authentication purposes.  As such, the AC network
-   module inherits the security considerations discussed in Section 5 of
-   [RFC8177].  Also, these data nodes support supplying explicit keys as
-   strings in ASCII format.  The use of keys in hexadecimal string
-   format would afford greater key entropy with the same number of key-
-   string octets.  However, such a format is not included in this
-   version of the AC network model, because it is not supported by the
-   underlying device modules (e.g., [RFC8695]).
+   Several data nodes ('bgp', 'ospf', 'isis', 'rip', and 'customer-key-
+   chain') rely upon [RFC8177] for authentication purposes.  As such,
+   the AC network module inherits the security considerations discussed
+   in Section 5 of [RFC8177].  Also, these data nodes support supplying
+   explicit keys as strings in ASCII format.  The use of keys in
+   hexadecimal string format would afford greater key entropy with the
+   same number of key-string octets.  However, such a format is not
+   included in this version of the AC network model, because it is not
+   supported by the underlying device modules (e.g., [RFC8695]).
+
+   Section 5.8 specifies the the encryption to be applied to traffic for
+   a given AC.
 
 8.  IANA Considerations
 
@@ -4412,17 +4413,17 @@ Table of Contents
               and B. Wu, "YANG Data Models for Bearers and 'Attachment
               Circuits'-as-a-Service (ACaaS)", Work in Progress,
               Internet-Draft, draft-ietf-opsawg-teas-attachment-circuit-
-              18, 7 November 2024,
+              19, 9 January 2025,
               <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
-              teas-attachment-circuit-18>.
+              teas-attachment-circuit-19>.
 
    [I-D.ietf-opsawg-teas-common-ac]
               Boucadair, M., Roberts, R., de Dios, O. G., Barguil, S.,
               and B. Wu, "A Common YANG Data Model for Attachment
               Circuits", Work in Progress, Internet-Draft, draft-ietf-
-              opsawg-teas-common-ac-13, 7 November 2024,
+              opsawg-teas-common-ac-14, 9 January 2025,
               <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
-              teas-common-ac-13>.
+              teas-common-ac-14>.
 
    [IEEE802.1Qcp]
               IEEE, "IEEE Standard for Local and metropolitan area
@@ -4592,9 +4593,9 @@ Table of Contents
               Dios, "A YANG Data Model for Augmenting VPN Service and
               Network Models with Attachment Circuits", Work in
               Progress, Internet-Draft, draft-ietf-opsawg-ac-lxsm-lxnm-
-              glue-12, 9 December 2024,
+              glue-13, 9 January 2025,
               <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
-              ac-lxsm-lxnm-glue-12>.
+              ac-lxsm-lxnm-glue-13>.
 
    [RFC3644]  Snir, Y., Ramberg, Y., Strassner, J., Cohen, R., and B.
               Moore, "Policy Quality of Service (QoS) Information
