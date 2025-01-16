@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-01-14T00:45:58.625764+00:00",
+  "timestamp": "2025-01-16T00:47:03.919863+00:00",
   "repo": "boucadair/attachment-circuit-model",
   "labels": [
     {
@@ -9240,6 +9240,32 @@
       "mergeCommit": {
         "oid": "a83342c3f106e310e3435c2696a7f7f7621a0efb"
       },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 242,
+      "id": "PR_kwDOIiAkrc6Hrct_",
+      "title": "Eric-IESG-review",
+      "url": "https://github.com/boucadair/attachment-circuit-model/pull/242",
+      "state": "OPEN",
+      "author": "boucadair",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2025-01-14T09:26:39Z",
+      "updatedAt": "2025-01-15T09:34:18Z",
+      "baseRepository": "boucadair/attachment-circuit-model",
+      "baseRefName": "main",
+      "baseRefOid": "d934b3bdb1b9c773bae02c67013e6fb68d8787d0",
+      "headRepository": "boucadair/attachment-circuit-model",
+      "headRefName": "Eric-IESG-review",
+      "headRefOid": "5bc4961031ba31a7225845adf8db894092be0b7e",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
       "comments": [],
       "reviews": []
     }
