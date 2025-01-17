@@ -103,7 +103,7 @@ Table of Contents
    agreed upon between a customer and a network provider.
 
    For that data transfer to take place within the provider network, it
-   is assumed that appropriate provisioning is in place over the links
+   is assumed that adequate setup is provisioned over the links
    connecting the customer's terminating points to the provider network
    (typically, a Provider Edge (PE)), thereby enabling successful data
    exchange.  This necessary provisioning is referred to in this
