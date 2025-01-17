@@ -5,14 +5,14 @@
 Operations and Management Area Working Group           M. Boucadair, Ed.
 Internet-Draft                                                    Orange
 Intended status: Standards Track                         R. Roberts, Ed.
-Expires: 13 July 2025                                            Juniper
+Expires: 21 July 2025                                            Juniper
                                                            O. G. D. Dios
                                                               Telefonica
                                                            S. B. Giraldo
                                                                    Nokia
                                                                    B. Wu
                                                      Huawei Technologies
-                                                          9 January 2025
+                                                         17 January 2025
 
 
             A Common YANG Data Model for Attachment Circuits
@@ -20,12 +20,12 @@ Expires: 13 July 2025                                            Juniper
 
 Abstract
 
-   The document specifies a common attachment circuits (ACs) YANG
-   module, which is designed with the intent to be reusable by other
-   models.  For example, this common model can be reused by service
-   models to expose ACs as a service, service models that require
-   binding a service to a set of ACs, network and device models to
-   provision ACs, etc.
+   The document specifies a common attachment circuits (ACs) YANG model,
+   which is designed with the intent to be reusable by other models.
+   For example, this common model can be reused by service models to
+   expose ACs as a service, service models that require binding a
+   service to a set of ACs, network and device models to provision ACs,
+   etc.
 
 Discussion Venues
 
@@ -54,7 +54,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 13 July 2025.
+   This Internet-Draft will expire on 21 July 2025.
 
 Copyright Notice
 
@@ -99,16 +99,15 @@ Table of Contents
    data centers gateways, or Internet Exchange Points).  A connectivity
    service is basically about ensuring data transfer received from (or
    destined to) a given terminating point to (or from) other terminating
-   points that belong to the same customer/service, an interconnection
-   node, or an ancillary node.  A set of objectives for the connectivity
-   service may eventually be negotiated and agreed upon between a
-   customer and a network provider.  For that data transfer to take
-   place within the provider network, it is assumed that adequate setup
-   is provisioned over the links that connect customer terminating
-   points and a provider network (a Provider Edge (PE), typically) so
-   that data can be successfully exchanged over these links.  The
-   required setup is referred to in this document as an attachment
-   circuits (ACs), while the underlying link is referred to as "bearer".
+   points.  A set of objectives for the connectivity service may
+   eventually be negotiated and agreed upon between a customer and a
+   network provider.  For that data transfer to take place within the
+   provider network, it is assumed that adequate setup is provisioned
+   over the links that connect customer terminating points and a
+   provider network (a Provider Edge (PE), typically) so that data can
+   be successfully exchanged over these links.  The required setup is
+   referred to in this document as an attachment circuits (ACs), while
+   the underlying link is referred to as "bearer".
 
    When a customer requests a new service, the service can be bound to
    existing attachment circuits or trigger the instantiation of new
@@ -127,8 +126,8 @@ Table of Contents
    multiple CEs can be attached to a PE over the same attachment
    circuit.  This is typically implemented if the Layer 2 infrastructure
    between the CE and the network provides a multipoint service.  The
-   same CE may terminate multiple ACs.  These ACs may be over the same
-   or distinct bearers.
+   same CE may terminate multiple ACs (e.g., "CE3" and "CE4").  These
+   ACs may be over the same or distinct bearers.
 
                              .--------------------.
                              |                    |
@@ -196,8 +195,8 @@ Table of Contents
 
    This document uses the following term:
 
-   Bearer:  A physical or logical link that connects a customer node (or
-      site) to a provider network.
+   Bearer:  A physical or logical link that connects a CE (or site) to a
+      provider network.
 
       A bearer can be a wireless or wired link.  One or multiple
       technologies can be used to build a bearer.  The bearer type can
@@ -299,7 +298,9 @@ Table of Contents
       properties.
 
    'server-assigned-reference':  Used to indicate support of server-
-      generated references to access relevant resources.
+      generated references to access relevant resources.  For example, a
+      server can be a network controller or a router in a provider
+      network.
 
       For example, a bearer request is first created using a name which
       is assigned by the client, but if this feature is supported, the
@@ -328,6 +329,11 @@ Table of Contents
       Virtual Private LAN Service (VPLS), and Virtual eXtensible Local
       Area Network (VXLAN).
 
+   'l3-tunnel-type':  Uses to control the Layer 3 tunnel selection for
+      an AC.  Examples of such type are: IP-in-IP [RFC2003], IPsec
+      [RFC4301], and Generic Routing Encapsulation (GRE)
+      [RFC1701][RFC1702][RFC7676].
+
    'precedence-type':  Used to indicate the redundancy type when
       requesting ACs.  For example, this identity can be used to tag
       primary and secondary ACs.
@@ -335,6 +341,10 @@ Table of Contents
    'role':  Used to indicate the type of an AC: User-to-Network
       Interface (UNI), Network-to-Network Interface (NNI), or public
       NNI.
+
+      The reader may refer to [MEF6], [MEF17], [RFC6004], or [RFC6215]
+      for examples of discussions regarding the use of UNI and NNI
+      reference points.
 
    New administrative status types:  In addition to the status types
       already defined in [RFC9181], this document defines:
@@ -542,13 +552,16 @@ Table of Contents
          and RIP.  The groupings support local specification of
          authentication keys and the associated authentication algorithm
          to accomodate legacy implementations that do not support key
-         chains [RFC8177].  Similar to [RFC9182], this version of the
-         common AC model assumes that parameters specific to the TCP-AO
-         are preconfigured as part of the key chain that is referenced
-         in the model.  No assumption is made about how such a key chain
-         is preconfigured.  However, the structure of the key chain
-         should cover data nodes beyond those in [RFC8177], mainly
-         SendID and RecvID (Section 3.1 of [RFC5925]).
+         chains [RFC8177].  Note that this version of the common AC
+         model covers authentication options that are common to both
+         OSPFv2 [RFC2328] and OSPFv3 [RFC5340]; as such, the model does
+         not support [RFC4552].  Similar to [RFC9182], this version of
+         the common AC model assumes that parameters specific to the
+         TCP-AO are preconfigured as part of the key chain that is
+         referenced in the model.  No assumption is made about how such
+         a key chain is preconfigured.  However, the structure of the
+         key chain should cover data nodes beyond those in [RFC8177],
+         mainly SendID and RecvID (Section 3.1 of [RFC5925]).
 
       *  BGP peer groups: Includes a set of parameters to identify a BGP
          peer group.  Such a group can be defined by providing a local
@@ -2466,6 +2479,10 @@ Table of Contents
               DOI 10.17487/RFC2080, January 1997,
               <https://www.rfc-editor.org/rfc/rfc2080>.
 
+   [RFC2328]  Moy, J., "OSPF Version 2", STD 54, RFC 2328,
+              DOI 10.17487/RFC2328, April 1998,
+              <https://www.rfc-editor.org/rfc/rfc2328>.
+
    [RFC2453]  Malkin, G., "RIP Version 2", STD 56, RFC 2453,
               DOI 10.17487/RFC2453, November 1998,
               <https://www.rfc-editor.org/rfc/rfc2453>.
@@ -2487,6 +2504,10 @@ Table of Contents
    [RFC5308]  Hopps, C., "Routing IPv6 with IS-IS", RFC 5308,
               DOI 10.17487/RFC5308, October 2008,
               <https://www.rfc-editor.org/rfc/rfc5308>.
+
+   [RFC5340]  Coltun, R., Ferguson, D., Moy, J., and A. Lindem, "OSPF
+              for IPv6", RFC 5340, DOI 10.17487/RFC5340, July 2008,
+              <https://www.rfc-editor.org/rfc/rfc5340>.
 
    [RFC5925]  Touch, J., Mankin, A., and R. Bonica, "The TCP
               Authentication Option", RFC 5925, DOI 10.17487/RFC5925,
@@ -2544,9 +2565,9 @@ Table of Contents
               Bierman, A., Boucadair, M., and Q. Wu, "Guidelines for
               Authors and Reviewers of Documents Containing YANG Data
               Models", Work in Progress, Internet-Draft, draft-ietf-
-              netmod-rfc8407bis-21, 13 November 2024,
+              netmod-rfc8407bis-22, 14 January 2025,
               <https://datatracker.ietf.org/doc/html/draft-ietf-netmod-
-              rfc8407bis-21>.
+              rfc8407bis-22>.
 
    [I-D.ietf-opsawg-ac-lxsm-lxnm-glue]
               Boucadair, M., Roberts, R., Barguil, S., and O. G. de
@@ -2561,9 +2582,9 @@ Table of Contents
               Boucadair, M., Roberts, R., de Dios, O. G., Barguil, S.,
               and B. Wu, "A Network YANG Data Model for Attachment
               Circuits", Work in Progress, Internet-Draft, draft-ietf-
-              opsawg-ntw-attachment-circuit-14, 7 November 2024,
+              opsawg-ntw-attachment-circuit-15, 9 January 2025,
               <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
-              ntw-attachment-circuit-14>.
+              ntw-attachment-circuit-15>.
 
    [I-D.ietf-opsawg-teas-attachment-circuit]
               Boucadair, M., Roberts, R., de Dios, O. G., Barguil, S.,
@@ -2582,18 +2603,60 @@ Table of Contents
               <https://datatracker.ietf.org/doc/html/draft-ietf-teas-
               ietf-network-slice-nbi-yang-17>.
 
+   [MEF17]    The Metro Ethernet Forum, "Technical Specification MEF 17,
+              Service OAM Requirements & Framework - Phase 1", April
+              2007, <https://www.mef.net/wp-content/uploads/2015/04/MEF-
+              17.pdf>.
+
+   [MEF6]     The Metro Ethernet Forum, "Technical Specification MEF 6,
+              Ethernet Services Definitions - Phase I", June 2004,
+              <https://www.mef.net/Assets/Technical_Specifications/PDF/
+              MEF_6.pdf>.
+
+   [RFC1701]  Hanks, S., Li, T., Farinacci, D., and P. Traina, "Generic
+              Routing Encapsulation (GRE)", RFC 1701,
+              DOI 10.17487/RFC1701, October 1994,
+              <https://www.rfc-editor.org/rfc/rfc1701>.
+
+   [RFC1702]  Hanks, S., Li, T., Farinacci, D., and P. Traina, "Generic
+              Routing Encapsulation over IPv4 networks", RFC 1702,
+              DOI 10.17487/RFC1702, October 1994,
+              <https://www.rfc-editor.org/rfc/rfc1702>.
+
+   [RFC2003]  Perkins, C., "IP Encapsulation within IP", RFC 2003,
+              DOI 10.17487/RFC2003, October 1996,
+              <https://www.rfc-editor.org/rfc/rfc2003>.
+
    [RFC4252]  Ylonen, T. and C. Lonvick, Ed., "The Secure Shell (SSH)
               Authentication Protocol", RFC 4252, DOI 10.17487/RFC4252,
               January 2006, <https://www.rfc-editor.org/rfc/rfc4252>.
+
+   [RFC4301]  Kent, S. and K. Seo, "Security Architecture for the
+              Internet Protocol", RFC 4301, DOI 10.17487/RFC4301,
+              December 2005, <https://www.rfc-editor.org/rfc/rfc4301>.
 
    [RFC4364]  Rosen, E. and Y. Rekhter, "BGP/MPLS IP Virtual Private
               Networks (VPNs)", RFC 4364, DOI 10.17487/RFC4364, February
               2006, <https://www.rfc-editor.org/rfc/rfc4364>.
 
+   [RFC4552]  Gupta, M. and N. Melam, "Authentication/Confidentiality
+              for OSPFv3", RFC 4552, DOI 10.17487/RFC4552, June 2006,
+              <https://www.rfc-editor.org/rfc/rfc4552>.
+
    [RFC4862]  Thomson, S., Narten, T., and T. Jinmei, "IPv6 Stateless
               Address Autoconfiguration", RFC 4862,
               DOI 10.17487/RFC4862, September 2007,
               <https://www.rfc-editor.org/rfc/rfc4862>.
+
+   [RFC6004]  Berger, L. and D. Fedyk, "Generalized MPLS (GMPLS) Support
+              for Metro Ethernet Forum and G.8011 Ethernet Service
+              Switching", RFC 6004, DOI 10.17487/RFC6004, October 2010,
+              <https://www.rfc-editor.org/rfc/rfc6004>.
+
+   [RFC6215]  Bocci, M., Levrau, L., and D. Frost, "MPLS Transport
+              Profile User-to-Network and Network-to-Network
+              Interfaces", RFC 6215, DOI 10.17487/RFC6215, April 2011,
+              <https://www.rfc-editor.org/rfc/rfc6215>.
 
    [RFC6241]  Enns, R., Ed., Bjorklund, M., Ed., Schoenwaelder, J., Ed.,
               and A. Bierman, Ed., "Network Configuration Protocol
@@ -2604,6 +2667,11 @@ Table of Contents
               Chaining (SFC) Architecture", RFC 7665,
               DOI 10.17487/RFC7665, October 2015,
               <https://www.rfc-editor.org/rfc/rfc7665>.
+
+   [RFC7676]  Pignataro, C., Bonica, R., and S. Krishnan, "IPv6 Support
+              for Generic Routing Encapsulation (GRE)", RFC 7676,
+              DOI 10.17487/RFC7676, October 2015,
+              <https://www.rfc-editor.org/rfc/rfc7676>.
 
    [RFC8040]  Bierman, A., Bjorklund, M., and K. Watsen, "RESTCONF
               Protocol", RFC 8040, DOI 10.17487/RFC8040, January 2017,
@@ -2947,6 +3015,8 @@ Acknowledgments
    Thanks to Reza Rokui for the Shepherd review.
 
    Thanks to Mahesh Jethanandani for the AD review.
+
+   Thanks to Éric Vyncke for the IESG review.
 
 Contributors
 

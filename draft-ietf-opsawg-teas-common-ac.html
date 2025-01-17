@@ -11,7 +11,7 @@
 <meta content="Samier Barguil Giraldo" name="author">
 <meta content="Bo Wu" name="author">
 <meta content="
-       The document specifies a common attachment circuits (ACs) YANG module, which is designed with the intent to be reusable by other models. For example, this common model can be reused by service models to expose ACs as a service, service models that require binding a service to a set of ACs, network and device models to provision ACs, etc. 
+       The document specifies a common attachment circuits (ACs) YANG model, which is designed with the intent to be reusable by other models. For example, this common model can be reused by service models to expose ACs as a service, service models that require binding a service to a set of ACs, network and device models to provision ACs, etc. 
     " name="description">
 <meta content="xml2rfc 3.25.0" name="generator">
 <meta content="Slice Service" name="keyword">
@@ -1065,7 +1065,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Boucadair, et al.</td>
-<td class="center">Expires 13 July 2025</td>
+<td class="center">Expires 21 July 2025</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1078,12 +1078,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-opsawg-teas-common-ac-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2025-01-09" class="published">9 January 2025</time>
+<time datetime="2025-01-17" class="published">17 January 2025</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2025-07-13">13 July 2025</time></dd>
+<dd class="expires"><time datetime="2025-07-21">21 July 2025</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1114,7 +1114,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <h1 id="title">A Common YANG Data Model for Attachment Circuits</h1>
 <section id="section-abstract">
       <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
-<p id="section-abstract-1">The document specifies a common attachment circuits (ACs) YANG module, which is designed with the intent to be reusable by other models. For example, this common model can be reused by service models to expose ACs as a service, service models that require binding a service to a set of ACs, network and device models to provision ACs, etc.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
+<p id="section-abstract-1">The document specifies a common attachment circuits (ACs) YANG model, which is designed with the intent to be reusable by other models. For example, this common model can be reused by service models to expose ACs as a service, service models that require binding a service to a set of ACs, network and device models to provision ACs, etc.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
 </section>
 <section class="note rfcEditorRemove" id="section-note.1">
       <h2 id="name-discussion-venues">
@@ -1146,7 +1146,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 13 July 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 21 July 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1244,9 +1244,9 @@ svg :is([fill="white"], [fill^="#fff"]) {
       <h2 id="name-introduction">
 <a href="#section-1" class="section-number selfRef">1. </a><a href="#name-introduction" class="section-name selfRef">Introduction</a>
       </h2>
-<p id="section-1-1">Connectivity services are provided by networks to customers via dedicated terminating points (e.g., Service Functions (SFs), Customer Premises Equipment (CPEs), Autonomous System Border Routers (ASBRs), data centers gateways, or Internet Exchange Points). A connectivity service is basically about ensuring data transfer received from (or destined to) a given terminating point to (or from) other terminating points that belong to the same customer/service, an interconnection node, or an ancillary node. A set of objectives for the connectivity service may eventually be negotiated and agreed upon between a customer and a network provider. For that data transfer to take place within the provider network, it is assumed that adequate setup is provisioned over the links that connect customer terminating points and a provider network (a Provider Edge (PE), typically) so that data can be successfully exchanged over these links. The required setup is referred to in this document as an attachment circuits (ACs), while the underlying link is referred to as "bearer".<a href="#section-1-1" class="pilcrow">¶</a></p>
+<p id="section-1-1">Connectivity services are provided by networks to customers via dedicated terminating points (e.g., Service Functions (SFs), Customer Premises Equipment (CPEs), Autonomous System Border Routers (ASBRs), data centers gateways, or Internet Exchange Points). A connectivity service is basically about ensuring data transfer received from (or destined to) a given terminating point to (or from) other terminating points. A set of objectives for the connectivity service may eventually be negotiated and agreed upon between a customer and a network provider. For that data transfer to take place within the provider network, it is assumed that adequate setup is provisioned over the links that connect customer terminating points and a provider network (a Provider Edge (PE), typically) so that data can be successfully exchanged over these links. The required setup is referred to in this document as an attachment circuits (ACs), while the underlying link is referred to as "bearer".<a href="#section-1-1" class="pilcrow">¶</a></p>
 <p id="section-1-2">When a customer requests a new service, the service can be bound to existing attachment circuits or trigger the instantiation of new attachment circuits. Whether these attachment circuits are specific for a given service or are shared to deliver a variety of services is deployment-specific.<a href="#section-1-2" class="pilcrow">¶</a></p>
-<p id="section-1-3">An example of attachment circuits is depicted in <a href="#uc" class="auto internal xref">Figure 1</a>. A Customer Edge (CE) may be a physical node or a logical entity. A CE is seen by the network as a peer Service Attachment Point (SAP) <span>[<a href="#RFC9408" class="cite xref">RFC9408</a>]</span>. CEs may be dedicated to one single service (e.g., Layer 3 Virtual Private Network (VPN) or Layer 2 VPN) or host multiple services (e.g., Service Functions <span>[<a href="#RFC7665" class="cite xref">RFC7665</a>]</span>). A single AC (as seen by a network provider) may be bound to one or multiple peer SAPs (e.g., "CE1" and "CE2"). For example, and as discussed in <span>[<a href="#RFC4364" class="cite xref">RFC4364</a>]</span>, multiple CEs can be attached to a PE over the same attachment circuit. This is typically implemented if the Layer 2 infrastructure between the CE and the network provides a multipoint service. The same CE may terminate multiple ACs. These ACs may be over the same or distinct bearers.<a href="#section-1-3" class="pilcrow">¶</a></p>
+<p id="section-1-3">An example of attachment circuits is depicted in <a href="#uc" class="auto internal xref">Figure 1</a>. A Customer Edge (CE) may be a physical node or a logical entity. A CE is seen by the network as a peer Service Attachment Point (SAP) <span>[<a href="#RFC9408" class="cite xref">RFC9408</a>]</span>. CEs may be dedicated to one single service (e.g., Layer 3 Virtual Private Network (VPN) or Layer 2 VPN) or host multiple services (e.g., Service Functions <span>[<a href="#RFC7665" class="cite xref">RFC7665</a>]</span>). A single AC (as seen by a network provider) may be bound to one or multiple peer SAPs (e.g., "CE1" and "CE2"). For example, and as discussed in <span>[<a href="#RFC4364" class="cite xref">RFC4364</a>]</span>, multiple CEs can be attached to a PE over the same attachment circuit. This is typically implemented if the Layer 2 infrastructure between the CE and the network provides a multipoint service. The same CE may terminate multiple ACs (e.g., "CE3" and "CE4"). These ACs may be over the same or distinct bearers.<a href="#section-1-3" class="pilcrow">¶</a></p>
 <span id="name-examples-of-acs"></span><div id="uc">
 <figure id="figure-1">
         <div id="section-1-4.1">
@@ -1377,7 +1377,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <span class="break"></span><dl class="dlParallel" id="section-2-5">
         <dt id="section-2-5.1">Bearer:</dt>
         <dd style="margin-left: 1.5em" id="section-2-5.2">
-          <p id="section-2-5.2.1">A physical or logical link that connects a customer node (or site) to a provider network.<a href="#section-2-5.2.1" class="pilcrow">¶</a></p>
+          <p id="section-2-5.2.1">A physical or logical link that connects a CE (or site) to a provider network.<a href="#section-2-5.2.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 <dt id="section-2-5.3"></dt>
@@ -1559,7 +1559,7 @@ for the reader's convenience.<a href="#section-4-1" class="pilcrow">¶</a></p>
           <dd class="break"></dd>
 <dt id="section-4.1-2.5">'server-assigned-reference':</dt>
           <dd style="margin-left: 1.5em" id="section-4.1-2.6">
-            <p id="section-4.1-2.6.1">Used to indicate support of server-generated references to access relevant resources.<a href="#section-4.1-2.6.1" class="pilcrow">¶</a></p>
+            <p id="section-4.1-2.6.1">Used to indicate support of server-generated references to access relevant resources. For example, a server can be a network controller or a router in a provider network.<a href="#section-4.1-2.6.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
 <dt id="section-4.1-2.7"></dt>
@@ -1592,31 +1592,41 @@ for the reader's convenience.<a href="#section-4-1" class="pilcrow">¶</a></p>
             <p id="section-4.2-2.6.1">Uses to control the Layer 2 tunnel selection for an AC. The current version supports indicating pseudowire, Virtual Private LAN Service (VPLS), and Virtual eXtensible Local Area Network (VXLAN).<a href="#section-4.2-2.6.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.2-2.7">'precedence-type':</dt>
+<dt id="section-4.2-2.7">'l3-tunnel-type':</dt>
           <dd style="margin-left: 1.5em" id="section-4.2-2.8">
-            <p id="section-4.2-2.8.1">Used to indicate the redundancy type when requesting ACs. For example, this identity can be used to tag primary and secondary ACs.<a href="#section-4.2-2.8.1" class="pilcrow">¶</a></p>
+            <p id="section-4.2-2.8.1">Uses to control the Layer 3 tunnel selection for an AC. Examples of such type are: IP-in-IP <span>[<a href="#RFC2003" class="cite xref">RFC2003</a>]</span>, IPsec <span>[<a href="#RFC4301" class="cite xref">RFC4301</a>]</span>, and Generic Routing Encapsulation (GRE) <span>[<a href="#RFC1701" class="cite xref">RFC1701</a>]</span><span>[<a href="#RFC1702" class="cite xref">RFC1702</a>]</span><span>[<a href="#RFC7676" class="cite xref">RFC7676</a>]</span>.<a href="#section-4.2-2.8.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.2-2.9">'role':</dt>
+<dt id="section-4.2-2.9">'precedence-type':</dt>
           <dd style="margin-left: 1.5em" id="section-4.2-2.10">
-            <p id="section-4.2-2.10.1">Used to indicate the type of an AC: User-to-Network Interface (UNI), Network-to-Network Interface (NNI), or public NNI.<a href="#section-4.2-2.10.1" class="pilcrow">¶</a></p>
+            <p id="section-4.2-2.10.1">Used to indicate the redundancy type when requesting ACs. For example, this identity can be used to tag primary and secondary ACs.<a href="#section-4.2-2.10.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.2-2.11">New administrative status types:</dt>
+<dt id="section-4.2-2.11">'role':</dt>
           <dd style="margin-left: 1.5em" id="section-4.2-2.12">
-            <p id="section-4.2-2.12.1">In addition to the status types already defined in <span>[<a href="#RFC9181" class="cite xref">RFC9181</a>]</span>, this document defines:<a href="#section-4.2-2.12.1" class="pilcrow">¶</a></p>
+            <p id="section-4.2-2.12.1">Used to indicate the type of an AC: User-to-Network Interface (UNI), Network-to-Network Interface (NNI), or public NNI.<a href="#section-4.2-2.12.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.2-2.13"></dt>
+          <dd style="margin-left: 1.5em" id="section-4.2-2.14">
+            <p id="section-4.2-2.14.1">The reader may refer to <span>[<a href="#MEF6" class="cite xref">MEF6</a>]</span>, <span>[<a href="#MEF17" class="cite xref">MEF17</a>]</span>, <span>[<a href="#RFC6004" class="cite xref">RFC6004</a>]</span>, or <span>[<a href="#RFC6215" class="cite xref">RFC6215</a>]</span> for examples of discussions regarding the use of UNI and NNI reference points.<a href="#section-4.2-2.14.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.2-2.15">New administrative status types:</dt>
+          <dd style="margin-left: 1.5em" id="section-4.2-2.16">
+            <p id="section-4.2-2.16.1">In addition to the status types already defined in <span>[<a href="#RFC9181" class="cite xref">RFC9181</a>]</span>, this document defines:<a href="#section-4.2-2.16.1" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-4.2-2.12.2.1">
-                <p id="section-4.2-2.12.2.1.1">'awaiting-validation' to report that a request is pending an adiministrator approval.<a href="#section-4.2-2.12.2.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-4.2-2.16.2.1">
+                <p id="section-4.2-2.16.2.1.1">'awaiting-validation' to report that a request is pending an adiministrator approval.<a href="#section-4.2-2.16.2.1.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="normal" id="section-4.2-2.12.2.2">
-                <p id="section-4.2-2.12.2.2.1">'awaiting-processing' to report that a request was approved and validated, but is awaiting more processing before activation.<a href="#section-4.2-2.12.2.2.1" class="pilcrow">¶</a></p>
+              <li class="normal" id="section-4.2-2.16.2.2">
+                <p id="section-4.2-2.16.2.2.1">'awaiting-processing' to report that a request was approved and validated, but is awaiting more processing before activation.<a href="#section-4.2-2.16.2.2.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="normal" id="section-4.2-2.12.2.3">
-                <p id="section-4.2-2.12.2.3.1">'admin-prohibited' to report that a request cannot be handled because of administrative policies.<a href="#section-4.2-2.12.2.3.1" class="pilcrow">¶</a></p>
+              <li class="normal" id="section-4.2-2.16.2.3">
+                <p id="section-4.2-2.16.2.3.1">'admin-prohibited' to report that a request cannot be handled because of administrative policies.<a href="#section-4.2-2.16.2.3.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="normal" id="section-4.2-2.12.2.4">
-                <p id="section-4.2-2.12.2.4.1">'rejected' to report that a request was rejected reasons not covered by the other status types.<a href="#section-4.2-2.12.2.4.1" class="pilcrow">¶</a></p>
+              <li class="normal" id="section-4.2-2.16.2.4">
+                <p id="section-4.2-2.16.2.4.1">'rejected' to report that a request was rejected reasons not covered by the other status types.<a href="#section-4.2-2.16.2.4.1" class="pilcrow">¶</a></p>
 </li>
             </ul>
 </dd>
@@ -1837,7 +1847,7 @@ for the reader's convenience.<a href="#section-4-1" class="pilcrow">¶</a></p>
             <p id="section-4.3-8.2.1">In addition to static routing, the module supports the following routing protocols: BGP <span>[<a href="#RFC4271" class="cite xref">RFC4271</a>]</span>, OSPF <span>[<a href="#RFC4577" class="cite xref">RFC4577</a>]</span> or <span>[<a href="#RFC6565" class="cite xref">RFC6565</a>]</span>, IS-IS <span>[<a href="#ISO10589" class="cite xref">ISO10589</a>]</span><span>[<a href="#RFC1195" class="cite xref">RFC1195</a>]</span><span>[<a href="#RFC5308" class="cite xref">RFC5308</a>]</span>, and RIP <span>[<a href="#RFC2453" class="cite xref">RFC2453</a>]</span>. For all supported routing protocols, 'address-family' indicates whether IPv4, IPv6, or both address families are to be activated. For example, this parameter is used to determine whether RIPv2 <span>[<a href="#RFC2453" class="cite xref">RFC2453</a>]</span>, RIP Next Generation (RIPng), or both are to be enabled <span>[<a href="#RFC2080" class="cite xref">RFC2080</a>]</span>. More details about supported routing groupings are provided hereafter:<a href="#section-4.3-8.2.1" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-4.3-8.2.2.1">
-                <p id="section-4.3-8.2.2.1.1">Authentication: These groupings include the required information to manage the authentication of OSPF, IS-IS, BGP, and RIP. The groupings support local specification of authentication keys and the associated authentication algorithm to accomodate legacy implementations that do not support key chains <span>[<a href="#RFC8177" class="cite xref">RFC8177</a>]</span>. Similar to <span>[<a href="#RFC9182" class="cite xref">RFC9182</a>]</span>, this version of the common AC model assumes that parameters specific to the TCP-AO are preconfigured as part of the key chain that is referenced in the model. No assumption is made about how such a key chain is preconfigured. However, the structure of the key chain should cover data nodes beyond those in <span>[<a href="#RFC8177" class="cite xref">RFC8177</a>]</span>, mainly SendID and RecvID (Section 3.1 of <span>[<a href="#RFC5925" class="cite xref">RFC5925</a>]</span>).<a href="#section-4.3-8.2.2.1.1" class="pilcrow">¶</a></p>
+                <p id="section-4.3-8.2.2.1.1">Authentication: These groupings include the required information to manage the authentication of OSPF, IS-IS, BGP, and RIP. The groupings support local specification of authentication keys and the associated authentication algorithm to accomodate legacy implementations that do not support key chains <span>[<a href="#RFC8177" class="cite xref">RFC8177</a>]</span>. Note that this version of the common AC model covers authentication options that are common to both OSPFv2 <span>[<a href="#RFC2328" class="cite xref">RFC2328</a>]</span> and OSPFv3 <span>[<a href="#RFC5340" class="cite xref">RFC5340</a>]</span>; as such, the model does not support <span>[<a href="#RFC4552" class="cite xref">RFC4552</a>]</span>. Similar to <span>[<a href="#RFC9182" class="cite xref">RFC9182</a>]</span>, this version of the common AC model assumes that parameters specific to the TCP-AO are preconfigured as part of the key chain that is referenced in the model. No assumption is made about how such a key chain is preconfigured. However, the structure of the key chain should cover data nodes beyond those in <span>[<a href="#RFC8177" class="cite xref">RFC8177</a>]</span>, mainly SendID and RecvID (Section 3.1 of <span>[<a href="#RFC5925" class="cite xref">RFC5925</a>]</span>).<a href="#section-4.3-8.2.2.1.1" class="pilcrow">¶</a></p>
 </li>
               <li class="normal" id="section-4.3-8.2.2.2">
                 <p id="section-4.3-8.2.2.2.1">BGP peer groups: Includes a set of parameters to identify a BGP peer group. Such a group can be defined by providing a local AS Number (ASN), a customer's ASN, and the address families to be activated for this group. BGP peer groups can be identified by a name.<a href="#section-4.3-8.2.2.2.1" class="pilcrow">¶</a></p>
@@ -3728,7 +3738,7 @@ module ietf-ac-common {
       <h2 id="name-security-considerations">
 <a href="#section-6" class="section-number selfRef">6. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
       </h2>
-<p id="section-6-1">This section is modeled after the template described in <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-netmod-rfc8407bis-21#section-3.7" class="relref">Section 3.7</a> of [<a href="#I-D.ietf-netmod-rfc8407bis" class="cite xref">I-D.ietf-netmod-rfc8407bis</a>]</span>.<a href="#section-6-1" class="pilcrow">¶</a></p>
+<p id="section-6-1">This section is modeled after the template described in <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-netmod-rfc8407bis-22#section-3.7" class="relref">Section 3.7</a> of [<a href="#I-D.ietf-netmod-rfc8407bis" class="cite xref">I-D.ietf-netmod-rfc8407bis</a>]</span>.<a href="#section-6-1" class="pilcrow">¶</a></p>
 <p id="section-6-2">The "ietf-ac-common" YANG module defines a data model that is
 designed to be accessed via YANG-based management protocols, such as
 NETCONF <span>[<a href="#RFC6241" class="cite xref">RFC6241</a>]</span> and RESTCONF <span>[<a href="#RFC8040" class="cite xref">RFC8040</a>]</span>. These protocols have to
@@ -3811,6 +3821,10 @@ should identify the corresponding security considerations. For
         <dd>
 <span class="refAuthor">Malkin, G.</span> and <span class="refAuthor">R. Minnear</span>, <span class="refTitle">"RIPng for IPv6"</span>, <span class="seriesInfo">RFC 2080</span>, <span class="seriesInfo">DOI 10.17487/RFC2080</span>, <time datetime="1997-01" class="refDate">January 1997</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc2080">https://www.rfc-editor.org/rfc/rfc2080</a>&gt;</span>. </dd>
 <dd class="break"></dd>
+<dt id="RFC2328">[RFC2328]</dt>
+        <dd>
+<span class="refAuthor">Moy, J.</span>, <span class="refTitle">"OSPF Version 2"</span>, <span class="seriesInfo">STD 54</span>, <span class="seriesInfo">RFC 2328</span>, <span class="seriesInfo">DOI 10.17487/RFC2328</span>, <time datetime="1998-04" class="refDate">April 1998</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc2328">https://www.rfc-editor.org/rfc/rfc2328</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="RFC2453">[RFC2453]</dt>
         <dd>
 <span class="refAuthor">Malkin, G.</span>, <span class="refTitle">"RIP Version 2"</span>, <span class="seriesInfo">STD 56</span>, <span class="seriesInfo">RFC 2453</span>, <span class="seriesInfo">DOI 10.17487/RFC2453</span>, <time datetime="1998-11" class="refDate">November 1998</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc2453">https://www.rfc-editor.org/rfc/rfc2453</a>&gt;</span>. </dd>
@@ -3830,6 +3844,10 @@ should identify the corresponding security considerations. For
 <dt id="RFC5308">[RFC5308]</dt>
         <dd>
 <span class="refAuthor">Hopps, C.</span>, <span class="refTitle">"Routing IPv6 with IS-IS"</span>, <span class="seriesInfo">RFC 5308</span>, <span class="seriesInfo">DOI 10.17487/RFC5308</span>, <time datetime="2008-10" class="refDate">October 2008</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc5308">https://www.rfc-editor.org/rfc/rfc5308</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC5340">[RFC5340]</dt>
+        <dd>
+<span class="refAuthor">Coltun, R.</span>, <span class="refAuthor">Ferguson, D.</span>, <span class="refAuthor">Moy, J.</span>, and <span class="refAuthor">A. Lindem</span>, <span class="refTitle">"OSPF for IPv6"</span>, <span class="seriesInfo">RFC 5340</span>, <span class="seriesInfo">DOI 10.17487/RFC5340</span>, <time datetime="2008-07" class="refDate">July 2008</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc5340">https://www.rfc-editor.org/rfc/rfc5340</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC5925">[RFC5925]</dt>
         <dd>
@@ -3882,7 +3900,7 @@ should identify the corresponding security considerations. For
 <dl class="references">
 <dt id="I-D.ietf-netmod-rfc8407bis">[I-D.ietf-netmod-rfc8407bis]</dt>
         <dd>
-<span class="refAuthor">Bierman, A.</span>, <span class="refAuthor">Boucadair, M.</span>, and <span class="refAuthor">Q. Wu</span>, <span class="refTitle">"Guidelines for Authors and Reviewers of Documents Containing YANG Data Models"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-netmod-rfc8407bis-21</span>, <time datetime="2024-11-13" class="refDate">13 November 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-netmod-rfc8407bis-21">https://datatracker.ietf.org/doc/html/draft-ietf-netmod-rfc8407bis-21</a>&gt;</span>. </dd>
+<span class="refAuthor">Bierman, A.</span>, <span class="refAuthor">Boucadair, M.</span>, and <span class="refAuthor">Q. Wu</span>, <span class="refTitle">"Guidelines for Authors and Reviewers of Documents Containing YANG Data Models"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-netmod-rfc8407bis-22</span>, <time datetime="2025-01-14" class="refDate">14 January 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-netmod-rfc8407bis-22">https://datatracker.ietf.org/doc/html/draft-ietf-netmod-rfc8407bis-22</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="I-D.ietf-opsawg-ac-lxsm-lxnm-glue">[I-D.ietf-opsawg-ac-lxsm-lxnm-glue]</dt>
         <dd>
@@ -3890,7 +3908,7 @@ should identify the corresponding security considerations. For
 <dd class="break"></dd>
 <dt id="I-D.ietf-opsawg-ntw-attachment-circuit">[I-D.ietf-opsawg-ntw-attachment-circuit]</dt>
         <dd>
-<span class="refAuthor">Boucadair, M.</span>, <span class="refAuthor">Roberts, R.</span>, <span class="refAuthor">de Dios, O. G.</span>, <span class="refAuthor">Barguil, S.</span>, and <span class="refAuthor">B. Wu</span>, <span class="refTitle">"A Network YANG Data Model for Attachment Circuits"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-opsawg-ntw-attachment-circuit-14</span>, <time datetime="2024-11-07" class="refDate">7 November 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-ntw-attachment-circuit-14">https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-ntw-attachment-circuit-14</a>&gt;</span>. </dd>
+<span class="refAuthor">Boucadair, M.</span>, <span class="refAuthor">Roberts, R.</span>, <span class="refAuthor">de Dios, O. G.</span>, <span class="refAuthor">Barguil, S.</span>, and <span class="refAuthor">B. Wu</span>, <span class="refTitle">"A Network YANG Data Model for Attachment Circuits"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-opsawg-ntw-attachment-circuit-15</span>, <time datetime="2025-01-09" class="refDate">9 January 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-ntw-attachment-circuit-15">https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-ntw-attachment-circuit-15</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="I-D.ietf-opsawg-teas-attachment-circuit">[I-D.ietf-opsawg-teas-attachment-circuit]</dt>
         <dd>
@@ -3900,17 +3918,53 @@ should identify the corresponding security considerations. For
         <dd>
 <span class="refAuthor">Wu, B.</span>, <span class="refAuthor">Dhody, D.</span>, <span class="refAuthor">Rokui, R.</span>, <span class="refAuthor">Saad, T.</span>, and <span class="refAuthor">J. Mullooly</span>, <span class="refTitle">"A YANG Data Model for the RFC 9543 Network Slice Service"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-teas-ietf-network-slice-nbi-yang-17</span>, <time datetime="2024-12-20" class="refDate">20 December 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-teas-ietf-network-slice-nbi-yang-17">https://datatracker.ietf.org/doc/html/draft-ietf-teas-ietf-network-slice-nbi-yang-17</a>&gt;</span>. </dd>
 <dd class="break"></dd>
+<dt id="MEF17">[MEF17]</dt>
+        <dd>
+<span class="refAuthor">The Metro Ethernet Forum</span>, <span class="refTitle">"Technical Specification MEF 17, Service OAM Requirements &amp; Framework - Phase 1"</span>, <time datetime="2007-04" class="refDate">April 2007</time>, <span>&lt;<a href="https://www.mef.net/wp-content/uploads/2015/04/MEF-17.pdf">https://www.mef.net/wp-content/uploads/2015/04/MEF-17.pdf</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="MEF6">[MEF6]</dt>
+        <dd>
+<span class="refAuthor">The Metro Ethernet Forum</span>, <span class="refTitle">"Technical Specification MEF 6, Ethernet Services Definitions - Phase I"</span>, <time datetime="2004-06" class="refDate">June 2004</time>, <span>&lt;<a href="https://www.mef.net/Assets/Technical_Specifications/PDF/MEF_6.pdf">https://www.mef.net/Assets/Technical_Specifications/PDF/MEF_6.pdf</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC1701">[RFC1701]</dt>
+        <dd>
+<span class="refAuthor">Hanks, S.</span>, <span class="refAuthor">Li, T.</span>, <span class="refAuthor">Farinacci, D.</span>, and <span class="refAuthor">P. Traina</span>, <span class="refTitle">"Generic Routing Encapsulation (GRE)"</span>, <span class="seriesInfo">RFC 1701</span>, <span class="seriesInfo">DOI 10.17487/RFC1701</span>, <time datetime="1994-10" class="refDate">October 1994</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc1701">https://www.rfc-editor.org/rfc/rfc1701</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC1702">[RFC1702]</dt>
+        <dd>
+<span class="refAuthor">Hanks, S.</span>, <span class="refAuthor">Li, T.</span>, <span class="refAuthor">Farinacci, D.</span>, and <span class="refAuthor">P. Traina</span>, <span class="refTitle">"Generic Routing Encapsulation over IPv4 networks"</span>, <span class="seriesInfo">RFC 1702</span>, <span class="seriesInfo">DOI 10.17487/RFC1702</span>, <time datetime="1994-10" class="refDate">October 1994</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc1702">https://www.rfc-editor.org/rfc/rfc1702</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC2003">[RFC2003]</dt>
+        <dd>
+<span class="refAuthor">Perkins, C.</span>, <span class="refTitle">"IP Encapsulation within IP"</span>, <span class="seriesInfo">RFC 2003</span>, <span class="seriesInfo">DOI 10.17487/RFC2003</span>, <time datetime="1996-10" class="refDate">October 1996</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc2003">https://www.rfc-editor.org/rfc/rfc2003</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="RFC4252">[RFC4252]</dt>
         <dd>
 <span class="refAuthor">Ylonen, T.</span> and <span class="refAuthor">C. Lonvick, Ed.</span>, <span class="refTitle">"The Secure Shell (SSH) Authentication Protocol"</span>, <span class="seriesInfo">RFC 4252</span>, <span class="seriesInfo">DOI 10.17487/RFC4252</span>, <time datetime="2006-01" class="refDate">January 2006</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc4252">https://www.rfc-editor.org/rfc/rfc4252</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC4301">[RFC4301]</dt>
+        <dd>
+<span class="refAuthor">Kent, S.</span> and <span class="refAuthor">K. Seo</span>, <span class="refTitle">"Security Architecture for the Internet Protocol"</span>, <span class="seriesInfo">RFC 4301</span>, <span class="seriesInfo">DOI 10.17487/RFC4301</span>, <time datetime="2005-12" class="refDate">December 2005</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc4301">https://www.rfc-editor.org/rfc/rfc4301</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC4364">[RFC4364]</dt>
         <dd>
 <span class="refAuthor">Rosen, E.</span> and <span class="refAuthor">Y. Rekhter</span>, <span class="refTitle">"BGP/MPLS IP Virtual Private Networks (VPNs)"</span>, <span class="seriesInfo">RFC 4364</span>, <span class="seriesInfo">DOI 10.17487/RFC4364</span>, <time datetime="2006-02" class="refDate">February 2006</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc4364">https://www.rfc-editor.org/rfc/rfc4364</a>&gt;</span>. </dd>
 <dd class="break"></dd>
+<dt id="RFC4552">[RFC4552]</dt>
+        <dd>
+<span class="refAuthor">Gupta, M.</span> and <span class="refAuthor">N. Melam</span>, <span class="refTitle">"Authentication/Confidentiality for OSPFv3"</span>, <span class="seriesInfo">RFC 4552</span>, <span class="seriesInfo">DOI 10.17487/RFC4552</span>, <time datetime="2006-06" class="refDate">June 2006</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc4552">https://www.rfc-editor.org/rfc/rfc4552</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="RFC4862">[RFC4862]</dt>
         <dd>
 <span class="refAuthor">Thomson, S.</span>, <span class="refAuthor">Narten, T.</span>, and <span class="refAuthor">T. Jinmei</span>, <span class="refTitle">"IPv6 Stateless Address Autoconfiguration"</span>, <span class="seriesInfo">RFC 4862</span>, <span class="seriesInfo">DOI 10.17487/RFC4862</span>, <time datetime="2007-09" class="refDate">September 2007</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc4862">https://www.rfc-editor.org/rfc/rfc4862</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC6004">[RFC6004]</dt>
+        <dd>
+<span class="refAuthor">Berger, L.</span> and <span class="refAuthor">D. Fedyk</span>, <span class="refTitle">"Generalized MPLS (GMPLS) Support for Metro Ethernet Forum and G.8011 Ethernet Service Switching"</span>, <span class="seriesInfo">RFC 6004</span>, <span class="seriesInfo">DOI 10.17487/RFC6004</span>, <time datetime="2010-10" class="refDate">October 2010</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc6004">https://www.rfc-editor.org/rfc/rfc6004</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC6215">[RFC6215]</dt>
+        <dd>
+<span class="refAuthor">Bocci, M.</span>, <span class="refAuthor">Levrau, L.</span>, and <span class="refAuthor">D. Frost</span>, <span class="refTitle">"MPLS Transport Profile User-to-Network and Network-to-Network Interfaces"</span>, <span class="seriesInfo">RFC 6215</span>, <span class="seriesInfo">DOI 10.17487/RFC6215</span>, <time datetime="2011-04" class="refDate">April 2011</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc6215">https://www.rfc-editor.org/rfc/rfc6215</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC6241">[RFC6241]</dt>
         <dd>
@@ -3919,6 +3973,10 @@ should identify the corresponding security considerations. For
 <dt id="RFC7665">[RFC7665]</dt>
         <dd>
 <span class="refAuthor">Halpern, J., Ed.</span> and <span class="refAuthor">C. Pignataro, Ed.</span>, <span class="refTitle">"Service Function Chaining (SFC) Architecture"</span>, <span class="seriesInfo">RFC 7665</span>, <span class="seriesInfo">DOI 10.17487/RFC7665</span>, <time datetime="2015-10" class="refDate">October 2015</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc7665">https://www.rfc-editor.org/rfc/rfc7665</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC7676">[RFC7676]</dt>
+        <dd>
+<span class="refAuthor">Pignataro, C.</span>, <span class="refAuthor">Bonica, R.</span>, and <span class="refAuthor">S. Krishnan</span>, <span class="refTitle">"IPv6 Support for Generic Routing Encapsulation (GRE)"</span>, <span class="seriesInfo">RFC 7676</span>, <span class="seriesInfo">DOI 10.17487/RFC7676</span>, <time datetime="2015-10" class="refDate">October 2015</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc7676">https://www.rfc-editor.org/rfc/rfc7676</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC8040">[RFC8040]</dt>
         <dd>
@@ -4266,6 +4324,7 @@ in <span>[<a href="#RFC9181" class="cite xref">RFC9181</a>]</span> and <span>[<a
 rtg-dir reviews, Watson Ladd for the sec-dir review, and Behcet Sarikaya for the genart review.<a href="#appendix-B-2" class="pilcrow">¶</a></p>
 <p id="appendix-B-3">Thanks to Reza Rokui for the Shepherd review.<a href="#appendix-B-3" class="pilcrow">¶</a></p>
 <p id="appendix-B-4">Thanks to Mahesh Jethanandani for the AD review.<a href="#appendix-B-4" class="pilcrow">¶</a></p>
+<p id="appendix-B-5">Thanks to Éric Vyncke for the IESG review.<a href="#appendix-B-5" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="contributors">

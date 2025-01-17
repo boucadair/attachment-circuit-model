@@ -5,12 +5,12 @@
 OPSAWG                                                 M. Boucadair, Ed.
 Internet-Draft                                                    Orange
 Intended status: Standards Track                              R. Roberts
-Expires: 13 July 2025                                            Juniper
+Expires: 21 July 2025                                            Juniper
                                                            S. B. Giraldo
                                                                    Nokia
                                                            O. G. D. Dios
                                                               Telefonica
-                                                          9 January 2025
+                                                         17 January 2025
 
 
   A YANG Data Model for Augmenting VPN Service and Network Models with
@@ -54,7 +54,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 13 July 2025.
+   This Internet-Draft will expire on 21 July 2025.
 
 Copyright Notice
 
@@ -804,9 +804,9 @@ Table of Contents
               Boucadair, M., Roberts, R., de Dios, O. G., Barguil, S.,
               and B. Wu, "A Network YANG Data Model for Attachment
               Circuits", Work in Progress, Internet-Draft, draft-ietf-
-              opsawg-ntw-attachment-circuit-14, 7 November 2024,
+              opsawg-ntw-attachment-circuit-15, 9 January 2025,
               <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
-              ntw-attachment-circuit-14>.
+              ntw-attachment-circuit-15>.
 
    [I-D.ietf-opsawg-teas-attachment-circuit]
               Boucadair, M., Roberts, R., de Dios, O. G., Barguil, S.,
@@ -862,9 +862,9 @@ Table of Contents
               Bierman, A., Boucadair, M., and Q. Wu, "Guidelines for
               Authors and Reviewers of Documents Containing YANG Data
               Models", Work in Progress, Internet-Draft, draft-ietf-
-              netmod-rfc8407bis-21, 13 November 2024,
+              netmod-rfc8407bis-22, 14 January 2025,
               <https://datatracker.ietf.org/doc/html/draft-ietf-netmod-
-              rfc8407bis-21>.
+              rfc8407bis-22>.
 
    [I-D.ietf-opsawg-teas-common-ac]
               Boucadair, M., Roberts, R., de Dios, O. G., Barguil, S.,
