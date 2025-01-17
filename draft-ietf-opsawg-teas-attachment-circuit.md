@@ -481,7 +481,7 @@ The overall tree structure of the AC service module is shown in {{o-svc-tree}}.
 ~~~~
 {: #o-svc-tree title="Overall AC Service Tree Structure" artwork-align="center"}
 
-The rationale for deciding whether a reusable grouping should be maintained in this document or be moved into the AC common module {{!I-D.ietf-opsawg-teas-common-ac}} is as follows:
+The rationale for deciding whether a reusable grouping is included in this document or be moved into the AC common module {{!I-D.ietf-opsawg-teas-common-ac}} is as follows:
 
 * Groupings that are reusable among the AC service module, AC network module, other service models, and network models are included in the AC common module.
 * Groupings that are reusable only by other service models are maintained in the "ietf-ac-svc" module.
@@ -1580,3 +1580,5 @@ Gyan Mishra for the genart review, and Adrian Farrel for the opsdir review.
 Thanks to Luis Miguel Contreras Murillo for the careful Shepherd review.
 
 Thanks to Mahesh Jethanandani for the AD review.
+
+Thanks to Éric Vyncke for the IESG review.

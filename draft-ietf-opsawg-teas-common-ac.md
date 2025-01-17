@@ -88,20 +88,34 @@ normative:
     date: 2002
     target: https://www.iso.org/standard/30932.html
 
+informative:
+  MEF6:
+    title: Technical Specification MEF 6, Ethernet Services Definitions - Phase I
+    author:
+      org: The Metro Ethernet Forum
+    date: June 2004
+    target: https://www.mef.net/Assets/Technical_Specifications/PDF/MEF_6.pdf
+
+  MEF17:
+    title: Technical Specification MEF 17, Service OAM Requirements & Framework - Phase 1
+    author:
+      org: The Metro Ethernet Forum
+    date:  April 2007
+    target: https://www.mef.net/wp-content/uploads/2015/04/MEF-17.pdf
 
 --- abstract
 
-The document specifies a common attachment circuits (ACs) YANG module, which is designed with the intent to be reusable by other models. For example, this common model can be reused by service models to expose ACs as a service, service models that require binding a service to a set of ACs, network and device models to provision ACs, etc.
+The document specifies a common attachment circuits (ACs) YANG model, which is designed with the intent to be reusable by other models. For example, this common model can be reused by service models to expose ACs as a service, service models that require binding a service to a set of ACs, network and device models to provision ACs, etc.
 
 --- middle
 
 # Introduction
 
-Connectivity services are provided by networks to customers via dedicated terminating points (e.g., Service Functions (SFs), Customer Premises Equipment (CPEs), Autonomous System Border Routers (ASBRs), data centers gateways, or Internet Exchange Points). A connectivity service is basically about ensuring data transfer received from (or destined to) a given terminating point to (or from) other terminating points that belong to the same customer/service, an interconnection node, or an ancillary node. A set of objectives for the connectivity service may eventually be negotiated and agreed upon between a customer and a network provider. For that data transfer to take place within the provider network, it is assumed that adequate setup is provisioned over the links that connect customer terminating points and a provider network (a Provider Edge (PE), typically) so that data can be successfully exchanged over these links. The required setup is referred to in this document as an attachment circuits (ACs), while the underlying link is referred to as "bearer".
+Connectivity services are provided by networks to customers via dedicated terminating points (e.g., Service Functions (SFs), Customer Premises Equipment (CPEs), Autonomous System Border Routers (ASBRs), data centers gateways, or Internet Exchange Points). A connectivity service is basically about ensuring data transfer received from (or destined to) a given terminating point to (or from) other terminating points. A set of objectives for the connectivity service may eventually be negotiated and agreed upon between a customer and a network provider. For that data transfer to take place within the provider network, it is assumed that adequate setup is provisioned over the links that connect customer terminating points and a provider network (a Provider Edge (PE), typically) so that data can be successfully exchanged over these links. The required setup is referred to in this document as an attachment circuits (ACs), while the underlying link is referred to as "bearer".
 
 When a customer requests a new service, the service can be bound to existing attachment circuits or trigger the instantiation of new attachment circuits. Whether these attachment circuits are specific for a given service or are shared to deliver a variety of services is deployment-specific.
 
-An example of attachment circuits is depicted in {{uc}}. A Customer Edge (CE) may be a physical node or a logical entity. A CE is seen by the network as a peer Service Attachment Point (SAP) {{?RFC9408}}. CEs may be dedicated to one single service (e.g., Layer 3 Virtual Private Network (VPN) or Layer 2 VPN) or host multiple services (e.g., Service Functions {{?RFC7665}}). A single AC (as seen by a network provider) may be bound to one or multiple peer SAPs (e.g., "CE1" and "CE2"). For example, and as discussed in {{?RFC4364}}, multiple CEs can be attached to a PE over the same attachment circuit. This is typically implemented if the Layer 2 infrastructure between the CE and the network provides a multipoint service. The same CE may terminate multiple ACs. These ACs may be over the same or distinct bearers.
+An example of attachment circuits is depicted in {{uc}}. A Customer Edge (CE) may be a physical node or a logical entity. A CE is seen by the network as a peer Service Attachment Point (SAP) {{?RFC9408}}. CEs may be dedicated to one single service (e.g., Layer 3 Virtual Private Network (VPN) or Layer 2 VPN) or host multiple services (e.g., Service Functions {{?RFC7665}}). A single AC (as seen by a network provider) may be bound to one or multiple peer SAPs (e.g., "CE1" and "CE2"). For example, and as discussed in {{?RFC4364}}, multiple CEs can be attached to a PE over the same attachment circuit. This is typically implemented if the Layer 2 infrastructure between the CE and the network provides a multipoint service. The same CE may terminate multiple ACs (e.g., "CE3" and "CE4"). These ACs may be over the same or distinct bearers.
 
 ~~~~ aasvg
 {::include ./figures/acs-examples.txt}
@@ -136,7 +150,7 @@ LxNM refers to both the Layer 2 Network Model (L2NM) {{?RFC9291}} and the Layer 
 This document uses the following term:
 
 Bearer:
-: A physical or logical link that connects a customer node (or site) to a provider network.
+: A physical or logical link that connects a CE (or site) to a provider network.
 : A bearer can be a wireless or wired link. One or multiple technologies can be used to build a bearer. The bearer type can be specified by a customer.
 : The operator allocates a unique bearer reference to identify a bearer within its network (e.g., customer line identifier). Such a reference can be retrieved by a customer and then used in subsequent service placement requests to unambiguously identify where a service is to be bound.
 : The concept of bearer can be generalized to refer to the required underlying connection for the provisioning of an attachment circuit.
@@ -204,7 +218,7 @@ The module defines the following features:
 : Used to indicate support of ACs with Layer 3 properties.
 
 'server-assigned-reference':
-: Used to indicate support of server-generated references to access relevant resources.
+: Used to indicate support of server-generated references to access relevant resources. For example, a server can be a network controller or a router in a provider network.
 : For example, a bearer request is first created using a name which is assigned by the client, but if this feature is supported, the request will also include a server-generated reference. That reference can be used when requesting the creating of an AC over the existing bearer.
 
 ## Identities
@@ -220,11 +234,15 @@ The module defines a set of identities, including the following:
 'l2-tunnel-type':
 : Uses to control the Layer 2 tunnel selection for an AC. The current version supports indicating pseudowire, Virtual Private LAN Service (VPLS), and Virtual eXtensible Local Area Network (VXLAN).
 
+'l3-tunnel-type':
+: Uses to control the Layer 3 tunnel selection for an AC. Examples of such type are: IP-in-IP {{?RFC2003}}, IPsec {{?RFC4301}}, and Generic Routing Encapsulation (GRE) {{?RFC1701}}{{?RFC1702}}{{?RFC7676}}.
+
 'precedence-type':
 : Used to indicate the redundancy type when requesting ACs. For example, this identity can be used to tag primary and secondary ACs.
 
 'role':
 : Used to indicate the type of an AC: User-to-Network Interface (UNI), Network-to-Network Interface (NNI), or public NNI.
+: The reader may refer to {{MEF6}}, {{MEF17}}, {{?RFC6004}}, or {{?RFC6215}} for examples of discussions regarding the use of UNI and NNI reference points.
 
 New administrative status types:
 : In addition to the status types already defined in {{!RFC9181}}, this document defines:
@@ -274,7 +292,7 @@ IP connections ({{l3-full-tree}})::
 Routing parameters & OAM ({{rtg-full-tree}}):
 : In addition to static routing, the module supports the following routing protocols: BGP {{!RFC4271}}, OSPF {{!RFC4577}} or {{!RFC6565}}, IS-IS {{ISO10589}}{{!RFC1195}}{{!RFC5308}}, and RIP {{!RFC2453}}. For all supported routing protocols, 'address-family' indicates whether IPv4, IPv6, or both address families are to be activated. For example, this parameter is used to determine whether RIPv2 {{!RFC2453}}, RIP Next Generation (RIPng), or both are to be enabled {{!RFC2080}}. More details about supported routing groupings are provided hereafter:
 
-  * Authentication: These groupings include the required information to manage the authentication of OSPF, IS-IS, BGP, and RIP. The groupings support local specification of authentication keys and the associated authentication algorithm to accomodate legacy implementations that do not support key chains {{!RFC8177}}. Similar to {{?RFC9182}}, this version of the common AC model assumes that parameters specific to the TCP-AO are preconfigured as part of the key chain that is referenced in the model. No assumption is made about how such a key chain is preconfigured. However, the structure of the key chain should cover data nodes beyond those in {{!RFC8177}}, mainly SendID and RecvID (Section 3.1 of {{!RFC5925}}).
+  * Authentication: These groupings include the required information to manage the authentication of OSPF, IS-IS, BGP, and RIP. The groupings support local specification of authentication keys and the associated authentication algorithm to accomodate legacy implementations that do not support key chains {{!RFC8177}}. Note that this version of the common AC model covers authentication options that are common to both OSPFv2 {{!RFC2328}} and OSPFv3 {{!RFC5340}}; as such, the model does not support {{?RFC4552}}. Similar to {{?RFC9182}}, this version of the common AC model assumes that parameters specific to the TCP-AO are preconfigured as part of the key chain that is referenced in the model. No assumption is made about how such a key chain is preconfigured. However, the structure of the key chain should cover data nodes beyond those in {{!RFC8177}}, mainly SendID and RecvID (Section 3.1 of {{!RFC5925}}).
 
   * BGP peer groups: Includes a set of parameters to identify a BGP peer group. Such a group can be defined by providing a local AS Number (ASN), a customer's ASN, and the address families to be activated for this group. BGP peer groups can be identified by a name.
   * Basic parameters: These groupings include the minimal set of routing configuration that is required for the activation of OSPF, IS-IS, BGP, and RIP.
@@ -397,3 +415,5 @@ rtg-dir reviews, Watson Ladd for the sec-dir review, and Behcet Sarikaya for the
 Thanks to Reza Rokui for the Shepherd review.
 
 Thanks to Mahesh Jethanandani for the AD review.
+
+Thanks to Éric Vyncke for the IESG review.
