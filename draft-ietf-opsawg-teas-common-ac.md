@@ -113,8 +113,7 @@ The document specifies a common attachment circuits (ACs) YANG model, which is d
 
 Connectivity services are provided by networks to customers via dedicated terminating points (e.g., Service Functions (SFs), Customer Premises Equipment (CPEs), Autonomous System Border Routers (ASBRs), data centers gateways, or Internet Exchange Points). A connectivity service ensures data transfer from (or destined to) a given terminating point to (or originate from) other terminating points. Objectives for such a connectivity service may be negotiated and agreed upon between a customer and a network provider.
 
-For that data transfer to take place within the provider network, it is assumed that appropriate
-provisioning is in place over the links connecting the customer's terminating
+For that data transfer to take place within the provider network, it is assumed that adequate setup is provisioned over the links connecting the customer's terminating
 points to the provider network (typically, a Provider Edge (PE)), thereby
 enabling successful data exchange. This necessary provisioning is referred to
 in this document as "attachment circuit" (AC), while the underlying link
