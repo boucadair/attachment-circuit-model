@@ -111,18 +111,38 @@ The document specifies a common attachment circuits (ACs) YANG model, which is d
 
 # Introduction
 
-Connectivity services are provided by networks to customers via dedicated terminating points (e.g., Service Functions (SFs), Customer Premises Equipment (CPEs), Autonomous System Border Routers (ASBRs), data centers gateways, or Internet Exchange Points). A connectivity service is basically about ensuring data transfer received from (or destined to) a given terminating point to (or from) other terminating points. A set of objectives for the connectivity service may eventually be negotiated and agreed upon between a customer and a network provider. For that data transfer to take place within the provider network, it is assumed that adequate setup is provisioned over the links that connect customer terminating points and a provider network (a Provider Edge (PE), typically) so that data can be successfully exchanged over these links. The required setup is referred to in this document as an attachment circuits (ACs), while the underlying link is referred to as "bearer".
+Connectivity services are provided by networks to customers via dedicated terminating points (e.g., Service Functions (SFs), Customer Premises Equipment (CPEs), Autonomous System Border Routers (ASBRs), data centers gateways, or Internet Exchange Points). A connectivity service ensures data transfer from (or destined to) a given terminating point to (or originate from) other terminating points. Objectives for such a connectivity service may be negotiated and agreed upon between a customer and a network provider.
 
-When a customer requests a new service, the service can be bound to existing attachment circuits or trigger the instantiation of new attachment circuits. Whether these attachment circuits are specific for a given service or are shared to deliver a variety of services is deployment-specific.
+For that data transfer to take place within the provider network, it is assumed that appropriate
+provisioning is in place over the links connecting the customer's terminating
+points to the provider network (typically, a Provider Edge (PE)), thereby
+enabling successful data exchange. This necessary provisioning is referred to
+in this document as "attachment circuit" (AC), while the underlying link
+is referred to as the "bearer".
 
-An example of attachment circuits is depicted in {{uc}}. A Customer Edge (CE) may be a physical node or a logical entity. A CE is seen by the network as a peer Service Attachment Point (SAP) {{?RFC9408}}. CEs may be dedicated to one single service (e.g., Layer 3 Virtual Private Network (VPN) or Layer 2 VPN) or host multiple services (e.g., Service Functions {{?RFC7665}}). A single AC (as seen by a network provider) may be bound to one or multiple peer SAPs (e.g., "CE1" and "CE2"). For example, and as discussed in {{?RFC4364}}, multiple CEs can be attached to a PE over the same attachment circuit. This is typically implemented if the Layer 2 infrastructure between the CE and the network provides a multipoint service. The same CE may terminate multiple ACs (e.g., "CE3" and "CE4"). These ACs may be over the same or distinct bearers.
+When a customer requests a new service, that service can be associated with existing
+attachment circuits or may require the instantiation of new attachment circuits.
+Whether these attachment circuits are dedicated to a particular service or shared
+among multiple services depends on the specific deployment.
+
+An example of attachment circuits is depicted in {{uc}}. A Customer Edge (CE)
+may be realized as a physical node or a logical entity. From the network's
+perspective, a CE is treated as a peer Service Attachment Point (SAP) {{?RFC9408}}.
+CEs can be dedicated to a single service (e.g., Layer 3 Virtual Private Network (VPN)
+or Layer 2 VPN) or can host multiple services (e.g., Service Functions {{?RFC7665}}).
+A single AC, as viewed by the network provider, may be bound to one or more peer
+SAPs (e.g., "CE1" and "CE2"). For instance, as discussed in {{?RFC4364}}, multiple
+CEs can attach to a PE over the same attachment circuit. This approach is
+typically deployed when the Layer 2 infrastructure between the CE and the
+network supports a multipoint service. A single CE may also terminate multiple
+ACs (e.g., "CE3" and "CE4"), which may be carried over the same or distinct bearers.
 
 ~~~~ aasvg
 {::include ./figures/acs-examples.txt}
 ~~~~
 {: #uc title='Examples of ACs' artwork-align="center"}
 
-This document specifies a common module ("ietf-ac-common") for attachment circuits ({{sec-module}}). The model is designed with the intent to be reusable by other models and, therefore, ensure consistent AC structures among modules that manipulate ACs. For example, the common model can be reused by service models to expose AC-as-a-Service (ACaaS) (e.g., {{?I-D.ietf-opsawg-teas-attachment-circuit}}), service models that require binding a service to a set of ACs (e.g., Network Slice Service {{?I-D.ietf-teas-ietf-network-slice-nbi-yang}})), network models to provision ACs (e.g., {{?I-D.ietf-opsawg-ntw-attachment-circuit}}), device models, etc.
+This document specifies a common module ("ietf-ac-common") for attachment circuits ({{sec-module}}). The module is designed to be reusable by other models,  thereby ensuring consistent AC structures among modules that manipulate ACs. For example, the common module can be reused by service models to expose AC-as-a-Service (ACaaS) (e.g., {{?I-D.ietf-opsawg-teas-attachment-circuit}}) or by service models that require binding a service to a set of ACs (e.g., Network Slice Service {{?I-D.ietf-teas-ietf-network-slice-nbi-yang}})). It can also be used by network models to provision ACs (e.g., {{?I-D.ietf-opsawg-ntw-attachment-circuit}}) and device models, among others.
 
 The common AC module eases data inheritance between modules (e.g., from service to network models as per {{?RFC8969}}).
 
@@ -196,11 +216,11 @@ X --> Y: X imports Y
 ~~~~
 {: #ac-overview title="AC Data Models" artwork-align="center"}
 
-"ietf-ac-common" is imported  by "ietf-bearer-svc", "ietf-ac-svc", and "ietf-ac-ntw".
-Bearers managed using "ietf-bearer-svc" may be referenced in the service ACs managed using "ietf-ac-svc".
-Similarly, a bearer managed using "ietf-bearer-svc" may list the set of ACs that use that bearer.
-In order to ease correlation between an AC service requests and the actual AC provisioned in the network, "ietf-ac-ntw" uses the AC references exposed by "ietf-ac-svc".
-To bind Layer 2 VPN or Layer 3 VPN services with ACs, "ietf-ac-glue" augments the LxSM and LxNM with AC service references exposed by "ietf-ac-svc" and AC network references exposed by "ietf-ac-ntw".
+The "ietf-ac-common" module is imported by the "ietf-bearer-svc", "ietf-ac-svc", and "ietf-ac-ntw" modules.
+Bearers managed using the "ietf-bearer-svc" module may be referenced by service ACs managed using the "ietf-ac-svc" module.
+Similarly, a bearer managed using the "ietf-bearer-svc" module may list the set of ACs that use that bearer.
+To facilitate correlation between an AC service request and the actual AC provisioned in the network, "ietf-ac-ntw" leverages the AC references exposed by the "ietf-ac-svc" module.
+Furthermore, to bind Layer 2 VPN or Layer 3 VPN services with ACs, the "ietf-ac-glue" module augments the LxSM and LxNM with AC service references exposed by the "ietf-ac-svc" module and AC network references exposed by the "ietf-ac-ntw" module.
 
 # Description of the AC Common YANG Module
 
