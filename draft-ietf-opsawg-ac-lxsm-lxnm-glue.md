@@ -170,11 +170,7 @@ X --> Y: X imports Y
 ~~~~
 {: #ac-overview title="AC Data Models" artwork-align="center"}
 
-"ietf-ac-common" is imported  by "ietf-bearer-svc", "ietf-ac-svc", and "ietf-ac-ntw".
-Bearers managed using "ietf-bearer-svc" may be referenced in the service ACs managed using "ietf-ac-svc".
-Similarly, a bearer managed using "ietf-bearer-svc" may list the set of ACs that use that bearer.
-In order to ease correlation between an AC service request and the actual AC provisioned in the network, "ietf-ac-ntw" uses the AC references exposed by "ietf-ac-svc".
-To bind Layer 2 VPN or Layer 3 VPN services with ACs, "ietf-ac-glue" augments the LxSM and LxNM with AC service references exposed by "ietf-ac-svc" and AC network references exposed by "ietf-ac-ntw".
+This document specifies a common module ("ietf-ac-common") for attachment circuits ({{sec-module}}). The module is designed to be reusable by other models,  thereby ensuring consistent AC structures among modules that manipulate ACs. For example, the common module can be reused by service models to expose AC-as-a-Service (ACaaS) (e.g., {{?I-D.ietf-opsawg-teas-attachment-circuit}}) or by service models that require binding a service to a set of ACs (e.g., Network Slice Service {{?I-D.ietf-teas-ietf-network-slice-nbi-yang}})). It can also be used by network models to provision ACs (e.g., {{?I-D.ietf-opsawg-ntw-attachment-circuit}}) and device models, among others.
 
 # Sample Uses of the Data Models
 
