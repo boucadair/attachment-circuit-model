@@ -245,16 +245,16 @@ The module defines the following features:
 The module defines a set of identities, including the following:
 
 'address-allocation-type':
-: Used to specify the IP address allocation type in an AC. For example, this identity can used to indicate whether the provider network provides DHCP service, DHCP relay, or static addressing. Note that for the IPv6 case, Stateless Address Autoconfiguration (SLAAC) {{?RFC4862}} can be used.
+: Used to specify the IP address allocation type in an AC. For example, this identity is used to indicate whether the provider network provides DHCP service, DHCP relay, or static addressing. Note that for the IPv6 case, Stateless Address Autoconfiguration (SLAAC) {{?RFC4862}} can be used.
 
 'local-defined-next-hop':
 : Used to specify next hop actions. For example, this identity can be used to indicate an action to discard traffic for a given destination or treat traffic towards addresses within the specified next-hop prefix as though they are connected to a local link.
 
 'l2-tunnel-type':
-: Uses to control the Layer 2 tunnel selection for an AC. The current version supports indicating pseudowire, Virtual Private LAN Service (VPLS), and Virtual eXtensible Local Area Network (VXLAN).
+: Used to control the Layer 2 tunnel selection for an AC. The current version supports indicating pseudowire, Virtual Private LAN Service (VPLS), and Virtual eXtensible Local Area Network (VXLAN).
 
 'l3-tunnel-type':
-: Uses to control the Layer 3 tunnel selection for an AC. Examples of such type are: IP-in-IP {{?RFC2003}}, IPsec {{?RFC4301}}, and Generic Routing Encapsulation (GRE) {{?RFC1701}}{{?RFC1702}}{{?RFC7676}}.
+: Used to control the Layer 3 tunnel selection for an AC. Examples of such type are: IP-in-IP {{?RFC2003}}, IPsec {{?RFC4301}}, and Generic Routing Encapsulation (GRE) {{?RFC1701}}{{?RFC1702}}{{?RFC7676}}.
 
 'precedence-type':
 : Used to indicate the redundancy type when requesting ACs. For example, this identity can be used to tag primary and secondary ACs.
@@ -311,7 +311,9 @@ IP connections ({{l3-full-tree}})::
 Routing parameters & OAM ({{rtg-full-tree}}):
 : In addition to static routing, the module supports the following routing protocols: BGP {{!RFC4271}}, OSPF {{!RFC4577}} or {{!RFC6565}}, IS-IS {{ISO10589}}{{!RFC1195}}{{!RFC5308}}, and RIP {{!RFC2453}}. For all supported routing protocols, 'address-family' indicates whether IPv4, IPv6, or both address families are to be activated. For example, this parameter is used to determine whether RIPv2 {{!RFC2453}}, RIP Next Generation (RIPng), or both are to be enabled {{!RFC2080}}. More details about supported routing groupings are provided hereafter:
 
-  * Authentication: These groupings include the required information to manage the authentication of OSPF, IS-IS, BGP, and RIP. The groupings support local specification of authentication keys and the associated authentication algorithm to accomodate legacy implementations that do not support key chains {{!RFC8177}}. Note that this version of the common AC model covers authentication options that are common to both OSPFv2 {{!RFC2328}} and OSPFv3 {{!RFC5340}}; as such, the model does not support {{?RFC4552}}. Similar to {{?RFC9182}}, this version of the common AC model assumes that parameters specific to the TCP-AO are preconfigured as part of the key chain that is referenced in the model. No assumption is made about how such a key chain is preconfigured. However, the structure of the key chain should cover data nodes beyond those in {{!RFC8177}}, mainly SendID and RecvID (Section 3.1 of {{!RFC5925}}).
+  * Authentication: These groupings include the required information to manage the authentication of OSPF, IS-IS, BGP, and RIP. The groupings support local specification of authentication keys and the associated authentication algorithm to accomodate legacy implementations that do not support key chains {{!RFC8177}}.
+  : Note that this version of the common AC model covers authentication options that are common to both OSPFv2 {{!RFC2328}} and OSPFv3 {{!RFC5340}}; as such, the model does not support {{?RFC4552}}.
+  : Similar to {{?RFC9182}}, this version of the common AC model assumes that parameters specific to the TCP-AO are preconfigured as part of the key chain that is referenced in the model. No assumption is made about how such a key chain is preconfigured. However, the structure of the key chain should cover data nodes beyond those in {{!RFC8177}}, mainly SendID and RecvID (Section 3.1 of {{!RFC5925}}).
 
   * BGP peer groups: Includes a set of parameters to identify a BGP peer group. Such a group can be defined by providing a local AS Number (ASN), a customer's ASN, and the address families to be activated for this group. BGP peer groups can be identified by a name.
   * Basic parameters: These groupings include the minimal set of routing configuration that is required for the activation of OSPF, IS-IS, BGP, and RIP.
@@ -435,4 +437,4 @@ Thanks to Reza Rokui for the Shepherd review.
 
 Thanks to Mahesh Jethanandani for the AD review.
 
-Thanks to Éric Vyncke and Gunter Van de Velde for the IESG review.
+Thanks to Éric Vyncke, Gunter Van de Velde, and Orie Steele for the IESG review.
