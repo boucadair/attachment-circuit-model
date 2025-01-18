@@ -5,14 +5,14 @@
 Operations and Management Area Working Group           M. Boucadair, Ed.
 Internet-Draft                                                    Orange
 Intended status: Standards Track                         R. Roberts, Ed.
-Expires: 21 July 2025                                            Juniper
+Expires: 22 July 2025                                            Juniper
                                                            O. G. D. Dios
                                                               Telefonica
                                                            S. B. Giraldo
                                                                    Nokia
                                                                    B. Wu
                                                      Huawei Technologies
-                                                         17 January 2025
+                                                         18 January 2025
 
 
             A Common YANG Data Model for Attachment Circuits
@@ -54,7 +54,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 21 July 2025.
+   This Internet-Draft will expire on 22 July 2025.
 
 Copyright Notice
 
@@ -317,7 +317,7 @@ Table of Contents
    The module defines a set of identities, including the following:
 
    'address-allocation-type':  Used to specify the IP address allocation
-      type in an AC.  For example, this identity can used to indicate
+      type in an AC.  For example, this identity is used to indicate
       whether the provider network provides DHCP service, DHCP relay, or
       static addressing.  Note that for the IPv6 case, Stateless Address
       Autoconfiguration (SLAAC) [RFC4862] can be used.
@@ -328,12 +328,12 @@ Table of Contents
       addresses within the specified next-hop prefix as though they are
       connected to a local link.
 
-   'l2-tunnel-type':  Uses to control the Layer 2 tunnel selection for
+   'l2-tunnel-type':  Used to control the Layer 2 tunnel selection for
       an AC.  The current version supports indicating pseudowire,
       Virtual Private LAN Service (VPLS), and Virtual eXtensible Local
       Area Network (VXLAN).
 
-   'l3-tunnel-type':  Uses to control the Layer 3 tunnel selection for
+   'l3-tunnel-type':  Used to control the Layer 3 tunnel selection for
       an AC.  Examples of such type are: IP-in-IP [RFC2003], IPsec
       [RFC4301], and Generic Routing Encapsulation (GRE)
       [RFC1701][RFC1702][RFC7676].
@@ -552,20 +552,22 @@ Table of Contents
       provided hereafter:
 
       *  Authentication: These groupings include the required
-         information to manage the authentication of OSPF, IS-IS, BGP,
-         and RIP.  The groupings support local specification of
-         authentication keys and the associated authentication algorithm
-         to accomodate legacy implementations that do not support key
-         chains [RFC8177].  Note that this version of the common AC
-         model covers authentication options that are common to both
-         OSPFv2 [RFC2328] and OSPFv3 [RFC5340]; as such, the model does
-         not support [RFC4552].  Similar to [RFC9182], this version of
-         the common AC model assumes that parameters specific to the
-         TCP-AO are preconfigured as part of the key chain that is
-         referenced in the model.  No assumption is made about how such
-         a key chain is preconfigured.  However, the structure of the
-         key chain should cover data nodes beyond those in [RFC8177],
-         mainly SendID and RecvID (Section 3.1 of [RFC5925]).
+         information to manage the authentication of OSPF, IS-IS,
+         BGP, and RIP.  The groupings support local specification of
+         authentication keys and the associated authentication
+         algorithm to accomodate legacy implementations that do not
+         support key chains [RFC8177].  Note that this version of the
+            common AC model covers authentication options that are
+            common to both OSPFv2 [RFC2328] and OSPFv3 [RFC5340]; as
+            such, the model does not support [RFC4552].
+
+            Similar to [RFC9182], this version of the common AC model
+            assumes that parameters specific to the TCP-AO are
+            preconfigured as part of the key chain that is referenced in
+            the model.  No assumption is made about how such a key chain
+            is preconfigured.  However, the structure of the key chain
+            should cover data nodes beyond those in [RFC8177], mainly
+            SendID and RecvID (Section 3.1 of [RFC5925]).
 
       *  BGP peer groups: Includes a set of parameters to identify a BGP
          peer group.  Such a group can be defined by providing a local
@@ -3020,7 +3022,8 @@ Acknowledgments
 
    Thanks to Mahesh Jethanandani for the AD review.
 
-   Thanks to Éric Vyncke and Gunter Van de Velde for the IESG review.
+   Thanks to Éric Vyncke, Gunter Van de Velde, and Orie Steele for the
+   IESG review.
 
 Contributors
 
