@@ -389,8 +389,8 @@ Several groupings ('bgp-authentication', 'ospf-authentication', 'isis-authentica
    will inherit the security considerations discussed in
    {{Section 5 of !RFC8177}}.  Also, these groupings support supplying explicit keys as
    strings in ASCII format.  The use of keys in hexadecimal string
-   format would afford greater key entropy with the same number of key-
-   string octets.  However, such a format is not included in this
+   format would afford greater key entropy with the same number of
+   key-string octets.  However, such a format is not included in this
    version of the common AC model, because it is not supported by the underlying
    device modules (e.g., {{?RFC8695}}).
 
