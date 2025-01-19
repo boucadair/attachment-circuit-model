@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-01-16T00:47:03.919863+00:00",
+  "timestamp": "2025-01-19T00:51:33.897257+00:00",
   "repo": "boucadair/attachment-circuit-model",
   "labels": [
     {
@@ -9248,24 +9248,54 @@
       "id": "PR_kwDOIiAkrc6Hrct_",
       "title": "Eric-IESG-review",
       "url": "https://github.com/boucadair/attachment-circuit-model/pull/242",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "boucadair",
       "authorAssociation": "OWNER",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2025-01-14T09:26:39Z",
-      "updatedAt": "2025-01-15T09:34:18Z",
+      "updatedAt": "2025-01-17T12:19:02Z",
       "baseRepository": "boucadair/attachment-circuit-model",
       "baseRefName": "main",
       "baseRefOid": "d934b3bdb1b9c773bae02c67013e6fb68d8787d0",
       "headRepository": "boucadair/attachment-circuit-model",
       "headRefName": "Eric-IESG-review",
       "headRefOid": "5bc4961031ba31a7225845adf8db894092be0b7e",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2025-01-17T12:19:00Z",
+      "mergedAt": "2025-01-17T12:19:00Z",
+      "mergedBy": "boucadair",
+      "mergeCommit": {
+        "oid": "0b9846ad155cb1f8e8f010b85e8aa8b94ae60375"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 243,
+      "id": "PR_kwDOIiAkrc6IJs0q",
+      "title": "Edits from Gunter",
+      "url": "https://github.com/boucadair/attachment-circuit-model/pull/243",
+      "state": "MERGED",
+      "author": "boucadair",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2025-01-17T12:40:43Z",
+      "updatedAt": "2025-01-17T15:21:19Z",
+      "baseRepository": "boucadair/attachment-circuit-model",
+      "baseRefName": "main",
+      "baseRefOid": "0b9846ad155cb1f8e8f010b85e8aa8b94ae60375",
+      "headRepository": "boucadair/attachment-circuit-model",
+      "headRefName": "gunter-iesg-review",
+      "headRefOid": "4cd145c754da052e2a0428d62b3c7a1dcf153336",
+      "closedAt": "2025-01-17T15:21:16Z",
+      "mergedAt": "2025-01-17T15:21:16Z",
+      "mergedBy": "boucadair",
+      "mergeCommit": {
+        "oid": "636e4c65717ec0f7441bdcc8a604d86b18306617"
+      },
       "comments": [],
       "reviews": []
     }
