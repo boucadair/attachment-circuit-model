@@ -1862,7 +1862,7 @@ B2B C/S: Back-to-back Client/Server
 
    'authentication':  Controls the authentication schemes to be enabled
       for the OSPF instance.  The model supports authentication options
-      that are common to both OSPF version: the Authentication Trailer
+      that are common to both OSPF versions: the Authentication Trailer
       for OSPFv2 [RFC5709][RFC7474] and OSPFv3 [RFC7166].
 
    'status':  Indicates the status of the OSPF routing instance.
