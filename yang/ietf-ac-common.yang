@@ -52,7 +52,7 @@ module ietf-ac-common {
      identities, and groupings.
 
      Copyright (c) 2025 IETF Trust and the persons identified as
-     authors of the code.  All rights reserved.
+     authors of the code. All rights reserved.
 
      Redistribution and use in source and binary forms, with or
      without modification, is permitted pursuant to, and subject
@@ -239,7 +239,7 @@ module ietf-ac-common {
       "Identifies a secondary attachment circuit.";
   }
 
-  // AC Type
+  // AC type
 
   identity role {
     description
@@ -295,6 +295,8 @@ module ietf-ac-common {
        rejected because, e.g., there are no sufficient resources
        or other reasons not covered by the other status types.";
   }
+
+  // BGP role
 
   identity bgp-role {
     description
@@ -1401,7 +1403,7 @@ module ietf-ac-common {
     leaf metric {
       type uint16;
       description
-        "Metric of the AC.  It is used in the routing state
+        "Metric of the AC. It is used in the routing state
          calculation and path selection.";
     }
   }
@@ -1577,7 +1579,7 @@ module ietf-ac-common {
       units "bytes";
       description
         "Committed Burst Size (CBS). CBS controls the bursty nature
-         of the traffic.  Traffic that does not use the configured
+         of the traffic. Traffic that does not use the configured
          CIR accumulates credits until the credits reach the
          configured CBS.";
     }
