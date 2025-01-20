@@ -617,8 +617,7 @@ The following data nodes are supported for each 'peer-group':
 :  The module adheres to the recommendations in
       {{Section 13.2 of !RFC4364}}, as it allows enabling the TCP
       Authentication Option (TCP-AO) {{!RFC5925}} and accommodates the
-      installed base that makes use of MD5.  In addition, the module
-      includes a provision for using IPsec.
+      installed base that makes use of MD5.
 : This version of the model assumes that parameters specific to the
       TCP-AO are preconfigured as part of the key chain that is
       referenced in the model.  No assumption is made about how such a
@@ -676,8 +675,7 @@ The following OSPF data nodes are supported:
 
 'authentication':
 :  Controls the authentication schemes to be enabled
-      for the OSPF instance.  The following options are supported: IPsec
-      for OSPFv3 authentication {{!RFC4552}}, and the Authentication
+      for the OSPF instance. The module supports authentication options that are common to both OSPF versions: the Authentication
       Trailer for OSPFv2 {{!RFC5709}} {{!RFC7474}} and OSPFv3 {{!RFC7166}}.
 
 'status':
