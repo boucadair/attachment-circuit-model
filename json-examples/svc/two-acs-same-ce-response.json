@@ -3,7 +3,7 @@
     "ac": [
       {
         "name": "ac1",
-        "description": "a first ac with a same peer node",
+        "description": "a first AC with a same peer node",
         "l2-connection": {
           "encapsulation": {
             "type": "ietf-vpn-common:dot1q",
@@ -46,7 +46,7 @@
       },
       {
         "name": "ac2",
-        "description": "a second ac with a same peer node",
+        "description": "a second AC with a same peer node",
         "l2-connection": {
           "encapsulation": {
             "type": "ietf-vpn-common:dot1q",
