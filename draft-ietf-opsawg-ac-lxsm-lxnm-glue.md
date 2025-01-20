@@ -396,4 +396,4 @@ Reese Enghardt for the genart review, and Prachi Jain for the sec-dir review.
 
 Thanks to Mahesh Jethanandani for the AD review.
 
-Thanks to for Gunter Van de Velde the IESG review.
+Thanks to Gunter Van de Velde for the IESG review.
