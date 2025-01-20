@@ -219,7 +219,7 @@ Table of Contents
       same bearer that is provided by a physical link).
 
    The names of data nodes are prefixed using the prefix associated with
-   the corresponding imported YANG module as shown in Table 1:
+   the corresponding imported YANG module as shown in Table 1.
 
         +============+==================+========================+
         | Prefix     | Module           | Reference              |
@@ -365,6 +365,9 @@ Table of Contents
       *  'rejected' to report that a request was rejected reasons not
          covered by the other status types.
 
+   'bgp-role':  Used to indicate BGP role when establishing a BGP
+      session per [RFC9234].
+
 4.3.  Reusable Groupings
 
    The module also defines a set of reusable groupings, including the
@@ -450,7 +453,7 @@ Table of Contents
       issued for SLAAC purposes will carry the IPv6 prefix that is
       determined by 'local-address' and 'prefix-length'.
 
-   IP connections (Figure 5)::  Defines IPv4 and IPv6 groupings for
+   IP connections (Figure 5):  Defines IPv4 and IPv6 groupings for
       managing Layer 3 connectivity over an AC.  Both basic and more
       elaborated IP connection groupings are supported.
 
@@ -559,7 +562,7 @@ Table of Contents
          to accomodate legacy implementations that do not support key
          chains [RFC8177].  Note that this version of the common AC
          model covers authentication options that are common to both
-         OSPFv2 [RFC2328] and OSPFv3 [RFC5340]; as such, the model does
+         OSPFv2 [RFC4577] and OSPFv3 [RFC6565]; as such, the model does
          not support [RFC4552].  Similar to [RFC9182], this version of
          the common AC model assumes that parameters specific to the
          TCP-AO are preconfigured as part of the key chain that is
@@ -568,17 +571,19 @@ Table of Contents
          key chain should cover data nodes beyond those in [RFC8177],
          mainly SendID and RecvID (Section 3.1 of [RFC5925]).
 
-      *  BGP peer groups: Includes a set of parameters to identify a BGP
-         peer group.  Such a group can be defined by providing a local
-         AS Number (ASN), a customer's ASN, and the address families to
-         be activated for this group.  BGP peer groups can be identified
-         by a name.
+      *  BGP peer groups ('bgp-peer-group-without-name', 'bgp-peer-
+         group-with-name'): Includes a set of parameters to identify a
+         BGP peer group.  Such a group can be defined by providing a
+         local AS Number (ASN), a customer's ASN, and the address
+         families to be activated for this group.  BGP peer groups can
+         be identified by a name.
 
-      *  Basic parameters: These groupings include the minimal set of
-         routing configuration that is required for the activation of
-         OSPF, IS-IS, BGP, and RIP.
+      *  Basic OSPF and IS-IS parameters ('ospf-basic', 'isis-basic'):
+         These groupings include the minimal set of routing
+         configuration that is required for the activation of OSPF and
+         IS-IS.
 
-      *  Static routing: Parameters to configure an entry of a list of
+      *  Static routing: Parameters to configure an entry or a list of
          IP static routing entries.
 
       The 'redundancy-group' grouping lists the groups to which an AC
@@ -2484,10 +2489,6 @@ Table of Contents
               DOI 10.17487/RFC2080, January 1997,
               <https://www.rfc-editor.org/rfc/rfc2080>.
 
-   [RFC2328]  Moy, J., "OSPF Version 2", STD 54, RFC 2328,
-              DOI 10.17487/RFC2328, April 1998,
-              <https://www.rfc-editor.org/rfc/rfc2328>.
-
    [RFC2453]  Malkin, G., "RIP Version 2", STD 56, RFC 2453,
               DOI 10.17487/RFC2453, November 1998,
               <https://www.rfc-editor.org/rfc/rfc2453>.
@@ -2509,10 +2510,6 @@ Table of Contents
    [RFC5308]  Hopps, C., "Routing IPv6 with IS-IS", RFC 5308,
               DOI 10.17487/RFC5308, October 2008,
               <https://www.rfc-editor.org/rfc/rfc5308>.
-
-   [RFC5340]  Coltun, R., Ferguson, D., Moy, J., and A. Lindem, "OSPF
-              for IPv6", RFC 5340, DOI 10.17487/RFC5340, July 2008,
-              <https://www.rfc-editor.org/rfc/rfc5340>.
 
    [RFC5925]  Touch, J., Mankin, A., and R. Bonica, "The TCP
               Authentication Option", RFC 5925, DOI 10.17487/RFC5925,
@@ -2726,6 +2723,12 @@ Table of Contents
               Ed., Munoz, L., and A. Aguado, "A YANG Network Data Model
               for Layer 3 VPNs", RFC 9182, DOI 10.17487/RFC9182,
               February 2022, <https://www.rfc-editor.org/rfc/rfc9182>.
+
+   [RFC9234]  Azimov, A., Bogomazov, E., Bush, R., Patel, K., and K.
+              Sriram, "Route Leak Prevention and Detection Using Roles
+              in UPDATE and OPEN Messages", RFC 9234,
+              DOI 10.17487/RFC9234, May 2022,
+              <https://www.rfc-editor.org/rfc/rfc9234>.
 
    [RFC9291]  Boucadair, M., Ed., Gonzalez de Dios, O., Ed., Barguil,
               S., and L. Munoz, "A YANG Network Data Model for Layer 2
