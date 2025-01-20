@@ -802,7 +802,7 @@ The following OSPF data nodes are supported:
 : Used to create OSPF sham links between two ACs sharing the same area and having a backdoor link ({{Section 4.2.7 of !RFC4577}} and {{Section 5 of !RFC6565}}).
 
 'authentication':
-: Controls the authentication schemes to be enabled for the OSPF instance. The model supports authentication options that are common to both OSPF version: the Authentication Trailer for OSPFv2 {{!RFC5709}}{{!RFC7474}} and OSPFv3 {{!RFC7166}}.
+: Controls the authentication schemes to be enabled for the OSPF instance. The model supports authentication options that are common to both OSPF versions: the Authentication Trailer for OSPFv2 {{!RFC5709}}{{!RFC7474}} and OSPFv3 {{!RFC7166}}.
 
 'status':
 : Indicates the status of the OSPF routing instance.
