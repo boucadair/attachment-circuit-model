@@ -1493,7 +1493,7 @@ Acknowledgments
 
    Thanks to Mahesh Jethanandani for the AD review.
 
-   Thanks to for Gunter Van de Velde the IESG review.
+   Thanks to Gunter Van de Velde for the IESG review.
 
 Authors' Addresses
 
