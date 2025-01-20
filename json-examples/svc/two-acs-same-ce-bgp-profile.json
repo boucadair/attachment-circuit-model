@@ -39,7 +39,7 @@
     "ac": [
       {
         "name": "ac1",
-        "description": "a first ac with a same peer node",
+        "description": "a first AC with a same peer node",
         "group-profile-ref": [
           "bgp-simple-profile"
         ],
@@ -77,7 +77,7 @@
       },
       {
         "name": "ac2",
-        "description": "a second ac with a same peer node",
+        "description": "a second AC with a same peer node",
         "group-profile-ref": [
           "bgp-simple-profile"
         ],
