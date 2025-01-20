@@ -371,8 +371,9 @@ Table of Contents
    following:
 
    'op-instructions' (Figure 3):  Defines a set of parameters to specify
-      scheduling instructions and report related events for a service
-      request (e.g., AC or bearer).
+      basic scheduling instructions and report related events for a
+      service request (e.g., AC or bearer).  Advanced scheduling
+      groupings are defined in [I-D.ietf-netmod-schedule-yang].
 
      grouping service-status:
        +-- status
@@ -2572,6 +2573,13 @@ Table of Contents
               netmod-rfc8407bis-22, 14 January 2025,
               <https://datatracker.ietf.org/doc/html/draft-ietf-netmod-
               rfc8407bis-22>.
+
+   [I-D.ietf-netmod-schedule-yang]
+              Ma, Q., Wu, Q., Boucadair, M., and D. King, "A Common YANG
+              Data Model for Scheduling", Work in Progress, Internet-
+              Draft, draft-ietf-netmod-schedule-yang-03, 10 October
+              2024, <https://datatracker.ietf.org/doc/html/draft-ietf-
+              netmod-schedule-yang-03>.
 
    [I-D.ietf-opsawg-ac-lxsm-lxnm-glue]
               Boucadair, M., Roberts, R., Barguil, S., and O. G. de
