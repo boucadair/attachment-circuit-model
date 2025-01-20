@@ -59,9 +59,15 @@ informative:
 
 --- abstract
 
-   The document specifies a module that updates existing service (i.e., the Layer 2 Service Model (L2SM) and the Layer 3 Service Model (L3SM)) and
-   network (i.e., the Layer 2 Network Model (L2NM) and the Layer 3 Network Model (L3NM)) Virtual Private Network (VPN) modules with the required information to bind specific
-   VPN services to attachment circuits (ACs) that are created using the AC service ("ietf-ac-svc") and network ("ietf-ac-ntw") models.
+This document defines a YANG data model, referred to as the "AC Glue" model, to
+augment the Layer 2/3 Service Model (LxSM) and Layer 2/3 Network Model (LxNM) with references to attachment circuits (ACs). The
+AC Glue model enables a provider to associate Layer 2/3
+VPN services (LxVPNs) with the underlying AC infrastructure, thereby
+facilitating consistent provisioning and management of new or existing ACs in
+conjunction with LxVPN services. Specifically, by introducing an integrated approach to AC
+and LxVPN management, this model supports Attachment Circuit-as-a-Service
+(ACaaS) and provides a standardized mechanism for aligning AC/VPN requests
+with the network configurations required to deliver them.
 
 --- middle
 
@@ -389,3 +395,5 @@ Thanks to Martin Björklund for the yangdoctors review, Gyan Mishra for the rtg-
 Reese Enghardt for the genart review, and Prachi Jain for the sec-dir review.
 
 Thanks to Mahesh Jethanandani for the AD review.
+
+Thanks to for Gunter Van de Velde the IESG review.
