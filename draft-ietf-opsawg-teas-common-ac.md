@@ -276,7 +276,7 @@ New administrative status types:
 The module also defines a set of reusable groupings, including the following:
 
 'op-instructions' ({{op-full-tree}}):
-: Defines a set of parameters to specify scheduling instructions and report related events for a service request (e.g., AC or bearer).
+: Defines a set of parameters to specify basic scheduling instructions and report related events for a service request (e.g., AC or bearer). Advanced scheduling groupings are defined in {{?I-D.ietf-netmod-schedule-yang}}.
 
 ~~~~
 {::include ./yang/subtrees/ac-common/ac-common-op.txt}
