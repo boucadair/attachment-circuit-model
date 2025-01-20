@@ -278,8 +278,36 @@ New administrative status types:
 
 The module also defines a set of reusable groupings, including the following:
 
+'service-status' ({{op-full-tree}}):
+: Controls the administrative service status and reports the operational service status.
+
+'ac-profile-cfg' ({{op-full-tree}}):
+: A grouping with a set of valid provider profile identifiers. The following profiles are supported:
+
+   'encryption-profile-identifier':
+   :  Refers to a set of policies related
+      to the encryption setup that can be applied when provisioning an AC.
+
+   'qos-profile-identifier':
+   :  Refers to a set of policies, such as
+      classification, marking, and actions (e.g., {{?RFC3644}}).
+
+   'failure-detection-profile-identifier':
+   :  Refers to a set of failure
+      detection policies (e.g., BFD policies {{?RFC5880}}) that can be
+      invoked when building an AC.
+
+   'forwarding-profile-identifier':
+   :  Refers to the policies that apply
+      to the forwarding of packets conveyed within an AC.  Such policies
+      may consist, for example, of applying Access Control Lists (ACLs).
+
+   'routing-profile-identifier':
+   :  Refers to a set of routing policies
+      that will be invoked (e.g., BGP policies) when building an AC.
+
 'op-instructions' ({{op-full-tree}}):
-: Defines a set of parameters to specify basic scheduling instructions and report related events for a service request (e.g., AC or bearer). Advanced scheduling groupings are defined in {{?I-D.ietf-netmod-schedule-yang}}.
+: Defines a set of parameters to specify basic scheduling instructions and report related events for a service request (e.g., AC or bearer) ('service-status'). Advanced scheduling groupings are defined in {{?I-D.ietf-netmod-schedule-yang}}.
 
 ~~~~
 {::include ./yang/subtrees/ac-common/ac-common-op.txt}
