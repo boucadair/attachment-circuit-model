@@ -5,12 +5,12 @@
 OPSAWG                                                 M. Boucadair, Ed.
 Internet-Draft                                                    Orange
 Intended status: Standards Track                              R. Roberts
-Expires: 22 July 2025                                            Juniper
+Expires: 24 July 2025                                            Juniper
                                                            S. B. Giraldo
                                                                    Nokia
                                                            O. G. D. Dios
                                                               Telefonica
-                                                         18 January 2025
+                                                         20 January 2025
 
 
   A YANG Data Model for Augmenting VPN Service and Network Models with
@@ -54,7 +54,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 22 July 2025.
+   This Internet-Draft will expire on 24 July 2025.
 
 Copyright Notice
 

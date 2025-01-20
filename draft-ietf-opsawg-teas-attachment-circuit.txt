@@ -5,14 +5,14 @@
 OPSAWG                                                 M. Boucadair, Ed.
 Internet-Draft                                                    Orange
 Intended status: Standards Track                         R. Roberts, Ed.
-Expires: 22 July 2025                                            Juniper
+Expires: 24 July 2025                                            Juniper
                                                            O. G. D. Dios
                                                               Telefonica
                                                            S. B. Giraldo
                                                                    Nokia
                                                                    B. Wu
                                                      Huawei Technologies
-                                                         18 January 2025
+                                                         20 January 2025
 
 
   YANG Data Models for Bearers and 'Attachment Circuits'-as-a-Service
@@ -61,7 +61,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 22 July 2025.
+   This Internet-Draft will expire on 24 July 2025.
 
 Copyright Notice
 
@@ -1754,8 +1754,7 @@ B2B C/S: Back-to-back Client/Server
    'authentication':  The module adheres to the recommendations in
       Section 13.2 of [RFC4364], as it allows enabling the TCP
       Authentication Option (TCP-AO) [RFC5925] and accommodates the
-      installed base that makes use of MD5.  In addition, the module
-      includes a provision for using IPsec.
+      installed base that makes use of MD5.
 
       Similar to [RFC9182], this version of the ACaaS assumes that
       parameters specific to the TCP-AO are preconfigured as part of the
@@ -1862,9 +1861,9 @@ B2B C/S: Back-to-back Client/Server
       [RFC4577] and Section 5 of [RFC6565]).
 
    'authentication':  Controls the authentication schemes to be enabled
-      for the OSPF instance.  The following options are supported: IPsec
-      for OSPFv3 authentication [RFC4552], and the Authentication
-      Trailer for OSPFv2 [RFC5709][RFC7474] and OSPFv3 [RFC7166].
+      for the OSPF instance.  The model supports authentication options
+      that are common to both OSPF version: the Authentication Trailer
+      for OSPFv2 [RFC5709][RFC7474] and OSPFv3 [RFC7166].
 
    'status':  Indicates the status of the OSPF routing instance.
 
@@ -4137,10 +4136,6 @@ B2B C/S: Back-to-back Client/Server
    [RFC4364]  Rosen, E. and Y. Rekhter, "BGP/MPLS IP Virtual Private
               Networks (VPNs)", RFC 4364, DOI 10.17487/RFC4364, February
               2006, <https://www.rfc-editor.org/rfc/rfc4364>.
-
-   [RFC4552]  Gupta, M. and N. Melam, "Authentication/Confidentiality
-              for OSPFv3", RFC 4552, DOI 10.17487/RFC4552, June 2006,
-              <https://www.rfc-editor.org/rfc/rfc4552>.
 
    [RFC4577]  Rosen, E., Psenak, P., and P. Pillay-Esnault, "OSPF as the
               Provider/Customer Edge Protocol for BGP/MPLS IP Virtual
