@@ -373,10 +373,36 @@ Table of Contents
    The module also defines a set of reusable groupings, including the
    following:
 
+   'service-status' (Figure 3):  Controls the administrative service
+      status and reports the operational service status.
+
+   'ac-profile-cfg' (Figure 3):  A grouping with a set of valid provider
+      profile identifiers.  The following profiles are supported:
+
+      'encryption-profile-identifier':  Refers to a set of policies
+         related to the encryption setup that can be applied when
+         provisioning an AC.
+
+      'qos-profile-identifier':  Refers to a set of policies, such as
+         classification, marking, and actions (e.g., [RFC3644]).
+
+      'failure-detection-profile-identifier':  Refers to a set of
+         failure detection policies (e.g., BFD policies [RFC5880]) that
+         can be invoked when building an AC.
+
+      'forwarding-profile-identifier':  Refers to the policies that
+         apply to the forwarding of packets conveyed within an AC.  Such
+         policies may consist, for example, of applying Access Control
+         Lists (ACLs).
+
+      'routing-profile-identifier':  Refers to a set of routing policies
+         that will be invoked (e.g., BGP policies) when building an AC.
+
    'op-instructions' (Figure 3):  Defines a set of parameters to specify
       basic scheduling instructions and report related events for a
-      service request (e.g., AC or bearer).  Advanced scheduling
-      groupings are defined in [I-D.ietf-netmod-schedule-yang].
+      service request (e.g., AC or bearer) ('service-status').  Advanced
+      scheduling groupings are defined in
+      [I-D.ietf-netmod-schedule-yang].
 
      grouping service-status:
        +-- status
@@ -2638,6 +2664,11 @@ Table of Contents
               DOI 10.17487/RFC2003, October 1996,
               <https://www.rfc-editor.org/rfc/rfc2003>.
 
+   [RFC3644]  Snir, Y., Ramberg, Y., Strassner, J., Cohen, R., and B.
+              Moore, "Policy Quality of Service (QoS) Information
+              Model", RFC 3644, DOI 10.17487/RFC3644, November 2003,
+              <https://www.rfc-editor.org/rfc/rfc3644>.
+
    [RFC4252]  Ylonen, T. and C. Lonvick, Ed., "The Secure Shell (SSH)
               Authentication Protocol", RFC 4252, DOI 10.17487/RFC4252,
               January 2006, <https://www.rfc-editor.org/rfc/rfc4252>.
@@ -2658,6 +2689,10 @@ Table of Contents
               Address Autoconfiguration", RFC 4862,
               DOI 10.17487/RFC4862, September 2007,
               <https://www.rfc-editor.org/rfc/rfc4862>.
+
+   [RFC5880]  Katz, D. and D. Ward, "Bidirectional Forwarding Detection
+              (BFD)", RFC 5880, DOI 10.17487/RFC5880, June 2010,
+              <https://www.rfc-editor.org/rfc/rfc5880>.
 
    [RFC6004]  Berger, L. and D. Fedyk, "Generalized MPLS (GMPLS) Support
               for Metro Ethernet Forum and G.8011 Ethernet Service
