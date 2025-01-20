@@ -743,7 +743,7 @@ The following data nodes are supported for each BGP 'peer-group':
 : Indicates the maximum number of BGP prefixes allowed in a session for this group.
 
 'authentication':
-: The module adheres to the recommendations in {{Section 13.2 of !RFC4364}}, as it allows enabling the TCP Authentication Option (TCP-AO) {{?RFC5925}} and accommodates the installed base that makes use of MD5. In addition, the module includes a provision for using IPsec.
+: The module adheres to the recommendations in {{Section 13.2 of !RFC4364}}, as it allows enabling the TCP Authentication Option (TCP-AO) {{?RFC5925}} and accommodates the installed base that makes use of MD5.
 : Similar to {{?RFC9182}}, this version of the ACaaS assumes that parameters specific to the TCP-AO are preconfigured as part of the key chain that is referenced in the ACaaS. No assumption is made about how such a key chain is preconfigured. However, the structure of the key chain should cover data nodes beyond those in "YANG Data Model for Key Chains" {{!RFC8177}}, mainly SendID and RecvID ({{Section 3.1 of ?RFC5925}}).
 
 For each neighbor, the following data nodes are supported in addition to similar parameters that are provided for a peer group:
@@ -802,7 +802,7 @@ The following OSPF data nodes are supported:
 : Used to create OSPF sham links between two ACs sharing the same area and having a backdoor link ({{Section 4.2.7 of !RFC4577}} and {{Section 5 of !RFC6565}}).
 
 'authentication':
-: Controls the authentication schemes to be enabled for the OSPF instance. The following options are supported: IPsec for OSPFv3 authentication {{!RFC4552}}, and the Authentication Trailer for OSPFv2 {{!RFC5709}}{{!RFC7474}} and OSPFv3 {{!RFC7166}}.
+: Controls the authentication schemes to be enabled for the OSPF instance. The model supports authentication options that are common to both OSPF version: the Authentication Trailer for OSPFv2 {{!RFC5709}}{{!RFC7474}} and OSPFv3 {{!RFC7166}}.
 
 'status':
 : Indicates the status of the OSPF routing instance.
