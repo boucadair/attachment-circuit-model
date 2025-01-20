@@ -552,22 +552,20 @@ Table of Contents
       provided hereafter:
 
       *  Authentication: These groupings include the required
-         information to manage the authentication of OSPF, IS-IS,
-         BGP, and RIP.  The groupings support local specification of
-         authentication keys and the associated authentication
-         algorithm to accomodate legacy implementations that do not
-         support key chains [RFC8177].  Note that this version of the
-            common AC model covers authentication options that are
-            common to both OSPFv2 [RFC2328] and OSPFv3 [RFC5340]; as
-            such, the model does not support [RFC4552].
-
-            Similar to [RFC9182], this version of the common AC model
-            assumes that parameters specific to the TCP-AO are
-            preconfigured as part of the key chain that is referenced in
-            the model.  No assumption is made about how such a key chain
-            is preconfigured.  However, the structure of the key chain
-            should cover data nodes beyond those in [RFC8177], mainly
-            SendID and RecvID (Section 3.1 of [RFC5925]).
+         information to manage the authentication of OSPF, IS-IS, BGP,
+         and RIP.  The groupings support local specification of
+         authentication keys and the associated authentication algorithm
+         to accomodate legacy implementations that do not support key
+         chains [RFC8177].  Note that this version of the common AC
+         model covers authentication options that are common to both
+         OSPFv2 [RFC2328] and OSPFv3 [RFC5340]; as such, the model does
+         not support [RFC4552].  Similar to [RFC9182], this version of
+         the common AC model assumes that parameters specific to the
+         TCP-AO are preconfigured as part of the key chain that is
+         referenced in the model.  No assumption is made about how such
+         a key chain is preconfigured.  However, the structure of the
+         key chain should cover data nodes beyond those in [RFC8177],
+         mainly SendID and RecvID (Section 3.1 of [RFC5925]).
 
       *  BGP peer groups: Includes a set of parameters to identify a BGP
          peer group.  Such a group can be defined by providing a local
