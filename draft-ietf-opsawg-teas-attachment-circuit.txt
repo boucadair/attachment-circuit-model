@@ -5,14 +5,14 @@
 OPSAWG                                                 M. Boucadair, Ed.
 Internet-Draft                                                    Orange
 Intended status: Standards Track                         R. Roberts, Ed.
-Expires: 24 July 2025                                            Juniper
+Expires: 25 July 2025                                            Juniper
                                                            O. G. D. Dios
                                                               Telefonica
                                                            S. B. Giraldo
                                                                    Nokia
                                                                    B. Wu
                                                      Huawei Technologies
-                                                         20 January 2025
+                                                         21 January 2025
 
 
   YANG Data Models for Bearers and 'Attachment Circuits'-as-a-Service
@@ -61,7 +61,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 24 July 2025.
+   This Internet-Draft will expire on 25 July 2025.
 
 Copyright Notice
 
@@ -227,7 +227,7 @@ Table of Contents
    L3VPN Service Model (L3SM) [RFC8299] to bind LxVPN services to ACs.
 
    The AC service model does not make any assumptions about the internal
-   structure or even the nature or the services that will be delivered
+   structure or even the nature of the services that will be delivered
    over an attachment circuit or a set of attachment circuits.
    Customers do not have access to that network view other than the ACs
    that they ordered.  For example, the AC service model can be used to
@@ -619,7 +619,7 @@ B2B C/S: Back-to-back Client/Server
               Figure 4: Example of Recursive Deployment
 
    Figure 5 shows the positioning of the AC service model in the overall
-   service delivery process, with a focus the provider.
+   service delivery process, with a focus on the provider.
 
                                .---------------.
                                |   Customer    |
@@ -859,13 +859,13 @@ B2B C/S: Back-to-back Client/Server
 
    'type':  Specifies the bearer type (Ethernet, wireless, LAG, etc.).
 
-   'test-only':  Indicates that a request is only for test and not for
-      setting, even if there are no errors.  This is used for
-      feasibility checks.  This data node is applicable only when the
-      data model is used with protocols which do not natively support
-      such option.  For example, this data node is redundant with the
-      "test-only" value of the <test-option> parameter in the NETCONF
-      <edit-config> operation (Section 7.2 of [RFC6241]).
+   'test-only':  Indicates that a request is only for test validation
+      and not for enforcement, even if there are no errors.  This is
+      used for feasibility checks.  This data node is applicable only
+      when the data model is used with protocols which do not natively
+      support such option.  For example, this data node is redundant
+      with the "test-only" value of the <test-option> parameter in the
+      NETCONF <edit-config> operation (Section 7.2 of [RFC6241]).
 
    'bearer-reference':  Returns an internal reference for the service
       provider to uniquely identify the bearer.  This reference can be
@@ -1196,11 +1196,11 @@ B2B C/S: Back-to-back Client/Server
 
    'description':  Includes a textual description of the AC.
 
-   'test-only':  Indicates that a request is only for test and not for
-      setting, even if there are no errors.  This is used for
-      feasibility checks.  This data node is applicable only when the
-      data model is used with protocols which do not have built-in
-      support of such option.
+   'test-only':  Indicates that a request is only for validation test
+      and not for enforcement, even if there are no errors.  This is
+      used for feasibility checks.  This data node is applicable only
+      when the data model is used with protocols which do not have
+      built-in support of such option.
 
    'requested-start':  Specifies the requested date and time when the
       attachment circuit is expected to be active.
@@ -1353,8 +1353,8 @@ B2B C/S: Back-to-back Client/Server
    The 'ip-connection' container is used to configure the relevant IP
    properties of an AC.  The model supports the usage of dynamic and
    static addressing.  This structure relies upon the common groupings
-   defined in [I-D.ietf-opsawg-teas-common-ac].  Both IPv4 and IPv6
-   parameters are supported.
+   defined in Section 4.3 of [I-D.ietf-opsawg-teas-common-ac].  Both
+   IPv4 and IPv6 parameters are supported.
 
    For ACs that require Layer 3 tunnel establishment, the ACaaS includes
    a provision for future augmentations to define tunnel-specific data
@@ -7659,7 +7659,7 @@ Acknowledgments
 
    Thanks to Mahesh Jethanandani for the AD review.
 
-   Thanks to Éric Vyncke for the IESG review.
+   Thanks to Éric Vyncke and Erik Kline for the IESG review.
 
 Contributors
 

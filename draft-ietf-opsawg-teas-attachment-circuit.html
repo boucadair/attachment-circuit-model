@@ -1067,7 +1067,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Boucadair, et al.</td>
-<td class="center">Expires 24 July 2025</td>
+<td class="center">Expires 25 July 2025</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1080,12 +1080,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-opsawg-teas-attachment-circuit-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2025-01-20" class="published">20 January 2025</time>
+<time datetime="2025-01-21" class="published">21 January 2025</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2025-07-24">24 July 2025</time></dd>
+<dd class="expires"><time datetime="2025-07-25">25 July 2025</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1150,7 +1150,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 24 July 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 25 July 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1378,7 +1378,7 @@ attachment circuits associated with the service reuses structures defined in the
 <p id="section-1.1-6">Since the provisioning of an AC requires a bearer to be in place, this document introduces a new module called "ietf-bearer-svc" that enables customers to manage their bearers (<a href="#sec-bearer-module" class="auto internal xref">Section 6.1</a>). The customers can then retrieve a provider-assigned bearer reference that they will include in their AC service requests. Likewise, a customer may retrieve whether their bearers support a synchronization mechanism such as Sync Ethernet (SyncE) <span>[<a href="#ITU-T-G.781" class="cite xref">ITU-T-G.781</a>]</span>. An example of retrieving a bearer reference is provided in <a href="#ex-create-bearer" class="auto internal xref">Appendix A.1</a>.<a href="#section-1.1-6" class="pilcrow">¶</a></p>
 <p id="section-1.1-7">An AC service request can provide a reference to a bearer or a set of peer Service Attachment Points (SAPs) specified in "A YANG Network Data Model for Service Attachment Points (SAPs)" <span>[<a href="#RFC9408" class="cite xref">RFC9408</a>]</span>. Both schemes are supported in the AC service model. When several bearers are available, the AC service request may filter them based on the bearer type, synchronization support, etc.<a href="#section-1.1-7" class="pilcrow">¶</a></p>
 <p id="section-1.1-8">Each AC is identified with a unique identifier within a provider domain. From a network provider standpoint, an AC can be bound to a single or multiple SAPs <span>[<a href="#RFC9408" class="cite xref">RFC9408</a>]</span>. Likewise, the same SAP can be bound to one or multiple ACs. However, the mapping between an AC and a PE in the provider network that terminates that AC is hidden to the application that makes use of the AC service model. Such mapping information is internal to the network controllers. As such, the details about the (node-specific) attachment interfaces are not exposed in the AC service model. However, these details are exposed at the network model per "A Network YANG Data Model for Attachment Circuits" specification <span>[<a href="#I-D.ietf-opsawg-ntw-attachment-circuit" class="cite xref">I-D.ietf-opsawg-ntw-attachment-circuit</a>]</span>. "A YANG Data Model for Augmenting VPN Service and Network Models with Attachment Circuits" <span>[<a href="#I-D.ietf-opsawg-ac-lxsm-lxnm-glue" class="cite xref">I-D.ietf-opsawg-ac-lxsm-lxnm-glue</a>]</span> specifies augmentations to the      L2VPN Service Model (L2SM) <span>[<a href="#RFC8466" class="cite xref">RFC8466</a>]</span> and the L3VPN Service Model     (L3SM) <span>[<a href="#RFC8299" class="cite xref">RFC8299</a>]</span> to bind LxVPN services to ACs.<a href="#section-1.1-8" class="pilcrow">¶</a></p>
-<p id="section-1.1-9">The AC service model does not make any assumptions about the internal structure or even the nature or the services that will be delivered over an attachment circuit or a set of attachment circuits. Customers do not have access to that network view other than the ACs that they ordered. For example, the AC service model can be used to provision a set of ACs to connect multiple sites (Site1, Site2, ..., SiteX) for customer who also requested VPN services. If the provisioning of these services requires specific configuration on ASBR nodes, such configuration is handled at the network level and is not exposed to the customer at the service level. However, the network controller will have access to such a view as the service points in these ASBRs will be exposed as SAPs with 'role' set to 'ietf-sap-ntw:nni' <span>[<a href="#RFC9408" class="cite xref">RFC9408</a>]</span>.<a href="#section-1.1-9" class="pilcrow">¶</a></p>
+<p id="section-1.1-9">The AC service model does not make any assumptions about the internal structure or even the nature of the services that will be delivered over an attachment circuit or a set of attachment circuits. Customers do not have access to that network view other than the ACs that they ordered. For example, the AC service model can be used to provision a set of ACs to connect multiple sites (Site1, Site2, ..., SiteX) for customer who also requested VPN services. If the provisioning of these services requires specific configuration on ASBR nodes, such configuration is handled at the network level and is not exposed to the customer at the service level. However, the network controller will have access to such a view as the service points in these ASBRs will be exposed as SAPs with 'role' set to 'ietf-sap-ntw:nni' <span>[<a href="#RFC9408" class="cite xref">RFC9408</a>]</span>.<a href="#section-1.1-9" class="pilcrow">¶</a></p>
 <p id="section-1.1-10">The AC service model can be used in a variety of contexts, such as (but not limited to) those provided in <a href="#examples" class="auto internal xref">Appendix A</a>:<a href="#section-1.1-10" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-1.1-11.1">
@@ -1962,7 +1962,7 @@ decides to terminate a recursion for a given service request or create child ser
 <a href="#name-example-of-recursive-deploy" class="selfRef">Example of Recursive Deployment</a>
           </figcaption></figure>
 </div>
-<p id="section-4.3-6"><a href="#_u-ex" class="auto internal xref">Figure 5</a> shows the positioning of the AC service model in the overall service delivery process, with a focus the provider.<a href="#section-4.3-6" class="pilcrow">¶</a></p>
+<p id="section-4.3-6"><a href="#_u-ex" class="auto internal xref">Figure 5</a> shows the positioning of the AC service model in the overall service delivery process, with a focus on the provider.<a href="#section-4.3-6" class="pilcrow">¶</a></p>
 <span id="name-an-example-of-ac-model-usag"></span><div id="_u-ex">
 <figure id="figure-5">
           <div id="section-4.3-7.1">
@@ -2267,7 +2267,7 @@ module: ietf-bearer-svc
           <dd class="break"></dd>
 <dt id="section-5.1-9.27">'test-only':</dt>
           <dd style="margin-left: 1.5em" id="section-5.1-9.28">
-            <p id="section-5.1-9.28.1">Indicates that a request is only for test and not for setting, even if there are no errors. This is used for feasibility checks. This data node is applicable only when the data model is used with protocols which do not natively support such option. For example, this data node is redundant with the "test-only" value of the <code>&lt;test-option&gt;</code> parameter in the NETCONF <code>&lt;edit-config&gt;</code> operation (<span><a href="https://rfc-editor.org/rfc/rfc6241#section-7.2" class="relref">Section 7.2</a> of [<a href="#RFC6241" class="cite xref">RFC6241</a>]</span>).<a href="#section-5.1-9.28.1" class="pilcrow">¶</a></p>
+            <p id="section-5.1-9.28.1">Indicates that a request is only for test validation and not for enforcement, even if there are no errors. This is used for feasibility checks. This data node is applicable only when the data model is used with protocols which do not natively support such option. For example, this data node is redundant with the "test-only" value of the <code>&lt;test-option&gt;</code> parameter in the NETCONF <code>&lt;edit-config&gt;</code> operation (<span><a href="https://rfc-editor.org/rfc/rfc6241#section-7.2" class="relref">Section 7.2</a> of [<a href="#RFC6241" class="cite xref">RFC6241</a>]</span>).<a href="#section-5.1-9.28.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
 <dt id="section-5.1-9.29">'bearer-reference':</dt>
@@ -2629,7 +2629,7 @@ These adjusted values take precedence over the global values.  The structure of 
             <dd class="break"></dd>
 <dt id="section-5.2.5-5.5">'test-only':</dt>
             <dd style="margin-left: 1.5em" id="section-5.2.5-5.6">
-              <p id="section-5.2.5-5.6.1">Indicates that a request is only for test and not for setting, even if there are no errors. This is used for feasibility checks. This data node is applicable only when the data model is used with protocols which do not have built-in support of such option.<a href="#section-5.2.5-5.6.1" class="pilcrow">¶</a></p>
+              <p id="section-5.2.5-5.6.1">Indicates that a request is only for validation test and not for enforcement, even if there are no errors. This is used for feasibility checks. This data node is applicable only when the data model is used with protocols which do not have built-in support of such option.<a href="#section-5.2.5-5.6.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
 <dt id="section-5.2.5-5.7">'requested-start':</dt>
@@ -2827,7 +2827,7 @@ a parent AC can be defined with a set of stable and common information, while
             <h5 id="name-ip-connection-structure">
 <a href="#section-5.2.5.2" class="section-number selfRef">5.2.5.2. </a><a href="#name-ip-connection-structure" class="section-name selfRef">IP Connection Structure</a>
             </h5>
-<p id="section-5.2.5.2-1">The 'ip-connection' container is used to configure the relevant IP properties of an AC. The model supports the usage of dynamic and static addressing. This structure relies upon the common groupings defined in <span>[<a href="#I-D.ietf-opsawg-teas-common-ac" class="cite xref">I-D.ietf-opsawg-teas-common-ac</a>]</span>. Both IPv4 and IPv6 parameters are supported.<a href="#section-5.2.5.2-1" class="pilcrow">¶</a></p>
+<p id="section-5.2.5.2-1">The 'ip-connection' container is used to configure the relevant IP properties of an AC. The model supports the usage of dynamic and static addressing. This structure relies upon the common groupings defined in <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-teas-common-ac-14#section-4.3" class="relref">Section 4.3</a> of [<a href="#I-D.ietf-opsawg-teas-common-ac" class="cite xref">I-D.ietf-opsawg-teas-common-ac</a>]</span>. Both IPv4 and IPv6 parameters are supported.<a href="#section-5.2.5.2-1" class="pilcrow">¶</a></p>
 <p id="section-5.2.5.2-2">For ACs that require Layer 3 tunnel establishment, the ACaaS includes a provision for future augmentations to define
 tunnel-specific data nodes ('l3-tunnel-service'). Such augmentations <span class="bcp14">MUST</span> be conditional based on the tunnel type ('type').<a href="#section-5.2.5.2-2" class="pilcrow">¶</a></p>
 <p id="section-5.2.5.2-3"><a href="#ipv4-svc-tree" class="auto internal xref">Figure 12</a> shows the structure of the IPv4 connection.<a href="#section-5.2.5.2-3" class="pilcrow">¶</a></p>
@@ -10324,7 +10324,7 @@ module: ietf-ac-svc
 Gyan Mishra for the genart review, and Adrian Farrel for the opsdir review.<a href="#appendix-C-3" class="pilcrow">¶</a></p>
 <p id="appendix-C-4">Thanks to Luis Miguel Contreras Murillo for the careful Shepherd review.<a href="#appendix-C-4" class="pilcrow">¶</a></p>
 <p id="appendix-C-5">Thanks to Mahesh Jethanandani for the AD review.<a href="#appendix-C-5" class="pilcrow">¶</a></p>
-<p id="appendix-C-6">Thanks to Éric Vyncke for the IESG review.<a href="#appendix-C-6" class="pilcrow">¶</a></p>
+<p id="appendix-C-6">Thanks to Éric Vyncke and Erik Kline for the IESG review.<a href="#appendix-C-6" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="contributors">
