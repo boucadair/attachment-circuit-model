@@ -648,10 +648,10 @@ Table of Contents
 
 5.2.  References
 
-   The AC module defines a set of groupings depicted in Figure 7 for
-   referencing purposes.  These references are used within or outside
-   the AC network module.  The use of such groupings is consistent with
-   the design in [RFC8345].
+   The AC network module defines a set of groupings depicted in Figure 7
+   for referencing purposes.  These references are used within or
+   outside the AC network module.  The use of such groupings is
+   consistent with the design in [RFC8345].
 
      grouping attachment-circuit-reference:
        +-- ac-ref?        leafref
@@ -2103,7 +2103,7 @@ Table of Contents
       'source-address' is used here to ease the mapping with the
       underlying device model defind in [RFC9127].
 
-   'failure-detection-profile-ref':  Refers to BFD profiles in
+   'failure-detection-profile-ref':  Refers to a BFD profile in
       Section 5.3.
 
    'network-ref':  Includes a network reference to uniquely identify a
