@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-01-19T00:51:33.897257+00:00",
+  "timestamp": "2025-01-21T00:46:43.694951+00:00",
   "repo": "boucadair/attachment-circuit-model",
   "labels": [
     {
@@ -9295,6 +9295,34 @@
       "mergedBy": "boucadair",
       "mergeCommit": {
         "oid": "636e4c65717ec0f7441bdcc8a604d86b18306617"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 244,
+      "id": "PR_kwDOIiAkrc6IWdd5",
+      "title": "Gunter edits",
+      "url": "https://github.com/boucadair/attachment-circuit-model/pull/244",
+      "state": "MERGED",
+      "author": "boucadair",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2025-01-20T12:50:35Z",
+      "updatedAt": "2025-01-20T13:26:59Z",
+      "baseRepository": "boucadair/attachment-circuit-model",
+      "baseRefName": "main",
+      "baseRefOid": "6911cef7e2e9eada07f190b277f4554577a29d9a",
+      "headRepository": "boucadair/attachment-circuit-model",
+      "headRefName": "gunter-edits-iesg-review",
+      "headRefOid": "73fec45660dd72cd9d5f202531648d59da211ac8",
+      "closedAt": "2025-01-20T13:26:57Z",
+      "mergedAt": "2025-01-20T13:26:57Z",
+      "mergedBy": "boucadair",
+      "mergeCommit": {
+        "oid": "5384906f54caef24e32ba7bab3da7dfd92449e63"
       },
       "comments": [],
       "reviews": []
