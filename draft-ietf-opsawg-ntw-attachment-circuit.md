@@ -374,7 +374,7 @@ An AC can be characterized using Layer 2 connectivity ({{sec-l2}}), Layer 3 conn
 
 ## References
 
-The AC module defines a set of groupings depicted in {{references-tree}} for referencing purposes. These references are used within or outside the AC network module. The use of such groupings is consistent with the design in {{!RFC8345}}.
+The AC network module defines a set of groupings depicted in {{references-tree}} for referencing purposes. These references are used within or outside the AC network module. The use of such groupings is consistent with the design in {{!RFC8345}}.
 
 ~~~~
 {::include ./yang/subtrees/ac-ntw/references.txt}
@@ -415,7 +415,7 @@ Similar to {{!RFC9182}} and {{!RFC9291}}, the exact definition of the specific p
 
 ## L2 Connection {#sec-l2}
 
-The 'l2-connection' container is used to manage the Layer 2 properties of an AC (mainly, the PE side of an AC). The  Layer 2 connection tree structure is shown in {{l2-tree}}.
+The 'l2-connection' container is used to manage the Layer 2 properties of an AC (mainly, the PE side of an AC). The Layer 2 connection tree structure is shown in {{l2-tree}}.
 
 ~~~~
 {::include ./yang/subtrees/ac-ntw/l2-tree.txt}
@@ -540,7 +540,7 @@ The following data nodes are supported for each 'peer-group':
 : This address family might be used together with the service type that uses an AC (e.g., 'vpn-type' {{?RFC9182}}) to derive the appropriate Address Family Identifiers (AFIs) / Subsequent Address Family Identifiers (SAFIs) that will be part of the derived device configurations (e.g., unicast IPv4 MPLS L3VPN (AFI,SAFI = 1,128) as defined in {{Section 4.3.4 of !RFC4364}}).
 
 'role':
-: Specifies the BGP role in a session.  Role values are taken	from the list defined in {{Section 4 of ?RFC9234}}.
+: Specifies the BGP role in a session. Role values are taken	from the list defined in {{Section 4 of ?RFC9234}}.
 
 'multihop':
 :  Indicates the number of allowed IP hops to reach a BGP peer.
@@ -812,7 +812,7 @@ The following OAM data nodes can be specified for each BFD session:
 : Specifies the local IP address or interface to use for the session. This data node is mapped to 'local-address' of BFD container in {{I-D.ietf-opsawg-teas-attachment-circuit}}. 'source-address' is used here to ease the mapping with the underlying device model defind in {{?RFC9127}}.
 
 'failure-detection-profile-ref':
-: Refers to BFD profiles in {{sec-profiles}}.
+: Refers to a BFD profile in {{sec-profiles}}.
 
 'network-ref':
 : Includes a network reference to uniquely identify a BFD profile.
