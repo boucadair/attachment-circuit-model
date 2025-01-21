@@ -145,7 +145,7 @@ An AC service request can provide a reference to a bearer or a set of peer Servi
 
 Each AC is identified with a unique identifier within a provider domain. From a network provider standpoint, an AC can be bound to a single or multiple SAPs {{!RFC9408}}. Likewise, the same SAP can be bound to one or multiple ACs. However, the mapping between an AC and a PE in the provider network that terminates that AC is hidden to the application that makes use of the AC service model. Such mapping information is internal to the network controllers. As such, the details about the (node-specific) attachment interfaces are not exposed in the AC service model. However, these details are exposed at the network model per "A Network YANG Data Model for Attachment Circuits" specification {{?I-D.ietf-opsawg-ntw-attachment-circuit}}. "A YANG Data Model for Augmenting VPN Service and Network Models with Attachment Circuits" {{?I-D.ietf-opsawg-ac-lxsm-lxnm-glue}} specifies augmentations to the	L2VPN Service Model (L2SM) {{?RFC8466}} and the L3VPN Service Model	(L3SM) {{?RFC8299}} to bind LxVPN services to ACs.
 
-The AC service model does not make any assumptions about the internal structure or even the nature or the services that will be delivered over an attachment circuit or a set of attachment circuits. Customers do not have access to that network view other than the ACs that they ordered. For example, the AC service model can be used to provision a set of ACs to connect multiple sites (Site1, Site2, ..., SiteX) for customer who also requested VPN services. If the provisioning of these services requires specific configuration on ASBR nodes, such configuration is handled at the network level and is not exposed to the customer at the service level. However, the network controller will have access to such a view as the service points in these ASBRs will be exposed as SAPs with 'role' set to 'ietf-sap-ntw:nni' {{!RFC9408}}.
+The AC service model does not make any assumptions about the internal structure or even the nature of the services that will be delivered over an attachment circuit or a set of attachment circuits. Customers do not have access to that network view other than the ACs that they ordered. For example, the AC service model can be used to provision a set of ACs to connect multiple sites (Site1, Site2, ..., SiteX) for customer who also requested VPN services. If the provisioning of these services requires specific configuration on ASBR nodes, such configuration is handled at the network level and is not exposed to the customer at the service level. However, the network controller will have access to such a view as the service points in these ASBRs will be exposed as SAPs with 'role' set to 'ietf-sap-ntw:nni' {{!RFC9408}}.
 
 The AC service model can be used in a variety of contexts, such as (but not limited to) those provided in {{examples}}:
 
@@ -351,7 +351,7 @@ B2B C/S: Back-to-back Client/Server
 ~~~~
 {: #u-ex-r title="Example of Recursive Deployment" artwork-align="center"}
 
-{{u-ex}} shows the positioning of the AC service model in the overall service delivery process, with a focus the provider.
+{{u-ex}} shows the positioning of the AC service model in the overall service delivery process, with a focus on the provider.
 
 ~~~~ aasvg
 {::include ./figures/arch.txt}
@@ -428,7 +428,7 @@ The descriptions of the bearer data nodes are as follows:
 : Specifies the bearer type (Ethernet, wireless, LAG, etc.).
 
 'test-only':
-: Indicates that a request is only for test and not for setting, even if there are no errors. This is used for feasibility checks. This data node is applicable only when the data model is used with protocols which do not natively support such option. For example, this data node is redundant with the "test-only" value of the `<test-option>` parameter in the NETCONF `<edit-config>` operation ({{Section 7.2 of ?RFC6241}}).
+: Indicates that a request is only for test validation and not for enforcement, even if there are no errors. This is used for feasibility checks. This data node is applicable only when the data model is used with protocols which do not natively support such option. For example, this data node is redundant with the "test-only" value of the `<test-option>` parameter in the NETCONF `<edit-config>` operation ({{Section 7.2 of ?RFC6241}}).
 
 'bearer-reference':
 : Returns an internal reference for the service provider to uniquely identify the bearer. This reference can be used when requesting services. {{ex-create-bearer}} provides an example about how this reference can be retrieved by a customer.
@@ -558,7 +558,7 @@ The description of the 'ac' data nodes is as follows:
 : Includes a textual description of the AC.
 
 'test-only':
-: Indicates that a request is only for test and not for setting, even if there are no errors. This is used for feasibility checks. This data node is applicable only when the data model is used with protocols which do not have built-in support of such option.
+: Indicates that a request is only for validation test and not for enforcement, even if there are no errors. This is used for feasibility checks. This data node is applicable only when the data model is used with protocols which do not have built-in support of such option.
 
 'requested-start':
 : Specifies the requested date and time when the attachment circuit is expected to be active.
@@ -642,7 +642,7 @@ This structure relies upon the common groupings defined in {{!I-D.ietf-opsawg-te
 
 #### IP Connection Structure {#sec-l3}
 
-The 'ip-connection' container is used to configure the relevant IP properties of an AC. The model supports the usage of dynamic and static addressing. This structure relies upon the common groupings defined in {{!I-D.ietf-opsawg-teas-common-ac}}. Both IPv4 and IPv6 parameters are supported.
+The 'ip-connection' container is used to configure the relevant IP properties of an AC. The model supports the usage of dynamic and static addressing. This structure relies upon the common groupings defined in {{Section 4.3 of !I-D.ietf-opsawg-teas-common-ac}}. Both IPv4 and IPv6 parameters are supported.
 
 For ACs that require Layer 3 tunnel establishment, the ACaaS includes a provision for future augmentations to define
 tunnel-specific data nodes ('l3-tunnel-service'). Such augmentations MUST be conditional based on the tunnel type ('type').
@@ -1577,4 +1577,4 @@ Thanks to Luis Miguel Contreras Murillo for the careful Shepherd review.
 
 Thanks to Mahesh Jethanandani for the AD review.
 
-Thanks to Éric Vyncke for the IESG review.
+Thanks to Éric Vyncke and Erik Kline for the IESG review.
