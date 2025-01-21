@@ -17,7 +17,7 @@
        |  +--rw routing-protocol* [id]
        |     +--rw id      string
        |     +--rw type?   identityref
-       |     +--rw bgp
+       |     +--rw bgp {vpn-common:rtg-bgp}?
        |     |  +--rw peer-groups
        |     |     +--rw peer-group* [name]
        |     |        +--rw name                      string
@@ -32,6 +32,7 @@
        |     |        +--rw local-as?                 inet:as-number
        |     |        +--rw peer-as                   inet:as-number
        |     |        +--rw address-family?           identityref
+       |     |        +--rw role?                     identityref
        |     |        +--rw multihop?                 uint8
        |     |        +--rw as-override?              boolean
        |     |        +--rw allow-own-as?             uint8
@@ -50,24 +51,21 @@
        |     |        |  +--rw violate-action?      enumeration
        |     |        |  +--rw restart-timer?       uint32
        |     |        +--rw bgp-timers
-       |     |        |  +--rw keepalive?   uint16
-       |     |        |  +--rw hold-time?   uint16
-       |     |        +--rw capability* [address-family]
-       |     |           +--rw address-family    identityref
-       |     |           +--rw name              identityref
-       |     +--rw ospf
+       |     |           +--rw keepalive?   uint16
+       |     |           +--rw hold-time?   uint16
+       |     +--rw ospf {vpn-common:rtg-ospf}?
        |     |  +--rw address-family?   identityref
        |     |  +--rw area-id           yang:dotted-quad
        |     |  +--rw metric?           uint16
        |     |  +--rw max-lsa?          uint32
        |     |  +--rw passive?          boolean
-       |     +--rw isis
+       |     +--rw isis {vpn-common:rtg-isis}?
        |     |  +--rw address-family?   identityref
        |     |  +--rw area-address      area-address
        |     |  +--rw level?            identityref
        |     |  +--rw metric?           uint32
        |     |  +--rw passive?          boolean
-       |     +--rw rip
+       |     +--rw rip {vpn-common:rtg-rip}?
        |     |  +--rw address-family?   identityref
        |     |  +--rw timers
        |     |  |  +--rw update-interval?     uint16
@@ -75,7 +73,7 @@
        |     |  |  +--rw holddown-interval?   uint16
        |     |  |  +--rw flush-interval?      uint16
        |     |  +--rw default-metric?   uint8
-       |     +--rw vrrp
+       |     +--rw vrrp {vpn-common:rtg-vrrp}?
        |        +--rw address-family?   identityref
        |        +--rw ping-reply?       boolean
        +--rw oam
