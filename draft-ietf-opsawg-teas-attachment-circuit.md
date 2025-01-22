@@ -1577,4 +1577,4 @@ Thanks to Luis Miguel Contreras Murillo for the careful Shepherd review.
 
 Thanks to Mahesh Jethanandani for the AD review.
 
-Thanks to Éric Vyncke and Erik Kline for the IESG review.
+Thanks to Éric Vyncke, Gunter Van de Velde, Erik Kline, and Paul Wouters for the IESG review.
