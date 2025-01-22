@@ -105,7 +105,7 @@ informative:
 
 --- abstract
 
-The document specifies a common attachment circuits (ACs) YANG model, which is designed with the intent to be reusable by other models. For example, this common model can be reused by service models to expose ACs as a service, service models that require binding a service to a set of ACs, network and device models to provision ACs, etc.
+The document specifies a common attachment circuits (ACs) YANG model, which is designed to be reusable by other models. This design is meant to ensure consistent AC structures among models that manipulate ACs. For example, this common model can be reused by service models to expose ACs as a service, service models that require binding a service to a set of ACs, network and device models to provision ACs, etc.
 
 --- middle
 
@@ -124,7 +124,7 @@ attachment circuits or may require the instantiation of new attachment circuits.
 Whether these attachment circuits are dedicated to a particular service or shared
 among multiple services depends on the specific deployment.
 
-An example of attachment circuits is depicted in {{uc}}. A Customer Edge (CE)
+Examples of attachment circuits are depicted in {{uc}}. A Customer Edge (CE)
 may be realized as a physical node or a logical entity. From the network's
 perspective, a CE is treated as a peer Service Attachment Point (SAP) {{?RFC9408}}.
 CEs can be dedicated to a single service (e.g., Layer 3 Virtual Private Network (VPN)
@@ -361,7 +361,7 @@ Bandwidth parameters ({{bw-full-tree}}):
   Information Rate (PIR).
 
 : These parameters can be provided per bandwidth type. Type values are
-  taken from {{!RFC9181}}, e.g.,:
+  taken from {{!RFC9181}}. For example,
 
     * 'bw-per-cos':
     :  The bandwidth is per Class of Service (CoS).
