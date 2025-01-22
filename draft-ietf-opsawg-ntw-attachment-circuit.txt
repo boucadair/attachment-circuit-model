@@ -1703,7 +1703,8 @@ Table of Contents
    'authentication':  Controls the authentication schemes to be enabled
       for the OSPF instance.  The module supports authentication options
       that are common to both OSPF versions: the Authentication Trailer
-      for OSPFv2 [RFC5709] [RFC7474] and OSPFv3 [RFC7166].
+      for OSPFv2 [RFC5709] [RFC7474] and OSPFv3 [RFC7166]; as such, the
+      model does not support [RFC4552].
 
    'status':  Indicates the status of the OSPF routing instance.
 
@@ -4600,6 +4601,10 @@ Table of Contents
    [RFC4252]  Ylonen, T. and C. Lonvick, Ed., "The Secure Shell (SSH)
               Authentication Protocol", RFC 4252, DOI 10.17487/RFC4252,
               January 2006, <https://www.rfc-editor.org/rfc/rfc4252>.
+
+   [RFC4552]  Gupta, M. and N. Melam, "Authentication/Confidentiality
+              for OSPFv3", RFC 4552, DOI 10.17487/RFC4552, June 2006,
+              <https://www.rfc-editor.org/rfc/rfc4552>.
 
    [RFC4862]  Thomson, S., Narten, T., and T. Jinmei, "IPv6 Stateless
               Address Autoconfiguration", RFC 4862,
