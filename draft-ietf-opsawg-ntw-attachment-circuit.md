@@ -413,6 +413,8 @@ Similar to {{!RFC9182}} and {{!RFC9291}}, the exact definition of the specific p
 'routing-profile-identifier':
 : A routing profile refers to a set of routing policies that will be invoked (e.g., BGP policies) for an AC. Refer to {{sec-rtg}}.
 
+The 'ac-profile' defines parameters that can factorized among a set of ACs. Each profile is identified by 'name' that is unique in a network. Some of the data nodes can be adjusted at the node level. These adjusted values take precedence over the values in the profile.
+
 ## L2 Connection {#sec-l2}
 
 The 'l2-connection' container is used to manage the Layer 2 properties of an AC (mainly, the PE side of an AC). The Layer 2 connection tree structure is shown in {{l2-tree}}.
