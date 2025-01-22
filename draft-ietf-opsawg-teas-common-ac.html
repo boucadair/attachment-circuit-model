@@ -2354,18 +2354,28 @@ module ietf-ac-common {
     base l3-tunnel-type;
     description
       "IP in IP Tunneling.";
+    reference
+      "RFC 2003: IP Encapsulation within IP";
   }
 
   identity ipsec {
     base l3-tunnel-type;
     description
       "IP Security (IPsec).";
+    reference
+      "RFC 4301: Security Architecture for the Internet
+                 Protocol";
   }
 
   identity gre {
     base l3-tunnel-type;
     description
       "Generic Routing Encapsulation (GRE).";
+    reference
+      "RFC 1701: Generic Routing Encapsulation (GRE)
+       RFC 1702: Generic Routing Encapsulation over IPv4 networks
+       RFC 7676: IPv6 Support for Generic Routing Encapsulation
+                 (GRE)";
   }
 
   // Tagging precedence
@@ -2867,7 +2877,7 @@ module ietf-ac-common {
     }
   }
 
-  // Basic parameters for IPv4 connection
+  // Basic parameters for an IPv4 connection
 
   grouping ipv4-connection-basic {
     description
@@ -2919,7 +2929,7 @@ module ietf-ac-common {
     }
   }
 
-  // Basic parameters for IPv6 connection
+  // Basic parameters for an IPv6 connection
 
   grouping ipv6-connection-basic {
     description
@@ -3295,7 +3305,7 @@ module ietf-ac-common {
             leaf key-id {
               type uint32;
               description
-                "Key identifier.";
+                "Specifies a key identifier.";
             }
             leaf key {
               type string;
@@ -3334,7 +3344,7 @@ module ietf-ac-common {
         when "../enabled = 'true'";
         description
           "Container for describing how an OSPF session is to be
-           secured for this AC.";
+           secured for an AC.";
         choice option {
           description
             "Options for OSPF authentication.";
@@ -3342,14 +3352,14 @@ module ietf-ac-common {
             leaf key-chain {
               type key-chain:key-chain-ref;
               description
-                "Name of the key chain.";
+                "Specifies the name of the key chain.";
             }
           }
           case auth-key-explicit {
             leaf key-id {
               type uint32;
               description
-                "Key identifier.";
+                "Specifies a key identifier.";
             }
             leaf key {
               type string;
@@ -3387,7 +3397,7 @@ module ietf-ac-common {
       container keying-material {
         when "../enabled = 'true'";
         description
-          "Container for describing how an IS-IS session is secured
+          "Describes how an IS-IS session is secured
            over an AC.";
         choice option {
           description
@@ -3396,14 +3406,14 @@ module ietf-ac-common {
             leaf key-chain {
               type key-chain:key-chain-ref;
               description
-                "Name of the key chain.";
+                "Specifies the name of the key chain.";
             }
           }
           case auth-key-explicit {
             leaf key-id {
               type uint32;
               description
-                "Key identifier.";
+                "Indicates a key identifier.";
             }
             leaf key {
               type string;
@@ -3432,7 +3442,7 @@ module ietf-ac-common {
       "RIP authentication configuration.";
     container authentication {
       description
-        "Container for RIP authentication parameters.";
+        "Includes RIP authentication parameters.";
       leaf enabled {
         type boolean;
         description
@@ -3441,8 +3451,8 @@ module ietf-ac-common {
       container keying-material {
         when "../enabled = 'true'";
         description
-          "Container for describing how a RIP session is to be
-           secured on this AC.";
+          "Describes how a RIP session is to be secured
+           on an AC.";
         choice option {
           description
             "Specifies the authentication scheme.";
@@ -3450,14 +3460,14 @@ module ietf-ac-common {
             leaf key-chain {
               type key-chain:key-chain-ref;
               description
-                "Name of the key chain.";
+                "Indicates the name of the key chain.";
             }
           }
           case auth-key-explicit {
             leaf key {
               type string;
               description
-                "RIP authentication key.
+                "Specifies a RIP authentication key.
 
                  This model only supports the subset of keys that
                  are representable as ASCII strings.";
@@ -3522,14 +3532,14 @@ module ietf-ac-common {
     leaf name {
       type string;
       description
-        "Name of the BGP peer-group.";
+        "Specifies the name of the BGP peer-group.";
     }
     uses bgp-peer-group-without-name;
   }
 
   grouping ospf-basic {
     description
-      "Configuration specific to OSPF.";
+      "Includes configuration specific to OSPF.";
     leaf address-family {
       type identityref {
         base vpn-common:address-family;
@@ -3541,7 +3551,7 @@ module ietf-ac-common {
       type yang:dotted-quad;
       mandatory true;
       description
-        "Area ID.";
+        "Specifies an area ID.";
       reference
         "RFC 4577: OSPF as the Provider/Customer Edge Protocol
                    for BGP/MPLS IP Virtual Private Networks
@@ -3571,7 +3581,7 @@ module ietf-ac-common {
       type area-address;
       mandatory true;
       description
-        "Area address.";
+        "Specifies an area address.";
     }
   }
 
@@ -3584,7 +3594,7 @@ module ietf-ac-common {
     leaf lan {
       type inet:ipv4-prefix;
       description
-        "LAN prefix.";
+        "Indicates an IPv4 LAN prefix.";
     }
     leaf lan-tag {
       type string;
@@ -3628,7 +3638,7 @@ module ietf-ac-common {
     leaf lan {
       type inet:ipv6-prefix;
       description
-        "LAN prefixes.";
+        "Indicates an IPv6 LAN prefix.";
     }
     leaf lan-tag {
       type string;
@@ -3669,15 +3679,17 @@ module ietf-ac-common {
 
   grouping bfd {
     description
-      "A grouping for basic BFD.";
+      "Groups a set of basic BFD parameters.";
     leaf holdtime {
       type uint32;
       units "milliseconds";
       description
-        "Expected BFD holdtime.
+        "Specifies the expected BFD holdtime.
+
          The customer may impose some fixed values for the
          holdtime period if the provider allows the customer
          to use this function.
+
          If the provider doesn't allow the customer to use
          this function, fixed values will not be set.";
       reference
@@ -3694,7 +3706,7 @@ module ietf-ac-common {
     list group {
        key "group-id";
        description
-         "List of group-ids.";
+         "Specifies a list of group identifiers.";
        leaf group-id {
          type string;
          description
@@ -3770,7 +3782,7 @@ module ietf-ac-common {
     list bandwidth {
       key "bw-type";
       description
-        "List for bandwidth per type data nodes.";
+        "List for bandwidth per type parameters.";
       leaf bw-type {
         type identityref {
           base vpn-common:bw-type;
