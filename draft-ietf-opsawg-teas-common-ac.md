@@ -466,4 +466,4 @@ Thanks to Reza Rokui for the Shepherd review.
 
 Thanks to Mahesh Jethanandani for the AD review.
 
-Thanks to Éric Vyncke, Gunter Van de Velde, and Orie Steele for the IESG review.
+Thanks to Éric Vyncke, Gunter Van de Velde, Orie Steele, and Paul Wouters for the IESG review.
