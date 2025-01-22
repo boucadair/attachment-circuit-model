@@ -6,6 +6,18 @@
        +--ro oper-status
           +--ro status?        identityref
           +--ro last-change?   yang:date-and-time
+  grouping ac-profile-cfg:
+    +-- valid-provider-identifiers
+       +-- encryption-profile-identifier* [id]
+       |  +-- id   string
+       +-- qos-profile-identifier* [id]
+       |  +-- id   string
+       +-- failure-detection-profile-identifier* [id]
+       |  +-- id   string
+       +-- forwarding-profile-identifier* [id]
+       |  +-- id   string
+       +-- routing-profile-identifier* [id]
+          +-- id   string
   grouping op-instructions:
     +-- requested-start?   yang:date-and-time
     +-- requested-stop?    yang:date-and-time
