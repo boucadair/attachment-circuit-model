@@ -676,7 +676,7 @@ The following OSPF data nodes are supported:
 'authentication':
 :  Controls the authentication schemes to be enabled
       for the OSPF instance. The module supports authentication options that are common to both OSPF versions: the Authentication
-      Trailer for OSPFv2 {{!RFC5709}} {{!RFC7474}} and OSPFv3 {{!RFC7166}}.
+      Trailer for OSPFv2 {{!RFC5709}} {{!RFC7474}} and OSPFv3 {{!RFC7166}}; as such, the model does not support {{?RFC4552}}.
 
 'status':
 :  Indicates the status of the OSPF routing instance.
