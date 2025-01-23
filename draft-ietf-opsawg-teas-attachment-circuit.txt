@@ -6077,8 +6077,6 @@ A.10.3.  Manage ACs and BGP Sessions
    etc.  The configuration is triggered at each side of the BGP
    connection (i.e., peer ASBRs).
 
-   =============== NOTE: '\' line wrapping per RFC 8792 ================
-
    {
      "ietf-ac-svc:routing-protocols": {
        "routing-protocol": [
@@ -6130,8 +6128,7 @@ A.10.3.  Manage ACs and BGP Sessions
                  }
                },
                {
-                 "_comment": "list of other active BGP sessions over \
-                                                                this AC"
+                 "_comment": "other active BGP sessions over the AC"
                }
              ]
            }
