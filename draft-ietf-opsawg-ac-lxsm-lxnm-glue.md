@@ -240,7 +240,7 @@ This modules augments the L2SM {{!RFC8466}}, the L3SM {{!RFC8299}}, the L2NM {{!
 
 This module uses references defined in {{!I-D.ietf-opsawg-teas-attachment-circuit}} and {{!I-D.ietf-opsawg-ntw-attachment-circuit}}.
 
-~~~~~~~~~~
+~~~~~~~~~~ yang
 <CODE BEGINS> file "ietf-ac-glue@2025-01-07.yang"
 {::include-fold ./yang/ietf-ac-glue.yang}
 <CODE ENDS>
@@ -323,14 +323,14 @@ subtrees and data nodes have particular sensitivities/vulnerabilities:
 
 Let us consider the example depicted in {{ex-vpws}} which is inspired from {{Section 2.1 of ?RFC4664}}. Each PE is servicing two CEs. Let us also assume that the service references to identify attachment circuits with these CEs are shown in the figure.
 
-~~~~~~~~~~
+~~~~~~~~~~ aasvg
 {::include ./figures/glue/rfc4664-vpws-example}
 ~~~~~~~~~~
 {: #ex-vpws title="VPWS Topology Example" artwork-align="center"}
 
 As shown in {{ex-vpws-query}}, the service AC references can be explicitly indicated in the L2NM query for the realization of the Virtual Private Wire Service (VPWS) ({{Section 3.1.1 of ?RFC4664}}).
 
-~~~~~~~~~~
+~~~~~~~~~~ json
 {::include-fold ./json-examples/glue/example-vpws.json}
 ~~~~~~~~~~
 {: #ex-vpws-query title="Example of VPWS Creation with AC Service References"}
@@ -339,49 +339,49 @@ As shown in {{ex-vpws-query}}, the service AC references can be explicitly indic
 
 Let us consider the example depicted in {{ex-topo}} with two customer termination points (CE1 and CE2). Let us also assume that the bearers to attach these CEs to the service provider network are already in place. References to identify these bearers are shown in the figure.
 
-~~~~~~~~~~
+~~~~~~~~~~ aasvg
 {::include ./figures/glue/ex-topo.txt}
 ~~~~~~~~~~
 {: #ex-topo title="Topology Example" artwork-align="center"}
 
 The AC service model {{!I-D.ietf-opsawg-teas-attachment-circuit}} can be used by the provider to manage and expose the ACs over existing bearers as shown in {{ex-ac}}.
 
-~~~~~~~~~~
+~~~~~~~~~~ json
 {::include-fold ./json-examples/glue/example-acsvc-vpls.json}
 ~~~~~~~~~~
 {: #ex-ac title="ACs Created Using ACaaS"}
 
 Let us now consider that the customer wants to request a VPLS instance between the sites as shown in {{ex-vpls}}.
 
-~~~~~~~~~~
+~~~~~~~~~~ aasvg
 {::include ./figures/glue/ex-vpls.txt}
 ~~~~~~~~~~
 {: #ex-vpls title="Example of VPLS" artwork-align="center"}
 
 To that aim, existing ACs are referenced during the creation of the VPLS instance using the L2NM {{!RFC9291}} and the "ietf-ac-glue" as shown in {{ex-vpls-req}}.
 
-~~~~~~~~~~
+~~~~~~~~~~ json
 {::include-fold ./json-examples/glue/example-vpls.json}
 ~~~~~~~~~~
 {: #ex-vpls-req title="Example of a VPLS Request Using L2NM and AC Glue (Message Body)"}
 
 Note that before implementing the VPLS instance creation request, the provider service orchestrator may first check if the VPLS service can be provided to the customer using the target delivery locations. The orchestrator uses the SAP model {{?RFC9408}} as exemplified in {{ex-sap-query}}. This example assumes that the query concerns only PE1. A similar query can be issued for PE2.
 
-~~~~~~~~~~
+~~~~~~~~~~ json
 {::include-fold ./json-examples/glue/example-sap-query.json}
 ~~~~~~~~~~
 {: #ex-sap-query title="Example of SAP Response (Message Body)"}
 
 The response in {{ex-sap-query}} indicates that the VPLS service can be delivered to CE1. {{!I-D.ietf-opsawg-ntw-attachment-circuit}} can be also used to access AC-related details that are bound to the target SAP ({{ex-acntw-query-2}}).
 
-~~~~~~~~~~
+~~~~~~~~~~ json
 {::include-fold ./json-examples/glue/example-acntw.json}
 ~~~~~~~~~~
 {: #ex-acntw-query-2 title="Example of AC Network Response with SAP (Message Body)"}
 
 The provisioned AC at PE1 can be retrieved using the AC network model {{!I-D.ietf-opsawg-ntw-attachment-circuit}} as depicted in {{ex-acntw-query}}.
 
-~~~~~~~~~~
+~~~~~~~~~~ json
 {::include-fold ./json-examples/glue/example-acntw-2.json}
 ~~~~~~~~~~
 {: #ex-acntw-query title="Example of AC Network Response (Message Body)"}
