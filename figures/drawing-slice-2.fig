@@ -11,7 +11,7 @@
                         sdp1      sdp2
              <----------> <-----------> <------->
              Attachment   Network Slice  Attachment
-             Circuit "ac1"    EMBB_UP    Circuit "ac2"                
+             Circuit "ac1"    EMBB_UP    Circuit "ac2"
 
  * "ac1" properties:
  - bearer-reference: bearerX@site1
