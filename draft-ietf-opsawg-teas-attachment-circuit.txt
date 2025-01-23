@@ -4920,11 +4920,11 @@ A.5.  Control Precedence over Multiple ACs
                                     .---.
                     ac1: primary    |   |
                .--------------------+PE1|
-   .---.       |    bearerX@site1   |   |
+    .--.       |    bearerX@site1   |   |
    |   +-------'                    '---'
    |CE |
    |   +-------.                    .---.
-   '---'       |    ac2: secondary  |   |
+   '--'        |    ac2: secondary  |   |
                '--------------------+PE2|
                     bearerY@site1   |   |
                                     '---'
@@ -4977,13 +4977,13 @@ A.6.  Create Multiple ACs Bound to Multiple CEs
    service provider network.
 
                       .----------------------------------.
-         .----.  ac1  |                                  |  ac3  .----.
+          .---.  ac1  |                                  |  ac3   .---.
          | CE1+-------+                                  +-------+ CE3|
-         '----'       |                                  |       '----'
+         '---'        |                                  |       '---'
                       |              Network             |
-         .----.  ac2  |                                  |  ac4  .----.
+          .---.  ac2  |                                  |  ac4   .---.
          |CE2 +-------+                                  +-------+ CE4|
-         '----'       |                                  |       '----'
+         '---'        |                                  |       '---'
                       '----------------------------------'
 
                     Figure 37: Network Topology Example
