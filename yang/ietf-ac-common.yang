@@ -271,7 +271,8 @@ module ietf-ac-common {
   identity public-nni {
     base role;
     description
-      "Public peering.";
+      "Public peering. This is typically set using a shared
+       network, such as an Internet Exchange Point (IXP).";
   }
 
   // More Admin status types
