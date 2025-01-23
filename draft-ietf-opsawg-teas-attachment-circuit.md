@@ -1210,11 +1210,11 @@ When multiple ACs are requested by the same customer for the same site, the requ
                                  .---.
                  ac1: primary    |   |
             .--------------------+PE1|
-.---.       |    bearerX@site1   |   |
+ .--.       |    bearerX@site1   |   |
 |   +-------'                    '---'
 |CE |
 |   +-------.                    .---.
-'---'       |    ac2: secondary  |   |
+'--'        |    ac2: secondary  |   |
             '--------------------+PE2|
                  bearerY@site1   |   |
                                  '---'
@@ -1232,13 +1232,13 @@ When multiple ACs are requested by the same customer for the same site, the requ
 
 ~~~~ aasvg
                    .----------------------------------.
-      .----.  ac1  |                                  |  ac3  .----.
+       .---.  ac1  |                                  |  ac3   .---.
       | CE1+-------+                                  +-------+ CE3|
-      '----'       |                                  |       '----'
+      '---'        |                                  |       '---'
                    |              Network             |
-      .----.  ac2  |                                  |  ac4  .----.
+       .---.  ac2  |                                  |  ac4   .---.
       |CE2 +-------+                                  +-------+ CE4|
-      '----'       |                                  |       '----'
+      '---'        |                                  |       '---'
                    '----------------------------------'
 ~~~~
 {: #network-example title="Network Topology Example" artwork-align="center"}
