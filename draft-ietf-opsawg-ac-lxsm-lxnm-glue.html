@@ -1839,9 +1839,9 @@ module: ietf-ac-glue
       </h2>
 <p id="section-6-1">This modules augments the L2SM <span>[<a href="#RFC8466" class="cite xref">RFC8466</a>]</span>, the L3SM <span>[<a href="#RFC8299" class="cite xref">RFC8299</a>]</span>, the L2NM <span>[<a href="#RFC9291" class="cite xref">RFC9291</a>]</span>, and the L3NM <span>[<a href="#RFC9182" class="cite xref">RFC9182</a>]</span>.<a href="#section-6-1" class="pilcrow">¶</a></p>
 <p id="section-6-2">This module uses references defined in <span>[<a href="#I-D.ietf-opsawg-teas-attachment-circuit" class="cite xref">I-D.ietf-opsawg-teas-attachment-circuit</a>]</span> and <span>[<a href="#I-D.ietf-opsawg-ntw-attachment-circuit" class="cite xref">I-D.ietf-opsawg-ntw-attachment-circuit</a>]</span>.<a href="#section-6-2" class="pilcrow">¶</a></p>
-<div class="breakable sourcecode" id="section-6-3">
-<pre>&lt;CODE BEGINS&gt; file "ietf-ac-glue@2025-01-07.yang"
-
+<div class="breakable lang-yang sourcecode" id="section-6-3">
+<pre>
+&lt;CODE BEGINS&gt; file "ietf-ac-glue@2025-01-07.yang"
 module ietf-ac-glue {
   yang-version 1.1;
   namespace "urn:ietf:params:xml:ns:yang:ietf-ac-glue";
@@ -2100,8 +2100,8 @@ module ietf-ac-glue {
     uses single-ac-svc-ntw-ref;
   }
 }
-
-&lt;CODE ENDS&gt;</pre><a href="#section-6-3" class="pilcrow">¶</a>
+&lt;CODE ENDS&gt;
+</pre><a href="#section-6-3" class="pilcrow">¶</a>
 </div>
 </section>
 </div>
@@ -2321,22 +2321,94 @@ the set of VPN instances in which a given customer is involved.<a href="#section
 <p id="appendix-A.1-1">Let us consider the example depicted in <a href="#ex-vpws" class="auto internal xref">Figure 5</a> which is inspired from <span><a href="https://rfc-editor.org/rfc/rfc4664#section-2.1" class="relref">Section 2.1</a> of [<a href="#RFC4664" class="cite xref">RFC4664</a>]</span>. Each PE is servicing two CEs. Let us also assume that the service references to identify attachment circuits with these CEs are shown in the figure.<a href="#appendix-A.1-1" class="pilcrow">¶</a></p>
 <span id="name-vpws-topology-example"></span><div id="ex-vpws">
 <figure id="figure-5">
-          <div class="alignCenter art-text artwork" id="appendix-A.1-2.1">
-<pre>
- .----.                                            .----.
-|     |  AC1                                AC2   |     |
-| CE1 |--+ 2001:db8:100::1     2001:db8:200::1 +--| CE2 |
-|     |  |    .-----.   .-----.     .-----.    |  |     |
-'----'   +----|---- |   |  P  |     | ----+----+  '----'
-              |VPWS\----|-----|-----|/VPWS|
-              | PE1 |===|=====|=====| PE2 |
-              |    /|---|-----|-----|\\   |
- .----.  +----|---- |   |     |     | ----|----+   .----.
-|     |  |    '-----'   '-----'     '-----'    |  |     |
-| CE3 |--+                                     +--| CE4 |
-|     |  AC3                                 AC4  |     |
-'----'                                            '----'
-</pre>
+          <div id="appendix-A.1-2.1">
+            <div class="alignCenter art-svg artwork" id="appendix-A.1-2.1.1">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="240" width="464" viewBox="0 0 464 240" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
+                <path d="M 8,48 L 8,96" fill="none" stroke="black"></path>
+                <path d="M 8,176 L 8,224" fill="none" stroke="black"></path>
+                <path d="M 56,32 L 56,80" fill="none" stroke="black"></path>
+                <path d="M 56,160 L 56,208" fill="none" stroke="black"></path>
+                <path d="M 80,64 L 80,96" fill="none" stroke="black"></path>
+                <path d="M 80,160 L 80,192" fill="none" stroke="black"></path>
+                <path d="M 120,80 L 120,176" fill="none" stroke="black"></path>
+                <path d="M 168,80 L 168,104" fill="none" stroke="black"></path>
+                <path d="M 168,120 L 168,176" fill="none" stroke="black"></path>
+                <path d="M 200,80 L 200,176" fill="none" stroke="black"></path>
+                <path d="M 248,80 L 248,176" fill="none" stroke="black"></path>
+                <path d="M 296,80 L 296,176" fill="none" stroke="black"></path>
+                <path d="M 344,80 L 344,176" fill="none" stroke="black"></path>
+                <path d="M 384,64 L 384,96" fill="none" stroke="black"></path>
+                <path d="M 384,160 L 384,192" fill="none" stroke="black"></path>
+                <path d="M 408,48 L 408,96" fill="none" stroke="black"></path>
+                <path d="M 408,176 L 408,224" fill="none" stroke="black"></path>
+                <path d="M 456,32 L 456,80" fill="none" stroke="black"></path>
+                <path d="M 456,160 L 456,208" fill="none" stroke="black"></path>
+                <path d="M 24,32 L 56,32" fill="none" stroke="black"></path>
+                <path d="M 424,32 L 456,32" fill="none" stroke="black"></path>
+                <path d="M 64,64 L 80,64" fill="none" stroke="black"></path>
+                <path d="M 384,64 L 400,64" fill="none" stroke="black"></path>
+                <path d="M 120,80 L 168,80" fill="none" stroke="black"></path>
+                <path d="M 200,80 L 248,80" fill="none" stroke="black"></path>
+                <path d="M 296,80 L 344,80" fill="none" stroke="black"></path>
+                <path d="M 8,96 L 40,96" fill="none" stroke="black"></path>
+                <path d="M 80,96 L 112,96" fill="none" stroke="black"></path>
+                <path d="M 128,96 L 152,96" fill="none" stroke="black"></path>
+                <path d="M 312,96 L 384,96" fill="none" stroke="black"></path>
+                <path d="M 408,96 L 440,96" fill="none" stroke="black"></path>
+                <path d="M 168,112 L 192,112" fill="none" stroke="black"></path>
+                <path d="M 208,112 L 240,112" fill="none" stroke="black"></path>
+                <path d="M 256,112 L 288,112" fill="none" stroke="black"></path>
+                <path d="M 176,126 L 192,126" fill="none" stroke="black"></path>
+                <path d="M 176,130 L 192,130" fill="none" stroke="black"></path>
+                <path d="M 208,126 L 240,126" fill="none" stroke="black"></path>
+                <path d="M 208,130 L 240,130" fill="none" stroke="black"></path>
+                <path d="M 256,126 L 288,126" fill="none" stroke="black"></path>
+                <path d="M 256,130 L 288,130" fill="none" stroke="black"></path>
+                <path d="M 176,144 L 192,144" fill="none" stroke="black"></path>
+                <path d="M 208,144 L 240,144" fill="none" stroke="black"></path>
+                <path d="M 256,144 L 288,144" fill="none" stroke="black"></path>
+                <path d="M 24,160 L 56,160" fill="none" stroke="black"></path>
+                <path d="M 80,160 L 112,160" fill="none" stroke="black"></path>
+                <path d="M 128,160 L 152,160" fill="none" stroke="black"></path>
+                <path d="M 312,160 L 336,160" fill="none" stroke="black"></path>
+                <path d="M 352,160 L 384,160" fill="none" stroke="black"></path>
+                <path d="M 424,160 L 456,160" fill="none" stroke="black"></path>
+                <path d="M 120,176 L 168,176" fill="none" stroke="black"></path>
+                <path d="M 200,176 L 248,176" fill="none" stroke="black"></path>
+                <path d="M 296,176 L 344,176" fill="none" stroke="black"></path>
+                <path d="M 64,192 L 80,192" fill="none" stroke="black"></path>
+                <path d="M 384,192 L 400,192" fill="none" stroke="black"></path>
+                <path d="M 8,224 L 40,224" fill="none" stroke="black"></path>
+                <path d="M 408,224 L 440,224" fill="none" stroke="black"></path>
+                <path d="M 24,32 C 15.16936,32 8,39.16936 8,48" fill="none" stroke="black"></path>
+                <path d="M 424,32 C 415.16936,32 408,39.16936 408,48" fill="none" stroke="black"></path>
+                <path d="M 40,96 C 48.83064,96 56,88.83064 56,80" fill="none" stroke="black"></path>
+                <path d="M 440,96 C 448.83064,96 456,88.83064 456,80" fill="none" stroke="black"></path>
+                <path d="M 24,160 C 15.16936,160 8,167.16936 8,176" fill="none" stroke="black"></path>
+                <path d="M 424,160 C 415.16936,160 408,167.16936 408,176" fill="none" stroke="black"></path>
+                <path d="M 40,224 C 48.83064,224 56,216.83064 56,208" fill="none" stroke="black"></path>
+                <path d="M 440,224 C 448.83064,224 456,216.83064 456,208" fill="none" stroke="black"></path>
+                <g class="text">
+                  <text x="88" y="52">AC1</text>
+                  <text x="368" y="52">AC2</text>
+                  <text x="32" y="68">CE1</text>
+                  <text x="152" y="68">2001:db8:100::1</text>
+                  <text x="312" y="68">2001:db8:200::1</text>
+                  <text x="432" y="68">CE2</text>
+                  <text x="224" y="100">P</text>
+                  <text x="144" y="116">VPWS\</text>
+                  <text x="320" y="116">/VPWS</text>
+                  <text x="144" y="132">PE1</text>
+                  <text x="320" y="132">PE2</text>
+                  <text x="160" y="148">/</text>
+                  <text x="308" y="148">\\</text>
+                  <text x="32" y="196">CE3</text>
+                  <text x="432" y="196">CE4</text>
+                  <text x="88" y="212">AC3</text>
+                  <text x="376" y="212">AC4</text>
+                </g>
+              </svg><a href="#appendix-A.1-2.1.1" class="pilcrow">¶</a>
+</div>
 </div>
 <figcaption><a href="#figure-5" class="selfRef">Figure 5</a>:
 <a href="#name-vpws-topology-example" class="selfRef">VPWS Topology Example</a>
@@ -2345,7 +2417,7 @@ the set of VPN instances in which a given customer is involved.<a href="#section
 <p id="appendix-A.1-3">As shown in <a href="#ex-vpws-query" class="auto internal xref">Figure 6</a>, the service AC references can be explicitly indicated in the L2NM query for the realization of the Virtual Private Wire Service (VPWS) (<span><a href="https://rfc-editor.org/rfc/rfc4664#section-3.1.1" class="relref">Section 3.1.1</a> of [<a href="#RFC4664" class="cite xref">RFC4664</a>]</span>).<a href="#appendix-A.1-3" class="pilcrow">¶</a></p>
 <span id="name-example-of-vpws-creation-wi"></span><div id="ex-vpws-query">
 <figure id="figure-6">
-          <div class="alignLeft art-text artwork" id="appendix-A.1-4.1">
+          <div class="breakable lang-json sourcecode" id="appendix-A.1-4.1">
 <pre>
 =============== NOTE: '\' line wrapping per RFC 8792 ================
 
@@ -2526,15 +2598,57 @@ the set of VPN instances in which a given customer is involved.<a href="#section
 <p id="appendix-A.2-1">Let us consider the example depicted in <a href="#ex-topo" class="auto internal xref">Figure 7</a> with two customer termination points (CE1 and CE2). Let us also assume that the bearers to attach these CEs to the service provider network are already in place. References to identify these bearers are shown in the figure.<a href="#appendix-A.2-1" class="pilcrow">¶</a></p>
 <span id="name-topology-example"></span><div id="ex-topo">
 <figure id="figure-7">
-          <div class="alignCenter art-text artwork" id="appendix-A.2-2.1">
-<pre>
-            .-----.   .--------------.   .-----.
- .---.      | PE1 +===+              +===+ PE2 |       .---.
-| CE1+------+"450"|   |     MPLS     |   |"451"+------+ CE2|
-'---'    ^  '-----'   |              |   '-----'   ^  '---'
-         |            |     Core     |             |
-    Bearer:1234       '--------------'         Bearer:5678
-</pre>
+          <div id="appendix-A.2-2.1">
+            <div class="alignCenter art-svg artwork" id="appendix-A.2-2.1.1">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="128" width="488" viewBox="0 0 488 128" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
+                <path d="M 8,64 L 8,80" fill="none" stroke="black"></path>
+                <path d="M 48,48 L 48,64" fill="none" stroke="black"></path>
+                <path d="M 80,72 L 80,96" fill="none" stroke="black"></path>
+                <path d="M 104,32 L 104,80" fill="none" stroke="black"></path>
+                <path d="M 152,32 L 152,80" fill="none" stroke="black"></path>
+                <path d="M 184,32 L 184,112" fill="none" stroke="black"></path>
+                <path d="M 304,32 L 304,112" fill="none" stroke="black"></path>
+                <path d="M 336,32 L 336,80" fill="none" stroke="black"></path>
+                <path d="M 384,32 L 384,80" fill="none" stroke="black"></path>
+                <path d="M 416,72 L 416,96" fill="none" stroke="black"></path>
+                <path d="M 440,64 L 440,80" fill="none" stroke="black"></path>
+                <path d="M 480,48 L 480,64" fill="none" stroke="black"></path>
+                <path d="M 104,32 L 152,32" fill="none" stroke="black"></path>
+                <path d="M 184,32 L 304,32" fill="none" stroke="black"></path>
+                <path d="M 336,32 L 384,32" fill="none" stroke="black"></path>
+                <path d="M 24,48 L 48,48" fill="none" stroke="black"></path>
+                <path d="M 152,46 L 184,46" fill="none" stroke="black"></path>
+                <path d="M 152,50 L 184,50" fill="none" stroke="black"></path>
+                <path d="M 304,46 L 336,46" fill="none" stroke="black"></path>
+                <path d="M 304,50 L 336,50" fill="none" stroke="black"></path>
+                <path d="M 456,48 L 480,48" fill="none" stroke="black"></path>
+                <path d="M 48,64 L 104,64" fill="none" stroke="black"></path>
+                <path d="M 384,64 L 440,64" fill="none" stroke="black"></path>
+                <path d="M 8,80 L 32,80" fill="none" stroke="black"></path>
+                <path d="M 104,80 L 152,80" fill="none" stroke="black"></path>
+                <path d="M 336,80 L 384,80" fill="none" stroke="black"></path>
+                <path d="M 440,80 L 464,80" fill="none" stroke="black"></path>
+                <path d="M 184,112 L 304,112" fill="none" stroke="black"></path>
+                <path d="M 24,48 C 15.16936,48 8,55.16936 8,64" fill="none" stroke="black"></path>
+                <path d="M 456,48 C 447.16936,48 440,55.16936 440,64" fill="none" stroke="black"></path>
+                <path d="M 32,80 C 40.83064,80 48,72.83064 48,64" fill="none" stroke="black"></path>
+                <path d="M 464,80 C 472.83064,80 480,72.83064 480,64" fill="none" stroke="black"></path>
+                <polygon class="arrowhead" points="424,72 412,66.4 412,77.6" fill="black" transform="rotate(270,416,72)"></polygon>
+                <polygon class="arrowhead" points="88,72 76,66.4 76,77.6" fill="black" transform="rotate(270,80,72)"></polygon>
+                <g class="text">
+                  <text x="128" y="52">PE1</text>
+                  <text x="360" y="52">PE2</text>
+                  <text x="32" y="68">CE1</text>
+                  <text x="128" y="68">"450"</text>
+                  <text x="244" y="68">MPLS</text>
+                  <text x="360" y="68">"451"</text>
+                  <text x="464" y="68">CE2</text>
+                  <text x="244" y="100">Core</text>
+                  <text x="80" y="116">Bearer:1234</text>
+                  <text x="424" y="116">Bearer:5678</text>
+                </g>
+              </svg><a href="#appendix-A.2-2.1.1" class="pilcrow">¶</a>
+</div>
 </div>
 <figcaption><a href="#figure-7" class="selfRef">Figure 7</a>:
 <a href="#name-topology-example" class="selfRef">Topology Example</a>
@@ -2543,7 +2657,7 @@ the set of VPN instances in which a given customer is involved.<a href="#section
 <p id="appendix-A.2-3">The AC service model <span>[<a href="#I-D.ietf-opsawg-teas-attachment-circuit" class="cite xref">I-D.ietf-opsawg-teas-attachment-circuit</a>]</span> can be used by the provider to manage and expose the ACs over existing bearers as shown in <a href="#ex-ac" class="auto internal xref">Figure 8</a>.<a href="#appendix-A.2-3" class="pilcrow">¶</a></p>
 <span id="name-acs-created-using-acaas"></span><div id="ex-ac">
 <figure id="figure-8">
-          <div class="alignLeft art-text artwork" id="appendix-A.2-4.1">
+          <div class="breakable lang-json sourcecode" id="appendix-A.2-4.1">
 <pre>
 {
   "ietf-ac-svc:attachment-circuits": {
@@ -2623,17 +2737,65 @@ the set of VPN instances in which a given customer is involved.<a href="#section
 <p id="appendix-A.2-5">Let us now consider that the customer wants to request a VPLS instance between the sites as shown in <a href="#ex-vpls" class="auto internal xref">Figure 9</a>.<a href="#appendix-A.2-5" class="pilcrow">¶</a></p>
 <span id="name-example-of-vpls"></span><div id="ex-vpls">
 <figure id="figure-9">
-          <div class="alignCenter art-text artwork" id="appendix-A.2-6.1">
-<pre>
-            |----------  VPLS "1543" ----------|
-
-            .-----.   .--------------.   .-----.
- .---.  AC1 | PE1 +===+              +===+ PE2 |  AC2  .---.
-| CE1+------+"450"|   |     MPLS     |   |"451"+------+ CE2|
-'---'    ^  '-----'   |              |   '-----'   ^  '---'
-         |            |     Core     |             |
-    Bearer:1234       '--------------'         Bearer:5678
-</pre>
+          <div id="appendix-A.2-6.1">
+            <div class="alignCenter art-svg artwork" id="appendix-A.2-6.1.1">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="160" width="488" viewBox="0 0 488 160" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
+                <path d="M 8,96 L 8,112" fill="none" stroke="black"></path>
+                <path d="M 48,80 L 48,96" fill="none" stroke="black"></path>
+                <path d="M 80,104 L 80,128" fill="none" stroke="black"></path>
+                <path d="M 104,64 L 104,112" fill="none" stroke="black"></path>
+                <path d="M 152,64 L 152,112" fill="none" stroke="black"></path>
+                <path d="M 184,64 L 184,144" fill="none" stroke="black"></path>
+                <path d="M 304,64 L 304,144" fill="none" stroke="black"></path>
+                <path d="M 336,64 L 336,112" fill="none" stroke="black"></path>
+                <path d="M 384,64 L 384,112" fill="none" stroke="black"></path>
+                <path d="M 416,104 L 416,128" fill="none" stroke="black"></path>
+                <path d="M 440,96 L 440,112" fill="none" stroke="black"></path>
+                <path d="M 480,80 L 480,96" fill="none" stroke="black"></path>
+                <path d="M 112,32 L 184,32" fill="none" stroke="black"></path>
+                <path d="M 304,32 L 376,32" fill="none" stroke="black"></path>
+                <path d="M 104,64 L 152,64" fill="none" stroke="black"></path>
+                <path d="M 184,64 L 304,64" fill="none" stroke="black"></path>
+                <path d="M 336,64 L 384,64" fill="none" stroke="black"></path>
+                <path d="M 24,80 L 48,80" fill="none" stroke="black"></path>
+                <path d="M 152,78 L 184,78" fill="none" stroke="black"></path>
+                <path d="M 152,82 L 184,82" fill="none" stroke="black"></path>
+                <path d="M 304,78 L 336,78" fill="none" stroke="black"></path>
+                <path d="M 304,82 L 336,82" fill="none" stroke="black"></path>
+                <path d="M 456,80 L 480,80" fill="none" stroke="black"></path>
+                <path d="M 48,96 L 104,96" fill="none" stroke="black"></path>
+                <path d="M 384,96 L 440,96" fill="none" stroke="black"></path>
+                <path d="M 8,112 L 32,112" fill="none" stroke="black"></path>
+                <path d="M 104,112 L 152,112" fill="none" stroke="black"></path>
+                <path d="M 336,112 L 384,112" fill="none" stroke="black"></path>
+                <path d="M 440,112 L 464,112" fill="none" stroke="black"></path>
+                <path d="M 184,144 L 304,144" fill="none" stroke="black"></path>
+                <path d="M 24,80 C 15.16936,80 8,87.16936 8,96" fill="none" stroke="black"></path>
+                <path d="M 456,80 C 447.16936,80 440,87.16936 440,96" fill="none" stroke="black"></path>
+                <path d="M 32,112 C 40.83064,112 48,104.83064 48,96" fill="none" stroke="black"></path>
+                <path d="M 464,112 C 472.83064,112 480,104.83064 480,96" fill="none" stroke="black"></path>
+                <polygon class="arrowhead" points="424,104 412,98.4 412,109.6" fill="black" transform="rotate(270,416,104)"></polygon>
+                <polygon class="arrowhead" points="88,104 76,98.4 76,109.6" fill="black" transform="rotate(270,80,104)"></polygon>
+                <g class="text">
+                  <text x="104" y="36">|</text>
+                  <text x="220" y="36">VPLS</text>
+                  <text x="268" y="36">"1543"</text>
+                  <text x="384" y="36">|</text>
+                  <text x="80" y="84">AC1</text>
+                  <text x="128" y="84">PE1</text>
+                  <text x="360" y="84">PE2</text>
+                  <text x="416" y="84">AC2</text>
+                  <text x="32" y="100">CE1</text>
+                  <text x="128" y="100">"450"</text>
+                  <text x="244" y="100">MPLS</text>
+                  <text x="360" y="100">"451"</text>
+                  <text x="464" y="100">CE2</text>
+                  <text x="244" y="132">Core</text>
+                  <text x="80" y="148">Bearer:1234</text>
+                  <text x="424" y="148">Bearer:5678</text>
+                </g>
+              </svg><a href="#appendix-A.2-6.1.1" class="pilcrow">¶</a>
+</div>
 </div>
 <figcaption><a href="#figure-9" class="selfRef">Figure 9</a>:
 <a href="#name-example-of-vpls" class="selfRef">Example of VPLS</a>
@@ -2642,7 +2804,7 @@ the set of VPN instances in which a given customer is involved.<a href="#section
 <p id="appendix-A.2-7">To that aim, existing ACs are referenced during the creation of the VPLS instance using the L2NM <span>[<a href="#RFC9291" class="cite xref">RFC9291</a>]</span> and the "ietf-ac-glue" as shown in <a href="#ex-vpls-req" class="auto internal xref">Figure 10</a>.<a href="#appendix-A.2-7" class="pilcrow">¶</a></p>
 <span id="name-example-of-a-vpls-request-u"></span><div id="ex-vpls-req">
 <figure id="figure-10">
-          <div class="alignLeft art-text artwork" id="appendix-A.2-8.1">
+          <div class="breakable lang-json sourcecode" id="appendix-A.2-8.1">
 <pre>
 {
   "ietf-l2vpn-ntw:l2vpn-ntw": {
@@ -2745,7 +2907,7 @@ the set of VPN instances in which a given customer is involved.<a href="#section
 <p id="appendix-A.2-9">Note that before implementing the VPLS instance creation request, the provider service orchestrator may first check if the VPLS service can be provided to the customer using the target delivery locations. The orchestrator uses the SAP model <span>[<a href="#RFC9408" class="cite xref">RFC9408</a>]</span> as exemplified in <a href="#ex-sap-query" class="auto internal xref">Figure 11</a>. This example assumes that the query concerns only PE1. A similar query can be issued for PE2.<a href="#appendix-A.2-9" class="pilcrow">¶</a></p>
 <span id="name-example-of-sap-response-mes"></span><div id="ex-sap-query">
 <figure id="figure-11">
-          <div class="alignLeft art-text artwork" id="appendix-A.2-10.1">
+          <div class="lang-json sourcecode" id="appendix-A.2-10.1">
 <pre>
 {
    "ietf-sap-ntw:service":[
@@ -2779,7 +2941,7 @@ the set of VPN instances in which a given customer is involved.<a href="#section
 <p id="appendix-A.2-11">The response in <a href="#ex-sap-query" class="auto internal xref">Figure 11</a> indicates that the VPLS service can be delivered to CE1. <span>[<a href="#I-D.ietf-opsawg-ntw-attachment-circuit" class="cite xref">I-D.ietf-opsawg-ntw-attachment-circuit</a>]</span> can be also used to access AC-related details that are bound to the target SAP (<a href="#ex-acntw-query-2" class="auto internal xref">Figure 12</a>).<a href="#appendix-A.2-11" class="pilcrow">¶</a></p>
 <span id="name-example-of-ac-network-respo"></span><div id="ex-acntw-query-2">
 <figure id="figure-12">
-          <div class="alignLeft art-text artwork" id="appendix-A.2-12.1">
+          <div class="lang-json sourcecode" id="appendix-A.2-12.1">
 <pre>
 {
    "ietf-sap-ntw:service":[
@@ -2831,7 +2993,7 @@ the set of VPN instances in which a given customer is involved.<a href="#section
 <p id="appendix-A.2-13">The provisioned AC at PE1 can be retrieved using the AC network model <span>[<a href="#I-D.ietf-opsawg-ntw-attachment-circuit" class="cite xref">I-D.ietf-opsawg-ntw-attachment-circuit</a>]</span> as depicted in <a href="#ex-acntw-query" class="auto internal xref">Figure 13</a>.<a href="#appendix-A.2-13" class="pilcrow">¶</a></p>
 <span id="name-example-of-ac-network-respon"></span><div id="ex-acntw-query">
 <figure id="figure-13">
-          <div class="alignLeft art-text artwork" id="appendix-A.2-14.1">
+          <div class="breakable lang-json sourcecode" id="appendix-A.2-14.1">
 <pre>
 {
    "ietf-ac-ntw:ac":[
