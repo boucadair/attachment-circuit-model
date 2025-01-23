@@ -1002,7 +1002,7 @@ Several data nodes ('bgp', 'ospf', 'isis', 'rip', and 'customer-key-chain') rely
 
 Let us consider the example depicted in {{ex-topo}} with two customer terminating points (CE1 and CE2). Let us also assume that the bearers to attach these CEs to the provider network are already in place. References to the identify these bearers are shown in the figure.
 
-~~~~~~~~~~
+~~~~~~~~~~ aasvg
 {::include ./figures/glue/ex-topo.txt}
 ~~~~~~~~~~
 {: #ex-topo title="Topology Example" artwork-align="center"}
