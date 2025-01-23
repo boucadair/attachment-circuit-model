@@ -49,7 +49,7 @@
               }
             },
             {
-              "_comment": "list of other active BGP sessions over this AC"
+              "_comment": "other active BGP sessions over the AC"
             }
           ]
         }
