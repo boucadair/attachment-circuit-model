@@ -4,7 +4,7 @@
       "slo-sle-template": [
         {
           "id": "low-latency-template",
-          "description": "Lowest possible latency forwarding behavior"
+          "description": "Lowest latency forwarding behavior"
         }
       ]
     },
