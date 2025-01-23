@@ -305,7 +305,7 @@ The "ietf-ac-common" module is imported by the "ietf-bearer-svc", "ietf-ac-svc",
 * Customers may request protection schemes in which the ACs associated with their endpoints are terminated by the same PE (e.g., CE#3), distinct PEs (e.g., CE#4), etc. The network provider uses this request to decide where to terminate the AC in the provider network (i.e., select which PE(s) to use) and also whether to enable specific capabilities (e.g., Virtual Router Redundancy Protocol (VRRP) {{?RFC9568}}). Note that placement constraints may also be requested during the instantiation of the underlying bearers ({{sec-bearer}}).
 
 ~~~~ aasvg
-{::include ./figures/acs-examples.txt}
+{::include-fold ./figures/acs-examples.txt}
 ~~~~
 {: #uc title='Examples of ACs' artwork-align="center"}
 
@@ -341,11 +341,11 @@ exposes a server to a customer for the ordering of AC services, but it also acts
 decides to terminate a recursion for a given service request or create child service requests is deployment specific.
 
 ~~~~ aasvg
- .--------.   Bearer/AC      .--------.   Bearer/AC      .-------------.
-| Customer | Service Models | Service  | Service Model  |   Provider    |
-| Service  |<-------------->|  Broker  |<-------------->| Service Order |
-| Ordering |                |  B2B C/S |                |    Handling   |
- '--------'                  '--------'                  '-------------'
+ .--------.   Bearer/AC      .--------.   Bearer/AC     .-------------.
+| Customer | Service Models | Service  | Service Model |   Provider    |
+| Service  |<-------------->|  Broker  |<------------->| Service Order |
+| Ordering |                |  B2B C/S |               |    Handling   |
+ '--------'                  '--------'                 '-------------'
 
 B2B C/S: Back-to-back Client/Server
 ~~~~
@@ -354,7 +354,7 @@ B2B C/S: Back-to-back Client/Server
 {{u-ex}} shows the positioning of the AC service model in the overall service delivery process, with a focus on the provider.
 
 ~~~~ aasvg
-{::include ./figures/arch.txt}
+{::include-fold ./figures/arch.txt}
 ~~~~
 {: #u-ex title="An Example of AC Model Usage (Focus on the Provider's Internals)" artwork-align="center"}
 
@@ -368,7 +368,7 @@ In order to ease the mapping between the service model and underlying network mo
 Such a reference can be used, e.g., in a subsequent service request to create an AC. The anchoring of the AC can also be achieved by indicating (with or without a bearer reference), a peer SAP identifier (e.g., an identifier of an SF).
 
 ~~~~
-{::include ./yang/full-trees/bearers-stree.txt}
+{::include-fold ./yang/full-trees/bearers-stree.txt}
 ~~~~
 {: #bearer-st title="Bearer Service Tree Structure" artwork-align="center"}
 
@@ -473,7 +473,7 @@ for the reader's convenience.
 The overall tree structure of the AC service module is shown in {{o-svc-tree}}.
 
 ~~~~
-{::include ./yang/subtrees/svc/overall-stree.txt}
+{::include-fold ./yang/subtrees/svc/overall-stree.txt}
 ~~~~
 {: #o-svc-tree title="Overall AC Service Tree Structure" artwork-align="center"}
 
@@ -495,7 +495,7 @@ Features are used to tag conditional portions of the model in order to accommoda
 The 'specific-provisioning-profiles' container ({{gp-svc-tree}}) can be used by a service provider to maintain a set of reusable profiles. The profiles definitions are similar to those defined in {{!RFC9181}}, including: Quality of Service (QoS), BFD, forwarding, and routing profiles. The exact definition of the profiles is local to each service provider. The model only includes an identifier for these profiles in order to facilitate identifying and binding local policies when building an AC.
 
 ~~~~
-{::include ./yang/subtrees/svc/sp-svc-profiles-stree.txt}
+{::include-fold ./yang/subtrees/svc/sp-svc-profiles-stree.txt}
 ~~~~
 {: #gp-svc-tree title="Service Profiles" artwork-align="center"}
 
@@ -534,7 +534,7 @@ The 'placement-constraints' specifies the placement constraints of an AC. For ex
 The structure of 'placement-constraints' is shown in {{precedence-tree}}.
 
 ~~~~
-{::include ./yang/subtrees/svc/precedence-stree.txt}
+{::include-fold ./yang/subtrees/svc/precedence-stree.txt}
 ~~~~
 {: #precedence-tree title="Placement Constraints Subtree Structure" artwork-align="center"}
 
@@ -543,7 +543,7 @@ The structure of 'placement-constraints' is shown in {{precedence-tree}}.
 The structure of 'attachment-circuits' is shown in {{ac-svc-tree}}.
 
 ~~~~
-{::include ./yang/subtrees/svc/overall-ac-stree.txt}
+{::include-fold ./yang/subtrees/svc/overall-ac-stree.txt}
 ~~~~
 {: #ac-svc-tree title="Attachment Circuits Tree Structure" artwork-align="center"}
 
@@ -634,7 +634,7 @@ The 'l2-connection' container ({{l2-svc-tree}}) is used to configure the relevan
 This structure relies upon the common groupings defined in {{!I-D.ietf-opsawg-teas-common-ac}}.
 
 ~~~~
-{::include ./yang/subtrees/svc/l2-stree.txt}
+{::include-fold ./yang/subtrees/svc/l2-stree.txt}
 ~~~~
 {: #l2-svc-tree title="Layer 2 Connection Tree Structure" artwork-align="center"}
 
@@ -650,14 +650,14 @@ tunnel-specific data nodes ('l3-tunnel-service'). Such augmentations MUST be con
 {{ipv4-svc-tree}} shows the structure of the IPv4 connection.
 
 ~~~~
-{::include ./yang/subtrees/svc/ipv4-stree.txt}
+{::include-fold ./yang/subtrees/svc/ipv4-stree.txt}
 ~~~~
 {: #ipv4-svc-tree title="Layer 3 Connection Tree Structure (IPv4)" artwork-align="center"}
 
 {{ipv6-svc-tree}} shows the structure of the IPv6 connection.
 
 ~~~~
-{::include ./yang/subtrees/svc/ipv6-stree.txt}
+{::include-fold ./yang/subtrees/svc/ipv6-stree.txt}
 ~~~~
 {: #ipv6-svc-tree title="Layer 3 Connection Tree Structure (IPv6)" artwork-align="center"}
 
@@ -668,7 +668,7 @@ As shown in the tree depicted in {{rtg-svc-tree}}, the 'routing-protocols' conta
 In addition to static routing ({{sec-static-rtg}}), the module supports BGP ({{sec-bgp-rtg}}), OSPF ({{sec-ospf-rtg}}), IS-IS ({{sec-isis-rtg}}), and RIP ({{sec-rip-rtg}}). It also includes a reference to the 'routing-profile-identifier' defined in {{sec-profiles}}, so that additional constraints can be applied to a specific instance of each routing protocol. Moreover, the module supports VRRP ({{sec-vrrp-rtg}}).
 
 ~~~~
-{::include ./yang/subtrees/svc/rtg-stree.txt}
+{::include-fold ./yang/subtrees/svc/rtg-stree.txt}
 ~~~~
 {: #rtg-svc-tree title="Routing Tree Structure" artwork-align="center"}
 
@@ -677,7 +677,7 @@ In addition to static routing ({{sec-static-rtg}}), the module supports BGP ({{s
 The static tree structure is shown in {{static-rtg-svc-tree}}.
 
 ~~~~
-{::include ./yang/subtrees/svc/static-rtg-stree.txt}
+{::include-fold ./yang/subtrees/svc/static-rtg-stree.txt}
 ~~~~
 {: #static-rtg-svc-tree title="Static Routing Tree Structure" artwork-align="center"}
 
@@ -710,7 +710,7 @@ share authentication parameters, bind the session to a forwarding protection pro
 The BGP tree structure is shown in {{bgp-rtg-svc-tree}}.
 
 ~~~~
-{::include ./yang/subtrees/svc/bgp-rtg-stree.txt}
+{::include-fold ./yang/subtrees/svc/bgp-rtg-stree.txt}
 ~~~~
 {: #bgp-rtg-svc-tree title="BGP Tree Structure" artwork-align="center"}
 
@@ -783,7 +783,7 @@ customer IP address is used as remote IP address.
 The OSPF tree structure is shown in {{ospf-rtg-svc-tree}}.
 
 ~~~~
-{::include ./yang/subtrees/svc/ospf-rtg-stree.txt}
+{::include-fold ./yang/subtrees/svc/ospf-rtg-stree.txt}
 ~~~~
 {: #ospf-rtg-svc-tree title="OSPF Tree Structure" artwork-align="center"}
 
@@ -813,7 +813,7 @@ The following OSPF data nodes are supported:
 The IS-IS tree structure is shown in {{isis-rtg-svc-tree}}.
 
 ~~~~
-{::include ./yang/subtrees/svc/isis-rtg-stree.txt}
+{::include-fold ./yang/subtrees/svc/isis-rtg-stree.txt}
 ~~~~
 {: #isis-rtg-svc-tree title="IS-IS Tree Structure" artwork-align="center"}
 
@@ -839,7 +839,7 @@ The following IS-IS data nodes are supported:
 The RIP tree structure is shown in {{rip-rtg-svc-tree}}.
 
 ~~~~
-{::include ./yang/subtrees/svc/rip-rtg-stree.txt}
+{::include-fold ./yang/subtrees/svc/rip-rtg-stree.txt}
 ~~~~
 {: #rip-rtg-svc-tree title="RIP Tree Structure" artwork-align="center"}
 
@@ -850,7 +850,7 @@ The RIP tree structure is shown in {{rip-rtg-svc-tree}}.
 The model supports the Virtual Router Redundancy Protocol (VRRP) {{?RFC9568}} on an AC ({{vrrp-rtg-svc-tree}}).
 
 ~~~~
-{::include ./yang/subtrees/svc/vrrp-rtg-stree.txt}
+{::include-fold ./yang/subtrees/svc/vrrp-rtg-stree.txt}
 ~~~~
 {: #vrrp-rtg-svc-tree title="VRRP Tree Structure" artwork-align="center"}
 
@@ -873,7 +873,7 @@ isn't any type of VRRP authentication at this time (see {{Section 9 of !RFC9568}
 As shown in the tree depicted in {{oam-svc-tree}}, the 'oam' container defines OAM-related parameters of an AC.
 
 ~~~~
-{::include ./yang/subtrees/svc/oam-stree.txt}
+{::include-fold ./yang/subtrees/svc/oam-stree.txt}
 ~~~~
 {: #oam-svc-tree title="OAM Tree Structure" artwork-align="center"}
 
@@ -902,7 +902,7 @@ This version of the module supports BFD. The following BFD data nodes can be spe
 As shown in the tree depicted in {{sec-svc-tree}}, the 'security' container defines a set of AC security parameters.
 
 ~~~~
-{::include ./yang/subtrees/svc/security-stree.txt}
+{::include-fold ./yang/subtrees/svc/security-stree.txt}
 ~~~~
 {: #sec-svc-tree title="Security Tree Structure" artwork-align="center"}
 
@@ -913,7 +913,7 @@ The 'security' container specifies a minimum set of encryption-related parameter
 The structure of the 'service' container is depicted in {{bw-tree}}.
 
 ~~~~
-{::include ./yang/subtrees/svc/bw-stree.txt}
+{::include-fold ./yang/subtrees/svc/bw-stree.txt}
 ~~~~
 {: #bw-tree title="Bandwidth Tree Structure" artwork-align="center"}
 
@@ -1263,14 +1263,14 @@ First, {{slice-vlan-1}} describes the end-to-end network topology as well the or
 SFs are deployed within each site.
 
 ~~~~ aasvg
-{::include ./figures/drawing-slice-1.fig}
+{::include-fold./figures/drawing-slice-1.fig}
 ~~~~
 {: #slice-vlan-1 title="An Example of a Network Topology Used to Deploy Slices"}
 
 {{slice-vlan-2}} describes the logical connectivity enforced thanks to both IETF Network Slice and ACaaS models.
 
 ~~~~ aasvg
-{::include ./figures/drawing-slice-2.fig}
+{::include-fold./figures/drawing-slice-2.fig}
 ~~~~
 {: #slice-vlan-2 title="Logical Overview"}
 
@@ -1308,7 +1308,7 @@ This example ({{cloud-provider-1}}) shows how the AC service model can be used t
 
 
 ~~~~ aasvg
-{::include ./figures/drawing-cp-1.fig}
+{::include-fold ./figures/drawing-cp-1.fig}
 ~~~~
 {: #cloud-provider-1 title="An Example of Realization for Connecting a Cloud Site"}
 
