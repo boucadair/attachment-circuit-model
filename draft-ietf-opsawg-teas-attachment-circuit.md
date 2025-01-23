@@ -268,17 +268,17 @@ The names of data nodes are prefixed using the prefix associated with the corres
                 ietf-ac-common
                  ^     ^     ^
                  |     |     |
-       .--------'      |      .---------.
+      .----------'     |     '----------.
       |                |                |
       |                |                |
 ietf-ac-svc <--- ietf-bearer-svc        |
    ^    ^                               |
    |    |                               |
-   |     '----------------------- ietf-ac-ntw
+   |    '------------------------ ietf-ac-ntw
    |                                    ^
    |                                    |
    |                                    |
-    '----------- ietf-ac-glue ---------'
+   '------------ ietf-ac-glue ----------'
 
 X --> Y: X imports Y
 ~~~~
