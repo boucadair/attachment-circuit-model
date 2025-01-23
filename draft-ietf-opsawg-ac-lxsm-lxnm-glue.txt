@@ -331,37 +331,37 @@ Table of Contents
    Figure 3 shows the positioning of the AC models in the overall
    service delivery process.
 
-                               .---------------.
+                                .-------------.
                                |   Customer    |
-                               '-------+-------'
-               Customer Service Model  |
+                                '------+------'
+               Customer Service Models |
        ietf-l2vpn-svc, ietf-l3vpn-svc, | ietf-network-slice-service,
             ietf-ac-svc, ietf-ac-glue, | and ietf-bearer-svc
-                               .-------+-------.
+                                .------+------.
                                |    Service    |
                                | Orchestration |
-                               '-------+-------'
-                Network Model          |
+                                '------+------'
+                Network Models         |
        ietf-l2vpn-ntw, ietf-l3vpn-ntw, | ietf-sap-ntw, ietf-ac-glue,
                 and ietf-ac-ntw        |
-                               .-------+-------.
+                                .------+------.
                                |   Network     |
                                | Orchestration |
-                               '-------+-------'
+                                '------+------'
          Network Configuration Model   |
                            .-----------+-----------.
                            |                       |
-                  .--------+------.       .--------+------.
+                   .-------+-----.         .-------+-----.
                   |    Domain     |       |     Domain    |
                   | Orchestration |       | Orchestration |
-                  '---+-----------'       '--------+------'
+                   '--+--------+-'         '-------+-----'
        Device         |        |                   |
        Configuration  |        |                   |
-       Model          |        |                   |
-                 .----+----.   |                   |
+       Models         |        |                   |
+                  .---+---.    |                   |
                  | Config  |   |                   |
                  | Manager |   |                   |
-                 '----+----'   |                   |
+                  '---+---'    |                   |
                       |        |                   |
                    NETCONF/CLI.......................
                       |        |                   |
