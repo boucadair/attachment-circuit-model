@@ -5,14 +5,14 @@
 Operations and Management Area Working Group           M. Boucadair, Ed.
 Internet-Draft                                                    Orange
 Intended status: Standards Track                         R. Roberts, Ed.
-Expires: 26 July 2025                                            Juniper
+Expires: 27 July 2025                                            Juniper
                                                            O. G. D. Dios
                                                               Telefonica
                                                            S. B. Giraldo
                                                                    Nokia
                                                                    B. Wu
                                                      Huawei Technologies
-                                                         22 January 2025
+                                                         23 January 2025
 
 
             A Common YANG Data Model for Attachment Circuits
@@ -55,7 +55,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 26 July 2025.
+   This Internet-Draft will expire on 27 July 2025.
 
 Copyright Notice
 
@@ -388,8 +388,9 @@ Table of Contents
          classification, marking, and actions (e.g., [RFC3644]).
 
       'failure-detection-profile-identifier':  Refers to a set of
-         failure detection policies (e.g., BFD policies [RFC5880]) that
-         can be invoked when building an AC.
+         failure detection policies (e.g., Bidirectional Forwarding
+         Detection (BFD) policies [RFC5880]) that can be invoked when
+         building an AC.
 
       'forwarding-profile-identifier':  Refers to the policies that
          apply to the forwarding of packets conveyed within an AC.  Such
