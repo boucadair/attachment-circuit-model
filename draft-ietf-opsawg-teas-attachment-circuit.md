@@ -268,17 +268,17 @@ The names of data nodes are prefixed using the prefix associated with the corres
                 ietf-ac-common
                  ^     ^     ^
                  |     |     |
-      +----------+     |     +----------+
+       .--------'      |      .---------.
       |                |                |
       |                |                |
 ietf-ac-svc <--- ietf-bearer-svc        |
    ^    ^                               |
    |    |                               |
-   |    +------------------------ ietf-ac-ntw
+   |     '----------------------- ietf-ac-ntw
    |                                    ^
    |                                    |
    |                                    |
-   +----------- ietf-ac-glue -----------+
+    '----------- ietf-ac-glue ---------'
 
 X --> Y: X imports Y
 ~~~~
@@ -320,11 +320,11 @@ The procedure to provision a service in a service provider network may depend on
 Resources that are needed to activate an AC (e.g., Layer 2 or Layer 3 identifiers) are typically imposed by the provider. However, the deployment model assumes that the customer may supply a specific identifier (e.g., selected from a pool that was pre-provisioned by the provider) in a service request. The provider may accept or reject such request.
 
 ~~~~ aasvg
-.----------------------.     Bearer/AC       .--------------------.
+ .--------------------.     Bearer/AC         .------------------.
 |      Customer        |    Service Models   |     Provider       |
 |   Service Ordering   | <-----------------> |   Service Order    |
 |                      |                     |     Handling       |
-'----------^-----------'                     '---------^----------'
+ '---------^----------'                       '--------^---------'
            |                                           |
       Provisioning                                Provisioning
            |                                           |
@@ -341,11 +341,11 @@ exposes a server to a customer for the ordering of AC services, but it also acts
 decides to terminate a recursion for a given service request or create child service requests is deployment specific.
 
 ~~~~ aasvg
-.----------.   Bearer/AC    .----------.   Bearer/AC    .--------------.
+ .--------.   Bearer/AC      .--------.   Bearer/AC      .-------------.
 | Customer | Service Models | Service  | Service Model  |   Provider    |
 | Service  |<-------------->|  Broker  |<-------------->| Service Order |
 | Ordering |                |  B2B C/S |                |    Handling   |
-'----------'                '----------'                '---------------'
+ '--------'                  '--------'                  '-------------'
 
 B2B C/S: Back-to-back Client/Server
 ~~~~
@@ -1381,11 +1381,11 @@ This section illustrates how to use the AC service model for interconnection pur
 This example follows the recursive deployment model depicted in {{u-ex-r}}. Specifically, base AC service requests are handled locally by the IXP. However, binding BGP sessions to existing ACs involves a recursion step.
 
 ~~~~ aasvg
-.------------.       AC       .----------.       AC       .------------.
+ .----------.       AC         .--------.       AC         .----------.
 |  Network   | Service Model  |    IXP   | Service Model  |   Network  |
 | Operator A |<-------------->| Operator |<-------------->| Operator B |
 |            |                |  B2B C/S |                |            |
-'------^-----'                '-----^----'                '------^-----'
+ '-----^----'                  '----^---'                  '-----^----'
        |                            |                            |
        |                            |                            |
   Provisioning                 Provisioning                 Provisioning
