@@ -294,7 +294,7 @@ The module also defines a set of reusable groupings, including the following:
 
    'failure-detection-profile-identifier':
    :  Refers to a set of failure
-      detection policies (e.g., BFD policies {{?RFC5880}}) that can be
+      detection policies (e.g., Bidirectional Forwarding Detection (BFD) policies {{?RFC5880}}) that can be
       invoked when building an AC.
 
    'forwarding-profile-identifier':
