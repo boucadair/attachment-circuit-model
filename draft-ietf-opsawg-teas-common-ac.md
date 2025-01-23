@@ -347,7 +347,7 @@ Routing parameters & OAM ({{rtg-full-tree}}):
   : Note that this version of the common AC model covers authentication options that are common to both OSPFv2 {{!RFC4577}} and OSPFv3 {{!RFC6565}}; as such, the model does not support {{?RFC4552}}.
   : Similar to {{?RFC9182}}, this version of the common AC model assumes that parameters specific to the TCP-AO are preconfigured as part of the key chain that is referenced in the model. No assumption is made about how such a key chain is preconfigured. However, the structure of the key chain should cover data nodes beyond those in {{!RFC8177}}, mainly SendID and RecvID (Section 3.1 of {{!RFC5925}}).
 
-  * BGP peer groups: Includes a set of parameters to identify a BGP peer group. Such a group can be defined by providing a local AS Number (ASN), a customer's ASN, and the address families to be activated for this group. BGP peer groups can be identified by a name.
+  * BGP peer groups ('bgp-peer-group-without-name' and 'bgp-peer-group-with-name'): Includes a set of parameters to identify a BGP peer group. Such a group can be defined by providing a local AS Number (ASN), a customer's ASN, and the address families to be activated for this group. BGP peer groups can be identified by a name ('bgp-peer-group-with-name').
   * Basic OSPF and IS-IS parameters ('ospf-basic' and 'isis-basic'): These groupings include the minimal set of routing configuration that is required for the activation of OSPF and IS-IS.
   * Static routing: Parameters to configure an entry or a list of IP static routing entries.
 
@@ -364,7 +364,7 @@ Bandwidth parameters ({{bw-full-tree}}):
   Information Rate (PIR).
 
 : These parameters can be provided per bandwidth type. Type values are
-  taken from {{!RFC9181}}. For example,
+  taken from {{!RFC9181}}. For example, the following values can be used:
 
     * 'bw-per-cos':
     :  The bandwidth is per Class of Service (CoS).
