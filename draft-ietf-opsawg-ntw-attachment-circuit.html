@@ -6550,15 +6550,57 @@ be used to inject spoofed routing  advertisements.<a href="#section-7-7.6.1" cla
 <p id="appendix-A.1-1">Let us consider the example depicted in <a href="#ex-topo" class="auto internal xref">Figure 21</a> with two customer terminating points (CE1 and CE2). Let us also assume that the bearers to attach these CEs to the provider network are already in place. References to the identify these bearers are shown in the figure.<a href="#appendix-A.1-1" class="pilcrow">¶</a></p>
 <span id="name-topology-example"></span><div id="ex-topo">
 <figure id="figure-21">
-          <div class="alignCenter art-text artwork" id="appendix-A.1-2.1">
-<pre>
-            .-----.   .--------------.   .-----.
- .---.      | PE1 +===+              +===+ PE2 |       .---.
-| CE1+------+"450"|   |     MPLS     |   |"451"+------+ CE2|
-'---'    ^  '-----'   |              |   '-----'   ^  '---'
-         |            |     Core     |             |
-    Bearer:1234       '--------------'         Bearer:5678
-</pre>
+          <div id="appendix-A.1-2.1">
+            <div class="alignCenter art-svg artwork" id="appendix-A.1-2.1.1">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="128" width="488" viewBox="0 0 488 128" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
+                <path d="M 8,64 L 8,80" fill="none" stroke="black"></path>
+                <path d="M 48,48 L 48,64" fill="none" stroke="black"></path>
+                <path d="M 80,72 L 80,96" fill="none" stroke="black"></path>
+                <path d="M 104,32 L 104,80" fill="none" stroke="black"></path>
+                <path d="M 152,32 L 152,80" fill="none" stroke="black"></path>
+                <path d="M 184,32 L 184,112" fill="none" stroke="black"></path>
+                <path d="M 304,32 L 304,112" fill="none" stroke="black"></path>
+                <path d="M 336,32 L 336,80" fill="none" stroke="black"></path>
+                <path d="M 384,32 L 384,80" fill="none" stroke="black"></path>
+                <path d="M 416,72 L 416,96" fill="none" stroke="black"></path>
+                <path d="M 440,64 L 440,80" fill="none" stroke="black"></path>
+                <path d="M 480,48 L 480,64" fill="none" stroke="black"></path>
+                <path d="M 104,32 L 152,32" fill="none" stroke="black"></path>
+                <path d="M 184,32 L 304,32" fill="none" stroke="black"></path>
+                <path d="M 336,32 L 384,32" fill="none" stroke="black"></path>
+                <path d="M 24,48 L 48,48" fill="none" stroke="black"></path>
+                <path d="M 152,46 L 184,46" fill="none" stroke="black"></path>
+                <path d="M 152,50 L 184,50" fill="none" stroke="black"></path>
+                <path d="M 304,46 L 336,46" fill="none" stroke="black"></path>
+                <path d="M 304,50 L 336,50" fill="none" stroke="black"></path>
+                <path d="M 456,48 L 480,48" fill="none" stroke="black"></path>
+                <path d="M 48,64 L 104,64" fill="none" stroke="black"></path>
+                <path d="M 384,64 L 440,64" fill="none" stroke="black"></path>
+                <path d="M 8,80 L 32,80" fill="none" stroke="black"></path>
+                <path d="M 104,80 L 152,80" fill="none" stroke="black"></path>
+                <path d="M 336,80 L 384,80" fill="none" stroke="black"></path>
+                <path d="M 440,80 L 464,80" fill="none" stroke="black"></path>
+                <path d="M 184,112 L 304,112" fill="none" stroke="black"></path>
+                <path d="M 24,48 C 15.16936,48 8,55.16936 8,64" fill="none" stroke="black"></path>
+                <path d="M 456,48 C 447.16936,48 440,55.16936 440,64" fill="none" stroke="black"></path>
+                <path d="M 32,80 C 40.83064,80 48,72.83064 48,64" fill="none" stroke="black"></path>
+                <path d="M 464,80 C 472.83064,80 480,72.83064 480,64" fill="none" stroke="black"></path>
+                <polygon class="arrowhead" points="424,72 412,66.4 412,77.6" fill="black" transform="rotate(270,416,72)"></polygon>
+                <polygon class="arrowhead" points="88,72 76,66.4 76,77.6" fill="black" transform="rotate(270,80,72)"></polygon>
+                <g class="text">
+                  <text x="128" y="52">PE1</text>
+                  <text x="360" y="52">PE2</text>
+                  <text x="32" y="68">CE1</text>
+                  <text x="128" y="68">"450"</text>
+                  <text x="244" y="68">MPLS</text>
+                  <text x="360" y="68">"451"</text>
+                  <text x="464" y="68">CE2</text>
+                  <text x="244" y="100">Core</text>
+                  <text x="80" y="116">Bearer:1234</text>
+                  <text x="424" y="116">Bearer:5678</text>
+                </g>
+              </svg><a href="#appendix-A.1-2.1.1" class="pilcrow">¶</a>
+</div>
 </div>
 <figcaption><a href="#figure-21" class="selfRef">Figure 21</a>:
 <a href="#name-topology-example" class="selfRef">Topology Example</a>
