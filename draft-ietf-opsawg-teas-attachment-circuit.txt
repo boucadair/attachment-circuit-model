@@ -5839,7 +5839,7 @@ A.10.2.  Create Bearers and Retrieve Bearer References
      "ietf-bearer-svc:bearers": {
        "bearer": [
          {
-           "name": "a-name-choosen-by-client"
+           "name": "a-name-choosen-by-client",
            "provider-location-reference": "Location-X",
            "customer-point": {
              "identified-by": "ietf-bearer-svc:device-id",
