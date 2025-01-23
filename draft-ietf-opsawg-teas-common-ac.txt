@@ -432,7 +432,8 @@ Table of Contents
        +--ro actual-start?      yang:date-and-time
        +--ro actual-stop?       yang:date-and-time
 
-                Figure 3: Operational Instructions Grouping
+      Figure 3: Service Status, Profiles, and Operational Instructions
+                                 Groupings
 
    Layer 2 encapsulations (Figure 4):  Groupings for the following
       encapsulation schemes are supported: dot1Q, QinQ, and priority-
@@ -737,7 +738,7 @@ Table of Contents
           +-- group-id?     string
           +-- precedence?   identityref
 
-                   Figure 6: Layer 3 Connection Groupings
+                     Figure 6: Routing & OAM Groupings
 
    Bandwidth parameters (Figure 7):  Bandwidth parameters can be
       represented using the Committed Information Rate (CIR), the Excess
