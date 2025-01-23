@@ -5872,7 +5872,7 @@ A.10.3.  Manage ACs and BGP Sessions
    |    BGP ASN:65536     |  Attachment-Circuit 1
    |                      |    Bearer=Location-X-Line-114
    | .---------------.    |
-   | | ASBR-A-1     **-------------------+
+   | | ASBR-A-1     **-------------------.
    | |               |  192.0.2.1/24     |
    | '---------------'  vlan-id:114      |
    |                      |              |
@@ -5887,7 +5887,7 @@ A.10.3.  Manage ACs and BGP Sessions
    |    BGP ASN:65537     |              |
    |                      |              |
    | +---------------+    |  .2/24       |
-   | | ASBR-B-1     **-------------------+
+   | | ASBR-B-1     **-------------------'
    | |               |    |Attachment-Circuit 2
    | '---------------'    | Bearer=Location-X-Line-448
    |                      |
