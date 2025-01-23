@@ -520,7 +520,7 @@ The following specific provisioning profiles can be defined:
 
 #### Referencing Service/Specific Profiles
 
-All the above mentioned profiles are uniquely identified by the NETCONF/RESTCONF server by an identifier. To ease referencing these profiles by other data models, specific typedefs are defined for each of these profiles. Likewise, an attachment circuit reference typedef is defined when referencing a (global) attachment circuit by its name is required. These typedefs SHOULD be used when other modules need a reference to one of these profiles or attachment circuits.
+All the above mentioned profiles are uniquely identified by the provider server by an identifier. To ease referencing these profiles by other data models, specific typedefs are defined for each of these profiles. Likewise, an attachment circuit reference typedef is defined when referencing a (global) attachment circuit by its name is required. These typedefs SHOULD be used when other modules need a reference to one of these profiles or attachment circuits.
 
 ### Attachment Circuits Profiles {#sec-acp}
 
