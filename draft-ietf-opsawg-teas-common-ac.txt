@@ -616,11 +616,12 @@ Table of Contents
             should cover data nodes beyond those in [RFC8177], mainly
             SendID and RecvID (Section 3.1 of [RFC5925]).
 
-      *  BGP peer groups: Includes a set of parameters to identify a BGP
-         peer group.  Such a group can be defined by providing a local
-         AS Number (ASN), a customer's ASN, and the address families to
-         be activated for this group.  BGP peer groups can be identified
-         by a name.
+      *  BGP peer groups ('bgp-peer-group-without-name' and 'bgp-peer-
+         group-with-name'): Includes a set of parameters to identify a
+         BGP peer group.  Such a group can be defined by providing a
+         local AS Number (ASN), a customer's ASN, and the address
+         families to be activated for this group.  BGP peer groups can
+         be identified by a name ('bgp-peer-group-with-name').
 
       *  Basic OSPF and IS-IS parameters ('ospf-basic' and 'isis-
          basic'): These groupings include the minimal set of routing
@@ -748,7 +749,8 @@ Table of Contents
       Information Rate (EIR), or the Peak Information Rate (PIR).
 
       These parameters can be provided per bandwidth type.  Type values
-      are taken from [RFC9181].  For example,
+      are taken from [RFC9181].  For example, the following values can
+      be used:
 
       *  'bw-per-cos':  The bandwidth is per Class of Service (CoS).
 
