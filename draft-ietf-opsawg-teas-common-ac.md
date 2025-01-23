@@ -312,7 +312,7 @@ The module also defines a set of reusable groupings, including the following:
 ~~~~
 {::include ./yang/subtrees/ac-common/ac-common-op.txt}
 ~~~~
-{: #op-full-tree title="Operational Instructions Grouping"}
+{: #op-full-tree title="Service Status, Profiles, and Operational Instructions Groupings"}
 
 Layer 2 encapsulations ({{l2-full-tree}}):
 : Groupings for the following encapsulation schemes are supported: dot1Q, QinQ, and priority-tagged.
@@ -353,7 +353,7 @@ Routing parameters & OAM ({{rtg-full-tree}}):
 ~~~~
 {::include ./yang/subtrees/ac-common/ac-common-rtg.txt}
 ~~~~
-{: #rtg-full-tree title="Layer 3 Connection Groupings"}
+{: #rtg-full-tree title="Routing & OAM Groupings"}
 
 Bandwidth parameters ({{bw-full-tree}}):
 : Bandwidth parameters can be represented using the Committed
