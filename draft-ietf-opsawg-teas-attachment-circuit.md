@@ -1263,14 +1263,14 @@ First, {{slice-vlan-1}} describes the end-to-end network topology as well the or
 SFs are deployed within each site.
 
 ~~~~ aasvg
-{::include-fold./figures/drawing-slice-1.fig}
+{::include-fold ./figures/drawing-slice-1.fig}
 ~~~~
 {: #slice-vlan-1 title="An Example of a Network Topology Used to Deploy Slices"}
 
 {{slice-vlan-2}} describes the logical connectivity enforced thanks to both IETF Network Slice and ACaaS models.
 
 ~~~~ aasvg
-{::include-fold./figures/drawing-slice-2.fig}
+{::include-fold ./figures/drawing-slice-2.fig}
 ~~~~
 {: #slice-vlan-2 title="Logical Overview"}
 
