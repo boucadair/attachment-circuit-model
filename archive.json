@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-01-21T00:46:43.694951+00:00",
+  "timestamp": "2025-01-23T00:47:04.474944+00:00",
   "repo": "boucadair/attachment-circuit-model",
   "labels": [
     {
@@ -9323,6 +9323,34 @@
       "mergedBy": "boucadair",
       "mergeCommit": {
         "oid": "5384906f54caef24e32ba7bab3da7dfd92449e63"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 245,
+      "id": "PR_kwDOIiAkrc6IcsFW",
+      "title": "nits from Erik Kline",
+      "url": "https://github.com/boucadair/attachment-circuit-model/pull/245",
+      "state": "MERGED",
+      "author": "boucadair",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2025-01-21T08:12:50Z",
+      "updatedAt": "2025-01-21T08:20:06Z",
+      "baseRepository": "boucadair/attachment-circuit-model",
+      "baseRefName": "main",
+      "baseRefOid": "4fbdef5570e2ee5f168d23ec94394a1f23179e75",
+      "headRepository": "boucadair/attachment-circuit-model",
+      "headRefName": "nits-from-Erik-Kline-iesg-review",
+      "headRefOid": "b7328e1c68a03b8686c3a5ef1b67a9761e51b797",
+      "closedAt": "2025-01-21T08:20:04Z",
+      "mergedAt": "2025-01-21T08:20:04Z",
+      "mergedBy": "boucadair",
+      "mergeCommit": {
+        "oid": "336bbc48d9f375ba1eed9893c6626cb0dd17919b"
       },
       "comments": [],
       "reviews": []
