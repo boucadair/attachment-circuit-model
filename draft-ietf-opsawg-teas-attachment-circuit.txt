@@ -3473,7 +3473,8 @@ B2B C/S: Back-to-back Client/Server
            when "derived-from-or-self(../type, "
               + "'vpn-common:static-routing')" {
              description
-               "Only applies when the protocol is static routing protocol.";
+               "Only applies when the protocol is static routing
+                protocol.";
            }
            description
              "Configuration specific to static routing.";
