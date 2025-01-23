@@ -4121,9 +4121,9 @@ B2B C/S: Back-to-back Client/Server
               Boucadair, M., Roberts, R., de Dios, O. G., Barguil, S.,
               and B. Wu, "A Common YANG Data Model for Attachment
               Circuits", Work in Progress, Internet-Draft, draft-ietf-
-              opsawg-teas-common-ac-14, 9 January 2025,
+              opsawg-teas-common-ac-15, 23 January 2025,
               <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
-              teas-common-ac-14>.
+              teas-common-ac-15>.
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
@@ -6246,25 +6246,25 @@ A.11.3.  NFs Deployment
                             |- 198.51.100.100/32 via 192.0.2.8      |
                              '-------------------------------------'
                                                   |
-                 vlan 100 IP subnet          .----|------------------.
+                 VLAN 100 IP subnet          .----|------------------.
                      192.0.2.0/24            |    +-------+          |
    .----------.                              |            |          |
-   |  .----.  |.1     <- bfd ->              |            |          |
-   | |nf-up1| |-------vlan-100---------------|            v          |
-   | |      | |--------vlan-200--------------|  .------------------. |
-   |  '----'  |                              |  | Bridge vlan 100  | |
-    compute-01                               |  |     (l2/l3)      | |
+   |  .----.  |.1     <- BFD ->              |            |          |
+   | |nf-up1| |---------vlan-100-------------|            v          |
+   | |      | |---------vlan-200-------------|  .------------------. |
+   |  '----'  |                              |  | Bridge VLAN 100  | |
+    compute-01                               |  |     (L2/L3)      | |
    .----------.                              |  |   IP gateway:    | |
-   |  .----.  |.2     <- bfd ->              |  |  192.0.2.254/24  | |
-   | |nf-up2| |--------vlan-100--------------|  '------------------' |
-   | |      | |--------vlan-200--------------|                       |
+   |  .----.  |.2     <- BFD ->              |  |  192.0.2.254/24  | |
+   | |nf-up2| |---------vlan-100-------------|  '------------------' |
+   | |      | |---------vlan-200-------------|                       |
    |  '----'  |                              |  .------------------. |
     compute-02                               |  |                  | |
-                        [...]                |  | Bridge vlan 200  | |
-   .----------.                              |  |    (l2 only)     | |
-   |  .----.  |.6     <- bfd ->              |  |                  | |
-   | |nf-up6| |--------vlan-100--------------|  '------------------' |
-   | |      | |--------vlan-200--------------|                       |
+                        [...]                |  | Bridge VLAN 200  | |
+   .----------.                              |  |    (L2 only)     | |
+   |  .----.  |.6     <- BFD ->              |  |                  | |
+   | |nf-up6| |---------vlan-100-------------|  '------------------' |
+   | |      | |---------vlan-200-------------|                       |
    |  '----'  |                              |                       |
     compute-06                               |                       |
    .----------.                              |                       |
@@ -6277,8 +6277,8 @@ A.11.3.  NFs Deployment
     compute-08                               |                       |
    .----------. <----------BGP-------------->|                       |
    |  .----.  |.9                      .252  |                       |
-   | |nf-cp1| |--------vlan-100--------------|                       |
-   | |      | |--------vlan-200--------------|                       |
+   | |nf-cp1| |---------vlan-100-------------|                       |
+   | |      | |---------vlan-200-------------|                       |
    |  '----'  |                              |                       |
     compute-09                               |                       |
    .----------. <-----------BGP------------->|                       |
@@ -6289,7 +6289,7 @@ A.11.3.  NFs Deployment
     compute-10
      .---------------------------------.
     |nf-cp routing for VLAN 100         |
-    |advertises pools with 1:N backup   |
+    |advertizes pools with 1:N backup   |
     |route.                             |
     |BGP UPDATE:                        |
     |203.0.113.0/24, NH = 198.51.100.100| ---->

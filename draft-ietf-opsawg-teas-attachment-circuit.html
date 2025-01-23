@@ -2880,7 +2880,7 @@ a parent AC can be defined with a set of stable and common information, while
             <h5 id="name-ip-connection-structure">
 <a href="#section-5.2.5.2" class="section-number selfRef">5.2.5.2. </a><a href="#name-ip-connection-structure" class="section-name selfRef">IP Connection Structure</a>
             </h5>
-<p id="section-5.2.5.2-1">The 'ip-connection' container is used to configure the relevant IP properties of an AC. The model supports the usage of dynamic and static addressing. This structure relies upon the common groupings defined in <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-teas-common-ac-14#section-4.3" class="relref">Section 4.3</a> of [<a href="#I-D.ietf-opsawg-teas-common-ac" class="cite xref">I-D.ietf-opsawg-teas-common-ac</a>]</span>. Both IPv4 and IPv6 parameters are supported.<a href="#section-5.2.5.2-1" class="pilcrow">¶</a></p>
+<p id="section-5.2.5.2-1">The 'ip-connection' container is used to configure the relevant IP properties of an AC. The model supports the usage of dynamic and static addressing. This structure relies upon the common groupings defined in <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-teas-common-ac-15#section-4.3" class="relref">Section 4.3</a> of [<a href="#I-D.ietf-opsawg-teas-common-ac" class="cite xref">I-D.ietf-opsawg-teas-common-ac</a>]</span>. Both IPv4 and IPv6 parameters are supported.<a href="#section-5.2.5.2-1" class="pilcrow">¶</a></p>
 <p id="section-5.2.5.2-2">For ACs that require Layer 3 tunnel establishment, the ACaaS includes a provision for future augmentations to define
 tunnel-specific data nodes ('l3-tunnel-service'). Such augmentations <span class="bcp14">MUST</span> be conditional based on the tunnel type ('type').<a href="#section-5.2.5.2-2" class="pilcrow">¶</a></p>
 <p id="section-5.2.5.2-3"><a href="#ipv4-svc-tree" class="auto internal xref">Figure 12</a> shows the structure of the IPv4 connection.<a href="#section-5.2.5.2-3" class="pilcrow">¶</a></p>
@@ -5899,7 +5899,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
 <dl class="references">
 <dt id="I-D.ietf-opsawg-teas-common-ac">[I-D.ietf-opsawg-teas-common-ac]</dt>
         <dd>
-<span class="refAuthor">Boucadair, M.</span>, <span class="refAuthor">Roberts, R.</span>, <span class="refAuthor">de Dios, O. G.</span>, <span class="refAuthor">Barguil, S.</span>, and <span class="refAuthor">B. Wu</span>, <span class="refTitle">"A Common YANG Data Model for Attachment Circuits"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-opsawg-teas-common-ac-14</span>, <time datetime="2025-01-09" class="refDate">9 January 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-teas-common-ac-14">https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-teas-common-ac-14</a>&gt;</span>. </dd>
+<span class="refAuthor">Boucadair, M.</span>, <span class="refAuthor">Roberts, R.</span>, <span class="refAuthor">de Dios, O. G.</span>, <span class="refAuthor">Barguil, S.</span>, and <span class="refAuthor">B. Wu</span>, <span class="refTitle">"A Common YANG Data Model for Attachment Circuits"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-opsawg-teas-common-ac-15</span>, <time datetime="2025-01-23" class="refDate">23 January 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-teas-common-ac-15">https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-teas-common-ac-15</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC2119">[RFC2119]</dt>
         <dd>
@@ -8689,28 +8689,28 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
                   <path d="M 384,240 L 448,240" fill="none" stroke="black"></path>
                   <path d="M 8,256 L 96,256" fill="none" stroke="black"></path>
                   <path d="M 40,272 L 64,272" fill="none" stroke="black"></path>
-                  <path d="M 104,288 L 152,288" fill="none" stroke="black"></path>
-                  <path d="M 224,288 L 336,288" fill="none" stroke="black"></path>
-                  <path d="M 104,304 L 160,304" fill="none" stroke="black"></path>
-                  <path d="M 232,304 L 336,304" fill="none" stroke="black"></path>
+                  <path d="M 104,288 L 168,288" fill="none" stroke="black"></path>
+                  <path d="M 240,288 L 336,288" fill="none" stroke="black"></path>
+                  <path d="M 104,304 L 168,304" fill="none" stroke="black"></path>
+                  <path d="M 240,304 L 336,304" fill="none" stroke="black"></path>
                   <path d="M 368,304 L 520,304" fill="none" stroke="black"></path>
                   <path d="M 40,320 L 64,320" fill="none" stroke="black"></path>
                   <path d="M 8,352 L 96,352" fill="none" stroke="black"></path>
                   <path d="M 40,368 L 64,368" fill="none" stroke="black"></path>
-                  <path d="M 104,384 L 160,384" fill="none" stroke="black"></path>
-                  <path d="M 232,384 L 336,384" fill="none" stroke="black"></path>
+                  <path d="M 104,384 L 168,384" fill="none" stroke="black"></path>
+                  <path d="M 240,384 L 336,384" fill="none" stroke="black"></path>
                   <path d="M 368,384 L 520,384" fill="none" stroke="black"></path>
-                  <path d="M 104,400 L 160,400" fill="none" stroke="black"></path>
-                  <path d="M 232,400 L 336,400" fill="none" stroke="black"></path>
+                  <path d="M 104,400 L 168,400" fill="none" stroke="black"></path>
+                  <path d="M 240,400 L 336,400" fill="none" stroke="black"></path>
                   <path d="M 40,416 L 64,416" fill="none" stroke="black"></path>
                   <path d="M 368,416 L 520,416" fill="none" stroke="black"></path>
                   <path d="M 8,464 L 96,464" fill="none" stroke="black"></path>
                   <path d="M 40,480 L 64,480" fill="none" stroke="black"></path>
-                  <path d="M 104,496 L 160,496" fill="none" stroke="black"></path>
-                  <path d="M 232,496 L 336,496" fill="none" stroke="black"></path>
+                  <path d="M 104,496 L 168,496" fill="none" stroke="black"></path>
+                  <path d="M 240,496 L 336,496" fill="none" stroke="black"></path>
                   <path d="M 368,496 L 520,496" fill="none" stroke="black"></path>
-                  <path d="M 104,512 L 160,512" fill="none" stroke="black"></path>
-                  <path d="M 232,512 L 336,512" fill="none" stroke="black"></path>
+                  <path d="M 104,512 L 168,512" fill="none" stroke="black"></path>
+                  <path d="M 240,512 L 336,512" fill="none" stroke="black"></path>
                   <path d="M 40,528 L 64,528" fill="none" stroke="black"></path>
                   <path d="M 8,560 L 96,560" fill="none" stroke="black"></path>
                   <path d="M 104,576 L 168,576" fill="none" stroke="black"></path>
@@ -8726,10 +8726,10 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
                   <path d="M 112,688 L 192,688" fill="none" stroke="black"></path>
                   <path d="M 224,688 L 336,688" fill="none" stroke="black"></path>
                   <path d="M 40,704 L 64,704" fill="none" stroke="black"></path>
-                  <path d="M 104,720 L 160,720" fill="none" stroke="black"></path>
-                  <path d="M 232,720 L 336,720" fill="none" stroke="black"></path>
-                  <path d="M 104,736 L 160,736" fill="none" stroke="black"></path>
-                  <path d="M 232,736 L 336,736" fill="none" stroke="black"></path>
+                  <path d="M 104,720 L 168,720" fill="none" stroke="black"></path>
+                  <path d="M 240,720 L 336,720" fill="none" stroke="black"></path>
+                  <path d="M 104,736 L 168,736" fill="none" stroke="black"></path>
+                  <path d="M 240,736 L 336,736" fill="none" stroke="black"></path>
                   <path d="M 40,752 L 64,752" fill="none" stroke="black"></path>
                   <path d="M 8,784 L 96,784" fill="none" stroke="black"></path>
                   <path d="M 112,784 L 200,784" fill="none" stroke="black"></path>
@@ -8808,47 +8808,47 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
                     <text x="296" y="180">198.51.100.100/32</text>
                     <text x="384" y="180">via</text>
                     <text x="440" y="180">192.0.2.8</text>
-                    <text x="132" y="228">vlan</text>
+                    <text x="132" y="228">VLAN</text>
                     <text x="168" y="228">100</text>
                     <text x="196" y="228">IP</text>
                     <text x="236" y="228">subnet</text>
                     <text x="196" y="244">192.0.2.0/24</text>
                     <text x="108" y="276">.1</text>
                     <text x="164" y="276">&lt;-</text>
-                    <text x="192" y="276">bfd</text>
+                    <text x="192" y="276">BFD</text>
                     <text x="220" y="276">-&gt;</text>
                     <text x="52" y="292">nf-up1</text>
-                    <text x="188" y="292">vlan-100</text>
-                    <text x="196" y="308">vlan-200</text>
+                    <text x="204" y="292">vlan-100</text>
+                    <text x="204" y="308">vlan-200</text>
                     <text x="404" y="324">Bridge</text>
-                    <text x="452" y="324">vlan</text>
+                    <text x="452" y="324">VLAN</text>
                     <text x="488" y="324">100</text>
                     <text x="52" y="340">compute-01</text>
-                    <text x="440" y="340">(l2/l3)</text>
+                    <text x="440" y="340">(L2/L3)</text>
                     <text x="404" y="356">IP</text>
                     <text x="452" y="356">gateway:</text>
                     <text x="108" y="372">.2</text>
                     <text x="164" y="372">&lt;-</text>
-                    <text x="192" y="372">bfd</text>
+                    <text x="192" y="372">BFD</text>
                     <text x="220" y="372">-&gt;</text>
                     <text x="444" y="372">192.0.2.254/24</text>
                     <text x="52" y="388">nf-up2</text>
-                    <text x="196" y="388">vlan-100</text>
-                    <text x="196" y="404">vlan-200</text>
+                    <text x="204" y="388">vlan-100</text>
+                    <text x="204" y="404">vlan-200</text>
                     <text x="52" y="436">compute-02</text>
                     <text x="192" y="452">[...]</text>
                     <text x="404" y="452">Bridge</text>
-                    <text x="452" y="452">vlan</text>
+                    <text x="452" y="452">VLAN</text>
                     <text x="488" y="452">200</text>
-                    <text x="416" y="468">(l2</text>
+                    <text x="416" y="468">(L2</text>
                     <text x="456" y="468">only)</text>
                     <text x="108" y="484">.6</text>
                     <text x="164" y="484">&lt;-</text>
-                    <text x="192" y="484">bfd</text>
+                    <text x="192" y="484">BFD</text>
                     <text x="220" y="484">-&gt;</text>
                     <text x="52" y="500">nf-up6</text>
-                    <text x="196" y="500">vlan-100</text>
-                    <text x="196" y="516">vlan-200</text>
+                    <text x="204" y="500">vlan-100</text>
+                    <text x="204" y="516">vlan-200</text>
                     <text x="52" y="548">compute-06</text>
                     <text x="204" y="580">vlan-100</text>
                     <text x="204" y="596">vlan-200</text>
@@ -8860,8 +8860,8 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
                     <text x="108" y="708">.9</text>
                     <text x="308" y="708">.252</text>
                     <text x="52" y="724">nf-cp1</text>
-                    <text x="196" y="724">vlan-100</text>
-                    <text x="196" y="740">vlan-200</text>
+                    <text x="204" y="724">vlan-100</text>
+                    <text x="204" y="740">vlan-200</text>
                     <text x="52" y="772">compute-09</text>
                     <text x="216" y="788">BGP</text>
                     <text x="112" y="804">.10</text>
@@ -8875,7 +8875,7 @@ sensitivities/vulnerabilities in the "ietf-ac-svc" module:<a href="#section-7-10
                     <text x="144" y="900">for</text>
                     <text x="180" y="900">VLAN</text>
                     <text x="216" y="900">100</text>
-                    <text x="60" y="916">advertises</text>
+                    <text x="60" y="916">advertizes</text>
                     <text x="128" y="916">pools</text>
                     <text x="172" y="916">with</text>
                     <text x="208" y="916">1:N</text>
