@@ -462,17 +462,17 @@ Table of Contents
                                ietf-ac-common
                                 ^     ^     ^
                                 |     |     |
-                     +----------+     |     +----------+
+                      .--------'      |      .---------.
                      |                |                |
                      |                |                |
                ietf-ac-svc <--- ietf-bearer-svc        |
                   ^    ^                               |
                   |    |                               |
-                  |    +------------------------ ietf-ac-ntw
+                  |     '----------------------- ietf-ac-ntw
                   |                                    ^
                   |                                    |
                   |                                    |
-                  +----------- ietf-ac-glue -----------+
+                   '----------- ietf-ac-glue ---------'
 
                X --> Y: X imports Y
 
@@ -581,11 +581,11 @@ Table of Contents
    the provider) in a service request.  The provider may accept or
    reject such request.
 
-    .----------------------.     Bearer/AC       .--------------------.
+     .--------------------.     Bearer/AC         .------------------.
     |      Customer        |    Service Models   |     Provider       |
     |   Service Ordering   | <-----------------> |   Service Order    |
     |                      |                     |     Handling       |
-    '----------^-----------'                     '---------^----------'
+     '---------^----------'                       '--------^---------'
                |                                           |
           Provisioning                                Provisioning
                |                                           |
@@ -608,11 +608,11 @@ Table of Contents
    for a given service request or create child service requests is
    deployment specific.
 
-.----------.   Bearer/AC    .----------.   Bearer/AC    .--------------.
+ .--------.   Bearer/AC      .--------.   Bearer/AC      .-------------.
 | Customer | Service Models | Service  | Service Model  |   Provider    |
 | Service  |<-------------->|  Broker  |<-------------->| Service Order |
 | Ordering |                |  B2B C/S |                |    Handling   |
-'----------'                '----------'                '---------------'
+ '--------'                  '--------'                  '-------------'
 
 B2B C/S: Back-to-back Client/Server
 
@@ -5727,11 +5727,11 @@ A.10.  Interconnection via Internet eXchange Points (IXPs)
    by the IXP.  However, binding BGP sessions to existing ACs involves a
    recursion step.
 
-.------------.       AC       .----------.       AC       .------------.
+ .----------.       AC         .--------.       AC         .----------.
 |  Network   | Service Model  |    IXP   | Service Model  |   Network  |
 | Operator A |<-------------->| Operator |<-------------->| Operator B |
 |            |                |  B2B C/S |                |            |
-'------^-----'                '-----^----'                '------^-----'
+ '-----^----'                  '----^---'                  '-----^----'
        |                            |                            |
        |                            |                            |
   Provisioning                 Provisioning                 Provisioning
