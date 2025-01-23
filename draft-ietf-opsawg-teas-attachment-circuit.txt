@@ -6661,12 +6661,12 @@ A.12.  BFD and Static Addressing
    '-------'             |      |            .252     |
                          |  +---+----+   +----------+ |
     .-------. .2         |  |   LAN  |---|   GW1    | |
-   |   CE2  |------------|--|        |   |  [bfd]   | |
+   |   CE2  |------------|--|        |   |  [BFD]   | |
    '-------'             |  192.0.2/24   +----------+ |
                          |  |        |        .253    |
    ...                   |  +----+---+   +----------+ |
                          |       | |     |   GW2    | |
-    .-------. .10        |       | +-----+  [bfd]   | |
+    .-------. .10        |       | +-----+  [BFD]   | |
    |   CE10 |------------|-------+       +----------+ |
    '-------'             |                            |
                          |     Provider Network       |
@@ -6674,8 +6674,8 @@ A.12.  BFD and Static Addressing
 
    Each CE has a BFD session to each gateway for redundancy:
     .-------.
-   |   CEx  | .x <---bfd---> .252
-   '-------'     <---bfd---> .253
+   |   CEx  | .x <---BFD---> .252
+   '-------'     <---BFD---> .253
 
               Figure 65: Example of Static Addressing with BFD
 
