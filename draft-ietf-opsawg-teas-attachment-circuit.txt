@@ -1079,11 +1079,11 @@ B2B C/S: Back-to-back Client/Server
 5.2.2.2.  Referencing Service/Specific Profiles
 
    All the above mentioned profiles are uniquely identified by the
-   NETCONF/RESTCONF server by an identifier.  To ease referencing these
-   profiles by other data models, specific typedefs are defined for each
-   of these profiles.  Likewise, an attachment circuit reference typedef
-   is defined when referencing a (global) attachment circuit by its name
-   is required.  These typedefs SHOULD be used when other modules need a
+   provider server by an identifier.  To ease referencing these profiles
+   by other data models, specific typedefs are defined for each of these
+   profiles.  Likewise, an attachment circuit reference typedef is
+   defined when referencing a (global) attachment circuit by its name is
+   required.  These typedefs SHOULD be used when other modules need a
    reference to one of these profiles or attachment circuits.
 
 5.2.3.  Attachment Circuits Profiles
