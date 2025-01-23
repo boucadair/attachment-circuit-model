@@ -5333,16 +5333,13 @@ A.7.  Binding Attachment Circuits to an IETF Network Slice
    Service bound to the ACs created using Figure 41.  Only references to
    these ACs are included in the Slice Service request.
 
-   =============== NOTE: '\' line wrapping per RFC 8792 ================
-
    {
      "ietf-network-slice-service:network-slice-services": {
        "slo-sle-templates": {
          "slo-sle-template": [
            {
              "id": "low-latency-template",
-             "description": "Lowest possible latency forwarding \
-                                                               behavior"
+             "description": "Lowest latency forwarding behavior"
            }
          ]
        },
