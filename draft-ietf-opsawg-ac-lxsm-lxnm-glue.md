@@ -77,7 +77,7 @@ To facilitate data transfer within the provider network, it is assumed that the 
    is provisioned over the links that connect customer termination
    points and a provider network (usually via a Provider Edge (PE)),
    allowing successfully data exchanged over these links.  The required
-   setup is referred to in this document as an (((attachment circuit (AC)))),
+   setup is referred to in this document as an (((attachment circuit (AC), (((attachment circuit (AC)))),
    while the underlying link is referred to as "bearer".
 
 The document specifies a YANG module ("ietf-ac-glue", {{sec-glue}}) that updates existing service and
