@@ -5,12 +5,12 @@
 OPSAWG                                                 M. Boucadair, Ed.
 Internet-Draft                                                    Orange
 Intended status: Standards Track                              R. Roberts
-Expires: 7 August 2025                                           Juniper
+Expires: 15 August 2025                                          Juniper
                                                            S. B. Giraldo
                                                                    Nokia
                                                            O. G. D. Dios
                                                               Telefonica
-                                                         3 February 2025
+                                                        11 February 2025
 
 
   A YANG Data Model for Augmenting VPN Service and Network Models with
@@ -58,7 +58,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 7 August 2025.
+   This Internet-Draft will expire on 15 August 2025.
 
 Copyright Notice
 
@@ -95,6 +95,7 @@ Table of Contents
      A.1.  A Service AC Reference within The VPN Network Access
      A.2.  Network and Service AC References
    Acknowledgments
+   Index
    Authors' Addresses
 
 1.  Introduction
@@ -104,15 +105,13 @@ Table of Contents
    connect customer termination points and a provider network (usually
    via a Provider Edge (PE)), allowing successfully data exchanged over
    these links.  The required setup is referred to in this document as
-   an attachment circuit (AC), while the underlying link is referred to
-   as "bearer".
+   an ), while the underlying link is referred to as "bearer".
 
    The document specifies a YANG module ("ietf-ac-glue", Section 6) that
-   updates existing service and network Virtual Private Network (VPN)
-   modules with the required information to bind specific services to
-   ACs that are created using the AC service model
-   [I-D.ietf-opsawg-teas-attachment-circuit].  Specifically, the
-   following modules are augmented:
+   updates existing service and network ) modules with the required
+   information to bind specific services to ACs that are created using
+   the AC service model [I-D.ietf-opsawg-teas-attachment-circuit].
+   Specifically, the following modules are augmented:
 
    *  The Layer 2 Service Model (L2SM) [RFC8466]
 
@@ -122,12 +121,12 @@ Table of Contents
 
    *  The Layer 3 Network Model (L3NM) [RFC9182]
 
-   Likewise, the document augments the L2NM and L3NM with references to
-   the ACs that are managed using the AC network model
+   Likewise, the document augments the and with references to the ACs
+   that are managed using the AC network model
    [I-D.ietf-opsawg-ntw-attachment-circuit].
 
    This approach allows operators to separate AC provisioning from
-   actual VPN service provisioning.  Refer to Section 4.2 for more
+   actual service provisioning.  Refer to Section 4.2 for more
    discussion.
 
    The YANG data model in this document conforms to the Network
@@ -165,7 +164,7 @@ Table of Contents
    This document uses terms defined in
    [I-D.ietf-opsawg-teas-attachment-circuit].
 
-   LxSM refers to both the L2SM and the L3SM.
+   LxSM refers to both the and the .
 
    LxNM refers to both the L2NM and the L3NM.
 
@@ -244,8 +243,8 @@ Table of Contents
    the actual AC provisioned in the network, "ietf-ac-ntw" leverages the
    AC references exposed by the "ietf-ac-svc" module.  Furthermore, to
    bind Layer 2 VPN or Layer 3 VPN services with ACs, the "ietf-ac-glue"
-   module augments the LxSM and LxNM with AC service references exposed
-   by the "ietf-ac-svc" module and AC network references exposed by the
+   module augments the LxSM and LxNM with service references exposed by
+   the "ietf-ac-svc" module and AC network references exposed by the
    "ietf-ac-ntw" module.
 
 4.  Sample Uses of the Data Models
@@ -884,9 +883,9 @@ Table of Contents
               Wu, B., Dhody, D., Rokui, R., Saad, T., and J. Mullooly,
               "A YANG Data Model for the RFC 9543 Network Slice
               Service", Work in Progress, Internet-Draft, draft-ietf-
-              teas-ietf-network-slice-nbi-yang-20, 27 January 2025,
+              teas-ietf-network-slice-nbi-yang-22, 8 February 2025,
               <https://datatracker.ietf.org/doc/html/draft-ietf-teas-
-              ietf-network-slice-nbi-yang-20>.
+              ietf-network-slice-nbi-yang-22>.
 
    [RFC4252]  Ylonen, T. and C. Lonvick, Ed., "The Secure Shell (SSH)
               Authentication Protocol", RFC 4252, DOI 10.17487/RFC4252,
@@ -1494,6 +1493,27 @@ Acknowledgments
    Thanks to Mahesh Jethanandani for the AD review.
 
    Thanks to Gunter Van de Velde for the IESG review.
+
+Index
+
+   A L V
+
+      A
+
+         AC  Section 3, Paragraph 4
+         attachment circuit (AC  Section 1, Paragraph 1
+
+      L
+
+         L2NM  Section 1, Paragraph 4
+         L2SM  Section 2, Paragraph 3
+         L3NM  Section 1, Paragraph 4
+         L3SM  Section 2, Paragraph 3
+
+      V
+
+         Virtual Private Network (VPN  Section 1, Paragraph 2
+         VPN  Section 1, Paragraph 5
 
 Authors' Addresses
 

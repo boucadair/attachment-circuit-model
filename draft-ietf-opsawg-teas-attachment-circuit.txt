@@ -5,14 +5,14 @@
 OPSAWG                                                 M. Boucadair, Ed.
 Internet-Draft                                                    Orange
 Intended status: Standards Track                         R. Roberts, Ed.
-Expires: 7 August 2025                                           Juniper
+Expires: 15 August 2025                                          Juniper
                                                            O. G. D. Dios
                                                               Telefonica
                                                            S. B. Giraldo
                                                                    Nokia
                                                                    B. Wu
                                                      Huawei Technologies
-                                                         3 February 2025
+                                                        11 February 2025
 
 
   YANG Data Models for Bearers and 'Attachment Circuits'-as-a-Service
@@ -61,7 +61,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 7 August 2025.
+   This Internet-Draft will expire on 15 August 2025.
 
 Copyright Notice
 
@@ -4270,9 +4270,9 @@ B2B C/S: Back-to-back Client/Server
               Wu, B., Dhody, D., Rokui, R., Saad, T., and J. Mullooly,
               "A YANG Data Model for the RFC 9543 Network Slice
               Service", Work in Progress, Internet-Draft, draft-ietf-
-              teas-ietf-network-slice-nbi-yang-20, 27 January 2025,
+              teas-ietf-network-slice-nbi-yang-22, 8 February 2025,
               <https://datatracker.ietf.org/doc/html/draft-ietf-teas-
-              ietf-network-slice-nbi-yang-20>.
+              ietf-network-slice-nbi-yang-22>.
 
    [IEEE802.1AB]
               IEEE, "IEEE Standard for Local and metropolitan area
