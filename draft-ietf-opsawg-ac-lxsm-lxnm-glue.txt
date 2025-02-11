@@ -1501,7 +1501,8 @@ Index
       A
 
          AC  Section 3, Paragraph 4
-         attachment circuit (AC  Section 1, Paragraph 1
+         attachment circuit (AC)
+            (((attachment circuit (AC  Section 1, Paragraph 1
 
       L
 
