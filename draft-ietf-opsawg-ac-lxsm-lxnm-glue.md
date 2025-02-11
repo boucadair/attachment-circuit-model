@@ -77,11 +77,11 @@ To facilitate data transfer within the provider network, it is assumed that the 
    is provisioned over the links that connect customer termination
    points and a provider network (usually via a Provider Edge (PE)),
    allowing successfully data exchanged over these links.  The required
-   setup is referred to in this document as an attachment circuit (AC),
+   setup is referred to in this document as an (((attachment circuit (AC)))),
    while the underlying link is referred to as "bearer".
 
 The document specifies a YANG module ("ietf-ac-glue", {{sec-glue}}) that updates existing service and
-network Virtual Private Network (VPN) modules with the required information to bind specific
+network (((Virtual Private Network (VPN)))) modules with the required information to bind specific
 services to ACs that are created using the AC service model {{!I-D.ietf-opsawg-teas-attachment-circuit}}. Specifically, the following modules are augmented:
 
 * The Layer 2 Service Model (L2SM) {{!RFC8466}}
@@ -89,9 +89,9 @@ services to ACs that are created using the AC service model {{!I-D.ietf-opsawg-t
 * The Layer 2 Network Model (L2NM) {{!RFC9291}}
 * The Layer 3 Network Model (L3NM) {{!RFC9182}}
 
-Likewise, the document augments the L2NM and L3NM with references to the ACs that are managed using the AC network model {{!I-D.ietf-opsawg-ntw-attachment-circuit}}.
+Likewise, the document augments the (((L2NM))) and (((L3NM))) with references to the ACs that are managed using the AC network model {{!I-D.ietf-opsawg-ntw-attachment-circuit}}.
 
-This approach allows operators to separate AC provisioning from actual VPN service provisioning. Refer to {{sep}} for more discussion.
+This approach allows operators to separate AC provisioning from actual (((VPN))) service provisioning. Refer to {{sep}} for more discussion.
 
 The YANG data model in this document conforms to the Network
 Management Datastore Architecture (NMDA) defined in {{!RFC8342}}.
@@ -117,7 +117,7 @@ The meanings of the symbols in the YANG tree diagrams are defined in {{?RFC8340}
 
 This document uses terms defined in {{!I-D.ietf-opsawg-teas-attachment-circuit}}.
 
-LxSM refers to both the L2SM and the L3SM.
+LxSM refers to both the (((L2SM))) and the (((L3SM))).
 
 LxNM refers to both the L2NM and the L3NM.
 
@@ -176,7 +176,7 @@ X --> Y: X imports Y
 ~~~~
 {: #ac-overview title="AC Data Models" artwork-align="center"}
 
-The "ietf-ac-common" module is imported by the "ietf-bearer-svc", "ietf-ac-svc", and "ietf-ac-ntw" modules. Bearers managed using the "ietf-bearer-svc" module may be referenced by service ACs managed using the "ietf-ac-svc" module. Similarly, a bearer managed using the "ietf-bearer-svc" module may list the set of ACs that use that bearer. To facilitate correlation between an AC service request and the actual AC provisioned in the network, "ietf-ac-ntw" leverages the AC references exposed by the "ietf-ac-svc" module. Furthermore, to bind Layer 2 VPN or Layer 3 VPN services with ACs, the "ietf-ac-glue" module augments the LxSM and LxNM with AC service references exposed by the "ietf-ac-svc" module and AC network references exposed by the "ietf-ac-ntw" module.
+The "ietf-ac-common" module is imported by the "ietf-bearer-svc", "ietf-ac-svc", and "ietf-ac-ntw" modules. Bearers managed using the "ietf-bearer-svc" module may be referenced by service ACs managed using the "ietf-ac-svc" module. Similarly, a bearer managed using the "ietf-bearer-svc" module may list the set of ACs that use that bearer. To facilitate correlation between an AC service request and the actual AC provisioned in the network, "ietf-ac-ntw" leverages the AC references exposed by the "ietf-ac-svc" module. Furthermore, to bind Layer 2 VPN or Layer 3 VPN services with ACs, the "ietf-ac-glue" module augments the LxSM and LxNM with (((AC))) service references exposed by the "ietf-ac-svc" module and AC network references exposed by the "ietf-ac-ntw" module.
 
 # Sample Uses of the Data Models
 
