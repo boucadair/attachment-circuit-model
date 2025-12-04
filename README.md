@@ -1,3 +1,10 @@
+# Published RFCs (September 2025)
+
+* [RFC 9833](https://datatracker.ietf.org/doc/rfc9833/): A Common YANG Data Model for Attachment Circuits
+* [RFC 9834](https://datatracker.ietf.org/doc/rfc9834/): YANG Data Models for Bearers and Attachment Circuits as a Service (ACaaS)
+* [RFC 9835](https://datatracker.ietf.org/doc/rfc9835/): A Network YANG Data Model for Attachment Circuits
+* [RFC 9836](https://datatracker.ietf.org/doc/rfc9836/): A YANG Data Model for Augmenting VPN Service and Network Models with Attachment Circuits
+
 # A Common YANG Data Model for Attachment Circuits
 
 This is the working area for the OPSAWG Internet-Draft, "A Common YANG Data Model for Attachment Circuits". This document specifies a set of reusable types and groupings for attachment circuits.
